@@ -51,6 +51,50 @@
       .replace("리빙 / 매니지먼트", "리빙 매니지먼트");
   }
 
+  function getTfConfig(groupName) {
+    if (groupName === "IOTA CFT") {
+      return {
+        leaderLabel: "TF장",
+        leaderName: "이철승",
+        organizations: [
+          "사업2파트",
+          "국내자산관리그룹",
+          "LFC",
+          "SSC",
+          "DSC",
+          "EMC",
+          "디지털사업그룹",
+          "개발PFV TF",
+        ],
+      };
+    }
+
+    if (groupName === "SS&C TF") {
+      return {
+        leaderLabel: "TF장",
+        leaderRole: "그룹장",
+        roleMap: {
+          "그룹장": "TF장",
+          "파트장/센터장": "담당디렉터",
+          "담당디렉터": "서포트디렉터",
+        },
+      };
+    }
+
+    if (groupName === "개발PFV TF") {
+      return {
+        leaderLabel: "TF장",
+        leaderRole: "파트장/센터장",
+        roleMap: {
+          "파트장/센터장": "TF장",
+          "담당디렉터": "시니어매니저",
+        },
+      };
+    }
+
+    return null;
+  }
+
   function clone(obj) {
     return JSON.parse(JSON.stringify(obj));
   }
@@ -439,6 +483,14 @@
     `;
   }
 
+  function renderTextChip(text) {
+    return `
+      <span class="member-chip">
+        <span>${escapeHtml(text)}</span>
+      </span>
+    `;
+  }
+
   function uniqueMembers(members) {
     const seen = new Set();
     return members.filter((member) => {
@@ -492,6 +544,53 @@
     `;
   }
 
+  function getTfLeader(groupName, groupMembers) {
+    const config = getTfConfig(groupName);
+    if (!config) {
+      return null;
+    }
+    if (config.leaderName) {
+      return { name: config.leaderName };
+    }
+    if (config.leaderRole) {
+      return getLeaderByRole(groupMembers, config.leaderRole);
+    }
+    return null;
+  }
+
+  function buildTfRoleBlocks(groupName, members) {
+    const config = getTfConfig(groupName);
+    if (!config) {
+      return [];
+    }
+
+    if (groupName === "IOTA CFT") {
+      return [
+        {
+          role: "참여 조직",
+          content: config.organizations.map((name) => renderTextChip(name)).join(""),
+        },
+      ];
+    }
+
+    const grouped = new Map();
+    uniqueMembers(members).forEach((member) => {
+      const role = config.roleMap?.[member.role] || member.role;
+      if (!grouped.has(role)) {
+        grouped.set(role, []);
+      }
+      grouped.get(role).push(member);
+    });
+
+    return [...grouped.entries()].map(([role, roleMembers]) => ({
+      role,
+      content: roleMembers
+        .sort((a, b) => a.name.localeCompare(b.name, "ko-KR"))
+        .map(renderMember)
+        .join(""),
+    }));
+  }
+
   function isPartLeaderShared(partLeader, groupLeader, centerLeader) {
     if (!partLeader) {
       return false;
@@ -502,10 +601,12 @@
   function renderGroupCard(section, group) {
     const groupMembers = collectGroupMembers(group);
     const tfMode = isTfGroup(group.name);
+    const tfConfig = getTfConfig(group.name);
     const groupLeader = getLeaderByRole(groupMembers, "그룹장");
     const centerLeader = !groupLeader
       ? getLeaderByRole(groupMembers, "파트장/센터장")
       : null;
+    const tfLeader = tfMode ? getTfLeader(group.name, groupMembers) : null;
 
     return `
       <article class="group-card">
@@ -515,7 +616,7 @@
             <div class="leader-row">
               ${
                 tfMode
-                  ? ""
+                  ? renderLeaderPill(tfConfig?.leaderLabel || "TF장", tfLeader)
                   : renderLeaderPill(
                       group.name.includes("센터") ? "센터장" : "그룹장",
                       groupLeader || centerLeader
@@ -545,15 +646,25 @@
                                   centerLeader?.name,
                   partLeader?.name,
                 ]);
-            const grouped = groupMembersByRole(workingMembers);
-            const memberCount = uniqueMembers(workingMembers).length;
-            const isPlainPart = part.name === "미지정";
-            const summaryTitle = isPlainPart ? group.name : "실무 인원";
-            const pathLabel = [section.name, group.name]
-              .filter(Boolean)
-              .join(" > ");
+                            const grouped = groupMembersByRole(workingMembers);
+                            const memberCount = uniqueMembers(workingMembers).length;
+                            const isPlainPart = part.name === "미지정";
+                            const summaryTitle = isPlainPart ? group.name : "실무 인원";
+                            const pathLabel = [section.name, group.name]
+                              .filter(Boolean)
+                              .join(" > ");
+                            const displayBlocks = tfMode
+                              ? buildTfRoleBlocks(group.name, workingMembers)
+                              : grouped.map((block) => ({
+                                  role: block.role,
+                                  content: block.members.map(renderMember).join(""),
+                                }));
+                            const displayCount =
+                              group.name === "IOTA CFT"
+                                ? (tfConfig?.organizations?.length || 0)
+                                : memberCount;
 
-            return `
+                            return `
               <section class="part-block ${isPlainPart ? "part-block-plain" : ""}">
                 <div class="part-header">
                   ${
@@ -582,19 +693,19 @@
                         <p class="team-path">${escapeHtml(normalizeDisplayLabel(pathLabel))}</p>
                       </div>
                       <div class="team-summary-meta">
-                        <span class="team-summary-count">인원 ${fmt(memberCount)}</span>
+                        <span class="team-summary-count">인원 ${fmt(displayCount)}</span>
                         <span class="team-summary-toggle"></span>
                       </div>
                     </summary>
                     <div class="team-detail">
                       <div class="role-stack">
-                        ${grouped
+                        ${displayBlocks
                           .map(
                             (block) => `
                               <div class="role-block">
                                 <div class="role-label">${escapeHtml(block.role)}</div>
                                 <div class="member-list">
-                                  ${block.members.map(renderMember).join("")}
+                                  ${block.content}
                                 </div>
                               </div>
                             `
