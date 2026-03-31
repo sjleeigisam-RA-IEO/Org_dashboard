@@ -75,6 +75,15 @@ h1 {
   line-height: 1.65;
 }
 
+.hero-notice {
+  margin-top: 12px;
+  max-width: 72ch;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
 .hero-meta {
   display: grid;
   gap: 12px;

@@ -824,6 +824,52 @@
     renderOrgBoard(filteredSections);
   }
 
+  function bindViewProtections() {
+    const blockedKeys = new Set(["a", "c", "p", "s", "u"]);
+
+    document.addEventListener("contextmenu", (event) => {
+      event.preventDefault();
+    });
+
+    document.addEventListener("dragstart", (event) => {
+      event.preventDefault();
+    });
+
+    document.addEventListener("copy", (event) => {
+      const target = event.target;
+      if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement) {
+        return;
+      }
+      event.preventDefault();
+    });
+
+    document.addEventListener("cut", (event) => {
+      const target = event.target;
+      if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement) {
+        return;
+      }
+      event.preventDefault();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      const key = String(event.key || "").toLowerCase();
+      const withModifier = event.ctrlKey || event.metaKey;
+
+      if (event.key === "F12") {
+        event.preventDefault();
+        return;
+      }
+
+      if (withModifier && blockedKeys.has(key)) {
+        event.preventDefault();
+      }
+
+      if (event.ctrlKey && event.shiftKey && ["i", "j", "c"].includes(key)) {
+        event.preventDefault();
+      }
+    });
+  }
+
   searchInput.addEventListener("input", (event) => {
     state.search = event.target.value;
     render();
@@ -846,6 +892,7 @@
     }
   });
 
+  bindViewProtections();
   renderHero();
   render();
 })();
