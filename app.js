@@ -39,6 +39,14 @@
 
   const fmt = (value) => new Intl.NumberFormat("ko-KR").format(value);
   const ACTING_PART_LEADERS = new Set(["권진명", "임성훈"]);
+  const NON_COUNTED_TF_MEMBERS = {
+    "SS&C TF": new Set(["신호선", "신동열", "신민재", "윤우섭"]),
+  };
+  const SECTION_LEADERS = {
+    "투자+펀딩": "윤관식 부대표",
+    "사업+개발": "이철승 부문대표",
+    "관리+운영": "정조민 부대표",
+  };
 
   function normalizeDisplayLabel(value) {
     return String(value ?? "")
@@ -109,9 +117,20 @@
     });
   }
 
+  function shouldCountMember(groupName, member) {
+    if (member.tags.includes("외부영입")) {
+      return false;
+    }
+    return !NON_COUNTED_TF_MEMBERS[groupName]?.has(member.name);
+  }
+
   function getEffectiveRole(groupName, member) {
+    if (!shouldCountMember(groupName, member)) {
+      return null;
+    }
+
     if (groupName === "SS&C TF") {
-      if (["신동열", "윤우섭", "신민재"].includes(member.name)) {
+      if (member.role === "그룹장") {
         return null;
       }
       return member.role;
@@ -122,6 +141,42 @@
     }
 
     return member.role;
+  }
+
+  function getDisplayRole(groupName, member) {
+    if (groupName === "개발PFV TF" && member.name === "윤용택") {
+      return "시니어매니저";
+    }
+
+    return member.role;
+  }
+
+  function summarizeMembers(groupName, members) {
+    const counted = members.filter((member) => shouldCountMember(groupName, member));
+    return {
+      assignmentCount: counted.length,
+      uniquePeopleCount: new Set(counted.map((member) => member.name)).size,
+    };
+  }
+
+  function buildGroupLeaderMap(sections) {
+    const groupLeaderByGroup = new Map();
+
+    sections.forEach((section) => {
+      section.groups.forEach((group) => {
+        group.parts.forEach((part) => {
+          part.teams.forEach((team) => {
+            team.members.forEach((member) => {
+              if (member.role === "그룹장" && shouldCountMember(group.name, member)) {
+                groupLeaderByGroup.set(`${section.name}|${group.name}`, member.name);
+              }
+            });
+          });
+        });
+      });
+    });
+
+    return groupLeaderByGroup;
   }
 
   function buildFilteredSections() {
@@ -148,42 +203,47 @@
                       : scopedMembers.filter((member) =>
                           `${member.rawName} ${member.name}`.toLowerCase().includes(keyword)
                         );
+                  const summary = summarizeMembers(group.name, members);
 
                   return {
                     ...team,
                     members,
-                    assignmentCount: members.length,
-                    uniquePeopleCount: new Set(members.map((member) => member.name)).size,
+                    assignmentCount: summary.assignmentCount,
+                    uniquePeopleCount: summary.uniquePeopleCount,
                   };
                 })
                 .filter((team) => team.members.length > 0);
 
               const members = part.teams.flatMap((team) => team.members);
+              const summary = summarizeMembers(group.name, members);
               return {
                 ...part,
                 teams: part.teams,
-                assignmentCount: members.length,
-                uniquePeopleCount: new Set(members.map((member) => member.name)).size,
+                assignmentCount: summary.assignmentCount,
+                uniquePeopleCount: summary.uniquePeopleCount,
               };
             })
             .filter((part) => part.teams.length > 0);
 
           const members = group.parts.flatMap((part) => part.teams.flatMap((team) => team.members));
+          const summary = summarizeMembers(group.name, members);
           return {
             ...group,
-            assignmentCount: members.length,
-            uniquePeopleCount: new Set(members.map((member) => member.name)).size,
+            assignmentCount: summary.assignmentCount,
+            uniquePeopleCount: summary.uniquePeopleCount,
           };
         })
         .filter((group) => group.parts.length > 0);
 
-      const members = sectionCopy.groups.flatMap((group) =>
-        group.parts.flatMap((part) => part.teams.flatMap((team) => team.members))
+      const countedMembers = sectionCopy.groups.flatMap((group) =>
+        group.parts.flatMap((part) =>
+          part.teams.flatMap((team) => team.members.filter((member) => shouldCountMember(group.name, member)))
+        )
       );
 
-      if (members.length > 0) {
-        sectionCopy.assignmentCount = members.length;
-        sectionCopy.uniquePeopleCount = new Set(members.map((member) => member.name)).size;
+      if (sectionCopy.groups.length > 0) {
+        sectionCopy.assignmentCount = countedMembers.length;
+        sectionCopy.uniquePeopleCount = new Set(countedMembers.map((member) => member.name)).size;
         sections.push(sectionCopy);
       }
     }
@@ -193,7 +253,11 @@
   function buildSummary(sections) {
     const members = sections.flatMap((section) =>
       section.groups.flatMap((group) =>
-        group.parts.flatMap((part) => part.teams.flatMap((team) => team.members))
+        group.parts.flatMap((part) =>
+          part.teams.flatMap((team) =>
+            team.members.filter((member) => shouldCountMember(group.name, member))
+          )
+        )
       )
     );
 
@@ -240,21 +304,7 @@
 
   function buildRoleSeatCounts(sections) {
     const seatsByRole = Object.fromEntries(ROLE_FILTER_ORDER.map((role) => [role, new Set()]));
-    const groupLeaderByGroup = new Map();
-
-    sections.forEach((section) => {
-      section.groups.forEach((group) => {
-        group.parts.forEach((part) => {
-          part.teams.forEach((team) => {
-            team.members.forEach((member) => {
-              if (member.role === "그룹장") {
-                groupLeaderByGroup.set(`${section.name}|${group.name}`, member.name);
-              }
-            });
-          });
-        });
-      });
-    });
+    const groupLeaderByGroup = buildGroupLeaderMap(sections);
 
     sections.forEach((section) => {
       section.groups.forEach((group) => {
@@ -263,7 +313,7 @@
           part.teams.forEach((team) => {
             team.members.forEach((member) => {
               const effectiveRole = getEffectiveRole(group.name, member);
-              if (!effectiveRole || !seatsByRole[effectiveRole] || member.tags.includes("외부영입")) {
+              if (!effectiveRole || !seatsByRole[effectiveRole]) {
                 return;
               }
 
@@ -293,6 +343,7 @@
   }
 
   function renderHero() {
+
     heroMeta.innerHTML = `
       <article class="meta-card">
         <div class="meta-label">데이터 생성 시각</div>
@@ -380,21 +431,7 @@
 
   function buildRoleRoster(sections, role) {
     const rosterMap = new Map();
-    const groupLeaderByGroup = new Map();
-
-    sections.forEach((section) => {
-      section.groups.forEach((group) => {
-        group.parts.forEach((part) => {
-          part.teams.forEach((team) => {
-            team.members.forEach((member) => {
-              if (member.role === "그룹장") {
-                groupLeaderByGroup.set(`${section.name}|${group.name}`, member.name);
-              }
-            });
-          });
-        });
-      });
-    });
+    const groupLeaderByGroup = buildGroupLeaderMap(sections);
 
     sections.forEach((section) => {
       section.groups.forEach((group) => {
@@ -407,18 +444,11 @@
                 return;
               }
 
-              if (member.tags.includes("외부영입")) {
-                return;
-              }
-
               if (role === "파트장/센터장" && member.name && member.name === groupLeaderName) {
                 return;
               }
 
-              const key =
-                role === "그룹장"
-                  ? `${section.name}|${group.name}|${member.name}`
-                  : `${member.name}|${role}`;
+              const key = `${member.name}|${role}`;
 
               if (!rosterMap.has(key)) {
                 rosterMap.set(key, {
@@ -681,15 +711,13 @@
                   partLeader?.name,
                 ]);
             const normalizedMembers = uniqueMembers(
-              workingMembers
-                .map((member) => {
-                  const displayRole = getEffectiveRole(group.name, member);
-                  return displayRole ? { ...member, displayRole } : null;
-                })
-                .filter(Boolean)
+              workingMembers.map((member) => ({
+                ...member,
+                displayRole: getDisplayRole(group.name, member),
+              }))
             );
             const grouped = groupMembersByRole(normalizedMembers);
-            const memberCount = normalizedMembers.length;
+            const memberCount = normalizedMembers.filter((member) => shouldCountMember(group.name, member)).length;
                             const isPlainPart = part.name === "미지정";
                             const summaryTitle = isPlainPart ? group.name : "실무 인원";
                             const pathLabel = [section.name, group.name]
@@ -801,7 +829,7 @@
           <article class="section-card">
             <div class="section-head">
               <div>
-                <h2>${escapeHtml(section.name)}</h2>
+                <h2>${escapeHtml(section.name)}${SECTION_LEADERS[section.name] ? ` <span class="section-leader">${escapeHtml(SECTION_LEADERS[section.name])}</span>` : ""}</h2>
                 <p class="section-stat">고유 인원 ${fmt(section.uniquePeopleCount)}명</p>
               </div>
             </div>

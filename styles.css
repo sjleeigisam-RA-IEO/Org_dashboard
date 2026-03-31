@@ -333,6 +333,15 @@ select {
   font-size: 13px;
 }
 
+.section-leader {
+  display: inline-block;
+  margin-left: 10px;
+  color: var(--accent-2);
+  font-size: 18px;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
 .group-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
