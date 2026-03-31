@@ -38,6 +38,7 @@
       .replaceAll("'", "&#39;");
 
   const fmt = (value) => new Intl.NumberFormat("ko-KR").format(value);
+  const ACTING_PART_LEADERS = new Set(["권진명", "임성훈"]);
 
   function normalizeDisplayLabel(value) {
     return String(value ?? "")
@@ -454,7 +455,8 @@
       .map(
         (item) => `
           <article class="modal-item">
-            <div class="modal-item-name">${escapeHtml(item.name)}</div>
+            <div class="modal-item-name">${escapeHtml(getModalPersonName(item))}</div>
+            ${getModalPersonSubrole(item) ? `<div class="modal-item-subrole">${escapeHtml(getModalPersonSubrole(item))}</div>` : ""}
             <div class="modal-item-meta">${escapeHtml(item.paths.join(" / "))}</div>
           </article>
         `
@@ -553,12 +555,26 @@
     if (!member) {
       return "";
     }
+    const acting = ACTING_PART_LEADERS.has(member.name) && label.includes("파트장");
     return `
       <div class="leader-pill">
         <span class="leader-label">${escapeHtml(label)}</span>
-        <span class="leader-name">${escapeHtml(member.name)}</span>
+        <span class="leader-name">${escapeHtml(member.name)}${acting ? "(대행)" : ""}</span>
+        ${acting ? `<span class="leader-subrole">시니어매니저</span>` : ""}
       </div>
     `;
+  }
+
+  function getModalPersonName(item) {
+    const acting = item.role === "파트장/센터장" && ACTING_PART_LEADERS.has(item.name);
+    return `${item.name}${acting ? "(대행)" : ""}`;
+  }
+
+  function getModalPersonSubrole(item) {
+    if (item.role === "파트장/센터장" && ACTING_PART_LEADERS.has(item.name)) {
+      return "실직책: 시니어매니저";
+    }
+    return "";
   }
 
   function getTfLeader(groupName, groupMembers) {
