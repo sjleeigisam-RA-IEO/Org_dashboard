@@ -2,7 +2,7 @@ window.ORG_DASHBOARD_DATA = {
   "meta": {
     "sourceFile": "260325_리얼에셋부문_조직개편_인력배치_v1.4_RA.xlsx",
     "sheetName": "수정안_0318기준 최신버전",
-    "generatedAt": "2026-03-31T10:50:10"
+    "generatedAt": "2026-03-31T13:40:23"
   },
   "summary": {
     "uniquePeopleCount": 239,
@@ -2111,8 +2111,8 @@ window.ORG_DASHBOARD_DATA = {
           "parts": [
             {
               "name": "1파트",
-              "assignmentCount": 19,
-              "uniquePeopleCount": 14,
+              "assignmentCount": 15,
+              "uniquePeopleCount": 10,
               "teams": [
                 {
                   "id": "unit-31",
@@ -2179,8 +2179,8 @@ window.ORG_DASHBOARD_DATA = {
                   "team": "운용2",
                   "displayName": "운용2",
                   "path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용2",
-                  "assignmentCount": 6,
-                  "uniquePeopleCount": 5,
+                  "assignmentCount": 2,
+                  "uniquePeopleCount": 1,
                   "members": [
                     {
                       "role": "그룹장",
@@ -2195,30 +2195,6 @@ window.ORG_DASHBOARD_DATA = {
                       "tags": [
                         "겸직"
                       ]
-                    },
-                    {
-                      "role": "시니어매니저",
-                      "rawName": "김선미",
-                      "name": "김선미",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "신윤아",
-                      "name": "신윤아",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "유진선",
-                      "name": "유진선",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "윤주성",
-                      "name": "윤주성",
-                      "tags": []
                     }
                   ]
                 },
@@ -2277,8 +2253,8 @@ window.ORG_DASHBOARD_DATA = {
             },
             {
               "name": "2파트",
-              "assignmentCount": 4,
-              "uniquePeopleCount": 4,
+              "assignmentCount": 8,
+              "uniquePeopleCount": 8,
               "teams": [
                 {
                   "id": "unit-34",
@@ -2288,8 +2264,8 @@ window.ORG_DASHBOARD_DATA = {
                   "team": "",
                   "displayName": "2파트",
                   "path": "관리+운영 > 글로벌자산관리그룹 > 2파트",
-                  "assignmentCount": 4,
-                  "uniquePeopleCount": 4,
+                  "assignmentCount": 8,
+                  "uniquePeopleCount": 8,
                   "members": [
                     {
                       "role": "그룹장",
@@ -2313,6 +2289,30 @@ window.ORG_DASHBOARD_DATA = {
                       "role": "매니저",
                       "rawName": "나혜윤",
                       "name": "나혜윤",
+                      "tags": []
+                    },
+                    {
+                      "role": "시니어매니저",
+                      "rawName": "김선미",
+                      "name": "김선미",
+                      "tags": []
+                    },
+                    {
+                      "role": "매니저",
+                      "rawName": "신윤아",
+                      "name": "신윤아",
+                      "tags": []
+                    },
+                    {
+                      "role": "매니저",
+                      "rawName": "유진선",
+                      "name": "유진선",
+                      "tags": []
+                    },
+                    {
+                      "role": "매니저",
+                      "rawName": "윤주성",
+                      "name": "윤주성",
                       "tags": []
                     }
                   ]
@@ -4819,8 +4819,8 @@ window.ORG_DASHBOARD_DATA = {
       "team": "운용2",
       "displayName": "운용2",
       "path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용2",
-      "assignmentCount": 6,
-      "uniquePeopleCount": 5,
+      "assignmentCount": 2,
+      "uniquePeopleCount": 1,
       "members": [
         {
           "role": "그룹장",
@@ -4835,30 +4835,6 @@ window.ORG_DASHBOARD_DATA = {
           "tags": [
             "겸직"
           ]
-        },
-        {
-          "role": "시니어매니저",
-          "rawName": "김선미",
-          "name": "김선미",
-          "tags": []
-        },
-        {
-          "role": "매니저",
-          "rawName": "신윤아",
-          "name": "신윤아",
-          "tags": []
-        },
-        {
-          "role": "매니저",
-          "rawName": "유진선",
-          "name": "유진선",
-          "tags": []
-        },
-        {
-          "role": "매니저",
-          "rawName": "윤주성",
-          "name": "윤주성",
-          "tags": []
         }
       ]
     },
@@ -4921,8 +4897,8 @@ window.ORG_DASHBOARD_DATA = {
       "team": "",
       "displayName": "2파트",
       "path": "관리+운영 > 글로벌자산관리그룹 > 2파트",
-      "assignmentCount": 4,
-      "uniquePeopleCount": 4,
+      "assignmentCount": 8,
+      "uniquePeopleCount": 8,
       "members": [
         {
           "role": "그룹장",
@@ -4946,6 +4922,30 @@ window.ORG_DASHBOARD_DATA = {
           "role": "매니저",
           "rawName": "나혜윤",
           "name": "나혜윤",
+          "tags": []
+        },
+        {
+          "role": "시니어매니저",
+          "rawName": "김선미",
+          "name": "김선미",
+          "tags": []
+        },
+        {
+          "role": "매니저",
+          "rawName": "신윤아",
+          "name": "신윤아",
+          "tags": []
+        },
+        {
+          "role": "매니저",
+          "rawName": "유진선",
+          "name": "유진선",
+          "tags": []
+        },
+        {
+          "role": "매니저",
+          "rawName": "윤주성",
+          "name": "윤주성",
           "tags": []
         }
       ]

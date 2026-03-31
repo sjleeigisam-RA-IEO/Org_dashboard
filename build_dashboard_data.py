@@ -222,6 +222,47 @@ def summarize(units: list[dict], sections: list[dict]) -> dict:
     }
 
 
+def apply_manual_overrides(units: list[dict]) -> list[dict]:
+    move_names = {"김선미", "신윤아", "유진선", "윤주성", "정서윤"}
+    source_group = "글로벌자산관리그룹"
+    source_part = "1파트"
+    target_part = "2파트"
+    target_unit = None
+    moved_members: list[dict] = []
+
+    for unit in units:
+        if unit["group"] == source_group and unit["part"] == target_part:
+            target_unit = unit
+            break
+
+    for unit in units:
+        if unit["group"] != source_group or unit["part"] != source_part:
+            continue
+        keep_members = []
+        for member in unit["members"]:
+            if member["name"] in move_names:
+                moved_members.append(member)
+            else:
+                keep_members.append(member)
+        unit["members"] = keep_members
+        unit["assignmentCount"] = len(keep_members)
+        unit["uniquePeopleCount"] = len({member["name"] for member in keep_members if member["name"]})
+
+    if target_unit and moved_members:
+        existing = {(member["name"], member["role"]) for member in target_unit["members"]}
+        for member in moved_members:
+            key = (member["name"], member["role"])
+            if key not in existing:
+                target_unit["members"].append(member)
+                existing.add(key)
+        target_unit["assignmentCount"] = len(target_unit["members"])
+        target_unit["uniquePeopleCount"] = len(
+            {member["name"] for member in target_unit["members"] if member["name"]}
+        )
+
+    return units
+
+
 def parse_workbook(source_path: Path) -> dict:
     workbook = load_workbook(source_path, data_only=True)
     sheet = workbook[workbook.sheetnames[0]]
@@ -292,6 +333,7 @@ def parse_workbook(source_path: Path) -> dict:
             }
         )
 
+    units = apply_manual_overrides(units)
     sections = build_hierarchy(units)
     summary = summarize(units, sections)
 
