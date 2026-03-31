@@ -108,6 +108,21 @@
     });
   }
 
+  function getEffectiveRole(groupName, member) {
+    if (groupName === "SS&C TF") {
+      if (["신동열", "윤우섭", "신민재"].includes(member.name)) {
+        return null;
+      }
+      return member.role;
+    }
+
+    if (groupName === "개발PFV TF" && member.name === "윤용택") {
+      return "시니어매니저";
+    }
+
+    return member.role;
+  }
+
   function buildFilteredSections() {
     const sections = [];
     for (const section of data.sections) {
@@ -246,24 +261,25 @@
         group.parts.forEach((part) => {
           part.teams.forEach((team) => {
             team.members.forEach((member) => {
-              if (!seatsByRole[member.role] || member.tags.includes("외부영입")) {
+              const effectiveRole = getEffectiveRole(group.name, member);
+              if (!effectiveRole || !seatsByRole[effectiveRole] || member.tags.includes("외부영입")) {
                 return;
               }
 
               let seatKey = "";
-              if (member.role === "디렉터") {
-                seatKey = `${team.path}|${member.name}|${member.role}`;
-              } else if (member.role === "그룹장") {
-                seatKey = `${section.name}|${group.name}|${member.role}`;
-              } else if (member.role === "파트장/센터장") {
+              if (effectiveRole === "디렉터") {
+                seatKey = `${team.path}|${member.name}|${effectiveRole}`;
+              } else if (effectiveRole === "그룹장") {
+                seatKey = `${section.name}|${group.name}|${effectiveRole}`;
+              } else if (effectiveRole === "파트장/센터장") {
                 if (member.name && member.name === groupLeaderName) {
                   return;
                 }
-                seatKey = `${section.name}|${group.name}|${part.name}|${member.role}`;
+                seatKey = `${section.name}|${group.name}|${part.name}|${effectiveRole}`;
               } else {
-                seatKey = `${team.path}|${member.name}|${member.role}`;
+                seatKey = `${team.path}|${member.name}|${effectiveRole}`;
               }
-              seatsByRole[member.role].add(seatKey);
+              seatsByRole[effectiveRole].add(seatKey);
             });
           });
         });
@@ -385,7 +401,8 @@
         group.parts.forEach((part) => {
           part.teams.forEach((team) => {
             team.members.forEach((member) => {
-              if (member.role !== role) {
+              const effectiveRole = getEffectiveRole(group.name, member);
+              if (effectiveRole !== role) {
                 return;
               }
 
@@ -406,7 +423,7 @@
                 rosterMap.set(key, {
                   name: member.name,
                   rawName: member.rawName,
-                  role: member.role,
+                  role,
                   paths: new Set(),
                 });
               }
@@ -460,7 +477,7 @@
       .map((role) => ({
         role,
         members: members
-          .filter((member) => member.role === role)
+          .filter((member) => member.displayRole === role)
           .sort((a, b) => a.name.localeCompare(b.name, "ko-KR")),
       }))
       .filter((item) => item.members.length > 0);
@@ -575,7 +592,8 @@
 
     const grouped = new Map();
     uniqueMembers(members).forEach((member) => {
-      const role = config.roleMap?.[member.role] || member.role;
+      const effectiveRole = member.displayRole || member.role;
+      const role = config.roleMap?.[effectiveRole] || effectiveRole;
       if (!grouped.has(role)) {
         grouped.set(role, []);
       }
@@ -646,15 +664,23 @@
                                   centerLeader?.name,
                   partLeader?.name,
                 ]);
-                            const grouped = groupMembersByRole(workingMembers);
-                            const memberCount = uniqueMembers(workingMembers).length;
+            const normalizedMembers = uniqueMembers(
+              workingMembers
+                .map((member) => {
+                  const displayRole = getEffectiveRole(group.name, member);
+                  return displayRole ? { ...member, displayRole } : null;
+                })
+                .filter(Boolean)
+            );
+            const grouped = groupMembersByRole(normalizedMembers);
+            const memberCount = normalizedMembers.length;
                             const isPlainPart = part.name === "미지정";
                             const summaryTitle = isPlainPart ? group.name : "실무 인원";
                             const pathLabel = [section.name, group.name]
                               .filter(Boolean)
                               .join(" > ");
                             const displayBlocks = tfMode
-                              ? buildTfRoleBlocks(group.name, workingMembers)
+                              ? buildTfRoleBlocks(group.name, normalizedMembers)
                               : grouped.map((block) => ({
                                   role: block.role,
                                   content: block.members.map(renderMember).join(""),
