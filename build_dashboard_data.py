@@ -260,6 +260,25 @@ def apply_manual_overrides(units: list[dict]) -> list[dict]:
             {member["name"] for member in target_unit["members"] if member["name"]}
         )
 
+    for unit in units:
+        if unit["group"] == "투자3그룹" and unit["part"] == "1파트":
+            existing = {(member["name"], member["role"]) for member in unit["members"]}
+            key = ("송상민", "시니어매니저")
+            if key not in existing:
+                unit["members"].append(
+                    {
+                        "role": "시니어매니저",
+                        "rawName": "송상민",
+                        "name": "송상민",
+                        "tags": [],
+                    }
+                )
+                unit["assignmentCount"] = len(unit["members"])
+                unit["uniquePeopleCount"] = len(
+                    {member["name"] for member in unit["members"] if member["name"]}
+                )
+            break
+
     return units
 
 

@@ -2,10 +2,10 @@ window.ORG_DASHBOARD_DATA = {
   "meta": {
     "sourceFile": "260325_리얼에셋부문_조직개편_인력배치_v1.4_RA.xlsx",
     "sheetName": "수정안_0318기준 최신버전",
-    "generatedAt": "2026-03-31T13:40:23"
+    "generatedAt": "2026-03-31T14:20:46"
   },
   "summary": {
-    "uniquePeopleCount": 239,
+    "uniquePeopleCount": 240,
     "sectionCount": 5,
     "groupCount": 19,
     "partCount": 8,
@@ -29,7 +29,7 @@ window.ORG_DASHBOARD_DATA = {
       },
       {
         "role": "시니어매니저",
-        "count": 51
+        "count": 52
       },
       {
         "role": "매니저",
@@ -39,7 +39,7 @@ window.ORG_DASHBOARD_DATA = {
     "sectionCounts": [
       {
         "name": "투자+펀딩",
-        "uniquePeopleCount": 88
+        "uniquePeopleCount": 89
       },
       {
         "name": "사업+개발",
@@ -62,8 +62,8 @@ window.ORG_DASHBOARD_DATA = {
   "sections": [
     {
       "name": "투자+펀딩",
-      "assignmentCount": 98,
-      "uniquePeopleCount": 88,
+      "assignmentCount": 99,
+      "uniquePeopleCount": 89,
       "groups": [
         {
           "name": "투자1그룹",
@@ -477,13 +477,13 @@ window.ORG_DASHBOARD_DATA = {
         },
         {
           "name": "투자3그룹",
-          "assignmentCount": 13,
-          "uniquePeopleCount": 12,
+          "assignmentCount": 14,
+          "uniquePeopleCount": 13,
           "parts": [
             {
               "name": "1파트",
-              "assignmentCount": 13,
-              "uniquePeopleCount": 12,
+              "assignmentCount": 14,
+              "uniquePeopleCount": 13,
               "teams": [
                 {
                   "id": "unit-6",
@@ -493,8 +493,8 @@ window.ORG_DASHBOARD_DATA = {
                   "team": "",
                   "displayName": "1파트",
                   "path": "투자+펀딩 > 투자3그룹 > 1파트",
-                  "assignmentCount": 13,
-                  "uniquePeopleCount": 12,
+                  "assignmentCount": 14,
+                  "uniquePeopleCount": 13,
                   "members": [
                     {
                       "role": "그룹장",
@@ -574,6 +574,12 @@ window.ORG_DASHBOARD_DATA = {
                       "role": "매니저",
                       "rawName": "유한나",
                       "name": "유한나",
+                      "tags": []
+                    },
+                    {
+                      "role": "시니어매니저",
+                      "rawName": "송상민",
+                      "name": "송상민",
                       "tags": []
                     }
                   ]
@@ -3315,8 +3321,8 @@ window.ORG_DASHBOARD_DATA = {
       "team": "",
       "displayName": "1파트",
       "path": "투자+펀딩 > 투자3그룹 > 1파트",
-      "assignmentCount": 13,
-      "uniquePeopleCount": 12,
+      "assignmentCount": 14,
+      "uniquePeopleCount": 13,
       "members": [
         {
           "role": "그룹장",
@@ -3396,6 +3402,12 @@ window.ORG_DASHBOARD_DATA = {
           "role": "매니저",
           "rawName": "유한나",
           "name": "유한나",
+          "tags": []
+        },
+        {
+          "role": "시니어매니저",
+          "rawName": "송상민",
+          "name": "송상민",
           "tags": []
         }
       ]
