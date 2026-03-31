@@ -41,6 +41,12 @@
 
   function normalizeDisplayLabel(value) {
     return String(value ?? "")
+      .replace("론파이낸스센터", "론파이낸스센터(LFC)")
+      .replace("개발솔루션센터", "개발솔루션센터(DSC)")
+      .replace("공간솔루션센터", "공간솔루션센터(SSC)")
+      .replace("리테일솔루션센터", "리테일솔루션센터(RSC)")
+      .replace("기업마케팅센터", "기업마케팅센터(EMC)")
+      .replace("기획추진센터", "기획추진센터(IEC)")
       .replace("로지스틱스 / 매니지먼트", "로지스틱스 매니지먼트")
       .replace("리빙 / 매니지먼트", "리빙 매니지먼트");
   }
@@ -486,6 +492,13 @@
     `;
   }
 
+  function isPartLeaderShared(partLeader, groupLeader, centerLeader) {
+    if (!partLeader) {
+      return false;
+    }
+    return partLeader.name === groupLeader?.name || partLeader.name === centerLeader?.name;
+  }
+
   function renderGroupCard(section, group) {
     const groupMembers = collectGroupMembers(group);
     const tfMode = isTfGroup(group.name);
@@ -516,15 +529,20 @@
         </div>
         ${group.parts
           .map((part) => {
-            const partMembers = collectPartMembers(part);
-            const partLeader = tfMode
-              ? null
-              : getLeaderByRole(partMembers, "파트장/센터장");
-            const workingMembers = tfMode
-              ? uniqueMembers(partMembers)
-              : getWorkingMembers(partMembers, [
-                  groupLeader?.name,
-                  centerLeader?.name,
+                            const partMembers = collectPartMembers(part);
+                            const partLeader = tfMode
+                              ? null
+                              : getLeaderByRole(partMembers, "파트장/센터장");
+                            const sharedPartLeader = isPartLeaderShared(
+                              partLeader,
+                              groupLeader,
+                              centerLeader
+                            );
+                            const workingMembers = tfMode
+                              ? uniqueMembers(partMembers)
+                              : getWorkingMembers(partMembers, [
+                                  groupLeader?.name,
+                                  centerLeader?.name,
                   partLeader?.name,
                 ]);
             const grouped = groupMembersByRole(workingMembers);
@@ -543,17 +561,15 @@
                       ? ""
                       : `<div class="part-title">${escapeHtml(normalizeDisplayLabel(part.name))}</div>`
                   }
-                  ${
-                    tfMode || isPlainPart
-                      ? ""
-                      : `<div class="leader-row">${renderLeaderPill(
-                          "파트장",
-                          partLeader && partLeader.name !== groupLeader?.name
-                            ? partLeader
-                            : null
-                        )}</div>`
-                  }
-                </div>
+                                  ${
+                                    tfMode || isPlainPart
+                                      ? ""
+                                      : `<div class="leader-row">${renderLeaderPill(
+                                          sharedPartLeader ? "파트장(겸)" : "파트장",
+                                          partLeader
+                                        )}</div>`
+                                  }
+                                </div>
                 <div class="team-grid">
                   <details class="team-card team-card-collapsible">
                     <summary class="team-summary">
