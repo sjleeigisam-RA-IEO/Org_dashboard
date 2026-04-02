@@ -3,10 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, max-snippet:0, max-image-preview:none, max-video-preview:0" />
+    <meta
+      name="robots"
+      content="noindex, nofollow, noarchive, nosnippet, noimageindex, max-snippet:0, max-image-preview:none, max-video-preview:0"
+    />
     <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
     <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
     <meta name="referrer" content="no-referrer" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://script.googleusercontent.com; font-src 'self' data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content"
+    />
+    <meta
+      http-equiv="Permissions-Policy"
+      content="accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), microphone=(), payment=(), usb=()"
+    />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>리얼에셋부문 조직 대시보드</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -16,12 +31,8 @@
         <div>
           <p class="eyebrow">Real Asset Division</p>
           <h1>조직개편 인력배치 대시보드</h1>
-          <p class="hero-copy">
-            2026년 4월 1일 기준 조직개편에 따른 조직구성 대시보드 입니다.
-          </p>
-          <p class="hero-notice">
-            이 내용은 이지스자산운용 내부공유용으로서 외부유출 및 무단 도용을 엄격히 금지합니다.
-          </p>
+          <p class="hero-copy">2026년 4월 1일 기준 조직개편에 따른 조직구성 대시보드 입니다.</p>
+          <p class="hero-notice">이 내용은 이지스자산운용 내부공유용으로서 외부유출 및 무단 도용을 엄격히 금지합니다.</p>
         </div>
         <div class="hero-meta" id="heroMeta"></div>
       </header>
@@ -29,11 +40,7 @@
       <section class="controls">
         <div class="search-box">
           <label for="searchInput">검색</label>
-          <input
-            id="searchInput"
-            type="search"
-            placeholder="이름, 조직, 파트, 센터명으로 검색"
-          />
+          <input id="searchInput" type="search" placeholder="이름, 조직, 파트, 센터명으로 검색" />
         </div>
         <div class="filter-box">
           <label for="roleFilter">직책 필터</label>
@@ -49,7 +56,6 @@
       </section>
 
       <section class="section-tabs" id="sectionTabs"></section>
-
       <section class="kpi-grid" id="kpiGrid"></section>
 
       <section class="analytics">
@@ -86,7 +92,7 @@
       </div>
     </div>
 
-    <script src="./org-data.js"></script>
-    <script src="./app.js"></script>
+    <script src="./sheet-linked.config.js"></script>
+    <script src="./sheet-loader.js"></script>
   </body>
 </html>
