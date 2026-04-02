@@ -1,0 +1,5 @@
+﻿rule_id,scope,target,rule_type,rule_value,notes
+rule-001,global,외부영입,exclude_from_count,Y,외부영입은 사람 이름이 아니라 충원 상태로 간주
+rule-002,group,SS&C TF,non_counted_names,신호선|신동열|신민재|윤우섭,화면 표시는 유지하되 전체 통계와 고유 인원에서는 제외
+rule-003,group,SS&C TF,exclude_role_from_count,그룹장,오윤석 TF 리더 표시로 인한 그룹장 중복 카운트 방지
+rule-004,group,개발PFV TF,display_role_override,윤용택=시니어매니저,대시보드 표시 역할 보정

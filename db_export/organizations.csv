@@ -1,0 +1,98 @@
+﻿org_id,org_name,org_level,section_name,section_id,parent_org_id,org_code,display_order,notes
+section-01-group-01,투자1그룹,group,투자+펀딩,section-01,section-01,,1,
+section-01-group-01-part-01,1파트,part,투자+펀딩,section-01,section-01-group-01,,1,
+section-01-group-01-part-01-team-01,1파트,team,투자+펀딩,section-01,section-01-group-01-part-01,,1,투자+펀딩 > 투자1그룹 > 1파트
+section-01-group-01-part-02,2파트,part,투자+펀딩,section-01,section-01-group-01,,2,
+section-01-group-01-part-02-team-01,2파트,team,투자+펀딩,section-01,section-01-group-01-part-02,,1,투자+펀딩 > 투자1그룹 > 2파트
+section-01-group-01-part-03,3파트,part,투자+펀딩,section-01,section-01-group-01,,3,
+section-01-group-01-part-03-team-01,3파트,team,투자+펀딩,section-01,section-01-group-01-part-03,,1,투자+펀딩 > 투자1그룹 > 3파트
+section-01-group-01-part-04,4파트,part,투자+펀딩,section-01,section-01-group-01,,4,
+section-01-group-01-part-04-team-01,4파트,team,투자+펀딩,section-01,section-01-group-01-part-04,,1,투자+펀딩 > 투자1그룹 > 4파트
+section-01-group-02,투자2그룹,group,투자+펀딩,section-01,section-01,,2,
+section-01-group-02-part-01,1파트,part,투자+펀딩,section-01,section-01-group-02,,1,
+section-01-group-02-part-01-team-01,1파트,team,투자+펀딩,section-01,section-01-group-02-part-01,,1,투자+펀딩 > 투자2그룹 > 1파트
+section-01-group-03,투자3그룹,group,투자+펀딩,section-01,section-01,,3,
+section-01-group-03-part-01,1파트,part,투자+펀딩,section-01,section-01-group-03,,1,
+section-01-group-03-part-01-team-01,1파트,team,투자+펀딩,section-01,section-01-group-03-part-01,,1,투자+펀딩 > 투자3그룹 > 1파트
+section-01-group-04,글로벌투자그룹,group,투자+펀딩,section-01,section-01,,4,
+section-01-group-04-part-01,1파트,part,투자+펀딩,section-01,section-01-group-04,,1,
+section-01-group-04-part-01-team-01,1파트,team,투자+펀딩,section-01,section-01-group-04-part-01,,1,투자+펀딩 > 글로벌투자그룹 > 1파트
+section-01-group-04-part-02,2파트,part,투자+펀딩,section-01,section-01-group-04,,2,
+section-01-group-04-part-02-team-01,2파트,team,투자+펀딩,section-01,section-01-group-04-part-02,,1,투자+펀딩 > 글로벌투자그룹 > 2파트
+section-01-group-05,스페셜시츄에이션그룹,group,투자+펀딩,section-01,section-01,,5,
+section-01-group-05-part-01,1파트,part,투자+펀딩,section-01,section-01-group-05,,1,
+section-01-group-05-part-01-team-01,1파트,team,투자+펀딩,section-01,section-01-group-05-part-01,,1,투자+펀딩 > 스페셜시츄에이션그룹 > 1파트
+section-01-group-05-part-02,2파트,part,투자+펀딩,section-01,section-01-group-05,,2,
+section-01-group-05-part-02-team-01,2파트,team,투자+펀딩,section-01,section-01-group-05-part-02,,1,투자+펀딩 > 스페셜시츄에이션그룹 > 2파트
+section-01-group-05-part-03,자산관리,part,투자+펀딩,section-01,section-01-group-05,,3,
+section-01-group-05-part-03-team-01,자산관리,team,투자+펀딩,section-01,section-01-group-05-part-03,,1,투자+펀딩 > 스페셜시츄에이션그룹 > 자산관리
+section-01-group-05-part-04,포트폴리오 / 관리,part,투자+펀딩,section-01,section-01-group-05,,4,
+section-01-group-05-part-04-team-01,포트폴리오 / 관리,team,투자+펀딩,section-01,section-01-group-05-part-04,,1,투자+펀딩 > 스페셜시츄에이션그룹 > 포트폴리오 / 관리
+section-02-group-01,사업그룹,group,사업+개발,section-02,section-02,,1,
+section-02-group-01-part-01,1파트,part,사업+개발,section-02,section-02-group-01,,1,
+section-02-group-01-part-01-team-01,1파트,team,사업+개발,section-02,section-02-group-01-part-01,,1,사업+개발 > 사업그룹 > 1파트
+section-02-group-01-part-02,2파트,part,사업+개발,section-02,section-02-group-01,,2,
+section-02-group-01-part-02-team-01,2파트,team,사업+개발,section-02,section-02-group-01-part-02,,1,사업+개발 > 사업그룹 > 2파트
+section-02-group-01-part-03,3파트,part,사업+개발,section-02,section-02-group-01,,3,
+section-02-group-01-part-03-team-01,3파트,team,사업+개발,section-02,section-02-group-01-part-03,,1,사업+개발 > 사업그룹 > 3파트
+section-02-group-01-part-04,4파트,part,사업+개발,section-02,section-02-group-01,,4,
+section-02-group-01-part-04-team-01,4파트,team,사업+개발,section-02,section-02-group-01-part-04,,1,사업+개발 > 사업그룹 > 4파트
+section-02-group-02,디지털사업그룹,group,사업+개발,section-02,section-02,,2,
+section-02-group-02-part-01,사업파트,part,사업+개발,section-02,section-02-group-02,,1,
+section-02-group-02-part-01-team-01,사업파트,team,사업+개발,section-02,section-02-group-02-part-01,,1,사업+개발 > 디지털사업그룹 > 사업파트
+section-02-group-02-part-02,솔루션파트,part,사업+개발,section-02,section-02-group-02,,2,
+section-02-group-02-part-02-team-01,솔루션파트,team,사업+개발,section-02,section-02-group-02-part-02,,1,사업+개발 > 디지털사업그룹 > 솔루션파트
+section-02-group-03,개발솔루션센터,center,사업+개발,section-02,section-02,,3,
+section-02-group-03-part-01,미지정,part,사업+개발,section-02,section-02-group-03,,1,
+section-02-group-03-part-01-team-01,개발솔루션센터,team,사업+개발,section-02,section-02-group-03-part-01,,1,사업+개발 > 개발솔루션센터
+section-03-group-01,국내자산관리그룹,group,관리+운영,section-03,section-03,,1,
+section-03-group-01-part-01,1파트,part,관리+운영,section-03,section-03-group-01,,1,
+section-03-group-01-part-01-team-01,1파트1,team,관리+운영,section-03,section-03-group-01-part-01,,1,관리+운영 > 국내자산관리그룹 > 1파트 > 1파트1
+section-03-group-01-part-01-team-02,1파트2,team,관리+운영,section-03,section-03-group-01-part-01,,2,관리+운영 > 국내자산관리그룹 > 1파트 > 1파트2
+section-03-group-01-part-01-team-03,로지스틱스 / 매니지먼트,team,관리+운영,section-03,section-03-group-01-part-01,,3,관리+운영 > 국내자산관리그룹 > 1파트 > 로지스틱스 / 매니지먼트
+section-03-group-01-part-02,2파트,part,관리+운영,section-03,section-03-group-01,,2,
+section-03-group-01-part-02-team-01,2파트1,team,관리+운영,section-03,section-03-group-01-part-02,,1,관리+운영 > 국내자산관리그룹 > 2파트 > 2파트1
+section-03-group-01-part-02-team-02,2파트2,team,관리+운영,section-03,section-03-group-01-part-02,,2,관리+운영 > 국내자산관리그룹 > 2파트 > 2파트2
+section-03-group-01-part-02-team-03,2파트3,team,관리+운영,section-03,section-03-group-01-part-02,,3,관리+운영 > 국내자산관리그룹 > 2파트 > 2파트3
+section-03-group-01-part-02-team-04,2파트4,team,관리+운영,section-03,section-03-group-01-part-02,,4,관리+운영 > 국내자산관리그룹 > 2파트 > 2파트4
+section-03-group-01-part-02-team-05,펀드지원,team,관리+운영,section-03,section-03-group-01-part-02,,5,관리+운영 > 국내자산관리그룹 > 2파트 > 펀드지원
+section-03-group-01-part-02-team-06,리빙 / 매니지먼트,team,관리+운영,section-03,section-03-group-01-part-02,,6,관리+운영 > 국내자산관리그룹 > 2파트 > 리빙 / 매니지먼트
+section-03-group-01-part-03,3파트,part,관리+운영,section-03,section-03-group-01,,3,
+section-03-group-01-part-03-team-01,3파트1,team,관리+운영,section-03,section-03-group-01-part-03,,1,관리+운영 > 국내자산관리그룹 > 3파트 > 3파트1
+section-03-group-01-part-03-team-02,3파트2,team,관리+운영,section-03,section-03-group-01-part-03,,2,관리+운영 > 국내자산관리그룹 > 3파트 > 3파트2
+section-03-group-02,글로벌자산관리그룹,group,관리+운영,section-03,section-03,,2,
+section-03-group-02-part-01,1파트,part,관리+운영,section-03,section-03-group-02,,1,
+section-03-group-02-part-01-team-01,운용1,team,관리+운영,section-03,section-03-group-02-part-01,,1,관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용1
+section-03-group-02-part-01-team-02,운용2,team,관리+운영,section-03,section-03-group-02-part-01,,2,관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용2
+section-03-group-02-part-01-team-03,운용3,team,관리+운영,section-03,section-03-group-02-part-01,,3,관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용3
+section-03-group-02-part-02,2파트,part,관리+운영,section-03,section-03-group-02,,2,
+section-03-group-02-part-02-team-01,2파트,team,관리+운영,section-03,section-03-group-02-part-02,,1,관리+운영 > 글로벌자산관리그룹 > 2파트
+section-03-group-03,리빙그룹,group,관리+운영,section-03,section-03,,3,
+section-03-group-03-part-01,1파트,part,관리+운영,section-03,section-03-group-03,,1,
+section-03-group-03-part-01-team-01,1파트,team,관리+운영,section-03,section-03-group-03-part-01,,1,관리+운영 > 리빙그룹 > 1파트
+section-03-group-03-part-02,2파트,part,관리+운영,section-03,section-03-group-03,,2,
+section-03-group-03-part-02-team-01,2파트,team,관리+운영,section-03,section-03-group-03-part-02,,1,관리+운영 > 리빙그룹 > 2파트
+section-03-group-04,리테일솔루션센터,center,관리+운영,section-03,section-03,,4,
+section-03-group-04-part-01,미지정,part,관리+운영,section-03,section-03-group-04,,1,
+section-03-group-04-part-01-team-01,리테일솔루션센터,team,관리+운영,section-03,section-03-group-04-part-01,,1,관리+운영 > 리테일솔루션센터
+section-04-group-01,론파이낸스센터,center,부분직속,section-04,section-04,,1,
+section-04-group-01-part-01,미지정,part,부분직속,section-04,section-04-group-01,,1,
+section-04-group-01-part-01-team-01,론파이낸스센터,team,부분직속,section-04,section-04-group-01-part-01,,1,부분직속 > 론파이낸스센터
+section-04-group-02,기업마케팅센터,center,부분직속,section-04,section-04,,2,
+section-04-group-02-part-01,미지정,part,부분직속,section-04,section-04-group-02,,1,
+section-04-group-02-part-01-team-01,기업마케팅센터,team,부분직속,section-04,section-04-group-02-part-01,,1,부분직속 > 기업마케팅센터
+section-04-group-03,공간솔루션센터,center,부분직속,section-04,section-04,,3,
+section-04-group-03-part-01,미지정,part,부분직속,section-04,section-04-group-03,,1,
+section-04-group-03-part-01-team-01,공간솔루션센터,team,부분직속,section-04,section-04-group-03-part-01,,1,부분직속 > 공간솔루션센터
+section-04-group-04,기획추진센터,center,부분직속,section-04,section-04,,4,
+section-04-group-04-part-01,미지정,part,부분직속,section-04,section-04-group-04,,1,
+section-04-group-04-part-01-team-01,기획추진센터,team,부분직속,section-04,section-04-group-04-part-01,,1,부분직속 > 기획추진센터
+section-05-group-01,SS&C TF,tf,TFs,section-05,section-05,,1,TF
+section-05-group-01-part-01,미지정,part,TFs,section-05,section-05-group-01,,1,
+section-05-group-01-part-01-team-01,SS&C TF,team,TFs,section-05,section-05-group-01-part-01,,1,TFs > SS&C TF
+section-05-group-02,IOTA CFT,tf,TFs,section-05,section-05,,2,TF
+section-05-group-02-part-01,미지정,part,TFs,section-05,section-05-group-02,,1,
+section-05-group-02-part-01-team-01,IOTA CFT,team,TFs,section-05,section-05-group-02-part-01,,1,TFs > IOTA CFT
+section-05-group-03,개발PFV TF,tf,TFs,section-05,section-05,,3,TF
+section-05-group-03-part-01,미지정,part,TFs,section-05,section-05-group-03,,1,
+section-05-group-03-part-01-team-01,개발PFV TF,team,TFs,section-05,section-05-group-03-part-01,,1,TFs > 개발PFV TF

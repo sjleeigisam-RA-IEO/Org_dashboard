@@ -1,6 +1,17 @@
 (function () {
   const config = window.ORG_DASHBOARD_REMOTE || {};
 
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.defer = true;
+      script.onload = resolve;
+      script.onerror = () => reject(new Error(`스크립트를 불러오지 못했습니다: ${src}`));
+      document.body.appendChild(script);
+    });
+  }
+
   function showError(message) {
     document.body.innerHTML = `
       <div style="padding:40px;font-family:'Segoe UI','Malgun Gothic',sans-serif;color:#1f2a37;">
@@ -48,10 +59,8 @@
 
       window.ORG_DASHBOARD_DATA = payload;
 
-      const appScript = document.createElement("script");
-      appScript.src = "./app.js";
-      appScript.defer = true;
-      document.body.appendChild(appScript);
+      await loadScript("./app.js");
+      await loadScript("./seat-layout.js");
     } catch (error) {
       showError(`데이터를 불러오지 못했습니다. ${error.message}`);
     } finally {
