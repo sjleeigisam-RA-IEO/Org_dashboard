@@ -1,8 +1,10 @@
-(function () {
+﻿(function () {
   const seatData = window.SEAT_LAYOUT_DATA;
   const remoteSeatLayout = normalizeRemoteSeatLayout_(window.ORG_DASHBOARD_SEAT_LAYOUT);
+  const orgData = window.ORG_DASHBOARD_DATA || null;
   const overlays = window.SEAT_LAYOUT_OVERLAYS || { zones: [], externalSeatCodes: {} };
   if (!seatData || !Array.isArray(seatData.floors) || !seatData.floors.length) return;
+  const ORG_OVERLAY_TEST = true;
 
   const orgView = document.getElementById("orgDashboardView");
   const seatView = document.getElementById("seatLayoutView");
@@ -23,6 +25,7 @@
   const SEAT_INSET = 1;
   const PAD = 1.5;
   const ADMIN_PASSWORD = "seat2604";
+  const HIDDEN_SEAT_CODES = new Set(["2F-A45"]);
 
   // Other-department seat prefixes / zones per floor (grayed out with hatch overlay)
   const OTHER_DEPT = {
@@ -51,6 +54,7 @@
     },
     adminPendingSeatCodes: [],
     adminSaving: false,
+    orgOverlayVisible: ORG_OVERLAY_TEST,
   };
 
   /* ?? Floor outlines ??????????????????????????????? */
@@ -67,8 +71,8 @@
   };
 
   const EQUAL_WIDTH_LABELS = {
-    "13F": ["?뚰듃?μ떎-2", "?뚰듃?μ떎-3", "?뚰듃?μ떎-4"],
-    "12F": ["?뚰듃?μ떎-1", "?뚰듃?μ떎-2", "?뚰듃?μ떎-3"],
+    "13F": ["파트장실-2", "파트장실-3", "파트장실-4"],
+    "12F": ["파트장실-1", "파트장실-2", "파트장실-3"],
   };
   const MOVE_OVERRIDES = {
     "2F-B19": { ignore: true },
@@ -87,6 +91,10 @@
     return floor.scenarios?.[sc]?.assignments||{};
   }
 
+  function getRenderableSeats(floor) {
+    return (floor.seatDefs || []).filter((seat) => !HIDDEN_SEAT_CODES.has(seat.seatCode));
+  }
+
   function normalizeRemoteSeatLayout_(payload) {
     if (!payload || !Array.isArray(payload.rows) || !payload.rows.length) return null;
     const rows = payload.rows
@@ -95,6 +103,7 @@
         floorCode: String(row.floor_code || "").trim(),
         seatLabel: String(row.seat_label || "").trim(),
         personName: String(row.person_name || "").trim(),
+        teamOrgIdSeat: String(row.team_org_id_seat || "").trim(),
         originFloorCode: String(row.origin_floor_code || "").trim(),
         originSeatCode: String(row.origin_seat_code || "").trim(),
         isMoved: String(row.is_moved || "").trim().toUpperCase() === "Y",
@@ -213,6 +222,313 @@
   function getSeatAssignmentInfo(floor, seatCode) {
     const assignments = getAssignments(floor, state.scenario);
     return assignments[seatCode] || null;
+  }
+
+  function buildOrgUnitLookup_() {
+    const map = new Map();
+    const sections = Array.isArray(orgData?.sections) ? orgData.sections : [];
+    sections.forEach((section, sectionIndex) => {
+      const sectionKey = `section-${String(sectionIndex + 1).padStart(2, "0")}`;
+      (section.groups || []).forEach((group, groupIndex) => {
+        const groupKey = `${sectionKey}-group-${String(groupIndex + 1).padStart(2, "0")}`;
+        const groupPayload = {
+          sectionName: section.name || "",
+          groupName: group.name || "",
+          partName: "",
+          teamName: "",
+          overlayName: group.name || "",
+        };
+        map.set(groupKey, groupPayload);
+        (group.parts || []).forEach((part, partIndex) => {
+          const partKey = `${groupKey}-part-${String(partIndex + 1).padStart(2, "0")}`;
+          const partPayload = {
+            sectionName: section.name || "",
+            groupName: group.name || "",
+            partName: part.name || "",
+            teamName: "",
+            overlayName: part.name && part.name !== "미지정" ? part.name : (group.name || ""),
+          };
+          map.set(partKey, partPayload);
+          (part.teams || []).forEach((team, teamIndex) => {
+            const teamPayload = {
+              teamId: team.id,
+              sectionName: section.name || "",
+              groupName: group.name || "",
+              partName: part.name || "",
+              teamName: team.displayName || team.team || "",
+              overlayName: team.displayName || team.team || partPayload.overlayName,
+            };
+            if (team?.id) {
+              map.set(team.id, teamPayload);
+            }
+            const seqTeamKey = `${partKey}-team-${String(teamIndex + 1).padStart(2, "0")}`;
+            map.set(seqTeamKey, teamPayload);
+          });
+        });
+      });
+    });
+    return map;
+  }
+
+  const ORG_UNIT_LOOKUP = buildOrgUnitLookup_();
+  const ORG_OFFICE_EXCLUDED_ROLES = new Set(["디렉터", "그룹장", "파트장/센터장", "담당디렉터", "부대표", "부문대표"]);
+
+  function resolveOrgUnitFromHierarchicalId_(teamOrgIdSeat) {
+    const match = String(teamOrgIdSeat || "").match(/^section-(\d+)-group-(\d+)(?:-part-(\d+))?(?:-team-(\d+))?$/);
+    if (!match) return null;
+    const [, sectionNo, groupNo, partNo, teamNo] = match;
+    const sections = Array.isArray(orgData?.sections) ? orgData.sections : [];
+    const section = sections[Number(sectionNo) - 1];
+    const group = section?.groups?.[Number(groupNo) - 1];
+    const part = partNo ? group?.parts?.[Number(partNo) - 1] : null;
+    const team = teamNo ? part?.teams?.[Number(teamNo) - 1] : null;
+    if (!section || !group) return null;
+    return {
+      teamId: teamOrgIdSeat,
+      sectionName: section.name || "",
+      groupName: group.name || "",
+      partName: part?.name || "",
+      teamName: team?.displayName || team?.team || "",
+      overlayName:
+        team?.displayName ||
+        team?.team ||
+        (part?.name && part.name !== "미지정" ? part.name : "") ||
+        group.name ||
+        "",
+    };
+  }
+
+  function resolveOrgUnit_(teamOrgIdSeat) {
+    return ORG_UNIT_LOOKUP.get(teamOrgIdSeat) || resolveOrgUnitFromHierarchicalId_(teamOrgIdSeat);
+  }
+
+  function getSeatOverlayLabel_(floorCode, teamOrgIdSeat) {
+    const overlayInfo = getSeatOverlayGrouping_(floorCode, teamOrgIdSeat);
+    return overlayInfo?.label || "";
+  }
+
+
+  function getSeatOverlayGrouping_(floorCode, teamOrgIdSeat) {
+    if (!teamOrgIdSeat) return null;
+    const unit = resolveOrgUnit_(teamOrgIdSeat);
+    if (!unit) return null;
+    if (floorCode === "12F" && unit.groupName === "사업그룹" && /^([1-4])파트$/.test(unit.partName || "")) {
+      const partNo = RegExp.$1;
+      const label = `사업그룹 ${partNo}파트`;
+      return { key: `part:사업그룹:${partNo}파트`, label, level: "part" };
+    }
+    if (floorCode === "13F" || floorCode === "2F") {
+      const label = unit.groupName || unit.teamName;
+      return label ? { key: `group:${label}`, label, level: "group" } : null;
+    }
+    if (floorCode === "12F" && (teamOrgIdSeat.startsWith("section-01-group-03") || teamOrgIdSeat.startsWith("section-01-group-05"))) {
+      const label = unit.groupName || unit.teamName;
+      return label ? { key: `group:${label}`, label, level: "group" } : null;
+    }
+    const partLabel = unit.partName && unit.partName !== "미지정" ? unit.partName : (unit.teamName || unit.groupName);
+    return partLabel ? { key: `part:${unit.groupName}:${partLabel}`, label: partLabel, level: "part" } : null;
+  }
+
+  function getOfficeExcludedNamesForOverlay_(floorCode, teamOrgIdSeat) {
+    const unit = resolveOrgUnit_(teamOrgIdSeat);
+    if (!unit) return new Set();
+    const names = new Set();
+    const sections = Array.isArray(orgData?.sections) ? orgData.sections : [];
+    const pushMembers = (members) => {
+      (members || []).forEach((member) => {
+        const role = String(member?.role || "").trim();
+        const name = String(member?.name || "").trim();
+        if (name && ORG_OFFICE_EXCLUDED_ROLES.has(role)) names.add(name);
+      });
+    };
+
+    sections.forEach((section) => {
+      (section.groups || []).forEach((group) => {
+        if (group.name !== unit.groupName) return;
+
+        if (floorCode === "13F" || floorCode === "2F") {
+          (group.parts || []).forEach((part) => {
+            (part.teams || []).forEach((team) => pushMembers(team.members));
+          });
+          return;
+        }
+
+        if (floorCode === "12F" && (teamOrgIdSeat.startsWith("section-01-group-03") || teamOrgIdSeat.startsWith("section-01-group-05"))) {
+          (group.parts || []).forEach((part) => {
+            (part.teams || []).forEach((team) => pushMembers(team.members));
+          });
+          return;
+        }
+
+        (group.parts || []).forEach((part) => {
+          if (part.name !== unit.partName) return;
+          (part.teams || []).forEach((team) => pushMembers(team.members));
+        });
+      });
+    });
+
+    return names;
+  }
+
+  function isSeatWithinPrivateOffice_(floor, seat) {
+    if (seat?.seatCode === "2F-B1") return true;
+    return (floor.shapes || []).some((shape) => {
+      if (shape.shapeType !== "office") return false;
+      const extraH = shape.h <= 1 ? 1 : 0;
+      return (
+        seat.x >= shape.x &&
+        seat.x < shape.x + shape.w &&
+        seat.y >= shape.y &&
+        seat.y < shape.y + shape.h + extraH
+      );
+    });
+  }
+
+  function colorFromKey_(key) {
+    const overrides = {
+      "group:투자3그룹": { fill: "hsla(254, 58%, 78%, 0.18)", stroke: "hsla(254, 34%, 46%, 0.50)", badge: "hsla(254, 82%, 97%, 0.98)", text: "hsla(254, 28%, 28%, 1)" },
+      "group:리빙그룹": { fill: "hsla(18, 72%, 79%, 0.18)", stroke: "hsla(18, 38%, 48%, 0.50)", badge: "hsla(18, 85%, 97%, 0.98)", text: "hsla(18, 32%, 30%, 1)" },
+      "part:사업그룹:1파트": { fill: "hsla(210, 60%, 78%, 0.18)", stroke: "hsla(210, 36%, 46%, 0.50)", badge: "hsla(210, 82%, 97%, 0.98)", text: "hsla(210, 30%, 25%, 1)" },
+      "part:사업그룹:2파트": { fill: "hsla(158, 48%, 79%, 0.18)", stroke: "hsla(158, 30%, 44%, 0.50)", badge: "hsla(158, 76%, 97%, 0.98)", text: "hsla(158, 26%, 27%, 1)" },
+      "part:사업그룹:3파트": { fill: "hsla(22, 70%, 80%, 0.18)", stroke: "hsla(22, 38%, 48%, 0.50)", badge: "hsla(22, 84%, 97%, 0.98)", text: "hsla(22, 32%, 30%, 1)" },
+      "part:사업그룹:4파트": { fill: "hsla(46, 74%, 77%, 0.19)", stroke: "hsla(46, 40%, 44%, 0.52)", badge: "hsla(46, 86%, 97%, 0.98)", text: "hsla(46, 34%, 24%, 1)" },
+      "part:공간솔루션센터:공간솔루션센터": { fill: "hsla(286, 62%, 79%, 0.18)", stroke: "hsla(286, 34%, 46%, 0.48)", badge: "hsla(286, 80%, 97%, 0.98)", text: "hsla(286, 28%, 28%, 1)" },
+      "part:개발솔루션센터:개발솔루션센터": { fill: "hsla(196, 68%, 75%, 0.18)", stroke: "hsla(196, 38%, 42%, 0.50)", badge: "hsla(196, 84%, 97%, 0.98)", text: "hsla(196, 30%, 25%, 1)" },
+      "part:기획추진센터:기획추진센터": { fill: "hsla(138, 48%, 77%, 0.18)", stroke: "hsla(138, 30%, 44%, 0.50)", badge: "hsla(138, 76%, 97%, 0.98)", text: "hsla(138, 26%, 27%, 1)" },
+    };
+    if (overrides[key]) return overrides[key];
+    const palette = [
+      { hue: 205, fillA: 0.18, strokeA: 0.48 },
+      { hue: 144, fillA: 0.18, strokeA: 0.46 },
+      { hue: 260, fillA: 0.18, strokeA: 0.48 },
+      { hue: 18, fillA: 0.18, strokeA: 0.44 },
+      { hue: 332, fillA: 0.16, strokeA: 0.42 },
+      { hue: 48, fillA: 0.18, strokeA: 0.44 },
+    ];
+    let hash = 0;
+    for (let i = 0; i < key.length; i += 1) hash = ((hash << 5) - hash) + key.charCodeAt(i);
+    const entry = palette[Math.abs(hash) % palette.length];
+    const hue = entry.hue;
+    return {
+      fill: `hsla(${hue}, 54%, 74%, ${entry.fillA})`,
+      stroke: `hsla(${hue}, 34%, 44%, ${entry.strokeA})`,
+      badge: `hsla(${hue}, 48%, 97%, 0.98)`,
+      text: `hsla(${hue}, 28%, 28%, 1)`,
+    };
+  }
+
+  function buildOrgOverlayGroups_(floor, cm) {
+    if (!ORG_OVERLAY_TEST || !state.orgOverlayVisible || !remoteSeatLayout) return [];
+    const rows = remoteSeatLayout.rowsByFloor[floor.floorCode] || [];
+    const seatDefByCode = new Map(getRenderableSeats(floor).map((seat) => [seat.seatCode, seat]));
+    const grouped = new Map();
+
+    rows.forEach((row) => {
+      if (!row.teamOrgIdSeat || row.isExternalDivision) return;
+      const overlayInfo = getSeatOverlayGrouping_(floor.floorCode, row.teamOrgIdSeat);
+      if (!overlayInfo) return;
+      const seat = seatDefByCode.get(row.seatCode);
+      if (!seat) return;
+      const excludedOfficeNames = getOfficeExcludedNamesForOverlay_(floor.floorCode, row.teamOrgIdSeat);
+      if (row.personName && excludedOfficeNames.has(row.personName) && isSeatWithinPrivateOffice_(floor, seat)) return;
+      const rect = {
+        x: cm.toX(seat.x) + SEAT_INSET,
+        y: cm.toY(seat.y) + SEAT_INSET,
+        w: cm.spanW(seat.x, seat.w) - SEAT_INSET * 2,
+        h: cm.spanH(seat.y, seat.h) - SEAT_INSET * 2,
+      };
+      if (!grouped.has(overlayInfo.key)) {
+        grouped.set(overlayInfo.key, {
+          ...overlayInfo,
+          rects: [],
+        });
+      }
+      grouped.get(overlayInfo.key).rects.push(rect);
+    });
+
+    return [...grouped.values()].flatMap((group) => {
+      const colors = colorFromKey_(group.key);
+      const thresholdX =
+        group.label === "투자3그룹" ? cm.CELL * 2.25 :
+        group.label === "기획추진센터" ? cm.CELL * 1.95 :
+        group.label === "리빙그룹" ? cm.CELL * 1.55 :
+        cm.CELL * 1.45;
+      const thresholdY =
+        group.label === "투자3그룹" ? cm.CELL * 1.55 :
+        group.label === "기획추진센터" ? cm.CELL * 1.4 :
+        group.label === "리빙그룹" ? cm.CELL * 1.8 :
+        cm.CELL * 1.1;
+      let clusters = clusterRects_(group.rects, thresholdX, thresholdY);
+      if ((group.label === "투자3그룹" || group.label === "기획추진센터" || group.label === "리빙그룹") && clusters.length > 1) {
+        const merged = clusters.reduce((acc, item) => ({
+          rects: acc.rects.concat(item.rects),
+          minX: Math.min(acc.minX, item.minX),
+          minY: Math.min(acc.minY, item.minY),
+          maxX: Math.max(acc.maxX, item.maxX),
+          maxY: Math.max(acc.maxY, item.maxY),
+        }), {
+          rects: [],
+          minX: Number.POSITIVE_INFINITY,
+          minY: Number.POSITIVE_INFINITY,
+          maxX: Number.NEGATIVE_INFINITY,
+          maxY: Number.NEGATIVE_INFINITY,
+        });
+        clusters = [merged];
+      }
+      return clusters.map((cluster, index) => {
+        const padX = cm.CELL * 0.18;
+        const padY = cm.CELL * 0.14;
+        const x = cluster.minX - padX;
+        const y = cluster.minY - padY;
+        const w = (cluster.maxX - cluster.minX) + padX * 2;
+        const h = (cluster.maxY - cluster.minY) + padY * 2;
+        const badgeWidth = Math.max(76, group.label.length * 11 + 24);
+        return {
+          key: group.key,
+          label: group.label,
+          colors,
+          index,
+          x,
+          y,
+          w,
+          h,
+          badgeWidth,
+        };
+      });
+    });
+  }
+
+  function clusterRects_(rects, thresholdX, thresholdY) {
+    const clusters = [];
+    rects.forEach((rect) => {
+      let cluster = null;
+      for (const item of clusters) {
+        const intersects = !(rect.x > item.maxX + thresholdX ||
+          rect.x + rect.w < item.minX - thresholdX ||
+          rect.y > item.maxY + thresholdY ||
+          rect.y + rect.h < item.minY - thresholdY);
+        if (intersects) {
+          cluster = item;
+          break;
+        }
+      }
+      if (!cluster) {
+        clusters.push({
+          rects: [rect],
+          minX: rect.x,
+          minY: rect.y,
+          maxX: rect.x + rect.w,
+          maxY: rect.y + rect.h,
+        });
+        return;
+      }
+      cluster.rects.push(rect);
+      cluster.minX = Math.min(cluster.minX, rect.x);
+      cluster.minY = Math.min(cluster.minY, rect.y);
+      cluster.maxX = Math.max(cluster.maxX, rect.x + rect.w);
+      cluster.maxY = Math.max(cluster.maxY, rect.y + rect.h);
+    });
+    return clusters;
   }
 
   function isOtherDeptSeat(seatCode) {
@@ -371,6 +687,7 @@
         url.searchParams.set("floor_code", row.floorCode || "");
         url.searchParams.set("seat_label", row.seatLabel || "");
         url.searchParams.set("person_name", row.personName || "");
+        url.searchParams.set("team_org_id_seat", row.teamOrgIdSeat || "");
         url.searchParams.set("origin_floor_code", row.originFloorCode || "");
         url.searchParams.set("origin_seat_code", row.originSeatCode || "");
         url.searchParams.set("is_moved", row.isMoved ? "Y" : "N");
@@ -448,7 +765,7 @@
   }
   function buildSeatStats(floor) {
     const assignments = getAssignments(floor, state.scenario);
-    const countedSeats = floor.seatDefs.filter((seat) => !isOtherDeptSeat(seat.seatCode));
+    const countedSeats = getRenderableSeats(floor).filter((seat) => !isOtherDeptSeat(seat.seatCode));
     const occupiedSeats = countedSeats.filter((seat) => assignments[seat.seatCode]?.personName).length;
     return {
       totalSeats: countedSeats.length,
@@ -465,7 +782,7 @@
     const seatX = new Set(), seatY = new Set();
     const shapeX = new Set(), shapeY = new Set();
 
-    floor.seatDefs.forEach(s => {
+    getRenderableSeats(floor).forEach(s => {
       for (let x=s.x; x<s.x+s.w; x++) seatX.add(x);
       for (let y=s.y; y<s.y+s.h; y++) seatY.add(y);
     });
@@ -478,7 +795,7 @@
     // Bounds
     const xs=[],ys=[];
     floor.shapes.forEach(s=>{xs.push(s.x,s.x+s.w);ys.push(s.y,s.y+s.h)});
-    floor.seatDefs.forEach(s=>{xs.push(s.x,s.x+s.w);ys.push(s.y,s.y+s.h)});
+    getRenderableSeats(floor).forEach(s=>{xs.push(s.x,s.x+s.w);ys.push(s.y,s.y+s.h)});
     const outline=FLOOR_OUTLINES[floor.floorCode];
     if(outline) outline.forEach(p=>{xs.push(p[0]);ys.push(p[1])});
     const minX=Math.floor(Math.min(...xs)-PAD), maxX=Math.ceil(Math.max(...xs)+PAD);
@@ -576,29 +893,75 @@
       if(s.shapeType==="room")cls="sv-shape-room";
       else if(s.shapeType==="office")cls="sv-shape-office";
       else if(s.shapeType==="common")cls="sv-shape-common";
+      let displayLabel = s.label || "";
+      const normalizedOfficeLabel = String(displayLabel).replace(/\s+/g, "");
+      if (floor.floorCode === "2F" && s.shapeType === "office") {
+        if (normalizedOfficeLabel === "그룹장실-1" && s.x === 3 && s.y === 33) {
+          displayLabel = "부대표실";
+        } else if (normalizedOfficeLabel === "파트장실-2" && s.x === 20 && s.y === 32) {
+          displayLabel = "그룹장실";
+        }
+      }
+      if (floor.floorCode === "12F" && s.shapeType === "office") {
+        if (normalizedOfficeLabel === "파트장실-1" && s.x === 29 && s.y === 18) {
+          displayLabel = "그룹장실-1";
+        } else if (normalizedOfficeLabel === "파트장실-7" && s.x === 13 && s.y === 18) {
+          displayLabel = "그룹장실-2";
+        }
+      }
+      if (floor.floorCode === "13F" && s.shapeType === "office" && normalizedOfficeLabel === "그룹장실-1") {
+        displayLabel = "부대표실";
+      }
       const area=sw*sh;
       let fs=12; if(area>15000)fs=14;else if(area>6000)fs=13;else if(area<2000)fs=9;else if(area<3500)fs=10;
       const labelY=(s.shapeType==="office"&&extH)?sy+cm.spanH(s.y,s.h)*0.5:sy+sh/2;
       return `<g class="${cls}"><rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="5"/>
-        <title>${esc(s.label)}</title>
-        <text x="${sx+sw/2}" y="${labelY}" class="sv-shape-label" style="font-size:${fs}px">${esc(s.label)}</text></g>`;
+        <title>${esc(displayLabel)}</title>
+        <text x="${sx+sw/2}" y="${labelY}" class="sv-shape-label" style="font-size:${fs}px">${esc(displayLabel)}</text></g>`;
     }).join("");
   }
+
+  function svgOrgOverlayUnderlay(floor, cm) {
+    const groups = buildOrgOverlayGroups_(floor, cm);
+    if (!groups.length) return "";
+    return groups.map((group) => {
+      return `<g class="sv-org-overlay" data-org-key="${esc(group.key)}">
+        <rect x="${group.x}" y="${group.y}" width="${group.w}" height="${group.h}" rx="14" fill="${group.colors.fill}" stroke="${group.colors.stroke}" stroke-width="1.25"/>
+      </g>`;
+    }).join("");
+  }
+
+    function svgOrgOverlayBadges(floor, cm) {
+      const groups = buildOrgOverlayGroups_(floor, cm);
+      if (!groups.length) return "";
+      return groups
+        .map((group) => {
+          const badgeX = group.x + 8;
+          const badgeHeight = 24;
+          const useBottomBadge = /센터|솔루션파트/.test(group.label || "");
+          const badgeY = useBottomBadge ? group.y + group.h - badgeHeight - 6 : group.y + 6;
+          return `<g class="sv-org-badge" data-org-key="${esc(group.key)}">
+          <rect x="${badgeX}" y="${badgeY}" width="${group.badgeWidth}" height="${badgeHeight}" rx="12" fill="${group.colors.badge}" stroke="${group.colors.stroke}" stroke-width="1"/>
+          <text x="${badgeX + group.badgeWidth / 2}" y="${badgeY + badgeHeight / 2}" fill="${group.colors.text}" class="sv-org-badge-text" dominant-baseline="middle">${esc(group.label)}</text>
+        </g>`;
+        }).join("");
+    }
 
   function svgSeats(floor,cm,assignments,extSet) {
     const fc = floor.floorCode;
     const otherDeptConfig = OTHER_DEPT[fc];
     const moveMaps = buildMoveMaps(floor);
     const movedNames = new Set([...moveMaps.byName.keys()]);
-    return floor.seatDefs.map(seat=>{
+    return getRenderableSeats(floor).map(seat=>{
       const sx=cm.toX(seat.x)+SEAT_INSET;
       let sy=cm.toY(seat.y)+SEAT_INSET;
       const sw=cm.spanW(seat.x,seat.w)-SEAT_INSET*2, sh=cm.spanH(seat.y,seat.h)-SEAT_INSET*2;
       if (seat.seatCode === "2F-B1") {
         sy -= 8;
       }
-      const info=assignments[seat.seatCode]; const person=info?.personName||""; const dept=info?.deptName||"";
+      const info=assignments[seat.seatCode]; const person=info?.personName||"";
       const remoteSeat = remoteSeatLayout?.bySeat?.get(seat.seatCode);
+      const dept=getSeatOverlayLabel_(floor.floorCode, remoteSeat?.teamOrgIdSeat || "");
       const isExt=extSet.has(seat.seatCode), isOcc=!!person;
       const isMoved = !!(person && movedNames.has(person));
       const moveInfo = moveMaps.byToSeat.get(seat.seatCode);
@@ -682,7 +1045,9 @@
       ${svgOutline(cm,floor.floorCode)}
       ${svgCoreAreas(cm,floor.floorCode)}
       ${svgShapes(floor,cm)}
+      ${svgOrgOverlayUnderlay(floor,cm)}
       ${svgSeats(floor,cm,assignments,extSet)}
+      ${svgOrgOverlayBadges(floor,cm)}
       ${svgOtherDeptOverlay(floor,cm)}
     </svg><div class="sv-tooltip" id="svTooltip"></div>`;
   }
@@ -706,7 +1071,7 @@
     const floor=getFloor(state.floorCode), stats=buildSeatStats(floor);
     seatView.innerHTML=`
         <section class="seat-hero panel ${state.adminMode ? "admin-active" : ""}">
-          <div class="seat-hero-copy"><p class="eyebrow">Seat Layout</p><h2>${floorLabel(floor.floorCode)} 자리배치</h2>
+          <div class="seat-hero-copy"><p class="eyebrow">자리배치</p><h2>${floorLabel(floor.floorCode)} 자리배치</h2>
             <p>변경안 기준 평면입니다. 이동한 인원에 호버하면 원래 위치 정보를 확인할 수 있습니다.</p></div>
           <div class="seat-hero-actions">
             <div class="seat-scenario-badge">변경안 기준</div>
@@ -718,8 +1083,12 @@
         <div class="seat-main-column">
             <div class="seat-detail-card">
               <div class="seat-detail-head">
-                <div><p class="eyebrow">Floor Plan</p><h2>${floorLabel(floor.floorCode)} 평면</h2></div>
+                <div><p class="eyebrow">평면도</p><h2>${floorLabel(floor.floorCode)} 평면</h2></div>
                 <div class="seat-head-actions">
+                  ${ORG_OVERLAY_TEST ? `
+                  <button class="seat-layer-toggle ${state.orgOverlayVisible ? "active" : ""}" type="button" id="seatOrgOverlayToggle">
+                    ${state.orgOverlayVisible ? "조직 레이어 ON" : "조직 레이어 OFF"}
+                  </button>` : ``}
                   <button class="seat-admin-btn ${state.adminMode ? "active" : ""}" type="button" id="seatAdminToggle">
                     ${state.adminMode ? "관리자모드 ON" : "관리자모드"}
                   </button>
@@ -741,6 +1110,12 @@
 
     seatView.querySelectorAll("[data-floor]").forEach(b=>b.addEventListener("click",()=>{state.floorCode=b.dataset.floor;renderSeatView()}));
     const adminToggle = seatView.querySelector("#seatAdminToggle");
+    const overlayToggle = seatView.querySelector("#seatOrgOverlayToggle");
+    const handleOverlayToggle = () => {
+      state.orgOverlayVisible = !state.orgOverlayVisible;
+      renderSeatView();
+    };
+    if (overlayToggle) overlayToggle.addEventListener("click", handleOverlayToggle);
     if (adminToggle) {
       adminToggle.addEventListener("click", () => {
         if (state.adminMode) {
@@ -941,4 +1316,5 @@
   switchEl.querySelectorAll(".view-tab").forEach(b=>b.addEventListener("click",()=>{state.activeView=b.dataset.view||"org";syncView()}));
   syncView();
 })();
+
 

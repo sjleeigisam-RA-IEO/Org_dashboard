@@ -1028,6 +1028,39 @@ select {
   color: var(--accent);
 }
 
+.seat-layer-toggle {
+  height: 42px;
+  padding: 0 16px;
+  border: 1px solid rgba(72, 62, 54, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #4e5965;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.16s ease, background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+}
+
+.seat-layer-toggle:hover {
+  transform: translateY(-1px);
+  background: rgba(240, 247, 252, 0.96);
+  border-color: rgba(40, 75, 99, 0.22);
+  color: var(--accent-2);
+}
+
+.seat-layer-toggle.active {
+  background: rgba(40, 75, 99, 0.12);
+  border-color: rgba(40, 75, 99, 0.28);
+  color: var(--accent-2);
+}
+
+.seat-layer-toggle.hero {
+  background: rgba(240, 247, 252, 0.96);
+  border-color: rgba(40, 75, 99, 0.18);
+  color: var(--accent-2);
+}
+
 .seat-admin-indicator {
   display: inline-flex;
   align-items: center;
@@ -1297,6 +1330,15 @@ select {
   font-size: 10.5px;
   font-weight: 600;
   fill: rgba(40, 75, 130, 0.7);
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.sv-org-badge-text {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
   text-anchor: middle;
   dominant-baseline: central;
   pointer-events: none;

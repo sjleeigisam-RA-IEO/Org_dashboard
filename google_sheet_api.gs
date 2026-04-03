@@ -115,6 +115,7 @@ function normalizeSeatLayoutRows_(rows) {
     floor_code: String(row.floor_code || "").trim(),
     seat_label: String(row.seat_label || "").trim(),
     person_name: String(row.person_name || "").trim(),
+    team_org_id_seat: String(row.team_org_id_seat || "").trim(),
     origin_floor_code: String(row.origin_floor_code || "").trim(),
     origin_seat_code: String(row.origin_seat_code || "").trim(),
     is_moved: normalizeSeatFlag_(row.is_moved),
@@ -179,6 +180,7 @@ function upsertSeatLayoutRow_(ss, params) {
     floor_code: String(params.floor_code || "").trim(),
     seat_label: String(params.seat_label || "").trim(),
     person_name: String(params.person_name || "").trim(),
+    team_org_id_seat: String(params.team_org_id_seat || "").trim(),
     origin_floor_code: String(params.origin_floor_code || "").trim(),
     origin_seat_code: String(params.origin_seat_code || "").trim(),
     is_moved: normalizeSeatFlag_(params.is_moved),
@@ -189,6 +191,9 @@ function upsertSeatLayoutRow_(ss, params) {
   requiredHeaders.forEach((header) => {
     sheet.getRange(targetRow, headerIndex[header]).setValue(rowObject[header] || "");
   });
+  if (headerIndex.team_org_id_seat) {
+    sheet.getRange(targetRow, headerIndex.team_org_id_seat).setValue(rowObject.team_org_id_seat || "");
+  }
 
   return {
     ok: true,
