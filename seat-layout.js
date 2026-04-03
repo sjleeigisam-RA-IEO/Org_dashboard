@@ -263,17 +263,17 @@
 
   function applyAdminSeatChange() {
     if (!remoteSeatLayout) {
-      window.alert("援ш??쒗듃 湲곕컲 ?먮━諛곗튂 ?곗씠?곌? ?곌껐?섏? ?딆븯?듬땲??");
+      window.alert("구글시트 기반 자리배치 데이터가 연결되지 않았습니다.");
       return;
     }
     const sourceSeatCode = state.adminSelection.sourceSeatCode;
     const targetSeatCode = state.adminSelection.targetSeatCode;
     if (!sourceSeatCode || !targetSeatCode) {
-      window.alert("?좏깮 醫뚯꽍怨??대룞 ??곸쓣 紐⑤몢 吏?뺥빐 二쇱꽭??");
+      window.alert("선택 좌석과 이동 대상을 모두 지정해 주세요.");
       return;
     }
     if (sourceSeatCode === targetSeatCode) {
-      window.alert("媛숈? 醫뚯꽍? ?대룞 ??곸쑝濡?吏?뺥븷 ???놁뒿?덈떎.");
+      window.alert("같은 좌석을 이동 대상으로 지정할 수 없습니다.");
       return;
     }
 
@@ -281,11 +281,11 @@
     const sourceRow = getRemoteSeatRow(sourceSeatCode);
     const targetRow = getRemoteSeatRow(targetSeatCode);
     if (!sourceRow || !targetRow) {
-      window.alert("?좏깮??醫뚯꽍 ?뺣낫瑜?李얠쓣 ???놁뒿?덈떎.");
+      window.alert("선택한 좌석 정보를 찾을 수 없습니다.");
       return;
     }
     if (!sourceRow.personName) {
-      window.alert("?좏깮 醫뚯꽍??諛곗튂???щ엺???놁뒿?덈떎.");
+      window.alert("선택 좌석에 배치된 사람이 없습니다.");
       return;
     }
 
@@ -336,7 +336,7 @@
       script.async = true;
       script.onerror = () => {
         cleanup();
-        reject(new Error("????붿껌??蹂대궡吏 紐삵뻽?듬땲??"));
+        reject(new Error("저장 요청을 보내지 못했습니다."));
       };
       document.body.appendChild(script);
     });
@@ -344,16 +344,16 @@
 
   async function saveAdminChanges() {
     if (!remoteSeatLayout) {
-      window.alert("援ш??쒗듃 湲곕컲 ?먮━諛곗튂 ?곗씠?곌? ?곌껐?섏? ?딆븯?듬땲??");
+      window.alert("구글시트 기반 자리배치 데이터가 연결되지 않았습니다.");
       return;
     }
     if (!state.adminPendingSeatCodes.length) {
-      window.alert("??ν븷 蹂寃??ы빆???놁뒿?덈떎.");
+      window.alert("저장할 변경 사항이 없습니다.");
       return;
     }
     const config = window.ORG_DASHBOARD_REMOTE || {};
     if (!config.webAppUrl || !config.accessKey) {
-      window.alert("?쒗듃 ??μ슜 ?뱀빋 ?ㅼ젙???놁뒿?덈떎.");
+      window.alert("시트 연동용 설정이 없습니다.");
       return;
     }
 
@@ -379,13 +379,13 @@
         url.searchParams.set("_t", Date.now().toString());
         const payload = await loadRemoteJsonpForSave(url);
         if (!payload || payload.ok === false) {
-          throw new Error(payload?.error || `????ㅽ뙣: ${seatCode}`);
+          throw new Error(payload?.error || `저장 실패: ${seatCode}`);
         }
       }
       state.adminPendingSeatCodes = [];
-      window.alert("?먮━諛곗튂 蹂寃쎌궗??쓣 ??ν뻽?듬땲??");
+      window.alert("자리배치 변경사항을 저장했습니다.");
     } catch (error) {
-      window.alert(`???以??ㅻ쪟媛 諛쒖깮?덉뒿?덈떎. ${error.message}`);
+      window.alert(`저장 중 오류가 발생했습니다. ${error.message}`);
     } finally {
       state.adminSaving = false;
       renderSeatView();
@@ -548,8 +548,8 @@
   function svgShapes(floor,cm) {
     const isEqualizedRoom = (label) => {
       const text = String(label || "");
-      if (floor.floorCode === "12F") return /^????-[123]$/.test(text);
-      if (floor.floorCode === "13F") return /^????-[234]$/.test(text);
+      if (floor.floorCode === "12F") return /^파트장실-[123]$/.test(text);
+      if (floor.floorCode === "13F") return /^파트장실-[234]$/.test(text);
       return false;
     };
     const equalizeTargets = floor.shapes.filter((shape) => isEqualizedRoom(shape.label));
@@ -562,7 +562,7 @@
         let sx=cm.toX(s.x),sy=cm.toY(s.y);
         const extH=(s.shapeType==="office"&&s.h<=1)?1:0;
         let sw=cm.spanW(s.x,s.w),sh=cm.spanH(s.y,s.h+extH);
-        if (floor.floorCode === "2F" && String(s.label || "") === "????-1") {
+        if (floor.floorCode === "2F" && String(s.label || "") === "그룹장실-1") {
           sx -= 8;
           sw += 16;
           sh += 28;
@@ -698,8 +698,8 @@
 
   function renderMoveList(floor) {
     const m=getMovedPeople(floor);
-    if(!m.length) return `<div class="seat-empty">?꾩옱?덇낵 蹂寃쎌븞 ?ъ씠??醫뚯꽍 ?대룞???놁뒿?덈떎.</div>`;
-    return m.slice(0,20).map(r=>`<div class="move-row"><strong>${esc(r.name)}</strong><span>${esc(r.fromSeat)} ??${esc(r.toSeat)}</span></div>`).join("");
+    if(!m.length) return `<div class="seat-empty">현재 기준 이동 좌석이 없습니다.</div>`;
+    return m.slice(0,20).map(r=>`<div class="move-row"><strong>${esc(r.name)}</strong><span>${esc(r.fromSeat)} → ${esc(r.toSeat)}</span></div>`).join("");
   }
 
   function renderSeatView() {
@@ -749,14 +749,14 @@
           renderSeatView();
           return;
         }
-        const input = window.prompt("愿由ъ옄 鍮꾨?踰덊샇瑜??낅젰?섏꽭??");
+        const input = window.prompt("관리자 비밀번호를 입력하세요.");
         if (input === null) return;
         if (input === ADMIN_PASSWORD) {
           state.adminMode = true;
           renderSeatView();
           return;
         }
-        window.alert("鍮꾨?踰덊샇媛 ?щ컮瑜댁? ?딆뒿?덈떎.");
+        window.alert("비밀번호가 올바르지 않습니다.");
       });
     }
     const applyButton = seatView.querySelector("#seatAdminApply");
@@ -863,20 +863,24 @@
           const targetEl = svg.querySelector(`.sv-seat[data-code="${state.adminSelection.targetSeatCode}"]`);
           targetEl?.classList.add("sv-seat-target");
         }
-        const c=g.dataset.code||"",p=g.dataset.person||"",d=g.dataset.dept||"";
+      };
+
+      svg.addEventListener("mouseenter", (e) => {
+        const g = e.target.closest(".sv-seat");
+        if (!g) return;
+        const c = g.dataset.code || "";
+        const p = g.dataset.person || "";
+        const d = g.dataset.dept || "";
         const originSeat = g.dataset.originSeat || "";
         const originFloor = g.dataset.originFloor || "";
-        const originText = p === "???"
-          ? "????"
-          : originFloor
-            ? (originSeat && originFloor === floor.floorCode ? `?? ?? ${originSeat}` : `?? ${floorLabel(originFloor)}`)
-            : "";
-        tip.innerHTML = p ? `<strong>${c}</strong><span class="sv-tt-name">${esc(p)}</span>${d ? `<span class="sv-tt-dept">${esc(d)}</span>` : ""}${originText ? `<span class="sv-tt-origin">${esc(originText)}</span>` : ""}` : `<strong>${c}</strong><span class="sv-tt-empty">???</span>`;
+        const originText = p === "권진명"
           ? "추후이동"
           : originFloor
-            ? (originSeat && originFloor === floor.floorCode ? `?먮옒 ?먮━ ${originSeat}` : `?먮옒 ${floorLabel(originFloor)}`)
+            ? (originSeat && originFloor === floor.floorCode ? `원래 자리 ${originSeat}` : `원래 ${floorLabel(originFloor)}`)
             : "";
-        tip.innerHTML=p?`<strong>${c}</strong><span class="sv-tt-name">${esc(p)}</span>${d?`<span class="sv-tt-dept">${esc(d)}</span>`:""}${originText?`<span class="sv-tt-origin">${esc(originText)}</span>`:""}`:`<strong>${c}</strong><span class="sv-tt-empty">誘몃같移?/span>`;
+        tip.innerHTML = p
+          ? `<strong>${c}</strong><span class="sv-tt-name">${esc(p)}</span>${d ? `<span class="sv-tt-dept">${esc(d)}</span>` : ""}${originText ? `<span class="sv-tt-origin">${esc(originText)}</span>` : ""}`
+          : `<strong>${c}</strong><span class="sv-tt-empty">미배치</span>`;
         tip.classList.add("visible");
         const shell = seatView.querySelector(".seat-board-shell");
         const shellRect = shell.getBoundingClientRect();
@@ -897,7 +901,7 @@
         } else {
           applyOriginHighlight(g);
         }
-      });
+      }, true);
       svg.addEventListener("mouseleave",()=>{tip.classList.remove("visible"); clearOriginHighlights();});
       svg.addEventListener("click",(e)=>{
         const g=e.target.closest(".sv-seat");
