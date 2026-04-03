@@ -1,6 +1,7 @@
 (function () {
   const config = window.ORG_DASHBOARD_REMOTE || {};
   const CALLBACK_NAME = "__ORG_DASHBOARD_REMOTE_CALLBACK__";
+  const localOrgData = window.ORG_DASHBOARD_DATA || null;
 
   function loadScript(src) {
     return new Promise((resolve, reject) => {
@@ -8,7 +9,7 @@
       script.src = src + "?_t=" + Date.now();
       script.defer = true;
       script.onload = resolve;
-      script.onerror = () => reject(new Error(`스크립트를 불러오지 못했습니다: ${src}`));
+      script.onerror = () => reject(new Error(`스크립트를 불러오지 못했습니다. ${src}`));
       document.body.appendChild(script);
     });
   }
@@ -49,17 +50,34 @@
     });
   }
 
+  async function bootDashboard() {
+    await loadScript("./app.js");
+    await loadScript("./seat-layout.js");
+  }
+
+  async function loadLocalFallback(reason) {
+    if (!localOrgData) return false;
+    window.ORG_DASHBOARD_DATA = localOrgData;
+    window.ORG_DASHBOARD_SEAT_LAYOUT = window.ORG_DASHBOARD_SEAT_LAYOUT || null;
+    await bootDashboard();
+    console.warn("[sheet-loader] Remote sheet load failed, using local fallback.", reason);
+    return true;
+  }
+
   async function loadRemoteData() {
     if (!config.webAppUrl) {
-      showError("웹 앱 URL이 비어 있습니다.");
+      const usedFallback = await loadLocalFallback("missing webAppUrl");
+      if (!usedFallback) {
+        showError("웹앱 URL이 비어 있습니다.");
+      }
       return;
     }
 
     const timeout = setTimeout(() => {
-      showError("데이터를 불러오는 시간이 초과되었습니다.");
+      showError("데이터를 불러오는 시간이 초과했습니다.");
     }, config.timeoutMs || 15000);
-    const url = new URL(config.webAppUrl);
 
+    const url = new URL(config.webAppUrl);
     if (config.accessKey) {
       url.searchParams.set("key", config.accessKey);
     }
@@ -69,7 +87,7 @@
     try {
       const payload = await loadRemoteJsonp(url);
       if (payload && payload.ok === false) {
-        throw new Error(payload.error || "원격 데이터 인증에 실패했습니다.");
+        throw new Error(payload.error || "원격 데이터에 접근하지 못했습니다.");
       }
       if (!payload || !payload.sections) {
         throw new Error("대시보드 데이터 형식이 올바르지 않습니다.");
@@ -77,11 +95,12 @@
 
       window.ORG_DASHBOARD_DATA = payload;
       window.ORG_DASHBOARD_SEAT_LAYOUT = payload.seatLayout || null;
-
-      await loadScript("./app.js");
-      await loadScript("./seat-layout.js");
+      await bootDashboard();
     } catch (error) {
-      showError(`데이터를 불러오지 못했습니다. ${error.message}`);
+      const usedFallback = await loadLocalFallback(error.message);
+      if (!usedFallback) {
+        showError(`데이터를 불러오지 못했습니다. ${error.message}`);
+      }
     } finally {
       clearTimeout(timeout);
     }
