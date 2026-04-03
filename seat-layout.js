@@ -546,8 +546,13 @@
   }
 
   function svgShapes(floor,cm) {
-    const equalizeLabels = EQUAL_WIDTH_LABELS[floor.floorCode] || [];
-    const equalizeTargets = floor.shapes.filter((shape) => equalizeLabels.includes(shape.label));
+    const isEqualizedRoom = (label) => {
+      const text = String(label || "");
+      if (floor.floorCode === "12F") return /^????-[123]$/.test(text);
+      if (floor.floorCode === "13F") return /^????-[234]$/.test(text);
+      return false;
+    };
+    const equalizeTargets = floor.shapes.filter((shape) => isEqualizedRoom(shape.label));
     const equalizedWidth = equalizeTargets.length
       ? Math.max(...equalizeTargets.map((shape) => cm.spanW(shape.x, shape.w)))
       : 0;
@@ -557,12 +562,12 @@
         let sx=cm.toX(s.x),sy=cm.toY(s.y);
         const extH=(s.shapeType==="office"&&s.h<=1)?1:0;
         let sw=cm.spanW(s.x,s.w),sh=cm.spanH(s.y,s.h+extH);
-        if (floor.floorCode === "2F" && s.label === "洹몃９?μ떎-1") {
+        if (floor.floorCode === "2F" && String(s.label || "") === "????-1") {
           sx -= 8;
           sw += 16;
           sh += 28;
         }
-        if (equalizedWidth && equalizeLabels.includes(s.label)) {
+        if (equalizedWidth && isEqualizedRoom(s.label)) {
           const centerX = sx + sw / 2;
           sw = equalizedWidth;
           sx = centerX - sw / 2;
@@ -858,15 +863,15 @@
           const targetEl = svg.querySelector(`.sv-seat[data-code="${state.adminSelection.targetSeatCode}"]`);
           targetEl?.classList.add("sv-seat-target");
         }
-      };
-
-      svg.addEventListener("mousemove",e=>{
-        const g=e.target.closest(".sv-seat");
-        if(!g){tip.classList.remove("visible");return}
         const c=g.dataset.code||"",p=g.dataset.person||"",d=g.dataset.dept||"";
         const originSeat = g.dataset.originSeat || "";
         const originFloor = g.dataset.originFloor || "";
-        const originText = p === "권진명"
+        const originText = p === "???"
+          ? "????"
+          : originFloor
+            ? (originSeat && originFloor === floor.floorCode ? `?? ?? ${originSeat}` : `?? ${floorLabel(originFloor)}`)
+            : "";
+        tip.innerHTML = p ? `<strong>${c}</strong><span class="sv-tt-name">${esc(p)}</span>${d ? `<span class="sv-tt-dept">${esc(d)}</span>` : ""}${originText ? `<span class="sv-tt-origin">${esc(originText)}</span>` : ""}` : `<strong>${c}</strong><span class="sv-tt-empty">???</span>`;
           ? "추후이동"
           : originFloor
             ? (originSeat && originFloor === floor.floorCode ? `?먮옒 ?먮━ ${originSeat}` : `?먮옒 ${floorLabel(originFloor)}`)
