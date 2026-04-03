@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
   const seatData = window.SEAT_LAYOUT_DATA;
   const remoteSeatLayout = normalizeRemoteSeatLayout_(window.ORG_DASHBOARD_SEAT_LAYOUT);
   const overlays = window.SEAT_LAYOUT_OVERLAYS || { zones: [], externalSeatCodes: {} };
@@ -614,7 +614,7 @@
         return `<g class="${cls}" data-code="${esc(seat.seatCode)}" data-person="${esc(person)}" data-dept="${esc(dept)}" data-origin-seat="${esc(moveInfo?.fromSeat || "")}" data-origin-floor="${esc(moveInfo?.fromFloor || "")}">
         <rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="5" filter="url(#seatShadow)"/>
         <text x="${sx+sw/2}" y="${showName ? sy+sh*0.42 : sy+sh/2}" class="sv-seat-code">${esc(seat.seatLabel)}</text>
-        ${showName?`<text x="${sx+sw/2}" y="${sy+sh*0.72}" class="sv-seat-name">${esc(person.length>3?person.slice(0,3)+'??:person)}</text>`:""}
+        ${showName ? `<text x="${sx+sw/2}" y="${sy + sh * 0.72}" class="sv-seat-name">${esc(person.length > 3 ? person.slice(0, 3) + ".." : person)}</text>` : ""}
       </g>`;
     }).join("");
   }

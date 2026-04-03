@@ -2,11 +2,12 @@
   const config = window.ORG_DASHBOARD_REMOTE || {};
   const CALLBACK_NAME = "__ORG_DASHBOARD_REMOTE_CALLBACK__";
   const localOrgData = window.ORG_DASHBOARD_DATA || null;
+  const isLocalhost = /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
 
   function loadScript(src) {
     return new Promise((resolve, reject) => {
       const script = document.createElement("script");
-      script.src = src + "?_t=" + Date.now();
+      script.src = isLocalhost ? (src + "?_t=" + Date.now()) : src;
       script.defer = true;
       script.onload = resolve;
       script.onerror = () => reject(new Error(`스크립트를 불러오지 못했습니다. ${src}`));
