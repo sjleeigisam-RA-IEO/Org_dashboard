@@ -687,7 +687,7 @@
     return FLOOR_ORDER.map(fc=>{
       const f=getFloor(fc),active=fc===state.floorCode;
       return `<button class="floor-card ${active?"active":""}" type="button" data-floor="${fc}">
-        <span class="floor-card-label">${floorLabel(fc)}</span><span class="floor-card-count">${fmt(f.seatDefs.length)} ??/span></button>`;
+        <span class="floor-card-label">${floorLabel(fc)}</span><span class="floor-card-count">좌석 ${fmt(buildSeatStats(f).totalSeats)}</span></button>`;
     }).join("");
   }
 
@@ -701,28 +701,22 @@
     const floor=getFloor(state.floorCode), stats=buildSeatStats(floor);
     seatView.innerHTML=`
         <section class="seat-hero panel ${state.adminMode ? "admin-active" : ""}">
-          <div class="seat-hero-copy"><p class="eyebrow">Seat Layout</p><h2>${floorLabel(floor.floorCode)} ?먮━諛곗튂</h2>
-            <p>蹂寃쎌븞 湲곗? ?꾨㈃?낅땲?? ?대룞???щ엺???몃쾭?섍굅???대┃?섎㈃ ?먮옒 ?먮━ ?꾩튂瑜?媛숈? 痢듭뿉???섏씠?쇱씠?명빀?덈떎.</p></div>
+          <div class="seat-hero-copy"><p class="eyebrow">Seat Layout</p><h2>${floorLabel(floor.floorCode)} 자리배치</h2>
+            <p>변경안 기준 평면입니다. 이동한 인원에 호버하면 원래 위치 정보를 확인할 수 있습니다.</p></div>
           <div class="seat-hero-actions">
-            <div class="seat-scenario-badge">蹂寃쎌븞 湲곗?</div>
-            ${state.adminMode ? `<div class="seat-admin-indicator">愿由ъ옄紐⑤뱶 ?쒖꽦??/div>` : ``}
+            <div class="seat-scenario-badge">변경안 기준</div>
+            ${state.adminMode ? `<div class="seat-admin-indicator">관리자모드 활성화</div>` : ``}
           </div>
         </section>
-      <section class="seat-summary-grid">
-        <article class="kpi-card"><div class="kpi-label">?좏깮 痢?/div><div class="kpi-value">${floorLabel(floor.floorCode)}</div></article>
-        <article class="kpi-card"><div class="kpi-label">醫뚯꽍 ??/div><div class="kpi-value">${fmt(stats.totalSeats)}</div></article>
-        <article class="kpi-card"><div class="kpi-label">諛곗튂 ?몄썝</div><div class="kpi-value">${fmt(stats.occupiedSeats)}</div><div class="kpi-sub">蹂寃쎌븞 湲곗?</div></article>
-        <article class="kpi-card"><div class="kpi-label">?대룞 ?몄썝</div><div class="kpi-value">${fmt(stats.movedSeats)}</div></article>
-      </section>
       <section class="seat-layout-grid">
-          <aside class="seat-stack-panel panel"><div class="panel-head"><h3>痢??좏깮</h3></div><div class="floor-stack">${renderFloorStack()}</div>${renderAdminPanel(floor)}</aside>
+          <aside class="seat-stack-panel panel"><div class="panel-head"><h3>층 선택</h3></div><div class="floor-stack">${renderFloorStack()}</div>${renderAdminPanel(floor)}</aside>
         <div class="seat-main-column">
             <div class="seat-detail-card">
               <div class="seat-detail-head">
-                <div><p class="eyebrow">Floor Plan</p><h2>${floorLabel(floor.floorCode)} ?꾨㈃</h2></div>
+                <div><p class="eyebrow">Floor Plan</p><h2>${floorLabel(floor.floorCode)} 평면</h2></div>
                 <div class="seat-head-actions">
                   <button class="seat-admin-btn ${state.adminMode ? "active" : ""}" type="button" id="seatAdminToggle">
-                    ${state.adminMode ? "愿由ъ옄紐⑤뱶 ON" : "愿由ъ옄紐⑤뱶"}
+                    ${state.adminMode ? "관리자모드 ON" : "관리자모드"}
                   </button>
                   <div class="seat-zoom-controls">
                     <button class="seat-zoom-btn" type="button" data-zoom-action="out">-</button>
