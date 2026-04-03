@@ -1,5 +1,17 @@
 (function () {
   const config = window.ORG_DASHBOARD_REMOTE || {};
+  const CALLBACK_NAME = "__ORG_DASHBOARD_REMOTE_CALLBACK__";
+
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = src + "?_t=" + Date.now();
+      script.defer = true;
+      script.onload = resolve;
+      script.onerror = () => reject(new Error(`스크립트를 불러오지 못했습니다: ${src}`));
+      document.body.appendChild(script);
+    });
+  }
 
   function showError(message) {
     document.body.innerHTML = `
@@ -13,45 +25,61 @@
     `;
   }
 
+  function loadRemoteJsonp(url) {
+    return new Promise((resolve, reject) => {
+      const callbackName = CALLBACK_NAME;
+      const script = document.createElement("script");
+      const cleanup = () => {
+        if (script.parentNode) script.parentNode.removeChild(script);
+        delete window[callbackName];
+      };
+
+      window[callbackName] = (payload) => {
+        cleanup();
+        resolve(payload);
+      };
+
+      script.src = url.toString();
+      script.async = true;
+      script.onerror = () => {
+        cleanup();
+        reject(new Error("원격 스크립트를 불러오지 못했습니다."));
+      };
+      document.body.appendChild(script);
+    });
+  }
+
   async function loadRemoteData() {
     if (!config.webAppUrl) {
       showError("웹 앱 URL이 비어 있습니다.");
       return;
     }
 
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), config.timeoutMs || 15000);
+    const timeout = setTimeout(() => {
+      showError("데이터를 불러오는 시간이 초과되었습니다.");
+    }, config.timeoutMs || 15000);
     const url = new URL(config.webAppUrl);
 
     if (config.accessKey) {
       url.searchParams.set("key", config.accessKey);
     }
+    url.searchParams.set("callback", CALLBACK_NAME);
+    url.searchParams.set("_t", Date.now());
 
     try {
-      const response = await fetch(url.toString(), {
-        method: "GET",
-        mode: "cors",
-        cache: "no-store",
-        credentials: "omit",
-        referrerPolicy: "no-referrer",
-        signal: controller.signal,
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
+      const payload = await loadRemoteJsonp(url);
+      if (payload && payload.ok === false) {
+        throw new Error(payload.error || "원격 데이터 인증에 실패했습니다.");
       }
-
-      const payload = await response.json();
       if (!payload || !payload.sections) {
         throw new Error("대시보드 데이터 형식이 올바르지 않습니다.");
       }
 
       window.ORG_DASHBOARD_DATA = payload;
+      window.ORG_DASHBOARD_SEAT_LAYOUT = payload.seatLayout || null;
 
-      const appScript = document.createElement("script");
-      appScript.src = "./app.js";
-      appScript.defer = true;
-      document.body.appendChild(appScript);
+      await loadScript("./app.js");
+      await loadScript("./seat-layout.js");
     } catch (error) {
       showError(`데이터를 불러오지 못했습니다. ${error.message}`);
     } finally {

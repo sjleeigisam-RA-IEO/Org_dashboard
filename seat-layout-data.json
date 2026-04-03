@@ -1,0 +1,7839 @@
+{
+  "meta": {
+    "sourceWorkbook": "20260401_좌석배치(안)_수정2.xlsx",
+    "generatedAt": "2026-04-03 09:08:37",
+    "floorOrder": [
+      "2F",
+      "12F",
+      "13F"
+    ]
+  },
+  "floors": [
+    {
+      "floorCode": "2F",
+      "displayName": "2F",
+      "shapes": [
+        {
+          "shapeId": "2F-shape-001",
+          "floorCode": "2F",
+          "shapeType": "room",
+          "label": "2.4 회의실(6인)",
+          "x": 3,
+          "y": 29,
+          "w": 3,
+          "h": 4,
+          "fill": null,
+          "source": "D30:F33"
+        },
+        {
+          "shapeId": "2F-shape-002",
+          "floorCode": "2F",
+          "shapeType": "zone",
+          "label": "폰부스",
+          "x": 12,
+          "y": 33,
+          "w": 1,
+          "h": 2,
+          "fill": null,
+          "source": "M34:M35"
+        },
+        {
+          "shapeId": "2F-shape-003",
+          "floorCode": "2F",
+          "shapeType": "support",
+          "label": "OA실",
+          "x": 8,
+          "y": 33,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "I34:J34"
+        },
+        {
+          "shapeId": "2F-shape-004",
+          "floorCode": "2F",
+          "shapeType": "zone",
+          "label": "옷장",
+          "x": 12,
+          "y": 17,
+          "w": 1,
+          "h": 3,
+          "fill": null,
+          "source": "M18:M20"
+        },
+        {
+          "shapeId": "2F-shape-005",
+          "floorCode": "2F",
+          "shapeType": "support",
+          "label": "OA",
+          "x": 22,
+          "y": 17,
+          "w": 1,
+          "h": 3,
+          "fill": null,
+          "source": "W18:W20"
+        },
+        {
+          "shapeId": "2F-shape-006",
+          "floorCode": "2F",
+          "shapeType": "room",
+          "label": "2.9 회의실 (4인)",
+          "x": 29,
+          "y": 32,
+          "w": 2,
+          "h": 3,
+          "fill": null,
+          "source": "AD33:AE35"
+        },
+        {
+          "shapeId": "2F-shape-007",
+          "floorCode": "2F",
+          "shapeType": "office",
+          "label": "파트장실-1",
+          "x": 22,
+          "y": 32,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "W33:X33"
+        },
+        {
+          "shapeId": "2F-shape-008",
+          "floorCode": "2F",
+          "shapeType": "zone",
+          "label": "운용지원실",
+          "x": 23,
+          "y": 2,
+          "w": 6,
+          "h": 1,
+          "fill": "#D9F2D0",
+          "source": "X3:AC3"
+        },
+        {
+          "shapeId": "2F-shape-009",
+          "floorCode": "2F",
+          "shapeType": "office",
+          "label": "파트장실-4",
+          "x": 14,
+          "y": 17,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "O18:P18"
+        },
+        {
+          "shapeId": "2F-shape-010",
+          "floorCode": "2F",
+          "shapeType": "zone",
+          "label": "국내자산관리그룹",
+          "x": 7,
+          "y": 48,
+          "w": 21,
+          "h": 1,
+          "fill": "#CAEDFB",
+          "source": "H49:AB49"
+        },
+        {
+          "shapeId": "2F-shape-011",
+          "floorCode": "2F",
+          "shapeType": "room",
+          "label": "2.10 회의실(10인)",
+          "x": 8,
+          "y": 11,
+          "w": 3,
+          "h": 1,
+          "fill": null,
+          "source": "I12:K12"
+        },
+        {
+          "shapeId": "2F-shape-012",
+          "floorCode": "2F",
+          "shapeType": "office",
+          "label": "파트장실-3",
+          "x": 16,
+          "y": 17,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "Q18:R18"
+        },
+        {
+          "shapeId": "2F-shape-013",
+          "floorCode": "2F",
+          "shapeType": "office",
+          "label": "파트장실-3",
+          "x": 16,
+          "y": 32,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "Q33:R33"
+        },
+        {
+          "shapeId": "2F-shape-014",
+          "floorCode": "2F",
+          "shapeType": "office",
+          "label": "파트장실-2",
+          "x": 18,
+          "y": 17,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "S18:T18"
+        },
+        {
+          "shapeId": "2F-shape-015",
+          "floorCode": "2F",
+          "shapeType": "room",
+          "label": "2.3 회의실(4인)",
+          "x": 3,
+          "y": 25,
+          "w": 3,
+          "h": 4,
+          "fill": null,
+          "source": "D26:F29"
+        },
+        {
+          "shapeId": "2F-shape-016",
+          "floorCode": "2F",
+          "shapeType": "support",
+          "label": "OA실",
+          "x": 24,
+          "y": 32,
+          "w": 1,
+          "h": 3,
+          "fill": null,
+          "source": "Y33:Y35"
+        },
+        {
+          "shapeId": "2F-shape-017",
+          "floorCode": "2F",
+          "shapeType": "zone",
+          "label": "전략리서치실",
+          "x": 17,
+          "y": 2,
+          "w": 3,
+          "h": 1,
+          "fill": "#FF66FF",
+          "source": "R3:T3"
+        },
+        {
+          "shapeId": "2F-shape-018",
+          "floorCode": "2F",
+          "shapeType": "room",
+          "label": "2.7 회의실 (6인)",
+          "x": 14,
+          "y": 32,
+          "w": 2,
+          "h": 3,
+          "fill": null,
+          "source": "O33:P35"
+        },
+        {
+          "shapeId": "2F-shape-019",
+          "floorCode": "2F",
+          "shapeType": "room",
+          "label": "2.6 회의실 (4인)",
+          "x": 7,
+          "y": 32,
+          "w": 1,
+          "h": 3,
+          "fill": null,
+          "source": "H33:H35"
+        },
+        {
+          "shapeId": "2F-shape-020",
+          "floorCode": "2F",
+          "shapeType": "room",
+          "label": "2.2 회의실(6인)",
+          "x": 3,
+          "y": 21,
+          "w": 3,
+          "h": 4,
+          "fill": null,
+          "source": "D22:F25"
+        },
+        {
+          "shapeId": "2F-shape-021",
+          "floorCode": "2F",
+          "shapeType": "zone",
+          "label": "자산관리3파트",
+          "x": 23,
+          "y": 46,
+          "w": 5,
+          "h": 1,
+          "fill": "#F1CEEE",
+          "source": "X47:AB47"
+        },
+        {
+          "shapeId": "2F-shape-022",
+          "floorCode": "2F",
+          "shapeType": "room",
+          "label": "2.5 회의실 (10인)",
+          "x": 3,
+          "y": 41,
+          "w": 3,
+          "h": 1,
+          "fill": null,
+          "source": "D42:F42"
+        },
+        {
+          "shapeId": "2F-shape-023",
+          "floorCode": "2F",
+          "shapeType": "room",
+          "label": "2.1 회의실(12인)",
+          "x": 3,
+          "y": 14,
+          "w": 3,
+          "h": 7,
+          "fill": null,
+          "source": "D15:F21"
+        },
+        {
+          "shapeId": "2F-shape-024",
+          "floorCode": "2F",
+          "shapeType": "zone",
+          "label": "폰부스",
+          "x": 13,
+          "y": 33,
+          "w": 1,
+          "h": 2,
+          "fill": null,
+          "source": "N34:N35"
+        },
+        {
+          "shapeId": "2F-shape-025",
+          "floorCode": "2F",
+          "shapeType": "office",
+          "label": "파트장실-2",
+          "x": 20,
+          "y": 32,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "U33:V33"
+        },
+        {
+          "shapeId": "2F-shape-026",
+          "floorCode": "2F",
+          "shapeType": "support",
+          "label": "창고",
+          "x": 8,
+          "y": 17,
+          "w": 2,
+          "h": 3,
+          "fill": null,
+          "source": "I18:J20"
+        },
+        {
+          "shapeId": "2F-shape-027",
+          "floorCode": "2F",
+          "shapeType": "support",
+          "label": "서버실",
+          "x": 12,
+          "y": 32,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "M33:N33"
+        },
+        {
+          "shapeId": "2F-shape-028",
+          "floorCode": "2F",
+          "shapeType": "office",
+          "label": "파트장실-1",
+          "x": 20,
+          "y": 17,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "U18:V18"
+        },
+        {
+          "shapeId": "2F-shape-029",
+          "floorCode": "2F",
+          "shapeType": "office",
+          "label": "그룹장실-1",
+          "x": 3,
+          "y": 33,
+          "w": 3,
+          "h": 1,
+          "fill": null,
+          "source": "D34:F34"
+        },
+        {
+          "shapeId": "2F-shape-030",
+          "floorCode": "2F",
+          "shapeType": "zone",
+          "label": "자산관리1파트",
+          "x": 7,
+          "y": 46,
+          "w": 8,
+          "h": 1,
+          "fill": "#95DCF7",
+          "source": "H47:O47"
+        },
+        {
+          "shapeId": "2F-shape-031",
+          "floorCode": "2F",
+          "shapeType": "zone",
+          "label": "자산관리2파트",
+          "x": 15,
+          "y": 46,
+          "w": 8,
+          "h": 1,
+          "fill": "#F2F2F2",
+          "source": "P47:W47"
+        },
+        {
+          "shapeId": "2F-shape-032",
+          "floorCode": "2F",
+          "shapeType": "zone",
+          "label": "옷장",
+          "x": 23,
+          "y": 17,
+          "w": 1,
+          "h": 3,
+          "fill": null,
+          "source": "X18:X20"
+        },
+        {
+          "shapeId": "2F-shape-033",
+          "floorCode": "2F",
+          "shapeType": "support",
+          "label": "OA",
+          "x": 13,
+          "y": 17,
+          "w": 1,
+          "h": 3,
+          "fill": null,
+          "source": "N18:N20"
+        },
+        {
+          "shapeId": "2F-shape-034",
+          "floorCode": "2F",
+          "shapeType": "room",
+          "label": "2.8 회의실 (4인)",
+          "x": 18,
+          "y": 32,
+          "w": 2,
+          "h": 3,
+          "fill": null,
+          "source": "S33:T35"
+        }
+      ],
+      "seatDefs": [
+        {
+          "seatCode": "2F-A45",
+          "seatLabel": "A45",
+          "floorCode": "2F",
+          "x": 3,
+          "y": 3,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "D4"
+        },
+        {
+          "seatCode": "2F-A41",
+          "seatLabel": "A41",
+          "floorCode": "2F",
+          "x": 16,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Q7"
+        },
+        {
+          "seatCode": "2F-A37",
+          "seatLabel": "A37",
+          "floorCode": "2F",
+          "x": 17,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R7"
+        },
+        {
+          "seatCode": "2F-A33",
+          "seatLabel": "A33",
+          "floorCode": "2F",
+          "x": 19,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "T7"
+        },
+        {
+          "seatCode": "2F-A29",
+          "seatLabel": "A29",
+          "floorCode": "2F",
+          "x": 20,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U7"
+        },
+        {
+          "seatCode": "2F-A25",
+          "seatLabel": "A25",
+          "floorCode": "2F",
+          "x": 22,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "W7"
+        },
+        {
+          "seatCode": "2F-A21",
+          "seatLabel": "A21",
+          "floorCode": "2F",
+          "x": 23,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "X7"
+        },
+        {
+          "seatCode": "2F-A17",
+          "seatLabel": "A17",
+          "floorCode": "2F",
+          "x": 25,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Z7"
+        },
+        {
+          "seatCode": "2F-A13",
+          "seatLabel": "A13",
+          "floorCode": "2F",
+          "x": 26,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA7"
+        },
+        {
+          "seatCode": "2F-A9",
+          "seatLabel": "A9",
+          "floorCode": "2F",
+          "x": 28,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AC7"
+        },
+        {
+          "seatCode": "2F-A5",
+          "seatLabel": "A5",
+          "floorCode": "2F",
+          "x": 29,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AD7"
+        },
+        {
+          "seatCode": "2F-A46",
+          "seatLabel": "A46",
+          "floorCode": "2F",
+          "x": 14,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O9"
+        },
+        {
+          "seatCode": "2F-A42",
+          "seatLabel": "A42",
+          "floorCode": "2F",
+          "x": 16,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Q9"
+        },
+        {
+          "seatCode": "2F-A38",
+          "seatLabel": "A38",
+          "floorCode": "2F",
+          "x": 17,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R9"
+        },
+        {
+          "seatCode": "2F-A34",
+          "seatLabel": "A34",
+          "floorCode": "2F",
+          "x": 19,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "T9"
+        },
+        {
+          "seatCode": "2F-A30",
+          "seatLabel": "A30",
+          "floorCode": "2F",
+          "x": 20,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U9"
+        },
+        {
+          "seatCode": "2F-A26",
+          "seatLabel": "A26",
+          "floorCode": "2F",
+          "x": 22,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "W9"
+        },
+        {
+          "seatCode": "2F-A22",
+          "seatLabel": "A22",
+          "floorCode": "2F",
+          "x": 23,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "X9"
+        },
+        {
+          "seatCode": "2F-A18",
+          "seatLabel": "A18",
+          "floorCode": "2F",
+          "x": 25,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Z9"
+        },
+        {
+          "seatCode": "2F-A14",
+          "seatLabel": "A14",
+          "floorCode": "2F",
+          "x": 26,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA9"
+        },
+        {
+          "seatCode": "2F-A10",
+          "seatLabel": "A10",
+          "floorCode": "2F",
+          "x": 28,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AC9"
+        },
+        {
+          "seatCode": "2F-A6",
+          "seatLabel": "A6",
+          "floorCode": "2F",
+          "x": 29,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AD9"
+        },
+        {
+          "seatCode": "2F-A47",
+          "seatLabel": "A47",
+          "floorCode": "2F",
+          "x": 14,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O11"
+        },
+        {
+          "seatCode": "2F-A43",
+          "seatLabel": "A43",
+          "floorCode": "2F",
+          "x": 16,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Q11"
+        },
+        {
+          "seatCode": "2F-A39",
+          "seatLabel": "A39",
+          "floorCode": "2F",
+          "x": 17,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R11"
+        },
+        {
+          "seatCode": "2F-A35",
+          "seatLabel": "A35",
+          "floorCode": "2F",
+          "x": 19,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "T11"
+        },
+        {
+          "seatCode": "2F-A31",
+          "seatLabel": "A31",
+          "floorCode": "2F",
+          "x": 20,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U11"
+        },
+        {
+          "seatCode": "2F-A27",
+          "seatLabel": "A27",
+          "floorCode": "2F",
+          "x": 22,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "W11"
+        },
+        {
+          "seatCode": "2F-A23",
+          "seatLabel": "A23",
+          "floorCode": "2F",
+          "x": 23,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "X11"
+        },
+        {
+          "seatCode": "2F-A19",
+          "seatLabel": "A19",
+          "floorCode": "2F",
+          "x": 25,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Z11"
+        },
+        {
+          "seatCode": "2F-A15",
+          "seatLabel": "A15",
+          "floorCode": "2F",
+          "x": 26,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA11"
+        },
+        {
+          "seatCode": "2F-A11",
+          "seatLabel": "A11",
+          "floorCode": "2F",
+          "x": 28,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AC11"
+        },
+        {
+          "seatCode": "2F-A7",
+          "seatLabel": "A7",
+          "floorCode": "2F",
+          "x": 29,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AD11"
+        },
+        {
+          "seatCode": "2F-A48",
+          "seatLabel": "A48",
+          "floorCode": "2F",
+          "x": 14,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O13"
+        },
+        {
+          "seatCode": "2F-A44",
+          "seatLabel": "A44",
+          "floorCode": "2F",
+          "x": 16,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Q13"
+        },
+        {
+          "seatCode": "2F-A40",
+          "seatLabel": "A40",
+          "floorCode": "2F",
+          "x": 17,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R13"
+        },
+        {
+          "seatCode": "2F-A36",
+          "seatLabel": "A36",
+          "floorCode": "2F",
+          "x": 19,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "T13"
+        },
+        {
+          "seatCode": "2F-A32",
+          "seatLabel": "A32",
+          "floorCode": "2F",
+          "x": 20,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U13"
+        },
+        {
+          "seatCode": "2F-A28",
+          "seatLabel": "A28",
+          "floorCode": "2F",
+          "x": 22,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "W13"
+        },
+        {
+          "seatCode": "2F-A24",
+          "seatLabel": "A24",
+          "floorCode": "2F",
+          "x": 23,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "X13"
+        },
+        {
+          "seatCode": "2F-A20",
+          "seatLabel": "A20",
+          "floorCode": "2F",
+          "x": 25,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Z13"
+        },
+        {
+          "seatCode": "2F-A16",
+          "seatLabel": "A16",
+          "floorCode": "2F",
+          "x": 26,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA13"
+        },
+        {
+          "seatCode": "2F-A12",
+          "seatLabel": "A12",
+          "floorCode": "2F",
+          "x": 28,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AC13"
+        },
+        {
+          "seatCode": "2F-A8",
+          "seatLabel": "A8",
+          "floorCode": "2F",
+          "x": 29,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AD13"
+        },
+        {
+          "seatCode": "2F-A4",
+          "seatLabel": "A4",
+          "floorCode": "2F",
+          "x": 14,
+          "y": 18,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O19"
+        },
+        {
+          "seatCode": "2F-A3",
+          "seatLabel": "A3",
+          "floorCode": "2F",
+          "x": 16,
+          "y": 18,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Q19"
+        },
+        {
+          "seatCode": "2F-A2",
+          "seatLabel": "A2",
+          "floorCode": "2F",
+          "x": 18,
+          "y": 18,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "S19"
+        },
+        {
+          "seatCode": "2F-A1",
+          "seatLabel": "A1",
+          "floorCode": "2F",
+          "x": 20,
+          "y": 18,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U19"
+        },
+        {
+          "seatCode": "2F-B2",
+          "seatLabel": "B2",
+          "floorCode": "2F",
+          "x": 16,
+          "y": 33,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Q34"
+        },
+        {
+          "seatCode": "2F-B3",
+          "seatLabel": "B3",
+          "floorCode": "2F",
+          "x": 20,
+          "y": 33,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U34"
+        },
+        {
+          "seatCode": "2F-B4",
+          "seatLabel": "B4",
+          "floorCode": "2F",
+          "x": 22,
+          "y": 33,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "W34"
+        },
+        {
+          "seatCode": "2F-B1",
+          "seatLabel": "B1",
+          "floorCode": "2F",
+          "x": 4,
+          "y": 35,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "E36"
+        },
+        {
+          "seatCode": "2F-B5",
+          "seatLabel": "B5",
+          "floorCode": "2F",
+          "x": 7,
+          "y": 37,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "H38"
+        },
+        {
+          "seatCode": "2F-B9",
+          "seatLabel": "B9",
+          "floorCode": "2F",
+          "x": 9,
+          "y": 37,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "J38"
+        },
+        {
+          "seatCode": "2F-B13",
+          "seatLabel": "B13",
+          "floorCode": "2F",
+          "x": 10,
+          "y": 37,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "K38"
+        },
+        {
+          "seatCode": "2F-B17",
+          "seatLabel": "B17",
+          "floorCode": "2F",
+          "x": 12,
+          "y": 37,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "M38"
+        },
+        {
+          "seatCode": "2F-B21",
+          "seatLabel": "B21",
+          "floorCode": "2F",
+          "x": 13,
+          "y": 37,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "N38"
+        },
+        {
+          "seatCode": "2F-B25",
+          "seatLabel": "B25",
+          "floorCode": "2F",
+          "x": 15,
+          "y": 37,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "P38"
+        },
+        {
+          "seatCode": "2F-B29",
+          "seatLabel": "B29",
+          "floorCode": "2F",
+          "x": 16,
+          "y": 37,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Q38"
+        },
+        {
+          "seatCode": "2F-B33",
+          "seatLabel": "B33",
+          "floorCode": "2F",
+          "x": 18,
+          "y": 37,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "S38"
+        },
+        {
+          "seatCode": "2F-B37",
+          "seatLabel": "B37",
+          "floorCode": "2F",
+          "x": 19,
+          "y": 37,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "T38"
+        },
+        {
+          "seatCode": "2F-B41",
+          "seatLabel": "B41",
+          "floorCode": "2F",
+          "x": 21,
+          "y": 37,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V38"
+        },
+        {
+          "seatCode": "2F-B45",
+          "seatLabel": "B45",
+          "floorCode": "2F",
+          "x": 22,
+          "y": 37,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "W38"
+        },
+        {
+          "seatCode": "2F-B49",
+          "seatLabel": "B49",
+          "floorCode": "2F",
+          "x": 24,
+          "y": 37,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Y38"
+        },
+        {
+          "seatCode": "2F-B53",
+          "seatLabel": "B53",
+          "floorCode": "2F",
+          "x": 25,
+          "y": 37,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Z38"
+        },
+        {
+          "seatCode": "2F-B57",
+          "seatLabel": "B57",
+          "floorCode": "2F",
+          "x": 27,
+          "y": 37,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AB38"
+        },
+        {
+          "seatCode": "2F-B61",
+          "seatLabel": "B61",
+          "floorCode": "2F",
+          "x": 28,
+          "y": 37,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AC38"
+        },
+        {
+          "seatCode": "2F-B65",
+          "seatLabel": "B65",
+          "floorCode": "2F",
+          "x": 30,
+          "y": 37,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AE38"
+        },
+        {
+          "seatCode": "2F-B6",
+          "seatLabel": "B6",
+          "floorCode": "2F",
+          "x": 7,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "H40"
+        },
+        {
+          "seatCode": "2F-B10",
+          "seatLabel": "B10",
+          "floorCode": "2F",
+          "x": 9,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "J40"
+        },
+        {
+          "seatCode": "2F-B14",
+          "seatLabel": "B14",
+          "floorCode": "2F",
+          "x": 10,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "K40"
+        },
+        {
+          "seatCode": "2F-B18",
+          "seatLabel": "B18",
+          "floorCode": "2F",
+          "x": 12,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "M40"
+        },
+        {
+          "seatCode": "2F-B22",
+          "seatLabel": "B22",
+          "floorCode": "2F",
+          "x": 13,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "N40"
+        },
+        {
+          "seatCode": "2F-B26",
+          "seatLabel": "B26",
+          "floorCode": "2F",
+          "x": 15,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "P40"
+        },
+        {
+          "seatCode": "2F-B30",
+          "seatLabel": "B30",
+          "floorCode": "2F",
+          "x": 16,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Q40"
+        },
+        {
+          "seatCode": "2F-B34",
+          "seatLabel": "B34",
+          "floorCode": "2F",
+          "x": 18,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "S40"
+        },
+        {
+          "seatCode": "2F-B38",
+          "seatLabel": "B38",
+          "floorCode": "2F",
+          "x": 19,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "T40"
+        },
+        {
+          "seatCode": "2F-B42",
+          "seatLabel": "B42",
+          "floorCode": "2F",
+          "x": 21,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V40"
+        },
+        {
+          "seatCode": "2F-B46",
+          "seatLabel": "B46",
+          "floorCode": "2F",
+          "x": 22,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "W40"
+        },
+        {
+          "seatCode": "2F-B50",
+          "seatLabel": "B50",
+          "floorCode": "2F",
+          "x": 24,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Y40"
+        },
+        {
+          "seatCode": "2F-B54",
+          "seatLabel": "B54",
+          "floorCode": "2F",
+          "x": 25,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Z40"
+        },
+        {
+          "seatCode": "2F-B58",
+          "seatLabel": "B58",
+          "floorCode": "2F",
+          "x": 27,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AB40"
+        },
+        {
+          "seatCode": "2F-B62",
+          "seatLabel": "B62",
+          "floorCode": "2F",
+          "x": 28,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AC40"
+        },
+        {
+          "seatCode": "2F-B66",
+          "seatLabel": "B66",
+          "floorCode": "2F",
+          "x": 30,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AE40"
+        },
+        {
+          "seatCode": "2F-B7",
+          "seatLabel": "B7",
+          "floorCode": "2F",
+          "x": 7,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "H42"
+        },
+        {
+          "seatCode": "2F-B11",
+          "seatLabel": "B11",
+          "floorCode": "2F",
+          "x": 9,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "J42"
+        },
+        {
+          "seatCode": "2F-B15",
+          "seatLabel": "B15",
+          "floorCode": "2F",
+          "x": 10,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "K42"
+        },
+        {
+          "seatCode": "2F-B19",
+          "seatLabel": "B19",
+          "floorCode": "2F",
+          "x": 12,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "M42"
+        },
+        {
+          "seatCode": "2F-B23",
+          "seatLabel": "B23",
+          "floorCode": "2F",
+          "x": 13,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "N42"
+        },
+        {
+          "seatCode": "2F-B27",
+          "seatLabel": "B27",
+          "floorCode": "2F",
+          "x": 15,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "P42"
+        },
+        {
+          "seatCode": "2F-B31",
+          "seatLabel": "B31",
+          "floorCode": "2F",
+          "x": 16,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Q42"
+        },
+        {
+          "seatCode": "2F-B35",
+          "seatLabel": "B35",
+          "floorCode": "2F",
+          "x": 18,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "S42"
+        },
+        {
+          "seatCode": "2F-B39",
+          "seatLabel": "B39",
+          "floorCode": "2F",
+          "x": 19,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "T42"
+        },
+        {
+          "seatCode": "2F-B43",
+          "seatLabel": "B43",
+          "floorCode": "2F",
+          "x": 21,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V42"
+        },
+        {
+          "seatCode": "2F-B47",
+          "seatLabel": "B47",
+          "floorCode": "2F",
+          "x": 22,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "W42"
+        },
+        {
+          "seatCode": "2F-B51",
+          "seatLabel": "B51",
+          "floorCode": "2F",
+          "x": 24,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Y42"
+        },
+        {
+          "seatCode": "2F-B55",
+          "seatLabel": "B55",
+          "floorCode": "2F",
+          "x": 25,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Z42"
+        },
+        {
+          "seatCode": "2F-B59",
+          "seatLabel": "B59",
+          "floorCode": "2F",
+          "x": 27,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AB42"
+        },
+        {
+          "seatCode": "2F-B63",
+          "seatLabel": "B63",
+          "floorCode": "2F",
+          "x": 28,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AC42"
+        },
+        {
+          "seatCode": "2F-B67",
+          "seatLabel": "B67",
+          "floorCode": "2F",
+          "x": 30,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AE42"
+        },
+        {
+          "seatCode": "2F-B8",
+          "seatLabel": "B8",
+          "floorCode": "2F",
+          "x": 7,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "H44"
+        },
+        {
+          "seatCode": "2F-B12",
+          "seatLabel": "B12",
+          "floorCode": "2F",
+          "x": 9,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "J44"
+        },
+        {
+          "seatCode": "2F-B16",
+          "seatLabel": "B16",
+          "floorCode": "2F",
+          "x": 10,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "K44"
+        },
+        {
+          "seatCode": "2F-B20",
+          "seatLabel": "B20",
+          "floorCode": "2F",
+          "x": 12,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "M44"
+        },
+        {
+          "seatCode": "2F-B24",
+          "seatLabel": "B24",
+          "floorCode": "2F",
+          "x": 13,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "N44"
+        },
+        {
+          "seatCode": "2F-B28",
+          "seatLabel": "B28",
+          "floorCode": "2F",
+          "x": 15,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "P44"
+        },
+        {
+          "seatCode": "2F-B32",
+          "seatLabel": "B32",
+          "floorCode": "2F",
+          "x": 16,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Q44"
+        },
+        {
+          "seatCode": "2F-B36",
+          "seatLabel": "B36",
+          "floorCode": "2F",
+          "x": 18,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "S44"
+        },
+        {
+          "seatCode": "2F-B40",
+          "seatLabel": "B40",
+          "floorCode": "2F",
+          "x": 19,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "T44"
+        },
+        {
+          "seatCode": "2F-B44",
+          "seatLabel": "B44",
+          "floorCode": "2F",
+          "x": 21,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V44"
+        },
+        {
+          "seatCode": "2F-B48",
+          "seatLabel": "B48",
+          "floorCode": "2F",
+          "x": 22,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "W44"
+        },
+        {
+          "seatCode": "2F-B52",
+          "seatLabel": "B52",
+          "floorCode": "2F",
+          "x": 24,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Y44"
+        },
+        {
+          "seatCode": "2F-B56",
+          "seatLabel": "B56",
+          "floorCode": "2F",
+          "x": 25,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Z44"
+        },
+        {
+          "seatCode": "2F-B60",
+          "seatLabel": "B60",
+          "floorCode": "2F",
+          "x": 27,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AB44"
+        },
+        {
+          "seatCode": "2F-B64",
+          "seatLabel": "B64",
+          "floorCode": "2F",
+          "x": 28,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AC44"
+        },
+        {
+          "seatCode": "2F-B68",
+          "seatLabel": "B68",
+          "floorCode": "2F",
+          "x": 30,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AE44"
+        }
+      ],
+      "scenarios": {
+        "current": {
+          "assignments": {
+            "2F-A45": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A41": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A37": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A33": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A29": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A25": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A21": {
+              "personName": "최민영",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A17": {
+              "personName": "김주원",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A13": {
+              "personName": "공용PC",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A9": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A5": {
+              "personName": "김효직",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A46": {
+              "personName": "최원석",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A42": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A38": {
+              "personName": "백유빈",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A34": {
+              "personName": "이정율",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A30": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A26": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A22": {
+              "personName": "오민국",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A18": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A14": {
+              "personName": "이현정",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A10": {
+              "personName": "고한수",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A6": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A47": {
+              "personName": "정규진",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A43": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A39": {
+              "personName": "이유현",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A35": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A31": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A27": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A23": {
+              "personName": "조영지",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A19": {
+              "personName": "황민호",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A15": {
+              "personName": "이지선",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A11": {
+              "personName": "이재상",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A7": {
+              "personName": "김훈",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A48": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A44": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A40": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A36": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A32": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A28": {
+              "personName": "모션 데스크",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A24": {
+              "personName": "정유정",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A20": {
+              "personName": "정윤선",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A16": {
+              "personName": "최혜윤",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A12": {
+              "personName": "양지혜",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A8": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A4": {
+              "personName": "이정훈",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A3": {
+              "personName": "이배근",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A2": {
+              "personName": "최자령",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-A1": {
+              "personName": "변희란",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B2": {
+              "personName": "김지현",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B3": {
+              "personName": "김행단",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B4": {
+              "personName": "권도엽",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B1": {
+              "personName": "정조민",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B5": {
+              "personName": "박규란",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B9": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B13": {
+              "personName": "장서영",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B17": {
+              "personName": "이현민",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B21": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B25": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B29": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B33": {
+              "personName": "남윤수",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B37": {
+              "personName": "김유리",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B41": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B45": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B49": {
+              "personName": "박동민",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B53": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B57": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B61": {
+              "personName": "모션 데스크",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B65": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B6": {
+              "personName": "이정연",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B10": {
+              "personName": "이연정",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B14": {
+              "personName": "김수현",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B18": {
+              "personName": "오채은",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B22": {
+              "personName": "이연주",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B26": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B30": {
+              "personName": "고석준",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B34": {
+              "personName": "홍지훈",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B38": {
+              "personName": "이형철",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B42": {
+              "personName": "김회인",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B46": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B50": {
+              "personName": "안정훈",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B54": {
+              "personName": "정준우",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B58": {
+              "personName": "박채연",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B62": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B66": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B7": {
+              "personName": "박용범",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B11": {
+              "personName": "이상열",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B15": {
+              "personName": "이병관",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B19": {
+              "personName": "이정훈",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B23": {
+              "personName": "신채영",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B27": {
+              "personName": "정하윤",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B31": {
+              "personName": "김나현",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B35": {
+              "personName": "최민정",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B39": {
+              "personName": "임지영",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B43": {
+              "personName": "이단비",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B47": {
+              "personName": "이경훈",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B51": {
+              "personName": "정승우",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B55": {
+              "personName": "박준규",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B59": {
+              "personName": "문승현",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B63": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B67": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B8": {
+              "personName": "김지윤",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B12": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B16": {
+              "personName": "최지선",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B20": {
+              "personName": "이진우",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B24": {
+              "personName": "이정원",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B28": {
+              "personName": "이효근",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B32": {
+              "personName": "이우석",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B36": {
+              "personName": "박은영",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B40": {
+              "personName": "이운구",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B44": {
+              "personName": "모승상",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B48": {
+              "personName": "김지희",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B52": {
+              "personName": "임주우",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B56": {
+              "personName": "황준하",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B60": {
+              "personName": "김형주",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B64": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            },
+            "2F-B68": {
+              "personName": "",
+              "sheetName": "세우 2F_현재"
+            }
+          },
+          "bounds": {
+            "floorCode": "2F",
+            "sheetName": "세우 2F_현재",
+            "scenario": "current",
+            "rows": 61,
+            "cols": 37
+          }
+        },
+        "plan": {
+          "assignments": {
+            "2F-A45": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A41": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A37": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A33": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A29": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A25": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A21": {
+              "personName": "최민영",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A17": {
+              "personName": "김주원",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A13": {
+              "personName": "공용PC",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A9": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A5": {
+              "personName": "김효직",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A46": {
+              "personName": "최원석",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A42": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A38": {
+              "personName": "백유빈",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A34": {
+              "personName": "이정율",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A30": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A26": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A22": {
+              "personName": "오민국",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A18": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A14": {
+              "personName": "이현정",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A10": {
+              "personName": "고한수",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A6": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A47": {
+              "personName": "정규진",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A43": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A39": {
+              "personName": "이유현",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A35": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A31": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A27": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A23": {
+              "personName": "조영지",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A19": {
+              "personName": "황민호",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A15": {
+              "personName": "이지선",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A11": {
+              "personName": "이재상",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A7": {
+              "personName": "김훈",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A48": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A44": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A40": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A36": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A32": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A28": {
+              "personName": "모션 데스크",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A24": {
+              "personName": "정유정",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A20": {
+              "personName": "정윤선",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A16": {
+              "personName": "최혜윤",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A12": {
+              "personName": "양지혜",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A8": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A4": {
+              "personName": "이정훈",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A3": {
+              "personName": "이배근",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A2": {
+              "personName": "최자령",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-A1": {
+              "personName": "변희란",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B2": {
+              "personName": "김지현",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B3": {
+              "personName": "김행단",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B4": {
+              "personName": "권도엽",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B1": {
+              "personName": "정조민",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B5": {
+              "personName": "박규란",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B9": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B13": {
+              "personName": "장서영",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B17": {
+              "personName": "이현민",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B21": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B25": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B29": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B33": {
+              "personName": "남윤수",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B37": {
+              "personName": "김유리",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B41": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B45": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B49": {
+              "personName": "박동민",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B53": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B57": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B61": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B65": {
+              "personName": "김민석",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B6": {
+              "personName": "이정연",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B10": {
+              "personName": "이연정",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B14": {
+              "personName": "김수현",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B18": {
+              "personName": "오채은",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B22": {
+              "personName": "이연주",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B26": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B30": {
+              "personName": "고석준",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B34": {
+              "personName": "홍지훈",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B38": {
+              "personName": "이형철",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B42": {
+              "personName": "김회인",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B46": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B50": {
+              "personName": "안정훈",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B54": {
+              "personName": "정준우",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B58": {
+              "personName": "박채연",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B62": {
+              "personName": "김완혁",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B66": {
+              "personName": "이종훈",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B7": {
+              "personName": "박용범",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B11": {
+              "personName": "이상열",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B15": {
+              "personName": "이병관",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B19": {
+              "personName": "이정훈",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B23": {
+              "personName": "신채영",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B27": {
+              "personName": "정하윤",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B31": {
+              "personName": "김나현",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B35": {
+              "personName": "최민정",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B39": {
+              "personName": "임지영",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B43": {
+              "personName": "이단비",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B47": {
+              "personName": "이경훈",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B51": {
+              "personName": "정승우",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B55": {
+              "personName": "박준규",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B59": {
+              "personName": "문승현",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B63": {
+              "personName": "모영준",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B67": {
+              "personName": "윤은진",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B8": {
+              "personName": "김지윤",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B12": {
+              "personName": "",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B16": {
+              "personName": "최지선",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B20": {
+              "personName": "이진우",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B24": {
+              "personName": "이정원",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B28": {
+              "personName": "이효근",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B32": {
+              "personName": "이우석",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B36": {
+              "personName": "박은영",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B40": {
+              "personName": "이운구",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B44": {
+              "personName": "모승상",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B48": {
+              "personName": "김지희",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B52": {
+              "personName": "임주우",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B56": {
+              "personName": "황준하",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B60": {
+              "personName": "김형주",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B64": {
+              "personName": "권진명",
+              "sheetName": "세우 2F_1"
+            },
+            "2F-B68": {
+              "personName": "임성훈",
+              "sheetName": "세우 2F_1"
+            }
+          },
+          "bounds": {
+            "floorCode": "2F",
+            "sheetName": "세우 2F_1",
+            "scenario": "plan",
+            "rows": 61,
+            "cols": 37
+          }
+        }
+      }
+    },
+    {
+      "floorCode": "12F",
+      "displayName": "12F",
+      "shapes": [
+        {
+          "shapeId": "12F-shape-001",
+          "floorCode": "12F",
+          "shapeType": "zone",
+          "label": "CM 그룹",
+          "x": 37,
+          "y": 26,
+          "w": 1,
+          "h": 22,
+          "fill": "#FFFF00",
+          "source": "AL27:AL48"
+        },
+        {
+          "shapeId": "12F-shape-002",
+          "floorCode": "12F",
+          "shapeType": "support",
+          "label": "창고",
+          "x": 8,
+          "y": 38,
+          "w": 2,
+          "h": 11,
+          "fill": null,
+          "source": "I39:J49"
+        },
+        {
+          "shapeId": "12F-shape-003",
+          "floorCode": "12F",
+          "shapeType": "support",
+          "label": "OA",
+          "x": 21,
+          "y": 18,
+          "w": 3,
+          "h": 3,
+          "fill": null,
+          "source": "V19:X21"
+        },
+        {
+          "shapeId": "12F-shape-004",
+          "floorCode": "12F",
+          "shapeType": "room",
+          "label": "12.6 회의실 (4인)",
+          "x": 19,
+          "y": 33,
+          "w": 2,
+          "h": 3,
+          "fill": null,
+          "source": "T34:U36"
+        },
+        {
+          "shapeId": "12F-shape-005",
+          "floorCode": "12F",
+          "shapeType": "support",
+          "label": "OA",
+          "x": 10,
+          "y": 38,
+          "w": 2,
+          "h": 11,
+          "fill": null,
+          "source": "K39:L49"
+        },
+        {
+          "shapeId": "12F-shape-006",
+          "floorCode": "12F",
+          "shapeType": "office",
+          "label": "파트장실-9",
+          "x": 14,
+          "y": 33,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "O34:P34"
+        },
+        {
+          "shapeId": "12F-shape-007",
+          "floorCode": "12F",
+          "shapeType": "office",
+          "label": "파트장실-5",
+          "x": 17,
+          "y": 18,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "R19:S19"
+        },
+        {
+          "shapeId": "12F-shape-008",
+          "floorCode": "12F",
+          "shapeType": "support",
+          "label": "라운지",
+          "x": 1,
+          "y": 18,
+          "w": 5,
+          "h": 15,
+          "fill": null,
+          "source": "B19:F33"
+        },
+        {
+          "shapeId": "12F-shape-009",
+          "floorCode": "12F",
+          "shapeType": "zone",
+          "label": "라이프리빙",
+          "x": 13,
+          "y": 50,
+          "w": 8,
+          "h": 1,
+          "fill": "#F2F2F2",
+          "source": "N51:U51"
+        },
+        {
+          "shapeId": "12F-shape-010",
+          "floorCode": "12F",
+          "shapeType": "zone",
+          "label": "LF실",
+          "x": 21,
+          "y": 50,
+          "w": 3,
+          "h": 1,
+          "fill": "#FAE2D5",
+          "source": "V51:X51"
+        },
+        {
+          "shapeId": "12F-shape-011",
+          "floorCode": "12F",
+          "shapeType": "office",
+          "label": "파트장실",
+          "x": 7,
+          "y": 33,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "H34:I34"
+        },
+        {
+          "shapeId": "12F-shape-012",
+          "floorCode": "12F",
+          "shapeType": "office",
+          "label": "그룹장실-1",
+          "x": 26,
+          "y": 29,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "AA30:AB30"
+        },
+        {
+          "shapeId": "12F-shape-013",
+          "floorCode": "12F",
+          "shapeType": "office",
+          "label": "이철승 부문대표 집무실",
+          "x": 6,
+          "y": 10,
+          "w": 6,
+          "h": 5,
+          "fill": null,
+          "source": "G11:L15"
+        },
+        {
+          "shapeId": "12F-shape-014",
+          "floorCode": "12F",
+          "shapeType": "office",
+          "label": "파트장실-8",
+          "x": 21,
+          "y": 33,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "V34:W34"
+        },
+        {
+          "shapeId": "12F-shape-015",
+          "floorCode": "12F",
+          "shapeType": "zone",
+          "label": "TF",
+          "x": 14,
+          "y": 4,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "O5:P5"
+        },
+        {
+          "shapeId": "12F-shape-016",
+          "floorCode": "12F",
+          "shapeType": "zone",
+          "label": "사업실",
+          "x": 17,
+          "y": 4,
+          "w": 7,
+          "h": 1,
+          "fill": null,
+          "source": "R5:X5"
+        },
+        {
+          "shapeId": "12F-shape-017",
+          "floorCode": "12F",
+          "shapeType": "support",
+          "label": "OA",
+          "x": 11,
+          "y": 18,
+          "w": 2,
+          "h": 3,
+          "fill": null,
+          "source": "L19:M21"
+        },
+        {
+          "shapeId": "12F-shape-018",
+          "floorCode": "12F",
+          "shapeType": "office",
+          "label": "파트장실-7",
+          "x": 26,
+          "y": 32,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "AA33:AB33"
+        },
+        {
+          "shapeId": "12F-shape-019",
+          "floorCode": "12F",
+          "shapeType": "office",
+          "label": "파트장실-1",
+          "x": 29,
+          "y": 18,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "AD19:AE19"
+        },
+        {
+          "shapeId": "12F-shape-020",
+          "floorCode": "12F",
+          "shapeType": "room",
+          "label": "12.7 회의실 (6인)",
+          "x": 16,
+          "y": 33,
+          "w": 3,
+          "h": 3,
+          "fill": null,
+          "source": "Q34:S36"
+        },
+        {
+          "shapeId": "12F-shape-021",
+          "floorCode": "12F",
+          "shapeType": "room",
+          "label": "12.4 회의실 (6인)",
+          "x": 25,
+          "y": 29,
+          "w": 1,
+          "h": 3,
+          "fill": null,
+          "source": "Z30:Z32"
+        },
+        {
+          "shapeId": "12F-shape-022",
+          "floorCode": "12F",
+          "shapeType": "room",
+          "label": "12.3 회의실 (8인)",
+          "x": 31,
+          "y": 21,
+          "w": 5,
+          "h": 4,
+          "fill": null,
+          "source": "AF22:AJ25"
+        },
+        {
+          "shapeId": "12F-shape-023",
+          "floorCode": "12F",
+          "shapeType": "zone",
+          "label": "스페셜시츄에이션",
+          "x": 1,
+          "y": 50,
+          "w": 6,
+          "h": 1,
+          "fill": "#D0D0D0",
+          "source": "B51:G51"
+        },
+        {
+          "shapeId": "12F-shape-024",
+          "floorCode": "12F",
+          "shapeType": "zone",
+          "label": "개발관리실",
+          "x": 29,
+          "y": 4,
+          "w": 7,
+          "h": 1,
+          "fill": "#CCCCFF",
+          "source": "AD5:AJ5"
+        },
+        {
+          "shapeId": "12F-shape-025",
+          "floorCode": "12F",
+          "shapeType": "office",
+          "label": "파트장실-7",
+          "x": 13,
+          "y": 18,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "N19:O19"
+        },
+        {
+          "shapeId": "12F-shape-026",
+          "floorCode": "12F",
+          "shapeType": "support",
+          "label": "창고",
+          "x": 25,
+          "y": 21,
+          "w": 6,
+          "h": 4,
+          "fill": null,
+          "source": "Z22:AE25"
+        },
+        {
+          "shapeId": "12F-shape-027",
+          "floorCode": "12F",
+          "shapeType": "office",
+          "label": "파트장실-6",
+          "x": 15,
+          "y": 18,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "P19:Q19"
+        },
+        {
+          "shapeId": "12F-shape-028",
+          "floorCode": "12F",
+          "shapeType": "zone",
+          "label": "솔루션실",
+          "x": 24,
+          "y": 4,
+          "w": 4,
+          "h": 1,
+          "fill": null,
+          "source": "Y5:AB5"
+        },
+        {
+          "shapeId": "12F-shape-029",
+          "floorCode": "12F",
+          "shapeType": "zone",
+          "label": "사업그룹",
+          "x": 14,
+          "y": 0,
+          "w": 22,
+          "h": 1,
+          "fill": "#FAE2D5",
+          "source": "O1:AJ1"
+        },
+        {
+          "shapeId": "12F-shape-030",
+          "floorCode": "12F",
+          "shapeType": "support",
+          "label": "창고",
+          "x": 7,
+          "y": 18,
+          "w": 2,
+          "h": 3,
+          "fill": null,
+          "source": "H19:I21"
+        },
+        {
+          "shapeId": "12F-shape-031",
+          "floorCode": "12F",
+          "shapeType": "office",
+          "label": "파트장실-4",
+          "x": 19,
+          "y": 18,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "T19:U19"
+        },
+        {
+          "shapeId": "12F-shape-032",
+          "floorCode": "12F",
+          "shapeType": "office",
+          "label": "신희상 대표님 집무실",
+          "x": 31,
+          "y": 17,
+          "w": 5,
+          "h": 4,
+          "fill": null,
+          "source": "AF18:AJ21"
+        },
+        {
+          "shapeId": "12F-shape-033",
+          "floorCode": "12F",
+          "shapeType": "office",
+          "label": "파트장실-3",
+          "x": 25,
+          "y": 18,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "Z19:AA19"
+        },
+        {
+          "shapeId": "12F-shape-034",
+          "floorCode": "12F",
+          "shapeType": "office",
+          "label": "파트장실-2",
+          "x": 27,
+          "y": 18,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "AB19:AC19"
+        },
+        {
+          "shapeId": "12F-shape-035",
+          "floorCode": "12F",
+          "shapeType": "support",
+          "label": "서버실",
+          "x": 6,
+          "y": 18,
+          "w": 1,
+          "h": 3,
+          "fill": null,
+          "source": "G19:G21"
+        },
+        {
+          "shapeId": "12F-shape-036",
+          "floorCode": "12F",
+          "shapeType": "room",
+          "label": "12.5 회의실 (6인)",
+          "x": 25,
+          "y": 32,
+          "w": 1,
+          "h": 3,
+          "fill": null,
+          "source": "Z33:Z35"
+        }
+      ],
+      "seatDefs": [
+        {
+          "seatCode": "12F-A73",
+          "seatLabel": "A73",
+          "floorCode": "12F",
+          "x": 12,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "M7"
+        },
+        {
+          "seatCode": "12F-A68",
+          "seatLabel": "A68",
+          "floorCode": "12F",
+          "x": 14,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O7"
+        },
+        {
+          "seatCode": "12F-A63",
+          "seatLabel": "A63",
+          "floorCode": "12F",
+          "x": 15,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "P7"
+        },
+        {
+          "seatCode": "12F-A50",
+          "seatLabel": "A50",
+          "floorCode": "12F",
+          "x": 20,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U7"
+        },
+        {
+          "seatCode": "12F-A45",
+          "seatLabel": "A45",
+          "floorCode": "12F",
+          "x": 21,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V7"
+        },
+        {
+          "seatCode": "12F-A32",
+          "seatLabel": "A32",
+          "floorCode": "12F",
+          "x": 26,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA7"
+        },
+        {
+          "seatCode": "12F-A27",
+          "seatLabel": "A27",
+          "floorCode": "12F",
+          "x": 27,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AB7"
+        },
+        {
+          "seatCode": "12F-A23",
+          "seatLabel": "A23",
+          "floorCode": "12F",
+          "x": 29,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AD7"
+        },
+        {
+          "seatCode": "12F-A19",
+          "seatLabel": "A19",
+          "floorCode": "12F",
+          "x": 30,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AE7"
+        },
+        {
+          "seatCode": "12F-A15",
+          "seatLabel": "A15",
+          "floorCode": "12F",
+          "x": 32,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AG7"
+        },
+        {
+          "seatCode": "12F-A11",
+          "seatLabel": "A11",
+          "floorCode": "12F",
+          "x": 33,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AH7"
+        },
+        {
+          "seatCode": "12F-A7",
+          "seatLabel": "A7",
+          "floorCode": "12F",
+          "x": 35,
+          "y": 6,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AJ7"
+        },
+        {
+          "seatCode": "12F-A74",
+          "seatLabel": "A74",
+          "floorCode": "12F",
+          "x": 12,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "M9"
+        },
+        {
+          "seatCode": "12F-A69",
+          "seatLabel": "A69",
+          "floorCode": "12F",
+          "x": 14,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O9"
+        },
+        {
+          "seatCode": "12F-A64",
+          "seatLabel": "A64",
+          "floorCode": "12F",
+          "x": 15,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "P9"
+        },
+        {
+          "seatCode": "12F-A59",
+          "seatLabel": "A59",
+          "floorCode": "12F",
+          "x": 17,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R9"
+        },
+        {
+          "seatCode": "12F-A55",
+          "seatLabel": "A55",
+          "floorCode": "12F",
+          "x": 18,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "S9"
+        },
+        {
+          "seatCode": "12F-A51",
+          "seatLabel": "A51",
+          "floorCode": "12F",
+          "x": 20,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U9"
+        },
+        {
+          "seatCode": "12F-A46",
+          "seatLabel": "A46",
+          "floorCode": "12F",
+          "x": 21,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V9"
+        },
+        {
+          "seatCode": "12F-A41",
+          "seatLabel": "A41",
+          "floorCode": "12F",
+          "x": 23,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "X9"
+        },
+        {
+          "seatCode": "12F-A37",
+          "seatLabel": "A37",
+          "floorCode": "12F",
+          "x": 24,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Y9"
+        },
+        {
+          "seatCode": "12F-A33",
+          "seatLabel": "A33",
+          "floorCode": "12F",
+          "x": 26,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA9"
+        },
+        {
+          "seatCode": "12F-A28",
+          "seatLabel": "A28",
+          "floorCode": "12F",
+          "x": 27,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AB9"
+        },
+        {
+          "seatCode": "12F-A24",
+          "seatLabel": "A24",
+          "floorCode": "12F",
+          "x": 29,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AD9"
+        },
+        {
+          "seatCode": "12F-A20",
+          "seatLabel": "A20",
+          "floorCode": "12F",
+          "x": 30,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AE9"
+        },
+        {
+          "seatCode": "12F-A16",
+          "seatLabel": "A16",
+          "floorCode": "12F",
+          "x": 32,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AG9"
+        },
+        {
+          "seatCode": "12F-A12",
+          "seatLabel": "A12",
+          "floorCode": "12F",
+          "x": 33,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AH9"
+        },
+        {
+          "seatCode": "12F-A8",
+          "seatLabel": "A8",
+          "floorCode": "12F",
+          "x": 35,
+          "y": 8,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AJ9"
+        },
+        {
+          "seatCode": "12F-A75",
+          "seatLabel": "A75",
+          "floorCode": "12F",
+          "x": 12,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "M11"
+        },
+        {
+          "seatCode": "12F-A70",
+          "seatLabel": "A70",
+          "floorCode": "12F",
+          "x": 14,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O11"
+        },
+        {
+          "seatCode": "12F-A65",
+          "seatLabel": "A65",
+          "floorCode": "12F",
+          "x": 15,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "P11"
+        },
+        {
+          "seatCode": "12F-A60",
+          "seatLabel": "A60",
+          "floorCode": "12F",
+          "x": 17,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R11"
+        },
+        {
+          "seatCode": "12F-A56",
+          "seatLabel": "A56",
+          "floorCode": "12F",
+          "x": 18,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "S11"
+        },
+        {
+          "seatCode": "12F-A52",
+          "seatLabel": "A52",
+          "floorCode": "12F",
+          "x": 20,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U11"
+        },
+        {
+          "seatCode": "12F-A47",
+          "seatLabel": "A47",
+          "floorCode": "12F",
+          "x": 21,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V11"
+        },
+        {
+          "seatCode": "12F-A42",
+          "seatLabel": "A42",
+          "floorCode": "12F",
+          "x": 23,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "X11"
+        },
+        {
+          "seatCode": "12F-A38",
+          "seatLabel": "A38",
+          "floorCode": "12F",
+          "x": 24,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Y11"
+        },
+        {
+          "seatCode": "12F-A34",
+          "seatLabel": "A34",
+          "floorCode": "12F",
+          "x": 26,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA11"
+        },
+        {
+          "seatCode": "12F-A29",
+          "seatLabel": "A29",
+          "floorCode": "12F",
+          "x": 27,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AB11"
+        },
+        {
+          "seatCode": "12F-A25",
+          "seatLabel": "A25",
+          "floorCode": "12F",
+          "x": 29,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AD11"
+        },
+        {
+          "seatCode": "12F-A21",
+          "seatLabel": "A21",
+          "floorCode": "12F",
+          "x": 30,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AE11"
+        },
+        {
+          "seatCode": "12F-A17",
+          "seatLabel": "A17",
+          "floorCode": "12F",
+          "x": 32,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AG11"
+        },
+        {
+          "seatCode": "12F-A13",
+          "seatLabel": "A13",
+          "floorCode": "12F",
+          "x": 33,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AH11"
+        },
+        {
+          "seatCode": "12F-A9",
+          "seatLabel": "A9",
+          "floorCode": "12F",
+          "x": 35,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AJ11"
+        },
+        {
+          "seatCode": "12F-A76",
+          "seatLabel": "A76",
+          "floorCode": "12F",
+          "x": 12,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "M13"
+        },
+        {
+          "seatCode": "12F-A71",
+          "seatLabel": "A71",
+          "floorCode": "12F",
+          "x": 14,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O13"
+        },
+        {
+          "seatCode": "12F-A66",
+          "seatLabel": "A66",
+          "floorCode": "12F",
+          "x": 15,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "P13"
+        },
+        {
+          "seatCode": "12F-A61",
+          "seatLabel": "A61",
+          "floorCode": "12F",
+          "x": 17,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R13"
+        },
+        {
+          "seatCode": "12F-A57",
+          "seatLabel": "A57",
+          "floorCode": "12F",
+          "x": 18,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "S13"
+        },
+        {
+          "seatCode": "12F-A53",
+          "seatLabel": "A53",
+          "floorCode": "12F",
+          "x": 20,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U13"
+        },
+        {
+          "seatCode": "12F-A48",
+          "seatLabel": "A48",
+          "floorCode": "12F",
+          "x": 21,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V13"
+        },
+        {
+          "seatCode": "12F-A43",
+          "seatLabel": "A43",
+          "floorCode": "12F",
+          "x": 23,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "X13"
+        },
+        {
+          "seatCode": "12F-A39",
+          "seatLabel": "A39",
+          "floorCode": "12F",
+          "x": 24,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Y13"
+        },
+        {
+          "seatCode": "12F-A35",
+          "seatLabel": "A35",
+          "floorCode": "12F",
+          "x": 26,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA13"
+        },
+        {
+          "seatCode": "12F-A30",
+          "seatLabel": "A30",
+          "floorCode": "12F",
+          "x": 27,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AB13"
+        },
+        {
+          "seatCode": "12F-A26",
+          "seatLabel": "A26",
+          "floorCode": "12F",
+          "x": 29,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AD13"
+        },
+        {
+          "seatCode": "12F-A22",
+          "seatLabel": "A22",
+          "floorCode": "12F",
+          "x": 30,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AE13"
+        },
+        {
+          "seatCode": "12F-A18",
+          "seatLabel": "A18",
+          "floorCode": "12F",
+          "x": 32,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AG13"
+        },
+        {
+          "seatCode": "12F-A14",
+          "seatLabel": "A14",
+          "floorCode": "12F",
+          "x": 33,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AH13"
+        },
+        {
+          "seatCode": "12F-A10",
+          "seatLabel": "A10",
+          "floorCode": "12F",
+          "x": 35,
+          "y": 12,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AJ13"
+        },
+        {
+          "seatCode": "12F-A77",
+          "seatLabel": "A77",
+          "floorCode": "12F",
+          "x": 12,
+          "y": 14,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "M15"
+        },
+        {
+          "seatCode": "12F-A72",
+          "seatLabel": "A72",
+          "floorCode": "12F",
+          "x": 14,
+          "y": 14,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O15"
+        },
+        {
+          "seatCode": "12F-A67",
+          "seatLabel": "A67",
+          "floorCode": "12F",
+          "x": 15,
+          "y": 14,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "P15"
+        },
+        {
+          "seatCode": "12F-A62",
+          "seatLabel": "A62",
+          "floorCode": "12F",
+          "x": 17,
+          "y": 14,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R15"
+        },
+        {
+          "seatCode": "12F-A58",
+          "seatLabel": "A58",
+          "floorCode": "12F",
+          "x": 18,
+          "y": 14,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "S15"
+        },
+        {
+          "seatCode": "12F-A54",
+          "seatLabel": "A54",
+          "floorCode": "12F",
+          "x": 20,
+          "y": 14,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U15"
+        },
+        {
+          "seatCode": "12F-A49",
+          "seatLabel": "A49",
+          "floorCode": "12F",
+          "x": 21,
+          "y": 14,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V15"
+        },
+        {
+          "seatCode": "12F-A44",
+          "seatLabel": "A44",
+          "floorCode": "12F",
+          "x": 23,
+          "y": 14,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "X15"
+        },
+        {
+          "seatCode": "12F-A40",
+          "seatLabel": "A40",
+          "floorCode": "12F",
+          "x": 24,
+          "y": 14,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Y15"
+        },
+        {
+          "seatCode": "12F-A36",
+          "seatLabel": "A36",
+          "floorCode": "12F",
+          "x": 26,
+          "y": 14,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA15"
+        },
+        {
+          "seatCode": "12F-A31",
+          "seatLabel": "A31",
+          "floorCode": "12F",
+          "x": 27,
+          "y": 14,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AB15"
+        },
+        {
+          "seatCode": "12F-A6",
+          "seatLabel": "A6",
+          "floorCode": "12F",
+          "x": 13,
+          "y": 19,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "N20"
+        },
+        {
+          "seatCode": "12F-A78",
+          "seatLabel": "A78",
+          "floorCode": "12F",
+          "x": 15,
+          "y": 19,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "P20"
+        },
+        {
+          "seatCode": "12F-A5",
+          "seatLabel": "A5",
+          "floorCode": "12F",
+          "x": 17,
+          "y": 19,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R20"
+        },
+        {
+          "seatCode": "12F-A4",
+          "seatLabel": "A4",
+          "floorCode": "12F",
+          "x": 19,
+          "y": 19,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "T20"
+        },
+        {
+          "seatCode": "12F-A3",
+          "seatLabel": "A3",
+          "floorCode": "12F",
+          "x": 25,
+          "y": 19,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Z20"
+        },
+        {
+          "seatCode": "12F-A2",
+          "seatLabel": "A2",
+          "floorCode": "12F",
+          "x": 27,
+          "y": 19,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AB20"
+        },
+        {
+          "seatCode": "12F-A1",
+          "seatLabel": "A1",
+          "floorCode": "12F",
+          "x": 30,
+          "y": 19,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AE20"
+        },
+        {
+          "seatCode": "12F-B3",
+          "seatLabel": "B3",
+          "floorCode": "12F",
+          "x": 32,
+          "y": 26,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AG27"
+        },
+        {
+          "seatCode": "12F-B4",
+          "seatLabel": "B4",
+          "floorCode": "12F",
+          "x": 33,
+          "y": 26,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AH27"
+        },
+        {
+          "seatCode": "12F-B5",
+          "seatLabel": "B5",
+          "floorCode": "12F",
+          "x": 34,
+          "y": 26,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AI27"
+        },
+        {
+          "seatCode": "12F-B6",
+          "seatLabel": "B6",
+          "floorCode": "12F",
+          "x": 32,
+          "y": 29,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AG30"
+        },
+        {
+          "seatCode": "12F-B7",
+          "seatLabel": "B7",
+          "floorCode": "12F",
+          "x": 33,
+          "y": 29,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AH30"
+        },
+        {
+          "seatCode": "12F-B8",
+          "seatLabel": "B8",
+          "floorCode": "12F",
+          "x": 34,
+          "y": 29,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AI30"
+        },
+        {
+          "seatCode": "12F-B1",
+          "seatLabel": "B1",
+          "floorCode": "12F",
+          "x": 26,
+          "y": 30,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA31"
+        },
+        {
+          "seatCode": "12F-B9",
+          "seatLabel": "B9",
+          "floorCode": "12F",
+          "x": 32,
+          "y": 31,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AG32"
+        },
+        {
+          "seatCode": "12F-B10",
+          "seatLabel": "B10",
+          "floorCode": "12F",
+          "x": 33,
+          "y": 31,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AH32"
+        },
+        {
+          "seatCode": "12F-E20",
+          "seatLabel": "E20",
+          "floorCode": "12F",
+          "x": 2,
+          "y": 33,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "C34"
+        },
+        {
+          "seatCode": "12F-E14",
+          "seatLabel": "E14",
+          "floorCode": "12F",
+          "x": 3,
+          "y": 33,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "D34"
+        },
+        {
+          "seatCode": "12F-E8",
+          "seatLabel": "E8",
+          "floorCode": "12F",
+          "x": 5,
+          "y": 33,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "F34"
+        },
+        {
+          "seatCode": "12F-E2",
+          "seatLabel": "E2",
+          "floorCode": "12F",
+          "x": 6,
+          "y": 33,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "G34"
+        },
+        {
+          "seatCode": "12F-B2",
+          "seatLabel": "B2",
+          "floorCode": "12F",
+          "x": 26,
+          "y": 33,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA34"
+        },
+        {
+          "seatCode": "12F-E1",
+          "seatLabel": "E1",
+          "floorCode": "12F",
+          "x": 8,
+          "y": 34,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "I35"
+        },
+        {
+          "seatCode": "12F-D3",
+          "seatLabel": "D3",
+          "floorCode": "12F",
+          "x": 14,
+          "y": 34,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O35"
+        },
+        {
+          "seatCode": "12F-D1",
+          "seatLabel": "D1",
+          "floorCode": "12F",
+          "x": 21,
+          "y": 34,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V35"
+        },
+        {
+          "seatCode": "12F-B11",
+          "seatLabel": "B11",
+          "floorCode": "12F",
+          "x": 32,
+          "y": 34,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AG35"
+        },
+        {
+          "seatCode": "12F-B12",
+          "seatLabel": "B12",
+          "floorCode": "12F",
+          "x": 33,
+          "y": 34,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AH35"
+        },
+        {
+          "seatCode": "12F-B13",
+          "seatLabel": "B13",
+          "floorCode": "12F",
+          "x": 34,
+          "y": 34,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AI35"
+        },
+        {
+          "seatCode": "12F-B14",
+          "seatLabel": "B14",
+          "floorCode": "12F",
+          "x": 35,
+          "y": 34,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AJ35"
+        },
+        {
+          "seatCode": "12F-E21",
+          "seatLabel": "E21",
+          "floorCode": "12F",
+          "x": 2,
+          "y": 35,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "C36"
+        },
+        {
+          "seatCode": "12F-E15",
+          "seatLabel": "E15",
+          "floorCode": "12F",
+          "x": 3,
+          "y": 35,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "D36"
+        },
+        {
+          "seatCode": "12F-E9",
+          "seatLabel": "E9",
+          "floorCode": "12F",
+          "x": 5,
+          "y": 35,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "F36"
+        },
+        {
+          "seatCode": "12F-E3",
+          "seatLabel": "E3",
+          "floorCode": "12F",
+          "x": 6,
+          "y": 35,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "G36"
+        },
+        {
+          "seatCode": "12F-B15",
+          "seatLabel": "B15",
+          "floorCode": "12F",
+          "x": 32,
+          "y": 36,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AG37"
+        },
+        {
+          "seatCode": "12F-B16",
+          "seatLabel": "B16",
+          "floorCode": "12F",
+          "x": 33,
+          "y": 36,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AH37"
+        },
+        {
+          "seatCode": "12F-B17",
+          "seatLabel": "B17",
+          "floorCode": "12F",
+          "x": 34,
+          "y": 36,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AI37"
+        },
+        {
+          "seatCode": "12F-B18",
+          "seatLabel": "B18",
+          "floorCode": "12F",
+          "x": 35,
+          "y": 36,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AJ37"
+        },
+        {
+          "seatCode": "12F-E22",
+          "seatLabel": "E22",
+          "floorCode": "12F",
+          "x": 2,
+          "y": 38,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "C39"
+        },
+        {
+          "seatCode": "12F-E16",
+          "seatLabel": "E16",
+          "floorCode": "12F",
+          "x": 3,
+          "y": 38,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "D39"
+        },
+        {
+          "seatCode": "12F-E10",
+          "seatLabel": "E10",
+          "floorCode": "12F",
+          "x": 5,
+          "y": 38,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "F39"
+        },
+        {
+          "seatCode": "12F-E4",
+          "seatLabel": "E4",
+          "floorCode": "12F",
+          "x": 6,
+          "y": 38,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "G39"
+        },
+        {
+          "seatCode": "12F-D42",
+          "seatLabel": "D42",
+          "floorCode": "12F",
+          "x": 13,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "N40"
+        },
+        {
+          "seatCode": "12F-D38",
+          "seatLabel": "D38",
+          "floorCode": "12F",
+          "x": 14,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O40"
+        },
+        {
+          "seatCode": "12F-D34",
+          "seatLabel": "D34",
+          "floorCode": "12F",
+          "x": 16,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Q40"
+        },
+        {
+          "seatCode": "12F-D30",
+          "seatLabel": "D30",
+          "floorCode": "12F",
+          "x": 17,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R40"
+        },
+        {
+          "seatCode": "12F-D26",
+          "seatLabel": "D26",
+          "floorCode": "12F",
+          "x": 20,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U40"
+        },
+        {
+          "seatCode": "12F-D22",
+          "seatLabel": "D22",
+          "floorCode": "12F",
+          "x": 21,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V40"
+        },
+        {
+          "seatCode": "12F-D19",
+          "seatLabel": "D19",
+          "floorCode": "12F",
+          "x": 23,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "X40"
+        },
+        {
+          "seatCode": "12F-D15",
+          "seatLabel": "D15",
+          "floorCode": "12F",
+          "x": 24,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Y40"
+        },
+        {
+          "seatCode": "12F-D11",
+          "seatLabel": "D11",
+          "floorCode": "12F",
+          "x": 26,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA40"
+        },
+        {
+          "seatCode": "12F-D7",
+          "seatLabel": "D7",
+          "floorCode": "12F",
+          "x": 27,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AB40"
+        },
+        {
+          "seatCode": "12F-D4",
+          "seatLabel": "D4",
+          "floorCode": "12F",
+          "x": 29,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AD40"
+        },
+        {
+          "seatCode": "12F-B19",
+          "seatLabel": "B19",
+          "floorCode": "12F",
+          "x": 32,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AG40"
+        },
+        {
+          "seatCode": "12F-B20",
+          "seatLabel": "B20",
+          "floorCode": "12F",
+          "x": 33,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AH40"
+        },
+        {
+          "seatCode": "12F-B21",
+          "seatLabel": "B21",
+          "floorCode": "12F",
+          "x": 34,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AI40"
+        },
+        {
+          "seatCode": "12F-B22",
+          "seatLabel": "B22",
+          "floorCode": "12F",
+          "x": 35,
+          "y": 39,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AJ40"
+        },
+        {
+          "seatCode": "12F-E23",
+          "seatLabel": "E23",
+          "floorCode": "12F",
+          "x": 2,
+          "y": 40,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "C41"
+        },
+        {
+          "seatCode": "12F-E17",
+          "seatLabel": "E17",
+          "floorCode": "12F",
+          "x": 3,
+          "y": 40,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "D41"
+        },
+        {
+          "seatCode": "12F-E11",
+          "seatLabel": "E11",
+          "floorCode": "12F",
+          "x": 5,
+          "y": 40,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "F41"
+        },
+        {
+          "seatCode": "12F-E5",
+          "seatLabel": "E5",
+          "floorCode": "12F",
+          "x": 6,
+          "y": 40,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "G41"
+        },
+        {
+          "seatCode": "12F-D43",
+          "seatLabel": "D43",
+          "floorCode": "12F",
+          "x": 13,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "N42"
+        },
+        {
+          "seatCode": "12F-D39",
+          "seatLabel": "D39",
+          "floorCode": "12F",
+          "x": 14,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O42"
+        },
+        {
+          "seatCode": "12F-D35",
+          "seatLabel": "D35",
+          "floorCode": "12F",
+          "x": 16,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Q42"
+        },
+        {
+          "seatCode": "12F-D31",
+          "seatLabel": "D31",
+          "floorCode": "12F",
+          "x": 17,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R42"
+        },
+        {
+          "seatCode": "12F-D27",
+          "seatLabel": "D27",
+          "floorCode": "12F",
+          "x": 20,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U42"
+        },
+        {
+          "seatCode": "12F-D23",
+          "seatLabel": "D23",
+          "floorCode": "12F",
+          "x": 21,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V42"
+        },
+        {
+          "seatCode": "12F-D20",
+          "seatLabel": "D20",
+          "floorCode": "12F",
+          "x": 23,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "X42"
+        },
+        {
+          "seatCode": "12F-D16",
+          "seatLabel": "D16",
+          "floorCode": "12F",
+          "x": 24,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Y42"
+        },
+        {
+          "seatCode": "12F-D12",
+          "seatLabel": "D12",
+          "floorCode": "12F",
+          "x": 26,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA42"
+        },
+        {
+          "seatCode": "12F-D8",
+          "seatLabel": "D8",
+          "floorCode": "12F",
+          "x": 27,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AB42"
+        },
+        {
+          "seatCode": "12F-D5",
+          "seatLabel": "D5",
+          "floorCode": "12F",
+          "x": 29,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AD42"
+        },
+        {
+          "seatCode": "12F-B23",
+          "seatLabel": "B23",
+          "floorCode": "12F",
+          "x": 32,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AG42"
+        },
+        {
+          "seatCode": "12F-B24",
+          "seatLabel": "B24",
+          "floorCode": "12F",
+          "x": 33,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AH42"
+        },
+        {
+          "seatCode": "12F-B25",
+          "seatLabel": "B25",
+          "floorCode": "12F",
+          "x": 34,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AI42"
+        },
+        {
+          "seatCode": "12F-B26",
+          "seatLabel": "B26",
+          "floorCode": "12F",
+          "x": 35,
+          "y": 41,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AJ42"
+        },
+        {
+          "seatCode": "12F-E24",
+          "seatLabel": "E24",
+          "floorCode": "12F",
+          "x": 2,
+          "y": 42,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "C43"
+        },
+        {
+          "seatCode": "12F-E18",
+          "seatLabel": "E18",
+          "floorCode": "12F",
+          "x": 3,
+          "y": 42,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "D43"
+        },
+        {
+          "seatCode": "12F-E12",
+          "seatLabel": "E12",
+          "floorCode": "12F",
+          "x": 5,
+          "y": 42,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "F43"
+        },
+        {
+          "seatCode": "12F-E6",
+          "seatLabel": "E6",
+          "floorCode": "12F",
+          "x": 6,
+          "y": 42,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "G43"
+        },
+        {
+          "seatCode": "12F-D44",
+          "seatLabel": "D44",
+          "floorCode": "12F",
+          "x": 13,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "N44"
+        },
+        {
+          "seatCode": "12F-D40",
+          "seatLabel": "D40",
+          "floorCode": "12F",
+          "x": 14,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O44"
+        },
+        {
+          "seatCode": "12F-D36",
+          "seatLabel": "D36",
+          "floorCode": "12F",
+          "x": 16,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Q44"
+        },
+        {
+          "seatCode": "12F-D32",
+          "seatLabel": "D32",
+          "floorCode": "12F",
+          "x": 17,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R44"
+        },
+        {
+          "seatCode": "12F-D28",
+          "seatLabel": "D28",
+          "floorCode": "12F",
+          "x": 20,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U44"
+        },
+        {
+          "seatCode": "12F-D24",
+          "seatLabel": "D24",
+          "floorCode": "12F",
+          "x": 21,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V44"
+        },
+        {
+          "seatCode": "12F-D21",
+          "seatLabel": "D21",
+          "floorCode": "12F",
+          "x": 23,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "X44"
+        },
+        {
+          "seatCode": "12F-D17",
+          "seatLabel": "D17",
+          "floorCode": "12F",
+          "x": 24,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Y44"
+        },
+        {
+          "seatCode": "12F-D13",
+          "seatLabel": "D13",
+          "floorCode": "12F",
+          "x": 26,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA44"
+        },
+        {
+          "seatCode": "12F-D9",
+          "seatLabel": "D9",
+          "floorCode": "12F",
+          "x": 27,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AB44"
+        },
+        {
+          "seatCode": "12F-D6",
+          "seatLabel": "D6",
+          "floorCode": "12F",
+          "x": 29,
+          "y": 43,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AD44"
+        },
+        {
+          "seatCode": "12F-E25",
+          "seatLabel": "E25",
+          "floorCode": "12F",
+          "x": 2,
+          "y": 44,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "C45"
+        },
+        {
+          "seatCode": "12F-E19",
+          "seatLabel": "E19",
+          "floorCode": "12F",
+          "x": 3,
+          "y": 44,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "D45"
+        },
+        {
+          "seatCode": "12F-E13",
+          "seatLabel": "E13",
+          "floorCode": "12F",
+          "x": 5,
+          "y": 44,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "F45"
+        },
+        {
+          "seatCode": "12F-E7",
+          "seatLabel": "E7",
+          "floorCode": "12F",
+          "x": 6,
+          "y": 44,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "G45"
+        },
+        {
+          "seatCode": "12F-D45",
+          "seatLabel": "D45",
+          "floorCode": "12F",
+          "x": 13,
+          "y": 45,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "N46"
+        },
+        {
+          "seatCode": "12F-D41",
+          "seatLabel": "D41",
+          "floorCode": "12F",
+          "x": 14,
+          "y": 45,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O46"
+        },
+        {
+          "seatCode": "12F-D37",
+          "seatLabel": "D37",
+          "floorCode": "12F",
+          "x": 16,
+          "y": 45,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Q46"
+        },
+        {
+          "seatCode": "12F-D33",
+          "seatLabel": "D33",
+          "floorCode": "12F",
+          "x": 17,
+          "y": 45,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R46"
+        },
+        {
+          "seatCode": "12F-D29",
+          "seatLabel": "D29",
+          "floorCode": "12F",
+          "x": 20,
+          "y": 45,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U46"
+        },
+        {
+          "seatCode": "12F-D25",
+          "seatLabel": "D25",
+          "floorCode": "12F",
+          "x": 21,
+          "y": 45,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V46"
+        },
+        {
+          "seatCode": "12F-D18",
+          "seatLabel": "D18",
+          "floorCode": "12F",
+          "x": 24,
+          "y": 45,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Y46"
+        },
+        {
+          "seatCode": "12F-D14",
+          "seatLabel": "D14",
+          "floorCode": "12F",
+          "x": 26,
+          "y": 45,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA46"
+        },
+        {
+          "seatCode": "12F-D10",
+          "seatLabel": "D10",
+          "floorCode": "12F",
+          "x": 27,
+          "y": 45,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AB46"
+        },
+        {
+          "seatCode": "12F-B27",
+          "seatLabel": "B27",
+          "floorCode": "12F",
+          "x": 32,
+          "y": 45,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AG46"
+        },
+        {
+          "seatCode": "12F-B28",
+          "seatLabel": "B28",
+          "floorCode": "12F",
+          "x": 33,
+          "y": 45,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AH46"
+        },
+        {
+          "seatCode": "12F-B29",
+          "seatLabel": "B29",
+          "floorCode": "12F",
+          "x": 34,
+          "y": 45,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AI46"
+        },
+        {
+          "seatCode": "12F-B30",
+          "seatLabel": "B30",
+          "floorCode": "12F",
+          "x": 35,
+          "y": 45,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AJ46"
+        }
+      ],
+      "scenarios": {
+        "current": {
+          "assignments": {
+            "12F-A73": {
+              "personName": "박신웅",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A68": {
+              "personName": "한수정",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A63": {
+              "personName": "조영비",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A50": {
+              "personName": "김연수",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A45": {
+              "personName": "장성진",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A32": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A27": {
+              "personName": "박세진",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A23": {
+              "personName": "홍장군",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A19": {
+              "personName": "이영환",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A15": {
+              "personName": "윤용택",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A11": {
+              "personName": "김성욱",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A7": {
+              "personName": "이현호",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A74": {
+              "personName": "박석제",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A69": {
+              "personName": "박채현",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A64": {
+              "personName": "소현준",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A59": {
+              "personName": "강준구",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A55": {
+              "personName": "양유미",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A51": {
+              "personName": "강성호",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A46": {
+              "personName": "박만진",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A41": {
+              "personName": "윤주형",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A37": {
+              "personName": "이가현",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A33": {
+              "personName": "정수명",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A28": {
+              "personName": "강동균",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A24": {
+              "personName": "최종인",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A20": {
+              "personName": "강창원",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A16": {
+              "personName": "김보성",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A12": {
+              "personName": "전승희",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A8": {
+              "personName": "유미현",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A75": {
+              "personName": "이관용",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A70": {
+              "personName": "한찬호",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A65": {
+              "personName": "강순용",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A60": {
+              "personName": "양진수",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A56": {
+              "personName": "김태영",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A52": {
+              "personName": "한원석",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A47": {
+              "personName": "박일훈",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A42": {
+              "personName": "김제익",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A38": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A34": {
+              "personName": "고아라",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A29": {
+              "personName": "김민수",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A25": {
+              "personName": "박세민",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A21": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A17": {
+              "personName": "이창준",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A13": {
+              "personName": "임한솔",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A9": {
+              "personName": "이구",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A76": {
+              "personName": "이시정",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A71": {
+              "personName": "신민호",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A66": {
+              "personName": "김대익",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A61": {
+              "personName": "이인기",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A57": {
+              "personName": "주현식",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A53": {
+              "personName": "안지원",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A48": {
+              "personName": "류홍",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A43": {
+              "personName": "전무경",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A39": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A35": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A30": {
+              "personName": "최광석",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A26": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A22": {
+              "personName": "최성현",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A18": {
+              "personName": "황정호",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A14": {
+              "personName": "손서형",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A10": {
+              "personName": "이준수",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A77": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A72": {
+              "personName": "전기영",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A67": {
+              "personName": "이수정",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A62": {
+              "personName": "김민지",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A58": {
+              "personName": "홍창의",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A54": {
+              "personName": "김창록",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A49": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A44": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A40": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A36": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A31": {
+              "personName": "백종우",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A6": {
+              "personName": "현철호",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A78": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A5": {
+              "personName": "권순일",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A4": {
+              "personName": "이승훈",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A3": {
+              "personName": "채원",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A2": {
+              "personName": "김현수",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-A1": {
+              "personName": "우형석",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B3": {
+              "personName": "홍상우",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B4": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B5": {
+              "personName": "권진명",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B6": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B7": {
+              "personName": "권종엽",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B8": {
+              "personName": "류종필",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B1": {
+              "personName": "신동열",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B9": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B10": {
+              "personName": "모영준",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E20": {
+              "personName": "한수진",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E14": {
+              "personName": "이가을",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E8": {
+              "personName": "인감날인",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E2": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B2": {
+              "personName": "강현일",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E1": {
+              "personName": "오윤석",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D3": {
+              "personName": "임상훈",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D1": {
+              "personName": "박준호",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B11": {
+              "personName": "이대희",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B12": {
+              "personName": "김지오",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B13": {
+              "personName": "채지수",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B14": {
+              "personName": "최성룡",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E21": {
+              "personName": "박유진",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E15": {
+              "personName": "이예은",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E9": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E3": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B15": {
+              "personName": "이재현",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B16": {
+              "personName": "박현우",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B17": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B18": {
+              "personName": "신호선",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E22": {
+              "personName": "최승봉",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E16": {
+              "personName": "양우영",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E10": {
+              "personName": "전서진",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E4": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D42": {
+              "personName": "김완혁",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D38": {
+              "personName": "이종훈",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D34": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D30": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D26": {
+              "personName": "윤탐",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D22": {
+              "personName": "김지우",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D19": {
+              "personName": "한승환",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D15": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D11": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D7": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D4": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B19": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B20": {
+              "personName": "김정현",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B21": {
+              "personName": "정은비",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B22": {
+              "personName": "도한영",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E23": {
+              "personName": "구본혁",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E17": {
+              "personName": "김대선",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E11": {
+              "personName": "류지훈",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E5": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D43": {
+              "personName": "김민석",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D39": {
+              "personName": "곽호용",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D35": {
+              "personName": "유한나",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D31": {
+              "personName": "강수원",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D27": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D23": {
+              "personName": "이성민",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D20": {
+              "personName": "박현승",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D16": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D12": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D8": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D5": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B23": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B24": {
+              "personName": "김경섭",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B25": {
+              "personName": "김민엽",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B26": {
+              "personName": "임민혁",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E24": {
+              "personName": "오상윤",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E18": {
+              "personName": "하승균",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E12": {
+              "personName": "이민호",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E6": {
+              "personName": "김재동",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D44": {
+              "personName": "윤은진",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D40": {
+              "personName": "정지웅",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D36": {
+              "personName": "심동민",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D32": {
+              "personName": "김진희",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D28": {
+              "personName": "문성흠",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D24": {
+              "personName": "손유정",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D21": {
+              "personName": "강석민",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D17": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D13": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D9": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D6": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E25": {
+              "personName": "황재현",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E19": {
+              "personName": "이승준",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E13": {
+              "personName": "한창형",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-E7": {
+              "personName": "조광현",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D45": {
+              "personName": "임성훈",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D41": {
+              "personName": "송상민",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D37": {
+              "personName": "유선준",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D33": {
+              "personName": "이상기",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D29": {
+              "personName": "김호진",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D25": {
+              "personName": "정리훈",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D18": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D14": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-D10": {
+              "personName": "",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B27": {
+              "personName": "장정윤",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B28": {
+              "personName": "황보경",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B29": {
+              "personName": "김유진",
+              "sheetName": "세우12F_현재"
+            },
+            "12F-B30": {
+              "personName": "권영규",
+              "sheetName": "세우12F_현재"
+            }
+          },
+          "bounds": {
+            "floorCode": "12F",
+            "sheetName": "세우12F_현재",
+            "scenario": "current",
+            "rows": 64,
+            "cols": 44
+          }
+        },
+        "plan": {
+          "assignments": {
+            "12F-A73": {
+              "personName": "박신웅",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A68": {
+              "personName": "한수정",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A63": {
+              "personName": "조영비",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A50": {
+              "personName": "이영환",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A45": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A32": {
+              "personName": "이현호",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A27": {
+              "personName": "이가현",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A23": {
+              "personName": "채원",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A19": {
+              "personName": "김보성",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A15": {
+              "personName": "윤용택",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A11": {
+              "personName": "김성욱",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A7": {
+              "personName": "최종인",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A74": {
+              "personName": "전기영",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A69": {
+              "personName": "박채현",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A64": {
+              "personName": "소현준",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A59": {
+              "personName": "강준구",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A55": {
+              "personName": "양유미",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A51": {
+              "personName": "강창원",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A46": {
+              "personName": "박만진",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A41": {
+              "personName": "윤주형",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A37": {
+              "personName": "김연수",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A33": {
+              "personName": "김민수",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A28": {
+              "personName": "정수명",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A24": {
+              "personName": "김대익",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A20": {
+              "personName": "전승희",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A16": {
+              "personName": "최성현",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A12": {
+              "personName": "박세진",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A8": {
+              "personName": "박세민",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A75": {
+              "personName": "이관용",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A70": {
+              "personName": "한찬호",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A65": {
+              "personName": "강순용",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A60": {
+              "personName": "양진수",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A56": {
+              "personName": "김태영",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A52": {
+              "personName": "강동균",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A47": {
+              "personName": "박일훈",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A42": {
+              "personName": "김제익",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A38": {
+              "personName": "강성호",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A34": {
+              "personName": "유미현",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A29": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A25": {
+              "personName": "장성진",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A21": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A17": {
+              "personName": "이창준",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A13": {
+              "personName": "임한솔",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A9": {
+              "personName": "최광석",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A76": {
+              "personName": "이시정",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A71": {
+              "personName": "신민호",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A66": {
+              "personName": "박석제",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A61": {
+              "personName": "고아라",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A57": {
+              "personName": "주현식",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A53": {
+              "personName": "김창록",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A48": {
+              "personName": "류홍",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A43": {
+              "personName": "전무경",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A39": {
+              "personName": "한원석",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A35": {
+              "personName": "이구",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A30": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A26": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A22": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A18": {
+              "personName": "황정호",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A14": {
+              "personName": "손서형",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A10": {
+              "personName": "백종우",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A77": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A72": {
+              "personName": "이인기",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A67": {
+              "personName": "이수정",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A62": {
+              "personName": "김민지",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A58": {
+              "personName": "홍창의",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A54": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A49": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A44": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A40": {
+              "personName": "안지원",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A36": {
+              "personName": "이준수",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A31": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A6": {
+              "personName": "현철호",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A5": {
+              "personName": "권순일",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A4": {
+              "personName": "이승훈",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A3": {
+              "personName": "홍장군",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A2": {
+              "personName": "김현수",
+              "sheetName": "세우12F_1"
+            },
+            "12F-A1": {
+              "personName": "우형석",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B3": {
+              "personName": "인턴",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B4": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B5": {
+              "personName": "권진명",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B6": {
+              "personName": "인턴",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B7": {
+              "personName": "권종엽",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B8": {
+              "personName": "류종필",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B1": {
+              "personName": "신동열",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B9": {
+              "personName": "송낙범",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B10": {
+              "personName": "모영준",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E20": {
+              "personName": "한수진",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E14": {
+              "personName": "이가을",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E8": {
+              "personName": "인감날인",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E2": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B2": {
+              "personName": "강현일",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E1": {
+              "personName": "오윤석",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D3": {
+              "personName": "임상훈",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D1": {
+              "personName": "박준호",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B11": {
+              "personName": "이대희",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B12": {
+              "personName": "김지오",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B13": {
+              "personName": "채지수",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B14": {
+              "personName": "최성룡",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E21": {
+              "personName": "박유진",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E15": {
+              "personName": "이예은",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E9": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E3": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B15": {
+              "personName": "이재현",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B16": {
+              "personName": "박현우",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B17": {
+              "personName": "이정한",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B18": {
+              "personName": "신호선",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E22": {
+              "personName": "최승봉",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E16": {
+              "personName": "양우영",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E10": {
+              "personName": "전서진",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E4": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D42": {
+              "personName": "윤탐",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D38": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D34": {
+              "personName": "인턴",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D30": {
+              "personName": "인턴",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D26": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D22": {
+              "personName": "김지우",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D19": {
+              "personName": "한승환",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D15": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D11": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D7": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D4": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B19": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B20": {
+              "personName": "김정현",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B21": {
+              "personName": "정은비",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B22": {
+              "personName": "도한영",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E23": {
+              "personName": "구본혁",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E17": {
+              "personName": "김대선",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E11": {
+              "personName": "류지훈",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E5": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D43": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D39": {
+              "personName": "곽호용",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D35": {
+              "personName": "유한나",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D31": {
+              "personName": "강수원",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D27": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D23": {
+              "personName": "이성민",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D20": {
+              "personName": "박현승",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D16": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D12": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D8": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D5": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B23": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B24": {
+              "personName": "정혜령",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B25": {
+              "personName": "김민엽",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B26": {
+              "personName": "임민혁",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E24": {
+              "personName": "오상윤",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E18": {
+              "personName": "하승균",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E12": {
+              "personName": "이민호",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E6": {
+              "personName": "김재동",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D44": {
+              "personName": "문성흠",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D40": {
+              "personName": "정지웅",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D36": {
+              "personName": "심동민",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D32": {
+              "personName": "김진희",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D28": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D24": {
+              "personName": "손유정",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D21": {
+              "personName": "강석민",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D17": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D13": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D9": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D6": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E25": {
+              "personName": "황재현",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E19": {
+              "personName": "이승준",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E13": {
+              "personName": "한창형",
+              "sheetName": "세우12F_1"
+            },
+            "12F-E7": {
+              "personName": "조광현",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D45": {
+              "personName": "김호진",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D41": {
+              "personName": "송상민",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D37": {
+              "personName": "유선준",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D33": {
+              "personName": "이상기",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D29": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D25": {
+              "personName": "정리훈",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D18": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D14": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-D10": {
+              "personName": "",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B27": {
+              "personName": "장정윤",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B28": {
+              "personName": "황보경",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B29": {
+              "personName": "김유진",
+              "sheetName": "세우12F_1"
+            },
+            "12F-B30": {
+              "personName": "권영규",
+              "sheetName": "세우12F_1"
+            }
+          },
+          "bounds": {
+            "floorCode": "12F",
+            "sheetName": "세우12F_1",
+            "scenario": "plan",
+            "rows": 64,
+            "cols": 44
+          }
+        }
+      }
+    },
+    {
+      "floorCode": "13F",
+      "displayName": "13F",
+      "shapes": [
+        {
+          "shapeId": "13F-shape-001",
+          "floorCode": "13F",
+          "shapeType": "office",
+          "label": "그룹장실 -1",
+          "x": 6,
+          "y": 9,
+          "w": 3,
+          "h": 1,
+          "fill": null,
+          "source": "G10:I10"
+        },
+        {
+          "shapeId": "13F-shape-002",
+          "floorCode": "13F",
+          "shapeType": "support",
+          "label": "서버실",
+          "x": 8,
+          "y": 16,
+          "w": 1,
+          "h": 3,
+          "fill": null,
+          "source": "I17:I19"
+        },
+        {
+          "shapeId": "13F-shape-003",
+          "floorCode": "13F",
+          "shapeType": "zone",
+          "label": "포커스룸3",
+          "x": 28,
+          "y": 10,
+          "w": 3,
+          "h": 2,
+          "fill": null,
+          "source": "AC11:AE12"
+        },
+        {
+          "shapeId": "13F-shape-004",
+          "floorCode": "13F",
+          "shapeType": "support",
+          "label": "서버실",
+          "x": 27,
+          "y": 16,
+          "w": 1,
+          "h": 3,
+          "fill": null,
+          "source": "AB17:AB19"
+        },
+        {
+          "shapeId": "13F-shape-005",
+          "floorCode": "13F",
+          "shapeType": "office",
+          "label": "파트장실-1",
+          "x": 9,
+          "y": 9,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "J10:K10"
+        },
+        {
+          "shapeId": "13F-shape-006",
+          "floorCode": "13F",
+          "shapeType": "zone",
+          "label": "공간개발파트",
+          "x": 25,
+          "y": 3,
+          "w": 4,
+          "h": 1,
+          "fill": "#C1E4F5",
+          "source": "Z4:AC4"
+        },
+        {
+          "shapeId": "13F-shape-007",
+          "floorCode": "13F",
+          "shapeType": "zone",
+          "label": "전략투자그룹",
+          "x": 0,
+          "y": 13,
+          "w": 1,
+          "h": 18,
+          "fill": "#C1E4F5",
+          "source": "A14:A31"
+        },
+        {
+          "shapeId": "13F-shape-008",
+          "floorCode": "13F",
+          "shapeType": "support",
+          "label": "OA",
+          "x": 21,
+          "y": 16,
+          "w": 2,
+          "h": 3,
+          "fill": null,
+          "source": "V17:W19"
+        },
+        {
+          "shapeId": "13F-shape-009",
+          "floorCode": "13F",
+          "shapeType": "zone",
+          "label": "포커스룸2",
+          "x": 28,
+          "y": 12,
+          "w": 3,
+          "h": 2,
+          "fill": null,
+          "source": "AC13:AE14"
+        },
+        {
+          "shapeId": "13F-shape-010",
+          "floorCode": "13F",
+          "shapeType": "common",
+          "label": "락커룸",
+          "x": 23,
+          "y": 16,
+          "w": 2,
+          "h": 3,
+          "fill": null,
+          "source": "X17:Y19"
+        },
+        {
+          "shapeId": "13F-shape-011",
+          "floorCode": "13F",
+          "shapeType": "support",
+          "label": "OA",
+          "x": 6,
+          "y": 16,
+          "w": 2,
+          "h": 3,
+          "fill": null,
+          "source": "G17:H19"
+        },
+        {
+          "shapeId": "13F-shape-012",
+          "floorCode": "13F",
+          "shapeType": "zone",
+          "label": "투자솔루션그룹",
+          "x": 12,
+          "y": 3,
+          "w": 7,
+          "h": 1,
+          "fill": "#D9F2D0",
+          "source": "M4:S4"
+        },
+        {
+          "shapeId": "13F-shape-013",
+          "floorCode": "13F",
+          "shapeType": "office",
+          "label": "그룹장실-2",
+          "x": 12,
+          "y": 16,
+          "w": 3,
+          "h": 1,
+          "fill": null,
+          "source": "M17:O17"
+        },
+        {
+          "shapeId": "13F-shape-014",
+          "floorCode": "13F",
+          "shapeType": "support",
+          "label": "라운지 및 휴게공간",
+          "x": 31,
+          "y": 5,
+          "w": 4,
+          "h": 13,
+          "fill": null,
+          "source": "AF6:AI18"
+        },
+        {
+          "shapeId": "13F-shape-015",
+          "floorCode": "13F",
+          "shapeType": "zone",
+          "label": "포커스룸5",
+          "x": 28,
+          "y": 5,
+          "w": 3,
+          "h": 3,
+          "fill": null,
+          "source": "AC6:AE8"
+        },
+        {
+          "shapeId": "13F-shape-016",
+          "floorCode": "13F",
+          "shapeType": "office",
+          "label": "파트장실-4",
+          "x": 15,
+          "y": 16,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "P17:Q17"
+        },
+        {
+          "shapeId": "13F-shape-017",
+          "floorCode": "13F",
+          "shapeType": "room",
+          "label": "13.1 대회의실",
+          "x": 14,
+          "y": 31,
+          "w": 10,
+          "h": 6,
+          "fill": null,
+          "source": "O32:X37"
+        },
+        {
+          "shapeId": "13F-shape-018",
+          "floorCode": "13F",
+          "shapeType": "zone",
+          "label": "포커스룸1",
+          "x": 28,
+          "y": 14,
+          "w": 3,
+          "h": 2,
+          "fill": null,
+          "source": "AC15:AE16"
+        },
+        {
+          "shapeId": "13F-shape-019",
+          "floorCode": "13F",
+          "shapeType": "office",
+          "label": "파트장실-3",
+          "x": 17,
+          "y": 16,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "R17:S17"
+        },
+        {
+          "shapeId": "13F-shape-020",
+          "floorCode": "13F",
+          "shapeType": "room",
+          "label": "13.2 회의실",
+          "x": 2,
+          "y": 31,
+          "w": 4,
+          "h": 4,
+          "fill": null,
+          "source": "C32:F35"
+        },
+        {
+          "shapeId": "13F-shape-021",
+          "floorCode": "13F",
+          "shapeType": "support",
+          "label": "창고",
+          "x": 28,
+          "y": 16,
+          "w": 3,
+          "h": 3,
+          "fill": null,
+          "source": "AC17:AE19"
+        },
+        {
+          "shapeId": "13F-shape-022",
+          "floorCode": "13F",
+          "shapeType": "office",
+          "label": "파트장실-2",
+          "x": 19,
+          "y": 16,
+          "w": 2,
+          "h": 1,
+          "fill": null,
+          "source": "T17:U17"
+        },
+        {
+          "shapeId": "13F-shape-023",
+          "floorCode": "13F",
+          "shapeType": "common",
+          "label": "미화 대기실",
+          "x": 12,
+          "y": 31,
+          "w": 1,
+          "h": 4,
+          "fill": null,
+          "source": "M32:M35"
+        },
+        {
+          "shapeId": "13F-shape-024",
+          "floorCode": "13F",
+          "shapeType": "support",
+          "label": "창고",
+          "x": 24,
+          "y": 35,
+          "w": 1,
+          "h": 2,
+          "fill": null,
+          "source": "Y36:Y37"
+        },
+        {
+          "shapeId": "13F-shape-025",
+          "floorCode": "13F",
+          "shapeType": "support",
+          "label": "라운지",
+          "x": 27,
+          "y": 27,
+          "w": 8,
+          "h": 19,
+          "fill": null,
+          "source": "AB28:AI46"
+        },
+        {
+          "shapeId": "13F-shape-026",
+          "floorCode": "13F",
+          "shapeType": "support",
+          "label": "창고 (메일룸)",
+          "x": 24,
+          "y": 31,
+          "w": 1,
+          "h": 4,
+          "fill": null,
+          "source": "Y32:Y35"
+        },
+        {
+          "shapeId": "13F-shape-027",
+          "floorCode": "13F",
+          "shapeType": "room",
+          "label": "회의실 구역",
+          "x": 2,
+          "y": 39,
+          "w": 23,
+          "h": 7,
+          "fill": null,
+          "source": "C40:Y46"
+        },
+        {
+          "shapeId": "13F-shape-028",
+          "floorCode": "13F",
+          "shapeType": "zone",
+          "label": "포커스룸4",
+          "x": 28,
+          "y": 8,
+          "w": 3,
+          "h": 2,
+          "fill": null,
+          "source": "AC9:AE10"
+        },
+        {
+          "shapeId": "13F-shape-029",
+          "floorCode": "13F",
+          "shapeType": "zone",
+          "label": "공간혁신파트",
+          "x": 19,
+          "y": 3,
+          "w": 6,
+          "h": 1,
+          "fill": "#CCCCFF",
+          "source": "T4:Y4"
+        },
+        {
+          "shapeId": "13F-shape-030",
+          "floorCode": "13F",
+          "shapeType": "common",
+          "label": "리셉션",
+          "x": 27,
+          "y": 19,
+          "w": 4,
+          "h": 2,
+          "fill": null,
+          "source": "AB20:AE21"
+        }
+      ],
+      "seatDefs": [
+        {
+          "seatCode": "13F-A5",
+          "seatLabel": "A5",
+          "floorCode": "13F",
+          "x": 12,
+          "y": 5,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "M6"
+        },
+        {
+          "seatCode": "13F-A9",
+          "seatLabel": "A9",
+          "floorCode": "13F",
+          "x": 14,
+          "y": 5,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O6"
+        },
+        {
+          "seatCode": "13F-A13",
+          "seatLabel": "A13",
+          "floorCode": "13F",
+          "x": 15,
+          "y": 5,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "P6"
+        },
+        {
+          "seatCode": "13F-A6",
+          "seatLabel": "A6",
+          "floorCode": "13F",
+          "x": 12,
+          "y": 7,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "M8"
+        },
+        {
+          "seatCode": "13F-A10",
+          "seatLabel": "A10",
+          "floorCode": "13F",
+          "x": 14,
+          "y": 7,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O8"
+        },
+        {
+          "seatCode": "13F-A14",
+          "seatLabel": "A14",
+          "floorCode": "13F",
+          "x": 15,
+          "y": 7,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "P8"
+        },
+        {
+          "seatCode": "13F-A17",
+          "seatLabel": "A17",
+          "floorCode": "13F",
+          "x": 17,
+          "y": 7,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R8"
+        },
+        {
+          "seatCode": "13F-A21",
+          "seatLabel": "A21",
+          "floorCode": "13F",
+          "x": 18,
+          "y": 7,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "S8"
+        },
+        {
+          "seatCode": "13F-A25",
+          "seatLabel": "A25",
+          "floorCode": "13F",
+          "x": 20,
+          "y": 7,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U8"
+        },
+        {
+          "seatCode": "13F-A29",
+          "seatLabel": "A29",
+          "floorCode": "13F",
+          "x": 21,
+          "y": 7,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V8"
+        },
+        {
+          "seatCode": "13F-A33",
+          "seatLabel": "A33",
+          "floorCode": "13F",
+          "x": 23,
+          "y": 7,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "X8"
+        },
+        {
+          "seatCode": "13F-A37",
+          "seatLabel": "A37",
+          "floorCode": "13F",
+          "x": 24,
+          "y": 7,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Y8"
+        },
+        {
+          "seatCode": "13F-A41",
+          "seatLabel": "A41",
+          "floorCode": "13F",
+          "x": 26,
+          "y": 7,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA8"
+        },
+        {
+          "seatCode": "13F-A45",
+          "seatLabel": "A45",
+          "floorCode": "13F",
+          "x": 27,
+          "y": 7,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AB8"
+        },
+        {
+          "seatCode": "13F-A7",
+          "seatLabel": "A7",
+          "floorCode": "13F",
+          "x": 12,
+          "y": 9,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "M10"
+        },
+        {
+          "seatCode": "13F-A11",
+          "seatLabel": "A11",
+          "floorCode": "13F",
+          "x": 14,
+          "y": 9,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O10"
+        },
+        {
+          "seatCode": "13F-A15",
+          "seatLabel": "A15",
+          "floorCode": "13F",
+          "x": 15,
+          "y": 9,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "P10"
+        },
+        {
+          "seatCode": "13F-A18",
+          "seatLabel": "A18",
+          "floorCode": "13F",
+          "x": 17,
+          "y": 9,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R10"
+        },
+        {
+          "seatCode": "13F-A22",
+          "seatLabel": "A22",
+          "floorCode": "13F",
+          "x": 18,
+          "y": 9,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "S10"
+        },
+        {
+          "seatCode": "13F-A26",
+          "seatLabel": "A26",
+          "floorCode": "13F",
+          "x": 20,
+          "y": 9,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U10"
+        },
+        {
+          "seatCode": "13F-A30",
+          "seatLabel": "A30",
+          "floorCode": "13F",
+          "x": 21,
+          "y": 9,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V10"
+        },
+        {
+          "seatCode": "13F-A34",
+          "seatLabel": "A34",
+          "floorCode": "13F",
+          "x": 23,
+          "y": 9,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "X10"
+        },
+        {
+          "seatCode": "13F-A38",
+          "seatLabel": "A38",
+          "floorCode": "13F",
+          "x": 24,
+          "y": 9,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Y10"
+        },
+        {
+          "seatCode": "13F-A42",
+          "seatLabel": "A42",
+          "floorCode": "13F",
+          "x": 26,
+          "y": 9,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA10"
+        },
+        {
+          "seatCode": "13F-A46",
+          "seatLabel": "A46",
+          "floorCode": "13F",
+          "x": 27,
+          "y": 9,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AB10"
+        },
+        {
+          "seatCode": "13F-B1",
+          "seatLabel": "B1",
+          "floorCode": "13F",
+          "x": 6,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "G11"
+        },
+        {
+          "seatCode": "13F-B2",
+          "seatLabel": "B2",
+          "floorCode": "13F",
+          "x": 9,
+          "y": 10,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "J11"
+        },
+        {
+          "seatCode": "13F-A8",
+          "seatLabel": "A8",
+          "floorCode": "13F",
+          "x": 12,
+          "y": 11,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "M12"
+        },
+        {
+          "seatCode": "13F-A12",
+          "seatLabel": "A12",
+          "floorCode": "13F",
+          "x": 14,
+          "y": 11,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "O12"
+        },
+        {
+          "seatCode": "13F-A16",
+          "seatLabel": "A16",
+          "floorCode": "13F",
+          "x": 15,
+          "y": 11,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "P12"
+        },
+        {
+          "seatCode": "13F-A19",
+          "seatLabel": "A19",
+          "floorCode": "13F",
+          "x": 17,
+          "y": 11,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R12"
+        },
+        {
+          "seatCode": "13F-A23",
+          "seatLabel": "A23",
+          "floorCode": "13F",
+          "x": 18,
+          "y": 11,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "S12"
+        },
+        {
+          "seatCode": "13F-A27",
+          "seatLabel": "A27",
+          "floorCode": "13F",
+          "x": 20,
+          "y": 11,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U12"
+        },
+        {
+          "seatCode": "13F-A31",
+          "seatLabel": "A31",
+          "floorCode": "13F",
+          "x": 21,
+          "y": 11,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V12"
+        },
+        {
+          "seatCode": "13F-A35",
+          "seatLabel": "A35",
+          "floorCode": "13F",
+          "x": 23,
+          "y": 11,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "X12"
+        },
+        {
+          "seatCode": "13F-A39",
+          "seatLabel": "A39",
+          "floorCode": "13F",
+          "x": 24,
+          "y": 11,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Y12"
+        },
+        {
+          "seatCode": "13F-A43",
+          "seatLabel": "A43",
+          "floorCode": "13F",
+          "x": 26,
+          "y": 11,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA12"
+        },
+        {
+          "seatCode": "13F-A47",
+          "seatLabel": "A47",
+          "floorCode": "13F",
+          "x": 27,
+          "y": 11,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AB12"
+        },
+        {
+          "seatCode": "13F-B3",
+          "seatLabel": "B3",
+          "floorCode": "13F",
+          "x": 2,
+          "y": 13,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "C14"
+        },
+        {
+          "seatCode": "13F-B4",
+          "seatLabel": "B4",
+          "floorCode": "13F",
+          "x": 3,
+          "y": 13,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "D14"
+        },
+        {
+          "seatCode": "13F-B5",
+          "seatLabel": "B5",
+          "floorCode": "13F",
+          "x": 4,
+          "y": 13,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "E14"
+        },
+        {
+          "seatCode": "13F-A20",
+          "seatLabel": "A20",
+          "floorCode": "13F",
+          "x": 17,
+          "y": 13,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R14"
+        },
+        {
+          "seatCode": "13F-A24",
+          "seatLabel": "A24",
+          "floorCode": "13F",
+          "x": 18,
+          "y": 13,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "S14"
+        },
+        {
+          "seatCode": "13F-A28",
+          "seatLabel": "A28",
+          "floorCode": "13F",
+          "x": 20,
+          "y": 13,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "U14"
+        },
+        {
+          "seatCode": "13F-A32",
+          "seatLabel": "A32",
+          "floorCode": "13F",
+          "x": 21,
+          "y": 13,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "V14"
+        },
+        {
+          "seatCode": "13F-A36",
+          "seatLabel": "A36",
+          "floorCode": "13F",
+          "x": 23,
+          "y": 13,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "X14"
+        },
+        {
+          "seatCode": "13F-A40",
+          "seatLabel": "A40",
+          "floorCode": "13F",
+          "x": 24,
+          "y": 13,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "Y14"
+        },
+        {
+          "seatCode": "13F-A44",
+          "seatLabel": "A44",
+          "floorCode": "13F",
+          "x": 26,
+          "y": 13,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "AA14"
+        },
+        {
+          "seatCode": "13F-B6",
+          "seatLabel": "B6",
+          "floorCode": "13F",
+          "x": 2,
+          "y": 17,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "C18"
+        },
+        {
+          "seatCode": "13F-B7",
+          "seatLabel": "B7",
+          "floorCode": "13F",
+          "x": 3,
+          "y": 17,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "D18"
+        },
+        {
+          "seatCode": "13F-B8",
+          "seatLabel": "B8",
+          "floorCode": "13F",
+          "x": 4,
+          "y": 17,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "E18"
+        },
+        {
+          "seatCode": "13F-A1",
+          "seatLabel": "A1",
+          "floorCode": "13F",
+          "x": 12,
+          "y": 17,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "M18"
+        },
+        {
+          "seatCode": "13F-A2",
+          "seatLabel": "A2",
+          "floorCode": "13F",
+          "x": 15,
+          "y": 17,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "P18"
+        },
+        {
+          "seatCode": "13F-A3",
+          "seatLabel": "A3",
+          "floorCode": "13F",
+          "x": 17,
+          "y": 17,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "R18"
+        },
+        {
+          "seatCode": "13F-A4",
+          "seatLabel": "A4",
+          "floorCode": "13F",
+          "x": 19,
+          "y": 17,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "T18"
+        },
+        {
+          "seatCode": "13F-B9",
+          "seatLabel": "B9",
+          "floorCode": "13F",
+          "x": 2,
+          "y": 19,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "C20"
+        },
+        {
+          "seatCode": "13F-B10",
+          "seatLabel": "B10",
+          "floorCode": "13F",
+          "x": 3,
+          "y": 19,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "D20"
+        },
+        {
+          "seatCode": "13F-B11",
+          "seatLabel": "B11",
+          "floorCode": "13F",
+          "x": 4,
+          "y": 19,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "E20"
+        },
+        {
+          "seatCode": "13F-B12",
+          "seatLabel": "B12",
+          "floorCode": "13F",
+          "x": 2,
+          "y": 22,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "C23"
+        },
+        {
+          "seatCode": "13F-B13",
+          "seatLabel": "B13",
+          "floorCode": "13F",
+          "x": 3,
+          "y": 22,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "D23"
+        },
+        {
+          "seatCode": "13F-B14",
+          "seatLabel": "B14",
+          "floorCode": "13F",
+          "x": 4,
+          "y": 22,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "E23"
+        },
+        {
+          "seatCode": "13F-B15",
+          "seatLabel": "B15",
+          "floorCode": "13F",
+          "x": 2,
+          "y": 24,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "C25"
+        },
+        {
+          "seatCode": "13F-B16",
+          "seatLabel": "B16",
+          "floorCode": "13F",
+          "x": 3,
+          "y": 24,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "D25"
+        },
+        {
+          "seatCode": "13F-B17",
+          "seatLabel": "B17",
+          "floorCode": "13F",
+          "x": 4,
+          "y": 24,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "E25"
+        },
+        {
+          "seatCode": "13F-B18",
+          "seatLabel": "B18",
+          "floorCode": "13F",
+          "x": 2,
+          "y": 27,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "C28"
+        },
+        {
+          "seatCode": "13F-B19",
+          "seatLabel": "B19",
+          "floorCode": "13F",
+          "x": 3,
+          "y": 27,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "D28"
+        },
+        {
+          "seatCode": "13F-B20",
+          "seatLabel": "B20",
+          "floorCode": "13F",
+          "x": 4,
+          "y": 27,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "E28"
+        },
+        {
+          "seatCode": "13F-B21",
+          "seatLabel": "B21",
+          "floorCode": "13F",
+          "x": 2,
+          "y": 29,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "C30"
+        },
+        {
+          "seatCode": "13F-B22",
+          "seatLabel": "B22",
+          "floorCode": "13F",
+          "x": 3,
+          "y": 29,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "D30"
+        },
+        {
+          "seatCode": "13F-B23",
+          "seatLabel": "B23",
+          "floorCode": "13F",
+          "x": 4,
+          "y": 29,
+          "w": 1,
+          "h": 1,
+          "sourceCell": "E30"
+        }
+      ],
+      "scenarios": {
+        "current": {
+          "assignments": {
+            "13F-A5": {
+              "personName": "양준모",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A9": {
+              "personName": "김민석",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A13": {
+              "personName": "최성지",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A6": {
+              "personName": "이경형",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A10": {
+              "personName": "이승철",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A14": {
+              "personName": "원세훈",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A17": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A21": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A25": {
+              "personName": "장민호",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A29": {
+              "personName": "정재각",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A33": {
+              "personName": "전형진",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A37": {
+              "personName": "송기석",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A41": {
+              "personName": "황선필",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A45": {
+              "personName": "공석현",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A7": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A11": {
+              "personName": "김민기",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A15": {
+              "personName": "윤현식",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A18": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A22": {
+              "personName": "김용준",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A26": {
+              "personName": "한상후",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A30": {
+              "personName": "이춘호",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A34": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A38": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A42": {
+              "personName": "신용우",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A46": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B1": {
+              "personName": "윤관식",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B2": {
+              "personName": "안지하",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A8": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A12": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A16": {
+              "personName": "이정은",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A19": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A23": {
+              "personName": "김휘수",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A27": {
+              "personName": "박정수",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A31": {
+              "personName": "김연우",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A35": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A39": {
+              "personName": "이강일",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A43": {
+              "personName": "진정용",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A47": {
+              "personName": "강병옥",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B3": {
+              "personName": "최광석 (임시)",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B4": {
+              "personName": "백종우 (임시)",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B5": {
+              "personName": "한상후 (임시)",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A20": {
+              "personName": "박기범",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A24": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A28": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A32": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A36": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A40": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A44": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B6": {
+              "personName": "윤재진",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B7": {
+              "personName": "이하영",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B8": {
+              "personName": "최정택",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A1": {
+              "personName": "윤우섭",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A2": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A3": {
+              "personName": "문준식",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-A4": {
+              "personName": "홍봉석",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B9": {
+              "personName": "김태헌",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B10": {
+              "personName": "정현민",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B11": {
+              "personName": "김동준",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B12": {
+              "personName": "황준식",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B13": {
+              "personName": "이준기",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B14": {
+              "personName": "경규명",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B15": {
+              "personName": "조청원",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B16": {
+              "personName": "이주영",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B17": {
+              "personName": "김찬솔",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B18": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B19": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B20": {
+              "personName": "유민종",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B21": {
+              "personName": "하승훈",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B22": {
+              "personName": "박수민",
+              "sheetName": "세우13F_현재"
+            },
+            "13F-B23": {
+              "personName": "",
+              "sheetName": "세우13F_현재"
+            }
+          },
+          "bounds": {
+            "floorCode": "13F",
+            "sheetName": "세우13F_현재",
+            "scenario": "current",
+            "rows": 61,
+            "cols": 40
+          }
+        },
+        "plan": {
+          "assignments": {
+            "13F-A5": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A9": {
+              "personName": "김민석",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A13": {
+              "personName": "최성지",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A6": {
+              "personName": "이경형",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A10": {
+              "personName": "이승철",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A14": {
+              "personName": "원세훈",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A17": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A21": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A25": {
+              "personName": "장민호",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A29": {
+              "personName": "정재각",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A33": {
+              "personName": "전형진",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A37": {
+              "personName": "송기석",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A41": {
+              "personName": "황선필",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A45": {
+              "personName": "공석현",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A7": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A11": {
+              "personName": "김민기",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A15": {
+              "personName": "윤현식",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A18": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A22": {
+              "personName": "김용준",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A26": {
+              "personName": "한상후",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A30": {
+              "personName": "이춘호",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A34": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A38": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A42": {
+              "personName": "신용우",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A46": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B1": {
+              "personName": "윤관식",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B2": {
+              "personName": "안지하",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A8": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A12": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A16": {
+              "personName": "이정은",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A19": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A23": {
+              "personName": "김휘수",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A27": {
+              "personName": "박정수",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A31": {
+              "personName": "김연우",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A35": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A39": {
+              "personName": "이강일",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A43": {
+              "personName": "진정용",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A47": {
+              "personName": "강병옥",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B3": {
+              "personName": "최광석 (임시)",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B4": {
+              "personName": "백종우 (임시)",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B5": {
+              "personName": "한상후 (임시)",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A20": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A24": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A28": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A32": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A36": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A40": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A44": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B6": {
+              "personName": "윤재진",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B7": {
+              "personName": "이하영",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B8": {
+              "personName": "최정택",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A1": {
+              "personName": "윤우섭",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A2": {
+              "personName": "양준모",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A3": {
+              "personName": "문준식",
+              "sheetName": "세우13F_1"
+            },
+            "13F-A4": {
+              "personName": "홍봉석",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B9": {
+              "personName": "김태헌",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B10": {
+              "personName": "정현민",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B11": {
+              "personName": "김동준",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B12": {
+              "personName": "황준식",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B13": {
+              "personName": "이준기",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B14": {
+              "personName": "경규명",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B15": {
+              "personName": "조청원",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B16": {
+              "personName": "이주영",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B17": {
+              "personName": "김찬솔",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B18": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B19": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B20": {
+              "personName": "유민종",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B21": {
+              "personName": "하승훈",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B22": {
+              "personName": "박수민",
+              "sheetName": "세우13F_1"
+            },
+            "13F-B23": {
+              "personName": "",
+              "sheetName": "세우13F_1"
+            }
+          },
+          "bounds": {
+            "floorCode": "13F",
+            "sheetName": "세우13F_1",
+            "scenario": "plan",
+            "rows": 61,
+            "cols": 40
+          }
+        }
+      }
+    }
+  ]
+}

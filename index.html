@@ -12,7 +12,7 @@
     <meta name="referrer" content="no-referrer" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://script.googleusercontent.com; font-src 'self' data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content"
+      content="default-src 'self'; script-src 'self' https://script.google.com https://script.googleusercontent.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://script.googleusercontent.com; font-src 'self' data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content"
     />
     <meta
       http-equiv="Permissions-Policy"
@@ -37,45 +37,54 @@
         <div class="hero-meta" id="heroMeta"></div>
       </header>
 
-      <section class="controls">
-        <div class="search-box">
-          <label for="searchInput">검색</label>
-          <input id="searchInput" type="search" placeholder="이름, 조직, 파트, 센터명으로 검색" />
-        </div>
-        <div class="filter-box">
-          <label for="roleFilter">직책 필터</label>
-          <select id="roleFilter">
-            <option value="all">전체 직책</option>
-            <option value="그룹장">그룹장</option>
-            <option value="파트장/센터장">파트장/센터장</option>
-            <option value="담당디렉터">담당디렉터</option>
-            <option value="시니어매니저">시니어매니저</option>
-            <option value="매니저">매니저</option>
-          </select>
-        </div>
+      <section class="view-switch" id="viewSwitch">
+        <button class="view-tab active" type="button" data-view="org">조직구성</button>
+        <button class="view-tab" type="button" data-view="seat">자리배치</button>
       </section>
 
-      <section class="section-tabs" id="sectionTabs"></section>
-      <section class="kpi-grid" id="kpiGrid"></section>
-
-      <section class="analytics">
-        <article class="panel">
-          <div class="panel-head">
-            <h2>섹션별 배치 현황</h2>
-            <p>중복 제거한 고유 인원 기준</p>
+      <div id="orgDashboardView">
+        <section class="controls">
+          <div class="search-box">
+            <label for="searchInput">검색</label>
+            <input id="searchInput" type="search" placeholder="이름, 조직, 파트, 센터명으로 검색" />
           </div>
-          <div id="sectionChart" class="bar-list"></div>
-        </article>
-        <article class="panel">
-          <div class="panel-head">
-            <h2>직책별 분포</h2>
-            <p>반복 행을 제거한 조직 좌석 기준</p>
+          <div class="filter-box">
+            <label for="roleFilter">직책 필터</label>
+            <select id="roleFilter">
+              <option value="all">전체 직책</option>
+              <option value="그룹장">그룹장</option>
+              <option value="파트장/센터장">파트장/센터장</option>
+              <option value="담당디렉터">담당디렉터</option>
+              <option value="시니어매니저">시니어매니저</option>
+              <option value="매니저">매니저</option>
+            </select>
           </div>
-          <div id="roleChart" class="bar-list"></div>
-        </article>
-      </section>
+        </section>
 
-      <section class="org-board" id="orgBoard"></section>
+        <section class="section-tabs" id="sectionTabs"></section>
+        <section class="kpi-grid" id="kpiGrid"></section>
+
+        <section class="analytics">
+          <article class="panel">
+            <div class="panel-head">
+              <h2>섹션별 배치 현황</h2>
+              <p>중복 제거한 고유 인원 기준</p>
+            </div>
+            <div id="sectionChart" class="bar-list"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <h2>직책별 분포</h2>
+              <p>반복 행을 제거한 조직 좌석 기준</p>
+            </div>
+            <div id="roleChart" class="bar-list"></div>
+          </article>
+        </section>
+
+        <section class="org-board" id="orgBoard"></section>
+      </div>
+
+      <section class="seat-layout-view" id="seatLayoutView" hidden></section>
     </div>
 
     <div class="modal-backdrop" id="roleModal" hidden>
@@ -93,6 +102,8 @@
     </div>
 
     <script src="./sheet-linked.config.js"></script>
+    <script src="./seat-layout-data.js"></script>
+    <script src="./seat-layout-overlays.js"></script>
     <script src="./sheet-loader.js"></script>
   </body>
 </html>
