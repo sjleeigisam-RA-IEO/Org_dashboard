@@ -61,9 +61,9 @@
   };
 
   const CORE_AREAS = {
-    "13F": [{ label: "EV ?", x: 13, y: 20, w: 10, h: 4 },{ label: "怨꾨떒??, x: 13, y: 25, w: 10, h: 3 }],
-    "12F": [{ label: "EV ?", x: 13, y: 22, w: 12, h: 4 },{ label: "怨꾨떒??, x: 13, y: 27, w: 12, h: 4 }],
-    "2F":  [{ label: "EV ?", x: 9, y: 22, w: 12, h: 4 },{ label: "怨꾨떒??, x: 9, y: 27, w: 12, h: 4 }],
+    "13F": [{ label: "EV 홀", x: 13, y: 20, w: 10, h: 4 }, { label: "계단실", x: 13, y: 25, w: 10, h: 3 }],
+    "12F": [{ label: "EV 홀", x: 13, y: 22, w: 12, h: 4 }, { label: "계단실", x: 13, y: 27, w: 12, h: 4 }],
+    "2F":  [{ label: "EV 홀", x: 9, y: 22, w: 12, h: 4 }, { label: "계단실", x: 9, y: 27, w: 12, h: 4 }],
   };
 
   const EQUAL_WIDTH_LABELS = {
@@ -78,7 +78,9 @@
   /* ?? Utilities ???????????????????????????????????? */
   function esc(s) { return String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
   function fmt(v) { return new Intl.NumberFormat("ko-KR").format(v); }
-  function floorLabel(fc) { return fc.replace("F","痢?); }
+  function floorLabel(fc) {
+    return `${String(fc || "").replace("F", "")}층`;
+  }
   function getFloor(fc) { return seatData.floors.find(f=>f.floorCode===fc)||seatData.floors[0]; }
   function getAssignments(floor,sc) {
     if (remoteSeatLayout) return remoteSeatLayout.assignmentsByFloor[floor.floorCode] || {};
@@ -411,31 +413,31 @@
     return `
       <div class="seat-admin-panel">
         <div class="seat-admin-panel-head">
-          <h4>?먮━諛곗튂 ?몄쭛</h4>
-          <p>1. ?대룞???щ엺 醫뚯꽍 ?좏깮  2. ???醫뚯꽍 ?좏깮  3. ?대룞 ?щ? 吏??/p>
+          <h4>자리배치 편집</h4>
+          <p>1. 이동할 사람 좌석 선택  2. 이동 대상 좌석 선택  3. 이동 여부 지정</p>
         </div>
         <div class="seat-admin-fields">
           <div class="seat-admin-field">
-            <span class="seat-admin-label">?좏깮 醫뚯꽍</span>
-            <strong>${summary.sourceSeatCode || "誘몄꽑??}</strong>
-            <span>${summary.sourceName || "?щ엺???덈뒗 醫뚯꽍???대┃?섏꽭??}</span>
+            <span class="seat-admin-label">선택 좌석</span>
+            <strong>${summary.sourceSeatCode || "미선택"}</strong>
+            <span>${summary.sourceName || "사람이 있는 좌석을 클릭하세요"}</span>
           </div>
           <div class="seat-admin-field">
-            <span class="seat-admin-label">?대룞 ???/span>
-            <strong>${summary.targetSeatCode || "誘몄꽑??}</strong>
-            <span>${summary.targetName || "鍮꾩뼱 ?덈뒗 醫뚯꽍 ?먮뒗 蹂寃쏀븷 醫뚯꽍???대┃?섏꽭??}</span>
+            <span class="seat-admin-label">이동 대상</span>
+            <strong>${summary.targetSeatCode || "미선택"}</strong>
+            <span>${summary.targetName || "비어 있는 좌석 또는 바꿀 좌석을 클릭하세요"}</span>
           </div>
         </div>
         <div class="seat-admin-toggle-group">
-          <button class="seat-admin-toggle ${summary.moveFlag === "Y" ? "active" : ""}" type="button" data-admin-move="Y">?대룞 Y</button>
-          <button class="seat-admin-toggle ${summary.moveFlag === "N" ? "active" : ""}" type="button" data-admin-move="N">?대룞 N</button>
-          <button class="seat-admin-apply" type="button" id="seatAdminApply">?뺤씤 諛섏쁺</button>
-          <button class="seat-admin-reset" type="button" id="seatAdminReset">?좏깮 珥덇린??/button>
+          <button class="seat-admin-toggle ${summary.moveFlag === "Y" ? "active" : ""}" type="button" data-admin-move="Y">이동 Y</button>
+          <button class="seat-admin-toggle ${summary.moveFlag === "N" ? "active" : ""}" type="button" data-admin-move="N">이동 N</button>
+          <button class="seat-admin-apply" type="button" id="seatAdminApply">확인 반영</button>
+          <button class="seat-admin-reset" type="button" id="seatAdminReset">선택 초기화</button>
         </div>
         <div class="seat-admin-savebar">
-          <span class="seat-admin-pending">諛섏쁺 ?湲?${summary.pendingCount}嫄?/span>
+          <span class="seat-admin-pending">반영 대기 ${summary.pendingCount}건</span>
           <button class="seat-admin-save" type="button" id="seatAdminSave" ${state.adminSaving ? "disabled" : ""}>
-            ${state.adminSaving ? "???以?.." : "??ν븯湲?}
+            ${state.adminSaving ? "저장 중..." : "저장하기"}
           </button>
         </div>
       </div>`;
