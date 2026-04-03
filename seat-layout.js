@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
   const seatData = window.SEAT_LAYOUT_DATA;
   const remoteSeatLayout = normalizeRemoteSeatLayout_(window.ORG_DASHBOARD_SEAT_LAYOUT);
   const overlays = window.SEAT_LAYOUT_OVERLAYS || { zones: [], externalSeatCodes: {} };
@@ -13,7 +13,7 @@
     seatData.floors.some(f => f.floorCode === fc)
   );
 
-  /* ── Constants ──────────────────────────────────── */
+  /* ?? Constants ???????????????????????????????????? */
   const FLOOR_SIZES = {
     "13F": { cell: 56, shape: 24, gap: 10 },
     "12F": { cell: 56, shape: 24, gap: 10 },
@@ -53,7 +53,7 @@
     adminSaving: false,
   };
 
-  /* ── Floor outlines ─────────────────────────────── */
+  /* ?? Floor outlines ??????????????????????????????? */
   const FLOOR_OUTLINES = {
     "13F": [[11,2],[36,2],[36,47],[-1,47],[-1,12],[5,12],[5,7],[11,7]],
     "12F": [[12,-1],[39,-1],[39,52],[0,52],[0,16],[5,16],[5,4],[12,4]],
@@ -61,24 +61,24 @@
   };
 
   const CORE_AREAS = {
-    "13F": [{ label: "EV 홀", x: 13, y: 20, w: 10, h: 4 },{ label: "계단실", x: 13, y: 25, w: 10, h: 3 }],
-    "12F": [{ label: "EV 홀", x: 13, y: 22, w: 12, h: 4 },{ label: "계단실", x: 13, y: 27, w: 12, h: 4 }],
-    "2F":  [{ label: "EV 홀", x: 9, y: 22, w: 12, h: 4 },{ label: "계단실", x: 9, y: 27, w: 12, h: 4 }],
+    "13F": [{ label: "EV ?", x: 13, y: 20, w: 10, h: 4 },{ label: "怨꾨떒??, x: 13, y: 25, w: 10, h: 3 }],
+    "12F": [{ label: "EV ?", x: 13, y: 22, w: 12, h: 4 },{ label: "怨꾨떒??, x: 13, y: 27, w: 12, h: 4 }],
+    "2F":  [{ label: "EV ?", x: 9, y: 22, w: 12, h: 4 },{ label: "怨꾨떒??, x: 9, y: 27, w: 12, h: 4 }],
   };
 
   const EQUAL_WIDTH_LABELS = {
-    "13F": ["파트장실-2", "파트장실-3", "파트장실-4"],
-    "12F": ["파트장실-1", "파트장실-2", "파트장실-3"],
+    "13F": ["?뚰듃?μ떎-2", "?뚰듃?μ떎-3", "?뚰듃?μ떎-4"],
+    "12F": ["?뚰듃?μ떎-1", "?뚰듃?μ떎-2", "?뚰듃?μ떎-3"],
   };
   const MOVE_OVERRIDES = {
     "2F-B19": { ignore: true },
     "2F-B65": { forceOriginFloor: "12F", forceOriginSeat: "" },
   };
 
-  /* ── Utilities ──────────────────────────────────── */
+  /* ?? Utilities ???????????????????????????????????? */
   function esc(s) { return String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
   function fmt(v) { return new Intl.NumberFormat("ko-KR").format(v); }
-  function floorLabel(fc) { return fc.replace("F","층"); }
+  function floorLabel(fc) { return fc.replace("F","痢?); }
   function getFloor(fc) { return seatData.floors.find(f=>f.floorCode===fc)||seatData.floors[0]; }
   function getAssignments(floor,sc) {
     if (remoteSeatLayout) return remoteSeatLayout.assignmentsByFloor[floor.floorCode] || {};
@@ -213,6 +213,16 @@
     return assignments[seatCode] || null;
   }
 
+  function isOtherDeptSeat(seatCode) {
+    if (!seatCode) return false;
+    if (remoteSeatLayout) {
+      return !!remoteSeatLayout.bySeat?.get(seatCode)?.isExternalDivision;
+    }
+    const floorCode = seatCode.split("-")[0];
+    const config = OTHER_DEPT[floorCode];
+    return !!(config?.seatPrefix && seatCode.startsWith(config.seatPrefix));
+  }
+
   function getRemoteSeatRow(seatCode) {
     return remoteSeatLayout?.bySeat?.get(seatCode) || null;
   }
@@ -251,17 +261,17 @@
 
   function applyAdminSeatChange() {
     if (!remoteSeatLayout) {
-      window.alert("구글시트 기반 자리배치 데이터가 연결되지 않았습니다.");
+      window.alert("援ш??쒗듃 湲곕컲 ?먮━諛곗튂 ?곗씠?곌? ?곌껐?섏? ?딆븯?듬땲??");
       return;
     }
     const sourceSeatCode = state.adminSelection.sourceSeatCode;
     const targetSeatCode = state.adminSelection.targetSeatCode;
     if (!sourceSeatCode || !targetSeatCode) {
-      window.alert("선택 좌석과 이동 대상을 모두 지정해 주세요.");
+      window.alert("?좏깮 醫뚯꽍怨??대룞 ??곸쓣 紐⑤몢 吏?뺥빐 二쇱꽭??");
       return;
     }
     if (sourceSeatCode === targetSeatCode) {
-      window.alert("같은 좌석은 이동 대상으로 지정할 수 없습니다.");
+      window.alert("媛숈? 醫뚯꽍? ?대룞 ??곸쑝濡?吏?뺥븷 ???놁뒿?덈떎.");
       return;
     }
 
@@ -269,11 +279,11 @@
     const sourceRow = getRemoteSeatRow(sourceSeatCode);
     const targetRow = getRemoteSeatRow(targetSeatCode);
     if (!sourceRow || !targetRow) {
-      window.alert("선택한 좌석 정보를 찾을 수 없습니다.");
+      window.alert("?좏깮??醫뚯꽍 ?뺣낫瑜?李얠쓣 ???놁뒿?덈떎.");
       return;
     }
     if (!sourceRow.personName) {
-      window.alert("선택 좌석에 배치된 사람이 없습니다.");
+      window.alert("?좏깮 醫뚯꽍??諛곗튂???щ엺???놁뒿?덈떎.");
       return;
     }
 
@@ -324,7 +334,7 @@
       script.async = true;
       script.onerror = () => {
         cleanup();
-        reject(new Error("저장 요청을 보내지 못했습니다."));
+        reject(new Error("????붿껌??蹂대궡吏 紐삵뻽?듬땲??"));
       };
       document.body.appendChild(script);
     });
@@ -332,16 +342,16 @@
 
   async function saveAdminChanges() {
     if (!remoteSeatLayout) {
-      window.alert("구글시트 기반 자리배치 데이터가 연결되지 않았습니다.");
+      window.alert("援ш??쒗듃 湲곕컲 ?먮━諛곗튂 ?곗씠?곌? ?곌껐?섏? ?딆븯?듬땲??");
       return;
     }
     if (!state.adminPendingSeatCodes.length) {
-      window.alert("저장할 변경 사항이 없습니다.");
+      window.alert("??ν븷 蹂寃??ы빆???놁뒿?덈떎.");
       return;
     }
     const config = window.ORG_DASHBOARD_REMOTE || {};
     if (!config.webAppUrl || !config.accessKey) {
-      window.alert("시트 저장용 웹앱 설정이 없습니다.");
+      window.alert("?쒗듃 ??μ슜 ?뱀빋 ?ㅼ젙???놁뒿?덈떎.");
       return;
     }
 
@@ -367,13 +377,13 @@
         url.searchParams.set("_t", Date.now().toString());
         const payload = await loadRemoteJsonpForSave(url);
         if (!payload || payload.ok === false) {
-          throw new Error(payload?.error || `저장 실패: ${seatCode}`);
+          throw new Error(payload?.error || `????ㅽ뙣: ${seatCode}`);
         }
       }
       state.adminPendingSeatCodes = [];
-      window.alert("자리배치 변경사항을 저장했습니다.");
+      window.alert("?먮━諛곗튂 蹂寃쎌궗??쓣 ??ν뻽?듬땲??");
     } catch (error) {
-      window.alert(`저장 중 오류가 발생했습니다. ${error.message}`);
+      window.alert(`???以??ㅻ쪟媛 諛쒖깮?덉뒿?덈떎. ${error.message}`);
     } finally {
       state.adminSaving = false;
       renderSeatView();
@@ -401,31 +411,31 @@
     return `
       <div class="seat-admin-panel">
         <div class="seat-admin-panel-head">
-          <h4>자리배치 편집</h4>
-          <p>1. 이동할 사람 좌석 선택  2. 대상 좌석 선택  3. 이동 여부 지정</p>
+          <h4>?먮━諛곗튂 ?몄쭛</h4>
+          <p>1. ?대룞???щ엺 醫뚯꽍 ?좏깮  2. ???醫뚯꽍 ?좏깮  3. ?대룞 ?щ? 吏??/p>
         </div>
         <div class="seat-admin-fields">
           <div class="seat-admin-field">
-            <span class="seat-admin-label">선택 좌석</span>
-            <strong>${summary.sourceSeatCode || "미선택"}</strong>
-            <span>${summary.sourceName || "사람이 있는 좌석을 클릭하세요"}</span>
+            <span class="seat-admin-label">?좏깮 醫뚯꽍</span>
+            <strong>${summary.sourceSeatCode || "誘몄꽑??}</strong>
+            <span>${summary.sourceName || "?щ엺???덈뒗 醫뚯꽍???대┃?섏꽭??}</span>
           </div>
           <div class="seat-admin-field">
-            <span class="seat-admin-label">이동 대상</span>
-            <strong>${summary.targetSeatCode || "미선택"}</strong>
-            <span>${summary.targetName || "비어 있는 좌석 또는 변경할 좌석을 클릭하세요"}</span>
+            <span class="seat-admin-label">?대룞 ???/span>
+            <strong>${summary.targetSeatCode || "誘몄꽑??}</strong>
+            <span>${summary.targetName || "鍮꾩뼱 ?덈뒗 醫뚯꽍 ?먮뒗 蹂寃쏀븷 醫뚯꽍???대┃?섏꽭??}</span>
           </div>
         </div>
         <div class="seat-admin-toggle-group">
-          <button class="seat-admin-toggle ${summary.moveFlag === "Y" ? "active" : ""}" type="button" data-admin-move="Y">이동 Y</button>
-          <button class="seat-admin-toggle ${summary.moveFlag === "N" ? "active" : ""}" type="button" data-admin-move="N">이동 N</button>
-          <button class="seat-admin-apply" type="button" id="seatAdminApply">확인 반영</button>
-          <button class="seat-admin-reset" type="button" id="seatAdminReset">선택 초기화</button>
+          <button class="seat-admin-toggle ${summary.moveFlag === "Y" ? "active" : ""}" type="button" data-admin-move="Y">?대룞 Y</button>
+          <button class="seat-admin-toggle ${summary.moveFlag === "N" ? "active" : ""}" type="button" data-admin-move="N">?대룞 N</button>
+          <button class="seat-admin-apply" type="button" id="seatAdminApply">?뺤씤 諛섏쁺</button>
+          <button class="seat-admin-reset" type="button" id="seatAdminReset">?좏깮 珥덇린??/button>
         </div>
         <div class="seat-admin-savebar">
-          <span class="seat-admin-pending">반영 대기 ${summary.pendingCount}건</span>
+          <span class="seat-admin-pending">諛섏쁺 ?湲?${summary.pendingCount}嫄?/span>
           <button class="seat-admin-save" type="button" id="seatAdminSave" ${state.adminSaving ? "disabled" : ""}>
-            ${state.adminSaving ? "저장 중..." : "저장하기"}
+            ${state.adminSaving ? "???以?.." : "??ν븯湲?}
           </button>
         </div>
       </div>`;
@@ -435,11 +445,17 @@
     return buildSeatMoveMapForFloor(floor);
   }
   function buildSeatStats(floor) {
-    const a=getAssignments(floor,state.scenario);
-    return { totalSeats:floor.seatDefs.length, occupiedSeats:Object.values(a).filter(i=>i.personName).length, movedSeats:getMovedPeopleForFloor(floor.floorCode).length };
+    const assignments = getAssignments(floor, state.scenario);
+    const countedSeats = floor.seatDefs.filter((seat) => !isOtherDeptSeat(seat.seatCode));
+    const occupiedSeats = countedSeats.filter((seat) => assignments[seat.seatCode]?.personName).length;
+    return {
+      totalSeats: countedSeats.length,
+      occupiedSeats,
+      movedSeats: getMovedPeopleForFloor(floor.floorCode).length,
+    };
   }
 
-  /* ── Coordinate Compression ─────────────────────── */
+  /* ?? Coordinate Compression ??????????????????????? */
   function buildCoordMap(floor) {
     const sz = FLOOR_SIZES[floor.floorCode] || DEFAULT_SIZES;
     const CELL = sz.cell, SHAPE_CELL = sz.shape, GAP_CELL = sz.gap;
@@ -487,7 +503,7 @@
     return { toX,toY,spanW,spanH,totalW:px,totalH:py,CELL };
   }
 
-  /* ── SVG Renderers ──────────────────────────────── */
+  /* ?? SVG Renderers ???????????????????????????????? */
   function svgDefs(cellSize) {
     return `<defs>
       <filter id="seatShadow" x="-10%" y="-10%" width="130%" height="140%">
@@ -539,10 +555,10 @@
         let sx=cm.toX(s.x),sy=cm.toY(s.y);
         const extH=(s.shapeType==="office"&&s.h<=1)?1:0;
         let sw=cm.spanW(s.x,s.w),sh=cm.spanH(s.y,s.h+extH);
-        if (floor.floorCode === "2F" && s.label === "그룹장실-1") {
+        if (floor.floorCode === "2F" && s.label === "洹몃９?μ떎-1") {
           sx -= 8;
           sw += 16;
-          sh += 18;
+          sh += 28;
         }
         if (equalizedWidth && equalizeLabels.includes(s.label)) {
           const centerX = sx + sw / 2;
@@ -568,15 +584,19 @@
     const moveMaps = buildMoveMaps(floor);
     const movedNames = new Set([...moveMaps.byName.keys()]);
     return floor.seatDefs.map(seat=>{
-      const sx=cm.toX(seat.x)+SEAT_INSET, sy=cm.toY(seat.y)+SEAT_INSET;
+      const sx=cm.toX(seat.x)+SEAT_INSET;
+      let sy=cm.toY(seat.y)+SEAT_INSET;
       const sw=cm.spanW(seat.x,seat.w)-SEAT_INSET*2, sh=cm.spanH(seat.y,seat.h)-SEAT_INSET*2;
+      if (seat.seatCode === "2F-B1") {
+        sy -= 8;
+      }
       const info=assignments[seat.seatCode]; const person=info?.personName||""; const dept=info?.deptName||"";
       const remoteSeat = remoteSeatLayout?.bySeat?.get(seat.seatCode);
       const isExt=extSet.has(seat.seatCode), isOcc=!!person;
       const isMoved = !!(person && movedNames.has(person));
       const moveInfo = moveMaps.byToSeat.get(seat.seatCode);
 
-      // Other-department seats → gray out
+      // Other-department seats ??gray out
       const odPfx = otherDeptConfig?.seatPrefix;
       const isOtherDept = remoteSeatLayout
         ? !!remoteSeat?.isExternalDivision
@@ -592,12 +612,12 @@
         return `<g class="${cls}" data-code="${esc(seat.seatCode)}" data-person="${esc(person)}" data-dept="${esc(dept)}" data-origin-seat="${esc(moveInfo?.fromSeat || "")}" data-origin-floor="${esc(moveInfo?.fromFloor || "")}">
         <rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="5" filter="url(#seatShadow)"/>
         <text x="${sx+sw/2}" y="${showName ? sy+sh*0.42 : sy+sh/2}" class="sv-seat-code">${esc(seat.seatLabel)}</text>
-        ${showName?`<text x="${sx+sw/2}" y="${sy+sh*0.72}" class="sv-seat-name">${esc(person.length>3?person.slice(0,3)+'…':person)}</text>`:""}
+        ${showName?`<text x="${sx+sw/2}" y="${sy+sh*0.72}" class="sv-seat-name">${esc(person.length>3?person.slice(0,3)+'??:person)}</text>`:""}
       </g>`;
     }).join("");
   }
 
-  /* ── Other-dept hatch overlay ────────────────────── */
+  /* ?? Other-dept hatch overlay ?????????????????????? */
   function svgOtherDeptOverlay(floor, cm) {
     const config = OTHER_DEPT[floor.floorCode];
     if (!config) return "";
@@ -660,47 +680,47 @@
     </svg><div class="sv-tooltip" id="svTooltip"></div>`;
   }
 
-  /* ── UI ─────────────────────────────────────────── */
+  /* ?? UI ??????????????????????????????????????????? */
   function renderFloorStack() {
     return FLOOR_ORDER.map(fc=>{
       const f=getFloor(fc),active=fc===state.floorCode;
       return `<button class="floor-card ${active?"active":""}" type="button" data-floor="${fc}">
-        <span class="floor-card-label">${floorLabel(fc)}</span><span class="floor-card-count">${fmt(f.seatDefs.length)} 석</span></button>`;
+        <span class="floor-card-label">${floorLabel(fc)}</span><span class="floor-card-count">${fmt(f.seatDefs.length)} ??/span></button>`;
     }).join("");
   }
 
   function renderMoveList(floor) {
     const m=getMovedPeople(floor);
-    if(!m.length) return `<div class="seat-empty">현재안과 변경안 사이에 좌석 이동이 없습니다.</div>`;
-    return m.slice(0,20).map(r=>`<div class="move-row"><strong>${esc(r.name)}</strong><span>${esc(r.fromSeat)} → ${esc(r.toSeat)}</span></div>`).join("");
+    if(!m.length) return `<div class="seat-empty">?꾩옱?덇낵 蹂寃쎌븞 ?ъ씠??醫뚯꽍 ?대룞???놁뒿?덈떎.</div>`;
+    return m.slice(0,20).map(r=>`<div class="move-row"><strong>${esc(r.name)}</strong><span>${esc(r.fromSeat)} ??${esc(r.toSeat)}</span></div>`).join("");
   }
 
   function renderSeatView() {
     const floor=getFloor(state.floorCode), stats=buildSeatStats(floor);
     seatView.innerHTML=`
         <section class="seat-hero panel ${state.adminMode ? "admin-active" : ""}">
-          <div class="seat-hero-copy"><p class="eyebrow">Seat Layout</p><h2>${floorLabel(floor.floorCode)} 자리배치</h2>
-            <p>변경안 기준 도면입니다. 이동한 사람을 호버하거나 클릭하면 원래 자리 위치를 같은 층에서 하이라이트합니다.</p></div>
+          <div class="seat-hero-copy"><p class="eyebrow">Seat Layout</p><h2>${floorLabel(floor.floorCode)} ?먮━諛곗튂</h2>
+            <p>蹂寃쎌븞 湲곗? ?꾨㈃?낅땲?? ?대룞???щ엺???몃쾭?섍굅???대┃?섎㈃ ?먮옒 ?먮━ ?꾩튂瑜?媛숈? 痢듭뿉???섏씠?쇱씠?명빀?덈떎.</p></div>
           <div class="seat-hero-actions">
-            <div class="seat-scenario-badge">변경안 기준</div>
-            ${state.adminMode ? `<div class="seat-admin-indicator">관리자모드 활성화</div>` : ``}
+            <div class="seat-scenario-badge">蹂寃쎌븞 湲곗?</div>
+            ${state.adminMode ? `<div class="seat-admin-indicator">愿由ъ옄紐⑤뱶 ?쒖꽦??/div>` : ``}
           </div>
         </section>
       <section class="seat-summary-grid">
-        <article class="kpi-card"><div class="kpi-label">선택 층</div><div class="kpi-value">${floorLabel(floor.floorCode)}</div></article>
-        <article class="kpi-card"><div class="kpi-label">좌석 수</div><div class="kpi-value">${fmt(stats.totalSeats)}</div></article>
-        <article class="kpi-card"><div class="kpi-label">배치 인원</div><div class="kpi-value">${fmt(stats.occupiedSeats)}</div><div class="kpi-sub">변경안 기준</div></article>
-        <article class="kpi-card"><div class="kpi-label">이동 인원</div><div class="kpi-value">${fmt(stats.movedSeats)}</div></article>
+        <article class="kpi-card"><div class="kpi-label">?좏깮 痢?/div><div class="kpi-value">${floorLabel(floor.floorCode)}</div></article>
+        <article class="kpi-card"><div class="kpi-label">醫뚯꽍 ??/div><div class="kpi-value">${fmt(stats.totalSeats)}</div></article>
+        <article class="kpi-card"><div class="kpi-label">諛곗튂 ?몄썝</div><div class="kpi-value">${fmt(stats.occupiedSeats)}</div><div class="kpi-sub">蹂寃쎌븞 湲곗?</div></article>
+        <article class="kpi-card"><div class="kpi-label">?대룞 ?몄썝</div><div class="kpi-value">${fmt(stats.movedSeats)}</div></article>
       </section>
       <section class="seat-layout-grid">
-          <aside class="seat-stack-panel panel"><div class="panel-head"><h3>층 선택</h3></div><div class="floor-stack">${renderFloorStack()}</div>${renderAdminPanel(floor)}</aside>
+          <aside class="seat-stack-panel panel"><div class="panel-head"><h3>痢??좏깮</h3></div><div class="floor-stack">${renderFloorStack()}</div>${renderAdminPanel(floor)}</aside>
         <div class="seat-main-column">
             <div class="seat-detail-card">
               <div class="seat-detail-head">
-                <div><p class="eyebrow">Floor Plan</p><h2>${floorLabel(floor.floorCode)} 도면</h2></div>
+                <div><p class="eyebrow">Floor Plan</p><h2>${floorLabel(floor.floorCode)} ?꾨㈃</h2></div>
                 <div class="seat-head-actions">
                   <button class="seat-admin-btn ${state.adminMode ? "active" : ""}" type="button" id="seatAdminToggle">
-                    ${state.adminMode ? "관리자모드 ON" : "관리자모드"}
+                    ${state.adminMode ? "愿由ъ옄紐⑤뱶 ON" : "愿由ъ옄紐⑤뱶"}
                   </button>
                   <div class="seat-zoom-controls">
                     <button class="seat-zoom-btn" type="button" data-zoom-action="out">-</button>
@@ -728,14 +748,14 @@
           renderSeatView();
           return;
         }
-        const input = window.prompt("관리자 비밀번호를 입력하세요.");
+        const input = window.prompt("愿由ъ옄 鍮꾨?踰덊샇瑜??낅젰?섏꽭??");
         if (input === null) return;
         if (input === ADMIN_PASSWORD) {
           state.adminMode = true;
           renderSeatView();
           return;
         }
-        window.alert("비밀번호가 올바르지 않습니다.");
+        window.alert("鍮꾨?踰덊샇媛 ?щ컮瑜댁? ?딆뒿?덈떎.");
       });
     }
     const applyButton = seatView.querySelector("#seatAdminApply");
@@ -850,13 +870,27 @@
         const c=g.dataset.code||"",p=g.dataset.person||"",d=g.dataset.dept||"";
         const originSeat = g.dataset.originSeat || "";
         const originFloor = g.dataset.originFloor || "";
-        const originText = originFloor
-          ? (originSeat && originFloor === floor.floorCode ? `원래 자리 ${originSeat}` : `원래 ${floorLabel(originFloor)}`)
-          : "";
-        tip.innerHTML=p?`<strong>${c}</strong><span class="sv-tt-name">${esc(p)}</span>${d?`<span class="sv-tt-dept">${esc(d)}</span>`:""}${originText?`<span class="sv-tt-origin">${esc(originText)}</span>`:""}`:`<strong>${c}</strong><span class="sv-tt-empty">미배치</span>`;
+        const originText = p === "권진명"
+          ? "추후이동"
+          : originFloor
+            ? (originSeat && originFloor === floor.floorCode ? `?먮옒 ?먮━ ${originSeat}` : `?먮옒 ${floorLabel(originFloor)}`)
+            : "";
+        tip.innerHTML=p?`<strong>${c}</strong><span class="sv-tt-name">${esc(p)}</span>${d?`<span class="sv-tt-dept">${esc(d)}</span>`:""}${originText?`<span class="sv-tt-origin">${esc(originText)}</span>`:""}`:`<strong>${c}</strong><span class="sv-tt-empty">誘몃같移?/span>`;
         tip.classList.add("visible");
-        const shell=seatView.querySelector(".seat-board-shell"),r=shell.getBoundingClientRect();
-        tip.style.left=(e.clientX-r.left+14)+"px";tip.style.top=(e.clientY-r.top-10)+"px";
+        const shell = seatView.querySelector(".seat-board-shell");
+        const shellRect = shell.getBoundingClientRect();
+        const seatRect = g.getBoundingClientRect();
+        const tipWidth = 168;
+        const tipHeight = 88;
+        let left = seatRect.left - shellRect.left + (seatRect.width / 2) - (tipWidth / 2);
+        let top = seatRect.top - shellRect.top - tipHeight - 10;
+        const maxLeft = Math.max(8, shell.clientWidth - tipWidth - 8);
+        left = Math.max(8, Math.min(left, maxLeft));
+        if (top < 8) {
+          top = seatRect.bottom - shellRect.top + 10;
+        }
+        tip.style.left = `${left}px`;
+        tip.style.top = `${top}px`;
         if (state.adminMode) {
           applyAdminSelection();
         } else {
@@ -892,7 +926,7 @@
     }
   }
 
-  /* ── View switch ────────────────────────────────── */
+  /* ?? View switch ?????????????????????????????????? */
   function syncView() {
     const show=state.activeView==="seat";
     orgView.hidden=show;seatView.hidden=!show;
@@ -902,3 +936,4 @@
   switchEl.querySelectorAll(".view-tab").forEach(b=>b.addEventListener("click",()=>{state.activeView=b.dataset.view||"org";syncView()}));
   syncView();
 })();
+
