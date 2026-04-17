@@ -27,7 +27,7 @@ jobs:
           
       - name: Create configs from secrets
         run: |
-          cat << EOF > t5t-dashboard/notion_config.json
+          cat << EOF > notion_config.json
           {
             "NOTION_API_KEY": "${{ secrets.NOTION_API_KEY }}",
             "DEFAULT_TARGET_PAGE_ID": "${{ secrets.DEFAULT_TARGET_PAGE_ID }}"
