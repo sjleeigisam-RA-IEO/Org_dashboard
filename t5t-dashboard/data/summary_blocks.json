@@ -1,0 +1,4102 @@
+[
+  {
+    "object": "block",
+    "id": "4363698a-4419-4a2a-b7d9-8e8a6bc5c1a7",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_2",
+    "heading_2": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "기준",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "기준",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "c755f9ca-5ea3-4db2-a598-b6cc56abcbaa",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "대상 주차: 2026-04-07 ~ 2026-04-13 (화~월)",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "대상 주차: 2026-04-07 ~ 2026-04-13 (화~월)",
+          "href": null
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "ff9569f1-a6a2-4020-abf9-9affb81d6410",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "정리 원칙: 라인 우선, 이후 같은 라인 내 프로젝트/이슈 일관성 기준으로 묶음",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "정리 원칙: 라인 우선, 이후 같은 라인 내 프로젝트/이슈 일관성 기준으로 묶음",
+          "href": null
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "1bbc697f-b928-4e1d-96d4-f1d324b41c88",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "작성 목적: 자동화 샘플 페이지",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "작성 목적: 자동화 샘플 페이지",
+          "href": null
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "94836ab4-3743-4a5b-a830-c062eefc19d8",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_2",
+    "heading_2": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "A Line",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "A Line",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "32f4f095-c866-4c2f-9d81-56971e0b2b24",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "양재 더케이호텔 재개발",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "양재 더케이호텔 재개발",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "3c3ca6d9-070d-40cd-a5d3-42df0bc68fec",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "안지하",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "안지하",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 혁신디자인 설계대안 확정 및 CG 작업, 사전협상 전문가자문위원회 일정 조율, 해외 설계사 인터뷰, AI특구 관련 관계사 미팅 진행 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 혁신디자인 설계대안 확정 및 CG 작업, 사전협상 전문가자문위원회 일정 조율, 해외 설계사 인터뷰, AI특구 관련 관계사 미팅 진행 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c4781d39017f5bb9d9b0436"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c4781d39017f5bb9d9b0436"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "3bd18f26-b738-413e-9338-ec22c304ad5a",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "윤관식",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "윤관식",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 창의혁신디자인 관련 서울시 협의 진행 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 창의혁신디자인 관련 서울시 협의 진행 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c478173891ce5cc6ed57eea"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c478173891ce5cc6ed57eea"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "e3dbc813-479b-48c9-b2b7-fe58463b81f1",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "캠코 / Special Situation / NPL",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "캠코 / Special Situation / NPL",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "879da140-2f3b-479f-9ef7-644567ed1997",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "안지하",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "안지하",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 캠코 기업자산유동화 프로그램 대응, 부처장 미팅 예정 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 캠코 기업자산유동화 프로그램 대응, 부처장 미팅 예정 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c4781d39017f5bb9d9b0436"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c4781d39017f5bb9d9b0436"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "372cdc95-b3c3-43ef-bf06-b8fb83bf6a42",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "오윤석",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "오윤석",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 캠코 지방은행 금융안정지원펀드 투심 진행, PF 재구조화 1-4·1-5 클로징 준비, GIC·CPPIB 관련 자료 작성 및 송부 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 캠코 지방은행 금융안정지원펀드 투심 진행, PF 재구조화 1-4·1-5 클로징 준비, GIC·CPPIB 관련 자료 작성 및 송부 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c478150b569e7c4f21a48f1"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c478150b569e7c4f21a48f1"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "9690f14b-207f-401f-9082-f3243582e553",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "황재현",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "황재현",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 캠코 지방은행 NPL 펀드 미팅 진행, 이지스 NPL 5호 금융사 심사 조율 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 캠코 지방은행 NPL 펀드 미팅 진행, 이지스 NPL 5호 금융사 심사 조율 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/33e8ced43c4781a6bba2c4a793263fe2"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/33e8ced43c4781a6bba2c4a793263fe2"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "d5b18e69-fb06-4a3e-8513-60041e0ee043",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "양준모",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "양준모",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": Special Situation Fund TFT 차원에서 GIC 실사 대응 및 CPPIB 미팅 준비 진행 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": Special Situation Fund TFT 차원에서 GIC 실사 대응 및 CPPIB 미팅 준비 진행 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c4781c6a3d0f4055bd3bc04"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c4781c6a3d0f4055bd3bc04"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "1f933614-5c2d-4457-b5b1-18df3f2de7d0",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "합정 개발",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "합정 개발",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "6fc3c3d7-adbb-40d2-b052-0fe9e525e17b",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "오윤석",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "오윤석",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 합정 개발 프로젝트 잠재 SI 미팅 진행 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 합정 개발 프로젝트 잠재 SI 미팅 진행 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c478150b569e7c4f21a48f1"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c478150b569e7c4f21a48f1"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "ab25dc6c-74bb-44fa-a585-1587ca6caf88",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "홍봉석",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "홍봉석",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 합정호텔 개발사업 잠재투자자 협의 진행 중 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 합정호텔 개발사업 잠재투자자 협의 진행 중 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3408ced43c47812783d7ccc33f48d05f"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3408ced43c47812783d7ccc33f48d05f"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "5ebf96be-26ec-4f1d-86c4-980ab469bd5b",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "황재현",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "황재현",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": NPL 3호(IAHF합정) 잠재투자자 QA 진행 중 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": NPL 3호(IAHF합정) 잠재투자자 QA 진행 중 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/33e8ced43c4781a6bba2c4a793263fe2"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/33e8ced43c4781a6bba2c4a793263fe2"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "2026d872-73b5-444a-a41c-280daaebecc3",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "데이터센터(DC)",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "데이터센터(DC)",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "0e4dc970-427a-479d-bd6e-52f76a048cf2",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "안지하",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "안지하",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 과천주암DC QA·Valuation 진행, 잠재 투자자 미팅, 인천 효성동 DC는 입지 이슈로 검토 중단 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 과천주암DC QA·Valuation 진행, 잠재 투자자 미팅, 인천 효성동 DC는 입지 이슈로 검토 중단 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c4781d39017f5bb9d9b0436"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c4781d39017f5bb9d9b0436"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "9a817420-421c-4e33-8335-b532dd121205",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "양준모",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "양준모",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 부천 소형 DC 인허가·전기공급 실사 및 운영사 인터뷰, 부산 DC 인허가 중심 대응, 고양 삼송 DC 리파이낸싱 및 투자자 보고 예정 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 부천 소형 DC 인허가·전기공급 실사 및 운영사 인터뷰, 부산 DC 인허가 중심 대응, 고양 삼송 DC 리파이낸싱 및 투자자 보고 예정 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c4781c6a3d0f4055bd3bc04"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c4781c6a3d0f4055bd3bc04"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "5d6ad1e4-587c-4e8e-bbff-87820656da03",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "홍봉석",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "홍봉석",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 학암동 소형 DC 개발사업 입찰 참여 완료 후 우협 선정 발표 대기 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 학암동 소형 DC 개발사업 입찰 참여 완료 후 우협 선정 발표 대기 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3408ced43c47812783d7ccc33f48d05f"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3408ced43c47812783d7ccc33f48d05f"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "dee5716b-57c6-41c6-954c-2db3f74508b1",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "기타 개인별 요약",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "기타 개인별 요약",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "a9d20d33-88fa-49e0-ab1b-d42314ac8adc",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "문준식",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "문준식",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 에이원당산 입찰 인터뷰, 용산더프라임타워 리파이낸싱 미팅, 케이트윈타워 외국계 투자자 미팅, CJ그룹 업무협력 및 IOTA 임차 협의 진행 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 에이원당산 입찰 인터뷰, 용산더프라임타워 리파이낸싱 미팅, 케이트윈타워 외국계 투자자 미팅, CJ그룹 업무협력 및 IOTA 임차 협의 진행 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/33e8ced43c478174bf1cd98ca6a6a740"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/33e8ced43c478174bf1cd98ca6a6a740"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "09991061-5295-4366-be08-b26367173351",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_2",
+    "heading_2": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "B Line",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "B Line",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "f740597e-99a9-40eb-b5ae-540ce231f683",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "타임워크 분당",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "타임워크 분당",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "08b8af26-6ae4-4f17-acf4-3b517fe43b53",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "우형석",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "우형석",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 롯데백화점 분당점 선매수 의향자 우선협상 통지, 선임차 협의 진행 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 롯데백화점 분당점 선매수 의향자 우선협상 통지, 선임차 협의 진행 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/33b8ced43c47814d817ff68a92ce1be6"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/33b8ced43c47814d817ff68a92ce1be6"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "df680272-6819-487f-89e8-7c5a5a77d0d7",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "개인별 요약",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "개인별 요약",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "83429097-7e51-4974-becd-bbf088002035",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "우형석",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "우형석",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 타임테라스 동탄 명도 협의, 타임워크 분당 선매수·선임차 협의, 타임워크 명동 조건 협의, 서리풀SBC 리테일 ML 계약 완료, 스카이로지스 투자자 브리핑 준비 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 타임테라스 동탄 명도 협의, 타임워크 분당 선매수·선임차 협의, 타임워크 명동 조건 협의, 서리풀SBC 리테일 ML 계약 완료, 스카이로지스 투자자 브리핑 준비 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/33b8ced43c47814d817ff68a92ce1be6"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/33b8ced43c47814d817ff68a92ce1be6"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "3714c3d7-af30-4375-b7dd-ff1c9b6a5a6a",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_2",
+    "heading_2": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "C1 Line",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "C1 Line",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "3151961e-5f20-402d-a3f2-a8b46dbaaf90",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "화성 CDC 후순위 대출 / 고양 삼송 DC",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "화성 CDC 후순위 대출 / 고양 삼송 DC",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "7b6133f6-ed12-4f47-90f2-1fd6ce377ac2",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "박준호",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "박준호",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 화성 CDC 후순위 Sell-Down 추진, 삼성증권·포스트자산운용 신규 탭핑, 고양 삼송 DC 담보대출 Kick-off 및 대주 Pool 구성 진행 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 화성 CDC 후순위 Sell-Down 추진, 삼성증권·포스트자산운용 신규 탭핑, 고양 삼송 DC 담보대출 Kick-off 및 대주 Pool 구성 진행 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3408ced43c4781749ff0d5e849f6bdc1"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3408ced43c4781749ff0d5e849f6bdc1"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "46715978-b274-4435-b33d-4de3abce5d9b",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "개인별 요약",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "개인별 요약",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "e4107c62-40f6-4279-b0e8-1f0977f6d77b",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "박준호",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "박준호",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": IOTA Seoul II BL Refinancing 대주 모집 지속, 화성 CDC 후순위 Sell-Down, 원센티널 Refinancing 대주 Pool 구성, 가산동 임대형 기숙사 PF 클로징 준비 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": IOTA Seoul II BL Refinancing 대주 모집 지속, 화성 CDC 후순위 Sell-Down, 원센티널 Refinancing 대주 Pool 구성, 가산동 임대형 기숙사 PF 클로징 준비 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3408ced43c4781749ff0d5e849f6bdc1"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3408ced43c4781749ff0d5e849f6bdc1"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "71400a21-814d-4b66-854d-c83cabcf8f3e",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_2",
+    "heading_2": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "C2 Line",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "C2 Line",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "29e9af53-e10d-4ac5-80e7-9f5302c897db",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "양재 더케이호텔 / 타임워크 분당",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "양재 더케이호텔 / 타임워크 분당",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "6727c2c9-1c7f-499c-b3e6-1444308941ea",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "김현수",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "김현수",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 양재 더케이 삼성전자 AI Ready 파트너십 및 디스트릭트 협업 기획 진행, 타임워크 분당 라인플러스 통임차 및 에쿼티 우선주 투자 조건 협의 진행 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 양재 더케이 삼성전자 AI Ready 파트너십 및 디스트릭트 협업 기획 진행, 타임워크 분당 라인플러스 통임차 및 에쿼티 우선주 투자 조건 협의 진행 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3408ced43c47817ba6b2cfbf10c99726"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3408ced43c47817ba6b2cfbf10c99726"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "34de88e1-175a-496b-b249-0987bbcddbad",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "개인별 요약",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "개인별 요약",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "32683b0d-358d-41fb-acf2-6845d2055624",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "김현수",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "김현수",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 이오타 서울 상품전략, 타임워크 분당 통임차 협의, 타임워크 웨스트 시공 기획도서 준비, 양재 더케이 파트너십 기획 진행 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 이오타 서울 상품전략, 타임워크 분당 통임차 협의, 타임워크 웨스트 시공 기획도서 준비, 양재 더케이 파트너십 기획 진행 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3408ced43c47817ba6b2cfbf10c99726"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3408ced43c47817ba6b2cfbf10c99726"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "b4e2b06a-11de-42ff-a9e0-1eb55971f943",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_2",
+    "heading_2": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "D Line",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "D Line",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "bc3ad231-743b-4c74-88e8-fb701efb72e5",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "화성 CDC 후순위 대출",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "화성 CDC 후순위 대출",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "3f350964-09d2-4d26-b0f0-e5de29ec7ea7",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "이현호",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "이현호",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 화성 CDC 후순위 대출 모집, 다이와증권·한국저축은행·디비캐피탈 협의 진행 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 화성 CDC 후순위 대출 모집, 다이와증권·한국저축은행·디비캐피탈 협의 진행 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c478122977ff3a82f2ffd25"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c478122977ff3a82f2ffd25"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "f1a3bad3-92ff-4aa4-9ded-3586fcd7127a",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "개인별 요약",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "개인별 요약",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "1733ff1a-bff6-4c2a-bc2e-e9921a42b487",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "이현호",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "이현호",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 화성 CDC 후순위 대출 모집, 회억리복합물류센터 저온 임차인 협의, 부산송정 임차인 소송 협의, 비즈성장플랫폼·회억리 Refinancing 대주 모집 진행 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 화성 CDC 후순위 대출 모집, 회억리복합물류센터 저온 임차인 협의, 부산송정 임차인 소송 협의, 비즈성장플랫폼·회억리 Refinancing 대주 모집 진행 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c478122977ff3a82f2ffd25"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c478122977ff3a82f2ffd25"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "65c371f8-a880-4235-b3e7-cdcd620d1542",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_2",
+    "heading_2": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "E Line",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "E Line",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "8b3bf91f-a740-453d-adc3-0e79cdb16258",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "GIC / 원그로브",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "GIC / 원그로브",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "6359505a-b3eb-4832-ac89-8a0d335c3123",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "정조민",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "정조민",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": GIC Global 임원진 site tour 준비, 416호 원그로브 추가 증자 협의 진행 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": GIC Global 임원진 site tour 준비, 416호 원그로브 추가 증자 협의 진행 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3408ced43c478101b35dd37d1348b700"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3408ced43c478101b35dd37d1348b700"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "72af2138-3444-4192-a175-0788f2a1cd58",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "김지현",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "김지현",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 원그로브 국민연금 수익자 보고, 창원두동 재계약 및 평택아디다스 보험 청구 협의 진행 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 원그로브 국민연금 수익자 보고, 창원두동 재계약 및 평택아디다스 보험 청구 협의 진행 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c4781b98ac9cf1857c88383"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c4781b98ac9cf1857c88383"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "19701658-8574-49d2-a6ce-ec8812c90cfa",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "개인별 요약",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "개인별 요약",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "a0405dc4-71f4-4427-b5f3-9d891566de8c",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "김지현",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "김지현",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 창원두동 재계약, 평택아디다스 보험 청구, 몰오브케이 정상매각 계약 협의, 오퍼스407 잠재매수인 협의, 원그로브 수익자 보고 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 창원두동 재계약, 평택아디다스 보험 청구, 몰오브케이 정상매각 계약 협의, 오퍼스407 잠재매수인 협의, 원그로브 수익자 보고 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c4781b98ac9cf1857c88383"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c4781b98ac9cf1857c88383"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "ce89cab1-61f2-41f5-b497-8b0edf768dc4",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "정조민",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "정조민",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 원그로브 추가 증자 협의, GIC 임원진 site tour 준비, 양지물류·VPLEX·코너136·서울시티타워 매각주간사 선정, Exit TF 분석 진행 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 원그로브 추가 증자 협의, GIC 임원진 site tour 준비, 양지물류·VPLEX·코너136·서울시티타워 매각주간사 선정, Exit TF 분석 진행 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3408ced43c478101b35dd37d1348b700"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3408ced43c478101b35dd37d1348b700"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "780fbe68-33b8-4f12-8579-805340c7c4bb",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_2",
+    "heading_2": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "Global A Line",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "Global A Line",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "d68e9c98-3186-4bb3-9716-8ba1f5a0efd1",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "미국 / 유럽 투자 및 펀드 운용",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "미국 / 유럽 투자 및 펀드 운용",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "6057cd6e-e363-4b50-9ae8-fbfcf81dcad3",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "김주일",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "김주일",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 343 Madison Ave(BXP JV) 기관투자자 모집 준비, Chauncey Square 거래 완료 후 AM 온보딩, 미국 물류·임대주택 대출 재간접펀드 IM 송부 예정 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 343 Madison Ave(BXP JV) 기관투자자 모집 준비, Chauncey Square 거래 완료 후 AM 온보딩, 미국 물류·임대주택 대출 재간접펀드 IM 송부 예정 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3408ced43c4781848c12f9201581c801"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3408ced43c4781848c12f9201581c801"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "3fba8f6c-4c3a-4be4-85f5-44dc5742c3e5",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "남형록",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "남형록",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 미국 CMBS 재간접펀드 투자자 탭핑, LX Pantos 해외자산 전략적 파트너십 검토, 229호·417호 만기 연장 협의 진행 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 미국 CMBS 재간접펀드 투자자 탭핑, LX Pantos 해외자산 전략적 파트너십 검토, 229호·417호 만기 연장 협의 진행 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c478147bd7edbff6a734da9"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c478147bd7edbff6a734da9"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "d09122b8-8628-4451-946e-66d8f0b97c97",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "개인별 요약",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "개인별 요약",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "d9300b91-7ca2-4ace-9933-21cf252da832",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "김주일",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "김주일",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 343 Madison Ave 투자자 모집, Chauncey Square 온보딩, 유럽 SMA 덴마크 자산 편입 업데이트, Nuveen C-Pace 펀드 teaser 작성 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 343 Madison Ave 투자자 모집, Chauncey Square 온보딩, 유럽 SMA 덴마크 자산 편입 업데이트, Nuveen C-Pace 펀드 teaser 작성 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3408ced43c4781848c12f9201581c801"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3408ced43c4781848c12f9201581c801"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "0b3a0365-f864-45d2-8c2b-71d2a36b7496",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "남형록",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "남형록",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": Rockwood 투자자 유치, 해외자산 파트너십 검토, 229호·417호 운용 이슈 대응, 일본 임대주택 펀드 및 해외 메자닌 펀드화 방안 검토 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": Rockwood 투자자 유치, 해외자산 파트너십 검토, 229호·417호 운용 이슈 대응, 일본 임대주택 펀드 및 해외 메자닌 펀드화 방안 검토 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c478147bd7edbff6a734da9"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c478147bd7edbff6a734da9"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "79a3dde9-1515-47df-99c1-b211fe382483",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_2",
+    "heading_2": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "Global E Line",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "Global E Line",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "ac89f075-b763-4af4-93bf-130237f3db86",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "해외 대출 연장 / 일본 레지덴셜 / Wien Mitte",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "해외 대출 연장 / 일본 레지덴셜 / Wien Mitte",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "33aaafc6-ddb6-4eba-bc3f-5eddf1c32b42",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "신민재",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "신민재",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 해외 대출 연장 거절 이슈 점검, 일본 오다와라 KKR 매입의향서 제출, Wien Mitte 매각 관련 협의 진행 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 해외 대출 연장 거절 이슈 점검, 일본 오다와라 KKR 매입의향서 제출, Wien Mitte 매각 관련 협의 진행 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c4781d691ffe64618a0e6e1"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c4781d691ffe64618a0e6e1"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "474a8e67-6fd7-4eb3-b306-bef60901b55a",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "신소현",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "신소현",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 일본 도쿄 레지덴셜 분할 매각 및 펀드만기 2년 연장 준비, 트리아논TF 법원 이의제기 검토, GAM Exit 전략회의 준비 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 일본 도쿄 레지덴셜 분할 매각 및 펀드만기 2년 연장 준비, 트리아논TF 법원 이의제기 검토, GAM Exit 전략회의 준비 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c4781ca8b5aea1835ccbd76"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c4781ca8b5aea1835ccbd76"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "b005a71c-345e-4cdd-94cd-8ba43a5e5e46",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "개인별 요약",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "개인별 요약",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "9e317cc2-5aa2-4c34-a6bc-416f3b92e836",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "신민재",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "신민재",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 사내 AI 활용 제한 이슈 제기, 뉴욕지점 대출 연장 거절에 따른 하반기 만기 조기 검토, 일본 오다와라 KKR LOI 제출, Wien Mitte 매각 협의 진행 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 사내 AI 활용 제한 이슈 제기, 뉴욕지점 대출 연장 거절에 따른 하반기 만기 조기 검토, 일본 오다와라 KKR LOI 제출, Wien Mitte 매각 협의 진행 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c4781d691ffe64618a0e6e1"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c4781d691ffe64618a0e6e1"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "b1f93736-1a4c-4969-b540-0405ce9d453d",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "신소현",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "신소현",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 일본 도쿄 레지덴셜 분할 매각 지속, 펀드만기 2년 연장 준비, 운용역·국제조세 인력 충원, GAM Exit 전략회의 준비 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 일본 도쿄 레지덴셜 분할 매각 지속, 펀드만기 2년 연장 준비, 운용역·국제조세 인력 충원, GAM Exit 전략회의 준비 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3418ced43c4781ca8b5aea1835ccbd76"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3418ced43c4781ca8b5aea1835ccbd76"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "c702fede-bdc7-4a11-83d4-35a6a2766aad",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "divider",
+    "divider": {},
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "d1f6b18d-85dd-4030-ab7a-1bfa37eed98b",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3448ced4-3c47-812b-90af-e30e57d6e005"
+    },
+    "created_time": "2026-04-16T02:07:00.000Z",
+    "last_edited_time": "2026-04-16T02:07:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "paragraph",
+    "paragraph": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "미작성인원 : 윤정규, 권도엽, 현철호, 홍창의",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "미작성인원 : 윤정규, 권도엽, 현철호, 홍창의",
+          "href": null
+        }
+      ],
+      "icon": null,
+      "color": "default"
+    },
+    "archived": false
+  }
+]

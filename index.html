@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, max-snippet:0, max-image-preview:none, max-video-preview:0" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' http://localhost:8050; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content" />
+  <meta http-equiv="Permissions-Policy" content="accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), microphone=(), payment=(), usb=()" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>IGIS Real Asset Dashboard Portal</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pretendard+Variable:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --bg: #f6f1e8;
+      --panel: rgba(255, 253, 249, 0.86);
+      --text: #1f2a37;
+      --muted: #667085;
+      --line: rgba(31, 42, 55, 0.1);
+      --accent: #b85c38;
+      --accent-2: #284b63;
+      --shadow: 0 18px 40px rgba(31, 42, 55, 0.08);
+      --shadow-hover: 0 24px 48px rgba(31, 42, 55, 0.12);
+      --radius-xl: 28px;
+      --font: "Pretendard Variable", "Pretendard", sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(184, 92, 56, 0.14), transparent 30rem),
+        radial-gradient(circle at top right, rgba(40, 75, 99, 0.16), transparent 28rem),
+        linear-gradient(180deg, #fcfaf5 0%, var(--bg) 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 64px 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.1;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+      background: var(--accent-2);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .card:nth-child(2)::before {
+      background: var(--accent);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      background: white;
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card-icon {
+      font-size: 40px;
+      margin-bottom: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px; height: 72px;
+      background: rgba(40, 75, 99, 0.08);
+      border-radius: 20px;
+    }
+
+    .card:nth-child(2) .card-icon {
+      background: rgba(184, 92, 56, 0.08);
+    }
+
+    .card-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .card-desc {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .card-footer {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      color: var(--accent-2);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .card:nth-child(2) .card-footer {
+      color: var(--accent);
+    }
+
+    .card-footer svg {
+      width: 16px; height: 16px;
+      margin-left: 6px;
+      transition: transform 0.2s;
+    }
+
+    .card:hover .card-footer svg {
+      transform: translateX(4px);
+    }
+
+    .footer {
+      margin-top: auto;
+      padding-top: 64px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header class="hero">
+      <div class="eyebrow">Real Asset Division</div>
+      <h1>RA Dashboard Hub</h1>
+      <p class="subtitle">부문 내 조직 현황 및 주요 업무 데이터 관리를 위한 통합 대시보드 포털입니다. 목적에 맞는 대시보드를 선택해주세요.</p>
+    </header>
+
+    <div class="grid">
+      <!-- 1. Org Dashboard -->
+      <a href="./org_dashboard/index.html" class="card">
+        <div class="card-icon">🏢</div>
+        <h2 class="card-title">조직구성 대시보드</h2>
+        <p class="card-desc">조직 개편에 따른 각 파트/팀별 인원 구성, 좌석 배치도 및 조직 통계 현황을 확인합니다.</p>
+        <div class="card-footer">
+          대시보드 열기
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </div>
+      </a>
+
+      <!-- 2. T5T Dashboard -->
+      <a href="./t5t-dashboard/index.html" class="card">
+        <div class="card-icon">🎯</div>
+        <h2 class="card-title">T5T 업무 대시보드</h2>
+        <p class="card-desc">Notion에 기록된 주간 T5T 업무 데이터를 기반으로 프로젝트 활동성 및 팀별 주요 업무 트렌드를 분석합니다.</p>
+        <div class="card-footer">
+          대시보드 열기
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </div>
+      </a>
+
+      <!-- 3. 기업마케팅센터 Dashboard -->
+      <a href="https://cmc-workflow-test-static.vercel.app/portable-workflow-test.html" class="card" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon" style="background: rgba(91, 121, 97, 0.08);">📢</div>
+        <h2 class="card-title">기업마케팅센터 대시보드</h2>
+        <p class="card-desc">기업마케팅센터의 주요 워크플로우 및 업무 진행 현황을 파악할 수 있는 외부 대시보드입니다.</p>
+        <div class="card-footer" style="color: #5b7961;">
+          외부 링크 열기
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+        </div>
+      </a>
+    </div>
+    
+    <footer class="footer">
+      &copy; 2026 IGIS Asset Management. Internal Use Only.
+    </footer>
+  </div>
+
+</body>
+</html>

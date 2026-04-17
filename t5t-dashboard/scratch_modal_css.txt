@@ -1,0 +1,126 @@
+/* Modal Styles (Appended to the end of style.css) */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(20, 28, 38, 0.42);
+  backdrop-filter: blur(8px);
+}
+
+.modal-backdrop[hidden] {
+  display: none;
+}
+
+.modal-panel {
+  width: min(760px, 100%);
+  max-height: min(82vh, 920px);
+  overflow: auto;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 252, 247, 0.98);
+  box-shadow: 0 28px 70px rgba(18, 30, 44, 0.2);
+}
+
+.modal-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.modal-eyebrow {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.modal-close {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: white;
+  color: var(--text);
+  font: inherit;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.modal-close:hover {
+  background: rgba(31, 42, 55, 0.05);
+}
+
+.modal-copy {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.modal-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.modal-item {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.88);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.modal-item-main {
+  flex-grow: 1;
+}
+
+.modal-item-name {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.modal-item-subrole {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.modal-item-meta {
+  margin-top: 6px;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.clickable-row {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.clickable-row:hover td {
+  background: rgba(255, 255, 255, 0.8) !important;
+}
+
+.director-chip {
+  display: inline-block;
+  padding: 4px 8px;
+  background: rgba(40, 75, 99, 0.08);
+  color: var(--accent-2);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}

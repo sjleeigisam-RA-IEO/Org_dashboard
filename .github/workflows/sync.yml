@@ -1,0 +1,48 @@
+name: Sync T5T Dashboard Data
+
+on:
+  schedule:
+    # Run everyday at 8:00 AM KST (23:00 UTC) and 1:00 PM KST (04:00 UTC)
+    - cron: '0 23 * * *'
+    - cron: '0 4 * * *'
+  workflow_dispatch: # Allow manual trigger from GitHub UI
+  repository_dispatch:
+    types: [sync_notion_data] # Allow trigger via webhook (from frontend button)
+
+permissions:
+  contents: write
+
+jobs:
+  sync_and_deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: Create configs from secrets
+        run: |
+          cat << EOF > t5t-dashboard/notion_config.json
+          {
+            "NOTION_API_KEY": "${{ secrets.NOTION_API_KEY }}",
+            "DEFAULT_TARGET_PAGE_ID": "${{ secrets.DEFAULT_TARGET_PAGE_ID }}"
+          }
+          EOF
+          
+      - name: Run sync script
+        run: |
+          cd t5t-dashboard
+          python sync_notion.py
+          
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add t5t-dashboard/data/
+          git commit -m "Auto-sync Notion data [skip ci]" || echo "No changes to commit"
+          git push

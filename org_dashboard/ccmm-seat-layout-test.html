@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="robots"
+      content="noindex, nofollow, noarchive, nosnippet, noimageindex, max-snippet:0, max-image-preview:none, max-video-preview:0"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' https://script.google.com https://script.googleusercontent.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://script.googleusercontent.com; font-src 'self' data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content"
+    />
+    <title>CCMM11층 자리배치 테스트</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">CCMM Seat Layout Test</p>
+          <h1>CCMM11층 자리배치 테스트</h1>
+          <p class="hero-copy">
+            CCMM 빌딩 11층 자리배치를 기존/변경 시트 기준으로 비교하는 로컬 테스트 화면입니다.
+            현재는 변경안만 보이고, 이동자만 원래 위치 정보를 함께 표시합니다.
+          </p>
+        </div>
+        <div class="hero-meta" id="heroMeta"></div>
+      </header>
+
+      <section class="view-switch" id="viewSwitch">
+        <button class="view-tab" type="button" data-view="org">조직구성</button>
+        <button class="view-tab active" type="button" data-view="seat">자리배치</button>
+      </section>
+
+      <div id="orgDashboardView" hidden></div>
+      <section class="seat-layout-view" id="seatLayoutView"></section>
+    </div>
+
+    <script src="./ccmm-seat-layout-test-flag.js"></script>
+    <script src="./ccmm-sheet-linked.config.js"></script>
+    <script src="./org-data.js"></script>
+    <script src="./ccmm-seat-layout-data.js"></script>
+    <script src="./sheet-loader.js"></script>
+  </body>
+</html>
