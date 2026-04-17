@@ -3680,11 +3680,11 @@
       "total_mentions": 28,
       "unique_writers": 5,
       "writers": [
+        "현철호",
+        "우형석",
         "박준호",
         "김현수",
-        "권순일",
-        "우형석",
-        "현철호"
+        "권순일"
       ],
       "top_writers": [
         "우형석",
@@ -3693,10 +3693,10 @@
         "박준호"
       ],
       "lines": [
-        "C2 Line",
-        "C1 Line",
+        "B Line",
         "D Line",
-        "B Line"
+        "C1 Line",
+        "C2 Line"
       ],
       "weekly": {
         "2026-03-30": 3,
@@ -3948,8 +3948,8 @@
       "unique_writers": 3,
       "writers": [
         "권순일",
-        "김현수",
-        "현철호"
+        "현철호",
+        "김현수"
       ],
       "top_writers": [
         "김현수",
@@ -3957,8 +3957,8 @@
         "현철호"
       ],
       "lines": [
-        "C2 Line",
-        "B Line"
+        "B Line",
+        "C2 Line"
       ],
       "weekly": {
         "2026-04-13": 1,
@@ -4209,10 +4209,10 @@
       "total_mentions": 22,
       "unique_writers": 4,
       "writers": [
-        "박준호",
-        "양준모",
+        "이승훈",
         "이현호",
-        "이승훈"
+        "박준호",
+        "양준모"
       ],
       "top_writers": [
         "양준모",
@@ -4223,8 +4223,8 @@
       "lines": [
         "A Line",
         "B Line",
-        "C1 Line",
-        "D Line"
+        "D Line",
+        "C1 Line"
       ],
       "weekly": {
         "2026-03-30": 2,
@@ -4426,12 +4426,12 @@
       "total_mentions": 20,
       "unique_writers": 6,
       "writers": [
-        "박준호",
-        "김현수",
-        "권순일",
         "강순용",
+        "현철호",
+        "박준호",
         "문준식",
-        "현철호"
+        "김현수",
+        "권순일"
       ],
       "top_writers": [
         "김현수",
@@ -4440,9 +4440,9 @@
         "권순일"
       ],
       "lines": [
-        "B Line",
         "Unknown",
         "C1 Line",
+        "B Line",
         "C2 Line",
         "A Line"
       ],
@@ -4628,10 +4628,10 @@
       "total_mentions": 17,
       "unique_writers": 4,
       "writers": [
-        "현철호",
-        "양준모",
+        "홍창의",
         "이현호",
-        "홍창의"
+        "양준모",
+        "현철호"
       ],
       "top_writers": [
         "양준모",
@@ -4967,9 +4967,9 @@
       "total_mentions": 15,
       "unique_writers": 3,
       "writers": [
+        "홍창의",
         "박준호",
-        "양준모",
-        "홍창의"
+        "양준모"
       ],
       "top_writers": [
         "양준모",
@@ -5126,11 +5126,11 @@
       "total_mentions": 14,
       "unique_writers": 5,
       "writers": [
-        "김현수",
-        "권순일",
-        "권도엽",
         "홍봉석",
-        "현철호"
+        "권도엽",
+        "현철호",
+        "김현수",
+        "권순일"
       ],
       "top_writers": [
         "권순일",
@@ -5278,11 +5278,11 @@
       "total_mentions": 14,
       "unique_writers": 5,
       "writers": [
-        "김현수",
-        "권순일",
-        "문준식",
+        "정조민",
         "권도엽",
-        "정조민"
+        "문준식",
+        "김현수",
+        "권순일"
       ],
       "top_writers": [
         "문준식",
@@ -5291,10 +5291,10 @@
         "정조민"
       ],
       "lines": [
-        "E Line",
         "A Line",
-        "C2 Line",
-        "B Line"
+        "B Line",
+        "E Line",
+        "C2 Line"
       ],
       "weekly": {
         "2026-03-09": 2,
@@ -5430,8 +5430,8 @@
       "total_mentions": 13,
       "unique_writers": 2,
       "writers": [
-        "오윤석",
-        "황재현"
+        "황재현",
+        "오윤석"
       ],
       "top_writers": [
         "오윤석",
@@ -5563,16 +5563,16 @@
       "total_mentions": 13,
       "unique_writers": 2,
       "writers": [
-        "정조민",
-        "김지현"
+        "김지현",
+        "정조민"
       ],
       "top_writers": [
         "김지현",
         "정조민"
       ],
       "lines": [
-        "E Line",
-        "A Line"
+        "A Line",
+        "E Line"
       ],
       "weekly": {
         "2026-04-06": 1,
@@ -5699,8 +5699,8 @@
       "total_mentions": 12,
       "unique_writers": 2,
       "writers": [
-        "권순일",
-        "우형석"
+        "우형석",
+        "권순일"
       ],
       "top_writers": [
         "우형석",
@@ -5828,9 +5828,9 @@
       "total_mentions": 11,
       "unique_writers": 3,
       "writers": [
-        "김현수",
         "안지하",
-        "윤관식"
+        "윤관식",
+        "김현수"
       ],
       "top_writers": [
         "안지하",
@@ -5945,9 +5945,9 @@
       "total_mentions": 11,
       "unique_writers": 3,
       "writers": [
-        "정조민",
+        "홍창의",
         "김지현",
-        "홍창의"
+        "정조민"
       ],
       "top_writers": [
         "김지현",
@@ -5955,9 +5955,9 @@
         "정조민"
       ],
       "lines": [
-        "E Line",
         "A Line",
-        "B Line"
+        "B Line",
+        "E Line"
       ],
       "weekly": {
         "2026-03-16": 3,
@@ -6075,8 +6075,8 @@
         "정조민"
       ],
       "lines": [
-        "E Line",
-        "A Line"
+        "A Line",
+        "E Line"
       ],
       "weekly": {
         "2026-03-30": 1,
@@ -6179,8 +6179,8 @@
       "unique_writers": 3,
       "writers": [
         "우형석",
-        "현철호",
-        "이현호"
+        "이현호",
+        "현철호"
       ],
       "top_writers": [
         "우형석",
@@ -6567,9 +6567,9 @@
       "total_mentions": 7,
       "unique_writers": 3,
       "writers": [
-        "김현수",
+        "박준호",
         "강순용",
-        "박준호"
+        "김현수"
       ],
       "top_writers": [
         "김현수",
@@ -6578,8 +6578,8 @@
       ],
       "lines": [
         "Unknown",
-        "C2 Line",
-        "C1 Line"
+        "C1 Line",
+        "C2 Line"
       ],
       "weekly": {
         "2026-03-30": 1,
@@ -6665,8 +6665,8 @@
         "정조민"
       ],
       "lines": [
-        "E Line",
-        "C1 Line"
+        "C1 Line",
+        "E Line"
       ],
       "weekly": {
         "2026-03-30": 1,
@@ -6891,8 +6891,8 @@
       "total_mentions": 6,
       "unique_writers": 2,
       "writers": [
-        "정조민",
-        "김지현"
+        "김지현",
+        "정조민"
       ],
       "top_writers": [
         "김지현",
@@ -6965,10 +6965,10 @@
       "total_mentions": 6,
       "unique_writers": 4,
       "writers": [
-        "정조민",
-        "양준모",
         "김지현",
-        "권도엽"
+        "정조민",
+        "권도엽",
+        "양준모"
       ],
       "top_writers": [
         "김지현",
@@ -7109,8 +7109,8 @@
       "total_mentions": 5,
       "unique_writers": 2,
       "writers": [
-        "신소현",
-        "신민재"
+        "신민재",
+        "신소현"
       ],
       "top_writers": [
         "신소현",
@@ -7175,8 +7175,8 @@
       "total_mentions": 5,
       "unique_writers": 2,
       "writers": [
-        "정조민",
-        "김지현"
+        "김지현",
+        "정조민"
       ],
       "top_writers": [
         "김지현",
@@ -7380,7 +7380,7 @@
       "name": "김지현",
       "count": 76,
       "project_count": 16,
-      "line": "E Line",
+      "line": "A Line",
       "task_types": {
         "운용/관리": 65,
         "리스크/법무": 4,
@@ -7502,7 +7502,7 @@
       "name": "신민재",
       "count": 41,
       "project_count": 6,
-      "line": "E Line",
+      "line": "Global E Line",
       "task_types": {
         "운용/관리": 21,
         "내부/기타": 8,
@@ -11814,9 +11814,9 @@
     }
   ],
   "sync_meta": {
-    "synced_at": "2026-04-17T14:55:42.146832",
+    "synced_at": "2026-04-17T23:35:58.933673",
     "counts": {
-      "t5t_log": 1028,
+      "t5t_log": "ERROR: HTTP Error 504: Gateway Timeout",
       "project_mission": 421,
       "project_master": 198,
       "staff_master": 246,
