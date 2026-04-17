@@ -461,10 +461,18 @@ body {
 }
 
 .modal-head {
+  position: sticky;
+  top: -24px;
+  margin-top: -24px;
+  padding-top: 24px;
+  padding-bottom: 16px;
+  background: rgba(255, 252, 247, 0.98);
+  z-index: 50;
   display: flex;
   align-items: start;
   justify-content: space-between;
   gap: 16px;
+  border-bottom: 1px solid rgba(31, 42, 55, 0.08);
 }
 
 .modal-eyebrow {
