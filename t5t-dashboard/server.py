@@ -369,6 +369,15 @@ class DashboardHandler(SimpleHTTPRequestHandler):
 
 
 def main():
+    if len(sys.argv) > 1 and "build" in sys.argv[1]:
+        print("Building static dashboard.json...")
+        data = compute_dashboard_data()
+        out_path = os.path.join(DATA_DIR, "dashboard.json")
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        print(f"Build complete: {out_path}")
+        return
+
     server = HTTPServer(("0.0.0.0", PORT), DashboardHandler)
     print(f"T5T Dashboard running at http://localhost:{PORT}")
     print("Press Ctrl+C to stop")
