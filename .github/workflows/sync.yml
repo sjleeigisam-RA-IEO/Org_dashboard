@@ -38,6 +38,7 @@ jobs:
         run: |
           cd t5t-dashboard
           python sync_notion.py
+          python server.py build
           
       - name: Commit and Push changes
         run: |

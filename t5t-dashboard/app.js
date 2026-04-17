@@ -74,7 +74,10 @@ function setupNav() {
 
 async function loadData() {
   try {
-    const resp = await fetch('/api/dashboard');
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const dataUrl = isLocal ? '/api/dashboard' : 'data/dashboard.json';
+
+    const resp = await fetch(dataUrl);
     dashData = await resp.json();
     document.getElementById('loading').style.display = 'none';
     document.getElementById('view-overview').classList.add('active');
