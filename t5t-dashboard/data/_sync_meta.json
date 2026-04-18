@@ -1,7 +1,7 @@
 {
-  "synced_at": "2026-04-17T23:35:58.933673",
+  "synced_at": "2026-04-18T03:58:00.354707",
   "counts": {
-    "t5t_log": "ERROR: HTTP Error 504: Gateway Timeout",
+    "t5t_log": 1057,
     "project_mission": 421,
     "project_master": 198,
     "staff_master": 246,
