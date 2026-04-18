@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, max-snippet:0, max-image-preview:none, max-video-preview:0" />
-  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
-  <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
-  <meta name="referrer" content="no-referrer" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' http://localhost:8050; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content" />
-  <meta http-equiv="Permissions-Policy" content="accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), microphone=(), payment=(), usb=()" />
-  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, max-snippet:0, max-image-preview:none, max-video-preview:0">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' http://localhost:8050; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content">
+  <meta http-equiv="Permissions-Policy" content="accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), microphone=(), payment=(), usb=()">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>T5T Dashboard — RA 부문 업무 현황</title>
   <meta name="description" content="IGIS Real Asset 부문 T5T 주간업무 대시보드">
   <link rel="stylesheet" href="style.css">
@@ -20,80 +20,127 @@
 </head>
 <body>
 
-<!-- Header -->
 <header class="header">
   <div class="header-left">
     <a href="../index.html" class="back-link" title="메인 포털로 돌아가기">🏠</a>
     <div>
       <h1>T5T Dashboard</h1>
-      <div class="header-subtitle">IGIS Real Asset 부문 · 주간 업무 현황</div>
+      <div class="header-subtitle">IGIS Real Asset 부문 주간 업무 현황</div>
     </div>
   </div>
-  <div style="display: flex; align-items: center; gap: 16px;">
-    <button id="btn-sync" style="background: white; color: var(--text); border: 1px solid var(--line); padding: 8px 16px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: var(--shadow-sm); transition: all 0.2s;">
-      <span class="icon">🔄</span> 최신 데이터 가져오기
+  <div class="header-actions">
+    <button id="btn-sync" class="header-button header-button-light">
+      <span class="icon">↻</span> 최신 데이터 가져오기
     </button>
-    <a href="https://www.notion.so/IGIS-RA-T-5-T-2568ced43c4780c294f9e7c2ed8d3af8?source=copy_link" target="_blank" style="background: var(--accent); color: white; padding: 8px 16px; border-radius: var(--radius-sm); text-decoration: none; font-size: 13px; font-weight: 700; box-shadow: var(--shadow-sm); transition: all 0.2s;">📝 T5T 작성하기 ↗</a>
+    <a href="https://www.notion.so/IGIS-RA-T-5-T-2568ced43c4780c294f9e7c2ed8d3af8?source=copy_link" target="_blank" class="header-button header-button-accent">📝 T5T 작성하기 ↗</a>
     <div class="sync-info">
       <span class="sync-dot"></span>
-      <span id="sync-time">동기화 대기중...</span>
+      <span id="sync-time">동기화 정보 확인 중...</span>
     </div>
   </div>
 </header>
 
-<!-- Navigation -->
 <div class="nav-wrapper">
   <nav class="nav-tabs">
-  <button class="nav-tab active" data-view="view-overview">
-    <span class="icon">📊</span> Executive Overview
-  </button>
-  <button class="nav-tab" data-view="view-summary">
-    <span class="icon">📑</span> T5T 요약본
-  </button>
+    <button class="nav-tab active" data-view="view-overview">
+      <span class="icon">📈</span> Executive Overview
+    </button>
+    <button class="nav-tab" data-view="view-summary">
+      <span class="icon">🗒</span> T5T 요약본
+    </button>
   </nav>
 </div>
 
-<!-- Loading -->
 <div id="loading" class="loading">
   <div class="spinner"></div>
   <div class="loading-text">Notion 데이터를 불러오는 중...</div>
 </div>
 
-<!-- VIEW 1: Executive Overview -->
 <main class="main">
-<div id="view-overview" class="view active">
-  <!-- Main Charts -->
-  <div class="chart-grid">
-    <div class="card" style="grid-column: 1 / -1;">
-      <div class="card-title">📈 업무유형 트렌드</div>
-      <div class="card-subtitle">주차별 업무유형 분포 변화</div>
-      <div class="chart-wrapper" style="height:380px;"><canvas id="chart-trend"></canvas></div>
+  <div id="view-overview" class="view active">
+    <section class="intelligence-section">
+      <div class="intelligence-head">
+        <div>
+          <div class="section-eyebrow">T5T Intelligence</div>
+          <div class="section-title">이번에 돌고 있는 이슈와 접점</div>
+          <div class="section-copy">상단에서 전체, 이번달, 이번주 단위로 이슈와 이해관계자를 읽고, hover와 클릭으로 세부 로그를 탐색합니다.</div>
+        </div>
+        <div class="period-toggle" id="intelligence-period-tabs">
+          <button class="period-toggle-btn active" type="button" data-period="all">전체</button>
+          <button class="period-toggle-btn" type="button" data-period="month">이번달</button>
+          <button class="period-toggle-btn" type="button" data-period="week">이번주</button>
+        </div>
+      </div>
+
+      <div class="intelligence-grid">
+        <article class="card intelligence-card intelligence-card-wide">
+          <div class="intelligence-card-head">
+            <div>
+              <div class="card-title">What we're dealing with this period</div>
+              <div class="card-subtitle" id="issue-period-summary">업무 요약과 비고를 기반으로 이슈 카테고리를 집계합니다.</div>
+            </div>
+            <div class="intelligence-badges">
+              <span class="badge badge-outline" id="issue-total-badge">0건 분석</span>
+              <span class="badge badge-alert" id="risk-signal-badge" hidden>리스크 증가</span>
+            </div>
+          </div>
+          <div class="issue-bars" id="issue-bars"></div>
+          <div class="keyword-chip-wrap" id="issue-keywords"></div>
+        </article>
+
+        <article class="card intelligence-card">
+          <div class="intelligence-card-head intelligence-card-head-tight">
+            <div>
+              <div class="card-title">Who we're talking to</div>
+              <div class="card-subtitle" id="stakeholder-period-summary">유형 분포를 보고 클릭하면 하위 항목으로 내려갑니다.</div>
+            </div>
+            <button id="stakeholder-back-btn" class="badge badge-outline badge-button" type="button" hidden>상위 보기</button>
+          </div>
+          <div class="donut-wrap">
+            <canvas id="stakeholder-chart"></canvas>
+            <div class="chart-center-copy" id="stakeholder-center-copy"></div>
+          </div>
+        </article>
+
+        <article class="card intelligence-card stakeholder-ranking-card">
+          <div class="card-title">Top Counterpart Signals</div>
+          <div class="card-subtitle" id="stakeholder-ranking-summary">차트와 동일 높이로 맞추고, 내부는 스크롤됩니다.</div>
+          <div class="stakeholder-list-scroll" data-drag-scroll="y">
+            <div class="stakeholder-list" id="stakeholder-list"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="chart-grid">
+      <div class="card" style="grid-column: 1 / -1;">
+        <div class="card-title">업무유형 트렌드</div>
+        <div class="card-subtitle">주차별 업무유형 분포 변화</div>
+        <div class="chart-wrapper" style="height:380px;"><canvas id="chart-trend"></canvas></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-title">프로젝트 활동 타임라인</div>
+      <div class="card-subtitle">점 크기 = 해당 주차 T5T 언급 건수, 클릭하면 프로젝트별 상세 로그를 확인합니다.</div>
+      <div style="overflow-x:auto" id="pulse-timeline"></div>
     </div>
   </div>
 
-  <div class="card" style="margin-bottom:24px">
-    <div class="card-title">🔗 프로젝트 활동 타임라인</div>
-    <div class="card-subtitle">점 크기 = 해당 주차 T5T 언급 건수 · 클릭으로 상세 보기</div>
-    <div style="overflow-x:auto" id="pulse-timeline"></div>
-  </div>
-</div>
-
-<!-- VIEW 2: T5T 요약본 -->
-<div id="view-summary" class="view">
-  <div class="card" style="padding: 0; min-height: 75vh; display: flex; flex-direction: column;">
-    <div style="padding: 20px 32px; background: rgba(255,255,255,0.9); border-bottom: 1px solid var(--line);">
-      <div style="font-weight: 800; font-size: 20px; color: var(--text);">📑 주간 업무 요약</div>
-      <div style="font-size: 13px; color: var(--muted); margin-top: 6px;">가장 최근에 작성된 T5T 요약본입니다. 원본 노션 페이지는 우측 상단의 버튼으로 볼 수 있습니다.</div>
-      <a href="https://www.notion.so/2158ced43c478334badc812339f5b19e?v=3fa8ced43c47824e8f5e889f881036f2&source=copy_link" target="_blank" style="position: absolute; top: 20px; right: 32px; background: rgba(31, 42, 55, 0.05); color: var(--text); padding: 8px 16px; border-radius: var(--radius-sm); text-decoration: none; font-size: 13px; font-weight: 700; transition: all 0.2s;">노션 원문 보기 ↗</a>
-    </div>
-    <div id="summary-content" style="padding: 40px 32px; font-size: 15px; line-height: 1.7; color: var(--text); max-width: 900px; margin: 0 auto; width: 100%;">
-      <div style="color: var(--muted); text-align: center; padding: 40px 0;">요약본 데이터를 불러오는 중입니다...</div>
+  <div id="view-summary" class="view">
+    <div class="card" style="padding: 0; min-height: 75vh; display: flex; flex-direction: column;">
+      <div class="summary-head">
+        <div style="font-weight: 800; font-size: 20px; color: var(--text);">주간 업무 요약</div>
+        <div style="font-size: 13px; color: var(--muted); margin-top: 6px;">가장 최근에 작성된 T5T 요약본입니다. 노션 원문도 함께 볼 수 있습니다.</div>
+        <a href="https://www.notion.so/2158ced43c478334badc812339f5b19e?v=3fa8ced43c47824e8f5e889f881036f2&source=copy_link" target="_blank" class="summary-link">노션 원문 보기 ↗</a>
+      </div>
+      <div id="summary-content" class="summary-content">
+        <div style="color: var(--muted); text-align: center; padding: 40px 0;">요약본 데이터를 불러오는 중입니다...</div>
+      </div>
     </div>
   </div>
-</div>
 </main>
 
-<!-- Project Detail Modal -->
 <div class="modal-backdrop" id="projectModal" hidden>
   <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
     <div class="modal-head">
@@ -105,6 +152,28 @@
     </div>
     <p class="modal-copy" id="projectModalSummary"></p>
     <div class="modal-list" id="projectModalList"></div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="insightModal" hidden>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="insightModalTitle">
+    <div class="modal-head">
+      <div>
+        <p class="modal-eyebrow">Insight Drilldown</p>
+        <h2 id="insightModalTitle">세부 항목</h2>
+      </div>
+      <button class="modal-close" id="insightModalClose" type="button" aria-label="닫기">×</button>
+    </div>
+    <p class="modal-copy" id="insightModalSummary"></p>
+    <div class="modal-toolbar">
+      <span class="modal-toolbar-label">보기 방식</span>
+      <div class="modal-segment" id="insight-group-toggle">
+        <button class="modal-segment-btn active" type="button" data-group="none">최신순</button>
+        <button class="modal-segment-btn" type="button" data-group="project">프로젝트</button>
+        <button class="modal-segment-btn" type="button" data-group="writer">작성자</button>
+      </div>
+    </div>
+    <div class="modal-list" id="insightModalList"></div>
   </div>
 </div>
 
