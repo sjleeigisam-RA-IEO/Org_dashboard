@@ -40,6 +40,10 @@
   </div>
 </header>
 
+<div class="mobile-notice-wrap">
+  <div class="mobile-notice-banner">모바일에서도 볼 수 있지만, 상세 차트와 깊은 분석은 PC 화면을 권장합니다.</div>
+</div>
+
 <div class="nav-wrapper">
   <nav class="nav-tabs">
     <button class="nav-tab active" data-view="view-overview">
@@ -71,6 +75,30 @@
           <button class="period-toggle-btn" type="button" data-period="week">이번주</button>
         </div>
       </div>
+
+      <article class="card mobile-brief-card" id="mobile-brief-card">
+        <div class="mobile-brief-head">
+          <div>
+            <div class="card-title">Quick Brief</div>
+            <div class="card-subtitle" id="mobile-brief-summary">모바일에서는 중요한 신호만 먼저 빠르게 확인합니다.</div>
+          </div>
+          <span class="badge badge-outline" id="mobile-brief-count">0건</span>
+        </div>
+        <div class="mobile-brief-grid">
+          <section class="mobile-brief-block">
+            <div class="mobile-brief-label">핵심 이슈</div>
+            <div class="mobile-pill-list" id="mobile-issue-list"></div>
+          </section>
+          <section class="mobile-brief-block">
+            <div class="mobile-brief-label">핵심 키워드</div>
+            <div class="mobile-pill-list" id="mobile-keyword-list"></div>
+          </section>
+          <section class="mobile-brief-block">
+            <div class="mobile-brief-label">주요 상대방</div>
+            <div class="mobile-mini-list" id="mobile-stakeholder-list"></div>
+          </section>
+        </div>
+      </article>
 
       <div class="intelligence-grid">
         <article class="card intelligence-card intelligence-card-wide">

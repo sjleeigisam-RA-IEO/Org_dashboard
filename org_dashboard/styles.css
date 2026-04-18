@@ -714,6 +714,19 @@ select {
   color: white;
 }
 
+.mobile-seat-notice {
+  display: none;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
 /* ═══════════════════════════════════════════════════
    SEAT LAYOUT – SVG Floor Plan
    ═══════════════════════════════════════════════════ */
@@ -1566,6 +1579,23 @@ select {
   .section-card,
   .panel {
     padding: 18px;
+  }
+
+  .view-switch {
+    width: 100%;
+    padding: 6px;
+  }
+
+  .view-tab {
+    flex: 1 1 0;
+  }
+
+  .view-tab[data-view="seat"] {
+    display: none;
+  }
+
+  .mobile-seat-notice {
+    display: block;
   }
 
   .bar-row {

@@ -11,6 +11,7 @@
   const seatView = document.getElementById("seatLayoutView");
   const switchEl = document.getElementById("viewSwitch");
   if (!orgView || !seatView || !switchEl) return;
+  const mobileMediaQuery = window.matchMedia("(max-width: 720px)");
 
   const discoveredFloorOrder = seatData.floors.map((floor) => floor.floorCode);
   const preferredFloorOrder = ["13F", "12F", "2F", "CCMM11F"];
@@ -1510,12 +1511,20 @@
 
   /* ?? View switch ?????????????????????????????????? */
   function syncView() {
+    if (mobileMediaQuery.matches) {
+      state.activeView = "org";
+    }
     const show=state.activeView==="seat";
     orgView.hidden=show;seatView.hidden=!show;
     switchEl.querySelectorAll(".view-tab").forEach(b=>b.classList.toggle("active",b.dataset.view===state.activeView));
     if(show) renderSeatView();
   }
   switchEl.querySelectorAll(".view-tab").forEach(b=>b.addEventListener("click",()=>{state.activeView=b.dataset.view||"org";syncView()}));
+  if (typeof mobileMediaQuery.addEventListener === "function") {
+    mobileMediaQuery.addEventListener("change", syncView);
+  } else if (typeof mobileMediaQuery.addListener === "function") {
+    mobileMediaQuery.addListener(syncView);
+  }
   syncView();
 })();
 

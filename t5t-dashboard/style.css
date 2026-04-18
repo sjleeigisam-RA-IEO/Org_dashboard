@@ -42,7 +42,8 @@ body {
 
 .header,
 .nav-wrapper,
-.main {
+.main,
+.mobile-notice-wrap {
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -146,6 +147,23 @@ body {
 .nav-wrapper {
   padding: 0 32px;
   margin-bottom: 24px;
+}
+
+.mobile-notice-wrap {
+  padding: 0 32px 14px;
+}
+
+.mobile-notice-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.74);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .nav-tabs,
@@ -270,6 +288,116 @@ body {
 
 .intelligence-section {
   margin-bottom: 24px;
+}
+
+.mobile-brief-card {
+  display: none;
+  margin-bottom: 16px;
+}
+
+.mobile-brief-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.mobile-brief-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.mobile-brief-block {
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(31, 42, 55, 0.08);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.mobile-brief-label {
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--accent-2);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.mobile-pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mobile-pill-button,
+.mobile-rank-button {
+  border: 1px solid rgba(31, 42, 55, 0.08);
+  background: white;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.mobile-pill-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.mobile-pill-count {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.mobile-mini-list {
+  display: grid;
+  gap: 8px;
+}
+
+.mobile-rank-button {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  text-align: left;
+}
+
+.mobile-rank-index {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(40, 75, 99, 0.08);
+  color: var(--accent-2);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.mobile-rank-name {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.mobile-rank-meta {
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.mobile-rank-count {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--accent);
 }
 
 .intelligence-head {
@@ -777,7 +905,8 @@ body {
 @media (max-width: 720px) {
   .header,
   .nav-wrapper,
-  .main {
+  .main,
+  .mobile-notice-wrap {
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -785,10 +914,25 @@ body {
   .header {
     flex-direction: column;
     align-items: start;
+    gap: 12px;
   }
 
   .header-actions {
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .mobile-notice-wrap {
+    padding-bottom: 12px;
+  }
+
+  .mobile-notice-banner {
+    display: flex;
+    width: 100%;
+    font-size: 11px;
+    line-height: 1.4;
   }
 
   .period-toggle,
@@ -803,12 +947,76 @@ body {
     text-align: center;
   }
 
+  .nav-tabs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nav-tab {
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  .header-button,
+  .sync-info {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .section-title {
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  .section-copy {
+    font-size: 13px;
+  }
+
+  .mobile-brief-card {
+    display: block;
+  }
+
   .intelligence-card-head,
   .issue-bar-head,
   .stakeholder-row,
   .modal-toolbar {
     flex-direction: column;
     align-items: start;
+  }
+
+  .intelligence-grid {
+    gap: 14px;
+  }
+
+  .intelligence-card:not(.intelligence-card-wide) {
+    display: none;
+  }
+
+  .chart-grid,
+  #pulse-timeline {
+    display: none;
+  }
+
+  .card {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .issue-bar-row {
+    padding: 12px 14px;
+  }
+
+  .keyword-chip-wrap {
+    gap: 8px;
+  }
+
+  .keyword-chip {
+    padding: 8px 12px;
+  }
+
+  .summary-content {
+    padding: 24px 18px 28px;
   }
 
   .summary-link {

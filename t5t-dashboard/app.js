@@ -219,8 +219,71 @@ function getCurrentIntelligencePeriod() {
 function renderIntelligence() {
   const period = getCurrentIntelligencePeriod();
   if (!period) return;
+  renderMobileBrief(period);
   renderIssueModule(period);
   renderStakeholderPanel(period);
+}
+
+function renderMobileBrief(period) {
+  const summary = document.getElementById("mobile-brief-summary");
+  const count = document.getElementById("mobile-brief-count");
+  const issueList = document.getElementById("mobile-issue-list");
+  const keywordList = document.getElementById("mobile-keyword-list");
+  const stakeholderList = document.getElementById("mobile-stakeholder-list");
+  if (!summary || !count || !issueList || !keywordList || !stakeholderList) return;
+
+  summary.textContent = `${period.label} 기준 핵심 이슈와 상위 접점만 빠르게 보여줍니다.`;
+  count.textContent = `${period.total_logs}건`;
+
+  const topIssues = (period.issue_categories || []).filter((item) => item.count > 0).slice(0, 3);
+  issueList.innerHTML = topIssues.length
+    ? topIssues
+        .map(
+          (item) => `
+            <button class="mobile-pill-button" type="button" data-mobile-kind="issue" data-mobile-key="${escapeAttr(item.name)}">
+              <span style="color:${COLORS.issues[item.name] || "#6B7280"}">${escapeHtml(item.name)}</span>
+              <span class="mobile-pill-count">${item.count}건</span>
+            </button>
+          `
+        )
+        .join("")
+    : '<div class="empty-state">핵심 이슈가 없습니다.</div>';
+
+  const topKeywords = (period.top_keywords || []).slice(0, 6);
+  keywordList.innerHTML = topKeywords.length
+    ? topKeywords
+        .map(
+          (item) => `
+            <button class="mobile-pill-button" type="button" data-mobile-kind="keyword" data-mobile-key="${escapeAttr(item.keyword)}">
+              <span style="color:${COLORS.issues[item.category] || "#6B7280"}">#${escapeHtml(item.keyword)}</span>
+              <span class="mobile-pill-count">${item.count}</span>
+            </button>
+          `
+        )
+        .join("")
+    : '<div class="empty-state">핵심 키워드가 없습니다.</div>';
+
+  const topStakeholders = (period.top_stakeholders || []).slice(0, 5);
+  stakeholderList.innerHTML = topStakeholders.length
+    ? topStakeholders
+        .map(
+          (item, index) => `
+            <button class="mobile-rank-button" type="button" data-mobile-kind="stakeholder" data-mobile-key="${escapeAttr(item.name)}">
+              <span class="mobile-rank-index">${index + 1}</span>
+              <span>
+                <span class="mobile-rank-name">${escapeHtml(item.name)}</span>
+                <span class="mobile-rank-meta">${escapeHtml(item.type)}</span>
+              </span>
+              <span class="mobile-rank-count">${item.count}건</span>
+            </button>
+          `
+        )
+        .join("")
+    : '<div class="empty-state">주요 상대방 데이터가 없습니다.</div>';
+
+  document.querySelectorAll("[data-mobile-kind]").forEach((button) => {
+    button.addEventListener("click", () => openInsightModal(button.dataset.mobileKind, button.dataset.mobileKey));
+  });
 }
 
 function renderIssueModule(period) {
