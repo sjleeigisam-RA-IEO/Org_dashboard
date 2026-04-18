@@ -115,7 +115,7 @@ function setupSyncButton() {
     if (!isLocal) {
       const githubUrl = "https://github.com/sjleeigisam-RA-IEO/Org_dashboard/actions/workflows/sync.yml";
       alert("배포 환경에서는 직접 동기화가 제한됩니다.\n\nGitHub Actions의 Run workflow로 최신 데이터를 갱신할 수 있습니다.");
-      window.open(githubUrl, "_blank");
+      window.open(githubUrl, "_blank", "noopener,noreferrer");
       return;
     }
 
@@ -762,7 +762,7 @@ function renderInsightModalContent() {
 function renderInsightRecord(record) {
   const projectText = record.projects?.join(", ") || "미연결";
   const detailLink = record.url
-    ? `<a class="modal-item-link" href="${escapeAttr(record.url)}" target="_blank" rel="noreferrer">원문 열기</a>`
+    ? `<a class="modal-item-link" href="${escapeAttr(record.url)}" target="_blank" rel="noopener noreferrer">원문 열기</a>`
     : "";
   const remarks = record.remarks ? `<div class="modal-item-meta" style="color:var(--muted)">비고: ${escapeHtml(record.remarks)}</div>` : "";
   return `
