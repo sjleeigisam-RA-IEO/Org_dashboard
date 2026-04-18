@@ -52,14 +52,16 @@ function setupStaticCopy() {
   const crmSummary = document.getElementById("crmModalSummary");
   const crmType = document.getElementById("crmModalType");
   const crmClose = document.getElementById("crmModalClose");
+  const crmNote = document.querySelector(".crm-placeholder-note");
 
   if (sectionTitle) sectionTitle.textContent = "Issues and Stakeholders";
   if (sectionCopy) sectionCopy.textContent = "전체, 이번달, 이번주 단위로 이슈와 이해관계자를 읽고 클릭으로 세부 로그를 탐색합니다.";
   if (rankingSummary) rankingSummary.textContent = "선택하면 해당 이해관계자의 정보를 볼 수 있습니다.";
   if (crmTitle) crmTitle.textContent = "이해관계자 정보";
-  if (crmSummary) crmSummary.textContent = "CRM 상세 정보 연동은 추후 업데이트 예정입니다.";
+  if (crmSummary) crmSummary.textContent = "추후 CRM 정보 업데이트 예정입니다.";
   if (crmType) crmType.textContent = "-";
   if (crmClose) crmClose.textContent = "×";
+  if (crmNote) crmNote.textContent = "현재는 기본 식별 정보만 표시하며, 추후 CRM 정보가 업데이트될 예정입니다.";
 }
 
 function setupNav() {
@@ -660,7 +662,11 @@ function openCrmModal(name, type = "") {
   document.getElementById("crmModalTitle").textContent = name || "이해관계자 정보";
   document.getElementById("crmModalName").textContent = name || "-";
   document.getElementById("crmModalType").textContent = type || "이해관계자";
-  document.getElementById("crmModalSummary").textContent = `${name || "해당 이해관계자"} CRM 상세 정보 연동은 추후 업데이트 예정입니다.`;
+  document.getElementById("crmModalSummary").textContent = `${name || "해당 이해관계자"}의 CRM 정보는 추후 업데이트 예정입니다.`;
+  const crmNote = document.querySelector(".crm-placeholder-note");
+  if (crmNote) {
+    crmNote.textContent = "현재는 기본 식별 정보만 표시하며, 추후 CRM 정보가 업데이트될 예정입니다.";
+  }
   document.getElementById("crmModal").hidden = false;
 }
 
