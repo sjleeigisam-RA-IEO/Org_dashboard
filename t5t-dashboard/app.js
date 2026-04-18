@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setupNav();
   setupModals();
   setupPeriodToggle();
-  setupSyncButton();
   setupStakeholderBack();
   setupInsightGrouping();
   setupDragScroll();
