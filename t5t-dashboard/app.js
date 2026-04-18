@@ -169,6 +169,9 @@ function setupDragScroll() {
     let startScrollTop = 0;
 
     container.addEventListener("pointerdown", (event) => {
+      if (event.target.closest("[data-no-drag='true']")) {
+        return;
+      }
       isDragging = true;
       startY = event.clientY;
       startScrollTop = container.scrollTop;
@@ -492,7 +495,7 @@ function renderStakeholderList(period) {
 
   container.innerHTML = items
     .map((item) => `
-      <div class="stakeholder-row" data-key="${escapeAttr(item.name)}" title="${escapeAttr(`${item.name}: ${item.count}건`)}">
+      <div class="stakeholder-row" data-key="${escapeAttr(item.name)}" data-no-drag="true" title="${escapeAttr(`${item.name}: ${item.count}건`)}">
         <div class="stakeholder-main">
           <div class="stakeholder-name">${escapeHtml(item.name)}</div>
           <div class="stakeholder-type">${escapeHtml(item.type)}</div>
