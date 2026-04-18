@@ -33,6 +33,7 @@ let uiState = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  setupStaticCopy();
   setupNav();
   setupModals();
   setupPeriodToggle();
@@ -42,6 +43,24 @@ document.addEventListener("DOMContentLoaded", () => {
   setupDragScroll();
   loadData();
 });
+
+function setupStaticCopy() {
+  const sectionTitle = document.querySelector(".section-title");
+  const sectionCopy = document.querySelector(".section-copy");
+  const rankingSummary = document.getElementById("stakeholder-ranking-summary");
+  const crmTitle = document.getElementById("crmModalTitle");
+  const crmSummary = document.getElementById("crmModalSummary");
+  const crmType = document.getElementById("crmModalType");
+  const crmClose = document.getElementById("crmModalClose");
+
+  if (sectionTitle) sectionTitle.textContent = "Issues and Stakeholders";
+  if (sectionCopy) sectionCopy.textContent = "전체, 이번달, 이번주 단위로 이슈와 이해관계자를 읽고 클릭으로 세부 로그를 탐색합니다.";
+  if (rankingSummary) rankingSummary.textContent = "선택하면 해당 이해관계자의 정보를 볼 수 있습니다.";
+  if (crmTitle) crmTitle.textContent = "이해관계자 정보";
+  if (crmSummary) crmSummary.textContent = "CRM 상세 정보 연동은 추후 업데이트 예정입니다.";
+  if (crmType) crmType.textContent = "-";
+  if (crmClose) crmClose.textContent = "×";
+}
 
 function setupNav() {
   document.querySelectorAll(".nav-tab").forEach((tab) => {
@@ -57,6 +76,7 @@ function setupNav() {
 function setupModals() {
   bindModalClose("projectModal", "projectModalClose");
   bindModalClose("insightModal", "insightModalClose");
+  bindModalClose("crmModal", "crmModalClose");
 }
 
 function bindModalClose(backdropId, closeButtonId) {
@@ -249,7 +269,7 @@ function renderMobileBrief(period) {
         .join("")
     : '<div class="empty-state">핵심 이슈가 없습니다.</div>';
 
-  const topKeywords = (period.top_keywords || []).slice(0, 6);
+  const topKeywords = getDisplayKeywords(period).slice(0, 6);
   keywordList.innerHTML = topKeywords.length
     ? topKeywords
         .map(
@@ -268,7 +288,7 @@ function renderMobileBrief(period) {
     ? topStakeholders
         .map(
           (item, index) => `
-            <button class="mobile-rank-button" type="button" data-mobile-kind="stakeholder" data-mobile-key="${escapeAttr(item.name)}">
+            <button class="mobile-rank-button" type="button" data-mobile-kind="crm" data-mobile-key="${escapeAttr(item.name)}" data-mobile-type="${escapeAttr(item.type)}">
               <span class="mobile-rank-index">${index + 1}</span>
               <span>
                 <span class="mobile-rank-name">${escapeHtml(item.name)}</span>
@@ -282,7 +302,13 @@ function renderMobileBrief(period) {
     : '<div class="empty-state">주요 상대방 데이터가 없습니다.</div>';
 
   document.querySelectorAll("[data-mobile-kind]").forEach((button) => {
-    button.addEventListener("click", () => openInsightModal(button.dataset.mobileKind, button.dataset.mobileKey));
+    button.addEventListener("click", () => {
+      if (button.dataset.mobileKind === "crm") {
+        openCrmModal(button.dataset.mobileKey, button.dataset.mobileType);
+        return;
+      }
+      openInsightModal(button.dataset.mobileKind, button.dataset.mobileKey);
+    });
   });
 }
 
@@ -292,23 +318,15 @@ function renderIssueModule(period) {
   const riskBadge = document.getElementById("risk-signal-badge");
   const issueBars = document.getElementById("issue-bars");
   const keywordWrap = document.getElementById("issue-keywords");
+  if (riskBadge) riskBadge.remove();
 
-  issueSummary.textContent = `${period.label} 기준으로 이슈를 집계했습니다.${period.compare_label ? ` ${period.compare_label} 대비 증감도 함께 봅니다.` : ""}`;
+  issueSummary.textContent = `${period.label} 기준으로 이슈를 집계했습니다.`;
   issueTotalBadge.textContent = `${period.total_logs}건 분석`;
-
-  if ((period.risk_signal?.delta || 0) > 0) {
-    riskBadge.hidden = false;
-    riskBadge.textContent = `리스크 증가 +${period.risk_signal.delta}`;
-  } else {
-    riskBadge.hidden = true;
-  }
 
   const maxCount = Math.max(...period.issue_categories.map((item) => item.count), 1);
   issueBars.innerHTML = period.issue_categories
     .filter((item) => item.count > 0)
     .map((item) => {
-      const deltaClass = item.delta > 0 ? "up" : item.delta < 0 ? "down" : "flat";
-      const deltaLabel = item.delta > 0 ? `+${item.delta}` : `${item.delta}`;
       return `
         <div class="issue-bar-row" data-kind="issue" data-key="${escapeAttr(item.name)}" title="${escapeAttr(`${item.name}: ${item.count}건`)}">
           <div class="issue-bar-head">
@@ -317,7 +335,6 @@ function renderIssueModule(period) {
               <span class="issue-name">${escapeHtml(item.name)}</span>
             </div>
             <div class="issue-meta">
-              <span class="delta-pill ${deltaClass}">${escapeHtml(deltaLabel)}</span>
               <span class="issue-count">${item.count}건</span>
             </div>
           </div>
@@ -333,12 +350,13 @@ function renderIssueModule(period) {
     element.addEventListener("click", () => openInsightModal("issue", element.dataset.key));
   });
 
-  if (!period.top_keywords.length) {
+  const displayKeywords = getDisplayKeywords(period);
+  if (!displayKeywords.length) {
     keywordWrap.innerHTML = '<div class="empty-state">표시할 키워드가 없습니다.</div>';
     return;
   }
 
-  keywordWrap.innerHTML = period.top_keywords
+  keywordWrap.innerHTML = displayKeywords
     .map((item) => `
       <button class="keyword-chip" type="button" data-kind="keyword" data-key="${escapeAttr(item.keyword)}" title="${escapeAttr(`${item.keyword} · ${item.count}건 · ${item.source}`)}">
         <strong style="color:${COLORS.issues[item.category] || "#6B7280"}">#${escapeHtml(item.keyword)}</strong>
@@ -462,7 +480,7 @@ function renderStakeholderList(period) {
     : (period.top_stakeholders || []).filter((item) => item.type === uiState.stakeholderDrilldown);
 
   summary.textContent = !uiState.stakeholderDrilldown
-    ? "차트와 같은 높이를 유지하고, 내부만 스크롤됩니다."
+    ? "선택하면 해당 이해관계자의 정보를 볼 수 있습니다."
     : `${uiState.stakeholderDrilldown} 안의 세부 이해관계자만 추렸습니다.`;
 
   if (!items.length) {
@@ -483,7 +501,8 @@ function renderStakeholderList(period) {
     .join("");
 
   container.querySelectorAll(".stakeholder-row").forEach((element) => {
-    element.addEventListener("click", () => openInsightModal("stakeholder", element.dataset.key));
+    const stakeholder = items.find((item) => item.name === element.dataset.key);
+    element.addEventListener("click", () => openCrmModal(element.dataset.key, stakeholder?.type));
   });
 }
 
@@ -637,6 +656,27 @@ function openInsightModal(kind, key) {
   document.getElementById("insightModal").hidden = false;
 }
 
+function openCrmModal(name, type = "") {
+  document.getElementById("crmModalTitle").textContent = name || "이해관계자 정보";
+  document.getElementById("crmModalName").textContent = name || "-";
+  document.getElementById("crmModalType").textContent = type || "이해관계자";
+  document.getElementById("crmModalSummary").textContent = `${name || "해당 이해관계자"} CRM 상세 정보 연동은 추후 업데이트 예정입니다.`;
+  document.getElementById("crmModal").hidden = false;
+}
+
+function getDisplayKeywords(period) {
+  return (period.top_keywords || []).filter((item) => isValidDisplayKeyword(item.keyword));
+}
+
+function isValidDisplayKeyword(keyword) {
+  const value = String(keyword || "").trim();
+  if (!value) return false;
+  if (/^[0-9a-f]{8}-[0-9a-f-]{20,}$/i.test(value)) return false;
+  if (/\d/.test(value) && (value.match(/-/g) || []).length >= 2) return false;
+  if (value.length >= 18 && /^[A-Za-z0-9-]+$/.test(value)) return false;
+  return true;
+}
+
 function getInsightDetails() {
   const period = getCurrentIntelligencePeriod();
   if (!period) return { title: "", summary: "", records: [] };
@@ -651,7 +691,7 @@ function getInsightDetails() {
     };
   }
   if (uiState.insight.kind === "keyword") {
-    const keyword = (period.top_keywords || []).find((item) => item.keyword === key);
+    const keyword = getDisplayKeywords(period).find((item) => item.keyword === key);
     return {
       title: `#${key}`,
       summary: `${period.label} 기준 ${keyword?.count || 0}건이며, 규칙 또는 자동 추론으로 분류된 키워드입니다.`,

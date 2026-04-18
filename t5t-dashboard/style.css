@@ -787,6 +787,10 @@ body {
   box-shadow: 0 28px 70px rgba(18, 30, 44, 0.2);
 }
 
+.modal-panel-compact {
+  width: min(560px, 100%);
+}
+
 .modal-head {
   position: sticky;
   top: -24px;
@@ -882,6 +886,34 @@ body {
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
+}
+
+.crm-placeholder {
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.crm-placeholder-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--accent-2);
+}
+
+.crm-placeholder-type {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.crm-placeholder-note {
+  margin-top: 14px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
 }
 
 @media (max-width: 1024px) {

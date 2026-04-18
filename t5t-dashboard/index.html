@@ -66,8 +66,8 @@
       <div class="intelligence-head">
         <div>
           <div class="section-eyebrow">T5T Intelligence</div>
-          <div class="section-title">이번에 돌고 있는 이슈와 접점</div>
-          <div class="section-copy">상단에서 전체, 이번달, 이번주 단위로 이슈와 이해관계자를 읽고, hover와 클릭으로 세부 로그를 탐색합니다.</div>
+          <div class="section-title">Issues and Stakeholders</div>
+          <div class="section-copy">??, ???, ??? ??? ??? ?????? ?? ???? ?? ??? ?????.</div>
         </div>
         <div class="period-toggle" id="intelligence-period-tabs">
           <button class="period-toggle-btn active" type="button" data-period="all">전체</button>
@@ -109,7 +109,6 @@
             </div>
             <div class="intelligence-badges">
               <span class="badge badge-outline" id="issue-total-badge">0건 분석</span>
-              <span class="badge badge-alert" id="risk-signal-badge" hidden>리스크 증가</span>
             </div>
           </div>
           <div class="issue-bars" id="issue-bars"></div>
@@ -132,7 +131,7 @@
 
         <article class="card intelligence-card stakeholder-ranking-card">
           <div class="card-title">Top Counterpart Signals</div>
-          <div class="card-subtitle" id="stakeholder-ranking-summary">차트와 동일 높이로 맞추고, 내부는 스크롤됩니다.</div>
+          <div class="card-subtitle" id="stakeholder-ranking-summary">???? ?? ?????? ??? ? ? ????.</div>
           <div class="stakeholder-list-scroll" data-drag-scroll="y">
             <div class="stakeholder-list" id="stakeholder-list"></div>
           </div>
@@ -202,6 +201,24 @@
       </div>
     </div>
     <div class="modal-list" id="insightModalList"></div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="crmModal" hidden>
+  <div class="modal-panel modal-panel-compact" role="dialog" aria-modal="true" aria-labelledby="crmModalTitle">
+    <div class="modal-head">
+      <div>
+        <p class="modal-eyebrow">Counterpart CRM</p>
+        <h2 id="crmModalTitle">????? ??</h2>
+      </div>
+      <button class="modal-close" id="crmModalClose" type="button" aria-label="??">?</button>
+    </div>
+    <p class="modal-copy" id="crmModalSummary">CRM ?? ?? ??? ?? ???? ?????.</p>
+    <div class="crm-placeholder">
+      <div class="crm-placeholder-name" id="crmModalName">-</div>
+      <div class="crm-placeholder-type" id="crmModalType">-</div>
+      <div class="crm-placeholder-note">??? ?? ?? ??? ????, ?? CRM ??? ?? ???? ?????.</div>
+    </div>
   </div>
 </div>
 

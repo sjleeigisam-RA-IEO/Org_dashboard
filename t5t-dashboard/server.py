@@ -236,6 +236,12 @@ def is_valid_dynamic_keyword(token: str, rules: dict[str, Any], stopwords: set[s
         return False
     if token in TASK_TYPE_ORDER or token in ISSUE_CATEGORY_ORDER or token in STAKEHOLDER_TYPE_ORDER:
         return False
+    if re.fullmatch(r"[0-9a-f]{8}-[0-9a-f-]{20,}", lowered):
+        return False
+    if re.search(r"\d", token) and token.count("-") >= 2:
+        return False
+    if len(token) >= 18 and re.fullmatch(r"[A-Za-z0-9-]+", token):
+        return False
     if token in generic_keywords:
         return False
     if re.fullmatch(r"[A-Za-z]{2,3}", token) and token.upper() not in {"PF", "IR", "LOC", "MOU"}:
@@ -514,7 +520,12 @@ def build_intelligence_data(
     enriched_entries = []
     for entry in entries:
         project_ids = (entry.get("Project & Mission") or []) + (entry.get("신규 프로젝트") or [])
-        project_names = [project_lookup.get(project_id, project_id) for project_id in project_ids if project_lookup.get(project_id, project_id)]
+        project_names = []
+        for project_id in project_ids:
+            project_name = project_lookup.get(project_id)
+            if not project_name or project_name == "Untitled":
+                continue
+            project_names.append(project_name)
         entry = dict(entry)
         entry["project_names"] = project_names
         work_date = parse_date(entry.get("업무일자"))
