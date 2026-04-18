@@ -1,65 +1,113 @@
-"""Notion relation이 가리키는 실제 페이지를 조회해서 매핑 테이블 구축"""
-import json, urllib.request, sys, time
-sys.stdout.reconfigure(encoding='utf-8')
+"""
+Resolve Notion relation page IDs into display names for dashboard grouping.
+"""
 
-CONFIG_PATH = "../notion_config.json"
-with open(CONFIG_PATH, "r", encoding="utf-8") as f:
-    config = json.load(f)
+from __future__ import annotations
+
+import json
+import sys
+import time
+import urllib.request
+from pathlib import Path
+
+sys.stdout.reconfigure(encoding="utf-8")
+
+BASE_DIR = Path(__file__).resolve().parent
+CONFIG_PATH = BASE_DIR.parent / "notion_config.json"
+DATA_DIR = BASE_DIR / "data"
+T5T_LOG_PATH = DATA_DIR / "t5t_log.json"
+RELATION_MAP_PATH = DATA_DIR / "relation_map.json"
+
+with CONFIG_PATH.open("r", encoding="utf-8") as file:
+    config = json.load(file)
 
 API_KEY = config["NOTION_API_KEY"]
 HEADERS = {
     "Authorization": f"Bearer {API_KEY}",
     "Content-Type": "application/json",
-    "Notion-Version": "2022-06-28"
+    "Notion-Version": "2022-06-28",
 }
 
-def get_page_title(page_id):
-    url = f"https://api.notion.com/v1/pages/{page_id}"
-    req = urllib.request.Request(url, headers=HEADERS, method="GET")
+TITLE_CANDIDATES = [
+    "Project & Mission 이름",
+    "프로젝트명",
+    "업무명",
+    "이름",
+    "Name",
+    "title",
+]
+
+
+def notion_get_json(endpoint: str) -> dict:
+    request = urllib.request.Request(f"https://api.notion.com/v1/{endpoint}", headers=HEADERS, method="GET")
+    with urllib.request.urlopen(request) as response:
+        return json.loads(response.read().decode("utf-8"))
+
+
+def extract_title_from_property(prop: dict) -> str | None:
+    prop_type = prop.get("type")
+    if prop_type == "title":
+        return "".join(item.get("plain_text", "") for item in prop.get("title", [])) or None
+    if prop_type == "rich_text":
+        return "".join(item.get("plain_text", "") for item in prop.get("rich_text", [])) or None
+    return None
+
+
+def get_page_title(page_id: str) -> str:
     try:
-        with urllib.request.urlopen(req) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-        props = data.get("properties", {})
-        # Try common title fields
-        for key in ["Project & Mission 이름", "프로젝트명", "title", "Name", "이름"]:
-            if key in props:
-                p = props[key]
-                if p.get("type") == "title":
-                    texts = p.get("title", [])
-                    return "".join([t["text"]["content"] for t in texts if "text" in t])
-        return "Untitled"
-    except Exception as e:
-        return f"Error:{e}"
+        page = notion_get_json(f"pages/{page_id}")
+    except Exception as exc:  # pragma: no cover - network failure path
+        return f"Error:{exc}"
 
-# Load T5T data
-with open("data/t5t_log.json", "r", encoding="utf-8") as f:
-    t5t = json.load(f)
+    properties = page.get("properties", {})
 
-# Collect unique relation IDs
-pm_rel_ids = set()
-new_proj_ids = set()
-for e in t5t:
-    for r in (e.get("Project & Mission", []) or []):
-        pm_rel_ids.add(r)
-    for r in (e.get("신규 프로젝트", []) or []):
-        new_proj_ids.add(r)
+    for key in TITLE_CANDIDATES:
+        if key in properties:
+            title = extract_title_from_property(properties[key])
+            if title:
+                return title
 
-print(f"Unique PM relation IDs to resolve: {len(pm_rel_ids)}")
-print(f"Unique 신규프로젝트 relation IDs to resolve: {len(new_proj_ids)}")
+    for prop in properties.values():
+        title = extract_title_from_property(prop)
+        if title:
+            return title
 
-# Resolve all IDs
-relation_map = {}
-all_ids = pm_rel_ids | new_proj_ids
-total = len(all_ids)
+    return "Untitled"
 
-for i, rid in enumerate(all_ids):
-    title = get_page_title(rid)
-    relation_map[rid] = title
-    print(f"  [{i+1}/{total}] {rid[:12]}... -> {title}")
-    time.sleep(0.35)  # Rate limit: ~3 req/s
 
-# Save mapping
-with open("data/relation_map.json", "w", encoding="utf-8") as f:
-    json.dump(relation_map, f, ensure_ascii=False, indent=2)
+def main() -> None:
+    with T5T_LOG_PATH.open("r", encoding="utf-8") as file:
+        t5t_logs = json.load(file)
 
-print(f"\nSaved {len(relation_map)} mappings to data/relation_map.json")
+    relation_ids: set[str] = set()
+    for entry in t5t_logs:
+        relation_ids.update(entry.get("Project & Mission", []) or [])
+        relation_ids.update(entry.get("신규 프로젝트", []) or [])
+
+    existing_map = {}
+    if RELATION_MAP_PATH.exists():
+        with RELATION_MAP_PATH.open("r", encoding="utf-8") as file:
+            existing_map = json.load(file)
+
+    relation_map = dict(existing_map)
+    total = len(relation_ids)
+    print(f"Resolving relation IDs: {total}")
+
+    for index, relation_id in enumerate(sorted(relation_ids), start=1):
+        current = relation_map.get(relation_id)
+        if current and current != "Untitled" and not str(current).startswith("Error:"):
+            continue
+
+        title = get_page_title(relation_id)
+        relation_map[relation_id] = title
+        print(f"[{index}/{total}] {relation_id[:12]}... -> {title}")
+        time.sleep(0.2)
+
+    with RELATION_MAP_PATH.open("w", encoding="utf-8") as file:
+        json.dump(relation_map, file, ensure_ascii=False, indent=2)
+
+    print(f"Saved {len(relation_map)} mappings to {RELATION_MAP_PATH}")
+
+
+if __name__ == "__main__":
+    main()

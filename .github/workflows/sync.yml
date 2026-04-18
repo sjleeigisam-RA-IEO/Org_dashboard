@@ -48,6 +48,7 @@ jobs:
           git reset --hard origin/main
           cd t5t-dashboard
           python sync_notion.py
+          python resolve_relations.py
           python server.py build
           
       - name: Commit and Push changes
