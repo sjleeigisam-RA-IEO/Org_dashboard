@@ -43,13 +43,18 @@ jobs:
           
       - name: Run sync script
         run: |
+          echo "[1/5] Refreshing repo state"
           git fetch origin main
           git checkout main
           git reset --hard origin/main
           cd t5t-dashboard
+          echo "[2/5] Syncing Notion data"
           python sync_notion.py
+          echo "[3/5] Resolving relation map"
           python resolve_relations.py
+          echo "[4/5] Backfilling classification tokens"
           python backfill_classification_tokens.py --apply
+          echo "[5/5] Re-syncing and rebuilding dashboard"
           python sync_notion.py
           python server.py build
           

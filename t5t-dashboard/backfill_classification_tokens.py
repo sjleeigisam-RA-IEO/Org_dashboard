@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 import re
 import sys
+import time
 import urllib.request
 from collections import Counter
 from datetime import datetime
@@ -24,6 +25,7 @@ DATA_DIR = BASE_DIR / "data"
 CONFIG_PATH = BASE_DIR.parent / "notion_config.json"
 RULES_PATH = BASE_DIR / "intelligence_rules.json"
 OUTPUT_PATH = DATA_DIR / "classification_token_candidates.json"
+HTTP_TIMEOUT_SECONDS = 60
 
 T5T_DB_ID = "60881ecb-1653-4bb3-b18d-479cb2603a4d"
 
@@ -261,7 +263,7 @@ def notion_request(api_key: str, endpoint: str, method: str = "GET", data: dict[
     }
     req_body = json.dumps(data).encode("utf-8") if data is not None else None
     request = urllib.request.Request(f"https://api.notion.com/v1/{endpoint}", headers=headers, data=req_body, method=method)
-    with urllib.request.urlopen(request) as response:
+    with urllib.request.urlopen(request, timeout=HTTP_TIMEOUT_SECONDS) as response:
         return json.loads(response.read().decode("utf-8"))
 
 
@@ -309,10 +311,30 @@ def update_notion_fields(api_key: str, schema: dict[str, Any], records: list[dic
     if not summary_field_name:
         raise RuntimeError("Notion DB에 classification_summary 계열 컬럼이 없습니다.")
 
-    token_property_type = schema["properties"][token_field_name]["type"]
-    summary_property_type = schema["properties"][summary_field_name]["type"]
-    updated = 0
+    token_schema = schema["properties"][token_field_name]
+    summary_schema = schema["properties"][summary_field_name]
+    token_property_type = token_schema["type"]
+    summary_property_type = summary_schema["type"]
+    records_to_update = []
     for record in records:
+        current_token = stringify(record.get("current_token_value"))
+        current_summary = stringify(record.get("current_summary_value"))
+        next_token = record["token_string"]
+        next_summary = record["classification_summary"]
+        if current_token == next_token and current_summary == next_summary:
+            continue
+        records_to_update.append(record)
+
+    total = len(records)
+    pending = len(records_to_update)
+    print(f"Backfill candidates: total={total}, changed={pending}, skipped={total - pending}")
+
+    if not records_to_update:
+        return 0, token_field_name, summary_field_name
+
+    updated = 0
+    started_at = time.time()
+    for index, record in enumerate(records_to_update, start=1):
         token_string = record["token_string"]
         summary_text = record["classification_summary"]
         if not token_string and not summary_text:
@@ -325,6 +347,12 @@ def update_notion_fields(api_key: str, schema: dict[str, Any], records: list[dic
         payload = {"properties": properties}
         notion_request(api_key, f"pages/{record['id']}", method="PATCH", data=payload)
         updated += 1
+        if index == 1 or index % 50 == 0 or index == pending:
+            elapsed = round(time.time() - started_at, 1)
+            print(
+                f"Backfill progress: {index}/{pending} updated "
+                f"(elapsed {elapsed}s)"
+            )
     return updated, token_field_name, summary_field_name
 
 
@@ -363,9 +391,11 @@ def main() -> None:
                 "log_name": entry.get(FIELD_LOG_NAME, ""),
                 "summary": entry.get(FIELD_SOURCE_SUMMARY, ""),
                 "classification_summary": classification_summary,
+                "current_summary_value": entry.get(FIELD_CLASS_SUMMARY_ASCII) or entry.get(FIELD_CLASS_SUMMARY),
                 "projects": normalize_project_names(entry, project_lookup),
                 "tokens": tokens,
                 "token_string": token_string,
+                "current_token_value": next((entry.get(field_name) for field_name in TOKEN_FIELD_CANDIDATES if entry.get(field_name) not in (None, "", [])), ""),
             }
         )
 
@@ -379,6 +409,7 @@ def main() -> None:
         json.dump(output, file, ensure_ascii=False, indent=2)
 
     print(f"Saved token candidates: {OUTPUT_PATH}")
+    print(f"Prepared {len(records)} token records for backfill")
 
     if apply_mode:
         schema = fetch_database_schema(api_key)
