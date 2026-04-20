@@ -6,6 +6,9 @@
 !index.html
 !t5t-dashboard/**
 !org_dashboard/**
+!automation_runtime/
+!automation_runtime/*.py
+!automation_runtime/*.ps1
 !.gitignore
 !.github/**
 !style.css

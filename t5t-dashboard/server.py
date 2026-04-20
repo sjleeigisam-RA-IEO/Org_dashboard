@@ -22,6 +22,7 @@ BASE_DIR = os.path.dirname(__file__)
 DATA_DIR = os.path.join(BASE_DIR, "data")
 STATIC_DIR = BASE_DIR
 RULES_PATH = os.path.join(BASE_DIR, "intelligence_rules.json")
+CLUSTER_RULES_PATH = os.path.join(BASE_DIR, "token_cluster_rules.json")
 PORT = 8050
 
 TASK_TYPE_ORDER = ["운용/관리", "신규검토", "프로젝트", "펀드·투자자", "리스크·법무", "내부·기타"]
@@ -34,6 +35,27 @@ STAKEHOLDER_TYPE_ORDER = [
     "주간사/자문",
     "공공/행정기관",
     "해외 파트너",
+]
+SUMMARY_FIELD_ALIASES = [
+    "classification_summary",
+    "분류 요약",
+    "분류요약",
+    "구조화 요약",
+    "구조화요약",
+    "원문 요약",
+]
+TOKEN_FIELD_ALIASES = [
+    "classification_tokens",
+    "분류 토큰",
+    "분류토큰",
+    "요약 토큰",
+    "요약토큰",
+    "해시태그 토큰",
+    "해시태그",
+    "주요 키워드",
+    "주요키워드",
+    "키워드",
+    "태그",
 ]
 
 DEFAULT_RULES = {
@@ -113,6 +135,14 @@ def load_data(name: str) -> list[dict[str, Any]]:
         return json.load(file)
 
 
+def load_cluster_rules() -> list[dict[str, Any]]:
+    if not os.path.exists(CLUSTER_RULES_PATH):
+        return []
+    with open(CLUSTER_RULES_PATH, "r", encoding="utf-8") as file:
+        payload = json.load(file)
+    return payload.get("clusters", [])
+
+
 def load_sync_meta() -> dict[str, Any] | None:
     path = os.path.join(DATA_DIR, "_sync_meta.json")
     if not os.path.exists(path):
@@ -160,14 +190,108 @@ def previous_month_anchor(anchor_date):
     return year, month
 
 
+def get_first_present(entry: dict[str, Any], field_names: list[str]) -> Any:
+    for field_name in field_names:
+        value = entry.get(field_name)
+        if value not in (None, "", []):
+            return value
+    return None
+
+
+def stringify_value(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, list):
+        return " ".join(stringify_value(item) for item in value if stringify_value(item))
+    return str(value).strip()
+
+
+def normalize_manual_token(raw_token: str) -> str:
+    token = raw_token.strip().lstrip("#").strip()
+    token = re.sub(r"^[^\w가-힣]+|[^\w가-힣&.+/-]+$", "", token)
+    return token
+
+
+def normalize_cluster_key(value: str) -> str:
+    return re.sub(r"[^0-9a-z가-힣]+", "", (value or "").lower())
+
+
+def extract_manual_tokens(entry: dict[str, Any]) -> list[str]:
+    raw_value = get_first_present(entry, TOKEN_FIELD_ALIASES)
+    if raw_value in (None, "", []):
+        return []
+
+    raw_text = stringify_value(raw_value)
+    candidates = re.split(r"[\n,;/|]", raw_text)
+    candidates.extend(re.findall(r"#([A-Za-z0-9가-힣&.+/-]{2,})", raw_text))
+
+    seen = set()
+    tokens = []
+    for candidate in candidates:
+        token = normalize_manual_token(candidate)
+        if len(token) < 2:
+            continue
+        lowered = token.lower()
+        if lowered in seen:
+            continue
+        seen.add(lowered)
+        tokens.append(token)
+    return tokens
+
+
+def extract_keyword_clusters(
+    entry: dict[str, Any],
+    keywords: list[dict[str, Any]],
+    cluster_rules: list[dict[str, Any]],
+) -> list[str]:
+    if not cluster_rules:
+        return []
+
+    candidates = set()
+    candidates.update(extract_manual_tokens(entry))
+    candidates.update(entry.get("project_names", []) or [])
+    candidates.update(keyword["keyword"] for keyword in keywords)
+    normalized_candidates = [normalize_cluster_key(candidate) for candidate in candidates if candidate]
+
+    matched = []
+    seen = set()
+    for cluster in cluster_rules:
+        name = cluster.get("name")
+        tokens = cluster.get("tokens", [])
+        if not name or not tokens:
+            continue
+        normalized_tokens = [normalize_cluster_key(token) for token in tokens if token]
+        if any(
+            normalized_token and (
+                normalized_token in candidate or candidate in normalized_token
+            )
+            for normalized_token in normalized_tokens
+            for candidate in normalized_candidates
+            if candidate
+        ):
+            lowered_name = name.lower()
+            if lowered_name not in seen:
+                seen.add(lowered_name)
+                matched.append(name)
+    return matched
+
+
+def get_structured_summary(entry: dict[str, Any]) -> str:
+    value = get_first_present(entry, SUMMARY_FIELD_ALIASES)
+    return stringify_value(value)
+
+
 def build_entry_text(entry: dict[str, Any]) -> str:
+    structured_summary = get_structured_summary(entry)
+    manual_tokens = extract_manual_tokens(entry)
     return " ".join(
         part.strip()
         for part in [
-            entry.get("원문 요약", "") or "",
+            structured_summary,
             entry.get("비고", "") or "",
             entry.get("업무 로그명", "") or "",
             " ".join(entry.get("project_names", []) or []),
+            " ".join(f"#{token}" for token in manual_tokens),
         ]
         if part
     )
@@ -206,13 +330,27 @@ def get_explicit_keywords(explicit_lookup: dict[str, Any]) -> list[dict[str, str
 
 
 def assign_categories(entry: dict[str, Any], rules: dict[str, Any], explicit_lookup: dict[str, Any]) -> list[str]:
-    text = build_entry_text(entry).lower()
-    categories = []
+    full_text = build_entry_text(entry).lower()
+    manual_text = " ".join(extract_manual_tokens(entry)).lower()
+    category_scores = defaultdict(int)
+
     for category in ISSUE_CATEGORY_ORDER:
         for keyword in rules["issue_categories"].get(category, []):
-            if keyword.lower() in text:
-                categories.append(category)
-                break
+            lowered_keyword = keyword.lower()
+            if lowered_keyword in full_text:
+                category_scores[category] += 1
+            if lowered_keyword in manual_text:
+                category_scores[category] += 2
+
+    categories = [
+        category
+        for category, score in sorted(
+            category_scores.items(),
+            key=lambda item: (-item[1], ISSUE_CATEGORY_ORDER.index(item[0])),
+        )
+        if score > 0
+    ]
+
     if not categories:
         fallback = rules["issue_fallbacks"].get(entry.get("업무유형"))
         if fallback:
@@ -307,6 +445,31 @@ def extract_issue_keywords(
             seen.add(lowered_keyword)
             found.append({"keyword": explicit["keyword"], "category": explicit["category"], "source": "rule"})
 
+    for token in extract_manual_tokens(entry):
+        lowered_token = token.lower()
+        if lowered_token in seen:
+            continue
+        if lowered_token in explicit_lookup:
+            seen.add(lowered_token)
+            explicit = explicit_lookup[lowered_token]
+            found.append({"keyword": explicit["keyword"], "category": explicit["category"], "source": "manual"})
+            continue
+        inferred = dynamic_keywords.get(lowered_token)
+        if inferred:
+            seen.add(lowered_token)
+            found.append(
+                {
+                    "keyword": inferred["keyword"],
+                    "category": inferred["category"],
+                    "source": "manual",
+                    "confidence": inferred.get("confidence"),
+                }
+            )
+            continue
+        if categories:
+            seen.add(lowered_token)
+            found.append({"keyword": token, "category": categories[0], "source": "manual"})
+
     stopwords = {word.lower() for word in rules["stopwords"]}
     for token in tokenize_keywords(text, stopwords):
         lowered_token = token.lower()
@@ -347,6 +510,8 @@ def make_detail_record(entry: dict[str, Any]) -> dict[str, Any]:
     return {
         "id": entry.get("_id"),
         "summary": entry.get("원문 요약", ""),
+        "structured_summary": get_structured_summary(entry),
+        "classification_tokens": extract_manual_tokens(entry),
         "remarks": entry.get("비고", ""),
         "writer": entry.get("작성자", "Unknown"),
         "line": entry.get("라인", "Unknown"),
@@ -371,6 +536,7 @@ def build_period_snapshot(
     rules: dict[str, Any],
     explicit_lookup: dict[str, str],
     dynamic_keywords: dict[str, dict[str, Any]],
+    cluster_rules: list[dict[str, Any]],
     compare_entries: list[dict[str, Any]] | None = None,
     compare_label: str | None = None,
 ) -> dict[str, Any]:
@@ -381,9 +547,11 @@ def build_period_snapshot(
     stakeholder_type_counts = defaultdict(int)
     stakeholder_name_counts = defaultdict(int)
     stakeholder_name_types = {}
+    cluster_counts = defaultdict(int)
     details = {
         "issues": defaultdict(list),
         "keywords": defaultdict(list),
+        "keyword_clusters": defaultdict(list),
         "stakeholder_types": defaultdict(list),
         "stakeholders": defaultdict(list),
     }
@@ -394,6 +562,8 @@ def build_period_snapshot(
         detail["issue_categories"] = categories
         keywords = extract_issue_keywords(entry, categories, rules, explicit_lookup, dynamic_keywords)
         detail["keywords"] = [keyword["keyword"] for keyword in keywords]
+        clusters = extract_keyword_clusters(entry, keywords, cluster_rules)
+        detail["keyword_clusters"] = clusters
 
         for category in categories:
             issue_counts[category] += 1
@@ -407,6 +577,10 @@ def build_period_snapshot(
                 "confidence": keyword.get("confidence"),
             }
             details["keywords"][keyword["keyword"]].append(detail)
+
+        for cluster in clusters:
+            cluster_counts[cluster] += 1
+            details["keyword_clusters"][cluster].append(detail)
 
         stakeholders = extract_stakeholders(entry, rules)
         detail["stakeholders"] = stakeholders
@@ -441,6 +615,11 @@ def build_period_snapshot(
         for keyword, count in sorted(keyword_counts.items(), key=lambda item: (-item[1], item[0]))[:16]
     ]
 
+    top_keyword_clusters = [
+        {"cluster": cluster, "count": count}
+        for cluster, count in sorted(cluster_counts.items(), key=lambda item: (-item[1], item[0]))[:16]
+    ]
+
     stakeholder_types = [
         {"name": stakeholder_type, "count": stakeholder_type_counts.get(stakeholder_type, 0)}
         for stakeholder_type in STAKEHOLDER_TYPE_ORDER
@@ -469,6 +648,7 @@ def build_period_snapshot(
         "total_logs": len(entries),
         "issue_categories": issue_categories,
         "top_keywords": top_keywords,
+        "top_keyword_clusters": top_keyword_clusters,
         "stakeholder_types": stakeholder_types,
         "top_stakeholders": top_stakeholders,
         "risk_signal": {
@@ -502,6 +682,7 @@ def build_intelligence_data(
     sorted_weeks: list[str],
     project_lookup: dict[str, str],
     rules: dict[str, Any],
+    cluster_rules: list[dict[str, Any]],
 ) -> dict[str, Any]:
     working_rules = json.loads(json.dumps(rules))
     dynamic_stopwords = set(working_rules["stopwords"])
@@ -587,6 +768,7 @@ def build_intelligence_data(
             {**meta}
             for _, meta in sorted(dynamic_keywords.items(), key=lambda item: (-item[1]["count"], item[1]["keyword"]))[:30]
         ],
+        "keyword_clusters": cluster_rules,
         "classification": {
             "mode": "hybrid",
             "rule_keywords": sum(len(values) for values in working_rules["issue_categories"].values()),
@@ -595,13 +777,14 @@ def build_intelligence_data(
             "dynamic_allowlist": working_rules.get("dynamic_keyword_allowlist", []),
         },
         "periods": {
-            "all": build_period_snapshot(all_entries, "전체 기간", working_rules, explicit_lookup, dynamic_keywords, all_compare_entries, "직전 4주"),
+            "all": build_period_snapshot(all_entries, "전체 기간", working_rules, explicit_lookup, dynamic_keywords, cluster_rules, all_compare_entries, "직전 4주"),
             "month": build_period_snapshot(
                 month_entries,
                 month_label(latest_date),
                 working_rules,
                 explicit_lookup,
                 dynamic_keywords,
+                cluster_rules,
                 month_compare_entries,
                 f"{prev_month_year}년 {prev_month_num}월" if month_compare_entries else None,
             ),
@@ -611,6 +794,7 @@ def build_intelligence_data(
                 working_rules,
                 explicit_lookup,
                 dynamic_keywords,
+                cluster_rules,
                 week_compare_entries,
                 prev_week_label,
             ),
@@ -632,6 +816,7 @@ def compute_dashboard_data() -> dict[str, Any]:
             relation_map = json.load(file)
 
     rules = load_rules()
+    cluster_rules = load_cluster_rules()
     project_lookup = build_project_lookup(project_mission, project_master, relation_map)
 
     weeks_set = {
@@ -773,7 +958,7 @@ def compute_dashboard_data() -> dict[str, Any]:
         )
     writer_summary.sort(key=lambda item: -item["count"])
 
-    intelligence = build_intelligence_data(t5t_logs, sorted_weeks, project_lookup, rules)
+    intelligence = build_intelligence_data(t5t_logs, sorted_weeks, project_lookup, rules, cluster_rules)
 
     return {
         "kpi": kpi,
@@ -790,6 +975,7 @@ def compute_dashboard_data() -> dict[str, Any]:
         "sync_meta": load_sync_meta(),
         "rules_meta": {
             "rule_path": RULES_PATH,
+            "cluster_rule_path": CLUSTER_RULES_PATH,
             "issue_categories": ISSUE_CATEGORY_ORDER,
             "stakeholder_types": STAKEHOLDER_TYPE_ORDER,
         },

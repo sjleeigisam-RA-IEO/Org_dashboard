@@ -49,6 +49,8 @@ jobs:
           cd t5t-dashboard
           python sync_notion.py
           python resolve_relations.py
+          python backfill_classification_tokens.py --apply
+          python sync_notion.py
           python server.py build
           
       - name: Commit and Push changes
