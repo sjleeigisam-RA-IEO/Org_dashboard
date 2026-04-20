@@ -60,13 +60,64 @@ TOKEN_FIELD_ALIASES = [
 
 DEFAULT_RULES = {
     "issue_categories": {
-        "딜 진행": ["매각", "매입", "입찰", "클로징", "SPA", "MOU", "우협", "계약", "매수", "매도", "선매수"],
-        "금융 구조": ["리파이낸싱", "PF", "대출", "셀다운", "Sell-Down", "선순위", "후순위", "대주", "우선주", "에쿼티", "조달"],
-        "인허가/행정": ["인허가", "심의", "사전협상", "공공기여", "설계변경", "변경인허가", "행정", "허가", "협의"],
-        "운용/관리": ["임대차", "재계약", "운용보고", "수익자", "보고", "현장실사", "현장", "운영"],
-        "리스크/법무": ["소송", "대응", "경매", "담보권", "법적", "EOD", "유예", "분쟁", "리스크", "법무"],
-        "투자자 대응": ["IR", "PT", "사이트투어", "탭핑", "태핑", "투자자", "설명회", "미팅", "LOC"],
-        "신규검토": ["실사", "valuation", "검토", "드롭", "타당성", "초기 검토", "예비 검토"],
+        "딜 진행": {
+            "keyword_signals": ["매각", "매입", "입찰", "우협", "클로징", "계약", "SPA", "MOU", "LOI", "의향서"],
+            "strong_signals": ["매각", "매입", "입찰", "우협", "우선협상대상자", "클로징", "closing", "계약", "SPA", "MOU", "LOI", "의향서", "선매수"],
+            "context_signals": ["매수인", "매도인", "협상", "매수의향", "매도의향", "계약서", "제안서", "수주"],
+            "weak_signals": ["체결", "참여", "제안"],
+            "exclude_signals": ["인허가", "사전협상", "심의", "서울시", "구청"],
+            "min_score": 3,
+        },
+        "금융 구조": {
+            "keyword_signals": ["PF", "리파이낸싱", "대출", "브릿지", "선순위", "후순위", "셀다운", "LOC", "약정"],
+            "strong_signals": ["PF", "리파이낸싱", "refinancing", "대출", "담보대출", "브릿지", "bridge", "선순위", "후순위", "셀다운", "sell-down", "LOC", "약정", "tranche", "트랜치", "LTV", "upfinancing", "재출자"],
+            "context_signals": ["대주", "대주단", "우선주", "에쿼티", "equity", "금융주관사", "차환", "만기연장", "중순위", "출자"],
+            "weak_signals": ["펀딩", "조달", "심의"],
+            "exclude_signals": ["채용", "인사", "조직", "부서"],
+            "min_score": 3,
+        },
+        "인허가/행정": {
+            "keyword_signals": ["인허가", "건축허가", "변경인허가", "경관심의", "건축심의", "사전협상", "공공기여", "민원", "전력계통영향평가", "설계변경"],
+            "strong_signals": ["인허가", "건축허가", "변경인허가", "경관심의", "건축심의", "사전협상", "공공기여", "민원", "전력계통영향평가", "설계변경", "허가접수", "착공신고", "교통영향평가", "수전", "전력인입"],
+            "context_signals": ["서울시", "구청", "지자체", "캠코", "한전", "위원회", "건축", "설계", "전력", "접수", "신청", "승인", "심의"],
+            "weak_signals": ["협의", "일정", "검토"],
+            "exclude_signals": ["투자자", "LP", "대주", "리파이낸싱", "매각", "임차", "운영사", "펀딩", "IR", "RFP", "본심의", "IC", "투심", "리스크", "미팅", "수익자"],
+            "authority_signals": ["서울시", "구청", "지자체", "행정기관", "한전", "위원회", "캠코", "용산구청"],
+            "official_process_signals": ["인허가", "건축허가", "변경인허가", "경관심의", "건축심의", "사전협상", "공공기여", "전력계통영향평가", "허가접수", "착공신고", "교통영향평가", "수전", "전력인입"],
+            "min_score": 4,
+        },
+        "운용/관리": {
+            "keyword_signals": ["운영", "임대차", "재계약", "공실", "임차인", "수익자 보고", "운용보고", "보험청구"],
+            "strong_signals": ["운영", "자산관리", "임대차", "재계약", "공실", "임차인", "수익자 보고", "운용보고", "보험청구", "CapEx", "마스터리스", "입주"],
+            "context_signals": ["임차", "리테일", "운영사", "관리", "정산", "보고"],
+            "weak_signals": ["현장", "점검"],
+            "exclude_signals": ["입찰", "매각", "리파이낸싱", "PF", "채용"],
+            "min_score": 3,
+        },
+        "리스크·법무": {
+            "keyword_signals": ["소송", "분쟁", "법무", "EOD", "경매", "담보권", "법원", "이의제기"],
+            "strong_signals": ["소송", "분쟁", "법무", "EOD", "경매", "담보권", "가압류", "가처분", "법원", "이의제기", "디폴트", "채무불이행"],
+            "context_signals": ["법무법인", "판결", "소장", "청구", "리스크", "유예"],
+            "weak_signals": ["대응"],
+            "exclude_signals": ["투자자 미팅", "채용"],
+            "min_score": 3,
+        },
+        "투자자 대응": {
+            "keyword_signals": ["IR", "RFP", "PT", "사이트투어", "탭핑", "투자자 마케팅", "LP"],
+            "strong_signals": ["IR", "RFP", "PT", "사이트투어", "탭핑", "태핑", "tapping", "투자자 마케팅", "투자자", "LP", "GP Session", "IM자료", "roadshow", "LOC"],
+            "context_signals": ["GIC", "CPPIB", "NPS", "국민연금", "교직원공제회", "우정사업본부", "산림조합", "수익자", "잠재투자자"],
+            "weak_signals": ["미팅", "설명회", "보고자료", "실사"],
+            "exclude_signals": ["서울시", "구청", "인허가"],
+            "min_score": 3,
+        },
+        "신규검토": {
+            "keyword_signals": ["신규검토", "예비검토", "초기검토", "타당성", "underwriting", "valuation", "파이프라인"],
+            "strong_signals": ["신규검토", "예비검토", "초기검토", "타당성", "underwriting", "valuation", "파이프라인", "소싱", "잠재 딜", "개발 가능성"],
+            "context_signals": ["검토", "실사", "입찰 참여", "의향서 제출", "LOI", "후속 검토", "잠재"],
+            "weak_signals": ["검토", "실사"],
+            "exclude_signals": ["재계약", "운영", "보험청구", "수익자 보고"],
+            "min_score": 3,
+        },
     },
     "issue_fallbacks": {
         "프로젝트": "딜 진행",
@@ -74,28 +125,58 @@ DEFAULT_RULES = {
         "운용/관리": "운용/관리",
         "펀드·투자자": "투자자 대응",
         "리스크·법무": "리스크·법무",
-        "내부·기타": "운용/관리",
+        "내부·기타": None,
     },
     "stakeholders": {
-        "기관투자자(LP)": ["GIC", "CPPIB", "NPS", "국민연금", "교직원공제회", "공제회", "우정사업본부", "산림조합", "연기금"],
-        "금융기관(대주)": ["신한", "현대캐피탈", "메리츠", "다이와", "한국저축은행", "미래에셋", "DB손해보험", "하나", "KB", "하이투자"],
-        "임차인": ["LG전자", "CJ", "라인플러스", "홈플러스", "아디다스", "세미파이브", "LX판토스", "Broadcom", "Cadence", "Infineon"],
-        "매수/매도인": ["매수인", "매도인", "잠재 SI", "잠재 매수인", "시행사", "선매수자", "잠재 임차인"],
-        "주간사/자문": ["JLL", "세빌스", "법무법인", "CBRE", "쿠시먼", "회계법인", "컨설팅", "Rsquare"],
-        "공공/행정기관": ["서울시", "캠코", "관계 부처", "지자체", "한전", "지방자치단체", "주민단"],
-        "해외 파트너": ["Boston Properties", "Nuveen", "Dash Living", "Washington D.C.", "Woodies"],
+        "기관투자자(LP)": {
+            "entities": ["GIC", "CPPIB", "NPS", "국민연금", "교직원공제회", "군인공제회", "지방행정공제회", "우정사업본부", "산림조합중앙회"],
+            "generic_terms": ["투자자", "LP", "잠재투자자", "수익자", "출자자"],
+        },
+        "금융기관(대주)": {
+            "entities": ["메리츠", "신한", "신한캐피탈", "하나", "하나캐피탈", "KB", "국민은행", "미래에셋", "현대캐피탈", "현대커머셜", "우리은행", "우리금융캐피탈", "교보생명", "DB손해보험", "한국저축은행"],
+            "generic_terms": ["대주", "대주단", "금융기관", "은행", "캐피탈"],
+        },
+        "임차인": {
+            "entities": ["LG전자", "LG CNS", "CJ", "라인플러스", "홈플러스", "아디다스", "세미파이브", "LX판토스", "Broadcom", "Cadence", "Infineon", "SKT", "카카오뱅크"],
+            "generic_terms": ["임차인", "운영사", "operator", "tenant"],
+        },
+        "매수/매도인": {
+            "entities": [],
+            "generic_terms": ["매수인", "매도인", "잠재 SI", "잠재 매수인", "시행사", "선매수자", "매수의향"],
+        },
+        "주간사/자문": {
+            "entities": ["JLL", "CBRE", "세빌스", "Rsquare", "쿠시먼", "법무법인 바른", "PWC"],
+            "generic_terms": ["법무법인", "회계법인", "컨설팅", "주간사", "자문사"],
+        },
+        "공공/행정기관": {
+            "entities": ["서울시", "캠코", "한전"],
+            "generic_terms": ["지자체", "지방자치단체", "행정기관", "구청", "위원회"],
+        },
+        "해외 파트너": {
+            "entities": ["Boston Properties", "Nuveen", "Dash Living", "Washington D.C.", "Woodies", "QIC"],
+            "generic_terms": ["해외 파트너", "해외 투자자"],
+        },
     },
     "stopwords": [
         "관련", "진행", "검토", "협의", "대응", "보고", "준비", "회의", "후속", "팔로업", "업무", "프로젝트",
         "펀드", "투자", "현황", "자료", "정리", "추진", "계획", "내부", "외부", "주간", "이번", "기준",
-        "필요", "완료", "예정", "진행중",
+        "필요", "완료", "예정", "진행중", "예정임", "예정으로", "관련해", "위한", "현재", "금주",
         "follow", "followup", "meeting", "project", "review",
     ],
     "dynamic_keyword_blocklist": [
         "검토", "논의", "진행", "확인", "보고", "자료", "공유", "필요", "대응", "회의",
         "미팅", "업데이트", "정리", "협의", "추진", "관련", "요청", "전달", "준비", "예정",
     ],
-    "dynamic_keyword_allowlist": [],
+    "dynamic_keyword_allowlist": ["PF", "IR", "LOC", "MOU", "SPA", "EOD", "RFP"],
+    "generic_keyword_blocklist": [
+        "협의", "논의", "일정", "예정", "대응", "진행", "검토", "실사", "보고", "준비", "회의", "대주",
+        "투자자", "수익자", "운영사", "임차인", "매수인", "매도인", "기관", "파트너", "관련자", "현재",
+        "금주", "향후", "이번주", "작업", "절차", "위한", "관련", "관리", "사업", "개발", "개발사업", "신규", "심의",
+    ],
+    "display_keyword_blocklist": [
+        "오피스", "주거", "운영", "체결", "선정", "마케팅", "지분", "사업장", "프로젝트", "타임워크",
+        "가산동", "양재", "용산", "부산", "미국", "일본", "서울", "현재", "관련", "사항",
+    ],
 }
 
 
@@ -108,23 +189,98 @@ def load_rules() -> dict[str, Any]:
         user_rules = json.load(file)
 
     for name, values in user_rules.get("issue_categories", {}).items():
-        rules.setdefault("issue_categories", {})[name] = values
+        current = normalize_issue_rule(rules.setdefault("issue_categories", {}).get(name, {}))
+        incoming = normalize_issue_rule(values)
+        rules["issue_categories"][name] = merge_issue_rules(current, incoming)
 
     for name, values in user_rules.get("stakeholders", {}).items():
-        merged = set(rules.setdefault("stakeholders", {}).get(name, []))
-        merged.update(values)
-        rules["stakeholders"][name] = sorted(merged)
+        current = normalize_stakeholder_rule(rules.setdefault("stakeholders", {}).get(name, {}))
+        incoming = normalize_stakeholder_rule(values)
+        rules["stakeholders"][name] = merge_stakeholder_rules(current, incoming)
 
     for name, value in user_rules.get("issue_fallbacks", {}).items():
         rules.setdefault("issue_fallbacks", {})[name] = value
 
-    for key in ["stopwords", "dynamic_keyword_blocklist", "dynamic_keyword_allowlist"]:
+    for key in ["stopwords", "dynamic_keyword_blocklist", "dynamic_keyword_allowlist", "generic_keyword_blocklist", "display_keyword_blocklist"]:
         if user_rules.get(key):
             merged = set(rules.get(key, []))
             merged.update(user_rules[key])
             rules[key] = sorted(merged)
 
+    rules["issue_categories"] = {
+        name: normalize_issue_rule(value)
+        for name, value in rules.get("issue_categories", {}).items()
+    }
+    rules["stakeholders"] = {
+        name: normalize_stakeholder_rule(value)
+        for name, value in rules.get("stakeholders", {}).items()
+    }
     return rules
+
+
+def unique_preserve_order(values: list[str]) -> list[str]:
+    seen = set()
+    result = []
+    for value in values:
+        if value in (None, ""):
+            continue
+        if value in seen:
+            continue
+        seen.add(value)
+        result.append(value)
+    return result
+
+
+def normalize_issue_rule(value: Any) -> dict[str, Any]:
+    if isinstance(value, list):
+        return {
+            "keyword_signals": unique_preserve_order(value),
+            "strong_signals": unique_preserve_order(value),
+            "context_signals": [],
+            "weak_signals": [],
+            "exclude_signals": [],
+            "authority_signals": [],
+            "official_process_signals": [],
+            "min_score": 1,
+        }
+
+    rule = value if isinstance(value, dict) else {}
+    return {
+        "keyword_signals": unique_preserve_order(list(rule.get("keyword_signals", []))),
+        "strong_signals": unique_preserve_order(list(rule.get("strong_signals", []))),
+        "context_signals": unique_preserve_order(list(rule.get("context_signals", []))),
+        "weak_signals": unique_preserve_order(list(rule.get("weak_signals", []))),
+        "exclude_signals": unique_preserve_order(list(rule.get("exclude_signals", []))),
+        "authority_signals": unique_preserve_order(list(rule.get("authority_signals", []))),
+        "official_process_signals": unique_preserve_order(list(rule.get("official_process_signals", []))),
+        "min_score": int(rule.get("min_score", 1) or 1),
+    }
+
+
+def merge_issue_rules(base: dict[str, Any], incoming: dict[str, Any]) -> dict[str, Any]:
+    merged = {}
+    for key in ["keyword_signals", "strong_signals", "context_signals", "weak_signals", "exclude_signals", "authority_signals", "official_process_signals"]:
+        merged[key] = unique_preserve_order(list(base.get(key, [])) + list(incoming.get(key, [])))
+    merged["min_score"] = int(incoming.get("min_score") or base.get("min_score") or 1)
+    return merged
+
+
+def normalize_stakeholder_rule(value: Any) -> dict[str, Any]:
+    if isinstance(value, list):
+        return {"entities": unique_preserve_order(value), "generic_terms": []}
+
+    rule = value if isinstance(value, dict) else {}
+    return {
+        "entities": unique_preserve_order(list(rule.get("entities", []))),
+        "generic_terms": unique_preserve_order(list(rule.get("generic_terms", []))),
+    }
+
+
+def merge_stakeholder_rules(base: dict[str, Any], incoming: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "entities": unique_preserve_order(list(base.get("entities", [])) + list(incoming.get("entities", []))),
+        "generic_terms": unique_preserve_order(list(base.get("generic_terms", [])) + list(incoming.get("generic_terms", []))),
+    }
 
 
 def load_data(name: str) -> list[dict[str, Any]]:
@@ -316,7 +472,8 @@ def tokenize_keywords(text: str, stopwords: set[str]) -> list[str]:
 
 def build_explicit_keyword_lookup(rules: dict[str, Any]) -> dict[str, Any]:
     lookup = {}
-    for category, keywords in rules["issue_categories"].items():
+    for category, issue_rule in rules["issue_categories"].items():
+        keywords = issue_rule.get("keyword_signals") or issue_rule.get("strong_signals", [])
         for keyword in keywords:
             lookup[keyword.lower()] = {
                 "keyword": keyword,
@@ -329,27 +486,73 @@ def get_explicit_keywords(explicit_lookup: dict[str, Any]) -> list[dict[str, str
     return sorted(explicit_lookup.values(), key=lambda item: (-len(item["keyword"]), item["keyword"]))
 
 
+def get_text_and_manual_tokens(entry: dict[str, Any]) -> tuple[str, set[str]]:
+    text = build_entry_text(entry).lower()
+    manual_tokens = {token.lower() for token in extract_manual_tokens(entry)}
+    return text, manual_tokens
+
+
+def find_signal_matches(text: str, manual_tokens: set[str], signals: list[str]) -> list[str]:
+    matches = []
+    seen = set()
+    for signal in signals:
+        lowered_signal = signal.lower()
+        if not lowered_signal:
+            continue
+        if lowered_signal in manual_tokens or lowered_signal in text:
+            if lowered_signal not in seen:
+                seen.add(lowered_signal)
+                matches.append(signal)
+    return matches
+
+
+def score_issue_rule(text: str, manual_tokens: set[str], issue_rule: dict[str, Any]) -> dict[str, Any]:
+    strong_matches = find_signal_matches(text, manual_tokens, issue_rule.get("strong_signals", []))
+    context_matches = find_signal_matches(text, manual_tokens, issue_rule.get("context_signals", []))
+    weak_matches = find_signal_matches(text, manual_tokens, issue_rule.get("weak_signals", []))
+    exclude_matches = find_signal_matches(text, manual_tokens, issue_rule.get("exclude_signals", []))
+
+    score = len(strong_matches) * 4
+    score += len(context_matches) * 2
+    score += len(weak_matches)
+    score -= len(exclude_matches) * 4
+    if strong_matches and context_matches:
+        score += 1
+
+    return {
+        "score": score,
+        "strong_matches": strong_matches,
+        "context_matches": context_matches,
+        "weak_matches": weak_matches,
+        "exclude_matches": exclude_matches,
+    }
+
+
 def assign_categories(entry: dict[str, Any], rules: dict[str, Any], explicit_lookup: dict[str, Any]) -> list[str]:
-    full_text = build_entry_text(entry).lower()
-    manual_text = " ".join(extract_manual_tokens(entry)).lower()
-    category_scores = defaultdict(int)
-
+    full_text, manual_tokens = get_text_and_manual_tokens(entry)
+    scored_categories = []
     for category in ISSUE_CATEGORY_ORDER:
-        for keyword in rules["issue_categories"].get(category, []):
-            lowered_keyword = keyword.lower()
-            if lowered_keyword in full_text:
-                category_scores[category] += 1
-            if lowered_keyword in manual_text:
-                category_scores[category] += 2
+        issue_rule = rules["issue_categories"].get(category, {})
+        rule_score = score_issue_rule(full_text, manual_tokens, issue_rule)
+        min_score = int(issue_rule.get("min_score", 1) or 1)
+        if rule_score["score"] < min_score:
+            continue
+        if not (rule_score["strong_matches"] or rule_score["context_matches"]):
+            continue
+        if issue_rule.get("authority_signals") or issue_rule.get("official_process_signals"):
+            authority_matches = find_signal_matches(full_text, manual_tokens, issue_rule.get("authority_signals", []))
+            official_process_matches = find_signal_matches(full_text, manual_tokens, issue_rule.get("official_process_signals", []))
+            if not (authority_matches or official_process_matches):
+                continue
+        scored_categories.append((category, rule_score["score"]))
 
-    categories = [
-        category
-        for category, score in sorted(
-            category_scores.items(),
-            key=lambda item: (-item[1], ISSUE_CATEGORY_ORDER.index(item[0])),
-        )
-        if score > 0
-    ]
+    scored_categories.sort(key=lambda item: (-item[1], ISSUE_CATEGORY_ORDER.index(item[0])))
+    if scored_categories:
+        top_score = scored_categories[0][1]
+        threshold = max(1, top_score - 2)
+        categories = [category for category, score in scored_categories if score >= threshold]
+    else:
+        categories = []
 
     if not categories:
         fallback = rules["issue_fallbacks"].get(entry.get("업무유형"))
@@ -362,15 +565,17 @@ def is_valid_dynamic_keyword(token: str, rules: dict[str, Any], stopwords: set[s
     lowered = token.lower()
     blocklist = {word.lower() for word in rules.get("dynamic_keyword_blocklist", [])}
     allowlist = {word.lower() for word in rules.get("dynamic_keyword_allowlist", [])}
+    generic_blocklist = {word.lower() for word in rules.get("generic_keyword_blocklist", [])}
     generic_keywords = {
         "검토", "논의", "진행", "확인", "보고", "자료", "공유", "필요", "대응", "회의",
         "미팅", "업데이트", "정리", "협의", "추진", "관련", "요청", "전달", "준비", "예정",
-        "보고서", "검토안", "방향", "내용", "현황", "이슈", "사항",
+        "보고서", "검토안", "방향", "내용", "현황", "이슈", "사항", "일정", "현재", "금주",
+        "대주", "투자자", "수익자", "운영사", "임차인", "기관", "관련자",
     }
 
     if lowered in allowlist:
         return True
-    if lowered in stopwords or lowered in blocklist:
+    if lowered in stopwords or lowered in blocklist or lowered in generic_blocklist:
         return False
     if token in TASK_TYPE_ORDER or token in ISSUE_CATEGORY_ORDER or token in STAKEHOLDER_TYPE_ORDER:
         return False
@@ -435,6 +640,7 @@ def extract_issue_keywords(
 ) -> list[dict[str, Any]]:
     text = build_entry_text(entry)
     lowered = text.lower()
+    stopwords = {word.lower() for word in rules["stopwords"]}
     found = []
     seen = set()
     explicit_keywords = get_explicit_keywords(explicit_lookup)
@@ -466,11 +672,10 @@ def extract_issue_keywords(
                 }
             )
             continue
-        if categories:
+        if categories and is_valid_dynamic_keyword(token, rules, stopwords):
             seen.add(lowered_token)
             found.append({"keyword": token, "category": categories[0], "source": "manual"})
 
-    stopwords = {word.lower() for word in rules["stopwords"]}
     for token in tokenize_keywords(text, stopwords):
         lowered_token = token.lower()
         inferred = dynamic_keywords.get(lowered_token)
@@ -496,14 +701,47 @@ def extract_issue_keywords(
 def extract_stakeholders(entry: dict[str, Any], rules: dict[str, Any]) -> list[dict[str, str]]:
     text = build_entry_text(entry).lower()
     found = []
-    seen = set()
+    seen_names = set()
     for stakeholder_type in STAKEHOLDER_TYPE_ORDER:
-        for keyword in rules["stakeholders"].get(stakeholder_type, []):
+        stakeholder_rule = rules["stakeholders"].get(stakeholder_type, {})
+        matched_specific = False
+        for keyword in stakeholder_rule.get("entities", []):
             lowered = keyword.lower()
-            if lowered in text and lowered not in seen:
-                seen.add(lowered)
-                found.append({"name": keyword, "type": stakeholder_type})
+            if lowered in text and lowered not in seen_names:
+                seen_names.add(lowered)
+                matched_specific = True
+                found.append({"name": keyword, "type": stakeholder_type, "generic": False})
+        if matched_specific:
+            continue
+        for generic_term in stakeholder_rule.get("generic_terms", []):
+            lowered_generic = generic_term.lower()
+            if lowered_generic in text:
+                found.append({"name": stakeholder_type, "type": stakeholder_type, "generic": True})
+                break
     return found
+
+
+def is_displayable_keyword(keyword: str, meta: dict[str, Any], rules: dict[str, Any]) -> bool:
+    lowered = (keyword or "").strip().lower()
+    if not lowered:
+        return False
+
+    display_blocklist = {word.lower() for word in rules.get("display_keyword_blocklist", [])}
+    generic_blocklist = {word.lower() for word in rules.get("generic_keyword_blocklist", [])}
+    stopwords = {word.lower() for word in rules.get("stopwords", [])}
+    allowlist = {word.lower() for word in rules.get("dynamic_keyword_allowlist", [])}
+
+    if lowered in allowlist:
+        return True
+    if lowered in display_blocklist or lowered in generic_blocklist or lowered in stopwords:
+        return False
+    if len(keyword) <= 2 and keyword.upper() not in {"PF", "IR"}:
+        return False
+    if re.fullmatch(r"[가-힣]{2}", keyword):
+        return False
+    if meta.get("source") == "manual" and meta.get("count", 0) < 3:
+        return False
+    return True
 
 
 def make_detail_record(entry: dict[str, Any]) -> dict[str, Any]:
@@ -575,6 +813,7 @@ def build_period_snapshot(
                 "category": keyword["category"],
                 "source": keyword["source"],
                 "confidence": keyword.get("confidence"),
+                "count": keyword_counts[keyword["keyword"]],
             }
             details["keywords"][keyword["keyword"]].append(detail)
 
@@ -586,9 +825,11 @@ def build_period_snapshot(
         detail["stakeholders"] = stakeholders
         for stakeholder in stakeholders:
             stakeholder_type_counts[stakeholder["type"]] += 1
+            details["stakeholder_types"][stakeholder["type"]].append(detail)
+            if stakeholder.get("generic"):
+                continue
             stakeholder_name_counts[stakeholder["name"]] += 1
             stakeholder_name_types[stakeholder["name"]] = stakeholder["type"]
-            details["stakeholder_types"][stakeholder["type"]].append(detail)
             details["stakeholders"][stakeholder["name"]].append(detail)
 
     for entry in compare_entries or []:
@@ -612,8 +853,9 @@ def build_period_snapshot(
             "source": keyword_meta[keyword]["source"],
             "confidence": keyword_meta[keyword].get("confidence"),
         }
-        for keyword, count in sorted(keyword_counts.items(), key=lambda item: (-item[1], item[0]))[:16]
-    ]
+        for keyword, count in sorted(keyword_counts.items(), key=lambda item: (-item[1], item[0]))
+        if is_displayable_keyword(keyword, keyword_meta[keyword], rules)
+    ][:16]
 
     top_keyword_clusters = [
         {"cluster": cluster, "count": count}
@@ -692,8 +934,9 @@ def build_intelligence_data(
         log_name = entry.get("업무 로그명", "") or ""
         for match in re.findall(r"\|\s*([가-힣]{2,4})\s*\|", log_name):
             dynamic_stopwords.add(match)
-    for stakeholder_keywords in working_rules["stakeholders"].values():
-        dynamic_stopwords.update(stakeholder_keywords)
+    for stakeholder_rule in working_rules["stakeholders"].values():
+        dynamic_stopwords.update(stakeholder_rule.get("entities", []))
+        dynamic_stopwords.update(stakeholder_rule.get("generic_terms", []))
     working_rules["stopwords"] = sorted({word for word in dynamic_stopwords if word})
 
     explicit_lookup = build_explicit_keyword_lookup(working_rules)
@@ -771,7 +1014,7 @@ def build_intelligence_data(
         "keyword_clusters": cluster_rules,
         "classification": {
             "mode": "hybrid",
-            "rule_keywords": sum(len(values) for values in working_rules["issue_categories"].values()),
+            "rule_keywords": sum(len(rule.get("keyword_signals", [])) for rule in working_rules["issue_categories"].values()),
             "inferred_keywords": len(dynamic_keywords),
             "dynamic_blocklist": working_rules.get("dynamic_keyword_blocklist", []),
             "dynamic_allowlist": working_rules.get("dynamic_keyword_allowlist", []),
