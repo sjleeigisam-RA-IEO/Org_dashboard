@@ -453,6 +453,10 @@ def build_entry_text(entry: dict[str, Any]) -> str:
     )
 
 
+def normalize_free_text(value: str) -> str:
+    return re.sub(r"[^0-9a-z가-힣]+", "", (value or "").lower())
+
+
 def tokenize_keywords(text: str, stopwords: set[str]) -> list[str]:
     tokens = []
     for token in re.findall(r"[A-Za-z][A-Za-z0-9&.+-]{1,}|[가-힣]{2,}", text):
@@ -468,6 +472,153 @@ def tokenize_keywords(text: str, stopwords: set[str]) -> list[str]:
             continue
         tokens.append(cleaned)
     return tokens
+
+
+def build_entry_dedupe_signature(entry: dict[str, Any], rules: dict[str, Any]) -> tuple[str, ...]:
+    source_url = stringify_value(entry.get("원문 URL") or entry.get("T5T 작성자 페이지"))
+    writer = stringify_value(entry.get("작성자"))
+    work_date = stringify_value(entry.get("업무일자"))
+    task_type = stringify_value(entry.get("업무유형"))
+    project_names = entry.get("project_names", []) or []
+
+    blocked = {word.lower() for word in rules.get("stopwords", [])}
+    blocked.update(word.lower() for word in rules.get("generic_keyword_blocklist", []))
+    blocked.update(word.lower() for word in rules.get("display_keyword_blocklist", []))
+
+    token_source = " ".join(
+        part
+        for part in [
+            get_structured_summary(entry),
+            stringify_value(entry.get("원문 요약")),
+            stringify_value(entry.get("비고")),
+            " ".join(project_names),
+            " ".join(extract_manual_tokens(entry)),
+        ]
+        if part
+    )
+    tokens = []
+    seen = set()
+    for token in tokenize_keywords(token_source, blocked):
+        lowered = token.lower()
+        if lowered in blocked:
+            continue
+        if len(token) <= 2 and token.upper() not in {"PF", "IR", "LOI", "SPA", "MOU"}:
+            continue
+        if lowered in seen:
+            continue
+        seen.add(lowered)
+        tokens.append(lowered)
+
+    canonical_tokens = tuple(sorted(tokens[:10]))
+    if not canonical_tokens:
+        fallback_text = normalize_free_text(get_structured_summary(entry) or stringify_value(entry.get("원문 요약")))
+        canonical_tokens = (fallback_text[:48],)
+
+    return (
+        normalize_free_text(source_url),
+        normalize_free_text(writer),
+        normalize_free_text(work_date),
+        normalize_free_text(task_type),
+        normalize_free_text(" ".join(project_names[:2])),
+        *canonical_tokens,
+    )
+
+
+def build_entry_dedupe_context(entry: dict[str, Any], rules: dict[str, Any]) -> dict[str, Any]:
+    source_url = normalize_free_text(stringify_value(entry.get("원문 URL") or entry.get("T5T 작성자 페이지")))
+    writer = normalize_free_text(stringify_value(entry.get("작성자")))
+    work_date = normalize_free_text(stringify_value(entry.get("업무일자")))
+    task_type = normalize_free_text(stringify_value(entry.get("업무유형")))
+    primary_project = normalize_free_text(" ".join((entry.get("project_names", []) or [])[:1]))
+
+    blocked = {word.lower() for word in rules.get("stopwords", [])}
+    blocked.update(word.lower() for word in rules.get("generic_keyword_blocklist", []))
+    blocked.update(word.lower() for word in rules.get("display_keyword_blocklist", []))
+
+    token_source = " ".join(
+        part
+        for part in [
+            get_structured_summary(entry),
+            stringify_value(entry.get("원문 요약")),
+            stringify_value(entry.get("비고")),
+            primary_project,
+            " ".join(extract_manual_tokens(entry)),
+        ]
+        if part
+    )
+    token_set = set()
+    for token in tokenize_keywords(token_source, blocked):
+        lowered = token.lower()
+        if lowered in blocked:
+            continue
+        if len(token) <= 2 and token.upper() not in {"PF", "IR", "LOI", "SPA", "MOU", "DC"}:
+            continue
+        token_set.add(lowered)
+
+    return {
+        "coarse_key": (source_url, writer, work_date, task_type, primary_project),
+        "token_set": token_set,
+        "summary_norm": normalize_free_text(get_structured_summary(entry) or stringify_value(entry.get("원문 요약"))),
+    }
+
+
+def are_entries_semantically_duplicate(left: dict[str, Any], right: dict[str, Any], rules: dict[str, Any]) -> bool:
+    left_ctx = build_entry_dedupe_context(left, rules)
+    right_ctx = build_entry_dedupe_context(right, rules)
+    if left_ctx["coarse_key"] != right_ctx["coarse_key"]:
+        return False
+
+    left_summary = left_ctx["summary_norm"]
+    right_summary = right_ctx["summary_norm"]
+    if left_summary and right_summary and (left_summary in right_summary or right_summary in left_summary):
+        return True
+
+    left_tokens = left_ctx["token_set"]
+    right_tokens = right_ctx["token_set"]
+    if not left_tokens or not right_tokens:
+        return False
+
+    overlap = len(left_tokens & right_tokens)
+    overlap_ratio = overlap / max(1, min(len(left_tokens), len(right_tokens)))
+    return overlap_ratio >= 0.6
+
+
+def choose_preferred_entry(current: dict[str, Any], candidate: dict[str, Any]) -> dict[str, Any]:
+    current_score = (
+        len(get_structured_summary(current) or "")
+        + len(stringify_value(current.get("원문 요약")))
+        + (20 if current.get("Project & Mission") else 0)
+        + (20 if current.get("신규 프로젝트") else 0)
+    )
+    candidate_score = (
+        len(get_structured_summary(candidate) or "")
+        + len(stringify_value(candidate.get("원문 요약")))
+        + (20 if candidate.get("Project & Mission") else 0)
+        + (20 if candidate.get("신규 프로젝트") else 0)
+    )
+    if candidate_score > current_score:
+        return candidate
+    return current
+
+
+def dedupe_period_entries(entries: list[dict[str, Any]], rules: dict[str, Any]) -> list[dict[str, Any]]:
+    deduped: dict[tuple[str, ...], dict[str, Any]] = {}
+    for entry in entries:
+        signature = build_entry_dedupe_signature(entry, rules)
+        existing = deduped.get(signature)
+        if existing is None:
+            matched_signature = None
+            for existing_signature, existing_entry in deduped.items():
+                if are_entries_semantically_duplicate(existing_entry, entry, rules):
+                    matched_signature = existing_signature
+                    break
+            if matched_signature is None:
+                deduped[signature] = entry
+                continue
+            deduped[matched_signature] = choose_preferred_entry(deduped[matched_signature], entry)
+            continue
+        deduped[signature] = choose_preferred_entry(existing, entry)
+    return list(deduped.values())
 
 
 def build_explicit_keyword_lookup(rules: dict[str, Any]) -> dict[str, Any]:
@@ -968,21 +1119,30 @@ def build_intelligence_data(
     previous_week = distinct_weeks[-2] if len(distinct_weeks) > 1 else None
     previous_weeks = set(distinct_weeks[-8:-4])
 
-    all_entries = [item["entry"] for item in enriched_entries]
+    all_entries = dedupe_period_entries([item["entry"] for item in enriched_entries], working_rules)
     dynamic_keywords = infer_dynamic_keywords(all_entries, working_rules, explicit_lookup)
-    all_compare_entries = [item["entry"] for item in enriched_entries if item["week_end"] in previous_weeks]
-    month_entries = [
+    all_compare_entries = dedupe_period_entries(
+        [item["entry"] for item in enriched_entries if item["week_end"] in previous_weeks],
+        working_rules,
+    )
+    month_entries = dedupe_period_entries([
         item["entry"]
         for item in enriched_entries
         if item["work_date"] and item["work_date"].year == latest_date.year and item["work_date"].month == latest_date.month
-    ]
-    month_compare_entries = [
+    ], working_rules)
+    month_compare_entries = dedupe_period_entries([
         item["entry"]
         for item in enriched_entries
         if item["work_date"] and item["work_date"].year == prev_month_year and item["work_date"].month == prev_month_num
-    ]
-    week_entries = [item["entry"] for item in enriched_entries if item["week_end"] == latest_week]
-    week_compare_entries = [item["entry"] for item in enriched_entries if item["week_end"] == previous_week]
+    ], working_rules)
+    week_entries = dedupe_period_entries(
+        [item["entry"] for item in enriched_entries if item["week_end"] == latest_week],
+        working_rules,
+    )
+    week_compare_entries = dedupe_period_entries(
+        [item["entry"] for item in enriched_entries if item["week_end"] == previous_week],
+        working_rules,
+    )
 
     week_label = next(
         (
