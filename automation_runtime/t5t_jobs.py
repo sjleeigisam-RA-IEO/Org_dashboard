@@ -497,7 +497,7 @@ class AutomationRuntime:
     def sync_activity_log(self, run_date: date, job: str) -> Dict[str, Any]:
         start_date, end_date = self._get_window(run_date)
         entries = self._fetch_source_pages(start_date, end_date)
-        existing = self._existing_activity_log_entries(end_date)
+        existing_signatures, existing_groups = self._existing_activity_log_entries(start_date, end_date)
         project_mission_index = self._load_reference_index(self.config.project_mission_db_id, "Project & Mission 이름")
         project_master_index = self._load_reference_index(self.config.project_master_db_id, "프로젝트명")
         new_project_index = self._load_reference_index(self.config.new_project_db_id, "프로젝트 이름")
@@ -518,14 +518,26 @@ class AutomationRuntime:
                     new_project_index,
                 )
                 signature = payload["signature"]
-                page_id = existing.get(signature)
+                group_key = payload["group_key"]
+                page_id = existing_signatures.get(signature)
+                if not page_id and existing_groups.get(group_key):
+                    page_id = self._find_similar_existing_entry(
+                        payload,
+                        existing_groups[group_key],
+                    )
                 if page_id:
                     self.client.update_page_properties(page_id, payload["properties"])
+                    existing_signatures[signature] = page_id
                     updated += 1
+                elif existing_groups.get(group_key):
+                    skipped += 1
                 else:
                     created_page = self.client.create_page(self.config.activity_log_db_id, payload["properties"])
-                    existing[signature] = created_page["id"]
+                    page_id = created_page["id"]
+                    existing_signatures[signature] = page_id
                     created += 1
+                if page_id:
+                    self._register_existing_entry(existing_groups, page_id, payload)
                 if payload["manual_check"]:
                     manual_checks += 1
                 else:
@@ -539,24 +551,50 @@ class AutomationRuntime:
             "source_entry_count": len(entries),
             "created": created,
             "updated": updated,
+            "skipped": skipped,
             "manual_checks": manual_checks,
             "log_database_id": self.config.activity_log_db_id,
         }
 
-    def _existing_activity_log_entries(self, end_date: date) -> Dict[str, str]:
-        filter_payload = {"property": "주차종료일", "date": {"equals": end_date.isoformat()}}
+    def _existing_activity_log_entries(
+        self,
+        start_date: date,
+        end_date: date,
+    ) -> Tuple[Dict[str, str], Dict[str, List[Dict[str, Any]]]]:
+        filter_payload = {
+            "and": [
+                {"property": "업무일자", "date": {"on_or_after": start_date.isoformat()}},
+                {"property": "업무일자", "date": {"on_or_before": end_date.isoformat()}},
+            ]
+        }
         pages = self.client.query_database(self.config.activity_log_db_id, filter_payload=filter_payload)
         mapping: Dict[str, str] = {}
+        groups: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
         for page in pages:
             record = page_to_record(page)
+            source_url = record.get("원문 URL") or ""
+            work_date = record.get("업무일자") or ""
+            writer = record.get("작성자") or ""
+            title = record.get("업무 로그명") or ""
+            summary = record.get("원문 요약") or ""
+            token_string = record.get("classification_tokens") or ""
             signature = self._activity_signature(
-                record.get("원문 URL") or "",
-                record.get("업무일자") or "",
-                record.get("작성자") or "",
-                record.get("업무 로그명") or "",
+                source_url,
+                work_date,
+                writer,
+                title,
             )
             mapping[signature] = page["id"]
-        return mapping
+            group_key = self._activity_group_key(source_url, work_date, writer)
+            groups[group_key].append(
+                {
+                    "page_id": page["id"],
+                    "title_key": self._normalize_key(title),
+                    "summary_key": self._normalize_key(summary),
+                    "tokens": {token.lower() for token in self._tokenize_text(token_string)},
+                }
+            )
+        return mapping, groups
 
     def _load_reference_index(self, db_id: str, title_key: str) -> List[Tuple[str, Dict[str, Any]]]:
         pages = self.client.query_database(db_id)
@@ -618,6 +656,7 @@ class AutomationRuntime:
         title = f"{entry.date} | {entry.writer} | {task.headline}"[:180]
         summary = self._task_sentence(task)
         signature = self._activity_signature(task.source_page_url, entry.date, entry.writer, title)
+        group_key = self._activity_group_key(task.source_page_url, entry.date, entry.writer)
         properties = {
             "업무 로그명": title_property(title),
             "작성자": rich_text_property(entry.writer),
@@ -639,7 +678,15 @@ class AutomationRuntime:
 
         properties["classification_summary"] = rich_text_property(classification_summary)
         properties["classification_tokens"] = rich_text_property(classification_token_string)
-        return {"signature": signature, "properties": properties, "manual_check": manual_check}
+        return {
+            "signature": signature,
+            "group_key": group_key,
+            "title_key": self._normalize_key(title),
+            "summary_key": self._normalize_key(summary),
+            "token_set": {token.lower() for token in classification_tokens},
+            "properties": properties,
+            "manual_check": manual_check,
+        }
 
     def _match_reference(self, text: str, index: List[Tuple[str, Dict[str, Any]]]) -> Optional[Dict[str, Any]]:
         normalized_text = self._normalize_key(text)
@@ -660,4 +707,81 @@ class AutomationRuntime:
                 self._normalize_key(writer),
                 self._normalize_key(title),
             ]
+        )
+
+    def _activity_group_key(self, source_url: str, work_date: str, writer: str) -> str:
+        return "|".join(
+            [
+                self._normalize_key(source_url),
+                self._normalize_key(work_date),
+                self._normalize_key(writer),
+            ]
+        )
+
+    def _find_similar_existing_entry(
+        self,
+        payload: Dict[str, Any],
+        candidates: List[Dict[str, Any]],
+    ) -> Optional[str]:
+        if not candidates:
+            return None
+
+        best_page_id: Optional[str] = None
+        best_score = 0.0
+        new_title = payload["title_key"]
+        new_summary = payload["summary_key"]
+        new_tokens = payload["token_set"]
+
+        for candidate in candidates:
+            score = 0.0
+            old_title = candidate["title_key"]
+            old_summary = candidate["summary_key"]
+            old_tokens = candidate["tokens"]
+
+            if new_title and old_title:
+                if new_title == old_title:
+                    return candidate["page_id"]
+                if new_title in old_title or old_title in new_title:
+                    score += 30
+
+            if new_summary and old_summary:
+                if new_summary == old_summary:
+                    return candidate["page_id"]
+                if new_summary in old_summary or old_summary in new_summary:
+                    score += 20
+
+            if new_tokens and old_tokens:
+                overlap = len(new_tokens & old_tokens)
+                overlap_ratio = overlap / max(1, min(len(new_tokens), len(old_tokens)))
+                score += overlap_ratio * 45
+
+            if score > best_score:
+                best_score = score
+                best_page_id = candidate["page_id"]
+
+        if best_score >= 55:
+            return best_page_id
+        return None
+
+    def _register_existing_entry(
+        self,
+        groups: Dict[str, List[Dict[str, Any]]],
+        page_id: str,
+        payload: Dict[str, Any],
+    ) -> None:
+        group = groups.setdefault(payload["group_key"], [])
+        for candidate in group:
+            if candidate["page_id"] == page_id:
+                candidate["title_key"] = payload["title_key"]
+                candidate["summary_key"] = payload["summary_key"]
+                candidate["tokens"] = set(payload["token_set"])
+                return
+
+        group.append(
+            {
+                "page_id": page_id,
+                "title_key": payload["title_key"],
+                "summary_key": payload["summary_key"],
+                "tokens": set(payload["token_set"]),
+            }
         )
