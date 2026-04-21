@@ -96,7 +96,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:50:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -113,7 +113,7 @@
         {
           "type": "text",
           "text": {
-            "content": "정리 원칙: 내부적으로는 라인 우선으로 보되, 본문에는 라인명을 쓰지 않고 같은 축의 프로젝트/이슈끼리 묶어 정리",
+            "content": "정리 원칙: 원문 T5T를 직접 다시 읽고, 라인명은 드러내지 않되 같은 프로젝트·이슈 축으로 묶어 사람별 진행사항을 보고용 문장으로 정리",
             "link": null
           },
           "annotations": {
@@ -124,7 +124,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "정리 원칙: 내부적으로는 라인 우선으로 보되, 본문에는 라인명을 쓰지 않고 같은 축의 프로젝트/이슈끼리 묶어 정리",
+          "plain_text": "정리 원칙: 원문 T5T를 직접 다시 읽고, 라인명은 드러내지 않되 같은 프로젝트·이슈 축으로 묶어 사람별 진행사항을 보고용 문장으로 정리",
           "href": null
         }
       ],
@@ -140,7 +140,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:50:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -157,7 +157,7 @@
         {
           "type": "text",
           "text": {
-            "content": "작성 목적: 월요일 주간요약 초안 재작성본",
+            "content": "작성 목적: 해당 주차 주간요약 페이지의 초안을 보완해 월요일 보고용 업데이트본으로 정리",
             "link": null
           },
           "annotations": {
@@ -168,7 +168,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "작성 목적: 월요일 주간요약 초안 재작성본",
+          "plain_text": "작성 목적: 해당 주차 주간요약 페이지의 초안을 보완해 월요일 보고용 업데이트본으로 정리",
           "href": null
         }
       ],
@@ -184,7 +184,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:50:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -201,7 +201,7 @@
         {
           "type": "text",
           "text": {
-            "content": "양재 더케이호텔 / 양재권 신규 검토",
+            "content": "양재 더케이호텔과 양재권 신규 검토",
             "link": null
           },
           "annotations": {
@@ -212,7 +212,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "양재 더케이호텔 / 양재권 신규 검토",
+          "plain_text": "양재 더케이호텔과 양재권 신규 검토",
           "href": null
         }
       ],
@@ -229,7 +229,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -263,7 +263,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": 양재 더케이 인허가와 상품기획을 병행하며 혁신디자인, 전력계통영향평가, 지하연결통로, 브랜딩, 해외설계사 숏리스트, 운영사 RFP까지 패키지로 진전시킴. 동시에 영등포 대선제분, 캠코 협업 대응, 양재역 오피스·양재 유통센터·과천주암DC 등 신규 검토도 병행함 → ",
+            "content": ": 양재 더케이에서는 혁신디자인 수정안, 전력계통영향평가, 지하연결통로 협상, 브랜딩, 해외 설계사 숏리스트, 운영사 RFP와 디스트릭트 협의까지 상품기획과 인허가를 동시에 밀었고, 별도로 양재역 오피스·양재 유통센터·과천주암DC와 영등포 대선제분 초기 검토도 병행했다 → ",
             "link": null
           },
           "annotations": {
@@ -274,7 +274,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 양재 더케이 인허가와 상품기획을 병행하며 혁신디자인, 전력계통영향평가, 지하연결통로, 브랜딩, 해외설계사 숏리스트, 운영사 RFP까지 패키지로 진전시킴. 동시에 영등포 대선제분, 캠코 협업 대응, 양재역 오피스·양재 유통센터·과천주암DC 등 신규 검토도 병행함 → ",
+          "plain_text": ": 양재 더케이에서는 혁신디자인 수정안, 전력계통영향평가, 지하연결통로 협상, 브랜딩, 해외 설계사 숏리스트, 운영사 RFP와 디스트릭트 협의까지 상품기획과 인허가를 동시에 밀었고, 별도로 양재역 오피스·양재 유통센터·과천주암DC와 영등포 대선제분 초기 검토도 병행했다 → ",
           "href": null
         },
         {
@@ -309,7 +309,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -343,7 +343,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": 양재 더케이호텔의 서울시 창의혁신디자인 인허가 일정을 조율하며 5월 내 마무리 필요성을 점검했고, 경방 개발블라인드 PT와 서울로메트로 Tr.B 협의도 함께 진행함 → ",
+            "content": ": 양재 더케이의 서울시 창의혁신디자인 인허가 일정을 5월 마무리 목표로 조율하는 한편, 경방 개발블라인드 PT와 서울로메트로 Tr.B 협의, 동대문두산타워·케이트윈타워 후속 미팅, 안성성은물류 매각 대응을 함께 진행했다 → ",
             "link": null
           },
           "annotations": {
@@ -354,7 +354,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 양재 더케이호텔의 서울시 창의혁신디자인 인허가 일정을 조율하며 5월 내 마무리 필요성을 점검했고, 경방 개발블라인드 PT와 서울로메트로 Tr.B 협의도 함께 진행함 → ",
+          "plain_text": ": 양재 더케이의 서울시 창의혁신디자인 인허가 일정을 5월 마무리 목표로 조율하는 한편, 경방 개발블라인드 PT와 서울로메트로 Tr.B 협의, 동대문두산타워·케이트윈타워 후속 미팅, 안성성은물류 매각 대응을 함께 진행했다 → ",
           "href": null
         },
         {
@@ -389,7 +389,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -406,7 +406,7 @@
         {
           "type": "text",
           "text": {
-            "content": "임상훈",
+            "content": "김현수",
             "link": null
           },
           "annotations": {
@@ -417,13 +417,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "임상훈",
+          "plain_text": "김현수",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": ": 오금역 시니어개발 출자협의, 상암랜드마크 IM 및 설계회의, 삼성동 오피스개발 LOI, 효제동 호텔개발 투자조건 협의를 병행하며 국내 개발 딜 전반의 사업화 검토를 이어감 → ",
+            "content": ": 더케이호텔 재개발에서는 디스트릭트와의 독점 협상 조건을 세부 조율하며 공간 차별화와 플레이스메이킹 축을 구체화했다 → ",
             "link": null
           },
           "annotations": {
@@ -434,7 +434,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 오금역 시니어개발 출자협의, 상암랜드마크 IM 및 설계회의, 삼성동 오피스개발 LOI, 효제동 호텔개발 투자조건 협의를 병행하며 국내 개발 딜 전반의 사업화 검토를 이어감 → ",
+          "plain_text": ": 더케이호텔 재개발에서는 디스트릭트와의 독점 협상 조건을 세부 조율하며 공간 차별화와 플레이스메이킹 축을 구체화했다 → ",
           "href": null
         },
         {
@@ -442,7 +442,7 @@
           "text": {
             "content": "원본",
             "link": {
-              "url": "https://www.notion.so/3478ced43c4781419212e8dbb7e73a1f"
+              "url": "https://www.notion.so/3478ced43c4781b89665c868028b3431"
             }
           },
           "annotations": {
@@ -454,7 +454,7 @@
             "color": "default"
           },
           "plain_text": "원본",
-          "href": "https://www.notion.so/3478ced43c4781419212e8dbb7e73a1f"
+          "href": "https://www.notion.so/3478ced43c4781b89665c868028b3431"
         }
       ],
       "color": "default"
@@ -469,7 +469,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -503,6 +503,40 @@
         {
           "type": "text",
           "text": {
+            "content": "윤관식",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "윤관식",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "의 인허가 일정 관리와 ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "의 인허가 일정 관리와 ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
             "content": "김현수",
             "link": null
           },
@@ -520,7 +554,7 @@
         {
           "type": "text",
           "text": {
-            "content": "의 더케이호텔 공간전략 협상과 연결하면, 양재 더케이는 인허가·상품기획·공간 차별화 협상이 동시에 진행되는 공통 과제로 확인됨.",
+            "content": "의 공간 전략 협상을 연결하면, 양재 더케이는 인허가·상품기획·브랜드 차별화가 동시에 전개되는 공통 과제로 보인다.",
             "link": null
           },
           "annotations": {
@@ -531,7 +565,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "의 더케이호텔 공간전략 협상과 연결하면, 양재 더케이는 인허가·상품기획·공간 차별화 협상이 동시에 진행되는 공통 과제로 확인됨.",
+          "plain_text": "의 공간 전략 협상을 연결하면, 양재 더케이는 인허가·상품기획·브랜드 차별화가 동시에 전개되는 공통 과제로 보인다.",
           "href": null
         }
       ],
@@ -592,7 +626,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -626,7 +660,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": 양재 더케이 TF와 캠코 협업 대응, 영등포 대선제분, 양재권 및 DC 신규 검토를 폭넓게 담당함 → ",
+            "content": ": 양재 더케이 실무 총괄과 양재권·영등포·DC 신규 파이프라인 발굴을 함께 담당했다 → ",
             "link": null
           },
           "annotations": {
@@ -637,7 +671,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 양재 더케이 TF와 캠코 협업 대응, 영등포 대선제분, 양재권 및 DC 신규 검토를 폭넓게 담당함 → ",
+          "plain_text": ": 양재 더케이 실무 총괄과 양재권·영등포·DC 신규 파이프라인 발굴을 함께 담당했다 → ",
           "href": null
         },
         {
@@ -672,7 +706,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -706,7 +740,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": 양재 더케이 인허가 일정과 개발블라인드, 메트로 후속협의, 물류 매각 이슈를 병행함 → ",
+            "content": ": 양재 더케이 인허가 축을 잡으면서 개발블라인드와 신규 딜 후속 협의를 병행했다 → ",
             "link": null
           },
           "annotations": {
@@ -717,7 +751,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 양재 더케이 인허가 일정과 개발블라인드, 메트로 후속협의, 물류 매각 이슈를 병행함 → ",
+          "plain_text": ": 양재 더케이 인허가 축을 잡으면서 개발블라인드와 신규 딜 후속 협의를 병행했다 → ",
           "href": null
         },
         {
@@ -752,7 +786,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -769,7 +803,7 @@
         {
           "type": "text",
           "text": {
-            "content": "임상훈",
+            "content": "김현수",
             "link": null
           },
           "annotations": {
@@ -780,13 +814,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "임상훈",
+          "plain_text": "김현수",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": ": 시니어·호텔·오피스 개발 딜에서 투자조건 협의와 사업화 검토를 동시에 진행함 → ",
+            "content": ": 더케이호텔의 공간 전략과 협상 구조를 정교화하는 역할을 맡았다 → ",
             "link": null
           },
           "annotations": {
@@ -797,7 +831,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 시니어·호텔·오피스 개발 딜에서 투자조건 협의와 사업화 검토를 동시에 진행함 → ",
+          "plain_text": ": 더케이호텔의 공간 전략과 협상 구조를 정교화하는 역할을 맡았다 → ",
           "href": null
         },
         {
@@ -805,7 +839,7 @@
           "text": {
             "content": "원본",
             "link": {
-              "url": "https://www.notion.so/3478ced43c4781419212e8dbb7e73a1f"
+              "url": "https://www.notion.so/3478ced43c4781b89665c868028b3431"
             }
           },
           "annotations": {
@@ -817,7 +851,7 @@
             "color": "default"
           },
           "plain_text": "원본",
-          "href": "https://www.notion.so/3478ced43c4781419212e8dbb7e73a1f"
+          "href": "https://www.notion.so/3478ced43c4781b89665c868028b3431"
         }
       ],
       "color": "default"
@@ -832,7 +866,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:50:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -849,7 +883,7 @@
         {
           "type": "text",
           "text": {
-            "content": "합정 / 용산나진 / 도심 복합개발 실행",
+            "content": "캠코·Special Situation·PF 재구조화",
             "link": null
           },
           "annotations": {
@@ -860,7 +894,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "합정 / 용산나진 / 도심 복합개발 실행",
+          "plain_text": "캠코·Special Situation·PF 재구조화",
           "href": null
         }
       ],
@@ -877,7 +911,87 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "3448ced4-3c47-817e-bbb4-00277064361c"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "오윤석",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "오윤석",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 지방은행 금융안정지원펀드 설명회와 은행·캠코 간담회 준비를 주도했고, 양양 씨사이드 PF 재구조화와 GIC·CPPIB 대상 Special Situation 펀드 협의를 병행했다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 지방은행 금융안정지원펀드 설명회와 은행·캠코 간담회 준비를 주도했고, 양양 씨사이드 PF 재구조화와 GIC·CPPIB 대상 Special Situation 펀드 협의를 병행했다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3478ced43c47815b8facca1f2a52e068"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3478ced43c47815b8facca1f2a52e068"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "3488ced4-3c47-81ba-a610-d43842defc03",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-20T01:11:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -911,7 +1025,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": 합정 복합개발에서 MG 대주단 및 하나대체투자운용과 협의를 진행하고 명도계획 구체화를 위한 법무 미팅을 병행했으며, NPL 5호와 양양 호텔개발 BL까지 함께 대응함 → ",
+            "content": ": NPL 5호는 상반기 내 1,000억원 이상 승인 확보를 목표로 투자자 심사와 LOC 준비를 이어갔고, 캠코 지방은행금융안정펀드 계약서 작성, 양양 호텔개발 BL 심의, 합정 복합개발 투자자 협의까지 재구조화 축을 폭넓게 챙겼다 → ",
             "link": null
           },
           "annotations": {
@@ -922,7 +1036,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 합정 복합개발에서 MG 대주단 및 하나대체투자운용과 협의를 진행하고 명도계획 구체화를 위한 법무 미팅을 병행했으며, NPL 5호와 양양 호텔개발 BL까지 함께 대응함 → ",
+          "plain_text": ": NPL 5호는 상반기 내 1,000억원 이상 승인 확보를 목표로 투자자 심사와 LOC 준비를 이어갔고, 캠코 지방은행금융안정펀드 계약서 작성, 양양 호텔개발 BL 심의, 합정 복합개발 투자자 협의까지 재구조화 축을 폭넓게 챙겼다 → ",
           "href": null
         },
         {
@@ -951,93 +1065,13 @@
   },
   {
     "object": "block",
-    "id": "3488ced4-3c47-81ba-a610-d43842defc03",
-    "parent": {
-      "type": "page_id",
-      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
-    },
-    "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
-    "created_by": {
-      "object": "user",
-      "id": "3448ced4-3c47-817e-bbb4-00277064361c"
-    },
-    "last_edited_by": {
-      "object": "user",
-      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
-    },
-    "has_children": false,
-    "in_trash": false,
-    "type": "bulleted_list_item",
-    "bulleted_list_item": {
-      "rich_text": [
-        {
-          "type": "text",
-          "text": {
-            "content": "홍봉석",
-            "link": null
-          },
-          "annotations": {
-            "bold": true,
-            "italic": false,
-            "strikethrough": false,
-            "underline": false,
-            "code": false,
-            "color": "default"
-          },
-          "plain_text": "홍봉석",
-          "href": null
-        },
-        {
-          "type": "text",
-          "text": {
-            "content": ": 용산나진 경관심의, 대체주차장 확보, PF 마케팅 패키지 준비를 진행했고 합정호텔 개발사업은 현대커머셜, MG블라인드펀드 등 잠재투자자와 협의를 이어감. 안녕 인사동, 학암동 소형 DC, 북창동·상암DMC·목동 SMT 검토도 함께 가져감 → ",
-            "link": null
-          },
-          "annotations": {
-            "bold": false,
-            "italic": false,
-            "strikethrough": false,
-            "underline": false,
-            "code": false,
-            "color": "default"
-          },
-          "plain_text": ": 용산나진 경관심의, 대체주차장 확보, PF 마케팅 패키지 준비를 진행했고 합정호텔 개발사업은 현대커머셜, MG블라인드펀드 등 잠재투자자와 협의를 이어감. 안녕 인사동, 학암동 소형 DC, 북창동·상암DMC·목동 SMT 검토도 함께 가져감 → ",
-          "href": null
-        },
-        {
-          "type": "text",
-          "text": {
-            "content": "원본",
-            "link": {
-              "url": "https://www.notion.so/3478ced43c478140bd87cdc6923e1b81"
-            }
-          },
-          "annotations": {
-            "bold": false,
-            "italic": false,
-            "strikethrough": false,
-            "underline": false,
-            "code": false,
-            "color": "default"
-          },
-          "plain_text": "원본",
-          "href": "https://www.notion.so/3478ced43c478140bd87cdc6923e1b81"
-        }
-      ],
-      "color": "default"
-    },
-    "archived": false
-  },
-  {
-    "object": "block",
     "id": "3488ced4-3c47-818d-a651-eaedaf0cc50a",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -1054,7 +1088,7 @@
         {
           "type": "text",
           "text": {
-            "content": "권도엽",
+            "content": "양준모",
             "link": null
           },
           "annotations": {
@@ -1065,13 +1099,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "권도엽",
+          "plain_text": "양준모",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": ": 남산소월 수익자·임차사 협의, 용산나진 설계 및 상품개발, 양지물류 매각주간사 선정, 용산 더 프라임 타워 리스크 관리, 태평로빌딩 운용·매각 계획 검토를 진행함 → ",
+            "content": ": Special Situation Fund TFT 차원에서 CPPIB·GIC 실사 대응과 PT 준비를 진행했고, KT Living 임대주택 포트폴리오의 사업 구조도 외국계 투자자와 병행 검토했다 → ",
             "link": null
           },
           "annotations": {
@@ -1082,7 +1116,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 남산소월 수익자·임차사 협의, 용산나진 설계 및 상품개발, 양지물류 매각주간사 선정, 용산 더 프라임 타워 리스크 관리, 태평로빌딩 운용·매각 계획 검토를 진행함 → ",
+          "plain_text": ": Special Situation Fund TFT 차원에서 CPPIB·GIC 실사 대응과 PT 준비를 진행했고, KT Living 임대주택 포트폴리오의 사업 구조도 외국계 투자자와 병행 검토했다 → ",
           "href": null
         },
         {
@@ -1090,7 +1124,7 @@
           "text": {
             "content": "원본",
             "link": {
-              "url": "https://www.notion.so/3458ced43c4781bea833fd479c2d2877"
+              "url": "https://www.notion.so/3488ced43c4781ae8d40eb2c477771e8"
             }
           },
           "annotations": {
@@ -1102,7 +1136,7 @@
             "color": "default"
           },
           "plain_text": "원본",
-          "href": "https://www.notion.so/3458ced43c4781bea833fd479c2d2877"
+          "href": "https://www.notion.so/3488ced43c4781ae8d40eb2c477771e8"
         }
       ],
       "color": "default"
@@ -1117,7 +1151,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -1151,7 +1185,7 @@
         {
           "type": "text",
           "text": {
-            "content": "권도엽",
+            "content": "황재현",
             "link": null
           },
           "annotations": {
@@ -1162,13 +1196,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "권도엽",
+          "plain_text": "황재현",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": "의 용산나진 설계·상품개발과 연결하면, 용산나진은 복수 라인에서 동시에 밀고 있는 핵심 개발 과제로 보임.",
+            "content": "의 양양·합정 실행 검토와 연결하면, ",
             "link": null
           },
           "annotations": {
@@ -1179,7 +1213,41 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "의 용산나진 설계·상품개발과 연결하면, 용산나진은 복수 라인에서 동시에 밀고 있는 핵심 개발 과제로 보임.",
+          "plain_text": "의 양양·합정 실행 검토와 연결하면, ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "오윤석",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "오윤석",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "이 가져간 펀드 축은 개별 PF 재구조화 딜과 직접 맞물려 움직이고 있다.",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "이 가져간 펀드 축은 개별 PF 재구조화 딜과 직접 맞물려 움직이고 있다.",
           "href": null
         }
       ],
@@ -1240,7 +1308,87 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "3448ced4-3c47-817e-bbb4-00277064361c"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "오윤석",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "오윤석",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 캠코·지방은행 펀드와 PF 재구조화, Special Situation 투자자 협의를 한 축으로 묶어 추진했다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 캠코·지방은행 펀드와 PF 재구조화, Special Situation 투자자 협의를 한 축으로 묶어 추진했다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3478ced43c47815b8facca1f2a52e068"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3478ced43c47815b8facca1f2a52e068"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "3488ced4-3c47-816c-ad82-c52d0be6383c",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-20T01:11:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -1274,7 +1422,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": NPL 5호, 캠코 지방은행금융안정펀드, 양양 호텔개발 BL, 합정 복합개발 등 재구조화 및 투자자 협의를 중심으로 진척을 냄 → ",
+            "content": ": NPL 5호와 캠코 펀드, 양양 BL, 합정 투자자 협의를 동시에 끌고 갔다 → ",
             "link": null
           },
           "annotations": {
@@ -1285,7 +1433,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": NPL 5호, 캠코 지방은행금융안정펀드, 양양 호텔개발 BL, 합정 복합개발 등 재구조화 및 투자자 협의를 중심으로 진척을 냄 → ",
+          "plain_text": ": NPL 5호와 캠코 펀드, 양양 BL, 합정 투자자 협의를 동시에 끌고 갔다 → ",
           "href": null
         },
         {
@@ -1314,13 +1462,138 @@
   },
   {
     "object": "block",
-    "id": "3488ced4-3c47-816c-ad82-c52d0be6383c",
+    "id": "3488ced4-3c47-8165-b2ab-c4adf1cb851c",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "3448ced4-3c47-817e-bbb4-00277064361c"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "양준모",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "양준모",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 글로벌 투자자 실사 대응과 KT Living 구조 검토를 통해 Special Situation 신규 구조화를 보강했다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 글로벌 투자자 실사 대응과 KT Living 구조 검토를 통해 Special Situation 신규 구조화를 보강했다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3488ced43c4781ae8d40eb2c477771e8"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3488ced43c4781ae8d40eb2c477771e8"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "3488ced4-3c47-81cf-8bca-d60dce68eda9",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-20T01:11:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "3448ced4-3c47-817e-bbb4-00277064361c"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_2",
+    "heading_2": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "합정·용산나진·도심 복합개발 및 신규 개발 파이프라인",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "합정·용산나진·도심 복합개발 및 신규 개발 파이프라인",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "3488ced4-3c47-812f-a12f-efc6207a2de9",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-20T01:11:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -1354,7 +1627,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": 용산나진, 합정호텔, 안녕 인사동, 학암동 소형 DC, 북창동 호텔 등 복수 개발·매각 후보를 병행 검토함 → ",
+            "content": ": 용산나진은 경관심의, 대체주차장 확보, PF 마케팅 패키지와 사전 마케팅 협의를 진전시켰고, 합정호텔 잠재투자자 협의와 안녕인사동·학암동 소형DC·북창동·상암DMC·목동 SMT 검토를 함께 이어갔다 → ",
             "link": null
           },
           "annotations": {
@@ -1365,7 +1638,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 용산나진, 합정호텔, 안녕 인사동, 학암동 소형 DC, 북창동 호텔 등 복수 개발·매각 후보를 병행 검토함 → ",
+          "plain_text": ": 용산나진은 경관심의, 대체주차장 확보, PF 마케팅 패키지와 사전 마케팅 협의를 진전시켰고, 합정호텔 잠재투자자 협의와 안녕인사동·학암동 소형DC·북창동·상암DMC·목동 SMT 검토를 함께 이어갔다 → ",
           "href": null
         },
         {
@@ -1394,13 +1667,13 @@
   },
   {
     "object": "block",
-    "id": "3488ced4-3c47-8165-b2ab-c4adf1cb851c",
+    "id": "3488ced4-3c47-81c5-8402-d50f818dbe75",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -1434,7 +1707,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": 남산소월, 용산나진, 양지물류, 용산 더 프라임 타워, 태평로빌딩 등 국내 자산의 운영·개발·매각 과제를 폭넓게 대응함 → ",
+            "content": ": 남산소월 수익자·임차사 협의, 용산나진 설계 및 상품개발, 양지물류 매각주간사 선정, 용산 더 프라임 타워 리스크 관리, 태평로빌딩 운용·매각 계획 검토를 진행했다 → ",
             "link": null
           },
           "annotations": {
@@ -1445,7 +1718,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 남산소월, 용산나진, 양지물류, 용산 더 프라임 타워, 태평로빌딩 등 국내 자산의 운영·개발·매각 과제를 폭넓게 대응함 → ",
+          "plain_text": ": 남산소월 수익자·임차사 협의, 용산나진 설계 및 상품개발, 양지물류 매각주간사 선정, 용산 더 프라임 타워 리스크 관리, 태평로빌딩 운용·매각 계획 검토를 진행했다 → ",
           "href": null
         },
         {
@@ -1474,61 +1747,16 @@
   },
   {
     "object": "block",
-    "id": "3488ced4-3c47-81cf-8bca-d60dce68eda9",
+    "id": "c578ebc9-cfdd-44b5-8713-da44f88893ac",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
-    "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:50:00.000Z",
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
-      "object": "user",
-      "id": "3448ced4-3c47-817e-bbb4-00277064361c"
-    },
-    "last_edited_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
-    },
-    "has_children": false,
-    "in_trash": false,
-    "type": "heading_2",
-    "heading_2": {
-      "rich_text": [
-        {
-          "type": "text",
-          "text": {
-            "content": "타임워크 웨스트 / 타임워크 분당 / 개발PFV TF",
-            "link": null
-          },
-          "annotations": {
-            "bold": false,
-            "italic": false,
-            "strikethrough": false,
-            "underline": false,
-            "code": false,
-            "color": "default"
-          },
-          "plain_text": "타임워크 웨스트 / 타임워크 분당 / 개발PFV TF",
-          "href": null
-        }
-      ],
-      "is_toggleable": false,
-      "color": "default"
-    },
-    "archived": false
-  },
-  {
-    "object": "block",
-    "id": "3488ced4-3c47-812f-a12f-efc6207a2de9",
-    "parent": {
-      "type": "page_id",
-      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
-    },
-    "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
-    "created_by": {
-      "object": "user",
-      "id": "3448ced4-3c47-817e-bbb4-00277064361c"
     },
     "last_edited_by": {
       "object": "user",
@@ -1542,7 +1770,7 @@
         {
           "type": "text",
           "text": {
-            "content": "권순일",
+            "content": "임상훈",
             "link": null
           },
           "annotations": {
@@ -1553,13 +1781,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "권순일",
+          "plain_text": "임상훈",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": ": 타임워크 웨스트는 KCC 공사도급계약 협의와 LOC·대출약정 연계를 준비했고, 타임워크 분당은 세미파이브 임차 협의와 현장실사를 앞두고 전기용량 이슈를 조율함. 동시에 개발PFV TF 차원에서 프로젝트 리츠 전환 구조와 기업 마케팅 과제도 함께 검토함 → ",
+            "content": ": 위례 시니어 자문, 오금역 시니어개발 출자 협의, 상암랜드마크 설계회의와 IM 작성, 삼성동 오피스개발 LOI, 효제동 호텔개발 투자조건 협의까지 국내 개발 파이프라인을 다방면으로 확장했다 → ",
             "link": null
           },
           "annotations": {
@@ -1570,7 +1798,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 타임워크 웨스트는 KCC 공사도급계약 협의와 LOC·대출약정 연계를 준비했고, 타임워크 분당은 세미파이브 임차 협의와 현장실사를 앞두고 전기용량 이슈를 조율함. 동시에 개발PFV TF 차원에서 프로젝트 리츠 전환 구조와 기업 마케팅 과제도 함께 검토함 → ",
+          "plain_text": ": 위례 시니어 자문, 오금역 시니어개발 출자 협의, 상암랜드마크 설계회의와 IM 작성, 삼성동 오피스개발 LOI, 효제동 호텔개발 투자조건 협의까지 국내 개발 파이프라인을 다방면으로 확장했다 → ",
           "href": null
         },
         {
@@ -1578,7 +1806,7 @@
           "text": {
             "content": "원본",
             "link": {
-              "url": "https://www.notion.so/3458ced43c4781538377cf90b09d3513"
+              "url": "https://www.notion.so/3478ced43c4781419212e8dbb7e73a1f"
             }
           },
           "annotations": {
@@ -1590,7 +1818,7 @@
             "color": "default"
           },
           "plain_text": "원본",
-          "href": "https://www.notion.so/3458ced43c4781538377cf90b09d3513"
+          "href": "https://www.notion.so/3478ced43c4781419212e8dbb7e73a1f"
         }
       ],
       "color": "default"
@@ -1599,16 +1827,16 @@
   },
   {
     "object": "block",
-    "id": "3488ced4-3c47-81c5-8402-d50f818dbe75",
+    "id": "567f0951-4c84-4295-b576-cb58e2675978",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
-    "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
-      "id": "3448ced4-3c47-817e-bbb4-00277064361c"
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
     },
     "last_edited_by": {
       "object": "user",
@@ -1639,7 +1867,7 @@
         {
           "type": "text",
           "text": {
-            "content": "김현수",
+            "content": "권도엽",
             "link": null
           },
           "annotations": {
@@ -1650,13 +1878,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "김현수",
+          "plain_text": "권도엽",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": "의 타임워크 분당 선임차 NDA 조율과 연결하면, 타임워크 분당은 임차·금융·마케팅이 함께 맞물린 공통 과제로 이어지고 있음.",
+            "content": "의 용산나진 설계·상품개발과 연결하면, ",
             "link": null
           },
           "annotations": {
@@ -1667,7 +1895,41 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "의 타임워크 분당 선임차 NDA 조율과 연결하면, 타임워크 분당은 임차·금융·마케팅이 함께 맞물린 공통 과제로 이어지고 있음.",
+          "plain_text": "의 용산나진 설계·상품개발과 연결하면, ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "홍봉석",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "홍봉석",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "의 용산나진 마케팅 준비는 동일 프로젝트의 실행 단계로 이어진다.",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "의 용산나진 마케팅 준비는 동일 프로젝트의 실행 단계로 이어진다.",
           "href": null
         }
       ],
@@ -1728,7 +1990,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
@@ -1745,7 +2007,7 @@
         {
           "type": "text",
           "text": {
-            "content": "권순일",
+            "content": "홍봉석",
             "link": null
           },
           "annotations": {
@@ -1756,13 +2018,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "권순일",
+          "plain_text": "홍봉석",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": ": 타임워크 웨스트·분당과 팩토리얼 용산, PFV TF, 기업 마케팅을 묶어 실행 딜과 구조화 검토를 병행함 → ",
+            "content": ": 용산나진과 합정을 중심으로 도심 복합개발과 신규 검토 자산을 동시에 관리했다 → ",
             "link": null
           },
           "annotations": {
@@ -1773,7 +2035,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 타임워크 웨스트·분당과 팩토리얼 용산, PFV TF, 기업 마케팅을 묶어 실행 딜과 구조화 검토를 병행함 → ",
+          "plain_text": ": 용산나진과 합정을 중심으로 도심 복합개발과 신규 검토 자산을 동시에 관리했다 → ",
           "href": null
         },
         {
@@ -1781,7 +2043,7 @@
           "text": {
             "content": "원본",
             "link": {
-              "url": "https://www.notion.so/3458ced43c4781538377cf90b09d3513"
+              "url": "https://www.notion.so/3478ced43c478140bd87cdc6923e1b81"
             }
           },
           "annotations": {
@@ -1793,7 +2055,7 @@
             "color": "default"
           },
           "plain_text": "원본",
-          "href": "https://www.notion.so/3458ced43c4781538377cf90b09d3513"
+          "href": "https://www.notion.so/3478ced43c478140bd87cdc6923e1b81"
         }
       ],
       "color": "default"
@@ -1808,10 +2070,170 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:11:00.000Z",
-    "last_edited_time": "2026-04-20T01:50:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "3448ced4-3c47-817e-bbb4-00277064361c"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "권도엽",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "권도엽",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 용산·남산·태평로 등 기존 자산의 개발·운용·매각 과제를 폭넓게 대응했다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 용산·남산·태평로 등 기존 자산의 개발·운용·매각 과제를 폭넓게 대응했다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3458ced43c4781bea833fd479c2d2877"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3458ced43c4781bea833fd479c2d2877"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "799ed7ea-24f4-4c9c-a79e-740a2cf03589",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-20T01:50:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "임상훈",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "임상훈",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 시니어·호텔·오피스 개발 딜을 병행하며 신규 사업화 검토를 확장했다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 시니어·호텔·오피스 개발 딜을 병행하며 신규 사업화 검토를 확장했다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3478ced43c4781419212e8dbb7e73a1f"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3478ced43c4781419212e8dbb7e73a1f"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "d4fb9bdd-6642-4d8f-9339-b557981b6367",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-20T01:50:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
     },
     "last_edited_by": {
       "object": "user",
@@ -1825,7 +2247,7 @@
         {
           "type": "text",
           "text": {
-            "content": "데이터센터 / 구조화 / 신규 파이프라인",
+            "content": "데이터센터 개발·임차 마케팅·구조화",
             "link": null
           },
           "annotations": {
@@ -1836,7 +2258,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "데이터센터 / 구조화 / 신규 파이프라인",
+          "plain_text": "데이터센터 개발·임차 마케팅·구조화",
           "href": null
         }
       ],
@@ -1847,13 +2269,13 @@
   },
   {
     "object": "block",
-    "id": "799ed7ea-24f4-4c9c-a79e-740a2cf03589",
+    "id": "cb0d40b1-92b0-440b-b12d-fabf1f9c81d1",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -1887,7 +2309,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": OPCO 설립안 구조 검토, 소형센터 Acquisition & Development 체크리스트, 안산DC 임차 협의, 남양주·인천 가좌동·파주 데이터센터 파이프라인 검토, 부산 육양국 DC 마케팅 계획 수립을 진행함 → ",
+            "content": ": OPCO 설립안 구조 검토, 소형센터 Acquisition & Development 체크리스트, 안산DC 임차 협의, 남양주·인천 가좌동·파주 신규 파이프라인 검토, 부산 육양국 DC 마케팅 계획 수립을 진행했다 → ",
             "link": null
           },
           "annotations": {
@@ -1898,7 +2320,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": OPCO 설립안 구조 검토, 소형센터 Acquisition & Development 체크리스트, 안산DC 임차 협의, 남양주·인천 가좌동·파주 데이터센터 파이프라인 검토, 부산 육양국 DC 마케팅 계획 수립을 진행함 → ",
+          "plain_text": ": OPCO 설립안 구조 검토, 소형센터 Acquisition & Development 체크리스트, 안산DC 임차 협의, 남양주·인천 가좌동·파주 신규 파이프라인 검토, 부산 육양국 DC 마케팅 계획 수립을 진행했다 → ",
           "href": null
         },
         {
@@ -1927,13 +2349,93 @@
   },
   {
     "object": "block",
-    "id": "d4fb9bdd-6642-4d8f-9339-b557981b6367",
+    "id": "f05b51bc-72f3-4f40-8694-56a5d7f0d4e5",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
-    "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "양준모",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "양준모",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 부천 소형DC의 인허가·수전·운영사 탭핑, 부산데이터센터의 KT 조직개편 이후 운영·MEP·선임차 협의, 고양 삼송DC 리파이낸싱 분석을 동시에 챙겼다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 부천 소형DC의 인허가·수전·운영사 탭핑, 부산데이터센터의 KT 조직개편 이후 운영·MEP·선임차 협의, 고양 삼송DC 리파이낸싱 분석을 동시에 챙겼다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3488ced43c4781ae8d40eb2c477771e8"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3488ced43c4781ae8d40eb2c477771e8"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "89308133-33fa-4129-b4c2-1580aa979614",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -1967,7 +2469,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": 고양삼송데이터센터는 준공 전 담보대출 전환과 수익자 협의를 진행했고, 부산데이터센터는 펀딩 및 사전임차 파트너십 준비를 이어갔으며, 부천소형DC와 노량진 복합개발, 서여의도임대주택 포트폴리오 초기검토도 함께 챙김 → ",
+            "content": ": 고양삼송은 준공 전 담보대출 전환과 매각 논의를, 부산데이터센터는 1,800억원 규모 펀딩과 사전임차 파트너십 준비를, 부천소형DC는 수전 이후 운영사·펀딩 연계를 추진했다 → ",
             "link": null
           },
           "annotations": {
@@ -1978,7 +2480,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 고양삼송데이터센터는 준공 전 담보대출 전환과 수익자 협의를 진행했고, 부산데이터센터는 펀딩 및 사전임차 파트너십 준비를 이어갔으며, 부천소형DC와 노량진 복합개발, 서여의도임대주택 포트폴리오 초기검토도 함께 챙김 → ",
+          "plain_text": ": 고양삼송은 준공 전 담보대출 전환과 매각 논의를, 부산데이터센터는 1,800억원 규모 펀딩과 사전임차 파트너십 준비를, 부천소형DC는 수전 이후 운영사·펀딩 연계를 추진했다 → ",
           "href": null
         },
         {
@@ -2007,13 +2509,173 @@
   },
   {
     "object": "block",
-    "id": "cb0d40b1-92b0-440b-b12d-fabf1f9c81d1",
+    "id": "ba5c4398-c318-41cf-96af-6c6bd96c14c6",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
-    "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "김현수",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "김현수",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 부산 육양국 직결 데이터센터 AKROS에서 LINE PLUS와 삼성전자 대상 선임차 제안 패키지와 접촉 미팅을 통해 마케팅 축을 맡았다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 부산 육양국 직결 데이터센터 AKROS에서 LINE PLUS와 삼성전자 대상 선임차 제안 패키지와 접촉 미팅을 통해 마케팅 축을 맡았다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3478ced43c4781b89665c868028b3431"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3478ced43c4781b89665c868028b3431"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "de371f6a-9503-41f6-b40a-7e733881cad9",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "박준호",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "박준호",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 고양 삼송 DC 담보대출 리파이낸싱은 잠재 대주 풀을 확정하고 RFP 배포 단계로 끌어올렸다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 고양 삼송 DC 담보대출 리파이낸싱은 잠재 대주 풀을 확정하고 RFP 배포 단계로 끌어올렸다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3478ced43c4781778da5ee76c288ad2c"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3478ced43c4781778da5ee76c288ad2c"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "6000dfff-bc4e-4e8a-86bd-2875d2f631bc",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -2047,6 +2709,40 @@
         {
           "type": "text",
           "text": {
+            "content": "현철호",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "현철호",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "의 부산 육양국 마케팅 계획과 ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "의 부산 육양국 마케팅 계획과 ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
             "content": "김현수",
             "link": null
           },
@@ -2064,7 +2760,7 @@
         {
           "type": "text",
           "text": {
-            "content": "의 AKROS 선임차 제안과 연결하면, 부산 육양국 DC는 구조화 검토와 임차 마케팅이 함께 맞물린 프로젝트로 보임.",
+            "content": "의 AKROS 선임차 제안을 연결하면, 부산 축은 개발·임차·마케팅이 한 흐름으로 묶여 있다.",
             "link": null
           },
           "annotations": {
@@ -2075,7 +2771,119 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "의 AKROS 선임차 제안과 연결하면, 부산 육양국 DC는 구조화 검토와 임차 마케팅이 함께 맞물린 프로젝트로 보임.",
+          "plain_text": "의 AKROS 선임차 제안을 연결하면, 부산 축은 개발·임차·마케팅이 한 흐름으로 묶여 있다.",
+          "href": null
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "1d84a0b9-e223-401b-99b7-93e2d855aa07",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "같은 프로젝트를 다루는 ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "같은 프로젝트를 다루는 ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "양준모",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "양준모",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "의 삼송 리파이낸싱 검토와 ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "의 삼송 리파이낸싱 검토와 ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "윤우섭",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "윤우섭",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "의 담보대출 전환 추진을 연결하면, 고양삼송은 준공 전후 금융 구조 전환이 핵심 과제로 보인다.",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "의 담보대출 전환 추진을 연결하면, 고양삼송은 준공 전후 금융 구조 전환이 핵심 과제로 보인다.",
           "href": null
         }
       ],
@@ -2136,7 +2944,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -2170,7 +2978,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": OPCO 설립안, 소형 DC 체크리스트, 안산DC 임차, 부산 육양국 마케팅 등 데이터센터 및 구조화 과제를 폭넓게 검토함 → ",
+            "content": ": 데이터센터 신규 구조화와 임차 마케팅 프레임을 설계하는 역할을 맡았다 → ",
             "link": null
           },
           "annotations": {
@@ -2181,7 +2989,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": OPCO 설립안, 소형 DC 체크리스트, 안산DC 임차, 부산 육양국 마케팅 등 데이터센터 및 구조화 과제를 폭넓게 검토함 → ",
+          "plain_text": ": 데이터센터 신규 구조화와 임차 마케팅 프레임을 설계하는 역할을 맡았다 → ",
           "href": null
         },
         {
@@ -2216,7 +3024,87 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "양준모",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "양준모",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 부천·부산·삼송 DC의 인허가, 운영사, 금융 준비를 묶어 관리했다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 부천·부산·삼송 DC의 인허가, 운영사, 금융 준비를 묶어 관리했다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3488ced43c4781ae8d40eb2c477771e8"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3488ced43c4781ae8d40eb2c477771e8"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "dd901338-6e46-490b-affe-03218f463015",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-20T01:50:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -2250,7 +3138,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": 고양삼송, 부산데이터센터, 부천소형DC, 노량진 복합개발, 임대주택 포트폴리오 검토를 통해 데이터센터와 개발 파이프라인을 동시에 관리함 → ",
+            "content": ": 기존·신규 DC 자산의 준공, 펀딩, 매각, 사전임차 과제를 동시에 끌고 갔다 → ",
             "link": null
           },
           "annotations": {
@@ -2261,7 +3149,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 고양삼송, 부산데이터센터, 부천소형DC, 노량진 복합개발, 임대주택 포트폴리오 검토를 통해 데이터센터와 개발 파이프라인을 동시에 관리함 → ",
+          "plain_text": ": 기존·신규 DC 자산의 준공, 펀딩, 매각, 사전임차 과제를 동시에 끌고 갔다 → ",
           "href": null
         },
         {
@@ -2290,13 +3178,13 @@
   },
   {
     "object": "block",
-    "id": "dd901338-6e46-490b-affe-03218f463015",
+    "id": "b770a870-c4a0-4a9a-9993-9f88fe0bb013",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:50:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -2307,13 +3195,30 @@
     },
     "has_children": false,
     "in_trash": false,
-    "type": "heading_2",
-    "heading_2": {
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
       "rich_text": [
         {
           "type": "text",
           "text": {
-            "content": "IOTA / 원센티널 / 가산동 PF / 리파이낸싱 자문",
+            "content": "김현수",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "김현수",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": AKROS 선임차 마케팅을 통해 데이터센터 상업화 축을 담당했다 → ",
             "link": null
           },
           "annotations": {
@@ -2324,24 +3229,42 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "IOTA / 원센티널 / 가산동 PF / 리파이낸싱 자문",
+          "plain_text": ": AKROS 선임차 마케팅을 통해 데이터센터 상업화 축을 담당했다 → ",
           "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3478ced43c4781b89665c868028b3431"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3478ced43c4781b89665c868028b3431"
         }
       ],
-      "is_toggleable": false,
       "color": "default"
     },
     "archived": false
   },
   {
     "object": "block",
-    "id": "b770a870-c4a0-4a9a-9993-9f88fe0bb013",
+    "id": "5f119d5e-2fd9-45ee-bdc0-2d1222531203",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -2375,7 +3298,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": IOTA Seoul II BL Refinancing의 중순위 대주 재참여와 통합 PF안 검토를 진행했고, 화성 석포리 후순위 Sell-Down, 여의도 원센티널 담보대출 리파이낸싱, 가산동 임대형 기숙사 PF 클로징을 병행함 → ",
+            "content": ": 삼송 DC를 포함한 리파이낸싱 금융 실행 축을 보강했다 → ",
             "link": null
           },
           "annotations": {
@@ -2386,7 +3309,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": IOTA Seoul II BL Refinancing의 중순위 대주 재참여와 통합 PF안 검토를 진행했고, 화성 석포리 후순위 Sell-Down, 여의도 원센티널 담보대출 리파이낸싱, 가산동 임대형 기숙사 PF 클로징을 병행함 → ",
+          "plain_text": ": 삼송 DC를 포함한 리파이낸싱 금융 실행 축을 보강했다 → ",
           "href": null
         },
         {
@@ -2415,13 +3338,58 @@
   },
   {
     "object": "block",
-    "id": "5f119d5e-2fd9-45ee-bdc0-2d1222531203",
+    "id": "1ecc447e-187c-478f-a18c-d9fd939589e4",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_2",
+    "heading_2": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "타임워크 계열 자산과 PFV 구조화",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "타임워크 계열 자산과 PFV 구조화",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "8a6a540a-d49e-41fc-91e1-7d8dbec02e08",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -2438,7 +3406,7 @@
         {
           "type": "text",
           "text": {
-            "content": "채원",
+            "content": "권순일",
             "link": null
           },
           "annotations": {
@@ -2449,13 +3417,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "채원",
+          "plain_text": "권순일",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": ": 가산동 임대형기숙사 도급계약서 및 대출약정서 브레이크다운, 인근 파이프라인 조사, 개발플랫폼 성과변동 업데이트, SI 투자자 사례분석 및 시공사 풀 재검토, 코리빙 오퍼레이터 검토를 진행함 → ",
+            "content": ": 타임워크 웨스트는 KCC 공사도급계약과 LOC·대출약정 연계를 준비했고, 타임워크 분당은 세미파이브 임차 협의와 전기용량 이슈를 조율했으며, 개발PFV TF에서는 프로젝트 리츠 전환 구조와 법무·세무 파트너 선정까지 검토했다 → ",
             "link": null
           },
           "annotations": {
@@ -2466,7 +3434,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 가산동 임대형기숙사 도급계약서 및 대출약정서 브레이크다운, 인근 파이프라인 조사, 개발플랫폼 성과변동 업데이트, SI 투자자 사례분석 및 시공사 풀 재검토, 코리빙 오퍼레이터 검토를 진행함 → ",
+          "plain_text": ": 타임워크 웨스트는 KCC 공사도급계약과 LOC·대출약정 연계를 준비했고, 타임워크 분당은 세미파이브 임차 협의와 전기용량 이슈를 조율했으며, 개발PFV TF에서는 프로젝트 리츠 전환 구조와 법무·세무 파트너 선정까지 검토했다 → ",
           "href": null
         },
         {
@@ -2474,7 +3442,7 @@
           "text": {
             "content": "원본",
             "link": {
-              "url": "https://www.notion.so/3458ced43c478197a229d390c113a9a1"
+              "url": "https://www.notion.so/3458ced43c4781538377cf90b09d3513"
             }
           },
           "annotations": {
@@ -2486,7 +3454,7 @@
             "color": "default"
           },
           "plain_text": "원본",
-          "href": "https://www.notion.so/3458ced43c478197a229d390c113a9a1"
+          "href": "https://www.notion.so/3458ced43c4781538377cf90b09d3513"
         }
       ],
       "color": "default"
@@ -2495,13 +3463,173 @@
   },
   {
     "object": "block",
-    "id": "1ecc447e-187c-478f-a18c-d9fd939589e4",
+    "id": "a47d1ecd-7e57-4828-82b0-d4d669b4251e",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
-    "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "우형석",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "우형석",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 타임테라스 동탄의 후순위 대주단 의사 취합과 홈플러스 퇴거 대응, 타임워크 분당의 사업비 재협의와 선매수 의향자 실사 대응, 타임워크 명동 조건 협의, 판교 아이스퀘어 청산 설명회와 STC 시장 브리핑 후 안성 매각 전략 미팅까지 이어갔다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 타임테라스 동탄의 후순위 대주단 의사 취합과 홈플러스 퇴거 대응, 타임워크 분당의 사업비 재협의와 선매수 의향자 실사 대응, 타임워크 명동 조건 협의, 판교 아이스퀘어 청산 설명회와 STC 시장 브리핑 후 안성 매각 전략 미팅까지 이어갔다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3488ced43c4781bfa993ed4cf8eaceaa"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3488ced43c4781bfa993ed4cf8eaceaa"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "a02be73b-551e-443f-a833-d0636be443e4",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "김현수",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "김현수",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 타임워크 분당에서는 LINE PLUS와의 NDA를 통해 PF 선임차 영업을 구체화했다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 타임워크 분당에서는 LINE PLUS와의 NDA를 통해 PF 선임차 영업을 구체화했다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3478ced43c4781b89665c868028b3431"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3478ced43c4781b89665c868028b3431"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "d0ac8752-cd8f-4044-b18d-fd02104b9630",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -2535,7 +3663,7 @@
         {
           "type": "text",
           "text": {
-            "content": "채원",
+            "content": "권순일",
             "link": null
           },
           "annotations": {
@@ -2546,13 +3674,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "채원",
+          "plain_text": "권순일",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": "의 가산동 상세 검토와 연결하면, 가산동 PF는 금융 클로징 이후 운영·상품화 검토로 이어지는 흐름이 확인됨.",
+            "content": "의 임차 협의와 ",
             "link": null
           },
           "annotations": {
@@ -2563,7 +3691,75 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "의 가산동 상세 검토와 연결하면, 가산동 PF는 금융 클로징 이후 운영·상품화 검토로 이어지는 흐름이 확인됨.",
+          "plain_text": "의 임차 협의와 ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "우형석",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "우형석",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "의 사업비·실사 대응, ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "의 사업비·실사 대응, ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "김현수",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "김현수",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "의 선임차 영업을 연결하면, 타임워크 분당은 개발·임차·투자자 조정이 동시에 필요한 핵심 과제로 정리된다.",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "의 선임차 영업을 연결하면, 타임워크 분당은 개발·임차·투자자 조정이 동시에 필요한 핵심 과제로 정리된다.",
           "href": null
         }
       ],
@@ -2624,7 +3820,292 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "권순일",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "권순일",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 타임워크 웨스트·분당과 PFV 전환 구조화 과제를 함께 추진했다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 타임워크 웨스트·분당과 PFV 전환 구조화 과제를 함께 추진했다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3458ced43c4781538377cf90b09d3513"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3458ced43c4781538377cf90b09d3513"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "9c0ee98f-22d9-488c-a19a-8537a53c17a8",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-20T01:50:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "우형석",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "우형석",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 타임워크 계열 자산의 매각·실사·대주 협의와 청산 이슈를 통합 관리했다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 타임워크 계열 자산의 매각·실사·대주 협의와 청산 이슈를 통합 관리했다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3488ced43c4781bfa993ed4cf8eaceaa"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3488ced43c4781bfa993ed4cf8eaceaa"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "b76cda4b-a79f-4b7c-85f9-049687edf985",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-20T01:50:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "김현수",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "김현수",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 타임워크 분당의 선임차 영업을 지원하며 실행 측면을 보강했다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 타임워크 분당의 선임차 영업을 지원하며 실행 측면을 보강했다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3478ced43c4781b89665c868028b3431"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3478ced43c4781b89665c868028b3431"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "3670ecf9-e60d-4608-af0c-967a7889d215",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-20T01:50:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_2",
+    "heading_2": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "가산·리파이낸싱·물류 금융 실행",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "가산·리파이낸싱·물류 금융 실행",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "47d535b6-0a84-4141-a0cb-1f9f6d47fee2",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-20T01:50:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -2658,7 +4139,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": 기존 물류·오피스 리파이낸싱과 신규 PF 자문을 아우르며 이번 주차의 금융 실행 과제를 집중적으로 처리함 → ",
+            "content": ": IOTA Seoul II BL 리파이낸싱의 중순위 대주 재참여와 통합 PF안 검토, 화성 석포리 후순위 셀다운, 원센티널 담보대출 리파이낸싱, 가산동 임대형 기숙사 PF 클로징, 그리고 신도림·용산더프라임·신라스테이·비즈성장 플랫폼 자문 개시까지 금융 실행 과제를 집중 처리했다 → ",
             "link": null
           },
           "annotations": {
@@ -2669,7 +4150,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 기존 물류·오피스 리파이낸싱과 신규 PF 자문을 아우르며 이번 주차의 금융 실행 과제를 집중적으로 처리함 → ",
+          "plain_text": ": IOTA Seoul II BL 리파이낸싱의 중순위 대주 재참여와 통합 PF안 검토, 화성 석포리 후순위 셀다운, 원센티널 담보대출 리파이낸싱, 가산동 임대형 기숙사 PF 클로징, 그리고 신도림·용산더프라임·신라스테이·비즈성장 플랫폼 자문 개시까지 금융 실행 과제를 집중 처리했다 → ",
           "href": null
         },
         {
@@ -2698,13 +4179,13 @@
   },
   {
     "object": "block",
-    "id": "9c0ee98f-22d9-488c-a19a-8537a53c17a8",
+    "id": "75b5d588-d70c-40b4-beea-86b3152d9070",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
-    "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -2738,7 +4219,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": 가산동 임대형기숙사를 중심으로 개발 구조와 운영 시나리오를 정교화하는 작업을 수행함 → ",
+            "content": ": 가산동 임대형기숙사 도급계약서·대출약정서 브레이크다운, 인근 파이프라인 조사, 개발플랫폼 성과 변동 업데이트, SI 투자자 사례분석, 코리빙 운영사 검토를 통해 가산 후속 구조화를 세밀하게 받쳤다 → ",
             "link": null
           },
           "annotations": {
@@ -2749,7 +4230,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 가산동 임대형기숙사를 중심으로 개발 구조와 운영 시나리오를 정교화하는 작업을 수행함 → ",
+          "plain_text": ": 가산동 임대형기숙사 도급계약서·대출약정서 브레이크다운, 인근 파이프라인 조사, 개발플랫폼 성과 변동 업데이트, SI 투자자 사례분석, 코리빙 운영사 검토를 통해 가산 후속 구조화를 세밀하게 받쳤다 → ",
           "href": null
         },
         {
@@ -2778,58 +4259,13 @@
   },
   {
     "object": "block",
-    "id": "b76cda4b-a79f-4b7c-85f9-049687edf985",
+    "id": "55fccb4d-a9ac-40d2-be1c-91fc1d19f792",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
-    "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:50:00.000Z",
-    "created_by": {
-      "object": "user",
-      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
-    },
-    "last_edited_by": {
-      "object": "user",
-      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
-    },
-    "has_children": false,
-    "in_trash": false,
-    "type": "heading_2",
-    "heading_2": {
-      "rich_text": [
-        {
-          "type": "text",
-          "text": {
-            "content": "AKROS / 타임워크 분당 / 이오타 서울 / 더케이호텔",
-            "link": null
-          },
-          "annotations": {
-            "bold": false,
-            "italic": false,
-            "strikethrough": false,
-            "underline": false,
-            "code": false,
-            "color": "default"
-          },
-          "plain_text": "AKROS / 타임워크 분당 / 이오타 서울 / 더케이호텔",
-          "href": null
-        }
-      ],
-      "is_toggleable": false,
-      "color": "default"
-    },
-    "archived": false
-  },
-  {
-    "object": "block",
-    "id": "3670ecf9-e60d-4608-af0c-967a7889d215",
-    "parent": {
-      "type": "page_id",
-      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
-    },
-    "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -2846,7 +4282,7 @@
         {
           "type": "text",
           "text": {
-            "content": "김현수",
+            "content": "이승훈",
             "link": null
           },
           "annotations": {
@@ -2857,13 +4293,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "김현수",
+          "plain_text": "이승훈",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": ": 부산 육양국 직결 데이터센터 AKROS의 LINE PLUS 및 삼성전자 선임차 제안, 타임워크 분당 PF 선임차 NDA 조율, 이오타 서울 상품전략 워크숍, 더케이호텔 재개발의 디스트릭트 협상 조건 조율을 진행함 → ",
+            "content": ": 가산 복합개발에서는 환경개선펀드 출자기간 연장과 보통주 300억원 모집, 산업단지공단과의 사업 구조 협의를 진행했고, 대구경산 쿠팡센터 운영 현안과 물류 VA·Core+ 펀드 검토, 이지스 물류 통합 협업을 병행했다 → ",
             "link": null
           },
           "annotations": {
@@ -2874,7 +4310,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 부산 육양국 직결 데이터센터 AKROS의 LINE PLUS 및 삼성전자 선임차 제안, 타임워크 분당 PF 선임차 NDA 조율, 이오타 서울 상품전략 워크숍, 더케이호텔 재개발의 디스트릭트 협상 조건 조율을 진행함 → ",
+          "plain_text": ": 가산 복합개발에서는 환경개선펀드 출자기간 연장과 보통주 300억원 모집, 산업단지공단과의 사업 구조 협의를 진행했고, 대구경산 쿠팡센터 운영 현안과 물류 VA·Core+ 펀드 검토, 이지스 물류 통합 협업을 병행했다 → ",
           "href": null
         },
         {
@@ -2882,7 +4318,7 @@
           "text": {
             "content": "원본",
             "link": {
-              "url": "https://www.notion.so/3478ced43c4781b89665c868028b3431"
+              "url": "https://www.notion.so/3478ced43c4781c99cc6f47509fd11ef"
             }
           },
           "annotations": {
@@ -2894,7 +4330,7 @@
             "color": "default"
           },
           "plain_text": "원본",
-          "href": "https://www.notion.so/3478ced43c4781b89665c868028b3431"
+          "href": "https://www.notion.so/3478ced43c4781c99cc6f47509fd11ef"
         }
       ],
       "color": "default"
@@ -2903,13 +4339,13 @@
   },
   {
     "object": "block",
-    "id": "47d535b6-0a84-4141-a0cb-1f9f6d47fee2",
+    "id": "162ba886-bf8a-4fa5-9d6b-bf144c5fb4c1",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
-    "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -2926,24 +4362,7 @@
         {
           "type": "text",
           "text": {
-            "content": "타임워크 분당은 ",
-            "link": null
-          },
-          "annotations": {
-            "bold": false,
-            "italic": false,
-            "strikethrough": false,
-            "underline": false,
-            "code": false,
-            "color": "default"
-          },
-          "plain_text": "타임워크 분당은 ",
-          "href": null
-        },
-        {
-          "type": "text",
-          "text": {
-            "content": "권순일",
+            "content": "이현호",
             "link": null
           },
           "annotations": {
@@ -2954,13 +4373,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "권순일",
+          "plain_text": "이현호",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": "과, 더케이호텔은 ",
+            "content": ": 화성CDC 후순위 대주 협의, 회억리 복합물류센터 신규 임대차 및 리파이낸싱, 양지아레나스 셰어딜 검토, 비즈성장플랫폼 신탁형 펀드 설정 협의를 진행했다 → ",
             "link": null
           },
           "annotations": {
@@ -2971,13 +4390,76 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "과, 더케이호텔은 ",
+          "plain_text": ": 화성CDC 후순위 대주 협의, 회억리 복합물류센터 신규 임대차 및 리파이낸싱, 양지아레나스 셰어딜 검토, 비즈성장플랫폼 신탁형 펀드 설정 협의를 진행했다 → ",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": "안지하",
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3488ced43c4781d6af5cf1fb21f9cec5"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3488ced43c4781d6af5cf1fb21f9cec5"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "0baa80f7-5fe8-459e-8aeb-726dac1f68d2",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "같은 프로젝트를 다루는 ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "같은 프로젝트를 다루는 ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "채원",
             "link": null
           },
           "annotations": {
@@ -2988,13 +4470,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "안지하",
+          "plain_text": "채원",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": "·",
+            "content": "의 가산 상세 검토와 ",
             "link": null
           },
           "annotations": {
@@ -3005,13 +4487,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "·",
+          "plain_text": "의 가산 상세 검토와 ",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": "윤관식",
+            "content": "박준호",
             "link": null
           },
           "annotations": {
@@ -3022,13 +4504,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "윤관식",
+          "plain_text": "박준호",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": "과 각각 직접 연결되어 있어, ",
+            "content": "의 가산 PF 클로징, ",
             "link": null
           },
           "annotations": {
@@ -3039,13 +4521,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "과 각각 직접 연결되어 있어, ",
+          "plain_text": "의 가산 PF 클로징, ",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": "김현수",
+            "content": "이승훈",
             "link": null
           },
           "annotations": {
@@ -3056,13 +4538,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "김현수",
+          "plain_text": "이승훈",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": "는 임차 마케팅과 공간 전략 측면에서 타 라인 핵심 프로젝트를 지원하는 양상이 뚜렷함.",
+            "content": "의 가산 복합개발 자본 조달 협의를 연결하면, 가산 축은 금융 클로징 이후 운영·구조화 단계로 넘어가는 흐름이 분명하다.",
             "link": null
           },
           "annotations": {
@@ -3073,7 +4555,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "는 임차 마케팅과 공간 전략 측면에서 타 라인 핵심 프로젝트를 지원하는 양상이 뚜렷함.",
+          "plain_text": "의 가산 복합개발 자본 조달 협의를 연결하면, 가산 축은 금융 클로징 이후 운영·구조화 단계로 넘어가는 흐름이 분명하다.",
           "href": null
         }
       ],
@@ -3134,7 +4616,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -3151,7 +4633,7 @@
         {
           "type": "text",
           "text": {
-            "content": "김현수",
+            "content": "박준호",
             "link": null
           },
           "annotations": {
@@ -3162,13 +4644,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "김현수",
+          "plain_text": "박준호",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": ": 데이터센터 선임차 영업과 복합개발 상품 전략을 연결하며 AKROS, 타임워크 분당, 이오타 서울, 더케이호텔 이슈를 동시에 관리함 → ",
+            "content": ": 오피스·물류·개발형 자산 전반의 리파이낸싱과 PF 클로징을 총괄했다 → ",
             "link": null
           },
           "annotations": {
@@ -3179,7 +4661,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 데이터센터 선임차 영업과 복합개발 상품 전략을 연결하며 AKROS, 타임워크 분당, 이오타 서울, 더케이호텔 이슈를 동시에 관리함 → ",
+          "plain_text": ": 오피스·물류·개발형 자산 전반의 리파이낸싱과 PF 클로징을 총괄했다 → ",
           "href": null
         },
         {
@@ -3187,7 +4669,7 @@
           "text": {
             "content": "원본",
             "link": {
-              "url": "https://www.notion.so/3478ced43c4781b89665c868028b3431"
+              "url": "https://www.notion.so/3478ced43c4781778da5ee76c288ad2c"
             }
           },
           "annotations": {
@@ -3199,7 +4681,7 @@
             "color": "default"
           },
           "plain_text": "원본",
-          "href": "https://www.notion.so/3478ced43c4781b89665c868028b3431"
+          "href": "https://www.notion.so/3478ced43c4781778da5ee76c288ad2c"
         }
       ],
       "color": "default"
@@ -3214,52 +4696,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:50:00.000Z",
-    "created_by": {
-      "object": "user",
-      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
-    },
-    "last_edited_by": {
-      "object": "user",
-      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
-    },
-    "has_children": false,
-    "in_trash": false,
-    "type": "heading_2",
-    "heading_2": {
-      "rich_text": [
-        {
-          "type": "text",
-          "text": {
-            "content": "국내 자산 운용·매각 검토",
-            "link": null
-          },
-          "annotations": {
-            "bold": false,
-            "italic": false,
-            "strikethrough": false,
-            "underline": false,
-            "code": false,
-            "color": "default"
-          },
-          "plain_text": "국내 자산 운용·매각 검토",
-          "href": null
-        }
-      ],
-      "is_toggleable": false,
-      "color": "default"
-    },
-    "archived": false
-  },
-  {
-    "object": "block",
-    "id": "9b441943-b81d-4910-a735-ebb18011f5aa",
-    "parent": {
-      "type": "page_id",
-      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
-    },
-    "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -3276,7 +4713,7 @@
         {
           "type": "text",
           "text": {
-            "content": "정조민",
+            "content": "채원",
             "link": null
           },
           "annotations": {
@@ -3287,13 +4724,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "정조민",
+          "plain_text": "채원",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": ": 코너136 매각 자문사 PT 준비, 홈플러스 회생절차 및 Exit 시나리오 분석, 부천 소사 분양사업 품평회 준비, 리빙 섹터 채용 논의, Foundry Multi-Family 매각 심의를 진행함 → ",
+            "content": ": 가산 기숙사 딜의 계약·운영·상품화 검토를 세부적으로 보완했다 → ",
             "link": null
           },
           "annotations": {
@@ -3304,7 +4741,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 코너136 매각 자문사 PT 준비, 홈플러스 회생절차 및 Exit 시나리오 분석, 부천 소사 분양사업 품평회 준비, 리빙 섹터 채용 논의, Foundry Multi-Family 매각 심의를 진행함 → ",
+          "plain_text": ": 가산 기숙사 딜의 계약·운영·상품화 검토를 세부적으로 보완했다 → ",
           "href": null
         },
         {
@@ -3312,7 +4749,7 @@
           "text": {
             "content": "원본",
             "link": {
-              "url": "https://www.notion.so/3478ced43c4781838a12ca682bdafbda"
+              "url": "https://www.notion.so/3458ced43c478197a229d390c113a9a1"
             }
           },
           "annotations": {
@@ -3324,7 +4761,7 @@
             "color": "default"
           },
           "plain_text": "원본",
-          "href": "https://www.notion.so/3478ced43c4781838a12ca682bdafbda"
+          "href": "https://www.notion.so/3458ced43c478197a229d390c113a9a1"
         }
       ],
       "color": "default"
@@ -3333,13 +4770,13 @@
   },
   {
     "object": "block",
-    "id": "95a2d2cf-686d-4082-9b95-d825da0cb6e3",
+    "id": "9b441943-b81d-4910-a735-ebb18011f5aa",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -3373,7 +4810,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": 가산 복합개발 프로젝트의 환경개선펀드 출자 연장과 보통주 조달 이슈를 조정했고, 대구경산 쿠팡센터 운영 현안 대응, 물류 VA·Core+ 펀드 검토, 이지스 물류 협업을 병행함 → ",
+            "content": ": 가산 복합개발 자본 조달과 물류 운용·펀드 검토를 함께 챙겼다 → ",
             "link": null
           },
           "annotations": {
@@ -3384,7 +4821,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 가산 복합개발 프로젝트의 환경개선펀드 출자 연장과 보통주 조달 이슈를 조정했고, 대구경산 쿠팡센터 운영 현안 대응, 물류 VA·Core+ 펀드 검토, 이지스 물류 협업을 병행함 → ",
+          "plain_text": ": 가산 복합개발 자본 조달과 물류 운용·펀드 검토를 함께 챙겼다 → ",
           "href": null
         },
         {
@@ -3405,6 +4842,483 @@
           },
           "plain_text": "원본",
           "href": "https://www.notion.so/3478ced43c4781c99cc6f47509fd11ef"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "95a2d2cf-686d-4082-9b95-d825da0cb6e3",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-20T01:50:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "이현호",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "이현호",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 물류 자산 금융 구조와 임대차 재조정 과제를 병행했다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 물류 자산 금융 구조와 임대차 재조정 과제를 병행했다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3488ced43c4781d6af5cf1fb21f9cec5"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3488ced43c4781d6af5cf1fb21f9cec5"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "cd289205-26f1-4667-9e46-bc3715405efd",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_2",
+    "heading_2": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "국내 자산 운용·매각과 리빙 검토",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "국내 자산 운용·매각과 리빙 검토",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "951650ba-2e6a-448f-b198-26f6ba7627c6",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "정조민",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "정조민",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 코너136 매각 자문사 PT, 홈플러스 회생절차 및 Exit 시나리오 분석, 부천 소사 주택 분양사업 품평회 준비, 리빙 섹터 채용 논의, Foundry Multi-Family 매각 심의를 진행했다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 코너136 매각 자문사 PT, 홈플러스 회생절차 및 Exit 시나리오 분석, 부천 소사 주택 분양사업 품평회 준비, 리빙 섹터 채용 논의, Foundry Multi-Family 매각 심의를 진행했다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3478ced43c4781838a12ca682bdafbda"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3478ced43c4781838a12ca682bdafbda"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "c6ae616a-0f67-4e18-8d50-e55eafde21d6",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "김지현",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "김지현",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 평택아디다스 유동성 지원 논의, 브이플렉스 매각자문사 선정, 안성홈플러스 기업회생 절차 모니터링, 몰오브케이 계약 체결 논의, 구로 지밸리 GIC 사이트투어 준비를 진행했다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 평택아디다스 유동성 지원 논의, 브이플렉스 매각자문사 선정, 안성홈플러스 기업회생 절차 모니터링, 몰오브케이 계약 체결 논의, 구로 지밸리 GIC 사이트투어 준비를 진행했다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3488ced43c4781549b6cf604d0069299"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3488ced43c4781549b6cf604d0069299"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "6f4e03f5-f72b-46af-93c8-df0de77e3b31",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "권도엽",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "권도엽",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 양지물류 매각주간사 선정과 태평로빌딩 운용·매각 검토를 통해 기존 국내 자산의 운용·매각 축도 함께 관리했다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 양지물류 매각주간사 선정과 태평로빌딩 운용·매각 검토를 통해 기존 국내 자산의 운용·매각 축도 함께 관리했다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3458ced43c4781bea833fd479c2d2877"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3458ced43c4781bea833fd479c2d2877"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "806d3cd1-fa24-4f69-b0fe-2d5571b49ccb",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "같은 프로젝트를 다루는 ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "같은 프로젝트를 다루는 ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "정조민",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "정조민",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "의 코너136·리빙 검토와 연결하면, ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "의 코너136·리빙 검토와 연결하면, ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "김지현",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "김지현",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "의 지밸리·안성홈플러스 대응은 기존 자산 매각·운용 포트폴리오를 보강하는 축으로 읽힌다.",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "의 지밸리·안성홈플러스 대응은 기존 자산 매각·운용 포트폴리오를 보강하는 축으로 읽힌다.",
+          "href": null
         }
       ],
       "color": "default"
@@ -3464,7 +5378,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -3498,7 +5412,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": 코너136, 홈플러스, 부천 소사, Living, Foundry Multi-Family 등 매각·운영·신규 섹터 검토를 병행함 → ",
+            "content": ": 매각·회수 시나리오와 리빙 섹터 검토를 한 번에 정리했다 → ",
             "link": null
           },
           "annotations": {
@@ -3509,7 +5423,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 코너136, 홈플러스, 부천 소사, Living, Foundry Multi-Family 등 매각·운영·신규 섹터 검토를 병행함 → ",
+          "plain_text": ": 매각·회수 시나리오와 리빙 섹터 검토를 한 번에 정리했다 → ",
           "href": null
         },
         {
@@ -3544,7 +5458,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -3561,7 +5475,7 @@
         {
           "type": "text",
           "text": {
-            "content": "이승훈",
+            "content": "김지현",
             "link": null
           },
           "annotations": {
@@ -3572,13 +5486,13 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "이승훈",
+          "plain_text": "김지현",
           "href": null
         },
         {
           "type": "text",
           "text": {
-            "content": ": 가산 복합개발과 물류 펀드, 쿠팡센터 운영, 물류 협업 과제를 함께 보며 개발·운용·신규 검토를 병행함 → ",
+            "content": ": 리테일·물류 자산의 유동성 지원과 매각, 수익자 대응을 병행했다 → ",
             "link": null
           },
           "annotations": {
@@ -3589,7 +5503,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 가산 복합개발과 물류 펀드, 쿠팡센터 운영, 물류 협업 과제를 함께 보며 개발·운용·신규 검토를 병행함 → ",
+          "plain_text": ": 리테일·물류 자산의 유동성 지원과 매각, 수익자 대응을 병행했다 → ",
           "href": null
         },
         {
@@ -3597,7 +5511,7 @@
           "text": {
             "content": "원본",
             "link": {
-              "url": "https://www.notion.so/3478ced43c4781c99cc6f47509fd11ef"
+              "url": "https://www.notion.so/3488ced43c4781549b6cf604d0069299"
             }
           },
           "annotations": {
@@ -3609,7 +5523,7 @@
             "color": "default"
           },
           "plain_text": "원본",
-          "href": "https://www.notion.so/3478ced43c4781c99cc6f47509fd11ef"
+          "href": "https://www.notion.so/3488ced43c4781549b6cf604d0069299"
         }
       ],
       "color": "default"
@@ -3624,7 +5538,87 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:50:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "권도엽",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "권도엽",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 국내 보유 자산의 매각 실행과 운용 리스크 관리를 함께 맡았다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 국내 보유 자산의 매각 실행과 운용 리스크 관리를 함께 맡았다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3458ced43c4781bea833fd479c2d2877"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3458ced43c4781bea833fd479c2d2877"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "70b0930c-800e-4909-859c-ae214954f9a8",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-20T01:50:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -3641,7 +5635,7 @@
         {
           "type": "text",
           "text": {
-            "content": "343 Madison / 89호 SMA / 해외 투자기회 검토",
+            "content": "해외 투자·SMA·신규 딜 소싱",
             "link": null
           },
           "annotations": {
@@ -3652,7 +5646,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "343 Madison / 89호 SMA / 해외 투자기회 검토",
+          "plain_text": "해외 투자·SMA·신규 딜 소싱",
           "href": null
         }
       ],
@@ -3663,13 +5657,13 @@
   },
   {
     "object": "block",
-    "id": "70b0930c-800e-4909-859c-ae214954f9a8",
+    "id": "849740eb-d3c2-447b-a0b4-190ec0c1cbbc",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -3703,7 +5697,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": 343 Madison Ave. BXP JV teaser 작성과 잠재 수익자 검토 대응, Chauncey Square post-closing 절차, 맨해튼 Resi conversion JV 지분 출자 검토, 89호 유럽 SMA 편입 및 보고, Nuveen C-Pace 신규 펀드 검토를 진행함 → ",
+            "content": ": 343 Madison Ave. BXP JV teaser 작성과 잠재 수익자 Q&A 준비, Chauncey Square post-closing 절차, 맨해튼 오피스-주거 전환 JV 검토, 89호 유럽 SMA 편입 및 보고, Nuveen C-Pace 신규 펀드 검토를 진행했다 → ",
             "link": null
           },
           "annotations": {
@@ -3714,7 +5708,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 343 Madison Ave. BXP JV teaser 작성과 잠재 수익자 검토 대응, Chauncey Square post-closing 절차, 맨해튼 Resi conversion JV 지분 출자 검토, 89호 유럽 SMA 편입 및 보고, Nuveen C-Pace 신규 펀드 검토를 진행함 → ",
+          "plain_text": ": 343 Madison Ave. BXP JV teaser 작성과 잠재 수익자 Q&A 준비, Chauncey Square post-closing 절차, 맨해튼 오피스-주거 전환 JV 검토, 89호 유럽 SMA 편입 및 보고, Nuveen C-Pace 신규 펀드 검토를 진행했다 → ",
           "href": null
         },
         {
@@ -3743,13 +5737,13 @@
   },
   {
     "object": "block",
-    "id": "849740eb-d3c2-447b-a0b4-190ec0c1cbbc",
+    "id": "937dba3c-623f-4c0e-9ef2-190559b86ac4",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -3783,7 +5777,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": 이지스89호 덴마크 코펜하겐 임대주택 투자 후속조치, 343 Madison Ave. 지분 투자 검토, Trianon 환헤지 소송 대응, 미국 Credit Fund 투자자 마케팅, 호주·독일 주거 개발 딜 검토를 병행함 → ",
+            "content": ": 이지스89호 덴마크 코펜하겐 임대주택 SPA 후속 조치, 343 Madison 투자 검토, Trianon 환헤지 소송 대응, 미국 Credit Fund 투자자 마케팅, 호주·독일 주거 개발 딜 검토를 병행했다 → ",
             "link": null
           },
           "annotations": {
@@ -3794,7 +5788,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 이지스89호 덴마크 코펜하겐 임대주택 투자 후속조치, 343 Madison Ave. 지분 투자 검토, Trianon 환헤지 소송 대응, 미국 Credit Fund 투자자 마케팅, 호주·독일 주거 개발 딜 검토를 병행함 → ",
+          "plain_text": ": 이지스89호 덴마크 코펜하겐 임대주택 SPA 후속 조치, 343 Madison 투자 검토, Trianon 환헤지 소송 대응, 미국 Credit Fund 투자자 마케팅, 호주·독일 주거 개발 딜 검토를 병행했다 → ",
           "href": null
         },
         {
@@ -3823,13 +5817,13 @@
   },
   {
     "object": "block",
-    "id": "937dba3c-623f-4c0e-9ef2-190559b86ac4",
+    "id": "d00e7c78-1dbf-4bfb-961a-7bc5508ced55",
     "parent": {
       "type": "page_id",
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
-    "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -3846,24 +5840,7 @@
         {
           "type": "text",
           "text": {
-            "content": "김주일",
-            "link": null
-          },
-          "annotations": {
-            "bold": true,
-            "italic": false,
-            "strikethrough": false,
-            "underline": false,
-            "code": false,
-            "color": "default"
-          },
-          "plain_text": "김주일",
-          "href": null
-        },
-        {
-          "type": "text",
-          "text": {
-            "content": "의 딜 패키징과 ",
+            "content": "같은 프로젝트를 다루는 ",
             "link": null
           },
           "annotations": {
@@ -3874,7 +5851,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "의 딜 패키징과 ",
+          "plain_text": "같은 프로젝트를 다루는 ",
           "href": null
         },
         {
@@ -3897,7 +5874,7 @@
         {
           "type": "text",
           "text": {
-            "content": "의 투자·분쟁·신규 딜 검토가 맞물리며, 해외 투자 축은 기존 운용과 신규 소싱을 동시에 전개하는 흐름을 유지함.",
+            "content": "의 343 Madison 투자 검토와 ",
             "link": null
           },
           "annotations": {
@@ -3908,7 +5885,41 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": "의 투자·분쟁·신규 딜 검토가 맞물리며, 해외 투자 축은 기존 운용과 신규 소싱을 동시에 전개하는 흐름을 유지함.",
+          "plain_text": "의 343 Madison 투자 검토와 ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "김주일",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "김주일",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "의 딜 패키징을 연결하면, 해외 투자 축은 신규 딜 소싱과 투자자 마케팅이 동시에 돌아가고 있다.",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "의 딜 패키징을 연결하면, 해외 투자 축은 신규 딜 소싱과 투자자 마케팅이 동시에 돌아가고 있다.",
           "href": null
         }
       ],
@@ -3969,7 +5980,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -4003,7 +6014,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": 미국 오피스·주거 전환, 유럽 SMA, Nuveen 대출 펀드 등 해외 투자상품 소싱과 운용 후속조치를 병행함 → ",
+            "content": ": 미국 오피스·주거 전환과 유럽 SMA, 신규 대출 펀드까지 해외 상품 소싱과 운용 후속을 병행했다 → ",
             "link": null
           },
           "annotations": {
@@ -4014,7 +6025,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 미국 오피스·주거 전환, 유럽 SMA, Nuveen 대출 펀드 등 해외 투자상품 소싱과 운용 후속조치를 병행함 → ",
+          "plain_text": ": 미국 오피스·주거 전환과 유럽 SMA, 신규 대출 펀드까지 해외 상품 소싱과 운용 후속을 병행했다 → ",
           "href": null
         },
         {
@@ -4049,7 +6060,7 @@
       "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
     },
     "created_time": "2026-04-20T01:50:00.000Z",
-    "last_edited_time": "2026-04-20T01:55:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
     "created_by": {
       "object": "user",
       "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
@@ -4083,7 +6094,7 @@
         {
           "type": "text",
           "text": {
-            "content": ": 89호 후속조치, 343 Madison 투자 검토, Trianon 소송 대응, 미국 Credit Fund 마케팅을 병행하며 포트폴리오 관리와 신규 딜 소싱을 동시에 수행함 → ",
+            "content": ": 89호 후속조치, 343 Madison 검토, 소송 대응, Credit Fund 마케팅을 함께 끌고 갔다 → ",
             "link": null
           },
           "annotations": {
@@ -4094,7 +6105,7 @@
             "code": false,
             "color": "default"
           },
-          "plain_text": ": 89호 후속조치, 343 Madison 투자 검토, Trianon 소송 대응, 미국 Credit Fund 마케팅을 병행하며 포트폴리오 관리와 신규 딜 소싱을 동시에 수행함 → ",
+          "plain_text": ": 89호 후속조치, 343 Madison 검토, 소송 대응, Credit Fund 마케팅을 함께 끌고 갔다 → ",
           "href": null
         },
         {
@@ -4115,6 +6126,528 @@
           },
           "plain_text": "원본",
           "href": "https://www.notion.so/3428ced43c47817eb09fc41cae17028c"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "85ac6fdc-a4e9-4a63-be4a-abbaf7698eb0",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_2",
+    "heading_2": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "일본·유럽 자산 Exit와 글로벌 운용 이슈",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "일본·유럽 자산 Exit와 글로벌 운용 이슈",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "c073fc27-3f67-4248-a335-a9610d89cd7e",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "신민재",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "신민재",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 일본 오다와라 아마존 자산은 매각 권고 여부와 공동투자자 Nuveen 협의가 핵심이었고, 독일 아마존 메자닌 리파이낸싱, 미국 버지니아 Foundry 멀티패밀리 매각 심의 준비, 일본 도쿄 레지덴셜 보수 인하 요청 대응, 우디스 오션웨스트 자문계약까지 다뤘다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 일본 오다와라 아마존 자산은 매각 권고 여부와 공동투자자 Nuveen 협의가 핵심이었고, 독일 아마존 메자닌 리파이낸싱, 미국 버지니아 Foundry 멀티패밀리 매각 심의 준비, 일본 도쿄 레지덴셜 보수 인하 요청 대응, 우디스 오션웨스트 자문계약까지 다뤘다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3488ced43c47817491e9e2aba1dd420d"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3488ced43c47817491e9e2aba1dd420d"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "d9446922-13c2-475e-9329-54d96ae5ae05",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "신소현",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "신소현",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 일본 도쿄 23구 레지덴셜 포트폴리오 분할 매각과 펀드 만기 연장 심의를 진행했고, 일본 오다와라 아마존 물류센터 리파이낸싱·매각 타당성 검토, 글로벌 조직 충원, GAM Exit 전략회의, 트리아논TF 항고 신청까지 후속 이슈를 챙겼다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 일본 도쿄 23구 레지덴셜 포트폴리오 분할 매각과 펀드 만기 연장 심의를 진행했고, 일본 오다와라 아마존 물류센터 리파이낸싱·매각 타당성 검토, 글로벌 조직 충원, GAM Exit 전략회의, 트리아논TF 항고 신청까지 후속 이슈를 챙겼다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3488ced43c4781fba10ede93702401a9"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3488ced43c4781fba10ede93702401a9"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "5890b5f0-e6a1-4432-9673-68d3bf92370c",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "같은 프로젝트를 다루는 ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "같은 프로젝트를 다루는 ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "신소현",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "신소현",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "의 오다와라 리파이낸싱 검토와 연결하면, ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "의 오다와라 리파이낸싱 검토와 연결하면, ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "신민재",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "신민재",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "의 매각 권고 검토는 일본 물류 자산의 Exit 방향을 정하는 상위 판단으로 이어진다.",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "의 매각 권고 검토는 일본 물류 자산의 Exit 방향을 정하는 상위 판단으로 이어진다.",
+          "href": null
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "313d419f-a3c0-4831-845b-98674f7ac803",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "heading_3",
+    "heading_3": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "개인별 요약",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "개인별 요약",
+          "href": null
+        }
+      ],
+      "is_toggleable": false,
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "a5cc7ac9-2224-4094-8a8b-3ccc23986620",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "신민재",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "신민재",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 일본·독일·미국 자산의 매각, 리파이낸싱, 수수료 체계 이슈를 폭넓게 정리했다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 일본·독일·미국 자산의 매각, 리파이낸싱, 수수료 체계 이슈를 폭넓게 정리했다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3488ced43c47817491e9e2aba1dd420d"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3488ced43c47817491e9e2aba1dd420d"
+        }
+      ],
+      "color": "default"
+    },
+    "archived": false
+  },
+  {
+    "object": "block",
+    "id": "18b524af-56f9-425e-bde5-27f1e7c9a965",
+    "parent": {
+      "type": "page_id",
+      "page_id": "3488ced4-3c47-8133-b2e1-d32882828c05"
+    },
+    "created_time": "2026-04-21T00:36:00.000Z",
+    "last_edited_time": "2026-04-21T00:36:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "748bb1c2-2bf4-4a89-9450-88f505420ac3"
+    },
+    "has_children": false,
+    "in_trash": false,
+    "type": "bulleted_list_item",
+    "bulleted_list_item": {
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "신소현",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "신소현",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": ": 일본 레지덴셜 매각·만기연장과 오다와라 리파이낸싱, 글로벌 조직·Exit 아젠다를 함께 관리했다 → ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": ": 일본 레지덴셜 매각·만기연장과 오다와라 리파이낸싱, 글로벌 조직·Exit 아젠다를 함께 관리했다 → ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "원본",
+            "link": {
+              "url": "https://www.notion.so/3488ced43c4781fba10ede93702401a9"
+            }
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "원본",
+          "href": "https://www.notion.so/3488ced43c4781fba10ede93702401a9"
         }
       ],
       "color": "default"
