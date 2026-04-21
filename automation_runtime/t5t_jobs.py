@@ -44,6 +44,64 @@ LINE_ORDER = [
     "R Line",
 ]
 
+REFERENCE_ENGLISH_TERM_ALIASES = {
+    "office": ["오피스"],
+    "retail": ["리테일"],
+    "logistics": ["로지스틱스", "물류"],
+    "warehouse": ["웨어하우스", "물류센터"],
+    "residential": ["레지덴셜", "주거"],
+    "portfolio": ["포트폴리오"],
+    "tower": ["타워"],
+    "square": ["스퀘어"],
+    "district": ["디스트릭트"],
+    "island": ["아일랜드"],
+    "treasury": ["트레저리"],
+    "harumi": ["하루미"],
+    "triton": ["트리톤"],
+    "wien": ["빈", "비엔"],
+    "mitte": ["미테"],
+    "jakarta": ["자카르타"],
+    "london": ["런던"],
+    "frankfurt": ["프랑크푸르트"],
+    "tokyo": ["도쿄", "토쿄"],
+    "new": ["뉴"],
+    "york": ["욕", "요크"],
+    "avenue": ["애비뉴"],
+    "estate": ["에스테이트"],
+    "real": ["리얼"],
+    "mezzanine": ["메자닌"],
+    "loan": ["론"],
+    "fund": ["펀드"],
+    "cities": ["시티즈"],
+    "city": ["시티"],
+    "multifamily": ["멀티패밀리"],
+    "amazon": ["아마존"],
+    "foundry": ["파운드리"],
+    "nuveen": ["누빈"],
+    "scannell": ["스캐넬"],
+    "townsend": ["타운센드"],
+    "europe": ["유럽", "유로프"],
+    "venture": ["벤처"],
+    "venlo": ["벤로"],
+    "kuhn": ["쿤"],
+    "nabuurs": ["나부르스"],
+    "one": ["원"],
+    "poultry": ["폴트리"],
+}
+
+REFERENCE_ACRONYM_ALIASES = {
+    "fc": ["에프씨"],
+    "dc": ["디씨", "데이터센터"],
+    "us": ["유에스"],
+    "uk": ["유케이"],
+    "tr": ["티알"],
+    "pf": ["피에프"],
+    "si": ["에스아이"],
+    "opco": ["오피코", "옵코"],
+}
+
+REFERENCE_ALIAS_RULES_PATH = Path(__file__).resolve().parent / "reference_alias_rules.json"
+
 
 @dataclass
 class ParsedTask:
@@ -274,6 +332,123 @@ class AutomationRuntime:
 
     def _normalize_key(self, text: str) -> str:
         return re.sub(r"[^0-9a-z가-힣]", "", (text or "").lower())
+
+    def _extract_numeric_markers(self, text: str) -> set[str]:
+        markers: set[str] = set()
+        for match in re.findall(r"\d+", text or ""):
+            stripped = match.lstrip("0") or "0"
+            markers.add(stripped)
+        for match in re.findall(r"(\d+)\s*호", text or "", flags=re.IGNORECASE):
+            stripped = match.lstrip("0") or "0"
+            markers.add(stripped)
+            markers.add(f"{stripped}호")
+        for match in re.findall(r"no\.?\s*(\d+)", text or "", flags=re.IGNORECASE):
+            stripped = match.lstrip("0") or "0"
+            markers.add(stripped)
+            markers.add(f"no{stripped}")
+        return markers
+
+    def _load_reference_alias_rules(self) -> Dict[str, Dict[str, List[str]]]:
+        cached = getattr(self, "_reference_alias_rules_cache", None)
+        if cached is not None:
+            return cached
+
+        rules: Dict[str, Dict[str, List[str]]] = {
+            "exact_aliases": {},
+            "token_aliases": {},
+            "acronym_aliases": {},
+        }
+        if REFERENCE_ALIAS_RULES_PATH.exists():
+            try:
+                with REFERENCE_ALIAS_RULES_PATH.open("r", encoding="utf-8") as handle:
+                    payload = json.load(handle)
+                for section in rules:
+                    values = payload.get(section, {})
+                    if isinstance(values, dict):
+                        rules[section] = {
+                            str(key).strip().lower(): [str(item).strip() for item in value if str(item).strip()]
+                            for key, value in values.items()
+                            if isinstance(value, list)
+                        }
+            except Exception:
+                rules = rules
+
+        self._reference_alias_rules_cache = rules
+        return rules
+
+    def _english_pronunciation_aliases(self, text: str) -> List[str]:
+        aliases: set[str] = set()
+        rules = self._load_reference_alias_rules()
+        token_aliases_map = {**REFERENCE_ENGLISH_TERM_ALIASES, **rules.get("token_aliases", {})}
+        acronym_aliases_map = {**REFERENCE_ACRONYM_ALIASES, **rules.get("acronym_aliases", {})}
+        english_tokens = re.findall(r"[A-Za-z][A-Za-z0-9&.+/-]*", text or "")
+        if not english_tokens:
+            return []
+
+        token_alias_groups: List[List[str]] = []
+        for raw_token in english_tokens:
+            normalized = raw_token.strip().lower().strip(".")
+            if not normalized:
+                continue
+            if re.fullmatch(r"[a-z]{1,4}", normalized) and normalized in acronym_aliases_map:
+                token_alias_groups.append(list(acronym_aliases_map[normalized]))
+                continue
+
+            token_aliases = list(token_aliases_map.get(normalized, []))
+            if token_aliases:
+                token_aliases.append(normalized)
+            else:
+                token_aliases = [normalized]
+            token_alias_groups.append(token_aliases[:3])
+
+        if not token_alias_groups:
+            return []
+
+        combined = [""]
+        for alias_group in token_alias_groups[:6]:
+            next_combined = []
+            for prefix in combined[:24]:
+                for alias in alias_group[:3]:
+                    next_combined.append(f"{prefix} {alias}".strip())
+            combined = next_combined[:48]
+
+        for phrase in combined:
+            cleaned = self._clean_label(phrase)
+            if cleaned:
+                aliases.add(cleaned)
+        return sorted(aliases, key=len, reverse=True)
+
+    def _reference_aliases(self, title: str, record: Dict[str, Any]) -> List[str]:
+        aliases: set[str] = set()
+        rules = self._load_reference_alias_rules()
+        title = (title or "").strip()
+        if title:
+            aliases.add(title)
+            aliases.add(re.sub(r"\(([^)]+)\)", r" \1 ", title))
+            for exact_alias in rules.get("exact_aliases", {}).get(title.lower(), []):
+                aliases.add(exact_alias)
+
+        for key in ["프로젝트 코드", "Vehicle(약칭)", "프로젝트명", "Project & Mission 이름", "프로젝트 이름", "Name"]:
+            value = record.get(key)
+            if isinstance(value, str) and value.strip():
+                aliases.add(value.strip())
+
+        for alias in list(aliases):
+            for expanded in self._english_pronunciation_aliases(alias):
+                aliases.add(expanded)
+
+        normalized_aliases: List[str] = []
+        seen = set()
+        for alias in aliases:
+            cleaned = self._clean_label(alias)
+            if not cleaned:
+                continue
+            key = self._normalize_key(cleaned)
+            if not key or key in seen:
+                continue
+            seen.add(key)
+            normalized_aliases.append(cleaned)
+        return sorted(normalized_aliases, key=len, reverse=True)
 
     def _clean_token(self, token: str) -> str:
         token = (token or "").strip().lstrip("#").strip()
@@ -596,15 +771,26 @@ class AutomationRuntime:
             )
         return mapping, groups
 
-    def _load_reference_index(self, db_id: str, title_key: str) -> List[Tuple[str, Dict[str, Any]]]:
+    def _load_reference_index(self, db_id: str, title_key: str) -> List[Dict[str, Any]]:
         pages = self.client.query_database(db_id)
-        index: List[Tuple[str, Dict[str, Any]]] = []
+        index: List[Dict[str, Any]] = []
         for page in pages:
             record = page_to_record(page)
             title = (record.get(title_key) or "").strip()
             if title:
-                index.append((self._normalize_key(title), {"id": page["id"], "title": title, "record": record}))
-        index.sort(key=lambda item: len(item[0]), reverse=True)
+                aliases = self._reference_aliases(title, record)
+                index.append(
+                    {
+                        "id": page["id"],
+                        "title": title,
+                        "record": record,
+                        "aliases": aliases,
+                        "title_key": self._normalize_key(title),
+                        "alias_keys": [self._normalize_key(alias) for alias in aliases if self._normalize_key(alias)],
+                        "numeric_markers": self._extract_numeric_markers(" ".join(aliases)),
+                    }
+                )
+        index.sort(key=lambda item: max((len(alias) for alias in item["alias_keys"]), default=0), reverse=True)
         return index
 
     def _build_activity_payload(
@@ -612,9 +798,9 @@ class AutomationRuntime:
         entry: WriterEntry,
         task: ParsedTask,
         end_date: date,
-        project_mission_index: List[Tuple[str, Dict[str, Any]]],
-        project_master_index: List[Tuple[str, Dict[str, Any]]],
-        new_project_index: List[Tuple[str, Dict[str, Any]]],
+        project_mission_index: List[Dict[str, Any]],
+        project_master_index: List[Dict[str, Any]],
+        new_project_index: List[Dict[str, Any]],
     ) -> Dict[str, Any]:
         classification_summary = self._derive_classification_summary(task)
         classification_tokens = self._derive_classification_tokens(task)
@@ -688,15 +874,52 @@ class AutomationRuntime:
             "manual_check": manual_check,
         }
 
-    def _match_reference(self, text: str, index: List[Tuple[str, Dict[str, Any]]]) -> Optional[Dict[str, Any]]:
+    def _match_reference(self, text: str, index: List[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
         normalized_text = self._normalize_key(text)
         if not normalized_text:
             return None
-        for normalized_title, payload in index:
-            if len(normalized_title) < 3:
+        text_tokens = {token.lower() for token in self._tokenize_text(text)}
+        text_numeric_markers = self._extract_numeric_markers(text)
+
+        best_payload: Optional[Dict[str, Any]] = None
+        best_score = 0
+
+        for payload in index:
+            alias_keys = payload.get("alias_keys", [])
+            if not alias_keys:
                 continue
-            if normalized_title in normalized_text or normalized_text in normalized_title:
-                return payload
+
+            score = 0
+            for alias_key in alias_keys:
+                if len(alias_key) < 3:
+                    continue
+                if alias_key == normalized_text:
+                    return payload
+                if alias_key in normalized_text or normalized_text in alias_key:
+                    score = max(score, 80 if alias_key == payload.get("title_key") else 72)
+
+            ref_title = payload.get("title", "")
+            ref_aliases = payload.get("aliases", [])
+            ref_tokens = {token.lower() for token in self._tokenize_text(" ".join([ref_title, *ref_aliases]))}
+            if text_tokens and ref_tokens:
+                overlap = len(text_tokens & ref_tokens)
+                overlap_ratio = overlap / max(1, min(len(text_tokens), len(ref_tokens)))
+                score += int(overlap_ratio * 35)
+
+            ref_numeric_markers = payload.get("numeric_markers", set())
+            if ref_numeric_markers and text_numeric_markers:
+                numeric_overlap = len(ref_numeric_markers & text_numeric_markers)
+                if numeric_overlap:
+                    score += 30 + min(10, numeric_overlap * 5)
+                else:
+                    score -= 20
+
+            if score > best_score:
+                best_score = score
+                best_payload = payload
+
+        if best_score >= 65:
+            return best_payload
         return None
 
     def _activity_signature(self, source_url: str, work_date: str, writer: str, title: str) -> str:

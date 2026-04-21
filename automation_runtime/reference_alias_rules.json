@@ -1,0 +1,40 @@
+{
+  "exact_aliases": {
+    "tokyo office harumi island triton square tower w": [
+      "도쿄 오피스 하루미 아일랜드 트리톤 스퀘어 타워",
+      "도쿄 하루미 아일랜드 트리톤 스퀘어 타워",
+      "하루미 아일랜드 트리톤 스퀘어 타워"
+    ],
+    "new york 685 5th avenue mezzanine loan": [
+      "뉴욕 685 5th 애비뉴 메자닌 론",
+      "뉴욕 685 5번가 메자닌 론",
+      "685 5th 애비뉴 메자닌 론"
+    ],
+    "odawara logistics amazon fc i": [
+      "오다와라 로지스틱스 아마존 에프씨",
+      "오다와라 물류 아마존 에프씨",
+      "오다와라 아마존 fc"
+    ],
+    "nuveen real estate u.s. cities multifamily fund": [
+      "누빈 리얼에스테이트 유에스 시티즈 멀티패밀리 펀드",
+      "누빈 미국 멀티패밀리 펀드"
+    ]
+  },
+  "token_aliases": {
+    "island": ["아일랜드"],
+    "harumi": ["하루미"],
+    "triton": ["트리톤"],
+    "odawara": ["오다와라"],
+    "nuveen": ["누빈"],
+    "mezzanine": ["메자닌"],
+    "estate": ["에스테이트"],
+    "fund": ["펀드"],
+    "cities": ["시티즈"],
+    "multifamily": ["멀티패밀리"]
+  },
+  "acronym_aliases": {
+    "fc": ["에프씨"],
+    "dc": ["디씨", "데이터센터"],
+    "us": ["유에스"]
+  }
+}
