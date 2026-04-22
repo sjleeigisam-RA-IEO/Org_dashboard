@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T23:33:01.898882",
+  "generated_at": "2026-04-22T05:59:32.912798",
   "count": 1117,
   "top_tokens": [
     {
@@ -919,7 +919,7 @@
       "log_name": "2026-02-28 | 윤관식 | 인천청라노유자시설 우미건설 협의",
       "summary": "인천청라노유자시설의 우미건설 협의를 지속.",
       "classification_summary": "우미건설(우선주 모집 필요) 관련, 인천청라노유자시설의 우미건설 협의를 지속.",
-      "current_summary_value": "인천청라노유자시설의 우미건설 협의를 지속.",
+      "current_summary_value": "우미건설(우선주 모집 필요) 관련, 인천청라노유자시설의 우미건설 협의를 지속.",
       "projects": [
         "우미건설(우선주 모집 필요)"
       ],
@@ -932,7 +932,7 @@
         "모집"
       ],
       "token_string": "#우미건설(우선주 모집 필요 #인천청라노유자시설 #우미건설 #지속 #우선주 #모집",
-      "current_token_value": "#인천청라노유자시설 #우미건설 #지속"
+      "current_token_value": "#우미건설(우선주 모집 필요 #인천청라노유자시설 #우미건설 #지속 #우선주 #모집"
     },
     {
       "id": "3448ced4-3c47-810a-a638-db31c49f7c1c",
@@ -1880,7 +1880,7 @@
       "log_name": "2026-03-03 | 윤정규 | Guam GRMC 수익자 모집",
       "summary": "Guam 병원 GRMC 선순위 대출펀드 추가 수익자 모집 진행.",
       "classification_summary": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, Guam 병원 GRMC 선순위 대출펀드 추가 수익자 모집 진행.",
-      "current_summary_value": "Guam 병원 GRMC 선순위 대출펀드 추가 수익자 모집 진행.",
+      "current_summary_value": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, Guam 병원 GRMC 선순위 대출펀드 추가 수익자 모집 진행.",
       "projects": [
         "Guam Regional Medical City 선순위 A-1 대출 설정"
       ],
@@ -1899,7 +1899,7 @@
         "Medical"
       ],
       "token_string": "#Guam Regional Medical City 선순위 A-1 대출 설정 #Guam #병원 #GRMC #선순위 #대출펀드 #수익자 #모집 #이지스 #575호 #Regional #Medical",
-      "current_token_value": "#Guam #병원 #GRMC #선순위 #대출펀드 #수익자 #모집 #이지스 #575호"
+      "current_token_value": "#Guam Regional Medical City 선순위 A-1 대출 설정 #Guam #병원 #GRMC #선순위 #대출펀드 #수익자 #모집 #이지스 #575호 #Regional #Medical"
     },
     {
       "id": "3448ced4-3c47-8125-860a-d6205f09207d",
@@ -2153,7 +2153,7 @@
       "log_name": "2026-03-06 | 황재현 | 송도웰카운티 담보대출 응소",
       "summary": "송도웰카운티 담보대출 관련 가처분 본안 응소를 진행.",
       "classification_summary": "IA 16차 유동화 관련, 송도웰카운티 담보대출 관련 가처분 본안 응소를 진행.",
-      "current_summary_value": "송도웰카운티 담보대출 관련 가처분 본안 응소를 진행.",
+      "current_summary_value": "IA 16차 유동화 관련, 송도웰카운티 담보대출 관련 가처분 본안 응소를 진행.",
       "projects": [
         "IA 16차 유동화"
       ],
@@ -2167,7 +2167,7 @@
         "유동화"
       ],
       "token_string": "#IA 16차 유동화 #송도웰카운티 #담보대출 #가처분 #본안 #응소 #유동화",
-      "current_token_value": "#송도웰카운티 #담보대출 #가처분 #본안 #응소"
+      "current_token_value": "#IA 16차 유동화 #송도웰카운티 #담보대출 #가처분 #본안 #응소 #유동화"
     },
     {
       "id": "3448ced4-3c47-812a-909e-dd765abd191d",
@@ -7176,7 +7176,7 @@
       "log_name": "2026-03-16 | 김주일 | GRMC 클로징 문서 작업",
       "summary": "GRMC 선순위대출 관련 3/23 주중 약정 체결 및 closing 목표 문서 작업과 날인 계약서 검토 진행.",
       "classification_summary": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, GRMC 선순위대출 관련 3/23 주중 약정 체결 및 closing 목표 문서 작업과 날인 계약서 검토 진행.",
-      "current_summary_value": "GRMC 선순위대출 관련 3/23 주중 약정 체결 및 closing 목표 문서 작업과 날인 계약서 검토 진행.",
+      "current_summary_value": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, GRMC 선순위대출 관련 3/23 주중 약정 체결 및 closing 목표 문서 작업과 날인 계약서 검토 진행.",
       "projects": [
         "Guam Regional Medical City 선순위 A-1 대출 설정"
       ],
@@ -7195,7 +7195,7 @@
         "클로징"
       ],
       "token_string": "#Guam Regional Medical City 선순위 A-1 대출 설정 #GRMC #선순위대출 #주중 #약정 #체결 #closing #목표 #문서 #날인 #계약서 #클로징",
-      "current_token_value": "#GRMC #선순위대출 #주중 #약정 #체결 #closing #목표 #문서 #날인 #계약서 #클로징"
+      "current_token_value": "#Guam Regional Medical City 선순위 A-1 대출 설정 #GRMC #선순위대출 #주중 #약정 #체결 #closing #목표 #문서 #날인 #계약서 #클로징"
     },
     {
       "id": "3448ced4-3c47-818f-96a5-d2ae77f94359",
@@ -7885,7 +7885,7 @@
       "log_name": "2026-03-09 | 김주일 | GRMC 약정체결 준비",
       "summary": "GRMC 선순위대출 관련 잠재수익자 승인 절차 및 당사 IC 완료 후 약정체결과 펀드 설정 준비 진행.",
       "classification_summary": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, GRMC 선순위대출 관련 잠재수익자 승인 절차 및 당사 IC 완료 후 약정체결과 펀드 설정 준비 진행.",
-      "current_summary_value": "GRMC 선순위대출 관련 잠재수익자 승인 절차 및 당사 IC 완료 후 약정체결과 펀드 설정 준비 진행.",
+      "current_summary_value": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, GRMC 선순위대출 관련 잠재수익자 승인 절차 및 당사 IC 완료 후 약정체결과 펀드 설정 준비 진행.",
       "projects": [
         "Guam Regional Medical City 선순위 A-1 대출 설정"
       ],
@@ -7904,7 +7904,7 @@
         "Medical"
       ],
       "token_string": "#Guam Regional Medical City 선순위 A-1 대출 설정 #GRMC #선순위대출 #잠재수익자 #승인 #절차 #당사 #약정체결 #설정 #Guam #Regional #Medical",
-      "current_token_value": "#GRMC #선순위대출 #잠재수익자 #승인 #절차 #당사 #약정체결 #설정"
+      "current_token_value": "#Guam Regional Medical City 선순위 A-1 대출 설정 #GRMC #선순위대출 #잠재수익자 #승인 #절차 #당사 #약정체결 #설정 #Guam #Regional #Medical"
     },
     {
       "id": "3448ced4-3c47-819f-8c3f-c6b68c584318",
@@ -8696,7 +8696,7 @@
       "log_name": "2026-03-05 | 신소현 | 트리아논 도산절차 대응",
       "summary": "트리아논 독일·룩셈부르크 SPC 도산절차에서 법원 승인 및 정보 수령 관련 대응 진행.",
       "classification_summary": "Frankfurt Office Trianon 관련, 트리아논 독일·룩셈부르크 SPC 도산절차에서 법원 승인 및 정보 수령 관련 대응 진행.",
-      "current_summary_value": "트리아논 독일·룩셈부르크 SPC 도산절차에서 법원 승인 및 정보 수령 관련 대응 진행.",
+      "current_summary_value": "Frankfurt Office Trianon 관련, 트리아논 독일·룩셈부르크 SPC 도산절차에서 법원 승인 및 정보 수령 관련 대응 진행.",
       "projects": [
         "Frankfurt Office Trianon"
       ],
@@ -8715,7 +8715,7 @@
         "Frankfurt"
       ],
       "token_string": "#Frankfurt Office Trianon #트리아논 #독일 #룩셈부르크 #도산절차 #법원 #승인 #정보 #수령 #공모펀드 #금감원 #Frankfurt",
-      "current_token_value": "#트리아논 #독일 #룩셈부르크 #도산절차 #법원 #승인 #정보 #수령 #공모펀드 #금감원"
+      "current_token_value": "#Frankfurt Office Trianon #트리아논 #독일 #룩셈부르크 #도산절차 #법원 #승인 #정보 #수령 #공모펀드 #금감원 #Frankfurt"
     },
     {
       "id": "3448ced4-3c47-81ab-b9d1-c9b17dd28686",
@@ -9454,7 +9454,7 @@
       "log_name": "2026-03-03 | 윤정규 | Chauncey Square 담보대출 승인",
       "summary": "Perdue 대학 기숙사 Chauncey Square 투자 관련 현지 담보대출 승인 진행.",
       "classification_summary": "이지스레지던스리츠, 삼성증권 관련, Perdue 대학 기숙사 Chauncey Square 투자 관련 현지 담보대출 승인 진행.",
-      "current_summary_value": "Perdue 대학 기숙사 Chauncey Square 투자 관련 현지 담보대출 승인 진행.",
+      "current_summary_value": "이지스레지던스리츠, 삼성증권 관련, Perdue 대학 기숙사 Chauncey Square 투자 관련 현지 담보대출 승인 진행.",
       "projects": [
         "이지스레지던스리츠, 삼성증권"
       ],
@@ -9473,7 +9473,7 @@
         "이지스레지던스리츠"
       ],
       "token_string": "#이지스레지던스리츠, 삼성증권 #Perdue #대학 #기숙사 #Chauncey #Square #현지 #담보대출 #승인 #이지스 #580호 #이지스레지던스리츠",
-      "current_token_value": "#Perdue #대학 #기숙사 #Chauncey #Square #현지 #담보대출 #승인 #이지스 #580호"
+      "current_token_value": "#이지스레지던스리츠, 삼성증권 #Perdue #대학 #기숙사 #Chauncey #Square #현지 #담보대출 #승인 #이지스 #580호 #이지스레지던스리츠"
     },
     {
       "id": "3448ced4-3c47-81bc-9c49-c7774e599042",
@@ -9754,7 +9754,7 @@
       "log_name": "2026-03-03 | 권도엽 | 논현두산 운용계획 수립",
       "summary": "논현두산 자산의 임대차 및 환경개선 중심 운용계획 수립 진행.",
       "classification_summary": "논현 두산빌딩 관련, 논현두산 자산의 임대차 및 환경개선 중심 운용계획 수립 진행.",
-      "current_summary_value": "논현두산 자산의 임대차 및 환경개선 중심 운용계획 수립 진행.",
+      "current_summary_value": "논현 두산빌딩 관련, 논현두산 자산의 임대차 및 환경개선 중심 운용계획 수립 진행.",
       "projects": [
         "논현 두산빌딩"
       ],
@@ -9772,7 +9772,7 @@
         "두산빌딩"
       ],
       "token_string": "#논현 두산빌딩 #논현두산 #자산 #임대차 #환경개선 #중심 #운용계획 #수립 #두산건설 #논현 #두산빌딩",
-      "current_token_value": "#논현두산 #자산 #임대차 #환경개선 #중심 #운용계획 #수립 #두산건설"
+      "current_token_value": "#논현 두산빌딩 #논현두산 #자산 #임대차 #환경개선 #중심 #운용계획 #수립 #두산건설 #논현 #두산빌딩"
     },
     {
       "id": "3448ced4-3c47-81c1-9603-ec8655925ce4",
@@ -10928,7 +10928,7 @@
       "log_name": "2026-03-03 | 현철호 | 울산 KTX역 데이터센터 협의",
       "summary": "울산 KTX역 부지 데이터센터 개발 관련 울산경제자유구역청장 미팅 및 한전 수전 협조 요청 진행.",
       "classification_summary": "울산역 KTX S3블럭 오피스텔 개발사업 관련, 울산 KTX역 부지 데이터센터 개발 관련 울산경제자유구역청장 미팅 및 한전 수전 협조 요청 진행.",
-      "current_summary_value": "울산 KTX역 부지 데이터센터 개발 관련 울산경제자유구역청장 미팅 및 한전 수전 협조 요청 진행.",
+      "current_summary_value": "울산역 KTX S3블럭 오피스텔 개발사업 관련, 울산 KTX역 부지 데이터센터 개발 관련 울산경제자유구역청장 미팅 및 한전 수전 협조 요청 진행.",
       "projects": [
         "울산역 KTX S3블럭 오피스텔 개발사업"
       ],
@@ -10947,7 +10947,7 @@
         "S3"
       ],
       "token_string": "#울산역 KTX S3블럭 오피스텔 개발사업 #울산 #부지 #데이터센터 #개발 #울산경제자유구역청장 #한전 #수전 #협조 #표준명 #울산역 #S3",
-      "current_token_value": "#울산 #부지 #데이터센터 #개발 #울산경제자유구역청장 #한전 #수전 #협조 #표준명"
+      "current_token_value": "#울산역 KTX S3블럭 오피스텔 개발사업 #울산 #부지 #데이터센터 #개발 #울산경제자유구역청장 #한전 #수전 #협조 #표준명 #울산역 #S3"
     },
     {
       "id": "3448ced4-3c47-81d4-9d9a-c7f82a49fa0f",
@@ -11328,7 +11328,7 @@
       "log_name": "2026-04-05 | 남형록 | Scannell 2 만기연장 협의",
       "summary": "417호 Scannell 2 관련 아마존 입주 지연 및 대출·펀드 만기 연장 협의 진행.",
       "classification_summary": "미국 Scannell 물류 선매입 (No. 417) 관련, 417호 Scannell 2 관련 아마존 입주 지연 및 대출·펀드 만기 연장 협의 진행.",
-      "current_summary_value": "417호 Scannell 2 관련 아마존 입주 지연 및 대출·펀드 만기 연장 협의 진행.",
+      "current_summary_value": "미국 Scannell 물류 선매입 (No. 417) 관련, 417호 Scannell 2 관련 아마존 입주 지연 및 대출·펀드 만기 연장 협의 진행.",
       "projects": [
         "미국 Scannell 물류 선매입 (No. 417)"
       ],
@@ -11347,7 +11347,7 @@
         "미국"
       ],
       "token_string": "#미국 Scannell 물류 선매입 (No. 417 #417호 #Scannell #아마존 #입주 #지연 #대출 #만기 #연장 #표준명 #만기연장 #미국",
-      "current_token_value": "#417호 #Scannell #아마존 #입주 #지연 #대출 #만기 #연장 #표준명 #만기연장"
+      "current_token_value": "#미국 Scannell 물류 선매입 (No. 417 #417호 #Scannell #아마존 #입주 #지연 #대출 #만기 #연장 #표준명 #만기연장 #미국"
     },
     {
       "id": "3448ced4-3c47-81d8-aa03-c1abf25ea0a4",
@@ -11723,7 +11723,7 @@
       "log_name": "2026-03-16 | 황재현 | 송도웰카운티 보전조치 개시",
       "summary": "송도웰카운티 담보대출 관련 물상보증인에 대한 보전조치를 개시.",
       "classification_summary": "IA 16차 유동화 관련, 송도웰카운티 담보대출 관련 물상보증인에 대한 보전조치를 개시.",
-      "current_summary_value": "송도웰카운티 담보대출 관련 물상보증인에 대한 보전조치를 개시.",
+      "current_summary_value": "IA 16차 유동화 관련, 송도웰카운티 담보대출 관련 물상보증인에 대한 보전조치를 개시.",
       "projects": [
         "IA 16차 유동화"
       ],
@@ -11738,7 +11738,7 @@
         "유동화"
       ],
       "token_string": "#IA 16차 유동화 #송도웰카운티 #담보대출 #물상보증인에 #대한 #보전조치 #개시 #유동화",
-      "current_token_value": "#송도웰카운티 #담보대출 #물상보증인에 #대한 #보전조치 #개시"
+      "current_token_value": "#IA 16차 유동화 #송도웰카운티 #담보대출 #물상보증인에 #대한 #보전조치 #개시 #유동화"
     },
     {
       "id": "3448ced4-3c47-81e0-9723-e0fcb3d7a640",
@@ -11749,7 +11749,7 @@
       "log_name": "2026-03-03 | 김주일 | GRMC 선순위대출 IC 준비",
       "summary": "GRMC 선순위대출 관련 잠재수익자 IC 진행 지원, 당사 IC 준비 및 펀드 설정 준비 진행.",
       "classification_summary": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, GRMC 선순위대출 관련 잠재수익자 IC 진행 지원, 당사 IC 준비 및 펀드 설정 준비 진행.",
-      "current_summary_value": "GRMC 선순위대출 관련 잠재수익자 IC 진행 지원, 당사 IC 준비 및 펀드 설정 준비 진행.",
+      "current_summary_value": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, GRMC 선순위대출 관련 잠재수익자 IC 진행 지원, 당사 IC 준비 및 펀드 설정 준비 진행.",
       "projects": [
         "Guam Regional Medical City 선순위 A-1 대출 설정"
       ],
@@ -11768,7 +11768,7 @@
         "Regional"
       ],
       "token_string": "#Guam Regional Medical City 선순위 A-1 대출 설정 #GRMC #선순위대출 #잠재수익자 #지원 #당사 #설정 #Pacific #General #손보 #Guam #Regional",
-      "current_token_value": "#GRMC #선순위대출 #잠재수익자 #지원 #당사 #설정 #Pacific #General #손보"
+      "current_token_value": "#Guam Regional Medical City 선순위 A-1 대출 설정 #GRMC #선순위대출 #잠재수익자 #지원 #당사 #설정 #Pacific #General #손보 #Guam #Regional"
     },
     {
       "id": "3448ced4-3c47-81e0-a099-f83e7dd97e6e",
@@ -11829,7 +11829,7 @@
       "log_name": "2026-03-03 | 이현호 | 회억리복합물류센터 저온 임대 협의",
       "summary": "회억리복합물류센터 저온면적 약 25%에 대한 신규 임대차 계약을 한진, 매일유업과 협의.",
       "classification_summary": "이천 마장면 회억리 물류센터 관련, 회억리복합물류센터 저온면적 약 25%에 대한 신규 임대차 계약을 한진, 매일유업과 협의.",
-      "current_summary_value": "회억리복합물류센터 저온면적 약 25%에 대한 신규 임대차 계약을 한진, 매일유업과 협의.",
+      "current_summary_value": "이천 마장면 회억리 물류센터 관련, 회억리복합물류센터 저온면적 약 25%에 대한 신규 임대차 계약을 한진, 매일유업과 협의.",
       "projects": [
         "이천 마장면 회억리 물류센터"
       ],
@@ -11848,7 +11848,7 @@
         "이천"
       ],
       "token_string": "#이천 마장면 회억리 물류센터 #회억리복합물류센터 #저온면적 #대한 #신규 #임대차 #계약 #한진 #매일유업 #저온 #임대 #이천",
-      "current_token_value": "#회억리복합물류센터 #저온면적 #대한 #신규 #임대차 #계약 #한진 #매일유업 #저온 #임대"
+      "current_token_value": "#이천 마장면 회억리 물류센터 #회억리복합물류센터 #저온면적 #대한 #신규 #임대차 #계약 #한진 #매일유업 #저온 #임대 #이천"
     },
     {
       "id": "3448ced4-3c47-81e2-8946-fbccf6068715",
@@ -11887,7 +11887,7 @@
       "log_name": "2026-03-09 | 김주일 | Chuancy Square 클로징 준비",
       "summary": "Chuancy Square 지분 매입 관련 국내펀드 설정 준비와 현지 closing 선행조건 확인, 한국감정원 인가 절차 지원 진행.",
       "classification_summary": "미국 Purdue Univ. 소재 Student Housing(Wabash Landing) 지분 매입 관련, Chuancy Square 지분 매입 관련 국내펀드 설정 준비와 현지 closing 선행조건 확인, 한국감정원 인가 절차 지원 진행.",
-      "current_summary_value": "Chuancy Square 지분 매입 관련 국내펀드 설정 준비와 현지 closing 선행조건 확인, 한국감정원 인가 절차 지원 진행.",
+      "current_summary_value": "미국 Purdue Univ. 소재 Student Housing(Wabash Landing) 지분 매입 관련, Chuancy Square 지분 매입 관련 국내펀드 설정 준비와 현지 closing 선행조건 확인, 한국감정원 인가 절차 지원 진행.",
       "projects": [
         "미국 Purdue Univ. 소재 Student Housing(Wabash Landing) 지분 매입"
       ],
@@ -11906,7 +11906,7 @@
         "인가"
       ],
       "token_string": "#미국 Purdue Univ. 소재 Student Housing(Wabash Landing) 지분 매입 #Chuancy #Square #지분 #매입 #국내펀드 #설정 #현지 #closing #선행조건 #한국감정원 #인가",
-      "current_token_value": "#Chuancy #Square #지분 #매입 #국내펀드 #설정 #현지 #closing #선행조건 #한국감정원 #인가 #절차"
+      "current_token_value": "#미국 Purdue Univ. 소재 Student Housing(Wabash Landing) 지분 매입 #Chuancy #Square #지분 #매입 #국내펀드 #설정 #현지 #closing #선행조건 #한국감정원 #인가"
     },
     {
       "id": "3448ced4-3c47-81e3-b798-c2033153025e",
@@ -12194,7 +12194,7 @@
       "log_name": "2026-03-16 | 윤정규 | Guam GRMC 펀드 설정 준비",
       "summary": "Guam Regional MC 괌 병원 대출 관련 수익자 승인 완료 및 펀드 설정 준비 진행.",
       "classification_summary": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, Guam Regional MC 괌 병원 대출 관련 수익자 승인 완료 및 펀드 설정 준비 진행.",
-      "current_summary_value": "Guam Regional MC 괌 병원 대출 관련 수익자 승인 완료 및 펀드 설정 준비 진행.",
+      "current_summary_value": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, Guam Regional MC 괌 병원 대출 관련 수익자 승인 완료 및 펀드 설정 준비 진행.",
       "projects": [
         "Guam Regional Medical City 선순위 A-1 대출 설정"
       ],
@@ -12213,7 +12213,7 @@
         "Medical"
       ],
       "token_string": "#Guam Regional Medical City 선순위 A-1 대출 설정 #Guam #Regional #병원 #대출 #수익자 #승인 #설정 #이지스 #575호 #GRMC #Medical",
-      "current_token_value": "#Guam #Regional #병원 #대출 #수익자 #승인 #설정 #이지스 #575호 #GRMC"
+      "current_token_value": "#Guam Regional Medical City 선순위 A-1 대출 설정 #Guam #Regional #병원 #대출 #수익자 #승인 #설정 #이지스 #575호 #GRMC #Medical"
     },
     {
       "id": "3448ced4-3c47-81e8-9c7a-fe2934253097",
@@ -12271,7 +12271,7 @@
       "log_name": "2026-03-03 | 홍창의 | 안산 데이터센터 사업비 협의",
       "summary": "안산 데이터센터 사업비 증감 이슈 관련 수익자 및 시공사, 파트너사 복합 협의 진행.",
       "classification_summary": "안산 글로벌클라우드센터 개발 관련, 안산 데이터센터 사업비 증감 이슈 관련 수익자 및 시공사, 파트너사 복합 협의 진행.",
-      "current_summary_value": "안산 데이터센터 사업비 증감 이슈 관련 수익자 및 시공사, 파트너사 복합 협의 진행.",
+      "current_summary_value": "안산 글로벌클라우드센터 개발 관련, 안산 데이터센터 사업비 증감 이슈 관련 수익자 및 시공사, 파트너사 복합 협의 진행.",
       "projects": [
         "안산 글로벌클라우드센터 개발"
       ],
@@ -12290,7 +12290,7 @@
         "삼성물산"
       ],
       "token_string": "#안산 글로벌클라우드센터 개발 #안산 #데이터센터 #사업비 #증감 #이슈 #수익자 #시공사 #파트너사 #복합 #Invesco #삼성물산",
-      "current_token_value": "#안산 #데이터센터 #사업비 #증감 #이슈 #수익자 #시공사 #파트너사 #복합 #Invesco #삼성물산 #롯데이노베이트"
+      "current_token_value": "#안산 글로벌클라우드센터 개발 #안산 #데이터센터 #사업비 #증감 #이슈 #수익자 #시공사 #파트너사 #복합 #Invesco #삼성물산"
     },
     {
       "id": "3448ced4-3c47-81e8-b711-cf379cb5185a",
@@ -12590,7 +12590,7 @@
       "log_name": "2026-03-09 | 현철호 | 이오타 LG전자 임차협의",
       "summary": "이오타 프로젝트의 LG전자 임차협의 진행.",
       "classification_summary": "이오타서울 816 관련, 이오타 프로젝트의 LG전자 임차협의 진행.",
-      "current_summary_value": "이오타 프로젝트의 LG전자 임차협의 진행.",
+      "current_summary_value": "이오타서울 816 관련, 이오타 프로젝트의 LG전자 임차협의 진행.",
       "projects": [
         "이오타서울 816"
       ],
@@ -12603,7 +12603,7 @@
         "이오타서울"
       ],
       "token_string": "#이오타서울 816 #이오타 #전자 #임차협 #표준명 #이오타서울",
-      "current_token_value": "#이오타 #전자 #임차협 #표준명"
+      "current_token_value": "#이오타서울 816 #이오타 #전자 #임차협 #표준명 #이오타서울"
     },
     {
       "id": "3448ced4-3c47-81f3-9dcf-f0f3cbc752b6",
@@ -13026,7 +13026,7 @@
       "log_name": "2026-04-05 | 윤관식 | 동대문 두타 MOU 체결",
       "summary": "동대문 두타 관련 매도자 마스턴과 MOU 체결 완료.",
       "classification_summary": "NH증권, 두산그룹 관련, 동대문 두타 관련 매도자 마스턴과 MOU 체결 완료.",
-      "current_summary_value": "동대문 두타 관련 매도자 마스턴과 MOU 체결 완료.",
+      "current_summary_value": "NH증권, 두산그룹 관련, 동대문 두타 관련 매도자 마스턴과 MOU 체결 완료.",
       "projects": [
         "NH증권, 두산그룹"
       ],
@@ -13043,7 +13043,7 @@
         "두산그룹"
       ],
       "token_string": "#NH증권, 두산그룹 #동대문 #두타 #매도자 #마스턴 #MOU #체결 #표준명 #증권 #두산그룹",
-      "current_token_value": "#동대문 #두타 #매도자 #마스턴 #MOU #체결 #표준명"
+      "current_token_value": "#NH증권, 두산그룹 #동대문 #두타 #매도자 #마스턴 #MOU #체결 #표준명 #증권 #두산그룹"
     },
     {
       "id": "3448ced4-3c47-81fc-9687-d20b71bebf8a",
@@ -16182,7 +16182,7 @@
       "log_name": "2026-02-27 | 홍봉석 | 용산나진상가 특계5구역 거래구도 제안",
       "summary": "용산나진상가 특계5구역의 매도인 시공사 선정 이후 거래 구도 제안을 준비.",
       "classification_summary": "팩토리얼 용산(용산 나진상가 재개발) 관련, 용산나진상가 특계5구역의 매도인 시공사 선정 이후 거래 구도 제안을 준비.",
-      "current_summary_value": "용산나진상가 특계5구역의 매도인 시공사 선정 이후 거래 구도 제안을 준비.",
+      "current_summary_value": "팩토리얼 용산(용산 나진상가 재개발) 관련, 용산나진상가 특계5구역의 매도인 시공사 선정 이후 거래 구도 제안을 준비.",
       "projects": [
         "팩토리얼 용산(용산 나진상가 재개발)"
       ],
@@ -16201,7 +16201,7 @@
         "거래구"
       ],
       "token_string": "#팩토리얼 용산(용산 나진상가 재개발 #용산나진상 #특계 #구역 #매도인 #시공사 #선정 #이후 #거래 #구도 #제안 #거래구",
-      "current_token_value": "#용산나진상 #특계 #구역 #매도인 #시공사 #선정 #이후 #거래 #구도 #제안 #거래구"
+      "current_token_value": "#팩토리얼 용산(용산 나진상가 재개발 #용산나진상 #특계 #구역 #매도인 #시공사 #선정 #이후 #거래 #구도 #제안 #거래구"
     },
     {
       "id": "3458ced4-3c47-813c-8342-d2471286aed4",
@@ -16290,7 +16290,7 @@
       "log_name": "2026-02-27 | 신소현 | 트리아논 도산절차 추가 대응",
       "summary": "229호 트리아논의 독일·룩셈부르크 SPC 도산절차와 대주단 보고서 공유 거절에 대응해 독일 법무법인과 추가 방안을 논의.",
       "classification_summary": "Frankfurt Office Trianon 관련, 229호 트리아논의 독일·룩셈부르크 SPC 도산절차와 대주단 보고서 공유 거절에 대응해 독일 법무법인과 추가 방안을 논의.",
-      "current_summary_value": "229호 트리아논의 독일·룩셈부르크 SPC 도산절차와 대주단 보고서 공유 거절에 대응해 독일 법무법인과 추가 방안을 논의.",
+      "current_summary_value": "Frankfurt Office Trianon 관련, 229호 트리아논의 독일·룩셈부르크 SPC 도산절차와 대주단 보고서 공유 거절에 대응해 독일 법무법인과 추가 방안을 논의.",
       "projects": [
         "Frankfurt Office Trianon"
       ],
@@ -16309,7 +16309,7 @@
         "방안"
       ],
       "token_string": "#Frankfurt Office Trianon #229호 #트리아논 #독일 #룩셈부르크 #도산절차 #대주단 #보고서 #거절에 #대응해 #법무법인 #방안",
-      "current_token_value": "#229호 #트리아논 #독일 #룩셈부르크 #도산절차 #대주단 #보고서 #거절에 #대응해 #법무법인 #방안"
+      "current_token_value": "#Frankfurt Office Trianon #229호 #트리아논 #독일 #룩셈부르크 #도산절차 #대주단 #보고서 #거절에 #대응해 #법무법인 #방안"
     },
     {
       "id": "3458ced4-3c47-813d-b6c1-dfc01aeee0ce",
@@ -16369,7 +16369,7 @@
       "log_name": "2026-01-13 | 김주일 | GRMC A-1 Note",
       "summary": "Bridge loan 방안과 대출조건을 Pacific General 및 GRMC 측과 논의 예정.",
       "classification_summary": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, Bridge loan 방안과 대출조건을 Pacific General 및 GRMC 측과 논의 예정.",
-      "current_summary_value": "Bridge loan 방안과 대출조건을 Pacific General 및 GRMC 측과 논의 예정.",
+      "current_summary_value": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, Bridge loan 방안과 대출조건을 Pacific General 및 GRMC 측과 논의 예정.",
       "projects": [
         "Guam Regional Medical City 선순위 A-1 대출 설정"
       ],
@@ -16388,7 +16388,7 @@
         "Guam"
       ],
       "token_string": "#Guam Regional Medical City 선순위 A-1 대출 설정 #Bridge #loan #방안 #대출조건 #Pacific #General #GRMC #측과 #A-1 #Note #Guam",
-      "current_token_value": "#Bridge #loan #방안 #대출조건 #Pacific #General #GRMC #측과 #A-1 #Note"
+      "current_token_value": "#Guam Regional Medical City 선순위 A-1 대출 설정 #Bridge #loan #방안 #대출조건 #Pacific #General #GRMC #측과 #A-1 #Note #Guam"
     },
     {
       "id": "3458ced4-3c47-813e-baf0-e9b09e3b9632",
@@ -16815,7 +16815,7 @@
       "log_name": "2026-02-27 | 김지현 | 오퍼스407 매각마케팅 정기미팅",
       "summary": "오퍼스407 매각마케팅 관련 세빌스, JLL과 정기미팅을 진행.",
       "classification_summary": "뉴욕제과(OPUS407) 관련, 오퍼스407 매각마케팅 관련 세빌스, JLL과 정기미팅을 진행.",
-      "current_summary_value": "오퍼스407 매각마케팅 관련 세빌스, JLL과 정기미팅을 진행.",
+      "current_summary_value": "뉴욕제과(OPUS407) 관련, 오퍼스407 매각마케팅 관련 세빌스, JLL과 정기미팅을 진행.",
       "projects": [
         "뉴욕제과(OPUS407)"
       ],
@@ -16829,7 +16829,7 @@
         "OPUS407"
       ],
       "token_string": "#뉴욕제과(OPUS407 #오퍼스 #매각마케팅 #세빌스 #정기미팅 #뉴욕제 #OPUS407",
-      "current_token_value": "#오퍼스 #매각마케팅 #세빌스 #정기미팅"
+      "current_token_value": "#뉴욕제과(OPUS407 #오퍼스 #매각마케팅 #세빌스 #정기미팅 #뉴욕제 #OPUS407"
     },
     {
       "id": "3458ced4-3c47-8145-a1cc-d99f3809f1b3",
@@ -18132,7 +18132,7 @@
       "log_name": "2026-02-20 | 남형록 | 트리아논 펀드 소송·민원 대응",
       "summary": "229호 트리아논 공모펀드의 스왑은행 정산금 지급 소송, 민원 대응, 금감원 질의 응대를 진행.",
       "classification_summary": "Frankfurt Office Trianon 관련, 229호 트리아논 공모펀드의 스왑은행 정산금 지급 소송, 민원 대응, 금감원 질의 응대를 진행.",
-      "current_summary_value": "229호 트리아논 공모펀드의 스왑은행 정산금 지급 소송, 민원 대응, 금감원 질의 응대를 진행.",
+      "current_summary_value": "Frankfurt Office Trianon 관련, 229호 트리아논 공모펀드의 스왑은행 정산금 지급 소송, 민원 대응, 금감원 질의 응대를 진행.",
       "projects": [
         "Frankfurt Office Trianon"
       ],
@@ -18151,7 +18151,7 @@
         "응대"
       ],
       "token_string": "#Frankfurt Office Trianon #229호 #트리아논 #공모펀드 #스왑은행 #정산금 #지급 #소송 #민원 #금감원 #질의 #응대",
-      "current_token_value": "#229호 #트리아논 #공모펀드 #스왑은행 #정산금 #지급 #소송 #민원 #금감원 #질의 #응대"
+      "current_token_value": "#Frankfurt Office Trianon #229호 #트리아논 #공모펀드 #스왑은행 #정산금 #지급 #소송 #민원 #금감원 #질의 #응대"
     },
     {
       "id": "3458ced4-3c47-815d-8ba1-f13f52c581c4",
@@ -18718,7 +18718,7 @@
       "log_name": "2026-02-10 | 윤정규 | 트리아논 금감원 질의 대응 준비",
       "summary": "트리아논 환헤지 은행 소송 제기와 관련한 금감원 질의사항 답변을 준비.",
       "classification_summary": "Frankfurt Office Trianon 관련, 트리아논 환헤지 은행 소송 제기와 관련한 금감원 질의사항 답변을 준비.",
-      "current_summary_value": "트리아논 환헤지 은행 소송 제기와 관련한 금감원 질의사항 답변을 준비.",
+      "current_summary_value": "Frankfurt Office Trianon 관련, 트리아논 환헤지 은행 소송 제기와 관련한 금감원 질의사항 답변을 준비.",
       "projects": [
         "Frankfurt Office Trianon"
       ],
@@ -18737,7 +18737,7 @@
         "Frankfurt"
       ],
       "token_string": "#Frankfurt Office Trianon #트리아논 #환헤지 #은행 #소송 #제기 #관련한 #금감원 #질의사항 #답변 #질의 #Frankfurt",
-      "current_token_value": "#트리아논 #환헤지 #은행 #소송 #제기 #관련한 #금감원 #질의사항 #답변 #질의"
+      "current_token_value": "#Frankfurt Office Trianon #트리아논 #환헤지 #은행 #소송 #제기 #관련한 #금감원 #질의사항 #답변 #질의 #Frankfurt"
     },
     {
       "id": "3458ced4-3c47-816c-b513-f94135708948",
@@ -19275,7 +19275,7 @@
       "log_name": "2026-02-27 | 남형록 | 트리아논 펀드 소송·민원 대응",
       "summary": "트리아논 펀드의 스왑은행 정산금 지급 소송 접수와 민원 대응을 진행.",
       "classification_summary": "Frankfurt Office Trianon 관련, 트리아논 펀드의 스왑은행 정산금 지급 소송 접수와 민원 대응을 진행.",
-      "current_summary_value": "트리아논 펀드의 스왑은행 정산금 지급 소송 접수와 민원 대응을 진행.",
+      "current_summary_value": "Frankfurt Office Trianon 관련, 트리아논 펀드의 스왑은행 정산금 지급 소송 접수와 민원 대응을 진행.",
       "projects": [
         "Frankfurt Office Trianon"
       ],
@@ -19293,7 +19293,7 @@
         "Trianon"
       ],
       "token_string": "#Frankfurt Office Trianon #트리아논 #스왑은행 #정산금 #지급 #소송 #접수 #민원 #Frankfurt #Office #Trianon",
-      "current_token_value": "#트리아논 #스왑은행 #정산금 #지급 #소송 #접수 #민원"
+      "current_token_value": "#Frankfurt Office Trianon #트리아논 #스왑은행 #정산금 #지급 #소송 #접수 #민원 #Frankfurt #Office #Trianon"
     },
     {
       "id": "3458ced4-3c47-8177-8fe4-f78849d377b9",
@@ -19530,7 +19530,7 @@
       "log_name": "2026-01-19 | 김주일 | GRMC A-1 Note 브릿지론",
       "summary": "T/S를 반영한 IM 작성과 투자자 커뮤니케이션을 준비.",
       "classification_summary": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, T/S를 반영한 IM 작성과 투자자 커뮤니케이션을 준비.",
-      "current_summary_value": "T/S를 반영한 IM 작성과 투자자 커뮤니케이션을 준비.",
+      "current_summary_value": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, T/S를 반영한 IM 작성과 투자자 커뮤니케이션을 준비.",
       "projects": [
         "Guam Regional Medical City 선순위 A-1 대출 설정"
       ],
@@ -19549,7 +19549,7 @@
         "Medical"
       ],
       "token_string": "#Guam Regional Medical City 선순위 A-1 대출 설정 #T/S #반영한 #투자자 #커뮤니케이션 #GRMC #A-1 #Note #브릿지론 #Guam #Regional #Medical",
-      "current_token_value": "#T/S #반영한 #투자자 #커뮤니케이션 #GRMC #A-1 #Note #브릿지론"
+      "current_token_value": "#Guam Regional Medical City 선순위 A-1 대출 설정 #T/S #반영한 #투자자 #커뮤니케이션 #GRMC #A-1 #Note #브릿지론 #Guam #Regional #Medical"
     },
     {
       "id": "3458ced4-3c47-817b-8806-fc08e41e4ec1",
@@ -20640,7 +20640,7 @@
       "log_name": "2026-02-09 | 김주일 | GRMC A-1 Note 수익자 질의 대응",
       "summary": "GRMC A-1 Note 선순위대출의 변경된 대출 구조 관련 수익자 질의응답과 추가 잠재수익자 미팅을 진행.",
       "classification_summary": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, GRMC A-1 Note 선순위대출의 변경된 대출 구조 관련 수익자 질의응답과 추가 잠재수익자 미팅을 진행.",
-      "current_summary_value": "GRMC A-1 Note 선순위대출의 변경된 대출 구조 관련 수익자 질의응답과 추가 잠재수익자 미팅을 진행.",
+      "current_summary_value": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, GRMC A-1 Note 선순위대출의 변경된 대출 구조 관련 수익자 질의응답과 추가 잠재수익자 미팅을 진행.",
       "projects": [
         "Guam Regional Medical City 선순위 A-1 대출 설정"
       ],
@@ -20659,7 +20659,7 @@
         "질의"
       ],
       "token_string": "#Guam Regional Medical City 선순위 A-1 대출 설정 #GRMC #A-1 #Note #선순위대출 #변경된 #대출 #구조 #수익자 #질의응답 #잠재수익자 #질의",
-      "current_token_value": "#GRMC #A-1 #Note #선순위대출 #변경된 #대출 #구조 #수익자 #질의응답 #잠재수익자 #질의"
+      "current_token_value": "#Guam Regional Medical City 선순위 A-1 대출 설정 #GRMC #A-1 #Note #선순위대출 #변경된 #대출 #구조 #수익자 #질의응답 #잠재수익자 #질의"
     },
     {
       "id": "3458ced4-3c47-8192-92fd-fdbe48873e07",
@@ -23437,7 +23437,7 @@
       "log_name": "2026-02-10 | 윤정규 | GRMC 대출 재구조화 투자자 모집",
       "summary": "Guam 병원 GRMC 대출 재구조화 참여 투자기관 모집을 진행.",
       "classification_summary": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, Guam 병원 GRMC 대출 재구조화 참여 투자기관 모집을 진행.",
-      "current_summary_value": "Guam 병원 GRMC 대출 재구조화 참여 투자기관 모집을 진행.",
+      "current_summary_value": "Guam Regional Medical City 선순위 A-1 대출 설정 관련, Guam 병원 GRMC 대출 재구조화 참여 투자기관 모집을 진행.",
       "projects": [
         "Guam Regional Medical City 선순위 A-1 대출 설정"
       ],
@@ -23456,7 +23456,7 @@
         "Medical"
       ],
       "token_string": "#Guam Regional Medical City 선순위 A-1 대출 설정 #Guam #병원 #GRMC #대출 #재구조화 #참여 #투자기관 #모집 #투자자 #Regional #Medical",
-      "current_token_value": "#Guam #병원 #GRMC #대출 #재구조화 #참여 #투자기관 #모집 #투자자"
+      "current_token_value": "#Guam Regional Medical City 선순위 A-1 대출 설정 #Guam #병원 #GRMC #대출 #재구조화 #참여 #투자기관 #모집 #투자자 #Regional #Medical"
     },
     {
       "id": "3458ced4-3c47-81c7-9aa7-c20486fb801f",
@@ -24868,7 +24868,7 @@
       "log_name": "2026-01-13 | 황재현 | IA16 송도웰카운티",
       "summary": "채무자 및 이해관계자 대상 소 제기를 준비하고 리스크요인을 사전 점검.",
       "classification_summary": "IA 16차 유동화 관련, 채무자 및 이해관계자 대상 소 제기를 준비하고 리스크요인을 사전 점검.",
-      "current_summary_value": "채무자 및 이해관계자 대상 소 제기를 준비하고 리스크요인을 사전 점검.",
+      "current_summary_value": "IA 16차 유동화 관련, 채무자 및 이해관계자 대상 소 제기를 준비하고 리스크요인을 사전 점검.",
       "projects": [
         "IA 16차 유동화"
       ],
@@ -24887,7 +24887,7 @@
         "유동화"
       ],
       "token_string": "#IA 16차 유동화 #채무자 #이해관계자 #대상 #제기 #준비하고 #리스크요인 #사전 #점검 #IA16 #송도웰카운티 #유동화",
-      "current_token_value": "#채무자 #이해관계자 #대상 #제기 #준비하고 #리스크요인 #사전 #점검 #IA16 #송도웰카운티"
+      "current_token_value": "#IA 16차 유동화 #채무자 #이해관계자 #대상 #제기 #준비하고 #리스크요인 #사전 #점검 #IA16 #송도웰카운티 #유동화"
     },
     {
       "id": "3458ced4-3c47-81dd-8d5a-e95a928dd7bc",
@@ -27276,7 +27276,7 @@
       "log_name": "2026-04-17 | 황재현 | 양양 호텔개발 BL 리스크 본심의 준비",
       "summary": "양양 호텔개발 BL의 4/21 리스크 본심의와 공동투자자 Company H 심의 일정을 관리.",
       "classification_summary": "양양 씨사이드 개발사업 관련, 양양 호텔개발 BL의 4/21 리스크 본심의와 공동투자자 Company H 심의 일정을 관리.",
-      "current_summary_value": "양양 송전리 개발사업 관련, 양양 호텔개발 BL의 4/21 리스크 본심의와 공동투자자 Company H 심의 일정을 관리.",
+      "current_summary_value": "양양 씨사이드 개발사업 관련, 양양 호텔개발 BL의 4/21 리스크 본심의와 공동투자자 Company H 심의 일정을 관리.",
       "projects": [
         "양양 씨사이드 개발사업",
         "양양 송전리 개발사업"
@@ -27296,7 +27296,7 @@
         "개발사업"
       ],
       "token_string": "#양양 씨사이드 개발사업 #양양 송전리 개발사업 #양양 #호텔개발 #리스크 #본심 #공동투자자 #Company #심의 #관리 #씨사이드 #개발사업",
-      "current_token_value": "#양양 송전리 개발사업 #양양 #호텔개발 #리스크 #본심 #공동투자자 #Company #심의 #관리 #송전리 #개발사업"
+      "current_token_value": "#양양 씨사이드 개발사업 #양양 송전리 개발사업 #양양 #호텔개발 #리스크 #본심 #공동투자자 #Company #심의 #관리 #씨사이드 #개발사업"
     },
     {
       "id": "3468ced4-3c47-81af-91b8-fb3eb8a99af0",
