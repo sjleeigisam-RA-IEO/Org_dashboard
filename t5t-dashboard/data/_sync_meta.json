@@ -1,7 +1,7 @@
 {
-  "synced_at": "2026-04-22T23:43:26.080915",
+  "synced_at": "2026-04-23T06:06:16.700918",
   "counts": {
-    "t5t_log": 1117,
+    "t5t_log": "ERROR: HTTP Error 400: Bad Request",
     "project_mission": 421,
     "project_master": 198,
     "staff_master": 246,
