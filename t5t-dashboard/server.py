@@ -58,6 +58,13 @@ TOKEN_FIELD_ALIASES = [
     "태그",
 ]
 
+LOW_SIGNAL_TOKEN_PATTERNS = [
+    re.compile(r"^(진행|협의|검토|논의|준비|추진|대응|보고|확인|작업|정리|공유)(중|중인|중임)$"),
+    re.compile(r"^(진행|협의|검토|논의|준비|추진|대응|보고|확인|작업|정리|공유)하고$"),
+    re.compile(r"^(진행|협의|검토|논의|준비|추진|대응|보고|확인|작업|정리|공유)(하는|하며|하고있는|중으로)$"),
+    re.compile(r"^(진행|협의|검토|논의|준비|추진|대응|보고|확인|작업|정리|공유)(을|를|은|는|이|가|와|과|도|만)$"),
+]
+
 DEFAULT_RULES = {
     "issue_categories": {
         "딜 진행": {
@@ -166,16 +173,19 @@ DEFAULT_RULES = {
     "dynamic_keyword_blocklist": [
         "검토", "논의", "진행", "확인", "보고", "자료", "공유", "필요", "대응", "회의",
         "미팅", "업데이트", "정리", "협의", "추진", "관련", "요청", "전달", "준비", "예정",
+        "진행중", "협의중", "검토중", "논의중", "준비중", "추진중", "진행하고", "협의하고", "검토하고",
     ],
     "dynamic_keyword_allowlist": ["PF", "IR", "LOC", "MOU", "SPA", "EOD", "RFP"],
     "generic_keyword_blocklist": [
         "협의", "논의", "일정", "예정", "대응", "진행", "검토", "실사", "보고", "준비", "회의", "대주",
         "투자자", "수익자", "운영사", "임차인", "매수인", "매도인", "기관", "파트너", "관련자", "현재",
         "금주", "향후", "이번주", "작업", "절차", "위한", "관련", "관리", "사업", "개발", "개발사업", "신규", "심의",
+        "진행중", "협의중", "검토중", "논의중", "준비중", "추진중", "진행하고", "협의하고", "검토하고",
     ],
     "display_keyword_blocklist": [
         "오피스", "주거", "운영", "체결", "선정", "마케팅", "지분", "사업장", "프로젝트", "타임워크",
         "가산동", "양재", "용산", "부산", "미국", "일본", "서울", "현재", "관련", "사항",
+        "진행중", "협의중", "검토중", "논의중", "준비중", "추진중", "진행하고", "협의하고", "검토하고",
     ],
 }
 
@@ -368,6 +378,13 @@ def normalize_manual_token(raw_token: str) -> str:
     return token
 
 
+def is_low_signal_token(token: str) -> bool:
+    lowered = (token or "").strip().lower()
+    if not lowered:
+        return True
+    return any(pattern.fullmatch(lowered) for pattern in LOW_SIGNAL_TOKEN_PATTERNS)
+
+
 def normalize_cluster_key(value: str) -> str:
     return re.sub(r"[^0-9a-z가-힣]+", "", (value or "").lower())
 
@@ -386,6 +403,8 @@ def extract_manual_tokens(entry: dict[str, Any]) -> list[str]:
     for candidate in candidates:
         token = normalize_manual_token(candidate)
         if len(token) < 2:
+            continue
+        if is_low_signal_token(token):
             continue
         lowered = token.lower()
         if lowered in seen:
@@ -722,10 +741,13 @@ def is_valid_dynamic_keyword(token: str, rules: dict[str, Any], stopwords: set[s
         "미팅", "업데이트", "정리", "협의", "추진", "관련", "요청", "전달", "준비", "예정",
         "보고서", "검토안", "방향", "내용", "현황", "이슈", "사항", "일정", "현재", "금주",
         "대주", "투자자", "수익자", "운영사", "임차인", "기관", "관련자",
+        "진행중", "협의중", "검토중", "논의중", "준비중", "추진중", "진행하고", "협의하고", "검토하고",
     }
 
     if lowered in allowlist:
         return True
+    if is_low_signal_token(token):
+        return False
     if lowered in stopwords or lowered in blocklist or lowered in generic_blocklist:
         return False
     if token in TASK_TYPE_ORDER or token in ISSUE_CATEGORY_ORDER or token in STAKEHOLDER_TYPE_ORDER:

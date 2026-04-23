@@ -57,6 +57,13 @@ TOKEN_FIELD_CANDIDATES = [
 PROJECT_FIELD_CANDIDATES = ["Project & Mission", FIELD_NEW_PROJECT]
 SUMMARY_FIELD_CANDIDATES = [FIELD_SOURCE_SUMMARY, FIELD_REMARKS, FIELD_LOG_NAME]
 
+LOW_SIGNAL_TOKEN_PATTERNS = [
+    re.compile(r"^(진행|협의|검토|논의|준비|추진|대응|보고|확인|작업|정리|공유)(중|중인|중임)$"),
+    re.compile(r"^(진행|협의|검토|논의|준비|추진|대응|보고|확인|작업|정리|공유)하고$"),
+    re.compile(r"^(진행|협의|검토|논의|준비|추진|대응|보고|확인|작업|정리|공유)(하는|하며|하고있는|중으로)$"),
+    re.compile(r"^(진행|협의|검토|논의|준비|추진|대응|보고|확인|작업|정리|공유)(을|를|은|는|이|가|와|과|도|만)$"),
+]
+
 DEFAULT_STOPWORDS = {
     "\uad00\ub828",
     "\uc9c4\ud589",
@@ -104,6 +111,14 @@ DEFAULT_STOPWORDS = {
     "\ubbf8\ud305\uc744",
     "\ud30c\uc545\uc744",
     "\ubcf4\uace0\uc640",
+    "\ud611\uc758\uc911",
+    "\uac80\ud1a0\uc911",
+    "\ub17c\uc758\uc911",
+    "\uc900\ube44\uc911",
+    "\ucd94\uc9c4\uc911",
+    "\uc9c4\ud589\ud558\uace0",
+    "\ud611\uc758\ud558\uace0",
+    "\uac80\ud1a0\ud558\uace0",
 }
 ALWAYS_KEEP = {"pf", "ir", "loc", "mou", "spa", "eod", "lp", "rfp"}
 
@@ -181,6 +196,13 @@ def clean_token(token: str) -> str:
     return token
 
 
+def is_low_signal_token(token: str) -> bool:
+    lowered = (token or "").strip().lower()
+    if not lowered:
+        return True
+    return any(pattern.fullmatch(lowered) for pattern in LOW_SIGNAL_TOKEN_PATTERNS)
+
+
 def tokenize_text(text: str, stopwords: set[str]) -> list[str]:
     matches = re.findall(r"[A-Za-z][A-Za-z0-9&.+/-]{1,}|[가-힣]{2,}|[0-9]+호", text)
     results = []
@@ -188,6 +210,8 @@ def tokenize_text(text: str, stopwords: set[str]) -> list[str]:
     for raw in matches:
         token = clean_token(raw)
         if len(token) < 2:
+            continue
+        if is_low_signal_token(token):
             continue
         lowered = token.lower()
         if lowered in stopwords and lowered not in ALWAYS_KEEP:
