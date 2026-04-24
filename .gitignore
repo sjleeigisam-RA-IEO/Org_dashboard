@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Ignore everything by default
 *
 
@@ -34,3 +35,25 @@ venv/
 *.zip
 *.md
 !README.md
+=======
+# Secrets
+.env
+
+# Data Files
+*.xlsx
+*.csv
+*.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+>>>>>>> dbb4d3e (Initial commit: CRM Data Automation System v1.0)

@@ -1,0 +1,1 @@
+supabase sql pw : 9455IgisRA2026#
