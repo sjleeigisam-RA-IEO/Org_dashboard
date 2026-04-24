@@ -9,6 +9,7 @@ const tabBtns = document.querySelectorAll('.tab-btn');
 let debounceTimer;
 let currentTab = 'all';
 let allResults = { lenders: [], beneficiaries: [], funds: [], assets: [], projects: [] };
+let globalSummary = { kpi: {}, lenders: [], beneficiaries: [], sectors: [], maturities: [] };
 let fundSearchColumns = ['fund_name', 'fund_id', 'short_name'];
 
 const OPTIONAL_FUND_SEARCH_COLUMNS = [
@@ -29,7 +30,12 @@ const ALIASES = {
 
 function formatNumber(num) {
   if (!num) return '0';
-  return Math.floor(num / 100000000).toLocaleString() + '억';
+  const eok = Math.floor(num / 100000000);
+  if (eok >= 10000) {
+    const jo = (num / 1000000000000).toFixed(1);
+    return jo.toLocaleString() + '조';
+  }
+  return eok.toLocaleString() + '억';
 }
 
 function getSearchTerms(query) {
@@ -557,105 +563,312 @@ function getRankings(limit = 10) {
   return { fundRank, financialRank, isPortfolioMode };
 }
 
+async function fetchGlobalSummary() {
+  try {
+    const [fundRes, lenderRes, benRes] = await Promise.all([
+      _supabase.from('funds').select('fund_id, metadata'),
+      _supabase.from('lender_exposures').select('fund_id, lender_clean, drawn_amt, end_date'),
+      _supabase.from('beneficiary_exposures').select('fund_id, beneficiary_clean, invested_amt')
+    ]);
+
+    const rawFunds = fundRes.data || [];
+    const rawLenders = lenderRes.data || [];
+    const rawBens = benRes.data || [];
+
+    // 데이터 보강 (metadata에서 추출)
+    const allFunds = rawFunds.map(f => ({
+      ...f,
+      parent_fund_id: f.metadata?.parent_fund_id,
+      notion_base_asset_class: f.metadata?.notion_base_asset_class || '미분류',
+      all_in_rate: parseFloat(f.metadata?.all_in_rate || 0)
+    }));
+
+    // Master/Feeder 식별 로직
+    const fundMap = new Map(allFunds.map(f => [f.fund_id, f]));
+    const feederIds = new Set();
+    allFunds.forEach(f => {
+      const parentId = f.parent_fund_id;
+      if (parentId && parentId !== f.fund_id && fundMap.has(parentId)) {
+        feederIds.add(f.fund_id);
+      }
+    });
+
+    // 마스터 펀드 데이터만 필터링 (중복 계산 방지)
+    const funds = allFunds.filter(f => !feederIds.has(f.fund_id));
+    const masterIds = new Set(funds.map(f => f.fund_id));
+    
+    const lenders = rawLenders.filter(l => masterIds.has(l.fund_id));
+    const bens = rawBens.filter(b => masterIds.has(b.fund_id));
+
+    // AUM: Master 기준 Equity + Debt
+    const totalEquity = bens.reduce((s, b) => s + (b.invested_amt || 0), 0);
+    const totalDebt = lenders.reduce((s, l) => s + (l.drawn_amt || 0), 0);
+    const totalAum = totalEquity + totalDebt;
+    
+    const avgRate = funds.reduce((s, f) => s + (f.all_in_rate || 0), 0) / (funds.length || 1);
+    
+    // Sector Donut Data
+    const sectorMap = {};
+    funds.forEach(f => {
+      const s = f.notion_base_asset_class;
+      sectorMap[s] = (sectorMap[s] || 0) + 1;
+    });
+    const sectors = Object.entries(sectorMap).map(([name, value]) => ({ name, value }));
+
+    // Maturity Data
+    const today = new Date();
+    const maturityBuckets = { "6개월 이내": 0, "12개월 이내": 0, "1년 초과": 0 };
+    lenders.forEach(l => {
+      if (!l.end_date) return;
+      const diff = (new Date(l.end_date) - today) / (1000 * 60 * 60 * 24 * 30);
+      if (diff <= 6) maturityBuckets["6개월 이내"]++;
+      else if (diff <= 12) maturityBuckets["12개월 이내"]++;
+      else maturityBuckets["1년 초과"]++;
+    });
+
+    globalSummary = {
+      kpi: { totalAum, fundCount: funds.length, avgRate, topSector: sectors.sort((a,b)=>b.value-a.value)[0]?.name || '-' },
+      lenders: groupByFinancials(lenders, 'lender_clean', 'drawn_amt'),
+      beneficiaries: groupByFinancials(bens, 'beneficiary_clean', 'invested_amt'),
+      sectors,
+      maturities: Object.entries(maturityBuckets).map(([name, value]) => ({ name, value }))
+    };
+  } catch (error) { console.error("Global summary fetch error:", error); }
+}
+
+function groupByFinancials(list, nameKey, amtKey) {
+  const map = {};
+  list.forEach(i => {
+    const name = i[nameKey];
+    if (!map[name]) map[name] = 0;
+    map[name] += (i[amtKey] || 0);
+  });
+  return Object.entries(map).sort((a,b)=>b[1]-a[1]).slice(0, 10).map(([name, amount]) => ({ name, amount }));
+}
+
 async function renderAnalytics() {
-  const rankings = getRankings(rankingLimit);
-  const isFinancialHeavy = portfolioBasket.length > 0 && portfolioBasket.every(i => i.type === 'ben' || i.type === 'lender');
-  
+  if (portfolioBasket.length === 0) {
+    if (!globalSummary.kpi.totalAum) await fetchGlobalSummary();
+    renderGlobalDashboard();
+  } else {
+    renderPortfolioAnalysis();
+  }
+}
+
+// 초기 로딩 시 데이터 확보
+document.addEventListener('DOMContentLoaded', () => {
+  fetchGlobalSummary(); // 배경에서 미리 로드
+  // ... (기존 리스너 유지)
+});
+
+function renderGlobalDashboard() {
+  const g = globalSummary;
   detailPanel.innerHTML = `
     <div class="analytics-container" style="animation: fadeIn 0.4s ease-out; padding: 20px 0 60px 0; height: 100%; overflow-y: auto;">
       <div class="analytics-main-content">
-        <div class="detail-header" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom:32px;">
-          <div>
-            <span class="card-tag tag-project">${rankings.isPortfolioMode ? 'CUSTOM PORTFOLIO' : 'SEARCH ANALYTICS'}</span>
-            <h2 style="font-size:32px; margin-top:12px; font-weight:800; letter-spacing:-0.5px;">
-              ${rankings.isPortfolioMode ? '나의 포트폴리오 분석' : '포트폴리오 종합 분석 리포트'}
-            </h2>
-            <p style="color:var(--muted); font-size:15px;">
-              ${rankings.isPortfolioMode ? `선택된 ${portfolioBasket.length}개 그룹에 대한 집중 분석입니다.` : '현재 검색된 전체 포트폴리오의 지표 분석입니다.'}
-            </p>
+        <div class="detail-header" style="margin-bottom:32px;">
+          <span class="card-tag tag-project">GLOBAL MONITORING</span>
+          <h2 style="font-size:32px; margin-top:12px; font-weight:800;">RA부문 전체 운용 현황</h2>
+          <p style="color:var(--muted); font-size:15px;">전체 포트폴리오의 실시간 주요 지표 및 리스크 모니터링입니다.</p>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">전체 AUM (Gross)</div>
+            <div class="kpi-value">${formatNumber(g.kpi.totalAum)}</div>
+            <div class="kpi-sub">에쿼티 + 대출 합계</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">운용 펀드 수</div>
+            <div class="kpi-value">${g.kpi.fundCount.toLocaleString()}개</div>
+            <div class="kpi-sub">활성 프로젝트 포함</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">평균 배당 수익률</div>
+            <div class="kpi-value">${g.kpi.avgRate.toFixed(2)}%</div>
+            <div class="kpi-sub">All-in Rate 평균</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">주력 섹터</div>
+            <div class="kpi-value">${g.kpi.topSector}</div>
+            <div class="kpi-sub">비중 가장 높은 자산군</div>
           </div>
         </div>
 
-        <!-- 지도 제거 및 차트 영역 확장 -->
-        <div class="chart-list" style="display: flex; flex-direction: column; gap: 24px; margin-bottom: 24px;">
-          ${isFinancialHeavy ? `
-            <div class="detail-section" style="background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--line);">
-              <div class="section-title">💰 금융사별 익스포저 합계 (억원)</div>
-              <div id="financialChart" style="height: 450px;"></div>
-            </div>
-          ` : `
-            <div class="detail-section" style="background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--line);">
-              <div class="section-title">📊 펀드별 연면적 비중 (㎡)</div>
-              <div id="fundGfaChart" style="height: 450px;"></div>
-            </div>
-            
-            <div class="detail-section" style="background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--line);">
-              <div class="section-title">📉 포트폴리오 리스크 분포 (LTV)</div>
-              <div id="ltvChart" style="height: 350px;"></div>
-            </div>
-          `}
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+          <div class="detail-section" style="background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--line);">
+            <div class="section-title">🏢 섹터별 자산 분포</div>
+            <div id="globalSectorChart" style="height: 300px;"></div>
+          </div>
+          <div class="detail-section" style="background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--line);">
+            <div class="section-title">📅 펀드 만기 도래 현황 (금융 기준)</div>
+            <div id="globalMaturityChart" style="height: 300px;"></div>
+          </div>
         </div>
 
-        <div id="drilldownDetail" style="margin-top: 40px; padding-top: 40px; border-top: 2px dashed var(--line); display: none;">
-          <div style="text-align:center; padding:40px; color:var(--muted);">데이터를 클릭하면 세부 정보가 여기에 표시됩니다.</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+          <div class="detail-section" style="background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--line);">
+            <div class="section-title">🏦 주요 대주단 TOP 10 (억원)</div>
+            <div id="globalLenderChart" style="height: 400px;"></div>
+          </div>
+          <div class="detail-section" style="background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--line);">
+            <div class="section-title">🤝 주요 수익자 TOP 10 (억원)</div>
+            <div id="globalBenChart" style="height: 400px;"></div>
+          </div>
         </div>
       </div>
     </div>
   `;
 
-  renderPortfolioCharts(rankings, isFinancialHeavy);
-}
+  // Render Global Charts
+  new ApexCharts(document.getElementById("globalSectorChart"), {
+    series: g.sectors.map(s => s.value),
+    chart: { type: 'donut', height: 300 },
+    labels: g.sectors.map(s => s.name),
+    colors: ['#4f46e5', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'],
+    legend: { position: 'bottom' }
+  }).render();
 
-function renderPortfolioCharts(rankings, isFinancialHeavy) {
-  if (isFinancialHeavy) {
-    new ApexCharts(document.getElementById("financialChart"), {
-      series: [{ name: '투자액(억)', data: rankings.financialRank.map(r => Math.round(r.amount / 100000000)) }],
-      chart: { type: 'bar', height: 450, toolbar: {show:false} },
-      plotOptions: { bar: { horizontal: false, columnWidth: '40%', borderRadius: 8 } },
-      xaxis: { categories: rankings.financialRank.map(r => r.name) },
-      colors: ['#4f46e5'],
+  new ApexCharts(document.getElementById("globalMaturityChart"), {
+    series: [{ name: '펀드 수', data: g.maturities.map(m => m.value) }],
+    chart: { type: 'bar', height: 300, toolbar: {show:false} },
+    xaxis: { categories: g.maturities.map(m => m.name) },
+    yaxis: { labels: { formatter: v => v.toLocaleString() } },
+    colors: ['#ef4444', '#f59e0b', '#10b981'],
+    plotOptions: { bar: { distributed: true, borderRadius: 4 } },
+    dataLabels: { enabled: true, formatter: v => v.toLocaleString() }
+  }).render();
+
+  const renderRanking = (id, data, color) => {
+    new ApexCharts(document.getElementById(id), {
+      series: [{ name: '금액', data: data.map(d => Math.round(d.amount / 100000000)) }],
+      chart: { type: 'bar', height: 400, toolbar: {show:false} },
+      plotOptions: { bar: { horizontal: true, borderRadius: 4 } },
+      xaxis: { 
+        categories: data.map(d => d.name),
+        labels: { formatter: v => v.toLocaleString() }
+      },
+      colors: [color],
       dataLabels: { enabled: true, formatter: v => v.toLocaleString() + '억' }
     }).render();
-  } else {
-    // GFA Chart
-    new ApexCharts(document.getElementById("fundGfaChart"), {
-      series: [{ name: '연면적', data: rankings.fundRank.map(r => Math.round(r.gfa)) }],
-      chart: { 
-        type: 'bar', height: 450, toolbar: {show:false},
-        events: {
-          dataPointSelection: (e, chart, config) => {
-            const name = rankings.fundRank[config.dataPointIndex].name;
-            performDrilldown(name);
-          }
-        }
-      },
-      plotOptions: { bar: { horizontal: true, distributed: true, borderRadius: 4 } },
-      xaxis: { categories: rankings.fundRank.map(r => r.name) },
-      colors: ['#2b6cb0', '#3182ce', '#4299e1', '#63b3ed', '#90cdf4']
-    }).render();
+  };
+  renderRanking("globalLenderChart", g.lenders, "#3b82f6");
+  renderRanking("globalBenChart", g.beneficiaries, "#8b5cf6");
+}
 
-    // LTV Chart 추가 (지도 대신 리스크 지표)
-    const ltvRanges = { "60% 이하": 0, "60-70%": 0, "70-80%": 0, "80% 초과": 0 };
-    const sourceAssets = portfolioBasket.length > 0 
-      ? portfolioBasket.filter(i => i.type === 'asset').flatMap(i => i.items)
-      : allResults.assets;
-    
-    sourceAssets.forEach(a => {
-      const ltv = a.metadata?.ltv_ratio || (Math.random() * 30 + 50);
-      if (ltv <= 60) ltvRanges["60% 이하"]++;
-      else if (ltv <= 70) ltvRanges["60-70%"]++;
-      else if (ltv <= 80) ltvRanges["70-80%"]++;
-      else ltvRanges["80% 초과"]++;
+function renderPortfolioAnalysis() {
+  const p = portfolioBasket;
+  // Calculate selection KPIs
+  const selectedFunds = p.filter(i => i.type === 'fund').flatMap(i => i.data || i.items || []);
+  const selectedBens = p.filter(i => i.type === 'ben').flatMap(i => i.data || i.items || []);
+  const selectedLenders = p.filter(i => i.type === 'lender').flatMap(i => i.data || i.items || []);
+  
+  // AUM: Equity + Debt
+  const totalEquity = selectedBens.reduce((s, b) => s + (b.invested_amt || 0), 0);
+  const totalDebt = selectedLenders.reduce((s, l) => s + (l.drawn_amt || 0), 0);
+  const totalAum = totalEquity + totalDebt;
+
+  const avgRate = selectedFunds.length > 0 
+    ? selectedFunds.reduce((s, f) => s + (f.all_in_rate || 0), 0) / selectedFunds.length 
+    : 0;
+
+  detailPanel.innerHTML = `
+    <div class="analytics-container" style="animation: fadeIn 0.4s ease-out; padding: 20px 0 60px 0; height: 100%; overflow-y: auto;">
+      <div class="analytics-main-content">
+        <div class="detail-header" style="margin-bottom:32px;">
+          <span class="card-tag tag-project">PORTFOLIO BUILDER</span>
+          <h2 style="font-size:32px; margin-top:12px; font-weight:800;">나의 커스텀 포트폴리오 분석</h2>
+          <p style="color:var(--muted); font-size:15px;">선택된 ${p.length.toLocaleString()}개 항목에 대한 집중 분석 리포트입니다.</p>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">포트폴리오 AUM (Gross)</div>
+            <div class="kpi-value">${formatNumber(totalAum)}</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">평균 수익률</div>
+            <div class="kpi-value">${avgRate.toFixed(2)}%</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">선택 항목 수</div>
+            <div class="kpi-value">${p.length.toLocaleString()}건</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">최근 업데이트</div>
+            <div class="kpi-value">${new Date().toLocaleDateString()}</div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+          <div class="detail-section" style="background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--line);">
+            <div class="section-title">📊 선택 항목 구성 (Sector)</div>
+            <div id="portSectorChart" style="height: 300px;"></div>
+          </div>
+          <div class="detail-section" style="background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--line);">
+            <div class="section-title">📉 금리 비교 벤치마크</div>
+            <div id="portRateChart" style="height: 300px;"></div>
+          </div>
+        </div>
+
+        <div class="detail-section" style="background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--line);">
+          <div class="section-title">🧩 대주/수익자 중복도 히트맵</div>
+          <div class="heatmap-container" id="overlapHeatmap">
+            <!-- JS로 렌더링 -->
+          </div>
+        </div>
+
+        <div id="drilldownDetail" style="margin-top: 40px; padding-top: 40px; border-top: 2px dashed var(--line); display: none;">
+          <div style="text-align:center; padding:40px; color:var(--muted);">차트 요소를 클릭하면 세부 정보가 여기에 표시됩니다.</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  renderPortfolioAnalysisCharts(selectedFunds);
+}
+
+function renderPortfolioAnalysisCharts(funds) {
+  // Sector Donut
+  const sectors = {};
+  funds.forEach(f => { sectors[f.notion_base_asset_class || 'N/A'] = (sectors[f.notion_base_asset_class] || 0) + 1; });
+  
+  new ApexCharts(document.getElementById("portSectorChart"), {
+    series: Object.values(sectors),
+    chart: { type: 'pie', height: 300 },
+    labels: Object.keys(sectors),
+    legend: { position: 'bottom' }
+  }).render();
+
+  // Rate Benchmark
+  new ApexCharts(document.getElementById("portRateChart"), {
+    series: [{ name: 'All-in Rate', data: funds.map(f => f.all_in_rate || 0) }],
+    chart: { type: 'bar', height: 300, toolbar: {show:false} },
+    xaxis: { categories: funds.map(f => f.fund_name.substring(0,10) + '...') },
+    yaxis: { labels: { formatter: v => v.toFixed(2) + '%' } },
+    colors: ['#4f46e5'],
+    dataLabels: { enabled: true, formatter: v => v.toFixed(2) + '%' }
+  }).render();
+
+  // Heatmap - Simplified Grid implementation
+  const container = document.getElementById('overlapHeatmap');
+  const uniqueFins = [...new Set(funds.flatMap(f => (f.lenders || []).concat(f.bens || [])))].slice(0, 15);
+  
+  let html = `<div class="heatmap-matrix" style="grid-template-columns: 150px repeat(${funds.length}, 40px);">`;
+  // Header
+  html += `<div class="heatmap-cell header row-label">금융기관 / 펀드</div>`;
+  funds.forEach(f => { html += `<div class="heatmap-cell header" title="${f.fund_name}">${f.fund_id}</div>`; });
+  
+  // Rows
+  uniqueFins.forEach(fin => {
+    html += `<div class="heatmap-cell row-label">${fin}</div>`;
+    funds.forEach(f => {
+      const active = (f.lenders || []).includes(fin) || (f.bens || []).includes(fin);
+      html += `<div class="heatmap-cell ${active ? 'active' : ''}"></div>`;
     });
-
-    new ApexCharts(document.getElementById("ltvChart"), {
-      series: [{ name: '자산 수', data: Object.values(ltvRanges) }],
-      chart: { type: 'bar', height: 350, toolbar: {show:false} },
-      xaxis: { categories: Object.keys(ltvRanges) },
-      plotOptions: { bar: { columnWidth: '50%', borderRadius: 6 } },
-      colors: ['#48bb78', '#ecc94b', '#ed8936', '#e53e3e']
-    }).render();
-  }
+  });
+  html += `</div>`;
+  container.innerHTML = html;
 }
 
 async function performDrilldown(name) {
