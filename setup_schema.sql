@@ -10,7 +10,8 @@ CREATE TABLE funds (
     setup_date DATE,                   -- 펀드설정일
     maturity_date DATE,                -- 펀드만기일
     dept VARCHAR,                      -- 담당부서
-    manager VARCHAR                    -- 담당자
+    manager VARCHAR,                   -- 담당자
+    parent_fund_id VARCHAR             -- 모펀드코드
 );
 
 -- 2. 대주 익스포저 테이블 (Lender Exposures)

@@ -73,7 +73,19 @@ if __name__ == "__main__":
     if funds is not None:
         try:
             uploader = SupabaseUploader()
-            uploader.upload_dataframe(funds, 'funds', on_conflict='fund_id')
+            # parent_fund_id를 metadata 필드에 병합 (DB 컬럼 부재 대응)
+            def merge_parent(row):
+                meta = row.get('metadata', {})
+                if not isinstance(meta, dict): meta = {}
+                if 'parent_fund_id' in row and pd.notna(row['parent_fund_id']):
+                    meta['parent_fund_id'] = row['parent_fund_id']
+                return meta
+            funds['metadata'] = funds.apply(merge_parent, axis=1)
+            
+            # DB 스키마에 있는 컬럼만 선택
+            db_cols = ['fund_id', 'short_name', 'fund_name', 'sector', 'asset_name', 'status', 'location', 'setup_date', 'maturity_date', 'dept', 'manager', 'metadata']
+            valid_cols = [c for c in db_cols if c in funds.columns]
+            uploader.upload_dataframe(funds[valid_cols], 'funds', on_conflict='fund_id')
             if df_l is not None:
                 l_db = df_l.rename(columns={'펀드코드': 'fund_id', '대주_정제': 'lender_clean', '기준일자': 'base_date',
                                             '대출약정금액(원)': 'committed_amt', '대출인출금액(원)': 'drawn_amt', '대출잔여금액(원)': 'remaining_amt',
@@ -91,16 +103,40 @@ if __name__ == "__main__":
                                          int_cols=['committed_amt', 'invested_amt'])
             if df_a is not None:
                 a_db = df_a.rename(columns={'펀드코드': 'fund_id', '자산(건물)명': 'asset_name', '권역': 'location_category'})
-                cols = ['fund_id', 'asset_name', 'location_category', 'lat', 'lng', 
+                # PNU를 metadata 필드에 병합
+                def merge_pnu(row):
+                    meta = row.get('metadata', {})
+                    if not isinstance(meta, dict): meta = {}
+                    if 'pnu' in row and pd.notna(row['pnu']):
+                        meta['pnu'] = row['pnu']
+                    return meta
+                a_db['metadata'] = a_db.apply(merge_pnu, axis=1)
+
+                cols = ['fund_id', 'asset_name', 'location_category', 'lat', 'lng', 'metadata',
                         'site_area', 'gfa', 'scr', 'far', 'main_usage', 'structure', 
                         'floors_up', 'floors_down', 'elevators', 'parking', 'completion_date', 'height']
+                # 층수 컬럼 정수형 변환 (Nullable Int64 사용하여 .0 방지)
+                for col in ['floors_up', 'floors_down']:
+                    if col in a_db.columns:
+                        a_db[col] = pd.to_numeric(a_db[col], errors='coerce').round().astype('Int64')
+                
                 uploader.upload_dataframe(a_db[cols], 'fund_assets', on_conflict='fund_id,asset_name')
             
-            # Market Rent Upload
-            if df_rent_o is not None:
-                uploader.upload_dataframe(df_rent_o, 'market_data', on_conflict='category,region,base_date')
-            if df_rent_l is not None:
-                uploader.upload_dataframe(df_rent_l, 'market_data', on_conflict='category,region,base_date')
+            # Market Rent Upload (Table: market_data)
+            for cat in ['OFFICE', 'LOGISTIC']:
+                df_r = processor.process_market_rent(cat)
+                if df_r is not None:
+                    # DB 스키마에 맞춰 변환 (region, category, base_date, value, extra_info)
+                    df_r['source'] = 'CRM Excel'
+                    df_r['value'] = df_r['rent_monthly'].fillna(0)
+                    
+                    # 나머지 정보는 extra_info (JSON)으로 통합
+                    def row_to_json(row):
+                        return {k: v for k, v in row.to_dict().items() if k not in ['region', 'category', 'base_date', 'value', 'source']}
+                    
+                    df_r['extra_info'] = df_r.apply(row_to_json, axis=1)
+                    upload_cols = ['region', 'category', 'base_date', 'value', 'source', 'extra_info']
+                    uploader.upload_dataframe(df_r[upload_cols], 'market_data', on_conflict='region,category,base_date')
             
             print("\n--- All Data (including Market Rent) synced! ---")
         except Exception as e:

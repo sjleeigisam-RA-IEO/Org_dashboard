@@ -42,13 +42,14 @@ body {
 }
 
 .hero h1 { font-size: 32px; font-weight: 800; margin: 0 0 8px; }
-.hero p { font-size: 14px; color: var(--muted); margin-bottom: 32px; }
+.hero p { font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+.data-source { font-size: 10px; color: var(--muted); opacity: 0.6; line-height: 1.4; margin-bottom: 32px; }
 
 .search-wrapper { position: relative; margin-bottom: 24px; }
 .search-input {
   width: 100%;
   padding: 18px 24px 18px 56px;
-  font-size: 16px;
+  font-size: 13px;
   border-radius: 16px;
   border: 1px solid var(--line);
   background: #f9f9f9;

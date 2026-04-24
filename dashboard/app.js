@@ -71,16 +71,39 @@ function renderResults() {
   resultsContainer.innerHTML = '';
   const groupedLenders = groupBy(allResults.lenders, 'lender_clean');
   const groupedBens = groupBy(allResults.beneficiaries, 'beneficiary_clean');
+  const groupedAssets = groupBy(allResults.assets, 'asset_name');
+  const groupedFunds = groupBy(allResults.funds, 'fund_name');
 
-  if (currentTab === 'all' || currentTab === 'fund') allResults.funds.forEach(i => renderGroupCard('fund', i.fund_name, [i]));
-  if (currentTab === 'all' || currentTab === 'asset') allResults.assets.forEach(i => renderGroupCard('asset', i.asset_name, [i]));
+  if (currentTab === 'all' || currentTab === 'fund') {
+    Object.keys(groupedFunds).forEach(key => {
+      const items = groupedFunds[key];
+      const displayName = items[0].fund_name || key;
+      renderGroupCard('fund', displayName, items);
+    });
+  }
+  if (currentTab === 'all' || currentTab === 'asset') {
+    Object.keys(groupedAssets).forEach(key => {
+      const items = groupedAssets[key];
+      // 자산명이 PNU인 경우를 대비해 가장 긴 자산명을 대표 명칭으로 선택
+      const displayName = items.reduce((a, b) => (a.asset_name?.length > b.asset_name?.length ? a : b)).asset_name || key;
+      renderGroupCard('asset', displayName, items);
+    });
+  }
   if (currentTab === 'all' || currentTab === 'lender') Object.keys(groupedLenders).forEach(n => renderGroupCard('lender', n, groupedLenders[n]));
   if (currentTab === 'all' || currentTab === 'ben') Object.keys(groupedBens).forEach(n => renderGroupCard('ben', n, groupedBens[n]));
 }
 
 function groupBy(list, key) {
   return list.reduce((acc, obj) => {
-    const val = obj[key];
+    let val = obj[key];
+    // 자산 그룹화: PNU 최우선
+    if (key === 'asset_name') {
+      val = obj.metadata?.pnu || obj.pnu || obj.asset_name;
+    } 
+    // 펀드 그룹화: 모펀드코드 최우선
+    else if (key === 'fund_name' || key === 'fund_id') {
+      val = obj.metadata?.parent_fund_id || obj.parent_fund_id || obj.fund_id;
+    }
     acc[val] = acc[val] || [];
     acc[val].push(obj);
     return acc;
@@ -92,17 +115,26 @@ function renderGroupCard(type, name, items) {
   const count = items.length;
   const card = document.createElement('div');
   card.className = 'group-card';
+  // 부제목 결정 (자산은 PNU/주소, 펀드는 코드)
+  let subTitle = '';
+  if (type === 'asset') subTitle = items[0].metadata?.pnu || items[0].pnu || items[0].fund_id || '';
+  else if (type === 'fund') subTitle = items[0].fund_id || '';
+  else subTitle = items[0].fund_id || '';
+
   card.innerHTML = `
     <div class="group-header">
       <div style="flex:1">
         <span class="card-tag tag-${type}">${type.toUpperCase()}</span>
-        <div class="group-title">${name}</div>
-        <div class="group-meta">${count > 1 ? count + '건 참여' : items[0].fund_id || ''} | ${totalAmt > 0 ? formatNumber(totalAmt) : ''}</div>
+        <div class="group-title">${items[0].short_name ? '[' + items[0].short_name + '] ' : ''}${name}</div>
+        <div class="group-meta">${subTitle}${count > 1 ? ` | ${count}건 참여` : ''} ${totalAmt > 0 ? ' | ' + formatNumber(totalAmt) : ''}</div>
       </div>
       <div class="toggle-icon">${count > 1 ? '▼' : '▶'}</div>
     </div>
     <div class="sub-list" style="display:none">
-      ${items.map(i => `<div class="sub-item" data-id="${i.fund_id}">• ${i.funds?.fund_name || i.fund_id} <span style="float:right; opacity:0.6">${formatNumber(i.drawn_amt || i.invested_amt)}</span></div>`).join('')}
+      ${items.map(i => {
+        const amt = i.drawn_amt || i.invested_amt || 0;
+        return `<div class="sub-item" data-id="${i.fund_id}">• ${i.funds?.fund_name || i.fund_name || i.fund_id} <span style="float:right; opacity:0.6">${amt > 0 ? formatNumber(amt) : ''}</span></div>`;
+      }).join('')}
     </div>
   `;
   card.querySelector('.group-header').addEventListener('click', () => {
@@ -110,12 +142,12 @@ function renderGroupCard(type, name, items) {
       const sl = card.querySelector('.sub-list');
       sl.style.display = sl.style.display === 'none' ? 'block' : 'none';
     }
-    if (type === 'asset' || type === 'fund') showDetail({type, data: items[0]});
+    if (type === 'asset' || type === 'fund') showDetail({type, items});
     else showGroupDetail(type, name, items);
   });
   card.querySelectorAll('.sub-item').forEach(si => si.addEventListener('click', (e) => {
     e.stopPropagation();
-    showDetail({type: 'fund', data: { fund_id: si.dataset.id, fund_name: si.textContent.split('•')[1].trim() }});
+    showDetail({type: 'fund', items: [{ fund_id: si.dataset.id, fund_name: si.textContent.split('•')[1].trim() }]});
   }));
   resultsContainer.appendChild(card);
 }
@@ -141,34 +173,36 @@ function showGroupDetail(type, name, items) {
 }
 
 async function showDetail(obj) {
-  const { type, data } = obj;
-  const fundId = data.fund_id;
+  const { type, items } = obj;
+  const fundIds = items.map(i => i.fund_id);
   detailPanel.innerHTML = '<div class="no-results">상세 로딩 중...</div>';
   try {
     const [fundRes, assetRes, lenderRes, benRes] = await Promise.all([
-      _supabase.from('funds').select('*').eq('fund_id', fundId).maybeSingle(),
-      _supabase.from('fund_assets').select('*').eq('fund_id', fundId),
-      _supabase.from('lender_exposures').select('*').eq('fund_id', fundId),
-      _supabase.from('beneficiary_exposures').select('*').eq('fund_id', fundId)
+      _supabase.from('funds').select('*').in('fund_id', fundIds),
+      _supabase.from('fund_assets').select('*').in('fund_id', fundIds),
+      _supabase.from('lender_exposures').select('*').in('fund_id', fundIds),
+      _supabase.from('beneficiary_exposures').select('*').in('fund_id', fundIds)
     ]);
     
-    const f = fundRes.data || data;
-    const a = assetRes.data?.[0] || {}; // 첫 번째 자산 기준
+    // 메인 정보 (첫 번째 유효한 데이터 사용)
+    const f = fundRes.data?.[0] || items[0];
+    const a = assetRes.data?.find(x => x.site_area > 0) || assetRes.data?.[0] || {}; 
 
     detailPanel.innerHTML = `
       <div class="detail-header">
         <span class="card-tag tag-fund">ASSET PROFILE</span>
         <h2 style="margin-bottom:4px;">${a.asset_name || f.fund_name}</h2>
-        <div style="color:var(--muted); font-size:16px;">${fundId} | ${f.dept || '-'}</div>
+        <div style="color:var(--muted); font-size:16px;">
+          ${fundIds.join(', ')} | ${f.dept || '-'}
+        </div>
       </div>
 
-      <!-- IM 스타일 자산개요 테이블 -->
       <div class="detail-section">
-        <div class="section-title">🏢 자산 개요 (Asset Profile)</div>
+        <div class="section-title">🏢 자산 상세 (Asset Specs)</div>
         <table class="data-table profile-table">
           <tr><th>주소 <small>Address</small></th><td>${a.address || '-'}</td></tr>
           <tr><th>대지면적 <small>Site Area</small></th><td>${a.site_area ? a.site_area.toLocaleString() + '㎡ (' + (a.site_area * 0.3025).toFixed(2) + 'py)' : '-'}</td></tr>
-          <tr><th>연면적 <small>GFA</small></th><td>${a.gross_floor_area ? a.gross_floor_area.toLocaleString() + '㎡ (' + (a.gross_floor_area * 0.3025).toFixed(2) + 'py)' : '-'}</td></tr>
+          <tr><th>연면적 <small>GFA</small></th><td>${a.gfa ? a.gfa.toLocaleString() + '㎡ (' + (a.gfa * 0.3025).toFixed(2) + 'py)' : '-'}</td></tr>
           <tr><th>건폐율/용적률 <small>SCR/FAR</small></th><td>${a.scr || '-'}% / ${a.far || '-'}%</td></tr>
           <tr><th>주용도 <small>Usage</small></th><td>${a.main_usage || '-'}</td></tr>
           <tr><th>층 <small>Floors</small></th><td>B${a.floors_down || '-'} / ${a.floors_up || '-'}F</td></tr>
@@ -180,11 +214,37 @@ async function showDetail(obj) {
       </div>
 
       <div class="detail-section">
-        <div class="section-title">💰 대주 및 수익자 현황</div>
-        <div class="info-grid">
-          <div class="info-item"><label>대주단 규모</label><span>${lenderRes.data?.length || 0}개 기관</span></div>
-          <div class="info-item"><label>수익자 규모</label><span>${benRes.data?.length || 0}개 기관</span></div>
-        </div>
+        <div class="section-title">💰 대주단 현황 (Lenders)</div>
+        <table class="data-table">
+          <thead><tr><th>기관명</th><th>인출액</th><th>금리</th><th>대출기간</th></tr></thead>
+          <tbody>
+            ${lenderRes.data?.map(l => `
+              <tr>
+                <td style="font-weight:700">${l.lender_clean}</td>
+                <td>${formatNumber(l.drawn_amt)}</td>
+                <td>${l.all_in_rate ? l.all_in_rate + '%' : '-'}</td>
+                <td style="font-size:12px; opacity:0.7">${l.start_date || ''} ~ ${l.end_date || ''}</td>
+              </tr>
+            `).join('') || '<tr><td colspan="4">정보 없음</td></tr>'}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="detail-section">
+        <div class="section-title">👥 수익자 현황 (Beneficiaries)</div>
+        <table class="data-table">
+          <thead><tr><th>기관명</th><th>투자액</th><th>지분율</th><th>약정일</th></tr></thead>
+          <tbody>
+            ${benRes.data?.map(b => `
+              <tr>
+                <td style="font-weight:700">${b.beneficiary_clean}</td>
+                <td>${formatNumber(b.invested_amt)}</td>
+                <td>${b.share_ratio ? b.share_ratio + '%' : '-'}</td>
+                <td>${b.invested_date || '-'}</td>
+              </tr>
+            `).join('') || '<tr><td colspan="4">정보 없음</td></tr>'}
+          </tbody>
+        </table>
       </div>
     `;
   } catch (error) { 
