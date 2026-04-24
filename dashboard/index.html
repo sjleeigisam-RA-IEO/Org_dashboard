@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IGIS RA Insight | RA부문 통합데이터 시스템</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Supabase JS Client Library -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<div class="main-layout">
+  <!-- Left Panel: Search & List -->
+  <div class="left-panel">
+    <header class="hero">
+      <h1>IGIS RA Insight</h1>
+      <p>RA부문 통합데이터 시스템</p>
+    </header>
+
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input" placeholder="검색어를 입력하세요 (신한, 펀드명, 코드...)" autocomplete="off">
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="all">전체</button>
+      <button class="tab-btn" data-tab="fund">펀드</button>
+      <button class="tab-btn" data-tab="asset">자산</button>
+      <button class="tab-btn" data-tab="ben">수익자</button>
+      <button class="tab-btn" data-tab="lender">대주</button>
+    </div>
+
+    <div id="results" class="results-container">
+      <div class="no-results">조회를 시작하세요.</div>
+    </div>
+  </div>
+
+  <!-- Right Panel: Dynamic Details -->
+  <div id="detailPanel" class="right-panel">
+    <div class="detail-placeholder">
+      <div class="placeholder-icon">📋</div>
+      <p>리스트에서 항목을 선택하면<br>상세 정보가 여기에 표시됩니다.</p>
+    </div>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

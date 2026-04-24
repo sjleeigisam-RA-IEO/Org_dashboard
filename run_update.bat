@@ -1,25 +1,21 @@
 @echo off
-title CRM Data Auto-Update System
-echo ==================================================
-echo   CRM Data Auto-Update to Supabase Starting...
-echo ==================================================
+title CRM Data Dashboard - DB Sync Tool
+echo ======================================================
+echo           CRM Data Dashboard - Syncing...
+echo ======================================================
+echo.
+echo [STEP 1] Checking Excel files in the folder...
+echo [STEP 2] Processing Lender, Beneficiary, Assets, and Fund Master...
+echo [STEP 3] Uploading to Supabase Cloud Database...
 echo.
 
-cd /d "%~dp0"
-
-echo [1/2] Checking Python environment...
-python --version >nul 2>&1
-if %errorlevel% neq 0 (
-    echo Error: Python is not installed or not in PATH.
-    pause
-    exit /b
-)
-
-echo [2/2] Running Data Uploader...
-python uploader.py
+:: Execute the python uploader
+python "%~dp0uploader.py"
 
 echo.
-echo ==================================================
-echo   Update Completed! Press any key to close.
-echo ==================================================
+echo ======================================================
+echo           DB Update Process Finished!
+echo ======================================================
+echo.
+echo You can now check the results in your dashboard.
 pause
