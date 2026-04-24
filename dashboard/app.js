@@ -8,7 +8,7 @@ const tabBtns = document.querySelectorAll('.tab-btn');
 
 let debounceTimer;
 let currentTab = 'all';
-let allResults = { lenders: [], beneficiaries: [], funds: [], assets: [] };
+let allResults = { lenders: [], beneficiaries: [], funds: [], assets: [], projects: [] };
 let fundSearchColumns = ['fund_name', 'fund_id', 'short_name'];
 
 const OPTIONAL_FUND_SEARCH_COLUMNS = [
@@ -88,7 +88,17 @@ async function performSearch(query) {
       _supabase.from('funds').select('*').or(buildUniversalFilter(fundSearchColumns, terms)).limit(100),
       _supabase.from('fund_assets').select('*, funds(*)').or(buildUniversalFilter(['asset_name', 'fund_id'], terms)).limit(100)
     ]);
-    allResults = { lenders: lenderRes.data || [], beneficiaries: benRes.data || [], funds: fundRes.data || [], assets: assetRes.data || [] };
+    // 분류 로직: 프로젝트명(Notion)이 있거나 노션 분류가 있는 경우 프로젝트로 별도 분류
+    const projects = (fundRes.data || []).filter(f => f.project_mission_name || f.notion_base_asset_class);
+    const normalFunds = (fundRes.data || []).filter(f => !f.project_mission_name && !f.notion_base_asset_class);
+
+    allResults = { 
+      lenders: lenderRes.data || [], 
+      beneficiaries: benRes.data || [], 
+      funds: normalFunds, 
+      assets: assetRes.data || [],
+      projects: projects
+    };
     updateTabCounts();
     renderResults();
   } catch (error) { console.error(error); }
@@ -96,8 +106,12 @@ async function performSearch(query) {
 
 function updateTabCounts() {
   const counts = {
-    all: allResults.lenders.length + allResults.beneficiaries.length + allResults.funds.length + allResults.assets.length,
-    fund: allResults.funds.length, asset: allResults.assets.length, ben: allResults.beneficiaries.length, lender: allResults.lenders.length
+    all: allResults.lenders.length + allResults.beneficiaries.length + allResults.funds.length + allResults.assets.length + allResults.projects.length,
+    fund: allResults.funds.length, 
+    asset: allResults.assets.length, 
+    ben: allResults.beneficiaries.length, 
+    lender: allResults.lenders.length,
+    project: allResults.projects.length
   };
   tabBtns.forEach(btn => {
     const tab = btn.dataset.tab;
@@ -112,6 +126,15 @@ function renderResults() {
   const groupedBens = groupBy(allResults.beneficiaries, 'beneficiary_clean');
   const groupedAssets = groupBy(allResults.assets, 'asset_name');
   const groupedFunds = groupBy(allResults.funds, 'fund_name');
+  const groupedProjects = groupBy(allResults.projects, 'fund_name');
+
+  if (currentTab === 'all' || currentTab === 'project') {
+    Object.keys(groupedProjects).forEach(key => {
+      const items = groupedProjects[key];
+      const displayName = getFundPrimaryName(items[0]) || key;
+      renderGroupCard('project', displayName, items);
+    });
+  }
 
   if (currentTab === 'all' || currentTab === 'fund') {
     Object.keys(groupedFunds).forEach(key => {
@@ -182,7 +205,7 @@ function renderGroupCard(type, name, items) {
       const sl = card.querySelector('.sub-list');
       sl.style.display = sl.style.display === 'none' ? 'block' : 'none';
     }
-    if (type === 'asset' || type === 'fund') showDetail({type, items});
+    if (type === 'asset' || type === 'fund' || type === 'project') showDetail({type, items, targetName: name});
     else showGroupDetail(type, name, items);
   });
   card.querySelectorAll('.sub-item').forEach(si => si.addEventListener('click', (e) => {
@@ -205,7 +228,11 @@ function showGroupDetail(type, name, items) {
       <table class="data-table">
         <thead><tr><th>펀드명</th><th>코드</th><th>금액</th></tr></thead>
         <tbody>
-          ${items.map(i => `<tr><td>${i.funds?.fund_name || '-'}</td><td>${i.fund_id}</td><td>${formatNumber(i.drawn_amt || i.invested_amt)}</td></tr>`).join('')}
+          ${items.map(i => {
+            const fName = i.fund_name || i.funds?.fund_name || '-';
+            const amt = i.drawn_amt || i.invested_amt || 0;
+            return `<tr><td>${fName}</td><td>${i.fund_id}</td><td>${formatNumber(amt)}</td></tr>`;
+          }).join('')}
         </tbody>
       </table>
     </div>
@@ -213,7 +240,7 @@ function showGroupDetail(type, name, items) {
 }
 
 async function showDetail(obj) {
-  const { type, items } = obj;
+  const { type, items, targetName } = obj;
   const fundIds = items.map(i => i.fund_id);
   detailPanel.innerHTML = '<div class="no-results">상세 로딩 중...</div>';
   try {
@@ -224,9 +251,13 @@ async function showDetail(obj) {
       _supabase.from('beneficiary_exposures').select('*').in('fund_id', fundIds)
     ]);
     
-    // 메인 정보 (첫 번째 유효한 데이터 사용)
+    // 메인 정보 (클릭한 대상과 가장 잘 맞는 데이터 선택)
     const f = fundRes.data?.[0] || items[0];
-    const a = assetRes.data?.find(x => x.site_area > 0) || assetRes.data?.[0] || {};
+    const targetPnu = items[0].metadata?.pnu || items[0].pnu;
+    const a = assetRes.data?.find(x => x.asset_name === targetName) || 
+              assetRes.data?.find(x => (x.metadata?.pnu || x.pnu) === targetPnu) ||
+              assetRes.data?.find(x => x.site_area > 0) || 
+              assetRes.data?.[0] || {};
     const detailTitle = getFundPrimaryName(f);
     const officialName = getFundSecondaryName(f);
     const classifications = [
@@ -249,18 +280,21 @@ async function showDetail(obj) {
 
       <div class="detail-section">
         <div class="section-title">🏢 자산 상세 (Asset Specs)</div>
-        <table class="data-table profile-table">
-          <tr><th>주소 <small>Address</small></th><td>${a.address || '-'}</td></tr>
-          <tr><th>대지면적 <small>Site Area</small></th><td>${a.site_area ? a.site_area.toLocaleString() + '㎡ (' + (a.site_area * 0.3025).toFixed(2) + 'py)' : '-'}</td></tr>
-          <tr><th>연면적 <small>GFA</small></th><td>${a.gfa ? a.gfa.toLocaleString() + '㎡ (' + (a.gfa * 0.3025).toFixed(2) + 'py)' : '-'}</td></tr>
-          <tr><th>건폐율/용적률 <small>SCR/FAR</small></th><td>${a.scr || '-'}% / ${a.far || '-'}%</td></tr>
-          <tr><th>주용도 <small>Usage</small></th><td>${a.main_usage || '-'}</td></tr>
-          <tr><th>층 <small>Floors</small></th><td>B${a.floors_down || '-'} / ${a.floors_up || '-'}F</td></tr>
-          <tr><th>건축구조 <small>Structure</small></th><td>${a.structure || '-'}</td></tr>
-          <tr><th>주차 <small>Parking</small></th><td>${a.parking || '-'}</td></tr>
-          <tr><th>승강기 <small>Elevators</small></th><td>${a.elevators || '-'}</td></tr>
-          <tr><th>준공연도 <small>Completion</small></th><td>${a.completion_date || '-'}</td></tr>
-        </table>
+        <div class="asset-specs-grid">
+          <table class="data-table profile-table">
+            <tr><th>주소 <small>Address</small></th><td>${a.address || '-'}</td></tr>
+            <tr><th>대지면적 <small>Site Area</small></th><td>${a.site_area ? a.site_area.toLocaleString() + '㎡ (' + (a.site_area * 0.3025).toFixed(2) + 'py)' : '-'}</td></tr>
+            <tr><th>연면적 <small>GFA</small></th><td>${a.gfa ? a.gfa.toLocaleString() + '㎡ (' + (a.gfa * 0.3025).toFixed(2) + 'py)' : '-'}</td></tr>
+            <tr><th>건폐율/용적률 <small>SCR/FAR</small></th><td>${a.scr || '-'}% / ${a.far || '-'}%</td></tr>
+            <tr><th>주용도 <small>Usage</small></th><td>${a.main_usage || '-'}</td></tr>
+            <tr><th>층 <small>Floors</small></th><td>B${a.floors_down || '-'} / ${a.floors_up || '-'}F</td></tr>
+            <tr><th>건축구조 <small>Structure</small></th><td>${a.structure || '-'}</td></tr>
+            <tr><th>주차 <small>Parking</small></th><td>${a.parking || '-'}</td></tr>
+            <tr><th>승강기 <small>Elevators</small></th><td>${a.elevators || '-'}</td></tr>
+            <tr><th>준공연도 <small>Completion</small></th><td>${a.completion_date || '-'}</td></tr>
+          </table>
+          <div id="vmap"></div>
+        </div>
       </div>
 
       <div class="detail-section">
@@ -297,6 +331,53 @@ async function showDetail(obj) {
         </table>
       </div>
     `;
+
+    // 지도 초기화 로직 (VWorld 2.0 공식 가이드 준수)
+    if (a.lng && a.lat) {
+      setTimeout(() => {
+        try {
+          const mapContainer = document.getElementById('vmap');
+          if (mapContainer && typeof vw !== 'undefined' && vw.ol3) {
+            // 1. 지도 객체 생성 (초기화 오류 방지를 위해 기본 CameraPosition 사용)
+            const vmap = new vw.ol3.Map("vmap", {
+              basemapType: vw.ol3.BasemapType.GRAPHIC,
+              controlDensity: vw.ol3.DensityType.EMPTY,
+              interactionDensity: vw.ol3.DensityType.BASIC,
+              homePosition: vw.ol3.CameraPosition,
+              initPosition: vw.ol3.CameraPosition
+            });
+
+            // 2. 좌표 변환 및 지도 이동
+            const lon = parseFloat(a.lng);
+            const lat = parseFloat(a.lat);
+            if (typeof ol !== 'undefined') {
+              const center = ol.proj.fromLonLat([lon, lat]);
+              vmap.getView().setCenter(center);
+              vmap.getView().setZoom(17);
+            }
+
+            // 3. 마커 레이어 생성 및 지도에 추가
+            const markerLayer = new vw.ol3.layer.Marker(vmap);
+            vmap.addLayer(markerLayer);
+
+            // 4. 마커 데이터 설정 및 레이어에 추가
+            markerLayer.addMarker({
+              x: lon,
+              y: lat,
+              epsg: "EPSG:4326",
+              title: a.asset_name || '위치',
+              iconUrl: 'https://map.vworld.kr/images/ol3/marker_blue.png'
+            });
+          }
+        } catch (e) {
+          console.error("VWorld 2.0 Map Load Error:", e);
+        }
+      }, 500);
+    } else {
+      const vmapEl = document.getElementById('vmap');
+      if (vmapEl) vmapEl.innerHTML = '<div style="padding:40px; color:var(--muted); text-align:center;">좌표 정보가 없어 지도를 표시할 수 없습니다.</div>';
+    }
+
   } catch (error) { 
     console.error(error);
     detailPanel.innerHTML = '오류 발생'; 

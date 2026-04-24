@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IGIS RA Insight | RA부문 통합데이터 시스템</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Supabase JS Client Library -->
+  <!-- Supabase & VWorld JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="text/javascript" src="https://map.vworld.kr/js/vworldMapInit.js.do?version=2.0&apiKey=02B5F8FA-CC59-3109-86FD-0C9C1B98B5BF"></script>
 </head>
 <body>
 
@@ -16,7 +17,7 @@
     <header class="hero">
       <h1>IGIS RA Insight</h1>
       <p>RA부문 통합데이터 시스템</p>
-      <div class="data-source">Sources : 2026.1.1 IGIS업무시스템 기준. (업무시스템에 업데이트되지 않은 정보는 실제와 다를 수 있습니다)</div>
+      <div class="data-source">Sources : 2026.1.1 IGIS업무시스템 기준.<br>(업무시스템에 업데이트되지 않은 정보는 실제와 다를 수 있습니다)</div>
     </header>
 
     <div class="search-wrapper">
@@ -28,6 +29,7 @@
       <button class="tab-btn active" data-tab="all">전체</button>
       <button class="tab-btn" data-tab="fund">펀드</button>
       <button class="tab-btn" data-tab="asset">자산</button>
+      <button class="tab-btn" data-tab="project">프로젝트</button>
       <button class="tab-btn" data-tab="ben">수익자</button>
       <button class="tab-btn" data-tab="lender">대주</button>
     </div>

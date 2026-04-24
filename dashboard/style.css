@@ -43,7 +43,7 @@ body {
 
 .hero h1 { font-size: 32px; font-weight: 800; margin: 0 0 8px; }
 .hero p { font-size: 14px; color: var(--muted); margin-bottom: 6px; }
-.data-source { font-size: 10px; color: var(--muted); opacity: 0.6; line-height: 1.4; margin-bottom: 32px; }
+.data-source { font-size: 11px; color: #4b5563; font-weight: 500; line-height: 1.5; margin-bottom: 32px; }
 
 .search-wrapper { position: relative; margin-bottom: 24px; }
 .search-input {
@@ -58,16 +58,18 @@ body {
 }
 .search-icon { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); font-size: 20px; opacity: 0.4; }
 
-.tabs { display: flex; gap: 6px; margin-bottom: 24px; }
+.tabs { display: flex; gap: 4px; margin-bottom: 24px; flex-wrap: nowrap; overflow-x: auto; }
 .tab-btn {
-  padding: 8px 16px;
+  padding: 8px 10px;
   border-radius: 10px;
   border: none;
-  font-size: 13px;
+  font-size: 12px;
+  white-space: nowrap;
   font-weight: 700;
   cursor: pointer;
   background: #f0f0f0;
   color: var(--muted);
+  flex-shrink: 0;
 }
 .tab-btn.active { background: var(--accent); color: white; }
 
@@ -117,6 +119,8 @@ body {
 .tag-fund { background: #e0e7ff; color: #4338ca; }
 .tag-lender { background: #ffedd5; color: #9a3412; }
 .tag-ben { background: #dcfce7; color: #166534; }
+.tag-project { background: #fae8ff; color: #86198f; }
+.tag-asset { background: #f1f5f9; color: #475569; }
 
 .card-title { font-size: 17px; font-weight: 700; margin: 0 0 4px; }
 .card-meta { font-size: 13px; color: var(--muted); }
@@ -149,6 +153,28 @@ body {
   box-shadow: var(--shadow);
 }
 .section-title { font-size: 18px; font-weight: 800; margin: 0 0 20px; color: var(--accent-2); border-bottom: 2px solid #f0f0f0; padding-bottom: 12px; }
+
+.asset-specs-grid {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 32px;
+  align-items: start;
+}
+
+#vmap {
+  width: 100%;
+  height: 450px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: #f0f0f0;
+  position: sticky;
+  top: 0;
+}
+
+@media (max-width: 1200px) {
+  .asset-specs-grid { grid-template-columns: 1fr; }
+  #vmap { height: 300px; position: static; }
+}
 
 .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
 .info-item label { display: block; font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
