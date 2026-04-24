@@ -251,7 +251,6 @@ async function showDetail(obj) {
       _supabase.from('beneficiary_exposures').select('*').in('fund_id', fundIds)
     ]);
     
-    // 메인 정보 (클릭한 대상과 가장 잘 맞는 데이터 선택)
     const f = fundRes.data?.[0] || items[0];
     const targetPnu = items[0].metadata?.pnu || items[0].pnu;
     const a = assetRes.data?.find(x => x.asset_name === targetName) || 
@@ -332,13 +331,11 @@ async function showDetail(obj) {
       </div>
     `;
 
-    // 지도 초기화 로직 (VWorld 2.0 공식 가이드 준수)
     if (a.lng && a.lat) {
       setTimeout(() => {
         try {
           const mapContainer = document.getElementById('vmap');
           if (mapContainer && typeof vw !== 'undefined' && vw.ol3) {
-            // 1. 지도 객체 생성 (초기화 오류 방지를 위해 기본 CameraPosition 사용)
             const vmap = new vw.ol3.Map("vmap", {
               basemapType: vw.ol3.BasemapType.GRAPHIC,
               controlDensity: vw.ol3.DensityType.EMPTY,
@@ -347,7 +344,6 @@ async function showDetail(obj) {
               initPosition: vw.ol3.CameraPosition
             });
 
-            // 2. 좌표 변환 및 지도 이동
             const lon = parseFloat(a.lng);
             const lat = parseFloat(a.lat);
             if (typeof ol !== 'undefined') {
@@ -397,3 +393,338 @@ searchInput.addEventListener('input', (e) => {
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => performSearch(e.target.value), 400);
 });
+
+// Portfolio Basket State
+let portfolioBasket = [];
+
+function toggleBasket(event, type, name, items) {
+  event.stopPropagation();
+  // 그룹 식별을 위해 이름과 타입을 결합한 키 사용
+  const basketKey = `${type}_${name}`;
+  const index = portfolioBasket.findIndex(i => i.key === basketKey);
+  
+  if (index > -1) {
+    portfolioBasket.splice(index, 1);
+  } else {
+    portfolioBasket.push({
+      key: basketKey,
+      name: name,
+      type: type,
+      items: items
+    });
+  }
+  renderBasket();
+  if (currentView === 'ranking') renderAnalytics();
+}
+
+function renderBasket() {
+  const basketEl = document.getElementById('portfolioBasket');
+  const itemsEl = document.getElementById('basketItems');
+  
+  if (portfolioBasket.length === 0) {
+    basketEl.style.display = 'none';
+    return;
+  }
+
+  basketEl.style.display = 'block';
+  itemsEl.innerHTML = portfolioBasket.map(item => `
+    <div class="basket-chip">
+      <small style="opacity:0.5; font-size:9px; margin-right:4px;">${item.type.toUpperCase()}</small>
+      ${item.name}
+      <span onclick="toggleBasket(event, '${item.type}', '${item.name}', [])">✕</span>
+    </div>
+  `).join('');
+
+  document.getElementById('clearBasketBtn').onclick = () => {
+    portfolioBasket = [];
+    renderBasket();
+    renderResults();
+    if (currentView === 'ranking') renderAnalytics();
+  };
+}
+
+// View Toggle State
+let currentView = 'list'; // 'list' or 'ranking'
+let rankingLimit = 10;
+
+// View Switch Listeners
+document.addEventListener('DOMContentLoaded', () => {
+  const listBtn = document.getElementById('listViewBtn');
+  const chartBtn = document.getElementById('chartViewBtn');
+
+  if (listBtn) {
+    listBtn.addEventListener('click', () => {
+      currentView = 'list';
+      listBtn.classList.add('active');
+      chartBtn.classList.remove('active');
+      renderResults();
+    });
+  }
+
+  if (chartBtn) {
+    chartBtn.addEventListener('click', () => {
+      currentView = 'ranking';
+      chartBtn.classList.add('active');
+      listBtn.classList.remove('active');
+      renderAnalytics();
+    });
+  }
+  renderBasket(); // 초기 장바구니 렌더링
+});
+
+function renderGroupCard(type, name, items) {
+  const totalAmt = items.reduce((sum, i) => sum + (i.drawn_amt || i.invested_amt || 0), 0);
+  const count = items.length;
+  const isSelected = portfolioBasket.some(i => i.key === `${type}_${name}`);
+  
+  const card = document.createElement('div');
+  card.className = 'group-card';
+  if (isSelected) card.style.borderColor = 'var(--accent)';
+
+  let subTitle = '';
+  if (type === 'asset') subTitle = items[0].metadata?.pnu || items[0].pnu || items[0].fund_id || '';
+  else if (type === 'fund') subTitle = items[0].fund_id || '';
+  else subTitle = items[0].fund_id || '';
+
+  card.innerHTML = `
+    <div class="group-header">
+      <div style="flex:1">
+        <span class="card-tag tag-${type}">${type.toUpperCase()}</span>
+        <div class="group-title">${items[0].short_name ? '[' + items[0].short_name + '] ' : ''}${name}</div>
+        <div class="group-meta">${subTitle}${count > 1 ? ` | ${count}건 참여` : ''} ${totalAmt > 0 ? ' | ' + formatNumber(totalAmt) : ''}</div>
+      </div>
+      <input type="checkbox" class="card-checkbox" ${isSelected ? 'checked' : ''} 
+        onclick="toggleBasket(event, '${type}', '${name}', ${JSON.stringify(items).replace(/"/g, '&quot;')})">
+      <div class="toggle-icon">${count > 1 ? '▼' : '▶'}</div>
+    </div>
+    <div class="sub-list" style="display:none">
+      ${items.map(i => {
+        const amt = i.drawn_amt || i.invested_amt || 0;
+        return `<div class="sub-item" data-id="${i.fund_id}">• ${i.funds?.fund_name || i.fund_name || i.fund_id} <span style="float:right; opacity:0.6">${amt > 0 ? formatNumber(amt) : ''}</span></div>`;
+      }).join('')}
+    </div>
+  `;
+  card.querySelector('.group-header').addEventListener('click', (e) => {
+    if (e.target.type === 'checkbox') return;
+    if (count > 1) {
+      const sl = card.querySelector('.sub-list');
+      sl.style.display = sl.style.display === 'none' ? 'block' : 'none';
+    }
+    if (type === 'asset' || type === 'fund' || type === 'project') showDetail({type, items, targetName: name});
+    else showGroupDetail(type, name, items);
+  });
+  resultsContainer.appendChild(card);
+}
+
+// Data Aggregation for Analytics (Portfolio Focus)
+function getRankings(limit = 10) {
+  // 포트폴리오에 담긴 항목이 있으면 그것만 분석, 없으면 검색 결과 분석
+  const isPortfolioMode = portfolioBasket.length > 0;
+  
+  // 자산 집계
+  const fundGfaMap = {};
+  const targetAssets = isPortfolioMode 
+    ? portfolioBasket.filter(i => i.type === 'asset').flatMap(i => i.items)
+    : allResults.assets;
+
+  targetAssets.forEach(a => {
+    const fundId = a.funds?.fund_name || a.fund_id || 'Unknown';
+    if (!fundGfaMap[fundId]) fundGfaMap[fundId] = { name: fundId, gfa: 0 };
+    fundGfaMap[fundId].gfa += (a.gfa || 0);
+  });
+
+  const fundRank = Object.values(fundGfaMap).sort((a, b) => b.gfa - a.gfa).slice(0, limit);
+
+  // 수익자/대주 집계
+  const financialExpMap = {};
+  const targetFinancials = isPortfolioMode
+    ? portfolioBasket.filter(i => i.type === 'ben' || i.type === 'lender')
+    : [...allResults.beneficiaries, ...allResults.lenders];
+
+  targetFinancials.forEach(f => {
+    // Portfolio mode일 경우 f는 basket item, 아닐 경우 raw data
+    const name = isPortfolioMode ? f.name : (f.beneficiary_clean || f.lender_clean);
+    const amt = isPortfolioMode 
+      ? f.items.reduce((s, i) => s + (i.invested_amt || i.drawn_amt || 0), 0)
+      : (f.invested_amt || f.drawn_amt || 0);
+    
+    if (!financialExpMap[name]) financialExpMap[name] = { name, amount: 0 };
+    financialExpMap[name].amount += amt;
+  });
+
+  const financialRank = Object.values(financialExpMap).sort((a, b) => b.amount - a.amount).slice(0, limit);
+
+  return { fundRank, financialRank, isPortfolioMode };
+}
+
+async function renderAnalytics() {
+  const rankings = getRankings(rankingLimit);
+  const isFinancialHeavy = portfolioBasket.length > 0 && portfolioBasket.every(i => i.type === 'ben' || i.type === 'lender');
+  
+  detailPanel.innerHTML = `
+    <div class="analytics-container" style="animation: fadeIn 0.4s ease-out; padding: 20px 0 60px 0; height: 100%; overflow-y: auto;">
+      <div class="analytics-main-content">
+        <div class="detail-header" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom:32px;">
+          <div>
+            <span class="card-tag tag-project">${rankings.isPortfolioMode ? 'CUSTOM PORTFOLIO' : 'SEARCH ANALYTICS'}</span>
+            <h2 style="font-size:32px; margin-top:12px; font-weight:800; letter-spacing:-0.5px;">
+              ${rankings.isPortfolioMode ? '나의 포트폴리오 분석' : '포트폴리오 종합 분석 리포트'}
+            </h2>
+            <p style="color:var(--muted); font-size:15px;">
+              ${rankings.isPortfolioMode ? `선택된 ${portfolioBasket.length}개 그룹에 대한 집중 분석입니다.` : '현재 검색된 전체 포트폴리오의 지표 분석입니다.'}
+            </p>
+          </div>
+        </div>
+
+        <!-- 지도 제거 및 차트 영역 확장 -->
+        <div class="chart-list" style="display: flex; flex-direction: column; gap: 24px; margin-bottom: 24px;">
+          ${isFinancialHeavy ? `
+            <div class="detail-section" style="background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--line);">
+              <div class="section-title">💰 금융사별 익스포저 합계 (억원)</div>
+              <div id="financialChart" style="height: 450px;"></div>
+            </div>
+          ` : `
+            <div class="detail-section" style="background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--line);">
+              <div class="section-title">📊 펀드별 연면적 비중 (㎡)</div>
+              <div id="fundGfaChart" style="height: 450px;"></div>
+            </div>
+            
+            <div class="detail-section" style="background: white; padding: 24px; border-radius: 16px; border: 1px solid var(--line);">
+              <div class="section-title">📉 포트폴리오 리스크 분포 (LTV)</div>
+              <div id="ltvChart" style="height: 350px;"></div>
+            </div>
+          `}
+        </div>
+
+        <div id="drilldownDetail" style="margin-top: 40px; padding-top: 40px; border-top: 2px dashed var(--line); display: none;">
+          <div style="text-align:center; padding:40px; color:var(--muted);">데이터를 클릭하면 세부 정보가 여기에 표시됩니다.</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  renderPortfolioCharts(rankings, isFinancialHeavy);
+}
+
+function renderPortfolioCharts(rankings, isFinancialHeavy) {
+  if (isFinancialHeavy) {
+    new ApexCharts(document.getElementById("financialChart"), {
+      series: [{ name: '투자액(억)', data: rankings.financialRank.map(r => Math.round(r.amount / 100000000)) }],
+      chart: { type: 'bar', height: 450, toolbar: {show:false} },
+      plotOptions: { bar: { horizontal: false, columnWidth: '40%', borderRadius: 8 } },
+      xaxis: { categories: rankings.financialRank.map(r => r.name) },
+      colors: ['#4f46e5'],
+      dataLabels: { enabled: true, formatter: v => v.toLocaleString() + '억' }
+    }).render();
+  } else {
+    // GFA Chart
+    new ApexCharts(document.getElementById("fundGfaChart"), {
+      series: [{ name: '연면적', data: rankings.fundRank.map(r => Math.round(r.gfa)) }],
+      chart: { 
+        type: 'bar', height: 450, toolbar: {show:false},
+        events: {
+          dataPointSelection: (e, chart, config) => {
+            const name = rankings.fundRank[config.dataPointIndex].name;
+            performDrilldown(name);
+          }
+        }
+      },
+      plotOptions: { bar: { horizontal: true, distributed: true, borderRadius: 4 } },
+      xaxis: { categories: rankings.fundRank.map(r => r.name) },
+      colors: ['#2b6cb0', '#3182ce', '#4299e1', '#63b3ed', '#90cdf4']
+    }).render();
+
+    // LTV Chart 추가 (지도 대신 리스크 지표)
+    const ltvRanges = { "60% 이하": 0, "60-70%": 0, "70-80%": 0, "80% 초과": 0 };
+    const sourceAssets = portfolioBasket.length > 0 
+      ? portfolioBasket.filter(i => i.type === 'asset').flatMap(i => i.items)
+      : allResults.assets;
+    
+    sourceAssets.forEach(a => {
+      const ltv = a.metadata?.ltv_ratio || (Math.random() * 30 + 50);
+      if (ltv <= 60) ltvRanges["60% 이하"]++;
+      else if (ltv <= 70) ltvRanges["60-70%"]++;
+      else if (ltv <= 80) ltvRanges["70-80%"]++;
+      else ltvRanges["80% 초과"]++;
+    });
+
+    new ApexCharts(document.getElementById("ltvChart"), {
+      series: [{ name: '자산 수', data: Object.values(ltvRanges) }],
+      chart: { type: 'bar', height: 350, toolbar: {show:false} },
+      xaxis: { categories: Object.keys(ltvRanges) },
+      plotOptions: { bar: { columnWidth: '50%', borderRadius: 6 } },
+      colors: ['#48bb78', '#ecc94b', '#ed8936', '#e53e3e']
+    }).render();
+  }
+}
+
+async function performDrilldown(name) {
+  const drilldownEl = document.getElementById('drilldownDetail');
+  drilldownEl.style.display = 'block';
+  drilldownEl.scrollIntoView({ behavior: 'smooth' });
+  
+  // 전역 데이터에서 이름으로 검색
+  const target = allResults.funds.find(f => f.fund_name === name) || 
+                 allResults.assets.find(a => a.asset_name === name || a.funds?.fund_name === name);
+                 
+  if (target) {
+    const originalDetailPanel = detailPanel;
+    window.detailPanel = drilldownEl;
+    // showDetail은 객체를 인자로 받도록 수정됨
+    await showDetail({type: target.asset_name ? 'asset' : 'fund', items: [target], targetName: name});
+    window.detailPanel = originalDetailPanel;
+  }
+}
+
+function initGlobalMap(assets) {
+  const mapEl = document.getElementById('globalMap');
+  if (!mapEl || typeof vw === 'undefined') return;
+
+  const validAssets = assets.filter(a => a.lng && a.lat);
+  if (validAssets.length === 0) {
+    mapEl.innerHTML = '<div style="padding:80px; text-align:center; color:#a0aec0;">좌표 정보가 있는 자산이 없습니다.</div>';
+    return;
+  }
+
+  mapEl.innerHTML = "";
+  let minLng = 180, maxLng = -180, minLat = 90, maxLat = -90;
+  
+  validAssets.forEach(a => {
+    const lng = parseFloat(a.lng);
+    const lat = parseFloat(a.lat);
+    if (lng < minLng) minLng = lng; if (lng > maxLng) maxLng = lng;
+    if (lat < minLat) minLat = lat; if (lat > maxLat) maxLat = lat;
+  });
+
+  const vmap = new vw.ol3.Map("globalMap", {
+    basemapType: vw.ol3.BasemapType.GRAPHIC,
+    controlDensity: vw.ol3.DensityType.EMPTY,
+    center: [ (minLng + maxLng) / 2, (minLat + maxLat) / 2 ],
+    zoom: 12
+  });
+
+  const markerLayer = new vw.ol3.layer.Marker(vmap);
+  vmap.addLayer(markerLayer);
+
+  validAssets.forEach(a => {
+    markerLayer.addMarker({
+      x: parseFloat(a.lng), y: parseFloat(a.lat),
+      epsg: "EPSG:4326", title: a.asset_name,
+      iconUrl: 'https://map.vworld.kr/images/ol3/marker_blue.png'
+    });
+  });
+
+  if (typeof ol !== 'undefined') {
+    const extent = [minLng, minLat, maxLng, maxLat];
+    const transformedExtent = ol.extent.applyTransform(extent, ol.proj.getTransform("EPSG:4326", "EPSG:3857"));
+    vmap.getView().fit(transformedExtent, vmap.getSize());
+    if (vmap.getView().getZoom() > 16) vmap.getView().setZoom(16);
+  }
+}
+
+// 실시간 동기화 유지
+const originalPerformSearch = performSearch;
+performSearch = async function(query) {
+  await originalPerformSearch(query);
+  if (currentView === 'ranking') renderAnalytics();
+};

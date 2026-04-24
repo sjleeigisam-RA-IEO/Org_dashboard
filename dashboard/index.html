@@ -8,21 +8,36 @@
   <!-- Supabase & VWorld JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script type="text/javascript" src="https://map.vworld.kr/js/vworldMapInit.js.do?version=2.0&apiKey=02B5F8FA-CC59-3109-86FD-0C9C1B98B5BF"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 <body>
 
-<div class="main-layout">
+<div class="main-layout container">
   <!-- Left Panel: Search & List -->
-  <div class="left-panel">
-    <header class="hero">
+  <div class="left-panel" id="leftPanel">
+    <div class="header">
       <h1>IGIS RA Insight</h1>
       <p>RA부문 통합데이터 시스템</p>
-      <div class="data-source">Sources : 2026.1.1 IGIS업무시스템 기준.<br>(업무시스템에 업데이트되지 않은 정보는 실제와 다를 수 있습니다)</div>
-    </header>
+      <p class="data-source">Sources : 2026.1.1 IGIS업무시스템 기준.<br>(업무시스템에 업데이트되지 않은 정보는 실제와 다를 수 있습니다)</p>
+    </div>
 
-    <div class="search-wrapper">
+    <div class="search-container">
       <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" class="search-input" placeholder="검색어를 입력하세요 (수익자, 대주, 펀드명, 자산명, 코드...)" autocomplete="off">
+      <input type="text" id="searchInput" placeholder="펀드명, 자산명, 투자자 검색..." autocomplete="off">
+    </div>
+
+    <!-- Portfolio Basket (상단 Docking으로 복구) -->
+    <div id="portfolioBasket" class="basket-container" style="display:none;">
+      <div class="basket-header">
+        <span>선택된 포트폴리오</span>
+        <button id="clearBasketBtn">모두 비우기</button>
+      </div>
+      <div id="basketItems" class="basket-items"></div>
+    </div>
+
+    <div class="view-toggle">
+      <button id="listViewBtn" class="active">데이터 조회</button>
+      <button id="chartViewBtn">종합 분석</button>
     </div>
 
     <div class="tabs">
