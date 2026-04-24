@@ -9,6 +9,17 @@ const tabBtns = document.querySelectorAll('.tab-btn');
 let debounceTimer;
 let currentTab = 'all';
 let allResults = { lenders: [], beneficiaries: [], funds: [], assets: [] };
+let fundSearchColumns = ['fund_name', 'fund_id', 'short_name'];
+
+const OPTIONAL_FUND_SEARCH_COLUMNS = [
+  'project_mission_name',
+  'notion_base_asset_class',
+  'notion_asset_nature_class',
+  'notion_holding_type_class',
+  'notion_business_stage_class',
+  'notion_investment_strategy_class',
+  'notion_vehicle_class'
+];
 
 const ALIASES = {
   "nps": ["국민연금", "nps"], "국민연금": ["국민연금", "nps"],
@@ -35,6 +46,33 @@ function buildUniversalFilter(cols, terms) {
   return cols.map(col => terms.map(term => `${col}.ilike.%${term}%`).join(',')).join(',');
 }
 
+async function ensureFundSearchColumns() {
+  try {
+    const { data } = await _supabase.from('funds').select('*').limit(1);
+    const sample = data?.[0];
+    if (!sample) return;
+    fundSearchColumns = [
+      'fund_name',
+      'fund_id',
+      'short_name',
+      ...OPTIONAL_FUND_SEARCH_COLUMNS.filter(col => col in sample)
+    ];
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function getFundPrimaryName(fund) {
+  return fund.project_mission_name || fund.fund_name || fund.short_name || fund.fund_id;
+}
+
+function getFundSecondaryName(fund) {
+  if (fund.project_mission_name && fund.fund_name && fund.project_mission_name !== fund.fund_name) {
+    return fund.fund_name;
+  }
+  return '';
+}
+
 async function performSearch(query) {
   if (!query) {
     resultsContainer.innerHTML = '<div class="no-results">조회를 시작하세요.</div>';
@@ -43,10 +81,11 @@ async function performSearch(query) {
   }
   const terms = getSearchTerms(query);
   try {
+    await ensureFundSearchColumns();
     const [lenderRes, benRes, fundRes, assetRes] = await Promise.all([
       _supabase.from('lender_exposures').select('*, funds(*)').or(buildUniversalFilter(['lender_clean', 'fund_id'], terms)).limit(100),
       _supabase.from('beneficiary_exposures').select('*, funds(*)').or(buildUniversalFilter(['beneficiary_clean', 'fund_id'], terms)).limit(100),
-      _supabase.from('funds').select('*').or(buildUniversalFilter(['fund_name', 'fund_id', 'short_name'], terms)).limit(100),
+      _supabase.from('funds').select('*').or(buildUniversalFilter(fundSearchColumns, terms)).limit(100),
       _supabase.from('fund_assets').select('*, funds(*)').or(buildUniversalFilter(['asset_name', 'fund_id'], terms)).limit(100)
     ]);
     allResults = { lenders: lenderRes.data || [], beneficiaries: benRes.data || [], funds: fundRes.data || [], assets: assetRes.data || [] };
@@ -77,7 +116,7 @@ function renderResults() {
   if (currentTab === 'all' || currentTab === 'fund') {
     Object.keys(groupedFunds).forEach(key => {
       const items = groupedFunds[key];
-      const displayName = items[0].fund_name || key;
+      const displayName = getFundPrimaryName(items[0]) || key;
       renderGroupCard('fund', displayName, items);
     });
   }
@@ -120,6 +159,7 @@ function renderGroupCard(type, name, items) {
   if (type === 'asset') subTitle = items[0].metadata?.pnu || items[0].pnu || items[0].fund_id || '';
   else if (type === 'fund') subTitle = items[0].fund_id || '';
   else subTitle = items[0].fund_id || '';
+  const secondaryName = type === 'fund' ? getFundSecondaryName(items[0]) : '';
 
   card.innerHTML = `
     <div class="group-header">
@@ -186,14 +226,24 @@ async function showDetail(obj) {
     
     // 메인 정보 (첫 번째 유효한 데이터 사용)
     const f = fundRes.data?.[0] || items[0];
-    const a = assetRes.data?.find(x => x.site_area > 0) || assetRes.data?.[0] || {}; 
+    const a = assetRes.data?.find(x => x.site_area > 0) || assetRes.data?.[0] || {};
+    const detailTitle = getFundPrimaryName(f);
+    const officialName = getFundSecondaryName(f);
+    const classifications = [
+      f.notion_base_asset_class,
+      f.notion_asset_nature_class,
+      f.notion_holding_type_class,
+      f.notion_business_stage_class,
+      f.notion_investment_strategy_class,
+      f.notion_vehicle_class
+    ].filter(Boolean).join(' | ');
 
     detailPanel.innerHTML = `
       <div class="detail-header">
         <span class="card-tag tag-fund">ASSET PROFILE</span>
-        <h2 style="margin-bottom:4px;">${a.asset_name || f.fund_name}</h2>
+        <h2 style="margin-bottom:4px;">${a.asset_name || detailTitle}</h2>
         <div style="color:var(--muted); font-size:16px;">
-          ${fundIds.join(', ')} | ${f.dept || '-'}
+          ${fundIds.join(', ')} | ${f.dept || '-'}${officialName ? ' | ' + officialName : ''}${classifications ? ' | ' + classifications : ''}
         </div>
       </div>
 
