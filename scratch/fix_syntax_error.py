@@ -1,24 +1,52 @@
 import os
-import re
 
-def ultimate_fix():
+def fix_syntax_error():
     with open('dashboard/app.js', 'r', encoding='utf-8') as f:
-        content = f.read()
+        lines = f.readlines()
 
-    # 1. Update Global State
-    if 'let globalHistory = [];' not in content:
-        content = content.replace("let allResults = {", "let globalHistory = [];\nlet currentChartMetric = 'aum';\nlet allResults = {")
+    # Find where renderAnalytics starts
+    start_line = -1
+    for i, line in enumerate(lines):
+        if 'async function renderAnalytics()' in line:
+            start_line = i
+            break
+    
+    if start_line == -1:
+        print("Could not find renderAnalytics")
+        return
 
-    # 2. Advanced AUM Aggregation Logic (The '73T' calculation)
-    # This function will be used inside the analysis views
-    aum_calc_logic = """
+    # Find the end of the broken block (we'll look for the next major function or the end)
+    # Based on the view_file, line 762 seems to be the end of the broken block
+    # But let's just replace from start_line to where fetchGlobalSummary starts
+    end_line = -1
+    for i in range(start_line, len(lines)):
+        if 'async function fetchGlobalSummary()' in lines[i] or 'function renderGlobalDashboard()' in lines[i]:
+            end_line = i
+            break
+    
+    if end_line == -1: end_line = len(lines)
+
+    # Prepare the CLEAN, CORRECT implementation
+    new_implementation = """
+async function renderAnalytics() {
+    if (globalHistory.length === 0) {
+        try {
+            const hRes = await fetch('data/aum_history.json');
+            globalHistory = await hRes.json();
+        } catch(e) { console.error("History load fail", e); }
+    }
+
+    if (portfolioBasket.length > 0) {
+        renderPortfolioAnalysis();
+        return;
+    }
+
     const activeFunds = (allResults.funds || []).filter(f => (f.metadata?.status !== '청산'));
     const totalAum = activeFunds.reduce((sum, f) => sum + (f.metadata?.benchmark_aum || 0), 0);
     const totalEquity = activeFunds.reduce((sum, f) => sum + (f.metadata?.committed_equity || 0), 0);
     const totalLoan = activeFunds.reduce((sum, f) => sum + (f.metadata?.committed_debt || 0), 0);
     const totalDeposit = activeFunds.reduce((sum, f) => sum + (f.metadata?.lease_deposit || 0), 0);
     
-    // Gap calculation (Unrealized Value)
     const totalGap = activeFunds.reduce((sum, f) => {
         const aum = f.metadata?.benchmark_aum || 0;
         const loan = f.metadata?.committed_debt || 0;
@@ -36,11 +64,8 @@ def ultimate_fix():
         sectorMap[s] = (sectorMap[s] || 0) + (f.metadata?.benchmark_aum || 0);
         regionMap[r] = (regionMap[r] || 0) + (f.metadata?.benchmark_aum || 0);
     });
-"""
 
-    # 3. Premium Dashboard HTML Template
-    dashboard_html = """
-      detailPanel.innerHTML = `
+    detailPanel.innerHTML = `
         <div class="analytics-container" style="animation: fadeIn 0.4s ease; padding-bottom:60px;">
           <div class="detail-header" style="margin-bottom:32px;">
             <span class="card-tag tag-project">GLOBAL MONITORING</span>
@@ -104,108 +129,25 @@ def ultimate_fix():
           </div>
         </div>
       `;
-"""
 
-    # 4. Final Chart Rendering Block
-    chart_render_logic = """
     const commonDonut = { chart: { type: 'donut', height: 320, fontFamily: 'Pretendard Variable' }, dataLabels: { enabled: true, dropShadow: { enabled: false } }, legend: { position: 'bottom', fontSize: '14px' }, stroke: { width: 0 }, plotOptions: { pie: { donut: { size: '70%' } } } };
     new ApexCharts(document.querySelector("#sectorDonut"), { ...commonDonut, series: Object.values(sectorMap), labels: Object.keys(sectorMap), colors: ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#0ea5e9'] }).render();
     new ApexCharts(document.querySelector("#regionDonut"), { ...commonDonut, series: Object.values(regionMap), labels: Object.keys(regionMap), colors: ['#0ea5e9', '#6366f1', '#f43f5e'] }).render();
 
     renderHistory('regionChart', 'region');
     renderHistory('sectorChart', 'sector');
+}
+
+function renderGlobalDashboard() {
+    renderAnalytics();
+}
+
 """
-
-    # Combine everything into a new renderAnalytics function
-    new_render_analytics = f"""async function renderAnalytics() {{
-    if (globalHistory.length === 0) {{
-        try {{
-            const hRes = await fetch('data/aum_history.json');
-            globalHistory = await hRes.json();
-        }} catch(e) {{ console.error("History fail", e); }}
-    }}
-
-    {aum_calc_logic}
-    {dashboard_html}
-    {chart_render_logic}
-}}"""
-
-    # Replace BOTH renderAnalytics and renderGlobalDashboard to ensure no collision
-    content = re.sub(r'async function renderAnalytics\(\) \{.*?\}', new_render_analytics, content, flags=re.DOTALL)
-    content = re.sub(r'async function renderGlobalDashboard\(\) \{.*?\}', "async function renderGlobalDashboard() { renderAnalytics(); }", content, flags=re.DOTALL)
-
-    # Re-apply the Visualization Functions at the end if missing
-    visual_functions = """
-/* === PREMIUM VISUALIZATION FUNCTIONS === */
-const renderHistory = (chartId, keyField) => {
-    if (!globalHistory || globalHistory.length === 0) return;
-    const years = Array.from(new Set(globalHistory.map(h => h.year))).sort();
-    const categories = Array.from(new Set(globalHistory.map(h => h[keyField])));
-    const metricProp = currentChartMetric || 'aum';
-    
-    const series = categories.map(cat => ({
-      name: cat,
-      data: years.map(y => {
-        const item = globalHistory.find(h => h.year === y && h[keyField] === cat);
-        return item ? Math.round((item[metricProp] || 0) / 1000000000) : 0;
-      })
-    }));
-
-    const options = {
-      series: series,
-      chart: { 
-        type: 'bar', height: 350, stacked: true, toolbar: { show: false },
-        fontFamily: 'Pretendard Variable',
-        events: {
-          dataPointSelection: (event, chartContext, config) => {
-            const year = years[config.dataPointIndex];
-            const category = series[config.seriesIndex].name;
-            renderDrillDown(year, category, currentChartMetric || 'aum');
-          }
-        }
-      },
-      plotOptions: { bar: { horizontal: false, columnWidth: '55%', borderRadius: 6 } },
-      dataLabels: { enabled: false },
-      xaxis: { categories: years, labels: { style: { colors: '#94a3b8' } } },
-      yaxis: { labels: { show: true, style: { colors: '#94a3b8' } } },
-      tooltip: { theme: 'light', y: { formatter: val => val.toLocaleString() + ' 십억원' } },
-      colors: ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#0ea5e9', '#ec4899', '#f43f5e', '#14b8a6', '#f97316', '#a855f7', '#64748b']
-    };
-
-    const el = document.querySelector(`#${chartId}`);
-    if (el) { el.innerHTML = ''; new ApexCharts(el, options).render(); }
-};
-
-const renderDrillDown = (year, category, metric) => {
-    const drillPanel = document.getElementById('drillDownResult');
-    if (!drillPanel) return;
-    drillPanel.innerHTML = `<div class="drill-title" style="padding:20px; font-weight:800; color:var(--accent);">✨ ${year}년 ${category} 심층 분석 중...</div>`;
-    setTimeout(() => {
-       const players = metric === 'loan' ? ['국민은행', '신한은행', '농협생명', '우체국', '새마을금고'] 
-                     : (metric === 'equity' ? ['국민연금', 'KIC', '교직원공제회', '사학연금', '행정공제회'] : ['블랙스톤', '이지스', '국민연금', 'GIC', 'CPPIB']);
-       let html = `<div class="drill-title" style="padding:20px 20px 10px 20px; font-weight:800; color:var(--accent);">✨ ${year}년 ${category} - Top 5 ${metric === 'loan' ? '대주단' : '투자자'}</div><div class="drill-list" style="padding:0 20px 20px 20px;">`;
-       players.forEach((p, i) => {
-          const amt = Math.floor(Math.random() * 5000 + 1000);
-          html += `<div class="drill-item" style="display:flex; justify-content:space-between; padding:12px; background:white; border-radius:10px; margin-bottom:8px; border:1px solid #edf2f7;"><span class="drill-name" style="font-weight:700;">👑 ${i+1}위: ${p}</span><span class="drill-amt" style="font-weight:800; color:var(--accent);">${amt.toLocaleString()} 억원</span></div>`;
-       });
-       drillPanel.innerHTML = html + `</div>`;
-    }, 400);
-};
-
-window.switchMetric = (metric) => {
-    currentChartMetric = metric;
-    document.querySelectorAll('.chart-toggle-btn').forEach(btn => btn.classList.remove('active'));
-    const target = document.getElementById(`toggle-${metric}`);
-    if (target) target.classList.add('active');
-    renderHistory('regionChart', 'region');
-    renderHistory('sectorChart', 'sector');
-};
-"""
-    if 'PREMIUM VISUALIZATION FUNCTIONS' not in content:
-        content += visual_functions
+    # Replace the block
+    lines[start_line:end_line] = [new_implementation]
 
     with open('dashboard/app.js', 'w', encoding='utf-8') as f:
-        f.write(content)
+        f.writelines(lines)
 
 if __name__ == "__main__":
-    ultimate_fix()
+    fix_syntax_error()
