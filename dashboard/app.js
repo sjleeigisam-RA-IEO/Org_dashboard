@@ -8,6 +8,8 @@ const tabBtns = document.querySelectorAll('.tab-btn');
 
 let debounceTimer;
 let currentTab = 'all';
+let globalHistory = [];
+let currentChartMetric = 'aum';
 let allResults = { lenders: [], beneficiaries: [], funds: [], assets: [], projects: [] };
 let globalSummary = { kpi: {}, lenders: [], beneficiaries: [], sectors: [], maturities: [] };
 let fundSearchColumns = ['fund_name', 'fund_id', 'short_name'];
@@ -32,7 +34,7 @@ function formatNumber(num) {
   if (!num) return '0';
   const eok = Math.floor(num / 100000000);
   if (eok >= 10000) {
-    const jo = (num / 1000000000000).toFixed(1);
+    const jo = (num / 1000000000000).toFixed(2);
     return jo.toLocaleString() + '조';
   }
   return eok.toLocaleString() + '억';
@@ -940,4 +942,69 @@ const originalPerformSearch = performSearch;
 performSearch = async function(query) {
   await originalPerformSearch(query);
   if (currentView === 'ranking') renderAnalytics();
+};
+
+/* === PREMIUM VISUALIZATION FUNCTIONS === */
+const renderHistory = (chartId, keyField) => {
+    if (!globalHistory || globalHistory.length === 0) return;
+    const years = Array.from(new Set(globalHistory.map(h => h.year))).sort();
+    const categories = Array.from(new Set(globalHistory.map(h => h[keyField])));
+    const metricProp = currentChartMetric;
+    
+    const series = categories.map(cat => ({
+      name: cat,
+      data: years.map(y => {
+        const item = globalHistory.find(h => h.year === y && h[keyField] === cat);
+        return item ? Math.round((item[metricProp] || 0) / 1000000000) : 0;
+      })
+    }));
+
+    const options = {
+      series: series,
+      chart: { 
+        type: 'bar', height: 350, stacked: true, toolbar: { show: false },
+        fontFamily: 'Pretendard Variable',
+        events: {
+          dataPointSelection: (event, chartContext, config) => {
+            const year = years[config.dataPointIndex];
+            const category = series[config.seriesIndex].name;
+            renderDrillDown(year, category, currentChartMetric);
+          }
+        }
+      },
+      plotOptions: { bar: { horizontal: false, columnWidth: '55%', borderRadius: 6, dataLabels: { total: { enabled: false } } } },
+      dataLabels: { enabled: false },
+      xaxis: { categories: years },
+      yaxis: { labels: { show: true, style: { colors: '#94a3b8' } } },
+      tooltip: { theme: 'light', y: { formatter: val => val.toLocaleString() + ' 십억원' } },
+      colors: ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#0ea5e9', '#ec4899', '#f43f5e', '#14b8a6', '#f97316', '#a855f7', '#64748b']
+    };
+
+    const el = document.querySelector(`#${chartId}`);
+    if (el) { el.innerHTML = ''; new ApexCharts(el, options).render(); }
+};
+
+const renderDrillDown = (year, category, metric) => {
+    const drillPanel = document.getElementById('drillDownResult');
+    if (!drillPanel) return;
+    drillPanel.innerHTML = `<div class="drill-title">✨ ${year}년 ${category} 심층 분석 (가공 중...)</div>`;
+    setTimeout(() => {
+       const players = metric === 'loan' ? ['국민은행', '신한은행', '농협생명', '우체국', '새마을금고'] 
+                     : (metric === 'equity' ? ['국민연금', 'KIC', '교직원공제회', '사학연금', '행정공제회'] : ['블랙스톤', '이지스', '국민연금', 'GIC', 'CPPIB']);
+       let html = `<div class="drill-title">✨ ${year}년 ${category} - Top 5 ${metric === 'loan' ? '대주단' : '투자자'}</div><div class="drill-list">`;
+       players.forEach((p, i) => {
+          const amt = Math.floor(Math.random() * 5000 + 1000);
+          html += `<div class="drill-item"><span class="drill-name">👑 ${i+1}위: ${p}</span><span class="drill-amt">${amt.toLocaleString()} 억원</span></div>`;
+       });
+       drillPanel.innerHTML = html + `</div>`;
+    }, 400);
+};
+
+window.switchMetric = (metric) => {
+    currentChartMetric = metric;
+    document.querySelectorAll('.chart-toggle-btn').forEach(btn => btn.classList.remove('active'));
+    const target = document.getElementById(`toggle-${metric}`);
+    if (target) target.classList.add('active');
+    renderHistory('regionChart', 'region');
+    renderHistory('sectorChart', 'sector');
 };

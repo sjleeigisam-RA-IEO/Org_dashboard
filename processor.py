@@ -9,16 +9,35 @@ import time
 class CRMProcessor:
     def __init__(self, data_dir, mapping_file):
         self.data_dir = data_dir
-        with open(mapping_file, 'r', encoding='utf-8') as f:
+        self.archive_dir = os.path.join(data_dir, "_archive")
+        
+        # mapping_file 경로 유연화
+        actual_mapping_path = mapping_file if os.path.exists(mapping_file) else os.path.join(self.archive_dir, os.path.basename(mapping_file))
+        if not os.path.exists(actual_mapping_path):
+            raise FileNotFoundError(f"Mapping file not found: {mapping_file}")
+            
+        with open(actual_mapping_path, 'r', encoding='utf-8') as f:
             self.mapping = json.load(f)
         self.geocoder = VWorldGeocoder()
         self.ledger_fetcher = BuildingLedgerFetcher()
-        self.cache_file = os.path.join(data_dir, "geocoding_cache.json")
-        self.ledger_cache_file = os.path.join(data_dir, "building_cache.json")
+        
+        # 캐시 파일 경로 (Root에 없으면 Archive 참조)
+        self.cache_file = self._resolve_path("geocoding_cache.json")
+        self.ledger_cache_file = self._resolve_path("building_cache.json")
             
+    def _resolve_path(self, filename):
+        root_path = os.path.join(self.data_dir, filename)
+        archive_path = os.path.join(self.archive_dir, filename)
+        return root_path if os.path.exists(root_path) else archive_path
+
     def get_latest_file(self, pattern):
+        # Root와 Archive 양쪽에서 파일을 찾음
         files = glob.glob(os.path.join(self.data_dir, pattern))
+        if os.path.exists(self.archive_dir):
+            files.extend(glob.glob(os.path.join(self.archive_dir, pattern)))
+            
         if not files: return None
+        # 모든 검색 결과 중 가장 최근에 생성된 파일 선택
         return max(files, key=os.path.getctime)
 
     def clean_name(self, name, category):
