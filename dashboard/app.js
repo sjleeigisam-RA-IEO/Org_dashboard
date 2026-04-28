@@ -22,6 +22,17 @@ const EXCLUDE_DEPTS = [
   'CM그룹', '전략리서치'
 ];
 
+function getFundPrimaryName(fund) {
+  return fund.project_mission_name || fund.fund_name || fund.short_name || fund.fund_id;
+}
+
+function getFundSecondaryName(fund) {
+  if (fund.project_mission_name && fund.fund_name && fund.project_mission_name !== fund.fund_name) {
+    return fund.fund_name;
+  }
+  return '';
+}
+
 function isRAFund(f) {
   if (currentOrgScope === 'all') return true;
   const dept = f.metadata?.department || '';
@@ -315,13 +326,24 @@ function renderGroupCard(type, name, items) {
   card.className = 'group-card';
   if (isSelected) card.style.borderColor = 'var(--accent)';
 
-  let subTitle = (type === 'asset' ? (items[0].metadata?.pnu || items[0].pnu) : items[0].fund_id) || '';
+  const item0 = items[0];
+  let displayTitle = name;
+  if (type === 'asset') {
+    displayTitle = item0.asset_name || name;
+  } else if (type === 'fund' || type === 'project') {
+    const fn = item0.fund_name;
+    const sn = item0.short_name;
+    if (fn && sn && fn !== sn) displayTitle = `[${sn}] ${fn}`;
+    else displayTitle = fn || sn || name;
+  }
+
+  let subTitle = (type === 'asset' ? (item0.metadata?.pnu || item0.pnu) : item0.fund_id) || '';
 
   card.innerHTML = `
     <div class="group-header">
       <div style="flex:1">
         <span class="card-tag tag-${type}">${type.toUpperCase()}</span>
-        <div class="group-title">${items[0].short_name ? '[' + items[0].short_name + '] ' : ''}${name}</div>
+        <div class="group-title">${displayTitle}</div>
         <div class="group-meta">${subTitle}${count > 1 ? ` | ${count}건 참여` : ''}</div>
       </div>
       <input type="checkbox" class="card-checkbox" ${isSelected ? 'checked' : ''} 
@@ -329,10 +351,15 @@ function renderGroupCard(type, name, items) {
       <div class="toggle-icon">${count > 1 ? '▼' : '▶'}</div>
     </div>
     <div class="sub-list" style="display:none">
-      ${items.map(i => `<div class="sub-item" data-id="${i.fund_id}">• ${i.funds?.fund_name || i.fund_name || i.fund_id}</div>`).join('')}
+      ${items.map(i => `
+        <div class="sub-item" data-id="${i.fund_id}">
+          <span class="sub-item-name">${i.funds?.fund_name || i.fund_name || i.fund_id}</span>
+          <span class="sub-item-id">${i.fund_id}</span>
+        </div>`).join('')}
     </div>
   `;
-  card.querySelector('.group-header').addEventListener('click', (e) => {
+  const header = card.querySelector('.group-header');
+  header.addEventListener('click', (e) => {
     if (e.target.type === 'checkbox') return;
     if (count > 1) {
       const sl = card.querySelector('.sub-list');
@@ -340,8 +367,26 @@ function renderGroupCard(type, name, items) {
     }
     showDetail({type, items, targetName: name});
   });
+
+  // 하위 아이템 클릭 시 해당 항목 상세 조회
+  const subItems = card.querySelectorAll('.sub-item');
+  subItems.forEach((si, idx) => {
+    si.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const item = items[idx];
+      // 하위 항목은 대부분 펀드/프로젝트이므로 type을 'fund'로 전환하여 조회
+      showDetail({type: 'fund', items: [item], targetName: item.fund_name || item.fund_id});
+      
+      // 선택 효과 (기존 선택 제거 후 현재 항목 강조)
+      card.querySelectorAll('.sub-item').forEach(el => el.style.background = '');
+      si.style.background = 'rgba(79, 70, 229, 0.1)';
+    });
+  });
+
   resultsContainer.appendChild(card);
 }
+
+
 
 async function showDetail(obj) {
   const { type, items, targetName } = obj;
@@ -354,37 +399,121 @@ async function showDetail(obj) {
       _supabase.from('lender_exposures').select('*').in('fund_id', fundIds),
       _supabase.from('beneficiary_exposures').select('*').in('fund_id', fundIds)
     ]);
-    const f = fundRes.data?.[0] || items[0];
-    const a = assetRes.data?.find(x => x.asset_name === targetName) || assetRes.data?.[0] || {};
     
+    const f = fundRes.data?.[0] || items[0];
+    const targetPnu = items[0].metadata?.pnu || items[0].pnu;
+    const a = assetRes.data?.find(x => (x.metadata?.pnu || x.pnu || x.asset_name) === targetName) || 
+              assetRes.data?.find(x => (x.metadata?.pnu || x.pnu) === targetPnu) ||
+              assetRes.data?.find(x => x.site_area > 0) || 
+              assetRes.data?.[0] || {};
+    
+    const detailTitle = getFundPrimaryName(f);
+    const officialName = getFundSecondaryName(f);
+    const classifications = [
+      f.notion_base_asset_class,
+      f.notion_asset_nature_class,
+      f.notion_holding_type_class,
+      f.notion_business_stage_class,
+      f.notion_investment_strategy_class,
+      f.notion_vehicle_class
+    ].filter(Boolean).join(' | ');
+
     detailPanel.innerHTML = `
       <div class="detail-header">
         <span class="card-tag tag-fund">ASSET PROFILE</span>
-        <h2>${a.asset_name || f.fund_name}</h2>
-        <div style="color:var(--muted); font-size:16px;">${fundIds.join(', ')} | ${f.dept || '-'}</div>
-      </div>
-      <div class="detail-section">
-        <div class="section-title">🏢 자산 상세</div>
-        <div class="asset-specs-grid">
-           <table class="data-table">
-              <tr><th>주소</th><td>${a.address || '-'}</td></tr>
-              <tr><th>연면적</th><td>${a.gfa ? a.gfa.toLocaleString() + '㎡' : '-'}</td></tr>
-              <tr><th>주용도</th><td>${a.main_usage || '-'}</td></tr>
-           </table>
-           <div id="vmap" style="height:200px; background:#f1f5f9; border-radius:12px;"></div>
+        <h2 style="margin-bottom:4px;">${a.asset_name || detailTitle}</h2>
+        <div style="color:var(--muted); font-size:16px;">
+          ${fundIds.join(', ')} | ${f.dept || '-'}${officialName ? ' | ' + officialName : ''}${classifications ? ' | ' + classifications : ''}
         </div>
       </div>
+
       <div class="detail-section">
-        <div class="section-title">💰 대주단/수익자 현황</div>
+        <div class="section-title">🏢 자산 상세 (Asset Specs)</div>
+        <div class="asset-specs-grid">
+          <table class="data-table profile-table">
+            <tr><th>주소 <small>Address</small></th><td>${a.address || '-'}</td></tr>
+            <tr><th>대지면적 <small>Site Area</small></th><td>${a.site_area ? a.site_area.toLocaleString() + '㎡ (' + (a.site_area * 0.3025).toFixed(2) + 'py)' : '-'}</td></tr>
+            <tr><th>연면적 <small>GFA</small></th><td>${a.gfa ? a.gfa.toLocaleString() + '㎡ (' + (a.gfa * 0.3025).toFixed(2) + 'py)' : '-'}</td></tr>
+            <tr><th>건폐율/용적률 <small>SCR/FAR</small></th><td>${a.scr || '-'}% / ${a.far || '-'}%</td></tr>
+            <tr><th>주용도 <small>Usage</small></th><td>${a.main_usage || '-'}</td></tr>
+            <tr><th>층 <small>Floors</small></th><td>B${a.floors_down || '-'} / ${a.floors_up || '-'}F</td></tr>
+            <tr><th>건축구조 <small>Structure</small></th><td>${a.structure || '-'}</td></tr>
+            <tr><th>주차 <small>Parking</small></th><td>${a.parking || '-'}</td></tr>
+            <tr><th>승강기 <small>Elevators</small></th><td>${a.elevators || '-'}</td></tr>
+            <tr><th>준공연도 <small>Completion</small></th><td>${a.completion_date || '-'}</td></tr>
+          </table>
+          <div id="vmap"></div>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <div class="section-title">💰 대주단 현황 (Lenders)</div>
         <table class="data-table">
-           <thead><tr><th>기관명</th><th>금액</th><th>역할</th></tr></thead>
-           <tbody>
-              ${lenderRes.data?.map(l => `<tr><td>${l.lender_clean}</td><td>${formatNumber(l.drawn_amt)}</td><td>Lender</td></tr>`).join('') || ''}
-              ${benRes.data?.map(b => `<tr><td>${b.beneficiary_clean}</td><td>${formatNumber(b.invested_amt)}</td><td>Investor</td></tr>`).join('') || ''}
-           </tbody>
+          <thead><tr><th>기관명</th><th>인출액</th><th>금리</th><th>대출기간</th></tr></thead>
+          <tbody>
+            ${lenderRes.data?.map(l => `
+              <tr>
+                <td style="font-weight:700">${l.lender_clean}</td>
+                <td>${formatNumber(l.drawn_amt)}</td>
+                <td>${l.all_in_rate ? l.all_in_rate + '%' : '-'}</td>
+                <td style="font-size:12px; opacity:0.7">${l.start_date || ''} ~ ${l.end_date || ''}</td>
+              </tr>
+            `).join('') || '<tr><td colspan="4">정보 없음</td></tr>'}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="detail-section">
+        <div class="section-title">👥 수익자 현황 (Beneficiaries)</div>
+        <table class="data-table">
+          <thead><tr><th>기관명</th><th>투자액</th><th>지분율</th><th>약정일</th></tr></thead>
+          <tbody>
+            ${benRes.data?.map(b => `
+              <tr>
+                <td style="font-weight:700">${b.beneficiary_clean}</td>
+                <td>${formatNumber(b.invested_amt)}</td>
+                <td>${b.share_ratio ? b.share_ratio + '%' : '-'}</td>
+                <td>${b.invested_date || '-'}</td>
+              </tr>
+            `).join('') || '<tr><td colspan="4">정보 없음</td></tr>'}
+          </tbody>
         </table>
       </div>
     `;
+
+    if (a.lng && a.lat) {
+      setTimeout(() => {
+        try {
+          const mapContainer = document.getElementById('vmap');
+          if (mapContainer && typeof vw !== 'undefined' && vw.ol3) {
+            const vmap = new vw.ol3.Map("vmap", {
+              basemapType: vw.ol3.BasemapType.GRAPHIC,
+              controlDensity: vw.ol3.DensityType.EMPTY,
+              interactionDensity: vw.ol3.DensityType.BASIC,
+              homePosition: vw.ol3.CameraPosition,
+              initPosition: vw.ol3.CameraPosition
+            });
+            const lon = parseFloat(a.lng);
+            const lat = parseFloat(a.lat);
+            if (typeof ol !== 'undefined') {
+              const center = ol.proj.fromLonLat([lon, lat]);
+              vmap.getView().setCenter(center);
+              vmap.getView().setZoom(17);
+            }
+            const markerLayer = new vw.ol3.layer.Marker(vmap);
+            vmap.addLayer(markerLayer);
+            markerLayer.addMarker({
+              x: lon, y: lat, epsg: "EPSG:4326",
+              title: a.asset_name || '위치',
+              iconUrl: 'https://map.vworld.kr/images/ol3/marker_blue.png'
+            });
+          }
+        } catch (e) { console.error("VWorld Map Error:", e); }
+      }, 500);
+    } else {
+      const vmapEl = document.getElementById('vmap');
+      if (vmapEl) vmapEl.innerHTML = '<div style="padding:40px; color:var(--muted); text-align:center;">좌표 정보가 없어 지도를 표시할 수 없습니다.</div>';
+    }
   } catch (e) { console.error(e); detailPanel.innerHTML = '오류 발생'; }
 }
 
@@ -413,8 +542,26 @@ let currentView = 'list';
 document.addEventListener('DOMContentLoaded', () => {
   const listBtn = document.getElementById('listViewBtn');
   const chartBtn = document.getElementById('chartViewBtn');
-  if (listBtn) listBtn.addEventListener('click', () => { currentView = 'list'; listBtn.classList.add('active'); chartBtn.classList.remove('active'); renderResults(); });
-  if (chartBtn) chartBtn.addEventListener('click', () => { currentView = 'ranking'; chartBtn.classList.add('active'); listBtn.classList.remove('active'); renderAnalytics(); });
+  const searchControls = document.getElementById('searchViewControls');
+  const analysisControls = document.getElementById('analysisViewControls');
+
+  if (listBtn) listBtn.addEventListener('click', () => { 
+    currentView = 'list'; 
+    listBtn.classList.add('active'); 
+    chartBtn.classList.remove('active'); 
+    searchControls.style.display = 'block';
+    analysisControls.style.display = 'none';
+    renderResults(); 
+  });
+
+  if (chartBtn) chartBtn.addEventListener('click', () => { 
+    currentView = 'ranking'; 
+    chartBtn.classList.add('active'); 
+    listBtn.classList.remove('active'); 
+    searchControls.style.display = 'none';
+    analysisControls.style.display = 'block';
+    renderAnalytics(); 
+  });
   renderBasket();
 });
 
@@ -732,7 +879,7 @@ const renderNetGrowth = (chartId) => {
         } } },
         colors: ['#6366f1'],
         grid: { yaxis: { lines: { show: true } } },
-        tooltip: { y: { formatter: val => (val > 0 ? '+' : '') + val.toLocaleString() + (currentChartMetric === 'count' ? ' 개' : ' 조원') } }
+        tooltip: { shared: true, intersect: false, y: { formatter: val => (val > 0 ? '+' : '') + val.toLocaleString() + (currentChartMetric === 'count' ? ' 개' : ' 조원') } }
     };
 
     const el = document.querySelector(`#${chartId}`);
@@ -799,7 +946,7 @@ const renderHistory = (chartId) => {
         xaxis: { categories: categories, labels: { style: { fontSize: '10px' } } },
         yaxis: { labels: { formatter: val => val + (currentChartMetric === 'count' ? '개' : '조') } },
         grid: { borderColor: '#f1f5f9', strokeDashArray: 4 },
-        tooltip: { shared: true, y: { formatter: val => val.toLocaleString() + (currentChartMetric === 'count' ? ' 개' : ' 조원') } },
+        tooltip: { shared: true, intersect: false, y: { formatter: val => val.toLocaleString() + (currentChartMetric === 'count' ? ' 개' : ' 조원') } },
         legend: { position: 'top', horizontalAlign: 'right' }
     };
 
@@ -823,7 +970,47 @@ function renderDrillDown(year, category, metric) {
     drillPanel.innerHTML = `<div style="font-weight:700; margin-bottom:10px;">✨ ${year}년 심층 분석</div><div style="font-size:13px; color:var(--muted);">해당 시점의 포트폴리오 구성을 분석 중입니다...</div>`;
 }
 
-searchInput.addEventListener('input', (e) => {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => performSearch(e.target.value), 400);
+document.addEventListener('DOMContentLoaded', () => {
+    const listBtn = document.getElementById('listViewBtn');
+    const chartBtn = document.getElementById('chartViewBtn');
+    const searchControls = document.getElementById('searchViewControls');
+    const analysisControls = document.getElementById('analysisViewControls');
+
+    if (listBtn) listBtn.addEventListener('click', () => { 
+        currentView = 'list'; 
+        listBtn.classList.add('active'); 
+        chartBtn.classList.remove('active'); 
+        searchControls.style.display = 'block';
+        analysisControls.style.display = 'none';
+        renderResults(); 
+    });
+
+    if (chartBtn) chartBtn.addEventListener('click', () => { 
+        currentView = 'ranking'; 
+        chartBtn.classList.add('active'); 
+        listBtn.classList.remove('active'); 
+        searchControls.style.display = 'none';
+        analysisControls.style.display = 'block';
+        renderAnalytics(); 
+    });
+
+    // 카테고리 탭 버튼 이벤트 리스너 추가
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentTab = btn.dataset.tab;
+            renderResults();
+        });
+    });
+
+    // 검색어 입력 이벤트 리스너
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => performSearch(e.target.value), 400);
+        });
+    }
+
+    renderBasket();
 });
