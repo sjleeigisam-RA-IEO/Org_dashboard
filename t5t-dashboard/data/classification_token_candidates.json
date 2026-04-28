@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-04-27T23:51:23.232195",
-  "count": 1177,
+  "generated_at": "2026-04-28T04:36:56.567316",
+  "count": 1212,
   "top_tokens": [
     {
       "token": "투자자",
@@ -8,35 +8,35 @@
     },
     {
       "token": "개발",
-      "count": 93
+      "count": 96
     },
     {
       "token": "물류센터",
       "count": 83
     },
     {
+      "token": "개발사업",
+      "count": 73
+    },
+    {
       "token": "타임워크",
       "count": 73
     },
     {
-      "token": "개발사업",
-      "count": 72
-    },
-    {
       "token": "매각",
-      "count": 67
+      "count": 71
     },
     {
       "token": "수익자",
-      "count": 53
+      "count": 56
     },
     {
       "token": "PF",
-      "count": 52
+      "count": 54
     },
     {
       "token": "리파이낸싱",
-      "count": 51
+      "count": 53
     },
     {
       "token": "오피스",
@@ -44,10 +44,14 @@
     },
     {
       "token": "대주",
-      "count": 48
+      "count": 50
     },
     {
       "token": "전략",
+      "count": 48
+    },
+    {
+      "token": "연장",
       "count": 47
     },
     {
@@ -55,15 +59,23 @@
       "count": 46
     },
     {
-      "token": "연장",
-      "count": 44
+      "token": "선정",
+      "count": 45
     },
     {
-      "token": "선정",
-      "count": 44
+      "token": "구조",
+      "count": 43
     },
     {
       "token": "더케이호텔",
+      "count": 43
+    },
+    {
+      "token": "모집",
+      "count": 43
+    },
+    {
+      "token": "물류",
       "count": 43
     },
     {
@@ -71,43 +83,39 @@
       "count": 43
     },
     {
-      "token": "구조",
-      "count": 42
-    },
-    {
-      "token": "모집",
-      "count": 42
-    },
-    {
-      "token": "물류",
-      "count": 42
-    },
-    {
       "token": "재개발",
       "count": 41
     },
     {
       "token": "데이터센터",
-      "count": 40
+      "count": 41
+    },
+    {
+      "token": "이슈",
+      "count": 41
     },
     {
       "token": "MOU",
       "count": 39
     },
     {
-      "token": "이슈",
-      "count": 38
+      "token": "신규",
+      "count": 39
     },
     {
       "token": "조건",
-      "count": 37
+      "count": 38
+    },
+    {
+      "token": "자산",
+      "count": 38
     },
     {
       "token": "임대차",
-      "count": 37
+      "count": 38
     },
     {
-      "token": "신규",
+      "token": "방안",
       "count": 36
     },
     {
@@ -115,11 +123,15 @@
       "count": 36
     },
     {
-      "token": "자산",
+      "token": "담보대출",
       "count": 35
     },
     {
-      "token": "방안",
+      "token": "용산",
+      "count": 35
+    },
+    {
+      "token": "임차",
       "count": 35
     },
     {
@@ -131,15 +143,7 @@
       "count": 34
     },
     {
-      "token": "담보대출",
-      "count": 34
-    },
-    {
-      "token": "용산",
-      "count": 34
-    },
-    {
-      "token": "임차",
+      "token": "타워",
       "count": 34
     },
     {
@@ -147,8 +151,12 @@
       "count": 33
     },
     {
-      "token": "타워",
-      "count": 32
+      "token": "협업",
+      "count": 33
+    },
+    {
+      "token": "호텔",
+      "count": 33
     },
     {
       "token": "이후",
@@ -156,14 +164,6 @@
     },
     {
       "token": "대상",
-      "count": 32
-    },
-    {
-      "token": "협업",
-      "count": 32
-    },
-    {
-      "token": "호텔",
       "count": 32
     },
     {
@@ -179,8 +179,20 @@
       "count": 31
     },
     {
+      "token": "입찰",
+      "count": 31
+    },
+    {
+      "token": "화성",
+      "count": 31
+    },
+    {
       "token": "신도림",
       "count": 31
+    },
+    {
+      "token": "부산",
+      "count": 30
     },
     {
       "token": "조율",
@@ -191,11 +203,11 @@
       "count": 30
     },
     {
-      "token": "화성",
+      "token": "롯데백화점 분당점 리모델링",
       "count": 30
     },
     {
-      "token": "롯데백화점 분당점 리모델링",
+      "token": "실사",
       "count": 30
     },
     {
@@ -207,11 +219,7 @@
       "count": 30
     },
     {
-      "token": "부산",
-      "count": 29
-    },
-    {
-      "token": "입찰",
+      "token": "마케팅",
       "count": 29
     },
     {
@@ -223,15 +231,15 @@
       "count": 28
     },
     {
-      "token": "실사",
-      "count": 28
-    },
-    {
       "token": "양재",
       "count": 28
     },
     {
-      "token": "마케팅",
+      "token": "관리",
+      "count": 27
+    },
+    {
+      "token": "대주단",
       "count": 27
     },
     {
@@ -243,15 +251,11 @@
       "count": 27
     },
     {
-      "token": "관리",
-      "count": 26
-    },
-    {
-      "token": "대주단",
-      "count": 26
-    },
-    {
       "token": "분당",
+      "count": 26
+    },
+    {
+      "token": "임차인",
       "count": 26
     },
     {
@@ -263,7 +267,7 @@
       "count": 25
     },
     {
-      "token": "임차인",
+      "token": "심의",
       "count": 24
     },
     {
@@ -283,11 +287,27 @@
       "count": 23
     },
     {
+      "token": "민원",
+      "count": 23
+    },
+    {
+      "token": "점검",
+      "count": 23
+    },
+    {
       "token": "표준명",
       "count": 23
     },
     {
-      "token": "심의",
+      "token": "일본",
+      "count": 22
+    },
+    {
+      "token": "미국",
+      "count": 22
+    },
+    {
+      "token": "현지",
       "count": 22
     },
     {
@@ -295,15 +315,11 @@
       "count": 21
     },
     {
+      "token": "참여",
+      "count": 21
+    },
+    {
       "token": "양양",
-      "count": 21
-    },
-    {
-      "token": "미국",
-      "count": 21
-    },
-    {
-      "token": "민원",
       "count": 21
     },
     {
@@ -315,11 +331,15 @@
       "count": 21
     },
     {
+      "token": "소송",
+      "count": 21
+    },
+    {
       "token": "설계",
       "count": 20
     },
     {
-      "token": "일본",
+      "token": "운영",
       "count": 20
     },
     {
@@ -339,15 +359,11 @@
       "count": 20
     },
     {
-      "token": "점검",
+      "token": "매도인",
       "count": 20
     },
     {
       "token": "변경",
-      "count": 20
-    },
-    {
-      "token": "소송",
       "count": 20
     },
     {
@@ -359,7 +375,7 @@
       "count": 19
     },
     {
-      "token": "참여",
+      "token": "지연",
       "count": 19
     },
     {
@@ -367,27 +383,15 @@
       "count": 19
     },
     {
-      "token": "매도인",
-      "count": 19
-    },
-    {
       "token": "절차",
       "count": 19
     },
     {
-      "token": "현지",
+      "token": "설정",
       "count": 19
     },
     {
       "token": "인터뷰",
-      "count": 18
-    },
-    {
-      "token": "운영",
-      "count": 18
-    },
-    {
-      "token": "지연",
       "count": 18
     },
     {
@@ -411,6 +415,22 @@
       "count": 17
     },
     {
+      "token": "따른",
+      "count": 17
+    },
+    {
+      "token": "재간접",
+      "count": 17
+    },
+    {
+      "token": "구역",
+      "count": 17
+    },
+    {
+      "token": "후순위",
+      "count": 17
+    },
+    {
       "token": "클로징",
       "count": 17
     },
@@ -419,20 +439,20 @@
       "count": 17
     },
     {
+      "token": "홈플러스",
+      "count": 17
+    },
+    {
+      "token": "지원",
+      "count": 17
+    },
+    {
+      "token": "여부",
+      "count": 17
+    },
+    {
       "token": "5호",
       "count": 17
-    },
-    {
-      "token": "설정",
-      "count": 17
-    },
-    {
-      "token": "따른",
-      "count": 16
-    },
-    {
-      "token": "후순위",
-      "count": 16
     },
     {
       "token": "명동",
@@ -451,36 +471,16 @@
       "count": 16
     },
     {
-      "token": "홈플러스",
+      "token": "Exit",
       "count": 16
     },
     {
-      "token": "지원",
+      "token": "만기",
       "count": 16
     },
     {
       "token": "거래",
       "count": 16
-    },
-    {
-      "token": "IOTA",
-      "count": 16
-    },
-    {
-      "token": "더케이호텔 재개발",
-      "count": 15
-    },
-    {
-      "token": "고양삼송 데이터센터",
-      "count": 15
-    },
-    {
-      "token": "고양",
-      "count": 15
-    },
-    {
-      "token": "재간접",
-      "count": 15
     }
   ],
   "records": [
@@ -30672,6 +30672,827 @@
       ],
       "token_string": "#영등포 #인천 #효성동 #앳지데이터센터 #개발",
       "current_token_value": "#영등포 #인천 #효성동 #앳지데이터센터 #개발"
+    },
+    {
+      "id": "3508ced4-3c47-8102-9961-d77b3e27ed6c",
+      "work_date": "2026-04-27",
+      "task_type": "프로젝트",
+      "line": "Global E Line",
+      "writer": "신민재",
+      "log_name": "2026-04-27 | 신민재 | 미국 버지니아 Foundry 멀티패밀리 매각 심의",
+      "summary": "미국 버지니아 Foundry 멀티패밀리의 매각 심의를 완료했다.",
+      "classification_summary": "미국 버지니아 Foundry 멀티패밀리의 매각 심의를 완료했다.",
+      "current_summary_value": "미국 버지니아 Foundry 멀티패밀리 매각 심의를 완료했다.",
+      "projects": [],
+      "tokens": [
+        "미국",
+        "버지니아",
+        "Foundry",
+        "멀티패밀리",
+        "매각",
+        "심의",
+        "완료했다"
+      ],
+      "token_string": "#미국 #버지니아 #Foundry #멀티패밀리 #매각 #심의 #완료했다",
+      "current_token_value": "#Foundry #멀티패밀리 #매각심의 #심의 #미국"
+    },
+    {
+      "id": "3508ced4-3c47-8104-8908-f049b1c26057",
+      "work_date": "2026-04-27",
+      "task_type": "신규검토",
+      "line": "B Line",
+      "writer": "현철호",
+      "log_name": "2026-04-27 | 현철호 | Gaw Capital - DC개발 및 Operator공동 추진 협의",
+      "summary": "Gaw Capital과 데이터센터 개발 및 Operator 공동 추진을 위한 JV 협의를 진행했다.",
+      "classification_summary": "Gaw Capital과 데이터센터 개발 및 Operator 공동 추진을 위한 JV 협의를 진행했다.",
+      "current_summary_value": "Gaw Capital과 DC 개발 JV 및 Operator 공동 추진을 협의했다.",
+      "projects": [],
+      "tokens": [
+        "Capital",
+        "데이터센터",
+        "개발",
+        "Operator",
+        "공동",
+        "진행했다"
+      ],
+      "token_string": "#Capital #데이터센터 #개발 #Operator #공동 #진행했다",
+      "current_token_value": "#GawCapital #데이터센터 #JV #Operator #협의"
+    },
+    {
+      "id": "3508ced4-3c47-8108-83b2-f68bdebb847e",
+      "work_date": "2026-04-27",
+      "task_type": "신규검토",
+      "line": "B Line",
+      "writer": "현철호",
+      "log_name": "2026-04-27 | 현철호 | 신규 개발건 Follow-up",
+      "summary": "인천 가좌동 KG스틸부지, 아산 둔포 부지, 남양주, 부산 송정2, 인천 청라지구 등 신규 개발건 후속 검토를 진행했다.",
+      "classification_summary": "인천 가좌동 KG스틸부지, 아산 둔포 부지, 남양주, 부산 송정2, 인천 청라지구 등 신규 개발건 후속 검토를 진행했다.",
+      "current_summary_value": "신규 개발 후보지들의 후속 검토를 진행했다.",
+      "projects": [],
+      "tokens": [
+        "인천",
+        "가좌동",
+        "스틸부지",
+        "아산",
+        "둔포",
+        "부지",
+        "남양주",
+        "부산",
+        "송정",
+        "청라지구",
+        "신규",
+        "개발건"
+      ],
+      "token_string": "#인천 #가좌동 #스틸부지 #아산 #둔포 #부지 #남양주 #부산 #송정 #청라지구 #신규 #개발건",
+      "current_token_value": "#신규개발 #후속검토 #인천가좌동 #아산둔포 #남양주"
+    },
+    {
+      "id": "3508ced4-3c47-8112-866a-e64a01319032",
+      "work_date": "2026-04-27",
+      "task_type": "프로젝트",
+      "line": "E Line",
+      "writer": "권도엽",
+      "log_name": "2026-04-27 | 권도엽 | 양지 물류 매각자문사 선정 PT",
+      "summary": "양지 물류 매각자문사 선정 PT를 준비하고 4월 29일 발표 일정을 대응.",
+      "classification_summary": "양지 물류 매각자문사 선정 PT를 준비하고 4월 29일 발표 일정을 대응.",
+      "current_summary_value": "양지물류 매각자문사 선정 PT와 발표 일정을 대응.",
+      "projects": [],
+      "tokens": [
+        "양지",
+        "물류",
+        "매각자문사",
+        "선정",
+        "발표"
+      ],
+      "token_string": "#양지 #물류 #매각자문사 #선정 #발표",
+      "current_token_value": "#양지물류 #매각자문사 #선정PT #발표 #준비"
+    },
+    {
+      "id": "3508ced4-3c47-8115-bc53-ebcfc58f564a",
+      "work_date": "2026-04-27",
+      "task_type": "펀드/투자자",
+      "line": "E Line",
+      "writer": "김지현",
+      "log_name": "2026-04-27 | 김지현 | 수익자 대면 보고 - 여주본두리/창원두동",
+      "summary": "여주본두리와 창원두동 물류센터에 대해 GIC와 수익자 대면 보고를 진행했다.",
+      "classification_summary": "여주본두리와 창원두동 물류센터에 대해 GIC와 수익자 대면 보고를 진행했다.",
+      "current_summary_value": "여주본두리와 창원두동 물류센터 수익자 대면 보고를 진행했다.",
+      "projects": [],
+      "tokens": [
+        "여주본두리",
+        "창원두동",
+        "물류센터에",
+        "대해",
+        "수익자",
+        "대면",
+        "진행했다"
+      ],
+      "token_string": "#여주본두리 #창원두동 #물류센터에 #대해 #수익자 #대면 #진행했다",
+      "current_token_value": "#여주본두리 #창원두동 #수익자보고 #GIC #물류센터"
+    },
+    {
+      "id": "3508ced4-3c47-8116-be84-cda42bb96650",
+      "work_date": "2026-04-27",
+      "task_type": "펀딩관련 업무",
+      "line": "B Line",
+      "writer": "현철호",
+      "log_name": "2026-04-27 | 현철호 | 안산 DC 교공 Equity Fund 검토지원",
+      "summary": "안산 DC 교공 Equity Fund 투자를 위한 검토 지원을 진행했다.",
+      "classification_summary": "안산 DC 교공 Equity Fund 투자를 위한 검토 지원을 진행했다.",
+      "current_summary_value": "안산 DC 교공 Equity Fund 투자 검토 지원을 진행했다.",
+      "projects": [],
+      "tokens": [
+        "안산",
+        "교공",
+        "Equity",
+        "Fund",
+        "지원",
+        "진행했다",
+        "검토지원"
+      ],
+      "token_string": "#안산 #교공 #Equity #Fund #지원 #진행했다 #검토지원",
+      "current_token_value": "#안산DC #EquityFund #투자검토 #지원 #교공"
+    },
+    {
+      "id": "3508ced4-3c47-811e-9571-f87f9fb99246",
+      "work_date": "2026-04-27",
+      "task_type": "리스크/법무",
+      "line": "E Line",
+      "writer": "김지현",
+      "log_name": "2026-04-27 | 김지현 | 임차인 명도 소송 관련 협의",
+      "summary": "몰오브케이의 임차인 명도 소송 관련 협의를 진행했다.",
+      "classification_summary": "몰오브케이의 임차인 명도 소송 관련 협의를 진행했다.",
+      "current_summary_value": "몰오브케이 임차인 명도 소송 관련 협의를 진행했다.",
+      "projects": [],
+      "tokens": [
+        "몰오브케",
+        "임차인",
+        "명도",
+        "소송",
+        "진행했다"
+      ],
+      "token_string": "#몰오브케 #임차인 #명도 #소송 #진행했다",
+      "current_token_value": "#몰오브케이 #명도소송 #법무협의 #임차인 #리스크"
+    },
+    {
+      "id": "3508ced4-3c47-8128-8e13-e77dbe33d892",
+      "work_date": "2026-04-27",
+      "task_type": "펀딩관련 업무",
+      "line": "D Line",
+      "writer": "이현호",
+      "log_name": "2026-04-27 | 이현호 | 화성CDC 후순위 담보대출 연장 및 신규모집",
+      "summary": "화성CDC 후순위 담보대출 연장과 신규 모집을 위한 대주 협의를 진행.",
+      "classification_summary": "화성CDC 후순위 담보대출 연장과 신규 모집을 위한 대주 협의를 진행.",
+      "current_summary_value": "화성CDC 후순위 담보대출 연장과 신규 모집을 위한 대주 협의를 진행.",
+      "projects": [],
+      "tokens": [
+        "화성",
+        "후순위",
+        "담보대출",
+        "연장",
+        "신규",
+        "모집",
+        "대주",
+        "신규모집"
+      ],
+      "token_string": "#화성 #후순위 #담보대출 #연장 #신규 #모집 #대주 #신규모집",
+      "current_token_value": "#화성CDC #후순위담보대출 #연장 #신규모집 #대주협의"
+    },
+    {
+      "id": "3508ced4-3c47-8128-939c-eaa436d41836",
+      "work_date": "2026-04-27",
+      "task_type": "내부/기타",
+      "line": "Global E Line",
+      "writer": "신소현",
+      "log_name": "2026-04-27 | 신소현 | 인력 충원 및 채용",
+      "summary": "운용역 퇴사와 이동발령에 따른 충원과 국제조세 부서 신설을 위한 채용을 진행.",
+      "classification_summary": "운용역 퇴사와 이동발령에 따른 충원과 국제조세 부서 신설을 위한 채용을 진행.",
+      "current_summary_value": "운용역 충원과 국제조세 부서 신설을 위한 채용을 진행.",
+      "projects": [],
+      "tokens": [
+        "운용역",
+        "퇴사",
+        "이동발령에",
+        "따른",
+        "충원",
+        "국제조세",
+        "부서",
+        "신설",
+        "채용",
+        "인력"
+      ],
+      "token_string": "#운용역 #퇴사 #이동발령에 #따른 #충원 #국제조세 #부서 #신설 #채용 #인력",
+      "current_token_value": "#인력충원 #채용 #조직운영 #국제조세 #진행"
+    },
+    {
+      "id": "3508ced4-3c47-812e-bd53-cf77199ef7e7",
+      "work_date": "2026-04-27",
+      "task_type": "펀드/투자자",
+      "line": "Global E Line",
+      "writer": "신민재",
+      "log_name": "2026-04-27 | 신민재 | Hines 재간접펀드 연장 심의",
+      "summary": "Hines 재간접펀드의 연장 심의를 진행했다.",
+      "classification_summary": "Hines 재간접펀드의 연장 심의를 진행했다.",
+      "current_summary_value": "Hines 재간접펀드의 연장 심의를 진행했다.",
+      "projects": [],
+      "tokens": [
+        "Hines",
+        "재간접펀드",
+        "연장",
+        "심의",
+        "진행했다"
+      ],
+      "token_string": "#Hines #재간접펀드 #연장 #심의 #진행했다",
+      "current_token_value": "#Hines #재간접펀드 #연장심의 #심의 #투자"
+    },
+    {
+      "id": "3508ced4-3c47-8131-9142-d93700b02712",
+      "work_date": "2026-04-27",
+      "task_type": "프로젝트",
+      "line": "Global E Line",
+      "writer": "신소현",
+      "log_name": "2026-04-27 | 신소현 | Tokyo 23구 레지덴셜 분할 매각",
+      "summary": "일본 도쿄 23구 레지덴셜 포트폴리오 분할 매각과 펀드 만기 2년 연장, 잔여 자산 실사를 위한 5월 출장 준비를 진행.",
+      "classification_summary": "일본 도쿄 23구 레지덴셜 포트폴리오 분할 매각과 펀드 만기 2년 연장, 잔여 자산 실사를 위한 5월 출장 준비를 진행.",
+      "current_summary_value": "Tokyo 23구 레지덴셜 포트폴리오 분할 매각과 펀드 만기 연장 및 출장 준비를 진행.",
+      "projects": [],
+      "tokens": [
+        "일본",
+        "도쿄",
+        "레지덴셜",
+        "포트폴리오",
+        "분할",
+        "매각",
+        "만기",
+        "연장",
+        "잔여",
+        "자산",
+        "실사",
+        "출장"
+      ],
+      "token_string": "#일본 #도쿄 #레지덴셜 #포트폴리오 #분할 #매각 #만기 #연장 #잔여 #자산 #실사 #출장",
+      "current_token_value": "#Tokyo23구 #분할매각 #펀드만기연장 #수익자 #실사"
+    },
+    {
+      "id": "3508ced4-3c47-8134-9988-eceed320e9d7",
+      "work_date": "2026-04-27",
+      "task_type": "펀딩관련 업무",
+      "line": "D Line",
+      "writer": "이현호",
+      "log_name": "2026-04-27 | 이현호 | 회억리복합물류 Refinancing 대주단 협의",
+      "summary": "회억리복합물류 리파이낸싱을 위한 대주단 협의를 진행했다.",
+      "classification_summary": "회억리복합물류 리파이낸싱을 위한 대주단 협의를 진행했다.",
+      "current_summary_value": "회억리복합물류 리파이낸싱 대주단 협의를 진행했다.",
+      "projects": [],
+      "tokens": [
+        "회억리복합물류",
+        "리파이낸싱",
+        "대주단",
+        "진행했다",
+        "Refinancing"
+      ],
+      "token_string": "#회억리복합물류 #리파이낸싱 #대주단 #진행했다 #Refinancing",
+      "current_token_value": "#회억리복합물류 #Refinancing #대주단협의 #펀딩 #물류"
+    },
+    {
+      "id": "3508ced4-3c47-8135-b655-d9130542c21a",
+      "work_date": "2026-04-27",
+      "task_type": "펀드/투자자",
+      "line": "Global E Line",
+      "writer": "신소현",
+      "log_name": "2026-04-27 | 신소현 | 브룩필드 아시아 재간접",
+      "summary": "브룩필드 아시아 재간접 펀드 환매 지연 상황을 점검하며 현지 Roadshow와 수익자 대응을 이어갔다.",
+      "classification_summary": "브룩필드 아시아 재간접 펀드 환매 지연 상황을 점검하며 현지 Roadshow와 수익자 대응을 이어갔다.",
+      "current_summary_value": "브룩필드 아시아 재간접 펀드의 환매 지연과 수익자 대응을 점검.",
+      "projects": [],
+      "tokens": [
+        "브룩필드",
+        "아시아",
+        "재간접",
+        "환매",
+        "지연",
+        "상황",
+        "점검하며",
+        "현지",
+        "Roadshow",
+        "수익자",
+        "이어갔다"
+      ],
+      "token_string": "#브룩필드 #아시아 #재간접 #환매 #지연 #상황 #점검하며 #현지 #Roadshow #수익자 #이어갔다",
+      "current_token_value": "#브룩필드 #재간접펀드 #환매지연 #수익자 #모니터링"
+    },
+    {
+      "id": "3508ced4-3c47-8136-9d99-f59199ea73a2",
+      "work_date": "2026-04-27",
+      "task_type": "펀딩관련 업무",
+      "line": "D Line",
+      "writer": "이현호",
+      "log_name": "2026-04-27 | 이현호 | BIZ 1-1 Refinancing 대주 미팅",
+      "summary": "BIZ 1-1 리파이낸싱을 위해 대주 미팅과 조건 협의를 진행했다.",
+      "classification_summary": "BIZ 1-1 리파이낸싱을 위해 대주 미팅과 조건 협의를 진행했다.",
+      "current_summary_value": "BIZ 1-1 리파이낸싱 대주 미팅과 조건 협의를 진행했다.",
+      "projects": [],
+      "tokens": [
+        "리파이낸싱",
+        "대주",
+        "조건",
+        "진행했다",
+        "Refinancing"
+      ],
+      "token_string": "#리파이낸싱 #대주 #조건 #진행했다 #Refinancing",
+      "current_token_value": "#BIZ11 #Refinancing #대주미팅 #조건협의 #펀딩"
+    },
+    {
+      "id": "3508ced4-3c47-8143-9017-c187c69a465f",
+      "work_date": "2026-04-27",
+      "task_type": "프로젝트",
+      "line": "A Line",
+      "writer": "홍봉석",
+      "log_name": "2026-04-27 | 홍봉석 | 합정호텔 개발사업",
+      "summary": "합정호텔 개발사업의 스페셜시츄에이션 파트 협업과 잠재투자자 협의를 진행.",
+      "classification_summary": "합정호텔 개발사업의 스페셜시츄에이션 파트 협업과 잠재투자자 협의를 진행.",
+      "current_summary_value": "합정호텔 개발사업의 잠재투자자 협의와 협업을 진행.",
+      "projects": [],
+      "tokens": [
+        "합정호텔",
+        "개발사업",
+        "스페셜시츄에이션",
+        "파트",
+        "협업",
+        "잠재투자자"
+      ],
+      "token_string": "#합정호텔 #개발사업 #스페셜시츄에이션 #파트 #협업 #잠재투자자",
+      "current_token_value": "#합정호텔 #개발사업 #잠재투자자 #협업 #검토"
+    },
+    {
+      "id": "3508ced4-3c47-814d-a399-dbf1bb6029c2",
+      "work_date": "2026-04-27",
+      "task_type": "프로젝트",
+      "line": "A Line",
+      "writer": "홍봉석",
+      "log_name": "2026-04-27 | 홍봉석 | 북창동 호텔 개발",
+      "summary": "북창동 호텔 개발의 매도인 협의를 계속 진행했다.",
+      "classification_summary": "북창동 호텔 개발의 매도인 협의를 계속 진행했다.",
+      "current_summary_value": "북창동 호텔 개발의 매도인 협의를 계속 진행했다.",
+      "projects": [],
+      "tokens": [
+        "북창동",
+        "호텔",
+        "개발",
+        "매도인",
+        "계속",
+        "진행했다"
+      ],
+      "token_string": "#북창동 #호텔 #개발 #매도인 #계속 #진행했다",
+      "current_token_value": "#북창동 #호텔개발 #매도인협의 #진행중 #검토"
+    },
+    {
+      "id": "3508ced4-3c47-815d-aa42-c58e60d81ab4",
+      "work_date": "2026-04-27",
+      "task_type": "펀드/투자자",
+      "line": "E Line",
+      "writer": "김지현",
+      "log_name": "2026-04-27 | 김지현 | 수익자 대면 보고 - 원그로브",
+      "summary": "원그로브 물류센터에 대해 국민연금과 수익자 대면 보고를 진행했다.",
+      "classification_summary": "원그로브 물류센터에 대해 국민연금과 수익자 대면 보고를 진행했다.",
+      "current_summary_value": "원그로브 물류센터 수익자 대면 보고를 진행했다.",
+      "projects": [],
+      "tokens": [
+        "원그로브",
+        "물류센터에",
+        "대해",
+        "국민연금",
+        "수익자",
+        "대면",
+        "진행했다"
+      ],
+      "token_string": "#원그로브 #물류센터에 #대해 #국민연금 #수익자 #대면 #진행했다",
+      "current_token_value": "#원그로브 #수익자보고 #국민연금 #물류센터 #운용"
+    },
+    {
+      "id": "3508ced4-3c47-8162-b451-d63b19494d7c",
+      "work_date": "2026-04-27",
+      "task_type": "펀드/투자자",
+      "line": "Global E Line",
+      "writer": "신소현",
+      "log_name": "2026-04-27 | 신소현 | GAM 펀드 Exit 전략회의",
+      "summary": "4월 말 GAM 펀드 Exit 전략회의를 준비하며 설정 후 2년 이상 경과한 Equity 펀드의 종료 전략을 점검.",
+      "classification_summary": "4월 말 GAM 펀드 Exit 전략회의를 준비하며 설정 후 2년 이상 경과한 Equity 펀드의 종료 전략을 점검.",
+      "current_summary_value": "GAM 펀드 Exit 전략회의를 준비하며 종료 전략을 점검.",
+      "projects": [],
+      "tokens": [
+        "Exit",
+        "전략회",
+        "설정",
+        "이상",
+        "경과한",
+        "Equity",
+        "종료",
+        "전략",
+        "점검"
+      ],
+      "token_string": "#Exit #전략회 #설정 #이상 #경과한 #Equity #종료 #전략 #점검",
+      "current_token_value": "#GAM #Exit #전략회의 #펀드 #준비"
+    },
+    {
+      "id": "3508ced4-3c47-816d-8933-d93f05b16e4b",
+      "work_date": "2026-04-27",
+      "task_type": "펀딩관련 업무",
+      "line": "Global E Line",
+      "writer": "신민재",
+      "log_name": "2026-04-27 | 신민재 | 독일 Urfurt 아마존 선순위메자닌 상환 및 청산",
+      "summary": "독일 Urfurt 아마존 선순위메자닌의 상환 입금을 확인하고 국내 상환 및 청산을 준비했다.",
+      "classification_summary": "독일 Urfurt 아마존 선순위메자닌의 상환 입금을 확인하고 국내 상환 및 청산을 준비했다.",
+      "current_summary_value": "독일 Urfurt 아마존 선순위메자닌 상환과 청산을 준비했다.",
+      "projects": [],
+      "tokens": [
+        "독일",
+        "Urfurt",
+        "아마존",
+        "선순위메자닌",
+        "상환",
+        "입금",
+        "국내",
+        "청산",
+        "준비했다"
+      ],
+      "token_string": "#독일 #Urfurt #아마존 #선순위메자닌 #상환 #입금 #국내 #청산 #준비했다",
+      "current_token_value": "#Urfurt #아마존 #선순위메자닌 #상환 #청산"
+    },
+    {
+      "id": "3508ced4-3c47-816f-a88d-ea107f21d72c",
+      "work_date": "2026-04-27",
+      "task_type": "운용/관리",
+      "line": "E Line",
+      "writer": "권도엽",
+      "log_name": "2026-04-27 | 권도엽 | Exit TF 미팅 - 홈플러스자산 점검",
+      "summary": "Exit TF 미팅에서 홈플러스 자산의 점검과 매각 전제 이슈를 확인.",
+      "classification_summary": "Exit TF 미팅에서 홈플러스 자산의 점검과 매각 전제 이슈를 확인.",
+      "current_summary_value": "Exit TF 미팅에서 홈플러스 자산 점검과 매각 이슈를 확인.",
+      "projects": [],
+      "tokens": [
+        "Exit",
+        "홈플러스",
+        "자산",
+        "점검",
+        "매각",
+        "전제",
+        "이슈",
+        "홈플러스자산"
+      ],
+      "token_string": "#Exit #홈플러스 #자산 #점검 #매각 #전제 #이슈 #홈플러스자산",
+      "current_token_value": "#홈플러스자산 #ExitTF #점검 #매각 #미팅"
+    },
+    {
+      "id": "3508ced4-3c47-8172-84a1-c370333ff1b9",
+      "work_date": "2026-04-27",
+      "task_type": "리스크/법무",
+      "line": "Global E Line",
+      "writer": "신민재",
+      "log_name": "2026-04-27 | 신민재 | UNICO 재간접 펀드 현지 세금 이슈",
+      "summary": "UNICO 재간접 펀드의 현지 세금 이슈를 검토하고 행정공제회 Capital Call 가능성을 점검했다.",
+      "classification_summary": "UNICO 재간접 펀드의 현지 세금 이슈를 검토하고 행정공제회 Capital Call 가능성을 점검했다.",
+      "current_summary_value": "UNICO 재간접 펀드의 현지 세금 이슈와 Capital Call 가능성을 점검했다.",
+      "projects": [],
+      "tokens": [
+        "UNICO",
+        "재간접",
+        "현지",
+        "세금",
+        "이슈",
+        "행정공제회",
+        "Capital",
+        "Call",
+        "점검했다"
+      ],
+      "token_string": "#UNICO #재간접 #현지 #세금 #이슈 #행정공제회 #Capital #Call #점검했다",
+      "current_token_value": "#UNICO #재간접펀드 #세금이슈 #CapitalCall #검토"
+    },
+    {
+      "id": "3508ced4-3c47-8175-a431-c4d7ebc5d175",
+      "work_date": "2026-04-27",
+      "task_type": "펀드/투자자",
+      "line": "E Line",
+      "writer": "권도엽",
+      "log_name": "2026-04-27 | 권도엽 | GIC 투자 자산 월간 정기 미팅",
+      "summary": "GIC 투자 자산 월간 정기 미팅을 준비하며 원센티널과 논현두산 논의를 점검.",
+      "classification_summary": "GIC 투자 자산 월간 정기 미팅을 준비하며 원센티널과 논현두산 논의를 점검.",
+      "current_summary_value": "GIC 투자 자산 월간 정기 미팅을 준비하고 주요 자산 논의를 점검.",
+      "projects": [],
+      "tokens": [
+        "자산",
+        "월간",
+        "정기",
+        "원센티널",
+        "논현두산",
+        "점검"
+      ],
+      "token_string": "#자산 #월간 #정기 #원센티널 #논현두산 #점검",
+      "current_token_value": "#GIC #월간정기미팅 #수익자 #원센티널 #논현두산"
+    },
+    {
+      "id": "3508ced4-3c47-8183-adcd-da0370201a4c",
+      "work_date": "2026-04-27",
+      "task_type": "내부/기타",
+      "line": "B Line",
+      "writer": "현철호",
+      "log_name": "2026-04-27 | 현철호 | OPCO설립 및 방향 검토",
+      "summary": "OPCO 설립 방향과 운영 구조를 1차로 검토했다.",
+      "classification_summary": "OPCO 설립 방향과 운영 구조를 1차로 검토했다.",
+      "current_summary_value": "OPCO 설립 방향과 운영 구조를 1차 검토했다.",
+      "projects": [],
+      "tokens": [
+        "OPCO",
+        "설립",
+        "방향",
+        "운영",
+        "구조",
+        "차로",
+        "검토했다"
+      ],
+      "token_string": "#OPCO #설립 #방향 #운영 #구조 #차로 #검토했다",
+      "current_token_value": "#OPCO #설립 #운영구조 #검토 #내부"
+    },
+    {
+      "id": "3508ced4-3c47-819d-9504-dc716c094485",
+      "work_date": "2026-04-27",
+      "task_type": "프로젝트",
+      "line": "A Line",
+      "writer": "홍봉석",
+      "log_name": "2026-04-27 | 홍봉석 | 안녕 인사동",
+      "summary": "안녕 인사동의 입찰 참여 여부를 4월 29일까지 확정할 계획이다.",
+      "classification_summary": "안녕 인사동의 입찰 참여 여부를 4월 29일까지 확정할 계획이다.",
+      "current_summary_value": "안녕 인사동의 입찰 참여 여부를 확정할 계획이다.",
+      "projects": [],
+      "tokens": [
+        "안녕",
+        "인사동",
+        "입찰",
+        "참여",
+        "여부",
+        "일까지",
+        "확정할",
+        "계획이다"
+      ],
+      "token_string": "#안녕 #인사동 #입찰 #참여 #여부 #일까지 #확정할 #계획이다",
+      "current_token_value": "#안녕인사동 #입찰 #참여여부 #확정 #검토"
+    },
+    {
+      "id": "3508ced4-3c47-81a6-a19a-c31f2b152f96",
+      "work_date": "2026-04-27",
+      "task_type": "운용/관리",
+      "line": "E Line",
+      "writer": "권도엽",
+      "log_name": "2026-04-27 | 권도엽 | 용산 더 프라임 타워 리스크 관리",
+      "summary": "용산 더 프라임 타워의 신규 임대차와 개발 이슈 후속 대응을 위한 리스크 관리를 진행.",
+      "classification_summary": "용산 더 프라임 타워의 신규 임대차와 개발 이슈 후속 대응을 위한 리스크 관리를 진행.",
+      "current_summary_value": "용산 더 프라임 타워의 리스크 관리와 후속 대응을 진행.",
+      "projects": [],
+      "tokens": [
+        "용산",
+        "프라임",
+        "타워",
+        "신규",
+        "임대차",
+        "개발",
+        "이슈",
+        "리스크",
+        "관리"
+      ],
+      "token_string": "#용산 #프라임 #타워 #신규 #임대차 #개발 #이슈 #리스크 #관리",
+      "current_token_value": "#용산더프라임 #리스크관리 #임대차 #개발이슈 #후속"
+    },
+    {
+      "id": "3508ced4-3c47-81a9-8317-d75c140bef4e",
+      "work_date": "2026-04-27",
+      "task_type": "프로젝트",
+      "line": "E Line",
+      "writer": "권도엽",
+      "log_name": "2026-04-27 | 권도엽 | 용산나진(특계8구역) 경관심의 준비",
+      "summary": "용산나진 특계8구역의 경관심의 준비와 대체주차장, 민원, PF 마케팅 준비를 병행.",
+      "classification_summary": "용산나진 특계8구역의 경관심의 준비와 대체주차장, 민원, PF 마케팅 준비를 병행.",
+      "current_summary_value": "용산나진 특계8구역 경관심의와 PF 마케팅 준비를 병행.",
+      "projects": [],
+      "tokens": [
+        "용산나진",
+        "특계",
+        "구역",
+        "경관심",
+        "대체주차장",
+        "민원",
+        "PF",
+        "마케팅",
+        "병행"
+      ],
+      "token_string": "#용산나진 #특계 #구역 #경관심 #대체주차장 #민원 #PF #마케팅 #병행",
+      "current_token_value": "#용산나진 #특계8구역 #경관심의 #PF #마케팅"
+    },
+    {
+      "id": "3508ced4-3c47-81ae-8cfe-db1d2ed2bde3",
+      "work_date": "2026-04-27",
+      "task_type": "운용/관리",
+      "line": "B Line",
+      "writer": "현철호",
+      "log_name": "2026-04-27 | 현철호 | 안산DC 임차인 실사 및 Liquid Cooling 검토",
+      "summary": "안산DC 임차인 현지 실사와 AI용 GPU 구동을 위한 Liquid Cooling Solution을 검토했다.",
+      "classification_summary": "안산DC 임차인 현지 실사와 AI용 GPU 구동을 위한 Liquid Cooling Solution을 검토했다.",
+      "current_summary_value": "안산DC 임차인 실사와 Liquid Cooling Solution 검토를 진행했다.",
+      "projects": [],
+      "tokens": [
+        "안산",
+        "임차인",
+        "현지",
+        "실사",
+        "구동",
+        "Liquid",
+        "Cooling",
+        "Solution",
+        "검토했다"
+      ],
+      "token_string": "#안산 #임차인 #현지 #실사 #구동 #Liquid #Cooling #Solution #검토했다",
+      "current_token_value": "#안산DC #임차인실사 #LiquidCooling #AI #GPU"
+    },
+    {
+      "id": "3508ced4-3c47-81ae-9297-e1e2f8fa7ffb",
+      "work_date": "2026-04-27",
+      "task_type": "프로젝트",
+      "line": "Global E Line",
+      "writer": "신민재",
+      "log_name": "2026-04-27 | 신민재 | 일본 오다와라 아마존 매각 관련 내부 회의",
+      "summary": "일본 오다와라 아마존 매각 관련 내부 회의를 진행하고 NH증권과 간략히 논의했다.",
+      "classification_summary": "일본 오다와라 아마존 매각 관련 내부 회의를 진행하고 NH증권과 간략히 논의했다.",
+      "current_summary_value": "일본 오다와라 아마존 매각 관련 내부 회의를 진행했다.",
+      "projects": [],
+      "tokens": [
+        "일본",
+        "오다와라",
+        "아마존",
+        "매각",
+        "증권",
+        "간략히",
+        "논의했다"
+      ],
+      "token_string": "#일본 #오다와라 #아마존 #매각 #증권 #간략히 #논의했다",
+      "current_token_value": "#오다와라 #아마존 #매각 #내부회의 #NH증권"
+    },
+    {
+      "id": "3508ced4-3c47-81b1-9660-c91c25aba9f4",
+      "work_date": "2026-04-27",
+      "task_type": "리스크/법무",
+      "line": "E Line",
+      "writer": "김지현",
+      "log_name": "2026-04-27 | 김지현 | 설해사고 복구공사 손해액 산정 및 보험금 청구 협의",
+      "summary": "설해사고 복구공사 손해액 산정과 보험금 청구를 위한 협의를 진행했다.",
+      "classification_summary": "설해사고 복구공사 손해액 산정과 보험금 청구를 위한 협의를 진행했다.",
+      "current_summary_value": "설해사고 손해액 산정과 보험금 청구 협의를 진행했다.",
+      "projects": [],
+      "tokens": [
+        "설해사고",
+        "복구공사",
+        "손해액",
+        "산정",
+        "보험금",
+        "청구",
+        "진행했다"
+      ],
+      "token_string": "#설해사고 #복구공사 #손해액 #산정 #보험금 #청구 #진행했다",
+      "current_token_value": "#설해사고 #손해액산정 #보험금청구 #협의 #리스크"
+    },
+    {
+      "id": "3508ced4-3c47-81c0-b4ea-d2629055b0b4",
+      "work_date": "2026-04-27",
+      "task_type": "프로젝트",
+      "line": "A Line",
+      "writer": "홍봉석",
+      "log_name": "2026-04-27 | 홍봉석 | 목동 SMT 타워",
+      "summary": "목동 SMT 타워의 입찰 참여 여부를 검토했다.",
+      "classification_summary": "목동 SMT 타워의 입찰 참여 여부를 검토했다.",
+      "current_summary_value": "목동 SMT 타워의 입찰 참여를 검토했다.",
+      "projects": [],
+      "tokens": [
+        "목동",
+        "타워",
+        "입찰",
+        "참여",
+        "여부",
+        "검토했다"
+      ],
+      "token_string": "#목동 #타워 #입찰 #참여 #여부 #검토했다",
+      "current_token_value": "#목동SMT타워 #입찰 #참여검토 #프로젝트 #검토"
+    },
+    {
+      "id": "3508ced4-3c47-81c1-b957-fc71b230b48b",
+      "work_date": "2026-04-27",
+      "task_type": "운용/관리",
+      "line": "D Line",
+      "writer": "이현호",
+      "log_name": "2026-04-27 | 이현호 | 회억리복합물류 1층 Lease-up",
+      "summary": "회억리복합물류 1층 상온면적 Lease-up을 위해 임차 유치와 운영 협의를 진행.",
+      "classification_summary": "회억리복합물류 1층 상온면적 Lease-up을 위해 임차 유치와 운영 협의를 진행.",
+      "current_summary_value": "회억리복합물류 1층 Lease-up과 임차 유치 협의를 진행.",
+      "projects": [],
+      "tokens": [
+        "회억리복합물류",
+        "상온면적",
+        "Lease-up",
+        "임차",
+        "유치",
+        "운영"
+      ],
+      "token_string": "#회억리복합물류 #상온면적 #Lease-up #임차 #유치 #운영",
+      "current_token_value": "#회억리복합물류 #Lease-up #임차유치 #운영 #상온"
+    },
+    {
+      "id": "3508ced4-3c47-81ec-a449-e6e852be9f8f",
+      "work_date": "2026-04-27",
+      "task_type": "운용/관리",
+      "line": "D Line",
+      "writer": "이현호",
+      "log_name": "2026-04-27 | 이현호 | 당사 물류자산 Lease-up 방안 협의",
+      "summary": "당사 물류자산의 Lease-up 방안을 내부 유관부서와 협의했다.",
+      "classification_summary": "당사 물류자산의 Lease-up 방안을 내부 유관부서와 협의했다.",
+      "current_summary_value": "당사 물류자산의 Lease-up 방안을 내부 협의했다.",
+      "projects": [],
+      "tokens": [
+        "당사",
+        "물류자산",
+        "Lease-up",
+        "방안",
+        "유관부서",
+        "협의했다"
+      ],
+      "token_string": "#당사 #물류자산 #Lease-up #방안 #유관부서 #협의했다",
+      "current_token_value": "#물류자산 #Lease-up #내부협의 #운영 #방안"
+    },
+    {
+      "id": "3508ced4-3c47-81ed-9f52-ef2116c615f8",
+      "work_date": "2026-04-27",
+      "task_type": "내부/기타",
+      "line": "Global E Line",
+      "writer": "신소현",
+      "log_name": "2026-04-27 | 신소현 | 목표수립 및 평가지표 설정",
+      "summary": "전략기획실 요청에 따라 2026년 목표와 평가지표를 설정하고 YTD 설정·해지 현황을 검토.",
+      "classification_summary": "전략기획실 요청에 따라 2026년 목표와 평가지표를 설정하고 YTD 설정·해지 현황을 검토.",
+      "current_summary_value": "2026년 목표와 평가지표를 설정하고 YTD 현황을 검토.",
+      "projects": [],
+      "tokens": [
+        "전략기획실",
+        "요청에",
+        "따라",
+        "목표",
+        "평가지표",
+        "설정하고",
+        "설정",
+        "해지",
+        "목표수립"
+      ],
+      "token_string": "#전략기획실 #요청에 #따라 #목표 #평가지표 #설정하고 #설정 #해지 #목표수립",
+      "current_token_value": "#목표수립 #KPI #전략기획 #YTD #검토"
+    },
+    {
+      "id": "3508ced4-3c47-81ee-a17a-d6342db2f2e0",
+      "work_date": "2026-04-27",
+      "task_type": "프로젝트",
+      "line": "E Line",
+      "writer": "김지현",
+      "log_name": "2026-04-27 | 김지현 | 잠재매수인 매각조건 협의",
+      "summary": "오퍼스407 잠재매수인과 매각조건을 협의했다.",
+      "classification_summary": "오퍼스407 잠재매수인과 매각조건을 협의했다.",
+      "current_summary_value": "오퍼스407 잠재매수인과 매각조건을 협의했다.",
+      "projects": [],
+      "tokens": [
+        "오퍼스",
+        "잠재매수인",
+        "매각조건",
+        "협의했다"
+      ],
+      "token_string": "#오퍼스 #잠재매수인 #매각조건 #협의했다",
+      "current_token_value": "#오퍼스407 #잠재매수인 #매각조건 #협의 #프로젝트"
+    },
+    {
+      "id": "3508ced4-3c47-81f0-a4cf-f7cc8b6b9314",
+      "work_date": "2026-04-27",
+      "task_type": "프로젝트",
+      "line": "A Line",
+      "writer": "홍봉석",
+      "log_name": "2026-04-27 | 홍봉석 | 용산나진(특계8구역) 경관심의 준비",
+      "summary": "용산나진 특계8구역의 경관심의와 대체주차장, 민원, PF 마케팅 패키지 준비를 진행.",
+      "classification_summary": "용산나진 특계8구역의 경관심의와 대체주차장, 민원, PF 마케팅 패키지 준비를 진행.",
+      "current_summary_value": "용산나진 특계8구역의 경관심의와 PF 마케팅 준비를 진행.",
+      "projects": [],
+      "tokens": [
+        "용산나진",
+        "특계",
+        "구역",
+        "경관심",
+        "대체주차장",
+        "민원",
+        "PF",
+        "마케팅",
+        "패키지"
+      ],
+      "token_string": "#용산나진 #특계 #구역 #경관심 #대체주차장 #민원 #PF #마케팅 #패키지",
+      "current_token_value": "#용산나진 #특계8구역 #경관심의 #PF마케팅 #민원"
     }
   ]
 }
