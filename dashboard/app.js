@@ -14,6 +14,11 @@ let allResults = { lenders: [], beneficiaries: [], funds: [], assets: [], projec
 let globalSummary = { kpi: {}, lenders: [], beneficiaries: [], sectors: [], maturities: [] };
 let fundSearchColumns = ['fund_name', 'fund_id', 'short_name'];
 let lastTargetFunds = [];
+let allFunds = []; // 전체 펀드 데이터 캐시
+let allFundAssets = []; // 전체 자산 데이터 캐시
+let analysisFilters = {}; // 현재 적용된 분석 필터 상태
+let analysisView = 'year'; 
+let analysisMode = 'aum'; 
 
 const EXCLUDE_DEPTS = [
   '인프라전략', '기업&인프라', 
@@ -98,49 +103,48 @@ window.toggleOrgScope = () => {
 window.closeDrawer = () => {
     document.getElementById('sideDrawer').classList.remove('active');
     document.getElementById('sideDrawerOverlay').classList.remove('active');
+    document.getElementById('drawerNav').style.display = 'none';
 };
 
 window.openFundDetail = (groupKey, groupName) => {
     if (!groupKey || String(groupKey).trim() === '' || groupKey === 'undefined' || groupKey === 'null') return;
-
-    // 상세 조회는 전사 데이터를 대상으로 함 (부문/상세 필터 제거)
     const allFunds = window.lastTargetFunds || [];
-
     const filtered = allFunds.filter(f => {
-        // 현재 토글 상태(currentOrgScope)가 'ra'일 때만 부문 필터 적용
         if (currentOrgScope === 'ra' && !isRAFund(f)) return false;
-
         const rawName = f.fund_name || f.metadata?.fund_name || '';
         const pnu = window.fundToPnu?.[f.fund_id];
-        
         let cleanName = String(rawName).split('(')[0].trim().replace(/[- ]제?\d+호$/, '호');
         const parentId = isValidKey(f.metadata?.parent_fund_id) ? f.metadata.parent_fund_id : null;
         const validPnu = isValidKey(pnu) ? pnu : null;
         const key = parentId || validPnu || cleanName;
-        
         return String(key).trim() === String(groupKey).trim();
     });
 
+    currentDrawerData = { key: groupKey, name: groupName, items: filtered };
+    renderDrawerList();
+};
+
+function renderDrawerList() {
     const header = document.getElementById('drawerHeader');
     const content = document.getElementById('drawerContent');
+    const nav = document.getElementById('drawerNav');
+    const { key, name, items } = currentDrawerData;
     
+    nav.style.display = 'none';
     header.innerHTML = `
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
             <div>
                 <p style="color:var(--accent); font-size:12px; font-weight:800; margin-bottom:8px; letter-spacing:1px;">ASSET DEEP-DIVE</p>
-                <h2 style="font-size:24px; font-weight:800; line-height:1.3;">${groupName}</h2>
-                <p style="margin-top:12px; color:var(--muted); font-size:14px;">총 ${filtered.length}개의 관련 펀드가 검색되었습니다.</p>
-            </div>
-            <div style="background:#f1f5f9; padding:8px 12px; border-radius:8px; font-family:monospace; font-size:11px; color:#64748b; border:1px solid #e2e8f0;">
-                ID: ${groupKey}
+                <h2 style="font-size:24px; font-weight:800; line-height:1.3;">${name}</h2>
+                <p style="margin-top:12px; color:var(--muted); font-size:14px;">총 ${items.length}개의 관련 펀드가 검색되었습니다.</p>
             </div>
         </div>
     `;
 
-    content.innerHTML = filtered.map(f => {
+    content.innerHTML = items.map(f => {
         const aum = getFundAmountWon(f, 'benchmark_aum');
         return `
-            <div class="fund-detail-card">
+            <div class="fund-detail-card" onclick="showDrawerDetail('${f.fund_id}')" style="cursor:pointer;">
                 <div style="display:flex; justify-content:space-between; align-items:flex-start;">
                     <h3 style="font-size:16px; font-weight:800; flex:1; margin-right:16px;">${f.fund_name}</h3>
                     <span style="padding:4px 10px; border-radius:8px; font-size:11px; font-weight:800; background:#f1f5f9; color:#475569;">${getFundStatus(f)}</span>
@@ -148,15 +152,47 @@ window.openFundDetail = (groupKey, groupName) => {
                 <div class="meta-grid">
                     <div class="meta-item"><span class="meta-label">운용규모(AUM)</span><span class="meta-val">${formatNumber(aum)}</span></div>
                     <div class="meta-item"><span class="meta-label">담당부서</span><span class="meta-val">${f.metadata?.department || '-'}</span></div>
-                    <div class="meta-item"><span class="meta-label">설정일</span><span class="meta-val">${f.metadata?.setup_date || '-'}</span></div>
-                    <div class="meta-item"><span class="meta-label">만기/청산일</span><span class="meta-val">${f.metadata?.termination_date || f.metadata?.maturity_date || '-'}</span></div>
+                    <div class="meta-item"><span class="meta-label">설정일</span><span class="meta-val">${f.setup_date || '-'}</span></div>
+                    <div class="meta-item"><span class="meta-label">만기/청산일</span><span class="meta-val">${f.maturity_date || f.expiry_date || '-'}</span></div>
                 </div>
             </div>
         `;
     }).join('');
-
     document.getElementById('sideDrawer').classList.add('active');
     document.getElementById('sideDrawerOverlay').classList.add('active');
+};
+
+window.showDrawerDetail = async (fundId) => {
+    const content = document.getElementById('drawerContent');
+    const header = document.getElementById('drawerHeader');
+    const nav = document.getElementById('drawerNav');
+
+    nav.style.display = 'block';
+    header.innerHTML = '<div style="padding-left:180px; padding-top:15px;"><p style="color:var(--accent); font-weight:800; font-size:12px; letter-spacing:1px; margin:0;">LOADING DETAIL...</p></div>';
+    content.innerHTML = '<div style="padding:100px; text-align:center; color:var(--muted);">데이터를 불러오고 있습니다...</div>';
+
+    const fund = (window.lastTargetFunds || []).find(f => f.fund_id === fundId);
+    if (!fund) {
+        content.innerHTML = '<div style="padding:100px; text-align:center; color:var(--muted);">펀드 정보를 찾을 수 없습니다.</div>';
+        return;
+    }
+
+    try {
+        await showDetail({ type: 'fund', items: [fund], targetName: fund.fund_name }, content);
+    } catch (e) {
+        console.error(e);
+        content.innerHTML = '<div style="padding:100px; text-align:center; color:#ef4444;">상세 정보를 불러오는 중 오류가 발생했습니다.</div>';
+    }
+    
+    header.style.padding = '0';
+    header.style.border = 'none';
+};
+
+window.backToDrawerList = () => {
+    const header = document.getElementById('drawerHeader');
+    header.style.padding = '40px 40px 30px';
+    header.style.borderBottom = '1px solid #e2e8f0';
+    renderDrawerList();
 };
 
 const OPTIONAL_FUND_SEARCH_COLUMNS = [
@@ -388,10 +424,11 @@ function renderGroupCard(type, name, items) {
 
 
 
-async function showDetail(obj) {
-  const { type, items, targetName } = obj;
+async function showDetail(obj, container) {
+  const { type, items, targetName, category } = obj;
+  const targetPanel = container || detailPanel;
   const fundIds = items.map(i => i.fund_id);
-  detailPanel.innerHTML = '<div class="no-results">상세 로딩 중...</div>';
+  targetPanel.innerHTML = '<div class="no-results">상세 로딩 중...</div>';
   try {
     const [fundRes, assetRes, lenderRes, benRes] = await Promise.all([
       _supabase.from('funds').select('*').in('fund_id', fundIds),
@@ -400,25 +437,33 @@ async function showDetail(obj) {
       _supabase.from('beneficiary_exposures').select('*').in('fund_id', fundIds)
     ]);
     
+    // 메인 정보 선택 최적화 (데이터가 가장 풍부한 레코드를 우선순위로 선택)
     const f = fundRes.data?.[0] || items[0];
     const targetPnu = items[0].metadata?.pnu || items[0].pnu;
-    const a = assetRes.data?.find(x => (x.metadata?.pnu || x.pnu || x.asset_name) === targetName) || 
-              assetRes.data?.find(x => (x.metadata?.pnu || x.pnu) === targetPnu) ||
-              assetRes.data?.find(x => x.site_area > 0) || 
-              assetRes.data?.[0] || {};
+    
+    // 1. 클릭한 이름/PNU와 정확히 일치하는 자산들 중 데이터가 가장 많은 것 선택
+    // 2. 없으면 해당 펀드에 속한 자산들 중 데이터가 가장 많은 것 선택
+    const getScore = (x) => (x.gfa ? 2 : 0) + (x.site_area ? 2 : 0) + (x.lat ? 1 : 0) + (x.address ? 1 : 0);
+    const sortedAssets = (assetRes.data || []).sort((a, b) => getScore(b) - getScore(a));
+    
+    const a = sortedAssets.find(x => (x.metadata?.pnu || x.pnu || x.asset_name) === targetName) || 
+              sortedAssets.find(x => (x.metadata?.pnu || x.pnu) === targetPnu) ||
+              sortedAssets[0] || {};
     
     const detailTitle = getFundPrimaryName(f);
     const officialName = getFundSecondaryName(f);
+    const meta = f.metadata || {};
     const classifications = [
-      f.notion_base_asset_class,
-      f.notion_asset_nature_class,
-      f.notion_holding_type_class,
-      f.notion_business_stage_class,
-      f.notion_investment_strategy_class,
-      f.notion_vehicle_class
+      meta.notion_base_asset_class,
+      meta.notion_asset_nature_class,
+      meta.notion_holding_type_class,
+      meta.notion_business_stage_class,
+      meta.notion_investment_strategy_class,
+      meta.notion_vehicle_class
     ].filter(Boolean).join(' | ');
 
-    detailPanel.innerHTML = `
+    const mapId = 'vmap-' + Math.random().toString(36).substr(2, 9);
+    targetPanel.innerHTML = `
       <div class="detail-header">
         <span class="card-tag tag-fund">ASSET PROFILE</span>
         <h2 style="margin-bottom:4px;">${a.asset_name || detailTitle}</h2>
@@ -442,7 +487,7 @@ async function showDetail(obj) {
             <tr><th>승강기 <small>Elevators</small></th><td>${a.elevators || '-'}</td></tr>
             <tr><th>준공연도 <small>Completion</small></th><td>${a.completion_date || '-'}</td></tr>
           </table>
-          <div id="vmap"></div>
+          <div id="${mapId}" class="vmap-container" style="min-height:500px; border-radius:20px; border:1px solid var(--line);"></div>
         </div>
       </div>
 
@@ -481,12 +526,17 @@ async function showDetail(obj) {
       </div>
     `;
 
+    // 종합분석 탭일 때 필터 초기화 및 렌더링
+    if (category === 'analysis') {
+        initAnalysisFilters();
+        renderPortfolioChart();
+    }
+
     if (a.lng && a.lat) {
       setTimeout(() => {
         try {
-          const mapContainer = document.getElementById('vmap');
-          if (mapContainer && typeof vw !== 'undefined' && vw.ol3) {
-            const vmap = new vw.ol3.Map("vmap", {
+          if (typeof vw !== 'undefined' && vw.ol3) {
+            const vmap = new vw.ol3.Map(mapId, {
               basemapType: vw.ol3.BasemapType.GRAPHIC,
               controlDensity: vw.ol3.DensityType.EMPTY,
               interactionDensity: vw.ol3.DensityType.BASIC,
@@ -511,10 +561,236 @@ async function showDetail(obj) {
         } catch (e) { console.error("VWorld Map Error:", e); }
       }, 500);
     } else {
-      const vmapEl = document.getElementById('vmap');
+      const vmapEl = document.getElementById(mapId);
       if (vmapEl) vmapEl.innerHTML = '<div style="padding:40px; color:var(--muted); text-align:center;">좌표 정보가 없어 지도를 표시할 수 없습니다.</div>';
     }
-  } catch (e) { console.error(e); detailPanel.innerHTML = '오류 발생'; }
+  } catch (e) { console.error(e); targetPanel.innerHTML = '오류 발생'; }
+}
+
+// 종합분석 필터 초기화
+function initAnalysisFilters() {
+    const filterCols = [
+        { key: 'notion_vehicle_class', label: 'Vehicle 구분' },
+        { key: 'sector', label: '투자섹터' },
+        { key: 'notion_investment_strategy_class', label: '투자전략' },
+        { key: 'notion_business_stage_class', label: '사업단계' },
+        { key: 'notion_asset_nature_class', label: '자산성격' }
+    ];
+
+    const grid = document.getElementById('filterGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    filterCols.forEach(col => {
+        // 유니크 값 추출
+        const values = [...new Set(window.allFunds.map(f => f[col.key] || f.metadata?.[col.key] || '미분류'))].filter(v => v !== '미분류').sort();
+        
+        const filterItem = document.createElement('div');
+        filterItem.className = 'filter-item';
+        
+        const label = document.createElement('label');
+        label.innerText = col.label;
+        
+        const select = document.createElement('select');
+        select.id = `filter-${col.key}`;
+        select.innerHTML = '<option value="">전체</option>' + values.map(v => `<option value="${v}">${v}</option>`).join('');
+        select.value = window.analysisFilters[col.key] || '';
+        
+        select.onchange = (e) => {
+            window.analysisFilters[col.key] = e.target.value;
+            renderPortfolioChart();
+        };
+
+        filterItem.appendChild(label);
+        filterItem.appendChild(select);
+        grid.appendChild(filterItem);
+    });
+}
+
+function resetAnalysisFilters() {
+    window.analysisFilters = {};
+    initAnalysisFilters();
+    renderPortfolioChart();
+}
+
+function getFilteredData() {
+    let filteredFunds = [...window.allFunds];
+    
+    // 필터 적용
+    Object.keys(window.analysisFilters).forEach(key => {
+        const val = window.analysisFilters[key];
+        if (val) {
+            filteredFunds = filteredFunds.filter(f => (f[key] || f.metadata?.[key]) === val);
+        }
+    });
+
+    const fundIds = new Set(filteredFunds.map(f => f.fund_id));
+    const filteredAssets = window.allFundAssets.filter(a => fundIds.has(a.fund_id));
+
+    return { funds: filteredFunds, assets: filteredAssets };
+}
+
+window.renderPortfolioChart = function() {
+    const ctx = document.getElementById('portfolioChart');
+    if (!ctx) return;
+
+    const { funds, assets } = getFilteredData();
+    
+    // 기존 차트 파괴 (중복 렌더링 방지)
+    if (window.myChart) {
+        window.myChart.destroy();
+    }
+
+    const mode = window.analysisMode; // 'aum', 'loan', 'equity', 'count'
+    const view = window.analysisView; // 'year', 'sector', 'strategy'
+
+    let labels = [];
+    let datasets = [];
+
+    if (view === 'year') {
+        // 연도별 로직 (기존 유지하되 필터링된 데이터 사용)
+        const years = Array.from({length: 17}, (_, i) => 2010 + i);
+        labels = years.map(y => y.toString());
+        
+        const dataDomestic = years.map(y => {
+            const currentFunds = funds.filter(f => {
+                const setupYear = new Date(f.setup_date).getFullYear();
+                const maturityYear = f.maturity_date ? new Date(f.maturity_date).getFullYear() : 2099;
+                return setupYear <= y && maturityYear >= y && f.location === '국내';
+            });
+            return calculateTotal(currentFunds, assets, mode);
+        });
+
+        const dataOverseas = years.map(y => {
+            const currentFunds = funds.filter(f => {
+                const setupYear = new Date(f.setup_date).getFullYear();
+                const maturityYear = f.maturity_date ? new Date(f.maturity_date).getFullYear() : 2099;
+                return setupYear <= y && maturityYear >= y && f.location === '해외';
+            });
+            return calculateTotal(currentFunds, assets, mode);
+        });
+
+        datasets = [
+            { label: '국내', data: dataDomestic, backgroundColor: '#6366f1', borderRadius: 6 },
+            { label: '해외', data: dataOverseas, backgroundColor: '#38bdf8', borderRadius: 6 }
+        ];
+    } else if (view === 'sector') {
+        // 섹터별 비중 (현재 시점 기준)
+        const sectors = [...new Set(funds.map(f => f.sector || '기타'))].filter(s => s);
+        labels = sectors;
+        
+        const sectorData = sectors.map(s => {
+            const sectorFunds = funds.filter(f => (f.sector || '기타') === s);
+            return calculateTotal(sectorFunds, assets, mode);
+        });
+
+        datasets = [{
+            label: '섹터별 비중',
+            data: sectorData,
+            backgroundColor: ['#6366f1', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#3b82f6', '#94a3b8'],
+            borderWidth: 0
+        }];
+    } else if (view === 'strategy') {
+        // 전략별 현황
+        const strategies = [...new Set(funds.map(f => f.notion_investment_strategy_class || '기타'))].filter(s => s);
+        labels = strategies;
+
+        const strategyData = strategies.map(s => {
+            const strategyFunds = funds.filter(f => (f.notion_investment_strategy_class || '기타') === s);
+            return calculateTotal(strategyFunds, assets, mode);
+        });
+
+        datasets = [{
+            label: '전략별 현황',
+            data: strategyData,
+            backgroundColor: ['#4f46e5', '#7c3aed', '#db2777', '#d97706', '#059669', '#2563eb', '#64748b'],
+            borderWidth: 0
+        }];
+    }
+
+    // 차트 옵션 및 생성
+    window.myChart = new Chart(ctx, {
+        type: (view === 'year' ? 'bar' : 'doughnut'),
+        data: { labels, datasets },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: true, position: 'bottom' },
+                tooltip: {
+                    callbacks: {
+                        label: (context) => {
+                            let value = context.raw;
+                            if (mode === 'count') return `${value}건`;
+                            return `${(value / 1000000000000).toFixed(1)}조 원`;
+                        }
+                    }
+                }
+            },
+            scales: view === 'year' ? {
+                x: { stacked: true, grid: { display: false } },
+                y: { stacked: true, grid: { color: '#f1f5f9' }, ticks: { callback: v => `${(v/1000000000000).toFixed(0)}조` } }
+            } : {}
+        }
+    });
+
+    // 필터링된 리스트 렌더링
+    renderAnalysisResults(funds);
+};
+
+function calculateTotal(funds, assets, mode) {
+    if (mode === 'count') return funds.length;
+    
+    let total = 0;
+    funds.forEach(f => {
+        const fundAssets = assets.filter(a => a.fund_id === f.fund_id);
+        if (mode === 'aum') {
+            total += fundAssets.reduce((sum, a) => sum + (parseFloat(a.aum) || 0), 0);
+        } else if (mode === 'loan') {
+            total += fundAssets.reduce((sum, a) => sum + (parseFloat(a.loan_amount) || 0), 0);
+        } else if (mode === 'equity') {
+            // 자산별 equity 정보가 있다면 합산, 없다면 aum - loan으로 추정 (예시)
+            total += fundAssets.reduce((sum, a) => sum + ((parseFloat(a.aum) || 0) - (parseFloat(a.loan_amount) || 0)), 0);
+        }
+    });
+    return total;
+}
+
+function renderAnalysisResults(filteredFunds) {
+    const resultsContainer = document.getElementById('analysisResults');
+    if (!resultsContainer) return;
+    
+    resultsContainer.innerHTML = '';
+    
+    if (filteredFunds.length === 0) {
+        resultsContainer.innerHTML = '<div style="padding:40px; text-align:center; color:var(--muted);">필터 조건에 맞는 데이터가 없습니다.</div>';
+        return;
+    }
+
+    // 그룹화하여 표시
+    const groups = {};
+    filteredFunds.forEach(f => {
+        const key = f.sector || '미분류';
+        if (!groups[key]) groups[key] = [];
+        groups[key].push(f);
+    });
+
+    Object.keys(groups).sort().forEach(groupName => {
+        const groupEl = document.createElement('div');
+        groupEl.className = 'result-group';
+        groupEl.innerHTML = `
+            <div class="group-title">${groupName} (${groups[groupName].length})</div>
+            <div class="result-list">
+                ${groups[groupName].map(f => `
+                    <div class="result-item" onclick="showDrawerDetail('${f.fund_id}')">
+                        <div class="item-name">${f.fund_name}</div>
+                        <div class="item-meta">${f.fund_id} | ${f.location} | ${f.notion_investment_strategy_class || '-'}</div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        resultsContainer.appendChild(groupEl);
+    });
 }
 
 let portfolioBasket = [];
@@ -526,6 +802,20 @@ function toggleBasket(event, type, name, items) {
   else portfolioBasket.push({ key: basketKey, name: name, type: type, items: items });
   renderBasket();
   if (currentView === 'ranking') renderAnalytics();
+}
+
+async function ensureAllDataLoaded() {
+    if (window.allFunds?.length === 0 || !window.allFunds) {
+        try {
+            const [fundRes, assetRes] = await Promise.all([
+                _supabase.from('funds').select('*'),
+                _supabase.from('fund_assets').select('*')
+            ]);
+            window.allFunds = fundRes.data || [];
+            window.allFundAssets = assetRes.data || [];
+        } catch (e) { console.error(e); }
+    }
+    return { funds: window.allFunds, assets: window.allFundAssets };
 }
 
 function renderBasket() {
@@ -544,6 +834,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const chartBtn = document.getElementById('chartViewBtn');
   const searchControls = document.getElementById('searchViewControls');
   const analysisControls = document.getElementById('analysisViewControls');
+  const results = document.getElementById('results');
+  const analysisResults = document.getElementById('analysisResults');
 
   if (listBtn) listBtn.addEventListener('click', () => { 
     currentView = 'list'; 
@@ -551,6 +843,8 @@ document.addEventListener('DOMContentLoaded', () => {
     chartBtn.classList.remove('active'); 
     searchControls.style.display = 'block';
     analysisControls.style.display = 'none';
+    results.style.display = 'flex';
+    analysisResults.style.display = 'none';
     renderResults(); 
   });
 
@@ -560,6 +854,8 @@ document.addEventListener('DOMContentLoaded', () => {
     listBtn.classList.remove('active'); 
     searchControls.style.display = 'none';
     analysisControls.style.display = 'block';
+    results.style.display = 'none';
+    analysisResults.style.display = 'flex';
     renderAnalytics(); 
   });
   renderBasket();
@@ -732,75 +1028,67 @@ window.switchMetric = (metric) => {
 };
 
 window.switchScope = (scope) => {
-    window.currentScope = scope;
+    currentOrgScope = scope;
     renderAnalytics();
 };
 
 const renderNetChangeDetails = (label) => {
-    const drillPanel = document.getElementById('drillDownResult');
+    const analysisResults = document.getElementById('analysisResults');
+    const analysisHeader = document.getElementById('analysisListHeader');
     const targetFunds = window.lastTargetFunds || [];
-    if (!drillPanel || targetFunds.length === 0) return;
+    if (!analysisResults || targetFunds.length === 0) return;
 
-    drillPanel.style.display = 'block';
-    drillPanel.innerHTML = `<div style="text-align:center; padding:40px; color:var(--muted);">데이터 분석 중...</div>`;
+    analysisResults.innerHTML = `<div style="text-align:center; padding:40px; color:var(--muted);">데이터 추출 중...</div>`;
 
     let startDate, endDate, title;
     if (label === '2026 (Actual)') {
-        startDate = new Date('2026-01-01'); endDate = new Date('2026-03-31'); title = '2026년 1분기 주요 변동 내역';
+        startDate = new Date('2026-01-01'); endDate = new Date('2026-03-31'); title = '2026년 1분기';
     } else if (label === '2026 (Proj.)') {
-        startDate = new Date('2026-04-01'); endDate = new Date('2026-12-31'); title = '2026년 잔여 청산 예정 내역';
+        startDate = new Date('2026-04-01'); endDate = new Date('2026-12-31'); title = '2026년 잔여';
     } else {
         const year = parseInt(label);
-        startDate = new Date(`${year}-01-01`); endDate = new Date(`${year}-12-31`); title = `${year}년 주요 변동 내역`;
+        startDate = new Date(`${year}-01-01`); endDate = new Date(`${year}-12-31`); title = `${year}년`;
     }
 
-    // 신규(+) 추출
     const newlySetup = targetFunds.filter(f => {
         const setup = f.metadata?.setup_date ? new Date(f.metadata.setup_date) : null;
         return setup && setup >= startDate && setup <= endDate && isRAFund(f);
     });
 
-    // 종료(-) 추출
     const terminated = targetFunds.filter(f => {
-        const end = f.metadata?.termination_date ? new Date(f.metadata.termination_date) : (f.metadata?.maturity_date ? new Date(f.metadata.maturity_date) : null);
-        return end && end >= startDate && end <= endDate && isRAFund(f);
+        const end = f.metadata?.termination_date || f.metadata?.maturity_date;
+        const d = end ? new Date(end) : null;
+        return d && d >= startDate && d <= endDate && isRAFund(f);
     });
 
-    try {
-        const finalItems = [...groupItems(newlySetup, '+'), ...groupItems(terminated, '-')].sort((a, b) => b.aum - a.aum);
+    const finalItems = [...groupItems(newlySetup, '+'), ...groupItems(terminated, '-')].sort((a, b) => b.aum - a.aum);
 
-        if (finalItems.length === 0) {
-            drillPanel.innerHTML = `<div style="padding:40px; text-align:center; color:var(--muted); background:#f8fafc; border-radius:20px;">해당 기간 내 신규 설정이나 청산 내역이 없습니다.</div>`;
-            return;
-        }
+    analysisHeader.innerHTML = `
+        <div style="padding:16px; background:white; border-radius:12px; border:1px solid var(--line); box-shadow:var(--shadow);">
+            <div style="font-size:12px; color:var(--accent); font-weight:800; margin-bottom:4px;">${title} 변동 내역</div>
+            <div style="font-size:16px; font-weight:800;">총 ${finalItems.length}개 항목</div>
+        </div>
+    `;
 
-        drillPanel.innerHTML = `
-            <div style="background:#f8fafc; border-radius:20px; padding:32px; border:1px solid var(--line);">
-               <h4 style="font-size:18px; font-weight:800; margin-bottom:24px; display:flex; justify-content:space-between; align-items:center;">
-                 <span>✨ ${title}</span>
-                 <span style="font-size:13px; font-weight:normal; color:var(--muted);">${finalItems.length}개 항목</span>
-               </h4>
-               <table class="data-table" style="background:transparent;">
-                  <thead>
-                     <tr><th style="width:80px;">구분</th><th>자산/펀드명</th><th style="text-align:right;">${currentChartMetric === 'count' ? '관련 펀드 수' : `규모 (${currentChartMetric === 'benchmark_aum' ? 'AUM' : (currentChartMetric === 'committed_debt' ? 'Loan' : (currentChartMetric === 'committed_equity' ? 'Equity' : ''))})`}</th></tr>
-                  </thead>
-                  <tbody>
-                     ${finalItems.map(item => `
-                        <tr onclick="openFundDetail('${item.key}', '${item.name}')" style="cursor:pointer;">
-                           <td><span style="padding:2px 8px; border-radius:4px; font-size:12px; font-weight:800; background:${item.type === '+' ? '#ecfdf5' : '#fef2f2'}; color:${item.type === '+' ? '#10b981' : '#ef4444'};">${item.type === '+' ? '신규' : '청산'}</span></td>
-                           <td style="font-weight:600;">${item.name}</td>
-                           <td style="text-align:right; font-weight:700;">${currentChartMetric === 'count' ? item.aum + '개' : formatNumber(item.aum)}</td>
-                        </tr>
-                     `).join('')}
-                  </tbody>
-               </table>
-            </div>
-        `;
-        drillPanel.scrollIntoView({ behavior: 'smooth', block: 'end' });
-    } catch (e) {
-        console.error("Drilldown Error:", e);
-        drillPanel.innerHTML = `<div style="padding:40px; text-align:center; color:#ef4444;">데이터 분석 중 오류가 발생했습니다. (콘솔 로그 확인)</div>`;
+    if (finalItems.length === 0) {
+        analysisResults.innerHTML = `<div class="no-results">해당 기간 내<br>변동 내역이 없습니다.</div>`;
+        return;
     }
+
+    analysisResults.innerHTML = finalItems.map(item => `
+        <div class="group-card" onclick="openFundDetail('${item.key}', '${item.name}')">
+            <div class="group-header">
+                <div style="flex:1">
+                    <span class="card-tag" style="background:${item.type === '+' ? '#ecfdf5' : '#fef2f2'}; color:${item.type === '+' ? '#10b981' : '#ef4444'};">
+                        ${item.type === '+' ? '신규' : '청산'}
+                    </span>
+                    <div class="group-title">${item.name}</div>
+                    <div class="group-meta">${currentChartMetric === 'count' ? item.aum + '건 참여' : formatNumber(item.aum)}</div>
+                </div>
+                <div class="toggle-icon">▶</div>
+            </div>
+        </div>
+    `).join('');
 };
 
 const renderNetGrowth = (chartId) => {
@@ -1000,7 +1288,25 @@ document.addEventListener('DOMContentLoaded', () => {
             tabBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             currentTab = btn.dataset.tab;
-            renderResults();
+
+            const analysisControls = document.getElementById('analysisControls');
+            const searchResults = document.getElementById('results');
+            const analysisResults = document.getElementById('analysisResults');
+
+            if (currentTab === 'analysis') {
+                if (analysisControls) analysisControls.style.display = 'block';
+                if (searchResults) searchResults.style.display = 'none';
+                if (analysisResults) analysisResults.style.display = 'flex';
+                ensureAllDataLoaded().then(() => {
+                    initAnalysisFilters();
+                    renderPortfolioChart();
+                });
+            } else {
+                if (analysisControls) analysisControls.style.display = 'none';
+                if (searchResults) searchResults.style.display = 'flex';
+                if (analysisResults) analysisResults.style.display = 'none';
+                renderResults();
+            }
         });
     });
 
@@ -1014,3 +1320,218 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderBasket();
 });
+
+// --- Comprehensive Analysis Functions ---
+
+function initAnalysisFilters() {
+    const filterCols = [
+        { key: 'notion_vehicle_class', label: 'Vehicle 구분' },
+        { key: 'sector', label: '투자섹터' },
+        { key: 'notion_investment_strategy_class', label: '투자전략' },
+        { key: 'notion_business_stage_class', label: '사업단계' },
+        { key: 'notion_asset_nature_class', label: '자산성격' }
+    ];
+
+    const grid = document.getElementById('filterGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    filterCols.forEach(col => {
+        // 유니크 값 추출
+        const values = [...new Set(allFunds.map(f => f[col.key] || f.metadata?.[col.key] || '미분류'))].filter(v => v !== '미분류').sort();
+        
+        const filterItem = document.createElement('div');
+        filterItem.className = 'filter-item';
+        
+        const label = document.createElement('label');
+        label.innerText = col.label;
+        
+        const select = document.createElement('select');
+        select.id = `filter-${col.key}`;
+        select.innerHTML = '<option value="">전체</option>' + values.map(v => `<option value="${v}">${v}</option>`).join('');
+        select.value = analysisFilters[col.key] || '';
+        
+        select.onchange = (e) => {
+            analysisFilters[col.key] = e.target.value;
+            renderPortfolioChart();
+        };
+
+        filterItem.appendChild(label);
+        filterItem.appendChild(select);
+        grid.appendChild(filterItem);
+    });
+}
+
+function resetAnalysisFilters() {
+    analysisFilters = {};
+    initAnalysisFilters();
+    renderPortfolioChart();
+}
+
+function getFilteredData() {
+    let filteredFunds = [...allFunds];
+    
+    // 필터 적용
+    Object.keys(analysisFilters).forEach(key => {
+        const val = analysisFilters[key];
+        if (val) {
+            filteredFunds = filteredFunds.filter(f => (f[key] || f.metadata?.[key]) === val);
+        }
+    });
+
+    const fundIds = new Set(filteredFunds.map(f => f.fund_id));
+    const filteredAssets = allFundAssets.filter(a => fundIds.has(a.fund_id));
+
+    return { funds: filteredFunds, assets: filteredAssets };
+}
+
+window.setAnalysisView = (view) => {
+    analysisView = view;
+    const btns = document.querySelectorAll('#analysisControls .toggle-buttons:first-child button');
+    btns.forEach(b => {
+        if (b.getAttribute('onclick').includes(view)) b.classList.add('active');
+        else b.classList.remove('active');
+    });
+    renderPortfolioChart();
+};
+
+window.setAnalysisMode = (mode) => {
+    analysisMode = mode;
+    // UI 업데이트 (모드 버튼이 있다면)
+    renderPortfolioChart();
+};
+
+window.renderPortfolioChart = function() {
+    const chartEl = document.getElementById('portfolioChart');
+    if (!chartEl) return;
+
+    const { funds, assets } = getFilteredData();
+    
+    const mode = analysisMode; // 'aum', 'loan', 'equity', 'count'
+    const view = analysisView; // 'year', 'sector', 'strategy'
+
+    let series = [];
+    let categories = [];
+    let chartType = 'bar';
+    let isStacked = true;
+
+    if (view === 'year') {
+        const years = Array.from({length: 17}, (_, i) => 2010 + i);
+        categories = years.map(y => y.toString());
+        
+        const dataDomestic = years.map(y => calculateTotal(funds.filter(f => {
+            const sy = new Date(f.setup_date).getFullYear();
+            const my = f.maturity_date ? new Date(f.maturity_date).getFullYear() : 2099;
+            return sy <= y && my >= y && f.location === '국내';
+        }), assets, mode));
+
+        const dataOverseas = years.map(y => calculateTotal(funds.filter(f => {
+            const sy = new Date(f.setup_date).getFullYear();
+            const my = f.maturity_date ? new Date(f.maturity_date).getFullYear() : 2099;
+            return sy <= y && my >= y && f.location === '해외';
+        }), assets, mode));
+
+        series = [
+            { name: '국내', data: dataDomestic },
+            { name: '해외', data: dataOverseas }
+        ];
+    } else {
+        const filterKey = (view === 'sector') ? 'sector' : 'notion_investment_strategy_class';
+        const uniqueValues = [...new Set(funds.map(f => f[filterKey] || f.metadata?.[filterKey] || '기타'))].filter(v => v);
+        
+        const chartData = uniqueValues.map(v => {
+            const groupFunds = funds.filter(f => (f[filterKey] || f.metadata?.[filterKey] || '기타') === v);
+            return calculateTotal(groupFunds, assets, mode);
+        });
+
+        chartType = 'donut';
+        isStacked = false;
+        series = chartData;
+        categories = uniqueValues;
+    }
+
+    const options = {
+        series: series,
+        chart: {
+            type: chartType,
+            height: 450,
+            stacked: isStacked,
+            fontFamily: 'Pretendard Variable, sans-serif',
+            toolbar: { show: false }
+        },
+        colors: ['#4f46e5', '#38bdf8', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#64748b'],
+        plotOptions: {
+            bar: { borderRadius: 6, columnWidth: '60%' },
+            pie: { donut: { size: '70%', labels: { show: true, total: { show: true, label: 'TOTAL', formatter: (w) => {
+                const total = w.globals.seriesTotals.reduce((a, b) => a + b, 0);
+                return mode === 'count' ? `${total}건` : `${(total / 1e12).toFixed(1)}조`;
+            }}}}}
+        },
+        xaxis: chartType === 'bar' ? { categories: categories } : undefined,
+        labels: chartType === 'donut' ? categories : undefined,
+        yaxis: chartType === 'bar' ? { labels: { formatter: (v) => mode === 'count' ? v : (v / 1e12).toFixed(0) + '조' } } : undefined,
+        tooltip: {
+            y: { formatter: (v) => mode === 'count' ? `${v}건` : `${(v / 1000000000000).toFixed(1)}조 원` }
+        },
+        legend: { position: 'bottom' },
+        dataLabels: { enabled: false }
+    };
+
+    chartEl.innerHTML = '';
+    new ApexCharts(chartEl, options).render();
+
+    renderAnalysisResults(funds);
+};
+
+function calculateTotal(funds, assets, mode) {
+    if (mode === 'count') return funds.length;
+    
+    let total = 0;
+    funds.forEach(f => {
+        const fundAssets = assets.filter(a => a.fund_id === f.fund_id);
+        if (mode === 'aum') {
+            total += fundAssets.reduce((sum, a) => sum + (parseFloat(a.aum) || 0), 0);
+        } else if (mode === 'loan') {
+            total += fundAssets.reduce((sum, a) => sum + (parseFloat(a.loan_amount) || 0), 0);
+        } else if (mode === 'equity') {
+            total += fundAssets.reduce((sum, a) => sum + ((parseFloat(a.aum) || 0) - (parseFloat(a.loan_amount) || 0)), 0);
+        }
+    });
+    return total;
+}
+
+function renderAnalysisResults(filteredFunds) {
+    const resultsContainer = document.getElementById('analysisResults');
+    if (!resultsContainer) return;
+    
+    resultsContainer.innerHTML = '';
+    
+    if (filteredFunds.length === 0) {
+        resultsContainer.innerHTML = '<div style="padding:40px; text-align:center; color:var(--muted);">필터 조건에 맞는 데이터가 없습니다.</div>';
+        return;
+    }
+
+    const groups = {};
+    filteredFunds.forEach(f => {
+        const key = f.sector || '미분류';
+        if (!groups[key]) groups[key] = [];
+        groups[key].push(f);
+    });
+
+    Object.keys(groups).sort().forEach(groupName => {
+        const groupEl = document.createElement('div');
+        groupEl.className = 'result-group';
+        groupEl.innerHTML = `
+            <div class="group-title">${groupName} (${groups[groupName].length})</div>
+            <div class="result-list">
+                ${groups[groupName].map(f => `
+                    <div class="result-item" onclick="showDrawerDetail('${f.fund_id}')">
+                        <div class="item-name">${f.fund_name}</div>
+                        <div class="item-meta">${f.fund_id} | ${f.location} | ${f.notion_investment_strategy_class || '-'}</div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        resultsContainer.appendChild(groupEl);
+    });
+}
