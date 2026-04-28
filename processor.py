@@ -69,14 +69,38 @@ class CRMProcessor:
 
     def process_assets(self):
         file_path = self.get_latest_file("투자 자산 조회_*.xlsx")
+        manage_path = self.get_latest_file("투자 자산 관리_*.xlsx")
         if not file_path: return None
+        
+        # 1. 자산 관리 파일에서 상세 정보 및 자산코드 매핑 추출
+        asset_info_map = {}
+        if manage_path:
+            try:
+                df_m = pd.read_excel(manage_path)
+                for _, row in df_m.iterrows():
+                    name = str(row.get('자산(건물)명', '')).strip()
+                    addr = str(row.get('전체주소(시/도, 구/군 포함)', '')).strip()
+                    code = str(row.get('자산코드', '')).strip()
+                    if name:
+                        info = {
+                            'asset_code': code if code != 'nan' else None,
+                            'site_area': row.get('토지면적(㎡)'),
+                            'gfa': row.get('연면적(m²)'),
+                            'floors_up': row.get('건물규모(지상 층수)'),
+                            'floors_down': row.get('건물규모(지하 층수)'),
+                            'parking': row.get('주차대수'),
+                            'completion_date': str(row.get('준공(예정)일', '')),
+                        }
+                        asset_info_map[name] = info
+                        if addr and addr != 'nan': asset_info_map[f"{name}_{addr}"] = info
+            except Exception as e:
+                print(f"Error reading asset management file: {e}")
+
+        # 2. 투자 자산 조회 파일 처리
         df = pd.read_excel(file_path)
         
-        addr_col = None
-        for c in df.columns:
-            if '주소' in str(c):
-                addr_col = c
-                break
+        # 주소 컬럼 찾기
+        addr_col = next((c for c in df.columns if '주소' in str(c)), None)
         if not addr_col: return None
 
         geo_cache = {}
@@ -88,68 +112,119 @@ class CRMProcessor:
             with open(self.ledger_cache_file, 'r', encoding='utf-8') as f:
                 bld_cache = json.load(f)
 
-        refined_addresses, lats, lngs, bld_specs = [], [], [], []
+        assets = []
         total = len(df)
-        print(f"Starting asset processing: total {total} records")
+        print(f"Processing Assets with Management Data: total {total} records")
 
-        for i, addr in enumerate(df[addr_col]):
-            addr = str(addr)
-            if i % 10 == 0: print(f"Processing... {i}/{total}")
+        for i, row in df.iterrows():
+            fund_id = str(row.get('펀드코드', '')).strip()
+            asset_name = str(row.get('자산(건물)명', '')).strip()
+            raw_addr = str(row.get(addr_col, '')).strip()
             
-            if addr in geo_cache:
-                lat, lng, refined_addr = geo_cache[addr]
-                spec = bld_cache.get(addr, {})
+            if not fund_id or not asset_name or fund_id == 'nan': continue
+            
+            # Geocoding & Ledger (기존 로직 유지)
+            lat, lng, refined_addr = None, None, raw_addr
+            spec = {}
+            if raw_addr in geo_cache:
+                lat, lng, refined_addr = geo_cache[raw_addr]
+                spec = bld_cache.get(raw_addr, {})
             else:
-                pnu_info = self.ledger_fetcher.refine_address(addr)
+                pnu_info = self.ledger_fetcher.refine_address(raw_addr)
                 if pnu_info:
                     refined_addr = pnu_info['refined_address']
                     lat, lng = self.geocoder.get_coordinates(refined_addr)
                     spec = self.ledger_fetcher.fetch_info_by_pnu(pnu_info)
                 else:
-                    refined_addr = addr; lat, lng = self.geocoder.get_coordinates(addr); spec = {}
-                geo_cache[addr] = (lat, lng, refined_addr); bld_cache[addr] = spec
-                time.sleep(0.02) # 약간의 딜레이
-                
-            refined_addresses.append(refined_addr); lats.append(lat); lngs.append(lng); bld_specs.append(spec)
-            
-        with open(self.cache_file, 'w', encoding='utf-8') as f:
-            json.dump(geo_cache, f, ensure_ascii=False, indent=2)
-        with open(self.ledger_cache_file, 'w', encoding='utf-8') as f:
-            json.dump(bld_cache, f, ensure_ascii=False, indent=2)
+                    lat, lng = self.geocoder.get_coordinates(raw_addr)
+                geo_cache[raw_addr] = (lat, lng, refined_addr); bld_cache[raw_addr] = spec
+                time.sleep(0.01)
 
-        df = df.reset_index(drop=True)
-        df['주소'] = refined_addresses
-        df['lat'], df['lng'] = lats, lngs
-        spec_df = pd.DataFrame(bld_specs).reset_index(drop=True)
-        df = pd.concat([df, spec_df], axis=1)
+            # 관리 파일 정보 병합
+            m_info = asset_info_map.get(f"{asset_name}_{raw_addr}") or asset_info_map.get(asset_name, {})
+            
+            meta = {
+                'notion_asset_code': m_info.get('asset_code'),
+                'notion_base_asset_class': row.get('기초자산'),
+                'notion_asset_nature_class': row.get('자산성격'),
+                'notion_business_stage_class': row.get('사업단계'),
+                'notion_investment_strategy': row.get('투자전략'),
+                'pnu': spec.get('pnu'),
+                'refined_address': refined_addr
+            }
+            
+            # 날짜 형식 정제 (2026-02-27 형식)
+            def clean_date(d):
+                if pd.isna(d) or str(d).lower() == 'nan' or not str(d).strip(): return None
+                try:
+                    return pd.to_datetime(d).strftime('%Y-%m-%d')
+                except: return None
+
+            completion_date = clean_date(m_info.get('completion_date')) or clean_date(row.get('준공(예정)일'))
+            
+            asset_record = {
+                'fund_id': fund_id,
+                'asset_name': asset_name,
+                'location_category': row.get('투자지역') or row.get('국내/해외'),
+                'lat': lat,
+                'lng': lng,
+                'metadata': meta,
+                'site_area': m_info.get('site_area') or spec.get('대지면적'),
+                'gfa': m_info.get('gfa') or row.get('연면적(m²)') or spec.get('연면적'),
+                'floors_up': m_info.get('floors_up') or spec.get('지상층수'),
+                'floors_down': m_info.get('floors_down') or spec.get('지하층수'),
+                'parking': m_info.get('parking') or spec.get('주차대수'),
+                'completion_date': completion_date,
+                'main_usage': row.get('기초자산') or spec.get('주용도')
+            }
+            assets.append(asset_record)
+            
+            if i % 50 == 0:
+                print(f"Processing Assets... {i}/{total}")
+
+        # 캐시 저장
+        with open(self.cache_file, 'w', encoding='utf-8') as f: json.dump(geo_cache, f, ensure_ascii=False, indent=2)
+        with open(self.ledger_cache_file, 'w', encoding='utf-8') as f: json.dump(bld_cache, f, ensure_ascii=False, indent=2)
         
-        mapping = {}
-        for c in df.columns:
-            cs = str(c)
-            if '펀드코드' in cs: mapping[c] = '펀드코드'
-            elif '자산(건물)명' in cs: mapping[c] = '자산(건물)명'
-            elif '권역' in cs: mapping[c] = '권역'
-        # 최종 컬럼 확인 (디버깅용)
-        print(f"Final Asset Columns: {df.columns.tolist()}")
-        return df.rename(columns=mapping)
+        return pd.DataFrame(assets)
 
     def process_fund_management(self):
         file_path = self.get_latest_file("펀드 관리_*.xlsx")
         if not file_path: return None
-        df = pd.read_excel(file_path, header=1)
+        
+        # Force header=0 for better column name capture in [new] files
+        df = pd.read_excel(file_path, header=0)
+        
+        # If the first row is just another header or junk, drop it
+        if len(df) > 0 and (str(df.iloc[0, 0]) == str(df.columns[0]) or '기본정보' in str(df.iloc[0, 0])):
+             df = df.iloc[1:].reset_index(drop=True)
+             
+        print(f"Detected Management Columns: {df.columns.tolist()[35:45]}")
+            
         mapping = {}
         found_keys = set()
         for idx, c in enumerate(df.columns):
             cs = str(c)
             target = None
-            if idx == 53 or '모펀드코드' in cs: target = '모펀드코드'
-            elif '코드' in cs and '펀드코드' not in found_keys: target = '펀드코드'
+            if idx == 0: target = '펀드코드' # Always index 0
+            elif idx == 53 or '모펀드코드' in cs: target = '모펀드코드'
             elif ('약칭' in cs or 'Ī' in cs) and '약칭' not in found_keys: target = '약칭'
             elif ('명칭' in cs or '펀드명' in cs) and '펀드명' not in found_keys: target = '펀드명'
-            elif '부서' in cs and '운용부서' not in found_keys: target = '운용부서'
+            elif '부서' in cs and '운용' in cs and '운용부서' not in found_keys: target = '운용부서'
+            elif '부문' in cs and '운용' in cs and '담당부문(운용)' not in found_keys: target = '담당부문(운용)'
             elif '설정일' in cs and '설정일' not in found_keys: target = '설정일'
             elif '만기일' in cs and '만기일' not in found_keys: target = '만기일'
+            
             if target: mapping[c] = target; found_keys.add(target)
+        
+        # Additional standard categorical columns by typical index if not found
+        # Vehicle (5), Sector (12), Strategy (14), Division (37), Dept (38)
+        idx_map = {5: 'Vehicle구분', 12: '투자섹터', 14: '투자전략', 37: '담당부문(운용)', 38: '담당부서(운용)'}
+        for idx, target in idx_map.items():
+             if target not in found_keys and len(df.columns) > idx:
+                  mapping[df.columns[idx]] = target
+                  found_keys.add(target)
+
         df = df.rename(columns=mapping)
         date_cols = ['설정일', '만기일']
         for col in date_cols:
@@ -209,12 +284,35 @@ class CRMProcessor:
         if df_b is not None and '펀드코드' in df_b.columns: ids.update(df_b['펀드코드'].dropna().unique())
         if df_a is not None and '펀드코드' in df_a.columns: ids.update(df_a['펀드코드'].dropna().unique())
         if df_m is not None and '펀드코드' in df_m.columns: ids.update(df_m['펀드코드'].dropna().unique())
+        
         master = pd.DataFrame({'fund_id': list(ids)})
+        
         if df_m is not None:
-            cols = [c for c in ['펀드코드', '펀드명', '약칭', '운용부서', '설정일', '만기일', '모펀드코드'] if c in df_m.columns]
-            master = master.merge(df_m[cols], left_on='fund_id', right_on='펀드코드', how='left')
-            rename_map = {'펀드명': 'fund_name', '약칭': 'short_name', '운용부서': 'dept', '설정일': 'setup_date', '만기일': 'expiry_date', '모펀드코드': 'parent_fund_id'}
+            # Include all categorical columns for metadata mapping
+            cat_cols = ['Vehicle구분', '모자구분', '법적형태', '펀드분류', '국내/해외', '주요투자지역', '투자섹터', '펀드유형', '투자전략', '운용상태', '담당부문(운용)']
+            essential_cols = ['펀드코드', '펀드명', '약칭', '운용부서', '설정일', '만기일', '모펀드코드']
+            
+            all_target_cols = [c for c in essential_cols + cat_cols if c in df_m.columns]
+            # Use drop_duplicates to ensure unique fund IDs from management file
+            df_m_clean = df_m[all_target_cols].drop_duplicates(subset=['펀드코드'])
+            
+            master = master.merge(df_m_clean, left_on='fund_id', right_on='펀드코드', how='left')
+            
+            rename_map = {
+                '펀드명': 'fund_name', 
+                '약칭': 'short_name', 
+                '운용부서': 'dept', 
+                '설정일': 'setup_date', 
+                '만기일': 'expiry_date', 
+                '모펀드코드': 'parent_fund_id',
+                '운용상태': 'status'
+            }
             master = master.rename(columns={k: v for k, v in rename_map.items() if k in master.columns})
-            korean_cols = [c for c in master.columns if any(ord(char) > 127 for char in str(c))]
-            master = master.drop(columns=korean_cols)
+            
+            # Keep Korean categorical columns for metadata mapping in uploader
+            # Only drop Korean columns that were ALREADY renamed to English
+            renamed_korean = [k for k in rename_map.keys() if any(ord(char) > 127 for char in str(k))]
+            cols_to_drop = [c for c in renamed_korean if c in master.columns]
+            master = master.drop(columns=cols_to_drop)
+            
         return master

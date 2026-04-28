@@ -73,17 +73,45 @@ if __name__ == "__main__":
     if funds is not None:
         try:
             uploader = SupabaseUploader()
-            # parent_fund_id를 metadata 필드에 병합 (DB 컬럼 부재 대응)
-            def merge_parent(row):
+            # extra columns를 metadata 필드에 병합 (DB 컬럼 부재 대응)
+            db_cols = ['fund_id', 'short_name', 'fund_name', 'sector', 'asset_name', 'status', 'location', 'setup_date', 'maturity_date', 'dept', 'manager', 'metadata']
+            
+            def merge_extra_to_metadata(row):
                 meta = row.get('metadata', {})
                 if not isinstance(meta, dict): meta = {}
-                if 'parent_fund_id' in row and pd.notna(row['parent_fund_id']):
-                    meta['parent_fund_id'] = row['parent_fund_id']
+                
+                # Standard mapping for dashboard
+                mapping = {
+                    'Vehicle구분': 'notion_vehicle_class',
+                    '투자전략': 'notion_investment_strategy_class',
+                    '모자구분': 'notion_parent_child_class',
+                    '법적형태': 'notion_legal_form',
+                    '펀드분류': 'notion_fund_class',
+                    '주요투자지역': 'notion_main_investment_region',
+                    '투자섹터': 'notion_sector_class',
+                    '펀드유형': 'notion_fund_type',
+                    '국내/해외': 'notion_region_class',
+                    '담당부문(운용)': 'notion_division_class',
+                    'expiry_date': 'maturity_date',
+                    'parent_fund_id': 'parent_fund_id'
+                }
+                
+                for col in row.index:
+                    if col not in db_cols and pd.notna(row[col]):
+                        key = mapping.get(col, col)
+                        meta[key] = row[col]
+                
+                # Special case: 'sector' top-level column should be updated if empty
+                if '투자섹터' in row and pd.notna(row['투자섹터']) and (pd.isna(row.get('sector')) or row.get('sector') == ''):
+                    # We can't easily update row['sector'] here as it's a copy in apply,
+                    # but we can ensure it's in metadata for the dashboard
+                    meta['sector'] = row['투자섹터']
+
                 return meta
-            funds['metadata'] = funds.apply(merge_parent, axis=1)
+
+            funds['metadata'] = funds.apply(merge_extra_to_metadata, axis=1)
             
             # DB 스키마에 있는 컬럼만 선택
-            db_cols = ['fund_id', 'short_name', 'fund_name', 'sector', 'asset_name', 'status', 'location', 'setup_date', 'maturity_date', 'dept', 'manager', 'metadata']
             valid_cols = [c for c in db_cols if c in funds.columns]
             uploader.upload_dataframe(funds[valid_cols], 'funds', on_conflict='fund_id')
             if df_l is not None:
@@ -102,25 +130,37 @@ if __name__ == "__main__":
                 uploader.upload_dataframe(b_db[cols], 'beneficiary_exposures', on_conflict='fund_id,beneficiary_clean,base_date', 
                                          int_cols=['committed_amt', 'invested_amt'])
             if df_a is not None:
-                a_db = df_a.rename(columns={'펀드코드': 'fund_id', '자산(건물)명': 'asset_name', '권역': 'location_category'})
-                # PNU를 metadata 필드에 병합
-                def merge_pnu(row):
-                    meta = row.get('metadata', {})
-                    if not isinstance(meta, dict): meta = {}
-                    if 'pnu' in row and pd.notna(row['pnu']):
-                        meta['pnu'] = row['pnu']
-                    return meta
-                a_db['metadata'] = a_db.apply(merge_pnu, axis=1)
-
-                cols = ['fund_id', 'asset_name', 'location_category', 'lat', 'lng', 'metadata',
-                        'site_area', 'gfa', 'scr', 'far', 'main_usage', 'structure', 
-                        'floors_up', 'floors_down', 'elevators', 'parking', 'completion_date', 'height']
-                # 층수 컬럼 정수형 변환 (Nullable Int64 사용하여 .0 방지)
-                for col in ['floors_up', 'floors_down']:
-                    if col in a_db.columns:
-                        a_db[col] = pd.to_numeric(a_db[col], errors='coerce').round().astype('Int64')
+                a_db = df_a.copy()
+                # Rename only if original names exist (backward compatibility)
+                rename_map = {'펀드코드': 'fund_id', '자산(건물)명': 'asset_name', '권역': 'location_category'}
+                a_db = a_db.rename(columns={k: v for k, v in rename_map.items() if k in a_db.columns})
                 
-                uploader.upload_dataframe(a_db[cols], 'fund_assets', on_conflict='fund_id,asset_name')
+                # DB schema columns
+                target_cols = ['fund_id', 'asset_name', 'location_category', 'lat', 'lng', 'metadata',
+                               'site_area', 'gfa', 'scr', 'far', 'main_usage', 'structure', 
+                               'floors_up', 'floors_down', 'elevators', 'parking', 'completion_date', 'height']
+                
+                # Missing columns as None
+                for col in target_cols:
+                    if col not in a_db.columns:
+                        a_db[col] = None
+                
+                # Clean NaN values for JSON compliance (replace with None)
+                a_db = a_db.replace({pd.NA: None, float('nan'): None})
+                
+                # Also clean metadata dictionary for each row
+                def clean_metadata(meta):
+                    if not isinstance(meta, dict): return meta
+                    return {k: (None if pd.isna(v) else v) for k, v in meta.items()}
+                
+                a_db['metadata'] = a_db['metadata'].apply(clean_metadata)
+                
+                # 층수 컬럼 정수형 변환 (Nullable Int64 사용하여 .0 방지)
+                for col in ['floors_up', 'floors_down', 'elevators', 'parking']:
+                    if col in a_db.columns:
+                        a_db[col] = pd.to_numeric(a_db[col], errors='coerce').round().astype('Int64').replace({pd.NA: None})
+                
+                uploader.upload_dataframe(a_db[target_cols], 'fund_assets', on_conflict='fund_id,asset_name')
             
             # Market Rent Upload (Table: market_data)
             for cat in ['OFFICE', 'LOGISTIC']:

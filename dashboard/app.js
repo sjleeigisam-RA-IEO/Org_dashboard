@@ -42,7 +42,6 @@ function showChartView() {
   var searchControls = document.getElementById('searchViewControls');
   var analysisViewControls = document.getElementById('analysisViewControls');
   var results = document.getElementById('results');
-  var analysisResults = document.getElementById('analysisResults');
 
   currentView = 'ranking';
 
@@ -52,20 +51,17 @@ function showChartView() {
   setDisplay(searchControls, 'none');
   setDisplay(analysisViewControls, 'block');
   setDisplay(results, 'none');
-  setDisplay(analysisResults, 'flex');
 
   if (typeof ensureAllDataLoaded === 'function') {
     ensureAllDataLoaded().then(function () {
       if (typeof initAnalysisFilters === 'function') {
         initAnalysisFilters();
       }
-      if (typeof renderPortfolioChart === 'function') {
-        renderPortfolioChart();
+      if (typeof renderAnalytics === 'function') {
+        renderAnalytics();
       }
     });
-  }
-
-  if (typeof renderAnalytics === 'function') {
+  } else if (typeof renderAnalytics === 'function') {
     renderAnalytics();
   }
 }

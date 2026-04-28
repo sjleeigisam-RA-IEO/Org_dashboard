@@ -65,7 +65,13 @@ function getFundSecondaryName(fund) {
 
 function isRAFund(f) {
   if (currentOrgScope === 'all') return true;
-  var dept = f.metadata?.department || '';
+  var division = f.metadata?.notion_division_class || '';
+  var dept = f.metadata?.notion_dept_class || f.metadata?.department || '';
+  
+  // 리얼에셋부문 키워드가 있으면 RA펀드로 간주
+  if (division.includes('리얼에셋') || division.includes('RA')) return true;
+  
+  // 제외 부서 리스트 체크
   return !EXCLUDE_DEPTS.some(function (kw) { return dept.includes(kw); });
 }
 

@@ -19,16 +19,17 @@ async function renderAnalytics() {
             console.error(e);
         }
     }
-    window.lastTargetFunds = targetFunds;
-    lastTargetFunds = targetFunds;
-
+    // Use filtered data if available
+    const filteredFunds = (typeof getFilteredData === 'function') ? getFilteredData() : targetFunds;
+    window.lastTargetFunds = filteredFunds;
+    
     const snapshotDate = new Date('2026-03-31');
-    const activeFunds = targetFunds.filter(f => {
+    const activeFunds = filteredFunds.filter(f => {
         const setup = f.metadata?.setup_date ? new Date(f.metadata.setup_date) : null;
         const end = f.metadata?.termination_date
             ? new Date(f.metadata.termination_date)
             : (f.metadata?.maturity_date ? new Date(f.metadata.maturity_date) : new Date('2099-12-31'));
-        return getFundStatus(f) === '운용' && setup && setup <= snapshotDate && end > snapshotDate && isRAFund(f);
+        return getFundStatus(f) === '운용' && setup && setup <= snapshotDate && end > snapshotDate && (currentOrgScope === 'all' || isRAFund(f));
     });
 
     const totalAum = activeFunds.reduce((sum, f) => sum + getFundAmountWon(f, 'benchmark_aum'), 0);
@@ -160,70 +161,61 @@ function switchScope(scope) {
 }
 
 function renderNetChangeDetails(label) {
-    const analysisResults = document.getElementById('analysisResults');
-    const analysisHeader = document.getElementById('analysisListHeader');
-    const targetFunds = window.lastTargetFunds || [];
-    if (!analysisResults || !analysisHeader || targetFunds.length === 0) return;
+    const drillPanel = document.getElementById('drillDownResult');
+    const targetFunds = (typeof getFilteredData === 'function') ? getFilteredData() : (window.lastTargetFunds || []);
+    
+    if (!drillPanel || targetFunds.length === 0) return;
 
-    analysisResults.innerHTML = '<div style="text-align:center; padding:40px; color:var(--muted);">데이터 추출 중...</div>';
+    drillPanel.style.display = 'block';
+    drillPanel.innerHTML = '<div style="text-align:center; padding:40px; color:var(--muted);">데이터 추출 중...</div>';
 
-    let startDate;
-    let endDate;
-    let title;
+    let startDate, endDate, title;
     if (label === '2026 (Actual)') {
-        startDate = new Date('2026-01-01');
-        endDate = new Date('2026-03-31');
-        title = '2026년 1분기';
+        startDate = new Date('2026-01-01'); endDate = new Date('2026-03-31'); title = '2026년 1분기';
     } else if (label === '2026 (Proj.)') {
-        startDate = new Date('2026-04-01');
-        endDate = new Date('2026-12-31');
-        title = '2026년 잔여';
+        startDate = new Date('2026-04-01'); endDate = new Date('2026-12-31'); title = '2026년 잔여';
     } else {
         const year = parseInt(label, 10);
-        startDate = new Date(`${year}-01-01`);
-        endDate = new Date(`${year}-12-31`);
-        title = `${year}년`;
+        startDate = new Date(`${year}-01-01`); endDate = new Date(`${year}-12-31`); title = `${year}년`;
     }
 
     const newlySetup = targetFunds.filter(f => {
         const setup = f.metadata?.setup_date ? new Date(f.metadata.setup_date) : null;
-        return setup && setup >= startDate && setup <= endDate && isRAFund(f);
+        return setup && setup >= startDate && setup <= endDate;
     });
 
     const terminated = targetFunds.filter(f => {
         const end = f.metadata?.termination_date || f.metadata?.maturity_date;
         const d = end ? new Date(end) : null;
-        return d && d >= startDate && d <= endDate && isRAFund(f);
+        return d && d >= startDate && d <= endDate;
     });
 
     const finalItems = [...groupItems(newlySetup, '+'), ...groupItems(terminated, '-')].sort((a, b) => b.aum - a.aum);
 
-    analysisHeader.innerHTML = `
-        <div style="padding:16px; background:white; border-radius:12px; border:1px solid var(--line); box-shadow:var(--shadow);">
-            <div style="font-size:12px; color:var(--accent); font-weight:800; margin-bottom:4px;">${title} 변동 내역</div>
-            <div style="font-size:16px; font-weight:800;">총 ${finalItems.length}개 항목</div>
-        </div>
-    `;
-
     if (finalItems.length === 0) {
-        analysisResults.innerHTML = '<div class="no-results">해당 기간 내<br>변동 내역이 없습니다.</div>';
+        drillPanel.innerHTML = `<div class="drill-title">${title} 변동 내역</div><div class="no-results">해당 기간 내 변동 내역이 없습니다.</div>`;
         return;
     }
 
-    analysisResults.innerHTML = finalItems.map(item => `
-        <div class="group-card" onclick="openFundDetail('${item.key}', '${item.name}')">
-            <div class="group-header">
-                <div style="flex:1">
-                    <span class="card-tag" style="background:${item.type === '+' ? '#ecfdf5' : '#fef2f2'}; color:${item.type === '+' ? '#10b981' : '#ef4444'};">
-                        ${item.type === '+' ? '신규' : '청산'}
-                    </span>
-                    <div class="group-title">${item.name}</div>
-                    <div class="group-meta">${currentChartMetric === 'count' ? `${item.aum}건 참여` : formatNumber(item.aum)}</div>
+    drillPanel.innerHTML = `
+        <div class="drill-title">${title} 주요 변동 내역 (${finalItems.length}건)</div>
+        <div class="drill-list">
+            ${finalItems.map(item => `
+                <div class="drill-item" onclick="openFundDetail('${item.key}', '${item.name}')">
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <span class="filter-chip" style="background:${item.type === '+' ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)'}; color:${item.type === '+' ? '#10b981' : '#ef4444'};">
+                            ${item.type === '+' ? '신규' : '청산'}
+                        </span>
+                        <span class="drill-name">${item.name}</span>
+                    </div>
+                    <span class="drill-amt">${currentChartMetric === 'count' ? `${item.aum}건` : formatNumber(item.aum)}</span>
                 </div>
-                <div class="toggle-icon">></div>
-            </div>
+            `).join('')}
         </div>
-    `).join('');
+    `;
+    
+    // Scroll to drill panel
+    drillPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function renderNetGrowth(chartId) {
@@ -242,7 +234,6 @@ function renderNetGrowth(chartId) {
         else snapshotDate = new Date(`${cat}-12-31`);
 
         const activeInYear = targetFunds.filter(f => {
-            if (!isRAFund(f)) return false;
             const setup = f.metadata?.setup_date ? new Date(f.metadata.setup_date) : null;
             const end = f.metadata?.termination_date
                 ? new Date(f.metadata.termination_date)
@@ -343,7 +334,6 @@ function renderHistory(chartId) {
         else snap = new Date(`${cat}-12-31`);
 
         const active = targetFunds.filter(f => {
-            if (currentOrgScope === 'ra' && !isRAFund(f)) return false;
             const s = f.metadata?.setup_date ? new Date(f.metadata.setup_date) : null;
             const e = f.metadata?.termination_date
                 ? new Date(f.metadata.termination_date)

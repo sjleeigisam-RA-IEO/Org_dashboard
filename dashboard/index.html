@@ -102,15 +102,6 @@
     <!-- 종합 분석용 컨트롤 그룹 -->
     <div id="analysisViewControls" style="display:none;">
       <div id="analysisControls" class="analysis-controls">
-          <div class="control-group">
-              <label>분석 차트 선택</label>
-              <div class="toggle-buttons" style="margin-bottom: 12px;">
-                  <button class="active" onclick="setAnalysisView('year')">연도별 추이</button>
-                  <button onclick="setAnalysisView('sector')">섹터별 비중</button>
-                  <button onclick="setAnalysisView('strategy')">전략별 현황</button>
-              </div>
-          </div>
-          
           <!-- 상세 필터 섹션 -->
           <div class="analysis-filters" id="analysisFilters">
               <div class="filter-header">상세 필터 (중복 선택 가능)</div>
@@ -120,8 +111,6 @@
               <button class="reset-filters-btn" onclick="resetAnalysisFilters()">전체 필터 초기화</button>
           </div>
       </div>
-      <div id="portfolioChart" style="min-height:320px; margin:16px 0 20px;"></div>
-      <div id="analysisListHeader" style="margin-bottom:16px;"></div>
     </div>
 
     <!-- Portfolio Basket -->
@@ -133,12 +122,9 @@
       <div id="basketItems" class="basket-items"></div>
     </div>
 
-    <!-- 결과 리스트 영역 (조회용 / 분석용 분리) -->
+    <!-- 결과 리스트 영역 (조회용) -->
     <div id="results" class="results-container">
       <div class="no-results">조회를 시작하세요.</div>
-    </div>
-    <div id="analysisResults" class="results-container" style="display:none;">
-      <div class="no-results">그래프에서 연도를 선택하여<br>상세 내역을 확인하세요.</div>
     </div>
   </div>
 

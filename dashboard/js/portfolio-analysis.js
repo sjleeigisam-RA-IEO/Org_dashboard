@@ -1,10 +1,11 @@
 function initAnalysisFilters() {
     const filterCols = [
+        { key: 'notion_division_class', label: '담당부문' },
         { key: 'notion_vehicle_class', label: 'Vehicle 구분' },
-        { key: 'sector', label: '투자섹터' },
+        { key: 'notion_fund_class', label: '펀드분류' },
+        { key: 'notion_sector_class', label: '투자섹터' },
         { key: 'notion_investment_strategy_class', label: '투자전략' },
-        { key: 'notion_business_stage_class', label: '사업단계' },
-        { key: 'notion_asset_nature_class', label: '자산성격' }
+        { key: 'notion_business_stage_class', label: '사업단계' }
     ];
 
     const grid = document.getElementById('filterGrid');
@@ -12,227 +13,126 @@ function initAnalysisFilters() {
     grid.innerHTML = '';
 
     filterCols.forEach(col => {
-        const values = [...new Set(allFunds.map(f => f[col.key] || f.metadata?.[col.key] || '미분류'))]
-            .filter(v => v !== '미분류')
-            .sort();
+        // Find all values including nulls
+        const rawValues = allFunds.map(f => {
+            const v = f[col.key] || f.metadata?.[col.key];
+            return (v && v.trim()) ? v : null;
+        });
 
+        const hasNulls = rawValues.some(v => v === null);
+        const uniqueValues = [...new Set(rawValues.filter(Boolean))].sort();
+        
         const filterItem = document.createElement('div');
         filterItem.className = 'filter-item';
 
         const label = document.createElement('label');
         label.innerText = col.label;
+        filterItem.appendChild(label);
 
-        const select = document.createElement('select');
-        select.id = `filter-${col.key}`;
-        select.innerHTML = '<option value="">전체</option>' + values.map(v => `<option value="${v}">${v}</option>`).join('');
-        select.value = analysisFilters[col.key] || '';
+        // Custom Multi-select UI
+        const container = document.createElement('div');
+        container.className = 'multi-select-container';
+        
+        const trigger = document.createElement('div');
+        trigger.className = 'multi-select-trigger';
+        updateTriggerText(trigger, col.key);
+        
+        const dropdown = document.createElement('div');
+        dropdown.className = 'multi-select-dropdown';
+        
+        // Add options including '미분류' if nulls exist
+        const optionsToRender = [...uniqueValues];
+        if (hasNulls) optionsToRender.push('미분류');
 
-        select.onchange = (e) => {
-            analysisFilters[col.key] = e.target.value;
-            renderPortfolioChart();
+        optionsToRender.forEach(v => {
+            const option = document.createElement('div');
+            option.className = 'multi-select-option';
+            if (analysisFilters[col.key] && analysisFilters[col.key].includes(v)) {
+                option.classList.add('selected');
+            }
+            
+            option.innerHTML = `
+                <div class="multi-select-checkbox"></div>
+                <span>${v}</span>
+            `;
+            
+            option.onclick = (e) => {
+                e.stopPropagation();
+                if (!analysisFilters[col.key]) analysisFilters[col.key] = [];
+                
+                const idx = analysisFilters[col.key].indexOf(v);
+                if (idx > -1) {
+                    analysisFilters[col.key].splice(idx, 1);
+                    option.classList.remove('selected');
+                } else {
+                    analysisFilters[col.key].push(v);
+                    option.classList.add('selected');
+                }
+                
+                updateTriggerText(trigger, col.key);
+                if (window.renderAnalytics) window.renderAnalytics();
+            };
+            
+            dropdown.appendChild(option);
+        });
+
+
+        trigger.onclick = (e) => {
+            e.stopPropagation();
+            const isActive = dropdown.classList.contains('active');
+            // Close all other dropdowns
+            document.querySelectorAll('.multi-select-dropdown').forEach(d => d.classList.remove('active'));
+            if (!isActive) dropdown.classList.add('active');
         };
 
-        filterItem.appendChild(label);
-        filterItem.appendChild(select);
+        container.appendChild(trigger);
+        container.appendChild(dropdown);
+        filterItem.appendChild(container);
         grid.appendChild(filterItem);
     });
+
+    // Close dropdowns on outside click
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.multi-select-dropdown').forEach(d => d.classList.remove('active'));
+    });
+}
+
+function updateTriggerText(trigger, key) {
+    const selected = analysisFilters[key] || [];
+    if (selected.length === 0) {
+        trigger.innerHTML = '<span style="color:var(--muted)">전체</span>';
+    } else if (selected.length === 1) {
+        trigger.innerHTML = `<span class="filter-chip">${selected[0]}</span>`;
+    } else {
+        trigger.innerHTML = `<span class="filter-chip">${selected[0]}</span> <span style="font-size:11px; color:var(--muted); font-weight:700;">외 ${selected.length - 1}</span>`;
+    }
 }
 
 function resetAnalysisFilters() {
     analysisFilters = {};
     window.analysisFilters = analysisFilters;
     initAnalysisFilters();
-    renderPortfolioChart();
+    if (window.renderAnalytics) window.renderAnalytics();
 }
 
 function getFilteredData() {
     let filteredFunds = [...allFunds];
 
     Object.keys(analysisFilters).forEach(key => {
-        const val = analysisFilters[key];
-        if (val) {
-            filteredFunds = filteredFunds.filter(f => (f[key] || f.metadata?.[key]) === val);
+        const selectedValues = analysisFilters[key];
+        if (selectedValues && selectedValues.length > 0) {
+            filteredFunds = filteredFunds.filter(f => {
+                let val = f[key] || f.metadata?.[key];
+                if (!val || val.trim() === '') val = '미분류';
+                return selectedValues.includes(val);
+            });
         }
     });
 
-    const fundIds = new Set(filteredFunds.map(f => f.fund_id));
-    const filteredAssets = allFundAssets.filter(a => fundIds.has(a.fund_id));
-
-    return { funds: filteredFunds, assets: filteredAssets };
-}
-
-function setAnalysisView(view) {
-    analysisView = view;
-    window.analysisView = analysisView;
-    const btns = document.querySelectorAll('#analysisControls .toggle-buttons:first-child button');
-    btns.forEach(b => {
-        if ((b.getAttribute('onclick') || '').includes(view)) b.classList.add('active');
-        else b.classList.remove('active');
-    });
-    renderPortfolioChart();
-}
-
-function setAnalysisMode(mode) {
-    analysisMode = mode;
-    window.analysisMode = analysisMode;
-    renderPortfolioChart();
-}
-
-function renderPortfolioChart() {
-    const chartEl = document.getElementById('portfolioChart');
-    if (!chartEl) return;
-
-    const filtered = getFilteredData();
-    const funds = filtered.funds;
-    const assets = filtered.assets;
-    const mode = analysisMode;
-    const view = analysisView;
-
-    let series = [];
-    let categories = [];
-    let chartType = 'bar';
-    let isStacked = true;
-
-    if (view === 'year') {
-        const years = Array.from({ length: 17 }, (_, i) => 2010 + i);
-        categories = years.map(y => y.toString());
-
-        const dataDomestic = years.map(y => calculateTotal(funds.filter(f => {
-            const sy = new Date(f.setup_date).getFullYear();
-            const my = f.maturity_date ? new Date(f.maturity_date).getFullYear() : 2099;
-            return sy <= y && my >= y && f.location === '\uad6d\ub0b4';
-        }), assets, mode));
-
-        const dataOverseas = years.map(y => calculateTotal(funds.filter(f => {
-            const sy = new Date(f.setup_date).getFullYear();
-            const my = f.maturity_date ? new Date(f.maturity_date).getFullYear() : 2099;
-            return sy <= y && my >= y && f.location === '\ud574\uc678';
-        }), assets, mode));
-
-        series = [
-            { name: '\uad6d\ub0b4', data: dataDomestic },
-            { name: '\ud574\uc678', data: dataOverseas }
-        ];
-    } else {
-        const filterKey = view === 'sector' ? 'sector' : 'notion_investment_strategy_class';
-        const uniqueValues = [...new Set(funds.map(f => f[filterKey] || f.metadata?.[filterKey] || '기타'))].filter(Boolean);
-
-        const chartData = uniqueValues.map(v => {
-            const groupFunds = funds.filter(f => (f[filterKey] || f.metadata?.[filterKey] || '기타') === v);
-            return calculateTotal(groupFunds, assets, mode);
-        });
-
-        chartType = 'donut';
-        isStacked = false;
-        series = chartData;
-        categories = uniqueValues;
-    }
-
-    const options = {
-        series: series,
-        chart: {
-            type: chartType,
-            height: 450,
-            stacked: isStacked,
-            fontFamily: 'Pretendard Variable, sans-serif',
-            toolbar: { show: false }
-        },
-        colors: ['#4f46e5', '#38bdf8', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#64748b'],
-        plotOptions: {
-            bar: { borderRadius: 6, columnWidth: '60%' },
-            pie: {
-                donut: {
-                    size: '70%',
-                    labels: {
-                        show: true,
-                        total: {
-                            show: true,
-                            label: 'TOTAL',
-                            formatter: w => {
-                                const total = w.globals.seriesTotals.reduce((a, b) => a + b, 0);
-                                return mode === 'count' ? `${total}건` : `${(total / 1e12).toFixed(1)}조`;
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        tooltip: {
-            y: { formatter: v => mode === 'count' ? `${v}건` : `${(v / 1000000000000).toFixed(1)}조 원` }
-        },
-        legend: { position: 'bottom' },
-        dataLabels: { enabled: false }
-    };
-
-    if (chartType === 'bar') {
-        options.xaxis = { categories: categories };
-        options.yaxis = { labels: { formatter: v => mode === 'count' ? v : (v / 1e12).toFixed(0) + '조' } };
-    } else {
-        options.labels = categories;
-    }
-
-    chartEl.innerHTML = '';
-    new ApexCharts(chartEl, options).render();
-
-    renderAnalysisResults(funds);
-}
-
-function calculateTotal(funds, assets, mode) {
-    if (mode === 'count') return funds.length;
-
-    let total = 0;
-    funds.forEach(f => {
-        const fundAssets = assets.filter(a => a.fund_id === f.fund_id);
-        if (mode === 'aum') {
-            total += fundAssets.reduce((sum, a) => sum + (parseFloat(a.aum) || 0), 0);
-        } else if (mode === 'loan') {
-            total += fundAssets.reduce((sum, a) => sum + (parseFloat(a.loan_amount) || 0), 0);
-        } else if (mode === 'equity') {
-            total += fundAssets.reduce((sum, a) => sum + ((parseFloat(a.aum) || 0) - (parseFloat(a.loan_amount) || 0)), 0);
-        }
-    });
-    return total;
-}
-
-function renderAnalysisResults(filteredFunds) {
-    const resultsContainer = document.getElementById('analysisResults');
-    if (!resultsContainer) return;
-
-    resultsContainer.innerHTML = '';
-
-    if (filteredFunds.length === 0) {
-        resultsContainer.innerHTML = '<div style="padding:40px; text-align:center; color:var(--muted);">필터 조건에 맞는 데이터가 없습니다.</div>';
-        return;
-    }
-
-    const groups = {};
-    filteredFunds.forEach(f => {
-        const key = f.sector || '미분류';
-        if (!groups[key]) groups[key] = [];
-        groups[key].push(f);
-    });
-
-    Object.keys(groups).sort().forEach(groupName => {
-        const groupEl = document.createElement('div');
-        groupEl.className = 'result-group';
-        groupEl.innerHTML = `
-            <div class="group-title">${groupName} (${groups[groupName].length})</div>
-            <div class="result-list">
-                ${groups[groupName].map(f => `
-                    <div class="result-item" onclick="showDrawerDetail('${f.fund_id}')">
-                        <div class="item-name">${f.fund_name}</div>
-                        <div class="item-meta">${f.fund_id} | ${f.location} | ${f.notion_investment_strategy_class || '-'}</div>
-                    </div>
-                `).join('')}
-            </div>
-        `;
-        resultsContainer.appendChild(groupEl);
-    });
+    return filteredFunds;
 }
 
 window.initAnalysisFilters = initAnalysisFilters;
 window.resetAnalysisFilters = resetAnalysisFilters;
 window.getFilteredData = getFilteredData;
-window.setAnalysisView = setAnalysisView;
-window.setAnalysisMode = setAnalysisMode;
-window.renderPortfolioChart = renderPortfolioChart;
+

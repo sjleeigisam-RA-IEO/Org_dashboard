@@ -121,12 +121,12 @@
       const officialName = getFundSecondaryName(f);
       const meta = f.metadata || {};
       const classifications = [
+        meta.notion_division_class,
+        meta.notion_fund_class,
         meta.notion_base_asset_class,
         meta.notion_asset_nature_class,
-        meta.notion_holding_type_class,
         meta.notion_business_stage_class,
-        meta.notion_investment_strategy_class,
-        meta.notion_vehicle_class
+        meta.notion_investment_strategy_class
       ].filter(Boolean).join(' | ');
 
       const mapId = 'vmap-' + Math.random().toString(36).substr(2, 9);
@@ -143,6 +143,7 @@
         <div class="section-title">자산 상세 (Asset Specs)</div>
         <div class="asset-specs-grid">
           <table class="data-table profile-table">
+            <tr><th>자산코드 <small>Asset Code</small></th><td style="color:var(--accent); font-weight:800;">${a.metadata?.notion_asset_code || '-'}</td></tr>
             <tr><th>주소 <small>Address</small></th><td>${a.address || '-'}</td></tr>
             <tr><th>대지면적 <small>Site Area</small></th><td>${a.site_area ? a.site_area.toLocaleString() + '㎡ (' + (a.site_area * 0.3025).toFixed(2) + 'py)' : '-'}</td></tr>
             <tr><th>연면적 <small>GFA</small></th><td>${a.gfa ? a.gfa.toLocaleString() + '㎡ (' + (a.gfa * 0.3025).toFixed(2) + 'py)' : '-'}</td></tr>
