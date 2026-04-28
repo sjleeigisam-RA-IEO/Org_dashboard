@@ -96,11 +96,12 @@
         <button class="tab-btn" data-tab="project">프로젝트</button>
         <button class="tab-btn" data-tab="ben">수익자</button>
         <button class="tab-btn" data-tab="lender">대주</button>
-        <button class="tab-btn" data-tab="analysis" style="color:var(--accent); font-weight:700;">종합분석</button>
       </div>
+    </div>
 
-      <!-- 분석 컨트롤 (종합분석 탭에서만 보임) -->
-      <div id="analysisControls" class="analysis-controls" style="display: none;">
+    <!-- 종합 분석용 컨트롤 그룹 -->
+    <div id="analysisViewControls" style="display:none;">
+      <div id="analysisControls" class="analysis-controls">
           <div class="control-group">
               <label>분석 차트 선택</label>
               <div class="toggle-buttons" style="margin-bottom: 12px;">
@@ -119,10 +120,7 @@
               <button class="reset-filters-btn" onclick="resetAnalysisFilters()">전체 필터 초기화</button>
           </div>
       </div>
-    </div>
-
-    <!-- 종합 분석용 컨트롤 그룹 -->
-    <div id="analysisViewControls" style="display:none;">
+      <div id="portfolioChart" style="min-height:320px; margin:16px 0 20px;"></div>
       <div id="analysisListHeader" style="margin-bottom:16px;"></div>
     </div>
 
@@ -154,6 +152,11 @@
 </div>
 
 <script src="config.js"></script>
+<script src="js/core.js"></script>
+<script src="js/search-results.js"></script>
+<script src="js/detail-drawer.js"></script>
+<script src="js/analytics-dashboard.js"></script>
+<script src="js/portfolio-analysis.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
