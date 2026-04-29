@@ -69,7 +69,7 @@ function isRAFund(f) {
   var dept = f.metadata?.notion_dept_class || f.metadata?.department || '';
   
   // 리얼에셋부문 키워드가 있으면 RA펀드로 간주
-  if (division.includes('리얼에셋') || division.includes('RA')) return true;
+  if (division.includes('리얼에셋') || division.includes('RA') || division.includes('\U000ff87c') || division.includes('󿡼') || division.includes('ºι')) return true;
   
   // 제외 부서 리스트 체크
   return !EXCLUDE_DEPTS.some(function (kw) { return dept.includes(kw); });
@@ -196,6 +196,17 @@ async function ensureAllDataLoaded() {
       var assetRes = responses[1];
 
       allFunds = fundRes.data || [];
+      
+      // Clean garbled organizational data for UI display
+      allFunds.forEach(f => {
+        if (f.metadata) {
+          const div = f.metadata.notion_division_class;
+          if (div && (div.includes('\U000ff87c') || div.includes('󿡼') || div.includes('ºι'))) {
+            f.metadata.notion_division_class = '리얼에셋부문';
+          }
+        }
+      });
+
       allFundAssets = assetRes.data || [];
       window.allFunds = allFunds;
       window.allFundAssets = allFundAssets;

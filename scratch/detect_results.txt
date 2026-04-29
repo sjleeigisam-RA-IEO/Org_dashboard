@@ -1,0 +1,8 @@
+
+Target: '\U000ff87cºι'
+
+Target: 'ڻ2Ʈ4'
+
+--- Deep Fix Test ---
+Deep Fix '\U000ff87cºι': 󿡼ºι
+Deep Fix 'ڻ2Ʈ4': ڻ2Ʈ4

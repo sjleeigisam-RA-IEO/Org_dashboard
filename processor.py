@@ -37,6 +37,9 @@ class CRMProcessor:
             files.extend(glob.glob(os.path.join(self.archive_dir, pattern)))
             
         if not files: return None
+        # 임시 파일(~$ 시작) 제외
+        files = [f for f in files if not os.path.basename(f).startswith('~$')]
+        if not files: return None
         # 모든 검색 결과 중 가장 최근에 생성된 파일 선택
         return max(files, key=os.path.getctime)
 
@@ -188,48 +191,118 @@ class CRMProcessor:
         
         return pd.DataFrame(assets)
 
+    def super_fix_encoding(self, s):
+        if not s or str(s).lower() == 'nan': return ''
+        s = str(s).strip()
+        
+        # 1. Check if already correct
+        if any(k in s for k in ['부문', '파트', '팀', '실', '호', '리얼에셋']): return s
+        
+        # 2. Known mojibake mappings (Observed in target files)
+        mojibake_map = {
+            '\U000ff87c': '리얼에셋',
+            'ºι': '부문',
+            'ι': '부문',
+            'μ': '부문',
+            'ڻ': '부동산',
+            'Ʈ': '팀'
+        }
+        for k, v in mojibake_map.items():
+            if k in s: s = s.replace(k, v)
+        if any(k in s for k in ['부문', '파트', '팀', '실', '호', '리얼에셋']): return s
+
+        # 3. Dynamic recovery (Latin-1 -> CP949)
+        for enc in ['latin-1', 'cp1252', 'iso-8859-1']:
+            try:
+                test_s = s.encode(enc).decode('cp949')
+                if any(k in test_s for k in ['부문', '파트', '팀', '실', '호', '리얼에셋']): return test_s
+            except: pass
+            
+        return s
+
     def process_fund_management(self):
-        file_path = self.get_latest_file("펀드 관리_*.xlsx")
+        file_path = self.get_latest_file("*펀드 관리_*.xlsx")
         if not file_path: return None
         
-        # Force header=0 for better column name capture in [new] files
-        df = pd.read_excel(file_path, header=0)
+        # Use pandas read_excel which handles encoding better in this environment
+        df = pd.read_excel(file_path, header=None)
         
-        # If the first row is just another header or junk, drop it
-        if len(df) > 0 and (str(df.iloc[0, 0]) == str(df.columns[0]) or '기본정보' in str(df.iloc[0, 0])):
-             df = df.iloc[1:].reset_index(drop=True)
-             
-        print(f"Detected Management Columns: {df.columns.tolist()[35:45]}")
-            
-        mapping = {}
-        found_keys = set()
-        for idx, c in enumerate(df.columns):
-            cs = str(c)
-            target = None
-            if idx == 0: target = '펀드코드' # Always index 0
-            elif idx == 53 or '모펀드코드' in cs: target = '모펀드코드'
-            elif ('약칭' in cs or 'Ī' in cs) and '약칭' not in found_keys: target = '약칭'
-            elif ('명칭' in cs or '펀드명' in cs) and '펀드명' not in found_keys: target = '펀드명'
-            elif '부서' in cs and '운용' in cs and '운용부서' not in found_keys: target = '운용부서'
-            elif '부문' in cs and '운용' in cs and '담당부문(운용)' not in found_keys: target = '담당부문(운용)'
-            elif '설정일' in cs and '설정일' not in found_keys: target = '설정일'
-            elif '만기일' in cs and '만기일' not in found_keys: target = '만기일'
-            
-            if target: mapping[c] = target; found_keys.add(target)
-        
-        # Additional standard categorical columns by typical index if not found
-        # Vehicle (5), Sector (12), Strategy (14), Division (37), Dept (38)
-        idx_map = {5: 'Vehicle구분', 12: '투자섹터', 14: '투자전략', 37: '담당부문(운용)', 38: '담당부서(운용)'}
-        for idx, target in idx_map.items():
-             if target not in found_keys and len(df.columns) > idx:
-                  mapping[df.columns[idx]] = target
-                  found_keys.add(target)
+        # 1. 헤더에서 컬럼 인덱스 찾기
+        def find_col_idx(df, keywords):
+            for r in range(min(5, len(df))):
+                row = df.iloc[r].astype(str).tolist()
+                for i, val in enumerate(row):
+                    s = self.super_fix_encoding(val)
+                    if any(k in s for k in keywords): return i
+            return None
 
-        df = df.rename(columns=mapping)
-        date_cols = ['설정일', '만기일']
+        # Standard indices for the latest source format
+        div_idx = 37
+        dept_idx = 38
+        fund_idx = 0
+        
+        # Verification: Check if we can find them dynamically to confirm
+        found_div = find_col_idx(df, ['부문', '담당부문'])
+        found_dept = find_col_idx(df, ['조직', '담당조직', '부서'])
+        if found_div is not None: div_idx = found_div
+        if found_dept is not None: dept_idx = found_dept
+        
+        print(f"DEBUG: Indices - Div: {div_idx}, Dept: {dept_idx}, Fund: {fund_idx}")
+
+        new_cols = [f"col_{i}" for i in range(len(df.columns))]
+        if fund_idx is not None: new_cols[fund_idx] = 'fund_id'
+        if div_idx is not None: new_cols[div_idx] = 'notion_division_class'
+        if dept_idx is not None: new_cols[dept_idx] = 'notion_dept_class'
+        
+        for idx_str, new_name in self.mapping.items():
+            try:
+                idx = int(idx_str)
+                if idx < len(new_cols) and new_cols[idx].startswith('col_'): new_cols[idx] = new_name
+            except: pass
+        df.columns = new_cols
+        
+        if fund_idx is not None:
+            df = df[df['fund_id'].astype(str).str.contains('^[A-Z0-9]+$', na=False, regex=True)].copy()
+        
+        df['raw_div'] = df['notion_division_class'].copy()
+        
+        def clean_division(val):
+            s = str(val).strip()
+            if not s or s.lower() == 'nan': return None
+            
+            # Direct match for known garbled RA division
+            if 'ºι' in s or 'ι' in s or 'μ' in s or '󿡼' in s:
+                return '리얼에셋부문'
+                
+            exclude = ['TF', '파트', '팀', '실', '그룹', '센터', '호']
+            if any(kw in s for kw in exclude): return None
+            
+            if '리얼에셋' in s or 'Real Asset' in s: return '리얼에셋부문'
+            if '부동산' in s: return '부동산부문'
+            if '리츠' in s: return '리츠부문'
+            if '인프라' in s: return '인프라부문'
+            if '증권' in s: return '증권부문'
+            if '부문' in s: return s.split(' ')[0] if ' ' in s else s
+            return None
+
+        df['notion_division_class'] = df['notion_division_class'].apply(clean_division)
+        
+        def merge_dept(row):
+            raw_div = self.super_fix_encoding(row['raw_div'])
+            dept_val = self.super_fix_encoding(row['notion_dept_class'])
+            if pd.isna(row['notion_division_class']) and raw_div:
+                if dept_val and raw_div not in dept_val: return f"{raw_div}, {dept_val}"
+                return raw_div
+            return dept_val
+            
+        df['notion_dept_class'] = df.apply(merge_dept, axis=1)
+        df = df.drop(columns=['raw_div'])
+        
+        date_cols = ['setup_date', 'maturity_date']
         for col in date_cols:
             if col in df.columns:
                 df[col] = pd.to_datetime(df[col], errors='coerce').dt.strftime('%Y-%m-%d')
+        
         return df
 
     def process_market_rent(self, category):
@@ -283,36 +356,19 @@ class CRMProcessor:
         if df_l is not None and '펀드코드' in df_l.columns: ids.update(df_l['펀드코드'].dropna().unique())
         if df_b is not None and '펀드코드' in df_b.columns: ids.update(df_b['펀드코드'].dropna().unique())
         if df_a is not None and '펀드코드' in df_a.columns: ids.update(df_a['펀드코드'].dropna().unique())
-        if df_m is not None and '펀드코드' in df_m.columns: ids.update(df_m['펀드코드'].dropna().unique())
+        if df_m is not None and 'fund_id' in df_m.columns: ids.update(df_m['fund_id'].dropna().unique())
         
         master = pd.DataFrame({'fund_id': list(ids)})
         
         if df_m is not None:
-            # Include all categorical columns for metadata mapping
-            cat_cols = ['Vehicle구분', '모자구분', '법적형태', '펀드분류', '국내/해외', '주요투자지역', '투자섹터', '펀드유형', '투자전략', '운용상태', '담당부문(운용)']
-            essential_cols = ['펀드코드', '펀드명', '약칭', '운용부서', '설정일', '만기일', '모펀드코드']
+            # Categorical columns already renamed to notion_* in process_fund_management
+            cat_cols = [c for c in df_m.columns if c.startswith('notion_')]
+            essential_cols = ['fund_id', 'fund_name', 'short_name', 'setup_date', 'maturity_date', 'parent_fund_id', 'status', 'dept']
             
             all_target_cols = [c for c in essential_cols + cat_cols if c in df_m.columns]
-            # Use drop_duplicates to ensure unique fund IDs from management file
-            df_m_clean = df_m[all_target_cols].drop_duplicates(subset=['펀드코드'])
+            df_m_clean = df_m[all_target_cols].drop_duplicates(subset=['fund_id'])
             
-            master = master.merge(df_m_clean, left_on='fund_id', right_on='펀드코드', how='left')
-            
-            rename_map = {
-                '펀드명': 'fund_name', 
-                '약칭': 'short_name', 
-                '운용부서': 'dept', 
-                '설정일': 'setup_date', 
-                '만기일': 'expiry_date', 
-                '모펀드코드': 'parent_fund_id',
-                '운용상태': 'status'
-            }
-            master = master.rename(columns={k: v for k, v in rename_map.items() if k in master.columns})
-            
-            # Keep Korean categorical columns for metadata mapping in uploader
-            # Only drop Korean columns that were ALREADY renamed to English
-            renamed_korean = [k for k in rename_map.keys() if any(ord(char) > 127 for char in str(k))]
-            cols_to_drop = [c for c in renamed_korean if c in master.columns]
-            master = master.drop(columns=cols_to_drop)
+            # Merge on fund_id
+            master = master.merge(df_m_clean, on='fund_id', how='left')
             
         return master

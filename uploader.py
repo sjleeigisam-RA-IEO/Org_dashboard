@@ -32,11 +32,20 @@ class SupabaseUploader:
         if 'extra_info' in df_clean.columns:
             df_clean['extra_info'] = df_clean['extra_info'].apply(lambda x: x if isinstance(x, (dict, list)) else {})
 
+        # Final cleaning for date strings and empty values
+        for col in df_clean.columns:
+            if 'date' in col.lower():
+                def clean_date(v):
+                    if pd.isna(v) or str(v).strip() == '' or str(v).strip() == 'nan' or '' in str(v):
+                        return None
+                    return str(v).strip()
+                df_clean[col] = df_clean[col].apply(clean_date)
+
         data = []
         for _, row in df_clean.iterrows():
             item = row.to_dict()
             for k, v in item.items():
-                if pd.isna(v):
+                if pd.isna(v) or v == 'nan' or v == '':
                     item[k] = None
                 elif k in int_cols:
                     try: item[k] = int(float(v))
@@ -73,6 +82,11 @@ if __name__ == "__main__":
     if funds is not None:
         try:
             uploader = SupabaseUploader()
+            # Debug: Check funds dataframe structure
+            print(f"Funds columns: {funds.columns.tolist()}")
+            print(f"Funds sample row keys: {funds.iloc[0].keys().tolist()}")
+            print(f"Funds sample notion_division_class: {funds.iloc[0].get('notion_division_class')}")
+
             # extra columns를 metadata 필드에 병합 (DB 컬럼 부재 대응)
             db_cols = ['fund_id', 'short_name', 'fund_name', 'sector', 'asset_name', 'status', 'location', 'setup_date', 'maturity_date', 'dept', 'manager', 'metadata']
             
@@ -80,40 +94,33 @@ if __name__ == "__main__":
                 meta = row.get('metadata', {})
                 if not isinstance(meta, dict): meta = {}
                 
-                # Standard mapping for dashboard
-                mapping = {
-                    'Vehicle구분': 'notion_vehicle_class',
-                    '투자전략': 'notion_investment_strategy_class',
-                    '모자구분': 'notion_parent_child_class',
-                    '법적형태': 'notion_legal_form',
-                    '펀드분류': 'notion_fund_class',
-                    '주요투자지역': 'notion_main_investment_region',
-                    '투자섹터': 'notion_sector_class',
-                    '펀드유형': 'notion_fund_type',
-                    '국내/해외': 'notion_region_class',
-                    '담당부문(운용)': 'notion_division_class',
-                    'expiry_date': 'maturity_date',
-                    'parent_fund_id': 'parent_fund_id'
-                }
-                
+                # Columns starting with 'notion_' are metadata
                 for col in row.index:
-                    if col not in db_cols and pd.notna(row[col]):
-                        key = mapping.get(col, col)
-                        meta[key] = row[col]
+                    if str(col).startswith('notion_') and pd.notna(row[col]):
+                        meta[str(col)] = row[col]
                 
                 # Special case: 'sector' top-level column should be updated if empty
-                if '투자섹터' in row and pd.notna(row['투자섹터']) and (pd.isna(row.get('sector')) or row.get('sector') == ''):
-                    # We can't easily update row['sector'] here as it's a copy in apply,
-                    # but we can ensure it's in metadata for the dashboard
-                    meta['sector'] = row['투자섹터']
+                sector_val = row.get('notion_sector_class')
+                if pd.notna(sector_val) and (pd.isna(row.get('sector')) or row.get('sector') == ''):
+                    meta['sector'] = sector_val
 
                 return meta
 
             funds['metadata'] = funds.apply(merge_extra_to_metadata, axis=1)
             
+            # Debug: Check if metadata is populated
+            non_empty_meta = funds[funds['metadata'].apply(lambda x: len(x) > 0)]
+            print(f"Funds with populated metadata: {len(non_empty_meta)}/{len(funds)}")
+            if len(non_empty_meta) > 0:
+                print(f"Sample metadata: {non_empty_meta.iloc[0]['metadata']}")
+
+            # metadata 필드 생성 후 불필요한 notion_* 컬럼 제거
+            drop_cols = [c for c in funds.columns if c.startswith('notion_') and c not in db_cols]
+            funds_to_upload = funds.drop(columns=drop_cols)
+            
             # DB 스키마에 있는 컬럼만 선택
-            valid_cols = [c for c in db_cols if c in funds.columns]
-            uploader.upload_dataframe(funds[valid_cols], 'funds', on_conflict='fund_id')
+            valid_cols = [c for c in db_cols if c in funds_to_upload.columns]
+            uploader.upload_dataframe(funds_to_upload[valid_cols], 'funds', on_conflict='fund_id')
             if df_l is not None:
                 l_db = df_l.rename(columns={'펀드코드': 'fund_id', '대주_정제': 'lender_clean', '기준일자': 'base_date',
                                             '대출약정금액(원)': 'committed_amt', '대출인출금액(원)': 'drawn_amt', '대출잔여금액(원)': 'remaining_amt',
