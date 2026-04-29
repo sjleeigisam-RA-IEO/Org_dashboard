@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-28T23:53:22.099621",
+  "generated_at": "2026-04-29T06:22:17.463524",
   "count": 1212,
   "top_tokens": [
     {
@@ -3038,7 +3038,7 @@
       "log_name": "2026-04-13 | 안지하 | 인천 효성동 DC 초기 검토",
       "summary": "인천 효성동 DC 개발 접수 후 초기 검토 진행, 입지 이슈로 드롭 검토.",
       "classification_summary": "인천 효성동 DC 개발 접수 후 초기 검토 진행, 입지 이슈로 드롭 검토.",
-      "current_summary_value": "황준식 관련, 인천 효성동 DC 개발 접수 후 초기 검토 진행, 입지 이슈로 드롭 검토.",
+      "current_summary_value": "인천 효성동 DC 개발 접수 후 초기 검토 진행, 입지 이슈로 드롭 검토.",
       "projects": [],
       "tokens": [
         "인천",
@@ -3052,7 +3052,7 @@
         "여부"
       ],
       "token_string": "#인천 #효성동 #개발 #접수 #초기 #입지 #이슈로 #드롭 #여부",
-      "current_token_value": "#황준식 #인천 #효성동 #개발 #접수 #초기 #입지 #이슈로 #드롭 #여부"
+      "current_token_value": "#인천 #효성동 #개발 #접수 #초기 #입지 #이슈로 #드롭 #여부"
     },
     {
       "id": "3448ced4-3c47-8137-b326-e67700de165d",
@@ -7605,7 +7605,7 @@
       "log_name": "2026-03-27 | 안지하 | 인천 효성동 DC 초기 검토",
       "summary": "인천 효성동 DC 개발 접수 후 초기 검토 진행.",
       "classification_summary": "인천 효성동 DC 개발 접수 후 초기 검토 진행.",
-      "current_summary_value": "황준식 관련, 인천 효성동 DC 개발 접수 후 초기 검토 진행.",
+      "current_summary_value": "인천 효성동 DC 개발 접수 후 초기 검토 진행.",
       "projects": [],
       "tokens": [
         "인천",
@@ -7615,7 +7615,7 @@
         "초기"
       ],
       "token_string": "#인천 #효성동 #개발 #접수 #초기",
-      "current_token_value": "#황준식 #인천 #효성동 #개발 #접수 #초기"
+      "current_token_value": "#인천 #효성동 #개발 #접수 #초기"
     },
     {
       "id": "3448ced4-3c47-8198-830d-ce776eca4ec0",
