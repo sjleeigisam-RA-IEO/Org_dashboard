@@ -155,9 +155,9 @@ def build_funds(base, classifier, aum, asset_lookup):
 
     asset_lookup = asset_lookup[valid_fund_rows(asset_lookup)].copy()
     asset_summary = asset_lookup.groupby("펀드코드", dropna=True).agg(
-        notion_base_asset_class=("기초자산", first_non_empty),
-        notion_asset_nature_class=("자산성격", first_non_empty),
-        notion_business_stage_class=("사업단계", first_non_empty),
+        base_asset_class=("기초자산", first_non_empty),
+        asset_nature_class=("자산성격", first_non_empty),
+        business_stage_class=("사업단계", first_non_empty),
     ).reset_index()
     asset_summary["fund_id"] = asset_summary["펀드코드"].apply(clean_str)
 
@@ -187,9 +187,9 @@ def build_funds(base, classifier, aum, asset_lookup):
         asset_summary[
             [
                 "fund_id",
-                "notion_base_asset_class",
-                "notion_asset_nature_class",
-                "notion_business_stage_class",
+                "base_asset_class",
+                "asset_nature_class",
+                "business_stage_class",
             ]
         ],
         on="fund_id",
@@ -206,10 +206,13 @@ def build_funds(base, classifier, aum, asset_lookup):
                 "모자구분": "parent_child_type",
                 "법적형태": "legal_form",
                 "펀드분류": "fund_class",
+                "국내/해외": "domestic_overseas",
                 "주요투자지역": "primary_region",
+                "투자섹터": "investment_sector",
                 "펀드유형": "fund_type",
                 "투자전략": "investment_strategy",
                 "펀드형태": "fund_shape",
+                "멀티클래스구분": "multi_class_type",
                 "설정환매방식": "subscription_redemption_type",
                 "개발여부": "is_development",
                 "위탁운용여부": "is_delegated_management",
@@ -244,6 +247,18 @@ def build_funds(base, classifier, aum, asset_lookup):
         metadata["fund_base_source"] = "펀드 관리_20260424.xlsx"
         if clean_str(row.get("fund_id")) in classifier.index:
             metadata["classification_source"] = "[new]펀드 관리_20260428.xlsx"
+            metadata["fund_classification_source"] = "[new]펀드 관리_20260428.xlsx"
+
+        for key, value in {
+            "base_asset_class": row.get("base_asset_class"),
+            "asset_nature_class": row.get("asset_nature_class"),
+            "business_stage_class": row.get("business_stage_class"),
+        }.items():
+            cleaned = clean_str(value)
+            if cleaned is not None:
+                metadata[key] = cleaned
+        if any(metadata.get(k) for k in ("base_asset_class", "asset_nature_class", "business_stage_class")):
+            metadata["asset_classification_source"] = "[new]투자 자산 조회_20260428.xlsx"
 
         amount_fields = {
             "aum_base_date": row.get("기준일자"),
@@ -275,10 +290,12 @@ def build_funds(base, classifier, aum, asset_lookup):
             "parent_fund_id": None,
             "metadata": metadata,
             "project_mission_name": clean_str(row.get("자산명")),
-            "notion_base_asset_class": clean_str(row.get("notion_base_asset_class")),
-            "notion_asset_nature_class": clean_str(row.get("notion_asset_nature_class")),
+            # Legacy physical column names kept for dashboard/query compatibility.
+            # Values are sourced from [new]투자 자산 조회_20260428.xlsx, not Notion.
+            "notion_base_asset_class": clean_str(row.get("base_asset_class")),
+            "notion_asset_nature_class": clean_str(row.get("asset_nature_class")),
             "notion_holding_type_class": clean_str(row.get("모자구분")),
-            "notion_business_stage_class": clean_str(row.get("notion_business_stage_class")),
+            "notion_business_stage_class": clean_str(row.get("business_stage_class")),
             "notion_investment_strategy_class": clean_str(row.get("투자전략")),
             "notion_vehicle_class": clean_str(row.get("Vehicle구분")),
         }

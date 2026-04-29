@@ -7,10 +7,17 @@ ADD COLUMN IF NOT EXISTS notion_business_stage_class TEXT,
 ADD COLUMN IF NOT EXISTS notion_investment_strategy_class TEXT,
 ADD COLUMN IF NOT EXISTS notion_vehicle_class TEXT;
 
-COMMENT ON COLUMN public.funds.project_mission_name IS 'Commonly used project/mission name synced from Notion';
-COMMENT ON COLUMN public.funds.notion_base_asset_class IS 'Notion [분류] 기초자산_작업중';
-COMMENT ON COLUMN public.funds.notion_asset_nature_class IS 'Notion [분류] 자산성격_작업중';
-COMMENT ON COLUMN public.funds.notion_holding_type_class IS 'Notion [분류] 보유형태_작업중';
-COMMENT ON COLUMN public.funds.notion_business_stage_class IS 'Notion [분류] 사업단계_작업중';
-COMMENT ON COLUMN public.funds.notion_investment_strategy_class IS 'Notion [분류] 투자전략_작업중';
-COMMENT ON COLUMN public.funds.notion_vehicle_class IS 'Notion [분류] 비히클_작업중';
+COMMENT ON COLUMN public.funds.project_mission_name IS
+  'Commonly used project/mission name synced from Project & Mission CSV';
+COMMENT ON COLUMN public.funds.notion_base_asset_class IS
+  'Legacy column name. Source: [new]투자 자산 조회_20260428.xlsx 기초자산';
+COMMENT ON COLUMN public.funds.notion_asset_nature_class IS
+  'Legacy column name. Source: [new]투자 자산 조회_20260428.xlsx 자산성격';
+COMMENT ON COLUMN public.funds.notion_holding_type_class IS
+  'Legacy column name. Source: [new]펀드 관리_20260428.xlsx 모자구분';
+COMMENT ON COLUMN public.funds.notion_business_stage_class IS
+  'Legacy column name. Source: [new]투자 자산 조회_20260428.xlsx 사업단계';
+COMMENT ON COLUMN public.funds.notion_investment_strategy_class IS
+  'Legacy column name. Source: [new]펀드 관리_20260428.xlsx 투자전략';
+COMMENT ON COLUMN public.funds.notion_vehicle_class IS
+  'Legacy column name. Source: [new]펀드 관리_20260428.xlsx Vehicle구분';
