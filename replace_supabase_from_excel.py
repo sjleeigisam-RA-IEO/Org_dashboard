@@ -151,13 +151,21 @@ def build_asset_manage_index(asset_manage):
     return by_name_addr, by_name
 
 
-def load_geocoding_cache():
-    for filename in ["geocoding_cache.json", "_archive/geocoding_cache.json"]:
+def load_json_cache(filenames):
+    for filename in filenames:
         path = BASE_DIR / filename
         if path.exists():
             with open(path, "r", encoding="utf-8") as f:
                 return json.load(f)
     return {}
+
+
+def load_geocoding_cache():
+    return load_json_cache(["geocoding_cache.json", "_archive/geocoding_cache.json"])
+
+
+def load_building_cache():
+    return load_json_cache(["building_cache.json", "_archive/building_cache.json"])
 
 
 def build_funds(fund_df, aum_df, asset_lookup):
@@ -335,6 +343,7 @@ def build_fund_assets(asset_lookup, asset_manage, valid_fund_ids):
 
     by_name_addr, by_name = build_asset_manage_index(asset_manage)
     geo_cache = load_geocoding_cache()
+    building_cache = load_building_cache()
 
     records = []
     for _, row in asset_lookup.iterrows():
@@ -342,6 +351,9 @@ def build_fund_assets(asset_lookup, asset_manage, valid_fund_ids):
         addr = clean_str(row.get("전체주소(시/도, 구/군 포함)"))
         manage = by_name_addr.get((name, addr), {}) or by_name.get(name, {})
         geo = geo_cache.get(addr) if addr else None
+        building = building_cache.get(addr, {}) if addr else {}
+        if not isinstance(building, dict):
+            building = {}
         lat = lng = None
         if isinstance(geo, list) and len(geo) >= 2:
             lat, lng = geo[0], geo[1]
@@ -399,9 +411,23 @@ def build_fund_assets(asset_lookup, asset_manage, valid_fund_ids):
         metadata.update(manage_meta)
         if addr:
             metadata["address"] = addr
+        if building:
+            metadata["building_ledger_source"] = "building_cache.json"
+            metadata["building_ledger"] = {k: json_safe(v) for k, v in building.items()}
+        pnu = clean_str(building.get("pnu"))
+        if pnu:
+            metadata["pnu"] = pnu
 
-        completion_date = clean_date(manage.get("준공(예정)일")) or clean_date(row.get("준공(예정)일"))
-        gfa = clean_num(row.get("연면적(m²)")) or clean_num(manage.get("연면적(m²)"))
+        completion_date = (
+            clean_date(manage.get("준공(예정)일"))
+            or clean_date(row.get("준공(예정)일"))
+            or clean_date(building.get("completion_date"))
+        )
+        gfa = (
+            clean_num(row.get("연면적(m²)"))
+            or clean_num(manage.get("연면적(m²)"))
+            or clean_num(building.get("gfa"))
+        )
         record = {
             "fund_id": clean_str(row.get("fund_id")),
             "asset_name": name,
@@ -413,16 +439,20 @@ def build_fund_assets(asset_lookup, asset_manage, valid_fund_ids):
             "metadata": metadata,
             "lat": clean_num(lat),
             "lng": clean_num(lng),
-            "site_area": clean_num(manage.get("토지면적(㎡)")),
+            "site_area": clean_num(manage.get("토지면적(㎡)")) or clean_num(building.get("site_area")),
             "scr": clean_num(manage.get("매입당시 Cap rate(%)")),
-            "far": clean_num(manage.get("전용률")),
-            "main_usage": clean_str(row.get("기초자산")) or clean_str(manage.get("기초자산")),
-            "structure": None,
-            "floors_up": clean_int(manage.get("건물규모(지상 층수)")),
-            "floors_down": clean_int(manage.get("건물규모(지하 층수)")),
+            "far": clean_num(manage.get("전용률")) or clean_num(building.get("far")),
+            "main_usage": (
+                clean_str(row.get("기초자산"))
+                or clean_str(manage.get("기초자산"))
+                or clean_str(building.get("main_usage"))
+            ),
+            "structure": clean_str(building.get("structure")),
+            "floors_up": clean_int(manage.get("건물규모(지상 층수)")) or clean_int(building.get("floors_up")),
+            "floors_down": clean_int(manage.get("건물규모(지하 층수)")) or clean_int(building.get("floors_down")),
             "elevators": None,
             "parking": clean_int(manage.get("주차대수")),
-            "height": None,
+            "height": clean_num(building.get("height")),
             "gfa": gfa,
         }
         records.append(record)
