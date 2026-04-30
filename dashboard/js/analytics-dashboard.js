@@ -21,9 +21,7 @@ async function renderAnalytics() {
     window.lastTargetFunds = filteredFunds;
     
     const snapshotDate = new Date('2026-03-31');
-    const activeFunds = filteredFunds.filter(f => {
-        return getFundAumStatus(f) === '운용' && isFundIncludedForCurrentMetric(f) && (currentOrgScope === 'all' || isRAFund(f));
-    });
+    const activeFunds = filteredFunds.filter(isActiveAumSnapshotFund);
 
     const aumMetric = getAumBasisMetric();
     const aumConfig = getAumMetricConfig(aumMetric);
@@ -37,9 +35,7 @@ async function renderAnalytics() {
     const lnVal = formatNumber(totalLoan);
     const otVal = formatNumber(totalOther);
 
-    const activeAssetFunds = filteredFunds.filter(f => {
-        return getFundAumStatus(f) === '운용' && isAumCountedFund(f) && (currentOrgScope === 'all' || isRAFund(f));
-    });
+    const activeAssetFunds = filteredFunds.filter(isActiveAumSnapshotFund);
     const activeAssetRecords = getActiveAssetRecords(activeAssetFunds);
     const domesticAssetsCount = activeAssetRecords.filter(isDomesticAssetRecord).length;
     const overseasAssetsCount = activeAssetRecords.filter(isOverseasAssetRecord).length;
@@ -84,6 +80,7 @@ async function renderAnalytics() {
               <div>
                 <div class="kpi-label" style="margin-bottom:16px;">운용 기초자산</div>
                 <div class="kpi-value" style="font-size:48px; font-weight:900; color:var(--text);">${activeAssetRecords.length}<span style="font-size:18px; font-weight:500; margin-left:4px; color:var(--muted);">개</span></div>
+                <div style="margin-top:10px; color:#94a3b8; font-size:11px; line-height:1.5;">주소/PNU 확인 실물 부동산 기준<br>재간접, 증권, 포트폴리오 묶음 제외</div>
               </div>
               <div style="margin-top:24px; padding-top:20px; border-top:1px dashed #cbd5e1; display:grid; grid-template-columns: repeat(${otherAssetsCount > 0 ? 3 : 2}, 1fr); gap:12px;">
                 <div class="kpi-sub">
@@ -258,17 +255,9 @@ function renderNetGrowth(chartId) {
         else if (cat === '2026 (Proj.)') snapshotDate = new Date('2026-12-31');
         else snapshotDate = new Date(`${cat}-12-31`);
 
-        const activeInYear = targetFunds.filter(f => {
-            if (!isFundIncludedForCurrentMetric(f)) return false;
-            const setupStr = getFundSetupDate(f);
-            const setup = setupStr ? new Date(setupStr) : null;
-            const endStr = getFundEndDate(f);
-            const end = endStr ? new Date(endStr) : new Date('2099-12-31');
-            if (cat.startsWith('2026') && getFundAumStatus(f) !== '운용') return false;
-            return setup && setup <= snapshotDate && end > snapshotDate;
-        });
+        const activeInYear = getSnapshotFunds(targetFunds, cat, snapshotDate);
 
-        if (currentChartMetric === 'count') return groupItems(activeInYear, '').length;
+        if (currentChartMetric === 'count') return getActiveAssetRecords(activeInYear).length;
         return activeInYear.reduce((sum, f) => sum + getFundAmountWon(f, getMetricColumn(currentChartMetric)), 0);
     });
 
@@ -351,6 +340,7 @@ function renderHistory(chartId) {
 
     const domesticSeries = [];
     const overseasSeries = [];
+    const otherSeries = [];
 
     categories.forEach(cat => {
         let snap;
@@ -358,36 +348,38 @@ function renderHistory(chartId) {
         else if (cat === '2026 (Proj.)') snap = new Date('2026-12-31');
         else snap = new Date(`${cat}-12-31`);
 
-        const active = targetFunds.filter(f => {
-            if (!isFundIncludedForCurrentMetric(f)) return false;
-            const setupStr = getFundSetupDate(f);
-            const s = setupStr ? new Date(setupStr) : null;
-            const endStr = getFundEndDate(f);
-            const e = endStr ? new Date(endStr) : new Date('2099-12-31');
-            if (cat.startsWith('2026') && getFundAumStatus(f) !== '운용') return false;
-            return s && s <= snap && e > snap;
-        });
+        const active = getSnapshotFunds(targetFunds, cat, snap);
 
         const overseas = active.filter(isOverseasFund);
         const domestic = active.filter(f => !isOverseasFund(f));
 
         if (currentChartMetric === 'count') {
-            domesticSeries.push(groupItems(domestic, '', 'count').length);
-            overseasSeries.push(groupItems(overseas, '', 'count').length);
+            const activeAssets = getActiveAssetRecords(active);
+            const domesticAssets = activeAssets.filter(isDomesticAssetRecord);
+            const overseasAssets = activeAssets.filter(isOverseasAssetRecord);
+            domesticSeries.push(domesticAssets.length);
+            overseasSeries.push(overseasAssets.length);
+            otherSeries.push(Math.max(0, activeAssets.length - domesticAssets.length - overseasAssets.length));
         } else {
             const column = getMetricColumn(currentChartMetric);
-            domesticSeries.push(Math.round(domestic.reduce((sum, f) => sum + getFundAmountWon(f, column), 0) / 1e11) / 10);
-            overseasSeries.push(Math.round(overseas.reduce((sum, f) => sum + getFundAmountWon(f, column), 0) / 1e11) / 10);
+            domesticSeries.push(domestic.reduce((sum, f) => sum + getFundAmountWon(f, column), 0) / 1e12);
+            overseasSeries.push(overseas.reduce((sum, f) => sum + getFundAmountWon(f, column), 0) / 1e12);
+            otherSeries.push(0);
         }
     });
 
+    const chartSeries = [
+        { name: '국내', data: domesticSeries },
+        { name: '해외', data: overseasSeries }
+    ];
+    if (currentChartMetric === 'count' && otherSeries.some(v => v > 0)) {
+        chartSeries.push({ name: '기타', data: otherSeries });
+    }
+
     const options = {
-        series: [
-            { name: '국내', data: domesticSeries },
-            { name: '해외', data: overseasSeries }
-        ],
+        series: chartSeries,
         chart: { type: 'bar', height: 450, stacked: true, toolbar: { show: false }, fontFamily: 'Pretendard Variable' },
-        colors: ['#4f46e5', '#38bdf8'],
+        colors: currentChartMetric === 'count' && chartSeries.length === 3 ? ['#4f46e5', '#38bdf8', '#94a3b8'] : ['#4f46e5', '#38bdf8'],
         plotOptions: {
             bar: {
                 columnWidth: '60%',
@@ -397,33 +389,35 @@ function renderHistory(chartId) {
                         enabled: true,
                         offsetY: -10,
                         style: { fontSize: '11px', fontWeight: 900, colors: ['#334155'] },
-                        formatter: val => val.toLocaleString() + (currentChartMetric === 'count' ? '개' : '조')
+                        formatter: val => formatHistoryChartValue(val)
                     }
                 }
             }
         },
         dataLabels: { enabled: false },
         xaxis: { categories: categories, labels: { style: { fontSize: '10px' } } },
-        yaxis: { labels: { formatter: val => val + (currentChartMetric === 'count' ? '개' : '조') } },
+        yaxis: { labels: { formatter: val => formatHistoryChartValue(val) } },
         grid: { borderColor: '#f1f5f9', strokeDashArray: 4 },
         tooltip: {
             shared: true,
             intersect: false,
             custom: function ({ series, dataPointIndex, w }) {
-                const unit = currentChartMetric === 'count' ? ' 개' : ' 조원';
                 const label = w.globals.labels[dataPointIndex] || w.globals.categoryLabels[dataPointIndex] || '';
-                const order = [1, 0];
+                const order = currentChartMetric === 'count' && series.length === 3 ? [2, 1, 0] : [1, 0];
                 const rows = order.map(idx => {
                     const name = w.globals.seriesNames[idx];
                     const value = series[idx][dataPointIndex] || 0;
                     const color = w.globals.colors[idx];
+                    const formattedValue = currentChartMetric === 'count'
+                        ? `${value.toLocaleString()} 개`
+                        : formatTrillionChartLabel(value);
                     return `
                         <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:4px 0;">
                             <span style="display:flex; align-items:center; gap:8px;">
                                 <span style="width:11px; height:11px; border-radius:50%; background:${color}; display:inline-block;"></span>
                                 ${name}:
                             </span>
-                            <strong>${value.toLocaleString()}${unit}</strong>
+                            <strong>${formattedValue}</strong>
                         </div>
                     `;
                 }).join('');
@@ -445,6 +439,20 @@ function renderHistory(chartId) {
     }
 }
 
+function formatTrillionChartLabel(value) {
+    const num = Number(value) || 0;
+    const sign = num < 0 ? '-' : '';
+    const floored = Math.floor(Math.abs(num) * 100) / 100;
+    const oneDecimal = Math.round(floored * 10) / 10 === floored;
+    const fractionDigits = Number.isInteger(floored) ? 0 : (oneDecimal ? 1 : 2);
+    return `${sign}${floored.toLocaleString(undefined, { minimumFractionDigits: fractionDigits, maximumFractionDigits: 2 })}조`;
+}
+
+function formatHistoryChartValue(value) {
+    if (currentChartMetric === 'count') return `${Math.round(value).toLocaleString()}개`;
+    return formatTrillionChartLabel(value);
+}
+
 function renderDrillDown(year, category, metric) {
     const drillPanel = document.getElementById('drillDownResult');
     if (!drillPanel) return;
@@ -452,24 +460,114 @@ function renderDrillDown(year, category, metric) {
 }
 
 function isFundIncludedForCurrentMetric(fund) {
-    if (currentChartMetric === 'count') return isAumCountedFund(fund);
-    if (getAumBasisMetric() === 'invested_aum') return true;
     return isAumCountedFund(fund);
+}
+
+function getFundAumSourceStatus(fund) {
+    return cleanAssetText(fund?.metadata?.aum_status);
+}
+
+function isActiveAumSnapshotFund(fund) {
+    return getFundAumSourceStatus(fund) === '운용'
+        && isFundIncludedForCurrentMetric(fund)
+        && (currentOrgScope === 'all' || isRAFund(fund));
+}
+
+function getSnapshotFunds(targetFunds, category, snapshotDate) {
+    if (category === '2026 (Actual)') {
+        return targetFunds.filter(isActiveAumSnapshotFund);
+    }
+
+    return targetFunds.filter(f => {
+        if (!isFundIncludedForCurrentMetric(f)) return false;
+        if (currentOrgScope === 'ra' && !isRAFund(f)) return false;
+        const setupStr = getFundSetupDate(f);
+        const setup = setupStr ? new Date(setupStr) : null;
+        const endStr = getFundEndDate(f);
+        const end = endStr ? new Date(endStr) : new Date('2099-12-31');
+        if (category.startsWith('2026') && getFundAumSourceStatus(f) !== '운용') return false;
+        return setup && setup <= snapshotDate && end > snapshotDate;
+    });
 }
 
 function getActiveAssetRecords(activeFunds) {
     const activeFundIds = new Set((activeFunds || []).map(f => f.fund_id).filter(Boolean));
+    const activeFundById = new Map((activeFunds || []).map(f => [f.fund_id, f]));
     const unique = new Map();
     (window.allFundAssets || []).forEach(asset => {
         if (!activeFundIds.has(asset.fund_id)) return;
-        const metadata = asset.metadata || {};
-        const name = String(asset.asset_name || '').trim();
-        const address = String(asset.address || metadata.address || '').trim();
-        const fallback = metadata.asset_code || `${asset.fund_id || ''}|${name}`;
-        const key = (name || address) ? `${name}|${address}` : fallback;
+        const fund = activeFundById.get(asset.fund_id);
+        if (isExcludedPhysicalAssetRecord(asset, fund)) return;
+        const key = getPhysicalAssetKey(asset);
         if (key && !unique.has(key)) unique.set(key, asset);
     });
     return Array.from(unique.values());
+}
+
+function cleanAssetText(value) {
+    const text = String(value || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+    return isValidKey(text) ? text : '';
+}
+
+function normalizePhysicalAddress(address) {
+    let text = cleanAssetText(address).toLowerCase();
+    if (!text) return '';
+    text = text.split(',')[0].trim();
+    [' 외 ', ' 및 '].forEach(marker => {
+        if (text.includes(marker)) text = text.split(marker)[0].trim();
+    });
+    return text;
+}
+
+function isSpecificPhysicalAddress(address) {
+    const text = normalizePhysicalAddress(address);
+    if (!text) return false;
+    const broadLocations = new Set(['대한민국', '북미', '유럽', '글로벌', '아시아', '미국', '영국', '네덜란드', '일본', '호주', '프랑스', '이탈리아', '스페인']);
+    if (broadLocations.has(text)) return false;
+    return text.length >= 8 && (/\d/.test(text) || text.split(' ').length >= 3);
+}
+
+function getPhysicalAssetKey(asset) {
+    const metadata = asset?.metadata || {};
+    const pnu = cleanAssetText(metadata.pnu);
+    if (pnu) return `pnu:${pnu}`;
+
+    const address = cleanAssetText(asset?.address || metadata.address);
+    if (!isSpecificPhysicalAddress(address)) return null;
+    return `addr:${normalizePhysicalAddress(address)}`;
+}
+
+function isExcludedPhysicalAssetRecord(asset, fund) {
+    const assetMeta = asset?.metadata || {};
+    const fundMeta = fund?.metadata || {};
+    const text = [
+        asset?.asset_name,
+        asset?.asset_type,
+        asset?.address,
+        assetMeta.asset_name,
+        assetMeta.asset_type,
+        assetMeta.investment_sector,
+        assetMeta.fund_type,
+        assetMeta.investment_strategy,
+        assetMeta.base_asset_class,
+        assetMeta.asset_nature_class,
+        fund?.fund_name,
+        fundMeta.investment_sector,
+        fundMeta.fund_type,
+        fundMeta.investment_strategy,
+        fundMeta.base_asset_class,
+        fundMeta.asset_nature_class
+    ].map(cleanAssetText).filter(Boolean).join(' ').toLowerCase();
+
+    return [
+        '재간접',
+        '펀드오브펀드',
+        'fund of fund',
+        'fof',
+        '지분증권',
+        '포트폴리오',
+        'portfolio'
+    ].some(term => text.includes(term));
 }
 
 function getAssetLocationText(asset) {
