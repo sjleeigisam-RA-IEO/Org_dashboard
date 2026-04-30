@@ -215,6 +215,14 @@ function getFundStatus(fund) {
   return fund?.status || fund?.metadata?.status || '';
 }
 
+function getFundAumStatus(fund) {
+  return fund?.metadata?.aum_status || getFundStatus(fund);
+}
+
+function isAumCountedFund(fund) {
+  return getFieldValue(fund, 'parent_child_type') !== '자펀드';
+}
+
 function getFundSector(fund) {
   return getFieldValue(fund, 'investment_sector') || getFieldValue(fund, 'sector') || '미분류';
 }
@@ -324,6 +332,8 @@ window.toNumber = toNumber;
 window.metadataAmountToWon = metadataAmountToWon;
 window.getFundAmountWon = getFundAmountWon;
 window.getFundStatus = getFundStatus;
+window.getFundAumStatus = getFundAumStatus;
+window.isAumCountedFund = isAumCountedFund;
 window.getFundSector = getFundSector;
 window.getFundRegion = getFundRegion;
 window.getSearchTerms = getSearchTerms;

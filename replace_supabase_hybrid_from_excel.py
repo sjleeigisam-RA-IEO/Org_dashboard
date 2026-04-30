@@ -50,6 +50,8 @@ CLASSIFICATION_COLUMNS = [
 def find_workbooks():
     sources = {}
     for path in ARCHIVE_DIR.glob("*.xlsx"):
+        if path.name.startswith("~$"):
+            continue
         try:
             head = pd.read_excel(path, header=None, nrows=1, dtype=object)
         except Exception:
@@ -61,7 +63,9 @@ def find_workbooks():
             sources["fund_base"] = path
         elif "20260428" in path.name and col_count == 59 and first_values == ["펀드코드", "펀드명", "약칭"]:
             sources["fund_class"] = path
-        elif "20260429" in path.name and col_count == 36:
+        elif "20260427" in path.name and col_count in (33, 36):
+            sources["aum"] = path
+        elif "aum" not in sources and "20260429" in path.name and col_count == 36:
             sources["aum"] = path
         elif "20260428" in path.name and col_count == 41 and first_values == ["펀드코드", "약칭", "펀드명"]:
             sources["asset_lookup"] = path
@@ -152,6 +156,9 @@ def build_funds(base, classifier, aum, asset_lookup):
     aum = aum[valid_fund_rows(aum)].copy()
     aum["fund_id"] = aum["펀드코드"].apply(clean_str)
     aum = aum.drop_duplicates(subset=["fund_id"], keep="last")
+    for column in ["수익자", "대주"]:
+        if column not in aum.columns:
+            aum[column] = None
 
     asset_lookup = asset_lookup[valid_fund_rows(asset_lookup)].copy()
     asset_summary = asset_lookup.groupby("펀드코드", dropna=True).agg(
@@ -165,6 +172,7 @@ def build_funds(base, classifier, aum, asset_lookup):
         aum[
             [
                 "fund_id",
+                "운용상태",
                 "기준일자",
                 "기준가",
                 "순자산총액",
@@ -283,6 +291,10 @@ def build_funds(base, classifier, aum, asset_lookup):
             cleaned = clean_date(value) if key.endswith("_date") else clean_num(value)
             if cleaned is not None:
                 metadata[key] = cleaned
+        aum_status = clean_str(row.get("운용상태_aum"))
+        if aum_status is not None:
+            metadata["aum_status"] = aum_status
+            metadata["aum_source"] = "펀드 AUM 관리_20260427.xlsx"
 
         record = {
             "fund_id": clean_str(row.get("fund_id")),

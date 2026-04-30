@@ -22,8 +22,7 @@ async function renderAnalytics() {
     
     const snapshotDate = new Date('2026-03-31');
     const activeFunds = filteredFunds.filter(f => {
-        // 사용자 요청: 약정금액 기준 모든 운용 펀드 합산 (만기일 제약 완화)
-        return getFundStatus(f) === '운용' && (currentOrgScope === 'all' || isRAFund(f));
+        return getFundAumStatus(f) === '운용' && isAumCountedFund(f) && (currentOrgScope === 'all' || isRAFund(f));
     });
 
     const aumMetric = getAumBasisMetric();
@@ -174,12 +173,14 @@ function renderNetChangeDetails(label) {
     }
 
     const newlySetup = targetFunds.filter(f => {
+        if (!isAumCountedFund(f)) return false;
         const setupStr = getFundSetupDate(f);
         const setup = setupStr ? new Date(setupStr) : null;
         return setup && setup >= startDate && setup <= endDate;
     });
 
     const terminated = targetFunds.filter(f => {
+        if (!isAumCountedFund(f)) return false;
         const end = getFundEndDate(f);
         const d = end ? new Date(end) : null;
         return d && d >= startDate && d <= endDate;
@@ -242,11 +243,12 @@ function renderNetGrowth(chartId) {
         else snapshotDate = new Date(`${cat}-12-31`);
 
         const activeInYear = targetFunds.filter(f => {
+            if (!isAumCountedFund(f)) return false;
             const setupStr = getFundSetupDate(f);
             const setup = setupStr ? new Date(setupStr) : null;
             const endStr = getFundEndDate(f);
             const end = endStr ? new Date(endStr) : new Date('2099-12-31');
-            if (cat.startsWith('2026') && getFundStatus(f) !== '운용') return false;
+            if (cat.startsWith('2026') && getFundAumStatus(f) !== '운용') return false;
             return setup && setup <= snapshotDate && end > snapshotDate;
         });
 
@@ -341,11 +343,12 @@ function renderHistory(chartId) {
         else snap = new Date(`${cat}-12-31`);
 
         const active = targetFunds.filter(f => {
+            if (!isAumCountedFund(f)) return false;
             const setupStr = getFundSetupDate(f);
             const s = setupStr ? new Date(setupStr) : null;
             const endStr = getFundEndDate(f);
             const e = endStr ? new Date(endStr) : new Date('2099-12-31');
-            if (cat.startsWith('2026') && getFundStatus(f) !== '운용') return false;
+            if (cat.startsWith('2026') && getFundAumStatus(f) !== '운용') return false;
             return s && s <= snap && e > snap;
         });
 

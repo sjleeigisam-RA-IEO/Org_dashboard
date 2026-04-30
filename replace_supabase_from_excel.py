@@ -16,13 +16,15 @@ FUND_ID_RE = re.compile(r"^[A-Z0-9]+$")
 
 
 def find_source_files():
-    files = list(ARCHIVE_DIR.glob("[[]new]*.xlsx"))
+    files = [path for path in ARCHIVE_DIR.glob("*.xlsx") if not path.name.startswith("~$")]
     sources = {}
     for path in files:
         head = pd.read_excel(path, header=None, nrows=1, dtype=object)
         col_count = head.shape[1]
         first_values = [str(v).strip() for v in head.iloc[0, :3].tolist()]
-        if col_count == 36 and first_values[:2] == ["펀드정보", "펀드정보"]:
+        if "20260427" in path.name and col_count in (33, 36):
+            sources["aum"] = path
+        elif "aum" not in sources and col_count == 36 and first_values[:2] == ["펀드정보", "펀드정보"]:
             sources["aum"] = path
         elif col_count == 59 and first_values[:3] == ["펀드코드", "펀드명", "약칭"]:
             sources["fund"] = path
@@ -176,6 +178,9 @@ def build_funds(fund_df, aum_df, asset_lookup):
     aum_df = aum_df[valid_fund_rows(aum_df)].copy()
     aum_df["fund_id"] = aum_df["펀드코드"].apply(clean_str)
     aum_df = aum_df.drop_duplicates(subset=["fund_id"], keep="last")
+    for column in ["수익자", "대주"]:
+        if column not in aum_df.columns:
+            aum_df[column] = None
 
     asset_lookup = asset_lookup[valid_fund_rows(asset_lookup)].copy()
     asset_summary = asset_lookup.groupby("펀드코드", dropna=True).agg(
@@ -189,6 +194,7 @@ def build_funds(fund_df, aum_df, asset_lookup):
         aum_df[
             [
                 "fund_id",
+                "운용상태",
                 "기준일자",
                 "기준가",
                 "순자산총액",
@@ -297,6 +303,10 @@ def build_funds(fund_df, aum_df, asset_lookup):
                 cleaned = clean_num(value)
             if cleaned is not None:
                 metadata[key] = cleaned
+        aum_status = clean_str(row.get("운용상태_aum"))
+        if aum_status is not None:
+            metadata["aum_status"] = aum_status
+            metadata["aum_source"] = "펀드 AUM 관리_20260427.xlsx"
 
         sector = clean_str(row.get("투자섹터"))
         vehicle = clean_str(row.get("Vehicle구분"))
