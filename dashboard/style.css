@@ -394,7 +394,7 @@ body {
 .filter-group-header:hover { background: #f1f5f9; }
 .filter-group-header::after { content: '▾'; font-size: 10px; color: var(--muted); transition: transform 0.2s; }
 .filter-group.active .filter-group-header::after { transform: rotate(180deg); }
-.filter-group-content { padding: 16px; display: none; background: white; grid-template-columns: 1fr 1fr; gap: 20px; }
+.filter-group-content { padding: 14px 16px 16px; display: none; background: white; grid-template-columns: 1fr 1fr; column-gap: 20px; row-gap: 12px; }
 .filter-group.active .filter-group-content { display: grid; border-top: 1px solid #f1f5f9; }
 
 @media (max-width: 1200px) {

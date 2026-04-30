@@ -5,6 +5,41 @@ function normalizeAnalysisFilterValue(value) {
     return invalid.has(text.toLowerCase()) ? null : text;
 }
 
+const BASE_ASSET_FILTER_OPTIONS = [
+    { label: '오피스', terms: ['오피스'] },
+    { label: '물류센터', terms: ['물류'] },
+    { label: '리테일', terms: ['리테일', '상업시설'] },
+    { label: '호텔', terms: ['호텔'] },
+    { label: '주거', terms: ['주거', '공동주택', '오피스텔'] },
+    { label: '데이터센터', terms: ['데이터센터', 'IDC'] },
+    { label: 'NPL', terms: ['NPL'] }
+];
+
+function getAnalysisFilterTokens(key, value) {
+    const text = normalizeAnalysisFilterValue(value);
+    if (!text) return [];
+
+    if (key === 'base_asset_class') {
+        const matched = BASE_ASSET_FILTER_OPTIONS
+            .filter(option => option.terms.some(term => text.toLowerCase().includes(term.toLowerCase())))
+            .map(option => option.label);
+        if (matched.length > 0) return matched;
+    }
+
+    return text
+        .split(/[,，、;|/]+/)
+        .map(normalizeAnalysisFilterValue)
+        .filter(Boolean);
+}
+
+function doesAnalysisValueMatch(key, rawValue, selectedValue) {
+    const selected = normalizeAnalysisFilterValue(selectedValue);
+    const raw = normalizeAnalysisFilterValue(rawValue);
+    if (!selected || !raw) return false;
+    const tokens = getAnalysisFilterTokens(key, raw);
+    return tokens.includes(selected) || raw.toLowerCase().includes(selected.toLowerCase());
+}
+
 function initAnalysisFilters() {
     const filterSections = [
         {
@@ -55,7 +90,6 @@ function initAnalysisFilters() {
         section.cols.forEach(col => {
             const filterItem = document.createElement('div');
             filterItem.className = 'filter-item';
-            filterItem.style.marginBottom = '16px';
 
             const label = document.createElement('label');
             label.innerText = col.label;
@@ -92,12 +126,12 @@ function initAnalysisFilters() {
             optionsWrapper.className = 'options-wrapper';
             
             // Extract unique values
-            const rawValues = allFunds.map(f => {
+            const rawValues = allFunds.flatMap(f => {
                 let v = getFieldValue(f, col.key);
-                return normalizeAnalysisFilterValue(v);
+                return getAnalysisFilterTokens(col.key, v);
             });
 
-            const hasNulls = rawValues.some(v => v === null);
+            const hasNulls = allFunds.some(f => getAnalysisFilterTokens(col.key, getFieldValue(f, col.key)).length === 0);
             const uniqueValues = [...new Set(rawValues.filter(Boolean))].sort();
             const optionsToRender = [...uniqueValues];
             if (hasNulls) optionsToRender.push('미분류');
@@ -243,8 +277,10 @@ function getFilteredData() {
             .filter(Boolean);
         if (selectedValues && selectedValues.length > 0) {
             filteredFunds = filteredFunds.filter(f => {
-                let val = normalizeAnalysisFilterValue(getFieldValue(f, key)) || '미분류';
-                return selectedValues.includes(val);
+                const rawValue = getFieldValue(f, key);
+                const normalized = normalizeAnalysisFilterValue(rawValue);
+                if (!normalized) return selectedValues.includes('미분류');
+                return selectedValues.some(selected => doesAnalysisValueMatch(key, normalized, selected));
             });
         }
     });

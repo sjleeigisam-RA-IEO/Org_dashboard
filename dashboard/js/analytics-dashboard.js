@@ -37,9 +37,10 @@ async function renderAnalytics() {
     const lnVal = formatNumber(totalLoan);
     const otVal = formatNumber(totalOther);
 
-    const activeAssets = groupItems(activeFunds, '', 'count');
-    const overseasAssetsCount = groupItems(activeFunds.filter(isOverseasFund), '', 'count').length;
-    const domesticAssetsCount = activeAssets.length - overseasAssetsCount;
+    const activeAssetRecords = getActiveAssetRecords(activeFunds);
+    const domesticAssetsCount = activeAssetRecords.filter(isDomesticAssetRecord).length;
+    const overseasAssetsCount = activeAssetRecords.filter(isOverseasAssetRecord).length;
+    const otherAssetsCount = Math.max(0, activeAssetRecords.length - domesticAssetsCount - overseasAssetsCount);
 
     detailPanel.innerHTML = `
         <div class="analytics-container" style="padding-bottom:60px;">
@@ -53,10 +54,10 @@ async function renderAnalytics() {
             <div class="kpi-card" style="padding:40px; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
               <div class="kpi-label" style="font-size:14px; letter-spacing:1px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span>현재 운용 AUM (${aumConfig.label}, 2026.03.31 기준)</span>
-                <div id="orgToggle" class="segmented-control" data-active="${currentOrgScope}" onclick="toggleOrgScope()">
+                <div id="aumBasisToggle" class="segmented-control" data-active="${aumMetric}" onclick="toggleAumBasis()">
                     <div class="segment-slider"></div>
-                    <div class="segment ${currentOrgScope === 'all' ? 'active' : ''}" data-val="all">전체</div>
-                    <div class="segment ${currentOrgScope === 'ra' ? 'active' : ''}" data-val="ra">RA부문</div>
+                    <div class="segment ${aumMetric === 'benchmark_aum' ? 'active' : ''}" data-val="benchmark_aum">약정</div>
+                    <div class="segment ${aumMetric === 'invested_aum' ? 'active' : ''}" data-val="invested_aum">투입</div>
                 </div>
               </div>
               <div class="kpi-value" style="font-size:52px; color:var(--accent); font-weight:900; line-height:1;">${mainValue}</div>
@@ -78,10 +79,10 @@ async function renderAnalytics() {
 
             <div class="kpi-card" style="padding:40px; background:#f8fafc; border:1px solid #e2e8f0; display:flex; flex-direction:column; justify-content:space-between;">
               <div>
-                <div class="kpi-label" style="margin-bottom:16px;">활성 운용 자산</div>
-                <div class="kpi-value" style="font-size:48px; font-weight:900; color:var(--text);">${activeAssets.length}<span style="font-size:18px; font-weight:500; margin-left:4px; color:var(--muted);">개</span></div>
+                <div class="kpi-label" style="margin-bottom:16px;">운용 기초자산</div>
+                <div class="kpi-value" style="font-size:48px; font-weight:900; color:var(--text);">${activeAssetRecords.length}<span style="font-size:18px; font-weight:500; margin-left:4px; color:var(--muted);">개</span></div>
               </div>
-              <div style="margin-top:24px; padding-top:20px; border-top:1px dashed #cbd5e1; display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+              <div style="margin-top:24px; padding-top:20px; border-top:1px dashed #cbd5e1; display:grid; grid-template-columns: repeat(${otherAssetsCount > 0 ? 3 : 2}, 1fr); gap:12px;">
                 <div class="kpi-sub">
                   <div class="kpi-sub-label">국내</div>
                   <div class="kpi-sub-value" style="font-size:18px;">${domesticAssetsCount}<span style="font-size:12px; margin-left:2px;">개</span></div>
@@ -90,6 +91,11 @@ async function renderAnalytics() {
                   <div class="kpi-sub-label">해외</div>
                   <div class="kpi-sub-value" style="font-size:18px;">${overseasAssetsCount}<span style="font-size:12px; margin-left:2px;">개</span></div>
                 </div>
+                ${otherAssetsCount > 0 ? `
+                <div class="kpi-sub">
+                  <div class="kpi-sub-label">기타</div>
+                  <div class="kpi-sub-value" style="font-size:18px;">${otherAssetsCount}<span style="font-size:12px; margin-left:2px;">개</span></div>
+                </div>` : ''}
               </div>
             </div>
           </div>
@@ -133,7 +139,7 @@ async function renderAnalytics() {
             background: white; border-radius: 9px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           }
-          .segmented-control[data-active="ra"] .segment-slider { transform: translateX(100%); }
+          .segmented-control[data-active="invested_aum"] .segment-slider { transform: translateX(100%); }
         </style>
     `;
 
@@ -143,6 +149,12 @@ async function renderAnalytics() {
 
 function switchMetric(metric) {
     currentChartMetric = metric;
+    window.currentChartMetric = currentChartMetric;
+    renderAnalytics();
+}
+
+function toggleAumBasis() {
+    currentChartMetric = getAumBasisMetric() === 'benchmark_aum' ? 'invested_aum' : 'benchmark_aum';
     window.currentChartMetric = currentChartMetric;
     renderAnalytics();
 }
@@ -434,6 +446,41 @@ function renderDrillDown(year, category, metric) {
     drillPanel.innerHTML = `<div style="font-weight:700; margin-bottom:10px;">${year}년 심층 분석</div><div style="font-size:13px; color:var(--muted);">해당 시점의 포트폴리오 구성을 분석 중입니다...</div>`;
 }
 
+function getActiveAssetRecords(activeFunds) {
+    const activeFundIds = new Set((activeFunds || []).map(f => f.fund_id).filter(Boolean));
+    const unique = new Map();
+    (window.allFundAssets || []).forEach(asset => {
+        if (!activeFundIds.has(asset.fund_id)) return;
+        const metadata = asset.metadata || {};
+        const name = String(asset.asset_name || '').trim();
+        const address = String(asset.address || metadata.address || '').trim();
+        const fallback = metadata.asset_code || `${asset.fund_id || ''}|${name}`;
+        const key = (name || address) ? `${name}|${address}` : fallback;
+        if (key && !unique.has(key)) unique.set(key, asset);
+    });
+    return Array.from(unique.values());
+}
+
+function getAssetLocationText(asset) {
+    const metadata = asset?.metadata || {};
+    return [
+        metadata.asset_location_type,
+        asset?.location_category,
+        metadata.fund_location,
+        asset?.address,
+        asset?.asset_name
+    ].filter(Boolean).join(' ');
+}
+
+function isOverseasAssetRecord(asset) {
+    return /해외|북미|유럽|글로벌|아시아|미국|영국|일본|베트남|프랑스|이탈리아|스페인|호주/.test(getAssetLocationText(asset));
+}
+
+function isDomesticAssetRecord(asset) {
+    const text = getAssetLocationText(asset);
+    return !isOverseasAssetRecord(asset) && /국내|대한민국|서울|경기|인천|부산|대구|대전|광주|울산|세종|제주|강원|충북|충남|전북|전남|경북|경남/.test(text);
+}
+
 function toggleOrgScope() {
     currentOrgScope = currentOrgScope === 'all' ? 'ra' : 'all';
     window.currentOrgScope = currentOrgScope;
@@ -455,3 +502,4 @@ window.renderAnalytics = renderAnalytics;
 window.switchMetric = switchMetric;
 window.switchScope = switchScope;
 window.toggleOrgScope = toggleOrgScope;
+window.toggleAumBasis = toggleAumBasis;
