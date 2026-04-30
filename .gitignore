@@ -15,6 +15,9 @@
 !.gitignore
 !.github/**
 !style.css
+!*.js
+!*.css
+!*.json
 !notion_agent.py
 !security-lite.js
 !robots.txt
