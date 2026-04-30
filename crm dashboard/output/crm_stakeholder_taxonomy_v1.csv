@@ -1,0 +1,12 @@
+﻿stakeholder_group_code,stakeholder_group_name,stakeholder_type_code,stakeholder_type_name,stakeholder_subtype_code,stakeholder_subtype_name,t5t_type_name,description,is_active
+capital_partner,자본 파트너,fund_beneficiary,펀드 수익자,beneficiary_unknown,수익자 일반,기관투자자(LP),펀드 수익자 스냅샷 기반의 자본 제공자 역할,Y
+capital_partner,자본 파트너,institutional_lp,기관투자자(LP),lp_unknown,LP 일반,기관투자자(LP),T5T 로그에서 식별된 LP 또는 출자자 역할,Y
+financing_partner,금융 파트너,lender,금융기관(대주),lender_unknown,대주 일반,금융기관(대주),대주 스냅샷 또는 T5T 로그에서 식별된 금융 제공자 역할,Y
+occupier_customer,임차/사용자,tenant,임차인,tenant_unknown,임차인 일반,임차인,"오피스, 리테일, 호텔, 물류 등 점유자 또는 잠재 임차인",Y
+transaction_counterparty,거래 상대방,buyer_seller,매수/매도인,counterparty_unknown,거래 상대방 일반,매수/매도인,"매수인, 매도인, 시행사, 선매수자 등 거래 상대방",Y
+advisor_intermediary,자문/중개,advisor,주간사/자문,advisor_unknown,자문 일반,주간사/자문,"브로커, 법무자문, 회계자문, PM, 컨설팅 등",Y
+public_authority,공공/행정,public_body,공공/행정기관,public_unknown,공공기관 일반,공공/행정기관,"서울시, 지자체, 공기업, 인허가 협의기관 등",Y
+strategic_partner,전략/해외 파트너,overseas_partner,해외 파트너,overseas_partner_unknown,해외 파트너 일반,해외 파트너,"JV 파트너, 로컬 운영 파트너, 해외 기관 등",Y
+project_partner,프로젝트 파트너,operator_contractor,운영/시공 파트너,project_partner_unknown,프로젝트 파트너 일반,,"운영사, 시공사, CM, AMC 외부 파트너 등 향후 확장용",Y
+community_group,지역/커뮤니티,community,주민/이해집단,community_unknown,커뮤니티 일반,,"주민단, 상인회 등 비정형 이해집단",Y
+other,기타,other,기타,other_unknown,기타,,분류 미정 또는 보류,Y

@@ -1,0 +1,49 @@
+version,rule_id,group_name,group_code,alias_name,alias_type,stakeholder_scope,priority,mapping_status,notes
+v0100,GRP-0001,신한,shinhan,신한,exact,all,100,mapped,대표 그룹명
+v0100,GRP-0002,신한,shinhan,신한캐피탈,exact,all,100,mapped,신한 그룹 하위 법인
+v0100,GRP-0003,신한,shinhan,신한은행,exact,all,100,mapped,신한 그룹 하위 법인
+v0100,GRP-0004,신한,shinhan,신한투자증권,exact,all,100,mapped,신한 그룹 하위 법인
+v0100,GRP-0005,신한,shinhan,신한금융투자,exact,all,100,mapped,구 브랜드 포함
+v0100,GRP-0006,신한,shinhan,신한카드,exact,all,100,mapped,신한 그룹 하위 법인
+v0100,GRP-0007,신한,shinhan,신한라이프생명보험,exact,all,100,mapped,신한 그룹 하위 법인
+v0100,GRP-0101,KB,kb,KB,exact,all,100,mapped,대표 그룹명
+v0100,GRP-0102,KB,kb,KB국민은행,exact,all,100,mapped,KB 그룹 하위 법인
+v0100,GRP-0103,KB,kb,KB증권,exact,all,100,mapped,KB 그룹 하위 법인
+v0100,GRP-0104,KB,kb,KB캐피탈,exact,all,100,mapped,KB 그룹 하위 법인
+v0100,GRP-0105,KB,kb,KB생명,exact,all,100,mapped,KB 그룹 하위 법인
+v0100,GRP-0106,KB,kb,KB생명보험,exact,all,100,mapped,KB 그룹 하위 법인
+v0100,GRP-0107,KB,kb,KB손해보험,exact,all,100,mapped,KB 그룹 하위 법인
+v0100,GRP-0108,KB,kb,KB국민은행(A),exact,all,95,mapped,원본 표기 변형
+v0100,GRP-0201,하나,hana,하나,exact,all,100,mapped,대표 그룹명
+v0100,GRP-0202,하나,hana,하나은행,exact,all,100,mapped,하나 그룹 하위 법인
+v0100,GRP-0203,하나,hana,하나캐피탈,exact,all,100,mapped,하나 그룹 하위 법인
+v0100,GRP-0204,하나,hana,하나증권,exact,all,100,mapped,하나 그룹 하위 법인
+v0100,GRP-0205,하나,hana,하나손해보험,exact,all,100,mapped,하나 그룹 하위 법인
+v0100,GRP-0206,하나,hana,하나생명보험,exact,all,100,mapped,하나 그룹 하위 법인
+v0100,GRP-0207,하나,hana,하나에프앤아이(하나F&I),exact,all,95,mapped,원본 표기 변형
+v0100,GRP-0301,메리츠,meritz,메리츠,exact,all,100,mapped,대표 그룹명
+v0100,GRP-0302,메리츠,meritz,메리츠증권,exact,all,100,mapped,메리츠 그룹 하위 법인
+v0100,GRP-0303,메리츠,meritz,메리츠캐피탈,exact,all,100,mapped,메리츠 그룹 하위 법인
+v0100,GRP-0304,메리츠,meritz,메리츠화재,exact,all,100,mapped,메리츠 그룹 하위 법인
+v0100,GRP-0305,메리츠,meritz,메리츠화재해상보험,exact,all,100,mapped,메리츠 그룹 하위 법인
+v0100,GRP-0401,미래에셋,miraeasset,미래에셋,exact,all,100,mapped,대표 그룹명
+v0100,GRP-0402,미래에셋,miraeasset,미래에셋증권,exact,all,100,mapped,미래에셋 그룹 하위 법인
+v0100,GRP-0403,미래에셋,miraeasset,미래에셋캐피탈,exact,all,100,mapped,미래에셋 그룹 하위 법인
+v0100,GRP-0404,미래에셋,miraeasset,미래에셋생명,exact,all,100,mapped,미래에셋 그룹 하위 법인
+v0100,GRP-0405,미래에셋,miraeasset,미래에셋자산운용OCIO,exact,all,95,mapped,미래에셋 그룹 하위 조직
+v0100,GRP-0501,공제회,mutualaid,공제회,exact,all,100,mapped,대표 그룹명
+v0100,GRP-0502,공제회,mutualaid,교직원공제회,exact,all,100,mapped,공제회 그룹 하위 기관
+v0100,GRP-0503,공제회,mutualaid,한국교직원공제회,exact,all,100,mapped,공제회 그룹 하위 기관
+v0100,GRP-0504,공제회,mutualaid,교원공제회,exact,all,100,mapped,공제회 그룹 하위 기관
+v0100,GRP-0505,공제회,mutualaid,행정공제회,exact,all,100,mapped,공제회 그룹 하위 기관
+v0100,GRP-0506,공제회,mutualaid,대한지방행정공제회,exact,all,100,mapped,공제회 그룹 하위 기관
+v0100,GRP-0507,공제회,mutualaid,건설근로자공제회,exact,all,100,mapped,공제회 그룹 하위 기관
+v0100,GRP-0508,공제회,mutualaid,경찰공제회,exact,all,100,mapped,공제회 그룹 하위 기관
+v0100,GRP-0509,공제회,mutualaid,과학기술인공제회,exact,all,100,mapped,공제회 그룹 하위 기관
+v0100,GRP-0510,공제회,mutualaid,군인공제회,exact,all,100,mapped,공제회 그룹 하위 기관
+v0100,GRP-0511,공제회,mutualaid,노란우산공제회,exact,all,100,mapped,공제회 그룹 하위 기관
+v0100,GRP-0512,공제회,mutualaid,교정공제회,exact,all,100,mapped,공제회 그룹 하위 기관
+v0100,GRP-0901,검토대상,review,매도인,exact,all,90,placeholder,실명 엔티티 확정 전 placeholder
+v0100,GRP-0902,검토대상,review,매수인,exact,all,90,placeholder,실명 엔티티 확정 전 placeholder
+v0100,GRP-0903,검토대상,review,시행사,exact,all,90,review_required,그룹 또는 실명 기관 확정 필요
+v0100,GRP-0904,검토대상,review,잠재 임차인,exact,all,90,placeholder,실명 엔티티 확정 전 placeholder

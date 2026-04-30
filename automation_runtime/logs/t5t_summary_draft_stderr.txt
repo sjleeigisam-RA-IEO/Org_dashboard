@@ -1,0 +1,1 @@
+C:\Python311\python.exe: can't open file 'D:\\Project\\00.': [Errno 2] No such file or directory

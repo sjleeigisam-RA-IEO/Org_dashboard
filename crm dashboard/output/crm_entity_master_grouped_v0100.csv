@@ -1,0 +1,838 @@
+﻿entity_id,canonical_name,display_name,entity_kind,primary_stakeholder_group_code,primary_stakeholder_type_code,primary_stakeholder_type_name,source_systems,latest_base_date,is_active,notes,group_name,group_code,group_mapping_status,group_rule_id,group_rule_version
+SH000001,116-2(산재기금),116-2(산재기금),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,116-2(산재기금),116_2,self,,v0100
+SH000002,116-3(신협중앙회),116-3(신협중앙회),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,116-3(신협중앙회),116_3,self,,v0100
+SH000003,116-3(주택도시기금),116-3(주택도시기금),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,116-3(주택도시기금),116_3,self,,v0100
+SH000004,448-3호,448-3호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,448-3호,448_3,self,,v0100
+SH000005,448-4,448-4,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,448-4,448_4,self,,v0100
+SH000006,816공간제일차 주식회사,816공간제일차 주식회사,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,816공간제일차 주식회사,816,self,,v0100
+SH000007,ABL생명보험(에이비엘생명보험),ABL생명보험(에이비엘생명보험),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,ABL생명보험(에이비엘생명보험),abl,self,,v0100
+SH000008,ADCF Megatrends Singapore Pte Ltd,ADCF Megatrends Singapore Pte Ltd,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,ADCF Megatrends Singapore Pte Ltd,adcf_megatrends_singapore_pte_ltd,self,,v0100
+SH000009,ANU,ANU,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,ANU,anu,self,,v0100
+SH000010,AP SG 9 PTE.LTD.,AP SG 9 PTE.LTD.,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,AP SG 9 PTE.LTD.,ap_sg_9_pte_ltd,self,,v0100
+SH000011,APO Corp,APO Corp,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,APO Corp,apo_corp,self,,v0100
+SH000012,ASSKR1,ASSKR1,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,ASSKR1,asskr1,self,,v0100
+SH000013,Actis,Actis,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,Actis,actis,self,,v0100
+SH000014,BCS NL B.V.,BCS NL B.V.,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,BCS NL B.V.,bcs_nl_b_v,self,,v0100
+SH000015,BCS NL C.V.,BCS NL C.V.,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,BCS NL C.V.,bcs_nl_c_v,self,,v0100
+SH000016,BNK경남은행,BNK경남은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,BNK경남은행,bnk,self,,v0100
+SH000017,BNK저축은행,BNK저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,BNK저축은행,bnk,self,,v0100
+SH000018,BNK캐피탈,BNK캐피탈,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,BNK캐피탈,bnk,self,,v0100
+SH000019,Boston Properties,Boston Properties,organization,strategic_partner,overseas_partner,해외 파트너,t5t_dashboard,2026-04-12,Y,,Boston Properties,boston_properties,self,,v0100
+SH000020,Broadcom,Broadcom,organization,occupier_customer,tenant,임차인,t5t_dashboard,2026-03-22,Y,,Broadcom,broadcom,self,,v0100
+SH000021,CBRE,CBRE,organization,advisor_intermediary,advisor,주간사/자문,t5t_dashboard,2026-04-12,Y,,CBRE,cbre,self,,v0100
+SH000022,CJ,CJ,organization,occupier_customer,tenant,임차인,t5t_dashboard,2026-04-13,Y,,CJ,cj,self,,v0100
+SH000023,CJ대한통운,CJ대한통운,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,counterparty_seed",2025-11-30,Y,,CJ대한통운,cj,self,,v0100
+SH000024,CJ올리브네트웍스,CJ올리브네트웍스,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,CJ올리브네트웍스,cj,self,,v0100
+SH000025,CJ제일제당,CJ제일제당,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,CJ제일제당,cj,self,,v0100
+SH000026,CPPIB,CPPIB,organization,capital_partner,institutional_lp,기관투자자(LP),t5t_dashboard,2026-04-10,Y,,CPPIB,cppib,self,,v0100
+SH000027,Cadence,Cadence,organization,occupier_customer,tenant,임차인,t5t_dashboard,2026-03-22,Y,,Cadence,cadence,self,,v0100
+SH000028,Capikor Pte.Ltd.,Capikor Pte.Ltd.,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,Capikor Pte.Ltd.,capikor_pte_ltd,self,,v0100
+SH000029,DA,DA,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,DA,da,self,,v0100
+SH000030,DA VINCI HOLDCO PTE. LTD.,DA VINCI HOLDCO PTE. LTD.,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,DA VINCI HOLDCO PTE. LTD.,da_vinci_holdco_pte_ltd,self,,v0100
+SH000031,DB생명보험,DB생명보험,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,DB생명보험,db,self,,v0100
+SH000032,DB손해보험,DB손해보험,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot,t5t_dashboard",2026-04-13,Y,,DB손해보험,db,self,,v0100
+SH000033,DB손해보험(본계정),DB손해보험(본계정),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,DB손해보험(본계정),db,self,,v0100
+SH000034,DB저축은행,DB저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,DB저축은행,db,self,,v0100
+SH000035,DB캐피탈,DB캐피탈,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,DB캐피탈,db,self,,v0100
+SH000036,DGB 제1호 펀드,DGB 제1호 펀드,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,DGB 제1호 펀드,dgb_1,self,,v0100
+SH000037,DGB 제2호 펀드,DGB 제2호 펀드,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,DGB 제2호 펀드,dgb_2,self,,v0100
+SH000038,DGB 제3호 펀드,DGB 제3호 펀드,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,DGB 제3호 펀드,dgb_3,self,,v0100
+SH000039,DGB생명보험,DGB생명보험,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,DGB생명보험,dgb,self,,v0100
+SH000040,DL ENC,DL ENC,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,DL ENC,dl_enc,self,,v0100
+SH000041,DL건설,DL건설,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,DL건설,dl,self,,v0100
+SH000042,DL이앤씨,DL이앤씨,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,DL이앤씨,dl,self,,v0100
+SH000043,DMP,DMP,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,DMP,dmp,self,,v0100
+SH000044,DNSC,DNSC,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,DNSC,dnsc,self,,v0100
+SH000045,DS네트웍스,DS네트웍스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,DS네트웍스,ds,self,,v0100
+SH000046,DS자산운용,DS자산운용,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,DS자산운용,ds,self,,v0100
+SH000047,Dash Living,Dash Living,organization,strategic_partner,overseas_partner,해외 파트너,t5t_dashboard,2026-04-13,Y,,Dash Living,dash_living,self,,v0100
+SH000048,Datapulse Pte.Ltd.,Datapulse Pte.Ltd.,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,Datapulse Pte.Ltd.,datapulse_pte_ltd,self,,v0100
+SH000049,G9 Asia X. Pte. Ltd.,G9 Asia X. Pte. Ltd.,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,G9 Asia X. Pte. Ltd.,g9_asia_x_pte_ltd,self,,v0100
+SH000050,GFI,GFI,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,GFI,gfi,self,,v0100
+SH000051,GIB홈플러스,GIB홈플러스,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,GIB홈플러스,gib,self,,v0100
+SH000052,GIC,GIC,organization,capital_partner,institutional_lp,기관투자자(LP),"beneficiary_snapshot,t5t_dashboard",2026-04-13,Y,,GIC,gic,self,,v0100
+SH000053,GS건설,GS건설,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,counterparty_seed",2025-11-30,Y,,GS건설,gs,self,,v0100
+SH000054,GS리테일,GS리테일,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,GS리테일,gs,self,,v0100
+SH000055,Gangnam Asset PTE.LTD,Gangnam Asset PTE.LTD,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,Gangnam Asset PTE.LTD,gangnam_asset_pte_ltd,self,,v0100
+SH000056,HB저축은행,HB저축은행,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,HB저축은행,hb,self,,v0100
+SH000057,HSBC자산운용,HSBC자산운용,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,HSBC자산운용,hsbc,self,,v0100
+SH000058,HS화성,HS화성,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,HS화성,hs,self,,v0100
+SH000059,I.O.IV,I.O.IV,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,I.O.IV,i_o_iv,self,,v0100
+SH000060,IADC2호,IADC2호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,IADC2호,iadc2,self,,v0100
+SH000061,IBK기업은행,IBK기업은행,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,IBK기업은행,ibk,self,,v0100
+SH000062,IBK연금보험,IBK연금보험,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,IBK연금보험,ibk,self,,v0100
+SH000063,IBK저축은행,IBK저축은행,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,IBK저축은행,ibk,self,,v0100
+SH000064,IBK캐피탈,IBK캐피탈,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,IBK캐피탈,ibk,self,,v0100
+SH000065,IBK투자증권,IBK투자증권,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,IBK투자증권,ibk,self,,v0100
+SH000066,IGIS Asia Data Center 1 Pte. Ltd.,IGIS Asia Data Center 1 Pte. Ltd.,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,IGIS Asia Data Center 1 Pte. Ltd.,igis_asia_data_center_1_pte_ltd,self,,v0100
+SH000067,IOIV,IOIV,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,IOIV,ioiv,self,,v0100
+SH000068,IRE-RE-SA SICAV-SIF,IRE-RE-SA SICAV-SIF,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,IRE-RE-SA SICAV-SIF,ire_re_sa_sicav_sif,self,,v0100
+SH000069,Icheon REF Pte.Ltd,Icheon REF Pte.Ltd,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,Icheon REF Pte.Ltd,icheon_ref_pte_ltd,self,,v0100
+SH000070,Infineon,Infineon,organization,occupier_customer,tenant,임차인,t5t_dashboard,2026-03-22,Y,,Infineon,infineon,self,,v0100
+SH000071,Invesco,Invesco,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,Invesco,invesco,self,,v0100
+SH000072,Invesco Investments(Bermuda),Invesco Investments(Bermuda),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,Invesco Investments(Bermuda),invesco_investments_bermuda,self,,v0100
+SH000073,JB우리캐피탈,JB우리캐피탈,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,JB우리캐피탈,jb,self,,v0100
+SH000074,JLL,JLL,organization,advisor_intermediary,advisor,주간사/자문,t5t_dashboard,2026-04-13,Y,,JLL,jll,self,,v0100
+SH000075,KB,KB,organization,financing_partner,lender,금융기관(대주),t5t_dashboard,2026-04-17,Y,,KB,kb,mapped,GRP-0101,v0100
+SH000076,KB국민은행,KB국민은행,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,KB,kb,mapped,GRP-0102,v0100
+SH000077,KB국민은행(A),KB국민은행(A),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,KB,kb,mapped,GRP-0108,v0100
+SH000078,KB국민은행(공모),KB국민은행(공모),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,KB국민은행(공모),kb,self,,v0100
+SH000079,KB국민은행(이지스일반사모부동산투자신탁421호의 신탁업자),KB국민은행(이지스일반사모부동산투자신탁421호의 신탁업자),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,KB국민은행(이지스일반사모부동산투자신탁421호의 신탁업자),kb_421,self,,v0100
+SH000080,KB국민은행(한국투자올에셋부동산11호의 신탁업자 지위),KB국민은행(한국투자올에셋부동산11호의 신탁업자 지위),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,KB국민은행(한국투자올에셋부동산11호의 신탁업자 지위),kb_11,self,,v0100
+SH000081,KB라이프생명보험,KB라이프생명보험,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,KB라이프생명보험,kb,self,,v0100
+SH000082,KB생명,KB생명,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,KB,kb,mapped,GRP-0105,v0100
+SH000083,KB생명보험,KB생명보험,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,KB,kb,mapped,GRP-0106,v0100
+SH000084,KB손해보험,KB손해보험,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,KB,kb,mapped,GRP-0107,v0100
+SH000085,KB저축은행,KB저축은행,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,KB저축은행,kb,self,,v0100
+SH000086,KB증권,KB증권,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,KB,kb,mapped,GRP-0103,v0100
+SH000087,KB증권(A),KB증권(A),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,KB증권(A),kb_a,self,,v0100
+SH000088,KB캐피탈,KB캐피탈,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,KB,kb,mapped,GRP-0104,v0100
+SH000089,KCC건설,KCC건설,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,KCC건설,kcc,self,,v0100
+SH000090,KDB산업은행,KDB산업은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,KDB산업은행,kdb,self,,v0100
+SH000091,KDB산은캐피탈,KDB산은캐피탈,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,KDB산은캐피탈,kdb,self,,v0100
+SH000092,KDB생명보험,KDB생명보험,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,KDB생명보험,kdb,self,,v0100
+SH000093,KDCIP 2호(Blind),KDCIP 2호(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,KDCIP 2호(Blind),kdcip_2_blind,self,,v0100
+SH000094,KDCIP(A종)(Blind),KDCIP(A종)(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,KDCIP(A종)(Blind),kdcip_a_blind,self,,v0100
+SH000095,KG파트너스,KG파트너스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,KG파트너스,kg,self,,v0100
+SH000096,KINX,KINX,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,KINX,kinx,self,,v0100
+SH000097,KT,KT,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,KT,kt,self,,v0100
+SH000098,KT&G,KT&G,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,KT&G,kt_g,self,,v0100
+SH000099,LG CNS,LG CNS,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,LG CNS,lg_cns,self,,v0100
+SH000100,LG U+,LG U+,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,LG U+,lg_u,self,,v0100
+SH000101,LG전자,LG전자,organization,occupier_customer,tenant,임차인,t5t_dashboard,2026-04-13,Y,,LG전자,lg,self,,v0100
+SH000102,LS전선,LS전선,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,LS전선,ls,self,,v0100
+SH000103,LX판토스,LX판토스,organization,occupier_customer,tenant,임차인,t5t_dashboard,2026-04-06,Y,,LX판토스,lx,self,,v0100
+SH000104,M&G (APF 1 S.a.r.l),M&G (APF 1 S.a.r.l),organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,M&G (APF 1 S.a.r.l),m_g_apf_1_s_a_r_l,self,,v0100
+SH000105,M&G (APF 2 S.a.r.l),M&G (APF 2 S.a.r.l),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,M&G (APF 2 S.a.r.l),m_g_apf_2_s_a_r_l,self,,v0100
+SH000106,M&G(TS ASIA),M&G(TS ASIA),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,M&G(TS ASIA),m_g_ts_asia,self,,v0100
+SH000107,MG새마을금고,MG새마을금고,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,MG새마을금고,mg,self,,v0100
+SH000108,MG새마을금고(용인중앙),MG새마을금고(용인중앙),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,MG새마을금고(용인중앙),mg,self,,v0100
+SH000109,MG새마을금고(이태원1동),MG새마을금고(이태원1동),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,MG새마을금고(이태원1동),mg_1,self,,v0100
+SH000110,MG새마을금고대주단,MG새마을금고대주단,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,MG새마을금고대주단,mg,self,,v0100
+SH000111,MG새마을금고중앙회,MG새마을금고중앙회,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,MG새마을금고중앙회,mg,self,,v0100
+SH000112,MG캐피탈,MG캐피탈,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,MG캐피탈,mg,self,,v0100
+SH000113,Morgan stanley,Morgan stanley,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,Morgan stanley,morgan_stanley,self,,v0100
+SH000114,NH농협생명보험,NH농협생명보험,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,NH농협생명보험,nh,self,,v0100
+SH000115,NH농협손해보험,NH농협손해보험,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,NH농협손해보험,nh,self,,v0100
+SH000116,NH농협은행,NH농협은행,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,NH농협은행,nh,self,,v0100
+SH000117,NH농협캐피탈,NH농협캐피탈,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,NH농협캐피탈,nh,self,,v0100
+SH000118,NH저축은행,NH저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,NH저축은행,nh,self,,v0100
+SH000119,NH투자증권,NH투자증권,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,NH투자증권,nh,self,,v0100
+SH000120,NH헤지자산운용,NH헤지자산운용,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,NH헤지자산운용,nh,self,,v0100
+SH000121,NPS,NPS,organization,capital_partner,institutional_lp,기관투자자(LP),t5t_dashboard,2026-04-12,Y,,NPS,nps,self,,v0100
+SH000122,NTI,NTI,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,NTI,nti,self,,v0100
+SH000123,NUBIRA PTE. LTD.,NUBIRA PTE. LTD.,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,NUBIRA PTE. LTD.,nubira_pte_ltd,self,,v0100
+SH000124,North Sky Luge No 4 Limited,North Sky Luge No 4 Limited,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,North Sky Luge No 4 Limited,north_sky_luge_no_4_limited,self,,v0100
+SH000125,Nuveen,Nuveen,organization,strategic_partner,overseas_partner,해외 파트너,t5t_dashboard,2026-04-12,Y,,Nuveen,nuveen,self,,v0100
+SH000126,Nuveen Group Holdings Limited,Nuveen Group Holdings Limited,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,Nuveen Group Holdings Limited,nuveen_group_holdings_limited,self,,v0100
+SH000127,OCBC Bank,OCBC Bank,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,OCBC Bank,ocbc_bank,self,,v0100
+SH000128,OSB저축은행,OSB저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,OSB저축은행,osb,self,,v0100
+SH000129,Pinnacle Eagle Ltd.,Pinnacle Eagle Ltd.,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,Pinnacle Eagle Ltd.,pinnacle_eagle_ltd,self,,v0100
+SH000130,Pinnacle KR Asset PTE.LTD,Pinnacle KR Asset PTE.LTD,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,Pinnacle KR Asset PTE.LTD,pinnacle_kr_asset_pte_ltd,self,,v0100
+SH000131,RECO JUNIPER PRIVATE LIMITED,RECO JUNIPER PRIVATE LIMITED,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,RECO JUNIPER PRIVATE LIMITED,reco_juniper_private_limited,self,,v0100
+SH000132,Reco Marigold Private Limited.,Reco Marigold Private Limited.,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,Reco Marigold Private Limited.,reco_marigold_private_limited,self,,v0100
+SH000133,Rsquare,Rsquare,organization,advisor_intermediary,advisor,주간사/자문,t5t_dashboard,2026-03-03,Y,,Rsquare,rsquare,self,,v0100
+SH000134,SBI저축은행,SBI저축은행,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,SBI저축은행,sbi,self,,v0100
+SH000135,SC제일은행,SC제일은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,SC제일은행,sc,self,,v0100
+SH000136,SGC E&C,SGC E&C,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,SGC E&C,sgc_e_c,self,,v0100
+SH000137,SKB,SKB,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,SKB,skb,self,,v0100
+SH000138,SK디앤디,SK디앤디,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,SK디앤디,sk,self,,v0100
+SH000139,SK에코플랜트,SK에코플랜트,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,SK에코플랜트,sk,self,,v0100
+SH000140,SPC,SPC,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,SPC,spc,self,,v0100
+SH000141,STAK,STAK,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,STAK,stak,self,,v0100
+SH000142,TDH2,TDH2,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,TDH2,tdh2,self,,v0100
+SH000143,TTN,TTN,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,TTN,ttn,self,,v0100
+SH000144,Tow Heng Tan,Tow Heng Tan,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,Tow Heng Tan,tow_heng_tan,self,,v0100
+SH000145,WSP,WSP,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,WSP,wsp,self,,v0100
+SH000146,Washington D.C.,Washington D.C.,organization,strategic_partner,overseas_partner,해외 파트너,t5t_dashboard,2026-01-14,Y,,Washington D.C.,washington_d_c,self,,v0100
+SH000147,Woodies,Woodies,organization,strategic_partner,overseas_partner,해외 파트너,t5t_dashboard,2026-03-26,Y,,Woodies,woodies,self,,v0100
+SH000148,Woori 아메리카,Woori 아메리카,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,Woori 아메리카,woori,self,,v0100
+SH000149,YG자산개발 및 개인3인,YG자산개발 및 개인3인,person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,YG자산개발 및 개인3인,yg_3,self,,v0100
+SH000150,Yeongdong(Korea)Pte.Ltd,Yeongdong(Korea)Pte.Ltd,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,Yeongdong(Korea)Pte.Ltd,yeongdong_korea_pte_ltd,self,,v0100
+SH000151,"iM뱅크(구, DGB대구은행)","iM뱅크(구, DGB대구은행)",organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,"iM뱅크(구, DGB대구은행)",im_dgb,self,,v0100
+SH000152,"iM캐피탈(구, DGB캐피탈)","iM캐피탈(구, DGB캐피탈)",organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,"iM캐피탈(구, DGB캐피탈)",im_dgb,self,,v0100
+SH000153,가비아,가비아,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,가비아,group,self,,v0100
+SH000154,간삼,간삼,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,간삼,group,self,,v0100
+SH000155,개인,개인,person,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,개인,group,self,,v0100
+SH000156,개인 투자자,개인 투자자,person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인 투자자,group,self,,v0100
+SH000157,개인(강대우),개인(강대우),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(강대우),group,self,,v0100
+SH000158,개인(강민구),개인(강민구),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(강민구),group,self,,v0100
+SH000159,개인(강수현),개인(강수현),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(강수현),group,self,,v0100
+SH000160,개인(강영구),개인(강영구),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(강영구),group,self,,v0100
+SH000161,개인(김건호),개인(김건호),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(김건호),group,self,,v0100
+SH000162,개인(김남호),개인(김남호),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(김남호),group,self,,v0100
+SH000163,개인(김남희),개인(김남희),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(김남희),group,self,,v0100
+SH000164,개인(김도현),개인(김도현),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(김도현),group,self,,v0100
+SH000165,개인(김민지),개인(김민지),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(김민지),group,self,,v0100
+SH000166,개인(김율희),개인(김율희),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(김율희),group,self,,v0100
+SH000167,개인(김주성),개인(김주성),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(김주성),group,self,,v0100
+SH000168,개인(김주형),개인(김주형),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(김주형),group,self,,v0100
+SH000169,개인(김주희),개인(김주희),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(김주희),group,self,,v0100
+SH000170,개인(김태호),개인(김태호),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(김태호),group,self,,v0100
+SH000171,개인(김희원),개인(김희원),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(김희원),group,self,,v0100
+SH000172,개인(박금자),개인(박금자),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(박금자),group,self,,v0100
+SH000173,개인(박상태),개인(박상태),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(박상태),group,self,,v0100
+SH000174,개인(백현미),개인(백현미),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(백현미),group,self,,v0100
+SH000175,개인(이수연),개인(이수연),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(이수연),group,self,,v0100
+SH000176,개인(이인영),개인(이인영),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(이인영),group,self,,v0100
+SH000177,개인(조갑주),개인(조갑주),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(조갑주),group,self,,v0100
+SH000178,개인(주구슬),개인(주구슬),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인(주구슬),group,self,,v0100
+SH000179,개인1(A종),개인1(A종),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인1(A종),1_a,self,,v0100
+SH000180,개인2(A종),개인2(A종),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인2(A종),2_a,self,,v0100
+SH000181,개인3(A종),개인3(A종),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인3(A종),3_a,self,,v0100
+SH000182,개인투자자,개인투자자,person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인투자자,group,self,,v0100
+SH000183,개인투자자 포함,개인투자자 포함,person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인투자자 포함,group,self,,v0100
+SH000184,개인투자자 포함(공모펀드),개인투자자 포함(공모펀드),person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인투자자 포함(공모펀드),group,self,,v0100
+SH000185,개인투자자들,개인투자자들,person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,개인투자자들,group,self,,v0100
+SH000186,건강한시간,건강한시간,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,건강한시간,group,self,,v0100
+SH000187,건설근로자공제회,건설근로자공제회,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,공제회,mutualaid,mapped,GRP-0507,v0100
+SH000188,건원엔지니어링,건원엔지니어링,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,건원엔지니어링,group,self,,v0100
+SH000189,게우트플래닝,게우트플래닝,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,게우트플래닝,group,self,,v0100
+SH000190,경남은행,경남은행,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,경남은행,group,self,,v0100
+SH000191,경방,경방,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,경방,group,self,,v0100
+SH000192,경찰공제회,경찰공제회,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,공제회,mutualaid,mapped,GRP-0508,v0100
+SH000193,고용노동부 산재보험기금,고용노동부 산재보험기금,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,고용노동부 산재보험기금,group,self,,v0100
+SH000194,골든웨이브(유),골든웨이브(유),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,골든웨이브(유),group,self,,v0100
+SH000195,공모,공모,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,공모,group,self,,v0100
+SH000196,공무원연금공단,공무원연금공단,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,공무원연금공단,group,self,,v0100
+SH000197,공제회,공제회,organization,capital_partner,institutional_lp,기관투자자(LP),t5t_dashboard,2026-04-13,Y,,공제회,mutualaid,mapped,GRP-0501,v0100
+SH000198,과학기술인공제회,과학기술인공제회,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,공제회,mutualaid,mapped,GRP-0509,v0100
+SH000199,광주은행,광주은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,광주은행,group,self,,v0100
+SH000200,교보리얼코,교보리얼코,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,교보리얼코,group,self,,v0100
+SH000201,교보생명,교보생명,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,교보생명,group,self,,v0100
+SH000202,교보생명보험,교보생명보험,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,교보생명보험,group,self,,v0100
+SH000203,교보생명보험(연금),교보생명보험(연금),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,교보생명보험(연금),group,self,,v0100
+SH000204,교보자산신탁,교보자산신탁,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,교보자산신탁,group,self,,v0100
+SH000205,교보증권,교보증권,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,교보증권,group,self,,v0100
+SH000206,교원공제회,교원공제회,organization,capital_partner,institutional_lp,기관투자자(LP),t5t_dashboard,2026-03-27,Y,,공제회,mutualaid,mapped,GRP-0504,v0100
+SH000207,교원라이프,교원라이프,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,교원라이프,group,self,,v0100
+SH000208,교원인베스트,교원인베스트,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,교원인베스트,group,self,,v0100
+SH000209,교정공제회,교정공제회,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,공제회,mutualaid,mapped,GRP-0512,v0100
+SH000210,교직원공제회,교직원공제회,organization,capital_partner,institutional_lp,기관투자자(LP),t5t_dashboard,2026-04-13,Y,,공제회,mutualaid,mapped,GRP-0502,v0100
+SH000211,구봉산업,구봉산업,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,구봉산업,group,self,,v0100
+SH000212,국가철도공단,국가철도공단,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,국가철도공단,group,self,,v0100
+SH000213,국민연금,국민연금,organization,capital_partner,institutional_lp,기관투자자(LP),t5t_dashboard,2026-04-13,Y,,국민연금,group,self,,v0100
+SH000214,국민연금공단,국민연금공단,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,국민연금공단,group,self,,v0100
+SH000215,국민연금공단(1종),국민연금공단(1종),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,국민연금공단(1종),1,self,,v0100
+SH000216,국민연금공단(2종),국민연금공단(2종),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,국민연금공단(2종),2,self,,v0100
+SH000217,군인공제회,군인공제회,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,공제회,mutualaid,mapped,GRP-0510,v0100
+SH000218,굿포어스,굿포어스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,굿포어스,group,self,,v0100
+SH000219,그린웨이브알앤디,그린웨이브알앤디,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,그린웨이브알앤디,group,self,,v0100
+SH000220,근영농산,근영농산,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,근영농산,group,self,,v0100
+SH000221,금성백조건설,금성백조건설,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,금성백조건설,group,self,,v0100
+SH000222,금성백조주택,금성백조주택,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,금성백조주택,group,self,,v0100
+SH000223,금화저축은행,금화저축은행,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,금화저축은행,group,self,,v0100
+SH000224,기관투자자,기관투자자,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,기관투자자,group,self,,v0100
+SH000225,기안건축,기안건축,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,기안건축,group,self,,v0100
+SH000226,남산드림힐튼제일차,남산드림힐튼제일차,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,남산드림힐튼제일차,group,self,,v0100
+SH000227,남양저축은행,남양저축은행,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,남양저축은행,group,self,,v0100
+SH000228,네오밸류,네오밸류,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,네오밸류,group,self,,v0100
+SH000229,넥슨코리아,넥슨코리아,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,넥슨코리아,group,self,,v0100
+SH000230,노란우산공제회,노란우산공제회,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,공제회,mutualaid,mapped,GRP-0511,v0100
+SH000231,농업협동조합중앙회,농업협동조합중앙회,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,농업협동조합중앙회,group,self,,v0100
+SH000232,농협(가야농업협동조합),농협(가야농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(가야농업협동조합),group,self,,v0100
+SH000233,농협(감곡농업협동조합),농협(감곡농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(감곡농업협동조합),group,self,,v0100
+SH000234,농협(강내농업협동조합),농협(강내농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(강내농업협동조합),group,self,,v0100
+SH000235,농협(강동농업협동조합),농협(강동농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(강동농업협동조합),group,self,,v0100
+SH000236,농협(거제해금강농업협동조합),농협(거제해금강농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(거제해금강농업협동조합),group,self,,v0100
+SH000237,농협(고흥농업협동조합),농협(고흥농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(고흥농업협동조합),group,self,,v0100
+SH000238,농협(광명농업협동조합),농협(광명농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(광명농업협동조합),group,self,,v0100
+SH000239,농협(구림농업협동조합),농협(구림농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(구림농업협동조합),group,self,,v0100
+SH000240,농협(규암농업협동조합),농협(규암농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(규암농업협동조합),group,self,,v0100
+SH000241,농협(근흥농업협동조합),농협(근흥농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(근흥농업협동조합),group,self,,v0100
+SH000242,농협(금산인삼농업협동조합),농협(금산인삼농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(금산인삼농업협동조합),group,self,,v0100
+SH000243,농협(금왕농업협동조합),농협(금왕농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(금왕농업협동조합),group,self,,v0100
+SH000244,농협(남밀양농업협동조합),농협(남밀양농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(남밀양농업협동조합),group,self,,v0100
+SH000245,농협(대구경북능금농업협동조합),농협(대구경북능금농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(대구경북능금농업협동조합),group,self,,v0100
+SH000246,농협(대천농업협동조합),농협(대천농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(대천농업협동조합),group,self,,v0100
+SH000247,농협(동경주농업협동조합),농협(동경주농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(동경주농업협동조합),group,self,,v0100
+SH000248,농협(동군산농업협동조합),농협(동군산농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(동군산농업협동조합),group,self,,v0100
+SH000249,농협(동북농업협동조합),농협(동북농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(동북농업협동조합),group,self,,v0100
+SH000250,농협(마도농업협동조합),농협(마도농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(마도농업협동조합),group,self,,v0100
+SH000251,농협(몽탄농업협동조합),농협(몽탄농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(몽탄농업협동조합),group,self,,v0100
+SH000252,농협(문막농업협동조합),농협(문막농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(문막농업협동조합),group,self,,v0100
+SH000253,농협(백석농업협동조합),농협(백석농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(백석농업협동조합),group,self,,v0100
+SH000254,농협(백운농업협동조합),농협(백운농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(백운농업협동조합),group,self,,v0100
+SH000255,농협(봉동농업협동조합),농협(봉동농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(봉동농업협동조합),group,self,,v0100
+SH000256,농협(부안중앙농업협동조합),농협(부안중앙농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(부안중앙농업협동조합),group,self,,v0100
+SH000257,농협(사등농업협동조합),농협(사등농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(사등농업협동조합),group,self,,v0100
+SH000258,농협(산청군농업협동조합),농협(산청군농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(산청군농업협동조합),group,self,,v0100
+SH000259,농협(삼칠농업협동조합),농협(삼칠농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(삼칠농업협동조합),group,self,,v0100
+SH000260,농협(삼호농업협동조합),농협(삼호농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(삼호농업협동조합),group,self,,v0100
+SH000261,농협(서석농업협동조합),농협(서석농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(서석농업협동조합),group,self,,v0100
+SH000262,농협(서신농업협동조합),농협(서신농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(서신농업협동조합),group,self,,v0100
+SH000263,농협(소양농업협동조합),농협(소양농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(소양농업협동조합),group,self,,v0100
+SH000264,농협(소초농업협동조합),농협(소초농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(소초농업협동조합),group,self,,v0100
+SH000265,농협(수륜농업협동조합),농협(수륜농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(수륜농업협동조합),group,self,,v0100
+SH000266,농협(수원농업협동조합),농협(수원농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(수원농업협동조합),group,self,,v0100
+SH000267,농협(순창농업협동조합),농협(순창농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(순창농업협동조합),group,self,,v0100
+SH000268,농협(안계농업협동조합),농협(안계농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(안계농업협동조합),group,self,,v0100
+SH000269,농협(안흥농업협동조합),농협(안흥농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(안흥농업협동조합),group,self,,v0100
+SH000270,농협(영덕농업협동조합),농협(영덕농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(영덕농업협동조합),group,self,,v0100
+SH000271,농협(예산중앙농업협동조합),농협(예산중앙농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(예산중앙농업협동조합),group,self,,v0100
+SH000272,농협(왕궁농업협동조합),농협(왕궁농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(왕궁농업협동조합),group,self,,v0100
+SH000273,농협(용성농업협동조합),농협(용성농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(용성농업협동조합),group,self,,v0100
+SH000274,농협(울릉농업협동조합),농협(울릉농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(울릉농업협동조합),group,self,,v0100
+SH000275,농협(월출산농업협동조합),농협(월출산농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(월출산농업협동조합),group,self,,v0100
+SH000276,농협(의령농업협동조합),농협(의령농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(의령농업협동조합),group,self,,v0100
+SH000277,농협(임실농업협동조합),농협(임실농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(임실농업협동조합),group,self,,v0100
+SH000278,농협(제주고산농업협동조합),농협(제주고산농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(제주고산농업협동조합),group,self,,v0100
+SH000279,농협(진도농업협동조합),농협(진도농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(진도농업협동조합),group,self,,v0100
+SH000280,농협(진주진양농업협동조합),농협(진주진양농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(진주진양농업협동조합),group,self,,v0100
+SH000281,농협(진해농업협동조합),농협(진해농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(진해농업협동조합),group,self,,v0100
+SH000282,농협(철원농업협동조합),농협(철원농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(철원농업협동조합),group,self,,v0100
+SH000283,농협(추풍령농업협동조합),농협(추풍령농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(추풍령농업협동조합),group,self,,v0100
+SH000284,농협(춘천강동농업협동조합),농협(춘천강동농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(춘천강동농업협동조합),group,self,,v0100
+SH000285,농협(하서농업협동조합),농협(하서농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(하서농업협동조합),group,self,,v0100
+SH000286,농협(하양농업협동조합 동부지점),농협(하양농업협동조합 동부지점),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(하양농업협동조합 동부지점),group,self,,v0100
+SH000287,농협(함덕농업협동조합),농협(함덕농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(함덕농업협동조합),group,self,,v0100
+SH000288,농협(함창농업협동조합),농협(함창농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(함창농업협동조합),group,self,,v0100
+SH000289,농협(합천농업협동조합),농협(합천농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(합천농업협동조합),group,self,,v0100
+SH000290,농협(합천새남부농업협동조합),농협(합천새남부농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(합천새남부농업협동조합),group,self,,v0100
+SH000291,농협(현서농업협동조합),농협(현서농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(현서농업협동조합),group,self,,v0100
+SH000292,농협(홍성낙농협동조합),농협(홍성낙농협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(홍성낙농협동조합),group,self,,v0100
+SH000293,농협(홍해농업협동조합),농협(홍해농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(홍해농업협동조합),group,self,,v0100
+SH000294,농협(화개악양농업협동조합),농협(화개악양농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협(화개악양농업협동조합),group,self,,v0100
+SH000295,농협대주단,농협대주단,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협대주단,group,self,,v0100
+SH000296,농협중앙회(농업협동조합중앙회),농협중앙회(농업협동조합중앙회),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,농협중앙회(농업협동조합중앙회),group,self,,v0100
+SH000297,뉴스타케이제일차,뉴스타케이제일차,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,뉴스타케이제일차,group,self,,v0100
+SH000298,뉴익스파트너스,뉴익스파트너스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,뉴익스파트너스,group,self,,v0100
+SH000299,다안건설,다안건설,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,다안건설,group,self,,v0100
+SH000300,다올저축은행,다올저축은행,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,다올저축은행,group,self,,v0100
+SH000301,다이와,다이와,organization,financing_partner,lender,금융기관(대주),t5t_dashboard,2026-04-13,Y,,다이와,group,self,,v0100
+SH000302,담배인삼공제회,담배인삼공제회,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,담배인삼공제회,group,self,,v0100
+SH000303,대교이앤씨,대교이앤씨,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,대교이앤씨,group,self,,v0100
+SH000304,대교홀딩스,대교홀딩스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,대교홀딩스,group,self,,v0100
+SH000305,대구대건신용협동조합,대구대건신용협동조합,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,대구대건신용협동조합,group,self,,v0100
+SH000306,대림,대림,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,대림,group,self,,v0100
+SH000307,대승글로벌,대승글로벌,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,대승글로벌,group,self,,v0100
+SH000308,대신자산신탁,대신자산신탁,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,대신자산신탁,group,self,,v0100
+SH000309,대신저축은행,대신저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,대신저축은행,group,self,,v0100
+SH000310,대우건설,대우건설,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,counterparty_seed",2025-11-30,Y,,대우건설,group,self,,v0100
+SH000311,대한소방공제회,대한소방공제회,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,대한소방공제회,group,self,,v0100
+SH000312,대한지방행정공제회,대한지방행정공제회,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,공제회,mutualaid,mapped,GRP-0506,v0100
+SH000313,대한토지신탁,대한토지신탁,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,대한토지신탁,group,self,,v0100
+SH000314,더시스템랩,더시스템랩,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,더시스템랩,group,self,,v0100
+SH000315,더케이저축은행,더케이저축은행,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,더케이저축은행,group,self,,v0100
+SH000316,데피니트파트너스,데피니트파트너스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,데피니트파트너스,group,self,,v0100
+SH000317,동부건설,동부건설,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,동부건설,group,self,,v0100
+SH000318,동부산테마파크,동부산테마파크,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,동부산테마파크,group,self,,v0100
+SH000319,동양생명,동양생명,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,동양생명,group,self,,v0100
+SH000320,동원건설산업,동원건설산업,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,동원건설산업,group,self,,v0100
+SH000321,동원제일저축은행,동원제일저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,동원제일저축은행,group,self,,v0100
+SH000322,동일건축,동일건축,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,동일건축,group,self,,v0100
+SH000323,동일스위트,동일스위트,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,동일스위트,group,self,,v0100
+SH000324,두가 CNC,두가 CNC,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,두가 CNC,cnc,self,,v0100
+SH000325,디비에스은행,디비에스은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,디비에스은행,group,self,,v0100
+SH000326,디앤디플랫폼리츠,디앤디플랫폼리츠,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,디앤디플랫폼리츠,group,self,,v0100
+SH000327,디앤에스씨,디앤에스씨,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,디앤에스씨,group,self,,v0100
+SH000328,디앤오,디앤오,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,디앤오,group,self,,v0100
+SH000329,디에스네트웍스,디에스네트웍스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,디에스네트웍스,group,self,,v0100
+SH000330,디에스센트럴프라임,디에스센트럴프라임,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,디에스센트럴프라임,group,self,,v0100
+SH000331,디에스클러스터,디에스클러스터,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,디에스클러스터,group,self,,v0100
+SH000332,디와이시스템,디와이시스템,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,디와이시스템,group,self,,v0100
+SH000333,디피아이피코리아 유한회사,디피아이피코리아 유한회사,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,디피아이피코리아 유한회사,group,self,,v0100
+SH000334,라인플러스,라인플러스,organization,occupier_customer,tenant,임차인,t5t_dashboard,2026-04-12,Y,,라인플러스,group,self,,v0100
+SH000335,라크라,라크라,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,라크라,group,self,,v0100
+SH000336,롯데 이노베이트,롯데 이노베이트,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,롯데 이노베이트,group,self,,v0100
+SH000337,롯데건설,롯데건설,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,롯데건설,group,self,,v0100
+SH000338,롯데손해보험,롯데손해보험,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,롯데손해보험,group,self,,v0100
+SH000339,롯데쇼핑,롯데쇼핑,organization,occupier_customer,tenant,임차인,"beneficiary_snapshot,t5t_dashboard",2026-03-30,Y,,롯데쇼핑,group,self,,v0100
+SH000340,롯데캐피탈,롯데캐피탈,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,롯데캐피탈,group,self,,v0100
+SH000341,리테일투자자,리테일투자자,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,리테일투자자,group,self,,v0100
+SH000342,마르스자산운용,마르스자산운용,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,마르스자산운용,group,self,,v0100
+SH000343,마스터자산운용,마스터자산운용,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,마스터자산운용,group,self,,v0100
+SH000344,마스턴투자운용,마스턴투자운용,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,마스턴투자운용,group,self,,v0100
+SH000345,마크자산운용(주),마크자산운용(주),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,마크자산운용(주),group,self,,v0100
+SH000346,매도인,매도인,role_placeholder,transaction_counterparty,buyer_seller,매수/매도인,t5t_dashboard,2026-04-13,Y,,검토대상,review,placeholder,GRP-0901,v0100
+SH000347,매수인,매수인,role_placeholder,transaction_counterparty,buyer_seller,매수/매도인,t5t_dashboard,2026-04-13,Y,,검토대상,review,placeholder,GRP-0902,v0100
+SH000348,맥서브,맥서브,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,맥서브,group,self,,v0100
+SH000349,머큐리자산운용,머큐리자산운용,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,머큐리자산운용,group,self,,v0100
+SH000350,메리츠,메리츠,organization,financing_partner,lender,금융기관(대주),t5t_dashboard,2026-04-13,Y,,메리츠,meritz,mapped,GRP-0301,v0100
+SH000351,메리츠증권,메리츠증권,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,t5t_dashboard",2026-04-13,Y,,메리츠,meritz,mapped,GRP-0302,v0100
+SH000352,메리츠캐피탈,메리츠캐피탈,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,메리츠,meritz,mapped,GRP-0303,v0100
+SH000353,메리츠화재,메리츠화재,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,메리츠,meritz,mapped,GRP-0304,v0100
+SH000354,메리츠화재해상보험,메리츠화재해상보험,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,메리츠,meritz,mapped,GRP-0305,v0100
+SH000355,메트라이프생명보험,메트라이프생명보험,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,메트라이프생명보험,group,self,,v0100
+SH000356,모니모남산제일차,모니모남산제일차,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,모니모남산제일차,group,self,,v0100
+SH000357,모멘스솔루션,모멘스솔루션,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,모멘스솔루션,group,self,,v0100
+SH000358,모아저축은행,모아저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,모아저축은행,group,self,,v0100
+SH000359,무궁화신탁,무궁화신탁,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,무궁화신탁,group,self,,v0100
+SH000360,무림캐피탈,무림캐피탈,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,무림캐피탈,group,self,,v0100
+SH000361,무영,무영,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,무영,group,self,,v0100
+SH000362,문창신용협동조합,문창신용협동조합,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,문창신용협동조합,group,self,,v0100
+SH000363,미래에셋,미래에셋,organization,financing_partner,lender,금융기관(대주),t5t_dashboard,2026-04-13,Y,,미래에셋,miraeasset,mapped,GRP-0401,v0100
+SH000364,미래에셋 주택기금,미래에셋 주택기금,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,미래에셋 주택기금,group,self,,v0100
+SH000365,미래에셋생명,미래에셋생명,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,미래에셋,miraeasset,mapped,GRP-0404,v0100
+SH000366,미래에셋자산운용OCIO,미래에셋자산운용OCIO,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,미래에셋,miraeasset,mapped,GRP-0405,v0100
+SH000367,미래에셋증권,미래에셋증권,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,미래에셋,miraeasset,mapped,GRP-0402,v0100
+SH000368,미래에셋캐피탈,미래에셋캐피탈,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,미래에셋,miraeasset,mapped,GRP-0403,v0100
+SH000369,미정,미정,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,미정,group,self,,v0100
+SH000370,밸류업베스트,밸류업베스트,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,밸류업베스트,group,self,,v0100
+SH000371,법무법인,법무법인,organization,advisor_intermediary,advisor,주간사/자문,t5t_dashboard,2026-04-14,Y,,법무법인,group,self,,v0100
+SH000372,별정우체국연금관리단,별정우체국연금관리단,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,별정우체국연금관리단,group,self,,v0100
+SH000373,부림저축은행,부림저축은행,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,부림저축은행,group,self,,v0100
+SH000374,부산은행,부산은행,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,부산은행,group,self,,v0100
+SH000375,블랙스톤,블랙스톤,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,블랙스톤,group,self,,v0100
+SH000376,비공개,비공개,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,비공개,group,self,,v0100
+SH000377,비씨카드,비씨카드,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,비씨카드,group,self,,v0100
+SH000378,비욘드남산제사차,비욘드남산제사차,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,비욘드남산제사차,group,self,,v0100
+SH000379,비욘드남산제이차,비욘드남산제이차,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,비욘드남산제이차,group,self,,v0100
+SH000380,사학연금,사학연금,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,사학연금,group,self,,v0100
+SH000381,산림조합,산림조합,organization,capital_partner,institutional_lp,기관투자자(LP),t5t_dashboard,2026-04-17,Y,,산림조합,group,self,,v0100
+SH000382,산림조합중앙회,산림조합중앙회,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,산림조합중앙회,group,self,,v0100
+SH000383,삼미건설,삼미건설,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,삼미건설,group,self,,v0100
+SH000384,삼성SRA1호,삼성SRA1호,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,삼성SRA1호,sra1,self,,v0100
+SH000385,삼성SRA국내담보대출일반사모부동산투자신탁4호,삼성SRA국내담보대출일반사모부동산투자신탁4호,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,삼성SRA국내담보대출일반사모부동산투자신탁4호,sra_4,self,,v0100
+SH000386,삼성SRA국내담보대출일반사모부동산투자신탁제5호,삼성SRA국내담보대출일반사모부동산투자신탁제5호,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,삼성SRA국내담보대출일반사모부동산투자신탁제5호,sra_5,self,,v0100
+SH000387,삼성물산,삼성물산,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,counterparty_seed",2025-11-30,Y,,삼성물산,group,self,,v0100
+SH000388,삼성생명,삼성생명,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,삼성생명,group,self,,v0100
+SH000389,삼성생명보험,삼성생명보험,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,삼성생명보험,group,self,,v0100
+SH000390,삼성자산운용OCIO,삼성자산운용OCIO,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,삼성자산운용OCIO,ocio,self,,v0100
+SH000391,삼성증권,삼성증권,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,삼성증권,group,self,,v0100
+SH000392,삼성화재,삼성화재,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,삼성화재,group,self,,v0100
+SH000393,삼양홀딩스,삼양홀딩스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,삼양홀딩스,group,self,,v0100
+SH000394,삼우,삼우,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,삼우,group,self,,v0100
+SH000395,삼우 CM,삼우 CM,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,삼우 CM,cm,self,,v0100
+SH000396,삼우디씨디,삼우디씨디,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,삼우디씨디,group,self,,v0100
+SH000397,삼우씨엠건축사사무소,삼우씨엠건축사사무소,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,삼우씨엠건축사사무소,group,self,,v0100
+SH000398,삼정저축은행,삼정저축은행,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,삼정저축은행,group,self,,v0100
+SH000399,삼한교역상사,삼한교역상사,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,삼한교역상사,group,self,,v0100
+SH000400,상상인저축은행,상상인저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,상상인저축은행,group,self,,v0100
+SH000401,서귀포동부신용협동조합,서귀포동부신용협동조합,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,서귀포동부신용협동조합,group,self,,v0100
+SH000402,서리풀클라우드,서리풀클라우드,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,서리풀클라우드,group,self,,v0100
+SH000403,서민이엔씨,서민이엔씨,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,서민이엔씨,group,self,,v0100
+SH000404,서울보증보험,서울보증보험,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,서울보증보험,group,self,,v0100
+SH000405,서울시,서울시,organization,public_authority,public_body,공공/행정기관,t5t_dashboard,2026-04-13,Y,,서울시,group,self,,v0100
+SH000406,서천신용협동조합,서천신용협동조합,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,서천신용협동조합,group,self,,v0100
+SH000407,선매수자,선매수자,role_placeholder,transaction_counterparty,buyer_seller,매수/매도인,t5t_dashboard,2026-03-30,Y,,선매수자,group,self,,v0100
+SH000408,선우건축,선우건축,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,선우건축,group,self,,v0100
+SH000409,성담,성담,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,성담,group,self,,v0100
+SH000410,성담솔트베이,성담솔트베이,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,성담솔트베이,group,self,,v0100
+SH000411,성지제강,성지제강,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,성지제강,group,self,,v0100
+SH000412,세람저축은행,세람저축은행,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,세람저축은행,group,self,,v0100
+SH000413,세미파이브,세미파이브,organization,occupier_customer,tenant,임차인,t5t_dashboard,2026-04-17,Y,,세미파이브,group,self,,v0100
+SH000414,세빌스,세빌스,organization,advisor_intermediary,advisor,주간사/자문,t5t_dashboard,2026-04-13,Y,,세빌스,group,self,,v0100
+SH000415,세종네트웍스,세종네트웍스,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,세종네트웍스,group,self,,v0100
+SH000416,세종텔레콤,세종텔레콤,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,세종텔레콤,group,self,,v0100
+SH000417,세콘도,세콘도,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,세콘도,group,self,,v0100
+SH000418,센트럴저축은행,센트럴저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,센트럴저축은행,group,self,,v0100
+SH000419,수산업협동조합중앙회,수산업협동조합중앙회,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,수산업협동조합중앙회,group,self,,v0100
+SH000420,수지신용협동조합,수지신용협동조합,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,수지신용협동조합,group,self,,v0100
+SH000421,수협은행,수협은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,수협은행,group,self,,v0100
+SH000422,수협중앙회,수협중앙회,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,수협중앙회,group,self,,v0100
+SH000423,스마일게이트,스마일게이트,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,스마일게이트,group,self,,v0100
+SH000424,스카이밸류,스카이밸류,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,스카이밸류,group,self,,v0100
+SH000425,스카이저축은행,스카이저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,스카이저축은행,group,self,,v0100
+SH000426,스탠다드차타드은행,스탠다드차타드은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,스탠다드차타드은행,group,self,,v0100
+SH000427,시행사,시행사,organization,transaction_counterparty,buyer_seller,매수/매도인,t5t_dashboard,2026-04-13,Y,,검토대상,review,review_required,GRP-0903,v0100
+SH000428,신세계,신세계,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,신세계,group,self,,v0100
+SH000429,신세계프라퍼티,신세계프라퍼티,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,신세계프라퍼티,group,self,,v0100
+SH000430,신용협동조합중앙회,신용협동조합중앙회,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,신용협동조합중앙회,group,self,,v0100
+SH000431,신진솔루션즈,신진솔루션즈,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,신진솔루션즈,group,self,,v0100
+SH000432,신한,신한,organization,financing_partner,lender,금융기관(대주),t5t_dashboard,2026-04-17,Y,,신한,shinhan,mapped,GRP-0001,v0100
+SH000433,신한금융투자,신한금융투자,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,신한,shinhan,mapped,GRP-0005,v0100
+SH000434,신한금융플러스,신한금융플러스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,신한금융플러스,group,self,,v0100
+SH000435,신한라이프생명보험,신한라이프생명보험,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,신한,shinhan,mapped,GRP-0007,v0100
+SH000436,신한은행,신한은행,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,신한,shinhan,mapped,GRP-0003,v0100
+SH000437,신한은행(연기금통합일반사모증권투자신탁제141호의 신탁업자로서),신한은행(연기금통합일반사모증권투자신탁제141호의 신탁업자로서),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,신한은행(연기금통합일반사모증권투자신탁제141호의 신탁업자로서),141,self,,v0100
+SH000438,신한은행(캡스톤APAC2호의 신탁업자 지위),신한은행(캡스톤APAC2호의 신탁업자 지위),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,신한은행(캡스톤APAC2호의 신탁업자 지위),apac2,self,,v0100
+SH000439,신한카드,신한카드,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신한,shinhan,mapped,GRP-0006,v0100
+SH000440,신한캐피탈,신한캐피탈,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot,t5t_dashboard",2026-04-17,Y,,신한,shinhan,mapped,GRP-0002,v0100
+SH000441,신한투자증권,신한투자증권,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,신한,shinhan,mapped,GRP-0004,v0100
+SH000442,신협(강릉신용협동조합),신협(강릉신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(강릉신용협동조합),group,self,,v0100
+SH000443,신협(강서신용협동조합),신협(강서신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(강서신용협동조합),group,self,,v0100
+SH000444,신협(검단신용협동조합),신협(검단신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(검단신용협동조합),group,self,,v0100
+SH000445,신협(경기광주신용협동조합),신협(경기광주신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(경기광주신용협동조합),group,self,,v0100
+SH000446,신협(경남가온신용협동조합),신협(경남가온신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(경남가온신용협동조합),group,self,,v0100
+SH000447,신협(경남제일신용협동조합),신협(경남제일신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(경남제일신용협동조합),group,self,,v0100
+SH000448,신협(경남중앙신용협동조합),신협(경남중앙신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(경남중앙신용협동조합),group,self,,v0100
+SH000449,신협(경남한의사신용협동조합),신협(경남한의사신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(경남한의사신용협동조합),group,self,,v0100
+SH000450,신협(경동신용협동조합),신협(경동신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(경동신용협동조합),group,self,,v0100
+SH000451,신협(계산신용협동조합),신협(계산신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(계산신용협동조합),group,self,,v0100
+SH000452,신협(공주중앙신용협동조합),신협(공주중앙신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(공주중앙신용협동조합),group,self,,v0100
+SH000453,신협(광안신용협동조합),신협(광안신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(광안신용협동조합),group,self,,v0100
+SH000454,신협(광장신용협동조합),신협(광장신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(광장신용협동조합),group,self,,v0100
+SH000455,신협(광주동부신용협동조합),신협(광주동부신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(광주동부신용협동조합),group,self,,v0100
+SH000456,신협(광주신우신용협동조합),신협(광주신우신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(광주신우신용협동조합),group,self,,v0100
+SH000457,신협(구덕신용협동조합),신협(구덕신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(구덕신용협동조합),group,self,,v0100
+SH000458,신협(구포신용협동조합),신협(구포신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(구포신용협동조합),group,self,,v0100
+SH000459,신협(금모래신용협동조합),신협(금모래신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(금모래신용협동조합),group,self,,v0100
+SH000460,신협(금정신용협동조합),신협(금정신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(금정신용협동조합),group,self,,v0100
+SH000461,신협(김제신용협동조합),신협(김제신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(김제신용협동조합),group,self,,v0100
+SH000462,신협(남광주신용협동조합),신협(남광주신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(남광주신용협동조합),group,self,,v0100
+SH000463,신협(남서울신용협동조합),신협(남서울신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(남서울신용협동조합),group,self,,v0100
+SH000464,신협(남청주신용협동조합),신협(남청주신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(남청주신용협동조합),group,self,,v0100
+SH000465,신협(달구벌신용협동조합),신협(달구벌신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(달구벌신용협동조합),group,self,,v0100
+SH000466,신협(대구태영신용협동조합),신협(대구태영신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(대구태영신용협동조합),group,self,,v0100
+SH000467,신협(대원신용협동조합),신협(대원신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(대원신용협동조합),group,self,,v0100
+SH000468,신협(동대구신용협동조합),신협(동대구신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(동대구신용협동조합),group,self,,v0100
+SH000469,신협(동수원신용협동조합),신협(동수원신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(동수원신용협동조합),group,self,,v0100
+SH000470,신협(든솔신용협동조합),신협(든솔신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(든솔신용협동조합),group,self,,v0100
+SH000471,신협(등촌신용협동조합),신협(등촌신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(등촌신용협동조합),group,self,,v0100
+SH000472,신협(마포신용협동조합),신협(마포신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(마포신용협동조합),group,self,,v0100
+SH000473,신협(무학신용협동조합),신협(무학신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(무학신용협동조합),group,self,,v0100
+SH000474,신협(미추홀신용협동조합),신협(미추홀신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(미추홀신용협동조합),group,self,,v0100
+SH000475,신협(방림신용협동조합),신협(방림신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(방림신용협동조합),group,self,,v0100
+SH000476,신협(방촌신용협동조합),신협(방촌신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(방촌신용협동조합),group,self,,v0100
+SH000477,신협(부산거제신용협동조합),신협(부산거제신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(부산거제신용협동조합),group,self,,v0100
+SH000478,신협(부산동래신용협동조합),신협(부산동래신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(부산동래신용협동조합),group,self,,v0100
+SH000479,신협(부산성의신용협동조합),신협(부산성의신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(부산성의신용협동조합),group,self,,v0100
+SH000480,신협(부산시중앙신용협동조합),신협(부산시중앙신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(부산시중앙신용협동조합),group,self,,v0100
+SH000481,신협(부산장우신용협동조합),신협(부산장우신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(부산장우신용협동조합),group,self,,v0100
+SH000482,신협(부산진신용협동조합),신협(부산진신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(부산진신용협동조합),group,self,,v0100
+SH000483,신협(부산행복신용협동조합),신협(부산행복신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(부산행복신용협동조합),group,self,,v0100
+SH000484,신협(북동신용협동조합),신협(북동신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(북동신용협동조합),group,self,,v0100
+SH000485,신협(북부산신용협동조합),신협(북부산신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(북부산신용협동조합),group,self,,v0100
+SH000486,신협(북성신용협동조합),신협(북성신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(북성신용협동조합),group,self,,v0100
+SH000487,신협(북원신용협동조합),신협(북원신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(북원신용협동조합),group,self,,v0100
+SH000488,신협(새서울신용협동조합),신협(새서울신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(새서울신용협동조합),group,self,,v0100
+SH000489,신협(서대구신용협동조합),신협(서대구신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(서대구신용협동조합),group,self,,v0100
+SH000490,신협(서울치과의사신용협동조합),신협(서울치과의사신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(서울치과의사신용협동조합),group,self,,v0100
+SH000491,신협(성남중앙신용협동조합),신협(성남중앙신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(성남중앙신용협동조합),group,self,,v0100
+SH000492,신협(송파동부신용협동조합),신협(송파동부신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(송파동부신용협동조합),group,self,,v0100
+SH000493,신협(수원중앙신용협동조합),신협(수원중앙신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(수원중앙신용협동조합),group,self,,v0100
+SH000494,신협(신정신용협동조합),신협(신정신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(신정신용협동조합),group,self,,v0100
+SH000495,신협(아산신용협동조합),신협(아산신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(아산신용협동조합),group,self,,v0100
+SH000496,신협(양천신용협동조합),신협(양천신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(양천신용협동조합),group,self,,v0100
+SH000497,신협(연무신용협동조합),신협(연무신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(연무신용협동조합),group,self,,v0100
+SH000498,신협(영암신용협동조합),신협(영암신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(영암신용협동조합),group,self,,v0100
+SH000499,신협(오산신용협동조합),신협(오산신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(오산신용협동조합),group,self,,v0100
+SH000500,신협(울산남부신용협동조합),신협(울산남부신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(울산남부신용협동조합),group,self,,v0100
+SH000501,신협(울산중앙신용협동조합),신협(울산중앙신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(울산중앙신용협동조합),group,self,,v0100
+SH000502,신협(울산행복신용협동조합),신협(울산행복신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(울산행복신용협동조합),group,self,,v0100
+SH000503,신협(원주신용협동조합),신협(원주신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(원주신용협동조합),group,self,,v0100
+SH000504,신협(위미신용협동조합),신협(위미신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(위미신용협동조합),group,self,,v0100
+SH000505,신협(은평신용협동조합),신협(은평신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(은평신용협동조합),group,self,,v0100
+SH000506,신협(의왕신용협동조합),신협(의왕신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(의왕신용협동조합),group,self,,v0100
+SH000507,신협(이천신용협동조합),신협(이천신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(이천신용협동조합),group,self,,v0100
+SH000508,신협(인천치과의사신용협동조합),신협(인천치과의사신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(인천치과의사신용협동조합),group,self,,v0100
+SH000509,신협(일산신용협동조합),신협(일산신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(일산신용협동조합),group,self,,v0100
+SH000510,신협(장안신용협동조합),신협(장안신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(장안신용협동조합),group,self,,v0100
+SH000511,신협(제민신용협동조합),신협(제민신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(제민신용협동조합),group,self,,v0100
+SH000512,신협(제주신용협동조합),신협(제주신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(제주신용협동조합),group,self,,v0100
+SH000513,신협(주민신용협동조합),신협(주민신용협동조합),group,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(주민신용협동조합),group,self,,v0100
+SH000514,신협(주성신용협동조합),신협(주성신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(주성신용협동조합),group,self,,v0100
+SH000515,신협(중앙신용협동조합),신협(중앙신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(중앙신용협동조합),group,self,,v0100
+SH000516,신협(청량리신용협동조합),신협(청량리신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(청량리신용협동조합),group,self,,v0100
+SH000517,신협(청운신용협동조합),신협(청운신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(청운신용협동조합),group,self,,v0100
+SH000518,신협(청주상당신용협동조합),신협(청주상당신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(청주상당신용협동조합),group,self,,v0100
+SH000519,신협(청주성동신용협동조합),신협(청주성동신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(청주성동신용협동조합),group,self,,v0100
+SH000520,신협(한라신용협동조합),신협(한라신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(한라신용협동조합),group,self,,v0100
+SH000521,신협(한우리신용협동조합),신협(한우리신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(한우리신용협동조합),group,self,,v0100
+SH000522,신협(현대제철신용협동조합),신협(현대제철신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(현대제철신용협동조합),group,self,,v0100
+SH000523,신협(홍성신용협동조합),신협(홍성신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(홍성신용협동조합),group,self,,v0100
+SH000524,신협(화곡신용협동조합),신협(화곡신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(화곡신용협동조합),group,self,,v0100
+SH000525,신협(화성제일신용협동조합),신협(화성제일신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(화성제일신용협동조합),group,self,,v0100
+SH000526,신협(화지산신용협동조합),신협(화지산신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(화지산신용협동조합),group,self,,v0100
+SH000527,신협(희원신용협동조합),신협(희원신용협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협(희원신용협동조합),group,self,,v0100
+SH000528,신협대주단,신협대주단,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협대주단,group,self,,v0100
+SH000529,신협중앙회(남부천신용협동중앙회),신협중앙회(남부천신용협동중앙회),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협중앙회(남부천신용협동중앙회),group,self,,v0100
+SH000530,신협중앙회(신용협동조합중앙회),신협중앙회(신용협동조합중앙회),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,신협중앙회(신용협동조합중앙회),group,self,,v0100
+SH000531,썬트리,썬트리,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,썬트리,group,self,,v0100
+SH000532,씨엘케이아이에스,씨엘케이아이에스,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,씨엘케이아이에스,group,self,,v0100
+SH000533,아디다스,아디다스,organization,occupier_customer,tenant,임차인,t5t_dashboard,2026-04-13,Y,,아디다스,group,self,,v0100
+SH000534,아디안 싱가포르,아디안 싱가포르,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,아디안 싱가포르,group,self,,v0100
+SH000535,아라그룹,아라그룹,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,아라그룹,group,self,,v0100
+SH000536,아산나눔재단,아산나눔재단,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,아산나눔재단,group,self,,v0100
+SH000537,아스테이온제일차(SPC),아스테이온제일차(SPC),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,아스테이온제일차(SPC),spc,self,,v0100
+SH000538,아시아에프앤아이,아시아에프앤아이,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,아시아에프앤아이,group,self,,v0100
+SH000539,아우토스트라세,아우토스트라세,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,아우토스트라세,group,self,,v0100
+SH000540,아이알디브이,아이알디브이,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,아이알디브이,group,self,,v0100
+SH000541,아이언투자파트너스,아이언투자파트너스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,아이언투자파트너스,group,self,,v0100
+SH000542,아이엠단디에이치제일차,아이엠단디에이치제일차,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,아이엠단디에이치제일차,group,self,,v0100
+SH000543,아이엠라이프생명보험,아이엠라이프생명보험,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,아이엠라이프생명보험,group,self,,v0100
+SH000544,아이엠인베스트제이차,아이엠인베스트제이차,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,아이엠인베스트제이차,group,self,,v0100
+SH000545,아주캐피탈,아주캐피탈,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,아주캐피탈,group,self,,v0100
+SH000546,아테나자산운용,아테나자산운용,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,아테나자산운용,group,self,,v0100
+SH000547,아토모스리얼에스테이트,아토모스리얼에스테이트,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,아토모스리얼에스테이트,group,self,,v0100
+SH000548,안다인베스트먼트파트너스,안다인베스트먼트파트너스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,안다인베스트먼트파트너스,group,self,,v0100
+SH000549,안다자산운용,안다자산운용,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,안다자산운용,group,self,,v0100
+SH000550,애큐온저축은행,애큐온저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,애큐온저축은행,group,self,,v0100
+SH000551,애큐온캐피탈,애큐온캐피탈,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,애큐온캐피탈,group,self,,v0100
+SH000552,양지로지스특시,양지로지스특시,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,양지로지스특시,group,self,,v0100
+SH000553,어반웰스,어반웰스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,어반웰스,group,self,,v0100
+SH000554,에셀,에셀,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,에셀,group,self,,v0100
+SH000555,에셀유한회사,에셀유한회사,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,에셀유한회사,group,self,,v0100
+SH000556,에스가산,에스가산,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,에스가산,group,self,,v0100
+SH000557,에스디디피제일차,에스디디피제일차,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,에스디디피제일차,group,self,,v0100
+SH000558,에스디제오차,에스디제오차,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,에스디제오차,group,self,,v0100
+SH000559,에스비센,에스비센,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,에스비센,group,self,,v0100
+SH000560,에스엔유비아이제트1호,에스엔유비아이제트1호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,에스엔유비아이제트1호,1,self,,v0100
+SH000561,에스원,에스원,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,에스원,group,self,,v0100
+SH000562,에스유씨플러스,에스유씨플러스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,에스유씨플러스,group,self,,v0100
+SH000563,에스제이더블유인터네셔널,에스제이더블유인터네셔널,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,에스제이더블유인터네셔널,group,self,,v0100
+SH000564,에스케이디앤디,에스케이디앤디,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,에스케이디앤디,group,self,,v0100
+SH000565,에이아이에스독일제일차주식회사(메리츠증권),에이아이에스독일제일차주식회사(메리츠증권),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,에이아이에스독일제일차주식회사(메리츠증권),group,self,,v0100
+SH000566,에이치비저축은행,에이치비저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,에이치비저축은행,group,self,,v0100
+SH000567,에이치엔아이,에이치엔아이,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,에이치엔아이,group,self,,v0100
+SH000568,에이치플랜,에이치플랜,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,에이치플랜,group,self,,v0100
+SH000569,에이티넘인베스트먼트,에이티넘인베스트먼트,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,에이티넘인베스트먼트,group,self,,v0100
+SH000570,에프엔십정2유동화전문 유한회사,에프엔십정2유동화전문 유한회사,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,에프엔십정2유동화전문 유한회사,2,self,,v0100
+SH000571,에프엔프로젝트제이차,에프엔프로젝트제이차,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,에프엔프로젝트제이차,group,self,,v0100
+SH000572,엔에이치투자증권,엔에이치투자증권,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,엔에이치투자증권,group,self,,v0100
+SH000573,엔에이치판교아이스퀘어제이차,엔에이치판교아이스퀘어제이차,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,엔에이치판교아이스퀘어제이차,group,self,,v0100
+SH000574,엔피씨,엔피씨,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,엔피씨,group,self,,v0100
+SH000575,엠디엠플러스,엠디엠플러스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,엠디엠플러스,group,self,,v0100
+SH000576,엠에스퓨처,엠에스퓨처,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,엠에스퓨처,group,self,,v0100
+SH000577,엠유에프지은행,엠유에프지은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,엠유에프지은행,group,self,,v0100
+SH000578,엠지알브이,엠지알브이,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,엠지알브이,group,self,,v0100
+SH000579,연초생산안정화재단,연초생산안정화재단,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,연초생산안정화재단,group,self,,v0100
+SH000580,연합자산관리,연합자산관리,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,연합자산관리,group,self,,v0100
+SH000581,엽연초생산협동조합중앙회,엽연초생산협동조합중앙회,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,엽연초생산협동조합중앙회,group,self,,v0100
+SH000582,엽연초생산협동조합중앙회(청주),엽연초생산협동조합중앙회(청주),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,엽연초생산협동조합중앙회(청주),group,self,,v0100
+SH000583,예성건축,예성건축,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,예성건축,group,self,,v0100
+SH000584,예스코홀딩,예스코홀딩,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,예스코홀딩,group,self,,v0100
+SH000585,오로라월드,오로라월드,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,오로라월드,group,self,,v0100
+SH000586,오케이저축은행,오케이저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,오케이저축은행,group,self,,v0100
+SH000587,오투저축은행,오투저축은행,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,오투저축은행,group,self,,v0100
+SH000588,우리,우리,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,우리,group,self,,v0100
+SH000589,우리금융저축은행,우리금융저축은행,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,우리금융저축은행,group,self,,v0100
+SH000590,우리금융캐피탈,우리금융캐피탈,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,우리금융캐피탈,group,self,,v0100
+SH000591,우리은행,우리은행,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,우리은행,group,self,,v0100
+SH000592,우리은행(캡스톤대출플랫폼일반사모투자신탁2호의 신탁업자),우리은행(캡스톤대출플랫폼일반사모투자신탁2호의 신탁업자),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,우리은행(캡스톤대출플랫폼일반사모투자신탁2호의 신탁업자),2,self,,v0100
+SH000593,우리자산신탁,우리자산신탁,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,우리자산신탁,group,self,,v0100
+SH000594,우리종합금융,우리종합금융,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,우리종합금융,group,self,,v0100
+SH000595,우리투자증권,우리투자증권,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,우리투자증권,group,self,,v0100
+SH000596,우미건설,우미건설,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,counterparty_seed",2025-11-30,Y,,우미건설,group,self,,v0100
+SH000597,우미글로벌,우미글로벌,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,우미글로벌,group,self,,v0100
+SH000598,우정사업본부,우정사업본부,organization,capital_partner,institutional_lp,기관투자자(LP),t5t_dashboard,2026-04-13,Y,,우정사업본부,group,self,,v0100
+SH000599,우정사업본부(보험),우정사업본부(보험),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,우정사업본부(보험),group,self,,v0100
+SH000600,우정사업본부(예금),우정사업본부(예금),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,우정사업본부(예금),group,self,,v0100
+SH000601,운율건축,운율건축,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,운율건축,group,self,,v0100
+SH000602,원양건축,원양건축,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,원양건축,group,self,,v0100
+SH000603,웰컴저축은행,웰컴저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,웰컴저축은행,group,self,,v0100
+SH000604,위더그린,위더그린,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,위더그린,group,self,,v0100
+SH000605,유선엔지니어링,유선엔지니어링,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,유선엔지니어링,group,self,,v0100
+SH000606,유안타저축은행,유안타저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,유안타저축은행,group,self,,v0100
+SH000607,유안타증권,유안타증권,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,유안타증권,group,self,,v0100
+SH000608,유일엔지니어링,유일엔지니어링,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,유일엔지니어링,group,self,,v0100
+SH000609,유진투자증권,유진투자증권,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,유진투자증권,group,self,,v0100
+SH000610,이규성,이규성,person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이규성,group,self,,v0100
+SH000611,이노베스트,이노베스트,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이노베스트,group,self,,v0100
+SH000612,이든자산운용,이든자산운용,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이든자산운용,group,self,,v0100
+SH000613,이베스트투자증권,이베스트투자증권,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이베스트투자증권,group,self,,v0100
+SH000614,이수화학,이수화학,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이수화학,group,self,,v0100
+SH000615,이스턴투자개발,이스턴투자개발,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이스턴투자개발,group,self,,v0100
+SH000616,이우식,이우식,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이우식,group,self,,v0100
+SH000617,이지스 고유,이지스 고유,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스 고유,group,self,,v0100
+SH000618,이지스170-2호(자펀드2),이지스170-2호(자펀드2),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스170-2호(자펀드2),170_2_2,self,,v0100
+SH000619,이지스263호,이지스263호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스263호,263,self,,v0100
+SH000620,이지스426의1호,이지스426의1호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스426의1호,426_1,self,,v0100
+SH000621,이지스KORIF사모부동산자투자신탁18A호,이지스KORIF사모부동산자투자신탁18A호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스KORIF사모부동산자투자신탁18A호,korif_18a,self,,v0100
+SH000622,이지스NPL4호,이지스NPL4호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스NPL4호,npl4,self,,v0100
+SH000623,이지스NPL일반사모부동산투자신탁제3호,이지스NPL일반사모부동산투자신탁제3호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스NPL일반사모부동산투자신탁제3호,npl_3,self,,v0100
+SH000624,이지스경산로지스일반사모부동사투자신탁제1-1호(운용),이지스경산로지스일반사모부동사투자신탁제1-1호(운용),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스경산로지스일반사모부동사투자신탁제1-1호(운용),1_1,self,,v0100
+SH000625,이지스경산스페셜시츄에이션일반사모부동산투자신탁제1호,이지스경산스페셜시츄에이션일반사모부동산투자신탁제1호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스경산스페셜시츄에이션일반사모부동산투자신탁제1호,1,self,,v0100
+SH000626,이지스고유,이지스고유,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스고유,group,self,,v0100
+SH000627,이지스국내PF재구조화1-3호(모),이지스국내PF재구조화1-3호(모),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스국내PF재구조화1-3호(모),pf_1_3,self,,v0100
+SH000628,이지스국내PF재구조화1호(자),이지스국내PF재구조화1호(자),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스국내PF재구조화1호(자),pf_1,self,,v0100
+SH000629,이지스기회추구2-1호(Blind),이지스기회추구2-1호(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스기회추구2-1호(Blind),2_1_blind,self,,v0100
+SH000630,이지스기회추구2-2-1호(Blind),이지스기회추구2-2-1호(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스기회추구2-2-1호(Blind),2_2_1_blind,self,,v0100
+SH000631,이지스기회추구2호(Blind),이지스기회추구2호(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스기회추구2호(Blind),2_blind,self,,v0100
+SH000632,이지스네오밸류블라인드일반사모부동산투자신탁제1호,이지스네오밸류블라인드일반사모부동산투자신탁제1호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스네오밸류블라인드일반사모부동산투자신탁제1호,1,self,,v0100
+SH000633,이지스랜드플랫폼일반사모부동산투자신탁제1-1호(Blind),이지스랜드플랫폼일반사모부동산투자신탁제1-1호(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스랜드플랫폼일반사모부동산투자신탁제1-1호(Blind),1_1_blind,self,,v0100
+SH000634,이지스레지던스리츠,이지스레지던스리츠,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스레지던스리츠,group,self,,v0100
+SH000635,이지스리빙플랫폼일반사모부동산자투자신탁제1호(Blind),이지스리빙플랫폼일반사모부동산자투자신탁제1호(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스리빙플랫폼일반사모부동산자투자신탁제1호(Blind),1_blind,self,,v0100
+SH000636,이지스리얼에셋일반사모부동산투자신탁제1호,이지스리얼에셋일반사모부동산투자신탁제1호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스리얼에셋일반사모부동산투자신탁제1호,1,self,,v0100
+SH000637,이지스린,이지스린,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스린,group,self,,v0100
+SH000638,이지스밸류리츠,이지스밸류리츠,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스밸류리츠,group,self,,v0100
+SH000639,이지스밸류플러스리츠,이지스밸류플러스리츠,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스밸류플러스리츠,group,self,,v0100
+SH000640,이지스비즈성장공간플랫폼일반사모부동산투자신탁제1호(Blind),이지스비즈성장공간플랫폼일반사모부동산투자신탁제1호(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스비즈성장공간플랫폼일반사모부동산투자신탁제1호(Blind),1_blind,self,,v0100
+SH000641,이지스사모부동산자투자신탁 43-1호,이지스사모부동산자투자신탁 43-1호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스사모부동산자투자신탁 43-1호,43_1,self,,v0100
+SH000642,이지스사모부동산자투자신탁 43-2호,이지스사모부동산자투자신탁 43-2호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스사모부동산자투자신탁 43-2호,43_2,self,,v0100
+SH000643,이지스스트래티직 전문투자형사모부동산 자투자신탁 제1-3-3호,이지스스트래티직 전문투자형사모부동산 자투자신탁 제1-3-3호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스스트래티직 전문투자형사모부동산 자투자신탁 제1-3-3호,1_3_3,self,,v0100
+SH000644,이지스스트래티직일반사모부동산자투자신탁제1-2-3호,이지스스트래티직일반사모부동산자투자신탁제1-2-3호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스스트래티직일반사모부동산자투자신탁제1-2-3호,1_2_3,self,,v0100
+SH000645,이지스스트래티직일반사모부동산자투자신탁제1호(Blind),이지스스트래티직일반사모부동산자투자신탁제1호(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스스트래티직일반사모부동산자투자신탁제1호(Blind),1_blind,self,,v0100
+SH000646,이지스아레나스케이엘아이피1사모부동산자투자회사,이지스아레나스케이엘아이피1사모부동산자투자회사,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스아레나스케이엘아이피1사모부동산자투자회사,1,self,,v0100
+SH000647,이지스이익참여형메자닌일반사모부동산모투자신탁제1-1호(Blind),이지스이익참여형메자닌일반사모부동산모투자신탁제1-1호(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,이지스이익참여형메자닌일반사모부동산모투자신탁제1-1호(Blind),1_1_blind,self,,v0100
+SH000648,이지스이익참여형메자닌일반사모부동산모투자신탁제1-3호(Blind),이지스이익참여형메자닌일반사모부동산모투자신탁제1-3호(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,이지스이익참여형메자닌일반사모부동산모투자신탁제1-3호(Blind),1_3_blind,self,,v0100
+SH000649,이지스이익참여형메자닌일반사모부동산모투자신탁제1-4호(Blind),이지스이익참여형메자닌일반사모부동산모투자신탁제1-4호(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,이지스이익참여형메자닌일반사모부동산모투자신탁제1-4호(Blind),1_4_blind,self,,v0100
+SH000650,이지스인컴앤그로스일반사모부동산자투자신탁제2호(Blind),이지스인컴앤그로스일반사모부동산자투자신탁제2호(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스인컴앤그로스일반사모부동산자투자신탁제2호(Blind),2_blind,self,,v0100
+SH000651,이지스일반사모부동산자투자신탁제125-2호,이지스일반사모부동산자투자신탁제125-2호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스일반사모부동산자투자신탁제125-2호,125_2,self,,v0100
+SH000652,이지스일반사모부동산자투자신탁제130-4호,이지스일반사모부동산자투자신탁제130-4호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스일반사모부동산자투자신탁제130-4호,130_4,self,,v0100
+SH000653,이지스일반사모부동산자투자신탁제130-5호,이지스일반사모부동산자투자신탁제130-5호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스일반사모부동산자투자신탁제130-5호,130_5,self,,v0100
+SH000654,이지스일반사모부동산자투자신탁제482호,이지스일반사모부동산자투자신탁제482호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스일반사모부동산자투자신탁제482호,482,self,,v0100
+SH000655,이지스일반사모부동산자투자신탁제562의1호,이지스일반사모부동산자투자신탁제562의1호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스일반사모부동산자투자신탁제562의1호,562_1,self,,v0100
+SH000656,이지스일반사모부동산투자신탁156호,이지스일반사모부동산투자신탁156호,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,이지스일반사모부동산투자신탁156호,156,self,,v0100
+SH000657,이지스일반사모부동산투자신탁460호,이지스일반사모부동산투자신탁460호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스일반사모부동산투자신탁460호,460,self,,v0100
+SH000658,이지스일반사모부동산투자신탁제454호,이지스일반사모부동산투자신탁제454호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스일반사모부동산투자신탁제454호,454,self,,v0100
+SH000659,이지스일반사모부동산투자신탁제462호,이지스일반사모부동산투자신탁제462호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스일반사모부동산투자신탁제462호,462,self,,v0100
+SH000660,이지스일반사모부동산투자신탁제468-1호,이지스일반사모부동산투자신탁제468-1호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스일반사모부동산투자신탁제468-1호,468_1,self,,v0100
+SH000661,이지스일반사모부동산투자신탁제473호,이지스일반사모부동산투자신탁제473호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스일반사모부동산투자신탁제473호,473,self,,v0100
+SH000662,이지스일반사모부동산투자신탁제508호,이지스일반사모부동산투자신탁제508호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스일반사모부동산투자신탁제508호,508,self,,v0100
+SH000663,이지스일반사모부동산투자신탁제517의1호,이지스일반사모부동산투자신탁제517의1호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스일반사모부동산투자신탁제517의1호,517_1,self,,v0100
+SH000664,이지스자산운용,이지스자산운용,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스자산운용,group,self,,v0100
+SH000665,이지스자산운용(1종),이지스자산운용(1종),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스자산운용(1종),1,self,,v0100
+SH000666,이지스자산운용(2종),이지스자산운용(2종),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스자산운용(2종),2,self,,v0100
+SH000667,이지스자산운용(A종),이지스자산운용(A종),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스자산운용(A종),a,self,,v0100
+SH000668,이지스자산운용(B종),이지스자산운용(B종),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스자산운용(B종),b,self,,v0100
+SH000669,이지스장기안정형주거플랫폼일반사모부동산투자신탁제1호(Blind),이지스장기안정형주거플랫폼일반사모부동산투자신탁제1호(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스장기안정형주거플랫폼일반사모부동산투자신탁제1호(Blind),1_blind,self,,v0100
+SH000670,이지스장기지분형일반사모부동산자투자신탁1-1호(자펀드)(Blind),이지스장기지분형일반사모부동산자투자신탁1-1호(자펀드)(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스장기지분형일반사모부동산자투자신탁1-1호(자펀드)(Blind),1_1_blind,self,,v0100
+SH000671,이지스장기지분형일반사모부동산자투자신탁1-2호(자펀드)(Blind),이지스장기지분형일반사모부동산자투자신탁1-2호(자펀드)(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스장기지분형일반사모부동산자투자신탁1-2호(자펀드)(Blind),1_2_blind,self,,v0100
+SH000672,이지스장기지분형일반사모부동산자투자신탁1-3호(자펀드)(Blind),이지스장기지분형일반사모부동산자투자신탁1-3호(자펀드)(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스장기지분형일반사모부동산자투자신탁1-3호(자펀드)(Blind),1_3_blind,self,,v0100
+SH000673,이지스전문사모120호,이지스전문사모120호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스전문사모120호,120,self,,v0100
+SH000674,이지스전문사모121호,이지스전문사모121호,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,이지스전문사모121호,121,self,,v0100
+SH000675,이지스전문투자형사모부동산투자신탁312호,이지스전문투자형사모부동산투자신탁312호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스전문투자형사모부동산투자신탁312호,312,self,,v0100
+SH000676,이지스전문투자형사모부동산투자신탁384호,이지스전문투자형사모부동산투자신탁384호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스전문투자형사모부동산투자신탁384호,384,self,,v0100
+SH000677,이지스전문투자형사모부동산투자신탁제411호,이지스전문투자형사모부동산투자신탁제411호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스전문투자형사모부동산투자신탁제411호,411,self,,v0100
+SH000678,이지스제555호부동산일반사모투자회사,이지스제555호부동산일반사모투자회사,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스제555호부동산일반사모투자회사,555,self,,v0100
+SH000679,이지스케이엘아이피1사모부동산자투자회사,이지스케이엘아이피1사모부동산자투자회사,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스케이엘아이피1사모부동산자투자회사,1,self,,v0100
+SH000680,이지스해운대일반사모부동산투자신탁제1호,이지스해운대일반사모부동산투자신탁제1호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이지스해운대일반사모부동산투자신탁제1호,1,self,,v0100
+SH000681,이코노미쿠스,이코노미쿠스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,이코노미쿠스,group,self,,v0100
+SH000682,인성저축은행,인성저축은행,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,인성저축은행,group,self,,v0100
+SH000683,인천도시공사,인천도시공사,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,인천도시공사,group,self,,v0100
+SH000684,인컴앤그로스 2-4-4호,인컴앤그로스 2-4-4호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,인컴앤그로스 2-4-4호,2_4_4,self,,v0100
+SH000685,자이C&A,자이C&A,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,자이C&A,c_a,self,,v0100
+SH000686,잠재 SI,잠재 SI,role_placeholder,transaction_counterparty,buyer_seller,매수/매도인,t5t_dashboard,2026-04-13,Y,,잠재 SI,si,self,,v0100
+SH000687,잠재 임차인,잠재 임차인,role_placeholder,transaction_counterparty,buyer_seller,매수/매도인,t5t_dashboard,2026-03-22,Y,,검토대상,review,placeholder,GRP-0904,v0100
+SH000688,장은혜,장은혜,person,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,장은혜,group,self,,v0100
+SH000689,장풍이노베이션,장풍이노베이션,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,장풍이노베이션,group,self,,v0100
+SH000690,전문건설공제조합,전문건설공제조합,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,전문건설공제조합,group,self,,v0100
+SH000691,전북은행,전북은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,전북은행,group,self,,v0100
+SH000692,정림,정림,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,정림,group,self,,v0100
+SH000693,정석우(개인),정석우(개인),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,정석우(개인),group,self,,v0100
+SH000694,제이알디개발,제이알디개발,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,제이알디개발,group,self,,v0100
+SH000695,제이앤파트너인베스트먼트,제이앤파트너인베스트먼트,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,제이앤파트너인베스트먼트,group,self,,v0100
+SH000696,제이에스티나,제이에스티나,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,제이에스티나,group,self,,v0100
+SH000697,제이온클로버,제이온클로버,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,제이온클로버,group,self,,v0100
+SH000698,제이와이제이제팔차,제이와이제이제팔차,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,제이와이제이제팔차,group,self,,v0100
+SH000699,제이케이로지스,제이케이로지스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,제이케이로지스,group,self,,v0100
+SH000700,제이티저축은행,제이티저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,제이티저축은행,group,self,,v0100
+SH000701,제이피어반디,제이피어반디,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,제이피어반디,group,self,,v0100
+SH000702,제주은행,제주은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,제주은행,group,self,,v0100
+SH000703,제주중앙신용협동조합,제주중앙신용협동조합,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,제주중앙신용협동조합,group,self,,v0100
+SH000704,제쿠먼인베스트먼트(유),제쿠먼인베스트먼트(유),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,제쿠먼인베스트먼트(유),group,self,,v0100
+SH000705,젠스타메이트,젠스타메이트,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,젠스타메이트,group,self,,v0100
+SH000706,조은저축은행,조은저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,조은저축은행,group,self,,v0100
+SH000707,주민단,주민단,group,public_authority,public_body,공공/행정기관,t5t_dashboard,2026-03-21,Y,,주민단,group,self,,v0100
+SH000708,주주대여,주주대여,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,주주대여,group,self,,v0100
+SH000709,주택도시보증공사(주택도시기금),주택도시보증공사(주택도시기금),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,주택도시보증공사(주택도시기금),group,self,,v0100
+SH000710,중국건설은행,중국건설은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,중국건설은행,group,self,,v0100
+SH000711,중국농업은행,중국농업은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,중국농업은행,group,self,,v0100
+SH000712,중국은행,중국은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,중국은행,group,self,,v0100
+SH000713,중소기업중앙회,중소기업중앙회,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,중소기업중앙회,group,self,,v0100
+SH000714,쥐피아이제십구차,쥐피아이제십구차,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,쥐피아이제십구차,group,self,,v0100
+SH000715,지아이비시스템제일차,지아이비시스템제일차,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,지아이비시스템제일차,group,self,,v0100
+SH000716,지에프인베스트먼트,지에프인베스트먼트,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,지에프인베스트먼트,group,self,,v0100
+SH000717,지엠뉴욕(자금보충기관: 메리츠증권),지엠뉴욕(자금보충기관: 메리츠증권),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,지엠뉴욕(자금보충기관: 메리츠증권),group,self,,v0100
+SH000718,지엠뉴욕제이차,지엠뉴욕제이차,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,지엠뉴욕제이차,group,self,,v0100
+SH000719,지엠더원,지엠더원,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,지엠더원,group,self,,v0100
+SH000720,지티에이,지티에이,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,지티에이,group,self,,v0100
+SH000721,진주저축은행,진주저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,진주저축은행,group,self,,v0100
+SH000722,진흥기업,진흥기업,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,진흥기업,group,self,,v0100
+SH000723,차건축,차건축,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,차건축,group,self,,v0100
+SH000724,창조,창조,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,창조,group,self,,v0100
+SH000725,천호스테이션하우징(PFV),천호스테이션하우징(PFV),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,천호스테이션하우징(PFV),pfv,self,,v0100
+SH000726,축협(강진완도축산농업협동조합),축협(강진완도축산농업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,축협(강진완도축산농업협동조합),group,self,,v0100
+SH000727,축협(상주축산업협동조합),축협(상주축산업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,축협(상주축산업협동조합),group,self,,v0100
+SH000728,축협(순천광양축산업협동조합),축협(순천광양축산업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,축협(순천광양축산업협동조합),group,self,,v0100
+SH000729,축협(장흥축산업협동조합),축협(장흥축산업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,축협(장흥축산업협동조합),group,self,,v0100
+SH000730,축협(함양산청축산업협동조합),축협(함양산청축산업협동조합),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,축협(함양산청축산업협동조합),group,self,,v0100
+SH000731,캠코,캠코,organization,public_authority,public_body,공공/행정기관,t5t_dashboard,2026-04-17,Y,,캠코,group,self,,v0100
+SH000732,캡스톤일반사모부동산투자신탁35호(전문),캡스톤일반사모부동산투자신탁35호(전문),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,캡스톤일반사모부동산투자신탁35호(전문),35,self,,v0100
+SH000733,컨설팅,컨설팅,organization,advisor_intermediary,advisor,주간사/자문,t5t_dashboard,2026-04-13,Y,,컨설팅,group,self,,v0100
+SH000734,케이리츠투자운용,케이리츠투자운용,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,케이리츠투자운용,group,self,,v0100
+SH000735,케이비시그니쳐제일차유한회사,케이비시그니쳐제일차유한회사,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,케이비시그니쳐제일차유한회사,group,self,,v0100
+SH000736,케이앤비개발,케이앤비개발,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,케이앤비개발,group,self,,v0100
+SH000737,케이에이치엘제일차,케이에이치엘제일차,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,케이에이치엘제일차,group,self,,v0100
+SH000738,케이티에스테이트,케이티에스테이트,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,케이티에스테이트,group,self,,v0100
+SH000739,켄달스퀘어자산운용,켄달스퀘어자산운용,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,켄달스퀘어자산운용,group,self,,v0100
+SH000740,코리아신탁,코리아신탁,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,코리아신탁,group,self,,v0100
+SH000741,코리안리재보험,코리안리재보험,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,코리안리재보험,group,self,,v0100
+SH000742,코리안리재보험(주),코리안리재보험(주),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,코리안리재보험(주),group,self,,v0100
+SH000743,코어플랫폼1호(Blind),코어플랫폼1호(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,코어플랫폼1호(Blind),1_blind,self,,v0100
+SH000744,쿠거인더주피에프브이(PFV),쿠거인더주피에프브이(PFV),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,쿠거인더주피에프브이(PFV),pfv,self,,v0100
+SH000745,쿼드에스알피제일차,쿼드에스알피제일차,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,쿼드에스알피제일차,group,self,,v0100
+SH000746,키움저축은행,키움저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,키움저축은행,group,self,,v0100
+SH000747,키움증권,키움증권,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,키움증권,group,self,,v0100
+SH000748,키움캐피탈,키움캐피탈,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,키움캐피탈,group,self,,v0100
+SH000749,키움투자자산운용,키움투자자산운용,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,키움투자자산운용,group,self,,v0100
+SH000750,키웨스트자산운용,키웨스트자산운용,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,키웨스트자산운용,group,self,,v0100
+SH000751,태영건설,태영건설,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,counterparty_seed",2025-11-30,Y,,태영건설,group,self,,v0100
+SH000752,태재홀딩스,태재홀딩스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,태재홀딩스,group,self,,v0100
+SH000753,투자자1,투자자1,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,투자자1,1,self,,v0100
+SH000754,판교엠버제일차,판교엠버제일차,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,판교엠버제일차,group,self,,v0100
+SH000755,퍼시픽제33호전문사모부동산투자유한회사,퍼시픽제33호전문사모부동산투자유한회사,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,퍼시픽제33호전문사모부동산투자유한회사,33,self,,v0100
+SH000756,펜토건설,펜토건설,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,펜토건설,group,self,,v0100
+SH000757,포스코A&C,포스코A&C,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,포스코A&C,a_c,self,,v0100
+SH000758,포스코이앤씨,포스코이앤씨,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,포스코이앤씨,group,self,,v0100
+SH000759,푸른덴셜생명보험,푸른덴셜생명보험,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,푸른덴셜생명보험,group,self,,v0100
+SH000760,푸른인베스트먼트,푸른인베스트먼트,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,푸른인베스트먼트,group,self,,v0100
+SH000761,푸른저축은행,푸른저축은행,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,푸른저축은행,group,self,,v0100
+SH000762,푸본현대생명보험,푸본현대생명보험,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,푸본현대생명보험,group,self,,v0100
+SH000763,프라임비전제일차,프라임비전제일차,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,프라임비전제일차,group,self,,v0100
+SH000764,피벗플러스,피벗플러스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,피벗플러스,group,self,,v0100
+SH000765,피에스텍,피에스텍,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,피에스텍,group,self,,v0100
+SH000766,핀포인트,핀포인트,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,핀포인트,group,self,,v0100
+SH000767,하나,하나,organization,financing_partner,lender,금융기관(대주),t5t_dashboard,2026-04-17,Y,,하나,hana,mapped,GRP-0201,v0100
+SH000768,하나레지던스2호,하나레지던스2호,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,하나레지던스2호,2,self,,v0100
+SH000769,하나생명보험,하나생명보험,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,하나,hana,mapped,GRP-0206,v0100
+SH000770,하나손해보험,하나손해보험,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,하나,hana,mapped,GRP-0205,v0100
+SH000771,하나에프앤아이(하나F&I),하나에프앤아이(하나F&I),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,하나,hana,mapped,GRP-0207,v0100
+SH000772,하나은행,하나은행,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,하나,hana,mapped,GRP-0202,v0100
+SH000773,하나증권,하나증권,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,하나,hana,mapped,GRP-0204,v0100
+SH000774,하나캐피탈,하나캐피탈,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,하나,hana,mapped,GRP-0203,v0100
+SH000775,하나커넥트,하나커넥트,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,하나커넥트,group,self,,v0100
+SH000776,하우징플랫폼(Blind),하우징플랫폼(Blind),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,하우징플랫폼(Blind),blind,self,,v0100
+SH000777,하인즈코리아투자자문,하인즈코리아투자자문,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,하인즈코리아투자자문,group,self,,v0100
+SH000778,한국교직원공제회,한국교직원공제회,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,공제회,mutualaid,mapped,GRP-0503,v0100
+SH000779,한국부동산에스앤디,한국부동산에스앤디,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한국부동산에스앤디,group,self,,v0100
+SH000780,한국산업단지공단,한국산업단지공단,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한국산업단지공단,group,self,,v0100
+SH000781,한국자산관리공사,한국자산관리공사,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한국자산관리공사,group,self,,v0100
+SH000782,한국자산신탁,한국자산신탁,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한국자산신탁,group,self,,v0100
+SH000783,한국저축은행,한국저축은행,organization,financing_partner,lender,금융기관(대주),t5t_dashboard,2026-04-13,Y,,한국저축은행,group,self,,v0100
+SH000784,한국증권금융,한국증권금융,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,한국증권금융,group,self,,v0100
+SH000785,한국증권금융(신한부동산론전문투자형사모부동산투자신탁제2호의 신탁업자로서),한국증권금융(신한부동산론전문투자형사모부동산투자신탁제2호의 신탁업자로서),organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,한국증권금융(신한부동산론전문투자형사모부동산투자신탁제2호의 신탁업자로서),2,self,,v0100
+SH000786,한국지방재정공제회,한국지방재정공제회,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한국지방재정공제회,group,self,,v0100
+SH000787,한국투자부동산신탁,한국투자부동산신탁,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한국투자부동산신탁,group,self,,v0100
+SH000788,한국투자저축은행,한국투자저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,한국투자저축은행,group,self,,v0100
+SH000789,한국투자증권,한국투자증권,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,한국투자증권,group,self,,v0100
+SH000790,한국투자캐피탈,한국투자캐피탈,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,한국투자캐피탈,group,self,,v0100
+SH000791,한국파마,한국파마,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한국파마,group,self,,v0100
+SH000792,한국해양진흥공사,한국해양진흥공사,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한국해양진흥공사,group,self,,v0100
+SH000793,한림 CM,한림 CM,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,한림 CM,cm,self,,v0100
+SH000794,한림개발,한림개발,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한림개발,group,self,,v0100
+SH000795,한미글로벌,한미글로벌,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,한미글로벌,group,self,,v0100
+SH000796,한미글로벌건축사사무소,한미글로벌건축사사무소,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한미글로벌건축사사무소,group,self,,v0100
+SH000797,한성저축은행,한성저축은행,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한성저축은행,group,self,,v0100
+SH000798,한세실업,한세실업,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한세실업,group,self,,v0100
+SH000799,한세예스24홀딩스,한세예스24홀딩스,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한세예스24홀딩스,24,self,,v0100
+SH000800,한신공영,한신공영,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,한신공영,group,self,,v0100
+SH000801,한전,한전,organization,public_authority,public_body,공공/행정기관,t5t_dashboard,2026-03-03,Y,,한전,group,self,,v0100
+SH000802,한중건설,한중건설,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한중건설,group,self,,v0100
+SH000803,한화,한화,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,한화,group,self,,v0100
+SH000804,한화건설,한화건설,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한화건설,group,self,,v0100
+SH000805,한화생명,한화생명,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,한화생명,group,self,,v0100
+SH000806,한화생명보험,한화생명보험,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한화생명보험,group,self,,v0100
+SH000807,한화손해보험,한화손해보험,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,한화손해보험,group,self,,v0100
+SH000808,한화저축은행,한화저축은행,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,한화저축은행,group,self,,v0100
+SH000809,한화투자증권,한화투자증권,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한화투자증권,group,self,,v0100
+SH000810,한화투자증권(A),한화투자증권(A),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한화투자증권(A),a,self,,v0100
+SH000811,한화투자증권(C-i),한화투자증권(C-i),organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한화투자증권(C-i),c_i,self,,v0100
+SH000812,한화호텔앤드리조트,한화호텔앤드리조트,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,한화호텔앤드리조트,group,self,,v0100
+SH000813,해비치호텔앤드리조트,해비치호텔앤드리조트,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,해비치호텔앤드리조트,group,self,,v0100
+SH000814,해안,해안,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,해안,group,self,,v0100
+SH000815,행정공제회,행정공제회,organization,capital_partner,institutional_lp,기관투자자(LP),t5t_dashboard,2026-03-09,Y,,공제회,mutualaid,mapped,GRP-0505,v0100
+SH000816,헤리티지자산운용,헤리티지자산운용,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,헤리티지자산운용,group,self,,v0100
+SH000817,현대건설,현대건설,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,counterparty_seed",2025-11-30,Y,,현대건설,group,self,,v0100
+SH000818,현대산업개발,현대산업개발,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,현대산업개발,group,self,,v0100
+SH000819,현대아산,현대아산,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,현대아산,group,self,,v0100
+SH000820,현대엔지니어링,현대엔지니어링,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,현대엔지니어링,group,self,,v0100
+SH000821,현대인베스트먼트자산운용㈜ 1호 펀드,현대인베스트먼트자산운용㈜ 1호 펀드,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,현대인베스트먼트자산운용㈜ 1호 펀드,1,self,,v0100
+SH000822,현대차정몽구재단,현대차정몽구재단,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,현대차정몽구재단,group,self,,v0100
+SH000823,현대차증권,현대차증권,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,현대차증권,group,self,,v0100
+SH000824,현대카드,현대카드,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,현대카드,group,self,,v0100
+SH000825,현대캐피탈,현대캐피탈,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot,t5t_dashboard",2026-04-17,Y,,현대캐피탈,group,self,,v0100
+SH000826,현대커머셜,현대커머셜,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,현대커머셜,group,self,,v0100
+SH000827,현대해상화재보험,현대해상화재보험,organization,capital_partner,fund_beneficiary,펀드 수익자,"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,현대해상화재보험,group,self,,v0100
+SH000828,호텔롯데,호텔롯데,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,호텔롯데,group,self,,v0100
+SH000829,홈플러스,홈플러스,organization,occupier_customer,tenant,임차인,t5t_dashboard,2026-04-12,Y,,홈플러스,group,self,,v0100
+SH000830,홍콩상하이은행,홍콩상하이은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,홍콩상하이은행,group,self,,v0100
+SH000831,효성중공업,효성중공업,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,효성중공업,group,self,,v0100
+SH000832,효성캐피탈,효성캐피탈,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,효성캐피탈,group,self,,v0100
+SH000833,휴온스글로벌,휴온스글로벌,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,휴온스글로벌,group,self,,v0100
+SH000834,흥국생명보험,흥국생명보험,organization,financing_partner,lender,금융기관(대주),"beneficiary_snapshot,lender_snapshot",2025-11-30,Y,,흥국생명보험,group,self,,v0100
+SH000835,흥국저축은행,흥국저축은행,organization,financing_partner,lender,금융기관(대주),lender_snapshot,2025-11-30,Y,,흥국저축은행,group,self,,v0100
+SH000836,흥국화재해상보험,흥국화재해상보험,organization,capital_partner,fund_beneficiary,펀드 수익자,beneficiary_snapshot,2025-11-30,Y,,흥국화재해상보험,group,self,,v0100
+SH000837,희림,희림,organization,project_partner,operator_contractor,운영/시공 파트너,counterparty_seed,,Y,,희림,group,self,,v0100

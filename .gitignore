@@ -1,0 +1,51 @@
+# Ignore everything by default
+*
+
+# Allow these specific directories and files to be tracked
+!*/
+!index.html
+!t5t-dashboard/**
+!org_dashboard/**
+!CRM_base/**
+!portfolio-analysis/**
+!automation_runtime/
+!automation_runtime/*.py
+!automation_runtime/*.ps1
+!handoff_dashboard_status.md
+!.gitignore
+!.github/**
+!style.css
+!notion_agent.py
+!security-lite.js
+!robots.txt
+
+# ----------------------------------------------------
+# EXPLICITLY IGNORE sensitive data & large documents
+# inside the allowed directories
+# ----------------------------------------------------
+t5t-dashboard/notion_config.json
+notion_config.json
+__pycache__/
+venv/
+.env
+
+# Documents
+*.pdf
+*.xlsx
+*.xls
+*.docx
+*.doc
+*.hwp
+*.hwpx
+*.zip
+*.md
+!README.md
+!handoff_dashboard_status.md
+!*.sql
+!*.bat
+!*.txt
+!*.csv
+
+# OS
+.DS_Store
+Thumbs.db
