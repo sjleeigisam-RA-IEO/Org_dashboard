@@ -58,6 +58,8 @@ def clean_value(value):
         return None
     if isinstance(value, str):
         text = value.replace("\xa0", " ").strip()
+        if text.lower() in {"nan", "none", "nat", "null", "undefined"}:
+            return None
         return text or None
     return value
 

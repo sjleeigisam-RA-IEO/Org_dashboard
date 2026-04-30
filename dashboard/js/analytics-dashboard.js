@@ -392,7 +392,31 @@ function renderHistory(chartId) {
         tooltip: {
             shared: true,
             intersect: false,
-            y: { formatter: val => val.toLocaleString() + (currentChartMetric === 'count' ? ' 개' : ' 조원') }
+            custom: function ({ series, dataPointIndex, w }) {
+                const unit = currentChartMetric === 'count' ? ' 개' : ' 조원';
+                const label = w.globals.labels[dataPointIndex] || w.globals.categoryLabels[dataPointIndex] || '';
+                const order = [1, 0];
+                const rows = order.map(idx => {
+                    const name = w.globals.seriesNames[idx];
+                    const value = series[idx][dataPointIndex] || 0;
+                    const color = w.globals.colors[idx];
+                    return `
+                        <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:4px 0;">
+                            <span style="display:flex; align-items:center; gap:8px;">
+                                <span style="width:11px; height:11px; border-radius:50%; background:${color}; display:inline-block;"></span>
+                                ${name}:
+                            </span>
+                            <strong>${value.toLocaleString()}${unit}</strong>
+                        </div>
+                    `;
+                }).join('');
+                return `
+                    <div style="padding:10px 12px; min-width:150px;">
+                        <div style="font-weight:700; color:#0f172a; margin-bottom:8px;">${label}</div>
+                        ${rows}
+                    </div>
+                `;
+            }
         },
         legend: { position: 'top', horizontalAlign: 'right' }
     };

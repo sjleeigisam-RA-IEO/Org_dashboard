@@ -1,3 +1,10 @@
+function normalizeAnalysisFilterValue(value) {
+    if (value === undefined || value === null) return null;
+    const text = String(value).replace(/\u00a0/g, ' ').trim();
+    const invalid = new Set(['', '-', 'null', 'undefined', 'n/a', 'none', 'nan']);
+    return invalid.has(text.toLowerCase()) ? null : text;
+}
+
 function initAnalysisFilters() {
     const filterSections = [
         {
@@ -23,7 +30,14 @@ function initAnalysisFilters() {
 
     const activeFilterKeys = new Set(filterSections.flatMap(section => section.cols.map(col => col.key)));
     Object.keys(analysisFilters).forEach(key => {
-        if (!activeFilterKeys.has(key)) delete analysisFilters[key];
+        if (!activeFilterKeys.has(key)) {
+            delete analysisFilters[key];
+            return;
+        }
+        analysisFilters[key] = (analysisFilters[key] || [])
+            .map(normalizeAnalysisFilterValue)
+            .filter(Boolean);
+        if (analysisFilters[key].length === 0) delete analysisFilters[key];
     });
 
     filterSections.forEach(section => {
@@ -80,7 +94,7 @@ function initAnalysisFilters() {
             // Extract unique values
             const rawValues = allFunds.map(f => {
                 let v = getFieldValue(f, col.key);
-                return (v && String(v).trim()) ? String(v).trim() : null;
+                return normalizeAnalysisFilterValue(v);
             });
 
             const hasNulls = rawValues.some(v => v === null);
@@ -224,12 +238,13 @@ function getFilteredData() {
     let filteredFunds = [...allFunds];
 
     Object.keys(analysisFilters).forEach(key => {
-        const selectedValues = analysisFilters[key];
+        const selectedValues = (analysisFilters[key] || [])
+            .map(normalizeAnalysisFilterValue)
+            .filter(Boolean);
         if (selectedValues && selectedValues.length > 0) {
             filteredFunds = filteredFunds.filter(f => {
-                let val = getFieldValue(f, key);
-                if (!val || String(val).trim() === '') val = '미분류';
-                return selectedValues.includes(String(val).trim());
+                let val = normalizeAnalysisFilterValue(getFieldValue(f, key)) || '미분류';
+                return selectedValues.includes(val);
             });
         }
     });
