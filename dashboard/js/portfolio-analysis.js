@@ -1,48 +1,18 @@
 function initAnalysisFilters() {
     const filterSections = [
         {
-            title: '조직/운용 필터',
+            title: '포트폴리오 필터',
             cols: [
-                { key: 'department', label: '담당부서' },
-                { key: 'division', label: '담당부문' }
-            ]
-        },
-        {
-            title: '펀드 구조 필터',
-            cols: [
+                { key: 'division', label: '부문' },
                 { key: 'vehicle_type', label: 'Vehicle 구분' },
-                { key: 'recruitment_type', label: '모집형태' },
-                { key: 'parent_child_type', label: '모자구분' },
                 { key: 'legal_form', label: '법적형태' },
                 { key: 'fund_class', label: '펀드분류' },
-                { key: 'fund_shape', label: '펀드형태' },
-                { key: 'multi_class_type', label: '멀티클래스구분' },
-                { key: 'subscription_redemption_type', label: '설정환매방식' }
-            ]
-        },
-        {
-            title: '투자 분류 필터',
-            cols: [
                 { key: 'domestic_overseas', label: '국내/해외' },
-                { key: 'primary_region', label: '주요투자지역' },
-                { key: 'investment_sector', label: '투자섹터' },
                 { key: 'fund_type', label: '펀드유형' },
                 { key: 'investment_strategy', label: '투자전략' },
                 { key: 'base_asset_class', label: '기초자산' },
                 { key: 'asset_nature_class', label: '자산성격' },
                 { key: 'business_stage_class', label: '사업단계' }
-            ]
-        },
-        {
-            title: '관리 플래그 필터',
-            cols: [
-                { key: 'is_development', label: '개발여부' },
-                { key: 'is_delegated_management', label: '위탁운용여부' },
-                { key: 'includes_igis_fund_of_funds', label: '당사펀드재간접포함' },
-                { key: 'is_share_deal', label: 'Share-Deal여부' },
-                { key: 'is_aum_included', label: 'AUM합산대상여부' },
-                { key: 'is_kms_target', label: 'KMS대상여부' },
-                { key: 'is_audited', label: '회계감사여부' }
             ]
         }
     ];
@@ -50,6 +20,11 @@ function initAnalysisFilters() {
     const grid = document.getElementById('filterGrid');
     if (!grid) return;
     grid.innerHTML = '';
+
+    const activeFilterKeys = new Set(filterSections.flatMap(section => section.cols.map(col => col.key)));
+    Object.keys(analysisFilters).forEach(key => {
+        if (!activeFilterKeys.has(key)) delete analysisFilters[key];
+    });
 
     filterSections.forEach(section => {
         const group = document.createElement('div');
@@ -151,9 +126,21 @@ function initAnalysisFilters() {
             trigger.onclick = (e) => {
                 e.stopPropagation();
                 const isActive = dropdown.classList.contains('active');
-                document.querySelectorAll('.multi-select-dropdown').forEach(d => d.classList.remove('active'));
+                document.querySelectorAll('.multi-select-dropdown').forEach(d => {
+                    d.classList.remove('active', 'open-up');
+                    d.style.maxHeight = '';
+                });
                 if (!isActive) {
                     dropdown.classList.add('active');
+                    const triggerBox = trigger.getBoundingClientRect();
+                    const spaceBelow = window.innerHeight - triggerBox.bottom - 16;
+                    const spaceAbove = triggerBox.top - 16;
+                    if (spaceBelow < 260 && spaceAbove > spaceBelow) {
+                        dropdown.classList.add('open-up');
+                        dropdown.style.maxHeight = `${Math.max(180, Math.min(320, spaceAbove))}px`;
+                    } else {
+                        dropdown.style.maxHeight = `${Math.max(180, Math.min(320, spaceBelow))}px`;
+                    }
                     searchInput.focus();
                 }
             };

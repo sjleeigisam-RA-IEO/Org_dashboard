@@ -215,6 +215,8 @@ body {
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.8);
   box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+  overflow: visible;
+  padding-bottom: 180px;
 }
 .filter-header {
   font-size: 12px;
@@ -292,8 +294,8 @@ body {
   top: calc(100% + 4px);
   left: 0;
   width: 100%;
-  max-height: 250px;
-  overflow-y: auto;
+  max-height: min(320px, 42vh);
+  overflow: hidden;
   background: white;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
@@ -303,7 +305,7 @@ body {
   padding: 8px;
 }
 .options-wrapper {
-  max-height: 320px;
+  max-height: min(260px, 34vh);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   padding: 8px 0;
@@ -316,6 +318,10 @@ body {
   border-radius: 10px;
 }
 .multi-select-dropdown.active { display: block; animation: fadeInDown 0.2s ease; }
+.multi-select-dropdown.open-up {
+  top: auto;
+  bottom: calc(100% + 4px);
+}
 .multi-select-option {
   padding: 8px 12px;
   font-size: 13px;
@@ -383,7 +389,7 @@ body {
 }
 
 /* Smart Filters & Accordion */
-.filter-group { margin-bottom: 12px; border-radius: 12px; border: 1px solid #f1f5f9; overflow: hidden; background: white; }
+.filter-group { margin-bottom: 12px; border-radius: 12px; border: 1px solid #f1f5f9; overflow: visible; background: white; }
 .filter-group-header { padding: 14px 16px; background: #f8fafc; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 13px; color: var(--text); transition: background 0.2s; }
 .filter-group-header:hover { background: #f1f5f9; }
 .filter-group-header::after { content: '▾'; font-size: 10px; color: var(--muted); transition: transform 0.2s; }
