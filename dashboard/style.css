@@ -597,3 +597,34 @@ body {
 .toggle-btn:hover { color: var(--accent); transform: scale(1.1); }
 .detail-placeholder { margin: auto; text-align: center; color: var(--muted); font-size: 16px; font-weight: 500; }
 .placeholder-icon { font-size: 72px; margin-bottom: 24px; opacity: 0.1; }
+.reset-filters-btn, .search-apply-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 12px;
+}
+.reset-filters-btn {
+  background: white;
+  border: 1px solid #e2e8f0;
+  color: var(--muted);
+}
+.reset-filters-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: var(--text);
+}
+.search-apply-btn {
+  background: var(--text);
+  color: white;
+  border: 1px solid var(--text);
+}
+.search-apply-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}

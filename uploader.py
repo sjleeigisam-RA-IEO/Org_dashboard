@@ -1,126 +1,88 @@
 import os
 import pandas as pd
-import numpy as np
-import json
 from supabase import create_client, Client
 from dotenv import load_dotenv
+import json
 from processor import CRMProcessor
-
-load_dotenv()
 
 class SupabaseUploader:
     def __init__(self):
+        load_dotenv()
         url = os.getenv("SUPABASE_URL")
         key = os.getenv("SUPABASE_KEY")
-        if not url or not key:
-            raise ValueError("Supabase URL/Key missing in .env")
         self.supabase: Client = create_client(url, key)
 
-    def upload_dataframe(self, df, table_name, on_conflict, int_cols=[]):
-        df_clean = df.copy()
-        conflict_cols = on_conflict.split(',')
-        df_clean = df_clean.drop_duplicates(subset=conflict_cols)
+    def upload_dataframe(self, df, table_name, on_conflict=None, int_cols=None):
+        # Convert NaN to None for JSON compliance
+        df = df.where(pd.notnull(df), None)
         
-        if 'fund_id' in df_clean.columns:
-            df_clean = df_clean[df_clean['fund_id'].notnull() & (df_clean['fund_id'].astype(str) != '합계')]
-            
-        for col in df_clean.select_dtypes(include=['datetime64']).columns:
-            df_clean[col] = df_clean[col].dt.strftime('%Y-%m-%d')
-            
-        if 'metadata' in df_clean.columns:
-            df_clean['metadata'] = df_clean['metadata'].apply(lambda x: x if isinstance(x, (dict, list)) else {})
-        if 'extra_info' in df_clean.columns:
-            df_clean['extra_info'] = df_clean['extra_info'].apply(lambda x: x if isinstance(x, (dict, list)) else {})
+        # Ensure int columns are correct
+        if int_cols:
+            for col in int_cols:
+                if col in df.columns:
+                    df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0).astype(int)
 
-        # Final cleaning for date strings and empty values
-        for col in df_clean.columns:
-            if 'date' in col.lower():
-                def clean_date(v):
-                    if pd.isna(v) or str(v).strip() == '' or str(v).strip() == 'nan' or '' in str(v):
-                        return None
-                    return str(v).strip()
-                df_clean[col] = df_clean[col].apply(clean_date)
-
-        data = []
-        for _, row in df_clean.iterrows():
-            item = row.to_dict()
-            for k, v in item.items():
-                if pd.isna(v) or v == 'nan' or v == '':
-                    item[k] = None
-                elif k in int_cols:
-                    try: item[k] = int(float(v))
-                    except: item[k] = 0
-                elif isinstance(v, (np.int64, np.int32)): item[k] = int(v)
-                elif isinstance(v, (np.float64, np.float32)): item[k] = float(v)
-            data.append(item)
+        data = df.to_dict(orient='records')
         
-        if not data: return
+        # Split into chunks of 1000
+        chunk_size = 1000
+        for i in range(0, len(data), chunk_size):
+            chunk = data[i:i + chunk_size]
+            try:
+                if on_conflict:
+                    self.supabase.table(table_name).upsert(chunk, on_conflict=on_conflict).execute()
+                else:
+                    self.supabase.table(table_name).insert(chunk).execute()
+                print(f"Uploaded {len(chunk)} records to '{table_name}'.")
+            except Exception as e:
+                print(f"Error uploading chunk {i//chunk_size} to {table_name}: {e}")
 
-        print(f"Uploading {len(data)} records to '{table_name}'...")
+    def sync_all(self):
+        processor = CRMProcessor(".", "mapping.json")
+        uploader = self
+        
         try:
-            chunk_size = 100
-            for i in range(0, len(data), chunk_size):
-                self.supabase.table(table_name).upsert(data[i:i + chunk_size], on_conflict=on_conflict).execute()
-            print(f"Successfully uploaded to '{table_name}'.")
-        except Exception as e:
-            print(f"Error uploading to '{table_name}': {e}")
-
-if __name__ == "__main__":
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    MAPPING_FILE = os.path.join(BASE_DIR, "mapping.json")
-    
-    processor = CRMProcessor(BASE_DIR, MAPPING_FILE)
-    df_l = processor.process_lenders()
-    df_b = processor.process_beneficiaries()
-    df_a = processor.process_assets()
-    df_m = processor.process_fund_management()
-    df_rent_o = processor.process_market_rent('OFFICE')
-    df_rent_l = processor.process_market_rent('LOGISTIC')
-    
-    funds = processor.extract_fund_master(df_l, df_b, df_a, df_m)
-    
-    if funds is not None:
-        try:
-            uploader = SupabaseUploader()
-            # Debug: Check funds dataframe structure
-            print(f"Funds columns: {funds.columns.tolist()}")
-            print(f"Funds sample row keys: {funds.iloc[0].keys().tolist()}")
-            print(f"Funds sample notion_division_class: {funds.iloc[0].get('notion_division_class')}")
-
-            # extra columns를 metadata 필드에 병합 (DB 컬럼 부재 대응)
+            # 1. 원본 데이터 로드
+            funds = processor.process_fund_management()
+            df_l = processor.process_lenders()
+            df_b = processor.process_beneficiaries()
+            df_a = processor.process_assets()
+            
+            # DB 컬럼 리스트 정의
             db_cols = ['fund_id', 'short_name', 'fund_name', 'sector', 'asset_name', 'status', 'location', 'setup_date', 'maturity_date', 'dept', 'manager', 'metadata']
             
             def merge_extra_to_metadata(row):
                 meta = row.get('metadata', {})
                 if not isinstance(meta, dict): meta = {}
-                
-                # Columns starting with 'notion_' are metadata
-                for col in row.index:
-                    if str(col).startswith('notion_') and pd.notna(row[col]):
-                        meta[str(col)] = row[col]
-                
-                # Special case: 'sector' top-level column should be updated if empty
-                sector_val = row.get('notion_sector_class')
-                if pd.notna(sector_val) and (pd.isna(row.get('sector')) or row.get('sector') == ''):
-                    meta['sector'] = sector_val
-
+                # 속성들을 metadata에 깔끔한 이름으로 저장
+                attrs = ['division', 'vehicle_type', 'recruitment_type', 'parent_child_type', 
+                         'legal_form', 'fund_class', 'location_type', 'primary_region', 
+                         'fund_type', 'investment_strategy', 'benchmark_aum', 'equity_won', 
+                         'loan_won', 'deposit_won']
+                numeric_cols = ['benchmark_aum', 'equity_won', 'loan_won', 'deposit_won']
+                for attr in attrs:
+                    if attr in row.index and pd.notna(row[attr]):
+                        val = row[attr]
+                        if attr in numeric_cols:
+                            try: val = float(str(val).replace(',', ''))
+                            except: val = 0
+                        meta[attr] = val
                 return meta
 
+            # 2. 데이터 매핑 (사용자 요청 반영: dept=부서, manager=담당자)
+            if 'department' in funds.columns:
+                funds['dept'] = funds['department']
+            # manager, sector 등은 이미 processor에서 올바른 이름으로 추출됨
+            
+            # 3. 메타데이터 병합
             funds['metadata'] = funds.apply(merge_extra_to_metadata, axis=1)
             
-            # Debug: Check if metadata is populated
-            non_empty_meta = funds[funds['metadata'].apply(lambda x: len(x) > 0)]
-            print(f"Funds with populated metadata: {len(non_empty_meta)}/{len(funds)}")
-            if len(non_empty_meta) > 0:
-                print(f"Sample metadata: {non_empty_meta.iloc[0]['metadata']}")
-
-            # metadata 필드 생성 후 불필요한 notion_* 컬럼 제거
-            drop_cols = [c for c in funds.columns if c.startswith('notion_') and c not in db_cols]
-            funds_to_upload = funds.drop(columns=drop_cols)
-            
-            # DB 스키마에 있는 컬럼만 선택
+            # 4. DB 업로드 (funds)
+            funds_to_upload = funds.copy()
             valid_cols = [c for c in db_cols if c in funds_to_upload.columns]
             uploader.upload_dataframe(funds_to_upload[valid_cols], 'funds', on_conflict='fund_id')
+
+            # 5. 기타 연관 데이터 업로드 (Exposures, Assets 등)
             if df_l is not None:
                 l_db = df_l.rename(columns={'펀드코드': 'fund_id', '대주_정제': 'lender_clean', '기준일자': 'base_date',
                                             '대출약정금액(원)': 'committed_amt', '대출인출금액(원)': 'drawn_amt', '대출잔여금액(원)': 'remaining_amt',
@@ -138,53 +100,30 @@ if __name__ == "__main__":
                                          int_cols=['committed_amt', 'invested_amt'])
             if df_a is not None:
                 a_db = df_a.copy()
-                # Rename only if original names exist (backward compatibility)
                 rename_map = {'펀드코드': 'fund_id', '자산(건물)명': 'asset_name', '권역': 'location_category'}
                 a_db = a_db.rename(columns={k: v for k, v in rename_map.items() if k in a_db.columns})
-                
-                # DB schema columns
                 target_cols = ['fund_id', 'asset_name', 'location_category', 'lat', 'lng', 'metadata',
                                'site_area', 'gfa', 'scr', 'far', 'main_usage', 'structure', 
                                'floors_up', 'floors_down', 'elevators', 'parking', 'completion_date', 'height']
-                
-                # Missing columns as None
                 for col in target_cols:
-                    if col not in a_db.columns:
-                        a_db[col] = None
-                
-                # Clean NaN values for JSON compliance (replace with None)
+                    if col not in a_db.columns: a_db[col] = None
                 a_db = a_db.replace({pd.NA: None, float('nan'): None})
-                
-                # Also clean metadata dictionary for each row
-                def clean_metadata(meta):
-                    if not isinstance(meta, dict): return meta
-                    return {k: (None if pd.isna(v) else v) for k, v in meta.items()}
-                
-                a_db['metadata'] = a_db['metadata'].apply(clean_metadata)
-                
-                # 층수 컬럼 정수형 변환 (Nullable Int64 사용하여 .0 방지)
-                for col in ['floors_up', 'floors_down', 'elevators', 'parking']:
-                    if col in a_db.columns:
-                        a_db[col] = pd.to_numeric(a_db[col], errors='coerce').round().astype('Int64').replace({pd.NA: None})
-                
                 uploader.upload_dataframe(a_db[target_cols], 'fund_assets', on_conflict='fund_id,asset_name')
             
-            # Market Rent Upload (Table: market_data)
+            # Market Rent
             for cat in ['OFFICE', 'LOGISTIC']:
                 df_r = processor.process_market_rent(cat)
                 if df_r is not None:
-                    # DB 스키마에 맞춰 변환 (region, category, base_date, value, extra_info)
                     df_r['source'] = 'CRM Excel'
                     df_r['value'] = df_r['rent_monthly'].fillna(0)
-                    
-                    # 나머지 정보는 extra_info (JSON)으로 통합
-                    def row_to_json(row):
-                        return {k: v for k, v in row.to_dict().items() if k not in ['region', 'category', 'base_date', 'value', 'source']}
-                    
-                    df_r['extra_info'] = df_r.apply(row_to_json, axis=1)
+                    df_r['extra_info'] = df_r.apply(lambda row: {k: v for k, v in row.to_dict().items() if k not in ['region', 'category', 'base_date', 'value', 'source']}, axis=1)
                     upload_cols = ['region', 'category', 'base_date', 'value', 'source', 'extra_info']
                     uploader.upload_dataframe(df_r[upload_cols], 'market_data', on_conflict='region,category,base_date')
             
-            print("\n--- All Data (including Market Rent) synced! ---")
+            print("\n--- All Data synced with cleaned English columns! ---")
         except Exception as e:
             print(f"Update failed: {e}")
+
+if __name__ == "__main__":
+    uploader = SupabaseUploader()
+    uploader.sync_all()

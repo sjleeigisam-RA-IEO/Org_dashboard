@@ -394,5 +394,20 @@
     }, 100);
   }
 
+  window.openFundDetailById = async (fundId) => {
+    const allFunds = window.allFunds || [];
+    const fund = allFunds.find(f => f.fund_id === fundId);
+    if (!fund) return;
+
+    currentDrawerData = { key: fund.fund_id, name: fund.fund_name, items: [fund] };
+    
+    // Activate drawer
+    document.getElementById('sideDrawer').classList.add('active');
+    document.getElementById('sideDrawerOverlay').classList.add('active');
+    
+    // Show detail
+    window.showDrawerDetail(fundId);
+  };
+
   window.showDetail = showDetail;
 })();

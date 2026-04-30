@@ -83,6 +83,20 @@ function initAnalysisFilters() {
         header.className = 'filter-group-header';
         header.innerHTML = `<span>${section.title}</span><span class="filter-count-badge">0</span>`;
         header.onclick = () => group.classList.toggle('active');
+        group.appendChild(header);
+
+        // Global Basket for this group (placed below title)
+        const basket = document.createElement('div');
+        basket.id = 'activeFilterBasket';
+        basket.className = 'basket-container';
+        basket.style.cssText = 'display:none; margin: 12px 16px; border-style:dashed; background: #f8fafc;';
+        basket.innerHTML = `
+            <div class="basket-header" style="margin-bottom:8px;">
+                <span style="font-size:11px;">적용된 필터</span>
+            </div>
+            <div id="activeFilterChips" class="basket-items"></div>
+        `;
+        group.appendChild(basket);
         
         const content = document.createElement('div');
         content.className = 'filter-group-content';
@@ -163,6 +177,7 @@ function initAnalysisFilters() {
                     
                     updateTriggerText(trigger, col.key);
                     updateGroupBadge(group, section.cols);
+                    renderFilterBasket();
                     if (window.renderAnalytics) window.renderAnalytics();
                 };
                 
@@ -206,11 +221,12 @@ function initAnalysisFilters() {
             content.appendChild(filterItem);
         });
 
-        group.appendChild(header);
         group.appendChild(content);
         grid.appendChild(group);
         updateGroupBadge(group, section.cols);
     });
+
+    renderFilterBasket();
 
     // Close dropdowns on outside click
     document.addEventListener('click', () => {
@@ -250,6 +266,48 @@ function updateChips(container, key) {
         };
         container.appendChild(chip);
     });
+}
+
+function renderFilterBasket() {
+    const basket = document.getElementById('activeFilterBasket');
+    const container = document.getElementById('activeFilterChips');
+    if (!basket || !container) return;
+
+    container.innerHTML = '';
+    let total = 0;
+
+    Object.keys(analysisFilters).forEach(key => {
+        const selected = analysisFilters[key] || [];
+        selected.forEach(v => {
+            total++;
+            const chip = document.createElement('div');
+            chip.className = 'basket-chip';
+            chip.innerHTML = `
+                <span style="color:var(--muted); font-size:10px; margin-right:4px;">${getFilterLabel(key)}:</span>
+                <span>${v}</span>
+                <span class="basket-remove">×</span>
+            `;
+            chip.querySelector('.basket-remove').onclick = (e) => {
+                e.stopPropagation();
+                analysisFilters[key] = analysisFilters[key].filter(i => i !== v);
+                if (analysisFilters[key].length === 0) delete analysisFilters[key];
+                initAnalysisFilters();
+                if (window.renderAnalytics) window.renderAnalytics();
+            };
+            container.appendChild(chip);
+        });
+    });
+
+    basket.style.display = total > 0 ? 'block' : 'none';
+}
+
+function getFilterLabel(key) {
+    const labels = {
+        division: '부문', vehicle_type: '비히클', legal_form: '법적형태', fund_class: '분류',
+        domestic_overseas: '국내외', fund_type: '유형', investment_strategy: '전략',
+        base_asset_class: '기초자산', asset_nature_class: '성격', business_stage_class: '단계'
+    };
+    return labels[key] || key;
 }
 
 function updateTriggerText(trigger, key) {

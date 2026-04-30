@@ -607,6 +607,132 @@ function toggleOrgScope() {
     renderAnalytics();
 }
 
+function applyFiltersAndShowList(page = 1) {
+    // 필터 선택 여부 체크 (성능 최적화)
+    const filters = window.analysisFilters || {};
+    const hasFilter = Object.values(filters).some(arr => arr && arr.length > 0);
+    
+    const drillPanel = document.getElementById('drillDownResult');
+    if (!drillPanel) {
+        renderAnalytics().then(() => applyFiltersAndShowList(page));
+        return;
+    }
+
+    if (!hasFilter) {
+        drillPanel.style.display = 'block';
+        drillPanel.innerHTML = `
+            <div class="drill-title">조회 제한</div>
+            <div style="padding:40px; text-align:center; background:rgba(245, 158, 11, 0.05); border:1px dashed #f59e0b; border-radius:16px; color:#d97706;">
+                <div style="font-size:24px; margin-bottom:12px;">⚠️</div>
+                <strong>최소 하나 이상의 상세 필터를 선택해 주세요.</strong><br>
+                <span style="font-size:13px; opacity:0.8; margin-top:8px; display:block;">전체 데이터를 불러올 경우 시스템 속도가 저하될 수 있습니다.</span>
+            </div>
+        `;
+        drillPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+    }
+
+    const filteredFunds = (typeof getFilteredData === 'function') ? getFilteredData() : (window.lastTargetFunds || []);
+    
+    drillPanel.style.display = 'block';
+    if (page === 1) {
+        drillPanel.innerHTML = '<div style="text-align:center; padding:40px; color:var(--muted);">검색 결과를 생성 중입니다...</div>';
+    }
+
+    if (filteredFunds.length === 0) {
+        drillPanel.innerHTML = `
+            <div class="drill-title">조회 결과</div>
+            <div style="padding:40px; text-align:center; background:#f8fafc; border-radius:16px; color:var(--muted);">
+                조건에 맞는 펀드가 없습니다. 필터를 조정해 보세요.
+            </div>
+        `;
+        return;
+    }
+
+    // Pagination constants
+    const PAGE_SIZE = 30;
+    const totalCount = filteredFunds.length;
+    const totalPages = Math.ceil(totalCount / PAGE_SIZE);
+    
+    // Sort by AUM descending
+    const aumMetric = getAumBasisMetric();
+    const sortedFunds = [...filteredFunds].sort((a, b) => {
+        return getFundAmountWon(b, getMetricColumn('aum', aumMetric)) - getFundAmountWon(a, getMetricColumn('aum', aumMetric));
+    });
+
+    // Get current page slice
+    const startIdx = (page - 1) * PAGE_SIZE;
+    const pagedFunds = sortedFunds.slice(startIdx, startIdx + PAGE_SIZE);
+
+    const listHtml = pagedFunds.map(f => {
+        const aum = getFundAmountWon(f, getMetricColumn('aum', aumMetric));
+        const dept = f.dept || f.metadata?.department || '-';
+        
+        // Find first linked asset name
+        const asset = (window.allFundAssets || []).find(a => a.fund_id === f.fund_id);
+        const assetName = asset ? (asset.asset_name || asset.metadata?.asset_name || '-') : '-';
+
+        return `
+            <div class="drill-item" onclick="openFundDetailById('${f.fund_id}')" style="display:flex; align-items:center; padding:16px 24px;">
+                <div style="width:36px; height:36px; background:#f1f5f9; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; margin-right:20px;">📂</div>
+                
+                <div style="flex: 0 0 320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-right:40px;">
+                    <div class="drill-name" style="font-size:15px; font-weight:800; color:var(--text);">${f.fund_name}</div>
+                    <div style="font-size:12px; color:var(--muted); margin-top:4px;">${dept}</div>
+                </div>
+
+                <div style="flex: 1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; border-left:1px solid #f1f5f9; padding-left:40px;">
+                    <div style="font-size:11px; font-weight:700; color:#94a3b8; margin-bottom:4px; letter-spacing:0.5px;">PRIMARY ASSET</div>
+                    <div style="font-size:14px; font-weight:700; color:#6366f1;">${assetName}</div>
+                </div>
+
+                <div style="text-align:right; flex-shrink:0; margin-left:40px; min-width:100px;">
+                    <div class="drill-amt" style="font-size:16px; font-weight:900; color:var(--accent);">${formatNumber(aum)}</div>
+                    <div style="font-size:11px; color:var(--muted); font-weight:700; margin-top:2px;">AUM</div>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    let paginationHtml = '';
+    if (totalPages > 1) {
+        paginationHtml = `
+            <div class="analysis-pagination" style="margin-top:32px; padding:20px 0; border-top:1px solid #f1f5f9; display:flex; justify-content:center; align-items:center; gap:12px;">
+        `;
+        for (let i = 1; i <= totalPages; i++) {
+            const isActive = i === page;
+            paginationHtml += `
+                <span onclick="applyFiltersAndShowList(${i})" style="
+                    cursor: pointer;
+                    font-size: 14px;
+                    font-weight: ${isActive ? '800' : '500'};
+                    color: ${isActive ? 'var(--accent)' : 'var(--muted)'};
+                    ${isActive ? 'text-decoration: underline; text-underline-offset: 4px;' : ''}
+                ">${i}</span>
+                ${i < totalPages ? '<span style="color:#e2e8f0; font-size:10px;">|</span>' : ''}
+            `;
+        }
+        paginationHtml += '</div>';
+    }
+
+    drillPanel.innerHTML = `
+        <div class="drill-title" style="margin-bottom:24px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+                <span>필터링된 자산 리스트</span>
+                <span style="font-size:14px; font-weight:600; color:var(--muted); margin-left:8px;">총 ${totalCount}건</span>
+            </div>
+            ${totalPages > 1 ? `<span style="font-size:12px; color:var(--muted);">${page} / ${totalPages} 페이지</span>` : ''}
+        </div>
+        <div class="drill-list">
+            ${listHtml}
+        </div>
+        ${paginationHtml}
+    `;
+
+    drillPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+window.applyFiltersAndShowList = applyFiltersAndShowList;
 window.renderAnalytics = renderAnalytics;
 window.switchMetric = switchMetric;
 window.switchScope = switchScope;

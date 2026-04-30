@@ -1,0 +1,51 @@
+--- Supabase Data Check ---
+Fund: 이지스KORIF사모부동산투자신탁19호 | Status: 운용 | Division: 리얼에셋부문
+Fund: 이지스프랑스오피스사모부동산투자신탁제15호 | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스일반사모부동산투자신탁85호 | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스글로벌전문투자형사모부동산투자신탁84호 | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스전문투자형사모부동산투자신탁제404호 | Status: 운용 | Division: 리얼에셋부문
+Fund: 이지스이익참여형메자닌일반사모부동산모투자신탁제1-3호 | Status: 운용 | Division: 리얼에셋부문
+Fund: 이지스 멀티인컴 일반사모투자신탁 제2호 Class A | Status: 청산 | Division: 증권부문
+Fund: 이지스 멀티인컴 일반사모투자신탁 제2호 Class C | Status: 청산 | Division: 증권부문
+Fund: 이지스 멀티인컴 일반사모투자신탁 제2호 Class C-I | Status: 청산 | Division: 증권부문
+Fund: 이지스일반사모부동산자투자신탁제501호(1종) | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스일반사모부동산자투자신탁제501호(2종) | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스T-프런티어일반사모투자신탁제1호(운용) | Status: 운용 | Division: 증권부문
+Fund: 피에스KORIF사모부동산투자신탁2호 | Status: 청산 | Division: 
+Fund: 이지스전문투자형사모투자신탁124호 | Status: 청산 | Division: 
+Fund: 이지스광명역세권전문투자형사모부동산투자신탁140호 | Status: 청산 | Division: 
+Fund: 이지스일반사모부동산자투자신탁제130-2호 | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스미국일반사모부동산투자신탁386호 | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스글로벌일반사모부동산투자신탁402-2호 | Status: 운용 | Division: 리얼에셋부문
+Fund: 이지스미국일반사모부동산투자신탁386호(1종) | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스T-프런티어일반사모투자신탁제1호(Class C-i) | Status: 운용 | Division: 증권부문
+Fund: 이지스T-프런티어일반사모투자신탁제1호(Class C-S) | Status: 운용 | Division: 증권부문
+Fund: 이지스 K본드알파 일반사모투자신탁 제1호(운용) | Status: 청산 | Division: 증권부문
+Fund: 이지스 멀티플러스 일반사모투자신탁 제1호 | Status: 청산 | Division: 증권부문
+Fund: 이지스천호스페셜시츄에이션일반사모부동산투자신탁(1종) | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스천호스페셜시츄에이션일반사모부동산투자신탁(2종) | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스유럽일반사모부동산투자신탁46-1호 (재간접형) | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스부동산투자신탁196호(Class C-P) | Status: 청산 | Division: 
+Fund: 이지스일반사모투자신탁217호 | Status: 운용 | Division: 인프라부문
+Fund: 이지스글로벌전문투자형사모부동산투자신탁304호 | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스전문투자형사모투자신탁370호(Class A) | Status: 청산 | Division: 
+Fund: 이지스미국일반사모부동산투자신탁386호(2종) | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스스트래티직일반사모부동산모투자신탁제1-4호 | Status: 청산 | Division: 전략펀드운용1실
+Fund: 이지스일반사모부동산투자신탁제412호 | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스서초스페셜시츄에이션일반사모부동산투자신탁 | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스일반사모부동산투자신탁제524호(1종) | Status: 운용 | Division: 리얼에셋부문
+Fund: 이지스일반사모부동산투자신탁제524호(2종) | Status: 운용 | Division: 리얼에셋부문
+Fund: 이지스랜드플랫폼일반사모부동산투자신탁제1-3호(1종) | Status: 운용 | Division: 리얼에셋부문
+Fund: 이지스전문투자형사모부동산투자신탁1호 | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스리테일제55호사모부동산투자유한회사 | Status: 청산 | Division: 
+Fund: 이지스영국일반사모부동산투자신탁58-1호(재간접형) | Status: 운용 | Division: 리얼에셋부문
+Fund: 약칭 | Status: 운용만료일 | Division: None
+Fund: 232호(2종) | Status: None | Division: 리얼에셋부문
+Fund: 이지스비즈성장공간플랫폼일반사모부동산투자신탁제1-2호 | Status: 운용 | Division: 리얼에셋부문
+Fund: 이지스전문투자형사모투자신탁437호 | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스랜드플랫폼일반사모부동산투자신탁제1-3호(2종) | Status: 운용 | Division: 리얼에셋부문
+Fund: 이지스랜드플랫폼일반사모부동산투자신탁제1-3호(3종) | Status: 운용 | Division: 리얼에셋부문
+Fund: 이지스랜드플랫폼일반사모부동산투자신탁제1-3호(4종) | Status: 운용 | Division: 리얼에셋부문
+Fund: 이지스 성수PF재구조화 일반사모부동산투자신탁(운용) | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스국내PF재구조화 일반사모부동산모투자신탁 제1-1호 | Status: 청산 | Division: 리얼에셋부문
+Fund: 이지스국내PF재구조화 일반사모부동산자투자신탁 제1호 | Status: 운용 | Division: 리얼에셋부문
