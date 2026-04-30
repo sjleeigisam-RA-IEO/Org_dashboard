@@ -99,6 +99,12 @@
   async function showDetail(obj, container) {
     const { type, items, targetName, category } = obj;
     const targetPanel = container || detailPanel;
+    
+    // 분기 처리: 자산(Asset/Fund/Project) vs 기관(Lender/Beneficiary)
+    if (type === 'lender' || type === 'ben') {
+      return renderInstitutionDetail(obj, targetPanel);
+    }
+
     const fundIds = items.map(i => i.fund_id);
     targetPanel.innerHTML = '<div class="no-results">상세 로딩 중...</div>';
     try {
@@ -201,8 +207,8 @@
     `;
 
       if (category === 'analysis') {
-        initAnalysisFilters();
-        renderPortfolioChart();
+        if (typeof initAnalysisFilters === 'function') initAnalysisFilters();
+        if (typeof renderPortfolioChart === 'function') renderPortfolioChart();
       }
 
       if (a.lng && a.lat) {
@@ -241,6 +247,151 @@
       console.error(e);
       targetPanel.innerHTML = '상세 정보를 불러오지 못했습니다.';
     }
+  }
+
+  async function renderInstitutionDetail(obj, targetPanel) {
+    const { type, items, targetName } = obj;
+    const label = type === 'lender' ? '대주' : '수익자';
+    const amountKey = type === 'lender' ? 'committed_amt' : 'invested_amt';
+    
+    const totalAmount = items.reduce((acc, curr) => acc + (curr[amountKey] || 0), 0);
+    const chartId = 'inst-chart-' + Math.random().toString(36).substr(2, 9);
+
+    // 펀드 정보 조회: 검색 JOIN 데이터(item.funds)를 1순위로, window.allFunds를 fallback으로 사용
+    function resolveFund(item) {
+      const joined = item.funds; 
+      const global = (window.allFunds || []).find(f => f.fund_id === item.fund_id);
+      return joined || global || null;
+    }
+
+    function resolveFundName(item) {
+      const fund = resolveFund(item);
+      if (fund) return getFundPrimaryName(fund);
+      return item.funds?.fund_name || item.fund_id;
+    }
+
+    function resolveSetupDate(item) {
+      const fund = resolveFund(item);
+      // 대주: drawdown_date(인출일) 우선 / 수익자: setup_date(설정일) 우선
+      if (type === 'lender') {
+        return item.drawdown_date || item.start_date || fund?.setup_date || null;
+      }
+      return item.start_date || item.invested_date || fund?.setup_date || null;
+    }
+
+    function resolveEndDate(item) {
+      const fund = resolveFund(item);
+      if (type === 'lender') {
+        return item.loan_maturity_date || item.end_date || fund?.maturity_date || null;
+      }
+      return item.end_date || fund?.maturity_date || null;
+    }
+
+    // Sort items by date (latest first)
+    const sortedItems = [...items].sort((a, b) => {
+      const dateA = new Date(resolveSetupDate(a) || '1900-01-01');
+      const dateB = new Date(resolveSetupDate(b) || '1900-01-01');
+      return dateB - dateA;
+    });
+
+    targetPanel.innerHTML = `
+      <div class="detail-header">
+        <span class="card-tag tag-${type}">${label.toUpperCase()} PROFILE</span>
+        <h2 style="margin-bottom:4px;">${targetName}</h2>
+        <div style="color:var(--muted); font-size:16px;">
+          전체 ${items.length}건 참여 | 총액 ${formatNumber(totalAmount)}
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <div class="section-title">연도별 익스포저 변화 (Exposure Analysis)</div>
+        <div id="${chartId}" style="min-height: 350px;"></div>
+      </div>
+
+      <div class="detail-section">
+        <div class="section-title">참여 프로젝트 상세 (Participation Details)</div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>프로젝트/펀드명</th>
+              <th>투입금액</th>
+              <th>시작일</th>
+              <th>종료일</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${sortedItems.map(item => {
+              return `
+                <tr>
+                  <td style="font-weight:700">${resolveFundName(item)}</td>
+                  <td style="color:var(--accent); font-weight:800;">${formatNumber(item[amountKey])}</td>
+                  <td>${resolveSetupDate(item) || '-'}</td>
+                  <td>${resolveEndDate(item) || '-'}</td>
+                </tr>
+              `;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+
+    // Chart Data Preparation
+    const yearData = {};
+    const currentYear = new Date().getFullYear();
+    let minYear = currentYear;
+
+    items.forEach(item => {
+      const setupDate = resolveSetupDate(item);
+      if (setupDate) {
+        const year = new Date(setupDate).getFullYear();
+        if (year < minYear) minYear = year;
+        yearData[year] = (yearData[year] || 0) + (item[amountKey] || 0);
+      }
+    });
+
+    const years = [];
+    for (let y = minYear; y <= currentYear; y++) years.push(y);
+
+    const newData = years.map(y => yearData[y] || 0);
+    const cumulativeData = [];
+    let runningSum = 0;
+    
+    years.forEach(y => {
+      runningSum += (yearData[y] || 0);
+      cumulativeData.push(runningSum);
+    });
+
+    setTimeout(() => {
+      const options = {
+        series: [
+          { name: '누적 익스포저', type: 'line', data: cumulativeData.map(v => Math.floor(v / 100000000)) },
+          { name: '신규 투입액', type: 'column', data: newData.map(v => Math.floor(v / 100000000)) }
+        ],
+        chart: { height: 350, type: 'line', toolbar: { show: false }, fontFamily: 'Pretendard Variable' },
+        stroke: { width: [4, 0], curve: 'smooth' },
+        plotOptions: { bar: { columnWidth: '60%', borderRadius: 6 } },
+        colors: ['#4f46e5', '#93c5fd'],
+        xaxis: { categories: years },
+        yaxis: [
+          { 
+            labels: { 
+              formatter: (val) => val.toLocaleString()
+            },
+            title: { text: '단위: 억원' } 
+          }
+        ],
+        tooltip: {
+            shared: true,
+            intersect: false,
+            y: { formatter: (val) => val.toLocaleString() + ' 억' }
+        }
+      };
+
+      if (typeof ApexCharts !== 'undefined') {
+        const chart = new ApexCharts(document.getElementById(chartId), options);
+        chart.render();
+      }
+    }, 100);
   }
 
   window.showDetail = showDetail;

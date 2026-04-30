@@ -48,9 +48,44 @@
       
       .fund-detail-card {
         border: 1px solid #e2e8f0; border-radius: 20px; padding: 28px; margin-bottom: 20px;
-        background: white; transition: all 0.2s;
+        background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.03);
       }
       .fund-detail-card:hover { border-color: var(--accent); box-shadow: 0 10px 20px rgba(0,0,0,0.03); }
+
+      /* Help Button & Modal Styles */
+      .help-btn {
+        width: 20px; height: 20px; border-radius: 50%; background: #e2e8f0;
+        color: #64748b; font-size: 12px; font-weight: 800; border: none;
+        display: inline-flex; align-items: center; justify-content: center;
+        cursor: pointer; margin-left: 8px; vertical-align: middle;
+        transition: all 0.2s;
+      }
+      .help-btn:hover { background: var(--text); color: white; }
+
+      .modal-overlay {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+        z-index: 3000; display: none; align-items: center; justify-content: center;
+      }
+      .modal-overlay.active { display: flex; }
+      .help-modal {
+        background: white; width: 500px; max-width: 90vw; border-radius: 24px;
+        padding: 32px; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        position: relative; animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      @keyframes modalPop {
+        from { transform: scale(0.9); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+      }
+      .help-modal h2 { margin-bottom: 20px; font-size: 20px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+      .help-modal ul { list-style: none; padding: 0; margin: 0; }
+      .help-modal li { margin-bottom: 16px; font-size: 14px; line-height: 1.6; color: #475569; }
+      .help-modal li strong { color: var(--text); display: block; margin-bottom: 4px; font-size: 15px; }
+      .close-modal-btn {
+        margin-top: 24px; width: 100%; padding: 14px; background: var(--text);
+        color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer;
+      }
+
       .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; font-size: 14px; }
       .meta-item { display: flex; flex-direction: column; gap: 6px; }
       .meta-label { color: var(--muted); font-weight: 600; font-size: 12px; }
@@ -84,6 +119,10 @@
 
     <!-- 데이터 조회용 컨트롤 그룹 -->
     <div id="searchViewControls">
+      <div style="margin-bottom: 12px; display: flex; align-items: center;">
+        <span style="font-size: 14px; font-weight: 800;">검색 및 조회</span>
+        <button class="help-btn" onclick="showHelp('search')">?</button>
+      </div>
       <div class="search-container">
         <span class="search-icon">🔍</span>
         <input type="text" id="searchInput" placeholder="펀드명, 자산명, 투자자 검색..." autocomplete="off">
@@ -101,6 +140,10 @@
 
     <!-- 종합 분석용 컨트롤 그룹 -->
     <div id="analysisViewControls" style="display:none;">
+      <div style="margin-bottom: 12px; display: flex; align-items: center;">
+        <span style="font-size: 14px; font-weight: 800;">분석 필터</span>
+        <button class="help-btn" onclick="showHelp('analysis')">?</button>
+      </div>
       <div id="analysisControls" class="analysis-controls">
           <!-- 상세 필터 섹션 -->
           <div class="analysis-filters" id="analysisFilters">
@@ -117,7 +160,7 @@
     <div id="portfolioBasket" class="basket-container" style="display:none;">
       <div class="basket-header">
         <span>선택된 포트폴리오</span>
-        <button id="clearBasketBtn">모두 비우기</button>
+        <button id="clearBasketBtn" onclick="clearBasket()">모두 비우기</button>
       </div>
       <div id="basketItems" class="basket-items"></div>
     </div>
@@ -136,6 +179,46 @@
     </div>
   </div>
 </div>
+
+<!-- Help Modals -->
+<div id="modalOverlay" class="modal-overlay" onclick="closeHelp()">
+  <div class="help-modal" onclick="event.stopPropagation()">
+    <div id="helpContent"></div>
+    <button class="close-modal-btn" onclick="closeHelp()">확인</button>
+  </div>
+</div>
+
+<script>
+  const helpData = {
+    search: `
+      <h2>🔍 데이터 조회 가이드</h2>
+      <ul>
+        <li><strong>통합 검색</strong>펀드명, 자산명, 투자자(수익자/대주) 등 모든 키워드로 연관 데이터를 즉시 찾을 수 있습니다.</li>
+        <li><strong>카테고리 탭</strong>검색된 결과를 유형별로 필터링하여 보고 싶은 정보만 선별할 수 있습니다.</li>
+        <li><strong>분석 장바구니</strong>리스트 좌측 체크박스를 클릭하면 '선택된 포트폴리오'에 담깁니다. 대주나 수익자를 2개 이상 선택하면 자동으로 비교 분석 차트가 생성됩니다.</li>
+        <li><strong>우측 상세 패널</strong>항목을 클릭하면 우측 메인 공간에 해당 자산의 프로필, 익스포저 변화 차트, 상세 내역이 표시됩니다.</li>
+      </ul>
+    `,
+    analysis: `
+      <h2>📊 종합 분석 가이드</h2>
+      <ul>
+        <li><strong>상세 필터</strong>상단의 필터 그리드에서 본부, 팀, 자산분류 등 여러 조건을 조합하여Division 전체 현황을 분석할 수 있습니다.</li>
+        <li><strong>대화형 차트</strong>상단 차트의 막대나 영역을 클릭해 보세요. 하단 리스트가 해당 조건에 맞는 데이터로 즉시 갱신(Drill-down)됩니다.</li>
+        <li><strong>하단 상세 리스트</strong>차트 클릭으로 필터링된 리스트에서 항목을 클릭하면 우측 패널에서 심층적인 자산 프로필을 확인할 수 있습니다.</li>
+        <li><strong>필터 초기화</strong>분석 조건을 모두 해제하고 처음으로 돌아가려면 '전체 필터 초기화' 버튼을 사용하세요.</li>
+      </ul>
+    `
+  };
+
+  function showHelp(type) {
+    document.getElementById('helpContent').innerHTML = helpData[type];
+    document.getElementById('modalOverlay').classList.add('active');
+  }
+
+  function closeHelp() {
+    document.getElementById('modalOverlay').classList.remove('active');
+  }
+</script>
 
 <script src="config.js"></script>
 <script src="js/core.js"></script>

@@ -96,7 +96,12 @@ function updateTabCounts() {
   tabBtns.forEach(function (btn) {
     var tab = btn.dataset.tab;
     var count = counts[tab] || 0;
-    btn.innerHTML = btn.textContent.split(' ')[0] + ' <span style="opacity:0.4; font-size:0.8em; margin-left:4px;">' + count + '</span>';
+    // 최초 1회만 원본 라벨 저장
+    if (!btn.dataset.label) {
+      btn.dataset.label = btn.textContent.trim();
+    }
+    var label = btn.dataset.label;
+    btn.innerHTML = '<span>' + label + '</span><span class="tab-count">' + count + '</span>';
   });
 }
 
@@ -148,14 +153,16 @@ function renderGroupCard(type, name, items) {
 
   card.innerHTML = `
     <div class="group-header">
+      <input type="checkbox" class="card-checkbox" ${isSelected ? 'checked' : ''} 
+        onclick="toggleBasket(event, '${type}', '${name}', ${JSON.stringify(items).replace(/"/g, '&quot;')})">
       <div style="flex:1">
         <span class="card-tag tag-${type}">${type.toUpperCase()}</span>
         <div class="group-title">${displayTitle}</div>
-        <div class="group-meta">${subTitle}${count > 1 ? ` | ${count}\uAC74 \uCC38\uC5EC` : ''}</div>
       </div>
-      <input type="checkbox" class="card-checkbox" ${isSelected ? 'checked' : ''} 
-        onclick="toggleBasket(event, '${type}', '${name}', ${JSON.stringify(items).replace(/"/g, '&quot;')})">
-      <div class="toggle-icon">${count > 1 ? 'v' : '-'}</div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        ${count > 1 ? `<span style="font-size:11px; font-weight:700; color:var(--accent); background:rgba(79,70,229,0.05); padding:2px 6px; border-radius:4px;">${count}\uAC74 \uCC38\uC5EC</span>` : ''}
+        <div class="toggle-icon">${count > 1 ? 'v' : '-'}</div>
+      </div>
     </div>
     <div class="sub-list" style="display:none">
       ${items.map(function (i) {
@@ -204,6 +211,9 @@ function toggleBasket(event, type, name, items) {
   window.portfolioBasket = portfolioBasket;
   renderBasket();
   if (currentView === 'ranking') renderAnalytics();
+  
+  // 같은 카테고리 2건 이상 선택 시 비교 차트 렌더링
+  checkAndRenderComparison();
 }
 
 function renderBasket() {
@@ -216,8 +226,162 @@ function renderBasket() {
   }
   basketEl.style.display = 'block';
   itemsEl.innerHTML = portfolioBasket.map(function (item) {
-    return `<div class="basket-chip">${item.name}<span onclick="toggleBasket(event, '${item.type}', '${item.name}', [])">x</span></div>`;
+    var tagClass = 'tag-' + item.type;
+    var typeLabel = { fund: '펀드', asset: '자산', lender: '대주', ben: '수익자', project: '프로젝트' }[item.type] || item.type;
+    return '<div class="basket-chip"><span class="card-tag ' + tagClass + '" style="margin-bottom:0; font-size:9px; padding:1px 5px;">' + typeLabel + '</span> ' + item.name + '<span class="basket-remove" onclick="toggleBasket(event, \'' + item.type + '\', \'' + item.name + '\', [])">×</span></div>';
   }).join('');
+}
+
+function clearBasket() {
+  portfolioBasket.length = 0;
+  window.portfolioBasket = portfolioBasket;
+  renderBasket();
+  // 체크박스 해제
+  document.querySelectorAll('.card-checkbox').forEach(function(cb) { cb.checked = false; });
+  // 상세 패널 초기화
+  var detailPanel = document.getElementById('detailPanel');
+  if (detailPanel) {
+    detailPanel.innerHTML = '<div class="detail-placeholder"><div class="placeholder-icon">📋</div><p>리스트에서 항목을 선택하면<br>상세 정보가 여기에 표시됩니다.</p></div>';
+  }
+}
+
+function checkAndRenderComparison() {
+  // 같은 카테고리(type)로 2건 이상 선택된 것만 필터
+  var typeGroups = {};
+  portfolioBasket.forEach(function(item) {
+    if (!typeGroups[item.type]) typeGroups[item.type] = [];
+    typeGroups[item.type].push(item);
+  });
+  
+  // 가장 많이 선택된 같은 카테고리 그룹 찾기
+  var bestGroup = null;
+  Object.keys(typeGroups).forEach(function(t) {
+    if (typeGroups[t].length >= 2) {
+      if (!bestGroup || typeGroups[t].length > bestGroup.length) {
+        bestGroup = typeGroups[t];
+      }
+    }
+  });
+  
+  if (bestGroup) {
+    var groupType = bestGroup[0].type;
+    if (groupType === 'lender' || groupType === 'ben') {
+      renderComparisonChart(bestGroup);
+    } else {
+      var detailPanel = document.getElementById('detailPanel');
+      if (detailPanel) {
+        var typeLabel = { fund: '펀드', asset: '자산', project: '프로젝트' }[groupType] || groupType;
+        detailPanel.innerHTML = '<div class="detail-placeholder" style="text-align:center; padding:80px 40px;"><div style="font-size:48px; margin-bottom:20px;">🚧</div><h3 style="font-size:18px; font-weight:800; color:var(--text); margin-bottom:8px;">' + typeLabel + ' 비교 분석</h3><p style="color:var(--muted); font-size:14px; line-height:1.6;">해당 기능은 현재 개발 중입니다.<br>대주 또는 수익자 비교 분석을 먼저 이용해 주세요.</p></div>';
+      }
+    }
+  }
+}
+
+function renderComparisonChart(selectedItems) {
+  var detailPanel = document.getElementById('detailPanel');
+  if (!detailPanel) return;
+  
+  var type = selectedItems[0].type;
+  var isLender = (type === 'lender');
+  var amountKey = isLender ? 'committed_amt' : 'invested_amt';
+  var label = isLender ? '대주' : '수익자';
+  var chartId = 'compare-chart-' + Math.random().toString(36).substr(2, 9);
+  
+  // 전체 연도 범위 계산
+  var allYears = {};
+  var minYear = 9999;
+  var maxYear = 0;
+  var currentYear = new Date().getFullYear();
+  
+  // 기관별 연도별 데이터 계산
+  var seriesData = selectedItems.map(function(sel) {
+    var yearData = {};
+    sel.items.forEach(function(item) {
+      var fund = item.funds || (window.allFunds || []).find(function(f) { return f.fund_id === item.fund_id; });
+      var date;
+      if (isLender) {
+        date = item.drawdown_date || item.start_date || (fund ? fund.setup_date : null);
+      } else {
+        date = item.start_date || item.invested_date || (fund ? fund.setup_date : null);
+      }
+      if (date) {
+        var year = new Date(date).getFullYear();
+        if (year < minYear) minYear = year;
+        if (year > maxYear) maxYear = year;
+        yearData[year] = (yearData[year] || 0) + (item[amountKey] || 0);
+      }
+    });
+    return { name: sel.name, yearData: yearData };
+  });
+  
+  if (maxYear < currentYear) maxYear = currentYear;
+  
+  var years = [];
+  for (var y = minYear; y <= maxYear; y++) years.push(y);
+  
+  // 시리즈 생성 (누적 막대)
+  var series = seriesData.map(function(sd) {
+    return {
+      name: sd.name,
+      data: years.map(function(y) { return Math.floor((sd.yearData[y] || 0) / 100000000); })
+    };
+  });
+  
+  // 총합 계산
+  var totals = selectedItems.map(function(sel) {
+    var total = sel.items.reduce(function(acc, item) { return acc + (item[amountKey] || 0); }, 0);
+    return { name: sel.name, total: total };
+  });
+  
+  // 색상 팔레트
+  var colors = ['#4f46e5', '#0ea5e9', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#14b8a6'];
+  
+  detailPanel.innerHTML = 
+    '<div class="detail-header">' +
+      '<span class="card-tag tag-' + type + '">' + label.toUpperCase() + ' COMPARISON</span>' +
+      '<h2 style="margin-bottom:4px;">' + selectedItems.map(function(s){return s.name}).join(' vs ') + '</h2>' +
+      '<div style="color:var(--muted); font-size:14px; margin-top:8px; display:flex; gap:16px; flex-wrap:wrap;">' +
+        totals.map(function(t, i) {
+          return '<span style="display:flex; align-items:center; gap:6px;">' +
+            '<span style="width:10px;height:10px;border-radius:3px;background:' + colors[i % colors.length] + '"></span>' +
+            '<strong>' + t.name + '</strong> ' + (Math.floor(t.total / 100000000)).toLocaleString() + '억' +
+          '</span>';
+        }).join('') +
+      '</div>' +
+    '</div>' +
+    '<div class="detail-section">' +
+      '<div class="section-title">연도별 약정액 비교 (Stacked Comparison)</div>' +
+      '<div id="' + chartId + '" style="min-height:400px;"></div>' +
+    '</div>';
+  
+  setTimeout(function() {
+    if (typeof ApexCharts === 'undefined') return;
+    var options = {
+      series: series,
+      chart: { type: 'bar', height: 400, stacked: true, toolbar: { show: false }, fontFamily: 'Pretendard Variable' },
+      plotOptions: { bar: { columnWidth: '55%', borderRadius: 4 } },
+      colors: colors.slice(0, series.length),
+      xaxis: { categories: years },
+      yaxis: [{
+        labels: { formatter: function(val) { return val.toLocaleString(); } },
+        title: { text: '단위: 억원' }
+      }],
+      dataLabels: {
+        enabled: true,
+        formatter: function(val) { return val ? val.toLocaleString() : ''; },
+        style: { fontSize: '11px', fontWeight: 700 }
+      },
+      tooltip: {
+        shared: true,
+        intersect: false,
+        inverseOrder: true,
+        y: { formatter: function(val) { return val.toLocaleString() + ' 억'; } }
+      },
+      legend: { position: 'bottom', fontSize: '13px', fontWeight: 600, inverseOrder: true }
+    };
+    var chart = new ApexCharts(document.getElementById(chartId), options);
+    chart.render();
+  }, 100);
 }
 
 window.ensureFundSearchColumns = ensureFundSearchColumns;
@@ -228,3 +392,5 @@ window.groupBy = groupBy;
 window.renderGroupCard = renderGroupCard;
 window.toggleBasket = toggleBasket;
 window.renderBasket = renderBasket;
+window.clearBasket = clearBasket;
+window.renderComparisonChart = renderComparisonChart;
