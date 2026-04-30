@@ -169,7 +169,7 @@ function getFieldValue(fund, key) {
 
   var fallbacks = {
     department: [fund.dept, meta.department],
-    division: [meta.division, fund.dept, meta.department],
+    division: [meta.division],
     investment_sector: [meta.investment_sector, fund.sector],
     sector: [fund.sector, meta.investment_sector],
     domestic_overseas: [meta.domestic_overseas, fund.location],

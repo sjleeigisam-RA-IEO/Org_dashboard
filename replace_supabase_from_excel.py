@@ -15,6 +15,16 @@ ARCHIVE_DIR = BASE_DIR / "_archive"
 FUND_ID_RE = re.compile(r"^[A-Z0-9]+$")
 
 
+DIVISION_OVERRIDES = {
+    "200044": "리얼에셋부문",
+    "300079": "증권부문",
+    "300080": "증권부문",
+    "300083": "증권부문",
+    "300084": "증권부문",
+    "300085": "증권부문",
+}
+
+
 def find_source_files():
     files = [path for path in ARCHIVE_DIR.glob("*.xlsx") if not path.name.startswith("~$")]
     sources = {}
@@ -232,6 +242,7 @@ def build_funds(fund_df, aum_df, asset_lookup):
 
     records = []
     for _, row in merged.iterrows():
+        fund_id = clean_str(row.get("fund_id"))
         metadata = row_dict(
             row,
             {
@@ -307,6 +318,11 @@ def build_funds(fund_df, aum_df, asset_lookup):
         if aum_status is not None:
             metadata["aum_status"] = aum_status
             metadata["aum_source"] = "펀드 AUM 관리_20260427.xlsx"
+        if fund_id in DIVISION_OVERRIDES:
+            metadata["division"] = DIVISION_OVERRIDES[fund_id]
+            metadata["division_source"] = "manual_override"
+        elif metadata.get("division"):
+            metadata["division_source"] = "[new]펀드 관리_20260428.xlsx"
 
         sector = clean_str(row.get("투자섹터"))
         vehicle = clean_str(row.get("Vehicle구분"))
@@ -327,7 +343,7 @@ def build_funds(fund_df, aum_df, asset_lookup):
         metadata["fund_classification_source"] = "[new]펀드 관리_20260428.xlsx"
 
         record = {
-            "fund_id": clean_str(row.get("fund_id")),
+            "fund_id": fund_id,
             "short_name": clean_str(row.get("약칭")),
             "fund_name": clean_str(row.get("펀드명")),
             "sector": sector,

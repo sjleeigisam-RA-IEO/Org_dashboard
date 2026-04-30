@@ -23,6 +23,16 @@ BASE_DIR = Path(__file__).resolve().parent
 ARCHIVE_DIR = BASE_DIR / "_archive"
 
 
+DIVISION_OVERRIDES = {
+    "200044": "리얼에셋부문",
+    "300079": "증권부문",
+    "300080": "증권부문",
+    "300083": "증권부문",
+    "300084": "증권부문",
+    "300085": "증권부문",
+}
+
+
 CLASSIFICATION_COLUMNS = [
     "Vehicle구분",
     "모집형태",
@@ -44,6 +54,7 @@ CLASSIFICATION_COLUMNS = [
     "AUM합산대상여부",
     "KMS대상여부",
     "회계감사여부",
+    "담당부문(운용)",
 ]
 
 
@@ -129,7 +140,7 @@ def overlay_classifications(base, classifier):
         if fund_id not in classifier.index:
             continue
         for col in CLASSIFICATION_COLUMNS:
-            if col in base.columns and col in classifier.columns:
+            if col in classifier.columns:
                 value = clean_str(classifier.at[fund_id, col])
                 if value is not None:
                     base.at[idx, col] = value
@@ -210,6 +221,7 @@ def build_funds(base, classifier, aum, asset_lookup):
 
     records = []
     for _, row in merged.iterrows():
+        fund_id = clean_str(row.get("fund_id"))
         metadata = row_dict(
             row,
             {
@@ -234,6 +246,7 @@ def build_funds(base, classifier, aum, asset_lookup):
                 "수탁사": "trustee",
                 "사무관리사": "administrator",
                 "위험등급": "risk_grade",
+                "담당부문(운용)": "division",
                 "담당부서(투자)": "investment_department",
                 "담당자(투자)": "investment_manager",
                 "책임자(투자)": "investment_responsible_manager",
@@ -295,9 +308,14 @@ def build_funds(base, classifier, aum, asset_lookup):
         if aum_status is not None:
             metadata["aum_status"] = aum_status
             metadata["aum_source"] = "펀드 AUM 관리_20260427.xlsx"
+        if fund_id in DIVISION_OVERRIDES:
+            metadata["division"] = DIVISION_OVERRIDES[fund_id]
+            metadata["division_source"] = "manual_override"
+        elif metadata.get("division"):
+            metadata["division_source"] = "[new]펀드 관리_20260428.xlsx"
 
         record = {
-            "fund_id": clean_str(row.get("fund_id")),
+            "fund_id": fund_id,
             "short_name": clean_str(row.get("약칭")),
             "fund_name": clean_str(row.get("펀드명")),
             "sector": clean_str(row.get("투자섹터")),
