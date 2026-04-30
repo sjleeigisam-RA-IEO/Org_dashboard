@@ -22,14 +22,14 @@ async function renderAnalytics() {
     
     const snapshotDate = new Date('2026-03-31');
     const activeFunds = filteredFunds.filter(f => {
-        return getFundAumStatus(f) === '운용' && isAumCountedFund(f) && (currentOrgScope === 'all' || isRAFund(f));
+        return getFundAumStatus(f) === '운용' && isFundIncludedForCurrentMetric(f) && (currentOrgScope === 'all' || isRAFund(f));
     });
 
     const aumMetric = getAumBasisMetric();
     const aumConfig = getAumMetricConfig(aumMetric);
-    const totalAum = activeFunds.reduce((sum, f) => sum + getFundAmountWon(f, aumConfig.aum), 0);
-    const totalEquity = activeFunds.reduce((sum, f) => sum + getFundAmountWon(f, aumConfig.equity), 0);
-    const totalLoan = activeFunds.reduce((sum, f) => sum + getFundAmountWon(f, aumConfig.loan), 0);
+    const totalAum = activeFunds.reduce((sum, f) => sum + getFundAmountWon(f, getMetricColumn('aum', aumMetric)), 0);
+    const totalEquity = activeFunds.reduce((sum, f) => sum + getFundAmountWon(f, getMetricColumn('equity', aumMetric)), 0);
+    const totalLoan = activeFunds.reduce((sum, f) => sum + getFundAmountWon(f, getMetricColumn('loan', aumMetric)), 0);
     const totalOther = totalAum - totalEquity - totalLoan;
 
     const mainValue = formatNumber(totalAum);
@@ -37,7 +37,10 @@ async function renderAnalytics() {
     const lnVal = formatNumber(totalLoan);
     const otVal = formatNumber(totalOther);
 
-    const activeAssetRecords = getActiveAssetRecords(activeFunds);
+    const activeAssetFunds = filteredFunds.filter(f => {
+        return getFundAumStatus(f) === '운용' && isAumCountedFund(f) && (currentOrgScope === 'all' || isRAFund(f));
+    });
+    const activeAssetRecords = getActiveAssetRecords(activeAssetFunds);
     const domesticAssetsCount = activeAssetRecords.filter(isDomesticAssetRecord).length;
     const overseasAssetsCount = activeAssetRecords.filter(isOverseasAssetRecord).length;
     const otherAssetsCount = Math.max(0, activeAssetRecords.length - domesticAssetsCount - overseasAssetsCount);
@@ -104,8 +107,9 @@ async function renderAnalytics() {
             <h3 class="section-title" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
               <span style="font-size:20px; font-weight:800;">연도별 포트폴리오 성장 궤적 (2010 - 2026)</span>
               <div class="chart-toggle-group" style="display:flex; background:#f1f5f9; padding:4px; border-radius:12px; gap:4px;">
-                 <button id="toggle-benchmark_aum" class="chart-toggle-btn ${currentChartMetric === 'benchmark_aum' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('benchmark_aum')">약정액</button>
-                 <button id="toggle-invested_aum" class="chart-toggle-btn ${currentChartMetric === 'invested_aum' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('invested_aum')">투입액</button>
+                 <button id="toggle-aum" class="chart-toggle-btn ${currentChartMetric === 'aum' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('aum')">AUM</button>
+                 <button id="toggle-equity" class="chart-toggle-btn ${currentChartMetric === 'equity' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('equity')">Equity</button>
+                 <button id="toggle-loan" class="chart-toggle-btn ${currentChartMetric === 'loan' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('loan')">Loan</button>
                  <button id="toggle-count" class="chart-toggle-btn ${currentChartMetric === 'count' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('count')">건수</button>
               </div>
             </h3>
@@ -154,8 +158,8 @@ function switchMetric(metric) {
 }
 
 function toggleAumBasis() {
-    currentChartMetric = getAumBasisMetric() === 'benchmark_aum' ? 'invested_aum' : 'benchmark_aum';
-    window.currentChartMetric = currentChartMetric;
+    currentAumBasis = getAumBasisMetric() === 'benchmark_aum' ? 'invested_aum' : 'benchmark_aum';
+    window.currentAumBasis = currentAumBasis;
     renderAnalytics();
 }
 
@@ -185,14 +189,14 @@ function renderNetChangeDetails(label) {
     }
 
     const newlySetup = targetFunds.filter(f => {
-        if (!isAumCountedFund(f)) return false;
+        if (!isFundIncludedForCurrentMetric(f)) return false;
         const setupStr = getFundSetupDate(f);
         const setup = setupStr ? new Date(setupStr) : null;
         return setup && setup >= startDate && setup <= endDate;
     });
 
     const terminated = targetFunds.filter(f => {
-        if (!isAumCountedFund(f)) return false;
+        if (!isFundIncludedForCurrentMetric(f)) return false;
         const end = getFundEndDate(f);
         const d = end ? new Date(end) : null;
         return d && d >= startDate && d <= endDate;
@@ -255,7 +259,7 @@ function renderNetGrowth(chartId) {
         else snapshotDate = new Date(`${cat}-12-31`);
 
         const activeInYear = targetFunds.filter(f => {
-            if (!isAumCountedFund(f)) return false;
+            if (!isFundIncludedForCurrentMetric(f)) return false;
             const setupStr = getFundSetupDate(f);
             const setup = setupStr ? new Date(setupStr) : null;
             const endStr = getFundEndDate(f);
@@ -265,7 +269,7 @@ function renderNetGrowth(chartId) {
         });
 
         if (currentChartMetric === 'count') return groupItems(activeInYear, '').length;
-        return activeInYear.reduce((sum, f) => sum + getFundAmountWon(f, currentChartMetric), 0);
+        return activeInYear.reduce((sum, f) => sum + getFundAmountWon(f, getMetricColumn(currentChartMetric)), 0);
     });
 
     const deltas = totals.map((val, idx) => {
@@ -355,7 +359,7 @@ function renderHistory(chartId) {
         else snap = new Date(`${cat}-12-31`);
 
         const active = targetFunds.filter(f => {
-            if (!isAumCountedFund(f)) return false;
+            if (!isFundIncludedForCurrentMetric(f)) return false;
             const setupStr = getFundSetupDate(f);
             const s = setupStr ? new Date(setupStr) : null;
             const endStr = getFundEndDate(f);
@@ -371,8 +375,9 @@ function renderHistory(chartId) {
             domesticSeries.push(groupItems(domestic, '', 'count').length);
             overseasSeries.push(groupItems(overseas, '', 'count').length);
         } else {
-            domesticSeries.push(Math.round(domestic.reduce((sum, f) => sum + getFundAmountWon(f, currentChartMetric), 0) / 1e11) / 10);
-            overseasSeries.push(Math.round(overseas.reduce((sum, f) => sum + getFundAmountWon(f, currentChartMetric), 0) / 1e11) / 10);
+            const column = getMetricColumn(currentChartMetric);
+            domesticSeries.push(Math.round(domestic.reduce((sum, f) => sum + getFundAmountWon(f, column), 0) / 1e11) / 10);
+            overseasSeries.push(Math.round(overseas.reduce((sum, f) => sum + getFundAmountWon(f, column), 0) / 1e11) / 10);
         }
     });
 
@@ -444,6 +449,12 @@ function renderDrillDown(year, category, metric) {
     const drillPanel = document.getElementById('drillDownResult');
     if (!drillPanel) return;
     drillPanel.innerHTML = `<div style="font-weight:700; margin-bottom:10px;">${year}년 심층 분석</div><div style="font-size:13px; color:var(--muted);">해당 시점의 포트폴리오 구성을 분석 중입니다...</div>`;
+}
+
+function isFundIncludedForCurrentMetric(fund) {
+    if (currentChartMetric === 'count') return isAumCountedFund(fund);
+    if (getAumBasisMetric() === 'invested_aum') return true;
+    return isAumCountedFund(fund);
 }
 
 function getActiveAssetRecords(activeFunds) {

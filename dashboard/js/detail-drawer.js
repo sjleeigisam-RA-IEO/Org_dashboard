@@ -42,7 +42,7 @@
 
     content.innerHTML = items.map(f => {
       const aumMetric = getAumBasisMetric();
-      const aum = getFundAmountWon(f, aumMetric);
+      const aum = getFundAmountWon(f, getMetricColumn('aum', aumMetric));
       const aumLabel = getAumMetricConfig(aumMetric).shortLabel;
       return `
             <div class="fund-detail-card" onclick="showDrawerDetail('${f.fund_id}')" style="cursor:pointer;">

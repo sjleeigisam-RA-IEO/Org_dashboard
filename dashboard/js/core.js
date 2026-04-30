@@ -8,8 +8,9 @@ var tabBtns = document.querySelectorAll('.tab-btn');
 
 var debounceTimer;
 var currentTab = 'all';
-// Default AUM metric is commitment basis from the AUM workbook's "약정 금액 기준" group.
-var currentChartMetric = 'benchmark_aum';
+// Default AUM basis is the commitment-basis group from the AUM workbook.
+var currentAumBasis = 'benchmark_aum';
+var currentChartMetric = 'aum';
 var currentOrgScope = 'all';
 var allResults = { lenders: [], beneficiaries: [], funds: [], assets: [], projects: [] };
 var globalSummary = { kpi: {}, lenders: [], beneficiaries: [], sectors: [], maturities: [] };
@@ -59,6 +60,8 @@ window.analysisMode = analysisMode;
 window.currentView = currentView;
 window.currentDrawerData = currentDrawerData;
 window.AUM_METRIC_CONFIG = AUM_METRIC_CONFIG;
+window.currentAumBasis = currentAumBasis;
+window.currentChartMetric = currentChartMetric;
 
 var EXCLUDE_DEPTS = window.EXCLUDE_DEPTS || [
   '인프라전략',
@@ -108,9 +111,10 @@ function groupItems(list, typeMark, forcedMetric) {
   var groups = {};
   if (!list) return [];
   var metric = forcedMetric || currentChartMetric;
+  var amountColumn = getMetricColumn(metric);
 
   list.forEach(function (f) {
-    var aum = getFundAmountWon(f, metric);
+    var aum = metric === 'count' ? 1 : getFundAmountWon(f, amountColumn);
     if (metric !== 'count' && aum <= 0) return;
 
     var rawName = f.fund_name || f.metadata?.fund_name || '명칭 미상';
@@ -141,8 +145,8 @@ function formatNumber(num) {
   var absNum = Math.abs(num);
   var eok = Math.floor(absNum / 100000000);
   if (eok >= 10000) {
-    var jo = (absNum / 1000000000000).toFixed(2);
-    return (num < 0 ? '-' : '') + jo.toLocaleString() + '조';
+    var jo = Math.floor((absNum / 1000000000000) * 100) / 100;
+    return (num < 0 ? '-' : '') + jo.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '조';
   }
   return (num < 0 ? '-' : '') + eok.toLocaleString() + '억';
 }
@@ -157,7 +161,7 @@ function toNumber(value) {
 function metadataAmountToWon(value) {
   var amount = toNumber(value);
   if (!amount) return 0;
-  return Math.abs(amount) < 10000000 ? amount * 100000000 : amount;
+  return amount;
 }
 
 function getFieldValue(fund, key) {
@@ -197,12 +201,19 @@ function getAumMetricConfig(metric) {
 }
 
 function getAumBasisMetric() {
-  return currentChartMetric === 'invested_aum' ? 'invested_aum' : 'benchmark_aum';
+  return currentAumBasis === 'invested_aum' ? 'invested_aum' : 'benchmark_aum';
+}
+
+function getMetricColumn(metric, basis) {
+  if (metric === 'count') return 'count';
+  var config = getAumMetricConfig(basis || getAumBasisMetric());
+  return config[metric] || config.aum;
 }
 
 function getMetricLabel(metric) {
   if (metric === 'count') return '건수';
-  return getAumMetricConfig(metric).shortLabel;
+  var labels = { aum: 'AUM', equity: 'Equity', loan: 'Loan', deposit: '임대보증금' };
+  return getAumMetricConfig(getAumBasisMetric()).shortLabel + ' ' + (labels[metric] || 'AUM');
 }
 
 function getFundAmountWon(fund, key) {
@@ -343,6 +354,7 @@ window.fetchAllRows = fetchAllRows;
 window.getFieldValue = getFieldValue;
 window.getAumMetricConfig = getAumMetricConfig;
 window.getAumBasisMetric = getAumBasisMetric;
+window.getMetricColumn = getMetricColumn;
 window.getMetricLabel = getMetricLabel;
 window.isOverseasFund = isOverseasFund;
 window.getFundSetupDate = getFundSetupDate;
