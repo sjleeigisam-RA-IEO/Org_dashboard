@@ -173,6 +173,10 @@ def build_funds(base, classifier, aum, asset_lookup):
                 "Loan 총액(원)",
                 "기준일자 임대보증금(원)",
                 "AUM(원)",
+                "Equity 총액(원).1",
+                "Loan 총액(원).1",
+                "기준일자 임대보증금(원).1",
+                "AUM(원).1",
                 "부서",
                 "담당자",
                 "수익자",
@@ -269,6 +273,11 @@ def build_funds(base, classifier, aum, asset_lookup):
             "loan_won": row.get("Loan 총액(원)"),
             "deposit_won": row.get("기준일자 임대보증금(원)"),
             "benchmark_aum": row.get("AUM(원)"),
+            "invested_equity_won": row.get("Equity 총액(원).1"),
+            "invested_loan_won": row.get("Loan 총액(원).1"),
+            "invested_deposit_won": row.get("기준일자 임대보증금(원).1"),
+            "invested_aum": row.get("AUM(원).1"),
+            "termination_date": row.get("해지일"),
         }
         for key, value in amount_fields.items():
             cleaned = clean_date(value) if key.endswith("_date") else clean_num(value)

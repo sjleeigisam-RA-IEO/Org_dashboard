@@ -1,20 +1,48 @@
 function initAnalysisFilters() {
     const filterSections = [
         {
-            title: '조직 및 운용 체계',
+            title: '조직/운용 필터',
             cols: [
-                { key: 'notion_division_class', label: '담당부문' },
-                { key: 'notion_dept_class', label: '담당부서' }
+                { key: 'department', label: '담당부서' },
+                { key: 'division', label: '담당부문' }
             ]
         },
         {
-            title: '포트폴리오 속성',
+            title: '펀드 구조 필터',
             cols: [
-                { key: 'notion_vehicle_class', label: 'Vehicle 구분' },
-                { key: 'notion_fund_class', label: '펀드분류' },
-                { key: 'notion_sector_class', label: '투자섹터' },
-                { key: 'notion_investment_strategy_class', label: '투자전략' },
-                { key: 'notion_business_stage_class', label: '사업단계' }
+                { key: 'vehicle_type', label: 'Vehicle 구분' },
+                { key: 'recruitment_type', label: '모집형태' },
+                { key: 'parent_child_type', label: '모자구분' },
+                { key: 'legal_form', label: '법적형태' },
+                { key: 'fund_class', label: '펀드분류' },
+                { key: 'fund_shape', label: '펀드형태' },
+                { key: 'multi_class_type', label: '멀티클래스구분' },
+                { key: 'subscription_redemption_type', label: '설정환매방식' }
+            ]
+        },
+        {
+            title: '투자 분류 필터',
+            cols: [
+                { key: 'domestic_overseas', label: '국내/해외' },
+                { key: 'primary_region', label: '주요투자지역' },
+                { key: 'investment_sector', label: '투자섹터' },
+                { key: 'fund_type', label: '펀드유형' },
+                { key: 'investment_strategy', label: '투자전략' },
+                { key: 'base_asset_class', label: '기초자산' },
+                { key: 'asset_nature_class', label: '자산성격' },
+                { key: 'business_stage_class', label: '사업단계' }
+            ]
+        },
+        {
+            title: '관리 플래그 필터',
+            cols: [
+                { key: 'is_development', label: '개발여부' },
+                { key: 'is_delegated_management', label: '위탁운용여부' },
+                { key: 'includes_igis_fund_of_funds', label: '당사펀드재간접포함' },
+                { key: 'is_share_deal', label: 'Share-Deal여부' },
+                { key: 'is_aum_included', label: 'AUM합산대상여부' },
+                { key: 'is_kms_target', label: 'KMS대상여부' },
+                { key: 'is_audited', label: '회계감사여부' }
             ]
         }
     ];
@@ -76,8 +104,7 @@ function initAnalysisFilters() {
             
             // Extract unique values
             const rawValues = allFunds.map(f => {
-                let v = f[col.key] || f.metadata?.[col.key];
-                if (col.key === 'notion_dept_class' && !v) v = f.dept; // Fallback
+                let v = getFieldValue(f, col.key);
                 return (v && String(v).trim()) ? String(v).trim() : null;
             });
 
@@ -213,8 +240,7 @@ function getFilteredData() {
         const selectedValues = analysisFilters[key];
         if (selectedValues && selectedValues.length > 0) {
             filteredFunds = filteredFunds.filter(f => {
-                let val = f[key] || f.metadata?.[key];
-                if (key === 'notion_dept_class' && !val) val = f.dept;
+                let val = getFieldValue(f, key);
                 if (!val || String(val).trim() === '') val = '미분류';
                 return selectedValues.includes(String(val).trim());
             });

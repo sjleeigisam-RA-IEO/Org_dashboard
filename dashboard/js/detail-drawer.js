@@ -41,7 +41,9 @@
     `;
 
     content.innerHTML = items.map(f => {
-      const aum = getFundAmountWon(f, 'benchmark_aum');
+      const aumMetric = getAumBasisMetric();
+      const aum = getFundAmountWon(f, aumMetric);
+      const aumLabel = getAumMetricConfig(aumMetric).shortLabel;
       return `
             <div class="fund-detail-card" onclick="showDrawerDetail('${f.fund_id}')" style="cursor:pointer;">
                 <div style="display:flex; justify-content:space-between; align-items:flex-start;">
@@ -49,7 +51,7 @@
                     <span style="padding:4px 10px; border-radius:8px; font-size:11px; font-weight:800; background:#f1f5f9; color:#475569;">${getFundStatus(f)}</span>
                 </div>
                 <div class="meta-grid">
-                    <div class="meta-item"><span class="meta-label">운용규모(AUM)</span><span class="meta-val">${formatNumber(aum)}</span></div>
+                    <div class="meta-item"><span class="meta-label">운용규모(AUM, ${aumLabel})</span><span class="meta-val">${formatNumber(aum)}</span></div>
                     <div class="meta-item"><span class="meta-label">담당부서</span><span class="meta-val">${f.metadata?.department || '-'}</span></div>
                     <div class="meta-item"><span class="meta-label">설정일</span><span class="meta-val">${f.setup_date || '-'}</span></div>
                     <div class="meta-item"><span class="meta-label">만기/청산일</span><span class="meta-val">${f.maturity_date || f.expiry_date || '-'}</span></div>
@@ -121,12 +123,16 @@
       const officialName = getFundSecondaryName(f);
       const meta = f.metadata || {};
       const classifications = [
-        meta.notion_division_class,
-        meta.notion_fund_class,
-        meta.notion_base_asset_class,
-        meta.notion_asset_nature_class,
-        meta.notion_business_stage_class,
-        meta.notion_investment_strategy_class
+        meta.department,
+        meta.fund_class,
+        meta.domestic_overseas,
+        meta.primary_region,
+        meta.investment_sector,
+        meta.fund_type,
+        meta.investment_strategy,
+        meta.base_asset_class,
+        meta.asset_nature_class,
+        meta.business_stage_class
       ].filter(Boolean).join(' | ');
 
       const mapId = 'vmap-' + Math.random().toString(36).substr(2, 9);
@@ -143,7 +149,7 @@
         <div class="section-title">자산 상세 (Asset Specs)</div>
         <div class="asset-specs-grid">
           <table class="data-table profile-table">
-            <tr><th>자산코드 <small>Asset Code</small></th><td style="color:var(--accent); font-weight:800;">${a.metadata?.notion_asset_code || '-'}</td></tr>
+            <tr><th>자산코드 <small>Asset Code</small></th><td style="color:var(--accent); font-weight:800;">${a.metadata?.asset_code || a.metadata?.notion_asset_code || '-'}</td></tr>
             <tr><th>주소 <small>Address</small></th><td>${a.address || '-'}</td></tr>
             <tr><th>대지면적 <small>Site Area</small></th><td>${a.site_area ? a.site_area.toLocaleString() + '㎡ (' + (a.site_area * 0.3025).toFixed(2) + 'py)' : '-'}</td></tr>
             <tr><th>연면적 <small>GFA</small></th><td>${a.gfa ? a.gfa.toLocaleString() + '㎡ (' + (a.gfa * 0.3025).toFixed(2) + 'py)' : '-'}</td></tr>

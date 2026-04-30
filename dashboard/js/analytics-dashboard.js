@@ -3,14 +3,11 @@ async function renderAnalytics() {
     if (targetFunds.length === 0) {
         detailPanel.innerHTML = '<div class="no-results" style="padding:100px;">전체 포트폴리오 집계 중...</div>';
         try {
-            const [fundRes, assetRes] = await Promise.all([
-                _supabase.from('funds').select('fund_id, fund_name, status, sector, location, metadata').limit(1000),
-                _supabase.from('fund_assets').select('fund_id, metadata').limit(2000)
-            ]);
-            targetFunds = fundRes.data || [];
+            const loaded = await ensureAllDataLoaded();
+            targetFunds = loaded.funds || [];
 
             const pnuMap = {};
-            (assetRes.data || []).forEach(a => {
+            (loaded.assets || []).forEach(a => {
                 const pnu = a.metadata?.pnu;
                 if (a.fund_id && pnu) pnuMap[a.fund_id] = pnu;
             });
@@ -25,16 +22,15 @@ async function renderAnalytics() {
     
     const snapshotDate = new Date('2026-03-31');
     const activeFunds = filteredFunds.filter(f => {
-        const setup = f.metadata?.setup_date ? new Date(f.metadata.setup_date) : null;
-        const end = f.metadata?.termination_date
-            ? new Date(f.metadata.termination_date)
-            : (f.metadata?.maturity_date ? new Date(f.metadata.maturity_date) : new Date('2099-12-31'));
-        return getFundStatus(f) === '운용' && setup && setup <= snapshotDate && end > snapshotDate && (currentOrgScope === 'all' || isRAFund(f));
+        // 사용자 요청: 약정금액 기준 모든 운용 펀드 합산 (만기일 제약 완화)
+        return getFundStatus(f) === '운용' && (currentOrgScope === 'all' || isRAFund(f));
     });
 
-    const totalAum = activeFunds.reduce((sum, f) => sum + getFundAmountWon(f, 'benchmark_aum'), 0);
-    const totalEquity = activeFunds.reduce((sum, f) => sum + getFundAmountWon(f, 'committed_equity'), 0);
-    const totalLoan = activeFunds.reduce((sum, f) => sum + getFundAmountWon(f, 'committed_debt'), 0);
+    const aumMetric = getAumBasisMetric();
+    const aumConfig = getAumMetricConfig(aumMetric);
+    const totalAum = activeFunds.reduce((sum, f) => sum + getFundAmountWon(f, aumConfig.aum), 0);
+    const totalEquity = activeFunds.reduce((sum, f) => sum + getFundAmountWon(f, aumConfig.equity), 0);
+    const totalLoan = activeFunds.reduce((sum, f) => sum + getFundAmountWon(f, aumConfig.loan), 0);
     const totalOther = totalAum - totalEquity - totalLoan;
 
     const mainValue = formatNumber(totalAum);
@@ -42,9 +38,8 @@ async function renderAnalytics() {
     const lnVal = formatNumber(totalLoan);
     const otVal = formatNumber(totalOther);
 
-    const overseasKeywords = ['미국', '영국', '글로벌', '유럽', '해외', '북미', '아시아', '독일', '일본', '베트남', '프랑스', '이탈리아', '스페인'];
     const activeAssets = groupItems(activeFunds, '', 'count');
-    const overseasAssetsCount = activeAssets.filter(item => overseasKeywords.some(kw => item.name.includes(kw))).length;
+    const overseasAssetsCount = groupItems(activeFunds.filter(isOverseasFund), '', 'count').length;
     const domesticAssetsCount = activeAssets.length - overseasAssetsCount;
 
     detailPanel.innerHTML = `
@@ -58,7 +53,7 @@ async function renderAnalytics() {
           <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px; margin-bottom:32px;">
             <div class="kpi-card" style="padding:40px; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
               <div class="kpi-label" style="font-size:14px; letter-spacing:1px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;">
-                <span>현재 운용 AUM (2026.03.31 기준)</span>
+                <span>현재 운용 AUM (${aumConfig.label}, 2026.03.31 기준)</span>
                 <div id="orgToggle" class="segmented-control" data-active="${currentOrgScope}" onclick="toggleOrgScope()">
                     <div class="segment-slider"></div>
                     <div class="segment ${currentOrgScope === 'all' ? 'active' : ''}" data-val="all">전체</div>
@@ -104,10 +99,9 @@ async function renderAnalytics() {
             <h3 class="section-title" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
               <span style="font-size:20px; font-weight:800;">연도별 포트폴리오 성장 궤적 (2010 - 2026)</span>
               <div class="chart-toggle-group" style="display:flex; background:#f1f5f9; padding:4px; border-radius:12px; gap:4px;">
-                 <button id="toggle-benchmark_aum" class="chart-toggle-btn ${currentChartMetric === 'benchmark_aum' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('benchmark_aum')">AUM</button>
-                 <button id="toggle-committed_debt" class="chart-toggle-btn ${currentChartMetric === 'committed_debt' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('committed_debt')">Loan</button>
-                 <button id="toggle-committed_equity" class="chart-toggle-btn ${currentChartMetric === 'committed_equity' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('committed_equity')">Equity</button>
-                 <button id="toggle-count" class="chart-toggle-btn ${currentChartMetric === 'count' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('count')">Count</button>
+                 <button id="toggle-benchmark_aum" class="chart-toggle-btn ${currentChartMetric === 'benchmark_aum' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('benchmark_aum')">약정액</button>
+                 <button id="toggle-invested_aum" class="chart-toggle-btn ${currentChartMetric === 'invested_aum' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('invested_aum')">투입액</button>
+                 <button id="toggle-count" class="chart-toggle-btn ${currentChartMetric === 'count' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('count')">건수</button>
               </div>
             </h3>
 
@@ -180,38 +174,52 @@ function renderNetChangeDetails(label) {
     }
 
     const newlySetup = targetFunds.filter(f => {
-        const setup = f.metadata?.setup_date ? new Date(f.metadata.setup_date) : null;
+        const setupStr = getFundSetupDate(f);
+        const setup = setupStr ? new Date(setupStr) : null;
         return setup && setup >= startDate && setup <= endDate;
     });
 
     const terminated = targetFunds.filter(f => {
-        const end = f.metadata?.termination_date || f.metadata?.maturity_date;
+        const end = getFundEndDate(f);
         const d = end ? new Date(end) : null;
         return d && d >= startDate && d <= endDate;
     });
 
-    const finalItems = [...groupItems(newlySetup, '+'), ...groupItems(terminated, '-')].sort((a, b) => b.aum - a.aum);
+    const setupItems = groupItems(newlySetup, '+').sort((a, b) => b.aum - a.aum);
+    const terminatedItems = groupItems(terminated, '-').sort((a, b) => b.aum - a.aum);
+    const finalCount = setupItems.length + terminatedItems.length;
 
-    if (finalItems.length === 0) {
+    if (finalCount === 0) {
         drillPanel.innerHTML = `<div class="drill-title">${title} 변동 내역</div><div class="no-results">해당 기간 내 변동 내역이 없습니다.</div>`;
         return;
     }
 
-    drillPanel.innerHTML = `
-        <div class="drill-title">${title} 주요 변동 내역 (${finalItems.length}건)</div>
-        <div class="drill-list">
-            ${finalItems.map(item => `
-                <div class="drill-item" onclick="openFundDetail('${item.key}', '${item.name}')">
-                    <div style="display:flex; align-items:center; gap:12px;">
-                        <span class="filter-chip" style="background:${item.type === '+' ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)'}; color:${item.type === '+' ? '#10b981' : '#ef4444'};">
-                            ${item.type === '+' ? '신규' : '청산'}
-                        </span>
-                        <span class="drill-name">${item.name}</span>
+    const renderDrillSection = (sectionTitle, typeMark, items) => `
+        <details class="drill-section" ${items.length ? 'open' : ''}>
+            <summary>
+                <span>${sectionTitle}</span>
+                <span class="filter-chip" style="background:${typeMark === '+' ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)'}; color:${typeMark === '+' ? '#10b981' : '#ef4444'};">${items.length}건</span>
+            </summary>
+            <div class="drill-list">
+                ${items.length ? items.map(item => `
+                    <div class="drill-item" onclick="openFundDetail('${item.key}', '${item.name}')">
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <span class="filter-chip" style="background:${typeMark === '+' ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)'}; color:${typeMark === '+' ? '#10b981' : '#ef4444'};">
+                                ${typeMark === '+' ? '설정' : '청산'}
+                            </span>
+                            <span class="drill-name">${item.name}</span>
+                        </div>
+                        <span class="drill-amt">${currentChartMetric === 'count' ? `${item.aum}건` : formatNumber(item.aum)}</span>
                     </div>
-                    <span class="drill-amt">${currentChartMetric === 'count' ? `${item.aum}건` : formatNumber(item.aum)}</span>
-                </div>
-            `).join('')}
-        </div>
+                `).join('') : '<div class="no-results">해당 내역 없음</div>'}
+            </div>
+        </details>
+    `;
+
+    drillPanel.innerHTML = `
+        <div class="drill-title">${title} 주요 변동 내역 (${finalCount}건, ${getMetricLabel(currentChartMetric)} 기준)</div>
+        ${renderDrillSection('설정 펀드', '+', setupItems)}
+        ${renderDrillSection('청산 펀드', '-', terminatedItems)}
     `;
     
     // Scroll to drill panel
@@ -234,10 +242,10 @@ function renderNetGrowth(chartId) {
         else snapshotDate = new Date(`${cat}-12-31`);
 
         const activeInYear = targetFunds.filter(f => {
-            const setup = f.metadata?.setup_date ? new Date(f.metadata.setup_date) : null;
-            const end = f.metadata?.termination_date
-                ? new Date(f.metadata.termination_date)
-                : (f.metadata?.maturity_date ? new Date(f.metadata.maturity_date) : new Date('2099-12-31'));
+            const setupStr = getFundSetupDate(f);
+            const setup = setupStr ? new Date(setupStr) : null;
+            const endStr = getFundEndDate(f);
+            const end = endStr ? new Date(endStr) : new Date('2099-12-31');
             if (cat.startsWith('2026') && getFundStatus(f) !== '운용') return false;
             return setup && setup <= snapshotDate && end > snapshotDate;
         });
@@ -323,7 +331,6 @@ function renderHistory(chartId) {
     for (let y = 2010; y <= 2025; y++) categories.push(y.toString());
     categories.push('2026 (Actual)', '2026 (Proj.)');
 
-    const overseasKeywords = ['미국', '영국', '글로벌', '유럽', '해외', '북미', '아시아', '독일', '일본', '베트남', '프랑스', '이탈리아', '스페인', '유로'];
     const domesticSeries = [];
     const overseasSeries = [];
 
@@ -334,16 +341,16 @@ function renderHistory(chartId) {
         else snap = new Date(`${cat}-12-31`);
 
         const active = targetFunds.filter(f => {
-            const s = f.metadata?.setup_date ? new Date(f.metadata.setup_date) : null;
-            const e = f.metadata?.termination_date
-                ? new Date(f.metadata.termination_date)
-                : (f.metadata?.maturity_date ? new Date(f.metadata.maturity_date) : new Date('2099-12-31'));
+            const setupStr = getFundSetupDate(f);
+            const s = setupStr ? new Date(setupStr) : null;
+            const endStr = getFundEndDate(f);
+            const e = endStr ? new Date(endStr) : new Date('2099-12-31');
             if (cat.startsWith('2026') && getFundStatus(f) !== '운용') return false;
             return s && s <= snap && e > snap;
         });
 
-        const overseas = active.filter(f => overseasKeywords.some(kw => (f.fund_name || f.metadata?.fund_name || '').includes(kw)));
-        const domestic = active.filter(f => !overseas.includes(f));
+        const overseas = active.filter(isOverseasFund);
+        const domestic = active.filter(f => !isOverseasFund(f));
 
         if (currentChartMetric === 'count') {
             domesticSeries.push(groupItems(domestic, '', 'count').length);

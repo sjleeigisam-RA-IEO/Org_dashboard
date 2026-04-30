@@ -8,6 +8,7 @@ var tabBtns = document.querySelectorAll('.tab-btn');
 
 var debounceTimer;
 var currentTab = 'all';
+// Default AUM metric is commitment basis from the AUM workbook's "약정 금액 기준" group.
 var currentChartMetric = 'benchmark_aum';
 var currentOrgScope = 'all';
 var allResults = { lenders: [], beneficiaries: [], funds: [], assets: [], projects: [] };
@@ -21,6 +22,25 @@ var analysisView = 'year';
 var analysisMode = 'aum';
 var currentView = 'list';
 var currentDrawerData = null;
+
+var AUM_METRIC_CONFIG = {
+  benchmark_aum: {
+    label: '약정액 기준 AUM',
+    shortLabel: '약정액',
+    aum: 'benchmark_aum',
+    equity: 'equity_won',
+    loan: 'loan_won',
+    deposit: 'deposit_won'
+  },
+  invested_aum: {
+    label: '투입액 기준 AUM',
+    shortLabel: '투입액',
+    aum: 'invested_aum',
+    equity: 'invested_equity_won',
+    loan: 'invested_loan_won',
+    deposit: 'invested_deposit_won'
+  }
+};
 
 window._supabase = _supabase;
 window.searchInput = searchInput;
@@ -38,6 +58,7 @@ window.analysisView = analysisView;
 window.analysisMode = analysisMode;
 window.currentView = currentView;
 window.currentDrawerData = currentDrawerData;
+window.AUM_METRIC_CONFIG = AUM_METRIC_CONFIG;
 
 var EXCLUDE_DEPTS = window.EXCLUDE_DEPTS || [
   '인프라전략',
@@ -48,7 +69,7 @@ var EXCLUDE_DEPTS = window.EXCLUDE_DEPTS || [
   '채권투자',
   '상장리츠',
   '사모리츠',
-  'CM\uADF8\uB8F9',
+  'CM그룹',
   '전략리서치'
 ];
 
@@ -65,8 +86,8 @@ function getFundSecondaryName(fund) {
 
 function isRAFund(f) {
   if (currentOrgScope === 'all') return true;
-  var division = f.metadata?.notion_division_class || '';
-  var dept = f.metadata?.notion_dept_class || f.metadata?.department || '';
+  var division = f.metadata?.division || '';
+  var dept = f.dept || f.metadata?.department || '';
   
   // 리얼에셋부문 키워드가 있으면 RA펀드로 간주
   if (division.includes('리얼에셋') || division.includes('RA') || division.includes('\U000ff87c') || division.includes('󿡼') || division.includes('ºι')) return true;
@@ -92,7 +113,7 @@ function groupItems(list, typeMark, forcedMetric) {
     var aum = getFundAmountWon(f, metric);
     if (metric !== 'count' && aum <= 0) return;
 
-    var rawName = f.fund_name || f.metadata?.fund_name || '\uBA85\uCE6D \uBBF8\uC0C1';
+    var rawName = f.fund_name || f.metadata?.fund_name || '명칭 미상';
     var shortName = f.metadata?.short_name || f.short_name;
     var pnu = window.fundToPnu?.[f.fund_id];
 
@@ -121,9 +142,9 @@ function formatNumber(num) {
   var eok = Math.floor(absNum / 100000000);
   if (eok >= 10000) {
     var jo = (absNum / 1000000000000).toFixed(2);
-    return (num < 0 ? '-' : '') + jo.toLocaleString() + '\uC870';
+    return (num < 0 ? '-' : '') + jo.toLocaleString() + '조';
   }
-  return (num < 0 ? '-' : '') + eok.toLocaleString() + '\uC5B5';
+  return (num < 0 ? '-' : '') + eok.toLocaleString() + '억';
 }
 
 function toNumber(value) {
@@ -139,16 +160,55 @@ function metadataAmountToWon(value) {
   return Math.abs(amount) < 10000000 ? amount * 100000000 : amount;
 }
 
-function getFundAmountWon(fund, key) {
-  var directKeys = {
-    benchmark_aum: 'aum_won',
-    committed_equity: 'equity_won',
-    committed_debt: 'loan_won',
-    lease_deposit: 'deposit_won'
+function getFieldValue(fund, key) {
+  if (!fund) return null;
+  var meta = fund.metadata || {};
+  var direct = fund[key];
+  if (direct !== undefined && direct !== null && String(direct).trim() !== '') return direct;
+  if (meta[key] !== undefined && meta[key] !== null && String(meta[key]).trim() !== '') return meta[key];
+
+  var fallbacks = {
+    department: [fund.dept, meta.department],
+    division: [meta.division, fund.dept, meta.department],
+    investment_sector: [meta.investment_sector, fund.sector],
+    sector: [fund.sector, meta.investment_sector],
+    domestic_overseas: [meta.domestic_overseas, fund.location],
+    primary_region: [meta.primary_region, fund.location],
+    vehicle_type: [meta.vehicle_type, fund.notion_vehicle_class],
+    fund_class: [meta.fund_class, fund.notion_fund_class],
+    fund_type: [meta.fund_type],
+    investment_strategy: [meta.investment_strategy, fund.notion_investment_strategy_class],
+    parent_child_type: [meta.parent_child_type, fund.notion_holding_type_class],
+    base_asset_class: [meta.base_asset_class, fund.notion_base_asset_class],
+    asset_nature_class: [meta.asset_nature_class, fund.notion_asset_nature_class],
+    business_stage_class: [meta.business_stage_class, fund.notion_business_stage_class]
   };
-  var directKey = directKeys[key];
-  if (directKey && fund?.[directKey] !== undefined) return toNumber(fund[directKey]);
-  return metadataAmountToWon(fund?.metadata?.[key]);
+
+  var candidates = fallbacks[key] || [];
+  for (var i = 0; i < candidates.length; i++) {
+    var value = candidates[i];
+    if (value !== undefined && value !== null && String(value).trim() !== '') return value;
+  }
+  return null;
+}
+
+function getAumMetricConfig(metric) {
+  return AUM_METRIC_CONFIG[metric] || AUM_METRIC_CONFIG.benchmark_aum;
+}
+
+function getAumBasisMetric() {
+  return currentChartMetric === 'invested_aum' ? 'invested_aum' : 'benchmark_aum';
+}
+
+function getMetricLabel(metric) {
+  if (metric === 'count') return '건수';
+  return getAumMetricConfig(metric).shortLabel;
+}
+
+function getFundAmountWon(fund, key) {
+  // key가 이미 DB 컬럼명이나 메타데이터 키와 일치하도록 매핑
+  const val = getFieldValue(fund, key);
+  return metadataAmountToWon(val);
 }
 
 function getFundStatus(fund) {
@@ -156,12 +216,30 @@ function getFundStatus(fund) {
 }
 
 function getFundSector(fund) {
-  return fund?.sector || fund?.metadata?.sector || '\uBBF8\uBD84\uB958';
+  return getFieldValue(fund, 'investment_sector') || getFieldValue(fund, 'sector') || '미분류';
 }
 
 function getFundRegion(fund) {
-  var region = fund?.location || fund?.metadata?.region || '\uBBF8\uBD84\uB958';
-  return String(region).trim() || '\uBBF8\uBD84\uB958';
+  var region = getFieldValue(fund, 'domestic_overseas') || getFieldValue(fund, 'primary_region') || '미분류';
+  return String(region).trim() || '미분류';
+}
+
+function isOverseasFund(fund) {
+  var text = [
+    getFieldValue(fund, 'domestic_overseas'),
+    getFieldValue(fund, 'primary_region'),
+    fund?.fund_name,
+    fund?.asset_name
+  ].filter(Boolean).join(' ');
+  return /해외|글로벌|미국|영국|유럽|북미|아시아|일본|베트남|프랑스|이탈리아|스페인|호주/.test(text);
+}
+
+function getFundSetupDate(fund) {
+  return fund?.setup_date || fund?.metadata?.setup_date || fund?.metadata?.first_setup_date;
+}
+
+function getFundEndDate(fund) {
+  return fund?.termination_date || fund?.metadata?.termination_date || fund?.maturity_date || fund?.metadata?.maturity_date;
 }
 
 function getSearchTerms(query) {
@@ -189,25 +267,23 @@ async function ensureAllDataLoaded() {
   if (window.allFunds?.length === 0 || !window.allFunds) {
     try {
       var responses = await Promise.all([
-        _supabase.from('funds').select('*'),
-        _supabase.from('fund_assets').select('*')
+        fetchAllRows('funds', '*'),
+        fetchAllRows('fund_assets', '*')
       ]);
-      var fundRes = responses[0];
-      var assetRes = responses[1];
 
-      allFunds = fundRes.data || [];
+      allFunds = responses[0] || [];
       
       // Clean garbled organizational data for UI display
       allFunds.forEach(f => {
         if (f.metadata) {
-          const div = f.metadata.notion_division_class;
+          const div = f.metadata.division;
           if (div && (div.includes('\U000ff87c') || div.includes('󿡼') || div.includes('ºι'))) {
-            f.metadata.notion_division_class = '리얼에셋부문';
+            f.metadata.division = '리얼에셋부문';
           }
         }
       });
 
-      allFundAssets = assetRes.data || [];
+      allFundAssets = responses[1] || [];
       window.allFunds = allFunds;
       window.allFundAssets = allFundAssets;
     } catch (e) {
@@ -216,6 +292,25 @@ async function ensureAllDataLoaded() {
   }
 
   return { funds: window.allFunds, assets: window.allFundAssets };
+}
+
+async function fetchAllRows(tableName, selectClause, pageSize) {
+  var size = pageSize || 1000;
+  var from = 0;
+  var rows = [];
+
+  while (true) {
+    var to = from + size - 1;
+    var response = await _supabase.from(tableName).select(selectClause).range(from, to);
+    if (response.error) throw response.error;
+
+    var page = response.data || [];
+    rows = rows.concat(page);
+    if (page.length < size) break;
+    from += size;
+  }
+
+  return rows;
 }
 
 window.EXCLUDE_DEPTS = EXCLUDE_DEPTS;
@@ -234,3 +329,11 @@ window.getFundRegion = getFundRegion;
 window.getSearchTerms = getSearchTerms;
 window.buildUniversalFilter = buildUniversalFilter;
 window.ensureAllDataLoaded = ensureAllDataLoaded;
+window.fetchAllRows = fetchAllRows;
+window.getFieldValue = getFieldValue;
+window.getAumMetricConfig = getAumMetricConfig;
+window.getAumBasisMetric = getAumBasisMetric;
+window.getMetricLabel = getMetricLabel;
+window.isOverseasFund = isOverseasFund;
+window.getFundSetupDate = getFundSetupDate;
+window.getFundEndDate = getFundEndDate;
