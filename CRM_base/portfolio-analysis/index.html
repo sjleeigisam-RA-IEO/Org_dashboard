@@ -221,12 +221,47 @@
   }
 </script>
 
-<script src="config.js"></script>
-<script src="js/core.js"></script>
-<script src="js/search-results.js"></script>
-<script src="js/detail-drawer.js"></script>
-<script src="js/analytics-dashboard.js"></script>
-<script src="js/portfolio-analysis.js"></script>
-<script src="app.js"></script>
+<script>
+  (async function() {
+    try {
+      const response = await fetch('../../.env');
+      const text = await response.text();
+      const env = {};
+      text.split('\n').forEach(line => {
+        const [key, ...valueParts] = line.split('=');
+        if (key && valueParts.length > 0) {
+          env[key.trim()] = valueParts.join('=').trim().replace(/^"|"$/g, '');
+        }
+      });
+      
+      // 전역 변수 설정 (config.js 역할 대체)
+      window.SUPABASE_URL = env.SUPABASE_URL;
+      window.SUPABASE_KEY = env.SUPABASE_KEY;
+      window.VWORLD_KEY = env.VWORLD_KEY || "02B5F8FA-CC59-3109-86FD-0C9C1B98B5BF";
+
+      // 나머지 스크립트들을 순차적으로 로드
+      const scripts = [
+        "js/core.js",
+        "js/search-results.js",
+        "js/detail-drawer.js",
+        "js/analytics-dashboard.js",
+        "js/portfolio-analysis.js",
+        "app.js"
+      ];
+
+      for (const src of scripts) {
+        await new Promise((resolve) => {
+          const s = document.createElement('script');
+          s.src = src;
+          s.onload = resolve;
+          document.body.appendChild(s);
+        });
+      }
+    } catch (err) {
+      console.error("Failed to load root .env:", err);
+      // Fallback or Alert
+    }
+  })();
+</script>
 </body>
 </html>

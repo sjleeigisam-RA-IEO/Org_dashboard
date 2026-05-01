@@ -5,7 +5,7 @@ from supabase import create_client
 import json
 
 # Load config
-cfg = dotenv_values('CRM_base/.env')
+cfg = dotenv_values('.env') # Assume run from root or update to handle relative
 supabase = create_client(cfg['SUPABASE_URL'], cfg['SUPABASE_KEY'])
 
 DATA_PATH = 'pilot_form/datapackage/IOTA_Seoul_Master_DB_v0.9.xlsx'

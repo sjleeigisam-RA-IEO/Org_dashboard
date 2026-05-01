@@ -52,7 +52,7 @@ def make_id(prefix, *parts):
 
 
 def get_client():
-    cfg = dotenv_values(BASE_DIR / ".env")
+    cfg = dotenv_values(ROOT_DIR / ".env")
     return create_client(cfg["SUPABASE_URL"], cfg["SUPABASE_KEY"])
 
 
