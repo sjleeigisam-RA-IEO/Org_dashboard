@@ -1,0 +1,8 @@
+{
+  "source_file": "D:\\Project\\00. 2025 RA 기획추진\\RA dashboard\\t5t-dashboard\\IGIS RA T-5-T Forms_Submissions_2026-05-01.csv",
+  "counts": {
+    "t5t_form_submissions": 579,
+    "t5t_form_items": 2894
+  },
+  "note": "Raw form export is preserved separately from processed Notion logs."
+}

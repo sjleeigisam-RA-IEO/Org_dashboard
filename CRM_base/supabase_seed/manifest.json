@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-05-01",
+  "seed_source": "json",
+  "source_files": {
+    "orgs": "D:\\Project\\00. 2025 RA 기획추진\\RA dashboard\\org_dashboard\\org-data.json",
+    "seats": "Google Apps Script WebApp seatLayout.rows; local seat-layout-data.json for static geometry",
+    "staff": "D:\\Project\\00. 2025 RA 기획추진\\RA dashboard\\t5t-dashboard\\data\\staff_master.json",
+    "aum_snapshots": "D:\\Project\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\portfolio-analysis\\data\\aum_history.json",
+    "fund_lifecycle": "D:\\Project\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\portfolio-analysis\\data\\current_aum_snapshot.json"
+  },
+  "counts": {
+    "orgs": 102,
+    "staff": 325,
+    "staff_org_assignments": 305,
+    "seats": 835,
+    "seat_layout_shapes": 112,
+    "aum_snapshots": 1162,
+    "fund_lifecycle": 778
+  },
+  "note": "Dashboards are not switched to these tables yet. This is a migration seed layer."
+}

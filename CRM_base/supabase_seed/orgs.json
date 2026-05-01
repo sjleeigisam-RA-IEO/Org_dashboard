@@ -1,0 +1,1926 @@
+[
+  {
+    "org_id": "org_section_01",
+    "org_name": "투자+펀딩",
+    "org_type": "section",
+    "parent_org_id": null,
+    "section": "투자+펀딩",
+    "group_name": null,
+    "part_name": null,
+    "team_name": null,
+    "org_path": "투자+펀딩",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 99,
+      "unique_people_count": 89
+    }
+  },
+  {
+    "org_id": "org_section_01_group_01",
+    "org_name": "투자1그룹",
+    "org_type": "group",
+    "parent_org_id": "org_section_01",
+    "section": "투자+펀딩",
+    "group_name": "투자1그룹",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "투자+펀딩 > 투자1그룹",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 39,
+      "unique_people_count": 35
+    }
+  },
+  {
+    "org_id": "org_section_01_group_01_part_01",
+    "org_name": "1파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_01_group_01",
+    "section": "투자+펀딩",
+    "group_name": "투자1그룹",
+    "part_name": "1파트",
+    "team_name": null,
+    "org_path": "투자+펀딩 > 투자1그룹 > 1파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 9,
+      "unique_people_count": 9
+    }
+  },
+  {
+    "org_id": "org_section_01_group_01_part_01_team_01",
+    "org_name": "1파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_01_group_01_part_01",
+    "section": "투자+펀딩",
+    "group_name": "투자1그룹",
+    "part_name": "1파트",
+    "team_name": "1파트",
+    "org_path": "투자+펀딩 > 투자1그룹 > 1파트 > 1파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-1",
+    "is_active": true,
+    "metadata": {
+      "display_name": "1파트",
+      "assignment_count": 9,
+      "unique_people_count": 9,
+      "legacy_team_id": "unit-1"
+    }
+  },
+  {
+    "org_id": "org_section_01_group_01_part_02",
+    "org_name": "2파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_01_group_01",
+    "section": "투자+펀딩",
+    "group_name": "투자1그룹",
+    "part_name": "2파트",
+    "team_name": null,
+    "org_path": "투자+펀딩 > 투자1그룹 > 2파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 10,
+      "unique_people_count": 10
+    }
+  },
+  {
+    "org_id": "org_section_01_group_01_part_02_team_01",
+    "org_name": "2파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_01_group_01_part_02",
+    "section": "투자+펀딩",
+    "group_name": "투자1그룹",
+    "part_name": "2파트",
+    "team_name": "2파트",
+    "org_path": "투자+펀딩 > 투자1그룹 > 2파트 > 2파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-10",
+    "is_active": true,
+    "metadata": {
+      "display_name": "2파트",
+      "assignment_count": 10,
+      "unique_people_count": 10,
+      "legacy_team_id": "unit-10"
+    }
+  },
+  {
+    "org_id": "org_section_01_group_01_part_03",
+    "org_name": "3파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_01_group_01",
+    "section": "투자+펀딩",
+    "group_name": "투자1그룹",
+    "part_name": "3파트",
+    "team_name": null,
+    "org_path": "투자+펀딩 > 투자1그룹 > 3파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 8,
+      "unique_people_count": 8
+    }
+  },
+  {
+    "org_id": "org_section_01_group_01_part_03_team_01",
+    "org_name": "3파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_01_group_01_part_03",
+    "section": "투자+펀딩",
+    "group_name": "투자1그룹",
+    "part_name": "3파트",
+    "team_name": "3파트",
+    "org_path": "투자+펀딩 > 투자1그룹 > 3파트 > 3파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-20",
+    "is_active": true,
+    "metadata": {
+      "display_name": "3파트",
+      "assignment_count": 8,
+      "unique_people_count": 8,
+      "legacy_team_id": "unit-20"
+    }
+  },
+  {
+    "org_id": "org_section_01_group_01_part_04",
+    "org_name": "4파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_01_group_01",
+    "section": "투자+펀딩",
+    "group_name": "투자1그룹",
+    "part_name": "4파트",
+    "team_name": null,
+    "org_path": "투자+펀딩 > 투자1그룹 > 4파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 12,
+      "unique_people_count": 11
+    }
+  },
+  {
+    "org_id": "org_section_01_group_01_part_04_team_01",
+    "org_name": "4파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_01_group_01_part_04",
+    "section": "투자+펀딩",
+    "group_name": "투자1그룹",
+    "part_name": "4파트",
+    "team_name": "4파트",
+    "org_path": "투자+펀딩 > 투자1그룹 > 4파트 > 4파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-28",
+    "is_active": true,
+    "metadata": {
+      "display_name": "4파트",
+      "assignment_count": 12,
+      "unique_people_count": 11,
+      "legacy_team_id": "unit-28"
+    }
+  },
+  {
+    "org_id": "org_section_01_group_02",
+    "org_name": "투자2그룹",
+    "org_type": "group",
+    "parent_org_id": "org_section_01",
+    "section": "투자+펀딩",
+    "group_name": "투자2그룹",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "투자+펀딩 > 투자2그룹",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 10,
+      "unique_people_count": 10
+    }
+  },
+  {
+    "org_id": "org_section_01_group_02_part_01",
+    "org_name": "1파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_01_group_02",
+    "section": "투자+펀딩",
+    "group_name": "투자2그룹",
+    "part_name": "1파트",
+    "team_name": null,
+    "org_path": "투자+펀딩 > 투자2그룹 > 1파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 10,
+      "unique_people_count": 10
+    }
+  },
+  {
+    "org_id": "org_section_01_group_02_part_01_team_01",
+    "org_name": "1파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_01_group_02_part_01",
+    "section": "투자+펀딩",
+    "group_name": "투자2그룹",
+    "part_name": "1파트",
+    "team_name": "1파트",
+    "org_path": "투자+펀딩 > 투자2그룹 > 1파트 > 1파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-40",
+    "is_active": true,
+    "metadata": {
+      "display_name": "1파트",
+      "assignment_count": 10,
+      "unique_people_count": 10,
+      "legacy_team_id": "unit-40"
+    }
+  },
+  {
+    "org_id": "org_section_01_group_03",
+    "org_name": "투자3그룹",
+    "org_type": "group",
+    "parent_org_id": "org_section_01",
+    "section": "투자+펀딩",
+    "group_name": "투자3그룹",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "투자+펀딩 > 투자3그룹",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 14,
+      "unique_people_count": 13
+    }
+  },
+  {
+    "org_id": "org_section_01_group_03_part_01",
+    "org_name": "1파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_01_group_03",
+    "section": "투자+펀딩",
+    "group_name": "투자3그룹",
+    "part_name": "1파트",
+    "team_name": null,
+    "org_path": "투자+펀딩 > 투자3그룹 > 1파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 14,
+      "unique_people_count": 13
+    }
+  },
+  {
+    "org_id": "org_section_01_group_03_part_01_team_01",
+    "org_name": "1파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_01_group_03_part_01",
+    "section": "투자+펀딩",
+    "group_name": "투자3그룹",
+    "part_name": "1파트",
+    "team_name": "1파트",
+    "org_path": "투자+펀딩 > 투자3그룹 > 1파트 > 1파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-50",
+    "is_active": true,
+    "metadata": {
+      "display_name": "1파트",
+      "assignment_count": 14,
+      "unique_people_count": 13,
+      "legacy_team_id": "unit-50"
+    }
+  },
+  {
+    "org_id": "org_section_01_group_04",
+    "org_name": "글로벌투자그룹",
+    "org_type": "group",
+    "parent_org_id": "org_section_01",
+    "section": "투자+펀딩",
+    "group_name": "글로벌투자그룹",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "투자+펀딩 > 글로벌투자그룹",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 15,
+      "unique_people_count": 14
+    }
+  },
+  {
+    "org_id": "org_section_01_group_04_part_01",
+    "org_name": "1파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_01_group_04",
+    "section": "투자+펀딩",
+    "group_name": "글로벌투자그룹",
+    "part_name": "1파트",
+    "team_name": null,
+    "org_path": "투자+펀딩 > 글로벌투자그룹 > 1파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 9,
+      "unique_people_count": 9
+    }
+  },
+  {
+    "org_id": "org_section_01_group_04_part_01_team_01",
+    "org_name": "1파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_01_group_04_part_01",
+    "section": "투자+펀딩",
+    "group_name": "글로벌투자그룹",
+    "part_name": "1파트",
+    "team_name": "1파트",
+    "org_path": "투자+펀딩 > 글로벌투자그룹 > 1파트 > 1파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-64",
+    "is_active": true,
+    "metadata": {
+      "display_name": "1파트",
+      "assignment_count": 9,
+      "unique_people_count": 9,
+      "legacy_team_id": "unit-64"
+    }
+  },
+  {
+    "org_id": "org_section_01_group_04_part_02",
+    "org_name": "2파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_01_group_04",
+    "section": "투자+펀딩",
+    "group_name": "글로벌투자그룹",
+    "part_name": "2파트",
+    "team_name": null,
+    "org_path": "투자+펀딩 > 글로벌투자그룹 > 2파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 6,
+      "unique_people_count": 6
+    }
+  },
+  {
+    "org_id": "org_section_01_group_04_part_02_team_01",
+    "org_name": "2파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_01_group_04_part_02",
+    "section": "투자+펀딩",
+    "group_name": "글로벌투자그룹",
+    "part_name": "2파트",
+    "team_name": "2파트",
+    "org_path": "투자+펀딩 > 글로벌투자그룹 > 2파트 > 2파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-73",
+    "is_active": true,
+    "metadata": {
+      "display_name": "2파트",
+      "assignment_count": 6,
+      "unique_people_count": 6,
+      "legacy_team_id": "unit-73"
+    }
+  },
+  {
+    "org_id": "org_section_01_group_05",
+    "org_name": "스페셜시츄에이션그룹",
+    "org_type": "group",
+    "parent_org_id": "org_section_01",
+    "section": "투자+펀딩",
+    "group_name": "스페셜시츄에이션그룹",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "투자+펀딩 > 스페셜시츄에이션그룹",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 21,
+      "unique_people_count": 17
+    }
+  },
+  {
+    "org_id": "org_section_01_group_05_part_01",
+    "org_name": "1파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_01_group_05",
+    "section": "투자+펀딩",
+    "group_name": "스페셜시츄에이션그룹",
+    "part_name": "1파트",
+    "team_name": null,
+    "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 1파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 10,
+      "unique_people_count": 9
+    }
+  },
+  {
+    "org_id": "org_section_01_group_05_part_01_team_01",
+    "org_name": "1파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_01_group_05_part_01",
+    "section": "투자+펀딩",
+    "group_name": "스페셜시츄에이션그룹",
+    "part_name": "1파트",
+    "team_name": "1파트",
+    "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 1파트 > 1파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-79",
+    "is_active": true,
+    "metadata": {
+      "display_name": "1파트",
+      "assignment_count": 10,
+      "unique_people_count": 9,
+      "legacy_team_id": "unit-79"
+    }
+  },
+  {
+    "org_id": "org_section_01_group_05_part_02",
+    "org_name": "2파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_01_group_05",
+    "section": "투자+펀딩",
+    "group_name": "스페셜시츄에이션그룹",
+    "part_name": "2파트",
+    "team_name": null,
+    "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 2파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 5,
+      "unique_people_count": 5
+    }
+  },
+  {
+    "org_id": "org_section_01_group_05_part_02_team_01",
+    "org_name": "2파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_01_group_05_part_02",
+    "section": "투자+펀딩",
+    "group_name": "스페셜시츄에이션그룹",
+    "part_name": "2파트",
+    "team_name": "2파트",
+    "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 2파트 > 2파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-89",
+    "is_active": true,
+    "metadata": {
+      "display_name": "2파트",
+      "assignment_count": 5,
+      "unique_people_count": 5,
+      "legacy_team_id": "unit-89"
+    }
+  },
+  {
+    "org_id": "org_section_01_group_05_part_03",
+    "org_name": "자산관리",
+    "org_type": "part",
+    "parent_org_id": "org_section_01_group_05",
+    "section": "투자+펀딩",
+    "group_name": "스페셜시츄에이션그룹",
+    "part_name": "자산관리",
+    "team_name": null,
+    "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 자산관리",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 3,
+      "unique_people_count": 3
+    }
+  },
+  {
+    "org_id": "org_section_01_group_05_part_03_team_01",
+    "org_name": "자산관리",
+    "org_type": "team",
+    "parent_org_id": "org_section_01_group_05_part_03",
+    "section": "투자+펀딩",
+    "group_name": "스페셜시츄에이션그룹",
+    "part_name": "자산관리",
+    "team_name": "자산관리",
+    "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 자산관리 > 자산관리",
+    "source_system": "org_dashboard",
+    "source_id": "unit-94",
+    "is_active": true,
+    "metadata": {
+      "display_name": "자산관리",
+      "assignment_count": 3,
+      "unique_people_count": 3,
+      "legacy_team_id": "unit-94"
+    }
+  },
+  {
+    "org_id": "org_section_01_group_05_part_04",
+    "org_name": "포트폴리오 / 관리",
+    "org_type": "part",
+    "parent_org_id": "org_section_01_group_05",
+    "section": "투자+펀딩",
+    "group_name": "스페셜시츄에이션그룹",
+    "part_name": "포트폴리오 / 관리",
+    "team_name": null,
+    "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 포트폴리오 / 관리",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 3,
+      "unique_people_count": 3
+    }
+  },
+  {
+    "org_id": "org_section_01_group_05_part_04_team_01",
+    "org_name": "포트폴리오 / 관리",
+    "org_type": "team",
+    "parent_org_id": "org_section_01_group_05_part_04",
+    "section": "투자+펀딩",
+    "group_name": "스페셜시츄에이션그룹",
+    "part_name": "포트폴리오 / 관리",
+    "team_name": "포트폴리오 / 관리",
+    "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 포트폴리오 / 관리 > 포트폴리오 / 관리",
+    "source_system": "org_dashboard",
+    "source_id": "unit-97",
+    "is_active": true,
+    "metadata": {
+      "display_name": "포트폴리오 / 관리",
+      "assignment_count": 3,
+      "unique_people_count": 3,
+      "legacy_team_id": "unit-97"
+    }
+  },
+  {
+    "org_id": "org_section_02",
+    "org_name": "사업+개발",
+    "org_type": "section",
+    "parent_org_id": null,
+    "section": "사업+개발",
+    "group_name": null,
+    "part_name": null,
+    "team_name": null,
+    "org_path": "사업+개발",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 66,
+      "unique_people_count": 60
+    }
+  },
+  {
+    "org_id": "org_section_02_group_01",
+    "org_name": "사업그룹",
+    "org_type": "group",
+    "parent_org_id": "org_section_02",
+    "section": "사업+개발",
+    "group_name": "사업그룹",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "사업+개발 > 사업그룹",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 43,
+      "unique_people_count": 39
+    }
+  },
+  {
+    "org_id": "org_section_02_group_01_part_01",
+    "org_name": "1파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_02_group_01",
+    "section": "사업+개발",
+    "group_name": "사업그룹",
+    "part_name": "1파트",
+    "team_name": null,
+    "org_path": "사업+개발 > 사업그룹 > 1파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 9,
+      "unique_people_count": 9
+    }
+  },
+  {
+    "org_id": "org_section_02_group_01_part_01_team_01",
+    "org_name": "1파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_02_group_01_part_01",
+    "section": "사업+개발",
+    "group_name": "사업그룹",
+    "part_name": "1파트",
+    "team_name": "1파트",
+    "org_path": "사업+개발 > 사업그룹 > 1파트 > 1파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-100",
+    "is_active": true,
+    "metadata": {
+      "display_name": "1파트",
+      "assignment_count": 9,
+      "unique_people_count": 9,
+      "legacy_team_id": "unit-100"
+    }
+  },
+  {
+    "org_id": "org_section_02_group_01_part_02",
+    "org_name": "2파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_02_group_01",
+    "section": "사업+개발",
+    "group_name": "사업그룹",
+    "part_name": "2파트",
+    "team_name": null,
+    "org_path": "사업+개발 > 사업그룹 > 2파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 9,
+      "unique_people_count": 9
+    }
+  },
+  {
+    "org_id": "org_section_02_group_01_part_02_team_01",
+    "org_name": "2파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_02_group_01_part_02",
+    "section": "사업+개발",
+    "group_name": "사업그룹",
+    "part_name": "2파트",
+    "team_name": "2파트",
+    "org_path": "사업+개발 > 사업그룹 > 2파트 > 2파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-109",
+    "is_active": true,
+    "metadata": {
+      "display_name": "2파트",
+      "assignment_count": 9,
+      "unique_people_count": 9,
+      "legacy_team_id": "unit-109"
+    }
+  },
+  {
+    "org_id": "org_section_02_group_01_part_03",
+    "org_name": "3파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_02_group_01",
+    "section": "사업+개발",
+    "group_name": "사업그룹",
+    "part_name": "3파트",
+    "team_name": null,
+    "org_path": "사업+개발 > 사업그룹 > 3파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 14,
+      "unique_people_count": 13
+    }
+  },
+  {
+    "org_id": "org_section_02_group_01_part_03_team_01",
+    "org_name": "3파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_02_group_01_part_03",
+    "section": "사업+개발",
+    "group_name": "사업그룹",
+    "part_name": "3파트",
+    "team_name": "3파트",
+    "org_path": "사업+개발 > 사업그룹 > 3파트 > 3파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-118",
+    "is_active": true,
+    "metadata": {
+      "display_name": "3파트",
+      "assignment_count": 14,
+      "unique_people_count": 13,
+      "legacy_team_id": "unit-118"
+    }
+  },
+  {
+    "org_id": "org_section_02_group_01_part_04",
+    "org_name": "4파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_02_group_01",
+    "section": "사업+개발",
+    "group_name": "사업그룹",
+    "part_name": "4파트",
+    "team_name": null,
+    "org_path": "사업+개발 > 사업그룹 > 4파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 11,
+      "unique_people_count": 11
+    }
+  },
+  {
+    "org_id": "org_section_02_group_01_part_04_team_01",
+    "org_name": "4파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_02_group_01_part_04",
+    "section": "사업+개발",
+    "group_name": "사업그룹",
+    "part_name": "4파트",
+    "team_name": "4파트",
+    "org_path": "사업+개발 > 사업그룹 > 4파트 > 4파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-132",
+    "is_active": true,
+    "metadata": {
+      "display_name": "4파트",
+      "assignment_count": 11,
+      "unique_people_count": 11,
+      "legacy_team_id": "unit-132"
+    }
+  },
+  {
+    "org_id": "org_section_02_group_02",
+    "org_name": "디지털사업그룹",
+    "org_type": "group",
+    "parent_org_id": "org_section_02",
+    "section": "사업+개발",
+    "group_name": "디지털사업그룹",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "사업+개발 > 디지털사업그룹",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 15,
+      "unique_people_count": 13
+    }
+  },
+  {
+    "org_id": "org_section_02_group_02_part_01",
+    "org_name": "사업파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_02_group_02",
+    "section": "사업+개발",
+    "group_name": "디지털사업그룹",
+    "part_name": "사업파트",
+    "team_name": null,
+    "org_path": "사업+개발 > 디지털사업그룹 > 사업파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 11,
+      "unique_people_count": 11
+    }
+  },
+  {
+    "org_id": "org_section_02_group_02_part_01_team_01",
+    "org_name": "사업파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_02_group_02_part_01",
+    "section": "사업+개발",
+    "group_name": "디지털사업그룹",
+    "part_name": "사업파트",
+    "team_name": "사업파트",
+    "org_path": "사업+개발 > 디지털사업그룹 > 사업파트 > 사업파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-143",
+    "is_active": true,
+    "metadata": {
+      "display_name": "사업파트",
+      "assignment_count": 11,
+      "unique_people_count": 11,
+      "legacy_team_id": "unit-143"
+    }
+  },
+  {
+    "org_id": "org_section_02_group_02_part_02",
+    "org_name": "솔루션파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_02_group_02",
+    "section": "사업+개발",
+    "group_name": "디지털사업그룹",
+    "part_name": "솔루션파트",
+    "team_name": null,
+    "org_path": "사업+개발 > 디지털사업그룹 > 솔루션파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 4,
+      "unique_people_count": 3
+    }
+  },
+  {
+    "org_id": "org_section_02_group_02_part_02_team_01",
+    "org_name": "솔루션파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_02_group_02_part_02",
+    "section": "사업+개발",
+    "group_name": "디지털사업그룹",
+    "part_name": "솔루션파트",
+    "team_name": "솔루션파트",
+    "org_path": "사업+개발 > 디지털사업그룹 > 솔루션파트 > 솔루션파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-154",
+    "is_active": true,
+    "metadata": {
+      "display_name": "솔루션파트",
+      "assignment_count": 4,
+      "unique_people_count": 3,
+      "legacy_team_id": "unit-154"
+    }
+  },
+  {
+    "org_id": "org_section_02_group_03",
+    "org_name": "개발솔루션센터",
+    "org_type": "group",
+    "parent_org_id": "org_section_02",
+    "section": "사업+개발",
+    "group_name": "개발솔루션센터",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "사업+개발 > 개발솔루션센터",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 8,
+      "unique_people_count": 8
+    }
+  },
+  {
+    "org_id": "org_section_02_group_03_part_01",
+    "org_name": "미지정",
+    "org_type": "part",
+    "parent_org_id": "org_section_02_group_03",
+    "section": "사업+개발",
+    "group_name": "개발솔루션센터",
+    "part_name": "미지정",
+    "team_name": null,
+    "org_path": "사업+개발 > 개발솔루션센터 > 미지정",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 8,
+      "unique_people_count": 8
+    }
+  },
+  {
+    "org_id": "org_section_02_group_03_part_01_team_01",
+    "org_name": "개발솔루션센터",
+    "org_type": "team",
+    "parent_org_id": "org_section_02_group_03_part_01",
+    "section": "사업+개발",
+    "group_name": "개발솔루션센터",
+    "part_name": "미지정",
+    "team_name": "개발솔루션센터",
+    "org_path": "사업+개발 > 개발솔루션센터 > 미지정 > 개발솔루션센터",
+    "source_system": "org_dashboard",
+    "source_id": "unit-158",
+    "is_active": true,
+    "metadata": {
+      "display_name": "개발솔루션센터",
+      "assignment_count": 8,
+      "unique_people_count": 8,
+      "legacy_team_id": "unit-158"
+    }
+  },
+  {
+    "org_id": "org_section_03",
+    "org_name": "관리+운영",
+    "org_type": "section",
+    "parent_org_id": null,
+    "section": "관리+운영",
+    "group_name": null,
+    "part_name": null,
+    "team_name": null,
+    "org_path": "관리+운영",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 102,
+      "unique_people_count": 73
+    }
+  },
+  {
+    "org_id": "org_section_03_group_01",
+    "org_name": "국내자산관리그룹",
+    "org_type": "group",
+    "parent_org_id": "org_section_03",
+    "section": "관리+운영",
+    "group_name": "국내자산관리그룹",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "관리+운영 > 국내자산관리그룹",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 68,
+      "unique_people_count": 48
+    }
+  },
+  {
+    "org_id": "org_section_03_group_01_part_01",
+    "org_name": "1파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_03_group_01",
+    "section": "관리+운영",
+    "group_name": "국내자산관리그룹",
+    "part_name": "1파트",
+    "team_name": null,
+    "org_path": "관리+운영 > 국내자산관리그룹 > 1파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 25,
+      "unique_people_count": 20
+    }
+  },
+  {
+    "org_id": "org_section_03_group_01_part_01_team_01",
+    "org_name": "1파트1",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_01_part_01",
+    "section": "관리+운영",
+    "group_name": "국내자산관리그룹",
+    "part_name": "1파트",
+    "team_name": "1파트1",
+    "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트1",
+    "source_system": "org_dashboard",
+    "source_id": "unit-166",
+    "is_active": true,
+    "metadata": {
+      "display_name": "1파트1",
+      "assignment_count": 11,
+      "unique_people_count": 11,
+      "legacy_team_id": "unit-166"
+    }
+  },
+  {
+    "org_id": "org_section_03_group_01_part_01_team_02",
+    "org_name": "1파트2",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_01_part_01",
+    "section": "관리+운영",
+    "group_name": "국내자산관리그룹",
+    "part_name": "1파트",
+    "team_name": "1파트2",
+    "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트2",
+    "source_system": "org_dashboard",
+    "source_id": "unit-177",
+    "is_active": true,
+    "metadata": {
+      "display_name": "1파트2",
+      "assignment_count": 8,
+      "unique_people_count": 8,
+      "legacy_team_id": "unit-177"
+    }
+  },
+  {
+    "org_id": "org_section_03_group_01_part_01_team_03",
+    "org_name": "로지스틱스 / 매니지먼트",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_01_part_01",
+    "section": "관리+운영",
+    "group_name": "국내자산관리그룹",
+    "part_name": "1파트",
+    "team_name": "로지스틱스 / 매니지먼트",
+    "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 로지스틱스 / 매니지먼트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-185",
+    "is_active": true,
+    "metadata": {
+      "display_name": "로지스틱스 / 매니지먼트",
+      "assignment_count": 6,
+      "unique_people_count": 6,
+      "legacy_team_id": "unit-185"
+    }
+  },
+  {
+    "org_id": "org_section_03_group_01_part_02",
+    "org_name": "2파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_03_group_01",
+    "section": "관리+운영",
+    "group_name": "국내자산관리그룹",
+    "part_name": "2파트",
+    "team_name": null,
+    "org_path": "관리+운영 > 국내자산관리그룹 > 2파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 29,
+      "unique_people_count": 18
+    }
+  },
+  {
+    "org_id": "org_section_03_group_01_part_02_team_01",
+    "org_name": "2파트1",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_01_part_02",
+    "section": "관리+운영",
+    "group_name": "국내자산관리그룹",
+    "part_name": "2파트",
+    "team_name": "2파트1",
+    "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트1",
+    "source_system": "org_dashboard",
+    "source_id": "unit-191",
+    "is_active": true,
+    "metadata": {
+      "display_name": "2파트1",
+      "assignment_count": 4,
+      "unique_people_count": 3,
+      "legacy_team_id": "unit-191"
+    }
+  },
+  {
+    "org_id": "org_section_03_group_01_part_02_team_02",
+    "org_name": "2파트2",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_01_part_02",
+    "section": "관리+운영",
+    "group_name": "국내자산관리그룹",
+    "part_name": "2파트",
+    "team_name": "2파트2",
+    "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트2",
+    "source_system": "org_dashboard",
+    "source_id": "unit-195",
+    "is_active": true,
+    "metadata": {
+      "display_name": "2파트2",
+      "assignment_count": 4,
+      "unique_people_count": 3,
+      "legacy_team_id": "unit-195"
+    }
+  },
+  {
+    "org_id": "org_section_03_group_01_part_02_team_03",
+    "org_name": "2파트3",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_01_part_02",
+    "section": "관리+운영",
+    "group_name": "국내자산관리그룹",
+    "part_name": "2파트",
+    "team_name": "2파트3",
+    "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트3",
+    "source_system": "org_dashboard",
+    "source_id": "unit-199",
+    "is_active": true,
+    "metadata": {
+      "display_name": "2파트3",
+      "assignment_count": 7,
+      "unique_people_count": 6,
+      "legacy_team_id": "unit-199"
+    }
+  },
+  {
+    "org_id": "org_section_03_group_01_part_02_team_04",
+    "org_name": "2파트4",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_01_part_02",
+    "section": "관리+운영",
+    "group_name": "국내자산관리그룹",
+    "part_name": "2파트",
+    "team_name": "2파트4",
+    "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트4",
+    "source_system": "org_dashboard",
+    "source_id": "unit-206",
+    "is_active": true,
+    "metadata": {
+      "display_name": "2파트4",
+      "assignment_count": 7,
+      "unique_people_count": 6,
+      "legacy_team_id": "unit-206"
+    }
+  },
+  {
+    "org_id": "org_section_03_group_01_part_02_team_05",
+    "org_name": "펀드지원",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_01_part_02",
+    "section": "관리+운영",
+    "group_name": "국내자산관리그룹",
+    "part_name": "2파트",
+    "team_name": "펀드지원",
+    "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 펀드지원",
+    "source_system": "org_dashboard",
+    "source_id": "unit-213",
+    "is_active": true,
+    "metadata": {
+      "display_name": "펀드지원",
+      "assignment_count": 4,
+      "unique_people_count": 3,
+      "legacy_team_id": "unit-213"
+    }
+  },
+  {
+    "org_id": "org_section_03_group_01_part_02_team_06",
+    "org_name": "리빙 / 매니지먼트",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_01_part_02",
+    "section": "관리+운영",
+    "group_name": "국내자산관리그룹",
+    "part_name": "2파트",
+    "team_name": "리빙 / 매니지먼트",
+    "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 리빙 / 매니지먼트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-217",
+    "is_active": true,
+    "metadata": {
+      "display_name": "리빙 / 매니지먼트",
+      "assignment_count": 3,
+      "unique_people_count": 2,
+      "legacy_team_id": "unit-217"
+    }
+  },
+  {
+    "org_id": "org_section_03_group_01_part_03",
+    "org_name": "3파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_03_group_01",
+    "section": "관리+운영",
+    "group_name": "국내자산관리그룹",
+    "part_name": "3파트",
+    "team_name": null,
+    "org_path": "관리+운영 > 국내자산관리그룹 > 3파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 14,
+      "unique_people_count": 12
+    }
+  },
+  {
+    "org_id": "org_section_03_group_01_part_03_team_01",
+    "org_name": "3파트1",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_01_part_03",
+    "section": "관리+운영",
+    "group_name": "국내자산관리그룹",
+    "part_name": "3파트",
+    "team_name": "3파트1",
+    "org_path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트1",
+    "source_system": "org_dashboard",
+    "source_id": "unit-220",
+    "is_active": true,
+    "metadata": {
+      "display_name": "3파트1",
+      "assignment_count": 7,
+      "unique_people_count": 7,
+      "legacy_team_id": "unit-220"
+    }
+  },
+  {
+    "org_id": "org_section_03_group_01_part_03_team_02",
+    "org_name": "3파트2",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_01_part_03",
+    "section": "관리+운영",
+    "group_name": "국내자산관리그룹",
+    "part_name": "3파트",
+    "team_name": "3파트2",
+    "org_path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트2",
+    "source_system": "org_dashboard",
+    "source_id": "unit-227",
+    "is_active": true,
+    "metadata": {
+      "display_name": "3파트2",
+      "assignment_count": 7,
+      "unique_people_count": 7,
+      "legacy_team_id": "unit-227"
+    }
+  },
+  {
+    "org_id": "org_section_03_group_02",
+    "org_name": "글로벌자산관리그룹",
+    "org_type": "group",
+    "parent_org_id": "org_section_03",
+    "section": "관리+운영",
+    "group_name": "글로벌자산관리그룹",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "관리+운영 > 글로벌자산관리그룹",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 23,
+      "unique_people_count": 17
+    }
+  },
+  {
+    "org_id": "org_section_03_group_02_part_01",
+    "org_name": "1파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_03_group_02",
+    "section": "관리+운영",
+    "group_name": "글로벌자산관리그룹",
+    "part_name": "1파트",
+    "team_name": null,
+    "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 15,
+      "unique_people_count": 10
+    }
+  },
+  {
+    "org_id": "org_section_03_group_02_part_01_team_01",
+    "org_name": "운용1",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_02_part_01",
+    "section": "관리+운영",
+    "group_name": "글로벌자산관리그룹",
+    "part_name": "1파트",
+    "team_name": "운용1",
+    "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용1",
+    "source_system": "org_dashboard",
+    "source_id": "unit-234",
+    "is_active": true,
+    "metadata": {
+      "display_name": "운용1",
+      "assignment_count": 7,
+      "unique_people_count": 6,
+      "legacy_team_id": "unit-234"
+    }
+  },
+  {
+    "org_id": "org_section_03_group_02_part_01_team_02",
+    "org_name": "운용2",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_02_part_01",
+    "section": "관리+운영",
+    "group_name": "글로벌자산관리그룹",
+    "part_name": "1파트",
+    "team_name": "운용2",
+    "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용2",
+    "source_system": "org_dashboard",
+    "source_id": "unit-241",
+    "is_active": true,
+    "metadata": {
+      "display_name": "운용2",
+      "assignment_count": 2,
+      "unique_people_count": 1,
+      "legacy_team_id": "unit-241"
+    }
+  },
+  {
+    "org_id": "org_section_03_group_02_part_01_team_03",
+    "org_name": "운용3",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_02_part_01",
+    "section": "관리+운영",
+    "group_name": "글로벌자산관리그룹",
+    "part_name": "1파트",
+    "team_name": "운용3",
+    "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용3",
+    "source_system": "org_dashboard",
+    "source_id": "unit-243",
+    "is_active": true,
+    "metadata": {
+      "display_name": "운용3",
+      "assignment_count": 6,
+      "unique_people_count": 5,
+      "legacy_team_id": "unit-243"
+    }
+  },
+  {
+    "org_id": "org_section_03_group_02_part_02",
+    "org_name": "2파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_03_group_02",
+    "section": "관리+운영",
+    "group_name": "글로벌자산관리그룹",
+    "part_name": "2파트",
+    "team_name": null,
+    "org_path": "관리+운영 > 글로벌자산관리그룹 > 2파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 8,
+      "unique_people_count": 8
+    }
+  },
+  {
+    "org_id": "org_section_03_group_02_part_02_team_01",
+    "org_name": "2파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_02_part_02",
+    "section": "관리+운영",
+    "group_name": "글로벌자산관리그룹",
+    "part_name": "2파트",
+    "team_name": "2파트",
+    "org_path": "관리+운영 > 글로벌자산관리그룹 > 2파트 > 2파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-249",
+    "is_active": true,
+    "metadata": {
+      "display_name": "2파트",
+      "assignment_count": 8,
+      "unique_people_count": 8,
+      "legacy_team_id": "unit-249"
+    }
+  },
+  {
+    "org_id": "org_section_03_group_03",
+    "org_name": "리빙그룹",
+    "org_type": "group",
+    "parent_org_id": "org_section_03",
+    "section": "관리+운영",
+    "group_name": "리빙그룹",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "관리+운영 > 리빙그룹",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 10,
+      "unique_people_count": 9
+    }
+  },
+  {
+    "org_id": "org_section_03_group_03_part_01",
+    "org_name": "1파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_03_group_03",
+    "section": "관리+운영",
+    "group_name": "리빙그룹",
+    "part_name": "1파트",
+    "team_name": null,
+    "org_path": "관리+운영 > 리빙그룹 > 1파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 4,
+      "unique_people_count": 4
+    }
+  },
+  {
+    "org_id": "org_section_03_group_03_part_01_team_01",
+    "org_name": "1파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_03_part_01",
+    "section": "관리+운영",
+    "group_name": "리빙그룹",
+    "part_name": "1파트",
+    "team_name": "1파트",
+    "org_path": "관리+운영 > 리빙그룹 > 1파트 > 1파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-257",
+    "is_active": true,
+    "metadata": {
+      "display_name": "1파트",
+      "assignment_count": 4,
+      "unique_people_count": 4,
+      "legacy_team_id": "unit-257"
+    }
+  },
+  {
+    "org_id": "org_section_03_group_03_part_02",
+    "org_name": "2파트",
+    "org_type": "part",
+    "parent_org_id": "org_section_03_group_03",
+    "section": "관리+운영",
+    "group_name": "리빙그룹",
+    "part_name": "2파트",
+    "team_name": null,
+    "org_path": "관리+운영 > 리빙그룹 > 2파트",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 6,
+      "unique_people_count": 6
+    }
+  },
+  {
+    "org_id": "org_section_03_group_03_part_02_team_01",
+    "org_name": "2파트",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_03_part_02",
+    "section": "관리+운영",
+    "group_name": "리빙그룹",
+    "part_name": "2파트",
+    "team_name": "2파트",
+    "org_path": "관리+운영 > 리빙그룹 > 2파트 > 2파트",
+    "source_system": "org_dashboard",
+    "source_id": "unit-261",
+    "is_active": true,
+    "metadata": {
+      "display_name": "2파트",
+      "assignment_count": 6,
+      "unique_people_count": 6,
+      "legacy_team_id": "unit-261"
+    }
+  },
+  {
+    "org_id": "org_section_03_group_04",
+    "org_name": "리테일솔루션센터",
+    "org_type": "group",
+    "parent_org_id": "org_section_03",
+    "section": "관리+운영",
+    "group_name": "리테일솔루션센터",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "관리+운영 > 리테일솔루션센터",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 1,
+      "unique_people_count": 1
+    }
+  },
+  {
+    "org_id": "org_section_03_group_04_part_01",
+    "org_name": "미지정",
+    "org_type": "part",
+    "parent_org_id": "org_section_03_group_04",
+    "section": "관리+운영",
+    "group_name": "리테일솔루션센터",
+    "part_name": "미지정",
+    "team_name": null,
+    "org_path": "관리+운영 > 리테일솔루션센터 > 미지정",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 1,
+      "unique_people_count": 1
+    }
+  },
+  {
+    "org_id": "org_section_03_group_04_part_01_team_01",
+    "org_name": "리테일솔루션센터",
+    "org_type": "team",
+    "parent_org_id": "org_section_03_group_04_part_01",
+    "section": "관리+운영",
+    "group_name": "리테일솔루션센터",
+    "part_name": "미지정",
+    "team_name": "리테일솔루션센터",
+    "org_path": "관리+운영 > 리테일솔루션센터 > 미지정 > 리테일솔루션센터",
+    "source_system": "org_dashboard",
+    "source_id": "unit-267",
+    "is_active": true,
+    "metadata": {
+      "display_name": "리테일솔루션센터",
+      "assignment_count": 1,
+      "unique_people_count": 1,
+      "legacy_team_id": "unit-267"
+    }
+  },
+  {
+    "org_id": "org_section_04",
+    "org_name": "부분직속",
+    "org_type": "section",
+    "parent_org_id": null,
+    "section": "부분직속",
+    "group_name": null,
+    "part_name": null,
+    "team_name": null,
+    "org_path": "부분직속",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 18,
+      "unique_people_count": 18
+    }
+  },
+  {
+    "org_id": "org_section_04_group_01",
+    "org_name": "론파이낸스센터",
+    "org_type": "group",
+    "parent_org_id": "org_section_04",
+    "section": "부분직속",
+    "group_name": "론파이낸스센터",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "부분직속 > 론파이낸스센터",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 8,
+      "unique_people_count": 8
+    }
+  },
+  {
+    "org_id": "org_section_04_group_01_part_01",
+    "org_name": "미지정",
+    "org_type": "part",
+    "parent_org_id": "org_section_04_group_01",
+    "section": "부분직속",
+    "group_name": "론파이낸스센터",
+    "part_name": "미지정",
+    "team_name": null,
+    "org_path": "부분직속 > 론파이낸스센터 > 미지정",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 8,
+      "unique_people_count": 8
+    }
+  },
+  {
+    "org_id": "org_section_04_group_01_part_01_team_01",
+    "org_name": "론파이낸스센터",
+    "org_type": "team",
+    "parent_org_id": "org_section_04_group_01_part_01",
+    "section": "부분직속",
+    "group_name": "론파이낸스센터",
+    "part_name": "미지정",
+    "team_name": "론파이낸스센터",
+    "org_path": "부분직속 > 론파이낸스센터 > 미지정 > 론파이낸스센터",
+    "source_system": "org_dashboard",
+    "source_id": "unit-268",
+    "is_active": true,
+    "metadata": {
+      "display_name": "론파이낸스센터",
+      "assignment_count": 8,
+      "unique_people_count": 8,
+      "legacy_team_id": "unit-268"
+    }
+  },
+  {
+    "org_id": "org_section_04_group_02",
+    "org_name": "기업마케팅센터",
+    "org_type": "group",
+    "parent_org_id": "org_section_04",
+    "section": "부분직속",
+    "group_name": "기업마케팅센터",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "부분직속 > 기업마케팅센터",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 3,
+      "unique_people_count": 3
+    }
+  },
+  {
+    "org_id": "org_section_04_group_02_part_01",
+    "org_name": "미지정",
+    "org_type": "part",
+    "parent_org_id": "org_section_04_group_02",
+    "section": "부분직속",
+    "group_name": "기업마케팅센터",
+    "part_name": "미지정",
+    "team_name": null,
+    "org_path": "부분직속 > 기업마케팅센터 > 미지정",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 3,
+      "unique_people_count": 3
+    }
+  },
+  {
+    "org_id": "org_section_04_group_02_part_01_team_01",
+    "org_name": "기업마케팅센터",
+    "org_type": "team",
+    "parent_org_id": "org_section_04_group_02_part_01",
+    "section": "부분직속",
+    "group_name": "기업마케팅센터",
+    "part_name": "미지정",
+    "team_name": "기업마케팅센터",
+    "org_path": "부분직속 > 기업마케팅센터 > 미지정 > 기업마케팅센터",
+    "source_system": "org_dashboard",
+    "source_id": "unit-276",
+    "is_active": true,
+    "metadata": {
+      "display_name": "기업마케팅센터",
+      "assignment_count": 3,
+      "unique_people_count": 3,
+      "legacy_team_id": "unit-276"
+    }
+  },
+  {
+    "org_id": "org_section_04_group_03",
+    "org_name": "공간솔루션센터",
+    "org_type": "group",
+    "parent_org_id": "org_section_04",
+    "section": "부분직속",
+    "group_name": "공간솔루션센터",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "부분직속 > 공간솔루션센터",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 3,
+      "unique_people_count": 3
+    }
+  },
+  {
+    "org_id": "org_section_04_group_03_part_01",
+    "org_name": "미지정",
+    "org_type": "part",
+    "parent_org_id": "org_section_04_group_03",
+    "section": "부분직속",
+    "group_name": "공간솔루션센터",
+    "part_name": "미지정",
+    "team_name": null,
+    "org_path": "부분직속 > 공간솔루션센터 > 미지정",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 3,
+      "unique_people_count": 3
+    }
+  },
+  {
+    "org_id": "org_section_04_group_03_part_01_team_01",
+    "org_name": "공간솔루션센터",
+    "org_type": "team",
+    "parent_org_id": "org_section_04_group_03_part_01",
+    "section": "부분직속",
+    "group_name": "공간솔루션센터",
+    "part_name": "미지정",
+    "team_name": "공간솔루션센터",
+    "org_path": "부분직속 > 공간솔루션센터 > 미지정 > 공간솔루션센터",
+    "source_system": "org_dashboard",
+    "source_id": "unit-279",
+    "is_active": true,
+    "metadata": {
+      "display_name": "공간솔루션센터",
+      "assignment_count": 3,
+      "unique_people_count": 3,
+      "legacy_team_id": "unit-279"
+    }
+  },
+  {
+    "org_id": "org_section_04_group_04",
+    "org_name": "기획추진센터",
+    "org_type": "group",
+    "parent_org_id": "org_section_04",
+    "section": "부분직속",
+    "group_name": "기획추진센터",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "부분직속 > 기획추진센터",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 4,
+      "unique_people_count": 4
+    }
+  },
+  {
+    "org_id": "org_section_04_group_04_part_01",
+    "org_name": "미지정",
+    "org_type": "part",
+    "parent_org_id": "org_section_04_group_04",
+    "section": "부분직속",
+    "group_name": "기획추진센터",
+    "part_name": "미지정",
+    "team_name": null,
+    "org_path": "부분직속 > 기획추진센터 > 미지정",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 4,
+      "unique_people_count": 4
+    }
+  },
+  {
+    "org_id": "org_section_04_group_04_part_01_team_01",
+    "org_name": "기획추진센터",
+    "org_type": "team",
+    "parent_org_id": "org_section_04_group_04_part_01",
+    "section": "부분직속",
+    "group_name": "기획추진센터",
+    "part_name": "미지정",
+    "team_name": "기획추진센터",
+    "org_path": "부분직속 > 기획추진센터 > 미지정 > 기획추진센터",
+    "source_system": "org_dashboard",
+    "source_id": "unit-282",
+    "is_active": true,
+    "metadata": {
+      "display_name": "기획추진센터",
+      "assignment_count": 4,
+      "unique_people_count": 4,
+      "legacy_team_id": "unit-282"
+    }
+  },
+  {
+    "org_id": "org_section_05",
+    "org_name": "TFs",
+    "org_type": "section",
+    "parent_org_id": null,
+    "section": "TFs",
+    "group_name": null,
+    "part_name": null,
+    "team_name": null,
+    "org_path": "TFs",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 16,
+      "unique_people_count": 15
+    }
+  },
+  {
+    "org_id": "org_section_05_group_01",
+    "org_name": "SS&C TF",
+    "org_type": "group",
+    "parent_org_id": "org_section_05",
+    "section": "TFs",
+    "group_name": "SS&C TF",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "TFs > SS&C TF",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 5,
+      "unique_people_count": 5
+    }
+  },
+  {
+    "org_id": "org_section_05_group_01_part_01",
+    "org_name": "미지정",
+    "org_type": "part",
+    "parent_org_id": "org_section_05_group_01",
+    "section": "TFs",
+    "group_name": "SS&C TF",
+    "part_name": "미지정",
+    "team_name": null,
+    "org_path": "TFs > SS&C TF > 미지정",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 5,
+      "unique_people_count": 5
+    }
+  },
+  {
+    "org_id": "org_section_05_group_01_part_01_team_01",
+    "org_name": "SS&C TF",
+    "org_type": "team",
+    "parent_org_id": "org_section_05_group_01_part_01",
+    "section": "TFs",
+    "group_name": "SS&C TF",
+    "part_name": "미지정",
+    "team_name": "SS&C TF",
+    "org_path": "TFs > SS&C TF > 미지정 > SS&C TF",
+    "source_system": "org_dashboard",
+    "source_id": "unit-286",
+    "is_active": true,
+    "metadata": {
+      "display_name": "SS&C TF",
+      "assignment_count": 5,
+      "unique_people_count": 5,
+      "legacy_team_id": "unit-286"
+    }
+  },
+  {
+    "org_id": "org_section_05_group_02",
+    "org_name": "IOTA CFT",
+    "org_type": "group",
+    "parent_org_id": "org_section_05",
+    "section": "TFs",
+    "group_name": "IOTA CFT",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "TFs > IOTA CFT",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 9,
+      "unique_people_count": 9
+    }
+  },
+  {
+    "org_id": "org_section_05_group_02_part_01",
+    "org_name": "미지정",
+    "org_type": "part",
+    "parent_org_id": "org_section_05_group_02",
+    "section": "TFs",
+    "group_name": "IOTA CFT",
+    "part_name": "미지정",
+    "team_name": null,
+    "org_path": "TFs > IOTA CFT > 미지정",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 9,
+      "unique_people_count": 9
+    }
+  },
+  {
+    "org_id": "org_section_05_group_02_part_01_team_01",
+    "org_name": "IOTA CFT",
+    "org_type": "team",
+    "parent_org_id": "org_section_05_group_02_part_01",
+    "section": "TFs",
+    "group_name": "IOTA CFT",
+    "part_name": "미지정",
+    "team_name": "IOTA CFT",
+    "org_path": "TFs > IOTA CFT > 미지정 > IOTA CFT",
+    "source_system": "org_dashboard",
+    "source_id": "unit-295",
+    "is_active": true,
+    "metadata": {
+      "display_name": "IOTA CFT",
+      "assignment_count": 9,
+      "unique_people_count": 9,
+      "legacy_team_id": "unit-295"
+    }
+  },
+  {
+    "org_id": "org_section_05_group_03",
+    "org_name": "개발PFV TF",
+    "org_type": "group",
+    "parent_org_id": "org_section_05",
+    "section": "TFs",
+    "group_name": "개발PFV TF",
+    "part_name": null,
+    "team_name": null,
+    "org_path": "TFs > 개발PFV TF",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 2,
+      "unique_people_count": 2
+    }
+  },
+  {
+    "org_id": "org_section_05_group_03_part_01",
+    "org_name": "미지정",
+    "org_type": "part",
+    "parent_org_id": "org_section_05_group_03",
+    "section": "TFs",
+    "group_name": "개발PFV TF",
+    "part_name": "미지정",
+    "team_name": null,
+    "org_path": "TFs > 개발PFV TF > 미지정",
+    "source_system": "org_dashboard",
+    "source_id": null,
+    "is_active": true,
+    "metadata": {
+      "assignment_count": 2,
+      "unique_people_count": 2
+    }
+  },
+  {
+    "org_id": "org_section_05_group_03_part_01_team_01",
+    "org_name": "개발PFV TF",
+    "org_type": "team",
+    "parent_org_id": "org_section_05_group_03_part_01",
+    "section": "TFs",
+    "group_name": "개발PFV TF",
+    "part_name": "미지정",
+    "team_name": "개발PFV TF",
+    "org_path": "TFs > 개발PFV TF > 미지정 > 개발PFV TF",
+    "source_system": "org_dashboard",
+    "source_id": "unit-304",
+    "is_active": true,
+    "metadata": {
+      "display_name": "개발PFV TF",
+      "assignment_count": 2,
+      "unique_people_count": 2,
+      "legacy_team_id": "unit-304"
+    }
+  }
+]

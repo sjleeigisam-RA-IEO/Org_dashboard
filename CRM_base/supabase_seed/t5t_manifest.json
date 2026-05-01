@@ -1,0 +1,13 @@
+{
+  "source": "t5t Notion JSON cache",
+  "counts": {
+    "projects": 619,
+    "project_staff_links": 1942,
+    "t5t_logs": 1212,
+    "t5t_log_project_links": 617
+  },
+  "notes": [
+    "This prepares DB tables for a future dashboard input form.",
+    "The dashboard UI is not switched by this seed."
+  ]
+}

@@ -1,0 +1,5574 @@
+[
+  {
+    "assignment_id": "org_assignment_0005fc4c3c59e5d9",
+    "staff_id": "staff_emp_10661",
+    "org_id": "org_section_02_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "류홍",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "사업+개발 > 사업그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_00bb5ff89421d129",
+    "staff_id": "staff_emp_10543",
+    "org_id": "org_section_03_group_02_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "나혜윤",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_043c0e5254800c4c",
+    "staff_id": "staff_name_7d8e33dea51929cd",
+    "org_id": "org_section_03_group_01_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "이경훈",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_05f68fc0f7aa0e29",
+    "staff_id": "staff_emp_10271",
+    "org_id": "org_section_03_group_01_part_02_team_06",
+    "role": "그룹장",
+    "raw_name": "김행단",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "리빙 / 매니지먼트",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 리빙 / 매니지먼트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_063efcd3476c33d0",
+    "staff_id": "staff_emp_10439",
+    "org_id": "org_section_01_group_03_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "이상기",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자3그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자3그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_0870213780629ed4",
+    "staff_id": "staff_emp_10699",
+    "org_id": "org_section_03_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "김민건",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "1파트",
+      "team": "운용1",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_0973706ad65f045f",
+    "staff_id": "staff_name_c5550e29e2873b48",
+    "org_id": "org_section_03_group_03_part_02_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "임성훈(대)",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "대행"
+      ],
+      "section": "관리+운영",
+      "group": "리빙그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "관리+운영 > 리빙그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_09fcc81f5b8c2851",
+    "staff_id": "staff_name_5c7abcffdfa5ff6a",
+    "org_id": "org_section_03_group_03_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "윤은진",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "리빙그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "관리+운영 > 리빙그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_0a9b7c2683f9f309",
+    "staff_id": "staff_name_b7496971e3c6d73e",
+    "org_id": "org_section_01_group_03_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "이예진(휴직)",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자3그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자3그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_0bd6d4977b2440b6",
+    "staff_id": "staff_emp_10770",
+    "org_id": "org_section_01_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "경규명",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_0cd3725462211f60",
+    "staff_id": "staff_emp_10758",
+    "org_id": "org_section_03_group_01_part_01_team_03",
+    "role": "매니저",
+    "raw_name": "이정훈B",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "로지스틱스 / 매니지먼트",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 로지스틱스 / 매니지먼트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_0d0eec0c0250e010",
+    "staff_id": "staff_emp_10406",
+    "org_id": "org_section_03_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "이병관",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_0d16533140c7e876",
+    "staff_id": "staff_emp_10452",
+    "org_id": "org_section_02_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "양진수",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "디지털사업그룹",
+      "part": "사업파트",
+      "team": "사업파트",
+      "org_path": "사업+개발 > 디지털사업그룹 > 사업파트 > 사업파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_0da7476bd6f28cce",
+    "staff_id": "staff_emp_10271",
+    "org_id": "org_section_03_group_01_part_01_team_03",
+    "role": "그룹장",
+    "raw_name": "김행단",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "로지스틱스 / 매니지먼트",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 로지스틱스 / 매니지먼트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_104fbf1b6b9d38e2",
+    "staff_id": "staff_name_39f7c331a5e2626b",
+    "org_id": "org_section_03_group_01_part_02_team_03",
+    "role": "매니저",
+    "raw_name": "남윤수",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트3",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트3"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_10b764f28b8f2ce0",
+    "staff_id": "staff_emp_10698",
+    "org_id": "org_section_03_group_02_part_01_team_03",
+    "role": "매니저",
+    "raw_name": "김규식",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "1파트",
+      "team": "운용3",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용3"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_10f46973067038fc",
+    "staff_id": "staff_emp_10346",
+    "org_id": "org_section_03_group_02_part_01_team_02",
+    "role": "파트장/센터장",
+    "raw_name": "신민재(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "1파트",
+      "team": "운용2",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_1117ad6c96ce9c9b",
+    "staff_id": "staff_emp_10346",
+    "org_id": "org_section_03_group_02_part_01_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "신민재(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "1파트",
+      "team": "운용1",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_11301180534c701e",
+    "staff_id": "staff_emp_10678",
+    "org_id": "org_section_02_group_02_part_02_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "현철호",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "디지털사업그룹",
+      "part": "솔루션파트",
+      "team": "솔루션파트",
+      "org_path": "사업+개발 > 디지털사업그룹 > 솔루션파트 > 솔루션파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_117c6f2b9eaea3f0",
+    "staff_id": "staff_emp_10257",
+    "org_id": "org_section_01_group_05_part_03_team_01",
+    "role": "시니어매니저",
+    "raw_name": "조광현",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "자산관리",
+      "team": "자산관리",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 자산관리 > 자산관리"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_12f6fd7abe57b705",
+    "staff_id": "staff_emp_10315",
+    "org_id": "org_section_02_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "박세민",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "사업+개발 > 사업그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_157a8d839cbb3cac",
+    "staff_id": "staff_emp_10809",
+    "org_id": "org_section_01_group_04_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "이나우",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "글로벌투자그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 글로벌투자그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_16034c634ac9925d",
+    "staff_id": "staff_emp_10678",
+    "org_id": "org_section_02_group_02_part_02_team_01",
+    "role": "그룹장",
+    "raw_name": "현철호",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "디지털사업그룹",
+      "part": "솔루션파트",
+      "team": "솔루션파트",
+      "org_path": "사업+개발 > 디지털사업그룹 > 솔루션파트 > 솔루션파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_16902a82211510c0",
+    "staff_id": "staff_emp_10147",
+    "org_id": "org_section_01_group_05_part_02_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "황재현",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_17288308d6caf394",
+    "staff_id": "staff_name_29c0845a658a5765",
+    "org_id": "org_section_05_group_01_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "신호선(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "SS&C TF",
+      "part": "미지정",
+      "team": "SS&C TF",
+      "org_path": "TFs > SS&C TF > 미지정 > SS&C TF"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_185fa96501544eb4",
+    "staff_id": "staff_emp_10196",
+    "org_id": "org_section_02_group_01_part_04_team_01",
+    "role": "담당디렉터",
+    "raw_name": "이현호",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "사업+개발 > 사업그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_1869f06caf83165f",
+    "staff_id": "staff_emp_10346",
+    "org_id": "org_section_03_group_02_part_01_team_03",
+    "role": "파트장/센터장",
+    "raw_name": "신민재(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "1파트",
+      "team": "운용3",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용3"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_187b747ef8fbcfb6",
+    "staff_id": "staff_emp_10430",
+    "org_id": "org_section_02_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "박일훈",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "사업+개발 > 사업그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_18c21453e6d4430b",
+    "staff_id": "staff_emp_10113",
+    "org_id": "org_section_01_group_01_part_04_team_01",
+    "role": "시니어매니저",
+    "raw_name": "조청원",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_190c7278c642df51",
+    "staff_id": "staff_emp_10429",
+    "org_id": "org_section_04_group_02_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "김민지",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "부분직속",
+      "group": "기업마케팅센터",
+      "part": "미지정",
+      "team": "기업마케팅센터",
+      "org_path": "부분직속 > 기업마케팅센터 > 미지정 > 기업마케팅센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_1bc49bd11096d8d9",
+    "staff_id": "staff_emp_10274",
+    "org_id": "org_section_01_group_03_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "유선준",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자3그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자3그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_1c9f23d8a0938f8d",
+    "staff_id": "staff_emp_10101",
+    "org_id": "org_section_01_group_01_part_04_team_01",
+    "role": "시니어매니저",
+    "raw_name": "윤재진",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_1d748761043756d7",
+    "staff_id": "staff_emp_10168",
+    "org_id": "org_section_01_group_03_part_01_team_01",
+    "role": "그룹장",
+    "raw_name": "임상훈",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자3그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자3그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_1e4091aee0bb155f",
+    "staff_id": "staff_emp_10514",
+    "org_id": "org_section_01_group_05_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "류지훈",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_1e57f4374d9872f4",
+    "staff_id": "staff_name_7b19bddd6f3e5fa8",
+    "org_id": "org_section_01_group_01_part_03_team_01",
+    "role": "그룹장",
+    "raw_name": "윤관식",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_1f0360934d75669a",
+    "staff_id": "staff_emp_10532",
+    "org_id": "org_section_02_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "주현식",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "디지털사업그룹",
+      "part": "사업파트",
+      "team": "사업파트",
+      "org_path": "사업+개발 > 디지털사업그룹 > 사업파트 > 사업파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_1f4ef9e6663fe787",
+    "staff_id": "staff_emp_10271",
+    "org_id": "org_section_03_group_01_part_01_team_02",
+    "role": "그룹장",
+    "raw_name": "김행단",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_2111e8035d2d6f63",
+    "staff_id": "staff_emp_10690",
+    "org_id": "org_section_03_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "박종덕",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "1파트",
+      "team": "운용1",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_2165cf16b0cfedc7",
+    "staff_id": "staff_emp_10171",
+    "org_id": "org_section_05_group_03_part_01_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "권순일(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "개발PFV TF",
+      "part": "미지정",
+      "team": "개발PFV TF",
+      "org_path": "TFs > 개발PFV TF > 미지정 > 개발PFV TF"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_2178fd5c586a3c39",
+    "staff_id": "staff_emp_10399",
+    "org_id": "org_section_02_group_01_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "한수정",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "사업+개발 > 사업그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_2273e6314ecb25cf",
+    "staff_id": "staff_emp_10118",
+    "org_id": "org_section_03_group_01_part_02_team_05",
+    "role": "시니어매니저",
+    "raw_name": "박은영",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "펀드지원",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 펀드지원"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_22b8b3ea5b3bb174",
+    "staff_id": "staff_emp_10208",
+    "org_id": "org_section_01_group_04_part_02_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "김주일",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "글로벌투자그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 글로벌투자그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_23d2cfaf536db5de",
+    "staff_id": "staff_emp_10403",
+    "org_id": "org_section_02_group_01_part_04_team_01",
+    "role": "매니저",
+    "raw_name": "이준수",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "사업+개발 > 사업그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_242a4b3d82438157",
+    "staff_id": "staff_name_6b9bed6e25e06136",
+    "org_id": "org_section_03_group_03_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "모영준",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "리빙그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "관리+운영 > 리빙그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_2459a029688c2000",
+    "staff_id": "staff_name_90a966ac7ce34c30",
+    "org_id": "org_section_03_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "김수현",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_249879e2cd933062",
+    "staff_id": "staff_name_e62e5da5be467f2d",
+    "org_id": "org_section_04_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "한승환",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "부분직속",
+      "group": "론파이낸스센터",
+      "part": "미지정",
+      "team": "론파이낸스센터",
+      "org_path": "부분직속 > 론파이낸스센터 > 미지정 > 론파이낸스센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_2507b942074077b5",
+    "staff_id": "staff_name_6ad98ddac0e9810f",
+    "org_id": "org_section_01_group_01_part_04_team_01",
+    "role": "매니저",
+    "raw_name": "한상후",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_258684cba1915c44",
+    "staff_id": "staff_name_7b19bddd6f3e5fa8",
+    "org_id": "org_section_01_group_01_part_02_team_01",
+    "role": "그룹장",
+    "raw_name": "윤관식",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_2618adb034336286",
+    "staff_id": "staff_emp_10271",
+    "org_id": "org_section_03_group_01_part_02_team_01",
+    "role": "그룹장",
+    "raw_name": "김행단",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_2a581325f972671a",
+    "staff_id": "staff_emp_10258",
+    "org_id": "org_section_01_group_01_part_03_team_01",
+    "role": "시니어매니저",
+    "raw_name": "김태헌",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_2a815686ed559478",
+    "staff_id": "staff_emp_10759",
+    "org_id": "org_section_03_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "신채영",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_2c26573a68b90748",
+    "staff_id": "staff_emp_10354",
+    "org_id": "org_section_01_group_01_part_02_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "문준식",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_2d0a20f7650d4966",
+    "staff_id": "staff_emp_10836",
+    "org_id": "org_section_02_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "강동균",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "디지털사업그룹",
+      "part": "사업파트",
+      "team": "사업파트",
+      "org_path": "사업+개발 > 디지털사업그룹 > 사업파트 > 사업파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_2d769214ec5926b7",
+    "staff_id": "staff_name_60c1677ab06db080",
+    "org_id": "org_section_02_group_03_part_01_team_01",
+    "role": "담당디렉터",
+    "raw_name": "이정훈",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "개발솔루션센터",
+      "part": "미지정",
+      "team": "개발솔루션센터",
+      "org_path": "사업+개발 > 개발솔루션센터 > 미지정 > 개발솔루션센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_2d99efe5f6d1c43d",
+    "staff_id": "staff_emp_10658",
+    "org_id": "org_section_01_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "김민기",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자2그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자2그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_2e37b76d132459a5",
+    "staff_id": "staff_emp_10135",
+    "org_id": "org_section_02_group_01_part_03_team_01",
+    "role": "시니어매니저",
+    "raw_name": "김성욱",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "사업+개발 > 사업그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_2e422f61c83245f7",
+    "staff_id": "staff_name_19bdf58c3b8797e9",
+    "org_id": "org_section_05_group_02_part_01_team_01",
+    "role": "디렉터",
+    "raw_name": "박준호(겸) / LFC",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "IOTA CFT",
+      "part": "미지정",
+      "team": "IOTA CFT",
+      "org_path": "TFs > IOTA CFT > 미지정 > IOTA CFT"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_2ec1fff069c327d3",
+    "staff_id": "staff_emp_10761",
+    "org_id": "org_section_04_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "이성민A",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "부분직속",
+      "group": "론파이낸스센터",
+      "part": "미지정",
+      "team": "론파이낸스센터",
+      "org_path": "부분직속 > 론파이낸스센터 > 미지정 > 론파이낸스센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_3037d81e85d2e270",
+    "staff_id": "staff_emp_10271",
+    "org_id": "org_section_03_group_01_part_02_team_02",
+    "role": "그룹장",
+    "raw_name": "김행단",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_30737a2d317da0a0",
+    "staff_id": "staff_emp_10560",
+    "org_id": "org_section_01_group_04_part_02_team_01",
+    "role": "시니어매니저",
+    "raw_name": "안성기",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "글로벌투자그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 글로벌투자그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_30de501ef9b6be2a",
+    "staff_id": "staff_emp_10250",
+    "org_id": "org_section_01_group_04_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "조진욱",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "글로벌투자그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 글로벌투자그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_30fee37c60ba2d69",
+    "staff_id": "staff_emp_10392",
+    "org_id": "org_section_01_group_01_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "박정수",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_331788721055231f",
+    "staff_id": "staff_emp_10290",
+    "org_id": "org_section_01_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "정현민",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_34aabb7ad02746bd",
+    "staff_id": "staff_emp_10346",
+    "org_id": "org_section_03_group_02_part_01_team_01",
+    "role": "그룹장",
+    "raw_name": "신민재",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "1파트",
+      "team": "운용1",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_351e855af95ca24b",
+    "staff_id": "staff_emp_10657",
+    "org_id": "org_section_01_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "김동준",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_356baf2219f72b61",
+    "staff_id": "staff_emp_10349",
+    "org_id": "org_section_01_group_05_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "오상윤",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_35cdaa6acdf75067",
+    "staff_id": "staff_emp_10165",
+    "org_id": "org_section_01_group_05_part_01_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "오윤석(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_3701847f3c67f941",
+    "staff_id": "staff_emp_10165",
+    "org_id": "org_section_01_group_05_part_02_team_01",
+    "role": "그룹장",
+    "raw_name": "오윤석",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_3813a4ca228d1e58",
+    "staff_id": "staff_emp_10426",
+    "org_id": "org_section_03_group_02_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "신윤아",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_3822d043cfb483b5",
+    "staff_id": "staff_emp_10305",
+    "org_id": "org_section_01_group_04_part_01_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "남형록",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "글로벌투자그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 글로벌투자그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_388eef9a4d3387d5",
+    "staff_id": "staff_emp_10228",
+    "org_id": "org_section_02_group_02_part_01_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "홍창의",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "디지털사업그룹",
+      "part": "사업파트",
+      "team": "사업파트",
+      "org_path": "사업+개발 > 디지털사업그룹 > 사업파트 > 사업파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_38f9fc74b0125f63",
+    "staff_id": "staff_emp_10456",
+    "org_id": "org_section_01_group_01_part_04_team_01",
+    "role": "시니어매니저",
+    "raw_name": "하승훈",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_395f364ced2aac2c",
+    "staff_id": "staff_emp_10548",
+    "org_id": "org_section_02_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "이창준",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "사업+개발 > 사업그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_3a4d04871bce0171",
+    "staff_id": "staff_name_10d7e708cf056a1c",
+    "org_id": "org_section_05_group_02_part_01_team_01",
+    "role": "디렉터",
+    "raw_name": "홍창의(겸) / Digital B",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "IOTA CFT",
+      "part": "미지정",
+      "team": "IOTA CFT",
+      "org_path": "TFs > IOTA CFT > 미지정 > IOTA CFT"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_3b5303756addfeec",
+    "staff_id": "staff_emp_10237",
+    "org_id": "org_section_04_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "손유정",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "부분직속",
+      "group": "론파이낸스센터",
+      "part": "미지정",
+      "team": "론파이낸스센터",
+      "org_path": "부분직속 > 론파이낸스센터 > 미지정 > 론파이낸스센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_3bdd18c1dcf51893",
+    "staff_id": "staff_emp_10557",
+    "org_id": "org_section_03_group_01_part_03_team_01",
+    "role": "시니어매니저",
+    "raw_name": "황준하",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "3파트",
+      "team": "3파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_3d68b927f10a5ccc",
+    "staff_id": "staff_emp_10417",
+    "org_id": "org_section_01_group_03_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "김호진",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자3그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자3그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_3dd5d203b41392e8",
+    "staff_id": "staff_emp_10168",
+    "org_id": "org_section_01_group_03_part_01_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "임상훈(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "투자+펀딩",
+      "group": "투자3그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자3그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_4161575ee3cc7fdd",
+    "staff_id": "staff_emp_10126",
+    "org_id": "org_section_01_group_04_part_02_team_01",
+    "role": "시니어매니저",
+    "raw_name": "이승국",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "글로벌투자그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 글로벌투자그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_4474b1ae68bd0e13",
+    "staff_id": "staff_emp_10801",
+    "org_id": "org_section_03_group_01_part_01_team_03",
+    "role": "매니저",
+    "raw_name": "오채은",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "로지스틱스 / 매니지먼트",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 로지스틱스 / 매니지먼트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_44b5a02cfee27e93",
+    "staff_id": "staff_name_6ddd6ce1bf8765bf",
+    "org_id": "org_section_02_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "김창록",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "디지털사업그룹",
+      "part": "사업파트",
+      "team": "사업파트",
+      "org_path": "사업+개발 > 디지털사업그룹 > 사업파트 > 사업파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_45935ceee8dccc23",
+    "staff_id": "staff_emp_10483",
+    "org_id": "org_section_02_group_01_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "이수정",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "사업+개발 > 사업그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_462f60a9f328395b",
+    "staff_id": "staff_name_15d27a9ac7e42f36",
+    "org_id": "org_section_01_group_02_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "김민석",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자2그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자2그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_4898ca2b850eaaf5",
+    "staff_id": "staff_emp_10307",
+    "org_id": "org_section_03_group_01_part_03_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "권도엽",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "3파트",
+      "team": "3파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_48dd5cee93a50689",
+    "staff_id": "staff_emp_10165",
+    "org_id": "org_section_01_group_05_part_03_team_01",
+    "role": "그룹장",
+    "raw_name": "오윤석",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "자산관리",
+      "team": "자산관리",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 자산관리 > 자산관리"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_4aa8708d8a5c937c",
+    "staff_id": "staff_emp_10352",
+    "org_id": "org_section_03_group_01_part_02_team_02",
+    "role": "시니어매니저",
+    "raw_name": "모승상",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_4aae7a6091d715eb",
+    "staff_id": "staff_emp_10393",
+    "org_id": "org_section_01_group_01_part_04_team_01",
+    "role": "매니저",
+    "raw_name": "김찬솔",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_4b09fefd88cde46e",
+    "staff_id": "staff_emp_10502",
+    "org_id": "org_section_02_group_01_part_04_team_01",
+    "role": "매니저",
+    "raw_name": "강성호",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "사업+개발 > 사업그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_4b91d41aee6b63b9",
+    "staff_id": "staff_emp_10564",
+    "org_id": "org_section_02_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "전무경",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "사업+개발 > 사업그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_4c3601d66c73b871",
+    "staff_id": "staff_emp_10114",
+    "org_id": "org_section_01_group_03_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "유한나",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자3그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자3그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_4d230a3745064587",
+    "staff_id": "staff_emp_10302",
+    "org_id": "org_section_03_group_01_part_01_team_02",
+    "role": "시니어매니저",
+    "raw_name": "김지윤",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_4dddd43aca9fd58c",
+    "staff_id": "staff_emp_10199",
+    "org_id": "org_section_01_group_01_part_02_team_01",
+    "role": "시니어매니저",
+    "raw_name": "정재각",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_50af3a092e998ff8",
+    "staff_id": "staff_emp_10391",
+    "org_id": "org_section_01_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "이준기",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_50bd3238ff5027ac",
+    "staff_id": "staff_emp_10837",
+    "org_id": "org_section_02_group_01_part_04_team_01",
+    "role": "매니저",
+    "raw_name": "한원석",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "사업+개발 > 사업그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_50cfb22a7962e442",
+    "staff_id": "staff_emp_10701",
+    "org_id": "org_section_03_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "이연주",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_5278a8fbd8465b9a",
+    "staff_id": "staff_emp_10703",
+    "org_id": "org_section_03_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "정준우",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "3파트",
+      "team": "3파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_541cd67c294568e3",
+    "staff_id": "staff_emp_10350",
+    "org_id": "org_section_02_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "박만진",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "사업+개발 > 사업그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_543e5e6ec045b1d3",
+    "staff_id": "staff_emp_10587",
+    "org_id": "org_section_01_group_04_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "안재욱",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "글로벌투자그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 글로벌투자그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_54c6b3f2a0c41f6d",
+    "staff_id": "staff_emp_10239",
+    "org_id": "org_section_03_group_01_part_02_team_03",
+    "role": "시니어매니저",
+    "raw_name": "이효근",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트3",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트3"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_553d3228b3c5e5fd",
+    "staff_id": "staff_emp_10448",
+    "org_id": "org_section_01_group_05_part_04_team_01",
+    "role": "매니저",
+    "raw_name": "박유진",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "포트폴리오 / 관리",
+      "team": "포트폴리오 / 관리",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 포트폴리오 / 관리 > 포트폴리오 / 관리"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_55cde2caef6670b7",
+    "staff_id": "staff_emp_10775",
+    "org_id": "org_section_02_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "최성현",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "사업+개발 > 사업그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_579444430189535e",
+    "staff_id": "staff_emp_10663",
+    "org_id": "org_section_01_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "신용우",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_588156fdf1327502",
+    "staff_id": "staff_name_1c7c6dfde8906bcc",
+    "org_id": "org_section_03_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "장서영",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_5b815865e3fdc636",
+    "staff_id": "staff_emp_10783",
+    "org_id": "org_section_03_group_01_part_02_team_04",
+    "role": "매니저",
+    "raw_name": "김유리",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트4",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트4"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_5bc3ff4972932e11",
+    "staff_id": "staff_emp_10810",
+    "org_id": "org_section_03_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "정하윤",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_5c69be3436917ee1",
+    "staff_id": "staff_emp_10637",
+    "org_id": "org_section_01_group_05_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "이승준",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_5c98bbfe07198762",
+    "staff_id": "staff_emp_10558",
+    "org_id": "org_section_03_group_01_part_01_team_03",
+    "role": "매니저",
+    "raw_name": "이진우",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "로지스틱스 / 매니지먼트",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 로지스틱스 / 매니지먼트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_5d424e0183e82c9a",
+    "staff_id": "staff_emp_10404",
+    "org_id": "org_section_03_group_01_part_01_team_02",
+    "role": "매니저",
+    "raw_name": "박용범",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_5dc72919a5f57d7c",
+    "staff_id": "staff_name_70558ef39e0b4dde",
+    "org_id": "org_section_02_group_03_part_01_team_01",
+    "role": "담당디렉터",
+    "raw_name": "박봉서",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "개발솔루션센터",
+      "part": "미지정",
+      "team": "개발솔루션센터",
+      "org_path": "사업+개발 > 개발솔루션센터 > 미지정 > 개발솔루션센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_5dca95d066ea8ada",
+    "staff_id": "staff_emp_10459",
+    "org_id": "org_section_04_group_04_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "전기영",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "부분직속",
+      "group": "기획추진센터",
+      "part": "미지정",
+      "team": "기획추진센터",
+      "org_path": "부분직속 > 기획추진센터 > 미지정 > 기획추진센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_5df9d8a9c6d883d9",
+    "staff_id": "staff_emp_10104",
+    "org_id": "org_section_01_group_01_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "김휘수",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_5e83d5db2ef0749c",
+    "staff_id": "staff_emp_10637",
+    "org_id": "org_section_05_group_01_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "이승준(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "SS&C TF",
+      "part": "미지정",
+      "team": "SS&C TF",
+      "org_path": "TFs > SS&C TF > 미지정 > SS&C TF"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_5fe758385d453ee0",
+    "staff_id": "staff_emp_10346",
+    "org_id": "org_section_03_group_02_part_01_team_02",
+    "role": "그룹장",
+    "raw_name": "신민재",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "1파트",
+      "team": "운용2",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_60f561442d260d4f",
+    "staff_id": "staff_name_4d9954eafcf766ff",
+    "org_id": "org_section_05_group_02_part_01_team_01",
+    "role": "디렉터",
+    "raw_name": "김행단(겸) / KAM",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "IOTA CFT",
+      "part": "미지정",
+      "team": "IOTA CFT",
+      "org_path": "TFs > IOTA CFT > 미지정 > IOTA CFT"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_62aca2848293ad96",
+    "staff_id": "staff_emp_10307",
+    "org_id": "org_section_03_group_01_part_03_team_02",
+    "role": "파트장/센터장",
+    "raw_name": "권도엽",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "3파트",
+      "team": "3파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_63a2fc2bc2f59203",
+    "staff_id": "staff_emp_10256",
+    "org_id": "org_section_02_group_03_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "김보성",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "개발솔루션센터",
+      "part": "미지정",
+      "team": "개발솔루션센터",
+      "org_path": "사업+개발 > 개발솔루션센터 > 미지정 > 개발솔루션센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_63cf3d09501fbbdd",
+    "staff_id": "staff_emp_10322",
+    "org_id": "org_section_03_group_02_part_02_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "신소현",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_644f6a13142c1e3b",
+    "staff_id": "staff_emp_30011",
+    "org_id": "org_section_02_group_03_part_01_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "홍장군",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "개발솔루션센터",
+      "part": "미지정",
+      "team": "개발솔루션센터",
+      "org_path": "사업+개발 > 개발솔루션센터 > 미지정 > 개발솔루션센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_647927b7d4221bbd",
+    "staff_id": "staff_name_15d27a9ac7e42f36",
+    "org_id": "org_section_03_group_03_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "김민석",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "리빙그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "관리+운영 > 리빙그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_65153e9a8dd77cf0",
+    "staff_id": "staff_emp_10462",
+    "org_id": "org_section_02_group_02_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "이인기",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "디지털사업그룹",
+      "part": "솔루션파트",
+      "team": "솔루션파트",
+      "org_path": "사업+개발 > 디지털사업그룹 > 솔루션파트 > 솔루션파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_665ddab7d2b7c38c",
+    "staff_id": "staff_emp_10463",
+    "org_id": "org_section_04_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "고아라",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "부분직속",
+      "group": "기업마케팅센터",
+      "part": "미지정",
+      "team": "기업마케팅센터",
+      "org_path": "부분직속 > 기업마케팅센터 > 미지정 > 기업마케팅센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_66ab411557641156",
+    "staff_id": "staff_emp_10334",
+    "org_id": "org_section_05_group_01_part_01_team_01",
+    "role": "담당디렉터",
+    "raw_name": "윤우섭(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "SS&C TF",
+      "part": "미지정",
+      "team": "SS&C TF",
+      "org_path": "TFs > SS&C TF > 미지정 > SS&C TF"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_678b879310f0d8e7",
+    "staff_id": "staff_emp_10231",
+    "org_id": "org_section_03_group_01_part_01_team_03",
+    "role": "파트장/센터장",
+    "raw_name": "김지현",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "로지스틱스 / 매니지먼트",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 로지스틱스 / 매니지먼트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_6a47c62096934398",
+    "staff_id": "staff_emp_10335",
+    "org_id": "org_section_02_group_01_part_04_team_01",
+    "role": "매니저",
+    "raw_name": "김민수",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "사업+개발 > 사업그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_6b1c1e18c94633fe",
+    "staff_id": "staff_emp_10314",
+    "org_id": "org_section_01_group_03_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "송상민",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자3그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자3그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_6c74426ce8dc64ff",
+    "staff_id": "staff_emp_10561",
+    "org_id": "org_section_04_group_01_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "강석민",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "부분직속",
+      "group": "론파이낸스센터",
+      "part": "미지정",
+      "team": "론파이낸스센터",
+      "org_path": "부분직속 > 론파이낸스센터 > 미지정 > 론파이낸스센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_6cda57020f11726e",
+    "staff_id": "staff_emp_10685",
+    "org_id": "org_section_01_group_03_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "심동민",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자3그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자3그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_6d69b7125a2e3707",
+    "staff_id": "staff_name_cde75baa9e41cc4a",
+    "org_id": "org_section_03_group_01_part_02_team_03",
+    "role": "매니저",
+    "raw_name": "김나현",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트3",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트3"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_6d748730f9414d84",
+    "staff_id": "staff_emp_10443",
+    "org_id": "org_section_03_group_03_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "이종훈",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "리빙그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "관리+운영 > 리빙그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_6ee44d8f0e4d7748",
+    "staff_id": "staff_name_564b008a095204b2",
+    "org_id": "org_section_02_group_01_part_04_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "이승훈",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "사업+개발 > 사업그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_6f30f0dea5290f38",
+    "staff_id": "staff_emp_10603",
+    "org_id": "org_section_04_group_01_part_01_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "박준호(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "부분직속",
+      "group": "론파이낸스센터",
+      "part": "미지정",
+      "team": "론파이낸스센터",
+      "org_path": "부분직속 > 론파이낸스센터 > 미지정 > 론파이낸스센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_6f3aca483208c532",
+    "staff_id": "staff_emp_10672",
+    "org_id": "org_section_04_group_03_part_01_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "김현수",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "부분직속",
+      "group": "공간솔루션센터",
+      "part": "미지정",
+      "team": "공간솔루션센터",
+      "org_path": "부분직속 > 공간솔루션센터 > 미지정 > 공간솔루션센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_6f7751fad9b6a951",
+    "staff_id": "staff_emp_10301",
+    "org_id": "org_section_04_group_03_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "이가현",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "부분직속",
+      "group": "공간솔루션센터",
+      "part": "미지정",
+      "team": "공간솔루션센터",
+      "org_path": "부분직속 > 공간솔루션센터 > 미지정 > 공간솔루션센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_709c0f32ddcc414c",
+    "staff_id": "staff_name_a557d2af7aea38d2",
+    "org_id": "org_section_02_group_01_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "소현준",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "사업+개발 > 사업그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_7159be7b0eb629c0",
+    "staff_id": "staff_name_7b19bddd6f3e5fa8",
+    "org_id": "org_section_01_group_01_part_04_team_01",
+    "role": "그룹장",
+    "raw_name": "윤관식",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_71887d7d703dc951",
+    "staff_id": "staff_emp_10223",
+    "org_id": "org_section_05_group_01_part_01_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "양준모(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "SS&C TF",
+      "part": "미지정",
+      "team": "SS&C TF",
+      "org_path": "TFs > SS&C TF > 미지정 > SS&C TF"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_71d5d1716e826de5",
+    "staff_id": "staff_emp_10246",
+    "org_id": "org_section_01_group_05_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "이민호",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_723c9b76729524f7",
+    "staff_id": "staff_emp_10249",
+    "org_id": "org_section_01_group_05_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "김재동",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "자산관리",
+      "team": "자산관리",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 자산관리 > 자산관리"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_728506f4029c8a2b",
+    "staff_id": "staff_emp_10800",
+    "org_id": "org_section_03_group_01_part_03_team_02",
+    "role": "매니저",
+    "raw_name": "안정훈",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "3파트",
+      "team": "3파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_72e6239d5b2d77be",
+    "staff_id": "staff_emp_10531",
+    "org_id": "org_section_02_group_01_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "조영비",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "사업+개발 > 사업그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_732cb54a86d41949",
+    "staff_id": "staff_name_33b81ed297ad35c0",
+    "org_id": "org_section_01_group_01_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "이춘호",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_733665fba10647f5",
+    "staff_id": "staff_emp_10576",
+    "org_id": "org_section_01_group_01_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "김연우",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_73cb60ea864d025b",
+    "staff_id": "staff_emp_10676",
+    "org_id": "org_section_02_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "백종우",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "사업+개발 > 사업그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_767d3b414a94432b",
+    "staff_id": "staff_emp_10171",
+    "org_id": "org_section_02_group_01_part_01_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "권순일(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "사업+개발 > 사업그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_768a6a3e01df8df6",
+    "staff_id": "staff_emp_10271",
+    "org_id": "org_section_03_group_01_part_02_team_02",
+    "role": "파트장/센터장",
+    "raw_name": "김행단(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_771861aabb334cd0",
+    "staff_id": "staff_emp_10238",
+    "org_id": "org_section_02_group_01_part_04_team_01",
+    "role": "그룹장",
+    "raw_name": "우형석",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "사업+개발 > 사업그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_77228e61b6e97f3f",
+    "staff_id": "staff_emp_10255",
+    "org_id": "org_section_03_group_01_part_02_team_05",
+    "role": "매니저",
+    "raw_name": "최민정",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "펀드지원",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 펀드지원"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_77795233dee41bbb",
+    "staff_id": "staff_emp_10619",
+    "org_id": "org_section_01_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "이승철",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자2그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자2그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_78b1c03fa8a5d6c5",
+    "staff_id": "staff_emp_10726",
+    "org_id": "org_section_02_group_03_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "전승희",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "개발솔루션센터",
+      "part": "미지정",
+      "team": "개발솔루션센터",
+      "org_path": "사업+개발 > 개발솔루션센터 > 미지정 > 개발솔루션센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_79228defe29ed686",
+    "staff_id": "staff_name_685be7799c45bf8e",
+    "org_id": "org_section_05_group_02_part_01_team_01",
+    "role": "디렉터",
+    "raw_name": "강순용(겸) / IOTA",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "IOTA CFT",
+      "part": "미지정",
+      "team": "IOTA CFT",
+      "org_path": "TFs > IOTA CFT > 미지정 > IOTA CFT"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_7a35ef3ad7dc48a3",
+    "staff_id": "staff_emp_10271",
+    "org_id": "org_section_03_group_01_part_03_team_02",
+    "role": "그룹장",
+    "raw_name": "김행단",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "3파트",
+      "team": "3파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_7a3d505e26b399f7",
+    "staff_id": "staff_name_3b6e599b23ef9ed5",
+    "org_id": "org_section_01_group_01_part_04_team_01",
+    "role": "매니저",
+    "raw_name": "박수민",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_7b6c4dee3b175925",
+    "staff_id": "staff_emp_10523",
+    "org_id": "org_section_01_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "이경형",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자2그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자2그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_7b8ca7e81fff2d63",
+    "staff_id": "staff_emp_10238",
+    "org_id": "org_section_02_group_01_part_02_team_01",
+    "role": "그룹장",
+    "raw_name": "우형석",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "사업+개발 > 사업그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_7bf31a073e2f8017",
+    "staff_id": "staff_emp_10427",
+    "org_id": "org_section_03_group_02_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "윤주성",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_7cca0d87911aa389",
+    "staff_id": "staff_name_fc78f62bb2cb5d96",
+    "org_id": "org_section_03_group_01_part_02_team_02",
+    "role": "매니저",
+    "raw_name": "이단비",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_7d4d84266bc9f6ea",
+    "staff_id": "staff_emp_10782",
+    "org_id": "org_section_03_group_01_part_03_team_02",
+    "role": "매니저",
+    "raw_name": "박채연",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "3파트",
+      "team": "3파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_7ec0f535ff365de8",
+    "staff_id": "staff_emp_10374",
+    "org_id": "org_section_03_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "이정원",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_81e899a056353795",
+    "staff_id": "staff_emp_10763",
+    "org_id": "org_section_01_group_05_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "전서진",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_835d568560c37e0b",
+    "staff_id": "staff_emp_10630",
+    "org_id": "org_section_03_group_01_part_02_team_04",
+    "role": "매니저",
+    "raw_name": "임지영",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트4",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트4"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_836e504c77fcc804",
+    "staff_id": "staff_emp_10271",
+    "org_id": "org_section_03_group_01_part_02_team_05",
+    "role": "파트장/센터장",
+    "raw_name": "김행단(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "펀드지원",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 펀드지원"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_83ab4c7138233389",
+    "staff_id": "staff_emp_10304",
+    "org_id": "org_section_01_group_02_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "최성지",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자2그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자2그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_83ea85b8e5bb17d1",
+    "staff_id": "staff_emp_10172",
+    "org_id": "org_section_01_group_04_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "김동진",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "글로벌투자그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 글로벌투자그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_8454be603f9ef6f6",
+    "staff_id": "staff_emp_10235",
+    "org_id": "org_section_02_group_02_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "양유미",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "디지털사업그룹",
+      "part": "사업파트",
+      "team": "사업파트",
+      "org_path": "사업+개발 > 디지털사업그룹 > 사업파트 > 사업파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_8538d978f33aae3e",
+    "staff_id": "staff_emp_10550",
+    "org_id": "org_section_03_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "박준규",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "3파트",
+      "team": "3파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_8558273a0b4a9649",
+    "staff_id": "staff_name_c85c49f9c6918857",
+    "org_id": "org_section_05_group_02_part_01_team_01",
+    "role": "디렉터",
+    "raw_name": "현철호(겸) / Digital S",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "IOTA CFT",
+      "part": "미지정",
+      "team": "IOTA CFT",
+      "org_path": "TFs > IOTA CFT > 미지정 > IOTA CFT"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_86631d18e8c7b0cf",
+    "staff_id": "staff_emp_10271",
+    "org_id": "org_section_03_group_01_part_02_team_04",
+    "role": "그룹장",
+    "raw_name": "김행단",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트4",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트4"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_87ca3e266dfa550c",
+    "staff_id": "staff_emp_10447",
+    "org_id": "org_section_01_group_05_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "구본혁",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_888523fa27ec92e9",
+    "staff_id": "staff_emp_10364",
+    "org_id": "org_section_02_group_01_part_02_team_01",
+    "role": "시니어매니저",
+    "raw_name": "한찬호",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "사업+개발 > 사업그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_889794c78ae856d0",
+    "staff_id": "staff_emp_10362",
+    "org_id": "org_section_03_group_01_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "최지선",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_88bf995983f50269",
+    "staff_id": "staff_emp_10450",
+    "org_id": "org_section_03_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "이수현",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "1파트",
+      "team": "운용1",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_8b14fd2b3e7b1d01",
+    "staff_id": "staff_emp_10696",
+    "org_id": "org_section_03_group_02_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "김종수",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_8b9431ee4a289eb3",
+    "staff_id": "staff_emp_10646",
+    "org_id": "org_section_03_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "이현민",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_8ba3ad4d7b14469b",
+    "staff_id": "staff_emp_10271",
+    "org_id": "org_section_03_group_01_part_02_team_03",
+    "role": "그룹장",
+    "raw_name": "김행단",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트3",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트3"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_8c2f1361963ac991",
+    "staff_id": "staff_emp_10288",
+    "org_id": "org_section_01_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "황선필",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_8e69c34609ca19d2",
+    "staff_id": "staff_emp_10238",
+    "org_id": "org_section_02_group_01_part_01_team_01",
+    "role": "그룹장",
+    "raw_name": "우형석",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "사업+개발 > 사업그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_8f68c6a4f6e5e1db",
+    "staff_id": "staff_emp_10137",
+    "org_id": "org_section_04_group_04_part_01_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "이시정",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "부분직속",
+      "group": "기획추진센터",
+      "part": "미지정",
+      "team": "기획추진센터",
+      "org_path": "부분직속 > 기획추진센터 > 미지정 > 기획추진센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_9170bf067c7c0f81",
+    "staff_id": "staff_emp_10785",
+    "org_id": "org_section_04_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "박현승",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "부분직속",
+      "group": "론파이낸스센터",
+      "part": "미지정",
+      "team": "론파이낸스센터",
+      "org_path": "부분직속 > 론파이낸스센터 > 미지정 > 론파이낸스센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_91942c6a098a59ce",
+    "staff_id": "staff_emp_10346",
+    "org_id": "org_section_05_group_01_part_01_team_01",
+    "role": "담당디렉터",
+    "raw_name": "신민재(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "SS&C TF",
+      "part": "미지정",
+      "team": "SS&C TF",
+      "org_path": "TFs > SS&C TF > 미지정 > SS&C TF"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_919accceb707bb4e",
+    "staff_id": "staff_emp_10149",
+    "org_id": "org_section_02_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "김태영",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "디지털사업그룹",
+      "part": "사업파트",
+      "team": "사업파트",
+      "org_path": "사업+개발 > 디지털사업그룹 > 사업파트 > 사업파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_92c1a5ca4af033c0",
+    "staff_id": "staff_emp_10798",
+    "org_id": "org_section_04_group_01_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "정리훈",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "부분직속",
+      "group": "론파이낸스센터",
+      "part": "미지정",
+      "team": "론파이낸스센터",
+      "org_path": "부분직속 > 론파이낸스센터 > 미지정 > 론파이낸스센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_9359d3f42ad339e7",
+    "staff_id": "staff_emp_10346",
+    "org_id": "org_section_03_group_02_part_01_team_03",
+    "role": "그룹장",
+    "raw_name": "신민재",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "1파트",
+      "team": "운용3",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용3"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_946b642a47557890",
+    "staff_id": "staff_emp_10678",
+    "org_id": "org_section_02_group_02_part_01_team_01",
+    "role": "그룹장",
+    "raw_name": "현철호",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "디지털사업그룹",
+      "part": "사업파트",
+      "team": "사업파트",
+      "org_path": "사업+개발 > 디지털사업그룹 > 사업파트 > 사업파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_95a2b960a937c9c7",
+    "staff_id": "staff_name_eb45c8c6fcdba827",
+    "org_id": "org_section_01_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "진정용",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_96a3bad0dabae46f",
+    "staff_id": "staff_emp_10238",
+    "org_id": "org_section_02_group_01_part_03_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "우형석(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "사업+개발 > 사업그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_9763cc11ff31eaf2",
+    "staff_id": "staff_emp_10784",
+    "org_id": "org_section_01_group_05_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "하승균",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_97856896759fe7a5",
+    "staff_id": "staff_name_7b19bddd6f3e5fa8",
+    "org_id": "org_section_01_group_01_part_01_team_01",
+    "role": "그룹장",
+    "raw_name": "윤관식",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_97e1c8bc8d587b12",
+    "staff_id": "staff_name_8cd7642b86e41d46",
+    "org_id": "org_section_01_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "원세훈",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자2그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자2그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_985d333bdfb46cc1",
+    "staff_id": "staff_emp_10526",
+    "org_id": "org_section_03_group_01_part_01_team_02",
+    "role": "매니저",
+    "raw_name": "이정연",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_99058cbb5f405ec3",
+    "staff_id": "staff_emp_10432",
+    "org_id": "org_section_03_group_01_part_03_team_01",
+    "role": "시니어매니저",
+    "raw_name": "김형주",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "3파트",
+      "team": "3파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_99fd322dd032a1bf",
+    "staff_id": "staff_emp_10169",
+    "org_id": "org_section_03_group_01_part_02_team_04",
+    "role": "시니어매니저",
+    "raw_name": "이운구",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트4",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트4"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_9b1f293016645ae7",
+    "staff_id": "staff_emp_10159",
+    "org_id": "org_section_01_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "황준식",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_9b854ab1922fe7f9",
+    "staff_id": "staff_emp_10279",
+    "org_id": "org_section_04_group_04_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "박신웅",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "부분직속",
+      "group": "기획추진센터",
+      "part": "미지정",
+      "team": "기획추진센터",
+      "org_path": "부분직속 > 기획추진센터 > 미지정 > 기획추진센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_9c83639e423fb4e3",
+    "staff_id": "staff_emp_10427",
+    "org_id": "org_section_05_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "윤주성(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "SS&C TF",
+      "part": "미지정",
+      "team": "SS&C TF",
+      "org_path": "TFs > SS&C TF > 미지정 > SS&C TF"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_9e111d34750c460d",
+    "staff_id": "staff_emp_10624",
+    "org_id": "org_section_02_group_01_part_04_team_01",
+    "role": "매니저",
+    "raw_name": "유미현",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "사업+개발 > 사업그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_9eecea62b2a30c79",
+    "staff_id": "staff_emp_10695",
+    "org_id": "org_section_03_group_02_part_01_team_03",
+    "role": "매니저",
+    "raw_name": "석동주",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "1파트",
+      "team": "운용3",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용3"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_9f1e275f9e278009",
+    "staff_id": "staff_emp_10517",
+    "org_id": "org_section_01_group_05_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "양우영",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_a10e70fabc176e6d",
+    "staff_id": "staff_emp_10757",
+    "org_id": "org_section_03_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "문승현",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "3파트",
+      "team": "3파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_a26f7f3841928855",
+    "staff_id": "staff_emp_10285",
+    "org_id": "org_section_01_group_04_part_02_team_01",
+    "role": "그룹장",
+    "raw_name": "윤정규",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "글로벌투자그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 글로벌투자그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_a2841fa710054ed9",
+    "staff_id": "staff_emp_10408",
+    "org_id": "org_section_03_group_01_part_03_team_02",
+    "role": "매니저",
+    "raw_name": "정승우",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "3파트",
+      "team": "3파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_a3a2fc4fa317525b",
+    "staff_id": "staff_emp_10504",
+    "org_id": "org_section_02_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "강창원",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "디지털사업그룹",
+      "part": "사업파트",
+      "team": "사업파트",
+      "org_path": "사업+개발 > 디지털사업그룹 > 사업파트 > 사업파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_a47f871afa194583",
+    "staff_id": "staff_emp_10702",
+    "org_id": "org_section_03_group_02_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "유진선",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_a6eefe4ce83743c0",
+    "staff_id": "staff_emp_10476",
+    "org_id": "org_section_01_group_01_part_04_team_01",
+    "role": "매니저",
+    "raw_name": "이하영",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_a70eeb922d369401",
+    "staff_id": "staff_emp_10822",
+    "org_id": "org_section_03_group_01_part_02_team_06",
+    "role": "매니저",
+    "raw_name": "홍지훈(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "리빙 / 매니지먼트",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 리빙 / 매니지먼트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_a93bc801ee756c7b",
+    "staff_id": "staff_emp_10339",
+    "org_id": "org_section_03_group_03_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "김완혁",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "리빙그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "관리+운영 > 리빙그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_a972c5f70ae41786",
+    "staff_id": "staff_emp_10271",
+    "org_id": "org_section_03_group_01_part_02_team_06",
+    "role": "파트장/센터장",
+    "raw_name": "김행단(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "리빙 / 매니지먼트",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 리빙 / 매니지먼트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_a99b4871acdf7287",
+    "staff_id": "staff_name_e4986ba503147a73",
+    "org_id": "org_section_05_group_02_part_01_team_01",
+    "role": "디렉터",
+    "raw_name": "김현수(겸) / SSC",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "IOTA CFT",
+      "part": "미지정",
+      "team": "IOTA CFT",
+      "org_path": "TFs > IOTA CFT > 미지정 > IOTA CFT"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_a9c088e63cca618b",
+    "staff_id": "staff_emp_10271",
+    "org_id": "org_section_03_group_01_part_02_team_04",
+    "role": "파트장/센터장",
+    "raw_name": "김행단(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트4",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트4"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_ab0bb73cb9b94eea",
+    "staff_id": "staff_emp_10231",
+    "org_id": "org_section_03_group_01_part_01_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "김지현",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_aedefc709244ad4c",
+    "staff_id": "staff_emp_10388",
+    "org_id": "org_section_03_group_01_part_02_team_01",
+    "role": "시니어매니저",
+    "raw_name": "김지희",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_aee9a8a1e198f573",
+    "staff_id": "staff_emp_10346",
+    "org_id": "org_section_03_group_02_part_02_team_01",
+    "role": "그룹장",
+    "raw_name": "신민재",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_afbf38f1630ba0d8",
+    "staff_id": "staff_name_348b0cdb4c9f771a",
+    "org_id": "org_section_03_group_01_part_02_team_04",
+    "role": "매니저",
+    "raw_name": "이형철",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트4",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트4"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_b00d5a41835b3683",
+    "staff_id": "staff_emp_10822",
+    "org_id": "org_section_03_group_03_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "홍지훈(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "관리+운영",
+      "group": "리빙그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "관리+운영 > 리빙그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_b02aa9bf65ebda6e",
+    "staff_id": "staff_emp_10247",
+    "org_id": "org_section_01_group_05_part_04_team_01",
+    "role": "시니어매니저",
+    "raw_name": "한수진",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "포트폴리오 / 관리",
+      "team": "포트폴리오 / 관리",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 포트폴리오 / 관리 > 포트폴리오 / 관리"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_b034c4c439988f20",
+    "staff_id": "staff_emp_10309",
+    "org_id": "org_section_01_group_01_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "송기석",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_b0fdd708128088a2",
+    "staff_id": "staff_emp_10145",
+    "org_id": "org_section_03_group_03_part_02_team_01",
+    "role": "그룹장",
+    "raw_name": "정조민",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "리빙그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "관리+운영 > 리빙그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_b12bfca71aecec1a",
+    "staff_id": "staff_name_2f90af08b5ce3156",
+    "org_id": "org_section_01_group_03_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "정지웅",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자3그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자3그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_b278fcde5f8da62a",
+    "staff_id": "staff_emp_10327",
+    "org_id": "org_section_03_group_02_part_02_team_01",
+    "role": "시니어매니저",
+    "raw_name": "김선미",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_b3e3c444837969f2",
+    "staff_id": "staff_emp_10572",
+    "org_id": "org_section_02_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "강준구",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "디지털사업그룹",
+      "part": "사업파트",
+      "team": "사업파트",
+      "org_path": "사업+개발 > 디지털사업그룹 > 사업파트 > 사업파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_b592559336e89d93",
+    "staff_id": "staff_emp_10267",
+    "org_id": "org_section_03_group_02_part_01_team_03",
+    "role": "시니어매니저",
+    "raw_name": "노선호",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "1파트",
+      "team": "운용3",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용3"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_b5e90d02dec06852",
+    "staff_id": "staff_emp_10154",
+    "org_id": "org_section_03_group_01_part_03_team_02",
+    "role": "시니어매니저",
+    "raw_name": "임주우",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "3파트",
+      "team": "3파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_b8532480149102ea",
+    "staff_id": "staff_emp_10240",
+    "org_id": "org_section_05_group_03_part_01_team_01",
+    "role": "담당디렉터",
+    "raw_name": "윤용택(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "개발PFV TF",
+      "part": "미지정",
+      "team": "개발PFV TF",
+      "org_path": "TFs > 개발PFV TF > 미지정 > 개발PFV TF"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_ba0088bb2f81bfb3",
+    "staff_id": "staff_emp_10773",
+    "org_id": "org_section_03_group_01_part_01_team_02",
+    "role": "매니저",
+    "raw_name": "박규란",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_baf1282c9296977d",
+    "staff_id": "staff_emp_10139",
+    "org_id": "org_section_02_group_01_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "박석제",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "사업+개발 > 사업그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_bb0cde867a34588e",
+    "staff_id": "staff_emp_10179",
+    "org_id": "org_section_01_group_01_part_01_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "홍봉석",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_bb1b174a5c157dbc",
+    "staff_id": "staff_name_8e8e664bb02f45fe",
+    "org_id": "org_section_03_group_03_part_01_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "권진명(대)",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "대행"
+      ],
+      "section": "관리+운영",
+      "group": "리빙그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "관리+운영 > 리빙그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_bc9e8e7da276d1cc",
+    "staff_id": "staff_emp_10700",
+    "org_id": "org_section_03_group_01_part_03_team_02",
+    "role": "매니저",
+    "raw_name": "박동민",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "3파트",
+      "team": "3파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_bcb9ab94ede742d3",
+    "staff_id": "staff_emp_10774",
+    "org_id": "org_section_02_group_01_part_04_team_01",
+    "role": "매니저",
+    "raw_name": "안지원",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "사업+개발 > 사업그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_bd254682f7301671",
+    "staff_id": "staff_emp_10623",
+    "org_id": "org_section_02_group_02_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "이영환",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "디지털사업그룹",
+      "part": "사업파트",
+      "team": "사업파트",
+      "org_path": "사업+개발 > 디지털사업그룹 > 사업파트 > 사업파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_bdec3cffe0172825",
+    "staff_id": "staff_emp_10334",
+    "org_id": "org_section_01_group_02_part_01_team_01",
+    "role": "그룹장",
+    "raw_name": "윤우섭",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자2그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자2그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_bf8c2f16ccc8e1d9",
+    "staff_id": "staff_name_63a3a163b6d51ec5",
+    "org_id": "org_section_01_group_03_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "강수원",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자3그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자3그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_c281fd8d4fcd623f",
+    "staff_id": "staff_emp_10527",
+    "org_id": "org_section_01_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "이정은",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자2그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자2그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_c2f02faed70c7a72",
+    "staff_id": "staff_name_54e14e3471b73a5a",
+    "org_id": "org_section_05_group_01_part_01_team_01",
+    "role": "담당디렉터",
+    "raw_name": "신동열(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "SS&C TF",
+      "part": "미지정",
+      "team": "SS&C TF",
+      "org_path": "TFs > SS&C TF > 미지정 > SS&C TF"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_c56bc7a169133405",
+    "staff_id": "staff_name_ff00260cf5f5602c",
+    "org_id": "org_section_05_group_02_part_01_team_01",
+    "role": "디렉터",
+    "raw_name": "이철승(겸) / EMC",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "IOTA CFT",
+      "part": "미지정",
+      "team": "IOTA CFT",
+      "org_path": "TFs > IOTA CFT > 미지정 > IOTA CFT"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_c58dd6e9677e14a4",
+    "staff_id": "staff_emp_10165",
+    "org_id": "org_section_01_group_05_part_04_team_01",
+    "role": "그룹장",
+    "raw_name": "오윤석",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "포트폴리오 / 관리",
+      "team": "포트폴리오 / 관리",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 포트폴리오 / 관리 > 포트폴리오 / 관리"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_c881861b80f2b518",
+    "staff_id": "staff_emp_10166",
+    "org_id": "org_section_02_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "최종인",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "사업+개발 > 사업그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_c89722b663e19212",
+    "staff_id": "staff_emp_10130",
+    "org_id": "org_section_01_group_04_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "오명균",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "글로벌투자그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 글로벌투자그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_c8b62d16d84ddb42",
+    "staff_id": "staff_emp_10223",
+    "org_id": "org_section_01_group_02_part_01_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "양준모",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자2그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자2그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_c935d2f354940324",
+    "staff_id": "staff_emp_10524",
+    "org_id": "org_section_04_group_04_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "이관용",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "부분직속",
+      "group": "기획추진센터",
+      "part": "미지정",
+      "team": "기획추진센터",
+      "org_path": "부분직속 > 기획추진센터 > 미지정 > 기획추진센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_c94da626cfb7867f",
+    "staff_id": "staff_emp_10240",
+    "org_id": "org_section_02_group_01_part_03_team_01",
+    "role": "시니어매니저",
+    "raw_name": "윤용택(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "사업+개발 > 사업그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_c9e81048ef0895bb",
+    "staff_id": "staff_emp_10105",
+    "org_id": "org_section_02_group_03_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "김대익",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "개발솔루션센터",
+      "part": "미지정",
+      "team": "개발솔루션센터",
+      "org_path": "사업+개발 > 개발솔루션센터 > 미지정 > 개발솔루션센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_cbe88c6f0ee99836",
+    "staff_id": "staff_emp_10654",
+    "org_id": "org_section_02_group_03_part_01_team_01",
+    "role": "담당디렉터",
+    "raw_name": "채원",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "개발솔루션센터",
+      "part": "미지정",
+      "team": "개발솔루션센터",
+      "org_path": "사업+개발 > 개발솔루션센터 > 미지정 > 개발솔루션센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_ccb0ef350a36f748",
+    "staff_id": "staff_emp_10140",
+    "org_id": "org_section_01_group_01_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "이강일",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_cde66c6584ccf40a",
+    "staff_id": "staff_name_564b008a095204b2",
+    "org_id": "org_section_01_group_04_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "이승훈",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "글로벌투자그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 글로벌투자그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_cde8838ac0a5167b",
+    "staff_id": "staff_emp_10475",
+    "org_id": "org_section_01_group_01_part_02_team_01",
+    "role": "시니어매니저",
+    "raw_name": "전형진B",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_cf425f600ed6c9d5",
+    "staff_id": "staff_emp_10492",
+    "org_id": "org_section_02_group_02_part_02_team_01",
+    "role": "시니어매니저",
+    "raw_name": "신민호",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "디지털사업그룹",
+      "part": "솔루션파트",
+      "team": "솔루션파트",
+      "org_path": "사업+개발 > 디지털사업그룹 > 솔루션파트 > 솔루션파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_d14b7ed4eac66b26",
+    "staff_id": "staff_emp_10285",
+    "org_id": "org_section_01_group_04_part_01_team_01",
+    "role": "그룹장",
+    "raw_name": "윤정규",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "글로벌투자그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 글로벌투자그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_d2441bca87e24a5b",
+    "staff_id": "staff_emp_10776",
+    "org_id": "org_section_01_group_05_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "최승봉",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_d2fe48f8f9c4b44e",
+    "staff_id": "staff_name_38c282be2be4895e",
+    "org_id": "org_section_03_group_01_part_02_team_03",
+    "role": "매니저",
+    "raw_name": "고석준",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트3",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트3"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_d30df54d162bb036",
+    "staff_id": "staff_name_d6cfdbc08b7ab4ce",
+    "org_id": "org_section_01_group_01_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "김용준",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_d5af0b86f3d82523",
+    "staff_id": "staff_emp_10616",
+    "org_id": "org_section_02_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "김제익",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "사업+개발 > 사업그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_d644c9737ca9369d",
+    "staff_id": "staff_emp_10641",
+    "org_id": "org_section_01_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "윤현식",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자2그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자2그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_d97775873c37b0b8",
+    "staff_id": "staff_name_81db08b43e497cf9",
+    "org_id": "org_section_01_group_01_part_04_team_01",
+    "role": "매니저",
+    "raw_name": "이주영",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_da2bf444e0e9952e",
+    "staff_id": "staff_emp_10271",
+    "org_id": "org_section_03_group_01_part_03_team_01",
+    "role": "그룹장",
+    "raw_name": "김행단",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "3파트",
+      "team": "3파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_da2dd1b6509e890d",
+    "staff_id": "staff_emp_10453",
+    "org_id": "org_section_03_group_01_part_02_team_03",
+    "role": "시니어매니저",
+    "raw_name": "이우석",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트3",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트3"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_dae619ac8879e30c",
+    "staff_id": "staff_emp_10662",
+    "org_id": "org_section_02_group_01_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "박채현",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "사업+개발 > 사업그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_dc1b489b11d330a1",
+    "staff_id": "staff_emp_10480",
+    "org_id": "org_section_01_group_01_part_04_team_01",
+    "role": "매니저",
+    "raw_name": "최정택",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_dce8c9e1b76bc118",
+    "staff_id": "staff_emp_10367",
+    "org_id": "org_section_01_group_01_part_03_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "안지하",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_dd2f4af47ec9c607",
+    "staff_id": "staff_emp_10145",
+    "org_id": "org_section_03_group_03_part_01_team_01",
+    "role": "그룹장",
+    "raw_name": "정조민",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "리빙그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "관리+운영 > 리빙그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_dded631b1449935e",
+    "staff_id": "staff_emp_10817",
+    "org_id": "org_section_02_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "박세진",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "사업+개발 > 사업그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_de3e7f42e8684d60",
+    "staff_id": "staff_emp_10165",
+    "org_id": "org_section_01_group_05_part_01_team_01",
+    "role": "그룹장",
+    "raw_name": "오윤석",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_df8396f648857909",
+    "staff_id": "staff_emp_10841",
+    "org_id": "org_section_02_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "손서형",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "사업+개발 > 사업그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_e153aa34d42b0ec2",
+    "staff_id": "staff_emp_10374",
+    "org_id": "org_section_03_group_01_part_01_team_03",
+    "role": "매니저",
+    "raw_name": "이정원",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "로지스틱스 / 매니지먼트",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 로지스틱스 / 매니지먼트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_e1b8d1597b5226a7",
+    "staff_id": "staff_emp_10520",
+    "org_id": "org_section_01_group_01_part_04_team_01",
+    "role": "매니저",
+    "raw_name": "유민종",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_e45be3ff1d32a01b",
+    "staff_id": "staff_name_e8344005532dfe80",
+    "org_id": "org_section_01_group_03_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "문성흠",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자3그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자3그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_e479a3764c7b5f56",
+    "staff_id": "staff_emp_10398",
+    "org_id": "org_section_01_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "강병옥",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_e4810abc6cee10cf",
+    "staff_id": "staff_emp_10271",
+    "org_id": "org_section_03_group_01_part_02_team_05",
+    "role": "그룹장",
+    "raw_name": "김행단",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "펀드지원",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 펀드지원"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_e4aa7e4fb558fd13",
+    "staff_id": "staff_emp_10525",
+    "org_id": "org_section_03_group_01_part_01_team_02",
+    "role": "매니저",
+    "raw_name": "이연정",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_e515f93682f062be",
+    "staff_id": "staff_emp_10381",
+    "org_id": "org_section_02_group_01_part_04_team_01",
+    "role": "매니저",
+    "raw_name": "이구",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "사업+개발 > 사업그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_e6416e4ad91e8374",
+    "staff_id": "staff_name_79ceeb0b0186f63f",
+    "org_id": "org_section_01_group_03_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "곽호용",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자3그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자3그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_e6b09e33cbbccdeb",
+    "staff_id": "staff_name_fc4f70c43a5f0f86",
+    "org_id": "org_section_05_group_02_part_01_team_01",
+    "role": "디렉터",
+    "raw_name": "권순일(겸) / PFV TF",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "IOTA CFT",
+      "part": "미지정",
+      "team": "IOTA CFT",
+      "org_path": "TFs > IOTA CFT > 미지정 > IOTA CFT"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_e837c510c3d89199",
+    "staff_id": "staff_emp_10271",
+    "org_id": "org_section_03_group_01_part_02_team_03",
+    "role": "파트장/센터장",
+    "raw_name": "김행단(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트3",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트3"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_e864d9610326aac3",
+    "staff_id": "staff_emp_10203",
+    "org_id": "org_section_02_group_03_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "장성진",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "개발솔루션센터",
+      "part": "미지정",
+      "team": "개발솔루션센터",
+      "org_path": "사업+개발 > 개발솔루션센터 > 미지정 > 개발솔루션센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_e951443f6f4ffae9",
+    "staff_id": "staff_emp_10804",
+    "org_id": "org_section_02_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "황정호",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "사업+개발 > 사업그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_e9978a1ae6060f6c",
+    "staff_id": "staff_emp_10214",
+    "org_id": "org_section_01_group_01_part_02_team_01",
+    "role": "시니어매니저",
+    "raw_name": "장민호",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_e9c2bd6aa62c4abd",
+    "staff_id": "staff_emp_10589",
+    "org_id": "org_section_02_group_01_part_04_team_01",
+    "role": "시니어매니저",
+    "raw_name": "김연수",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "사업+개발 > 사업그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_eb1548eb906aca38",
+    "staff_id": "staff_emp_10271",
+    "org_id": "org_section_03_group_01_part_01_team_01",
+    "role": "그룹장",
+    "raw_name": "김행단",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_ebe776607346913c",
+    "staff_id": "staff_emp_10579",
+    "org_id": "org_section_03_group_01_part_01_team_02",
+    "role": "매니저",
+    "raw_name": "이상렬",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_ee7a32c838122509",
+    "staff_id": "staff_name_7b19bddd6f3e5fa8",
+    "org_id": "org_section_01_group_01_part_04_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "윤관식(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 4파트 > 4파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_f0263ac335ae96ab",
+    "staff_id": "staff_emp_10244",
+    "org_id": "org_section_02_group_01_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "윤주형",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "사업+개발 > 사업그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_f0e28d9d3f6c4f56",
+    "staff_id": "staff_name_bdf3bf2a5e61822f",
+    "org_id": "org_section_01_group_03_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "김진희",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자3그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자3그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_f10d0312b2b38cde",
+    "staff_id": "staff_emp_10345",
+    "org_id": "org_section_01_group_01_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "공석현",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 투자1그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_f1561393a8422e5f",
+    "staff_id": "staff_emp_10425",
+    "org_id": "org_section_03_group_02_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "김형근",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "1파트",
+      "team": "운용1",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_f1b43758ea969ef4",
+    "staff_id": "staff_emp_10517",
+    "org_id": "org_section_05_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "양우영(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "SS&C TF",
+      "part": "미지정",
+      "team": "SS&C TF",
+      "org_path": "TFs > SS&C TF > 미지정 > SS&C TF"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_f2227ef06a9e1786",
+    "staff_id": "staff_name_a10f019bb9b73dbc",
+    "org_id": "org_section_02_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "김주희(휴직)",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "사업+개발 > 사업그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_f26687c5edb8cc8b",
+    "staff_id": "staff_name_b35754259c24c141",
+    "org_id": "org_section_05_group_02_part_01_team_01",
+    "role": "디렉터",
+    "raw_name": "홍장군(겸) / DSC",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "IOTA CFT",
+      "part": "미지정",
+      "team": "IOTA CFT",
+      "org_path": "TFs > IOTA CFT > 미지정 > IOTA CFT"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_f695b3051683592d",
+    "staff_id": "staff_emp_10191",
+    "org_id": "org_section_01_group_05_part_01_team_01",
+    "role": "시니어매니저",
+    "raw_name": "한창형",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_f72de675f457d081",
+    "staff_id": "staff_emp_10343",
+    "org_id": "org_section_01_group_04_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "김회창",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "글로벌투자그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 글로벌투자그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_f77744d47d18fc61",
+    "staff_id": "staff_emp_10268",
+    "org_id": "org_section_02_group_01_part_02_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "강순용",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "사업+개발 > 사업그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_f7c695b8fb57f5ba",
+    "staff_id": "staff_emp_10650",
+    "org_id": "org_section_04_group_03_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "정수명",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "부분직속",
+      "group": "공간솔루션센터",
+      "part": "미지정",
+      "team": "공간솔루션센터",
+      "org_path": "부분직속 > 공간솔루션센터 > 미지정 > 공간솔루션센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_f83d6559cd0dec14",
+    "staff_id": "staff_emp_10528",
+    "org_id": "org_section_03_group_02_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "이진희",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "1파트",
+      "team": "운용1",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_f8ce6c044490983b",
+    "staff_id": "staff_emp_10209",
+    "org_id": "org_section_03_group_01_part_02_team_04",
+    "role": "매니저",
+    "raw_name": "김회인",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트4",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트4"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_f8d616915d77e135",
+    "staff_id": "staff_emp_10165",
+    "org_id": "org_section_05_group_01_part_01_team_01",
+    "role": "그룹장",
+    "raw_name": "오윤석(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "TFs",
+      "group": "SS&C TF",
+      "part": "미지정",
+      "team": "SS&C TF",
+      "org_path": "TFs > SS&C TF > 미지정 > SS&C TF"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_fa0c0f8395fdea55",
+    "staff_id": "staff_emp_10519",
+    "org_id": "org_section_03_group_02_part_01_team_03",
+    "role": "매니저",
+    "raw_name": "오지원",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "1파트",
+      "team": "운용3",
+      "org_path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용3"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_fa8fb7cd18a3aebf",
+    "staff_id": "staff_name_d1ef56eaa7ef3018",
+    "org_id": "org_section_04_group_01_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "김지우",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "부분직속",
+      "group": "론파이낸스센터",
+      "part": "미지정",
+      "team": "론파이낸스센터",
+      "org_path": "부분직속 > 론파이낸스센터 > 미지정 > 론파이낸스센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_faa1170e0032e6fe",
+    "staff_id": "staff_emp_10238",
+    "org_id": "org_section_02_group_01_part_03_team_01",
+    "role": "그룹장",
+    "raw_name": "우형석",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "사업+개발 > 사업그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_fabace26c28a1899",
+    "staff_id": "staff_emp_10622",
+    "org_id": "org_section_02_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "임한솔",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "사업+개발 > 사업그룹 > 3파트 > 3파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_fc362a2c5c0120ab",
+    "staff_id": "staff_name_ff00260cf5f5602c",
+    "org_id": "org_section_04_group_02_part_01_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "이철승(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "부분직속",
+      "group": "기업마케팅센터",
+      "part": "미지정",
+      "team": "기업마케팅센터",
+      "org_path": "부분직속 > 기업마케팅센터 > 미지정 > 기업마케팅센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_fcacdfd90bc3975a",
+    "staff_id": "staff_emp_10752",
+    "org_id": "org_section_01_group_05_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "김대선",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 스페셜시츄에이션그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_fcd05679de5bb199",
+    "staff_id": "staff_emp_10145",
+    "org_id": "org_section_03_group_04_part_01_team_01",
+    "role": "그룹장",
+    "raw_name": "정조민",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "리테일솔루션센터",
+      "part": "미지정",
+      "team": "리테일솔루션센터",
+      "org_path": "관리+운영 > 리테일솔루션센터 > 미지정 > 리테일솔루션센터"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_fd3fff990cafeb64",
+    "staff_id": "staff_emp_10271",
+    "org_id": "org_section_03_group_01_part_02_team_01",
+    "role": "파트장/센터장",
+    "raw_name": "김행단(겸)",
+    "is_primary": false,
+    "is_dual_role": true,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [
+        "겸직"
+      ],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트1",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트1"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_fdbc2e072b3bb611",
+    "staff_id": "staff_emp_10280",
+    "org_id": "org_section_01_group_04_part_01_team_01",
+    "role": "매니저",
+    "raw_name": "김명준",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "글로벌투자그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "org_path": "투자+펀딩 > 글로벌투자그룹 > 1파트 > 1파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_febca164e2d8a0ad",
+    "staff_id": "staff_name_b2d920894891e10d",
+    "org_id": "org_section_01_group_04_part_02_team_01",
+    "role": "매니저",
+    "raw_name": "주현도",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "투자+펀딩",
+      "group": "글로벌투자그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "org_path": "투자+펀딩 > 글로벌투자그룹 > 2파트 > 2파트"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_fede8cc28e8d2455",
+    "staff_id": "staff_emp_10231",
+    "org_id": "org_section_03_group_01_part_01_team_02",
+    "role": "파트장/센터장",
+    "raw_name": "김지현",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트2",
+      "org_path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트2"
+    }
+  },
+  {
+    "assignment_id": "org_assignment_ffe5808fa0f2ca54",
+    "staff_id": "staff_emp_10677",
+    "org_id": "org_section_02_group_01_part_03_team_01",
+    "role": "매니저",
+    "raw_name": "최광석",
+    "is_primary": false,
+    "is_dual_role": false,
+    "source_system": "org_dashboard",
+    "metadata": {
+      "tags": [],
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "org_path": "사업+개발 > 사업그룹 > 3파트 > 3파트"
+    }
+  }
+]
