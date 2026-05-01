@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS public.projects (
     health TEXT,
     lead_org_text TEXT,
     lead_staff_id TEXT REFERENCES public.staff(staff_id),
+    parent_project_id TEXT REFERENCES public.projects(project_id), -- 계층 구조 지원
     start_date DATE,
     target_date DATE,
     next_check_date DATE,
@@ -25,6 +26,7 @@ CREATE TABLE IF NOT EXISTS public.projects (
 CREATE INDEX IF NOT EXISTS projects_name_idx ON public.projects(project_name);
 CREATE INDEX IF NOT EXISTS projects_notion_idx ON public.projects(notion_id);
 CREATE INDEX IF NOT EXISTS projects_status_idx ON public.projects(status);
+CREATE INDEX IF NOT EXISTS projects_parent_idx ON public.projects(parent_project_id);
 
 CREATE TABLE IF NOT EXISTS public.project_staff_links (
     link_id TEXT PRIMARY KEY,
@@ -61,7 +63,7 @@ CREATE TABLE IF NOT EXISTS public.t5t_logs (
     matching_basis TEXT,
     needs_manual_review BOOLEAN NOT NULL DEFAULT FALSE,
     classification_summary TEXT,
-    classification_tokens TEXT,
+    classification_tokens JSONB NOT NULL DEFAULT '[]'::jsonb, -- JSONB로 변경하여 GIN 인덱스 지원
     input_status TEXT NOT NULL DEFAULT 'synced',
     source_system TEXT NOT NULL,
     metadata JSONB NOT NULL DEFAULT '{}'::jsonb,
@@ -72,6 +74,7 @@ CREATE TABLE IF NOT EXISTS public.t5t_logs (
 CREATE INDEX IF NOT EXISTS t5t_logs_writer_idx ON public.t5t_logs(writer_staff_id);
 CREATE INDEX IF NOT EXISTS t5t_logs_work_date_idx ON public.t5t_logs(work_date);
 CREATE INDEX IF NOT EXISTS t5t_logs_week_idx ON public.t5t_logs(week_key);
+CREATE INDEX IF NOT EXISTS t5t_logs_tokens_gin_idx ON public.t5t_logs USING GIN (classification_tokens);
 
 CREATE TABLE IF NOT EXISTS public.t5t_log_project_links (
     link_id TEXT PRIMARY KEY,
@@ -89,6 +92,20 @@ CREATE INDEX IF NOT EXISTS t5t_log_project_links_log_idx
     ON public.t5t_log_project_links(t5t_log_id);
 CREATE INDEX IF NOT EXISTS t5t_log_project_links_project_idx
     ON public.t5t_log_project_links(project_id);
+
+-- 이해관계자 분석 테이블
+CREATE TABLE IF NOT EXISTS public.t5t_log_stakeholders (
+    stakeholder_id TEXT PRIMARY KEY,
+    t5t_log_id TEXT NOT NULL REFERENCES public.t5t_logs(t5t_log_id) ON DELETE CASCADE,
+    stakeholder_name TEXT NOT NULL,
+    company_name TEXT,
+    role_category TEXT, -- 예: '대주', '운용사', '법무법인' 등
+    metadata JSONB NOT NULL DEFAULT '{}'::jsonb,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS t5t_log_stakeholders_log_idx ON public.t5t_log_stakeholders(t5t_log_id);
+CREATE INDEX IF NOT EXISTS t5t_log_stakeholders_name_idx ON public.t5t_log_stakeholders(stakeholder_name);
 
 CREATE TABLE IF NOT EXISTS public.t5t_input_drafts (
     draft_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
