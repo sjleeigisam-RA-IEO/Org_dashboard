@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IOTA Seoul Workspace Input</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./config.js"></script>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
     <style>
         :root {
@@ -136,18 +137,11 @@
 
         async function initSupabase() {
             try {
-                const response = await fetch("../.env");
-                const text = await response.text();
-                const env = {};
-                text.split("\n").forEach(line => {
-                    const [key, ...valueParts] = line.split("=");
-                    if (key && valueParts.length > 0) env[key.trim()] = valueParts.join("=").trim().replace(/^"|"$/g, "");
-                });
-
-                if (!env.SUPABASE_URL || !env.SUPABASE_KEY) throw new Error("Missing .env credentials");
-                supabaseClient = supabase.createClient(env.SUPABASE_URL, env.SUPABASE_KEY);
+                const config = window.IOTA_SUPABASE_CONFIG || {};
+                if (!config.url || !config.key) throw new Error("Missing pilot config");
+                supabaseClient = supabase.createClient(config.url, config.key);
             } catch (err) {
-                setStatus(".env 설정을 읽지 못했습니다. 로컬에서는 상위 폴더의 .env 파일을 확인해 주세요.", "error");
+                setStatus("Supabase 공개 설정을 읽지 못했습니다. pilot_form/config.js 파일을 확인해 주세요.", "error");
                 console.error(err);
             }
         }
