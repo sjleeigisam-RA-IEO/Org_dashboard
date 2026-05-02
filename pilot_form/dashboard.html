@@ -218,11 +218,7 @@
             "P00037": "와이디816",
             "112614": "421호펀드"
         };
-        const PILOT_RISK_MATCHERS = {
-            "P00030": ["P00030", "iota427", "iota 427", "이오타서울 427", "이오타 427", "와이디427", "2a98ced43c47815e92a5e30bb315f1d9"],
-            "P00037": ["P00037", "iota816", "iota 816", "이오타서울 816", "이오타 816", "와이디816", "2a98ced43c47815eaa23fb2e8d834592"],
-            "112614": ["112614", "421호펀드", "421 fund", "421 Fund"]
-        };
+        const PILOT_RISK_FUND_IDS = Object.keys(PROJECTS);
 
         const TRIAGE = {
             share: { label: "공유", chip: "chip-share" },
@@ -273,13 +269,12 @@
                 const riskResult = await supabaseClient
                     .from("risk_management_points")
                     .select("*")
+                    .in("fund_id", PILOT_RISK_FUND_IDS)
                     .order("base_date", { ascending: false });
                 if (riskResult.error) {
                     console.warn("risk_management_points unavailable:", riskResult.error.message);
                 } else {
-                    risks = (riskResult.data || [])
-                        .map(enrichRiskItem)
-                        .filter(item => item.pilotProjectId);
+                    risks = riskResult.data || [];
                 }
                 const enriched = (logs || []).map(enrichLog);
                 renderDashboard(enriched, masterData || [], risks);
@@ -333,29 +328,6 @@
 
         function includesAny(text, keywords) {
             return keywords.some(keyword => text.includes(keyword));
-        }
-
-        function enrichRiskItem(item) {
-            const haystack = [
-                item.fund_id,
-                item.project_name,
-                item.raw_text,
-                item.risk_summary,
-                item.details?.notion_title,
-                item.details?.notion_url,
-                item.details?.category
-            ].filter(Boolean).join(" ").toLowerCase();
-
-            const pilotProjectId = Object.entries(PILOT_RISK_MATCHERS).find(([projectId, tokens]) => {
-                if (item.fund_id === projectId) return true;
-                return tokens.some(token => haystack.includes(token.toLowerCase()));
-            })?.[0] || "";
-
-            return {
-                ...item,
-                pilotProjectId,
-                pilotProjectLabel: pilotProjectId ? PROJECTS[pilotProjectId] : ""
-            };
         }
 
         function renderDashboard(logs, masterData, risks) {
@@ -531,7 +503,7 @@
                 <article class="risk-row">
                     <div class="risk-row-head">
                         <div>
-                            <div class="risk-name">${escapeHtml(item.pilotProjectLabel || item.project_name || item.fund_id || "미지정 프로젝트")}</div>
+                            <div class="risk-name">${escapeHtml(PROJECTS[item.fund_id] || item.project_name || item.fund_id || "미지정 프로젝트")}</div>
                             <div class="risk-meta">${escapeHtml(item.base_date || "")} · ${escapeHtml(item.project_name || "")} · fund_id ${escapeHtml(item.fund_id || "미매칭")} · 만기연장 ${escapeHtml(item.extension_count ?? 0)}회</div>
                         </div>
                         <div class="risk-index">${riskIndex.toFixed(1)}</div>
