@@ -27,8 +27,9 @@
         header { display: flex; justify-content: space-between; gap: 18px; align-items: flex-start; margin-bottom: 30px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.08); }
         h1 { font-size: 24px; font-weight: 760; letter-spacing: 0; margin-bottom: 8px; }
         .subtitle { color: var(--muted); font-size: 14px; line-height: 1.5; }
-        .nav-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
-        .mode-link { color: var(--accent); border: 1px solid rgba(195,194,183,0.45); border-radius: 8px; padding: 8px 11px; text-decoration: none; font-size: 13px; font-weight: 700; white-space: nowrap; }
+        .nav-actions { display: flex; gap: 7px; align-items: center; flex-wrap: wrap; justify-content: flex-end; padding: 7px; border: 1px dashed rgba(251,241,103,0.38); border-radius: 8px; background: rgba(251,241,103,0.045); }
+        .nav-actions::before { content: "TEMP"; color: #fbf167; font-size: 10px; font-weight: 800; letter-spacing: 0.08em; opacity: 0.78; }
+        .mode-link { color: #fbf167; border: 1px dashed rgba(251,241,103,0.55); border-radius: 6px; padding: 7px 9px; text-decoration: none; font-size: 12px; font-weight: 760; white-space: nowrap; background: rgba(0,0,0,0.18); }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .form-group { margin-bottom: 18px; }
         label { display: block; color: var(--muted); font-size: 13px; font-weight: 650; margin-bottom: 8px; }
