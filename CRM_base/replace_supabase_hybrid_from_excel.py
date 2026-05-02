@@ -3,8 +3,8 @@ import os
 from pathlib import Path
 
 import pandas as pd
-from dotenv import load_dotenv
 from supabase import create_client
+from env_utils import get_required_supabase_config
 
 from replace_supabase_from_excel import (
     build_fund_assets,
@@ -345,11 +345,7 @@ def build_funds(base, classifier, aum, asset_lookup):
 
 
 def get_client():
-    load_dotenv(BASE_DIR / ".env")
-    url = os.getenv("SUPABASE_URL")
-    key = os.getenv("SUPABASE_KEY")
-    if not url or not key:
-        raise ValueError("SUPABASE_URL/SUPABASE_KEY missing in .env")
+    url, key = get_required_supabase_config()
     return create_client(url, key)
 
 

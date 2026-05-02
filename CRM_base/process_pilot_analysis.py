@@ -3,11 +3,10 @@ import re
 import json
 from pathlib import Path
 from datetime import datetime
-from dotenv import dotenv_values
 from supabase import create_client
+from env_utils import get_required_supabase_config
 
 BASE_DIR = Path(__file__).resolve().parent
-ENV_PATH = BASE_DIR / ".env"
 
 # NLP Patterns from backfill_classification_tokens.py
 LOW_SIGNAL_PATTERNS = [
@@ -20,8 +19,8 @@ STOPWORDS = {"관련", "진행", "검토", "협의", "대응", "보고", "준비
 STAKEHOLDER_SUFFIXES = ["건설", "건축", "공사", "은행", "증권", "자산운용", "신탁", "법무법인", "회계법인", "본부", "파트너스"]
 
 def get_client():
-    cfg = dotenv_values(ENV_PATH)
-    return create_client(cfg["SUPABASE_URL"], cfg["SUPABASE_KEY"])
+    url, key = get_required_supabase_config()
+    return create_client(url, key)
 
 def clean_token(token):
     token = token.strip().lstrip("#").strip()

@@ -1,15 +1,16 @@
 import pandas as pd
 import os
 from datetime import datetime, timedelta
-from dotenv import dotenv_values
+from pathlib import Path
 from supabase import create_client
+from env_utils import get_required_supabase_config
 
 # 설정 및 초기화
-env_path = '.env' if os.path.exists('.env') else '../.env'
-cfg = dotenv_values(env_path)
-supabase = create_client(cfg['SUPABASE_URL'], cfg['SUPABASE_KEY'])
+url, key = get_required_supabase_config()
+supabase = create_client(url, key)
 
-CSV_PATH = '../t5t-dashboard/IGIS RA T-5-T Forms_Submissions_2026-05-01.csv'
+ROOT_DIR = Path(__file__).resolve().parent.parent
+CSV_PATH = ROOT_DIR / 't5t-dashboard' / 'IGIS RA T-5-T Forms_Submissions_2026-05-01.csv'
 
 # 부동산/금융/운용 전문 키워드 풀
 TASK_KEYWORDS = [

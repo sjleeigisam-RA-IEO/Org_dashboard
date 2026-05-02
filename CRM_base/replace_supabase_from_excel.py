@@ -6,8 +6,8 @@ import re
 from pathlib import Path
 
 import pandas as pd
-from dotenv import load_dotenv
 from supabase import create_client
+from env_utils import get_required_supabase_config
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -526,11 +526,7 @@ def dataframe_to_records(df):
 
 
 def get_client():
-    load_dotenv(BASE_DIR / ".env")
-    url = os.getenv("SUPABASE_URL")
-    key = os.getenv("SUPABASE_KEY")
-    if not url or not key:
-        raise ValueError("SUPABASE_URL/SUPABASE_KEY missing in .env")
+    url, key = get_required_supabase_config()
     return create_client(url, key)
 
 

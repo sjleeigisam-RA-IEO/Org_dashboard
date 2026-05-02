@@ -2,12 +2,11 @@ import csv
 import io
 from pathlib import Path
 from datetime import datetime
-from dotenv import dotenv_values
 from supabase import create_client
+from env_utils import get_required_supabase_config
 
 BASE_DIR = Path(__file__).resolve().parent
 ROOT_DIR = BASE_DIR.parent
-ENV_PATH = BASE_DIR / ".env"
 CSV_PATH = ROOT_DIR / "t5t-dashboard" / "IGIS RA T-5-T Forms_Submissions_2026-05-01.csv"
 
 PILOT_MAPPING = {
@@ -17,8 +16,8 @@ PILOT_MAPPING = {
 }
 
 def get_client():
-    cfg = dotenv_values(ENV_PATH)
-    return create_client(cfg["SUPABASE_URL"], cfg["SUPABASE_KEY"])
+    url, key = get_required_supabase_config()
+    return create_client(url, key)
 
 def backfill():
     client = get_client()

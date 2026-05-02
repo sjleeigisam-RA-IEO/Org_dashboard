@@ -4,17 +4,16 @@ import urllib.error
 import os
 import re
 from datetime import datetime, timedelta
-from dotenv import dotenv_values
 from supabase import create_client
+from env_utils import get_required_supabase_config
 
 # 1. 설정 로드
 CONFIG_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "notion_config.json")
 with open(CONFIG_PATH, "r", encoding="utf-8") as f:
     config = json.load(f)
 
-env_path = '.env' if os.path.exists('.env') else '../.env'
-cfg = dotenv_values(env_path)
-supabase = create_client(cfg['SUPABASE_URL'], cfg['SUPABASE_KEY'])
+url, key = get_required_supabase_config()
+supabase = create_client(url, key)
 
 NOTION_HEADERS = {
     "Authorization": f"Bearer {config['NOTION_API_KEY']}",

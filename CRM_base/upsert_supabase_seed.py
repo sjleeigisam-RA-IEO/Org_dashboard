@@ -1,10 +1,9 @@
 import argparse
 import json
-import os
 from pathlib import Path
 
-from dotenv import load_dotenv
 from supabase import create_client
+from env_utils import get_required_supabase_config
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -55,11 +54,7 @@ def chunked(rows, size):
 
 
 def get_client():
-    load_dotenv(BASE_DIR / ".env")
-    url = os.getenv("SUPABASE_URL")
-    key = os.getenv("SUPABASE_KEY") or os.getenv("SUPABASE_SERVICE_ROLE_KEY")
-    if not url or not key:
-        raise RuntimeError("SUPABASE_URL and SUPABASE_KEY must be set in CRM_base/.env")
+    url, key = get_required_supabase_config()
     return create_client(url, key)
 
 

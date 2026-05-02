@@ -6,8 +6,8 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-from dotenv import dotenv_values
 from supabase import create_client
+from env_utils import get_required_supabase_config
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -51,8 +51,8 @@ def make_id(prefix, *parts):
 
 
 def get_client():
-    cfg = dotenv_values(BASE_DIR / ".env")
-    return create_client(cfg["SUPABASE_URL"], cfg["SUPABASE_KEY"])
+    url, key = get_required_supabase_config()
+    return create_client(url, key)
 
 
 def fetch_staff_lookup():

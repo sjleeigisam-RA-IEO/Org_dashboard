@@ -27,10 +27,40 @@
 # inside the allowed directories
 # ----------------------------------------------------
 t5t-dashboard/notion_config.json
+t5t-dashboard/tally api key.txt
 notion_config.json
 __pycache__/
 venv/
 .env
+
+# One-off diagnostics, generated logs, and local-only scratch outputs
+scratch/
+CRM_base/scratch/
+CRM_base/_archive/
+automation_runtime/logs/
+automation_runtime/state/
+t5t-dashboard/*.log
+t5t-dashboard/scratch_*.txt
+t5t-dashboard/test_*.json
+
+# Legacy standalone scripts outside the integrated dashboard scope
+notion_agent.py
+notion_pages.txt
+query_notion_dbs.py
+query_t5t_sample.py
+query_t5t_stats.py
+
+# Legacy pre-integration CRM workspace kept locally only
+crm dashboard/
+
+# Generated local diagnostics
+CRM_base/*_output.txt
+CRM_base/org_report.txt
+CRM_base/row_output.txt
+CRM_base/sync_output.txt
+CRM_base/inspect_results.json
+CRM_base/db_unique_depts.txt
+CRM_base/ra_org_list.txt
 
 # Documents
 *.pdf
@@ -41,9 +71,12 @@ venv/
 *.hwp
 *.hwpx
 *.zip
+pilot_form/datapackage/*.xlsx
+pilot_form/datapackage/*.zip
 *.md
 !README.md
 !handoff_dashboard_status.md
+!INTEGRATED_DASHBOARD_ARCHITECTURE_AUDIT_2026-05-02.md
 !*.sql
 !*.bat
 !*.txt
@@ -52,3 +85,37 @@ venv/
 # OS
 .DS_Store
 Thumbs.db
+
+# Final local-only cleanup overrides
+scratch/
+CRM_base/scratch/
+CRM_base/_archive/
+automation_runtime/logs/
+automation_runtime/state/
+crm dashboard/
+t5t-dashboard/tally api key.txt
+t5t-dashboard/*.log
+t5t-dashboard/scratch_*.txt
+t5t-dashboard/test_*.json
+t5t-dashboard/debug_ids.py
+notion_agent.py
+notion_pages.txt
+query_notion_dbs.py
+query_t5t_sample.py
+query_t5t_stats.py
+CRM_base/*_output.txt
+CRM_base/org_report.txt
+CRM_base/row_output.txt
+CRM_base/sync_output.txt
+CRM_base/inspect_results.json
+CRM_base/db_unique_depts.txt
+CRM_base/ra_org_list.txt
+CRM_base/MODEL_WORK_ASSIGNMENT.md
+CRM_base/NEXT_WORK_PLAN.md
+CRM_base/task.md
+CRM_base/task_t5t.md
+CRM_base/walkthrough.md
+handoff_dashboard_status.md
+org_dashboard/HANDOFF_2026-04-08.md
+org_dashboard/*test*
+org_dashboard/scripts/*test*.py

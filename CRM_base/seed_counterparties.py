@@ -1,11 +1,9 @@
 import pandas as pd
-import os
-from dotenv import dotenv_values
 from supabase import create_client
+from env_utils import get_required_supabase_config
 
-env_path = '.env' if os.path.exists('.env') else '../.env'
-cfg = dotenv_values(env_path)
-supabase = create_client(cfg['SUPABASE_URL'], cfg['SUPABASE_KEY'])
+url, key = get_required_supabase_config()
+supabase = create_client(url, key)
 
 def seed_counterparties():
     print("--- Seeding Counterparties Master ---")
