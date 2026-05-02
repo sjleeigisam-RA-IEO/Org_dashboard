@@ -27,7 +27,10 @@
 # inside the allowed directories
 # ----------------------------------------------------
 t5t-dashboard/notion_config.json
+t5t-dashboard/tally api key.txt
 notion_config.json
+CRM_base/scratch/
+scratch/
 __pycache__/
 venv/
 .env
@@ -48,6 +51,11 @@ venv/
 !*.bat
 !*.txt
 !*.csv
+
+# Local/sensitive work files that must stay out even though txt/json are allowed above
+t5t-dashboard/tally api key.txt
+CRM_base/scratch/
+scratch/
 
 # OS
 .DS_Store

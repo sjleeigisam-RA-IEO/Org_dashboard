@@ -35,8 +35,10 @@
         .nav-link { color: #fbf167; border: 1px dashed rgba(251,241,103,0.55); border-radius: 6px; padding: 7px 9px; text-decoration: none; font-size: 12px; font-weight: 760; white-space: nowrap; background: rgba(0,0,0,0.18); }
         .refresh-btn { background: var(--text); color: var(--bg); border: 0; padding: 10px 18px; border-radius: 8px; font-size: 14px; font-weight: 760; cursor: pointer; white-space: nowrap; }
 
-        .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 22px; }
+        .summary-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 22px; }
         .summary-card { background: var(--card); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 18px; min-height: 104px; }
+        .summary-card-clickable { cursor: pointer; border-color: rgba(255,69,58,0.22); transition: border-color 0.16s ease, background 0.16s ease, transform 0.16s ease; }
+        .summary-card-clickable:hover { border-color: rgba(255,69,58,0.72); background: rgba(255,69,58,0.07); transform: translateY(-1px); }
         .summary-label { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
         .summary-value { font-size: 32px; font-weight: 780; font-variant-numeric: tabular-nums; }
         .summary-note { color: var(--soft); font-size: 11px; margin-top: 6px; }
@@ -84,6 +86,13 @@
         .modal-close { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 6px 9px; cursor: pointer; font-size: 12px; }
         .modal-body { padding: 20px; overflow: auto; }
         .modal-raw { white-space: pre-wrap; color: var(--text); font-size: 14px; line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere; }
+        .risk-list { display: flex; flex-direction: column; gap: 14px; }
+        .risk-row { border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; padding: 14px; background: rgba(0,0,0,0.18); }
+        .risk-row-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 10px; }
+        .risk-name { color: var(--accent); font-size: 15px; font-weight: 780; }
+        .risk-index { color: var(--risk); font-size: 18px; font-weight: 820; font-variant-numeric: tabular-nums; }
+        .risk-meta { color: var(--muted); font-size: 11px; margin-top: 4px; }
+        .risk-summary { color: var(--text); white-space: pre-wrap; font-size: 13px; line-height: 1.62; word-break: keep-all; overflow-wrap: anywhere; }
 
         @media (max-width: 1180px) {
             .hub-grid, .triage-grid, .workspace-grid { grid-template-columns: 1fr 1fr; }
@@ -125,6 +134,20 @@
                 </div>
             </section>
         </div>
+        <div class="modal-backdrop" id="risk-modal" onclick="closeRiskModal(event)">
+            <section class="modal" role="dialog" aria-modal="true" aria-labelledby="risk-modal-title">
+                <div class="modal-head">
+                    <div>
+                        <div class="modal-title" id="risk-modal-title">RM 리스크 원문</div>
+                        <div class="modal-meta" id="risk-modal-meta">risk_management_points 기준</div>
+                    </div>
+                    <button class="modal-close" type="button" onclick="closeRiskModal()">닫기</button>
+                </div>
+                <div class="modal-body">
+                    <div class="risk-list" id="risk-modal-list"></div>
+                </div>
+            </section>
+        </div>
 
         <section class="summary-grid">
             <div class="summary-card">
@@ -146,6 +169,11 @@
                 <div class="summary-label">의사결정 필요</div>
                 <div class="summary-value" id="count-decision">0</div>
                 <div class="summary-note">승인·결정·보고 포함</div>
+            </div>
+            <div class="summary-card summary-card-clickable" onclick="openRiskModal()">
+                <div class="summary-label">RM 리스크</div>
+                <div class="summary-value" id="count-rm-index">0.0</div>
+                <div class="summary-note">최대 위험지수 · 클릭 시 원문</div>
             </div>
         </section>
 
@@ -183,6 +211,7 @@
     <script>
         let supabaseClient;
         let logDetailById = {};
+        let riskData = [];
 
         const PROJECTS = {
             "P00030": "와이디427",
@@ -235,8 +264,18 @@
                     .order("updated_at", { ascending: false });
 
                 if (logError || masterError) throw (logError || masterError);
+                let risks = [];
+                const riskResult = await supabaseClient
+                    .from("risk_management_points")
+                    .select("*")
+                    .order("base_date", { ascending: false });
+                if (riskResult.error) {
+                    console.warn("risk_management_points unavailable:", riskResult.error.message);
+                } else {
+                    risks = riskResult.data || [];
+                }
                 const enriched = (logs || []).map(enrichLog);
-                renderDashboard(enriched, masterData || []);
+                renderDashboard(enriched, masterData || [], risks);
             } catch (err) {
                 showError("파일럿 DB 조회에 실패했습니다: " + err.message);
                 console.error(err);
@@ -289,16 +328,19 @@
             return keywords.some(keyword => text.includes(keyword));
         }
 
-        function renderDashboard(logs, masterData) {
+        function renderDashboard(logs, masterData, risks) {
             logDetailById = Object.fromEntries(logs.map(log => [log.log_id, log]));
+            riskData = risks || [];
             const risk = logs.filter(log => log.triage === "risk");
             const decision = logs.filter(log => log.triage === "decision");
             const collab = logs.filter(log => log.triage === "collab");
+            const maxRiskIndex = riskData.reduce((max, item) => Math.max(max, Number(item.risk_index) || 0), 0);
 
             setText("count-total", logs.length);
             setText("count-collab", collab.length);
             setText("count-risk", risk.length);
             setText("count-decision", decision.length);
+            setText("count-rm-index", maxRiskIndex.toFixed(1));
             setText("hub-total", `${logs.length}건`);
 
             renderTriage(logs);
@@ -441,8 +483,44 @@
             document.getElementById("log-modal").style.display = "none";
         }
 
+        function openRiskModal() {
+            const list = document.getElementById("risk-modal-list");
+            const sorted = [...riskData]
+                .sort((a, b) => (Number(b.risk_index) || 0) - (Number(a.risk_index) || 0))
+                .slice(0, 20);
+            document.getElementById("risk-modal-meta").textContent = `${riskData.length}건 · 위험지수 상위 20건 표시`;
+            list.innerHTML = sorted.length
+                ? sorted.map(renderRiskItem).join("")
+                : `<div class="empty">등록된 RM 리스크 데이터가 없습니다.</div>`;
+            document.getElementById("risk-modal").style.display = "flex";
+        }
+
+        function renderRiskItem(item) {
+            const riskIndex = Number(item.risk_index) || 0;
+            return `
+                <article class="risk-row">
+                    <div class="risk-row-head">
+                        <div>
+                            <div class="risk-name">${escapeHtml(item.project_name || item.fund_id || "미지정 프로젝트")}</div>
+                            <div class="risk-meta">${escapeHtml(item.base_date || "")} · fund_id ${escapeHtml(item.fund_id || "미매칭")} · 만기연장 ${escapeHtml(item.extension_count ?? 0)}회</div>
+                        </div>
+                        <div class="risk-index">${riskIndex.toFixed(1)}</div>
+                    </div>
+                    <div class="risk-summary">${escapeHtml(item.risk_summary || item.raw_text || "원문 없음")}</div>
+                </article>
+            `;
+        }
+
+        function closeRiskModal(event) {
+            if (event && event.target.id !== "risk-modal") return;
+            document.getElementById("risk-modal").style.display = "none";
+        }
+
         document.addEventListener("keydown", event => {
-            if (event.key === "Escape") closeLogModal();
+            if (event.key === "Escape") {
+                closeLogModal();
+                closeRiskModal();
+            }
         });
 
         function setText(id, value) {
