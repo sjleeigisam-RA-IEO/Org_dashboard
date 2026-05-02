@@ -55,6 +55,8 @@
         .triage-col { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
         .triage-title { display: flex; justify-content: space-between; align-items: center; color: var(--soft); font-size: 12px; font-weight: 760; padding: 0 2px; }
         .item { background: rgba(0,0,0,0.22); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 11px; min-width: 0; }
+        .item-clickable { cursor: pointer; transition: border-color 0.16s ease, background 0.16s ease; }
+        .item-clickable:hover { border-color: rgba(251,241,103,0.38); background: rgba(251,241,103,0.055); }
         .item-meta { display: flex; justify-content: space-between; gap: 8px; color: var(--muted); font-size: 11px; margin-bottom: 6px; }
         .project { color: var(--accent); font-weight: 760; }
         .item-text { color: var(--text); font-size: 13px; line-height: 1.48; word-break: keep-all; overflow-wrap: anywhere; }
@@ -74,6 +76,14 @@
         .list { display: flex; flex-direction: column; gap: 9px; }
         .empty { color: var(--muted); font-size: 13px; text-align: center; padding: 22px 8px; background: rgba(0,0,0,0.16); border-radius: 8px; }
         .error { color: var(--risk); font-size: 13px; padding: 12px; background: rgba(255,69,58,0.08); border-radius: 8px; margin-bottom: 14px; display: none; }
+        .modal-backdrop { position: fixed; inset: 0; z-index: 50; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(0,0,0,0.68); backdrop-filter: blur(10px); }
+        .modal { width: min(760px, 100%); max-height: min(760px, 88vh); overflow: hidden; display: flex; flex-direction: column; background: #232323; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; box-shadow: 0 24px 80px rgba(0,0,0,0.55); }
+        .modal-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .modal-title { color: var(--accent); font-size: 16px; font-weight: 780; }
+        .modal-meta { color: var(--muted); font-size: 12px; margin-top: 6px; line-height: 1.5; }
+        .modal-close { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 6px 9px; cursor: pointer; font-size: 12px; }
+        .modal-body { padding: 20px; overflow: auto; }
+        .modal-raw { white-space: pre-wrap; color: var(--text); font-size: 14px; line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere; }
 
         @media (max-width: 1180px) {
             .hub-grid, .triage-grid, .workspace-grid { grid-template-columns: 1fr 1fr; }
@@ -101,6 +111,20 @@
         </header>
 
         <div class="error" id="error-box"></div>
+        <div class="modal-backdrop" id="log-modal" onclick="closeLogModal(event)">
+            <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+                <div class="modal-head">
+                    <div>
+                        <div class="modal-title" id="modal-title">원문 업무 내용</div>
+                        <div class="modal-meta" id="modal-meta"></div>
+                    </div>
+                    <button class="modal-close" type="button" onclick="closeLogModal()">닫기</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-raw" id="modal-raw"></div>
+                </div>
+            </section>
+        </div>
 
         <section class="summary-grid">
             <div class="summary-card">
@@ -158,6 +182,7 @@
 
     <script>
         let supabaseClient;
+        let logDetailById = {};
 
         const PROJECTS = {
             "P00030": "와이디427",
@@ -265,6 +290,7 @@
         }
 
         function renderDashboard(logs, masterData) {
+            logDetailById = Object.fromEntries(logs.map(log => [log.log_id, log]));
             const risk = logs.filter(log => log.triage === "risk");
             const decision = logs.filter(log => log.triage === "decision");
             const collab = logs.filter(log => log.triage === "collab");
@@ -356,7 +382,7 @@
         function renderLogItem(log) {
             const triage = TRIAGE[log.triage] || TRIAGE.share;
             return `
-                <article class="item">
+                <article class="item item-clickable" onclick="openLogModal('${escapeAttribute(log.log_id)}')" title="원문 보기">
                     <div class="item-meta">
                         <span class="project">${escapeHtml(log.projectLabel)}</span>
                         <span>${escapeHtml(log.work_date || "")}</span>
@@ -390,6 +416,34 @@
                 "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#039;"
             }[ch]));
         }
+
+        function escapeAttribute(value) {
+            return String(value || "").replace(/['\\]/g, "\\$&");
+        }
+
+        function openLogModal(logId) {
+            const log = logDetailById[logId];
+            if (!log) return;
+            const triage = TRIAGE[log.triage] || TRIAGE.share;
+            document.getElementById("modal-title").textContent = log.projectLabel || "원문 업무 내용";
+            document.getElementById("modal-meta").textContent = [
+                log.work_date || "",
+                log.writer_name || "작성자 미상",
+                triage.label,
+                log.workspace || ""
+            ].filter(Boolean).join(" · ");
+            document.getElementById("modal-raw").textContent = log.raw_text || log.summary || "";
+            document.getElementById("log-modal").style.display = "flex";
+        }
+
+        function closeLogModal(event) {
+            if (event && event.target.id !== "log-modal") return;
+            document.getElementById("log-modal").style.display = "none";
+        }
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") closeLogModal();
+        });
 
         function setText(id, value) {
             document.getElementById(id).textContent = value;
