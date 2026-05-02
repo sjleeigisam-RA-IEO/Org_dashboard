@@ -218,6 +218,11 @@
             "P00037": "와이디816",
             "112614": "421호펀드"
         };
+        const PILOT_RISK_MATCHERS = {
+            "P00030": ["P00030", "iota427", "iota 427", "이오타서울 427", "이오타 427", "와이디427", "427"],
+            "P00037": ["P00037", "iota816", "iota 816", "이오타서울 816", "이오타 816", "와이디816", "816"],
+            "112614": ["112614", "421호", "421 fund", "421호펀드", "421"]
+        };
 
         const TRIAGE = {
             share: { label: "공유", chip: "chip-share" },
@@ -272,7 +277,9 @@
                 if (riskResult.error) {
                     console.warn("risk_management_points unavailable:", riskResult.error.message);
                 } else {
-                    risks = riskResult.data || [];
+                    risks = (riskResult.data || [])
+                        .map(enrichRiskItem)
+                        .filter(item => item.pilotProjectId);
                 }
                 const enriched = (logs || []).map(enrichLog);
                 renderDashboard(enriched, masterData || [], risks);
@@ -326,6 +333,29 @@
 
         function includesAny(text, keywords) {
             return keywords.some(keyword => text.includes(keyword));
+        }
+
+        function enrichRiskItem(item) {
+            const haystack = [
+                item.fund_id,
+                item.project_name,
+                item.raw_text,
+                item.risk_summary,
+                item.details?.notion_title,
+                item.details?.notion_url,
+                item.details?.category
+            ].filter(Boolean).join(" ").toLowerCase();
+
+            const pilotProjectId = Object.entries(PILOT_RISK_MATCHERS).find(([projectId, tokens]) => {
+                if (item.fund_id === projectId) return true;
+                return tokens.some(token => haystack.includes(token.toLowerCase()));
+            })?.[0] || "";
+
+            return {
+                ...item,
+                pilotProjectId,
+                pilotProjectLabel: pilotProjectId ? PROJECTS[pilotProjectId] : ""
+            };
         }
 
         function renderDashboard(logs, masterData, risks) {
@@ -488,7 +518,7 @@
             const sorted = [...riskData]
                 .sort((a, b) => (Number(b.risk_index) || 0) - (Number(a.risk_index) || 0))
                 .slice(0, 20);
-            document.getElementById("risk-modal-meta").textContent = `${riskData.length}건 · 위험지수 상위 20건 표시`;
+            document.getElementById("risk-modal-meta").textContent = `파일럿 3개 프로젝트 기준 ${riskData.length}건 · 위험지수 상위 20건 표시`;
             list.innerHTML = sorted.length
                 ? sorted.map(renderRiskItem).join("")
                 : `<div class="empty">등록된 RM 리스크 데이터가 없습니다.</div>`;
@@ -501,8 +531,8 @@
                 <article class="risk-row">
                     <div class="risk-row-head">
                         <div>
-                            <div class="risk-name">${escapeHtml(item.project_name || item.fund_id || "미지정 프로젝트")}</div>
-                            <div class="risk-meta">${escapeHtml(item.base_date || "")} · fund_id ${escapeHtml(item.fund_id || "미매칭")} · 만기연장 ${escapeHtml(item.extension_count ?? 0)}회</div>
+                            <div class="risk-name">${escapeHtml(item.pilotProjectLabel || item.project_name || item.fund_id || "미지정 프로젝트")}</div>
+                            <div class="risk-meta">${escapeHtml(item.base_date || "")} · ${escapeHtml(item.project_name || "")} · fund_id ${escapeHtml(item.fund_id || "미매칭")} · 만기연장 ${escapeHtml(item.extension_count ?? 0)}회</div>
                         </div>
                         <div class="risk-index">${riskIndex.toFixed(1)}</div>
                     </div>
