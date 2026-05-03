@@ -6,6 +6,7 @@
     <title>IOTA Seoul Quick Input</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./config.js"></script>
+    <script src="./auth.js"></script>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
     <style>
         :root {
@@ -55,11 +56,19 @@
         .status { min-height: 22px; margin-top: 20px; text-align: center; font-size: 14px; color: var(--muted); }
         .status.success { color: #32D74B; }
         .status.error { color: var(--risk); }
+        .auth-card { display: grid; grid-template-columns: 1fr; gap: 12px; background: var(--panel); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 16px; margin-bottom: 18px; }
+        .auth-title { color: var(--accent); font-size: 15px; font-weight: 780; }
+        .auth-meta { color: var(--muted); font-size: 12px; margin-top: 4px; }
+        .auth-form { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; gap: 8px; align-items: center; }
+        .auth-btn { display: inline-flex; align-items: center; justify-content: center; background: var(--text); color: var(--bg); border: 0; border-radius: 8px; padding: 12px 14px; font-size: 13px; font-weight: 760; cursor: pointer; white-space: nowrap; }
+        .auth-btn-secondary { display: none; width: fit-content; background: transparent; color: var(--accent); border: 1px solid rgba(195,194,183,0.5); }
+        form.is-locked { opacity: 0.46; }
 
         @media (max-width: 720px) {
             body { padding: 28px 16px; }
             header { flex-direction: column; }
             .form-grid { grid-template-columns: 1fr; gap: 0; }
+            .auth-form { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -75,6 +84,8 @@
                 <a class="mode-link" href="./workform-advanced.html">상세 입력</a>
             </div>
         </header>
+
+        <section id="auth-panel"></section>
 
         <form id="quick-form">
             <div class="form-grid">
@@ -113,6 +124,7 @@
 
     <script>
         let supabaseClient;
+        let pilotProfile;
 
         const WORKSPACES = {
             WS_PM: "사업 PM",
@@ -151,6 +163,15 @@
                 const config = window.IOTA_SUPABASE_CONFIG || {};
                 if (!config.url || !config.key) throw new Error("Missing pilot config");
                 supabaseClient = supabase.createClient(config.url, config.key);
+                IOTA_AUTH.init({
+                    supabaseClient,
+                    staffSelect,
+                    form: quickForm,
+                    setStatus,
+                    onProfileReady: (profile) => {
+                        pilotProfile = profile;
+                    }
+                });
             } catch (err) {
                 setStatus("Supabase 공개 설정을 읽지 못했습니다. pilot_form/config.js 파일을 확인해 주세요.", "error");
                 console.error(err);
@@ -191,6 +212,7 @@
                     <label>업무 내용</label>
                     <textarea class="work-text" placeholder="진행한 업무, 공유할 이슈, 협업 요청사항을 입력하세요." required></textarea>
                 </div>
+                ${IOTA_AUTH.visibilityField()}
                 <div class="form-grid">
                     <div class="form-group">
                         <label>관련자 분류 선택</label>
@@ -214,6 +236,8 @@
                 </div>
             `;
             logContainer.appendChild(div);
+            IOTA_AUTH.hydrateProjectSelects(div);
+            IOTA_AUTH.hydrateVisibilitySelects(div);
             div.querySelector(".btn-remove").addEventListener("click", () => {
                 div.remove();
                 refreshSetTitles();
@@ -247,8 +271,13 @@
             submitBtn.disabled = true;
             setStatus("저장 중입니다.", "");
 
-            const staffId = staffSelect.value;
-            const staffName = staffSelect.options[staffSelect.selectedIndex].text;
+            if (!pilotProfile) {
+                setStatus("로그인이 필요합니다.", "error");
+                submitBtn.disabled = false;
+                return;
+            }
+
+            const staffId = pilotProfile.staff_id || staffSelect.value;
             const workspaceCode = ROLE_WORKSPACE[staffId] || "WS_PM";
             const workDate = dateInput.value;
             const sets = [...document.querySelectorAll(".log-set")];
@@ -257,18 +286,20 @@
             try {
                 for (const set of sets) {
                     const projectId = set.querySelector(".project-sel").value;
+                    const visibilityLevel = set.querySelector(".visibility-sel").value;
                     const rawText = set.querySelector(".work-text").value.trim();
                     const stakeholderCategory = set.querySelector(".sh-cat").value;
                     const stakeholderName = set.querySelector(".sh-name").value.trim();
                     const triageType = classifyTriage(rawText.toLowerCase());
                     const logId = `iota_quick_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
 
+                    const accessPayload = IOTA_AUTH.logAccessPayload(projectId, visibilityLevel);
+
                     const { error: logError } = await supabaseClient
                         .from("iota_seoul_logs")
                         .insert({
                             log_id: logId,
-                            writer_staff_id: staffId,
-                            writer_name: staffName,
+                            ...accessPayload,
                             work_date: workDate,
                             raw_text: rawText,
                             summary: rawText.slice(0, 160),
@@ -280,7 +311,8 @@
                                 workspace_label: WORKSPACES[workspaceCode],
                                 triage_type: triageType,
                                 triage_label: TRIAGE_LABELS[triageType],
-                                issue_status: "new"
+                                issue_status: "new",
+                                visibility_level: accessPayload.visibility_level
                             }
                         });
                     if (logError) throw logError;
