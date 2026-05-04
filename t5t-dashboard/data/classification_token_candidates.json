@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-05-03T23:41:25.152168",
-  "count": 1212,
+  "generated_at": "2026-05-04T06:37:13.660601",
+  "count": 1223,
   "top_tokens": [
     {
       "token": "투자자",
-      "count": 109
+      "count": 110
     },
     {
       "token": "개발",
@@ -31,12 +31,12 @@
       "count": 56
     },
     {
-      "token": "PF",
-      "count": 54
+      "token": "리파이낸싱",
+      "count": 55
     },
     {
-      "token": "리파이낸싱",
-      "count": 53
+      "token": "PF",
+      "count": 54
     },
     {
       "token": "대주",
@@ -48,15 +48,19 @@
     },
     {
       "token": "전략",
-      "count": 48
+      "count": 49
     },
     {
       "token": "연장",
-      "count": 47
+      "count": 48
     },
     {
       "token": "대출",
-      "count": 46
+      "count": 47
+    },
+    {
+      "token": "물류",
+      "count": 45
     },
     {
       "token": "선정",
@@ -64,14 +68,10 @@
     },
     {
       "token": "구조",
-      "count": 43
+      "count": 44
     },
     {
       "token": "모집",
-      "count": 43
-    },
-    {
-      "token": "물류",
       "count": 43
     },
     {
@@ -95,6 +95,10 @@
       "count": 41
     },
     {
+      "token": "자산",
+      "count": 39
+    },
+    {
       "token": "신규",
       "count": 39
     },
@@ -107,16 +111,12 @@
       "count": 38
     },
     {
-      "token": "자산",
-      "count": 38
-    },
-    {
       "token": "임대차",
       "count": 38
     },
     {
       "token": "방안",
-      "count": 36
+      "count": 37
     },
     {
       "token": "리테일",
@@ -139,6 +139,10 @@
       "count": 35
     },
     {
+      "token": "미정",
+      "count": 34
+    },
+    {
       "token": "타워",
       "count": 34
     },
@@ -147,20 +151,16 @@
       "count": 34
     },
     {
+      "token": "대상",
+      "count": 33
+    },
+    {
       "token": "협업",
       "count": 33
     },
     {
       "token": "호텔",
       "count": 33
-    },
-    {
-      "token": "미정",
-      "count": 33
-    },
-    {
-      "token": "대상",
-      "count": 32
     },
     {
       "token": "이후",
@@ -173,6 +173,10 @@
     {
       "token": "인허",
       "count": 32
+    },
+    {
+      "token": "마케팅",
+      "count": 31
     },
     {
       "token": "입찰",
@@ -189,6 +193,10 @@
     {
       "token": "리모델링",
       "count": 31
+    },
+    {
+      "token": "해외",
+      "count": 30
     },
     {
       "token": "부산",
@@ -219,16 +227,8 @@
       "count": 30
     },
     {
-      "token": "마케팅",
-      "count": 29
-    },
-    {
       "token": "타임워크 웨스트 (신도림",
       "count": 29
-    },
-    {
-      "token": "해외",
-      "count": 28
     },
     {
       "token": "양재",
@@ -259,6 +259,10 @@
       "count": 26
     },
     {
+      "token": "미국",
+      "count": 25
+    },
+    {
       "token": "안성",
       "count": 25
     },
@@ -277,6 +281,14 @@
     {
       "token": "팩토리얼",
       "count": 24
+    },
+    {
+      "token": "일본",
+      "count": 23
+    },
+    {
+      "token": "임대주택",
+      "count": 23
     },
     {
       "token": "민원",
@@ -299,20 +311,12 @@
       "count": 23
     },
     {
-      "token": "미국",
+      "token": "소송",
       "count": 22
     },
     {
       "token": "현지",
       "count": 22
-    },
-    {
-      "token": "일본",
-      "count": 22
-    },
-    {
-      "token": "소송",
-      "count": 21
     },
     {
       "token": "참여",
@@ -328,10 +332,6 @@
     },
     {
       "token": "캠코",
-      "count": 21
-    },
-    {
-      "token": "임대주택",
       "count": 21
     },
     {
@@ -371,6 +371,10 @@
       "count": 20
     },
     {
+      "token": "태핑",
+      "count": 19
+    },
+    {
       "token": "지연",
       "count": 19
     },
@@ -391,6 +395,10 @@
       "count": 19
     },
     {
+      "token": "재간접",
+      "count": 18
+    },
+    {
       "token": "인터뷰",
       "count": 18
     },
@@ -407,11 +415,7 @@
       "count": 18
     },
     {
-      "token": "태핑",
-      "count": 18
-    },
-    {
-      "token": "재간접",
+      "token": "만기",
       "count": 17
     },
     {
@@ -459,10 +463,6 @@
       "count": 16
     },
     {
-      "token": "만기",
-      "count": 16
-    },
-    {
       "token": "IOTA",
       "count": 16
     },
@@ -484,6 +484,297 @@
     }
   ],
   "records": [
+    {
+      "id": "3568ced4-3c47-8100-829b-de76d225c219",
+      "work_date": "2026-05-03",
+      "task_type": "펀딩관련 업무",
+      "line": "Global A Line",
+      "writer": "남형록",
+      "log_name": "2026-05-03 | 남형록 | Scannell 2 아마존 입주지연 및 만기연장",
+      "summary": "Scannell 2의 아마존 입주지연과 대출·펀드 만기 연장 협의를 진행했다.",
+      "classification_summary": "미국 Scannell 물류 선매입 (No. 417) 관련, Scannell 2의 아마존 입주지연과 대출·펀드 만기 연장 협의를 진행했다.",
+      "current_summary_value": "Scannell 2의 아마존 입주지연과 대출·펀드 만기 연장 협의를 진행했다.",
+      "projects": [
+        "미국 Scannell 물류 선매입 (No. 417)"
+      ],
+      "tokens": [
+        "미국 Scannell 물류 선매입 (No. 417",
+        "Scannell",
+        "아마존",
+        "입주지연",
+        "대출",
+        "만기",
+        "연장",
+        "진행했다",
+        "만기연장",
+        "미국",
+        "물류",
+        "선매입"
+      ],
+      "token_string": "#미국 Scannell 물류 선매입 (No. 417 #Scannell #아마존 #입주지연 #대출 #만기 #연장 #진행했다 #만기연장 #미국 #물류 #선매입",
+      "current_token_value": "#Scannell2 #만기연장 #아마존 #펀딩"
+    },
+    {
+      "id": "3568ced4-3c47-813e-b5ee-d8dc5e9c5aa9",
+      "work_date": "2026-05-03",
+      "task_type": "신규검토",
+      "line": "Global A Line",
+      "writer": "남형록",
+      "log_name": "2026-05-03 | 남형록 | 일본 임대주택 투자 펀드 검토",
+      "summary": "일본 임대주택 투자 펀드의 수익률과 운용사, 교직원공제회 킥오프를 중심으로 검토를 이어갔다.",
+      "classification_summary": "일본 임대주택 투자 펀드의 수익률과 운용사, 교직원공제회 킥오프를 중심으로 검토를 이어갔다.",
+      "current_summary_value": "일본 임대주택 투자 펀드의 수익률·운용사·교직원공제회 킥오프를 중심으로 검토했다.",
+      "projects": [
+        "일본 임대주택 투자 펀드"
+      ],
+      "tokens": [
+        "일본 임대주택 투자 펀드",
+        "일본",
+        "임대주택",
+        "수익률",
+        "운용사",
+        "교직원공제회",
+        "킥오프",
+        "중심",
+        "이어갔다"
+      ],
+      "token_string": "#일본 임대주택 투자 펀드 #일본 #임대주택 #수익률 #운용사 #교직원공제회 #킥오프 #중심 #이어갔다",
+      "current_token_value": "#일본임대주택 #투자펀드 #교직원공제회 #신규검토"
+    },
+    {
+      "id": "3568ced4-3c47-814b-87c1-ff14ef98fdd7",
+      "work_date": "2026-05-03",
+      "task_type": "리스크/법무",
+      "line": "Global A Line",
+      "writer": "남형록",
+      "log_name": "2026-05-03 | 남형록 | 트리아논 SC 정산금 소송 대응",
+      "summary": "트리아논의 SC(스왑은행) 정산금 지급 소송 대응과 4/30 1차 변론 준비를 진행했다.",
+      "classification_summary": "트리아논의 SC(스왑은행) 정산금 지급 소송 대응과 4/30 1차 변론 준비를 진행했다.",
+      "current_summary_value": "트리아논 SC 정산금 지급 소송 대응과 4/30 1차 변론 준비를 진행했다.",
+      "projects": [],
+      "tokens": [
+        "트리아논",
+        "스왑은행",
+        "정산금",
+        "지급",
+        "소송",
+        "변론",
+        "진행했다"
+      ],
+      "token_string": "#트리아논 #스왑은행 #정산금 #지급 #소송 #변론 #진행했다",
+      "current_token_value": "#트리아논 #소송대응 #스왑은행 #리스크"
+    },
+    {
+      "id": "3568ced4-3c47-818d-ada1-c05b15ef7e45",
+      "work_date": "2026-05-03",
+      "task_type": "펀딩관련 업무",
+      "line": "Global A Line",
+      "writer": "남형록",
+      "log_name": "2026-05-03 | 남형록 | 미국 CMBS 추가 투자자 태핑",
+      "summary": "미국 CMBS 재간접 펀드의 추가 투자자 태핑과 일임 라이선스 신청 일정을 점검했다.",
+      "classification_summary": "미국 CMBS 투자(재간접/Rockwood) 관련, 미국 CMBS 재간접 펀드의 추가 투자자 태핑과 일임 라이선스 신청 일정을 점검했다.",
+      "current_summary_value": "미국 CMBS 재간접 펀드의 추가 투자자 태핑과 일임 라이선스 신청 일정을 점검했다.",
+      "projects": [
+        "미국 CMBS 투자(재간접/Rockwood)"
+      ],
+      "tokens": [
+        "미국 CMBS 투자(재간접/Rockwood",
+        "미국",
+        "CMBS",
+        "재간접",
+        "투자자",
+        "태핑",
+        "일임",
+        "라이선스",
+        "신청",
+        "점검했다",
+        "Rockwood"
+      ],
+      "token_string": "#미국 CMBS 투자(재간접/Rockwood #미국 #CMBS #재간접 #투자자 #태핑 #일임 #라이선스 #신청 #점검했다 #Rockwood",
+      "current_token_value": "#RockwoodCMBS #추가태핑 #보험사 #펀딩"
+    },
+    {
+      "id": "3568ced4-3c47-81c3-b09c-d9ae62a9197d",
+      "work_date": "2026-05-03",
+      "task_type": "신규검토",
+      "line": "Global A Line",
+      "writer": "남형록",
+      "log_name": "2026-05-03 | 남형록 | LX Pantos 해외진출 파트너십 검토",
+      "summary": "국내 물류기업의 해외진출 전략 파트너십으로 LX Pantos 미팅을 준비하며 자본수요와 투자구조를 검토했다.",
+      "classification_summary": "국내 물류기업의 해외진출 전략 파트너십으로 LX Pantos 미팅을 준비하며 자본수요와 투자구조를 검토했다.",
+      "current_summary_value": "국내 물류기업 해외진출 전략 파트너십으로 LX Pantos 미팅과 투자구조 검토를 진행했다.",
+      "projects": [],
+      "tokens": [
+        "국내",
+        "물류기업",
+        "해외진출",
+        "전략",
+        "파트너십",
+        "Pantos",
+        "자본수요",
+        "투자구조",
+        "검토했다"
+      ],
+      "token_string": "#국내 #물류기업 #해외진출 #전략 #파트너십 #Pantos #자본수요 #투자구조 #검토했다",
+      "current_token_value": "#LXPantos #해외진출 #물류기업 #신규검토"
+    },
+    {
+      "id": "3568ced4-3c47-81c9-99f2-d41f3db34f91",
+      "work_date": "2026-05-03",
+      "task_type": "펀딩관련 업무",
+      "line": "Global A Line",
+      "writer": "남형록",
+      "log_name": "2026-05-03 | 남형록 | 대출투자 소싱 및 펀드화 검토",
+      "summary": "해외 대출투자 수요와 메자닌 펀드화 방안을 검토하며 소싱 네트워크 확장을 준비했다.",
+      "classification_summary": "해외 대출투자 수요와 메자닌 펀드화 방안을 검토하며 소싱 네트워크 확장을 준비했다.",
+      "current_summary_value": "해외 대출투자 수요와 메자닌 펀드화 방안을 검토하며 소싱 네트워크 확장을 준비했다.",
+      "projects": [],
+      "tokens": [
+        "해외",
+        "대출투자",
+        "수요",
+        "메자닌",
+        "펀드화",
+        "방안",
+        "소싱",
+        "네트워크",
+        "확장",
+        "준비했다"
+      ],
+      "token_string": "#해외 #대출투자 #수요 #메자닌 #펀드화 #방안 #소싱 #네트워크 #확장 #준비했다",
+      "current_token_value": "#대출투자 #메자닌 #보험사 #검토중"
+    },
+    {
+      "id": "3568ced4-3c47-812a-9b69-f4a8c91a781a",
+      "work_date": "2026-04-29",
+      "task_type": "펀딩관련 업무",
+      "line": "Global A Line",
+      "writer": "윤정규",
+      "log_name": "2026-04-29 | 윤정규 | 3 Hudson Yard 리파이낸싱 펀드",
+      "summary": "3 Hudson Yard 리파이낸싱 펀드 추진을 위한 기관 마케팅 준비를 진행했다.",
+      "classification_summary": "3 Hudson Yard 리파이낸싱 펀드 추진을 위한 기관 마케팅 준비를 진행했다.",
+      "current_summary_value": "3 Hudson Yard 리파이낸싱 펀드의 기관 마케팅 준비를 진행했다.",
+      "projects": [],
+      "tokens": [
+        "Hudson",
+        "Yard",
+        "리파이낸싱",
+        "기관",
+        "마케팅",
+        "진행했다"
+      ],
+      "token_string": "#Hudson #Yard #리파이낸싱 #기관 #마케팅 #진행했다",
+      "current_token_value": "#3HudsonYard #리파이낸싱 #기관마케팅 #신규검토"
+    },
+    {
+      "id": "3568ced4-3c47-812e-834b-d7c81914b946",
+      "work_date": "2026-04-29",
+      "task_type": "운용/관리",
+      "line": "Global A Line",
+      "writer": "윤정규",
+      "log_name": "2026-04-29 | 윤정규 | 제이알글로벌리츠 EOD 모니터링",
+      "summary": "제이알글로벌리츠 벨기에 파이낸스타워 EOD 동향을 모니터링하고 해외 EOD 공모펀드 영향 시나리오를 검토했다.",
+      "classification_summary": "제이알글로벌리츠 벨기에 파이낸스타워 EOD 동향을 모니터링하고 해외 EOD 공모펀드 영향 시나리오를 검토했다.",
+      "current_summary_value": "제이알글로벌리츠 벨기에 파이낸스타워 EOD 동향과 해외 EOD 공모펀드 영향 시나리오를 점검했다.",
+      "projects": [],
+      "tokens": [
+        "제이알글로벌리츠",
+        "벨기에",
+        "파이낸스타워",
+        "EOD",
+        "동향",
+        "모니터링하고",
+        "해외",
+        "공모펀드",
+        "영향",
+        "시나리오",
+        "검토했다",
+        "모니터링"
+      ],
+      "token_string": "#제이알글로벌리츠 #벨기에 #파이낸스타워 #EOD #동향 #모니터링하고 #해외 #공모펀드 #영향 #시나리오 #검토했다 #모니터링",
+      "current_token_value": "#제이알글로벌리츠 #EOD모니터링 #개인투자자 #운용관리"
+    },
+    {
+      "id": "3568ced4-3c47-815d-8969-ff56db09780a",
+      "work_date": "2026-04-29",
+      "task_type": "신규검토",
+      "line": "Global A Line",
+      "writer": "윤정규",
+      "log_name": "2026-04-29 | 윤정규 | 343 Madison Ave 기관 마케팅 준비",
+      "summary": "343 Madison Avenue 투자 건의 기관 마케팅을 준비했다.",
+      "classification_summary": "미정 관련, 343 Madison Avenue 투자 건의 기관 마케팅을 준비했다.",
+      "current_summary_value": "343 Madison Avenue 투자 건의 기관 마케팅을 준비했다.",
+      "projects": [
+        "미정"
+      ],
+      "tokens": [
+        "미정",
+        "Madison",
+        "Avenue",
+        "건의",
+        "기관",
+        "마케팅",
+        "준비했다"
+      ],
+      "token_string": "#미정 #Madison #Avenue #건의 #기관 #마케팅 #준비했다",
+      "current_token_value": "#343Madison #기관마케팅 #수익자 #신규검토"
+    },
+    {
+      "id": "3568ced4-3c47-8191-b715-e045d73d2a41",
+      "work_date": "2026-04-29",
+      "task_type": "신규검토",
+      "line": "Global A Line",
+      "writer": "윤정규",
+      "log_name": "2026-04-29 | 윤정규 | POBA 코펜하겐 임대주택 투자 검토",
+      "summary": "POBA SMA의 덴마크 코펜하겐 임대주택 투자를 검토하며 투자 구조와 대상 자산을 정리했다.",
+      "classification_summary": "POBA 글로벌리츠위탁운용펀드 관련, POBA SMA의 덴마크 코펜하겐 임대주택 투자를 검토하며 투자 구조와 대상 자산을 정리했다.",
+      "current_summary_value": "POBA SMA의 덴마크 코펜하겐 임대주택 투자 검토를 진행했다.",
+      "projects": [
+        "POBA 글로벌리츠위탁운용펀드"
+      ],
+      "tokens": [
+        "POBA 글로벌리츠위탁운용펀드",
+        "POBA",
+        "덴마크",
+        "코펜하겐",
+        "임대주택",
+        "구조",
+        "대상",
+        "자산",
+        "정리했다",
+        "글로벌리츠위탁운용펀드"
+      ],
+      "token_string": "#POBA 글로벌리츠위탁운용펀드 #POBA #덴마크 #코펜하겐 #임대주택 #구조 #대상 #자산 #정리했다 #글로벌리츠위탁운용펀드",
+      "current_token_value": "#POBA #코펜하겐 #행정공제회 #신규검토"
+    },
+    {
+      "id": "3568ced4-3c47-81b0-a5b6-f49d92e847eb",
+      "work_date": "2026-04-29",
+      "task_type": "펀딩관련 업무",
+      "line": "Global A Line",
+      "writer": "윤정규",
+      "log_name": "2026-04-29 | 윤정규 | Scannell II 리파이낸싱 추진",
+      "summary": "Scannell II 아마존 물류 포트폴리오의 리파이낸싱을 추진했다.",
+      "classification_summary": "미국 Scannell 물류 선매입 (No. 417) 관련, Scannell II 아마존 물류 포트폴리오의 리파이낸싱을 추진했다.",
+      "current_summary_value": "Scannell II 아마존 물류 포트폴리오의 리파이낸싱을 추진했다.",
+      "projects": [
+        "미국 Scannell 물류 선매입 (No. 417)"
+      ],
+      "tokens": [
+        "미국 Scannell 물류 선매입 (No. 417",
+        "Scannell",
+        "아마존",
+        "물류",
+        "포트폴리오",
+        "리파이낸싱",
+        "추진했다",
+        "미국",
+        "선매입",
+        "No."
+      ],
+      "token_string": "#미국 Scannell 물류 선매입 (No. 417 #Scannell #아마존 #물류 #포트폴리오 #리파이낸싱 #추진했다 #미국 #선매입 #No.",
+      "current_token_value": "#Scannell2 #리파이낸싱 #아마존 #펀딩"
+    },
     {
       "id": "3508ced4-3c47-8102-9961-d77b3e27ed6c",
       "work_date": "2026-04-27",
