@@ -628,3 +628,66 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
 }
+
+.asset-admin-bar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 2px 0 12px;
+}
+
+.asset-admin-btn,
+.asset-admin-controls button,
+.asset-split-btn {
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.asset-admin-btn:hover,
+.asset-admin-controls button:hover,
+.asset-split-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.asset-admin-btn.secondary {
+  color: #ef4444;
+}
+
+.canonical-asset-card {
+  border-color: rgba(79, 70, 229, 0.28);
+}
+
+.canonical-meta {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.canonical-count {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--accent);
+  background: rgba(79, 70, 229, 0.06);
+  padding: 3px 7px;
+  border-radius: 6px;
+}
+
+.asset-admin-controls {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 22px 12px;
+}
+
+.asset-split-btn {
+  margin-left: auto;
+  padding: 4px 8px;
+}

@@ -105,6 +105,14 @@
       return renderInstitutionDetail(obj, targetPanel);
     }
 
+    const primaryAssetId = items && items[0] && items[0].primary_asset_id;
+    if ((type === 'project' || type === 'fund') && primaryAssetId && window.AssetCanonical && !container) {
+      return window.AssetCanonical.renderCanonicalAssetDetail(
+        primaryAssetId,
+        items[0].project_mission_name || items[0].fund_name || targetName
+      );
+    }
+
     const fundIds = items.map(i => i.fund_id);
     targetPanel.innerHTML = '<div class="no-results">상세 로딩 중...</div>';
     try {

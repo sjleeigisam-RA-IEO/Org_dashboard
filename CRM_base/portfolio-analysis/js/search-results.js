@@ -40,6 +40,7 @@ function ensureFundSearchColumns() {
 }
 
 function performSearch(query) {
+  window.currentSearchQuery = query || '';
   if (!query) {
     resultsContainer.innerHTML = '<div class="no-results">\uC870\uD68C\uB97C \uC2DC\uC791\uD558\uC138\uC694.</div>';
     updateTabCounts();
@@ -53,7 +54,9 @@ function performSearch(query) {
       _supabase.from('lender_exposures').select('*, funds(*)').or(buildUniversalFilter(['lender_clean', 'fund_id'], terms)).limit(100),
       _supabase.from('beneficiary_exposures').select('*, funds(*)').or(buildUniversalFilter(['beneficiary_clean', 'fund_id'], terms)).limit(100),
       _supabase.from('funds').select('*').or(buildUniversalFilter(fundSearchColumns, terms)).limit(100),
-      _supabase.from('fund_assets').select('*, funds(*)').or(buildUniversalFilter(['asset_name', 'fund_id'], terms)).limit(100)
+      window.AssetCanonical
+        ? window.AssetCanonical.searchCanonicalAssets(terms)
+        : _supabase.from('fund_assets').select('*, funds(*)').or(buildUniversalFilter(['asset_name', 'fund_id'], terms)).limit(100)
     ]);
   }).then(function (responses) {
     var lenderRes = responses[0];
@@ -71,8 +74,9 @@ function performSearch(query) {
       lenders: lenderRes.data || [],
       beneficiaries: benRes.data || [],
       funds: normalFunds,
-      assets: assetRes.data || [],
-      projects: projects
+      assets: window.AssetCanonical ? [] : (assetRes.data || []),
+      projects: projects,
+      assetGroups: window.AssetCanonical ? (assetRes.data || []) : []
     };
     window.allResults = allResults;
 
@@ -84,10 +88,11 @@ function performSearch(query) {
 }
 
 function updateTabCounts() {
+  var assetCount = allResults.assetGroups ? allResults.assetGroups.length : allResults.assets.length;
   var counts = {
-    all: allResults.lenders.length + allResults.beneficiaries.length + allResults.funds.length + allResults.assets.length + allResults.projects.length,
+    all: allResults.lenders.length + allResults.beneficiaries.length + allResults.funds.length + assetCount + allResults.projects.length,
     fund: allResults.funds.length,
-    asset: allResults.assets.length,
+    asset: assetCount,
     ben: allResults.beneficiaries.length,
     lender: allResults.lenders.length,
     project: allResults.projects.length
@@ -115,7 +120,13 @@ function renderResults() {
 
   if (currentTab === 'all' || currentTab === 'project') Object.keys(groupedProjects).forEach(function (k) { renderGroupCard('project', k, groupedProjects[k]); });
   if (currentTab === 'all' || currentTab === 'fund') Object.keys(groupedFunds).forEach(function (k) { renderGroupCard('fund', k, groupedFunds[k]); });
-  if (currentTab === 'all' || currentTab === 'asset') Object.keys(groupedAssets).forEach(function (k) { renderGroupCard('asset', k, groupedAssets[k]); });
+  if (currentTab === 'all' || currentTab === 'asset') {
+    if (window.AssetCanonical && allResults.assetGroups) {
+      window.AssetCanonical.renderCanonicalAssetCards(allResults.assetGroups, resultsContainer);
+    } else {
+      Object.keys(groupedAssets).forEach(function (k) { renderGroupCard('asset', k, groupedAssets[k]); });
+    }
+  }
   if (currentTab === 'all' || currentTab === 'lender') Object.keys(groupedLenders).forEach(function (n) { renderGroupCard('lender', n, groupedLenders[n]); });
   if (currentTab === 'all' || currentTab === 'ben') Object.keys(groupedBens).forEach(function (n) { renderGroupCard('ben', n, groupedBens[n]); });
 }
@@ -182,6 +193,10 @@ function renderGroupCard(type, name, items) {
       var sl = card.querySelector('.sub-list');
       sl.style.display = sl.style.display === 'none' ? 'block' : 'none';
     }
+    if ((type === 'project' || type === 'fund') && item0.primary_asset_id && window.AssetCanonical) {
+      window.AssetCanonical.renderCanonicalAssetDetail(item0.primary_asset_id, displayTitle);
+      return;
+    }
     showDetail({ type: type, items: items, targetName: name });
   });
 
@@ -190,7 +205,11 @@ function renderGroupCard(type, name, items) {
     si.addEventListener('click', function (e) {
       e.stopPropagation();
       var item = items[idx];
-      showDetail({ type: 'fund', items: [item], targetName: item.fund_name || item.fund_id });
+      if ((type === 'project' || type === 'fund') && item.primary_asset_id && window.AssetCanonical) {
+        window.AssetCanonical.renderCanonicalAssetDetail(item.primary_asset_id, item.project_mission_name || item.fund_name || item.short_name || item.fund_id);
+      } else {
+        showDetail({ type: 'fund', items: [item], targetName: item.fund_name || item.fund_id });
+      }
 
       card.querySelectorAll('.sub-item').forEach(function (el) {
         el.style.background = '';
