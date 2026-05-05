@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IOTA Seoul Integrated Workspace</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./config.js"></script>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <style>
+        :root {
+            --bg: #1F1F1E;
+            --panel: #232323;
+            --card: #2C2C2E;
+            --line: #3A3A3A;
+            --text: #E5E5E5;
+            --muted: #86868B;
+            --soft: #A1A1AA;
+            --accent: #C3C2B7;
+            --risk: #FF453A;
+            --decision: #FF9F0A;
+            --collab: #64D2FF;
+            --share: #32D74B;
+            --font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+        body { min-height: 100vh; background: var(--bg); color: var(--text); font-family: var(--font); padding: 36px; }
+        .container { max-width: 1480px; margin: 0 auto; }
+        header { display: flex; justify-content: space-between; gap: 24px; align-items: flex-end; padding-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 28px; }
+        h1 { font-size: 28px; font-weight: 760; letter-spacing: 0; }
+        .subtitle { color: var(--muted); font-size: 14px; margin-top: 7px; line-height: 1.5; }
+        .nav-actions { display: flex; gap: 7px; align-items: center; flex-wrap: wrap; justify-content: flex-end; padding: 7px; border: 1px dashed rgba(251,241,103,0.38); border-radius: 8px; background: rgba(251,241,103,0.045); }
+        .nav-actions::before { content: "TEMP"; color: #fbf167; font-size: 10px; font-weight: 800; letter-spacing: 0.08em; opacity: 0.78; }
+        .nav-link { color: #fbf167; border: 1px dashed rgba(251,241,103,0.55); border-radius: 6px; padding: 7px 9px; text-decoration: none; font-size: 12px; font-weight: 760; white-space: nowrap; background: rgba(0,0,0,0.18); }
+        .refresh-btn { background: var(--text); color: var(--bg); border: 0; padding: 10px 18px; border-radius: 8px; font-size: 14px; font-weight: 760; cursor: pointer; white-space: nowrap; }
+
+        .summary-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 22px; }
+        .summary-card { background: var(--card); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 18px; min-height: 104px; }
+        .summary-card-clickable { cursor: pointer; border-color: rgba(255,69,58,0.22); transition: border-color 0.16s ease, background 0.16s ease, transform 0.16s ease; }
+        .summary-card-clickable:hover { border-color: rgba(255,69,58,0.72); background: rgba(255,69,58,0.07); transform: translateY(-1px); }
+        .summary-label { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+        .summary-value { font-size: 32px; font-weight: 780; font-variant-numeric: tabular-nums; }
+        .summary-note { color: var(--soft); font-size: 11px; margin-top: 6px; }
+
+        .section-title { display: flex; align-items: center; gap: 10px; color: var(--soft); font-size: 12px; font-weight: 760; text-transform: uppercase; letter-spacing: 0.08em; margin: 30px 0 14px; }
+        .section-title::after { content: ""; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+
+        .hub-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 16px; }
+        .panel { background: var(--panel); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 18px; }
+        .panel-head { display: flex; justify-content: space-between; gap: 14px; align-items: center; margin-bottom: 14px; }
+        .panel-title { color: var(--accent); font-size: 15px; font-weight: 760; }
+        .panel-desc { color: var(--muted); font-size: 12px; margin-top: 4px; line-height: 1.45; }
+        .badge { display: inline-flex; align-items: center; border-radius: 999px; padding: 3px 8px; background: rgba(195,194,183,0.12); color: var(--accent); font-size: 11px; font-weight: 760; white-space: nowrap; }
+
+        .triage-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .triage-col { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+        .triage-title { display: flex; justify-content: space-between; align-items: center; color: var(--soft); font-size: 12px; font-weight: 760; padding: 0 2px; }
+        .item { background: rgba(0,0,0,0.22); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 11px; min-width: 0; }
+        .item-clickable { cursor: pointer; transition: border-color 0.16s ease, background 0.16s ease; }
+        .item-clickable:hover { border-color: rgba(251,241,103,0.38); background: rgba(251,241,103,0.055); }
+        .item-meta { display: flex; justify-content: space-between; gap: 8px; color: var(--muted); font-size: 11px; margin-bottom: 6px; }
+        .project { color: var(--accent); font-weight: 760; }
+        .item-text { color: var(--text); font-size: 13px; line-height: 1.48; word-break: keep-all; overflow-wrap: anywhere; }
+        .item-footer { display: flex; justify-content: space-between; gap: 8px; margin-top: 9px; color: var(--muted); font-size: 11px; }
+        .chip { display: inline-flex; align-items: center; border-radius: 999px; padding: 2px 7px; background: rgba(255,255,255,0.08); color: var(--soft); font-size: 10px; font-weight: 700; }
+        .chip-share { color: var(--share); background: rgba(50,215,75,0.12); }
+        .chip-collab { color: var(--collab); background: rgba(100,210,255,0.12); }
+        .chip-risk { color: var(--risk); background: rgba(255,69,58,0.12); }
+        .chip-decision { color: var(--decision); background: rgba(255,159,10,0.12); }
+
+        .project-grid, .workspace-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        .workspace-grid { grid-template-columns: repeat(4, 1fr); }
+        .project-card, .workspace-card { background: var(--card); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 11px; min-width: 0; }
+        .card-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .card-title { color: var(--accent); font-size: 14px; font-weight: 760; }
+        .count { color: var(--muted); background: rgba(255,255,255,0.06); border-radius: 999px; padding: 2px 8px; font-size: 11px; font-weight: 700; }
+        .list { display: flex; flex-direction: column; gap: 9px; }
+        .empty { color: var(--muted); font-size: 13px; text-align: center; padding: 22px 8px; background: rgba(0,0,0,0.16); border-radius: 8px; }
+        .error { color: var(--risk); font-size: 13px; padding: 12px; background: rgba(255,69,58,0.08); border-radius: 8px; margin-bottom: 14px; display: none; }
+        .modal-backdrop { position: fixed; inset: 0; z-index: 50; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(0,0,0,0.68); backdrop-filter: blur(10px); }
+        .modal { width: min(760px, 100%); max-height: min(760px, 88vh); overflow: hidden; display: flex; flex-direction: column; background: #232323; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; box-shadow: 0 24px 80px rgba(0,0,0,0.55); }
+        .modal-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .modal-title { color: var(--accent); font-size: 16px; font-weight: 780; }
+        .modal-meta { color: var(--muted); font-size: 12px; margin-top: 6px; line-height: 1.5; }
+        .modal-close { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 6px 9px; cursor: pointer; font-size: 12px; }
+        .modal-body { padding: 20px; overflow: auto; }
+        .modal-raw { white-space: pre-wrap; color: var(--text); font-size: 14px; line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere; }
+        .risk-list { display: flex; flex-direction: column; gap: 14px; }
+        .risk-row { border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; padding: 14px; background: rgba(0,0,0,0.18); }
+        .risk-row-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 10px; }
+        .risk-name { color: var(--accent); font-size: 15px; font-weight: 780; }
+        .risk-index { color: var(--risk); font-size: 18px; font-weight: 820; font-variant-numeric: tabular-nums; }
+        .risk-meta { color: var(--muted); font-size: 11px; margin-top: 4px; }
+        .risk-summary { color: var(--text); white-space: pre-wrap; font-size: 13px; line-height: 1.62; word-break: keep-all; overflow-wrap: anywhere; }
+
+        @media (max-width: 1180px) {
+            .hub-grid, .triage-grid, .workspace-grid { grid-template-columns: 1fr 1fr; }
+            .project-grid, .summary-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 720px) {
+            body { padding: 22px 14px; }
+            header { align-items: flex-start; flex-direction: column; }
+            .summary-grid, .hub-grid, .triage-grid, .project-grid, .workspace-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <h1>IOTA Seoul Integrated Workspace</h1>
+                <p class="subtitle">각 조직 워크스페이스에서 작성된 업무와 이슈를 DB에 저장하고, 통합 수행체계에서 공유·협업·리스크·의사결정 관점으로 모아 봅니다.</p>
+            </div>
+            <div class="nav-actions">
+                <a class="nav-link" href="./workform.html">간편 입력</a>
+                <a class="nav-link" href="./workform-advanced.html">상세 입력</a>
+                <button class="refresh-btn" onclick="loadData()">새로고침</button>
+            </div>
+        </header>
+
+        <div class="error" id="error-box"></div>
+        <div class="modal-backdrop" id="log-modal" onclick="closeLogModal(event)">
+            <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+                <div class="modal-head">
+                    <div>
+                        <div class="modal-title" id="modal-title">원문 업무 내용</div>
+                        <div class="modal-meta" id="modal-meta"></div>
+                    </div>
+                    <button class="modal-close" type="button" onclick="closeLogModal()">닫기</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-raw" id="modal-raw"></div>
+                </div>
+            </section>
+        </div>
+        <div class="modal-backdrop" id="risk-modal" onclick="closeRiskModal(event)">
+            <section class="modal" role="dialog" aria-modal="true" aria-labelledby="risk-modal-title">
+                <div class="modal-head">
+                    <div>
+                        <div class="modal-title" id="risk-modal-title">RM 리스크 원문</div>
+                        <div class="modal-meta" id="risk-modal-meta">risk_management_points 기준</div>
+                    </div>
+                    <button class="modal-close" type="button" onclick="closeRiskModal()">닫기</button>
+                </div>
+                <div class="modal-body">
+                    <div class="risk-list" id="risk-modal-list"></div>
+                </div>
+            </section>
+        </div>
+
+        <section class="summary-grid">
+            <div class="summary-card">
+                <div class="summary-label">전체 업무 이력</div>
+                <div class="summary-value" id="count-total">0</div>
+                <div class="summary-note">파일럿 DB 조회 기준</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-label">협업 필요</div>
+                <div class="summary-value" id="count-collab">0</div>
+                <div class="summary-note">미팅·협의·요청 포함</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-label">리스크 후보</div>
+                <div class="summary-value" id="count-risk">0</div>
+                <div class="summary-note">리스크·이슈·지연·민원 포함</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-label">의사결정 필요</div>
+                <div class="summary-value" id="count-decision">0</div>
+                <div class="summary-note">승인·결정·보고 포함</div>
+            </div>
+            <div class="summary-card summary-card-clickable" onclick="openRiskModal()">
+                <div class="summary-label">RM 리스크</div>
+                <div class="summary-value" id="count-rm-index">0.0</div>
+                <div class="summary-note">최대 위험지수 · 클릭 시 원문</div>
+            </div>
+        </section>
+
+        <div class="section-title">Integrated Execution Hub</div>
+        <section class="hub-grid">
+            <div class="panel">
+                <div class="panel-head">
+                    <div>
+                        <div class="panel-title">통합 수행 이슈 허브</div>
+                        <div class="panel-desc">개별 워크스페이스에서 작성된 항목을 공유, 협업, 리스크 판단, 의사결정 기준으로 모아 봅니다.</div>
+                    </div>
+                    <span class="badge" id="hub-total">0건</span>
+                </div>
+                <div class="triage-grid" id="triage-grid"></div>
+            </div>
+            <div class="panel">
+                <div class="panel-head">
+                    <div>
+                        <div class="panel-title">최근 중요 이력</div>
+                        <div class="panel-desc">리스크와 의사결정 항목을 우선 표시합니다.</div>
+                    </div>
+                    <span class="badge" id="priority-total">0건</span>
+                </div>
+                <div class="list" id="priority-list"></div>
+            </div>
+        </section>
+
+        <div class="section-title">Mission / Project Timeline</div>
+        <section class="project-grid" id="project-grid"></section>
+
+        <div class="section-title">Workspace View</div>
+        <section class="workspace-grid" id="workspace-grid"></section>
+    </div>
+
+    <script>
+        let supabaseClient;
+        let logDetailById = {};
+        let riskData = [];
+
+        const PROJECTS = {
+            "P00030": "와이디427",
+            "P00037": "와이디816",
+            "112614": "421호펀드"
+        };
+        const PILOT_RISK_FUND_IDS = Object.keys(PROJECTS);
+
+        const TRIAGE = {
+            share: { label: "공유", chip: "chip-share" },
+            collab: { label: "협업", chip: "chip-collab" },
+            risk: { label: "리스크 판단", chip: "chip-risk" },
+            decision: { label: "의사결정", chip: "chip-decision" }
+        };
+
+        const WORKSPACES = {
+            "사업 PM": { code: "WS_PM", keywords: ["pm", "po", "sub po", "co-pm", "사업", "총괄", "일정", "회의", "로드맵", "raci"] },
+            "파이낸싱": { code: "WS_FIN", keywords: ["financing", "대주", "pf", "대출", "금융", "펀딩", "자금", "조달", "리파이낸싱"] },
+            "개발관리": { code: "WS_CON", keywords: ["construction", "시공", "설계", "인허가", "공정", "cm", "감리", "개발", "도면"] },
+            "기업마케팅": { code: "WS_MKT", keywords: ["marketing", "lm", "임차", "테넌트", "마케팅", "tenant", "leasing", "기업"] },
+            "상품·디지털": { code: "WS_DIG", keywords: ["product", "digital", "상품", "디지털", "데이터", "플랫폼", "tech"] },
+            "펀드 운용": { code: "WS_FND", keywords: ["asset management", "fund", "펀드", "운용", "aum", "투자자", "lp"] },
+            "IPR": { code: "WS_IPR", keywords: ["p.reits", "리츠", "reits", "국토부", "영업인가", "공모"] }
+        };
+
+        async function initSupabase() {
+            try {
+                const config = window.IOTA_SUPABASE_CONFIG || {};
+                if (!config.url || !config.key) throw new Error("Missing pilot config");
+                supabaseClient = supabase.createClient(config.url, config.key);
+                await loadData();
+            } catch (err) {
+                showError("Supabase 공개 설정을 읽지 못했습니다. pilot_form/config.js 파일을 확인해 주세요.");
+                console.error(err);
+            }
+        }
+
+        async function loadData() {
+            if (!supabaseClient) return;
+            hideError();
+
+            try {
+                const { data: logs, error: logError } = await supabaseClient
+                    .from("iota_seoul_logs")
+                    .select("*, iota_seoul_log_links(proj_id, relation_type), iota_seoul_log_stakeholders(sh_name, role_category)")
+                    .order("work_date", { ascending: false });
+
+                const { data: masterData, error: masterError } = await supabaseClient
+                    .from("iota_seoul_master_data")
+                    .select("*")
+                    .order("updated_at", { ascending: false });
+
+                if (logError || masterError) throw (logError || masterError);
+                let risks = [];
+                const riskResult = await supabaseClient
+                    .from("risk_management_points")
+                    .select("*")
+                    .in("fund_id", PILOT_RISK_FUND_IDS)
+                    .order("base_date", { ascending: false });
+                if (riskResult.error) {
+                    console.warn("risk_management_points unavailable:", riskResult.error.message);
+                } else {
+                    risks = riskResult.data || [];
+                }
+                const enriched = (logs || []).map(enrichLog);
+                renderDashboard(enriched, masterData || [], risks);
+            } catch (err) {
+                showError("파일럿 DB 조회에 실패했습니다: " + err.message);
+                console.error(err);
+            }
+        }
+
+        function enrichLog(log) {
+            const text = `${log.raw_text || ""} ${log.summary || ""}`.toLowerCase();
+            const writer = (log.writer_name || "").toLowerCase();
+            const triage = log.metadata?.triage_type || classifyTriage(text);
+            const workspace = workspaceNameFromCode(log.metadata?.workspace_code) || log.metadata?.workspace_label || classifyWorkspace(`${text} ${writer}`);
+            const projectIds = (log.iota_seoul_log_links || []).map(link => link.proj_id).filter(Boolean);
+
+            return {
+                ...log,
+                projectIds,
+                projectLabel: projectIds.map(id => PROJECTS[id] || id).join(", ") || "공통",
+                triage,
+                workspace
+            };
+        }
+
+        function classifyTriage(text) {
+            if (includesAny(text, ["리스크", "위험", "이슈", "지연", "민원", "소송", "분쟁", "누락", "검토필요", "불확실", "대응"])) return "risk";
+            if (includesAny(text, ["승인", "결정", "의사결정", "보고", "상정", "확정", "합의", "심의"])) return "decision";
+            if (includesAny(text, ["협의", "요청", "미팅", "회의", "공유", "전달", "협업", "조율", "follow-up", "follow up"])) return "collab";
+            return "share";
+        }
+
+        function classifyWorkspace(text) {
+            let best = "사업 PM";
+            let score = 0;
+            Object.entries(WORKSPACES).forEach(([name, config]) => {
+                const hits = config.keywords.filter(keyword => text.includes(keyword.toLowerCase())).length;
+                if (hits > score) {
+                    best = name;
+                    score = hits;
+                }
+            });
+            return best;
+        }
+
+        function workspaceNameFromCode(code) {
+            if (!code) return "";
+            const found = Object.entries(WORKSPACES).find(([, config]) => config.code === code);
+            return found ? found[0] : "";
+        }
+
+        function includesAny(text, keywords) {
+            return keywords.some(keyword => text.includes(keyword));
+        }
+
+        function renderDashboard(logs, masterData, risks) {
+            logDetailById = Object.fromEntries(logs.map(log => [log.log_id, log]));
+            riskData = risks || [];
+            const risk = logs.filter(log => log.triage === "risk");
+            const decision = logs.filter(log => log.triage === "decision");
+            const collab = logs.filter(log => log.triage === "collab");
+            const maxRiskIndex = riskData.reduce((max, item) => Math.max(max, Number(item.risk_index) || 0), 0);
+
+            setText("count-total", logs.length);
+            setText("count-collab", collab.length);
+            setText("count-risk", risk.length);
+            setText("count-decision", decision.length);
+            setText("count-rm-index", maxRiskIndex.toFixed(1));
+            setText("hub-total", `${logs.length}건`);
+
+            renderTriage(logs);
+            renderPriority(logs);
+            renderProjects(logs, masterData);
+            renderWorkspaces(logs, masterData);
+        }
+
+        function renderTriage(logs) {
+            const grid = document.getElementById("triage-grid");
+            grid.innerHTML = "";
+
+            Object.entries(TRIAGE).forEach(([key, meta]) => {
+                const items = logs.filter(log => log.triage === key);
+                const col = document.createElement("div");
+                col.className = "triage-col";
+                col.innerHTML = `
+                    <div class="triage-title">
+                        <span>${meta.label}</span>
+                        <span>${items.length}</span>
+                    </div>
+                    ${items.slice(0, 5).map(renderLogItem).join("") || `<div class="empty">해당 항목 없음</div>`}
+                `;
+                grid.appendChild(col);
+            });
+        }
+
+        function renderPriority(logs) {
+            const priority = logs.filter(log => ["risk", "decision"].includes(log.triage)).slice(0, 9);
+            setText("priority-total", `${priority.length}건`);
+            document.getElementById("priority-list").innerHTML = priority.map(renderLogItem).join("") || `<div class="empty">우선 검토할 항목이 없습니다.</div>`;
+        }
+
+        function renderProjects(logs, masterData) {
+            const grid = document.getElementById("project-grid");
+            grid.innerHTML = "";
+
+            Object.entries(PROJECTS).forEach(([projectId, label]) => {
+                const projectLogs = logs.filter(log => log.projectIds.includes(projectId));
+                const projectMaster = masterData.filter(row => row.proj_id === projectId);
+                const projectRisks = projectLogs.filter(log => log.triage === "risk").length + projectMaster.filter(row => row.classification === "TOP-RISK").length;
+                const card = document.createElement("div");
+                card.className = "project-card";
+                card.innerHTML = `
+                    <div class="card-head">
+                        <span class="card-title">${label}</span>
+                        <span class="count">${projectLogs.length}건 · 리스크 ${projectRisks}</span>
+                    </div>
+                    <div class="list">
+                        ${projectMaster.slice(0, 2).map(renderMasterItem).join("")}
+                        ${projectLogs.slice(0, 5).map(renderLogItem).join("") || `<div class="empty">등록된 업무 이력이 없습니다.</div>`}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderWorkspaces(logs, masterData) {
+            const grid = document.getElementById("workspace-grid");
+            grid.innerHTML = "";
+
+            Object.entries(WORKSPACES).forEach(([name, config]) => {
+                const workspaceLogs = logs.filter(log => log.workspace === name);
+                const workspaceMaster = masterData.filter(row => row.ws_code === config.code);
+                const card = document.createElement("div");
+                card.className = "workspace-card";
+                card.innerHTML = `
+                    <div class="card-head">
+                        <span class="card-title">${name}</span>
+                        <span class="count">${workspaceLogs.length + workspaceMaster.length}</span>
+                    </div>
+                    <div class="list">
+                        ${workspaceMaster.slice(0, 2).map(renderMasterItem).join("")}
+                        ${workspaceLogs.slice(0, 4).map(renderLogItem).join("") || `<div class="empty">연결된 업무 이력이 없습니다.</div>`}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderLogItem(log) {
+            const triage = TRIAGE[log.triage] || TRIAGE.share;
+            return `
+                <article class="item item-clickable" onclick="openLogModal('${escapeAttribute(log.log_id)}')" title="원문 보기">
+                    <div class="item-meta">
+                        <span class="project">${escapeHtml(log.projectLabel)}</span>
+                        <span>${escapeHtml(log.work_date || "")}</span>
+                    </div>
+                    <div class="item-text">${escapeHtml(log.summary || log.raw_text)}</div>
+                    <div class="item-footer">
+                        <span>${escapeHtml(log.writer_name || "작성자 미상")}</span>
+                        <span class="chip ${triage.chip}">${triage.label}</span>
+                    </div>
+                </article>
+            `;
+        }
+
+        function renderMasterItem(row) {
+            const status = row.raw_metadata?.status || "";
+            const isRisk = row.classification === "TOP-RISK";
+            const color = isRisk ? "var(--risk)" : status === "Amber" ? "var(--decision)" : status === "Green" ? "var(--share)" : "var(--accent)";
+            return `
+                <article class="item" style="border-left: 3px solid ${color};">
+                    <div class="item-meta">
+                        <span class="project">${escapeHtml(PROJECTS[row.proj_id] || "공통")}</span>
+                        <span>${escapeHtml(row.classification || "MASTER")}</span>
+                    </div>
+                    <div class="item-text"><strong>${escapeHtml(row.item_name || "")}</strong><br>${escapeHtml(row.content || "")}</div>
+                </article>
+            `;
+        }
+
+        function escapeHtml(value) {
+            return String(value || "").replace(/[&<>"']/g, ch => ({
+                "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#039;"
+            }[ch]));
+        }
+
+        function escapeAttribute(value) {
+            return String(value || "").replace(/['\\]/g, "\\$&");
+        }
+
+        function openLogModal(logId) {
+            const log = logDetailById[logId];
+            if (!log) return;
+            const triage = TRIAGE[log.triage] || TRIAGE.share;
+            document.getElementById("modal-title").textContent = log.projectLabel || "원문 업무 내용";
+            document.getElementById("modal-meta").textContent = [
+                log.work_date || "",
+                log.writer_name || "작성자 미상",
+                triage.label,
+                log.workspace || ""
+            ].filter(Boolean).join(" · ");
+            document.getElementById("modal-raw").textContent = log.raw_text || log.summary || "";
+            document.getElementById("log-modal").style.display = "flex";
+        }
+
+        function closeLogModal(event) {
+            if (event && event.target.id !== "log-modal") return;
+            document.getElementById("log-modal").style.display = "none";
+        }
+
+        function openRiskModal() {
+            const list = document.getElementById("risk-modal-list");
+            const sorted = [...riskData]
+                .sort((a, b) => (Number(b.risk_index) || 0) - (Number(a.risk_index) || 0))
+                .slice(0, 20);
+            document.getElementById("risk-modal-meta").textContent = `파일럿 3개 프로젝트 기준 ${riskData.length}건 · 위험지수 상위 20건 표시`;
+            list.innerHTML = sorted.length
+                ? sorted.map(renderRiskItem).join("")
+                : `<div class="empty">등록된 RM 리스크 데이터가 없습니다.</div>`;
+            document.getElementById("risk-modal").style.display = "flex";
+        }
+
+        function renderRiskItem(item) {
+            const riskIndex = Number(item.risk_index) || 0;
+            return `
+                <article class="risk-row">
+                    <div class="risk-row-head">
+                        <div>
+                            <div class="risk-name">${escapeHtml(PROJECTS[item.fund_id] || item.project_name || item.fund_id || "미지정 프로젝트")}</div>
+                            <div class="risk-meta">${escapeHtml(item.base_date || "")} · ${escapeHtml(item.project_name || "")} · fund_id ${escapeHtml(item.fund_id || "미매칭")} · 만기연장 ${escapeHtml(item.extension_count ?? 0)}회</div>
+                        </div>
+                        <div class="risk-index">${riskIndex.toFixed(1)}</div>
+                    </div>
+                    <div class="risk-summary">${escapeHtml(item.risk_summary || item.raw_text || "원문 없음")}</div>
+                </article>
+            `;
+        }
+
+        function closeRiskModal(event) {
+            if (event && event.target.id !== "risk-modal") return;
+            document.getElementById("risk-modal").style.display = "none";
+        }
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") {
+                closeLogModal();
+                closeRiskModal();
+            }
+        });
+
+        function setText(id, value) {
+            document.getElementById(id).textContent = value;
+        }
+
+        function showError(message) {
+            const box = document.getElementById("error-box");
+            box.textContent = message;
+            box.style.display = "block";
+        }
+
+        function hideError() {
+            const box = document.getElementById("error-box");
+            box.textContent = "";
+            box.style.display = "none";
+        }
+
+        initSupabase();
+    </script>
+</body>
+</html>
