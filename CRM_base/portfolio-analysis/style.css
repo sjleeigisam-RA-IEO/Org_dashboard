@@ -691,3 +691,139 @@ body {
   margin-left: auto;
   padding: 4px 8px;
 }
+
+.vehicle-beneficiary-row td {
+  background: #fffdf7;
+}
+
+.vehicle-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #fff7ed;
+  color: #9a3412;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.lookthrough-btn {
+  border: 1px solid #c7d2fe;
+  background: #eef2ff;
+  color: #4338ca;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.lookthrough-btn:hover {
+  background: #e0e7ff;
+  border-color: #818cf8;
+}
+
+.asset-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: rgba(15, 23, 42, 0.38);
+}
+
+.asset-modal {
+  width: min(920px, calc(100vw - 48px));
+  max-height: calc(100vh - 64px);
+  overflow: auto;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.25);
+}
+
+.asset-modal-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 32px 18px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.asset-modal-header h3 {
+  margin: 8px 0 6px;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.asset-modal-header p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.asset-modal-close {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #475569;
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.asset-modal-body {
+  padding: 24px 32px 32px;
+}
+
+.asset-modal-body h4 {
+  margin: 22px 0 12px;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.asset-modal-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.asset-modal-summary div {
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.asset-modal-summary span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.asset-modal-summary strong {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+@media (max-width: 760px) {
+  .asset-modal-overlay {
+    padding: 16px;
+  }
+
+  .asset-modal-header,
+  .asset-modal-body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .asset-modal-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

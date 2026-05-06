@@ -224,23 +224,8 @@
 <script>
   (async function() {
     try {
-      const response = await fetch('../../.env');
-      const text = await response.text();
-      const env = {};
-      text.split('\n').forEach(line => {
-        const [key, ...valueParts] = line.split('=');
-        if (key && valueParts.length > 0) {
-          env[key.trim()] = valueParts.join('=').trim().replace(/^"|"$/g, '');
-        }
-      });
-      
-      // 전역 변수 설정 (config.js 역할 대체)
-      window.SUPABASE_URL = env.SUPABASE_URL;
-      window.SUPABASE_KEY = env.SUPABASE_KEY;
-      window.VWORLD_KEY = env.VWORLD_KEY || "02B5F8FA-CC59-3109-86FD-0C9C1B98B5BF";
-
-      // 나머지 스크립트들을 순차적으로 로드
       const scripts = [
+        "config.js",
         "js/core.js",
         "js/asset-canonical.js",
         "js/search-results.js",
@@ -251,16 +236,16 @@
       ];
 
       for (const src of scripts) {
-        await new Promise((resolve) => {
+        await new Promise((resolve, reject) => {
           const s = document.createElement('script');
           s.src = src;
           s.onload = resolve;
+          s.onerror = function () { reject(new Error('Failed to load script: ' + src)); };
           document.body.appendChild(s);
         });
       }
     } catch (err) {
-      console.error("Failed to load root .env:", err);
-      // Fallback or Alert
+      console.error("Failed to initialize dashboard:", err);
     }
   })();
 </script>

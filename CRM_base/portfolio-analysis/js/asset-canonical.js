@@ -26,6 +26,17 @@
     return String(value || '').trim();
   }
 
+  function buildOrFilter(columns, terms) {
+    const parts = [];
+    (columns || []).forEach(function (col) {
+      (terms || []).forEach(function (term) {
+        term = normalizeTerm(term);
+        if (term) parts.push(col + '.ilike.%' + escapeSqlLike(term) + '%');
+      });
+    });
+    return parts.join(',');
+  }
+
   function uniqueBy(list, keyFn) {
     const seen = new Set();
     const result = [];
@@ -36,17 +47,6 @@
       result.push(item);
     });
     return result;
-  }
-
-  function buildOrFilter(columns, terms) {
-    const parts = [];
-    (columns || []).forEach(function (col) {
-      (terms || []).forEach(function (term) {
-        term = normalizeTerm(term);
-        if (term) parts.push(col + '.ilike.%' + escapeSqlLike(term) + '%');
-      });
-    });
-    return parts.join(',');
   }
 
   async function fetchAssetSummariesByIds(assetIds) {
@@ -79,10 +79,8 @@
     if (summaryRes.error) throw summaryRes.error;
     if (aliasRes.error) throw aliasRes.error;
 
-    const summaryRows = summaryRes.data || [];
     const aliasRows = aliasRes.data || [];
-    const aliasAssetIds = aliasRows.map(function (row) { return row.asset_id; });
-    const aliasSummaries = await fetchAssetSummariesByIds(aliasAssetIds);
+    const aliasSummaries = await fetchAssetSummariesByIds(aliasRows.map(function (row) { return row.asset_id; }));
     const aliasesByAssetId = {};
 
     aliasRows.forEach(function (row) {
@@ -92,7 +90,7 @@
       }
     });
 
-    const merged = uniqueBy(summaryRows.concat(aliasSummaries), function (row) { return row.asset_id; })
+    const merged = uniqueBy((summaryRes.data || []).concat(aliasSummaries), function (row) { return row.asset_id; })
       .map(function (row) {
         return {
           ...row,
@@ -167,6 +165,12 @@
     return window.formatNumber ? window.formatNumber(value) : Number(value).toLocaleString();
   }
 
+  function sumRows(rows, key) {
+    return (rows || []).reduce(function (acc, row) {
+      return acc + (Number(row[key]) || 0);
+    }, 0);
+  }
+
   function groupExposureRows(rows, nameKey, amountKeys) {
     const groups = {};
     (rows || []).forEach(function (row) {
@@ -190,10 +194,23 @@
     return /이지스.*(투자신탁|투자회사|리츠|펀드)/.test(name);
   }
 
-  function sumRows(rows, key) {
-    return (rows || []).reduce(function (acc, row) {
-      return acc + (Number(row[key]) || 0);
-    }, 0);
+  function normalizeVehicleName(value) {
+    return String(value || '')
+      .replace(/\([^)]*\)/g, '')
+      .replace(/\[[^\]]*\]/g, '')
+      .replace(/\s+/g, '')
+      .replace(/제/g, '')
+      .replace(/의1호/g, '호')
+      .trim();
+  }
+
+  function findLookThroughFunds(vehicleRow, funds) {
+    const vehicleName = normalizeVehicleName(vehicleRow?.beneficiary_clean || vehicleRow?.beneficiary_raw);
+    if (!vehicleName) return [];
+    return (funds || []).filter(function (fund) {
+      const fundName = normalizeVehicleName(fund.fund_name || fund.short_name || '');
+      return fundName && (fundName.includes(vehicleName) || vehicleName.includes(fundName));
+    });
   }
 
   function renderCanonicalAssetCards(groups, container) {
@@ -265,15 +282,25 @@
       const projects = projectRelRes.data || [];
       const lenders = lenderRes.data || [];
       const beneficiaries = benRes.data || [];
-      const mapId = 'vmap-' + Math.random().toString(36).substr(2, 9);
       const externalBeneficiaries = beneficiaries.filter(function (row) { return !isFundVehicleBeneficiary(row); });
       const internalBeneficiaries = beneficiaries.filter(isFundVehicleBeneficiary);
       const lenderGroups = groupExposureRows(lenders, 'lender_clean', ['committed_amt', 'drawn_amt', 'remaining_amt']);
       const beneficiaryGroups = groupExposureRows(externalBeneficiaries, 'beneficiary_clean', ['committed_amt', 'invested_amt', 'remaining_amt']);
       const lenderCommitted = sumRows(lenders, 'committed_amt');
       const lenderDrawn = sumRows(lenders, 'drawn_amt');
-      const beneficiaryCommitted = sumRows(externalBeneficiaries, 'committed_amt');
-      const beneficiaryInvested = sumRows(externalBeneficiaries, 'invested_amt');
+      const beneficiaryCommitted = sumRows(beneficiaries, 'committed_amt');
+      const beneficiaryInvested = sumRows(beneficiaries, 'invested_amt');
+      const directBeneficiaryCommitted = sumRows(externalBeneficiaries, 'committed_amt');
+      const directBeneficiaryInvested = sumRows(externalBeneficiaries, 'invested_amt');
+      const mapId = 'vmap-' + Math.random().toString(36).substr(2, 9);
+
+      window.AssetCanonical._lastDetailData = {
+        assetId: assetId,
+        funds: funds,
+        allBeneficiaries: beneficiaries,
+        internalBeneficiaries: internalBeneficiaries
+      };
+
       const adminRelationshipSections = isAdmin() ? `
         <div class="detail-section">
           <div class="section-title">연결 펀드 (${funds.length})</div>
@@ -325,31 +352,37 @@
         </div>
 
         <div class="detail-section">
-          <div class="section-title">익스포저 요약</div>
+          <div class="section-title">재원 구성 요약</div>
           <table class="data-table">
             <tr><th>대주 약정</th><td>${formatAmount(lenderCommitted)}</td><th>대주 실행</th><td>${formatAmount(lenderDrawn)}</td></tr>
-            <tr><th>수익자 약정</th><td>${formatAmount(beneficiaryCommitted)}</td><th>수익자 납입</th><td>${formatAmount(beneficiaryInvested)}</td></tr>
+            <tr><th>수익자 원천 약정</th><td>${formatAmount(beneficiaryCommitted)}</td><th>수익자 원천 납입</th><td>${formatAmount(beneficiaryInvested)}</td></tr>
+            <tr><th>직접 투자자 약정</th><td>${formatAmount(directBeneficiaryCommitted)}</td><th>직접 투자자 납입</th><td>${formatAmount(directBeneficiaryInvested)}</td></tr>
             <tr><th>대주 row</th><td>${lenders.length}</td><th>수익자 row</th><td>${beneficiaries.length}</td></tr>
           </table>
         </div>
 
         <div class="detail-section">
-          <div class="section-title">투자자 현황 (${beneficiaryGroups.length})</div>
+          <div class="section-title">투자자 현황 (${beneficiaryGroups.length + internalBeneficiaries.length})</div>
           <table class="data-table">
-            <thead><tr><th>투자자</th><th>약정금액</th><th>납입금액</th><th>잔여금액</th><th>row</th></tr></thead>
-            <tbody>${beneficiaryGroups.map(function (b) {
-              return `<tr><td style="font-weight:700">${b.name}</td><td>${formatAmount(b.committed_amt)}</td><td>${formatAmount(b.invested_amt)}</td><td>${formatAmount(b.remaining_amt)}</td><td>${b.row_count}</td></tr>`;
-            }).join('') || '<tr><td colspan="5">투자자 정보 없음</td></tr>'}</tbody>
+            <thead><tr><th>투자자</th><th>구분</th><th>약정금액</th><th>납입금액</th><th>잔여금액</th><th></th></tr></thead>
+            <tbody>
+              ${beneficiaryGroups.map(function (b) {
+                return `<tr><td style="font-weight:700">${b.name}</td><td>직접</td><td>${formatAmount(b.committed_amt)}</td><td>${formatAmount(b.invested_amt)}</td><td>${formatAmount(b.remaining_amt)}</td><td>${b.row_count > 1 ? b.row_count + '건' : ''}</td></tr>`;
+              }).join('')}
+              ${internalBeneficiaries.map(function (row, index) {
+                return `<tr class="vehicle-beneficiary-row"><td style="font-weight:800">${row.beneficiary_clean || row.beneficiary_raw || '-'}</td><td><span class="vehicle-badge">펀드 비히클</span></td><td>${formatAmount(row.committed_amt)}</td><td>${formatAmount(row.invested_amt)}</td><td>${formatAmount(row.remaining_amt)}</td><td><button type="button" class="lookthrough-btn" onclick="AssetCanonical.renderLookThroughModal(${index})">구성 보기</button></td></tr>`;
+              }).join('')}
+              ${beneficiaryGroups.length || internalBeneficiaries.length ? '' : '<tr><td colspan="6">투자자 정보 없음</td></tr>'}
+            </tbody>
           </table>
-          ${internalBeneficiaries.length ? '<div style="margin-top:10px; color:var(--muted); font-size:12px;">펀드/비히클성 수익자 ' + internalBeneficiaries.length + '건은 일반 투자자 현황에서 제외했습니다.</div>' : ''}
         </div>
 
         <div class="detail-section">
           <div class="section-title">대주 현황 (${lenderGroups.length})</div>
           <table class="data-table">
-            <thead><tr><th>대주</th><th>약정금액</th><th>실행금액</th><th>잔여금액</th><th>row</th></tr></thead>
+            <thead><tr><th>대주</th><th>약정금액</th><th>실행금액</th><th>잔여금액</th><th>비고</th></tr></thead>
             <tbody>${lenderGroups.map(function (l) {
-              return `<tr><td style="font-weight:700">${l.name}</td><td>${formatAmount(l.committed_amt)}</td><td>${formatAmount(l.drawn_amt)}</td><td>${formatAmount(l.remaining_amt)}</td><td>${l.row_count}</td></tr>`;
+              return `<tr><td style="font-weight:700">${l.name}</td><td>${formatAmount(l.committed_amt)}</td><td>${formatAmount(l.drawn_amt)}</td><td>${formatAmount(l.remaining_amt)}</td><td>${l.row_count > 1 ? l.row_count + '건' : ''}</td></tr>`;
             }).join('') || '<tr><td colspan="5">대주 정보 없음</td></tr>'}</tbody>
           </table>
         </div>
@@ -362,6 +395,84 @@
       console.error(e);
       detailPanel.innerHTML = '<div class="no-results">자산 상세 정보를 불러오지 못했습니다.</div>';
     }
+  }
+
+  async function renderLookThroughModal(vehicleIndex) {
+    const data = window.AssetCanonical._lastDetailData;
+    if (!data) return;
+    const vehicle = data.internalBeneficiaries[vehicleIndex];
+    if (!vehicle) return;
+
+    const matchedFunds = findLookThroughFunds(vehicle, data.funds);
+    const matchedFundIds = new Set(matchedFunds.map(function (fund) { return fund.fund_id; }));
+    let sourceBeneficiaries = data.allBeneficiaries || [];
+
+    if (matchedFunds.length && _supabase) {
+      const childRes = await _supabase
+        .from('beneficiary_exposures')
+        .select('*')
+        .in('fund_id', matchedFunds.map(function (fund) { return fund.fund_id; }));
+      if (!childRes.error && childRes.data) {
+        sourceBeneficiaries = uniqueBy(sourceBeneficiaries.concat(childRes.data), function (row) {
+          return row.id || [row.fund_id, row.beneficiary_clean, row.committed_amt, row.invested_amt].join('|');
+        });
+      }
+    }
+
+    const childBeneficiaries = sourceBeneficiaries.filter(function (row) {
+      return matchedFundIds.has(row.fund_id) && row.id !== vehicle.id;
+    });
+    const externalChildren = childBeneficiaries.filter(function (row) { return !isFundVehicleBeneficiary(row); });
+
+    closeLookThroughModal();
+    const modal = document.createElement('div');
+    modal.id = 'assetLookthroughModal';
+    modal.className = 'asset-modal-overlay';
+    modal.innerHTML = `
+      <div class="asset-modal">
+        <div class="asset-modal-header">
+          <div>
+            <div class="card-tag tag-ben">LOOK-THROUGH</div>
+            <h3>${vehicle.beneficiary_clean || vehicle.beneficiary_raw || '펀드 비히클'}</h3>
+            <p>원천 데이터에서 이 수익자는 최종 투자자가 아니라 펀드/재간접 비히클로 분류됩니다.</p>
+          </div>
+          <button type="button" class="asset-modal-close" onclick="AssetCanonical.closeLookThroughModal()">×</button>
+        </div>
+        <div class="asset-modal-body">
+          <div class="asset-modal-summary">
+            <div><span>약정금액</span><strong>${formatAmount(vehicle.committed_amt)}</strong></div>
+            <div><span>납입금액</span><strong>${formatAmount(vehicle.invested_amt)}</strong></div>
+            <div><span>매칭 펀드</span><strong>${matchedFunds.length}건</strong></div>
+            <div><span>하위 수익자</span><strong>${externalChildren.length}건</strong></div>
+          </div>
+
+          <h4>매칭된 펀드/클래스</h4>
+          <table class="data-table">
+            <thead><tr><th>펀드코드</th><th>펀드명</th><th>상태</th><th>관계</th></tr></thead>
+            <tbody>${matchedFunds.map(function (fund) {
+              return `<tr><td>${fund.fund_id}</td><td style="font-weight:700">${fund.fund_name || '-'}</td><td>${fund.fund_status || '-'}</td><td>${fund.relation_type || '-'}</td></tr>`;
+            }).join('') || '<tr><td colspan="4">매칭된 펀드가 없습니다.</td></tr>'}</tbody>
+          </table>
+
+          <h4>하위 최종 수익자 원천</h4>
+          <table class="data-table">
+            <thead><tr><th>수익자</th><th>펀드코드</th><th>약정금액</th><th>납입금액</th></tr></thead>
+            <tbody>${externalChildren.map(function (row) {
+              return `<tr><td style="font-weight:700">${row.beneficiary_clean || row.beneficiary_raw || '-'}</td><td>${row.fund_id || '-'}</td><td>${formatAmount(row.committed_amt)}</td><td>${formatAmount(row.invested_amt)}</td></tr>`;
+            }).join('') || '<tr><td colspan="4">현재 DB 원천에는 이 비히클의 최종 수익자 정보가 없습니다.</td></tr>'}</tbody>
+          </table>
+        </div>
+      </div>
+    `;
+    modal.addEventListener('click', function (event) {
+      if (event.target === modal) closeLookThroughModal();
+    });
+    document.body.appendChild(modal);
+  }
+
+  function closeLookThroughModal() {
+    const modal = document.getElementById('assetLookthroughModal');
+    if (modal) modal.remove();
   }
 
   function renderMap(mapId, asset) {
@@ -404,6 +515,8 @@
     searchCanonicalAssets,
     renderCanonicalAssetCards,
     renderCanonicalAssetDetail,
+    renderLookThroughModal,
+    closeLookThroughModal,
     adminLogin,
     clearOverrides,
     renameGroup,

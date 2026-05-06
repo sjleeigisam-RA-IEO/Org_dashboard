@@ -80,7 +80,7 @@ function handleCategoryTabChange(nextTab, tabButtons) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+function initApp() {
   var listBtn = document.getElementById('listViewBtn');
   var chartBtn = document.getElementById('chartViewBtn');
   var searchInput = document.getElementById('searchInput');
@@ -114,4 +114,10 @@ document.addEventListener('DOMContentLoaded', function () {
   if (typeof renderBasket === 'function') {
     renderBasket();
   }
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
