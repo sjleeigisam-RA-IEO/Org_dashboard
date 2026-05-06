@@ -126,12 +126,26 @@
       const f = fundRes.data?.[0] || items[0];
       const targetPnu = items[0].metadata?.pnu || items[0].pnu;
 
-      const getScore = (x) => (x.gfa ? 2 : 0) + (x.site_area ? 2 : 0) + (x.lat ? 1 : 0) + (x.address ? 1 : 0);
+      const getScore = (x) => (x.gfa ? 2 : 0) + (x.site_area ? 2 : 0) + (x.lat || x.latitude ? 1 : 0) + (x.address ? 1 : 0);
       const sortedAssets = (assetRes.data || []).sort((a, b) => getScore(b) - getScore(a));
 
-      const a = sortedAssets.find(x => (x.metadata?.pnu || x.pnu || x.asset_name) === targetName) ||
-                sortedAssets.find(x => (x.metadata?.pnu || x.pnu) === targetPnu) ||
-                sortedAssets[0] || {};
+      let a = f.primary_asset_id ? sortedAssets.find(x => x.asset_id === f.primary_asset_id) : null;
+      if (!a) {
+          const selectedAssetClass = window.analysisFilters?.base_asset_class || [];
+          if (selectedAssetClass.length > 0) {
+              a = sortedAssets.find(x => {
+                  const name = x.asset_name || x.metadata?.asset_name || '';
+                  if (selectedAssetClass.includes('물류센터')) return name.includes('물류') || name.includes('로지스') || name.includes('아레나스');
+                  if (selectedAssetClass.includes('오피스')) return name.includes('타워') || name.includes('빌딩') || name.includes('스퀘어');
+                  return false;
+              });
+          }
+      }
+      if (!a) {
+          a = sortedAssets.find(x => (x.metadata?.pnu || x.pnu || x.asset_name) === targetName) ||
+              sortedAssets.find(x => (x.metadata?.pnu || x.pnu) === targetPnu) ||
+              sortedAssets[0] || {};
+      }
 
       const detailTitle = getFundPrimaryName(f);
       const officialName = getFundSecondaryName(f);
@@ -219,7 +233,10 @@
         if (typeof renderPortfolioChart === 'function') renderPortfolioChart();
       }
 
-      if (a.lng && a.lat) {
+      const lon = parseFloat(a.lng || a.longitude || a.metadata?.longitude);
+      const lat = parseFloat(a.lat || a.latitude || a.metadata?.latitude);
+
+      if (!isNaN(lon) && !isNaN(lat)) {
         setTimeout(() => {
           try {
             if (typeof vw !== 'undefined' && vw.ol3) {
@@ -230,8 +247,6 @@
                 homePosition: vw.ol3.CameraPosition,
                 initPosition: vw.ol3.CameraPosition
               });
-              const lon = parseFloat(a.lng);
-              const lat = parseFloat(a.lat);
               if (typeof ol !== 'undefined') {
                 const center = ol.proj.fromLonLat([lon, lat]);
                 vmap.getView().setCenter(center);

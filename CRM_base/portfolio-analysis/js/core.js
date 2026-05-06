@@ -231,7 +231,8 @@ function getFundAumStatus(fund) {
 }
 
 function isAumCountedFund(fund) {
-  return getFieldValue(fund, 'parent_child_type') !== '자펀드';
+  // 모펀드(Parent fund)는 자펀드의 합계이므로 AUM 집계 시 제외하여 이중 카운팅 방지 (자펀드 위주로 집계)
+  return getFieldValue(fund, 'parent_child_type') !== '모펀드';
 }
 
 function getFundSector(fund) {

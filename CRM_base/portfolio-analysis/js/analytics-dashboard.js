@@ -632,8 +632,11 @@ function applyFiltersAndShowList(page = 1) {
         return;
     }
 
-    const filteredFunds = (typeof getFilteredData === 'function') ? getFilteredData() : (window.lastTargetFunds || []);
+    let filteredFunds = (typeof getFilteredData === 'function') ? getFilteredData() : (window.lastTargetFunds || []);
     
+    // Filter out inactive or 0 AUM funds to match the KPI chart and remove clutter
+    filteredFunds = filteredFunds.filter(isActiveAumSnapshotFund);
+
     drillPanel.style.display = 'block';
     if (page === 1) {
         drillPanel.innerHTML = '<div style="text-align:center; padding:40px; color:var(--muted);">검색 결과를 생성 중입니다...</div>';
@@ -643,7 +646,7 @@ function applyFiltersAndShowList(page = 1) {
         drillPanel.innerHTML = `
             <div class="drill-title">조회 결과</div>
             <div style="padding:40px; text-align:center; background:#f8fafc; border-radius:16px; color:var(--muted);">
-                조건에 맞는 펀드가 없습니다. 필터를 조정해 보세요.
+                조건에 맞는 운용 중인 펀드가 없습니다. 필터를 조정해 보세요.
             </div>
         `;
         return;
@@ -668,9 +671,31 @@ function applyFiltersAndShowList(page = 1) {
         const aum = getFundAmountWon(f, getMetricColumn('aum', aumMetric));
         const dept = f.dept || f.metadata?.department || '-';
         
-        // Find first linked asset name
-        const asset = (window.allFundAssets || []).find(a => a.fund_id === f.fund_id);
-        const assetName = asset ? (asset.asset_name || asset.metadata?.asset_name || '-') : '-';
+        // Find linked assets and intelligently display the primary or matched one
+        const assets = (window.allFundAssets || []).filter(a => a.fund_id === f.fund_id);
+        let assetName = '-';
+        
+        if (assets.length > 0) {
+            let matchedAsset = f.primary_asset_id ? assets.find(a => a.asset_id === f.primary_asset_id) : null;
+            if (!matchedAsset) {
+                const selectedAssetClass = window.analysisFilters?.base_asset_class || [];
+                if (selectedAssetClass.length > 0) {
+                    matchedAsset = assets.find(a => {
+                        const name = a.asset_name || a.metadata?.asset_name || '';
+                        if (selectedAssetClass.includes('물류센터')) return name.includes('물류') || name.includes('로지스') || name.includes('아레나스');
+                        if (selectedAssetClass.includes('오피스')) return name.includes('타워') || name.includes('빌딩') || name.includes('스퀘어');
+                        return false;
+                    });
+                }
+            }
+            if (!matchedAsset) matchedAsset = assets[0];
+            
+            assetName = matchedAsset.asset_name || matchedAsset.metadata?.asset_name || '-';
+            
+            if (assets.length > 1) {
+                assetName += ` <span style="font-size:12px; font-weight:500; color:var(--muted);">(외 ${assets.length - 1}건)</span>`;
+            }
+        }
 
         return `
             <div class="drill-item" onclick="openFundDetailById('${f.fund_id}')" style="display:flex; align-items:center; padding:16px 24px;">
@@ -682,7 +707,7 @@ function applyFiltersAndShowList(page = 1) {
                 </div>
 
                 <div style="flex: 1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; border-left:1px solid #f1f5f9; padding-left:40px;">
-                    <div style="font-size:11px; font-weight:700; color:#94a3b8; margin-bottom:4px; letter-spacing:0.5px;">PRIMARY ASSET</div>
+                    <div style="font-size:11px; font-weight:700; color:#94a3b8; margin-bottom:4px; letter-spacing:0.5px;">ASSET PROFILE</div>
                     <div style="font-size:14px; font-weight:700; color:#6366f1;">${assetName}</div>
                 </div>
 
