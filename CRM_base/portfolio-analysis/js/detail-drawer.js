@@ -129,17 +129,19 @@
       const getScore = (x) => (x.gfa ? 2 : 0) + (x.site_area ? 2 : 0) + (x.lat || x.latitude ? 1 : 0) + (x.address ? 1 : 0);
       const sortedAssets = (assetRes.data || []).sort((a, b) => getScore(b) - getScore(a));
 
-      let a = f.primary_asset_id ? sortedAssets.find(x => x.asset_id === f.primary_asset_id) : null;
-      if (!a) {
-          const selectedAssetClass = window.analysisFilters?.base_asset_class || [];
-          if (selectedAssetClass.length > 0) {
-              a = sortedAssets.find(x => {
-                  const name = x.asset_name || x.metadata?.asset_name || '';
-                  if (selectedAssetClass.includes('물류센터')) return name.includes('물류') || name.includes('로지스') || name.includes('아레나스');
-                  if (selectedAssetClass.includes('오피스')) return name.includes('타워') || name.includes('빌딩') || name.includes('스퀘어');
-                  return false;
-              });
-          }
+      let a = null;
+      const selectedAssetClass = window.analysisFilters?.base_asset_class || [];
+      if (selectedAssetClass.length > 0) {
+          a = sortedAssets.find(x => {
+              const name = x.asset_name || x.metadata?.asset_name || '';
+              if (selectedAssetClass.includes('물류센터')) return name.includes('물류') || name.includes('로지스') || name.includes('아레나스') || name.includes('스카이박스');
+              if (selectedAssetClass.includes('오피스')) return name.includes('타워') || name.includes('빌딩') || name.includes('스퀘어') || name.includes('플렉스');
+              return false;
+          });
+      }
+
+      if (!a && f.primary_asset_id) {
+          a = sortedAssets.find(x => x.asset_id === f.primary_asset_id);
       }
       if (!a) {
           a = sortedAssets.find(x => (x.metadata?.pnu || x.pnu || x.asset_name) === targetName) ||

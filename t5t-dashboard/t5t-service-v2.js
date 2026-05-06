@@ -67,8 +67,8 @@ const T5TService = {
         
         // 금융 데이터 및 작성자 실명 로드
         const [lenders, beneficiaries, staff] = await Promise.all([
-            supabaseClient.from('lender_exposures').select('lender_clean, committed_amt, fund_id'),
-            supabaseClient.from('beneficiary_exposures').select('beneficiary_clean, committed_amt, fund_id'),
+            supabaseClient.from('lender_exposures').select('lender_clean, committed_amt, fund_id, funds(fund_name)'),
+            supabaseClient.from('beneficiary_exposures').select('beneficiary_clean, committed_amt, fund_id, funds(fund_name)'),
             supabaseClient.from('staff').select('staff_id, name')
         ]);
 
@@ -85,9 +85,17 @@ const T5TService = {
                 if (!rawName) return;
                 
                 const normName = normalize(rawName);
-                if (!finMap[normName]) finMap[normName] = { exposure: 0, funds: new Set() };
+                if (!finMap[normName]) finMap[normName] = { exposure: 0, funds: new Set(), details: [] };
                 finMap[normName].exposure += (row.committed_amt || 0);
                 finMap[normName].funds.add(row.fund_id);
+                
+                const fName = row.funds?.fund_name || row.fund_id || "미상";
+                const existing = finMap[normName].details.find(d => d.fund_name === fName);
+                if (existing) {
+                    existing.amt += (row.committed_amt || 0);
+                } else {
+                    finMap[normName].details.push({ fund_name: fName, amt: row.committed_amt || 0 });
+                }
                 
                 // 원본 명칭으로도 접근 가능하게 참조 연결
                 if (!finMap[rawName]) finMap[rawName] = finMap[normName];

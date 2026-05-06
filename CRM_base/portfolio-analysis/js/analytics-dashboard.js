@@ -634,8 +634,8 @@ function applyFiltersAndShowList(page = 1) {
 
     let filteredFunds = (typeof getFilteredData === 'function') ? getFilteredData() : (window.lastTargetFunds || []);
     
-    // Filter out inactive or 0 AUM funds to match the KPI chart and remove clutter
-    filteredFunds = filteredFunds.filter(isActiveAumSnapshotFund);
+    // Filter out liquidated (청산) funds to remove clutter, but keep development/pre-purchase/active funds
+    filteredFunds = filteredFunds.filter(f => getFundAumSourceStatus(f) !== '청산');
 
     drillPanel.style.display = 'block';
     if (page === 1) {
@@ -676,18 +676,25 @@ function applyFiltersAndShowList(page = 1) {
         let assetName = '-';
         
         if (assets.length > 0) {
-            let matchedAsset = f.primary_asset_id ? assets.find(a => a.asset_id === f.primary_asset_id) : null;
-            if (!matchedAsset) {
-                const selectedAssetClass = window.analysisFilters?.base_asset_class || [];
-                if (selectedAssetClass.length > 0) {
-                    matchedAsset = assets.find(a => {
-                        const name = a.asset_name || a.metadata?.asset_name || '';
-                        if (selectedAssetClass.includes('물류센터')) return name.includes('물류') || name.includes('로지스') || name.includes('아레나스');
-                        if (selectedAssetClass.includes('오피스')) return name.includes('타워') || name.includes('빌딩') || name.includes('스퀘어');
-                        return false;
-                    });
-                }
+            let matchedAsset = null;
+            const selectedAssetClass = window.analysisFilters?.base_asset_class || [];
+            
+            // 1. Try to match the active asset class filter first
+            if (selectedAssetClass.length > 0) {
+                matchedAsset = assets.find(a => {
+                    const name = a.asset_name || a.metadata?.asset_name || '';
+                    if (selectedAssetClass.includes('물류센터')) return name.includes('물류') || name.includes('로지스') || name.includes('아레나스') || name.includes('스카이박스');
+                    if (selectedAssetClass.includes('오피스')) return name.includes('타워') || name.includes('빌딩') || name.includes('스퀘어') || name.includes('플렉스');
+                    return false;
+                });
             }
+            
+            // 2. Fallback to primary_asset_id
+            if (!matchedAsset && f.primary_asset_id) {
+                matchedAsset = assets.find(a => a.asset_id === f.primary_asset_id);
+            }
+            
+            // 3. Fallback to the first asset
             if (!matchedAsset) matchedAsset = assets[0];
             
             assetName = matchedAsset.asset_name || matchedAsset.metadata?.asset_name || '-';
