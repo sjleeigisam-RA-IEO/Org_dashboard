@@ -15,6 +15,9 @@ const T5TService = {
             "투자자 대응": { strong: ["IR", "RFP", "PT", "사이트투어", "탭핑", "태핑", "tapping", "투자자 마케팅", "GP Session", "IM자료", "roadshow", "LOC"], context: ["GIC", "CPPIB", "NPS", "국민연금", "교직원공제회", "우정사업본부", "수익자", "잠재투자자"], min: 3 },
             "신규소싱": { strong: ["신규검토", "underwriting", "valuation", "파이프라인", "소싱", "잠재 딜", "개발 가능성"], context: ["입찰 참여", "의향서 제출", "LOI", "후속 검토", "잠재"], min: 3 }
         },
+        stakeholder_aliases: {
+            "NPS": "국민연금"
+        },
         stakeholder_types: {
             "기관투자자(LP)": { 
                 sub_categories: {
@@ -289,12 +292,17 @@ const T5TService = {
     detectStakeholders(item) {
         const text = (item.classification_summary || "") + (item.raw_text || "");
         const found = new Map();
+        const aliases = this.RULES.stakeholder_aliases || {};
         for (const [type, rules] of Object.entries(this.RULES.stakeholder_types)) {
             if (rules.terms) {
-                rules.terms.forEach(term => { if (text.includes(term)) found.set(term, { type, sub: null }); });
+                rules.terms.forEach(term => { 
+                    if (text.includes(term)) found.set(aliases[term] || term, { type, sub: null }); 
+                });
             } else if (rules.sub_categories) {
                 for (const [sub, terms] of Object.entries(rules.sub_categories)) {
-                    terms.forEach(term => { if (text.includes(term)) found.set(term, { type, sub }); });
+                    terms.forEach(term => { 
+                        if (text.includes(term)) found.set(aliases[term] || term, { type, sub }); 
+                    });
                 }
             }
         }
