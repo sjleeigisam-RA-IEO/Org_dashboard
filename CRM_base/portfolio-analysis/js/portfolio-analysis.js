@@ -327,8 +327,8 @@ function resetAnalysisFilters() {
 }
 
 function getFilteredData() {
-    // 모펀드(Parent fund)는 검색 및 목록에서 제외하고, 구체적 자산군을 가진 자펀드(Child fund)들이 노출되도록 필터링
-    let filteredFunds = allFunds.filter(f => getFieldValue(f, 'parent_child_type') !== '모펀드');
+    // 모든 펀드를 검색 및 노출되도록 대상에 포함 (실물 자산이 매핑된 운용 펀드 검색 누락 방지)
+    let filteredFunds = allFunds;
 
     Object.keys(analysisFilters).forEach(key => {
         const selectedValues = (analysisFilters[key] || [])
