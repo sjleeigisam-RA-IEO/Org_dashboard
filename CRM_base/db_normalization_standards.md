@@ -1,118 +1,182 @@
-# 이지스 RA 대시보드 데이터베이스 구축 및 정합성 표준 정의서 (Database Normalization Standards Spec)
+# 이지스 RA 통합 데이터베이스 시스템 아키텍처 및 정합성 표준 정의서 (CRM Enterprise DB Architecture Blueprint)
 
-본 문서는 이지스 RA 포트폴리오 분석 대시보드의 데이터 무결성(Data Integrity)을 100% 보장하고, AUM 중복 계산 및 필터 오류를 원천 차단하기 위해 데이터베이스를 **최초 설계하거나 원본 데이터를 업데이트할 때 반드시 준수해야 하는 표준 가이드라인**입니다.
+본 정의서는 이지스 RA 포트폴리오 분석 대시보드, T5T 자금 집행 검토, 그리고 리스크 인텔리전스 시스템 전반을 아우르는 **통합 엔터프라이즈 데이터 모델 사양서**입니다.
 
-이 지침은 원본 로우 데이터(Excel, Notion 원장 등)로부터 관계형 데이터베이스(Supabase 등 SQL DB)를 처음부터 재구축할 때의 **ETL 설계 사양서 및 데이터 검증 가이드북** 역할을 수행합니다.
-
----
-
-## 📌 1. 데이터베이스 핵심 스키마 사양 (Schema Specifications)
-
-부동산 펀드와 실물 자산 간의 1:N 관계를 완벽히 매핑하기 위해 아래의 이중 레이어 테이블 구조를 유지합니다.
-
-### 1.1 `funds` (펀드 마스터 테이블)
-펀드의 기본 설정 정보 및 재무 데이터를 저장하며, 필터 검색을 지원하는 정규화된 태그 컬럼을 포함합니다.
-
-| 물리 컬럼명 | 타입 | 제약 조건 | 설명 |
-| :--- | :---: | :---: | :--- |
-| `fund_id` | VARCHAR | PRIMARY KEY | 이지스 내부 관리용 고유 펀드 코드 (6자리 숫자 등) |
-| `fund_name` | VARCHAR | NOT NULL | 펀드 공식 명칭 (예: 이지스일반사모부동산자투자신탁...) |
-| `parent_fund_id` | VARCHAR | NULL, FK | 모펀드 ID (모자 관계 직접 추적용, FK to `funds.fund_id`) |
-| `notion_base_asset_class` | VARCHAR | NULL | **기초자산 분류** (오피스, 물류센터, 리테일, 호텔, 주거 등) |
-| `notion_holding_type_class` | VARCHAR | NULL | **모자 구분** (모펀드, 자펀드, 프로젝트펀드, 독립펀드) |
-| `notion_business_stage_class` | VARCHAR | NULL | **사업 단계** (운영/실물, 개발) |
-| `metadata` | JSONB | NULL | 기타 메타 속성들의 통합 블록 (유연한 확정용) |
-
-### 1.2 `fund_assets` (펀드 연결 실물자산 테이블)
-펀드가 실제로 담고 있는 실물 부동산 자산의 스펙과 지리 정보를 저장합니다.
-
-| 물리 컬럼명 | 타입 | 제약 조건 | 설명 |
-| :--- | :---: | :---: | :--- |
-| `id` | BIGINT | PRIMARY KEY | 자동 증가 고유 ID |
-| `fund_id` | VARCHAR | NOT NULL, FK | 해당 자산을 취득한 펀드 ID (FK to `funds.fund_id`) |
-| `asset_name` | VARCHAR | NOT NULL | 자산 공식 명칭 (예: 아레나스양지물류센터) |
-| `main_usage` | VARCHAR | NULL | 건축물대장상 주용도 (예: 업무시설, 창고시설) |
-| `completion_date` | DATE | NULL | 준공연월일 (YYYY-MM-DD 포맷 필수) |
-| `address` | VARCHAR | NULL | 표준 지번/도로명 주소 |
-| `lat` / `lng` | NUMERIC | NULL | 지도의 정확한 좌표 찍기를 위한 위경도 값 |
-| `metadata` | JSONB | NULL | 개별 자산의 상세 건축 정보 블록 |
+이 사양서는 이지스 RA 데이터 시스템을 최초 설계 사양에 맞게 바닥부터 다시 구축(Re-build)하거나 신규 테이블 추가 및 마이그레이션을 진행할 때 엔지니어링팀이 무조건 준수해야 하는 **최상위 표준 지침서** 역할을 수행합니다.
 
 ---
 
-## ⚙️ 2. 데이터 유입 및 정규화 파이프라인 (ETL Pipeline)
+## 🏛️ 1. 통합 아키텍처 개요 및 5대 도메인 설계 (Domain Overview)
 
-원본 원장 데이터를 가공하여 프로덕션 데이터베이스에 밀어 넣을 때 아래 흐름도로 정합성 보정이 수행되어야 합니다.
+이지스 RA 시스템의 전체 데이터베이스는 논리적 기능과 원천 데이터의 속성에 따라 **5개의 핵심 도메인 영역**으로 나누어 설계되었습니다.
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                             이지스 RA CRM 5대 도메인                           │
+└─────────────────────────────────────────────────────────────────────────────┘
+  1. 자산/펀드/프로젝트 도메인 (Core Portfolio)
+     - 실물 자산 원장, 금융 투자 비히클, Notion 프로젝트 정보의 통합 매핑
+  2. 조직/좌석/직원 도메인 (Internal Directory)
+     - 전사 본부/부/팀 계층 구조, 전 사원 마스터, 겸직 및 좌석 정보 관리
+  3. 익스포저/리스크 도메인 (Risk Intelligence)
+     - 대출(Lender)/수익자(Beneficiary) Exposure, 자산 리스크 포인트, 거래 상대방 관리
+  4. 이오타 파일럿 도메인 (IOTA Activity Engine)
+     - 서울권역 딜 소싱 타임라인, 추진 이력(Log), 이해관계자 매핑 정보
+  5. T5T 원천 도메인 (Workflow Sources)
+     - 자금검토 신청서 일괄 데이터 및 세부 항목 파싱 스토어
+```
+
+---
+
+## 📊 2. 전사 데이터 모델 관계도 (ERD)
+
+각 도메인 테이블들 간의 관계와 핵심 외래키(FK) 연동 구도는 다음과 같습니다.
 
 ```mermaid
-graph TD
-    Raw[1. 원본 데이터 입수 <br> Excel, Notion API] --> Import[2. 임시 테이블에 적재 <br> Raw Ingestion]
-    Import --> NormClass[3. 기초자산 표준화 규칙 실행 <br> Rule 1: Class Inference]
-    NormClass --> NormPC[4. 모자 그릇 정밀화 규칙 실행 <br> Rule 2: Parent-Child Resolution]
-    NormPC --> NormStage[5. 준공일 기준 개발단계 동적 교정 <br> Rule 3: Temporal Stage Logic]
-    NormStage --> Final[6. Supabase 프로덕션 DB 반영 <br> Production Tables]
+erDiagram
+    %% 자산/펀드 도메인
+    asset_master ||--o{ fund_assets : "canonical_mapping"
+    funds ||--o{ fund_assets : "comprises"
+    funds }o--|| staff : "manager_staff_id (FK)"
+    funds }o--|| orgs : "dept_org_id (FK)"
+    
+    asset_master ||--o{ asset_fund_links : "junction"
+    funds ||--o{ asset_fund_links : "junction"
+    
+    %% 조직/인물 도메인
+    staff }o--|| orgs : "primary_org_id"
+    staff ||--o{ staff_org_assignments : "dual_roles"
+    orgs ||--o{ staff_org_assignments : "assigned_to"
+    staff ||--o| seats : "allocated_to"
+
+    %% 익스포저/리스크 도메인
+    lender_exposures }o--|| asset_master : "loans_against"
+    lender_exposures }o--|| funds : "funded_by"
+    beneficiary_exposures }o--|| asset_master : "equity_in"
+    beneficiary_exposures }o--|| funds : "invested_in"
+    risk_management_points }o--|| asset_master : "risk_tracked"
+    risk_management_points }o--|| funds : "risk_linked"
+    beneficiary_exposures }o--|| counterparties : "held_by"
+
+    %% 이오타 파일럿 도메인
+    iota_seoul_logs ||--o{ iota_seoul_log_links : "references"
+    iota_seoul_log_links }o--|| asset_master : "linked_asset"
+    iota_seoul_log_links }o--|| funds : "linked_fund"
+    iota_seoul_logs ||--o{ iota_seoul_log_stakeholders : "involves"
+    iota_seoul_log_stakeholders }o--|| staff : "internal_person"
+    iota_seoul_log_stakeholders }o--|| counterparties : "external_party"
 ```
 
 ---
 
-## 📐 3. 핵심 3대 정합성 보정 규칙 (The 3 Canonical Rules)
+## 📂 3. 도메인별 세부 스키마 및 연동 규칙 (Domain Specifications)
 
-이 부분이 원본 데이터를 완전히 처음부터 재정렬하더라도 **포트폴리오의 중복과 유실을 막아주는 핵심 규칙**입니다.
+### 3.1 자산/펀드/프로젝트 도메인 (Portfolio Core)
+실물 부동산과 그에 수반되는 펀드 금융 정보를 연결해 주는 핵심 영역입니다.
+
+#### [NEW/RESET] `asset_master` (자산 마스터 테이블)
+*   **역할:** 전사 실물 부동산의 단일 진실 공급원(Single Source of Truth).
+*   **스키마 구성:**
+    *   `asset_id` (VARCHAR, PK): 자산 고유 식별 코드 (`ast_` 프리픽스 권장).
+    *   `asset_name` (VARCHAR): 표준 자산명 (예: 시그니쳐타워).
+    *   `address` (VARCHAR): 지번 주소 및 도로명 주소.
+    *   `lat` / `lng` (NUMERIC): 지도 시각화용 위경도.
+    *   `pnu_code` (VARCHAR): 공공 데이터 매핑용 표준 PNU 코드.
+    *   `gfa` (NUMERIC): 연면적(평/㎡ 단위 정형화 필수).
+
+#### [MODIFY] `funds` (펀드 및 비히클 테이블)
+*   **역할:** 투자 비히클 마스터.
+*   **스키마 구성:**
+    *   `fund_id` (VARCHAR, PK): 고유 펀드 번호 (6자리 코드).
+    *   `fund_name` (VARCHAR): 펀드 공식 명칭.
+    *   `manager_staff_id` (VARCHAR, FK): 담당 운용역 사번 키 (`staff.staff_id` 연동).
+    *   `dept_org_id` (VARCHAR, FK): 담당 소속 부서 조직 코드 (`orgs.org_id` 연동).
+    *   `notion_base_asset_class` (VARCHAR): 기초자산 분류 (오피스, 물류센터, 호텔 등).
+    *   `notion_holding_type_class` (VARCHAR): 모자 구분 (모펀드, 자펀드 등).
+    *   `notion_business_stage_class` (VARCHAR): 사업 단계 (운영/실물, 개발).
+
+#### [MODIFY] `fund_assets` (펀드 자산 취득 스냅샷)
+*   *주의:* 이 테이블은 과거 Notion 등에서 단순 적재된 원천 이력 테이블입니다. 신규 화면 개발 시에는 이 테이블을 직접 참조하기보다 `asset_master`와 `asset_fund_links`를 경유하도록 설계를 제한합니다.
+
+---
+
+### 3.2 조직/직원/좌석 도메인 (Internal Directory)
+시스템 내부 사용자 및 부서 조직 계층을 정의하며, 보안 권한 및 담당자 연결에 사용됩니다.
+
+> [!IMPORTANT]
+> **사람 및 조직 키 관리 대원칙 (The Directory Principle):**
+> 1. 모든 사람의 고유 연결 키는 이름 텍스트가 아닌 사번 및 시스템 ID인 **`staff.staff_id`**를 사용합니다.
+> 2. 모든 조직의 연결은 부서명이 아닌 표준화된 **`orgs.org_id`**를 사용합니다.
+> 3. 이름이나 조직명은 단순 표시용(Display Value)일 뿐이며 동명이인, 개명, 겸직, 부서 통폐합에 따른 무결성 오류를 차단하기 위해 외래키 조인 키로 절대 사용을 금지합니다.
+
+#### [NEW] `staff` (사원 마스터 테이블)
+*   **사번 체계:** 사번이 존재하는 임직원은 `staff_emp_<사번>` 형식을 취하고 사번이 없는 미확인 인원은 이메일 및 해시화된 `staff_name_<hash>`를 고유 키로 발급하여 사번 확보 시 병합 처리합니다.
+*   **퇴사자 처리 규정:** 퇴사자가 발생하더라도 과거 T5T 폼 신청 이력 및 펀드 운용역 서명 정보의 참조 무결성(Referential Integrity)을 유지하기 위해 **데이터 로우를 삭제하지 않고** `status = 'inactive'` 및 `leave_date`를 기록해 논리적 배제 처리합니다.
+
+---
+
+### 3.3 익스포저/리스크 도메인 (Risk Intelligence)
+이지스 포트폴리오의 실질 금융 노출액(Exposure)과 여신 리스크 평가 정보를 제공합니다.
+
+*   `lender_exposures` (대출 익스포저): 펀드가 조달한 은행권 대출금 상태 기록.
+*   `beneficiary_exposures` (수익자 익스포저): 외부 기관투자자(NPS, 공제회 등)의 자본 참여 현황을 담으며, `counterparties.id`와 강하게 연결됩니다.
+*   `risk_management_points` (리스크 포인트): 자산 및 펀드별 신용 연장 횟수, 리스크 지수를 기록하여 RM 대시보드와 직결됩니다.
+
+---
+
+### 3.4 이오타 파일럿 도메인 (Activity Engine)
+서울 권역 내 주요 부동산 딜에 관한 영업 활동 일지와 외부 이해관계자 네트워킹 정보를 매핑합니다.
+
+*   `iota_seoul_logs` (타임라인 로그): 딜 소싱 활동 일지 기록.
+*   `iota_seoul_log_links`: 개별 활동 일지가 궁극적으로 수렴된 `asset_master.asset_id` 또는 `funds.fund_id`와 다대다(N:M)로 브릿지 처리됩니다.
+*   `iota_seoul_log_stakeholders`: 해당 딜 소싱 회의에 배석한 사내 임직원(`staff_id`) 및 외부 거래처 인사(`counterparties.id`)를 관계형으로 추적합니다.
+
+---
+
+## 📐 4. 데이터 정규화 및 가변 보정 규칙 (Rule Engine)
+
+이 규칙은 원본 파일(Notion 데이터, Excel Raw 등)을 최초 주입하거나 주기적으로 일괄 동기화할 때 **원천 데이터의 수동 분류 누락 및 시계열 낙후성을 덮어써주는 3대 엔진**입니다.
 
 ### [Rule 1] 기초자산 분류 자동 추론 규칙 (Base Asset Class Inference)
-`funds.notion_base_asset_class`가 비어있을 경우, 연동된 자식 테이블인 `fund_assets`의 주용도(`main_usage`) 및 자산명을 기반으로 NLP 매핑을 통해 대분류를 강제 표준화합니다.
+*   **대상:** `funds.notion_base_asset_class`가 비어있거나 불분명한 경우.
+*   **가동 엔진:** 연계된 실물 자산(`fund_assets` 또는 `asset_master`)의 `main_usage` 및 명칭 텍스트를 파싱하여 표준 자산 유형을 복원합니다.
+    *   `업무 / 업무시설 / 오피스 / 빌딩 / 사옥` ➔ **`오피스`** 지정
+    *   `물류 / 창고 / 물류센터 / 로지스` ➔ **`물류센터`** 지정
+    *   `판매 / 리테일 / 상업 / 마트 / 쇼핑몰` ➔ **`리테일`** 지정
+    *   `숙박 / 호텔 / 리조트 / 콘도` ➔ **`호텔`** 지정
+    *   `주거 / 공동주택 / 오피스텔 / 아파트` ➔ **`주거`** 지정
+    *   `데이터센터 / IDC` ➔ **`데이터센터`** 지정
 
-```python
-# 표준 NLP 키워드 맵핑 사전
-class_inference_dictionary = {
-    '오피스': ['업무', '업무시설', '오피스', '빌딩', '사옥'],
-    '물류센터': ['물류', '창고', '물류센터', '로지스'],
-    '리테일': ['판매', '리테일', '상업', '판매시설', '복합쇼핑몰', '마트', '아울렛'],
-    '호텔': ['숙박', '호텔', '콘도', '리조트'],
-    '주거': ['주거', '공동주택', '오피스텔', '아파트', '하우징'],
-    '데이터센터': ['데이터센터', 'IDC', '서버룸']
-}
-```
-*   **처리지침:** 자식 자산의 `main_usage` 또는 `asset_name`에 위의 특정 단어가 포함되어 있다면, 부모 펀드의 `base_asset_class`를 해당 표준 분류로 자동 지정합니다. 만약 한 펀드가 두 개 이상의 자산군을 가질 경우, 콤마(`,`)로 결합하여 기록합니다(예: `오피스, 리테일`).
+### [Rule 2] 모자(母子) 그릇 분류 및 AUM 이중 계산 방지 규칙 (Parent-Child Resolution)
+*   **대상:** 펀드의 모집액(Committed Amount) 합산 시 발생하는 중복 집계 차단.
+*   **명칭 기반 자동 맵핑 파서:**
+    *   펀드명에 `"모투자"`, `"모부동산"` 포함 ➔ **`모펀드`** 분류
+    *   펀드명에 `"자투자"`, `"자부동산"` 포함 ➔ **`자펀드`** 분류
+    *   펀드명에 `"프로젝트"`, `"PFV"`, `"피에프브이"` 포함 ➔ **`프로젝트펀드`** 분류
+    *   그 외 일반 단독 구조 ➔ **`독립펀드`** 분류
+*   **AUM 집계 제약조건 (Strict SQL):**
+    대시보드가 총합 운용 AUM을 계산할 때는 절대 모자 펀드를 모두 더해서는 안 되며, **반드시 실질 투자자 공급액을 대변하는 자펀드/독립펀드만 필터링해 더해야 합니다.**
+    ```sql
+    SELECT SUM(committed_amount) 
+    FROM funds 
+    WHERE notion_holding_type_class != '모펀드';
+    ```
 
----
-
-### [Rule 2] 모자(母子) 그릇 분류 규칙 (Parent-Child Resolution)
-AUM 계산 시 펀드 설정액이 중복 카운팅(Double-Counting)되는 대형 금융 재해를 방지하기 위한 안전장치입니다.
-
-*   **판별 메커니즘 (명칭 기반 정밀 매핑):**
-    1.  펀드명에 **"모투자"** 또는 **"모부동산"**이 들어갈 경우 ➔ 무조건 **`모펀드`**로 분류.
-    2.  펀드명에 **"자투자"** 또는 **"자부동산"**이 들어갈 경우 ➔ 무조건 **`자펀드`**로 분류.
-    3.  펀드명에 **"프로젝트"**, **"PFV"**, **"피에프브이"**가 들어갈 경우 ➔ **`프로젝트펀드`**로 분류.
-    4.  그 외 일반 개별 설정 펀드 ➔ **`독립펀드`**로 분류.
-
-> [!WARNING]
-> **AUM 합산 안전 공식 (AUM Summation Invariant):**
-> 대시보드와 보고서에서 운용 AUM 총합을 집계할 때는 반드시 아래 조건으로 필터링을 수행해야 합니다.
-> ```sql
-> SELECT SUM(committed_amount) 
-> FROM funds 
-> WHERE notion_holding_type_class != '모펀드';
-> ```
-> 모펀드를 합산 대상에서 영구적으로 제외하지 않으면, 해당 자금이 자펀드와 SPC에 재투자되는 과정에서 AUM 통계가 실제의 2~3배로 튀어 오르게 됩니다.
+### [Rule 3] 준공일 기반 사업단계 실시간 동적 교정 (Temporal Business Stage Normalization)
+*   **대상:** '개발 단계' 상태 값의 장기 낙후 해결.
+*   **논리 로직:** 원본 문서 상에 '개발'이라고 고정 기재된 메타데이터를 무조건 맹신하지 않고, 실물 자산의 **`completion_date` (준공 연월일)**과 **조회 당일 일자 (Today Line, 예: 2026-05-06)**를 비교 연산하여 실시간 판정합니다.
+    *   $\text{준공일} \le \text{현재 일자}$ ➔ 무조건 **`운영/실물`** 단계로 승격 보정.
+    *   $\text{준공일} > \text{현재 일자}$ ➔ **`개발`** 단계 고수.
+*   **효과:** 이 규칙을 통하면 과거에 개발 펀드로 시작해 이미 완공되어 입주를 끝마친 다수의 물류센터나 오피스텔이 '개발' 필터에서 자동으로 걸러지고 '운영/실물' 포트폴리오로 정상 편입되어 대시보드 통계의 완벽함을 보장합니다.
 
 ---
 
-### [Rule 3] 사업 단계 실시간 동적 교정 규칙 (Temporal Business Stage Normalization)
-기존 정적 문서에 명시된 "개발" 단계 꼬리표를 믿지 말고, **현재 조회를 수행하는 당일 기준선(Today Line)**과 자산의 **준공연월일**을 기하학적으로 비교하여 실시간 가변 상태로 보정합니다.
+## 🚀 5. 신규 데이터 입수 시 데이터 무결성 체크리스트 (Ingestion Checklist)
 
-1.  **동적 교정 핵심 로직:**
-    *   $\text{준공연월일} \le \text{조회 시점 (현재 일자)}$ ➔ **`운영/실물`** (Operational/Real Asset)로 자동 보정 및 승격.
-    *   $\text{준공연월일} > \text{조회 시점 (현재 일자)}$ ➔ **`개발`** (Development) 단계를 정밀 고수.
-2.  **도입 배경:** 원본 원장 데이터는 과거에 작성된 상태 그대로 정체되어 있어, 이미 완공되어 운영 중인 "야탑쿠팡물류(2023년 준공)"조차 여전히 원본 명부에는 "개발"로 박혀있는 중대한 시계열 오류를 완전히 해결해 줍니다.
+새로운 자산이나 펀드가 등록될 때, 데이터 파이프라인 관리자는 다음 체크리스트를 통과했는지 무조건 검증해야 합니다.
 
----
-
-## 🔍 4. 펀드 구축 시 데이터 무결성 체크리스트 (Ingestion Checklist)
-
-새로운 데이터를 적재할 때는 아래 5대 규칙의 준수 여부를 무조건 통과해야 배포가 가능합니다.
-
-- [ ] **1. ID 무결성:** 모든 펀드 레코드는 유일무이한 `fund_id`를 가져야 하며 외래키 관계가 깨지지 않아야 한다.
-- [ ] **2. 준공연월 형식 정형화:** 실물 자산의 `completion_date`가 문자열(`'24년05월'`)이나 공란으로 오지 않고, 반드시 `YYYY-MM-DD` 표준 날짜 형식으로 변환 적재되었다.
-- [ ] **3. 기초자산 완전성:** `base_asset_class`가 비어있는 펀드가 한 개도 존재하지 않으며, 만약 비어있다면 `Rule 1`에 의해 자식의 스펙을 파싱해 보완되었다.
-- [ ] **4. 모자 구분 완료:** 펀드 마스터 테이블의 `notion_holding_type_class`가 공란 없이 `모펀드`, `자펀드`, `독립펀드`, `프로젝트펀드` 중 하나로 100% 분배 지정되었다.
-- [ ] **5. 위경도 유효성:** 실물 자산 주소지에 매핑된 위경도 좌표(`lat`, `lng`)가 유효 범위(대한민국 기준 위도 33~39, 경도 124~132) 안에 위치하여 지도상에 찍힐 수 있다.
+- [ ] **1. ID 정규화:** 모든 엔티티가 누락 없는 Primary Key 및 적절한 프리픽스(`ast_`, `staff_emp_` 등)를 할당받았다.
+- [ ] **2. FK 제약 조건 자가 복원:** `funds`의 `manager_staff_id` 및 `dept_org_id`가 실제 디렉토리 테이블의 `staff_id` 및 `org_id`로 정확하게 링킹되어 고립 데이터가 없다.
+- [ ] **3. 날짜 규격 통일:** 준공 연월일이 빈 문자열이나 부적절한 한국어 텍스트 대신 `YYYY-MM-DD` 타입의 온전한 DATE 형식으로 입력되었다.
+- [ ] **4. AUM 중복 그릇 방어:** 새 펀드의 `notion_holding_type_class`가 4가지 그릇 구조(모펀드, 자펀드, 독립펀드, 프로젝트펀드) 중 하나로 100% 명확하게 정의되어 AUM 중복 통계 유입을 통제한다.
+- [ ] **5. 위경도 범위 유효성 검증:** 모든 연동 실물 자산의 `lat`/`lng` 좌표가 지도 표출 한계 바운더리(위도 33~39, 경도 124~132) 내부의 실수값으로 존재한다.
