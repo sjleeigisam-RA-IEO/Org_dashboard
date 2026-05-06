@@ -284,7 +284,7 @@ function openProjectModal(id) {
       <div class="modal-item-meta" style="font-size:13px; color:var(--text); line-height:1.6; white-space:pre-wrap; background:#fff; padding:10px; border-radius:4px; border:1px solid rgba(0,0,0,0.05);">${l.raw_text || ""}</div>
     </div>
   `).join("");
-  document.getElementById("projectModal").style.display = "flex";
+  document.getElementById("projectModal").hidden = false;
 }
 
 function openInsightModal(kind, key) {
@@ -321,8 +321,8 @@ function setupModals() {
   const close = (mid, cid) => {
     const m = document.getElementById(mid), c = document.getElementById(cid);
     if (m && c) {
-        c.onclick = () => m.hidden = true;
-        m.onclick = (e) => { if(e.target.id === mid) m.hidden = true; };
+        c.onclick = () => { m.style.display = ""; m.hidden = true; };
+        m.onclick = (e) => { if(e.target.id === mid) { m.style.display = ""; m.hidden = true; } };
     }
   };
   close("projectModal", "projectModalClose");
