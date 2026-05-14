@@ -1,0 +1,528 @@
+[
+  {
+    "aliases": [
+      "타임워크 웨스트",
+      "TWW",
+      "타임워크 웨스트(디큐브)",
+      "타임워크 웨스트(신도림)"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81f4-825b-cecf97621dce",
+    "target_name": "타임워크 웨스트 (신도림)"
+  },
+  {
+    "aliases": [
+      "타임워크 신도림"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81f4-825b-cecf97621dce",
+    "target_name": "타임워크 웨스트 (신도림)"
+  },
+  {
+    "aliases": [
+      "세운 5-1, 3",
+      "세운 5-1,3",
+      "세운5-1,3",
+      "세운 5-1,3 등"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81fe-863b-d520374af4eb",
+    "target_name": "세운5구역 개발사업"
+  },
+  {
+    "aliases": [
+      "타임워크 분당",
+      "분당 롯데",
+      "롯데분당",
+      "롯데백화점 분당"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81be-a045-f6d9f2ee2c6a",
+    "target_name": "롯데백화점 분당점 리모델링"
+  },
+  {
+    "aliases": [
+      "타임워크 판교"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81be-a045-f6d9f2ee2c6a",
+    "target_name": "롯데백화점 분당점 리모델링"
+  },
+  {
+    "aliases": [
+      "팩토리얼 용산",
+      "용산 나진",
+      "용산나진",
+      "용산특계8",
+      "용산 특계 8",
+      "특계8구역"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-8112-b036-c2173374bb23",
+    "target_name": "팩토리얼 용산(용산 나진상가 재개발)"
+  },
+  {
+    "aliases": [
+      "팩토리얼 용산(나진)",
+      "서울로+메트로",
+      "서울로 메트로",
+      "IOTA",
+      "IOTA 프로젝트",
+      "이오타 서울",
+      "IOTA 서울 1",
+      "IOTA 서울 2",
+      "IOTA 서울 1/2"
+    ],
+    "target_type": "project",
+    "target_id": "iota-seoul",
+    "target_name": "이오타서울 (IOTA Seoul)"
+  },
+  {
+    "aliases": [
+      "IGIS 572",
+      "IGIS572",
+      "572호",
+      "펀드 572호"
+    ],
+    "target_type": "fund",
+    "target_id": "190014",
+    "target_name": "572호 / 부산 육양국 DC"
+  },
+  {
+    "aliases": [
+      "부산 데이터센터 개발 프로젝트",
+      "부산 데이터센터",
+      "부산 육양국",
+      "부산 육양국 DC",
+      "명지녹산데이터센터"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-8146-a972-deb45e2e5bb9",
+    "target_name": "부산 육양국 DC"
+  },
+  {
+    "aliases": [
+      "부산 육양국 직결 데이터센터 AKROS",
+      "부산 육양국 직결 데이터센터",
+      "부산 육양국 직결 DC AKROS"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-8146-a972-deb45e2e5bb9",
+    "target_name": "부산 육양국 DC"
+  },
+  {
+    "aliases": [
+      "Special Situation Fund TFT",
+      "Special Situation 크레딧 준비",
+      "SS크레딧 TFT",
+      "SS 크레딧 펀드 조성 TFT"
+    ],
+    "target_type": "general_work",
+    "target_id": null,
+    "target_name": "Special Situation Fund TFT"
+  },
+  {
+    "aliases": [
+      "오금역 시니어개발",
+      "오금역 시니어리빙",
+      "오금역 시니어리빙 개발사업"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81c7-a4df-f5c54b3b71c2",
+    "target_name": "오금역 시니어리빙 개발사업"
+  },
+  {
+    "aliases": [
+      "양양씨사이드 프로젝트",
+      "양양씨사이드 개발사업",
+      "양양 씨사이드"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-8170-85d1-c22d858edae7",
+    "target_name": "양양 씨사이드 개발사업"
+  },
+  {
+    "aliases": [
+      "고양 삼송 DC 개발 프로젝트",
+      "고양 삼송 데이터센터 개발 프로젝트",
+      "고양삼송DC",
+      "고양삼송 데이터센터"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-817a-8d9d-ca7fa218d56f",
+    "target_name": "고양삼송 데이터센터"
+  },
+  {
+    "aliases": [
+      "IGIS 429(고양 삼송IDC)",
+      "IGIS 429",
+      "IGIS439",
+      "IGIS 439",
+      "고양 삼송IDC"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-817a-8d9d-ca7fa218d56f",
+    "target_name": "고양삼송 데이터센터"
+  },
+  {
+    "aliases": [
+      "KLIP1",
+      "KLIP 1",
+      "KLIP 1호"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-810e-a686-f8fdceac2e29",
+    "target_name": "KLIP 1호"
+  },
+  {
+    "aliases": [
+      "서리풀 개발 프로젝트",
+      "서리풀SBC PFV",
+      "서리풀 SBC PFV"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81aa-adde-cf3478b10198",
+    "target_name": "서리풀 개발사업"
+  },
+  {
+    "aliases": [
+      "가산 복합개발 프로젝트",
+      "가산 복합개발"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-8136-96d3-f99474d7d46d",
+    "target_name": "가산동 임대형 기숙사 개발사업"
+  },
+  {
+    "aliases": [
+      "Mall of K",
+      "PJT Lucina",
+      "Lucina"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-814a-9829-e13bd6cd9b4f",
+    "target_name": "건대 몰오브케이"
+  },
+  {
+    "aliases": [
+      "IGIS 472",
+      "김포IDC"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81d8-b179-d43fa8bbe452",
+    "target_name": "김포 데이터센터 개발사업"
+  },
+  {
+    "aliases": [
+      "IGIS 574 外",
+      "IGIS 574",
+      "하남 소형IDC",
+      "하남2IDC"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-819d-982d-faf113678bdf",
+    "target_name": "하남2IDC 개발사업"
+  },
+  {
+    "aliases": [
+      "IGIS 501",
+      "안산 초지동 데이터센터"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81cf-88a1-d01be50c7fd0",
+    "target_name": "안산 글로벌클라우드센터 개발"
+  },
+  {
+    "aliases": [
+      "울산KTX주거복합개발사업",
+      "울산역 KTX",
+      "KTX울산역 오피스텔"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81a1-ae94-e9ff46be5503",
+    "target_name": "울산역 KTX S3블럭 오피스텔 개발사업"
+  },
+  {
+    "aliases": [
+      "팩토리얼 을지로(시청 부림)",
+      "시청 부림",
+      "부림빌딩"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81af-974e-eb74e82227b7",
+    "target_name": "부림빌딩"
+  },
+  {
+    "aliases": [
+      "더케이호텔 재개발",
+      "더케이호텔 재개발 프로젝트"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81a5-a7f1-c3d4a6b8c43b",
+    "target_name": "더케이호텔 재개발"
+  },
+  {
+    "aliases": [
+      "서리풀SBC PFV",
+      "SBC 서리풀 PFV",
+      "서리풀 SBC PFV"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81aa-adde-cf3478b10198",
+    "target_name": "서리풀 개발사업"
+  },
+  {
+    "aliases": [
+      "비즈성장플랫폼",
+      "비즈성정플랫폼",
+      "비즈성장(블펀)"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-8147-ba74-db2eb51dc58a",
+    "target_name": "비즈성장 1호"
+  },
+  {
+    "aliases": [
+      "IBG1-1 티맥스타워",
+      "티맥스타워",
+      "티맥스 수내타워"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-8110-979d-cb1bf2ae6f8e",
+    "target_name": "티맥스 수내타워"
+  },
+  {
+    "aliases": [
+      "AI Ready 디지털트윈",
+      "삼성전자 AI Ready 디지털트윈",
+      "디지털트윈 후속작업",
+      "T5T Contents"
+    ],
+    "target_type": "mission",
+    "target_id": null,
+    "target_name": "미션"
+  },
+  {
+    "aliases": [
+      "산단환경개선펀드",
+      "산단펀드",
+      "산업단지공단"
+    ],
+    "target_type": "mission",
+    "target_id": null,
+    "target_name": "미션"
+  },
+  {
+    "aliases": [
+      "개발플랫폼",
+      "당사 물류자산 Lease-up"
+    ],
+    "target_type": "mission",
+    "target_id": null,
+    "target_name": "미션"
+  },
+  {
+    "aliases": [
+      "남산소월",
+      "남산소월타워"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-8189-ba69-ea321ec2c2e5",
+    "target_name": "남산소월타워 (舊 SK남산그린빌딩)"
+  },
+  {
+    "aliases": [
+      "몰오브케이",
+      "건대몰오브K"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-814a-9829-e13bd6cd9b4f",
+    "target_name": "건대 몰오브케이"
+  },
+  {
+    "aliases": [
+      "원그로브",
+      "마곡 원그로브"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81ea-aa82-deda1dac2fe3",
+    "target_name": "마곡 원그로브"
+  },
+  {
+    "aliases": [
+      "양지물류",
+      "양지 물류",
+      "양지물류센터",
+      "아레나스양지",
+      "아레나스 양지"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81b7-91a0-d8146935f603",
+    "target_name": "아레나스 양지"
+  },
+  {
+    "aliases": [
+      "브이플렉스",
+      "V PLEX",
+      "VPLEX",
+      "V플렉스"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-8128-bd7f-fcd601dd9754",
+    "target_name": "V플렉스 (舊 NC타워2)"
+  },
+  {
+    "aliases": [
+      "OPUS459",
+      "OPUS 459",
+      "백암빌딩"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-817b-b954-d181fde727df",
+    "target_name": "백암빌딩(OPUS459)"
+  },
+  {
+    "aliases": [
+      "OPUS407",
+      "OPUS 407",
+      "오퍼스407",
+      "뉴욕제과"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-8174-bbc0-d6ba8619eea5",
+    "target_name": "뉴욕제과(OPUS407)"
+  },
+  {
+    "aliases": [
+      "평택 아디다스",
+      "평택아디다스",
+      "평택아디다스 물류",
+      "평택아디다스물류"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-8170-8de5-f9c1b071c202",
+    "target_name": "평택 아디다스 물류센터"
+  },
+  {
+    "aliases": [
+      "원센티널",
+      "신한금융투자타워"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81c6-87e2-f77e714dfccd",
+    "target_name": "원센티널(舊 신한금융투자타워)"
+  },
+  {
+    "aliases": [
+      "논현두산",
+      "논현 두산",
+      "논현두산사옥",
+      "논현 두산빌딩"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-8186-a02f-de49c9c22bf2",
+    "target_name": "논현 두산빌딩"
+  },
+  {
+    "aliases": [
+      "창원두동",
+      "창원 두동",
+      "창원두동물류"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81fc-841c-c91c6aabb9b9",
+    "target_name": "창원 두동 물류센터"
+  },
+  {
+    "aliases": [
+      "여주본두리",
+      "여주 본두리",
+      "여주본두리 물류"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-8125-9191-db4b8b12bacc",
+    "target_name": "여주 본두리 물류센터"
+  },
+  {
+    "aliases": [
+      "지밸리",
+      "G밸리",
+      "구로 지밸리"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-8161-8493-d0533ea0fe3e",
+    "target_name": "구로 지밸리 프로젝트"
+  },
+  {
+    "aliases": [
+      "코어플랫폼/인컴앤그로스",
+      "코어플랫폼",
+      "코어플랫폼1호"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-8130-a3b0-c57b0247d366",
+    "target_name": "코어플랫폼1호"
+  },
+  {
+    "aliases": [
+      "인컴앤그로스",
+      "인컴앤그로스 2호",
+      "인컴2-3호",
+      "인컴2-4호"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-814e-aa34-fb7376733f78",
+    "target_name": "인컴앤그로스 2호"
+  },
+  {
+    "aliases": [
+      "안성홈플러스",
+      "안성 홈플러스",
+      "안성홈플러스물류"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-81e0-81b0-fe1420d49b02",
+    "target_name": "안성 홈플러스 물류센터"
+  },
+  {
+    "aliases": [
+      "인천석남물류",
+      "인천 석남 물류",
+      "인천석남물류센터"
+    ],
+    "target_type": "project",
+    "target_id": "project_notion_3258ced4-3c47-8166-8841-e0de7316e354",
+    "target_name": "인천 석남 물류센터"
+  },
+  {
+    "aliases": [
+      "홈플러스 자산",
+      "홈플러스 자산 10개",
+      "홈플러스 자산(9개 매장 및 1개 물류창고)",
+      "19호 홈플러스",
+      "홈플러스자산"
+    ],
+    "target_type": "mission",
+    "target_id": null,
+    "target_name": "미션"
+  },
+  {
+    "aliases": [
+      "Exit TF",
+      "회계/세무 이슈 관리",
+      "CSO 월간 안전미팅",
+      "전체 관리 자산에 대한 안전미팅",
+      "글로벌 자산관리 그룹 운용 자산",
+      "해외 자산 Exit 전략",
+      "리빙 그룹 운영 펀드",
+      "리빙 섹터 신규 채용",
+      "조직 별 목표수립",
+      "자산관리부문 상반기 행사",
+      "CJ CGV 미디어사업",
+      "중소기업중앙회 블라인드펀드"
+    ],
+    "target_type": "mission",
+    "target_id": null,
+    "target_name": "미션"
+  }
+]

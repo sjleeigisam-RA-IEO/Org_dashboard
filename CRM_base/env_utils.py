@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 from dotenv import dotenv_values, load_dotenv
@@ -15,7 +16,9 @@ def env_path():
 
 
 def load_dashboard_env():
-    return dotenv_values(env_path())
+    values = dotenv_values(env_path())
+    values.update({k: v for k, v in os.environ.items() if k.startswith("SUPABASE_")})
+    return values
 
 
 def load_dashboard_dotenv():

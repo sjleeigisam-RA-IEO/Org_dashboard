@@ -55,27 +55,28 @@ const T5TCharts = {
         const container = document.getElementById("stakeholder-chart-container");
         const centerCopy = document.getElementById("stakeholder-center-copy");
         if (!container) return;
+        if (this.instances.stakeholder) this.instances.stakeholder.destroy();
 
         // 물리적 캔버스 초기화 (이벤트 리스너 완전 제거)
         container.innerHTML = '<canvas id="stakeholder-chart"></canvas>';
         const canvas = document.getElementById("stakeholder-chart");
         const ctx = canvas.getContext("2d");
 
-        centerCopy.innerHTML = `<strong>${chartData.title}</strong>${chartData.subtitle}`;
-
         if (!chartData || !chartData.items || !chartData.items.length) {
             centerCopy.innerHTML = "<strong>데이터 없음</strong>";
             return;
         }
+        const total = chartData.items.reduce((sum, item) => sum + Number(item.count || 0), 0);
+        centerCopy.innerHTML = `<strong>${total.toLocaleString()} log</strong><span>${chartData.subtitle}</span>`;
 
-        new Chart(ctx, {
+        this.instances.stakeholder = new Chart(ctx, {
             type: "doughnut",
             data: {
                 labels: chartData.items.map((item) => item.name),
                 datasets: [{
                     data: chartData.items.map((item) => item.count),
                     backgroundColor: colors.stakeholders.slice(0, chartData.items.length),
-                    borderColor: "#ffffff",
+                    borderColor: "#2c2c2e",
                     borderWidth: 2,
                     hoverOffset: 8,
                 }],
@@ -83,17 +84,22 @@ const T5TCharts = {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                cutout: "65%",
+                cutout: "58%",
                 animation: { duration: 400 }, // 애니메이션 단축으로 충돌 방지
+                layout: {
+                    padding: { top: 6, right: 18, bottom: 8, left: 18 },
+                },
                 plugins: {
                     legend: {
                         position: "bottom",
                         labels: {
-                            color: "#667085",
-                            font: { family: "Pretendard Variable", size: 11 },
-                            padding: 10,
+                            color: "#a5a5aa",
+                            font: { family: "Pretendard Variable", size: 13, weight: "700" },
+                            padding: 16,
                             usePointStyle: true,
                             pointStyle: "circle",
+                            boxWidth: 10,
+                            boxHeight: 10,
                         },
                     },
                     tooltip: { enabled: true }

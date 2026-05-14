@@ -1,17 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Pretendard+Variable:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --bg: #f3f6f9; /* Modern sleek grayish-blue background */
-  --panel: rgba(255, 255, 255, 0.7); /* Glass effect */
-  --panel-solid: #ffffff;
-  --text: #0f172a;
-  --muted: #64748b;
-  --line: rgba(15, 23, 42, 0.06);
-  --accent: #4f46e5; /* Indigo */
-  --accent-hover: #4338ca;
-  --accent-2: #0ea5e9; /* Light blue */
-  --shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
-  --shadow-hover: 0 20px 40px rgba(79, 70, 229, 0.1);
+  --bg: #191817;
+  --panel: rgba(44, 44, 46, 0.94);
+  --panel-solid: #242426;
+  --item: rgba(255, 255, 255, 0.045);
+  --text: #f6f1e8;
+  --muted: #a5a5aa;
+  --soft: #d7d2c4;
+  --line: rgba(255, 255, 255, 0.09);
+  --accent: #fbf167;
+  --accent-hover: #fff67a;
+  --accent-2: #c87855;
+  --shadow: 0 18px 42px rgba(0, 0, 0, 0.25);
+  --shadow-hover: 0 24px 58px rgba(0, 0, 0, 0.34);
   --font: "Pretendard Variable", sans-serif;
   --radius: 16px;
   --blur: blur(20px);
@@ -23,8 +25,7 @@ body {
   margin: 0;
   font-family: var(--font);
   background: var(--bg);
-  background-image: radial-gradient(circle at 15% 50%, rgba(79, 70, 229, 0.05), transparent 25%),
-                    radial-gradient(circle at 85% 30%, rgba(14, 165, 233, 0.05), transparent 25%);
+  background-image: none;
   color: var(--text);
   height: 100vh;
   overflow: hidden;
@@ -692,6 +693,27 @@ body {
   padding: 4px 8px;
 }
 
+.portal-back-link {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  background: var(--panel-solid);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  transition: all 0.2s;
+}
+
+.portal-back-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .vehicle-beneficiary-row td {
   background: #fffdf7;
 }
@@ -826,4 +848,213 @@ body {
   .asset-modal-summary {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+/* Unified RA dashboard theme override */
+.left-panel,
+.right-panel,
+.side-drawer,
+.drawer-header,
+.fund-detail-card,
+.help-modal,
+.group-card,
+.kpi-card,
+.analytics-container .kpi-card,
+.analytics-container .detail-section,
+.analysis-filters,
+.chart-section,
+.filter-group,
+.filter-group-content,
+.multi-select-dropdown,
+.asset-modal,
+.asset-modal-summary div {
+  background: var(--panel-solid) !important;
+  border-color: var(--line) !important;
+  color: var(--text) !important;
+  box-shadow: var(--shadow) !important;
+}
+
+.left-panel {
+  border-right-color: var(--line) !important;
+}
+
+.right-panel {
+  background: var(--bg) !important;
+}
+
+.view-toggle,
+.tabs,
+.basket-container,
+.sub-list,
+.chart-toggle-group,
+.segmented-control,
+.filter-group-header,
+.chart-toggle,
+.drill-item,
+.data-table th,
+.profile-table th,
+.multi-select-search,
+.detail-placeholder,
+.no-results {
+  background: var(--item) !important;
+  border-color: var(--line) !important;
+  color: var(--muted) !important;
+}
+
+.search-container input,
+.analysis-filters select,
+.filter-item select,
+.multi-select-search input,
+.tab-btn,
+.basket-chip,
+.basket-header button,
+.multi-select-trigger,
+.filter-select,
+.filter-input,
+.filter-chip-item,
+.back-btn,
+.close-modal-btn,
+.action-btn,
+.search-apply-btn,
+.reset-filters-btn,
+.asset-modal-close {
+  background: var(--panel-solid) !important;
+  border-color: var(--line) !important;
+  color: var(--text) !important;
+  border-radius: 8px !important;
+}
+
+.view-toggle,
+.view-toggle button,
+.tab-btn,
+.group-card,
+.fund-detail-card,
+.kpi-card,
+.chart-section,
+.filter-group,
+.help-modal,
+.side-drawer,
+.multi-select-dropdown,
+.data-table,
+#vmap,
+.asset-modal {
+  border-radius: 8px !important;
+}
+
+.view-toggle button.active,
+.tab-btn.active,
+.chart-toggle-btn.active,
+.segmented-control .segment-slider,
+.search-apply-btn,
+.close-modal-btn,
+.primary-btn {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #171717 !important;
+}
+
+.header h1,
+.section-title,
+.analytics-container h2,
+.analytics-container h3,
+.analytics-container h4,
+.group-title,
+.profile-table td,
+.drill-name,
+.meta-val,
+.help-modal li strong,
+.asset-modal-header h3,
+.asset-modal-summary strong {
+  color: var(--text) !important;
+}
+
+.kpi-sub,
+.drill-title,
+.drill-amt,
+.basket-header span,
+.filter-count-badge,
+.filter-chip-item,
+.tag-fund,
+.tag-asset {
+  color: var(--accent) !important;
+}
+
+.tag-fund,
+.tag-asset,
+.tag-project,
+.tag-ben,
+.tag-lender,
+.kpi-sub,
+.filter-chip-item {
+  background: rgba(251, 241, 103, 0.12) !important;
+  border-color: rgba(251, 241, 103, 0.25) !important;
+}
+
+.data-table td,
+.data-table th,
+.profile-table th,
+.profile-table td,
+.asset-modal-header,
+.asset-modal-summary div {
+  border-color: var(--line) !important;
+}
+
+.data-table tr:hover,
+.data-table tr:hover td,
+.group-card:hover,
+.drill-item:hover,
+.filter-group-header:hover,
+.multi-select-option:hover {
+  background: rgba(251, 241, 103, 0.055) !important;
+}
+
+.side-drawer-overlay,
+.modal-overlay,
+.asset-modal-overlay {
+  background: rgba(8, 8, 8, 0.66) !important;
+}
+
+.analysis-filters {
+  padding-bottom: 64px !important;
+}
+
+.segmented-control .segment.active {
+  color: #171717 !important;
+}
+
+.segmented-control .segment:not(.active),
+.chart-toggle-btn:not(.active) {
+  color: var(--muted) !important;
+}
+
+.analytics-container [style*="border-top:1px solid #e2e8f0"],
+.analytics-container [style*="border-top:1px dashed #cbd5e1"],
+.analytics-container [style*="border-left:1px solid #f1f5f9"],
+.analytics-container [style*="border-top:1px solid #f1f5f9"] {
+  border-color: var(--line) !important;
+}
+
+.analytics-container [style*="background:#f1f5f9"],
+.analytics-container [style*="background:#f8fafc"],
+.analytics-container [style*="background:white"],
+.analytics-container [style*="background: white"],
+.analytics-container [style*="background:#eff6ff"] {
+  background: var(--item) !important;
+}
+
+.analytics-container [style*="color:#94a3b8"],
+.analytics-container [style*="color:#64748b"] {
+  color: var(--muted) !important;
+}
+
+.analytics-container [style*="color:#6366f1"],
+.analytics-container [style*="color:var(--accent)"] {
+  color: var(--accent) !important;
+}
+
+.apexcharts-tooltip,
+.apexcharts-tooltip-title {
+  background: var(--panel-solid) !important;
+  border-color: var(--line) !important;
+  color: var(--text) !important;
 }

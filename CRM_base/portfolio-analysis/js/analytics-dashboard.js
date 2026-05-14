@@ -50,7 +50,7 @@ async function renderAnalytics() {
           </div>
 
           <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px; margin-bottom:32px;">
-            <div class="kpi-card" style="padding:40px; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
+            <div class="kpi-card" style="padding:40px;">
               <div class="kpi-label" style="font-size:14px; letter-spacing:1px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;">
                 <span>현재 운용 AUM (${aumConfig.label}, 2026.03.31 기준)</span>
                 <div id="aumBasisToggle" class="segmented-control" data-active="${aumMetric}" onclick="toggleAumBasis()">
@@ -60,14 +60,14 @@ async function renderAnalytics() {
                 </div>
               </div>
               <div class="kpi-value" style="font-size:52px; color:var(--accent); font-weight:900; line-height:1;">${mainValue}</div>
-              <div style="margin-top:32px; padding-top:24px; border-top:1px solid #e2e8f0; display:grid; grid-template-columns: 1fr 1fr 1fr; gap:20px;">
+              <div style="margin-top:32px; padding-top:24px; border-top:1px solid var(--line); display:grid; grid-template-columns: 1fr 1fr 1fr; gap:20px;">
                 <div class="kpi-sub">
                   <div class="kpi-sub-label">자본금</div>
-                  <div class="kpi-sub-value" style="color:#6366f1; font-size:18px;">${eqVal}</div>
+                  <div class="kpi-sub-value" style="color:var(--accent); font-size:18px;">${eqVal}</div>
                 </div>
                 <div class="kpi-sub">
                   <div class="kpi-sub-label">대출(Debt)</div>
-                  <div class="kpi-sub-value" style="color:#f59e0b; font-size:18px;">${lnVal}</div>
+                  <div class="kpi-sub-value" style="color:var(--accent-2); font-size:18px;">${lnVal}</div>
                 </div>
                 <div class="kpi-sub">
                   <div class="kpi-sub-label">기타</div>
@@ -76,13 +76,13 @@ async function renderAnalytics() {
               </div>
             </div>
 
-            <div class="kpi-card" style="padding:40px; background:#f8fafc; border:1px solid #e2e8f0; display:flex; flex-direction:column; justify-content:space-between;">
+            <div class="kpi-card" style="padding:40px; display:flex; flex-direction:column; justify-content:space-between;">
               <div>
                 <div class="kpi-label" style="margin-bottom:16px;">운용 기초자산</div>
                 <div class="kpi-value" style="font-size:48px; font-weight:900; color:var(--text);">${activeAssetRecords.length}<span style="font-size:18px; font-weight:500; margin-left:4px; color:var(--muted);">개</span></div>
-                <div style="margin-top:10px; color:#94a3b8; font-size:11px; line-height:1.5;">주소/PNU 확인 실물 부동산 기준<br>재간접, 증권, 포트폴리오 묶음 제외</div>
+                <div style="margin-top:10px; color:var(--muted); font-size:11px; line-height:1.5;">주소/PNU 확인 실물 부동산 기준<br>재간접, 증권, 포트폴리오 묶음 제외</div>
               </div>
-              <div style="margin-top:24px; padding-top:20px; border-top:1px dashed #cbd5e1; display:grid; grid-template-columns: repeat(${otherAssetsCount > 0 ? 3 : 2}, 1fr); gap:12px;">
+              <div style="margin-top:24px; padding-top:20px; border-top:1px dashed var(--line); display:grid; grid-template-columns: repeat(${otherAssetsCount > 0 ? 3 : 2}, 1fr); gap:12px;">
                 <div class="kpi-sub">
                   <div class="kpi-sub-label">국내</div>
                   <div class="kpi-sub-value" style="font-size:18px;">${domesticAssetsCount}<span style="font-size:12px; margin-left:2px;">개</span></div>
@@ -100,10 +100,10 @@ async function renderAnalytics() {
             </div>
           </div>
 
-          <div class="detail-section" style="padding:40px; background:white; border-radius:24px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);">
+          <div class="detail-section" style="padding:40px;">
             <h3 class="section-title" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
               <span style="font-size:20px; font-weight:800;">연도별 포트폴리오 성장 궤적 (2010 - 2026)</span>
-              <div class="chart-toggle-group" style="display:flex; background:#f1f5f9; padding:4px; border-radius:12px; gap:4px;">
+              <div class="chart-toggle-group" style="display:flex; padding:4px; border-radius:8px; gap:4px;">
                  <button id="toggle-aum" class="chart-toggle-btn ${currentChartMetric === 'aum' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('aum')">AUM</button>
                  <button id="toggle-equity" class="chart-toggle-btn ${currentChartMetric === 'equity' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('equity')">Equity</button>
                  <button id="toggle-loan" class="chart-toggle-btn ${currentChartMetric === 'loan' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('loan')">Loan</button>
@@ -119,7 +119,7 @@ async function renderAnalytics() {
                    <span style="width:8px; height:8px; background:#f59e0b; border-radius:2px; margin-right:10px;"></span>
                    연도별 순증감 추이 (Annual Net Change)
                  </div>
-                 <span style="font-size:12px; color:var(--accent); background:#eff6ff; padding:2px 8px; border-radius:6px;">${currentOrgScope === 'ra' ? 'RA 부문 적용' : '전체 포트폴리오'}</span>
+                 <span style="font-size:12px; color:var(--accent); background:rgba(251, 241, 103, 0.12); padding:2px 8px; border-radius:6px;">${currentOrgScope === 'ra' ? 'RA 부문 적용' : '전체 포트폴리오'}</span>
                </h4>
             <div id="netGrowthChart" style="min-height:350px;"></div>
             <div id="drillDownResult" style="margin-top:48px; display:none; animation: fadeIn 0.4s ease;"></div>
@@ -127,8 +127,8 @@ async function renderAnalytics() {
         </div>
         <style>
           .segmented-control {
-            display: flex; background: #f1f5f9; padding: 4px; border-radius: 12px;
-            position: relative; width: 140px; cursor: pointer; border: 1px solid #e2e8f0;
+            display: flex; background: var(--item); padding: 4px; border-radius: 8px;
+            position: relative; width: 140px; cursor: pointer; border: 1px solid var(--line);
           }
           .segment {
             flex: 1; text-align: center; padding: 6px 0; font-size: 11px; font-weight: 700;
@@ -137,7 +137,7 @@ async function renderAnalytics() {
           .segment.active { color: var(--accent); }
           .segment-slider {
             position: absolute; top: 4px; left: 4px; width: calc(50% - 4px); height: calc(100% - 8px);
-            background: white; border-radius: 9px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            background: var(--accent); border-radius: 6px; box-shadow: none;
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           }
           .segmented-control[data-active="invested_aum"] .segment-slider { transform: translateX(100%); }
@@ -267,7 +267,7 @@ function renderNetGrowth(chartId) {
         return {
             x: categories[idx],
             y: diff,
-            fillColor: diff >= 0 ? (categories[idx].startsWith('2026') ? '#818cf8' : '#6366f1') : '#ef4444'
+            fillColor: diff >= 0 ? (categories[idx].startsWith('2026') ? '#c87855' : '#fbf167') : '#ef4444'
         };
     });
 
@@ -301,20 +301,22 @@ function renderNetGrowth(chartId) {
                 return currentChartMetric === 'count' ? `${prefix}${val}개` : `${prefix}${val.toFixed(1)}조`;
             },
             offsetY: -22,
-            style: { fontSize: '11px', fontWeight: 800, colors: ['#334155'] }
+            style: { fontSize: '11px', fontWeight: 800, colors: ['#f6f1e8'] }
         },
-        xaxis: { categories: categories, labels: { style: { fontSize: '10px' } } },
+        xaxis: { categories: categories, labels: { style: { fontSize: '10px', colors: '#a5a5aa' } } },
         yaxis: {
             labels: {
+                style: { colors: '#a5a5aa' },
                 formatter: val => {
                     const prefix = val > 0 ? '+' : '';
                     return currentChartMetric === 'count' ? `${prefix}${val}개` : `${prefix}${val.toFixed(1)}조`;
                 }
             }
         },
-        colors: ['#6366f1'],
-        grid: { yaxis: { lines: { show: true } } },
+        colors: ['#fbf167'],
+        grid: { borderColor: 'rgba(255,255,255,0.09)', yaxis: { lines: { show: true } } },
         tooltip: {
+            theme: 'dark',
             shared: true,
             intersect: false,
             y: {
@@ -378,8 +380,8 @@ function renderHistory(chartId) {
 
     const options = {
         series: chartSeries,
-        chart: { type: 'bar', height: 450, stacked: true, toolbar: { show: false }, fontFamily: 'Pretendard Variable' },
-        colors: currentChartMetric === 'count' && chartSeries.length === 3 ? ['#4f46e5', '#38bdf8', '#94a3b8'] : ['#4f46e5', '#38bdf8'],
+        chart: { type: 'bar', height: 450, stacked: true, toolbar: { show: false }, fontFamily: 'Pretendard Variable', foreColor: '#a5a5aa' },
+        colors: currentChartMetric === 'count' && chartSeries.length === 3 ? ['#fbf167', '#54bcd8', '#7f8a94'] : ['#fbf167', '#54bcd8'],
         plotOptions: {
             bar: {
                 columnWidth: '60%',
@@ -388,17 +390,18 @@ function renderHistory(chartId) {
                     total: {
                         enabled: true,
                         offsetY: -10,
-                        style: { fontSize: '11px', fontWeight: 900, colors: ['#334155'] },
+                        style: { fontSize: '11px', fontWeight: 900, colors: ['#f6f1e8'] },
                         formatter: val => formatHistoryChartValue(val)
                     }
                 }
             }
         },
         dataLabels: { enabled: false },
-        xaxis: { categories: categories, labels: { style: { fontSize: '10px' } } },
-        yaxis: { labels: { formatter: val => formatHistoryChartValue(val) } },
-        grid: { borderColor: '#f1f5f9', strokeDashArray: 4 },
+        xaxis: { categories: categories, labels: { style: { fontSize: '10px', colors: '#a5a5aa' } } },
+        yaxis: { labels: { style: { colors: '#a5a5aa' }, formatter: val => formatHistoryChartValue(val) } },
+        grid: { borderColor: 'rgba(255,255,255,0.09)', strokeDashArray: 4 },
         tooltip: {
+            theme: 'dark',
             shared: true,
             intersect: false,
             custom: function ({ series, dataPointIndex, w }) {
@@ -422,14 +425,14 @@ function renderHistory(chartId) {
                     `;
                 }).join('');
                 return `
-                    <div style="padding:10px 12px; min-width:150px;">
-                        <div style="font-weight:700; color:#0f172a; margin-bottom:8px;">${label}</div>
+                    <div style="padding:10px 12px; min-width:150px; background:#242426; color:#f6f1e8; border:1px solid rgba(255,255,255,0.09);">
+                        <div style="font-weight:700; color:#f6f1e8; margin-bottom:8px;">${label}</div>
                         ${rows}
                     </div>
                 `;
             }
         },
-        legend: { position: 'top', horizontalAlign: 'right' }
+        legend: { position: 'top', horizontalAlign: 'right', labels: { colors: '#a5a5aa' } }
     };
 
     const el = document.querySelector(`#${chartId}`);
@@ -622,7 +625,7 @@ function applyFiltersAndShowList(page = 1) {
         drillPanel.style.display = 'block';
         drillPanel.innerHTML = `
             <div class="drill-title">조회 제한</div>
-            <div style="padding:40px; text-align:center; background:rgba(245, 158, 11, 0.05); border:1px dashed #f59e0b; border-radius:16px; color:#d97706;">
+            <div style="padding:40px; text-align:center; background:rgba(251, 241, 103, 0.06); border:1px dashed var(--accent); border-radius:8px; color:var(--accent);">
                 <div style="font-size:24px; margin-bottom:12px;">⚠️</div>
                 <strong>최소 하나 이상의 상세 필터를 선택해 주세요.</strong><br>
                 <span style="font-size:13px; opacity:0.8; margin-top:8px; display:block;">전체 데이터를 불러올 경우 시스템 속도가 저하될 수 있습니다.</span>
@@ -645,7 +648,7 @@ function applyFiltersAndShowList(page = 1) {
     if (filteredFunds.length === 0) {
         drillPanel.innerHTML = `
             <div class="drill-title">조회 결과</div>
-            <div style="padding:40px; text-align:center; background:#f8fafc; border-radius:16px; color:var(--muted);">
+            <div style="padding:40px; text-align:center; background:var(--item); border-radius:8px; color:var(--muted);">
                 조건에 맞는 운용 중인 펀드가 없습니다. 필터를 조정해 보세요.
             </div>
         `;
@@ -706,16 +709,16 @@ function applyFiltersAndShowList(page = 1) {
 
         return `
             <div class="drill-item" onclick="openFundDetailById('${f.fund_id}')" style="display:flex; align-items:center; padding:16px 24px;">
-                <div style="width:36px; height:36px; background:#f1f5f9; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; margin-right:20px;">📂</div>
+                <div style="width:36px; height:36px; background:var(--item); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; margin-right:20px;">📂</div>
                 
                 <div style="flex: 0 0 320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-right:40px;">
                     <div class="drill-name" style="font-size:15px; font-weight:800; color:var(--text);">${f.fund_name}</div>
                     <div style="font-size:12px; color:var(--muted); margin-top:4px;">${dept}</div>
                 </div>
 
-                <div style="flex: 1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; border-left:1px solid #f1f5f9; padding-left:40px;">
-                    <div style="font-size:11px; font-weight:700; color:#94a3b8; margin-bottom:4px; letter-spacing:0.5px;">ASSET PROFILE</div>
-                    <div style="font-size:14px; font-weight:700; color:#6366f1;">${assetName}</div>
+                <div style="flex: 1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; border-left:1px solid var(--line); padding-left:40px;">
+                    <div style="font-size:11px; font-weight:700; color:var(--muted); margin-bottom:4px; letter-spacing:0.5px;">ASSET PROFILE</div>
+                    <div style="font-size:14px; font-weight:700; color:var(--accent);">${assetName}</div>
                 </div>
 
                 <div style="text-align:right; flex-shrink:0; margin-left:40px; min-width:100px;">
@@ -729,7 +732,7 @@ function applyFiltersAndShowList(page = 1) {
     let paginationHtml = '';
     if (totalPages > 1) {
         paginationHtml = `
-            <div class="analysis-pagination" style="margin-top:32px; padding:20px 0; border-top:1px solid #f1f5f9; display:flex; justify-content:center; align-items:center; gap:12px;">
+            <div class="analysis-pagination" style="margin-top:32px; padding:20px 0; border-top:1px solid var(--line); display:flex; justify-content:center; align-items:center; gap:12px;">
         `;
         for (let i = 1; i <= totalPages; i++) {
             const isActive = i === page;
@@ -741,7 +744,7 @@ function applyFiltersAndShowList(page = 1) {
                     color: ${isActive ? 'var(--accent)' : 'var(--muted)'};
                     ${isActive ? 'text-decoration: underline; text-underline-offset: 4px;' : ''}
                 ">${i}</span>
-                ${i < totalPages ? '<span style="color:#e2e8f0; font-size:10px;">|</span>' : ''}
+                ${i < totalPages ? '<span style="color:var(--line); font-size:10px;">|</span>' : ''}
             `;
         }
         paginationHtml += '</div>';

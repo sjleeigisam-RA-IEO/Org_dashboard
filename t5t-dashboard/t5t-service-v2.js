@@ -148,13 +148,16 @@ const T5TService = {
         return this.aggregateData(allData);
     },
 
-    aggregateData(items, filterYear = null) {
+    aggregateData(items, filterOptions = null) {
+        if (typeof filterOptions === "string") filterOptions = { preset: "year", year: filterOptions };
+        const dateFilter = this.getDateFilterRange(filterOptions || { preset: "this_week" });
         const dashData = {
             sync_meta: { synced_at: new Date().toISOString() },
-            intelligence: { periods: { all: this.initPeriod("전체"), month: this.initPeriod("이번달"), week: this.initPeriod("이번주") } },
+            intelligence: { periods: { current: this.initPeriod(dateFilter.label), all: this.initPeriod(dateFilter.label), month: this.initPeriod(dateFilter.label), week: this.initPeriod(dateFilter.label) } },
             trend: { weeks: [], task_types: [], series: {} },
             pulse: [],
-            sorted_weeks: []
+            sorted_weeks: [],
+            date_filter: dateFilter
         };
 
         const now = new Date();
@@ -165,20 +168,29 @@ const T5TService = {
         const taskTypes = new Set();
 
         items.forEach(item => {
-            const workDate = new Date(item.work_date);
-            if (filterYear && workDate.getFullYear() !== parseInt(filterYear)) return;
+            const workDate = this.parseDate(item.work_date);
+            if (!workDate) return;
+            if (dateFilter.start && workDate < dateFilter.start) return;
+            if (dateFilter.end && workDate > dateFilter.end) return;
+            if (this.isHeaderOnlyLog(item)) return;
 
             const weekKey = this.getWeekKey(workDate);
-            const taskType = item.task_type || "기타";
+            const taskType = this.normalizeTaskType(item.task_type || item.match_status);
             taskTypes.add(taskType);
+            const stopWords = [
+                "정의", "검색", "관리", "보고", "내용", "논의", "확인", "진행", "일정", "사항", "관련",
+                "업무", "회의", "미팅", "작성", "검토", "준비", "추진", "지원", "작업",
+                "전달", "공유", "요청", "피드백", "정리", "체크", "문제", "기타", "내부", "현재", "현황",
+                "일일", "금일", "명일", "금주", "차주", "이번주"
+            ];
 
-            const activePeriods = [dashData.intelligence.periods.all];
-            if (workDate >= oneMonthAgo) activePeriods.push(dashData.intelligence.periods.month);
-            if (workDate >= oneWeekAgo) activePeriods.push(dashData.intelligence.periods.week);
+            const activePeriods = [dashData.intelligence.periods.current, dashData.intelligence.periods.all, dashData.intelligence.periods.month, dashData.intelligence.periods.week];
 
             activePeriods.forEach(p => {
                 p.total_logs += 1;
                 const category = this.detectCategory(item);
+                const log = this.makeLogRecord(item, category, weekKey, taskType);
+                p.logs.push(log);
                 let catObj = p.issue_categories.find(c => c.name === category);
                 if (!catObj) { catObj = { name: category, count: 0 }; p.issue_categories.push(catObj); }
                 catObj.count += 1;
@@ -219,7 +231,7 @@ const T5TService = {
             weekMap.get(weekKey).counts[taskType] = (weekMap.get(weekKey).counts[taskType] || 0) + 1;
 
             // 프로젝트명 정제
-            const projName = item.project_text || item.projects?.project_name || item.funds?.fund_name || "미분류";
+            const projName = this.normalizeDisplayLabel(item.project_text || item.projects?.project_name || item.funds?.fund_name || "미분류");
             const ignoreProjects = ["-", "미분류", "기타", "대기", "없음"];
             
             if (!ignoreProjects.includes(projName)) {
@@ -250,7 +262,8 @@ const T5TService = {
                     week: weekKey, 
                     summary: item.classification_summary || item.raw_text.substring(0, 50), 
                     work_date: item.work_date,
-                    raw_text: item.raw_text || ""
+                    raw_text: item.raw_text || "",
+                    project: projName
                 });
             }
         });
@@ -265,6 +278,12 @@ const T5TService = {
                 return { ...proj, top_keywords: topKeywords };
             })
             .sort((a, b) => b.total_mentions - a.total_mentions);
+
+        const pulseYear = this.getPulseYear(filterOptions, dateFilter);
+        const pulseData = this.buildPulseData(items, pulseYear);
+        dashData.pulse = pulseData.pulse;
+        dashData.pulse_weeks = pulseData.weeks;
+        dashData.pulse_year = pulseYear;
 
         Object.values(dashData.intelligence.periods).forEach(p => {
             p.issue_categories.sort((a, b) => {
@@ -284,8 +303,213 @@ const T5TService = {
         return dashData;
     },
 
+    getPulseYear(options, dateFilter) {
+        if (options?.year) return parseInt(options.year, 10);
+        if (options?.month) return parseInt(String(options.month).slice(0, 4), 10);
+        if (dateFilter?.start) return dateFilter.start.getFullYear();
+        const years = (this.rawItems || [])
+            .map(item => String(item.work_date || "").slice(0, 4))
+            .filter(Boolean)
+            .map(Number);
+        return years.length ? Math.max(...years) : new Date().getFullYear();
+    },
+
+    buildPulseData(items, year) {
+        const projectMap = new Map();
+        const weekSet = new Set();
+        const stopWords = ["-", "미분류", "기타", "대기", "없음", "General", "Mission"];
+        (items || []).forEach(item => {
+            const workDate = this.parseDate(item.work_date);
+            if (!workDate || workDate.getFullYear() !== year) return;
+            if (this.isHeaderOnlyLog(item)) return;
+
+            const projName = this.normalizeDisplayLabel(item.project_text || item.projects?.project_name || item.funds?.fund_name || "미분류");
+            if (stopWords.includes(projName)) return;
+
+            const weekKey = this.getWeekKey(workDate);
+            weekSet.add(weekKey);
+            if (!projectMap.has(projName)) {
+                const parentInfo = item.funds?.fund_name || item.projects?.project_name || "";
+                projectMap.set(projName, {
+                    id: projName,
+                    name: projName,
+                    parent: parentInfo,
+                    total_mentions: 0,
+                    weekly: {},
+                    logs: [],
+                    keywords: new Map()
+                });
+            }
+
+            const proj = projectMap.get(projName);
+            const taskType = this.normalizeTaskType(item.task_type || item.match_status);
+            proj.total_mentions += 1;
+            proj.weekly[weekKey] = (proj.weekly[weekKey] || 0) + 1;
+
+            const rawProjectText = item.project_text || "";
+            if (rawProjectText && rawProjectText !== projName && !stopWords.includes(rawProjectText)) {
+                proj.keywords.set(rawProjectText, (proj.keywords.get(rawProjectText) || 0) + 1);
+            }
+
+            proj.logs.push({
+                writer: item.writer_name || "익명",
+                task_type: taskType,
+                week: weekKey,
+                summary: item.classification_summary || (item.raw_text || "").substring(0, 50),
+                work_date: item.work_date,
+                raw_text: item.raw_text || "",
+                project: projName
+            });
+        });
+
+        const pulse = Array.from(projectMap.values())
+            .map(proj => {
+                const topKeywords = Array.from(proj.keywords.entries())
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 3)
+                    .map(k => k[0]);
+                return { ...proj, top_keywords: topKeywords };
+            })
+            .sort((a, b) => b.total_mentions - a.total_mentions);
+
+        return { pulse, weeks: Array.from(weekSet).sort() };
+    },
+
+    parseDate(value) {
+        if (!value) return null;
+        if (value instanceof Date) {
+            const d = new Date(value);
+            d.setHours(0,0,0,0);
+            return d;
+        }
+        const parts = String(value).slice(0, 10).split("-").map(Number);
+        if (parts.length !== 3 || parts.some(Number.isNaN)) return null;
+        return new Date(parts[0], parts[1] - 1, parts[2]);
+    },
+
+    formatDate(date) {
+        if (!date) return "";
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, "0");
+        const d = String(date.getDate()).padStart(2, "0");
+        return `${y}-${m}-${d}`;
+    },
+
+    getReportingWeekRange(referenceDate = new Date(), offsetWeeks = 0) {
+        const ref = this.parseDate(referenceDate);
+        const end = new Date(ref);
+        end.setDate(ref.getDate() + ((8 - ref.getDay()) % 7) + offsetWeeks * 7);
+        const start = new Date(end);
+        start.setDate(end.getDate() - 6);
+        return { start, end };
+    },
+
+    getDateFilterRange(options) {
+        const now = this.parseDate(new Date());
+        const preset = options?.preset || "this_week";
+        if (preset === "year") {
+            const year = parseInt(options.year || now.getFullYear(), 10);
+            return { preset, label: `${year}년`, start: new Date(year, 0, 1), end: new Date(year, 11, 31) };
+        }
+        if (preset === "month") {
+            const value = options.month || `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+            const [year, month] = value.split("-").map(Number);
+            return { preset, label: `${year}년 ${month}월`, start: new Date(year, month - 1, 1), end: new Date(year, month, 0) };
+        }
+        if (preset === "last_week") {
+            const range = this.getReportingWeekRange(now, -1);
+            return { preset, label: `지난주 (${this.formatDate(range.start)}~${this.formatDate(range.end)})`, ...range };
+        }
+        if (preset === "custom") {
+            let start = this.parseDate(options.customStart);
+            let end = this.parseDate(options.customEnd);
+            if (start && end && start > end) [start, end] = [end, start];
+            return { preset, label: `개별설정 (${this.formatDate(start)}~${this.formatDate(end)})`, start, end };
+        }
+        const range = this.getReportingWeekRange(now, 0);
+        return { preset: "this_week", label: `이번주 (${this.formatDate(range.start)}~${this.formatDate(range.end)})`, ...range };
+    },
+
+    makeLogRecord(item, category, weekKey, taskType) {
+        const project = this.normalizeDisplayLabel(item.project_text || item.projects?.project_name || item.funds?.fund_name || "미분류");
+        const tokens = Array.isArray(item.classification_tokens) ? item.classification_tokens : [];
+        return {
+            id: item.form_item_id || item.t5t_log_id,
+            work_date: item.work_date,
+            writer: item.writer_name || "익명",
+            line: item.line || "",
+            project,
+            task_type: taskType,
+            category,
+            keywords: tokens,
+            stakeholder_text: item.stakeholder_text || "",
+            summary: item.classification_summary || "",
+            raw_text: item.raw_text || ""
+        };
+    },
+
+    normalizeTaskType(value) {
+        const label = String(value || "").trim();
+        if (["General", "GeneralWork", "general", "general_work", "일반", "일반업무"].includes(label)) return "General";
+        if (["Mission", "mission", "미션"].includes(label)) return "Mission";
+        return label || "기타";
+    },
+
+    normalizeDisplayLabel(value) {
+        const label = String(value || "").trim();
+        if (["General", "GeneralWork", "general", "general_work", "일반", "일반업무"].includes(label)) return "General";
+        if (["Mission", "mission", "미션"].includes(label)) return "Mission";
+        return label;
+    },
+
+    isHeaderOnlyLog(item) {
+        const raw = String(item.raw_text || "").trim();
+        const summary = String(item.classification_summary || "").trim();
+        const text = raw || summary;
+        if (!text) return true;
+        const normalized = text.replace(/\s+/g, " ");
+        return /^T5T Contents .+?(?:Director|Sr\. Director|Senior Director)\s+\d{4}\.\d{2}\.\d{2}$/i.test(normalized);
+    },
+
+    getRuleOverrideCategory(text) {
+        const rules = [
+            {
+                category: "투자자 대응",
+                terms: ["GIC", "Site tour", "CIO", "LP", "투자자 모집", "투자자 보고", "investor", "roadshow"]
+            },
+            {
+                category: "전략/기획",
+                terms: ["OPCO", "AI Infra", "NPU", "Pipeline", "Campus", "DEMO센터", "Hyperscale", "주주구성", "후보지", "업무 협업", "협업 협의"]
+            },
+            {
+                category: "딜 진행",
+                terms: ["임차", "Tenant", "Anchor Tenant", "선임차", "우선주 투자", "운영사 투자", "조건 협의", "Followup", "유치"]
+            },
+            {
+                category: "금융 구조",
+                terms: ["BL 조달", "대주 협의", "브릿지론", "Bridge Loan", "리파이낸싱", "refinancing"]
+            },
+            {
+                category: "자산운영",
+                terms: ["임대마케팅", "정기회의", "임대 관련", "운영사 최종의견"]
+            },
+            {
+                category: "자산별 실무",
+                terms: ["SPEC", "브랜딩", "협력사", "Site tour"]
+            }
+        ];
+        for (const rule of rules) {
+            if (rule.terms.some(term => text.toLowerCase().includes(term.toLowerCase()))) {
+                return rule.category;
+            }
+        }
+        return null;
+    },
+
     detectCategory(item) {
         const text = (item.classification_summary || "") + (item.raw_text || "");
+        const overrideCategory = this.getRuleOverrideCategory(text);
+        if (overrideCategory) return overrideCategory;
         let bestCategory = "기타";
         let maxScore = 0;
         for (const [name, rules] of Object.entries(this.RULES.issue_categories)) {
@@ -381,9 +605,23 @@ const T5TService = {
         };
     },
 
-    initPeriod(label) { return { label, total_logs: 0, issue_categories: [], top_keywords: [], top_stakeholders: [] }; },
+    initPeriod(label) { return { label, total_logs: 0, issue_categories: [], top_keywords: [], top_stakeholders: [], logs: [] }; },
     getWeekKey(date) { 
-        const d = new Date(date); d.setHours(0,0,0,0); d.setDate(d.getDate() + 4 - (d.getDay() || 7));
-        return `${d.getFullYear()}-W${String(Math.ceil((((d - new Date(d.getFullYear(), 0, 1)) / 86400000) + 1) / 7)).padStart(2, '0')}`;
+        const d = new Date(date); d.setHours(0,0,0,0);
+        const weekEnd = new Date(d);
+        weekEnd.setDate(d.getDate() + ((8 - d.getDay()) % 7));
+        const isoAnchor = new Date(weekEnd);
+        isoAnchor.setDate(isoAnchor.getDate() + 4 - (isoAnchor.getDay() || 7));
+        const yearStart = new Date(isoAnchor.getFullYear(), 0, 1);
+        const weekNo = Math.ceil((((isoAnchor - yearStart) / 86400000) + 1) / 7);
+        return `${isoAnchor.getFullYear()}-W${String(weekNo).padStart(2, '0')}`;
+    },
+
+    addWeeksToWeekKey(year, week, offset) {
+        const firstThursday = new Date(year, 0, 4);
+        firstThursday.setDate(firstThursday.getDate() + 4 - (firstThursday.getDay() || 7));
+        const targetThursday = new Date(firstThursday);
+        targetThursday.setDate(firstThursday.getDate() + (week - 1 + offset) * 7);
+        return this.getWeekKey(targetThursday);
     }
 };
