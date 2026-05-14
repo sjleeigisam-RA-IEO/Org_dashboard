@@ -1,0 +1,7 @@
+server.log
+server.err.log
+*.log
+*.err.log
+__pycache__/
+*.pyc
+*.pyo
