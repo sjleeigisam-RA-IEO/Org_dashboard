@@ -46,11 +46,15 @@ jobs:
           EOF
           
       - name: Run T5T Notion-to-dashboard pipeline
+        timeout-minutes: 20
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_KEY }}
         run: |
-          python CRM_base/run_t5t_pipeline.py
+          DATE_FROM=$(TZ=Asia/Seoul date -d '21 days ago' +%F)
+          DATE_TO=$(TZ=Asia/Seoul date +%F)
+          echo "Running T5T pipeline for ${DATE_FROM}..${DATE_TO}"
+          python CRM_base/run_t5t_pipeline.py --date-from "$DATE_FROM" --date-to "$DATE_TO"
 
       - name: Generate weekly T5T summary
         if: github.event.schedule == '0 23 * * 0'

@@ -68,15 +68,18 @@ def notion_api(endpoint, method="POST", data=None):
         raise
 
 
-def query_database_all(database_id, page_size=100):
+def query_database_all(database_id, page_size=100, filter_payload=None):
     results = []
     cursor = None
     while True:
         payload = {"page_size": page_size}
+        if filter_payload:
+            payload["filter"] = filter_payload
         if cursor:
             payload["start_cursor"] = cursor
         response = notion_api(f"databases/{database_id}/query", data=payload)
         results.extend(response.get("results", []))
+        print(f"Fetched {len(results)} rows from Notion database {database_id}", flush=True)
         if not response.get("has_more"):
             return results
         cursor = response.get("next_cursor")
@@ -279,6 +282,17 @@ def in_date_window(value, date_from=None, date_to=None):
     return True
 
 
+def build_date_filter(date_from=None, date_to=None):
+    if not date_from and not date_to:
+        return None
+    date_filter = {"property": "Date", "date": {}}
+    if date_from:
+        date_filter["date"]["on_or_after"] = date_from.isoformat()
+    if date_to:
+        date_filter["date"]["on_or_before"] = date_to.isoformat()
+    return date_filter
+
+
 def run_sync(date_from=None, date_to=None):
     print("--- Fetching Master Data ---")
     proj_res = supabase.table("projects").select("project_id, project_name").execute()
@@ -306,7 +320,7 @@ def run_sync(date_from=None, date_to=None):
     }
 
     print(f"--- Fetching Raw Submissions ({config['RAW_T5T_DB_ID']}) ---")
-    raw_pages = query_database_all(config["RAW_T5T_DB_ID"])
+    raw_pages = query_database_all(config["RAW_T5T_DB_ID"], filter_payload=build_date_filter(date_from, date_to))
 
     for page in raw_pages:
         page_id = page["id"]
