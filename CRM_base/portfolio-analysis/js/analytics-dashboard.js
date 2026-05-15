@@ -467,7 +467,7 @@ function isFundIncludedForCurrentMetric(fund) {
 }
 
 function getFundAumSourceStatus(fund) {
-    return cleanAssetText(fund?.metadata?.aum_status);
+    return cleanAssetText(getFieldValue(fund, 'aum_status'));
 }
 
 function isActiveAumSnapshotFund(fund) {

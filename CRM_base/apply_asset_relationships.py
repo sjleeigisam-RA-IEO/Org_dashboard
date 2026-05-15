@@ -63,8 +63,8 @@ def verify_columns(client):
 
 def build_updates(client):
     fund_assets = fetch_all(client, "fund_assets", "id,asset_id")
-    funds = fetch_all(client, "funds", "fund_id,primary_asset_id")
-    projects = fetch_all(client, "projects", "project_id,primary_asset_id")
+    funds = fetch_all(client, "funds", "fund_id,primary_asset_id,primary_asset_ids")
+    projects = fetch_all(client, "projects", "project_id,primary_asset_id,primary_asset_ids")
     fund_links = fetch_all(client, "asset_fund_links", "*")
     project_links = fetch_all(client, "asset_project_links", "*")
 
@@ -86,9 +86,21 @@ def build_updates(client):
 
     fund_updates = []
     for row in funds:
-        best = choose_best(links_by_fund.get(row.get("fund_id"), []))
+        all_links = links_by_fund.get(row.get("fund_id"), [])
+        best = choose_best(all_links)
+        asset_ids = list(sorted({link.get("asset_id") for link in all_links if link.get("asset_id")}))
+        
+        need_update = False
+        update_payload = {"fund_id": row["fund_id"]}
         if best and row.get("primary_asset_id") != best.get("asset_id"):
-            fund_updates.append({"fund_id": row["fund_id"], "primary_asset_id": best["asset_id"]})
+            update_payload["primary_asset_id"] = best["asset_id"]
+            need_update = True
+        if row.get("primary_asset_ids") != asset_ids and asset_ids:
+            update_payload["primary_asset_ids"] = asset_ids
+            need_update = True
+            
+        if need_update:
+            fund_updates.append(update_payload)
 
     links_by_project = defaultdict(list)
     for link in project_links:
@@ -97,9 +109,21 @@ def build_updates(client):
 
     project_updates = []
     for row in projects:
-        best = choose_best(links_by_project.get(row.get("project_id"), []))
+        all_links = links_by_project.get(row.get("project_id"), [])
+        best = choose_best(all_links)
+        asset_ids = list(sorted({link.get("asset_id") for link in all_links if link.get("asset_id")}))
+        
+        need_update = False
+        update_payload = {"project_id": row["project_id"]}
         if best and row.get("primary_asset_id") != best.get("asset_id"):
-            project_updates.append({"project_id": row["project_id"], "primary_asset_id": best["asset_id"]})
+            update_payload["primary_asset_id"] = best["asset_id"]
+            need_update = True
+        if row.get("primary_asset_ids") != asset_ids and asset_ids:
+            update_payload["primary_asset_ids"] = asset_ids
+            need_update = True
+            
+        if need_update:
+            project_updates.append(update_payload)
 
     return {
         "fund_assets": fund_asset_updates,
@@ -112,9 +136,14 @@ def apply_updates(client, updates):
     for row in updates["fund_assets"]:
         client.table("fund_assets").update({"asset_id": row["asset_id"]}).eq("id", row["id"]).execute()
     for row in updates["funds"]:
-        client.table("funds").update({"primary_asset_id": row["primary_asset_id"]}).eq("fund_id", row["fund_id"]).execute()
+        payload = {k: v for k, v in row.items() if k != "fund_id"}
+        if payload:
+            client.table("funds").update(payload).eq("fund_id", row["fund_id"]).execute()
     for row in updates["projects"]:
-        client.table("projects").update({"primary_asset_id": row["primary_asset_id"]}).eq("project_id", row["project_id"]).execute()
+        payload = {k: v for k, v in row.items() if k != "project_id"}
+        if payload:
+            client.table("projects").update(payload).eq("project_id", row["project_id"]).execute()
+
 
 
 def relationship_summary(client):

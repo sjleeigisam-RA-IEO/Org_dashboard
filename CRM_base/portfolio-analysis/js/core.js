@@ -166,26 +166,25 @@ function metadataAmountToWon(value) {
 
 function getFieldValue(fund, key) {
   if (!fund) return null;
-  var meta = fund.metadata || {};
+  
+  // 1. 우선 순위: DB 전용 컬럼 직접 참조
   var direct = fund[key];
   if (direct !== undefined && direct !== null && String(direct).trim() !== '') return direct;
-  if (meta[key] !== undefined && meta[key] !== null && String(meta[key]).trim() !== '') return meta[key];
 
+  // 2. 차선 순위: 기존 매핑 별칭(Alias) 처리
   var fallbacks = {
-    department: [fund.dept, meta.department],
-    division: [meta.division],
-    investment_sector: [meta.investment_sector, fund.sector],
-    sector: [fund.sector, meta.investment_sector],
-    domestic_overseas: [meta.domestic_overseas, fund.location],
-    primary_region: [meta.primary_region, fund.location],
-    vehicle_type: [meta.vehicle_type, fund.notion_vehicle_class],
-    fund_class: [meta.fund_class, fund.notion_fund_class],
-    fund_type: [meta.fund_type],
-    investment_strategy: [meta.investment_strategy, fund.notion_investment_strategy_class],
-    parent_child_type: [meta.parent_child_type, fund.notion_holding_type_class],
-    base_asset_class: [meta.base_asset_class, fund.notion_base_asset_class],
-    asset_nature_class: [meta.asset_nature_class, fund.notion_asset_nature_class],
-    business_stage_class: [meta.business_stage_class, fund.notion_business_stage_class]
+    department: [fund.dept, fund.metadata?.department],
+    division: [fund.division, fund.metadata?.division], // DB에 추가된 경우 대비
+    investment_sector: [fund.sector, fund.metadata?.investment_sector],
+    sector: [fund.sector, fund.metadata?.investment_sector],
+    domestic_overseas: [fund.location, fund.metadata?.domestic_overseas],
+    primary_region: [fund.location, fund.metadata?.primary_region],
+    vehicle_type: [fund.notion_vehicle_class, fund.metadata?.vehicle_type],
+    fund_class: [fund.notion_fund_class, fund.metadata?.fund_class],
+    investment_strategy: [fund.notion_investment_strategy_class, fund.metadata?.investment_strategy],
+    parent_child_type: [fund.notion_holding_type_class, fund.metadata?.parent_child_type],
+    aum_status: [fund.aum_status, fund.metadata?.aum_status],
+    setup_date: [fund.setup_date, fund.metadata?.setup_date]
   };
 
   var candidates = fallbacks[key] || [];
@@ -193,6 +192,11 @@ function getFieldValue(fund, key) {
     var value = candidates[i];
     if (value !== undefined && value !== null && String(value).trim() !== '') return value;
   }
+
+  // 3. 최종 순위: metadata 내부 자유 탐색
+  var meta = fund.metadata || {};
+  if (meta[key] !== undefined && meta[key] !== null && String(meta[key]).trim() !== '') return meta[key];
+
   return null;
 }
 
@@ -227,7 +231,7 @@ function getFundStatus(fund) {
 }
 
 function getFundAumStatus(fund) {
-  return fund?.metadata?.aum_status || getFundStatus(fund);
+  return getFieldValue(fund, 'aum_status') || getFundStatus(fund);
 }
 
 function isAumCountedFund(fund) {

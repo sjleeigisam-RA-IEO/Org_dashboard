@@ -17,6 +17,19 @@ PROJECT_DIR = BASE_DIR.parent
 OUTPUT_DIR = BASE_DIR / "output"
 
 
+TAXONOMY_MAP = {
+    "유럽 오피스 포트폴리오": ["유럽오피스", "유럽권역오피스", "유럽오피스포트폴리오", "eu오피스"],
+    "미국 물류 포트폴리오": ["미국물류", "uslogistics", "us물류", "미국로지스", "미국물류포트폴리오"],
+    "국내 물류 포트폴리오": ["국내물류포트폴리오", "korealogistics", "국내창고포트", "국내물류"],
+    "글로벌 데이터센터 포트폴리오": ["글로벌데이터센터", "globaldatacenter", "idc포트폴리오", "글로벌idc"],
+    "아시아 리테일 포트폴리오": ["아시아리테일", "asiaretail", "아시아상업포트"],
+    "국내 주거/코리빙 포트폴리오": ["국내주거포트폴리오", "코리빙포트폴리오", "coliving", "국내주거"],
+    "메자닌/대출형 펀드 바스켓": ["메자닌", "대출형", "pdf", "채권형바스켓"],
+    "블라인드/공모주 바스켓": ["블라인드", "공모주", "ipo", "공모주바스켓"],
+}
+
+
+
 def load_env():
     env_path = PROJECT_DIR / ".env"
     values = {}
@@ -227,10 +240,69 @@ def build_asset_model(funds, fund_assets, projects):
     project_links = []
     review_rows = []
     building_ledgers = []
+    fund_fund_links = []
     seen_identifiers = set()
     seen_aliases = set()
     seen_fund_links = set()
     seen_project_links = set()
+    seen_fund_fund_links = set()
+
+    # 1. Taxonomy 기반 포트폴리오 가상 자산 마스터 사전 구축
+    taxonomy_asset_ids = {}
+    for theme_name in TAXONOMY_MAP:
+        asset_id = make_asset_id(f"taxonomy:{theme_name}")
+        taxonomy_asset_ids[theme_name] = asset_id
+        asset_master.append(
+            {
+                "asset_id": asset_id,
+                "canonical_name": theme_name,
+                "asset_type": "portfolio_asset" if "포트폴리오" in theme_name else "synthetic_bucket",
+                "country_code": "KR" if "국내" in theme_name else ("US" if "미국" in theme_name else None),
+                "city": None,
+                "address_text": f"가상 바스켓: {theme_name}",
+                "latitude": None,
+                "longitude": None,
+                "pnu": None,
+                "asset_code": None,
+                "site_area": None,
+                "gross_floor_area": None,
+                "scr": None,
+                "far": None,
+                "main_usage": "포트폴리오 테마" if "포트폴리오" in theme_name else "금융바스켓",
+                "structure": None,
+                "floors_up": None,
+                "floors_down": None,
+                "elevators": None,
+                "parking": None,
+                "height": None,
+                "completion_date": None,
+                "geocode_source": None,
+                "building_ledger_source": None,
+                "source_confidence": 1.0,
+                "review_status": "verified",
+                "representative_source": "taxonomy_dictionary",
+                "representative_fund_id": None,
+                "metadata": {
+                    "source_group_key": f"taxonomy:{theme_name}",
+                    "match_reason": "canonical_taxonomy_preset",
+                    "built_at": datetime.now(timezone.utc).isoformat(),
+                },
+            }
+        )
+        add_unique(
+            aliases,
+            seen_aliases,
+            {
+                "asset_id": asset_id,
+                "alias_name": theme_name,
+                "alias_type": "canonical_taxonomy_theme",
+                "source_table": "taxonomy",
+                "source_id": asset_id,
+                "confidence": 1.0,
+                "is_primary": True,
+            },
+            ("asset_id", "alias_name", "alias_type"),
+        )
 
     for group_key in sorted(groups):
         rows = groups[group_key]
@@ -383,7 +455,10 @@ def build_asset_model(funds, fund_assets, projects):
                         "source_table": "fund_assets",
                         "source_id": source_id,
                         "confidence": confidence,
-                        "metadata": {"match_reason": reason},
+                        "metadata": {
+                            "match_reason": reason,
+                            "allocation_status": "total_aum_vehicle", # 1-2 보류 반영 (총 aum 개념)
+                        },
                     },
                     ("asset_id", "fund_id", "relation_type"),
                 )
@@ -429,7 +504,6 @@ def build_asset_model(funds, fund_assets, projects):
                 }
             )
 
-    # Link funds without direct fund_assets by asset/project name similarity conservatively.
     all_aliases_by_asset = defaultdict(list)
     for alias in aliases:
         all_aliases_by_asset[alias["asset_id"]].append(alias["alias_name"])
@@ -438,6 +512,13 @@ def build_asset_model(funds, fund_assets, projects):
         norm_name = normalize_text(name)
         if len(norm_name) < 4:
             return None
+        
+        # Taxonomy 우선 매칭 (2-1)
+        for theme_name, keywords in TAXONOMY_MAP.items():
+            for kw in keywords:
+                if kw in norm_name or norm_name in kw:
+                    return {"asset_id": taxonomy_asset_ids[theme_name], "score": 0.96, "candidate": theme_name, "is_taxonomy": True}
+
         best = None
         for asset in asset_master:
             candidates = [asset["canonical_name"]] + all_aliases_by_asset[asset["asset_id"]]
@@ -451,8 +532,47 @@ def build_asset_model(funds, fund_assets, projects):
                 elif norm_candidate in norm_name or norm_name in norm_candidate:
                     score = 0.82
                 if score and (best is None or score > best["score"]):
-                    best = {"asset_id": asset["asset_id"], "score": score, "candidate": candidate}
+                    best = {"asset_id": asset["asset_id"], "score": score, "candidate": candidate, "is_taxonomy": False}
         return best
+
+    # 모자 펀드 1-1 바구니화 식별용 캐시
+    mother_funds = {}
+    child_funds = defaultdict(list)
+    for fund in funds:
+        fid = clean_text(fund.get("fund_id"))
+        fname = clean_text(fund.get("fund_name"))
+        if not fid or not fname:
+            continue
+        if "모투자" in fname or "모부동산" in fname or "(운용)" in fname:
+            mother_funds[fid] = fund
+        elif "자투자" in fname or "자부동산" in fname or "(1종)" in fname or "(2종)" in fname or "제1호" in fname:
+            # 상위 모펀드명 추정 매칭
+            base_mname = clean_text(re.sub(r"자투자|자부동산|\(1종\)|\(2종\)", "", fname)).strip()
+            child_funds[base_mname].append(fund)
+
+    for m_id, m_fund in mother_funds.items():
+        base_mname = clean_text(re.sub(r"모투자|모부동산|\(운용\)", "", clean_text(m_fund.get("fund_name")))).strip()
+        matched_children = child_funds.get(base_mname, [])
+        for c_fund in matched_children:
+            c_id = clean_text(c_fund.get("fund_id"))
+            if c_id:
+                add_unique(
+                    fund_fund_links,
+                    seen_fund_fund_links,
+                    {
+                        "investor_fund_id": m_id,
+                        "target_fund_id": c_id,
+                        "relation_type": "mother_child_container",
+                        "commitment_amount": clean_num(m_fund.get("benchmark_aum")),
+                        "invested_amount": clean_num(m_fund.get("invested_aum")),
+                        "ownership_ratio": 1.0,
+                        "confidence": 0.98,
+                        "source_table": "funds_name_pattern",
+                        "source_id": m_id,
+                        "metadata": {"mother_name": m_fund.get("fund_name"), "child_name": c_fund.get("fund_name")},
+                    },
+                    ("investor_fund_id", "target_fund_id", "relation_type"),
+                )
 
     for fund in funds:
         fund_id = clean_text(fund.get("fund_id"))
@@ -470,17 +590,22 @@ def build_asset_model(funds, fund_assets, projects):
             if match and (best is None or match["score"] > best["score"]):
                 best = {**match, "name": name}
         if best and best["score"] >= 0.82:
+            rel_type = "portfolio_exposure" if best.get("is_taxonomy") else "inferred_underlying_asset"
             add_unique(
                 fund_links,
                 seen_fund_links,
                 {
                     "asset_id": best["asset_id"],
                     "fund_id": fund_id,
-                    "relation_type": "inferred_underlying_asset",
+                    "relation_type": rel_type,
                     "source_table": "funds",
                     "source_id": fund_id,
                     "confidence": best["score"],
-                    "metadata": {"matched_name": best["name"], "matched_candidate": best["candidate"]},
+                    "metadata": {
+                        "matched_name": best["name"], 
+                        "matched_candidate": best["candidate"],
+                        "allocation_status": "total_aum_vehicle", # 1-2 보류 반영
+                    },
                 },
                 ("asset_id", "fund_id", "relation_type"),
             )
@@ -522,13 +647,14 @@ def build_asset_model(funds, fund_assets, projects):
             continue
         best = best_asset_match(project_name)
         if best and best["score"] >= 0.82:
+            rel_type = "portfolio_exposure" if best.get("is_taxonomy") else "related_project"
             add_unique(
                 project_links,
                 seen_project_links,
                 {
                     "asset_id": best["asset_id"],
                     "project_id": project_id,
-                    "relation_type": "related_project",
+                    "relation_type": rel_type,
                     "source_table": "projects" if projects else "funds",
                     "source_id": project_id,
                     "confidence": best["score"],
@@ -545,6 +671,7 @@ def build_asset_model(funds, fund_assets, projects):
         "asset_project_links": project_links,
         "asset_review_queue": review_rows,
         "asset_building_ledger": building_ledgers,
+        "fund_fund_links": fund_fund_links, # 모자 관계 리스트 추가
     }
 
 
@@ -676,6 +803,7 @@ def insert_rows(client, table, rows, batch_size=500):
 
 def apply_model(client, model):
     for table, key_col in [
+        ("fund_fund_links", "link_id"),
         ("asset_review_queue", "review_id"),
         ("asset_building_ledger", "asset_id"),
         ("asset_project_links", "asset_id"),
@@ -693,6 +821,7 @@ def apply_model(client, model):
         "asset_project_links",
         "asset_review_queue",
         "asset_building_ledger",
+        "fund_fund_links",
     ]:
         insert_rows(client, table, model[table])
 
@@ -720,10 +849,12 @@ def main():
         "asset_aliases": len(model["asset_aliases"]),
         "asset_fund_links": len(model["asset_fund_links"]),
         "asset_project_links": len(model["asset_project_links"]),
+        "fund_fund_links": len(model["fund_fund_links"]),
         "manual_review_rows": len(model["asset_review_queue"]),
         "asset_building_ledger": len(model["asset_building_ledger"]),
         "output_dir": str(OUTPUT_DIR),
     }
+
     print(json.dumps(summary, ensure_ascii=False, indent=2))
 
     if args.apply:
