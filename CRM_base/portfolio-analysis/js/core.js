@@ -235,7 +235,14 @@ function getFundAumStatus(fund) {
 }
 
 function isAumCountedFund(fund) {
-  // 데이터베이스 내의 모든 유효 펀드를 AUM 집계 대상으로 포함 (운용 원본 워크북 기준 무결성 보장)
+  // 모자구분(parent_child_type)이 '자펀드'인 경우 중복 집계 방지를 위해 제외
+  var type = getFieldValue(fund, 'parent_child_type') || '';
+  if (type.includes('자펀드') || type === '자') return false;
+  
+  // 펀드명에 '자펀드' 키워드가 명시적으로 포함된 경우도 예외 처리 (필요 시)
+  // var name = fund.fund_name || '';
+  // if (name.includes('(자)') || name.includes('자펀드')) return false;
+
   return true;
 }
 
