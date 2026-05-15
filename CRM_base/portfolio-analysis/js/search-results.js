@@ -1,10 +1,13 @@
-var OPTIONAL_FUND_SEARCH_COLUMNS = [
   'project_mission_name',
+  'fund_class',
+  'legal_form',
+  'fund_type',
+  'division',
+  'primary_region',
+  'is_development',
   'notion_base_asset_class',
   'notion_asset_nature_class',
   'notion_holding_type_class',
-  'notion_business_stage_class',
-  'notion_investment_strategy_class',
   'notion_vehicle_class'
 ];
 
@@ -134,8 +137,8 @@ function renderResults() {
 function groupBy(list, key) {
   return list.reduce(function (acc, obj) {
     var val = obj[key];
-    if (key === 'asset_name') val = obj.metadata?.pnu || obj.pnu || obj.asset_name;
-    else if (key === 'fund_name' || key === 'fund_id') val = obj.metadata?.parent_fund_id || obj.parent_fund_id || obj.fund_id;
+    if (key === 'asset_name') val = obj.pnu || obj.asset_name;
+    else if (key === 'fund_name' || key === 'fund_id') val = obj.parent_fund_id || obj.fund_id;
     acc[val] = acc[val] || [];
     acc[val].push(obj);
     return acc;

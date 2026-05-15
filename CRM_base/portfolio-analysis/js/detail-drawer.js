@@ -10,10 +10,10 @@
     const allFunds = window.lastTargetFunds || lastTargetFunds || [];
     const filtered = allFunds.filter(f => {
       if (currentOrgScope === 'ra' && !isRAFund(f)) return false;
-      const rawName = f.fund_name || f.metadata?.fund_name || '';
+      const rawName = f.fund_name || '';
       const pnu = window.fundToPnu?.[f.fund_id];
       let cleanName = String(rawName).split('(')[0].trim().replace(/[- ]제?\d+호$/, '호');
-      const parentId = isValidKey(f.metadata?.parent_fund_id) ? f.metadata.parent_fund_id : null;
+      const parentId = f.parent_fund_id || null;
       const validPnu = isValidKey(pnu) ? pnu : null;
       const key = parentId || validPnu || cleanName;
       return String(key).trim() === String(groupKey).trim();
@@ -52,9 +52,9 @@
                 </div>
                 <div class="meta-grid">
                     <div class="meta-item"><span class="meta-label">운용규모(AUM, ${aumLabel})</span><span class="meta-val">${formatNumber(aum)}</span></div>
-                    <div class="meta-item"><span class="meta-label">담당부서</span><span class="meta-val">${f.metadata?.department || '-'}</span></div>
-                    <div class="meta-item"><span class="meta-label">설정일</span><span class="meta-val">${f.setup_date || '-'}</span></div>
-                    <div class="meta-item"><span class="meta-label">만기/청산일</span><span class="meta-val">${f.maturity_date || f.expiry_date || '-'}</span></div>
+                    <div class="meta-item"><span class="meta-label">담당부서</span><span class="meta-val">${getFieldValue(f, 'department') || '-'}</span></div>
+                    <div class="meta-item"><span class="meta-label">설정일</span><span class="meta-val">${getFieldValue(f, 'setup_date') || '-'}</span></div>
+                    <div class="meta-item"><span class="meta-label">만기/청산일</span><span class="meta-val">${f.maturity_date || '-'}</span></div>
                 </div>
             </div>
         `;
@@ -153,16 +153,15 @@
       const officialName = getFundSecondaryName(f);
       const meta = f.metadata || {};
       const classifications = [
-        meta.department,
-        meta.fund_class,
-        meta.domestic_overseas,
-        meta.primary_region,
-        meta.investment_sector,
-        meta.fund_type,
-        meta.investment_strategy,
-        meta.base_asset_class,
-        meta.asset_nature_class,
-        meta.business_stage_class
+        getFieldValue(f, 'department'),
+        getFieldValue(f, 'fund_class'),
+        getFieldValue(f, 'domestic_overseas'),
+        getFieldValue(f, 'primary_region'),
+        getFieldValue(f, 'base_asset_class'),
+        getFieldValue(f, 'fund_type'),
+        getFieldValue(f, 'investment_strategy'),
+        getFieldValue(f, 'asset_nature_class'),
+        getFieldValue(f, 'business_stage_class')
       ].filter(Boolean).join(' | ');
 
       const mapId = 'vmap-' + Math.random().toString(36).substr(2, 9);
