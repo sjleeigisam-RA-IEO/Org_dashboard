@@ -206,6 +206,14 @@ function handleSort(key) {
                 valA = a.title || '';
                 valB = b.title || '';
                 break;
+            case 'last_login':
+                valA = a.last_login || '';
+                valB = b.last_login || '';
+                break;
+            case 'login_count':
+                valA = parseInt(a.login_count) || 0;
+                valB = parseInt(b.login_count) || 0;
+                break;
             default:
                 return 0;
         }
@@ -248,6 +256,8 @@ function renderStaffTable() {
                 <div style="font-size: 0.75em; color: var(--text-muted);">${s.orgs?.metadata?.full_path?.split(' > ')[0] || ''}</div>
             </td>
             <td>${s.title || ''} ${s.level ? '/ ' + s.level : ''}</td>
+            <td style="font-size: 0.85em; color: var(--text-muted);">${s.last_login || '-'}</td>
+            <td style="text-align: center; font-weight: 600;">${s.login_count || 0}</td>
             <td>
                 <button class="btn-secondary" onclick="openModal('${s.staff_id}')">수정</button>
             </td>
