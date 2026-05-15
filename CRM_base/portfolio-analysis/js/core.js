@@ -301,14 +301,18 @@ async function ensureAllDataLoaded() {
   if (window.allFunds?.length === 0 || !window.allFunds) {
     try {
       var responses = await Promise.all([
-        fetchAllRows('funds', '*'),
+        fetchAllRows('v_funds_enriched', '*'),
         fetchAllRows('fund_assets', '*')
       ]);
 
       allFunds = responses[0] || [];
       
-      // Clean garbled organizational data for UI display
+      // Clean garbled organizational data and map resolved names for UI compatibility
       allFunds.forEach(f => {
+        // Map resolved names from the view to the fields expected by the UI
+        if (f.dept_resolved) f.dept = f.dept_resolved;
+        if (f.manager_resolved) f.manager = f.manager_resolved;
+
         if (f.metadata) {
           const div = f.metadata.division;
           if (div && (div.includes('\U000ff87c') || div.includes('󿡼') || div.includes('ºι'))) {

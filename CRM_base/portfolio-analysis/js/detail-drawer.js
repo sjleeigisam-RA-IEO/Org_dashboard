@@ -117,13 +117,16 @@
     targetPanel.innerHTML = '<div class="no-results">상세 로딩 중...</div>';
     try {
       const [fundRes, assetRes, lenderRes, benRes] = await Promise.all([
-        _supabase.from('funds').select('*').in('fund_id', fundIds),
+        _supabase.from('v_funds_enriched').select('*').in('fund_id', fundIds),
         _supabase.from('fund_assets').select('*').in('fund_id', fundIds),
         _supabase.from('lender_exposures').select('*').in('fund_id', fundIds),
         _supabase.from('beneficiary_exposures').select('*').in('fund_id', fundIds)
       ]);
 
       const f = fundRes.data?.[0] || items[0];
+      // Map resolved names for UI compatibility
+      if (f.dept_resolved) f.dept = f.dept_resolved;
+      if (f.manager_resolved) f.manager = f.manager_resolved;
       const targetPnu = items[0].metadata?.pnu || items[0].pnu;
 
       const getScore = (x) => (x.gfa ? 2 : 0) + (x.site_area ? 2 : 0) + (x.lat || x.latitude ? 1 : 0) + (x.address ? 1 : 0);

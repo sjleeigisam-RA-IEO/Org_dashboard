@@ -1,3 +1,4 @@
+var OPTIONAL_FUND_SEARCH_COLUMNS = [
   'project_mission_name',
   'fund_class',
   'legal_form',
@@ -27,7 +28,7 @@ window.ALIASES = ALIASES;
 window.portfolioBasket = portfolioBasket;
 
 function ensureFundSearchColumns() {
-  return _supabase.from('funds').select('*').limit(1).then(function (response) {
+  return _supabase.from('v_funds_enriched').select('*').limit(1).then(function (response) {
     var sample = response.data?.[0];
     if (!sample) return;
 
@@ -56,7 +57,7 @@ function performSearch(query) {
     return Promise.all([
       _supabase.from('lender_exposures').select('*, funds(*)').or(buildUniversalFilter(['lender_clean', 'fund_id'], terms)).limit(100),
       _supabase.from('beneficiary_exposures').select('*, funds(*)').or(buildUniversalFilter(['beneficiary_clean', 'fund_id'], terms)).limit(100),
-      _supabase.from('funds').select('*').or(buildUniversalFilter(fundSearchColumns, terms)).limit(100),
+      _supabase.from('v_funds_enriched').select('*').or(buildUniversalFilter(fundSearchColumns, terms)).limit(100),
       window.AssetCanonical
         ? window.AssetCanonical.searchCanonicalAssets(terms)
         : _supabase.from('fund_assets').select('*, funds(*)').or(buildUniversalFilter(['asset_name', 'fund_id'], terms)).limit(100)
@@ -66,10 +67,17 @@ function performSearch(query) {
     var benRes = responses[1];
     var fundRes = responses[2];
     var assetRes = responses[3];
-    var projects = (fundRes.data || []).filter(function (f) {
+    var rawFunds = fundRes.data || [];
+    // Map resolved names for UI compatibility
+    rawFunds.forEach(f => {
+      if (f.dept_resolved) f.dept = f.dept_resolved;
+      if (f.manager_resolved) f.manager = f.manager_resolved;
+    });
+
+    var projects = rawFunds.filter(function (f) {
       return f.project_mission_name || f.notion_base_asset_class;
     });
-    var normalFunds = (fundRes.data || []).filter(function (f) {
+    var normalFunds = rawFunds.filter(function (f) {
       return !f.project_mission_name && !f.notion_base_asset_class;
     });
 

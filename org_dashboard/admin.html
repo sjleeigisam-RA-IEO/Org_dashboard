@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Admin | IGIS Real Asset</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔐</text></svg>">
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="admin-wrapper">
+        <header class="admin-header">
+            <div class="header-left">
+                <div class="eyebrow">Internal Directory Admin</div>
+                <h1>인사 및 권한 관리 센터</h1>
+            </div>
+            <div class="header-right">
+                <button id="addStaffBtn" class="btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    신규 사원 등록
+                </button>
+            </div>
+        </header>
+
+        <section class="search-section">
+            <div class="search-controls">
+                <div class="search-bar">
+                    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" id="staffSearch" placeholder="이름, 이메일, 부서명으로 검색...">
+                </div>
+                <div class="filter-dropdowns">
+                    <select id="sectionFilter" class="admin-select">
+                        <option value="">모든 부문</option>
+                        <option value="투자+펀딩">투자+펀딩</option>
+                        <option value="사업+개발">사업+개발</option>
+                        <option value="관리+운영">관리+운영</option>
+                        <option value="External">부문외</option>
+                    </select>
+                    <select id="statusFilter" class="admin-select">
+                        <option value="">모든 상태</option>
+                        <option value="active">재직</option>
+                        <option value="inactive">퇴사</option>
+                    </select>
+                </div>
+            </div>
+            <div class="filter-stats">
+                <span id="totalCount">전체: 0명</span> | 
+                <span id="activeCount">재직: 0명</span> | 
+                <span id="inactiveCount">퇴사: 0명</span>
+            </div>
+        </section>
+
+        <main class="table-section">
+            <table class="staff-table">
+                <thead>
+                    <tr>
+                        <th class="sortable" data-sort="status" style="width: 80px;">상태 <i class="fas fa-sort"></i></th>
+                        <th class="sortable" data-sort="name">이름 <i class="fas fa-sort"></i></th>
+                        <th class="sortable" data-sort="email">이메일 <i class="fas fa-sort"></i></th>
+                        <th class="sortable" data-sort="org">부서 (조직) <i class="fas fa-sort"></i></th>
+                        <th class="sortable" data-sort="title">직위/직급 <i class="fas fa-sort"></i></th>
+                        <th style="width: 100px;">작업</th>
+                    </tr>
+                </thead>
+                <tbody id="staffTableBody">
+                    <!-- 데이터 로딩 시 동적으로 채워짐 -->
+                </tbody>
+            </table>
+            <div id="loadingOverlay" class="overlay">
+                <div class="spinner"></div>
+                <p>데이터를 불러오는 중...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="staffModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">사원 정보 편집</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="staffForm" class="admin-form">
+                <input type="hidden" id="editStaffId">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">이름 (필수)</label>
+                        <input type="text" id="name" required placeholder="홍길동">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">이메일 (화이트리스트용)</label>
+                        <input type="email" id="email" placeholder="example@igisam.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="org_id">소속 부서</label>
+                        <select id="org_id">
+                            <option value="">부서 선택...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">직위</label>
+                        <input type="text" id="title" placeholder="팀장, 차장 등">
+                    </div>
+                    <div class="form-group">
+                        <label for="level">직급</label>
+                        <input type="text" id="level" placeholder="Pro, Senior 등">
+                    </div>
+                    <div class="form-group status-group">
+                        <label>재직 상태</label>
+                        <div class="toggle-container">
+                            <input type="checkbox" id="status_toggle" checked>
+                            <label for="status_toggle" class="toggle-label"></label>
+                            <span id="status_text">재직 중</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary close-modal">취소</button>
+                    <button type="submit" class="btn-primary">저장하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Configuration -->
+    <script src="../CRM_base/portfolio-analysis/config.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
