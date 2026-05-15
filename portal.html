@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrated Management System | IGIS RA</title>
+    <link rel="stylesheet" href="./org_dashboard/admin.css">
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #141415; font-family: 'Segoe UI', sans-serif; }
+        
+        .global-nav {
+            position: fixed; top: 0; left: 0; width: 100%; height: 64px;
+            background: #1c1c1e; border-bottom: 1px solid rgba(255,255,255,0.1);
+            z-index: 1000; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 24px; color: #fff; box-sizing: border-box;
+        }
+        .nav-left { display: flex; align-items: center; gap: 24px; }
+        .nav-brand { font-size: 18px; font-weight: 800; color: var(--accent); margin-right: 20px; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .nav-links { display: flex; gap: 8px; }
+        .nav-link-btn {
+            padding: 10px 16px; border-radius: 10px; font-size: 14px; font-weight: 600;
+            color: #8e8e93; text-decoration: none; transition: all 0.2s;
+            border: 1px solid transparent; cursor: pointer; background: transparent;
+        }
+        .nav-link-btn:hover { background: rgba(255,255,255,0.05); color: #fff; }
+        .nav-link-btn.active { color: #fff; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+        
+        .nav-right { display: flex; align-items: center; gap: 20px; font-size: 14px; }
+        .user-info { color: #8e8e93; display: flex; align-items: center; gap: 4px; }
+        .user-name { color: #fff; font-weight: 700; }
+        .logout-btn {
+            padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700;
+            background: rgba(255,69,58,0.1); color: #ff453a; border: 1px solid rgba(255,69,58,0.2); cursor: pointer;
+            transition: all 0.2s;
+        }
+        .logout-btn:hover { background: #ff453a; color: #fff; }
+
+        .content-wrapper {
+            position: absolute; top: 64px; left: 0; width: 100%; height: calc(100% - 64px);
+            background: #141415;
+        }
+        .dashboard-frame {
+            width: 100%; height: 100%; border: none;
+            background: #141415; position: absolute; top: 0; left: 0;
+            display: none; /* Default hidden */
+        }
+        .dashboard-frame.active { display: block; }
+    </style>
+</head>
+<body>
+    <nav class="global-nav">
+        <div class="nav-left">
+            <a href="#" class="nav-brand">🛰️ IGIS RA Portal</a>
+            <div class="nav-links">
+                <div id="tab-insight" class="nav-link-btn active" onclick="switchTab('insight')">RA Insight</div>
+                <div id="tab-t5t" class="nav-link-btn" onclick="switchTab('t5t')">T5T 업무</div>
+                <div id="tab-org" class="nav-link-btn" onclick="switchTab('org')">조직구성</div>
+                <div id="tab-admin" class="nav-link-btn" style="display:none;" onclick="switchTab('admin')">어드민 (Local)</div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="user-info">
+                <span id="userNameDisplay" class="user-name">-</span>님 환영합니다
+            </div>
+            <button class="logout-btn" onclick="handleLogout()">로그아웃</button>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <iframe id="iframe-insight" class="dashboard-frame active" src="about:blank"></iframe>
+        <iframe id="iframe-t5t" class="dashboard-frame" src="about:blank"></iframe>
+        <iframe id="iframe-org" class="dashboard-frame" src="about:blank"></iframe>
+        <iframe id="iframe-admin" class="dashboard-frame" src="about:blank"></iframe>
+    </div>
+
+    <script>
+        const urls = {
+            insight: './CRM_base/portfolio-analysis/index.html',
+            t5t: './t5t-dashboard/index.html',
+            org: './org_dashboard/index.html',
+            admin: './org_dashboard/admin.html'
+        };
+        const loaded = new Set();
+
+        function switchTab(id) {
+            // Update UI
+            document.querySelectorAll('.nav-link-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`tab-${id}`).classList.add('active');
+
+            // Hide all frames
+            document.querySelectorAll('.dashboard-frame').forEach(f => f.classList.remove('active'));
+            
+            // Show target frame
+            const frame = document.getElementById(`iframe-${id}`);
+            frame.classList.add('active');
+
+            // Lazy load if needed
+            if (!loaded.has(id)) {
+                frame.src = urls[id] + '?v=ra_stable_v1';
+                loaded.add(id);
+                
+                frame.onload = () => {
+                    try {
+                        const doc = frame.contentWindow.document;
+                        ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(name => {
+                            doc.addEventListener(name, resetTimer, true);
+                        });
+                    } catch (e) { console.warn("Iframe activity tracking limited."); }
+                };
+            }
+            resetTimer();
+        }
+
+        // Initialize first tab & check admin permission
+        window.addEventListener('DOMContentLoaded', () => {
+            const raUser = getSession();
+            if (raUser) {
+                document.getElementById('userNameDisplay').innerText = raUser.name;
+                // '이시정' 사용자에게만 어드민 탭 노출
+                if (raUser.name === '이시정') {
+                    document.getElementById('tab-admin').style.display = 'block';
+                }
+            }
+            switchTab('insight');
+        });
+
+        // Session & Idle Timeout Logic
+        const TIMEOUT_LIMIT = 30 * 60 * 1000;
+        function getSession() { return JSON.parse(sessionStorage.getItem('ra_user')); }
+        function resetTimer() { sessionStorage.setItem('last_active', Date.now()); }
+
+        const raUserCheck = getSession();
+        if (!raUserCheck) {
+            location.href = './index.html';
+        } else {
+            resetTimer();
+        }
+
+        ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(name => {
+            document.addEventListener(name, resetTimer, true);
+        });
+
+        const idleCheckInterval = setInterval(() => {
+            const lastActive = parseInt(sessionStorage.getItem('last_active') || Date.now());
+            if (Date.now() - lastActive > TIMEOUT_LIMIT) {
+                clearInterval(idleCheckInterval);
+                handleLogout(true);
+            }
+        }, 30000);
+
+        function handleLogout(isAuto = false) {
+            sessionStorage.removeItem('ra_user');
+            sessionStorage.removeItem('last_active');
+            if (isAuto) alert("30분 동안 활동이 없어 자동으로 로그아웃되었습니다.");
+            location.href = './index.html';
+        }
+    </script>
+</body>
+</html>
