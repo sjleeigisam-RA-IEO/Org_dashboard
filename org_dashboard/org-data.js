@@ -1,6 +1,6 @@
 window.ORG_DASHBOARD_DATA = {
   "meta": {
-    "generatedAt": "2026-05-15 15:52:22",
+    "generatedAt": "2026-05-15 16:17:02",
     "source": "supabase-live-db"
   },
   "sections": [
