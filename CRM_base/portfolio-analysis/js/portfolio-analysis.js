@@ -48,14 +48,14 @@ function initAnalysisFilters() {
         {
             title: '포트폴리오 필터',
             cols: [
+                { key: 'domestic_overseas', label: '국내/해외' },
                 { key: 'division', label: '부문' },
                 { key: 'vehicle_type', label: 'Vehicle 구분' },
+                { key: 'base_asset_class', label: '기초자산' },
                 { key: 'legal_form', label: '법적형태' },
                 { key: 'fund_class', label: '펀드분류' },
-                { key: 'domestic_overseas', label: '국내/해외' },
-                { key: 'fund_type', label: '펀드유형' },
                 { key: 'investment_strategy', label: '투자전략' },
-                { key: 'base_asset_class', label: '기초자산' },
+                { key: 'fund_type', label: '펀드유형' },
                 { key: 'asset_nature_class', label: '자산성격' },
                 { key: 'business_stage_class', label: '사업단계' }
             ]
