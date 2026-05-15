@@ -123,90 +123,63 @@ def process_updates():
                 'aum_status': clean_str(row[aum_headers.index('펀드정보6')])
             }
 
-    # 2. Build Fund Records (Full Normalization - No Metadata)
-    print("Building Fund records (Fully Normalized)...")
+    # 2. Build Asset Master and Lookup Table
+    print("Building Asset Master and Lookup Table...")
+    asset_lookup = {}
+    asset_records = []
+    for _, row in df_asset_manage.iterrows():
+        acode = clean_str(row.get('자산코드'))
+        aname = clean_str(row.get('자산(건물)명'))
+        base_asset = clean_str(row.get('기초자산'))
+        if not acode: continue
+        if aname: asset_lookup[aname] = base_asset
+        aid = f"ast_{hashlib.sha1(acode.encode()).hexdigest()[:12]}"
+        asset_records.append({
+            'asset_id': aid, 'asset_code': acode, 'canonical_name': aname,
+            'address_text': clean_str(row.get('전체주소(시/도, 구/군 포함)')),
+            'asset_type': base_asset, 'gross_floor_area': clean_num(row.get('연면적(m²)')),
+            'completion_date': clean_date(row.get('준공(예정)일')), 'review_status': 'verified',
+            'metadata': {'source': '투자 자산 관리_20260515.xlsx'}
+        })
+
+    # 3. Build Fund Records
+    print("Building Fund records (Corrected Mapping)...")
     fund_records = []
     for _, row in df_fund.iterrows():
         fid = clean_str(row['펀드코드'])
         if not fid: continue
         aum = aum_map.get(fid, {})
-        
-        # Mapping EVERYTHING to first-class columns
-        record = {
-            'fund_id': fid,
-            'short_name': clean_str(row.get('약칭')),
-            'fund_name': clean_str(row.get('펀드명')),
-            'sector': clean_str(row.get('투자섹터')),
-            'asset_name': clean_str(row.get('자산명')),
-            'status': clean_str(row.get('운용상태')),
-            'location': clean_str(row.get('국내/해외')),
-            'setup_date': clean_date(row.get('최초 설정일')),
-            'maturity_date': clean_date(row.get('만기일')),
-            'dept': clean_str(row.get('부서(운용)')),
-            'manager': clean_str(row.get('담당자(운용)')),
-            
-            # New Normalized Columns
-            'division': clean_str(row.get('담당부문(운용)')),
-            'recruitment_type': clean_str(row.get('모집형태')),
-            'legal_form': clean_str(row.get('법적형태')),
-            'fund_class': clean_str(row.get('펀드분류')),
-            'fund_type': clean_str(row.get('펀드유형')),
-            'primary_region': clean_str(row.get('주요투자지역')),
-            'is_development': clean_str(row.get('개발여부')),
-            'is_delegated': clean_str(row.get('위탁운용여부')),
-            
-            # Notion Mapping (Legacy Sync)
-            'notion_vehicle_class': clean_str(row.get('Vehicle구분')),
-            'notion_holding_type_class': clean_str(row.get('모자구분')),
-            'notion_investment_strategy_class': clean_str(row.get('투자전략')),
-            'notion_base_asset_class': clean_str(row.get('투자섹터')),
-            'notion_asset_nature_class': clean_str(row.get('자산성격')),
-            'notion_business_stage_class': clean_str(row.get('개발여부')),
-            
-            # AUM fields
-            'benchmark_aum': aum.get('benchmark_aum'),
-            'invested_aum': aum.get('invested_aum'),
-            'base_price': aum.get('base_price'),
-            'net_asset_value': aum.get('net_asset_value'),
-            'aum_base_date': aum.get('aum_base_date'),
-            'aum_input_date': aum.get('aum_input_date'),
-            'equity_won': aum.get('equity_won'),
-            'loan_won': aum.get('loan_won'),
-            'deposit_won': aum.get('deposit_won'),
-            'invested_equity_won': aum.get('invested_equity_won'),
-            'invested_loan_won': aum.get('invested_loan_won'),
-            'invested_deposit_won': aum.get('invested_deposit_won'),
-            'aum_status': aum.get('aum_status'),
-            'aum_source': '펀드 AUM 관리_20260515.xlsx',
-            'metadata': None # CLEARING METADATA to force column usage
-        }
-        fund_records.append(record)
+        fund_asset_name = clean_str(row.get('자산명'))
+        real_base_asset = asset_lookup.get(fund_asset_name) if fund_asset_name else None
+        base_asset_val = real_base_asset or clean_str(row.get('투자섹터'))
 
-    # 3. Build Asset Master Records
-    print("Building Asset Master records...")
-    asset_records = []
-    for _, row in df_asset_manage.iterrows():
-        acode = clean_str(row.get('자산코드'))
-        if not acode: continue
-        aid = f"ast_{hashlib.sha1(acode.encode()).hexdigest()[:12]}"
-        asset_records.append({
-            'asset_id': aid, 'asset_code': acode,
-            'canonical_name': clean_str(row.get('자산(건물)명')),
-            'address_text': clean_str(row.get('전체주소(시/도, 구/군 포함)')),
-            'asset_type': clean_str(row.get('기초자산')),
-            'gross_floor_area': clean_num(row.get('연면적(m²)')),
-            'completion_date': clean_date(row.get('준공(예정)일')),
-            'review_status': 'verified',
-            'metadata': {'source': '투자 자산 관리_20260515.xlsx'}
+        fund_records.append({
+            'fund_id': fid, 'short_name': clean_str(row.get('약칭')), 'fund_name': clean_str(row.get('펀드명')),
+            'sector': clean_str(row.get('투자섹터')), 'asset_name': fund_asset_name,
+            'status': clean_str(row.get('운용상태')), 'location': clean_str(row.get('국내/해외')),
+            'setup_date': clean_date(row.get('최초 설정일')), 'maturity_date': clean_date(row.get('만기일')),
+            'dept': clean_str(row.get('부서(운용)')), 'manager': clean_str(row.get('담당자(운용)')),
+            'division': clean_str(row.get('담당부문(운용)')), 'recruitment_type': clean_str(row.get('모집형태')),
+            'legal_form': clean_str(row.get('법적형태')), 'fund_class': clean_str(row.get('펀드분류')),
+            'fund_type': clean_str(row.get('펀드유형')), 'primary_region': clean_str(row.get('주요투자지역')),
+            'is_development': clean_str(row.get('개발여부')), 'is_delegated': clean_str(row.get('위탁운용여부')),
+            'notion_vehicle_class': clean_str(row.get('Vehicle구분')), 'notion_holding_type_class': clean_str(row.get('모자구분')),
+            'notion_investment_strategy_class': clean_str(row.get('투자전략')), 'notion_base_asset_class': base_asset_val,
+            'notion_asset_nature_class': clean_str(row.get('자산성격')), 'notion_business_stage_class': clean_str(row.get('개발여부')),
+            'benchmark_aum': aum.get('benchmark_aum'), 'invested_aum': aum.get('invested_aum'),
+            'base_price': aum.get('base_price'), 'net_asset_value': aum.get('net_asset_value'),
+            'aum_base_date': aum.get('aum_base_date'), 'aum_input_date': aum.get('aum_input_date'),
+            'equity_won': aum.get('equity_won'), 'loan_won': aum.get('loan_won'), 'deposit_won': aum.get('deposit_won'),
+            'invested_equity_won': aum.get('invested_equity_won'), 'invested_loan_won': aum.get('invested_loan_won'),
+            'invested_deposit_won': aum.get('invested_deposit_won'), 'aum_status': aum.get('aum_status'),
+            'aum_source': '펀드 AUM 관리_20260515.xlsx', 'metadata': None 
         })
 
-    # 4. Build and Aggregating Exposure Records
-    print("Building and Aggregating Exposure records...")
+    # 4. Build Exposure Records (Restored)
+    print("Building Exposure records...")
     lender_agg = {}
     for _, row in df_lender.iterrows():
-        fid = clean_str(row.get('펀드코드'))
-        lender = clean_str(row.get('대주'))
-        bdate = clean_date(row.get('기준일자'))
+        fid, lender, bdate = clean_str(row.get('펀드코드')), clean_str(row.get('대주')), clean_date(row.get('기준일자'))
         if not (fid and lender and bdate): continue
         key = (fid, lender, bdate)
         if key not in lender_agg:
@@ -219,15 +192,11 @@ def process_updates():
         lender_agg[key]['remaining_amt'] += (clean_int(row.get('대출잔여금액(원)')) or 0)
         trench = clean_str(row.get('트렌치'))
         if trench: lender_agg[key]['remarks'].append(trench)
-
-    lender_records = [v for v in lender_agg.values()]
-    for v in lender_records: v['remarks'] = ", ".join(set(v['remarks'])) if v['remarks'] else None
+    lender_records = [dict(v, remarks=", ".join(set(v['remarks'])) if v['remarks'] else None) for v in lender_agg.values()]
 
     beneficiary_agg = {}
     for _, row in df_beneficiary.iterrows():
-        fid = clean_str(row.get('펀드코드'))
-        bene = clean_str(row.get('수익자'))
-        bdate = clean_date(row.get('기준일자'))
+        fid, bene, bdate = clean_str(row.get('펀드코드')), clean_str(row.get('수익자')), clean_date(row.get('기준일자'))
         if not (fid and bene and bdate): continue
         key = (fid, bene, bdate)
         if key not in beneficiary_agg:
@@ -240,25 +209,17 @@ def process_updates():
         beneficiary_agg[key]['remaining_amt'] += (clean_int(row.get('잔여약정금액')) or 0)
         rem = clean_str(row.get('비고'))
         if rem: beneficiary_agg[key]['remarks'].append(rem)
-
-    beneficiary_records = [v for v in beneficiary_agg.values()]
-    for v in beneficiary_records: v['remarks'] = ", ".join(set(v['remarks'])) if v['remarks'] else None
+    beneficiary_records = [dict(v, remarks=", ".join(set(v['remarks'])) if v['remarks'] else None) for v in beneficiary_agg.values()]
 
     # Execution
-    print("\nExecuting Database Operations (Full Normalization Re-ingest)...")
-    print("Clearing old exposures...")
+    print("\nExecuting Database Operations...")
     delete_table(client, "lender_exposures", "id")
     delete_table(client, "beneficiary_exposures", "id")
-    
-    print("Upserting Funds and Assets (Normalized Columns Only)...")
     upsert_records(client, "funds", fund_records, on_conflict="fund_id")
     upsert_records(client, "asset_master", asset_records, on_conflict="asset_id")
-    
-    print("Inserting new exposures...")
     insert_records(client, "lender_exposures", lender_records)
     insert_records(client, "beneficiary_exposures", beneficiary_records)
-
-    print("\n[SUCCESS] Full Normalization DB Update Completed.")
+    print("\n[SUCCESS] Comprehensive DB Update Completed.")
 
 if __name__ == "__main__":
     process_updates()

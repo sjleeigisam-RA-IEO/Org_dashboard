@@ -12,6 +12,9 @@ const BASE_ASSET_FILTER_OPTIONS = [
     { label: '호텔', terms: ['호텔'] },
     { label: '주거', terms: ['주거', '공동주택', '오피스텔'] },
     { label: '데이터센터', terms: ['데이터센터', 'IDC'] },
+    { label: '금융상품', terms: ['금융상품', '예금', '증권'] },
+    { label: '기업주식', terms: ['기업주식', 'Equity'] },
+    { label: '특별자산', terms: ['특별자산', 'Special'] },
     { label: 'NPL', terms: ['NPL'] }
 ];
 
