@@ -123,15 +123,15 @@ def process_updates():
                 'aum_status': clean_str(row[aum_headers.index('펀드정보6')])
             }
 
-    # 2. Build Fund Records (Refactored for Column-First)
-    print("Building Fund records (Refactored)...")
+    # 2. Build Fund Records (Comprehensive Mapping)
+    print("Building Fund records (Comprehensive Mapping)...")
     fund_records = []
     for _, row in df_fund.iterrows():
         fid = clean_str(row['펀드코드'])
         if not fid: continue
         aum = aum_map.get(fid, {})
         
-        # Mapping to existing standard columns and notion columns
+        # Primary mapping to existing columns
         record = {
             'fund_id': fid,
             'short_name': clean_str(row.get('약칭')),
@@ -144,10 +144,14 @@ def process_updates():
             'maturity_date': clean_date(row.get('만기일')),
             'dept': clean_str(row.get('부서(운용)')),
             'manager': clean_str(row.get('담당자(운용)')),
+            # Legacy notion columns
             'notion_vehicle_class': clean_str(row.get('Vehicle구분')),
             'notion_holding_type_class': clean_str(row.get('모자구분')),
             'notion_investment_strategy_class': clean_str(row.get('투자전략')),
             'notion_base_asset_class': clean_str(row.get('투자섹터')),
+            'notion_asset_nature_class': clean_str(row.get('자산성격')),
+            'notion_business_stage_class': clean_str(row.get('개발여부')), # Mapping development status here
+            # AUM fields
             'benchmark_aum': aum.get('benchmark_aum'),
             'invested_aum': aum.get('invested_aum'),
             'base_price': aum.get('base_price'),
@@ -164,16 +168,26 @@ def process_updates():
             'aum_source': '펀드 AUM 관리_20260515.xlsx',
         }
         
-        # Simplified metadata for dashboard compatibility and extra fields
+        # Comprehensive Metadata for Dashboard (Fallback layer)
         record['metadata'] = {
             'division': clean_str(row.get('담당부문(운용)')),
             'department': clean_str(row.get('부서(운용)')),
             'manager_name': clean_str(row.get('담당자(운용)')),
-            'aum_status': aum.get('aum_status'), # Still needed by JS
-            'setup_date': record['setup_date'], # Still needed by JS
-            'vehicle_type': record['notion_vehicle_class'],
-            'investment_strategy': record['notion_investment_strategy_class'],
-            'source': 'DB sources 2026-05-15 Refactored'
+            'aum_status': aum.get('aum_status'),
+            'setup_date': record['setup_date'],
+            'vehicle_type': clean_str(row.get('Vehicle구분')),
+            'recruitment_type': clean_str(row.get('모집형태')),
+            'parent_child_type': clean_str(row.get('모자구분')),
+            'legal_form': clean_str(row.get('법적형태')),
+            'fund_class': clean_str(row.get('펀드분류')),
+            'domestic_overseas': clean_str(row.get('국내/해외')),
+            'fund_type': clean_str(row.get('펀드유형')),
+            'investment_strategy': clean_str(row.get('투자전략')),
+            'base_asset_class': clean_str(row.get('투자섹터')),
+            'asset_nature_class': clean_str(row.get('자산성격')),
+            'business_stage_class': clean_str(row.get('개발여부')),
+            'is_delegated': clean_str(row.get('위탁운용여부')),
+            'source': 'DB sources 2026-05-15 Comprehensive'
         }
         
         fund_records.append(record)
@@ -241,12 +255,12 @@ def process_updates():
     for v in beneficiary_records: v['remarks'] = ", ".join(set(v['remarks'])) if v['remarks'] else None
 
     # Execution
-    print("\nExecuting Database Operations (Refactored)...")
+    print("\nExecuting Database Operations (Comprehensive Update)...")
     print("Clearing old exposures...")
     delete_table(client, "lender_exposures", "id")
     delete_table(client, "beneficiary_exposures", "id")
     
-    print("Upserting Funds and Assets (Column-First)...")
+    print("Upserting Funds and Assets...")
     upsert_records(client, "funds", fund_records, on_conflict="fund_id")
     upsert_records(client, "asset_master", asset_records, on_conflict="asset_id")
     
@@ -254,7 +268,7 @@ def process_updates():
     insert_records(client, "lender_exposures", lender_records)
     insert_records(client, "beneficiary_exposures", beneficiary_records)
 
-    print("\n[SUCCESS] Refactored DB Update Completed.")
+    print("\n[SUCCESS] Comprehensive DB Update Completed.")
 
 if __name__ == "__main__":
     process_updates()

@@ -180,9 +180,15 @@ function getFieldValue(fund, key) {
     domestic_overseas: [fund.location, fund.metadata?.domestic_overseas],
     primary_region: [fund.location, fund.metadata?.primary_region],
     vehicle_type: [fund.notion_vehicle_class, fund.metadata?.vehicle_type],
+    recruitment_type: [fund.metadata?.recruitment_type],
     fund_class: [fund.notion_fund_class, fund.metadata?.fund_class],
+    legal_form: [fund.metadata?.legal_form],
+    fund_type: [fund.metadata?.fund_type],
     investment_strategy: [fund.notion_investment_strategy_class, fund.metadata?.investment_strategy],
     parent_child_type: [fund.notion_holding_type_class, fund.metadata?.parent_child_type],
+    base_asset_class: [fund.notion_base_asset_class, fund.metadata?.base_asset_class],
+    asset_nature_class: [fund.notion_asset_nature_class, fund.metadata?.asset_nature_class],
+    business_stage_class: [fund.notion_business_stage_class, fund.metadata?.business_stage_class],
     aum_status: [fund.aum_status, fund.metadata?.aum_status],
     setup_date: [fund.setup_date, fund.metadata?.setup_date]
   };
