@@ -118,12 +118,22 @@ const T5TService = {
         let hasMore = true;
 
         while (hasMore) {
-            const { data, error } = await supabaseClient
+            let { data, error } = await supabaseClient
                 .from('t5t_form_items')
-                .select(`*, projects(project_name), funds(fund_name)`)
+                .select(`*, projects(project_name), review_projects(project_name), funds(fund_name)`)
                 .order('work_date', { ascending: false })
                 .range(from, to);
 
+            if (error && String(error.message || "").includes("review_projects")) {
+                console.warn("review_projects relation is not available yet. Falling back to official project/fund joins.", error);
+                const fallback = await supabaseClient
+                    .from('t5t_form_items')
+                    .select(`*, projects(project_name), funds(fund_name)`)
+                    .order('work_date', { ascending: false })
+                    .range(from, to);
+                data = fallback.data;
+                error = fallback.error;
+            }
             if (error) throw error;
             if (!data || data.length === 0) {
                 hasMore = false;
@@ -231,12 +241,12 @@ const T5TService = {
             weekMap.get(weekKey).counts[taskType] = (weekMap.get(weekKey).counts[taskType] || 0) + 1;
 
             // 프로젝트명 정제
-            const projName = this.normalizeDisplayLabel(item.project_text || item.projects?.project_name || item.funds?.fund_name || "미분류");
+            const projName = this.getProjectDisplayName(item);
             const ignoreProjects = ["-", "미분류", "기타", "대기", "없음"];
             
             if (!ignoreProjects.includes(projName)) {
                 if (!projectMap.has(projName)) {
-                    const parentInfo = item.funds?.fund_name || item.projects?.project_name || "";
+                    const parentInfo = item.funds?.fund_name || item.review_projects?.project_name || item.projects?.project_name || "";
                     projectMap.set(projName, { 
                         id: projName, 
                         name: projName, 
@@ -323,13 +333,13 @@ const T5TService = {
             if (!workDate || workDate.getFullYear() !== year) return;
             if (this.isHeaderOnlyLog(item)) return;
 
-            const projName = this.normalizeDisplayLabel(item.project_text || item.projects?.project_name || item.funds?.fund_name || "미분류");
+            const projName = this.getProjectDisplayName(item);
             if (stopWords.includes(projName)) return;
 
             const weekKey = this.getWeekKey(workDate);
             weekSet.add(weekKey);
             if (!projectMap.has(projName)) {
-                const parentInfo = item.funds?.fund_name || item.projects?.project_name || "";
+                const parentInfo = item.funds?.fund_name || item.review_projects?.project_name || item.projects?.project_name || "";
                 projectMap.set(projName, {
                     id: projName,
                     name: projName,
@@ -431,7 +441,7 @@ const T5TService = {
     },
 
     makeLogRecord(item, category, weekKey, taskType) {
-        const project = this.normalizeDisplayLabel(item.project_text || item.projects?.project_name || item.funds?.fund_name || "미분류");
+        const project = this.getProjectDisplayName(item);
         const tokens = Array.isArray(item.classification_tokens) ? item.classification_tokens : [];
         return {
             id: item.form_item_id || item.t5t_log_id,
@@ -460,6 +470,16 @@ const T5TService = {
         if (["General", "GeneralWork", "general", "general_work", "일반", "일반업무"].includes(label)) return "General";
         if (["Mission", "mission", "미션"].includes(label)) return "Mission";
         return label;
+    },
+
+    getProjectDisplayName(item) {
+        const linkedName = item.review_projects?.project_name || item.projects?.project_name || item.funds?.fund_name;
+        if (linkedName) return this.normalizeDisplayLabel(linkedName);
+
+        const taskType = this.normalizeTaskType(item.task_type || item.match_status);
+        if (taskType === "General" || taskType === "Mission") return taskType;
+
+        return this.normalizeDisplayLabel(item.project_text || "미분류");
     },
 
     isHeaderOnlyLog(item) {

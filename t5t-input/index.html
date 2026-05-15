@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>T5T Input Prototype</title>
+  <link rel="stylesheet" href="style.css?v=proto_1">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="home-link" href="../index.html">홈</a>
+    <div>
+      <p class="eyebrow">T5T SQL Input Prototype</p>
+      <h1>T5T 입력</h1>
+      <p class="subtitle">프로젝트, 펀드, 자산, 이해관계자를 DB 기준값으로 선택해 정합성 있는 제출 구조를 만듭니다.</p>
+    </div>
+    <div class="status-pill" id="connection-status">DB 연결 확인 중</div>
+  </header>
+
+  <main class="layout">
+    <section class="panel writer-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">Submission</p>
+          <h2>작성 정보</h2>
+        </div>
+        <button class="ghost-btn" id="reset-form" type="button">초기화</button>
+      </div>
+
+      <div class="form-grid">
+        <label class="field">
+          <span>이메일</span>
+          <input id="writer-search" type="email" placeholder="회사 이메일을 입력하세요">
+          <div class="suggestions" id="writer-suggestions"></div>
+        </label>
+        <label class="field">
+          <span>작성일</span>
+          <input id="work-date" type="date">
+        </label>
+        <label class="field">
+          <span>조직명</span>
+          <input id="line-label" type="text" placeholder="이메일 입력 시 자동 조회" readonly>
+        </label>
+        <label class="field">
+          <span>이름</span>
+          <input id="week-label" type="text" placeholder="이메일 입력 시 자동 조회" readonly>
+        </label>
+      </div>
+    </section>
+
+    <section class="panel work-panel">
+      <div class="panel-head sticky-head">
+        <div>
+          <p class="eyebrow">Work Items</p>
+          <h2>업무 항목</h2>
+        </div>
+        <button class="accent-btn" id="add-item" type="button">항목 추가</button>
+      </div>
+      <div class="item-stack" id="item-stack"></div>
+    </section>
+
+    <aside class="side-panel">
+      <section class="panel compact">
+        <p class="eyebrow">Validation</p>
+        <h2>제출 점검</h2>
+        <div class="check-list" id="validation-list"></div>
+      </section>
+
+      <section class="panel compact">
+        <p class="eyebrow">Payload</p>
+        <h2>저장 구조 미리보기</h2>
+        <pre id="payload-preview"></pre>
+        <div class="side-actions">
+          <button class="ghost-btn" id="save-draft" type="button">로컬 초안 저장</button>
+          <button class="accent-btn" id="copy-payload" type="button">Payload 복사</button>
+        </div>
+        <p class="hint">아직 DB에는 저장하지 않습니다. 이 구조를 확정한 뒤 Edge Function에 연결합니다.</p>
+      </section>
+    </aside>
+  </main>
+
+  <template id="item-template">
+    <article class="work-card">
+      <div class="work-card-head">
+        <div>
+          <p class="item-no"></p>
+          <h3>업무 입력</h3>
+        </div>
+        <button class="icon-btn remove-item" type="button" title="항목 삭제">×</button>
+      </div>
+
+      <div class="fallback-classifier">
+        <div>
+          <span>기존 프로젝트가 아닌 업무</span>
+          <p>프로젝트, 펀드, 자산을 선택하지 않는 경우에만 아래 분류를 선택하세요.</p>
+        </div>
+        <div class="type-toggle" role="group" aria-label="업무 유형">
+          <button type="button" data-type="New">신규</button>
+          <button type="button" data-type="General">일반업무</button>
+          <button type="button" data-type="Mission">Mission</button>
+        </div>
+      </div>
+
+      <label class="field relation-field">
+        <span>프로젝트 / 펀드 / 자산</span>
+        <input type="search" class="relation-search" placeholder="DB에서 검색하거나, 없으면 텍스트로 입력">
+        <div class="selected-chip-list selected-relations"></div>
+        <div class="suggestions relation-suggestions"></div>
+        <button class="text-btn add-relation-text" type="button">검색어를 텍스트로 추가</button>
+      </label>
+
+      <label class="field">
+        <span>이해관계자</span>
+        <input type="search" class="counterparty-search" placeholder="수익자, 대주, 자문사, 임차인 등 검색">
+        <div class="selected-chip-list selected-counterparties"></div>
+        <div class="suggestions counterparty-suggestions"></div>
+        <button class="text-btn add-counterparty-text" type="button">검색어를 신규 후보로 추가</button>
+      </label>
+
+      <label class="field">
+        <span>요약</span>
+        <input type="text" class="summary-input" placeholder="예: 타임워크 분당 임차 조건 협의">
+      </label>
+
+      <label class="field">
+        <span>원문</span>
+        <textarea class="raw-input" rows="4" placeholder="T5T에 남길 원문 업무 내용을 입력하세요."></textarea>
+      </label>
+    </article>
+  </template>
+
+  <script src="../t5t-dashboard/supabase-config.js?v=final_sql_v1"></script>
+  <script src="app.js?v=proto_1"></script>
+</body>
+</html>
