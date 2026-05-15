@@ -123,15 +123,15 @@ def process_updates():
                 'aum_status': clean_str(row[aum_headers.index('펀드정보6')])
             }
 
-    # 2. Build Fund Records (Comprehensive Mapping)
-    print("Building Fund records (Comprehensive Mapping)...")
+    # 2. Build Fund Records (Full Normalization - No Metadata)
+    print("Building Fund records (Fully Normalized)...")
     fund_records = []
     for _, row in df_fund.iterrows():
         fid = clean_str(row['펀드코드'])
         if not fid: continue
         aum = aum_map.get(fid, {})
         
-        # Primary mapping to existing columns
+        # Mapping EVERYTHING to first-class columns
         record = {
             'fund_id': fid,
             'short_name': clean_str(row.get('약칭')),
@@ -144,13 +144,25 @@ def process_updates():
             'maturity_date': clean_date(row.get('만기일')),
             'dept': clean_str(row.get('부서(운용)')),
             'manager': clean_str(row.get('담당자(운용)')),
-            # Legacy notion columns
+            
+            # New Normalized Columns
+            'division': clean_str(row.get('담당부문(운용)')),
+            'recruitment_type': clean_str(row.get('모집형태')),
+            'legal_form': clean_str(row.get('법적형태')),
+            'fund_class': clean_str(row.get('펀드분류')),
+            'fund_type': clean_str(row.get('펀드유형')),
+            'primary_region': clean_str(row.get('주요투자지역')),
+            'is_development': clean_str(row.get('개발여부')),
+            'is_delegated': clean_str(row.get('위탁운용여부')),
+            
+            # Notion Mapping (Legacy Sync)
             'notion_vehicle_class': clean_str(row.get('Vehicle구분')),
             'notion_holding_type_class': clean_str(row.get('모자구분')),
             'notion_investment_strategy_class': clean_str(row.get('투자전략')),
             'notion_base_asset_class': clean_str(row.get('투자섹터')),
             'notion_asset_nature_class': clean_str(row.get('자산성격')),
-            'notion_business_stage_class': clean_str(row.get('개발여부')), # Mapping development status here
+            'notion_business_stage_class': clean_str(row.get('개발여부')),
+            
             # AUM fields
             'benchmark_aum': aum.get('benchmark_aum'),
             'invested_aum': aum.get('invested_aum'),
@@ -166,30 +178,8 @@ def process_updates():
             'invested_deposit_won': aum.get('invested_deposit_won'),
             'aum_status': aum.get('aum_status'),
             'aum_source': '펀드 AUM 관리_20260515.xlsx',
+            'metadata': None # CLEARING METADATA to force column usage
         }
-        
-        # Comprehensive Metadata for Dashboard (Fallback layer)
-        record['metadata'] = {
-            'division': clean_str(row.get('담당부문(운용)')),
-            'department': clean_str(row.get('부서(운용)')),
-            'manager_name': clean_str(row.get('담당자(운용)')),
-            'aum_status': aum.get('aum_status'),
-            'setup_date': record['setup_date'],
-            'vehicle_type': clean_str(row.get('Vehicle구분')),
-            'recruitment_type': clean_str(row.get('모집형태')),
-            'parent_child_type': clean_str(row.get('모자구분')),
-            'legal_form': clean_str(row.get('법적형태')),
-            'fund_class': clean_str(row.get('펀드분류')),
-            'domestic_overseas': clean_str(row.get('국내/해외')),
-            'fund_type': clean_str(row.get('펀드유형')),
-            'investment_strategy': clean_str(row.get('투자전략')),
-            'base_asset_class': clean_str(row.get('투자섹터')),
-            'asset_nature_class': clean_str(row.get('자산성격')),
-            'business_stage_class': clean_str(row.get('개발여부')),
-            'is_delegated': clean_str(row.get('위탁운용여부')),
-            'source': 'DB sources 2026-05-15 Comprehensive'
-        }
-        
         fund_records.append(record)
 
     # 3. Build Asset Master Records
@@ -207,7 +197,7 @@ def process_updates():
             'gross_floor_area': clean_num(row.get('연면적(m²)')),
             'completion_date': clean_date(row.get('준공(예정)일')),
             'review_status': 'verified',
-            'metadata': {'source': '투자 자산 관리_20260515.xlsx', 'investment_city': clean_str(row.get('투자도시'))}
+            'metadata': {'source': '투자 자산 관리_20260515.xlsx'}
         })
 
     # 4. Build and Aggregating Exposure Records
@@ -255,12 +245,12 @@ def process_updates():
     for v in beneficiary_records: v['remarks'] = ", ".join(set(v['remarks'])) if v['remarks'] else None
 
     # Execution
-    print("\nExecuting Database Operations (Comprehensive Update)...")
+    print("\nExecuting Database Operations (Full Normalization Re-ingest)...")
     print("Clearing old exposures...")
     delete_table(client, "lender_exposures", "id")
     delete_table(client, "beneficiary_exposures", "id")
     
-    print("Upserting Funds and Assets...")
+    print("Upserting Funds and Assets (Normalized Columns Only)...")
     upsert_records(client, "funds", fund_records, on_conflict="fund_id")
     upsert_records(client, "asset_master", asset_records, on_conflict="asset_id")
     
@@ -268,7 +258,7 @@ def process_updates():
     insert_records(client, "lender_exposures", lender_records)
     insert_records(client, "beneficiary_exposures", beneficiary_records)
 
-    print("\n[SUCCESS] Comprehensive DB Update Completed.")
+    print("\n[SUCCESS] Full Normalization DB Update Completed.")
 
 if __name__ == "__main__":
     process_updates()
