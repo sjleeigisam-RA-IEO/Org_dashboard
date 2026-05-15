@@ -1,4 +1,4 @@
-async function renderAnalytics() {
+﻿async function renderAnalytics() {
     let targetFunds = allResults.funds || [];
     if (targetFunds.length === 0) {
         detailPanel.innerHTML = '<div class="no-results" style="padding:100px;">전체 포트폴리오 집계 중...</div>';
@@ -20,7 +20,7 @@ async function renderAnalytics() {
     const filteredFunds = (typeof getFilteredData === 'function') ? getFilteredData() : targetFunds;
     window.lastTargetFunds = filteredFunds;
     
-    const snapshotDate = new Date('2026-03-31');
+    const snapshotDate = new Date('2026-04-30');
     const activeFunds = filteredFunds.filter(isActiveAumSnapshotFund);
 
     const aumMetric = getAumBasisMetric();
@@ -52,7 +52,7 @@ async function renderAnalytics() {
           <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px; margin-bottom:32px;">
             <div class="kpi-card" style="padding:40px;">
               <div class="kpi-label" style="font-size:14px; letter-spacing:1px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;">
-                <span>현재 운용 AUM (${aumConfig.label}, 2026.03.31 기준)</span>
+                <span>현재 운용 AUM (${aumConfig.label}, 2026.04.30 기준)</span>
                 <div id="aumBasisToggle" class="segmented-control" data-active="${aumMetric}" onclick="toggleAumBasis()">
                     <div class="segment-slider"></div>
                     <div class="segment ${aumMetric === 'benchmark_aum' ? 'active' : ''}" data-val="benchmark_aum">약정</div>
@@ -177,9 +177,9 @@ function renderNetChangeDetails(label) {
 
     let startDate, endDate, title;
     if (label === '2026 (Actual)') {
-        startDate = new Date('2026-01-01'); endDate = new Date('2026-03-31'); title = '2026년 1분기';
+        startDate = new Date('2026-01-01'); endDate = new Date('2026-04-30'); title = '2026년 누계(4월말)';
     } else if (label === '2026 (Proj.)') {
-        startDate = new Date('2026-04-01'); endDate = new Date('2026-12-31'); title = '2026년 잔여';
+        startDate = new Date('2026-05-01'); endDate = new Date('2026-12-31'); title = '2026년 잔여';
     } else {
         const year = parseInt(label, 10);
         startDate = new Date(`${year}-01-01`); endDate = new Date(`${year}-12-31`); title = `${year}년`;
@@ -251,7 +251,7 @@ function renderNetGrowth(chartId) {
 
     const totals = categories.map(cat => {
         let snapshotDate;
-        if (cat === '2026 (Actual)') snapshotDate = new Date('2026-03-31');
+        if (cat === '2026 (Actual)') snapshotDate = new Date('2026-04-30');
         else if (cat === '2026 (Proj.)') snapshotDate = new Date('2026-12-31');
         else snapshotDate = new Date(`${cat}-12-31`);
 
@@ -346,7 +346,7 @@ function renderHistory(chartId) {
 
     categories.forEach(cat => {
         let snap;
-        if (cat === '2026 (Actual)') snap = new Date('2026-03-31');
+        if (cat === '2026 (Actual)') snap = new Date('2026-04-30');
         else if (cat === '2026 (Proj.)') snap = new Date('2026-12-31');
         else snap = new Date(`${cat}-12-31`);
 
