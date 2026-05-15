@@ -317,6 +317,11 @@ async function ensureAllDataLoaded() {
       allFundAssets = responses[1] || [];
       window.allFunds = allFunds;
       window.allFundAssets = allFundAssets;
+
+      // 데이터 로딩 후 필터 목록 재생성 (리팩토링 후 필터 유실 방지)
+      if (typeof window.initAnalysisFilters === 'function') {
+        window.initAnalysisFilters();
+      }
     } catch (e) {
       console.error(e);
     }

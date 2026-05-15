@@ -140,7 +140,8 @@ function initAnalysisFilters() {
             optionsWrapper.className = 'options-wrapper';
             
             // Extract unique values
-            const rawValues = allFunds.flatMap(f => {
+            const fundsToScan = window.allFunds || [];
+            const rawValues = fundsToScan.flatMap(f => {
                 let v = getFieldValue(f, col.key);
                 return getAnalysisFilterTokens(col.key, v);
             });
