@@ -69,22 +69,25 @@
       }
       .modal-overlay.active { display: flex; }
       .help-modal {
-        background: white; width: 500px; max-width: 90vw; border-radius: 24px;
-        padding: 32px; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        background: var(--panel-solid); width: 500px; max-width: 90vw; border-radius: 24px;
+        padding: 32px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        border: 1px solid var(--line);
         position: relative; animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
       @keyframes modalPop {
         from { transform: scale(0.9); opacity: 0; }
         to { transform: scale(1); opacity: 1; }
       }
-      .help-modal h2 { margin-bottom: 20px; font-size: 20px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+      .help-modal h2 { margin-bottom: 24px; font-size: 20px; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 8px; }
       .help-modal ul { list-style: none; padding: 0; margin: 0; }
-      .help-modal li { margin-bottom: 16px; font-size: 14px; line-height: 1.6; color: #475569; }
-      .help-modal li strong { color: var(--text); display: block; margin-bottom: 4px; font-size: 15px; }
+      .help-modal li { margin-bottom: 20px; font-size: 14px; line-height: 1.6; color: var(--soft); }
+      .help-modal li strong { color: var(--accent); display: block; margin-bottom: 6px; font-size: 15px; }
       .close-modal-btn {
-        margin-top: 24px; width: 100%; padding: 14px; background: var(--text);
-        color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer;
+        margin-top: 24px; width: 100%; padding: 16px; background: var(--accent);
+        color: #000; border: none; border-radius: 12px; font-weight: 800; cursor: pointer;
+        transition: all 0.2s;
       }
+      .close-modal-btn:hover { background: var(--accent-hover); transform: translateY(-2px); }
 
       .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; font-size: 14px; }
       .meta-item { display: flex; flex-direction: column; gap: 6px; }
