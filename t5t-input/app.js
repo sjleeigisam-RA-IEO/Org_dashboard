@@ -1,16 +1,21 @@
+const DRAFT_KEY = "t5t-input-draft";
+const SUBMIT_ENDPOINT = "http://localhost:8787/submit_t5t";
+const NOTION_ENDPOINT = "http://localhost:8787/submit_notion";
+
 const state = {
   masters: {
     staff: [],
-    projects: [],
-    funds: [],
-    assets: [],
-    reviewProjects: [],
-    counterparties: [],
     orgs: [],
     assignments: [],
+    projects: [],
+    reviewProjects: [],
+    funds: [],
+    assets: [],
+    counterparties: [],
   },
   writer: null,
   items: [],
+  pendingDraft: null,
 };
 
 const els = {};
@@ -19,8 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   cacheElements();
   setDefaultDate();
   wireHeaderEvents();
-  restoreDraft();
-  if (!state.items.length) addItem();
+  addItem();
   await loadMasters();
   renderAll();
 });
@@ -38,42 +42,53 @@ function cacheElements() {
     addItem: document.getElementById("add-item"),
     resetForm: document.getElementById("reset-form"),
     validationList: document.getElementById("validation-list"),
+    payloadSummary: document.getElementById("payload-summary"),
     payloadPreview: document.getElementById("payload-preview"),
+    submitNotion: document.getElementById("submit-notion"),
+    submitPayload: document.getElementById("submit-payload"),
+    submitStatus: document.getElementById("submit-status"),
     saveDraft: document.getElementById("save-draft"),
+    loadDraft: document.getElementById("load-draft"),
     copyPayload: document.getElementById("copy-payload"),
   });
 }
 
 function wireHeaderEvents() {
-  els.writerSearch.addEventListener("input", handleWriterEmailInput);
-  els.workDate.addEventListener("change", renderAll);
-  els.addItem.addEventListener("click", () => {
+  on(els.writerSearch, "input", handleWriterInput);
+  on(els.workDate, "change", renderAll);
+  on(els.addItem, "click", () => {
     if (state.items.length < 5) addItem();
     renderAll();
   });
-  els.resetForm.addEventListener("click", resetForm);
-  els.saveDraft.addEventListener("click", saveDraft);
-  els.copyPayload.addEventListener("click", copyPayload);
+  on(els.resetForm, "click", resetForm);
+  on(els.submitNotion, "click", submitNotionOnly);
+  on(els.submitPayload, "click", submitPayload);
+  on(els.saveDraft, "click", saveDraft);
+  on(els.loadDraft, "click", loadDraftFromStorage);
+  on(els.copyPayload, "click", copyPayload);
   document.addEventListener("click", event => {
     if (!event.target.closest(".field")) closeSuggestions();
   });
 }
 
+function on(element, eventName, handler) {
+  if (element) element.addEventListener(eventName, handler);
+}
+
 function setDefaultDate() {
-  const today = new Date();
-  els.workDate.value = formatDate(today);
+  if (els.workDate) els.workDate.value = formatDate(new Date());
 }
 
 async function loadMasters() {
   try {
-    els.status.textContent = "DB master 불러오는 중";
+    setStatus("DB master 불러오는 중");
     const [staff, orgs, assignments, projects, reviewProjects, funds, assets, counterparties] = await Promise.all([
       fetchAll("staff", "staff_id,employee_no,name,email,position,title,line_code,line_label,status", "name"),
-      fetchAll("orgs", "org_id,org_name,org_path,is_active", "org_name"),
+      fetchAll("orgs", "org_id,org_name,org_path,is_active,metadata", "org_name"),
       fetchAll("staff_org_assignments", "assignment_id,staff_id,org_id,is_primary,role,metadata", "staff_id"),
       fetchAll("projects", "project_id,project_name,project_code,project_type,status,primary_asset_id,source_system,metadata", "project_name"),
       fetchOptional("review_projects", "review_project_id,notion_id,source_project_id,project_name,review_status,source_status,metadata", "project_name"),
-      fetchAll("funds", "fund_id,fund_name,short_name,asset_name,status,project_mission_name,primary_asset_id", "fund_name"),
+      fetchAll("funds", "fund_id,fund_name,short_name,asset_name,status,project_mission_name,primary_asset_id,metadata,notion_vehicle_class", "fund_name"),
       fetchAll("asset_master", "asset_id,canonical_name,asset_type,city,address_text,asset_kind,review_status", "canonical_name"),
       fetchAll("counterparties", "counterparty_id,name,category,metadata", "name"),
     ]);
@@ -86,13 +101,19 @@ async function loadMasters() {
     state.masters.funds = funds;
     state.masters.assets = assets;
     state.masters.counterparties = counterparties;
-    els.status.textContent = "DB master 연결됨";
-    els.status.classList.add("ok");
+    setStatus("DB master 연결됨", "ok");
+    hydrateDraftSelections();
   } catch (error) {
     console.error(error);
-    els.status.textContent = "DB 연결 실패";
-    els.status.classList.add("error");
+    setStatus("DB 연결 실패", "error");
   }
+}
+
+function setStatus(text, type = "") {
+  if (!els.status) return;
+  els.status.textContent = text;
+  els.status.classList.toggle("ok", type === "ok");
+  els.status.classList.toggle("error", type === "error");
 }
 
 async function fetchOptional(table, columns, orderColumn) {
@@ -131,8 +152,12 @@ function addItem(seed = {}) {
     relation_texts: seed.relation_texts || [],
     counterparties: seed.counterparties || [],
     counterparty_texts: seed.counterparty_texts || [],
-    summary: seed.summary || "",
     raw_text: seed.raw_text || "",
+    pending_project_ids: seed.pending_project_ids || [],
+    pending_review_project_ids: seed.pending_review_project_ids || [],
+    pending_fund_ids: seed.pending_fund_ids || [],
+    pending_asset_ids: seed.pending_asset_ids || [],
+    pending_counterparty_ids: seed.pending_counterparty_ids || [],
   });
 }
 
@@ -143,10 +168,9 @@ function renderAll() {
   renderPayload();
 }
 
-function handleWriterEmailInput() {
+function handleWriterInput() {
   const value = els.writerSearch.value.trim();
-  const emailNeedle = normalizeEmail(value);
-  const exact = state.masters.staff.find(row => normalizeEmail(row.email) === emailNeedle);
+  const exact = state.masters.staff.find(row => normalizeEmail(row.email) === normalizeEmail(value));
   if (exact) {
     state.writer = exact;
     closeSuggestions();
@@ -156,15 +180,12 @@ function handleWriterEmailInput() {
 
   state.writer = null;
   updateWriterFields();
-  renderPayload();
-  renderValidation();
-
   showSuggestions({
     anchor: els.writerSuggestions,
     query: value,
-    rows: state.masters.staff.filter(row => row.email),
+    rows: state.masters.staff.filter(row => row.email || row.name),
     label: row => row.email || row.name || row.staff_id,
-    meta: row => [row.name, row.org_display, row.position].filter(Boolean).join(" · "),
+    meta: row => [row.name, row.org_display, row.position || row.title].filter(Boolean).join(" · "),
     onPick: row => {
       state.writer = row;
       els.writerSearch.value = row.email || "";
@@ -172,6 +193,8 @@ function handleWriterEmailInput() {
       renderAll();
     },
   });
+  renderValidation();
+  renderPayload();
 }
 
 function updateWriterFields() {
@@ -185,8 +208,10 @@ function renderItems() {
     const node = els.template.content.firstElementChild.cloneNode(true);
     node.dataset.itemId = item.id;
     node.querySelector(".item-no").textContent = `ITEM ${index + 1}`;
-    node.querySelector(".remove-item").hidden = state.items.length <= 1;
-    node.querySelector(".remove-item").addEventListener("click", () => {
+
+    const removeButton = node.querySelector(".remove-item");
+    removeButton.classList.toggle("is-hidden", state.items.length <= 1);
+    removeButton.addEventListener("click", () => {
       state.items = state.items.filter(row => row.id !== item.id);
       renderAll();
     });
@@ -202,20 +227,14 @@ function renderItems() {
     wireUnifiedRelationField(node, item);
     wireCounterpartyField(node, item);
 
-    const summary = node.querySelector(".summary-input");
-    summary.value = item.summary;
-    summary.addEventListener("input", () => {
-      item.summary = summary.value;
-      renderPayload();
-      renderValidation();
-    });
     const raw = node.querySelector(".raw-input");
     raw.value = item.raw_text;
     raw.addEventListener("input", () => {
       item.raw_text = raw.value;
-      renderPayload();
       renderValidation();
+      renderPayload();
     });
+
     els.itemStack.appendChild(node);
     updateFallbackClassifier(node, item);
   });
@@ -224,38 +243,73 @@ function renderItems() {
 function wireUnifiedRelationField(node, item) {
   const field = node.querySelector(".relation-field");
   const input = field.querySelector(".relation-search");
+  const editButton = field.querySelector(".edit-relation");
+  const chips = field.querySelector(".selected-relations");
   const suggestionBox = field.querySelector(".relation-suggestions");
-  const chips = field.querySelector(".selected-chip-list");
-  const pickedRows = [
+  const picked = selectedRelations(item)[0] || null;
+
+  input.value = picked ? relationChipLabel(picked) : "";
+  input.readOnly = Boolean(picked);
+  input.classList.toggle("is-locked", Boolean(picked));
+  editButton.hidden = !picked;
+  chips.innerHTML = "";
+
+  editButton.addEventListener("click", () => {
+    clearUnifiedRelation(item);
+    renderAll();
+  });
+
+  input.addEventListener("input", () => {
+    if (input.readOnly) return;
+    showSuggestions({
+      anchor: suggestionBox,
+      query: input.value,
+      rows: buildUnifiedRelationRows(),
+      label: unifiedRelationLabel,
+      meta: unifiedRelationMeta,
+      onPick: row => {
+        addUnifiedRelation(item, row);
+        input.value = "";
+        closeSuggestions();
+        renderAll();
+      },
+    });
+  });
+  input.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      addRelationTextFromInput(item, input);
+    }
+  });
+  input.addEventListener("blur", () => {
+    window.setTimeout(() => addRelationTextFromInput(item, input), 160);
+  });
+}
+
+function selectedRelations(item) {
+  return [
     ...item.projects.map(row => ({ source: "project", row })),
     ...item.reviewProjects.map(row => ({ source: "review_project", row })),
     ...item.funds.map(row => ({ source: "fund", row })),
     ...item.assets.map(row => ({ source: "asset", row })),
     ...item.relation_texts.map(text => ({ source: "text", row: { name: text } })),
   ];
-  renderChips(chips, pickedRows, relationChipLabel, picked => removeUnifiedRelation(item, picked));
-  input.addEventListener("input", () => showSuggestions({
-    anchor: suggestionBox,
-    query: input.value,
-    rows: buildUnifiedRelationRows(),
-    label: unifiedRelationLabel,
-    meta: unifiedRelationMeta,
-    onPick: row => {
-      addUnifiedRelation(item, row);
-      input.value = "";
-      closeSuggestions();
-      renderAll();
-    },
-  }));
-  node.querySelector(".add-relation-text").addEventListener("click", () => {
-    const value = input.value.trim();
-    if (value && !item.relation_texts.some(text => normalize(text) === normalize(value))) {
-      item.relation_texts.push(value);
-    }
-    input.value = "";
-    closeSuggestions();
-    renderAll();
-  });
+}
+
+function addRelationTextFromInput(item, input) {
+  if (input.readOnly) return;
+  const value = input.value.trim();
+  if (!value || exactRelationMatch(value)) return;
+  setSingleRelation(item, "text", value);
+  item.task_type = item.task_type || "New";
+  input.value = "";
+  closeSuggestions();
+  renderAll();
+}
+
+function exactRelationMatch(value) {
+  const needle = normalize(value);
+  return buildUnifiedRelationRows().some(row => normalize(unifiedRelationLabel(row)) === needle);
 }
 
 function buildUnifiedRelationRows() {
@@ -267,65 +321,26 @@ function buildUnifiedRelationRows() {
   ], unifiedRelationLabel);
 }
 
-function isSelectableProject(row) {
-  const name = String(row.project_name || "").trim();
-  const source = String(row.source_system || "");
-  const type = String(row.project_type || "");
-  if (!name) return false;
-  if (type === "Mission") return false;
-  if (name.startsWith("'") || name.startsWith('"')) return false;
-  if (source === "t5t_project_mission" && row.status !== "설정 후") return false;
-  if (isWorkLikeProjectName(name)) return false;
-  if (source === "t5t_project_mission" && name.length > 24) return false;
-  return true;
-}
-
-function isSelectableReviewProject(row) {
-  const name = String(row.project_name || "").trim();
-  if (!name) return false;
-  if (name.startsWith("'") || name.startsWith('"')) return false;
-  return !isWorkLikeProjectName(name);
-}
-
-function isWorkLikeProjectName(name) {
-  const workLikeTerms = [
-    "분기별",
-    "위탁운용보고서",
-    "위탁운용펀드",
-    "수익자",
-    "대주현황",
-    "수익자/대주",
-    "투자자 보고",
-    "투자자 세미나",
-    "보고자료",
-    "보고회",
-    "시장전망",
-    "IM작성",
-    "마켓 DB",
-    "DB 관리",
-    "업데이트",
-    "작성 지원",
-    "자료 지원",
-  ];
-  return workLikeTerms.some(term => name.includes(term));
-}
-
 function addUnifiedRelation(item, picked) {
-  const map = { project: "projects", review_project: "reviewProjects", fund: "funds", asset: "assets" };
-  const key = map[picked.source];
-  if (!key) return;
-  if (!item[key].some(existing => getRowId(existing) === getRowId(picked.row))) item[key].push(picked.row);
-  item.relation_texts = item.relation_texts.filter(text => normalize(text) !== normalize(unifiedRelationLabel(picked)));
+  setSingleRelation(item, picked.source, picked.row);
   item.task_type = null;
 }
 
-function removeUnifiedRelation(item, picked) {
-  if (picked.source === "project") item.projects = item.projects.filter(row => row !== picked.row);
-  if (picked.source === "review_project") item.reviewProjects = item.reviewProjects.filter(row => row !== picked.row);
-  if (picked.source === "fund") item.funds = item.funds.filter(row => row !== picked.row);
-  if (picked.source === "asset") item.assets = item.assets.filter(row => row !== picked.row);
-  if (picked.source === "text") item.relation_texts = item.relation_texts.filter(text => text !== picked.row.name);
-  renderAll();
+function setSingleRelation(item, source, value) {
+  clearUnifiedRelation(item);
+  if (source === "project") item.projects = [value];
+  if (source === "review_project") item.reviewProjects = [value];
+  if (source === "fund") item.funds = [value];
+  if (source === "asset") item.assets = [value];
+  if (source === "text") item.relation_texts = [value];
+}
+
+function clearUnifiedRelation(item) {
+  item.projects = [];
+  item.reviewProjects = [];
+  item.funds = [];
+  item.assets = [];
+  item.relation_texts = [];
 }
 
 function hasDbRelation(item) {
@@ -350,11 +365,13 @@ function wireCounterpartyField(node, item) {
     ...item.counterparties.map(row => ({ type: "master", row })),
     ...item.counterparty_texts.map(text => ({ type: "text", row: { name: text } })),
   ];
-  renderChips(chips, allPicked, picked => picked.row.name, picked => {
-    if (picked.type === "master") item.counterparties = item.counterparties.filter(row => row !== picked.row);
-    else item.counterparty_texts = item.counterparty_texts.filter(text => text !== picked.row.name);
+
+  renderChips(chips, allPicked, counterpartyChipLabel, picked => {
+    if (picked.type === "master") item.counterparties = item.counterparties.filter(row => row.counterparty_id !== picked.row.counterparty_id);
+    else item.counterparty_texts = item.counterparty_texts.filter(text => normalize(text) !== normalize(picked.row.name));
     renderAll();
   });
+
   input.addEventListener("input", () => showSuggestions({
     anchor: suggestionBox,
     query: input.value,
@@ -368,18 +385,35 @@ function wireCounterpartyField(node, item) {
       renderAll();
     },
   }));
-  node.querySelector(".add-counterparty-text").addEventListener("click", () => {
-    const value = input.value.trim();
-    if (value && !item.counterparty_texts.includes(value)) item.counterparty_texts.push(value);
-    input.value = "";
-    renderAll();
+  input.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      addCounterpartyTextFromInput(item, input);
+    }
   });
+  input.addEventListener("blur", () => {
+    window.setTimeout(() => addCounterpartyTextFromInput(item, input), 160);
+  });
+}
+
+function addCounterpartyTextFromInput(item, input) {
+  const value = input.value.trim();
+  if (!value || exactCounterpartyMatch(value)) return;
+  if (!item.counterparty_texts.some(text => normalize(text) === normalize(value))) item.counterparty_texts.push(value);
+  input.value = "";
+  closeSuggestions();
+  renderAll();
+}
+
+function exactCounterpartyMatch(value) {
+  const needle = normalize(value);
+  return state.masters.counterparties.some(row => normalize(row.name) === needle);
 }
 
 function renderChips(container, rows, labelFn, onRemove) {
   container.innerHTML = rows.map((row, index) => `
     <span class="chip">
-      <span>${escapeHtml(labelFn(row))}</span>
+      ${renderChipLabel(labelFn(row))}
       <button type="button" data-index="${index}" aria-label="삭제">×</button>
     </span>
   `).join("");
@@ -388,11 +422,24 @@ function renderChips(container, rows, labelFn, onRemove) {
   });
 }
 
+function renderChipLabel(label) {
+  if (typeof label === "object" && label !== null) {
+    return `<strong>${escapeHtml(label.tag)}</strong><span>${escapeHtml(label.text)}</span>`;
+  }
+  return `<span>${escapeHtml(label)}</span>`;
+}
+
+function counterpartyChipLabel(picked) {
+  return { tag: picked.type === "master" ? "DB" : "직접", text: picked.row.name };
+}
+
 function showSuggestions({ anchor, query, rows, label, meta, onPick }) {
   const needle = normalize(query);
-  if (!needle) {
-    anchor.classList.remove("is-open");
-    anchor.innerHTML = "";
+  if (!anchor || !needle) {
+    if (anchor) {
+      anchor.classList.remove("is-open");
+      anchor.innerHTML = "";
+    }
     return;
   }
   const matches = rows
@@ -403,45 +450,11 @@ function showSuggestions({ anchor, query, rows, label, meta, onPick }) {
       <strong>${escapeHtml(label(row))}</strong>
       ${meta(row) ? `<small>${escapeHtml(meta(row))}</small>` : ""}
     </button>
-  `).join("") : '<div class="suggestion"><strong>검색 결과 없음</strong><small>신규 후보로 저장할 수 있습니다.</small></div>';
+  `).join("") : '<div class="suggestion empty"><strong>검색 결과 없음</strong><small>Enter로 직접 입력값을 확정할 수 있습니다.</small></div>';
   anchor.classList.add("is-open");
   anchor.querySelectorAll("button").forEach(button => {
     button.addEventListener("click", () => onPick(matches[Number(button.dataset.index)]));
   });
-}
-
-function searchTextForRow(row) {
-  const data = row?.row || row || {};
-  const metadata = data.metadata || {};
-  return [
-    data.project_name,
-    data.project_code,
-    data.review_project_id,
-    data.fund_name,
-    data.short_name,
-    data.asset_name,
-    data.project_mission_name,
-    data.notion_vehicle_class,
-    metadata["Vehicle(약칭)"],
-    metadata["Vehicle(약칭)(롤업)"],
-    metadata["Project & Mission 이름"],
-    metadata["펀드명"],
-    metadata["펀드코드"],
-    metadata["자산명"],
-    metadata.vehicle_type,
-    metadata.vehicle_name,
-    metadata.short_name,
-    metadata.asset_name,
-    data.canonical_name,
-    data.asset_code,
-    data.city,
-    data.address_text,
-    data.portfolio_theme,
-    data.portfolio_region,
-    data.name,
-    data.email,
-    data.org_display,
-  ].filter(Boolean).join(" ");
 }
 
 function closeSuggestions() {
@@ -451,7 +464,7 @@ function closeSuggestions() {
 function makePayload() {
   return {
     writer_staff_id: state.writer?.staff_id || null,
-    writer_email: state.writer?.email || null,
+    writer_email: state.writer?.email || els.writerSearch.value.trim() || null,
     writer_name: state.writer?.name || null,
     work_date: els.workDate.value,
     week_key: getWeekKey(els.workDate.value),
@@ -459,7 +472,7 @@ function makePayload() {
     org_id: state.writer?.org_id || null,
     org_name: state.writer?.org_display || null,
     line: state.writer?.line_label || state.writer?.line_code || state.writer?.org_display || null,
-    source_system: "t5t_input_prototype",
+    source_system: "t5t_input_local",
     items: state.items.map((item, index) => ({
       item_no: index + 1,
       task_type: hasDbRelation(item) ? null : item.task_type,
@@ -468,55 +481,149 @@ function makePayload() {
       fund_ids: item.funds.map(row => row.fund_id),
       asset_ids: item.assets.map(row => row.asset_id),
       relation_texts: item.relation_texts,
+      relation_labels: selectedRelations(item).map(relationChipLabel),
       counterparty_ids: item.counterparties.map(row => row.counterparty_id),
       counterparty_candidates: item.counterparty_texts,
-      summary: item.summary.trim(),
+      counterparty_labels: [
+        ...item.counterparties.map(row => row.name),
+        ...item.counterparty_texts,
+      ],
+      summary: makeAutoSummary(item.raw_text),
       raw_text: item.raw_text.trim(),
     })),
   };
 }
 
+function makeAutoSummary(text) {
+  const normalized = String(text || "").replace(/\s+/g, " ").trim();
+  if (!normalized) return "";
+  return normalized.length > 70 ? `${normalized.slice(0, 70)}...` : normalized;
+}
+
 function renderPayload() {
-  els.payloadPreview.textContent = JSON.stringify(makePayload(), null, 2);
+  const payload = makePayload();
+  els.payloadSummary.innerHTML = makePayloadSummary(payload).map(row => `
+    <div class="summary-row">
+      <span>${escapeHtml(row.label)}</span>
+      <strong>${escapeHtml(row.value)}</strong>
+    </div>
+  `).join("");
+  els.payloadPreview.textContent = JSON.stringify(payload, null, 2);
+}
+
+function makePayloadSummary(payload) {
+  const relationCount = payload.items.reduce((sum, item) => sum + item.relation_labels.length, 0);
+  const counterpartyCount = payload.items.reduce((sum, item) => sum + item.counterparty_labels.length, 0);
+  const typedItems = payload.items.reduce((acc, item) => {
+    const key = item.task_type || "DB 연결";
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {});
+  const typeLabel = Object.entries(typedItems).map(([key, count]) => `${key} ${count}`).join(" · ");
+  return [
+    { label: "작성자", value: payload.writer_name || "미확인" },
+    { label: "주차", value: payload.week_label || "-" },
+    { label: "업무 항목", value: `${payload.items.length}개` },
+    { label: "업무 분류", value: typeLabel || "-" },
+    { label: "프로젝트/펀드/자산", value: `${relationCount}개` },
+    { label: "이해관계자", value: `${counterpartyCount}개` },
+  ];
 }
 
 function renderValidation() {
   const payload = makePayload();
-  const checks = [
-    ["이메일로 작성자 확인", Boolean(payload.writer_staff_id)],
-    ["작성일 입력", Boolean(payload.work_date)],
-    ["업무 항목 1개 이상", payload.items.length > 0],
-    ["모든 항목 요약 입력", payload.items.every(item => item.summary)],
-    ["모든 항목 원문 입력", payload.items.every(item => item.raw_text)],
-    ["관련 프로젝트/펀드/자산 또는 텍스트 입력", payload.items.every(item =>
-      item.project_ids.length > 0 ||
-      item.review_project_ids.length > 0 ||
-      item.fund_ids.length > 0 ||
-      item.asset_ids.length > 0 ||
-      item.relation_texts.length > 0 ||
-      Boolean(item.task_type)
-    )],
-  ];
+  const checks = getValidationChecks(payload);
   els.validationList.innerHTML = checks.map(([label, ok]) => `
     <div class="check ${ok ? "ok" : "bad"}">
-      <span>${label}</span>
+      <span>${escapeHtml(label)}</span>
       <strong>${ok ? "OK" : "필요"}</strong>
     </div>
   `).join("");
 }
 
-function saveDraft() {
-  localStorage.setItem("t5t-input-draft", JSON.stringify(makePayload()));
-  els.saveDraft.textContent = "저장됨";
-  setTimeout(() => { els.saveDraft.textContent = "로컬 초안 저장"; }, 1200);
+function getValidationChecks(payload) {
+  return [
+    ["이메일로 작성자 확인", Boolean(payload.writer_staff_id)],
+    ["작성일 입력", Boolean(payload.work_date)],
+    ["업무 항목 1개 이상", payload.items.length > 0],
+    ["모든 항목 업무 내용 입력", payload.items.every(item => item.raw_text)],
+    ["관련 프로젝트/펀드/자산 또는 분류 선택", payload.items.every(item =>
+      item.relation_labels.length > 0 || Boolean(item.task_type)
+    )],
+  ];
 }
 
-function restoreDraft() {
-  const raw = localStorage.getItem("t5t-input-draft");
-  if (!raw) return;
+function isPayloadValid(payload) {
+  return getValidationChecks(payload).every(([, ok]) => ok);
+}
+
+async function submitPayload() {
+  await postSubmission({
+    endpoint: SUBMIT_ENDPOINT,
+    button: els.submitPayload,
+    pendingMessage: "SQL DB와 Notion에 저장하는 중입니다...",
+    successMessage: result => `저장 완료: ${result.submission_id}`,
+  });
+}
+
+async function submitNotionOnly() {
+  await postSubmission({
+    endpoint: NOTION_ENDPOINT,
+    button: els.submitNotion,
+    pendingMessage: "Notion 원문 DB에 저장하는 중입니다...",
+    successMessage: result => `Notion 저장 완료: ${result.notion_url || result.notion_page_id}`,
+  });
+}
+
+async function postSubmission({ endpoint, button, pendingMessage, successMessage }) {
+  const payload = makePayload();
+  if (!isPayloadValid(payload)) {
+    setSubmitStatus("필수 항목을 먼저 입력해 주세요.", "error");
+    return;
+  }
+  button.disabled = true;
+  setSubmitStatus(pendingMessage, "");
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const result = await response.json();
+    if (!response.ok || !result.ok) throw new Error(result.error || "제출에 실패했습니다.");
+    localStorage.removeItem(DRAFT_KEY);
+    setSubmitStatus(successMessage(result), "ok");
+  } catch (error) {
+    console.error(error);
+    setSubmitStatus(error.message || "제출에 실패했습니다.", "error");
+  } finally {
+    button.disabled = false;
+  }
+}
+
+function setSubmitStatus(message, type) {
+  if (!els.submitStatus) return;
+  els.submitStatus.textContent = message;
+  els.submitStatus.className = `submit-status ${type || ""}`.trim();
+}
+
+function saveDraft() {
+  localStorage.setItem(DRAFT_KEY, JSON.stringify(makePayload()));
+  pulseButton(els.saveDraft, "저장됨", "로컬 초안 저장");
+}
+
+function loadDraftFromStorage() {
+  const raw = localStorage.getItem(DRAFT_KEY);
+  if (!raw) {
+    pulseButton(els.loadDraft, "저장된 초안 없음", "초안 불러오기");
+    return;
+  }
   try {
     const draft = JSON.parse(raw);
-    if (draft.work_date) els.workDate.value = draft.work_date;
+    state.pendingDraft = draft;
+    state.writer = null;
+    els.writerSearch.value = draft.writer_email || "";
+    els.workDate.value = draft.work_date || formatDate(new Date());
     state.items = (draft.items || []).map(item => ({
       id: crypto.randomUUID(),
       task_type: item.task_type || null,
@@ -527,18 +634,63 @@ function restoreDraft() {
       relation_texts: item.relation_texts || [],
       counterparties: [],
       counterparty_texts: item.counterparty_candidates || [],
-      summary: item.summary || "",
-      raw_text: item.raw_text || "",
+      raw_text: item.raw_text || item.summary || "",
+      pending_project_ids: item.project_ids || [],
+      pending_review_project_ids: item.review_project_ids || [],
+      pending_fund_ids: item.fund_ids || [],
+      pending_asset_ids: item.asset_ids || [],
+      pending_counterparty_ids: item.counterparty_ids || [],
     }));
+    hydrateDraftSelections();
+    renderAll();
+    pulseButton(els.loadDraft, "불러옴", "초안 불러오기");
   } catch {
-    localStorage.removeItem("t5t-input-draft");
+    localStorage.removeItem(DRAFT_KEY);
+    pulseButton(els.loadDraft, "초안 오류", "초안 불러오기");
   }
+}
+
+function hydrateDraftSelections() {
+  const draft = state.pendingDraft;
+  if (!draft) return;
+  const writer = state.masters.staff.find(row =>
+    row.staff_id === draft.writer_staff_id ||
+    normalizeEmail(row.email) === normalizeEmail(draft.writer_email)
+  );
+  if (writer) {
+    state.writer = writer;
+    els.writerSearch.value = writer.email || "";
+  }
+
+  const byId = rows => new Map(rows.map(row => [getRowId(row), row]));
+  const projectById = byId(state.masters.projects);
+  const reviewProjectById = byId(state.masters.reviewProjects);
+  const fundById = byId(state.masters.funds);
+  const assetById = byId(state.masters.assets);
+  const counterpartyById = byId(state.masters.counterparties);
+  state.items.forEach(item => {
+    item.projects = hydrateByIds(projectById, item.pending_project_ids);
+    item.reviewProjects = hydrateByIds(reviewProjectById, item.pending_review_project_ids);
+    item.funds = hydrateByIds(fundById, item.pending_fund_ids);
+    item.assets = hydrateByIds(assetById, item.pending_asset_ids);
+    item.counterparties = hydrateByIds(counterpartyById, item.pending_counterparty_ids);
+  });
+  state.pendingDraft = null;
+}
+
+function hydrateByIds(map, ids = []) {
+  return ids.map(id => map.get(id)).filter(Boolean);
 }
 
 async function copyPayload() {
   await navigator.clipboard.writeText(JSON.stringify(makePayload(), null, 2));
-  els.copyPayload.textContent = "복사됨";
-  setTimeout(() => { els.copyPayload.textContent = "Payload 복사"; }, 1200);
+  pulseButton(els.copyPayload, "복사됨", "Payload 복사");
+}
+
+function pulseButton(button, activeText, originalText) {
+  if (!button) return;
+  button.textContent = activeText;
+  setTimeout(() => { button.textContent = originalText; }, 1200);
 }
 
 function resetForm() {
@@ -546,9 +698,11 @@ function resetForm() {
   state.items = [];
   els.writerSearch.value = "";
   els.lineLabel.value = "";
+  els.weekLabel.value = "";
   setDefaultDate();
-  localStorage.removeItem("t5t-input-draft");
+  localStorage.removeItem(DRAFT_KEY);
   addItem();
+  setSubmitStatus("", "");
   renderAll();
 }
 
@@ -585,8 +739,8 @@ function projectLabel(row) {
   return row.project_name || row.project_id;
 }
 
-function projectMeta() {
-  return "";
+function reviewProjectLabel(row) {
+  return row.project_name || row.review_project_id;
 }
 
 function fundLabel(row) {
@@ -594,16 +748,8 @@ function fundLabel(row) {
   return vehicle ? `${vehicle} · ${row.fund_name}` : row.fund_name || row.fund_id;
 }
 
-function fundMeta() {
-  return "";
-}
-
 function assetLabel(row) {
   return row.canonical_name || row.asset_id;
-}
-
-function assetMeta() {
-  return "";
 }
 
 function unifiedRelationLabel(picked) {
@@ -616,17 +762,11 @@ function unifiedRelationLabel(picked) {
 }
 
 function unifiedRelationMeta(picked) {
-  const label = { project: "프로젝트", review_project: "검토 프로젝트", fund: "펀드", asset: "자산", text: "텍스트" }[picked.source] || "";
-  return label;
+  return { project: "프로젝트", review_project: "검토프로젝트", fund: "펀드", asset: "자산", text: "직접입력" }[picked.source] || "";
 }
 
 function relationChipLabel(picked) {
-  const typeLabel = unifiedRelationMeta(picked);
-  return `${typeLabel} · ${unifiedRelationLabel(picked)}`;
-}
-
-function reviewProjectLabel(row) {
-  return row.project_name || row.review_project_id;
+  return `${unifiedRelationMeta(picked)} · ${unifiedRelationLabel(picked)}`;
 }
 
 function getRowId(row) {
@@ -641,6 +781,31 @@ function uniqueRowsByLabel(rows, labelFn) {
     seen.add(key);
     return true;
   });
+}
+
+function searchTextForRow(row) {
+  const data = row?.row || row || {};
+  const metadata = data.metadata || {};
+  return [
+    data.project_name,
+    data.project_code,
+    data.fund_name,
+    data.short_name,
+    data.asset_name,
+    data.project_mission_name,
+    data.notion_vehicle_class,
+    metadata.vehicle_type,
+    metadata.vehicle_name,
+    metadata.short_name,
+    metadata.asset_name,
+    data.canonical_name,
+    data.asset_code,
+    data.city,
+    data.address_text,
+    data.name,
+    data.email,
+    data.org_display,
+  ].filter(Boolean).join(" ");
 }
 
 function enrichStaff(staff, orgs, assignments) {
@@ -678,13 +843,48 @@ function isTemporaryOrgAssignment(assignment, org) {
     meta.org_path,
     ...(Array.isArray(meta.tags) ? meta.tags : []),
   ].filter(Boolean).map(value => String(value).toLowerCase());
+  return values.some(value => value.includes("tf") || value.includes("tft") || value.includes("임시") || value.includes("겸직"));
+}
 
-  return values.some(value =>
-    value.includes("tf") ||
-    value.includes("tft") ||
-    value.includes("임시") ||
-    value.includes("겸직")
-  );
+function isSelectableProject(row) {
+  const name = String(row.project_name || "").trim();
+  const source = String(row.source_system || "");
+  const type = String(row.project_type || "");
+  if (!name) return false;
+  if (type === "Mission") return false;
+  if (name.startsWith("'") || name.startsWith('"')) return false;
+  if (source === "t5t_project_mission" && row.status !== "설정 중") return false;
+  if (isWorkLikeProjectName(name)) return false;
+  if (source === "t5t_project_mission" && name.length > 24) return false;
+  return true;
+}
+
+function isSelectableReviewProject(row) {
+  const name = String(row.project_name || "").trim();
+  if (!name) return false;
+  if (name.startsWith("'") || name.startsWith('"')) return false;
+  return !isWorkLikeProjectName(name);
+}
+
+function isWorkLikeProjectName(name) {
+  return [
+    "분기별",
+    "위탁운용보고",
+    "운용현황",
+    "수익자",
+    "대주현황",
+    "투자자 보고",
+    "투자자 커뮤니케이션",
+    "보고자료",
+    "보고서",
+    "시장현황",
+    "IM작성",
+    "마켓 DB",
+    "DB 관리",
+    "업데이트",
+    "작성 지원",
+    "자료 지원",
+  ].some(term => name.includes(term));
 }
 
 function normalize(value) {

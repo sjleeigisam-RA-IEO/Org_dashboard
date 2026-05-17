@@ -18,11 +18,16 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: Inter, Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow-x: hidden;
 }
 
 button,
@@ -116,26 +121,27 @@ h3 {
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
   gap: 18px;
   padding: 18px clamp(18px, 4vw, 56px) 56px;
   align-items: start;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.main-column {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
 }
 
 .panel {
+  min-width: 0;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
   box-shadow: var(--shadow);
   padding: 22px;
-}
-
-.writer-panel {
-  grid-column: 1 / 2;
-}
-
-.work-panel {
-  grid-column: 1 / 2;
 }
 
 .panel-head,
@@ -166,6 +172,7 @@ h3 {
 }
 
 .field {
+  min-width: 0;
   position: relative;
   display: grid;
   gap: 8px;
@@ -231,6 +238,12 @@ input[readonly] {
   font-size: 24px;
 }
 
+.work-card .remove-item {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+}
+
 .text-btn {
   justify-self: start;
   border: 0;
@@ -246,7 +259,9 @@ input[readonly] {
 }
 
 .work-card {
-  padding: 18px;
+  position: relative;
+  min-width: 0;
+  padding: 18px 68px 18px 18px;
   border: 1px solid var(--line);
   border-left: 3px solid var(--accent-2);
   border-radius: 8px;
@@ -257,6 +272,17 @@ input[readonly] {
   margin-top: 16px;
 }
 
+.work-card-head {
+  flex-wrap: wrap;
+  min-height: 42px;
+  justify-content: flex-start;
+}
+
+.work-title {
+  flex: 0 0 auto;
+  min-width: 170px;
+}
+
 .item-no {
   margin-bottom: 4px;
   color: var(--accent);
@@ -265,28 +291,35 @@ input[readonly] {
 }
 
 .fallback-classifier {
-  display: grid;
-  grid-template-columns: minmax(180px, 0.72fr) minmax(320px, 1fr);
-  gap: 14px;
+  display: flex;
   align-items: center;
-  padding: 14px;
+  gap: 10px;
+  width: min(500px, 100%);
+  margin-left: auto;
+  padding: 0;
+  min-height: 42px;
+  overflow: hidden;
+  align-items: center;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.14);
 }
 
-.fallback-classifier > div:first-child span {
-  display: block;
+.fallback-classifier > span {
+  flex: 1 1 auto;
   color: var(--text);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 900;
+  text-align: center;
+  white-space: nowrap;
 }
 
-.fallback-classifier > div:first-child p {
-  margin: 5px 0 0;
+.fallback-help {
+  flex: 1 1 180px;
+  margin: 0;
   color: var(--muted);
   font-size: 12px;
-  line-height: 1.45;
+  white-space: nowrap;
 }
 
 .fallback-classifier.is-disabled {
@@ -296,16 +329,27 @@ input[readonly] {
 .type-toggle {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
+  gap: 0;
+  flex: 0 0 250px;
 }
 
 .type-toggle button {
-  min-height: 50px;
+  min-height: 40px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 0;
   background: var(--item);
   color: var(--soft);
   font-weight: 900;
+}
+
+.type-toggle button:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.type-toggle button:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .type-toggle button:hover:not(:disabled) {
@@ -329,6 +373,41 @@ input[readonly] {
 
 .relation-field.is-disabled input {
   pointer-events: none;
+}
+
+.work-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+  min-width: 0;
+}
+
+.search-lock-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+.mini-btn {
+  min-width: 64px;
+  min-height: 42px;
+  padding: 0 12px;
+}
+
+.field-help {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.is-hidden {
+  visibility: hidden;
+}
+
+.relation-search.is-locked {
+  border-color: rgba(251, 241, 103, 0.56);
+  color: var(--text);
+  font-weight: 850;
 }
 
 .suggestions {
@@ -374,6 +453,13 @@ input[readonly] {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+}
+
+.selected-counterparties:not(:empty) {
+  padding: 9px;
+  border: 1px solid rgba(251, 241, 103, 0.28);
+  border-radius: 8px;
+  background: rgba(251, 241, 103, 0.06);
 }
 
 .chip {
@@ -450,6 +536,49 @@ pre {
   line-height: 1.55;
 }
 
+.payload-summary {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--item);
+  padding: 9px 11px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.summary-row strong {
+  color: var(--accent);
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.submit-status {
+  min-height: 20px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.submit-status.ok {
+  color: var(--good);
+}
+
+.submit-status.error {
+  color: var(--bad);
+}
+
 .hint {
   margin: 12px 0 0;
   color: var(--muted);
@@ -457,16 +586,12 @@ pre {
   line-height: 1.55;
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 1280px) {
   .layout {
     grid-template-columns: 1fr;
   }
 
-  .writer-panel {
-    grid-column: auto;
-  }
-
-  .work-panel,
+  .main-column,
   .side-panel {
     grid-column: auto;
     grid-row: auto;
@@ -477,6 +602,16 @@ pre {
   }
 }
 
+@media (max-width: 980px) {
+  .work-meta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fallback-classifier {
+    margin-left: 0;
+  }
+}
+
 @media (max-width: 720px) {
   .topbar {
     grid-template-columns: 1fr;
@@ -484,9 +619,17 @@ pre {
 
   .form-grid,
   .relation-grid,
-  .type-toggle,
-  .fallback-classifier {
+  .work-meta-grid {
     grid-template-columns: 1fr;
+  }
+
+  .fallback-classifier {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .type-toggle {
+    flex-basis: 240px;
   }
 
   .panel-head,
@@ -494,5 +637,9 @@ pre {
   .side-actions {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .fallback-help {
+    white-space: normal;
   }
 }
