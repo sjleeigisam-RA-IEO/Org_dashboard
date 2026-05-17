@@ -1493,27 +1493,30 @@ select {
   font-size: 13px;
   font-weight: 800;
   letter-spacing: -0.02em;
+  color: #0f172a;
 }
 
 .sv-tt-name {
-  color: var(--accent-2);
-  font-weight: 700;
+  color: #b85c38;
+  font-weight: 800;
 }
 
 .sv-tt-dept {
-  color: var(--muted);
+  color: #57534e;
   font-size: 11px;
+  font-weight: 600;
 }
 
 .sv-tt-origin {
-  color: rgba(160, 38, 38, 0.82);
+  color: rgba(160, 38, 38, 0.95);
   font-size: 11px;
   font-weight: 700;
 }
 
 .sv-tt-empty {
-  color: var(--muted);
+  color: #78716c;
   font-style: italic;
+  font-weight: 600;
 }
 
 /* ── Move list ─────────────────────────────────── */
