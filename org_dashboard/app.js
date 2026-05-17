@@ -1,5 +1,6 @@
 (function () {
-  const data = window.ORG_DASHBOARD_DATA;\n  const MAIN_SECTION_MAP = {
+  const data = window.ORG_DASHBOARD_DATA;
+  const MAIN_SECTION_MAP = {
     "투자1그룹": "투자&펀딩",
     "투자2그룹": "투자&펀딩",
     "투자3그룹": "투자&펀딩",

@@ -111,19 +111,39 @@
     return true;
   }
 
+  function showUpdateToast() {
+    const toast = document.createElement("div");
+    toast.innerHTML = `최신 데이터가 동기화되었습니다. <a href="javascript:location.reload()" style="color:#2563eb;text-decoration:underline;margin-left:8px;font-weight:bold;">새로고침</a>`;
+    Object.assign(toast.style, {
+      position: "fixed", bottom: "20px", right: "20px", background: "#fff", padding: "12px 20px", 
+      borderRadius: "8px", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06)",
+      border: "1px solid #e5e7eb", zIndex: 9999, fontSize: "14px", color: "#374151",
+      animation: "fade-in 0.3s ease-out forwards"
+    });
+    document.body.appendChild(toast);
+  }
+
   async function loadRemoteData() {
+    // 1. 빠른 로딩을 위해 캐시 또는 정적 파일을 먼저 로드하여 화면을 띄움 (Stale)
+    let usedFallback = false;
+    let fallbackGeneratedAt = null;
+    
+    if (loadRemoteCache()) {
+      usedFallback = await loadCachedFallback("fast boot");
+      fallbackGeneratedAt = loadRemoteCache()?.meta?.generatedAt;
+    } else if (localOrgData) {
+      usedFallback = await loadLocalFallback("fast boot");
+      fallbackGeneratedAt = localOrgData?.meta?.generatedAt;
+    }
+
     if (!config.webAppUrl) {
-      const usedFallback = await loadLocalFallback("missing webAppUrl");
-      if (!usedFallback) {
-        showError("웹앱 URL이 비어 있습니다.");
-      }
+      if (!usedFallback) showError("웹앱 URL이 비어 있습니다.");
       return;
     }
 
+    // 2. 백그라운드에서 원격 데이터를 비동기 호출 (Revalidate)
     const url = new URL(config.webAppUrl);
-    if (config.accessKey) {
-      url.searchParams.set("key", config.accessKey);
-    }
+    if (config.accessKey) url.searchParams.set("key", config.accessKey);
     const seatSheets = normalizeSeatSheets(config.seatSheets);
     if (seatSheets.length) {
       url.searchParams.set("seat_sheets", seatSheets.join(","));
@@ -149,9 +169,16 @@
       }
 
       saveRemoteCache(payload);
-      await usePayload(payload, "remote", "live");
+      const remoteGeneratedAt = payload?.meta?.generatedAt;
+
+      // 3. 만약 화면을 안 띄운 상태라면 바로 렌더링, 띄운 상태인데 데이터가 갱신되었다면 토스트 알림
+      if (!usedFallback) {
+        await usePayload(payload, "remote", "live");
+      } else if (remoteGeneratedAt && remoteGeneratedAt !== fallbackGeneratedAt) {
+        showUpdateToast();
+      }
     } catch (error) {
-      const usedFallback = (await loadCachedFallback(error.message)) || (await loadLocalFallback(error.message));
+      console.warn("[sheet-loader] Background sync failed:", error.message);
       if (!usedFallback) {
         showError(`데이터를 불러오지 못했습니다. ${error.message}`);
       }
