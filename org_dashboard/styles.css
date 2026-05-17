@@ -1421,9 +1421,9 @@ select {
 
 /* Seat code text */
 .sv-seat-code {
-  font-size: 12px;
-  font-weight: 800;
-  fill: rgba(45, 55, 68, 0.8);
+  font-size: 14px;
+  font-weight: 900;
+  fill: #111827;
   text-anchor: middle;
   dominant-baseline: central;
   pointer-events: none;
@@ -1432,9 +1432,9 @@ select {
 
 /* Person name on seat */
 .sv-seat-name {
-  font-size: 10.5px;
-  font-weight: 600;
-  fill: rgba(40, 75, 130, 0.7);
+  font-size: 13px;
+  font-weight: 800;
+  fill: #1d4ed8;
   text-anchor: middle;
   dominant-baseline: central;
   pointer-events: none;
