@@ -14,7 +14,6 @@
     "사업그룹": "사업&개발",
     "디지털사업그룹": "사업&개발",
     "개발솔루션센터": "사업&개발",
-    "CM그룹": "사업&개발", // 과거 데이터엔 없으나 성격상 배치
 
     // 관리&운영
     "국내자산관리그룹": "관리&운영",
@@ -41,6 +40,28 @@
   function fixDataHierarchy(dataObj) {
     if (!dataObj || !dataObj.sections) return;
     if (dataObj.sections.length <= 5 && dataObj.sections.some(s => s.name.includes("투자") && (s.name.includes("펀딩") || s.name.includes("운영")))) return;
+
+    // [사전 처리] CM그룹을 리빙그룹(관리&운영)으로 병합 처리
+    const cmGroupIndex = dataObj.sections.findIndex(s => s.name === "CM그룹");
+    const livingGroupIndex = dataObj.sections.findIndex(s => s.name === "리빙그룹");
+
+    if (cmGroupIndex !== -1) {
+      if (livingGroupIndex !== -1) {
+        const cmGroup = dataObj.sections[cmGroupIndex];
+        const livingGroup = dataObj.sections[livingGroupIndex];
+
+        if (cmGroup.groups && cmGroup.groups.length > 0) {
+          if (!livingGroup.groups) livingGroup.groups = [];
+          livingGroup.groups.push(...cmGroup.groups);
+          livingGroup.assignmentCount = (livingGroup.assignmentCount || 0) + (cmGroup.assignmentCount || 0);
+          livingGroup.uniquePeopleCount = (livingGroup.uniquePeopleCount || 0) + (cmGroup.uniquePeopleCount || 0);
+        }
+        dataObj.sections.splice(cmGroupIndex, 1);
+      } else {
+        // 리빙그룹이 아예 없는 경우 이름만 리빙그룹으로 변경
+        dataObj.sections[cmGroupIndex].name = "리빙그룹";
+      }
+    }
 
     const newSectionsMap = new Map();
     dataObj.sections.forEach(rawSection => {
