@@ -968,6 +968,7 @@ select {
   text-align: left;
   cursor: pointer;
   transition: border-color 160ms, box-shadow 160ms, transform 160ms;
+  color: var(--text);
 }
 
 .floor-card:hover,
@@ -979,6 +980,11 @@ select {
 
 .floor-card.active {
   background: linear-gradient(135deg, rgba(255, 252, 247, 1), rgba(255, 245, 235, 0.95));
+  color: #171717;
+}
+
+.floor-card.active .floor-card-count {
+  color: #4b5563;
 }
 
 .floor-card-label {
@@ -1023,6 +1029,7 @@ select {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(249, 246, 242, 0.96));
   box-shadow: 0 20px 40px rgba(33, 37, 41, 0.05);
   overflow: hidden;
+  color: #1e293b;
 }
 
 .seat-detail-head {
@@ -1061,6 +1068,7 @@ select {
 
 .seat-detail-head h2 {
   letter-spacing: -0.03em;
+  color: #1e293b;
 }
 
 .seat-hero-actions,
