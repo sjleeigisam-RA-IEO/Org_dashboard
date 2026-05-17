@@ -394,7 +394,8 @@
           { name: '누적 익스포저', type: 'line', data: cumulativeData.map(v => Math.floor(v / 100000000)) },
           { name: '신규 투입액', type: 'column', data: newData.map(v => Math.floor(v / 100000000)) }
         ],
-        chart: { height: 350, type: 'line', toolbar: { show: false }, fontFamily: 'Pretendard Variable' },
+        chart: { height: 350, type: 'line', toolbar: { show: false }, fontFamily: 'Pretendard Variable', foreColor: '#a1a1aa' },
+        theme: { mode: 'dark' },
         stroke: { width: [4, 0], curve: 'smooth' },
         plotOptions: { bar: { columnWidth: '60%', borderRadius: 6 } },
         colors: ['#4f46e5', '#93c5fd'],
