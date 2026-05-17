@@ -1,5 +1,68 @@
 (function () {
-  const data = window.ORG_DASHBOARD_DATA;
+  const data = window.ORG_DASHBOARD_DATA;\n  const MAIN_SECTION_MAP = {
+    "투자1그룹": "투자&펀딩",
+    "투자2그룹": "투자&펀딩",
+    "투자3그룹": "투자&펀딩",
+    "글로벌투자그룹": "투자&펀딩",
+    "스페셜시츄에이션그룹": "투자&펀딩",
+    "Loan Finance센터": "투자&펀딩",
+    "투자&펀딩": "투자&펀딩",
+    "투자+펀딩": "투자&펀딩",
+
+    "사업그룹": "사업&개발",
+    "디지털사업그룹": "사업&개발",
+    "개발솔루션센터": "사업&개발",
+    "공간솔루션센터": "사업&개발",
+    "기업마케팅센터": "사업&개발",
+    "리빙그룹": "사업&개발",
+    "CM그룹": "사업&개발",
+    "리얼에셋부문": "사업&개발",
+
+    "국내자산관리그룹": "관리&운영",
+    "글로벌자산관리그룹": "관리&운영",
+    "기획추진센터": "관리&운영",
+    "관리&운영": "관리&운영",
+    "관리+운영": "관리&운영",
+  };
+
+  function fixDataHierarchy(dataObj) {
+    if (!dataObj || !dataObj.sections) return;
+    if (dataObj.sections.length <= 5 && dataObj.sections.some(s => s.name.includes("투자") && (s.name.includes("펀딩") || s.name.includes("운영")))) return;
+
+    const newSectionsMap = new Map();
+    dataObj.sections.forEach(rawSection => {
+      const mainSectionName = MAIN_SECTION_MAP[rawSection.name] || "기타";
+      if (!newSectionsMap.has(mainSectionName)) {
+        newSectionsMap.set(mainSectionName, {
+          name: mainSectionName,
+          assignmentCount: 0,
+          uniquePeopleCount: 0,
+          groups: []
+        });
+      }
+      const parentSection = newSectionsMap.get(mainSectionName);
+      const newGroup = {
+        name: rawSection.name,
+        assignmentCount: rawSection.assignmentCount,
+        uniquePeopleCount: rawSection.uniquePeopleCount,
+        parts: rawSection.groups ? rawSection.groups.map(g => {
+          const mergedTeams = g.parts ? g.parts.flatMap(p => p.teams) : [];
+          return {
+            name: g.name,
+            assignmentCount: g.assignmentCount,
+            uniquePeopleCount: g.uniquePeopleCount,
+            teams: mergedTeams
+          };
+        }) : []
+      };
+      parentSection.groups.push(newGroup);
+      parentSection.assignmentCount += newGroup.assignmentCount;
+    });
+    dataObj.sections = Array.from(newSectionsMap.values());
+  }
+
+  fixDataHierarchy(data);
+
 
   if (!data) {
     document.body.innerHTML = "<p>대시보드 데이터를 불러오지 못했습니다.</p>";
@@ -43,9 +106,9 @@
     "SS&C TF": new Set(["신호선", "신동열", "신민재", "윤우섭"]),
   };
   const SECTION_LEADERS = {
-    "투자+펀딩": "윤관식 부대표",
-    "사업+개발": "이철승 부문대표",
-    "관리+운영": "정조민 부대표",
+    "투자&펀딩": "윤관식 부대표",
+    "사업&개발": "이철승 부문대표",
+    "관리&운영": "정조민 부대표",
   };
 
   function normalizeDisplayLabel(value) {
@@ -793,7 +856,7 @@
   }
 
   function renderGroupLayout(section) {
-    if (section.name !== "투자+펀딩") {
+    if (section.name !== "투자&펀딩" && section.name !== "투자+펀딩") {
       return section.groups.map((group) => renderGroupCard(section, group)).join("");
     }
 
