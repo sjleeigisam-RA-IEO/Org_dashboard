@@ -110,6 +110,47 @@
     dataObj.sections = Array.from(newSectionsMap.values());
     dataObj.isFixedHierarchy = true;
 
+    // --- 모든 구성원의 직책(Role) 표준화 및 정규화 (구글 시트의 다양한 수작업 직급명을 안전하게 표준 직책에 매핑) ---
+    function normalizeRole(rawRole) {
+      if (!rawRole) return "매니저";
+      const clean = String(rawRole).trim().replace(/\s+/g, "");
+
+      if (clean === "그룹장" || clean.includes("그룹장")) {
+        return "그룹장";
+      }
+      if (clean === "파트장" || clean === "센터장" || clean.includes("파트장") || clean.includes("센터장") || clean === "파트장/센터장" || clean === "파트장+센터장") {
+        return "파트장/센터장";
+      }
+      if (clean === "담당디렉터" || clean === "디렉터" || clean.includes("디렉터") || clean.includes("임원") || clean === "부대표" || clean === "부문대표") {
+        return "담당디렉터";
+      }
+      if (clean === "시니어매니저" || clean === "수석매니저" || clean === "수석" || clean.includes("시니어")) {
+        return "시니어매니저";
+      }
+      if (clean === "매니저" || clean === "책임매니저" || clean === "전임매니저" || clean === "선임매니저" || clean === "주임" || clean === "사원" || clean.includes("매니저")) {
+        return "매니저";
+      }
+      return "매니저";
+    }
+
+    dataObj.sections.forEach(section => {
+      section.groups.forEach(group => {
+        if (group.parts) {
+          group.parts.forEach(part => {
+            if (part.teams) {
+              part.teams.forEach(team => {
+                if (team.members) {
+                  team.members.forEach(member => {
+                    member.role = normalizeRole(member.role);
+                  });
+                }
+              });
+            }
+          });
+        }
+      });
+    });
+
     // --- 명시적 정렬 순서 강제화 (Cache 또는 Remote 데이터 모두 동일 적용) ---
     const SECTION_ORDER = ["투자&펀딩", "사업&개발", "관리&운영", "부문직속", "TFs"];
     const GROUP_ORDER_MAP = {
