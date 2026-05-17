@@ -89,7 +89,12 @@
           };
         }) : []
       };
-      parentSection.groups.push(newGroup);
+
+      const isRedundant = (rawSection.name === mainSectionName) || (rawSection.name.replace("+", "&") === mainSectionName);
+      if (!isRedundant) {
+        parentSection.groups.push(newGroup);
+      }
+      
       parentSection.assignmentCount += newGroup.assignmentCount;
     });
     dataObj.sections = Array.from(newSectionsMap.values());
