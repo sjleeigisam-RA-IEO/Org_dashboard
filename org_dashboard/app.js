@@ -39,65 +39,133 @@
 
   function fixDataHierarchy(dataObj) {
     if (!dataObj || !dataObj.sections) return;
-    if (dataObj.sections.length <= 5 && dataObj.sections.some(s => s.name.includes("투자") && (s.name.includes("펀딩") || s.name.includes("운영")))) return;
+    
+    const alreadyProcessed = dataObj.sections.length <= 5 && dataObj.sections.some(s => s.name.includes("투자") && (s.name.includes("펀딩") || s.name.includes("운영")));
 
-    // [사전 처리] CM그룹을 리빙그룹(관리&운영)으로 병합 처리
-    const cmGroupIndex = dataObj.sections.findIndex(s => s.name === "CM그룹");
-    const livingGroupIndex = dataObj.sections.findIndex(s => s.name === "리빙그룹");
+    if (!alreadyProcessed) {
+      // [사전 처리] CM그룹을 리빙그룹(관리&운영)으로 병합 처리
+      const cmGroupIndex = dataObj.sections.findIndex(s => s.name === "CM그룹");
+      const livingGroupIndex = dataObj.sections.findIndex(s => s.name === "리빙그룹");
 
-    if (cmGroupIndex !== -1) {
-      if (livingGroupIndex !== -1) {
-        const cmGroup = dataObj.sections[cmGroupIndex];
-        const livingGroup = dataObj.sections[livingGroupIndex];
+      if (cmGroupIndex !== -1) {
+        if (livingGroupIndex !== -1) {
+          const cmGroup = dataObj.sections[cmGroupIndex];
+          const livingGroup = dataObj.sections[livingGroupIndex];
 
-        if (cmGroup.groups && cmGroup.groups.length > 0) {
-          if (!livingGroup.groups) livingGroup.groups = [];
-          livingGroup.groups.push(...cmGroup.groups);
-          livingGroup.assignmentCount = (livingGroup.assignmentCount || 0) + (cmGroup.assignmentCount || 0);
-          livingGroup.uniquePeopleCount = (livingGroup.uniquePeopleCount || 0) + (cmGroup.uniquePeopleCount || 0);
+          if (cmGroup.groups && cmGroup.groups.length > 0) {
+            if (!livingGroup.groups) livingGroup.groups = [];
+            livingGroup.groups.push(...cmGroup.groups);
+            livingGroup.assignmentCount = (livingGroup.assignmentCount || 0) + (cmGroup.assignmentCount || 0);
+            livingGroup.uniquePeopleCount = (livingGroup.uniquePeopleCount || 0) + (cmGroup.uniquePeopleCount || 0);
+          }
+          dataObj.sections.splice(cmGroupIndex, 1);
+        } else {
+          // 리빙그룹이 아예 없는 경우 이름만 리빙그룹으로 변경
+          dataObj.sections[cmGroupIndex].name = "리빙그룹";
         }
-        dataObj.sections.splice(cmGroupIndex, 1);
-      } else {
-        // 리빙그룹이 아예 없는 경우 이름만 리빙그룹으로 변경
-        dataObj.sections[cmGroupIndex].name = "리빙그룹";
       }
+
+      const newSectionsMap = new Map();
+      dataObj.sections.forEach(rawSection => {
+        const mainSectionName = MAIN_SECTION_MAP[rawSection.name] || "기타";
+        if (!newSectionsMap.has(mainSectionName)) {
+          newSectionsMap.set(mainSectionName, {
+            name: mainSectionName,
+            assignmentCount: 0,
+            uniquePeopleCount: 0,
+            groups: []
+          });
+        }
+        const parentSection = newSectionsMap.get(mainSectionName);
+        const newGroup = {
+          name: rawSection.name,
+          assignmentCount: rawSection.assignmentCount,
+          uniquePeopleCount: rawSection.uniquePeopleCount,
+          parts: rawSection.groups ? rawSection.groups.map(g => {
+            const mergedTeams = g.parts ? g.parts.flatMap(p => p.teams) : [];
+            return {
+              name: g.name,
+              assignmentCount: g.assignmentCount,
+              uniquePeopleCount: g.uniquePeopleCount,
+              teams: mergedTeams
+            };
+          }) : []
+        };
+
+        const isRedundant = (rawSection.name === mainSectionName) || (rawSection.name.replace("+", "&") === mainSectionName);
+        if (!isRedundant) {
+          parentSection.groups.push(newGroup);
+        }
+        
+        parentSection.assignmentCount += newGroup.assignmentCount;
+      });
+      dataObj.sections = Array.from(newSectionsMap.values());
     }
 
-    const newSectionsMap = new Map();
-    dataObj.sections.forEach(rawSection => {
-      const mainSectionName = MAIN_SECTION_MAP[rawSection.name] || "기타";
-      if (!newSectionsMap.has(mainSectionName)) {
-        newSectionsMap.set(mainSectionName, {
-          name: mainSectionName,
-          assignmentCount: 0,
-          uniquePeopleCount: 0,
-          groups: []
-        });
-      }
-      const parentSection = newSectionsMap.get(mainSectionName);
-      const newGroup = {
-        name: rawSection.name,
-        assignmentCount: rawSection.assignmentCount,
-        uniquePeopleCount: rawSection.uniquePeopleCount,
-        parts: rawSection.groups ? rawSection.groups.map(g => {
-          const mergedTeams = g.parts ? g.parts.flatMap(p => p.teams) : [];
-          return {
-            name: g.name,
-            assignmentCount: g.assignmentCount,
-            uniquePeopleCount: g.uniquePeopleCount,
-            teams: mergedTeams
-          };
-        }) : []
-      };
+    // --- 명시적 정렬 순서 강제화 (Cache 또는 Remote 데이터 모두 동일 적용) ---
+    const SECTION_ORDER = ["투자&펀딩", "사업&개발", "관리&운영", "부문직속", "TFs"];
+    const GROUP_ORDER_MAP = {
+      "투자&펀딩": ["투자1그룹", "투자2그룹", "투자3그룹", "글로벌투자그룹", "스페셜시츄에이션그룹"],
+      "사업&개발": ["사업그룹", "디지털사업그룹", "개발솔루션센터"],
+      "관리&운영": ["국내자산관리그룹", "글로벌자산관리그룹", "리빙그룹", "리테일솔루션센터"],
+      "부문직속": ["론파이낸스센터", "Loan Finance센터", "기업마케팅센터", "공간솔루션센터", "기획추진센터"],
+      "TFs": ["SS&C TF", "IOTA CFT", "개발PFV TF"]
+    };
 
-      const isRedundant = (rawSection.name === mainSectionName) || (rawSection.name.replace("+", "&") === mainSectionName);
-      if (!isRedundant) {
-        parentSection.groups.push(newGroup);
+    function sortParts(partA, partB) {
+      const nameA = partA.name;
+      const nameB = partB.name;
+      const numA = parseInt(nameA);
+      const numB = parseInt(nameB);
+      if (!isNaN(numA) && !isNaN(numB)) {
+        return numA - numB;
       }
+      if (!isNaN(numA)) return -1;
+      if (!isNaN(numB)) return 1;
       
-      parentSection.assignmentCount += newGroup.assignmentCount;
+      const customOrder = [
+        "사업파트", "솔루션파트", 
+        "자산관리", "포트폴리오 / 관리", "포트폴리오/관리",
+        "개발솔루션센터(DSC)", "리테일솔루션센터(RSC)",
+        "론파이낸스센터(LFC)", "기업마케팅센터(EMC)", "공간솔루션센터(SSC)", "기획추진센터(IEC)",
+        "SS&C TF", "IOTA CFT", "개발PFV TF"
+      ];
+      const idxA = customOrder.indexOf(nameA);
+      const idxB = customOrder.indexOf(nameB);
+      if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+      if (idxA !== -1) return -1;
+      if (idxB !== -1) return 1;
+      return nameA.localeCompare(nameB);
+    }
+
+    // 1. 대부문 정렬
+    dataObj.sections.sort((a, b) => {
+      const idxA = SECTION_ORDER.indexOf(a.name);
+      const idxB = SECTION_ORDER.indexOf(b.name);
+      if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+      if (idxA !== -1) return -1;
+      if (idxB !== -1) return 1;
+      return a.name.localeCompare(b.name);
     });
-    dataObj.sections = Array.from(newSectionsMap.values());
+
+    // 2. 부문 내 세부 그룹 및 그룹 내 파트 명시적 정렬
+    dataObj.sections.forEach(section => {
+      const groupOrder = GROUP_ORDER_MAP[section.name] || [];
+      section.groups.sort((a, b) => {
+        const idxA = groupOrder.indexOf(a.name);
+        const idxB = groupOrder.indexOf(b.name);
+        if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+        if (idxA !== -1) return -1;
+        if (idxB !== -1) return 1;
+        return a.name.localeCompare(b.name);
+      });
+
+      section.groups.forEach(group => {
+        if (group.parts) {
+          group.parts.sort(sortParts);
+        }
+      });
+    });
   }
 
   fixDataHierarchy(data);
