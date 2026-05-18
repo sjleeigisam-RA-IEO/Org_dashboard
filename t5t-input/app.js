@@ -131,6 +131,25 @@ async function loadMasters() {
     state.masters.counterparties = counterparties;
     setStatus("DB master 연결됨", "ok");
     hydrateDraftSelections();
+    
+    // Auto-login check using session storage 'ra_user'
+    const raUserStr = sessionStorage.getItem("ra_user");
+    if (raUserStr) {
+      try {
+        const raUser = JSON.parse(raUserStr);
+        if (raUser && raUser.email) {
+          const matched = state.masters.staff.find(row => normalizeEmail(row.email) === normalizeEmail(raUser.email));
+          if (matched) {
+            state.writer = matched;
+            if (els.writerSearch) {
+              els.writerSearch.value = matched.email || "";
+            }
+          }
+        }
+      } catch (e) {
+        console.warn("Failed to auto-fill logged-in user details", e);
+      }
+    }
   } catch (error) {
     console.error(error);
     setStatus("DB 연결 실패", "error");
