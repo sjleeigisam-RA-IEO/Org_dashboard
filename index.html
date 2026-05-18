@@ -142,6 +142,8 @@
                 messageArea.innerHTML = `<span class="success">${data.name}님 환영합니다! 잠시 후 이동합니다...</span>`;
                 sessionStorage.setItem('ra_user', JSON.stringify(data));
                 sessionStorage.setItem('last_active', Date.now());
+                localStorage.setItem('ra_user', JSON.stringify(data));
+                localStorage.setItem('last_active', Date.now().toString());
                 
                 setTimeout(() => {
                     location.href = './portal.html';

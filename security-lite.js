@@ -6,9 +6,22 @@
   const checkSession = () => {
     if (isLocal) return true; // 로컬은 패스
 
-    const raUser = sessionStorage.getItem('ra_user');
-    const lastActive = parseInt(sessionStorage.getItem('last_active') || '0');
+    let raUser = sessionStorage.getItem('ra_user');
+    let lastActive = parseInt(sessionStorage.getItem('last_active') || '0');
     const TIMEOUT_LIMIT = 30 * 60 * 1000; // 30분
+
+    // sessionStorage에 세션 정보가 없거나 유효하지 않고 localStorage에 정보가 있는 경우 동기화(SSO 복구)
+    if (!raUser || !lastActive || (Date.now() - lastActive >= TIMEOUT_LIMIT)) {
+      const localUser = localStorage.getItem('ra_user');
+      const localLastActive = parseInt(localStorage.getItem('last_active') || '0');
+      
+      if (localUser && localLastActive && (Date.now() - localLastActive < TIMEOUT_LIMIT)) {
+        sessionStorage.setItem('ra_user', localUser);
+        sessionStorage.setItem('last_active', localLastActive.toString());
+        raUser = localUser;
+        lastActive = localLastActive;
+      }
+    }
 
     const isValid = raUser && lastActive && (Date.now() - lastActive < TIMEOUT_LIMIT);
 
@@ -37,7 +50,9 @@
 
   // 활동 시 세션 연장
   const updateSession = () => {
-    sessionStorage.setItem('last_active', Date.now());
+    const now = Date.now();
+    sessionStorage.setItem('last_active', now);
+    localStorage.setItem('last_active', now.toString());
   };
   ['mousedown', 'keydown', 'scroll', 'touchstart'].forEach(e => document.addEventListener(e, updateSession, true));
 

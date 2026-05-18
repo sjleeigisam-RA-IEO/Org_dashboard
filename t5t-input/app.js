@@ -143,6 +143,8 @@ async function loadMasters() {
         if (confirm("로그아웃 하시겠습니까? 메인 페이지로 이동합니다.")) {
           sessionStorage.removeItem("ra_user");
           sessionStorage.removeItem("last_active");
+          localStorage.removeItem("ra_user");
+          localStorage.removeItem("last_active");
           window.top.location.href = "../index.html";
         }
       });
