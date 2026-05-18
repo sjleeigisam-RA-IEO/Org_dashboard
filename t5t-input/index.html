@@ -73,14 +73,23 @@
     </div>
 
     <aside class="side-panel">
-      <!-- 핵심 최종 제출 섹션 (가장 위에 띄움) -->
+      <!-- 핵심 최종 제출 및 업무 도구 섹션 (가장 위에 띄움) -->
       <section class="panel compact">
-        <p class="eyebrow">Submit</p>
-        <h2>최종 제출</h2>
-        <button class="ghost-btn submit-btn" id="submit-notion" type="button">Notion 먼저 저장</button>
-        <button class="accent-btn submit-btn" id="submit-payload" type="button">SQL + Notion 저장</button>
+        <p class="eyebrow">Submit & Tools</p>
+        <h2>최종 제출 및 도구</h2>
+        <div class="submit-action-group" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px;">
+          <button class="accent-btn submit-btn" id="submit-payload" type="button" style="width: 100%; margin: 0;">SQL + Notion 저장</button>
+          <button class="ghost-btn submit-btn" id="submit-notion" type="button" style="width: 100%; margin: 0;">Notion만 먼저 저장</button>
+        </div>
         <p class="submit-status" id="submit-status"></p>
-        <p class="hint">제출하면 SQL DB와 Notion 원문 DB에 함께 저장됩니다.</p>
+        <p class="hint" style="margin-bottom: 16px;">제출하면 SQL DB와 Notion 원문 DB에 함께 저장됩니다.</p>
+        
+        <!-- 실무용 핵심 도구 3개 묶음 -->
+        <div class="side-actions" style="margin-top: 12px;">
+          <button class="ghost-btn" id="save-server-draft" type="button">임시저장</button>
+          <button class="ghost-btn" id="load-server-draft" type="button">임시정보 불러오기</button>
+          <button class="ghost-btn" id="load-last-week" type="button" style="grid-column: span 2;">지난주 불러오기</button>
+        </div>
       </section>
 
       <!-- 제출 점검 (중간 배치) -->
@@ -90,7 +99,7 @@
         <div class="check-list" id="validation-list"></div>
       </section>
 
-      <!-- 저장 구조 및 임시 초안 도구 (아래에 참고용으로 임시 배치) -->
+      <!-- 저장 구조 및 임시 초안 도구 (아래에 참고용으로 임시 배치, 최종에선 통째로 없앨 예정) -->
       <section class="panel compact">
         <p class="eyebrow">Payload</p>
         <h2>저장 구조 미리보기 및 점검</h2>
@@ -98,11 +107,8 @@
         <pre id="payload-preview"></pre>
         <div class="side-actions">
           <button class="ghost-btn" id="save-draft" type="button">로컬 초안 저장</button>
-          <button class="ghost-btn" id="load-draft" type="button">초안 불러오기</button>
-          <button class="ghost-btn" id="save-server-draft" type="button">서버 초안 저장</button>
-          <button class="ghost-btn" id="load-server-draft" type="button">서버 초안 불러오기</button>
-          <button class="ghost-btn" id="load-last-week" type="button">지난주 불러오기</button>
-          <button class="ghost-btn" id="copy-payload" type="button">Payload 복사</button>
+          <button class="ghost-btn" id="load-draft" type="button">로컬 초안 불러오기</button>
+          <button class="ghost-btn" id="copy-payload" type="button" style="grid-column: span 2;">Payload 복사</button>
         </div>
       </section>
     </aside>
