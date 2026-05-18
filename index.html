@@ -145,8 +145,16 @@
                 localStorage.setItem('ra_user', JSON.stringify(data));
                 localStorage.setItem('last_active', Date.now().toString());
                 
+                // URL 쿼리 파라미터에서 redirect 대상 추출
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirectTarget = urlParams.get('redirect');
+                
                 setTimeout(() => {
-                    location.href = './portal.html';
+                    if (redirectTarget) {
+                        location.href = redirectTarget;
+                    } else {
+                        location.href = './portal.html';
+                    }
                 }, 1000);
 
             } catch (err) {

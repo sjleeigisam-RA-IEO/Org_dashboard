@@ -38,8 +38,9 @@
       
       alert("안전한 시스템 사용을 위해 로그인이 필요합니다. 로그인 페이지로 이동합니다.");
       
-      // 로그인 페이지로 강제 이동
-      window.top.location.href = (rootPath || "./") + "index.html";
+      // 로그인 페이지로 강제 이동 (현재 URL을 redirect 파라미터로 붙임)
+      const currentUrl = window.location.href;
+      window.top.location.href = (rootPath || "./") + "index.html?redirect=" + encodeURIComponent(currentUrl);
       return false;
     }
     return true;
