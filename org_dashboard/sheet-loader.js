@@ -3,12 +3,13 @@
   const CALLBACK_NAME = "__ORG_DASHBOARD_REMOTE_CALLBACK__";
   const localOrgData = window.ORG_DASHBOARD_DATA || null;
   const isLocalhost = /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
-  const REMOTE_CACHE_KEY = "org_dashboard_remote_payload_v1";
+  const REMOTE_CACHE_KEY = "org_dashboard_remote_payload_v2"; // 로컬 스토리지 캐시 버스팅을 위한 키 버전 갱신
 
   function loadScript(src) {
     return new Promise((resolve, reject) => {
       const script = document.createElement("script");
-      script.src = isLocalhost ? (src + "?_t=" + Date.now()) : src;
+      // 모든 외부 접속 PC 환경에서도 항상 신선한 JS 코드를 로드하도록 타임스탬프 캐시 버스팅 적용
+      script.src = src + "?_t=" + Date.now();
       script.defer = true;
       script.onload = resolve;
       script.onerror = () => reject(new Error(`스크립트를 불러오지 못했습니다. ${src}`));
