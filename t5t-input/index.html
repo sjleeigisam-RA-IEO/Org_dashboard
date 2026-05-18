@@ -73,15 +73,27 @@
     </div>
 
     <aside class="side-panel">
+      <!-- 핵심 최종 제출 섹션 (가장 위에 띄움) -->
+      <section class="panel compact">
+        <p class="eyebrow">Submit</p>
+        <h2>최종 제출</h2>
+        <button class="ghost-btn submit-btn" id="submit-notion" type="button">Notion 먼저 저장</button>
+        <button class="accent-btn submit-btn" id="submit-payload" type="button">SQL + Notion 저장</button>
+        <p class="submit-status" id="submit-status"></p>
+        <p class="hint">제출하면 SQL DB와 Notion 원문 DB에 함께 저장됩니다.</p>
+      </section>
+
+      <!-- 제출 점검 (중간 배치) -->
       <section class="panel compact">
         <p class="eyebrow">Validation</p>
         <h2>제출 점검</h2>
         <div class="check-list" id="validation-list"></div>
       </section>
 
+      <!-- 저장 구조 및 임시 초안 도구 (아래에 참고용으로 임시 배치) -->
       <section class="panel compact">
         <p class="eyebrow">Payload</p>
-        <h2>저장 구조 미리보기</h2>
+        <h2>저장 구조 미리보기 및 점검</h2>
         <div class="payload-summary" id="payload-summary"></div>
         <pre id="payload-preview"></pre>
         <div class="side-actions">
@@ -92,10 +104,6 @@
           <button class="ghost-btn" id="load-last-week" type="button">지난주 불러오기</button>
           <button class="ghost-btn" id="copy-payload" type="button">Payload 복사</button>
         </div>
-        <button class="ghost-btn submit-btn" id="submit-notion" type="button">Notion 먼저 저장</button>
-        <button class="accent-btn submit-btn" id="submit-payload" type="button">SQL + Notion 저장</button>
-        <p class="submit-status" id="submit-status"></p>
-        <p class="hint">제출하면 SQL DB와 Notion 원문 DB에 함께 저장됩니다.</p>
       </section>
     </aside>
   </main>
