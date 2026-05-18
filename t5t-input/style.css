@@ -808,3 +808,34 @@ pre {
   border-color: transparent;
   box-shadow: 0 0 8px rgba(239, 107, 95, 0.4);
 }
+
+/* 사이드 액션 버튼 그룹 정렬 및 디자인 최적화 */
+.side-actions {
+  display: grid !important; /* flex 강제 해제 */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.side-actions .ghost-btn {
+  width: 100%;
+  min-height: 38px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  color: var(--soft);
+  transition: all 0.2s ease;
+}
+
+.side-actions .ghost-btn:hover {
+  background: rgba(251, 241, 103, 0.08);
+  border-color: rgba(251, 241, 103, 0.4);
+  color: var(--accent);
+}
