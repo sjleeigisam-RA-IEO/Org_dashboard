@@ -75,10 +75,12 @@ function performSearch(query) {
     });
 
     var projects = rawFunds.filter(function (f) {
-      return f.project_mission_name || f.notion_base_asset_class;
+      var hasOfficialFundName = (f.fund_name && f.fund_name.trim()) || (f.short_name && f.short_name.trim());
+      return !hasOfficialFundName && f.project_mission_name;
     });
     var normalFunds = rawFunds.filter(function (f) {
-      return !f.project_mission_name && !f.notion_base_asset_class;
+      var hasOfficialFundName = (f.fund_name && f.fund_name.trim()) || (f.short_name && f.short_name.trim());
+      return hasOfficialFundName || !f.project_mission_name;
     });
 
     allResults = {

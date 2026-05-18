@@ -278,8 +278,37 @@
 
       const asset = assetRes.data || {};
       const ledger = ledgerRes.data || {};
-      const funds = fundRelRes.data || [];
-      const projects = projectRelRes.data || [];
+      const rawFunds = fundRelRes.data || [];
+      const rawProjects = projectRelRes.data || [];
+
+      // Bulk fetch detailed profiles from v_funds_enriched
+      const linkFundIds = rawFunds.map(f => f.fund_id);
+      const linkProjIds = rawProjects.map(p => p.project_id);
+      const uniqueTargetIds = Array.from(new Set([...linkFundIds, ...linkProjIds])).filter(Boolean);
+      
+      let enrichedDetails = [];
+      if (uniqueTargetIds.length > 0) {
+        try {
+          const enrichedRes = await _supabase.from('v_funds_enriched').select('*').in('fund_id', uniqueTargetIds);
+          if (!enrichedRes.error && enrichedRes.data) {
+            enrichedDetails = enrichedRes.data;
+          }
+        } catch (e) {
+          console.error("Bulk enriched details fetch error:", e);
+        }
+      }
+
+      // Map enriched fields onto our relationships
+      const funds = rawFunds.map(f => {
+        const enriched = enrichedDetails.find(ed => ed.fund_id === f.fund_id);
+        return enriched ? { ...enriched, relation_type: f.relation_type } : f;
+      });
+
+      const projects = rawProjects.map(p => {
+        const enriched = enrichedDetails.find(ed => ed.fund_id === p.project_id);
+        return enriched ? { ...enriched, relation_type: p.relation_type, project_name: p.project_name } : p;
+      });
+
       const lenders = lenderRes.data || [];
       const beneficiaries = benRes.data || [];
       const externalBeneficiaries = beneficiaries.filter(function (row) { return !isFundVehicleBeneficiary(row); });
@@ -297,6 +326,7 @@
       window.AssetCanonical._lastDetailData = {
         assetId: assetId,
         funds: funds,
+        projects: projects,
         allBeneficiaries: beneficiaries,
         internalBeneficiaries: internalBeneficiaries
       };
@@ -391,6 +421,11 @@
       `;
 
       renderMap(mapId, asset);
+
+      // Trigger side drawer with child funds and projects list
+      if (window.openAssetDrawer) {
+        window.openAssetDrawer(assetId, displayName);
+      }
     } catch (e) {
       console.error(e);
       detailPanel.innerHTML = '<div class="no-results">자산 상세 정보를 불러오지 못했습니다.</div>';

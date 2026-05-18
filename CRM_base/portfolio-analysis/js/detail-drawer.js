@@ -72,7 +72,25 @@
     header.innerHTML = '<div style="padding-left:180px; padding-top:15px;"><p style="color:var(--accent); font-weight:800; font-size:12px; letter-spacing:1px; margin:0;">LOADING DETAIL...</p></div>';
     content.innerHTML = '<div style="padding:100px; text-align:center; color:var(--muted);">데이터를 불러오고 있습니다...</div>';
 
-    const fund = (window.lastTargetFunds || lastTargetFunds || []).find(f => f.fund_id === fundId);
+    let fund = (window.lastTargetFunds || []).find(f => f.fund_id === fundId);
+    if (!fund && window.AssetCanonical?._lastDetailData) {
+      const activeData = window.AssetCanonical._lastDetailData;
+      const combined = [...(activeData.funds || []), ...(activeData.projects || [])];
+      fund = combined.find(item => item.fund_id === fundId || item.project_id === fundId);
+    }
+    if (!fund && window.allFunds) {
+      fund = window.allFunds.find(f => f.fund_id === fundId);
+    }
+    if (!fund && typeof _supabase !== 'undefined') {
+      try {
+        const fallbackRes = await _supabase.from('v_funds_enriched').select('*').eq('fund_id', fundId).maybeSingle();
+        if (fallbackRes.data) {
+          fund = fallbackRes.data;
+        }
+      } catch (e) {
+        console.error("Dynamic single fund details load error:", e);
+      }
+    }
     if (!fund) {
       content.innerHTML = '<div style="padding:100px; text-align:center; color:var(--muted);">펀드 정보를 찾을 수 없습니다.</div>';
       return;
@@ -93,7 +111,11 @@
     const header = document.getElementById('drawerHeader');
     header.style.padding = '40px 40px 30px';
     header.style.borderBottom = '1px solid #e2e8f0';
-    renderDrawerList();
+    if (window.currentDrawerData && window.currentDrawerData.type === 'asset') {
+      window.openAssetDrawer(window.currentDrawerData.key, window.currentDrawerData.name);
+    } else {
+      renderDrawerList();
+    }
   };
 
   async function showDetail(obj, container) {
@@ -437,5 +459,89 @@
     window.showDrawerDetail(fundId);
   };
 
+  window.openAssetDrawer = (assetId, displayName) => {
+    const data = window.AssetCanonical?._lastDetailData;
+    if (!data || data.assetId !== assetId) return;
+
+    const funds = data.funds || [];
+    const projects = data.projects || [];
+
+    const header = document.getElementById('drawerHeader');
+    const content = document.getElementById('drawerContent');
+    const nav = document.getElementById('drawerNav');
+
+    nav.style.display = 'none';
+    header.style.padding = '40px 40px 30px';
+    header.style.borderBottom = '1px solid #e2e8f0';
+    header.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <div>
+                <p style="color:var(--accent); font-size:12px; font-weight:800; margin-bottom:8px; letter-spacing:1px;">ASSET DEEP-DIVE</p>
+                <h2 style="font-size:22px; font-weight:800; line-height:1.3; color:#1e293b;">${displayName}</h2>
+                <p style="margin-top:12px; color:var(--muted); font-size:14px; font-weight:500;">
+                  이 자산에 연결된 공식 펀드는 <strong style="color:var(--accent-2);">${funds.length}개</strong>, 미션 프로젝트는 <strong style="color:#059669;">${projects.length}개</strong>입니다.
+                </p>
+            </div>
+        </div>
+    `;
+
+    let html = '';
+
+    if (funds.length > 0) {
+      html += `<h4 style="font-size:14px; font-weight:800; margin:24px 0 12px; color:var(--accent-2); display:flex; align-items:center; gap:6px;">
+        <span class="card-tag tag-fund" style="margin:0; background:rgba(79, 70, 229, 0.1); color:var(--accent-2);">FUND</span> 연결 펀드 리스트
+      </h4>`;
+      html += funds.map(f => {
+        const setupDate = f.setup_date || f.metadata?.setup_date || '-';
+        const maturityDate = f.maturity_date || f.metadata?.maturity_date || '-';
+        const aum = f.benchmark_aum || 0;
+        return `
+          <div class="fund-detail-card" onclick="showDrawerDetail('${f.fund_id}')" style="cursor:pointer; margin-bottom:12px; border-left: 4px solid var(--accent-2);">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                  <h3 style="font-size:14.5px; font-weight:800; flex:1; margin-right:16px; color:#1e293b;">${f.fund_name || f.short_name || f.fund_id}</h3>
+                  <span style="padding:3px 8px; border-radius:6px; font-size:11px; font-weight:800; background:#f1f5f9; color:#475569;">${f.fund_status || '운용'}</span>
+              </div>
+              <div class="meta-grid" style="grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:12px;">
+                  <div class="meta-item"><span class="meta-label">설정액(AUM)</span><span class="meta-val" style="color:var(--accent-2); font-weight:800;">${aum ? formatNumber(aum) : '-'}</span></div>
+                  <div class="meta-item"><span class="meta-label">설정일</span><span class="meta-val">${setupDate}</span></div>
+                  <div class="meta-item"><span class="meta-label">만기일</span><span class="meta-val">${maturityDate}</span></div>
+              </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    if (projects.length > 0) {
+      html += `<h4 style="font-size:14px; font-weight:800; margin:24px 0 12px; color:#059669; display:flex; align-items:center; gap:6px;">
+        <span class="card-tag tag-project" style="margin:0; background:rgba(16, 185, 129, 0.1); color:#059669;">PROJECT</span> 연결 프로젝트 리스트
+      </h4>`;
+      html += projects.map(p => {
+        const setupDate = p.setup_date || p.metadata?.setup_date || '-';
+        const maturityDate = p.maturity_date || p.metadata?.maturity_date || '-';
+        const aum = p.benchmark_aum || 0;
+        return `
+          <div class="fund-detail-card" onclick="showDrawerDetail('${p.fund_id || p.project_id}')" style="cursor:pointer; margin-bottom:12px; border-left: 4px solid #10b981;">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                  <h3 style="font-size:14.5px; font-weight:800; flex:1; margin-right:16px; color:#1e293b;">${p.project_mission_name || p.fund_name || p.project_name || p.fund_id}</h3>
+                  <span style="padding:3px 8px; border-radius:6px; font-size:11px; font-weight:800; background:rgba(16, 185, 129, 0.1); color:#059669;">${p.project_status || '검토'}</span>
+              </div>
+              <div class="meta-grid" style="grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:12px;">
+                  <div class="meta-item"><span class="meta-label">검토/AUM</span><span class="meta-val" style="color:#10b981; font-weight:800;">${aum ? formatNumber(aum) : '-'}</span></div>
+                  <div class="meta-item"><span class="meta-label">설정일</span><span class="meta-val">${setupDate}</span></div>
+                  <div class="meta-item"><span class="meta-label">만기일</span><span class="meta-val">${maturityDate}</span></div>
+              </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    content.innerHTML = html || '<div style="padding:100px; text-align:center; color:var(--muted);">연결된 펀드나 프로젝트가 없습니다.</div>';
+    document.getElementById('sideDrawer').classList.add('active');
+    document.getElementById('sideDrawerOverlay').classList.add('active');
+    
+    window.currentDrawerData = { type: 'asset', key: assetId, name: displayName, items: [] };
+  };
+
   window.showDetail = showDetail;
+  window.openAssetDrawer = window.openAssetDrawer;
 })();
