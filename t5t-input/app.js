@@ -161,7 +161,7 @@ async function loadMasters() {
               els.writerSearch.value = matched.email || "";
             }
             if (infoTextEl) {
-              infoTextEl.innerHTML = `👤 <strong>${matched.name || "사용자"} (${matched.email})</strong> 님이 로그인 중입니다. (소속: ${matched.org_display || "없음"})`;
+              infoTextEl.innerHTML = `👤 <strong>${matched.name || "사용자"} (${matched.email})</strong> 님이 로그인 중입니다.`;
             }
             if (logoutBtnEl) {
               logoutBtnEl.style.display = "inline-block";
