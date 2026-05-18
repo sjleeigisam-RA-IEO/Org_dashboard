@@ -134,6 +134,20 @@ async function loadMasters() {
     
     // Auto-login check using session storage 'ra_user'
     const raUserStr = sessionStorage.getItem("ra_user");
+    const infoTextEl = document.getElementById("user-info-text");
+    const logoutBtnEl = document.getElementById("btn-status-logout");
+
+    // 로그아웃 동작 설정
+    if (logoutBtnEl) {
+      logoutBtnEl.addEventListener("click", () => {
+        if (confirm("로그아웃 하시겠습니까? 메인 페이지로 이동합니다.")) {
+          sessionStorage.removeItem("ra_user");
+          sessionStorage.removeItem("last_active");
+          window.top.location.href = "../index.html";
+        }
+      });
+    }
+
     if (raUserStr) {
       try {
         const raUser = JSON.parse(raUserStr);
@@ -144,10 +158,30 @@ async function loadMasters() {
             if (els.writerSearch) {
               els.writerSearch.value = matched.email || "";
             }
+            if (infoTextEl) {
+              infoTextEl.innerHTML = `👤 <strong>${matched.name || "사용자"} (${matched.email})</strong> 님이 로그인 중입니다. (소속: ${matched.org_display || "없음"})`;
+            }
+            if (logoutBtnEl) {
+              logoutBtnEl.style.display = "inline-block";
+            }
+          } else {
+            if (infoTextEl) {
+              infoTextEl.innerHTML = `👤 <strong>${raUser.email}</strong> 님으로 로그인됨 (마스터 매칭 실패)`;
+            }
+            if (logoutBtnEl) {
+              logoutBtnEl.style.display = "inline-block";
+            }
           }
         }
       } catch (e) {
         console.warn("Failed to auto-fill logged-in user details", e);
+        if (infoTextEl) {
+          infoTextEl.textContent = "🔒 로그인 정보 분석 오류";
+        }
+      }
+    } else {
+      if (infoTextEl) {
+        infoTextEl.textContent = "🔒 로그인 상태가 아닙니다.";
       }
     }
   } catch (error) {

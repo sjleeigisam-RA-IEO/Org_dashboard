@@ -21,6 +21,9 @@
       if (window.location.pathname.includes("CRM_base")) rootPath = "../../";
       else if (window.location.pathname.includes("t5t-dashboard")) rootPath = "../";
       else if (window.location.pathname.includes("org_dashboard")) rootPath = "../";
+      else if (window.location.pathname.includes("t5t-input")) rootPath = "../";
+      
+      alert("안전한 시스템 사용을 위해 로그인이 필요합니다. 로그인 페이지로 이동합니다.");
       
       // 로그인 페이지로 강제 이동
       window.top.location.href = (rootPath || "./") + "index.html";

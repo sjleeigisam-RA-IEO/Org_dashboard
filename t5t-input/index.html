@@ -7,9 +7,17 @@
   <title>T5T 입력</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="style.css?v=proto_lastweek_1">
+  <script src="../security-lite.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
+  <!-- 로그인 상태 바 -->
+  <div class="login-status-bar" id="login-status-bar">
+    <div class="status-content">
+      <span class="user-info" id="user-info-text">🔄 로그인 정보 확인 중...</span>
+      <button class="logout-btn" id="btn-status-logout" type="button" style="display:none;">로그아웃</button>
+    </div>
+  </div>
   <header class="topbar">
     <a class="home-link" href="../index.html">홈</a>
     <div>

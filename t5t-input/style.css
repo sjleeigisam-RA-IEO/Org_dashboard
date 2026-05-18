@@ -754,3 +754,54 @@ pre {
     white-space: normal;
   }
 }
+
+/* 로그인 상태 바 스타일 */
+.login-status-bar {
+  background: #1b1a19;
+  border-bottom: 1px solid var(--line);
+  padding: 10px clamp(18px, 4vw, 56px);
+  font-size: 13px;
+  color: var(--muted);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.login-status-bar .status-content {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.login-status-bar .user-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.login-status-bar strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.login-status-bar .logout-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--soft);
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.login-status-bar .logout-btn:hover {
+  background: var(--bad);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 0 8px rgba(239, 107, 95, 0.4);
+}
