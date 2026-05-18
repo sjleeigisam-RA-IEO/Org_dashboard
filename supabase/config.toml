@@ -1,0 +1,4 @@
+project_id = "qvegpozwrcmspdvjokiz"
+
+[functions.t5t-submit]
+verify_jwt = false

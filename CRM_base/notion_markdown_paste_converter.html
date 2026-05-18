@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Markdown to Notion Copy Converter</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f5f6f8;
+    --panel: #ffffff;
+    --ink: #1f2937;
+    --muted: #667085;
+    --line: #d9dee7;
+    --accent: #2563eb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+  }
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(255,255,255,.96);
+  }
+  .title { font-size: 15px; font-weight: 700; }
+  .hint { margin-top: 3px; color: var(--muted); font-size: 13px; }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+  button {
+    border: 1px solid #1d4ed8;
+    border-radius: 6px;
+    padding: 9px 12px;
+    color: #fff;
+    background: var(--accent);
+    font-weight: 700;
+    cursor: pointer;
+  }
+  button.secondary {
+    border-color: var(--line);
+    color: #111827;
+    background: #fff;
+  }
+  main {
+    display: grid;
+    grid-template-columns: minmax(360px, 43%) minmax(480px, 57%);
+    gap: 16px;
+    max-width: 1440px;
+    margin: 18px auto 50px;
+    padding: 0 18px;
+  }
+  section {
+    min-width: 0;
+  }
+  .label {
+    margin: 0 0 8px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  textarea {
+    width: 100%;
+    height: calc(100vh - 170px);
+    min-height: 520px;
+    resize: vertical;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    outline: none;
+    background: #fff;
+    color: #111827;
+    font-family: ui-monospace, SFMono-Regular, Consolas, "D2Coding", monospace;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  #preview {
+    min-height: 520px;
+    height: calc(100vh - 170px);
+    overflow: auto;
+    padding: 30px 38px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+    line-height: 1.62;
+  }
+  #status {
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  #preview h1 { margin: 0 0 22px; font-size: 30px; line-height: 1.28; }
+  #preview h2 { margin: 34px 0 12px; padding-bottom: 6px; border-bottom: 1px solid #e5e7eb; font-size: 22px; }
+  #preview h3 { margin: 26px 0 10px; font-size: 18px; }
+  #preview p { margin: 10px 0; }
+  #preview hr { margin: 26px 0; border: 0; border-top: 1px solid #e5e7eb; }
+  #preview table { width: 100%; margin: 14px 0 24px; border-collapse: collapse; font-size: 14px; }
+  #preview th, #preview td { padding: 8px 10px; border: 1px solid #d1d5db; vertical-align: top; }
+  #preview th { background: #f3f4f6; font-weight: 700; }
+  #preview code {
+    padding: 2px 4px;
+    border-radius: 4px;
+    background: #f3f4f6;
+    font-family: ui-monospace, SFMono-Regular, Consolas, "D2Coding", monospace;
+    font-size: .92em;
+  }
+  #preview pre {
+    overflow: auto;
+    padding: 14px 16px;
+    border-radius: 7px;
+    background: #111827;
+    color: #f9fafb;
+    line-height: 1.45;
+  }
+  #preview pre code { padding: 0; background: transparent; color: inherit; }
+  #preview blockquote {
+    margin: 16px 0;
+    padding: 10px 16px;
+    border-left: 4px solid #f59e0b;
+    background: #fffbeb;
+    color: #573b00;
+  }
+  #preview ul, #preview ol { padding-left: 24px; }
+  #preview li { margin: 6px 0; }
+  @media (max-width: 900px) {
+    header { align-items: flex-start; flex-direction: column; }
+    main { grid-template-columns: 1fr; }
+    textarea, #preview { height: auto; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="title">Markdown → Notion 복붙 변환기</div>
+    <div class="hint">왼쪽에 Markdown을 붙여넣고 변환한 뒤, Notion용 HTML로 복사합니다.</div>
+  </div>
+  <div class="actions">
+    <button class="secondary" id="clearBtn">비우기</button>
+    <button class="secondary" id="selectBtn">미리보기 선택</button>
+    <button id="renderBtn">변환</button>
+    <button id="copyBtn">Notion용 복사</button>
+  </div>
+</header>
+<main>
+  <section>
+    <p class="label">Markdown 입력</p>
+    <textarea id="source" spellcheck="false" placeholder="여기에 .md 파일 내용을 그대로 붙여넣으세요."></textarea>
+    <p id="status">대기 중: Markdown을 붙여넣고 변환을 누르세요.</p>
+  </section>
+  <section>
+    <p class="label">Notion 붙여넣기용 미리보기</p>
+    <article id="preview"></article>
+  </section>
+</main>
+<script>
+const source = document.getElementById('source');
+const preview = document.getElementById('preview');
+const statusEl = document.getElementById('status');
+
+const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const inline = (s) => esc(s)
+  .replace(/`([^`]+)`/g, '<code>$1</code>')
+  .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+  .replace(/\$([^$]+)\$/g, '<span>$1</span>');
+
+function renderTable(lines) {
+  const rows = lines
+    .filter((l) => l.trim())
+    .map((l) => l.trim().replace(/^\||\|$/g, '').split('|').map((c) => c.trim()));
+  const head = rows[0] || [];
+  const body = rows.slice(2);
+  return '<table><thead><tr>' + head.map((c) => '<th>' + inline(c) + '</th>').join('') +
+    '</tr></thead><tbody>' +
+    body.map((r) => '<tr>' + r.map((c) => '<td>' + inline(c) + '</td>').join('') + '</tr>').join('') +
+    '</tbody></table>';
+}
+
+function renderMarkdown(md) {
+  const lines = md.replace(/\r\n/g, '\n').split('\n');
+  let html = '';
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i];
+    if (/^```/.test(line)) {
+      const lang = line.replace(/^```/, '').trim();
+      i++;
+      const code = [];
+      while (i < lines.length && !/^```/.test(lines[i])) code.push(lines[i++]);
+      i++;
+      html += `<pre><code class="language-${esc(lang)}">${esc(code.join('\n'))}</code></pre>`;
+      continue;
+    }
+    if (/^\s*$/.test(line)) { i++; continue; }
+    if (/^---\s*$/.test(line)) { html += '<hr>'; i++; continue; }
+    if (/^### /.test(line)) { html += '<h3>' + inline(line.slice(4).trim()) + '</h3>'; i++; continue; }
+    if (/^## /.test(line)) { html += '<h2>' + inline(line.slice(3).trim()) + '</h2>'; i++; continue; }
+    if (/^# /.test(line)) { html += '<h1>' + inline(line.slice(2).trim()) + '</h1>'; i++; continue; }
+    if (/^>/.test(line)) {
+      const parts = [];
+      while (i < lines.length && /^>/.test(lines[i])) parts.push(lines[i++].replace(/^>\s?/, ''));
+      html += '<blockquote>' + parts.map((p) => p.trim() ? '<p>' + inline(p) + '</p>' : '').join('') + '</blockquote>';
+      continue;
+    }
+    if (/^\|/.test(line) && i + 1 < lines.length && /^\|?\s*:?-+/.test(lines[i + 1])) {
+      const parts = [];
+      while (i < lines.length && /^\|/.test(lines[i])) parts.push(lines[i++]);
+      html += renderTable(parts);
+      continue;
+    }
+    if (/^\s*[-*]\s+/.test(line)) {
+      html += '<ul>';
+      while (i < lines.length && /^\s*[-*]\s+/.test(lines[i])) {
+        const item = lines[i].replace(/^\s*[-*]\s+/, '');
+        const checked = item.startsWith('[ ] ');
+        const checkedDone = item.startsWith('[x] ') || item.startsWith('[X] ');
+        if (checked || checkedDone) {
+          html += '<li><input type="checkbox"' + (checkedDone ? ' checked' : '') + '> ' + inline(item.slice(4)) + '</li>';
+        } else {
+          html += '<li>' + inline(item) + '</li>';
+        }
+        i++;
+      }
+      html += '</ul>';
+      continue;
+    }
+    if (/^\s*\d+\.\s+/.test(line)) {
+      html += '<ol>';
+      while (i < lines.length && /^\s*\d+\.\s+/.test(lines[i])) {
+        html += '<li>' + inline(lines[i].replace(/^\s*\d+\.\s+/, '')) + '</li>';
+        i++;
+      }
+      html += '</ol>';
+      continue;
+    }
+    const para = [];
+    while (
+      i < lines.length &&
+      lines[i].trim() &&
+      !/^(#|---\s*$|```|>|\||\s*[-*]\s+|\s*\d+\.\s+)/.test(lines[i])
+    ) {
+      para.push(lines[i++]);
+    }
+    html += '<p>' + inline(para.join(' ')) + '</p>';
+  }
+  return html;
+}
+
+function render() {
+  preview.innerHTML = renderMarkdown(source.value);
+  statusEl.textContent = '변환 완료: 미리보기를 확인한 뒤 Notion용 복사를 누르세요.';
+}
+
+function selectPreview() {
+  const range = document.createRange();
+  range.selectNodeContents(preview);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+  statusEl.textContent = '미리보기가 선택되었습니다. Ctrl+C로 복사할 수 있습니다.';
+}
+
+document.getElementById('renderBtn').onclick = render;
+document.getElementById('selectBtn').onclick = selectPreview;
+document.getElementById('clearBtn').onclick = () => {
+  source.value = '';
+  preview.innerHTML = '';
+  statusEl.textContent = '비웠습니다. 새 Markdown을 붙여넣으세요.';
+  source.focus();
+};
+document.getElementById('copyBtn').onclick = async () => {
+  if (!preview.innerHTML.trim()) render();
+  try {
+    await navigator.clipboard.write([new ClipboardItem({
+      'text/html': new Blob([preview.innerHTML], {type: 'text/html'}),
+      'text/plain': new Blob([preview.innerText], {type: 'text/plain'})
+    })]);
+    statusEl.textContent = '복사 완료: Notion 본문에 Ctrl+V 하세요.';
+  } catch (e) {
+    selectPreview();
+    statusEl.textContent = '자동 복사가 막혔습니다. Ctrl+C를 누른 뒤 Notion에 붙여넣으세요.';
+  }
+};
+source.addEventListener('paste', () => {
+  window.setTimeout(render, 0);
+});
+</script>
+</body>
+</html>
