@@ -42,8 +42,15 @@
     if (dataObj.isFixedHierarchy) return;
 
     // 1. 대부문 구조화가 필요한 데이터인지 여부 확인 (로컬 정적 백업 데이터 vs 원격 구글 시트 라이브 데이터)
+    const mainSectionNames = new Set([
+      "투자&펀딩", "투자+펀딩",
+      "사업&개발", "사업+개발",
+      "관리&운영", "관리+운영",
+      "부문직속", "부분직속",
+      "TFs"
+    ]);
     const needsRestructure = dataObj.sections.length > 5 || 
-                             dataObj.sections.some(s => s.name.includes("그룹") || s.name.includes("센터") || s.name.includes("TF"));
+                             dataObj.sections.some(s => !mainSectionNames.has(s.name));
 
     if (needsRestructure) {
       // 1-A. 로컬 정적 데이터 처리 포맷 (그룹별 분할되어 있는 구조를 5대부문으로 수합)
@@ -95,14 +102,6 @@
             };
           }) : []
         };
-
-        const mainSectionNames = new Set([
-          "투자&펀딩", "투자+펀딩",
-          "사업&개발", "사업+개발",
-          "관리&운영", "관리+운영",
-          "부문직속", "부분직속",
-          "TFs"
-        ]);
         const isRedundant = mainSectionNames.has(rawSection.name) || 
                             mainSectionNames.has(rawSection.name.replace("+", "&")) ||
                             mainSectionNames.has(rawSection.name.replace("&", "+"));
@@ -147,13 +146,6 @@
     }
 
     // 2. [공통] 중복 그룹 필터링 (부문명과 완전히 일치하여 그룹안에 그룹이 들어가는 형태의 중복 카드 제거)
-    const mainSectionNames = new Set([
-      "투자&펀딩", "투자+펀딩",
-      "사업&개발", "사업+개발",
-      "관리&운영", "관리+운영",
-      "부문직속", "부분직속",
-      "TFs"
-    ]);
     dataObj.sections.forEach(section => {
       if (section.groups) {
         section.groups = section.groups.filter(group => {
