@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex, nofollow">
   <title>T5T 입력</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="style.css?v=proto_submit_2">
+  <link rel="stylesheet" href="style.css?v=proto_lastweek_1">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -79,6 +79,9 @@
         <div class="side-actions">
           <button class="ghost-btn" id="save-draft" type="button">로컬 초안 저장</button>
           <button class="ghost-btn" id="load-draft" type="button">초안 불러오기</button>
+          <button class="ghost-btn" id="save-server-draft" type="button">서버 초안 저장</button>
+          <button class="ghost-btn" id="load-server-draft" type="button">서버 초안 불러오기</button>
+          <button class="ghost-btn" id="load-last-week" type="button">지난주 불러오기</button>
           <button class="ghost-btn" id="copy-payload" type="button">Payload 복사</button>
         </div>
         <button class="ghost-btn submit-btn" id="submit-notion" type="button">Notion 먼저 저장</button>
@@ -88,6 +91,24 @@
       </section>
     </aside>
   </main>
+
+  <div class="modal-backdrop" id="last-week-modal" hidden>
+    <section class="last-week-modal" role="dialog" aria-modal="true" aria-labelledby="last-week-title">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">Previous Week</p>
+          <h2 id="last-week-title">지난주 업무 불러오기</h2>
+          <p class="modal-subtitle" id="last-week-range"></p>
+        </div>
+        <button class="icon-btn" id="close-last-week" type="button" title="닫기">×</button>
+      </div>
+      <div class="last-week-toolbar">
+        <span id="last-week-count">0개 선택</span>
+        <button class="accent-btn" id="import-last-week" type="button">선택 항목 가져오기</button>
+      </div>
+      <div class="last-week-list" id="last-week-list"></div>
+    </section>
+  </div>
 
   <template id="item-template">
     <article class="work-card">
@@ -137,6 +158,6 @@
   </template>
 
   <script src="../t5t-dashboard/supabase-config.js?v=final_sql_v1"></script>
-  <script src="app.js?v=proto_submit_2"></script>
+  <script src="app.js?v=proto_lastweek_3"></script>
 </body>
 </html>

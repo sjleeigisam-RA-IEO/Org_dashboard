@@ -113,7 +113,7 @@ def validate_payload(payload):
 def relation_label(item):
     labels = item.get("relation_labels") or []
     if labels:
-        return " / ".join(labels)
+        return " / ".join(clean_relation_label(label) for label in labels)
     parts = []
     for key, label in [
         ("project_ids", "프로젝트"),
@@ -127,6 +127,53 @@ def relation_label(item):
     if item.get("relation_texts"):
         parts.append(f"직접입력: {', '.join(item['relation_texts'])}")
     return " / ".join(parts)
+
+
+def clean_relation_label(label):
+    text = str(label or "").strip()
+    for prefix in ["프로젝트 · ", "검토프로젝트 · ", "펀드 · ", "자산 · ", "직접입력 · "]:
+        if text.startswith(prefix):
+            return text[len(prefix):].strip()
+    return text
+
+
+def task_type_label(task_type):
+    return {
+        "New": "신규",
+        "General": "일반업무",
+        "Mission": "Mission",
+    }.get(task_type or "", task_type or "")
+
+
+def relation_type_label(item):
+    task_type = item.get("task_type")
+    if task_type:
+        return task_type_label(task_type)
+    if item.get("project_ids"):
+        return "프로젝트"
+    if item.get("review_project_ids"):
+        return "검토프로젝트"
+    if item.get("fund_ids"):
+        return "펀드"
+    if item.get("asset_ids"):
+        return "자산"
+    if item.get("relation_texts"):
+        return "직접입력"
+    label = (item.get("relation_labels") or [""])[0]
+    for prefix in ["프로젝트", "검토프로젝트", "펀드", "자산", "직접입력"]:
+        if str(label).startswith(prefix):
+            return prefix
+    return "분류"
+
+
+def classification_line(item):
+    relation = relation_label(item)
+    label = relation_type_label(item)
+    if relation:
+        return f"{label}: {relation}"
+    if label:
+        return f"{label}: -"
+    return ""
 
 
 def counterparty_label(item):
@@ -146,15 +193,13 @@ def notion_children(payload):
     for item in payload.get("items", []):
         no = item.get("item_no")
         children.append(text_block(f"T5T - {no}", "heading_3"))
-        children.append(text_block(f"업무: {item.get('raw_text', '')}"))
-        relation = relation_label(item)
-        if relation:
-            children.append(text_block(f"프로젝트: {relation}"))
+        classification = classification_line(item)
+        if classification:
+            children.append(text_block(classification))
         counterparty = counterparty_label(item)
         if counterparty:
             children.append(text_block(f"관계자: {counterparty}"))
-        if item.get("task_type"):
-            children.append(text_block(f"분류: {item['task_type']}"))
+        children.append(text_block(f"업무: {item.get('raw_text', '')}"))
     return children
 
 
@@ -222,7 +267,7 @@ def save_to_supabase(payload, notion_page):
 
     for item in payload.get("items", []):
         item_no = item.get("item_no")
-        relation_text = ", ".join(item.get("relation_labels") or item.get("relation_texts") or [])
+        relation_text = relation_label(item)
         stakeholder_text = ", ".join(item.get("counterparty_labels") or item.get("counterparty_candidates") or [])
         form_item_id = f"{sid}-{item_no}"
         project_ids = item.get("project_ids") or []

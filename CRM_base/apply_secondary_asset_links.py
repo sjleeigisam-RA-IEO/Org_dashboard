@@ -64,11 +64,20 @@ def build_updates(client):
         if asset_id and row.get("asset_id") != asset_id:
             updates["iota_seoul_log_links"].append({"link_id": row["link_id"], "asset_id": asset_id})
 
-    for table in ["risk_management_points", "lender_exposures", "beneficiary_exposures"]:
+    for table in ["risk_management_points"]:
         for row in fetch_all(client, table, "id,fund_id,asset_id"):
             asset_id = fund_asset.get(row.get("fund_id"))
             if asset_id and row.get("asset_id") != asset_id:
                 updates[table].append({"id": row["id"], "asset_id": asset_id})
+
+    for table in ["lender_exposures", "beneficiary_exposures"]:
+        for row in fetch_all(client, table, "id,fund_id,asset_id"):
+            # Only backfill if asset_id is currently null, preserving precise excel-level mappings
+            if not row.get("asset_id"):
+                asset_id = fund_asset.get(row.get("fund_id"))
+                if asset_id:
+                    updates[table].append({"id": row["id"], "asset_id": asset_id})
+
 
     return updates
 

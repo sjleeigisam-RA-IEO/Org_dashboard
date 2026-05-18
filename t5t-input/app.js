@@ -1,6 +1,11 @@
 const DRAFT_KEY = "t5t-input-draft";
-const SUBMIT_ENDPOINT = "http://localhost:8787/submit_t5t";
-const NOTION_ENDPOINT = "http://localhost:8787/submit_notion";
+const EDGE_SUBMIT_ENDPOINT = "https://qvegpozwrcmspdvjokiz.functions.supabase.co/t5t-submit";
+const IS_LOCAL_HOST = ["localhost", "127.0.0.1", ""].includes(window.location.hostname);
+const SUBMIT_ENDPOINT = window.T5T_SUBMIT_ENDPOINT || (IS_LOCAL_HOST ? "http://localhost:8787/submit_t5t" : EDGE_SUBMIT_ENDPOINT);
+const NOTION_ENDPOINT = window.T5T_NOTION_ENDPOINT || (IS_LOCAL_HOST ? "http://localhost:8787/submit_notion" : `${EDGE_SUBMIT_ENDPOINT}?mode=notion`);
+const SERVER_DRAFT_SAVE_ENDPOINT = window.T5T_DRAFT_SAVE_ENDPOINT || `${EDGE_SUBMIT_ENDPOINT}?mode=draft-save`;
+const SERVER_DRAFT_LOAD_ENDPOINT = window.T5T_DRAFT_LOAD_ENDPOINT || `${EDGE_SUBMIT_ENDPOINT}?mode=draft-load`;
+const LAST_WEEK_ENDPOINT = window.T5T_LAST_WEEK_ENDPOINT || `${EDGE_SUBMIT_ENDPOINT}?mode=last-week-load`;
 
 const state = {
   masters: {
@@ -16,6 +21,12 @@ const state = {
   writer: null,
   items: [],
   pendingDraft: null,
+  lastWeek: {
+    items: [],
+    selected: new Set(),
+    weekStart: "",
+    weekEnd: "",
+  },
 };
 
 const els = {};
@@ -49,6 +60,15 @@ function cacheElements() {
     submitStatus: document.getElementById("submit-status"),
     saveDraft: document.getElementById("save-draft"),
     loadDraft: document.getElementById("load-draft"),
+    saveServerDraft: document.getElementById("save-server-draft"),
+    loadServerDraft: document.getElementById("load-server-draft"),
+    loadLastWeek: document.getElementById("load-last-week"),
+    lastWeekModal: document.getElementById("last-week-modal"),
+    closeLastWeek: document.getElementById("close-last-week"),
+    importLastWeek: document.getElementById("import-last-week"),
+    lastWeekList: document.getElementById("last-week-list"),
+    lastWeekRange: document.getElementById("last-week-range"),
+    lastWeekCount: document.getElementById("last-week-count"),
     copyPayload: document.getElementById("copy-payload"),
   });
 }
@@ -65,6 +85,14 @@ function wireHeaderEvents() {
   on(els.submitPayload, "click", submitPayload);
   on(els.saveDraft, "click", saveDraft);
   on(els.loadDraft, "click", loadDraftFromStorage);
+  on(els.saveServerDraft, "click", saveServerDraft);
+  on(els.loadServerDraft, "click", loadServerDraft);
+  on(els.loadLastWeek, "click", loadLastWeekItems);
+  on(els.closeLastWeek, "click", closeLastWeekModal);
+  on(els.importLastWeek, "click", importSelectedLastWeekItems);
+  on(els.lastWeekModal, "click", event => {
+    if (event.target === els.lastWeekModal) closeLastWeekModal();
+  });
   on(els.copyPayload, "click", copyPayload);
   document.addEventListener("click", event => {
     if (!event.target.closest(".field")) closeSuggestions();
@@ -83,7 +111,7 @@ async function loadMasters() {
   try {
     setStatus("DB master 불러오는 중");
     const [staff, orgs, assignments, projects, reviewProjects, funds, assets, counterparties] = await Promise.all([
-      fetchAll("staff", "staff_id,employee_no,name,email,position,title,line_code,line_label,status", "name"),
+      fetchAll("staff", "staff_id,employee_no,name,email,position,title,line_code,line_label,status,metadata", "name"),
       fetchAll("orgs", "org_id,org_name,org_path,is_active,metadata", "org_name"),
       fetchAll("staff_org_assignments", "assignment_id,staff_id,org_id,is_primary,role,metadata", "staff_id"),
       fetchAll("projects", "project_id,project_name,project_code,project_type,status,primary_asset_id,source_system,metadata", "project_name"),
@@ -95,7 +123,7 @@ async function loadMasters() {
 
     state.masters.orgs = orgs;
     state.masters.assignments = assignments;
-    state.masters.staff = enrichStaff(staff.filter(row => row.status !== "inactive"), orgs, assignments);
+    state.masters.staff = selectPrimaryStaffRows(enrichStaff(staff.filter(row => row.status !== "inactive"), orgs, assignments));
     state.masters.projects = projects.filter(isSelectableProject);
     state.masters.reviewProjects = reviewProjects.filter(isSelectableReviewProject);
     state.masters.funds = funds;
@@ -586,7 +614,7 @@ async function postSubmission({ endpoint, button, pendingMessage, successMessage
   try {
     const response = await fetch(endpoint, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: makeSubmitHeaders(endpoint),
       body: JSON.stringify(payload),
     });
     const result = await response.json();
@@ -599,6 +627,16 @@ async function postSubmission({ endpoint, button, pendingMessage, successMessage
   } finally {
     button.disabled = false;
   }
+}
+
+function makeSubmitHeaders(endpoint) {
+  const headers = { "Content-Type": "application/json" };
+  const isEdgeFunction = endpoint.includes(".functions.supabase.co");
+  if (isEdgeFunction && typeof SUPABASE_KEY !== "undefined" && SUPABASE_KEY) {
+    headers.apikey = SUPABASE_KEY;
+    headers.Authorization = `Bearer ${SUPABASE_KEY}`;
+  }
+  return headers;
 }
 
 function setSubmitStatus(message, type) {
@@ -620,34 +658,268 @@ function loadDraftFromStorage() {
   }
   try {
     const draft = JSON.parse(raw);
-    state.pendingDraft = draft;
-    state.writer = null;
-    els.writerSearch.value = draft.writer_email || "";
-    els.workDate.value = draft.work_date || formatDate(new Date());
-    state.items = (draft.items || []).map(item => ({
-      id: crypto.randomUUID(),
-      task_type: item.task_type || null,
-      projects: [],
-      reviewProjects: [],
-      funds: [],
-      assets: [],
-      relation_texts: item.relation_texts || [],
-      counterparties: [],
-      counterparty_texts: item.counterparty_candidates || [],
-      raw_text: item.raw_text || item.summary || "",
-      pending_project_ids: item.project_ids || [],
-      pending_review_project_ids: item.review_project_ids || [],
-      pending_fund_ids: item.fund_ids || [],
-      pending_asset_ids: item.asset_ids || [],
-      pending_counterparty_ids: item.counterparty_ids || [],
-    }));
-    hydrateDraftSelections();
-    renderAll();
+    applyDraftPayload(draft);
     pulseButton(els.loadDraft, "불러옴", "초안 불러오기");
   } catch {
     localStorage.removeItem(DRAFT_KEY);
     pulseButton(els.loadDraft, "초안 오류", "초안 불러오기");
   }
+}
+
+async function saveServerDraft() {
+  const payload = makePayload();
+  if (!payload.writer_staff_id || !payload.writer_email) {
+    setSubmitStatus("이메일로 작성자를 먼저 확인해 주세요.", "error");
+    return;
+  }
+
+  els.saveServerDraft.disabled = true;
+  setSubmitStatus("서버 초안을 저장하는 중입니다...", "");
+  try {
+    const response = await fetch(SERVER_DRAFT_SAVE_ENDPOINT, {
+      method: "POST",
+      headers: makeSubmitHeaders(SERVER_DRAFT_SAVE_ENDPOINT),
+      body: JSON.stringify(payload),
+    });
+    const result = await response.json();
+    if (!response.ok || !result.ok) throw new Error(result.error || "서버 초안 저장에 실패했습니다.");
+    setSubmitStatus(`서버 초안 저장 완료 (${result.item_count || payload.items.length}개 항목)`, "ok");
+    pulseButton(els.saveServerDraft, "저장됨", "서버 초안 저장");
+  } catch (error) {
+    setSubmitStatus(error.message || "서버 초안 저장에 실패했습니다.", "error");
+  } finally {
+    els.saveServerDraft.disabled = false;
+  }
+}
+
+async function loadServerDraft() {
+  const writerStaffId = state.writer?.staff_id;
+  const writerEmail = state.writer?.email || els.writerSearch.value.trim();
+  if (!writerStaffId || !writerEmail) {
+    setSubmitStatus("이메일로 작성자를 먼저 확인해 주세요.", "error");
+    return;
+  }
+
+  els.loadServerDraft.disabled = true;
+  setSubmitStatus("서버 초안을 불러오는 중입니다...", "");
+  try {
+    const response = await fetch(SERVER_DRAFT_LOAD_ENDPOINT, {
+      method: "POST",
+      headers: makeSubmitHeaders(SERVER_DRAFT_LOAD_ENDPOINT),
+      body: JSON.stringify({
+        writer_staff_id: writerStaffId,
+        writer_email: writerEmail,
+        writer_name: state.writer?.name || null,
+      }),
+    });
+    const result = await response.json();
+    if (!response.ok || !result.ok) throw new Error(result.error || "서버 초안 불러오기에 실패했습니다.");
+    if (!result.draft) {
+      setSubmitStatus("저장된 서버 초안이 없습니다.", "");
+      pulseButton(els.loadServerDraft, "초안 없음", "서버 초안 불러오기");
+      return;
+    }
+    applyDraftPayload(result.draft);
+    setSubmitStatus(`서버 초안을 불러왔습니다. 저장시점: ${result.saved_at || "-"}`, "ok");
+    pulseButton(els.loadServerDraft, "불러옴", "서버 초안 불러오기");
+  } catch (error) {
+    setSubmitStatus(error.message || "서버 초안 불러오기에 실패했습니다.", "error");
+  } finally {
+    els.loadServerDraft.disabled = false;
+  }
+}
+
+async function loadLastWeekItems() {
+  const payload = makePayload();
+  if (!payload.writer_staff_id || !payload.writer_email) {
+    setSubmitStatus("이메일로 작성자를 먼저 확인해 주세요.", "error");
+    return;
+  }
+
+  els.loadLastWeek.disabled = true;
+  setSubmitStatus("지난주 업무를 조회하는 중입니다...", "");
+  try {
+    const response = await fetch(LAST_WEEK_ENDPOINT, {
+      method: "POST",
+      headers: makeSubmitHeaders(LAST_WEEK_ENDPOINT),
+      body: JSON.stringify({
+        writer_staff_id: payload.writer_staff_id,
+        writer_email: payload.writer_email,
+        writer_name: payload.writer_name,
+        work_date: payload.work_date,
+      }),
+    });
+    const result = await response.json();
+    if (!response.ok || !result.ok) throw new Error(result.error || "지난주 업무 조회에 실패했습니다.");
+    state.lastWeek.items = result.items || [];
+    state.lastWeek.selected = new Set();
+    state.lastWeek.weekStart = result.week_start || "";
+    state.lastWeek.weekEnd = result.week_end || "";
+    openLastWeekModal();
+    setSubmitStatus(`지난주 업무 ${state.lastWeek.items.length}개를 조회했습니다.`, "ok");
+  } catch (error) {
+    setSubmitStatus(error.message || "지난주 업무 조회에 실패했습니다.", "error");
+  } finally {
+    els.loadLastWeek.disabled = false;
+  }
+}
+
+function openLastWeekModal() {
+  if (!els.lastWeekModal) return;
+  els.lastWeekModal.hidden = false;
+  renderLastWeekModal();
+}
+
+function closeLastWeekModal() {
+  if (els.lastWeekModal) els.lastWeekModal.hidden = true;
+}
+
+function renderLastWeekModal() {
+  if (!els.lastWeekList) return;
+  const { items, selected, weekStart, weekEnd } = state.lastWeek;
+  els.lastWeekRange.textContent = weekStart && weekEnd ? `${weekStart} ~ ${weekEnd}` : "";
+  els.lastWeekCount.textContent = `${selected.size}개 선택`;
+  els.importLastWeek.disabled = selected.size === 0;
+
+  if (!items.length) {
+    els.lastWeekList.innerHTML = `<div class="empty-state">지난주 제출 항목이 없습니다.</div>`;
+    return;
+  }
+
+  els.lastWeekList.innerHTML = items.map((item, index) => {
+    const checked = selected.has(item.source_item_id) ? "checked" : "";
+    const relation = (item.relation_labels || []).join(" / ") || (item.relation_texts || []).join(" / ") || item.task_type || "-";
+    const counterparties = (item.counterparty_labels || []).join(" / ") || (item.counterparty_candidates || []).join(" / ") || "-";
+    return `
+      <label class="last-week-row">
+        <input type="checkbox" data-last-week-index="${index}" ${checked}>
+        <div>
+          <div class="last-week-row-head">
+            <strong>${escapeHtml(item.source_work_date || "")}</strong>
+            <span>${escapeHtml(relation)}</span>
+          </div>
+          <p>${escapeHtml(item.raw_text || "")}</p>
+          <small>관계자: ${escapeHtml(counterparties)}</small>
+        </div>
+      </label>
+    `;
+  }).join("");
+
+  els.lastWeekList.querySelectorAll("input[type='checkbox']").forEach(input => {
+    input.addEventListener("change", event => {
+      const item = items[Number(event.target.dataset.lastWeekIndex)];
+      if (!item) return;
+      if (event.target.checked) selected.add(item.source_item_id);
+      else selected.delete(item.source_item_id);
+      renderLastWeekModal();
+    });
+  });
+}
+
+function importSelectedLastWeekItems() {
+  const pickedItems = state.lastWeek.items.filter(item => state.lastWeek.selected.has(item.source_item_id));
+  if (!pickedItems.length) return;
+
+  const blankIndexes = state.items
+    .map((item, index) => isReplaceableItem(item) ? index : -1)
+    .filter(index => index >= 0);
+  const nonBlankCount = state.items.length - blankIndexes.length;
+  const room = Math.max(0, 5 - nonBlankCount);
+  const importing = pickedItems.slice(0, room);
+
+  importing.forEach((item, index) => {
+    const seed = makeItemSeed(seedFromLastWeekItem(item));
+    const replaceIndex = blankIndexes[index];
+    if (replaceIndex !== undefined) state.items[replaceIndex] = seed;
+    else state.items.push(seed);
+  });
+
+  hydratePendingItemSelections();
+  renderAll();
+  closeLastWeekModal();
+
+  if (pickedItems.length > importing.length) {
+    setSubmitStatus(`선택 항목 중 ${importing.length}개만 가져왔습니다. T5T는 최대 5개까지 입력할 수 있습니다.`, "error");
+  } else {
+    setSubmitStatus(`지난주 항목 ${importing.length}개를 현재 입력폼에 추가했습니다.`, "ok");
+  }
+}
+
+function isBlankItem(item) {
+  return !item.raw_text &&
+    !item.task_type &&
+    !item.projects.length &&
+    !item.reviewProjects.length &&
+    !item.funds.length &&
+    !item.assets.length &&
+    !item.relation_texts.length &&
+    !item.counterparties.length &&
+    !item.counterparty_texts.length;
+}
+
+function isReplaceableItem(item) {
+  return !selectedRelations(item).length && !String(item.raw_text || "").trim();
+}
+
+function makeItemSeed(seed = {}) {
+  return {
+    id: crypto.randomUUID(),
+    task_type: seed.task_type || null,
+    projects: seed.projects || [],
+    reviewProjects: seed.reviewProjects || [],
+    funds: seed.funds || [],
+    assets: seed.assets || [],
+    relation_texts: seed.relation_texts || [],
+    counterparties: seed.counterparties || [],
+    counterparty_texts: seed.counterparty_texts || [],
+    raw_text: seed.raw_text || "",
+    pending_project_ids: seed.pending_project_ids || [],
+    pending_review_project_ids: seed.pending_review_project_ids || [],
+    pending_fund_ids: seed.pending_fund_ids || [],
+    pending_asset_ids: seed.pending_asset_ids || [],
+    pending_counterparty_ids: seed.pending_counterparty_ids || [],
+  };
+}
+
+function seedFromLastWeekItem(item) {
+  return {
+    task_type: item.task_type || null,
+    relation_texts: item.relation_texts || [],
+    counterparty_texts: item.counterparty_candidates || [],
+    raw_text: item.raw_text || "",
+    pending_project_ids: item.project_ids || [],
+    pending_review_project_ids: item.review_project_ids || [],
+    pending_fund_ids: item.fund_ids || [],
+    pending_asset_ids: item.asset_ids || [],
+    pending_counterparty_ids: item.counterparty_ids || [],
+  };
+}
+
+function applyDraftPayload(draft) {
+  state.pendingDraft = draft;
+  state.writer = null;
+  els.writerSearch.value = draft.writer_email || "";
+  els.workDate.value = draft.work_date || formatDate(new Date());
+  state.items = (draft.items || []).map(item => ({
+    id: crypto.randomUUID(),
+    task_type: item.task_type || null,
+    projects: [],
+    reviewProjects: [],
+    funds: [],
+    assets: [],
+    relation_texts: item.relation_texts || [],
+    counterparties: [],
+    counterparty_texts: item.counterparty_candidates || [],
+    raw_text: item.raw_text || item.summary || "",
+    pending_project_ids: item.project_ids || [],
+    pending_review_project_ids: item.review_project_ids || [],
+    pending_fund_ids: item.fund_ids || [],
+    pending_asset_ids: item.asset_ids || [],
+    pending_counterparty_ids: item.counterparty_ids || [],
+  }));
+  if (!state.items.length) addItem();
+  hydrateDraftSelections();
+  renderAll();
 }
 
 function hydrateDraftSelections() {
@@ -662,6 +934,11 @@ function hydrateDraftSelections() {
     els.writerSearch.value = writer.email || "";
   }
 
+  hydratePendingItemSelections();
+  state.pendingDraft = null;
+}
+
+function hydratePendingItemSelections() {
   const byId = rows => new Map(rows.map(row => [getRowId(row), row]));
   const projectById = byId(state.masters.projects);
   const reviewProjectById = byId(state.masters.reviewProjects);
@@ -675,7 +952,6 @@ function hydrateDraftSelections() {
     item.assets = hydrateByIds(assetById, item.pending_asset_ids);
     item.counterparties = hydrateByIds(counterpartyById, item.pending_counterparty_ids);
   });
-  state.pendingDraft = null;
 }
 
 function hydrateByIds(map, ids = []) {
@@ -830,6 +1106,37 @@ function enrichStaff(staff, orgs, assignments) {
   });
 }
 
+function selectPrimaryStaffRows(staff) {
+  const byEmail = new Map();
+  const noEmail = [];
+  staff.forEach(row => {
+    const email = normalizeEmail(row.email);
+    if (!email) {
+      noEmail.push(row);
+      return;
+    }
+    const current = byEmail.get(email);
+    if (!current || compareStaffPriority(row, current) < 0) {
+      byEmail.set(email, row);
+    }
+  });
+  return [...byEmail.values(), ...noEmail].sort((a, b) => String(a.name || "").localeCompare(String(b.name || ""), "ko"));
+}
+
+function compareStaffPriority(a, b) {
+  const score = row => {
+    const name = String(row.name || "");
+    const orgDisplay = String(row.org_display || "").toLowerCase();
+    let value = 0;
+    if (row.metadata?.is_main === true) value -= 100;
+    if (row.employee_no) value -= 50;
+    if (name.includes("/") || name.includes("(")) value += 10;
+    if (orgDisplay.includes("tf") || orgDisplay.includes("tft") || orgDisplay.includes("cft")) value += 20;
+    return value;
+  };
+  return score(a) - score(b);
+}
+
 function isTemporaryOrgAssignment(assignment, org) {
   const meta = assignment?.metadata || {};
   const values = [
@@ -843,7 +1150,13 @@ function isTemporaryOrgAssignment(assignment, org) {
     meta.org_path,
     ...(Array.isArray(meta.tags) ? meta.tags : []),
   ].filter(Boolean).map(value => String(value).toLowerCase());
-  return values.some(value => value.includes("tf") || value.includes("tft") || value.includes("임시") || value.includes("겸직"));
+  return values.some(value =>
+    value.includes("tf") ||
+    value.includes("tft") ||
+    value.includes("cft") ||
+    value.includes("임시") ||
+    value.includes("겸직")
+  );
 }
 
 function isSelectableProject(row) {
@@ -853,7 +1166,6 @@ function isSelectableProject(row) {
   if (!name) return false;
   if (type === "Mission") return false;
   if (name.startsWith("'") || name.startsWith('"')) return false;
-  if (source === "t5t_project_mission" && row.status !== "설정 중") return false;
   if (isWorkLikeProjectName(name)) return false;
   if (source === "t5t_project_mission" && name.length > 24) return false;
   return true;

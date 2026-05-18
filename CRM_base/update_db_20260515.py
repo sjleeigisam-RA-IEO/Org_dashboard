@@ -127,6 +127,17 @@ def process_updates():
     print("Building Asset Master and Relationship Mapping...")
     asset_lookup = {} # asset_name -> {base_asset, business_stage}
     asset_records = []
+    asset_name_to_id = {}
+    asset_id_to_name = {}
+
+    def normalize_asset_name(name):
+        if not name or pd.isna(name): return ""
+        name_str = str(name).strip()
+        name_str = re.sub(r'\s+', '', name_str)
+        if name_str.endswith("대출"):
+            name_str = name_str[:-2]
+        return name_str
+
     for _, row in df_asset_manage.iterrows():
         acode = clean_str(row.get('자산코드'))
         aname = clean_str(row.get('자산(건물)명'))
@@ -140,7 +151,8 @@ def process_updates():
                 'stage': stage
             }
             
-        aid = f"ast_{hashlib.sha1(acode.encode()).hexdigest()[:12]}"
+        # Correctly align ID generation with build_asset_master.py
+        aid = f"ast_{hashlib.sha1(f'asset_code:{acode}'.encode()).hexdigest()[:12]}"
         asset_records.append({
             'asset_id': aid, 'asset_code': acode, 'canonical_name': aname,
             'address_text': clean_str(row.get('전체주소(시/도, 구/군 포함)')),
@@ -148,10 +160,14 @@ def process_updates():
             'completion_date': clean_date(row.get('준공(예정)일')), 'review_status': 'verified',
             'metadata': {'source': '투자 자산 관리_20260515.xlsx', 'stage': stage}
         })
+        if aname:
+            asset_name_to_id[normalize_asset_name(aname)] = aid
+            asset_id_to_name[aid] = aname
 
     # 3. Build Fund Records (The Ultimate Mapping - Raw Word Match)
     print("Building Fund records (The Ultimate Mapping)...")
     fund_records = []
+    fund_to_asset_id = {}
     for _, row in df_fund.iterrows():
         fid = clean_str(row['펀드코드'])
         if not fid: continue
@@ -161,6 +177,12 @@ def process_updates():
         fund_asset_name = clean_str(row.get('자산명'))
         asset_info = asset_lookup.get(fund_asset_name, {})
         
+        # Fallback tracking for exposures
+        if fund_asset_name:
+            asset_id = asset_name_to_id.get(normalize_asset_name(fund_asset_name))
+            if asset_id:
+                fund_to_asset_id[fid] = asset_id
+
         # Mapping Logic based on the AUDIT results
         record = {
             'fund_id': fid,
@@ -216,38 +238,75 @@ def process_updates():
 
     # 4. Build Exposure Records
     print("Building Exposure records...")
+    
+    def resolve_single_asset(raw_asset, fid):
+        primary_aid = fund_to_asset_id.get(fid)
+        if primary_aid:
+            return primary_aid
+        if raw_asset and not pd.isna(raw_asset) and "," not in str(raw_asset):
+            norm = normalize_asset_name(str(raw_asset).strip())
+            aid = asset_name_to_id.get(norm)
+            if aid:
+                return aid
+            for master_norm, master_aid in asset_name_to_id.items():
+                if master_norm and norm and (norm in master_norm or master_norm in norm):
+                    return master_aid
+        return None
+
     lender_agg = {}
     for _, row in df_lender.iterrows():
         fid, lender, bdate = clean_str(row.get('펀드코드')), clean_str(row.get('대주')), clean_date(row.get('기준일자'))
         if not (fid and lender and bdate): continue
-        key = (fid, lender, bdate)
+        
+        raw_asset = row.get('자산')
+        aid = resolve_single_asset(raw_asset, fid)
+        
+        committed = clean_int(row.get('대출약정금액(원)')) or 0
+        drawn = clean_int(row.get('대출인출금액(원)')) or 0
+        remaining = clean_int(row.get('대출잔여금액(원)')) or 0
+        
+        key = (fid, lender, bdate, aid)
         if key not in lender_agg:
             lender_agg[key] = {
                 'fund_id': fid, 'lender_raw': lender, 'lender_clean': lender, 'base_date': bdate,
+                'asset_id': aid,
                 'committed_amt': 0, 'drawn_amt': 0, 'remaining_amt': 0, 'remarks': []
             }
-        lender_agg[key]['committed_amt'] += (clean_int(row.get('대출약정금액(원)')) or 0)
-        lender_agg[key]['drawn_amt'] += (clean_int(row.get('대출인출금액(원)')) or 0)
-        lender_agg[key]['remaining_amt'] += (clean_int(row.get('대출잔여금액(원)')) or 0)
+        lender_agg[key]['committed_amt'] += committed
+        lender_agg[key]['drawn_amt'] += drawn
+        lender_agg[key]['remaining_amt'] += remaining
+        
         trench = clean_str(row.get('트렌치'))
         if trench: lender_agg[key]['remarks'].append(trench)
+                
     lender_records = [dict(v, remarks=", ".join(set(v['remarks'])) if v['remarks'] else None) for v in lender_agg.values()]
 
     beneficiary_agg = {}
     for _, row in df_beneficiary.iterrows():
         fid, bene, bdate = clean_str(row.get('펀드코드')), clean_str(row.get('수익자')), clean_date(row.get('기준일자'))
         if not (fid and bene and bdate): continue
-        key = (fid, bene, bdate)
+        
+        raw_asset = row.get('자산')
+        aid = resolve_single_asset(raw_asset, fid)
+        
+        committed = clean_int(row.get('총약정금액')) or 0
+        invested = clean_int(row.get('투입금액')) or 0
+        remaining = clean_int(row.get('잔여약정금액')) or 0
+        
+        key = (fid, bene, bdate, aid)
         if key not in beneficiary_agg:
             beneficiary_agg[key] = {
                 'fund_id': fid, 'beneficiary_raw': bene, 'beneficiary_clean': bene, 'base_date': bdate,
+                'asset_id': aid,
                 'committed_amt': 0, 'invested_amt': 0, 'remaining_amt': 0, 'remarks': []
             }
-        beneficiary_agg[key]['committed_amt'] += (clean_int(row.get('총약정금액')) or 0)
-        beneficiary_agg[key]['invested_amt'] += (clean_int(row.get('투입금액')) or 0)
-        beneficiary_agg[key]['remaining_amt'] += (clean_int(row.get('잔여약정금액')) or 0)
+        beneficiary_agg[key]['committed_amt'] += committed
+        beneficiary_agg[key]['invested_amt'] += invested
+        beneficiary_agg[key]['remaining_amt'] += remaining
+        
         rem = clean_str(row.get('비고'))
         if rem: beneficiary_agg[key]['remarks'].append(rem)
+                
     beneficiary_records = [dict(v, remarks=", ".join(set(v['remarks'])) if v['remarks'] else None) for v in beneficiary_agg.values()]
 
     # Execution
