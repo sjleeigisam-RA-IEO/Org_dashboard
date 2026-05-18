@@ -41,76 +41,131 @@
     if (!dataObj || !dataObj.sections) return;
     if (dataObj.isFixedHierarchy) return;
 
-    // [사전 처리] CM그룹을 리빙그룹(관리&운영)으로 병합 처리
-    const cmGroupIndex = dataObj.sections.findIndex(s => s.name === "CM그룹");
-    const livingGroupIndex = dataObj.sections.findIndex(s => s.name === "리빙그룹");
+    // 1. 대부문 구조화가 필요한 데이터인지 여부 확인 (로컬 정적 백업 데이터 vs 원격 구글 시트 라이브 데이터)
+    const needsRestructure = dataObj.sections.length > 5 || 
+                             dataObj.sections.some(s => s.name.includes("그룹") || s.name.includes("센터") || s.name.includes("TF"));
 
-    if (cmGroupIndex !== -1) {
-      if (livingGroupIndex !== -1) {
-        const cmGroup = dataObj.sections[cmGroupIndex];
-        const livingGroup = dataObj.sections[livingGroupIndex];
+    if (needsRestructure) {
+      // 1-A. 로컬 정적 데이터 처리 포맷 (그룹별 분할되어 있는 구조를 5대부문으로 수합)
+      
+      // [사전 처리] CM그룹을 리빙그룹(관리&운영)으로 병합 처리
+      const cmGroupIndex = dataObj.sections.findIndex(s => s.name === "CM그룹");
+      const livingGroupIndex = dataObj.sections.findIndex(s => s.name === "리빙그룹");
 
-        if (cmGroup.groups && cmGroup.groups.length > 0) {
-          if (!livingGroup.groups) livingGroup.groups = [];
-          livingGroup.groups.push(...cmGroup.groups);
-          livingGroup.assignmentCount = (livingGroup.assignmentCount || 0) + (cmGroup.assignmentCount || 0);
-          livingGroup.uniquePeopleCount = (livingGroup.uniquePeopleCount || 0) + (cmGroup.uniquePeopleCount || 0);
+      if (cmGroupIndex !== -1) {
+        if (livingGroupIndex !== -1) {
+          const cmGroup = dataObj.sections[cmGroupIndex];
+          const livingGroup = dataObj.sections[livingGroupIndex];
+
+          if (cmGroup.groups && cmGroup.groups.length > 0) {
+            if (!livingGroup.groups) livingGroup.groups = [];
+            livingGroup.groups.push(...cmGroup.groups);
+            livingGroup.assignmentCount = (livingGroup.assignmentCount || 0) + (cmGroup.assignmentCount || 0);
+            livingGroup.uniquePeopleCount = (livingGroup.uniquePeopleCount || 0) + (cmGroup.uniquePeopleCount || 0);
+          }
+          dataObj.sections.splice(cmGroupIndex, 1);
+        } else {
+          dataObj.sections[cmGroupIndex].name = "리빙그룹";
         }
-        dataObj.sections.splice(cmGroupIndex, 1);
-      } else {
-        // 리빙그룹이 아예 없는 경우 이름만 리빙그룹으로 변경
-        dataObj.sections[cmGroupIndex].name = "리빙그룹";
+      }
+
+      const newSectionsMap = new Map();
+      dataObj.sections.forEach(rawSection => {
+        const mainSectionName = MAIN_SECTION_MAP[rawSection.name] || "기타";
+        if (!newSectionsMap.has(mainSectionName)) {
+          newSectionsMap.set(mainSectionName, {
+            name: mainSectionName,
+            assignmentCount: 0,
+            uniquePeopleCount: 0,
+            groups: []
+          });
+        }
+        const parentSection = newSectionsMap.get(mainSectionName);
+        const newGroup = {
+          name: rawSection.name,
+          assignmentCount: rawSection.assignmentCount,
+          uniquePeopleCount: rawSection.uniquePeopleCount,
+          parts: rawSection.groups ? rawSection.groups.map(g => {
+            const mergedTeams = g.parts ? g.parts.flatMap(p => p.teams) : [];
+            return {
+              name: g.name,
+              assignmentCount: g.assignmentCount,
+              uniquePeopleCount: g.uniquePeopleCount,
+              teams: mergedTeams
+            };
+          }) : []
+        };
+
+        const mainSectionNames = new Set([
+          "투자&펀딩", "투자+펀딩",
+          "사업&개발", "사업+개발",
+          "관리&운영", "관리+운영",
+          "부문직속", "부분직속",
+          "TFs"
+        ]);
+        const isRedundant = mainSectionNames.has(rawSection.name) || 
+                            mainSectionNames.has(rawSection.name.replace("+", "&")) ||
+                            mainSectionNames.has(rawSection.name.replace("&", "+"));
+
+        if (!isRedundant) {
+          parentSection.groups.push(newGroup);
+        }
+        
+        parentSection.assignmentCount += newGroup.assignmentCount;
+      });
+      dataObj.sections = Array.from(newSectionsMap.values());
+    } else {
+      // 1-B. 원격 라이브 구글 시트 연동 데이터 처리 포맷 (이미 대부문 구조로 완성되어 내려옴)
+      
+      // 부문명 기호 통일 ( + 기호를 & 로 교체하여 프론트엔드 탭 필터 이름과 완벽 매칭 )
+      dataObj.sections.forEach(section => {
+        section.name = section.name.replace("+", "&");
+      });
+
+      // 관리&운영 부문 내부에서 CM그룹을 리빙그룹으로 병합 처리
+      const managementSection = dataObj.sections.find(s => s.name === "관리&운영" || s.name === "관리+운영");
+      if (managementSection && managementSection.groups) {
+        const cmGroupIdx = managementSection.groups.findIndex(g => g.name === "CM그룹");
+        const livingGroupIdx = managementSection.groups.findIndex(g => g.name === "리빙그룹");
+        if (cmGroupIdx !== -1) {
+          if (livingGroupIdx !== -1) {
+            const cmGroup = managementSection.groups[cmGroupIdx];
+            const livingGroup = managementSection.groups[livingGroupIdx];
+            // CM그룹의 파트들을 리빙그룹으로 이전
+            if (cmGroup.parts && cmGroup.parts.length > 0) {
+              if (!livingGroup.parts) livingGroup.parts = [];
+              livingGroup.parts.push(...cmGroup.parts);
+              livingGroup.assignmentCount = (livingGroup.assignmentCount || 0) + (cmGroup.assignmentCount || 0);
+              livingGroup.uniquePeopleCount = (livingGroup.uniquePeopleCount || 0) + (cmGroup.uniquePeopleCount || 0);
+            }
+            managementSection.groups.splice(cmGroupIdx, 1);
+          } else {
+            managementSection.groups[cmGroupIdx].name = "리빙그룹";
+          }
+        }
       }
     }
 
-    const newSectionsMap = new Map();
-    dataObj.sections.forEach(rawSection => {
-      const mainSectionName = MAIN_SECTION_MAP[rawSection.name] || "기타";
-      if (!newSectionsMap.has(mainSectionName)) {
-        newSectionsMap.set(mainSectionName, {
-          name: mainSectionName,
-          assignmentCount: 0,
-          uniquePeopleCount: 0,
-          groups: []
+    // 2. [공통] 중복 그룹 필터링 (부문명과 완전히 일치하여 그룹안에 그룹이 들어가는 형태의 중복 카드 제거)
+    const mainSectionNames = new Set([
+      "투자&펀딩", "투자+펀딩",
+      "사업&개발", "사업+개발",
+      "관리&운영", "관리+운영",
+      "부문직속", "부분직속",
+      "TFs"
+    ]);
+    dataObj.sections.forEach(section => {
+      if (section.groups) {
+        section.groups = section.groups.filter(group => {
+          const isRedundant = mainSectionNames.has(group.name) || 
+                              mainSectionNames.has(group.name.replace("+", "&")) ||
+                              mainSectionNames.has(group.name.replace("&", "+"));
+          return !isRedundant;
         });
       }
-      const parentSection = newSectionsMap.get(mainSectionName);
-      const newGroup = {
-        name: rawSection.name,
-        assignmentCount: rawSection.assignmentCount,
-        uniquePeopleCount: rawSection.uniquePeopleCount,
-        parts: rawSection.groups ? rawSection.groups.map(g => {
-          const mergedTeams = g.parts ? g.parts.flatMap(p => p.teams) : [];
-          return {
-            name: g.name,
-            assignmentCount: g.assignmentCount,
-            uniquePeopleCount: g.uniquePeopleCount,
-            teams: mergedTeams
-          };
-        }) : []
-      };
-
-      const mainSectionNames = new Set([
-        "투자&펀딩", "투자+펀딩",
-        "사업&개발", "사업+개발",
-        "관리&운영", "관리+운영",
-        "부문직속", "부분직속",
-        "TFs"
-      ]);
-      const isRedundant = mainSectionNames.has(rawSection.name) || 
-                          mainSectionNames.has(rawSection.name.replace("+", "&")) ||
-                          mainSectionNames.has(rawSection.name.replace("&", "+"));
-
-      if (!isRedundant) {
-        parentSection.groups.push(newGroup);
-      }
-      
-      parentSection.assignmentCount += newGroup.assignmentCount;
     });
-    dataObj.sections = Array.from(newSectionsMap.values());
-    dataObj.isFixedHierarchy = true;
 
-    // --- 모든 구성원의 직책(Role) 표준화 및 정규화 (구글 시트의 다양한 수작업 직급명을 안전하게 표준 직책에 매핑) ---
+    // 3. [공통] 모든 구성원의 직책(Role) 표준화 및 정규화
     function normalizeRole(rawRole) {
       if (!rawRole) return "매니저";
       const clean = String(rawRole).trim().replace(/\s+/g, "");
@@ -215,6 +270,8 @@
         }
       });
     });
+
+    dataObj.isFixedHierarchy = true;
   }
 
   fixDataHierarchy(data);
