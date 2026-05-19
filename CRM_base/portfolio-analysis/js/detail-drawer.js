@@ -477,7 +477,7 @@
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
             <div>
                 <p style="color:var(--accent); font-size:12px; font-weight:800; margin-bottom:8px; letter-spacing:1px;">ASSET DEEP-DIVE</p>
-                <h2 style="font-size:22px; font-weight:800; line-height:1.3; color:#1e293b;">${displayName}</h2>
+                <h2 style="font-size:22px; font-weight:800; line-height:1.3; color:#f8fafc;">${displayName}</h2>
                 <p style="margin-top:12px; color:var(--muted); font-size:14px; font-weight:500;">
                   이 자산에 연결된 공식 펀드는 <strong style="color:var(--accent-2);">${funds.length}개</strong>, 미션 프로젝트는 <strong style="color:#059669;">${projects.length}개</strong>입니다.
                 </p>
@@ -498,7 +498,7 @@
         return `
           <div class="fund-detail-card" onclick="showDrawerDetail('${f.fund_id}')" style="cursor:pointer; margin-bottom:12px; border-left: 4px solid var(--accent-2);">
               <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                  <h3 style="font-size:14.5px; font-weight:800; flex:1; margin-right:16px; color:#1e293b;">${f.fund_name || f.short_name || f.fund_id}</h3>
+                  <h3 style="font-size:14.5px; font-weight:800; flex:1; margin-right:16px; color:#f8fafc;">${f.fund_name || f.short_name || f.fund_id}</h3>
                   <span style="padding:3px 8px; border-radius:6px; font-size:11px; font-weight:800; background:#f1f5f9; color:#475569;">${f.fund_status || '운용'}</span>
               </div>
               <div class="meta-grid" style="grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:12px;">
@@ -522,7 +522,7 @@
         return `
           <div class="fund-detail-card" onclick="showDrawerDetail('${p.fund_id || p.project_id}')" style="cursor:pointer; margin-bottom:12px; border-left: 4px solid #10b981;">
               <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                  <h3 style="font-size:14.5px; font-weight:800; flex:1; margin-right:16px; color:#1e293b;">${p.project_mission_name || p.fund_name || p.project_name || p.fund_id}</h3>
+                  <h3 style="font-size:14.5px; font-weight:800; flex:1; margin-right:16px; color:#f8fafc;">${p.project_mission_name || p.fund_name || p.project_name || p.fund_id}</h3>
                   <span style="padding:3px 8px; border-radius:6px; font-size:11px; font-weight:800; background:rgba(16, 185, 129, 0.1); color:#059669;">${p.project_status || '검토'}</span>
               </div>
               <div class="meta-grid" style="grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:12px;">
