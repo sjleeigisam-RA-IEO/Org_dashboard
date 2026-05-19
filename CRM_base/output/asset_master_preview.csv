@@ -1,0 +1,638 @@
+﻿asset_id,canonical_name,review_status,source_confidence,match_reason,source_row_count,fund_ids,address_text,pnu,asset_code,latitude,longitude,site_area,gross_floor_area,main_usage,structure
+ast_8e254bfe7df1,이지스KORIF사모부동산 투자신탁 11-2호,auto_created,0.94,same_asset_code,1,112010,"One Wood Street, London, EC2",,A112010001,,,2751.7,,오피스,
+ast_f5fc5bbdb980,London Office Ropemaker Place,auto_created,0.94,same_asset_code,4,"112019, 112020, 112021, 112022","28 Ropemaker Place, London, EC2",,A112019001,,,,37222.9,오피스,
+ast_1b09ced3f5a7,이지스 KORIF 사모부동산투자신탁 22호,auto_created,0.94,same_asset_code,1,112025,대구광역시 중구 동인동2가 50-3,,A112025004,35.8692295139493,128.601204269385,,42967.0,오피스,
+ast_a69271e859b5,PartnersGroup Real Estate Secondary 2013,auto_created,0.94,same_asset_code,3,"112026, 112030, 112032",,,A112026001,,,,,오피스복합,
+ast_bc4589571b0d,이지스글로벌사모부동산투자신탁37-1호,auto_created,0.94,same_asset_code,1,112035,"54/56 Rue la Boetie, Paris, France",,A112035001,,,,19863.0,오피스,
+ast_40cc5cccfb6c,이지스글로벌사모부동산투자신탁37-1호,auto_created,0.94,same_asset_code,1,112035,"1 Carrefour Alexander-Graham-Bell. Montreal, Canada",,A112035002,,,,78124.0,오피스,
+ast_0546ff4ee9db,이지스글로벌사모부동산투자신탁37-1호,auto_created,0.94,same_asset_code,1,112035,"810 7th Street, N.W., Washington D.C., U.S.A.",,A112035003,,,,25759.0,오피스,
+ast_39ccf4397829,이지스글로벌사모부동산투자신탁37-2호,auto_created,0.94,same_asset_code,1,112036,"54/56 Rue la Boetie, Paris, France",,A112036001,,,,19863.0,오피스,
+ast_bd3d31c699b0,이지스글로벌사모부동산투자신탁37-2호,auto_created,0.94,same_asset_code,1,112036,"1 Carrefour Alexander-Graham-Bell. Montreal, Canada",,A112036002,,,,78124.0,오피스,
+ast_9af08cf90d71,이지스글로벌사모부동산투자신탁37-2호,auto_created,0.94,same_asset_code,1,112036,"810 7th Street, N.W., Washington D.C., U.S.A.",,A112036003,,,,,오피스,
+ast_e0a9abed71bf,이지스복합쇼핑몰사모부동산투자신탁30호,auto_created,0.94,same_asset_code,1,112037,경기도 수원시 권선구 서둔동 296-77 외 2필지,,A112037001,,,,43444.0,리테일,
+ast_a86fcdf7e228,CBRE IM European Logistics Partners Fund,auto_created,0.94,same_asset_code,1,112041,,,A112041001,,,,,물류,
+ast_8237a62aef6a,이지스일반사모부동산모투자신탁43호,auto_created,0.94,same_asset_code,1,112042,서울특별시 서대문구 미근동 163,,A112042001,,,,13441.4,호텔,
+ast_a71132d3cc09,이지스모 43호,auto_created,0.94,same_asset_code,2,"112043, 112044",이지스모 43호,,A112043001,,,,,호텔,
+ast_230b908af3f7,프랑스 Orange Telecome 오피스,auto_created,0.94,same_asset_code,1,112046,"59 avenue Vladimir Ilitch Lénine, ARCEUIL",,A112046001,,,9880.0,32510.0,오피스,
+ast_2dabc46c306b,Atlanta Office Midtown I,auto_created,0.94,same_asset_code,1,112049,"754 PeachtreeStreet, Fulton County, GA 30308, Atlanta",,A112049001,,,,47575.7,오피스,
+ast_6459d1f7f3f6,Atlanta Office Midtown II,auto_created,0.94,same_asset_code,1,112049,"725 West Peachtree Street, Fulton County, GA 30308, Atlanta",,A112049002,,,,26199.5,오피스,
+ast_d0735c2d17ab,Atlanta Office Midtown 주차빌딩,auto_created,0.94,same_asset_code,1,112049,"37Fifth Street, Fulton County, GA 30308, Atlanta",,A112049003,,,,1231.62,오피스,
+ast_6b75948563b6,Prologis Targeted European Logistics Fund,auto_created,0.94,same_asset_code,2,"112050, 112125",,,A112050001,,,,,물류,
+ast_6d4a384539b2,Hines Poland Sustainable Income Fund,auto_created,0.94,same_asset_code,1,112051,,,A112051001,,,,,오피스복합,
+ast_aefd81e93778,Colony Distressed Credit Fund IV,auto_created,0.94,same_asset_code,1,112057,,,A112057001,,,,,오피스,
+ast_ebd723e072c4,Vienna Office & Retail Wien Mitte,auto_created,0.94,same_asset_code,1,112058,"A-1030 Vienna, Austria",,A112058001,,,,159761.0,오피스복합,
+ast_7a41b6b1cb32,Washington D.C. Washington Square Mezzanine Loan,auto_created,0.94,same_asset_code,1,112063,"1050 Connecticut Avenue NW, Washington, D.C.",,A112063001,,,,,오피스,
+ast_b1f5f079a694,Miami Courvoisier Center Senior Loan,auto_created,0.94,same_asset_code,1,112065,"501 Brickell Key Drive, Miami, Florida 33131",,A112065001,,,,,오피스,
+ast_c77b0263f7c6,이지스전문투자형사모부동산투자신탁77호,auto_created,0.94,same_asset_code,1,112066,,,A112066001,,,,,물류,
+ast_0e8530670140,이지스일반사모부동산투자신탁72호(운용),auto_created,0.94,same_asset_code,1,112067,"105 Gun Beach Road, Tumon, Guam 96913 U.S.A",,A112067001,,,,65226.0,호텔,
+ast_e82ed4b638d4,New York 787 Seventh Avenue Mezzanine Loan,auto_created,0.94,same_asset_code,2,"112068, 112069","787 Seventh Avenue (51st & 52nd Street), NY",,A112068001,,,,,오피스,
+ast_f2df751470ee,Nuveen UK Enhanced Debt Fund,auto_created,0.94,same_asset_code,2,"112072, 112137",7개 포트폴리오,,A112072001,,,,,오피스,
+ast_3575c5ffffe0,Dallas KPMG Plaza Senior Loan,auto_created,0.94,same_asset_code,1,112073,"2323 Ross Avenue, Dallas, Texas 75201",,A112073001,,,6609.68,,오피스,
+ast_db4e0440e038,AXA Real Estate Development Venture IV,auto_created,0.94,same_asset_code,1,112074,,,A112074001,,,,,오피스복합,
+ast_d27d2be05580,US BioMed Portfolio Senior Loan,auto_created,0.94,same_asset_code,1,112076,16개 자산 포트폴리오,,A112076001,,,,,오피스,
+ast_c738d1b8cbc2,Washington D.C. Atlantic Building Senior Loan,auto_created,0.94,same_asset_code,1,112077,"950 F Street, NW Washington, D.C. 20004",,A112077001,,,,,오피스,
+ast_12056ec44b17,NC백화점(야탑),auto_created,0.94,same_asset_code,2,"112081, 112155",경기도 성남시 분당구 야탑동 356,,A112081001,37.4108958138927,127.127459138414,,,리테일,
+ast_17db161a53b5,부실채권을 기초자산으로 하는 SPC의 출자지분 및 사채,auto_created,0.94,same_asset_code,2,"112082, 112307",,,A112082001,,,,,기타,
+ast_e5daaa392be6,Washington D.C. Woodies Building Senior Loan,auto_created,0.94,same_asset_code,3,"112092, 112102, 112103","1001 & 1025 F Street NW, Washington, D.C. 20004",,A112092001,,,,,오피스,
+ast_46a7ecc290e9,Hamburg Office Fleet II,auto_created,0.94,same_asset_code,1,112093,"Heidenkampsweg 74-76, 20097 Hamburg, Germany",,A112093001,,,,20245.0,오피스복합,
+ast_2f6ea0226f48,Brussels Office Brederode,auto_created,0.94,same_asset_code,1,112093,"Rue Brederode 13, 1000 Bruxelles, Belgium",,A112093002,,,,22394.0,오피스복합,
+ast_6edbffb304dc,Barcelona Office Fontanella,auto_created,0.94,same_asset_code,1,112093,"De Fontanella, 6-8, 08010 Barcelona, Spain",,A112093003,,,,8126.0,오피스복합,
+ast_cf0bf50af6cc,Prague Office Praga Studios,auto_created,0.94,same_asset_code,1,112093,"Pernerova 149/35, 186 00 Karlín, Czech",,A112093004,,,,12085.0,오피스복합,
+ast_fff6be9d38b9,Paris Office Louis David,auto_created,0.94,same_asset_code,1,112093,"Pernerova 149/35, 186 00 Karlín, Czech",,A112093005,,,1515.0,6001.0,오피스복합,
+ast_564945797e16,GLP U.S. Income Partners III,auto_created,0.94,same_asset_code,1,112094,,,A112094001,,,,,물류,
+ast_54efcc8cb9d2,New York Office 85 Tenth Avenue Senior Loan,auto_created,0.94,same_asset_code,3,"112095, 112097, 112098","85 10th Avenue, New York,NY, USA (NY10001)",,A112095001,,,,,오피스,
+ast_14f3dd9eb1f9,이지스일반사모부동산투자신탁100호,auto_created,0.94,same_asset_code,1,112101,서울특별시 서초구 서초동 1501-1,,A112101001,,,,147905.0,오피스,
+ast_511ba5b81207,이지스전문투자형사모투자신탁115호(재간접형),auto_created,0.94,same_asset_code,1,112107,,,A112107001,,,,,리테일,
+ast_5db71e381d95,LasVegas The Cosmopolitan Hotel Junior Mezzanine Loan,auto_created,0.94,same_asset_code,1,112108,"3708 Las Vegas Blvd, Las Vegas, NV 89109",,A112108001,,,,359265.0,호텔,
+ast_3b7fc78aeb9e,이지스글로벌전문투자형사모부동산투자신탁95호,auto_created,0.94,same_asset_code,1,112113,"2-4-1 Shiba-Koen, Minato Ward, Tokyo",,A112113001,,,,102313.0,오피스,
+ast_31d5292aa061,Newark Two Riverfront Plaza Senior B-Note Loan (Panasonic),auto_created,0.94,same_asset_code,1,112116,"Two Riverfront Plaza, Newark, NJ 07102",,A112116001,,,,,오피스,
+ast_a5d1e84522ed,이지스전문투자형사모투자신탁118호,auto_created,0.94,same_asset_code,1,112117,경상남도 창원시 진해구 제덕동 일원,,A112117001,,,,,기타,
+ast_30937d64ae67,이지스NPL전문투자형사모부동산투자신탁1-1호,auto_created,0.94,same_asset_code,1,112124,,,A112124001,,,,,특별자산,
+ast_e45b98ccfc65,이지스세운전문투자형사모부동산투자신탁110호,auto_created,0.94,same_asset_code,1,112126,서울특별시 중구 을지로4가 261-1 일원,,A112126001,,,,,오피스,
+ast_3aee5443a745,아레나스양지물류센터,auto_created,0.94,same_asset_code,4,"112127, 112128, 112129, 112130",경기도 용인시 처인구 양지면 양지리 914,,A112127001,,,,349722.0,물류센터,
+ast_55e5cc352c17,이지스전문투자형사모투자신탁137호(재간접형),auto_created,0.94,same_asset_code,1,112131,,,A112131001,,,,,특별자산,
+ast_307e1f83e0d2,Canyon Distressed Opportunity Fund II,auto_created,0.94,same_asset_code,1,112135,,,A112135001,,,,,특별자산,
+ast_3e58fbce109d,J.P. Morgan Asia-Pacific Property Fund,auto_created,0.94,same_asset_code,1,112138,,,A112138001,,,,,오피스,
+ast_6a798e5e30ee,이지스전문투자형사모투자신탁134호(태양광1호),auto_created,0.94,same_asset_code,1,112142,,,A112142001,,,,,특별자산,
+ast_4409771035d2,Ares Landmark Real Estate Partners VIII,auto_created,0.94,same_asset_code,1,112143,,,A112143001,,,,,오피스복합,
+ast_89a1de3b387b,Rockpoint Growth and Income Real Estate Fund II,auto_created,0.94,same_asset_code,1,112147,,,A112147001,,,,,오피스복합,
+ast_00df26953973,New York 1551 Broadway Mezzanine Loan,auto_created,0.94,same_asset_code,1,112150,"1551 Broadway New York, NY",,A112150001,,,,,리테일,
+ast_5f1f6f6aa534,판교 창조경제밸리 특별계획구역(I-Square),auto_created,0.94,same_asset_code,1,112152,경기도 판교 창조경제밸리 C2블록,,A112152001,,,,27383.0,주거,
+ast_2769c1d0b916,이지스부동산투자신탁145호,auto_created,0.94,same_asset_code,1,112154,세종특별시 나성동 2421-8501,,A112154001,,,,,오피스,
+ast_2ca6ba796227,이지스전문투자형사모투자신탁155호(재간접형),auto_created,0.94,same_asset_code,1,112157,,,A112157001,,,,,리테일,
+ast_b439b42b3d44,TH Real Estate China Outlet Mall Fund,auto_created,0.94,same_asset_code,1,112158,,,A112158001,,,,,오피스복합,
+ast_4b71eb552741,에스피청주일반사모부동산투자회사,auto_created,0.94,same_asset_code,1,112159,충북 청주시 홍덕구 강서 2동 일원 (청주테크노폴리스),,A112159001,,,,,리테일,
+ast_36740c106490,한남동 외국인아파트부지 신축 PF대출,auto_created,0.94,same_asset_code,1,112161,서울특별시 용산구 한남동 680-1,,A112161001,,,,,주거,
+ast_f9fbc117a7ce,Rockpoint Growth and Income Real Estate Fund II (PMAA),auto_created,0.94,same_asset_code,1,112162,,,A112162001,,,,,오피스복합,
+ast_a08672efd868,하남강변미사지구 업무4BL 3LOT,auto_created,0.94,same_asset_code,1,112163,경기도 하남시 하남미사지구 업무시설용지 4-3 (2043-3),,A112163002,,,,,오피스,
+ast_225077ef8c95,Las Vegas Cosmopolitan Hotel Mezzanine C Loan,auto_created,0.94,same_asset_code,1,112164,"3708 Las Vegas Blvd, Las Vegas, NV 89109",,A112164001,,,32374.85,576494.0,호텔,
+ast_6943582c5ffa,이지스일반사모부동산투자신탁135호,auto_created,0.94,same_asset_code,1,112165,서울특별시 중구 명동2가 33-1,,A112165001,37.5636712355787,126.985015667701,,6030.6,호텔,철근콘크리트구조
+ast_73f09d84ccfa,한남동 외국인아파트부지 재개발사업 PF대출,auto_created,0.94,same_asset_code,1,112166,서울특별시 용산구 한남동 680-1,,A112166001,,,,,주거,
+ast_cb61fdbd9aa4,Jakarta Office Treasury Tower,auto_created,0.94,same_asset_code,2,"112170, 112171","Lot 28, SudirmanCentral Business District",,A112170001,,,,5444.0,오피스,
+ast_15470fbdefbf,GLP Europe Income/Development Partners I,auto_created,0.94,same_asset_code,1,112173,,,A112173001,,,,,오피스복합,
+ast_0d9b6bc27220,Balbec InSolve Global Credit Fund III,auto_created,0.94,same_asset_code,2,"112174, 112201",,,A112174001,,,,,오피스복합,
+ast_8a2bc4422178,UBS Trumbull Property Income Fund,auto_created,0.94,same_asset_code,1,112180,,,A112180001,,,,,오피스복합,
+ast_7ff7300b8ef6,Nuveen Global Real Estate Debt Partners Fund II (UK),auto_created,0.94,same_asset_code,2,"112182, 112273",,,A112182001,,,,,오피스복합,
+ast_1b445b832a9b,Jersey City 65 Bay Street B-Note Loan,auto_created,0.94,same_asset_code,1,112183,"65 Bay Street, Jersey City, NJ",,A112183001,,,,66704.4,주거,
+ast_8058fee6124d,이지스글로벌일반사모부동산투자신탁176호,auto_created,0.94,same_asset_code,1,112188,"3-10-14 Kameari, Katsushika-ku, Tokyo",,A112188001,,,376.85,2097.63,주거,
+ast_3fe7501ac3ff,이지스글로벌일반사모부동산투자신탁176호,auto_created,0.94,same_asset_code,1,112188,"1-1-2 Ishihara, Sumida-ku, Tokyo",,A112188002,,,433.12,2176.42,주거,
+ast_4b60082f6ba4,Reglus Ootorii Airport West,auto_created,0.94,same_asset_code,1,112188,"3-2-14 Haginaka, Ota-ku, Tokyo",,A112188003,,,597.51,1637.33,주거,
+ast_1a7e1fbe1ed6,이지스전문투자형사모부동산투자신탁186호,auto_created,0.94,same_asset_code,1,112190,"경기도 남양주 다산진건지구상업3 5-1, 5-2블럭",,A112190001,,,,,주거,
+ast_ee72b3682575,Milano Office Pirelli HQ,auto_created,0.94,same_asset_code,3,"112191, 112192, 112193","Via Bicocca degliArcimboldi, 3, 20216 Milano MI, Italy",,A112191001,,,,31988.0,오피스,
+ast_72434a85fc8f,강서 마곡지구 근린생활시설 개발사업 PF대출,auto_created,0.94,same_asset_code,1,112199,서울특별시 마곡지구 지원시설용지 DS9BL,,A112199001,,,,,오피스,
+ast_5e6798e4e6be,하남 미사지구 오피스텔 개발사업 PF대출,auto_created,0.94,same_asset_code,1,112199,"경기도 하남시 하남미사지구 업무시설용지2-1,2",,A112199002,,,,,오피스,
+ast_7384f101a20f,Jersey City 65 Bay Street A2-Note Loan,auto_created,0.94,same_asset_code,1,112200,"65 Bay Street, Jersey City, NJ",,A112200001,,,,,주거,
+ast_5853b093d79c,제주 신화월드 개발사업(한화전문투자형사모부동산자투자신탁5호6M),auto_created,0.94,same_asset_code,2,"112202, 112215",안덕면 서광리 산 24,,A112202001,33.304936009,126.316605461,,,호텔,
+ast_a01ce9c12e6b,Quarterra Lennar Multifamily Venture II,auto_created,0.94,same_asset_code,1,112206,,,A112206001,,,,,주거,
+ast_c26748845c6b,시흥 센트럴푸르지오 사업장 공사대금 예금반환채권 금전채권신탁 담보대출,auto_created,0.94,same_asset_code,1,112207,대야동 693,,A112207001,37.440123361,126.788654955,,,주거,
+ast_78dab1be1bf0,New York 20 Times Square Senior Loan,auto_created,0.94,same_asset_code,1,112208,701 7th Ave New York NY,,A112208001,,,,37700.0,오피스복합,
+ast_3660f9bb2ed5,디어스판교,auto_created,0.94,same_asset_code,3,"112214, 120042, 120043",시흥동 321,,A112214001,37.413722553,127.099788999,,39783.3,주거,
+ast_f541715b8374,Barcelona Office Nestle HQ,auto_created,0.94,same_asset_code,2,"112216, 112222","Av. dels Països Catalans, 51, 08950 Esplugues de Llobregat, Barcelona, Spain",,A112216001,,,,27606.0,오피스,
+ast_9de000745f5e,US Courtyard by Marriott Portfolio Mezzanine A Loan,auto_created,0.94,same_asset_code,1,112223,1 Day Hill Road,,A112223001,,,,,호텔,
+ast_327f60afc82b,이지스글로벌일반사모부동산투자신탁201호,auto_created,0.94,same_asset_code,1,112230,"1-1,Gonoe,Ogawamachi,Uki-shi,Kumamoto-ken, Japan",,A112230001,,,,72073.4,리테일,
+ast_ec6dcc378dcf,(주)페트로코너지 발행 지분증권 및 투자대상회사(이지스페트로코너지(주))에 대한 대출채권,auto_created,0.94,same_asset_code,1,112234,"경남 양산시 상북면 효충2길13(페트로콕증기생산시설), 경기 시흥시 서울대학로 59-5 배곧가압장(연료전지",,A112234001,,,,,특별자산,
+ast_4960a4a8e607,New York Manhattan Holiday Inn B-Note,auto_created,0.94,same_asset_code,1,112236,"99 Washington Street, New York",,A112236001,,,692.31,17187.1,호텔,
+ast_3b4b047a6381,Frankfurt Office Trianon,auto_created,0.94,same_asset_code,4,"112242, 112243, 112244, 112254","Mainzer Landstraße 16, 60325, Frankfurt",,A112242001,,,,68503.0,오피스복합,
+ast_55478b8ac17a,GIDC 광명역 지식산업센터,auto_created,0.94,same_asset_code,2,"112246, 112248",경기도 광명시 광명역세권 도시지원시설용지 1-1BL,,A112246001,,,,,오피스,
+ast_7045c219d59c,Nuveen RE-PCCP U.S. Core-Plus Real Estate Debt Fund,auto_created,0.94,same_asset_code,1,112247,,,A112247001,,,,,오피스복합,
+ast_82a02139e4fd,이지스전문투자형사모투자신탁231호,auto_created,0.94,same_asset_code,1,112249,경기도 평택시 동삭동 342,,A112249001,37.0210300333097,127.095390217206,,,주거,
+ast_7a413edaa9cb,Glennmont REBS Europe Fund I,auto_created,0.94,same_asset_code,1,112250,,,A112250001,,,,,오피스복합,
+ast_403ec12279a7,New York 685 5th Avenue Mezzanine Loan,auto_created,0.94,same_asset_code,1,112256,"685 Fifth Avenue, Manhattan, NY",,A112256001,,,,2190.0,리테일,
+ast_8fdf7890a11b,판교 알파돔시티 중심상업용지 7-1BL/주차장용지17BL 오피스텔 및 근린생활시설 개발사업 선순위 PF대출,auto_created,0.94,same_asset_code,1,112259,경기 성남시 분당구 백현동 알파돔시티 중심상업용지 7-1BL/주차장용지17BL,,A112259001,,,,,주거,
+ast_fbe13b6b1e0a,Global REITs(셀렉리츠1호),auto_created,0.94,same_asset_code,4,"112260, 112261, 112262, 112263",,,A112260001,,,,,기타,
+ast_1273fe709763,이지스전문투자형사모부동산투자신탁244호,auto_created,0.94,same_asset_code,1,112264,서울 종로구 익선동 138-6,,A112264001,,,,449.6,리테일,
+ast_4b343ec79ade,Brookfield Premier Real Estate Partners Australia,auto_created,0.94,same_asset_code,2,"112267, 112269",,,A112267001,,,,,오피스,
+ast_cbc413cdfd7f,고양 일산 식사2구역 A2BL 공동주택 개발사업 선순위 PF대출채권,auto_created,0.94,same_asset_code,1,112274,경기 고양시 일산동구 식사2도시개발구역 A2블록,,A112274001,,,,,주거,
+ast_8f71aef30468,이지스제256호전문투자형사모부동산투자유한회사,auto_created,0.94,same_asset_code,1,112275,경기도 남양주시 도농동 56-7,,A112275001,,,,79563.0,주거,
+ast_5264d55d0bc9,Poland Logistics Zalando,auto_created,0.94,same_asset_code,5,"112278, 112286, 112331, 112332, 112371","J844+CX Olsztynek, Poland",,A112278001,,,,120444.0,물류센터,
+ast_28817669f116,이지스전문투자형사모부동산투자신탁227호,auto_created,0.94,same_asset_code,1,112285,용인 기흥구 고매동 271번지 일원(총 14개 필지),,A112285001,,,,112257.0,리테일,
+ast_2397942b2f4e,광주 월산현대지역주택조합 공동주택 개발사업 Bridge Loan 현대엔지니어링 채무인수 확약 후순위 대출채권,auto_created,0.94,same_asset_code,1,112293,광주광역시 남구 월산동 258번지 일,,A112293001,,,,,주거,
+ast_b4128c33bb53,New York 564 6th Avenue Mezzanine Loan,auto_created,0.94,same_asset_code,1,112295,"564 5th Avenue New York, NY 10036",,A112295001,,,,55419.0,오피스,
+ast_854de4d7b05b,이지스전문투자형사모투자신탁277호,auto_created,0.94,same_asset_code,1,112297,경기도 하남시 하남미사 자족시설용지 12-2/3BL,,A112297001,,,,,오피스,
+ast_a26d74763046,이지스글로벌전문투자형사모부동산투자신탁254호,auto_created,0.94,same_asset_code,1,112300,"Ku'damm 12, 13-15, 10719 Berlin",,A112300001,,,4197.0,22452.0,리테일,
+ast_f02b527b7861,이천 한익스프레스 물류센터 개발사업,auto_created,0.94,same_asset_code,1,112301,경기도 이천시 설성면 대죽리 545-5외 22필지 일원,,A112301001,,,,,물류,
+ast_0bb41d4e593f,GLP Japan Develoment Partners III,auto_created,0.94,same_asset_code,1,112303,,,A112303001,,,,,물류센터,
+ast_ce621c527b00,Frankfurt St.Martine Tower Mezzanine Loan,auto_created,0.94,same_asset_code,1,112304,"Franklinstraße 61-63, 60486, Frankfurt",,A112304001,,,8222.0,26139.9,오피스,
+ast_e5211e566e98,New York 564 6th Avenue Senior Loan,auto_created,0.94,same_asset_code,1,112308,"564 5th Avenue New York, NY 10036",,A112308001,,,,55419.0,오피스복합,
+ast_6b047e815c5e,해운대구 재송동 한진 CY부지 공동주택 등 개발사업 선순위 BrLoan 담보대출,auto_created,0.94,same_asset_code,1,112309,부산광역시 해운대구 재송동 856-1,,A112309001,35.1871884586445,129.119690239335,,,주거,
+ast_0bed91ccb4ec,부실채권을 기초자산으로 하는 SPC의 사채,auto_created,0.94,same_asset_code,2,"112602, 112603",,,A112318001,,,,,특별자산,
+ast_446647af6ed1,이지스전문투자형사모부동산투자신탁297호,auto_created,0.94,same_asset_code,1,112321,서울특별시 중구 산림동 190-3,,A112321001,37.5678706441565,126.995781621114,,6865.0,오피스,
+ast_713f8b4e24da,Paris Logistics Amazon,auto_created,0.94,same_asset_code,3,"112324, 112325, 112326","Base Aerienne 217, 91220 Bretigny-sur-Orge, Paris, France",,A112324001,,,,491468.0,물류,
+ast_49de163142b2,Barcelona Logistics Amazon,auto_created,0.94,same_asset_code,2,"112324, 112325","Avinguda Les Garrigue, 2 N2-N12, El Prat de Llobregat, Barcelona, Spain",,A112324002,,,,,물류센터,
+ast_1a7bbfa76876,Bristol Logistics Amazon,auto_created,0.94,same_asset_code,2,"112324, 112325","Unit 4, Central Park, Central Avenue, Severn Beach, Bristol, UK",,A112324003,,,,,물류센터,
+ast_8a013a44ba44,Dallas Office One AT&T Plaza,auto_created,0.94,same_asset_code,1,112333,"208 South Akard Street, Dallas, Texas 75201",,A112333001,,,,89725.0,오피스,
+ast_7689cf60369b,Global REITs(시그니처리츠),auto_created,0.94,same_asset_code,2,"112334, 112335",,,A112334001,,,,,기타,
+ast_baffca3def0d,Odawara Logistics Amazon FC I,auto_created,0.94,same_asset_code,3,"112338, 112339, 112340","4-Chome 5-1 Ogicho, Odawara, Kanagawa-Ken",,A112338001,,,102729.12,200687.0,물류센터,
+ast_da9f73969f26,이지스전문투자형사모부동산투자신탁312호,auto_created,0.94,same_asset_code,1,112341,서울시 서초구 서초동 1005-1외,,A112341001,,,,91597.1,오피스,
+ast_9cf4a8abd36c,평택 고덕 업무12-2-3BL PF 선순위 대출채권,auto_created,0.94,same_asset_code,1,112342,경기도 평택시 고덕면 고덕 국제화계획지구 업무용지 12-2-3BL,,A112342001,,,,,오피스,
+ast_7658ea6ef139,이지스글로벌전문투자형사모부동산투자신탁304호,auto_created,0.94,same_asset_code,1,112343,Mainzer Landstrasse 23,,A112343001,,,5622.0,44235.0,기타,
+ast_db35eead7a91,이지스코어리테일부동산투자신탁302호(운용),auto_created,0.94,same_asset_code,1,112344,인천광역시 미추홀구 용현동 648,,A112344001,,,,48618.5,리테일,
+ast_89fe99414d33,Townsend Europe Logistics Venture II Korea Feeder,auto_created,0.94,same_asset_code,1,112347,네덜란드,,A112347001,,,,,물류센터,
+ast_9c32381fc123,이지스글로벌일반사모부동산투자신탁260호(재간접형),auto_created,0.94,same_asset_code,1,112347,네덜란드,,A112347002,,,,20132.0,물류센터,
+ast_8b4c1f448d43,이지스글로벌일반사모부동산투자신탁260호(재간접형),auto_created,0.94,same_asset_code,1,112347,네덜란드,,A112347003,,,,78546.0,물류센터,
+ast_409a7de0ff61,이지스글로벌일반사모부동산투자신탁260호(재간접형),auto_created,0.94,same_asset_code,1,112347,네덜란드,,A112347004,,,,21299.0,물류센터,
+ast_5aa554bf9521,Toronto The One Senior Loan (Term Facility),auto_created,0.94,same_asset_code,1,112355,"One Bloor St. West, Toronto, Ontario",,A112355001,,,,65837.4,오피스복합,
+ast_29998629e2b9,Essen TA2 Mezzanine Loan,auto_created,0.94,same_asset_code,1,112356,"Theodor Althoff Straße 2, 45133 Essen, Germany",,A112356001,,,107781.0,,오피스,
+ast_b78f4cd39988,Tokyo Office Harumi Island Triton Square Tower W,auto_created,0.94,same_asset_code,1,112361,"1-8-8 Harumi, Chuo-ku, Tokyo",,A112361001,,,,15328.5,오피스,
+ast_329735309847,Tokyo District 23 Residential Portfolio,auto_created,0.94,same_asset_code,3,"112362, 112363, 112364",일본 도쿄도 23구 내,,A112362001,,,,6509.18,주거,
+ast_617613cdf1a8,이지스일반사모부동산투자신탁318호,auto_created,0.94,same_asset_code,1,112372,서울특별시 강남구 역삼동 831-19,,A112372001,37.4938018442295,127.030132465743,,49413.9,오피스,
+ast_ec07f6a9ae3d,New York 555 10 Avenue,auto_created,0.94,same_asset_code,1,112374,"555 10th Avenue, NY",,A112374001,,,,710907.0,주거,
+ast_ac51c5236199,New York 510 East 14th Mezzanine Loan,auto_created,0.94,same_asset_code,1,112374,"510 East 14th Streeet, NY",,A112374002,,,,251141.0,주거,
+ast_a60db5e30056,이지스 330호 (OPUS407/舊뉴욕제과빌딩),auto_created,0.94,same_asset_code,1,112379,서초동 1318-1,,A112379001,37.499001807,127.026591153,,,오피스,
+ast_4f430ef52910,New York Jackson Park CMBS Loan,auto_created,0.94,same_asset_code,1,112383,"28-40 Jackson Ave, Long Island City, NY 11101, United States",,A112383001,,,,161105.0,주거,
+ast_ff8a69b5d1fd,이지스글로벌일반사모부동산투자신탁335호,auto_created,0.94,same_asset_code,1,112401,"Piedmont, Torino, Italy",,A112401001,,,,,물류,
+ast_ead5386059f5,이지스글로벌일반사모부동산투자신탁335호,auto_created,0.94,same_asset_code,1,112401,"Lombardy, Milano, Italy",,A112401002,,,,,물류,
+ast_615cb3a61bf2,이지스글로벌일반사모부동산투자신탁335호,auto_created,0.94,same_asset_code,1,112401,"Veneto, Verona, Italy",,A112401003,,,,,물류,
+ast_179a3e793b6f,이지스글로벌일반사모부동산투자신탁335호,auto_created,0.94,same_asset_code,1,112401,"Veneto, Vicenza, Italy",,A112401004,,,,,물류,
+ast_afa982be63cc,이지스글로벌일반사모부동산투자신탁335호,auto_created,0.94,same_asset_code,1,112401,"Emilia-Romagna (Bologna), Parma, Italy",,A112401005,,,,,물류,
+ast_c70882b2b3ff,이지스글로벌일반사모부동산투자신탁335호,auto_created,0.94,same_asset_code,1,112401,"Emilia-Romagna (Bologna), Modena, Italy",,A112401006,,,,,물류,
+ast_c7e88869e4e6,이지스글로벌일반사모부동산투자신탁335호,auto_created,0.94,same_asset_code,1,112401,"Emilia-Romagna (Bologna), Bologna, Italy",,A112401007,,,,,물류,
+ast_22f2b5989936,Nuveen Real Estate U.S. Cities Multifamily Fund,auto_created,0.94,same_asset_code,1,112408,,,A112408001,,,,,주거,
+ast_3363b64de849,이지스글로벌일반사모부동산투자신탁343호(재간접형),auto_created,0.94,same_asset_code,1,112409,,,A112409001,,,,,주거,
+ast_ce2d13497cbc,New York 30 Hudson Yards Mezzanine Loan,auto_created,0.94,same_asset_code,1,112410,"30 Hudson Yards, New York",,A112410001,,,,259233.0,오피스,
+ast_9bf678a7d2ae,이지스글로벌리츠섹터포커스SMA일반사모부동산투자신탁1호,auto_created,0.94,same_asset_code,1,112411,,,A112411001,,,,,기타,
+ast_db5ed66e1434,Brookfield Super-Core Infrastructure Partners,auto_created,0.94,same_asset_code,4,"112413, 112521, 112607, 112684",,,A112413001,,,,,오피스복합,
+ast_e505ab13fd73,타이거대체전문투자형사모부동산투자신탁5호(미국캘리포니아주오렌지카운티소재상업용오피스 투자),auto_created,0.94,same_asset_code,4,"112418, 112419, 112420, 112705","2 MacArthur Place, Santa Ana, CA 92707",,A112418001,,,,,오피스,
+ast_c010b7ae021c,Global REITs(공모),auto_created,0.94,same_asset_code,14,"112425, 112426, 112427, 112429, 112430, 112432, 112434, 112435, 112436, 112437, 112438, 112439, 112440, 112441",,,A112425001,,,,,기타,
+ast_64855a473d9f,이지스리빙개발투자1의1호일반사모부동산모투자회사,auto_created,0.94,same_asset_code,1,112448,서울특별시 마포구 노고산동 56-68,,A112445001,37.55407100423,126.933676659424,,13502.2,오피스복합,
+ast_e60d36b43a64,해운대 센텀 한진CY부지 Bridge Loan 선순위 담보대출 투자,auto_created,0.94,same_asset_code,1,112449,부산광역시 해운대구 재송동 856-1,,A112449001,35.1871884586445,129.119690239335,,,주거,
+ast_efc67c29f4e8,이지스전문투자형사모부동산투자신탁362호,auto_created,0.94,same_asset_code,1,112451,경기도 부천시 소사구 소사본동 134,,A112451001,37.4789912501366,126.801210465643,,,주거,
+ast_e2910b24e5e7,이지스전문투자형사모투자신탁370호(운용),auto_created,0.94,same_asset_code,1,112456,서울특별시 용산구 원효로3가 1-159,,A112456001,37.5358895141202,126.957067441113,,16836.2,주거,
+ast_a56330cfa5d8,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,충청남도 서산시 지곡면 환성리 777-90,,A112466001,36.9215762358896,126.425895497552,,,특별자산,
+ast_e93b7e7a9f50,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,충청남도 서산시 지곡면 환성리 777-90,,A112466002,36.9215762358896,126.425895497552,,,특별자산,
+ast_47c9c0222e55,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,경상북도 의성군 비안면 장춘리 산 88,,A112466003,36.3066089117186,128.496952303132,,,특별자산,
+ast_dcf834c2a811,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,경상북도 의성군 장춘리 산88-2,,A112466004,,,,,특별자산,
+ast_b455401a3b2c,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,경상북도 의성군 장춘리 산88-2,,A112466005,,,,,특별자산,
+ast_d4676b749cd2,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,경상북도 의성군 비안면 장춘리 산 88,,A112466006,36.3066089117186,128.496952303132,,,특별자산,
+ast_fc9106a89950,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,충청북도 충주시 엄정면 율능리 853,,A112466007,37.0760160852415,127.894080644815,,,특별자산,
+ast_30ea47766ea3,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,충청북도 괴산군 감물면 구월리 산 31-3,,A112466008,36.8597080112956,127.909650142855,,,특별자산,
+ast_5393f66e7bcb,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,경상북도 영천시 북안면 효리 산82-1 외 2필지,,A112466010,,,,,특별자산,
+ast_26e82856c0dc,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,경상북도 의성군 비안면 장춘리 산 88,,A112466011,36.3066089117186,128.496952303132,,,특별자산,
+ast_9a719e7b4ca2,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,경상북도 의성군 비안면 장춘리 산 88,,A112466012,36.3066089117186,128.496952303132,,,특별자산,
+ast_de2b4769c13a,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,경상남도 고성군 삼산면 장치리 산103-16,,A112466014,,,,,특별자산,
+ast_44fa365fae5f,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,영월읍 덕포리 659-23,,A112466015,37.170482344,128.480264852,,,특별자산,
+ast_08feb99d7dd1,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,경상북도 의성군 금성면 하리 산 72,,A112466016,36.2967666428569,128.673098110073,,,특별자산,
+ast_a6d6041ea653,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,경상북도 상주시 공성면 금계리 662,,A112466017,36.2911475181018,128.074583139645,,,특별자산,
+ast_75abb17c6fb9,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,강원특별자치도 평창군 평창읍 지동리 320,,A112466018,37.4191153301571,128.469125027501,,,특별자산,
+ast_12910bc887e1,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,전라북도 남원시 대산면 신계리 산429-98,,A112466019,,,,,특별자산,
+ast_f0849461378a,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,전라북도 남원시 대산면 신계리 산53-8,,A112466020,,,,,특별자산,
+ast_6e21f7f90ac5,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,충청남도 금산군 남일면 신정리 122-1,,A112466021,36.0190286725931,127.518712932666,,,특별자산,
+ast_7f04e40d8fcc,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,강원특별자치도 정선군 북평면 남평리 271,,A112466022,37.4235798409738,128.67631178933,,,특별자산,
+ast_782f84536edf,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,경상북도 영주시 조와동 133,,A112466023,36.8687874844874,128.646087513163,,,특별자산,
+ast_aab359e1cf01,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,경북 의성군 비안면 옥연길 677-1,,A112466024,,,,,특별자산,
+ast_ff97a1f2dae8,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,경상북도 영천시 신기동 산 14,,A112466025,36.0152063251045,128.954239028964,,,특별자산,
+ast_84777620581a,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,전남 순천시 주암면 백록리 산 41-8,,A112466026,,,,,특별자산,
+ast_d19640044285,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,경상북도 의성군 비안면 옥연리 676-2,,A112466027,36.3258251862203,128.472477631152,,,특별자산,
+ast_67c6580ada7b,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,경북 의성군 다인면 삼분리 산 101-14,,A112466028,,,,,특별자산,
+ast_3c2f16286fc7,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,강원특별자치도 삼척시 도계읍 전두리 166,,A112466029,37.2383750139701,129.03008112488,,,특별자산,
+ast_b0af734b18b2,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,강원특별자치도 삼척시 도계읍 전두리 166,,A112466030,37.2383750139701,129.03008112488,,,특별자산,
+ast_879736673d32,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,강원특별자치도 삼척시 도계읍 전두리 166,,A112466031,37.2383750139701,129.03008112488,,,특별자산,
+ast_f111ae69e480,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,강원특별자치도 삼척시 도계읍 전두리 172,,A112466032,37.2389825135004,129.028550036923,,,특별자산,
+ast_df3703ad7418,이지스일반사모투자신탁377호,auto_created,0.94,same_asset_code,1,112466,경상북도 안동시 임동면 중평리 산 13-11,,A112466033,36.5757397483918,128.926076711892,,,특별자산,
+ast_86f45a70b070,이지스기회추구전문투자형사모부동산모투자신탁제2-2호,auto_created,0.94,same_asset_code,1,112470,논현동 165,,A112470001,37.507132527,127.023676426,,,오피스,
+ast_eb5a157872a8,이지스일반사모부동산투자신탁384호,auto_created,0.94,same_asset_code,1,112474,서울특별시 종로구 효제동 315-1,,A112474001,37.5719558324457,127.001778808164,,,오피스,
+ast_86bf4722d494,US Courtyard by Marriott Portfolio Rescue Capital Loan,auto_created,0.94,same_asset_code,1,112478,아래 자산별 상세 내역,,A112478001,,,,,호텔,
+ast_d7155e535335,GLP Europe Income Partners II,auto_created,0.94,same_asset_code,2,"112482, 112494",,,A112482001,,,,,오피스복합,
+ast_5c591e0531aa,Delaware Logistics Amazon FC,auto_created,0.94,same_asset_code,3,"112483, 112484, 112485","801 Boxwood Rd, Wilmington, Delaware 19804",,A112483001,,,,356186.0,물류센터,
+ast_f4fc6d89a82b,CBRE U.S. Credit Partners LP,auto_created,0.94,same_asset_code,1,112486,,,A112486001,,,,,오피스복합,
+ast_99b63c12cc89,국내 리츠,auto_created,0.94,same_asset_code,2,"112495, 300038",,,A112495001,,,,,기타,
+ast_4b619049d6d7,해외 리츠,auto_created,0.94,same_asset_code,2,"112495, 300038",,,A112495002,,,,,기타,
+ast_373f87c6b8d9,Virginia Amazon Warehouse,auto_created,0.94,same_asset_code,2,"112496, 112497","25 Strategy Drive, Fredericksburg, Stafford, VA",,A112496001,,,,,물류,
+ast_c4b09711952f,Lakeville Amazon Warehouse,auto_created,0.94,same_asset_code,2,"112496, 112497","25 Strategy Drive, Fredericksburg, Stafford, VA",,A112496004,,,,,물류센터,
+ast_b7500e646006,Kansas city Amazon Warehouse,auto_created,0.94,same_asset_code,2,"112496, 112497","25 Strategy Drive, Fredericksburg, Stafford, VA",,A112496005,,,,,물류센터,
+ast_859c72f41f43,Clarion Lion Properties Fund,auto_created,0.94,same_asset_code,1,112501,,,A112501001,,,,,오피스복합,
+ast_f7a36f9524d4,뉴멕시코주 아마존 물류센터,auto_created,0.94,same_asset_code,2,"112502, 112503","12945 Ladera Dr NW, Albuquerque, NM 87120, USA",,A112502001,,,,,물류,
+ast_2973f4cd4890,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,경상북도 성주군 초천면 고산리 산61,,A112504001,,,,,특별자산,
+ast_85753c049318,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,강원도 영월군 상동읍 수래리 194-1,,A112504002,,,,,특별자산,
+ast_92dea7abe14c,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,강원특별자치도 횡성군 횡성읍 송전리 34,,A112504003,37.5338989777653,128.025712214516,,,특별자산,
+ast_1aa61ea72a74,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,경상남도 합천군 대병면 성리 산 117,,A112504004,35.5245419484486,128.065825689792,,,특별자산,
+ast_b934e85074e0,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,경상북도 청도군 풍각면 월봉리 산 10,,A112504006,35.6179326411082,128.597267554672,,,특별자산,
+ast_feb123f425d2,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,충청남도 보령시 천북면 장은리 산157-1,,A112504007,,,,,특별자산,
+ast_ca7e42523746,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,경북 영천시 북안면 효리 산82-1,,A112504008,,,,,특별자산,
+ast_562a1580ea14,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,경상남도 의령군 화정면 상일리 산 95,,A112504009,35.265279809812,128.223195464066,,,특별자산,
+ast_d7d1561008f1,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,경상남도 의령군 화정면 상일리 산 95,,A112504010,35.265279809812,128.223195464066,,,특별자산,
+ast_c2fde5e671a6,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,경상남도 의령군 화정면 상일리 산 95,,A112504011,35.265279809812,128.223195464066,,,특별자산,
+ast_f39c0da608b1,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,충청남도 부여군 임천면 점리 산 9-1,,A112504012,36.2177411790282,126.900720890488,,,특별자산,
+ast_419a8602469e,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,경상남도 의령군 대의면 천곡리 산 50,,A112504013,35.3442385155307,128.13145723869,,,특별자산,
+ast_eadb0a414753,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,경상북도 군위군 소보면 도산리 산 89-5,,A112504014,,,,,특별자산,
+ast_2382027b08d5,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,강원특별자치도 양양군 현남면 정자리 1,,A112504015,37.9688068158425,128.740250467831,,,특별자산,
+ast_936d6d5e77d1,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,전라북도 남원시 보절면 사촌리 산18-3,,A112504016,,,,,특별자산,
+ast_cc5aa1a95e56,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,전북 남원시 보절면사촌리 산18-4,,A112504017,,,,,특별자산,
+ast_d0ca1e8f80e8,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,강원특별자치도 삼척시 원덕읍 임원리 산 255,,A112504018,37.2515487823118,129.332147940911,,,특별자산,
+ast_9b387d397c17,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,강원특별자치도 삼척시 원덕읍 임원리 산 255,,A112504019,37.2515487823118,129.332147940911,,,특별자산,
+ast_211db1826682,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,강원특별자치도 평창군 평창읍 고길리 86-1,,A112504020,37.41427388618,128.452772420877,,,특별자산,
+ast_1f7b90e8b01b,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,전라남도 고흥군 도화면 봉룡리 산221-1,,A112504021,,,,,특별자산,
+ast_d16ce1cedc18,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,전라남도 고흥군 도화면 봉룡리 산221-1,,A112504022,,,,,특별자산,
+ast_d2b681f14622,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,전라남도 고흥군 도화면 봉룡리 산221-1,,A112504023,,,,,특별자산,
+ast_dd450e43e303,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,경상북도 의성군 옥산면 입암리 28,,A112504024,36.3958113835598,128.840653974451,,,특별자산,
+ast_dd6d598a7920,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,경상남도 남해군 창선면 서대리 산 112,,A112504025,34.8754712348023,127.991272641583,,,특별자산,
+ast_3165eca06342,이지스일반사모투자신탁392호(태양광),auto_created,0.94,same_asset_code,1,112504,강원특별자치도 삼척시 하장면 장전리 138,,A112504026,37.3555640661522,128.917192862034,,,특별자산,
+ast_146d3e80165b,"신동해빌딩, NICE2사옥",auto_created,0.94,same_asset_code,3,"112514, 112515, 112516",서울특별시 영등포구 여의도동 15-3,,A112514001,37.5290232614158,126.919341371504,,19927.7,주거,
+ast_e47c4c7b3344,이지스이익참여형메자닌일반사모부동산모투자신탁제1-1호,auto_created,0.94,same_asset_code,1,112519,"경기도 오산시
+오산세교2지구
+M1BL",,A112519001,,,,209732.0,주거,
+ast_d67f522a279c,이지스이익참여형메자닌전문투자형사모부동산모투자신탁제1-2호,auto_created,0.94,same_asset_code,1,112522,경기도 안성시 죽산면 당목리 995-46,,A112522001,37.036428524605,127.415778719498,,141203.0,물류,
+ast_91b68c7952e3,이지스이익참여형메자닌일반사모부동산모투자신탁제1-3호,auto_created,0.94,same_asset_code,1,112528,인천광역시 서구 청라동 6-7,,A112528001,37.5517402489751,126.619444538305,,135268.0,주거,
+ast_42ffd5c419d7,Hawaii Sky Ala Moana Senior B-note Loan,auto_created,0.94,same_asset_code,3,"112539, 112544, 112545","1388, 1400 & Kapiolani Boulevard, Honolulu, Hawaii, United States",,A112539001,,,,96893.0,오피스,
+ast_20262366f9d0,Washington D.C. Office Midtown Center,auto_created,0.94,same_asset_code,2,"112540, 112541","1100 15th Street, NW Washington, D.C.",,A112540001,,,,80717.0,오피스,
+ast_4a78efdfb00c,이지스제200호일반사모부동산투자유한회사 2종 수익증권,auto_created,0.94,same_asset_code,1,112542,,,A112542001,,,,,주거,
+ast_2c327419d5d5,이지스유럽상장코어일반사모부동산투자신탁제89-1호,auto_created,0.94,same_asset_code,1,112543,,,A112543001,,,,,기타,
+ast_7b6e6d2a39c2,이지스제403호전문투자형사모부동산투자유한회사(운용),auto_created,0.94,same_asset_code,1,112547,경기도 용인시 처인구 남사읍 완장리 산 100,,A112547001,37.1789132679295,127.177394285134,,116130.0,물류센터,
+ast_e825b5c5a33f,KKR Real Estate Partners Europe II,auto_created,0.94,same_asset_code,1,112558,,,A112558001,,,,,오피스복합,
+ast_834d830d4c5a,Manhattan Meatpacking Plaza Senior + Mezz Loan,auto_created,0.94,same_asset_code,1,112560,44-54 Ninth Avenue,,A112560001,,,,7145.0,오피스복합,
+ast_f5220c768a13,이지스다이나믹글로벌리츠일반사모투자신탁1호,auto_created,0.94,same_asset_code,1,112564,,,A112564001,,,,,기타,
+ast_a809ac0199e2,Nuveen Global Real Estate Debt Partners Fund III (UK),auto_created,0.94,same_asset_code,1,112568,,,A112568001,,,,,오피스복합,
+ast_73e5216b97f6,이지스일반사모부동산투자신탁제426호(운용),auto_created,0.94,same_asset_code,1,112573,경기도 이천시 마장면 회억리 104,,A112573001,,,,44730.0,물류센터,
+ast_8037c5fed7e0,"Macquarie Infrasturcture Partners V, L.P",auto_created,0.94,same_asset_code,1,112576,,,A112576001,,,,,특별자산,
+ast_89a55348d21e,"Ardian Americas Infrastructure Fund V S.C.S., SICAV-RAIF",auto_created,0.94,same_asset_code,2,"112577, 112601",,,A112577001,,,,,특별자산,
+ast_5cb81c5d6700,Goldman Sachs West Street Infrastructure Partner IV,auto_created,0.94,same_asset_code,2,"112578, 112619",,,A112578001,,,,,특별자산,
+ast_bfb1c5d3da5c,이지스제420호전문투자형사모부동산투자회사(운용),auto_created,0.94,same_asset_code,1,112579,"서울 강서구 마곡동 지원시설용지 DSP1, DSP2",,A112579001,,,,,오피스복합,
+ast_74b58d4dd7c7,"Albany, Cleveland, Omaha BTS Logistics",auto_created,0.94,same_asset_code,2,"112582, 112583",,,A112582001,,,,,물류,
+ast_fe67309c28e2,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,전라남도 해남군 해남읍 복평리 995-7,,A112584001,34.5652010866154,126.538161665367,,,특별자산,
+ast_0595e7f4dccc,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경상북도 예천군 은풍면 부초리 산 44-1,,A112584002,36.7285810242574,128.450495709425,,,특별자산,
+ast_119638464007,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,충청북도 진천군 문백면 평산리 산 54,,A112584003,36.8024109737305,127.477462083436,,,특별자산,
+ast_7b19a096c506,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경상북도 의성군 옥산면 입암리 7,,A112584004,36.3958816468692,128.843147572616,,,특별자산,
+ast_9053eb385f92,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,"경상북도 상주시 내서면 노류리 산141-1, 572-1, 모서면 대포리 산20-5",,A112584005,,,,,특별자산,
+ast_71ccb419b102,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경상북도 상주시 사벌국면 용담리 산 42-1,,A112584006,36.4863553447739,128.218246150322,,,특별자산,
+ast_5ffda8a73763,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경상남도 산청군 산청읍 내수리 산 49-1,,A112584007,35.4334184893568,127.915850281403,,,특별자산,
+ast_dfe3a3dedda0,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경기도 연천군 중면 합수리 122,,A112584008,38.1678167415454,127.053402835629,,,특별자산,
+ast_49a86c456d87,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,전라남도 진도군 지산면 와우리 137-3,,A112584009,34.4273968869183,126.145784212296,,,특별자산,
+ast_181f610edf73,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,"경상북도 예천군 풍양면 홍천리 356, 357, 390",,A112584010,,,,,특별자산,
+ast_62b8dcc42c6b,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경상북도 영주시 조와동 346,,A112584011,36.8736403288388,128.626195223085,,,특별자산,
+ast_cbe24d6ebb07,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경상북도 영주시 조와동 346,,A112584012,36.8736403288388,128.626195223085,,,특별자산,
+ast_7672f8ce7f37,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경상북도 영주시 조와동 346,,A112584013,36.8736403288388,128.626195223085,,,특별자산,
+ast_dd8a51e02785,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,충청남도 서천군 서면 원두리 산 79-1,,A112584014,36.168802003673,126.581342475573,,,특별자산,
+ast_1a611af09927,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,충청남도 서천군 서면 원두리 산 79-1,,A112584015,36.168802003673,126.581342475573,,,특별자산,
+ast_b5b2968544d4,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,강원특별자치도 철원군 갈말읍 동막리 산 166-1,,A112584016,38.2394426585278,127.312215172602,,,특별자산,
+ast_fc066c8daedb,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,충청남도 천안시 동남구 동면 행암리 401-8,,A112584017,36.809790645171,127.3499868511,,,특별자산,
+ast_cb14a8027ca3,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경상남도 하동군 양보면 감당리 산 85-1,,A112584018,35.0825905534168,127.82953436791,,,특별자산,
+ast_401a2a614838,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경상남도 함안군 군북면 장지리 659,,A112584019,35.2990769768325,128.33550030293,,,특별자산,
+ast_f0b3bee2e7f8,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,강원특별자치도 화천군 사내면 용담리 602,,A112584023,38.083690321283,127.537473866627,,,특별자산,
+ast_ecbd3dcd5c8a,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경상북도 안동시 길안면 현하리 1115-19,,A112584024,36.4285769432021,128.842429666407,,,특별자산,
+ast_d1b08df14213,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경상북도 봉화군 봉성면 외삼리 793,,A112584025,36.889241582552,128.783669834076,,,특별자산,
+ast_0db517682813,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경상북도 봉화군 봉성면 외삼리 792,,A112584026,36.8889478963492,128.783858562063,,,특별자산,
+ast_5d805aade4f5,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,충청북도 제천시 봉양읍 공전리 359-1,,A112584027,37.1079018205968,128.081126710735,,,특별자산,
+ast_c22cfc14fece,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,강원특별자치도 영월군 상동읍 구래리 194-9,,A112584028,37.1678519743788,128.810643539037,,,특별자산,
+ast_eb9fef2fb0a9,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경기도 연천군 중면 합수리 661,,A112584029,38.1372807538152,127.043659295094,,,특별자산,
+ast_abdd62503393,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,전북특별자치도 남원시 대강면 송대리 3-7,,A112584030,35.37571592589,127.242014717232,,,특별자산,
+ast_57c1d0a7ef1e,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경상북도 경주시 강동면 왕신리 산 141-1,,A112584031,35.9357160588788,129.322003418445,,,특별자산,
+ast_1e2221e5e270,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경기도 포천시 자작동 595,,A112584032,37.8722224727945,127.16457033371,,,특별자산,
+ast_97b4c5674171,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경기도 가평군 설악면 천안리 21-2,,A112584034,37.6309870272374,127.492471137095,,,특별자산,
+ast_fcf7c1ac3c6e,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경기도 가평군 설악면 천안리 14-1,,A112584035,37.6322878535948,127.489939995916,,,특별자산,
+ast_dafd8d7ea9a9,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,"전라북도 익산시 밍상면 어량리 1743-14, 906-47, 906-46, 1743-13",,A112584036,,,,,특별자산,
+ast_5a8751925824,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,충청북도 진천군 문백면 계산리 359-1,,A112584037,36.7903365306719,127.400320696402,,,특별자산,
+ast_fa5c29f90c9f,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,충청북도 진천군 문백면 계산리 359-1,,A112584038,36.7903365306719,127.400320696402,,,특별자산,
+ast_71e2c09c8e7e,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,충청북도 진천군 문백면 계산리 359-1,,A112584039,36.7903365306719,127.400320696402,,,특별자산,
+ast_77ede44aa23a,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,충청남도 논산시 은진면 용산리 296,,A112584040,36.1581878121978,127.12039037846,,,특별자산,
+ast_60fde6988245,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경상북도 상주시 화동면 어산리 524-1,,A112584041,36.3956121690495,128.003694326089,,,특별자산,
+ast_af81a8c4e0a3,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,충청남도 부여군 장암면 지토리 산 26,,A112584042,36.2120171634691,126.921282150808,,,특별자산,
+ast_ebcbfb2a0ea5,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,충청남도 보령시 천북면 신죽리 645-11,,A112584043,36.486638116384,126.578829306093,,,특별자산,
+ast_4a41b5cdfb00,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,충청남도 공주시 이인면 오룡리 산 2-32,,A112584044,36.4145424469331,127.074308309811,,,특별자산,
+ast_88157f8599f7,이지스일반사모투자신탁435호(태양광),auto_created,0.94,same_asset_code,1,112584,경북 김천시 어모면 남신리 213번지,,A112584045,,,,,특별자산,
+ast_1a8c028a5e37,NY Brooklyn MF SpringCreek Tower,auto_created,0.94,same_asset_code,1,112585,,,A112585001,,,,,주거,
+ast_cb59978f02bf,이지스K-리츠일반사모부동산투자신탁,auto_created,0.94,same_asset_code,1,112587,,,A112587001,,,,,기타,
+ast_c7abc1f4627e,Toronto The One Senior Loan (Standby Facility),auto_created,0.94,same_asset_code,1,112588,"One Bloor St. West, Toronto, Ontario",,A112588001,,,,65837.4,오피스복합,
+ast_4a2315b88c84,이지스리츠포트폴리오일반사모부동산투자신탁제2호,auto_created,0.94,same_asset_code,1,112596,,,A112596001,,,,,기타,
+ast_d19b7e4dea84,East Alaxandria Multifamily The Foundry,auto_created,0.94,same_asset_code,2,"112598, 112599","2470 Madeville Ln, Alexandria, VA 22314",,A112598001,,,,,주거,
+ast_a497abe03a47,Atlanta Data Center PwC,auto_created,0.94,same_asset_code,1,112600,"2480 Rock House Road, Lithia Springs, GA, USA",,A112600001,,,,,데이터센터,
+ast_51d42aef8752,이지스NPL일반사모부동산투자신탁제3호,auto_created,0.94,same_asset_code,1,112602,,,A112602001,,,,,특별자산,
+ast_0d67a2c2d304,이지스NPL일반사모부동산투자신탁제3호,auto_created,0.94,same_asset_code,1,112602,,,A112602002,,,,,특별자산,
+ast_b24257eace32,이지스NPL일반사모부동산투자신탁제3호,auto_created,0.94,same_asset_code,1,112602,,,A112602003,,,,,특별자산,
+ast_5592bb858cba,이지스NPL일반사모부동산투자신탁제3호,auto_created,0.94,same_asset_code,1,112602,,,A112602004,,,,,특별자산,
+ast_6c274653ed0b,고양삼송데이터센터,auto_created,0.94,same_asset_code,3,"112608, 112804, 112805",경기도 고양시 덕양구 오금동 690,,A112608001,37.6655089809801,126.921217901707,,78290.1,데이터센터,
+ast_2ab8e79a6c7d,이지스하우징플랫폼일반사모부동산투자신탁제1호(운용),auto_created,0.94,same_asset_code,1,112611,서울특별시 종로구 효제동 24-3,,A112611001,37.5744791202083,127.001685173663,,3247.5,주거,
+ast_37199617fe59,이지스하우징플랫폼일반사모부동산투자신탁제1호(운용),auto_created,0.94,same_asset_code,1,112611,울산광역시 울주군 삼남읍 교동리 1682-1,,A112611003,35.5544763329287,129.135414190167,,5957.4,주거,
+ast_cd9937cc8678,와이디427피에프브이 주식회사,auto_created,0.94,same_asset_code,4,"112614, 112706, 112707, 120016",남대문로5가 395,,A112614001,37.555468504,126.975599968,,,오피스,
+ast_386a43afd1af,이지스일반사모투자신탁446호,auto_created,0.94,same_asset_code,1,112616,"서울시 서초구 서초동 1454-1, 2",,A112616001,,,,1676.9,주거,
+ast_334dab757ff6,이지스글로벌일반사모부동산투자신탁447호(재간접형),auto_created,0.94,same_asset_code,1,112617,,,A112617001,,,,,오피스복합,
+ast_e8ad3281d39e,Enlink project patton,auto_created,0.94,same_asset_code,1,112618,,,A112618001,,,,,특별자산,
+ast_d21464a17e8c,Hines US Property Partners,auto_created,0.94,same_asset_code,7,"112621, 112622, 112625, 112659, 112660, 112685, 112686",,,A112621001,,,,,오피스복합,
+ast_9dae37d9ddc4,이지스투자풀부동산일반사모부동산투자신탁11호,auto_created,0.94,same_asset_code,1,112626,,,A112626001,,,,,기타,
+ast_8485bd818e1d,이지스리츠플랫폼일반사모부동산투자신탁,auto_created,0.94,same_asset_code,1,112629,,,A112629001,,,,,기타,
+ast_508cc8fee1ee,세운5구역PFV(주) 지분,auto_created,0.94,same_asset_code,2,"112641, 112661",서울특별시 중구 산림동 190-3,,A112641001,37.5678706441565,126.995781621114,,,오피스,
+ast_71e4c2f1e642,ARES Special Opportunities Fund,auto_created,0.94,same_asset_code,1,112645,,,A112645001,,,,,오피스복합,
+ast_08c6f4e86f22,이지스솔라일반사모투자신탁제5호,auto_created,0.94,same_asset_code,1,112646,전북특별자치도 군산시 비응도동 19,,A112646001,35.9554451154159,126.526000849654,,,특별자산,
+ast_576c45603803,이지스ESG일반사모투자신탁제1호,auto_created,0.94,same_asset_code,1,112647,,,A112647001,,,,,특별자산,
+ast_3ad28593fd5f,Brookfield UK Gas Distribution Sidecar (SGN),auto_created,0.94,same_asset_code,1,112648,,,A112648001,,,,,오피스복합,
+ast_ca6affbba270,디에스PFV 2종 종류주 및 주주대여,auto_created,0.94,same_asset_code,3,"112653, 112654, 112655",,,A112653001,,,,,주거,
+ast_f58dae267b1b,이지스이익참여형메자닌일반사모부동산모투자신탁제1-4호,auto_created,0.94,same_asset_code,1,112656,서울특별시 중구 을지로1가 71-9,,A112656001,37.5665235371075,126.980140493025,,27778.5,오피스,
+ast_92af696ba01e,Chicago Student Housing Illini Tower,auto_created,0.94,same_asset_code,2,"112657, R00010","409E Chalmers St, Champaign, IL",,A112657001,,,,,주거,
+ast_e0d705ed16ed,Clarion Gables Multifamily Fund,auto_created,0.94,same_asset_code,1,112658,,,A112658001,,,,,오피스복합,
+ast_2e084a75011d,TPG Real Estate Partners IV,auto_created,0.94,same_asset_code,1,112662,,,A112662001,,,,,오피스복합,
+ast_92f36c01f427,DWS Four Columns Junior Capital Fund Ⅵ,auto_created,0.94,same_asset_code,1,112663,,,A112663001,,,,,오피스복합,
+ast_428853fb1dec,연기금글로벌리츠일반사모부동산투자신탁1호(리츠-재간접),auto_created,0.94,same_asset_code,1,112664,,,A112664001,,,,,기타,
+ast_b1bc52e1340b,Erfurt Amazon Robotics Fulfillment Center Senior Mezzanine Loan,auto_created,0.94,same_asset_code,1,112665,"Joseph-Meyer-Straße 5, 99195 Erfurt, Germany",,A112665001,,,,,물류,
+ast_55e5920ab1cd,이지스부동산론일반사모부동산투자신탁제1호,auto_created,0.94,same_asset_code,1,112666,서울특별시 영등포구 당산동5가 9-9,,A112666002,37.5344235416442,126.898718584498,,83917.1,오피스,
+ast_05fbe6b353fb,여의도 유수홀딩스부지 오피스텔 개발사업 PF대출,auto_created,0.94,same_asset_code,1,112666,서울특별시 영등포구 여의도동 25-11,,A112666003,37.5235296055244,126.925431894321,,85398.3,주거,
+ast_0d7b28ca87e1,성수동 오피스 개발사업 선순위 브릿지론,auto_created,0.94,same_asset_code,1,112666,서울특별시 성동구 성수동2가 279,,A112666005,37.5463034778237,127.062198113599,,36218.7,오피스,
+ast_9ea926bd721a,HSBC Senior UK Direct Lending Fund 2020 RAIF SICAV-S.A.,auto_created,0.94,same_asset_code,2,"112667, 112668",,,A112667001,,,,,오피스복합,
+ast_0bab0f479396,김포DC 개발사업,auto_created,0.94,same_asset_code,4,"112669, 112670, 112671, 120019",경기도 김포시 장기동 2008-6,,A112669001,37.6410154162202,126.685053277786,,47734.9,데이터센터,
+ast_431f0dbd0f1f,이지스제472호일반사모부동산투자회사의 지분증권 (재간접),auto_created,0.94,same_asset_code,3,"112672, 112673, 112674",,,A112672001,,,,,데이터센터,
+ast_c73013f20dc6,이지스랜드플랫폼일반사모부동산투자신탁제1-1호,auto_created,0.94,same_asset_code,1,112679,,,A112679001,,,,,오피스,
+ast_e3a8955cec50,이지스일반사모부동산투자신탁제468-2호(2종)의 수익증권,auto_created,0.94,same_asset_code,1,112682,,,A112682001,,,,,오피스,
+ast_fdc6a46958de,이지스일반사모부동산투자신탁제463-1호(운용),auto_created,0.94,same_asset_code,1,112693,,,A112693001,,,,,오피스,
+ast_6620a797dae4,이지스제475호부동산일반사모투자회사,auto_created,0.94,same_asset_code,1,112704,인천광역시 서구 가좌동 585-1,,A112704001,37.4873230944974,126.665423811152,,,데이터센터,
+ast_b826792d7e17,이지스 코스닥벤처 일반사모투자신탁 제1호,auto_created,0.94,same_asset_code,1,112709,,,A112709001,,,,,기타,
+ast_ac998c897426,이지스 코스닥벤처 일반사모투자신탁 제1호,auto_created,0.94,same_asset_code,1,112709,,,A112709002,,,,,기타,
+ast_4d1430b5f175,공모주,auto_created,0.94,same_asset_code,2,"112709, 112710",,,A112709003,,,,,기타,
+ast_f230c76d6975,이지스 멀티인컴 일반사모투자신탁 제1호(운용),auto_created,0.94,same_asset_code,1,112710,,,A112710001,,,,,기타,
+ast_4ffe4ac306f2,이지스 멀티인컴 일반사모투자신탁 제1호(운용),auto_created,0.94,same_asset_code,1,112710,,,A112710003,,,,,기타,
+ast_1bf3c754cc2c,LA Wilshire Grand Center Senior Loan,auto_created,0.94,same_asset_code,2,"112523, 112718","900 Wilshire Boulevard, Los Angeles, California",,A112718001,,,10941.1,187027.0,오피스,
+ast_930b2bd97924,이지스해운대일반사모부동산투자신탁제1호,auto_created,0.94,same_asset_code,1,112719,부산광역시 해운대구 중동 256-5,,A112719001,35.1695431749013,129.172356621818,,16486.0,주거,
+ast_f78917a3690c,Apollo European Principal Finance Fund IV,auto_created,0.94,same_asset_code,1,112739,,,A11273901,,,,,오피스복합,
+ast_3a760d38807f,이지스 멀티인컴 일반사모투자신탁 제2호(운용),auto_created,0.94,same_asset_code,1,112740,,,A112740001,,,,,기타,
+ast_62dfd826ce2e,"공모주, 공모주 재간접 수익증권, 전단채 등",auto_created,0.94,same_asset_code,1,112744,,,A112744001,,,,,기타,
+ast_512881449c97,이지스안산부동산일반사모모투자회사,auto_created,0.94,same_asset_code,1,112748,경기도 안산시 단원구 초지동 624-3,,A112748001,37.3036655492242,126.801340097528,,,데이터센터,
+ast_2ee9ca3d2082,글로벌주식,auto_created,0.94,same_asset_code,5,"112756, 112757, 112758, 112759, 112760",,,A112756001,,,,,기타,
+ast_3201a934e6fd,이지스일반사모부동산투자신탁제508호(운용),auto_created,0.94,same_asset_code,1,112774,,,A112774001,,,,,특별자산,
+ast_cad3ca04538a,이지스 멀티플러스 일반사모투자신탁 제1호,auto_created,0.94,same_asset_code,1,112782,,,A112782001,,,,,기타,
+ast_0f622a720449,"Partners Group Tactical Real Estate Fund, L.P.",auto_created,0.94,same_asset_code,1,112790,,,A11279001,,,,,기타,
+ast_3f19dc443d1d,"StepStone Secondary Opportunities Fund V Offshore, L.P.",auto_created,0.94,same_asset_code,3,"112795, 200012, 200013",,,A11279501,,,,,기타,
+ast_9e6791cd4061,성내동 개발부지 담보대출(브릿지론),auto_created,0.94,same_asset_code,3,"112798, 112799, 112800",서울특별시 강동구 성내동 19-1,,A112798001,37.5365185283887,127.129002233997,,,주거,
+ast_bd9afab36d26,이지스플랫폼케이디씨아이피2부동산일반사모투자회사,auto_created,0.94,same_asset_code,1,112802,경기도 고양시 덕양구 오금동 690,,A112802001,37.6655089809801,126.921217901707,,,데이터센터,
+ast_4ae20e9370ca,이지스아디안유럽인프라일반사모혼합자산투자신탁제494호(재간접),auto_created,0.94,same_asset_code,1,112803,,,A11280301,,,,,오피스복합,
+ast_6c15b114075c,용산더프라임,auto_created,0.94,same_asset_code,3,"120008, 120009, 120010",서울특별시 용산구 원효로1가 121-90,,A12000801,37.5386664485631,126.968973435096,,88.39,제1종근린생활시설,벽돌구조
+ast_db8623f6f559,이지스일반사모투자신탁534호,auto_created,0.94,same_asset_code,1,120017,,,A120017001,,,,,특별자산,
+ast_726cfaffb03f,이지스랜드플랫폼일반사모부동산투자신탁제1-2호,auto_created,0.94,same_asset_code,1,120018,경기도 고양시 일산동구 문봉동 16-21,,A120018001,37.6994876879521,126.834795689501,,48404.0,주거,
+ast_38527bcff111,이지스 성수PF재구조화 일반사모부동산투자신탁(운용),auto_created,0.94,same_asset_code,1,120037,서울특별시 성동구 성수동2가 268-2,,A120037001,37.5400947390122,127.05910603422,,,오피스,
+ast_8574787ff3ec,성수 빅트라이앵글B/L(이지스성수PF재구조화 2종 수익증권),auto_created,0.94,same_asset_code,1,120038,서울특별시 성동구 성수동2가 268-2,,A120038001,37.5400947390122,127.05910603422,2247.0,21422.2,오피스,
+ast_4e15ca971054,"부실 및 부실우려 PF사업장 대출채권, 대출, 지분 등에 투자하는 모집합투자기구(모자형 블라인드 펀드)",auto_created,0.94,same_asset_code,1,120039,,,A120039001,,,,,특별자산,
+ast_b0956b6f4029,이지스산업단지환경개선일반사모부동산투자신탁제1호,auto_created,0.94,same_asset_code,1,120044,,,A12004401,,,,24522.0,주거,
+ast_2d9d0a468e18,이지스코어에너지인프라일반사모투자신탁제1호,auto_created,0.94,same_asset_code,1,120045,,,A120045001,,,,,특별자산,
+ast_112711a59b76,이지스코어에너지인프라일반사모투자신탁제1호,auto_created,0.94,same_asset_code,1,120045,,,A120045002,,,,,특별자산,
+ast_667927af8983,이지스유에이치 주식 및 대여금,auto_created,0.94,same_asset_code,2,"120045, 120048",,,A120045003,,,,,특별자산,
+ast_b37ed37a3540,유에이치파워 대여금,auto_created,0.94,same_asset_code,2,"120045, 120048",,,A120045004,,,,,특별자산,
+ast_12a2b6420432,이지스코어에너지인프라일반사모투자신탁제1호,auto_created,0.94,same_asset_code,1,120045,,,A120045005,,,,,특별자산,
+ast_0aa438f94f1a,이지스코어에너지인프라일반사모투자신탁제1호,auto_created,0.94,same_asset_code,1,120045,,,A120045006,,,,,특별자산,
+ast_cb72bc41c781,이지스코어에너지인프라일반사모투자신탁제1호,auto_created,0.94,same_asset_code,1,120045,,,A120045007,,,,,특별자산,
+ast_70826a89921c,이지스코어에너지인프라일반사모투자신탁제1호,auto_created,0.94,same_asset_code,1,120045,,,A120045008,,,,,특별자산,
+ast_8463e9312b39,이지스 코어에너지인프라 1호 수익증권,auto_created,0.94,same_asset_code,2,"120046, 120047",,,A120046001,,,,,특별자산,
+ast_71252a1db077,수서 역세권B1-3BL B/L(이지스수서PF재구조화 2종 수익증권),auto_created,0.94,same_asset_code,1,120049,서울특별시 강남구 자곡동 198,,A120049001,37.4808879133092,127.106115873992,2997.0,41249.7,오피스,
+ast_53985b2bb7f9,수서역세권 공공주택지구 B1-3BL 개발사업 브릿지대출,auto_created,0.94,same_asset_code,1,120050,서울특별시 강남구 수서동 187,,A120050001,37.4846656060457,127.106907614329,,,주거,
+ast_e53c191931b7,이지스한국모빌리티일반사모투자신탁제1호,auto_created,0.94,same_asset_code,1,120053,,,A120053001,,,,,특별자산,
+ast_fa4bc636d98d,"금융기관 등이 보유하는 담보부 부실 대출재권, 기타 부실징후자산 및 기업관련 대출 채권 등(블라인드)",auto_created,0.94,same_asset_code,1,120056,,,A120056001,,,,,특별자산,
+ast_92f8a9036c31,이지스NPL일반사모부동산투자신탁제4호,auto_created,0.94,same_asset_code,1,120056,,,A120056002,,,,,특별자산,
+ast_720898f0f98d,이지스NPL일반사모부동산투자신탁제4호,auto_created,0.94,same_asset_code,1,120056,,,A120056003,,,,,특별자산,
+ast_d148de771db5,세원이앤씨(주)의 담보부 신주인수권부 사채,auto_created,0.94,same_asset_code,1,120057,,,A120057001,,,,,특별자산,
+ast_02e499cf476b,서울 서초구 반포동 64-1번지 일원 개발사업장 브릿지대출,auto_created,0.94,same_asset_code,2,"120059, 120060",서울특별시 서초구 반포동 64-1,,A120059001,37.5007954958528,127.001698792206,9293.5,,주거,
+ast_cd234848887e,위례Senior Living 개발사업,auto_created,0.94,same_asset_code,7,"120062, 120064, 120065, 120066, 120067, 120068, 120069",서울특별시 송파구 거여동 573-1,,A120062,37.4909684236978,127.155348089778,10136.0,,오피스복합,
+ast_6df0b80f71d4,이지스제555호부동산일반사모투자회사,auto_created,0.94,same_asset_code,1,120070,,,A120070001,,,,,오피스,
+ast_30efc1e2c218,이지스경산물류제1호일반사모부동산투자회사의 1종 종류주식,auto_created,0.94,same_asset_code,1,120076,경상북도 경산시 진량읍 문천리 903,,A120076001,35.8737058361886,128.841410657044,,,물류,
+ast_9c85ee271a7f,이지스경산로지스일반사모부동산투자신탁제1-1호(운용),auto_created,0.94,same_asset_code,1,120081,경상북도 경산시 진량읍 문천리 903,,A120081001,35.8737058361886,128.841410657044,,,물류,
+ast_0555a6694264,이지스산업단지환경개선일반사모부동산투자신탁제2호,auto_created,0.94,same_asset_code,1,120084,,,A120084001,,,,,데이터센터,
+ast_bd54043679c9,"재생에너지 플랫폼회사(""HoldCo"")에 대한 지분 및 주주대여금",auto_created,0.94,same_asset_code,1,120091,,,A120091001,,,,,특별자산,
+ast_5804290d6389,이지스용산PF재구조화일반사모부동산투자신탁제1호,auto_created,0.94,same_asset_code,1,120099,서울특별시용산구청파로125 (한강로2가15-2),,A120099001,,,,,오피스,
+ast_b4ff0851baae,이지스국내PF재구조화일반사모부동산모투자신탁제1-3호,auto_created,0.94,same_asset_code,1,120102,,,A120102,,,,,오피스,
+ast_13b334c7bf6b,이지스일반사모부동산모투자회사제517호,auto_created,0.94,same_asset_code,1,190001,서울특별시 은평구 진관동 208-8,,A190001001,37.6338531687758,126.931166905084,,,오피스복합,
+ast_34e35d0dff33,이지스부동산일반사모투자회사제543호,auto_created,0.94,same_asset_code,1,190002,경기도 성남시 분당구 야탑동 403,,A19000201,37.4148816506813,127.11873273896,,70405.93,물류,철골철근콘크리트구조
+ast_37df20b9e30d,가산 임대형기숙사개발사업,auto_created,0.94,same_asset_code,3,"190005, 190006, 190007",서울특별시 금천구 가산동 319-18,,A190005001,37.4695253453008,126.885801302328,,24522.0,주거,
+ast_deef81e70ae6,이지스제560호부동산일반사모투자회사,auto_created,0.94,same_asset_code,1,190013,경기도 포천시 가산면 정교리 272-1,,A190013001,37.811634369994,127.181813215994,24217.0,53927.3,물류,
+ast_7b9ae18fb951,이지스제572호부동산일반사모투자회사(운용),auto_created,0.94,same_asset_code,1,190014,부산광역시 강서구 송정동 1711-4,,A190014001,35.0859792610353,128.841242047229,6596.9,42055.2,데이터센터,
+ast_d139acda1f42,이지스제574호부동산일반사모투자회사(운용),auto_created,0.94,same_asset_code,1,190017,경기도하남시풍산동590-4번지,,A190017001,,,2563.6,,데이터센터,
+ast_5e6893cec720,Hines European Property Partners,auto_created,0.94,same_asset_code,2,"200001, 200002",,,A20000101,,,,,기타,
+ast_9e287de54a5c,Pantheon PGSF VII,auto_created,0.94,same_asset_code,2,"200004, 200005",,,A20000401,,,,,오피스복합,
+ast_1c98656c9aa6,Pantheon Viking Co-Invest LP,auto_created,0.94,same_asset_code,2,"200006, 200007",,,A20000601,,,,,오피스복합,
+ast_917d85fb6b02,NMP V,auto_created,0.94,same_asset_code,2,"200006, 200007",,,A20000602,,,,,오피스복합,
+ast_dc11f9b4f515,이지스글로벌세컨더리일반사모혼합자산투자신탁제1호,auto_created,0.94,same_asset_code,1,200006,,,A20000603,,,,,오피스복합,
+ast_02f2fb35a743,이지스글로벌세컨더리일반사모혼합자산투자신탁제1호,auto_created,0.94,same_asset_code,1,200006,,,A20000604,,,,,오피스복합,
+ast_beb45fea6c85,Toronto The One Super-senior Loan (Receivership Funding),auto_created,0.94,same_asset_code,1,200008,"One Bloor St. West, Toronto, Ontario",,A20000801,,,,65837.4,기타,
+ast_468704b8269a,Bridge Debt Strategies V Green Bridge LP,auto_created,0.94,same_asset_code,1,200009,,,A20000901,,,,,오피스복합,
+ast_28fa6c0336df,Blackstone Real Estate Debt Strategies V,auto_created,0.94,same_asset_code,1,200010,,,A200010001,,,,,오피스복합,
+ast_dd63895bac49,Starwood European Real Estate Debt Finance II (SEREDF II,auto_created,0.94,same_asset_code,1,200011,,,A20001101,,,,,오피스복합,
+ast_864ff5655978,TIKEHAU Capital이운용하는TIKEHAU Direct Lending 6L의수익증권,auto_created,0.94,same_asset_code,1,200014,,,A200014001,,,,,오피스복합,
+ast_8fe5e8aa8a5f,"ARDIAN Infrastructure Fund VI S.C.S., SICAV-RAIF",auto_created,0.94,same_asset_code,2,"200016, 200024",,,A200016001,,,,,특별자산,
+ast_d5b7969befe3,London Canon Bridge House Senior Loan,auto_created,0.94,same_asset_code,1,200017,"Cannon Bridge House, 25 Dowgate Hill, London, EC4R 2YA, UK",,A200017001,,,,,주거,
+ast_27e81b9a9e70,"Golub Capital Partners International 11, L.P.",auto_created,0.94,same_asset_code,1,200018,,,A200018001,,,,,특별자산,
+ast_91459997fbb8,"CollerCredit Secondaries - Opportunities Fund II-B, L.P.",auto_created,0.94,same_asset_code,1,200019,,,A200019001,,,,,특별자산,
+ast_5b15a4c23cb4,SB Holding AB 그룹의 MidCo에 대한 중순위 대출,auto_created,0.94,same_asset_code,1,200020,,,A200020001,,,,,특별자산,
+ast_4d35344df3a2,Abry Advanced Securities Fund III CV-A,auto_created,0.94,same_asset_code,1,200021,,,A200021001,,,,,특별자산,
+ast_867da725ab6d,Brookfield Super-Core Infrastructure Partners Partnership L.P.,auto_created,0.94,same_asset_code,1,200022,,,A200022001,,,,,특별자산,
+ast_1366fb10d2eb,London Office One Poultry,auto_created,0.94,same_asset_code,1,200023,London EC2R 8EJ,,A200023001,,,,16948.7,오피스,
+ast_5c3c9c2755cf,AEW Partners Real Estate Fund X,auto_created,0.94,same_asset_code,1,200025,,,A200025001,,,,,오피스복합,
+ast_4ce1803146bf,Brookfield Strategic Real Estate Partners V,auto_created,0.94,same_asset_code,1,200026,,,A200026001,,,,,특별자산,
+ast_4e0ba511036c,EQT Infrastructure VI (No.1) EUR SCSp,auto_created,0.94,same_asset_code,1,200027,,,A200027001,,,,,오피스복합,
+ast_4273abf1dd9d,미국 뉴욕 맨하탄 소재 오피스 자산 “285 Madison Avenue”의 선순위 담보대출,auto_created,0.94,same_asset_code,1,200028,"285 Madison Avenue, New York, NY 10017",,A200028001,,,,,오피스,
+ast_8c1cc2a2dfa8,PMBK가 운용하는 APAC Sustainable Infrastructure Fund LP의 수익증권,auto_created,0.94,same_asset_code,1,200029,,,A200029001,,,,,특별자산,
+ast_c8a0466da702,Coller Capital이 운용하는 크레딧 세컨더리 관련 SMA의 집합투자증권,auto_created,0.94,same_asset_code,1,200031,,,A200031001,,,,,특별자산,
+ast_931a2e2ed032,Partners Group Private Loan SICAV-SIF,auto_created,0.94,same_asset_code,1,200033,,,A200033001,,,,,특별자산,
+ast_0a0e2cc5bc0e,"MRP Buyer, LLC에 대한 선순위 대출",auto_created,0.94,same_asset_code,1,200034,,,A200034001,,,,,특별자산,
+ast_a48eb6e898c0,Nuveen C-PACE Lending Fund III,auto_created,0.94,same_asset_code,1,200035,,,A200035001,,,,,오피스복합,
+ast_cbf922113fc6,판교 제2테크노밸리 C1 C2블록 I-Square 개발,auto_created,0.94,same_asset_code,1,P00001,경기도 판교 제2테크노밸리 C1 C2블록,,AP00001001,,,,,오피스복합,
+ast_0766c7718345,동부산 테마파크 개발사업,auto_created,0.94,same_asset_code,1,P00002,부산광역시 기장군 기장읍 일원 (동부산관광단지내),,AP00002001,,,,71074.0,오피스복합,
+ast_808ae65372f4,오시리아타워레지던스PFV,auto_created,0.94,same_asset_code,1,P00003,기장읍 시랑리 736,,AP00003001,35.188692083,129.215212006,,,주거,
+ast_6d51cde27e33,해운대626피에프브이 주식회사,auto_created,0.94,same_asset_code,1,P00004,부산광역시 해운대구 우동 626-14번지 일원,,AP00004001,,,,,호텔,
+ast_a5ca6d81dcd9,서리풀개발사업,auto_created,0.94,same_asset_code,1,P00005,서울시 서초구 서초동 1005-1 외,,AP00005001,,,,91597.1,오피스복합,
+ast_b04e9cb1a044,세운5구역 개발사업,auto_created,0.94,same_asset_code,1,P00006,서울특별시 중구 산림동 190-3,,AP00006001,37.5678706441565,126.995781621114,,6865.0,오피스,
+ast_a6bdd852cbf7,부천소사 공동주택,auto_created,0.94,same_asset_code,1,P00008,경기도 부천시 소사구 소사본동 134,,AP00008001,37.4789912501366,126.801210465643,,,주거,
+ast_dfa1348ddd15,효제동 오피스텔 개발사업,auto_created,0.94,same_asset_code,1,P00009,서울특별시 종로구 효제동 315-1,,AP00009001,37.5719558324457,127.001778808164,,1484.0,주거,
+ast_fa825d8bd449,성수동 복합시설 개발사업,auto_created,0.94,same_asset_code,1,P00010,"서울특별시 성동구 성수동2가 314-10, 314-11, 314-27번지",,AP00010001,,,,21150.3,오피스,
+ast_04ce3ef6593c,오산세교2지구 M-1BL 주상복합,auto_created,0.94,same_asset_code,1,P00012,경기도 오산시 오산세교2지구 M1BL,,AP00012001,,,,209732.0,오피스복합,
+ast_d9f820e5df21,안성성은물류피에프브이 주식회사,auto_created,0.94,same_asset_code,1,P00014,경기도 안성시 원곡면 성은리 319-1,,AP00014001,,,,116845.0,물류센터,
+ast_4f18f7d89d7d,청라아트프로젝트금융투자 주식회사,auto_created,0.94,same_asset_code,1,P00015,인천광역시 서구 청라동 6-7,,AP00015001,37.5517402489751,126.619444538305,,135268.0,주거,
+ast_5e78208b8107,상봉IRD피에프브이 주식회사,auto_created,0.94,same_asset_code,1,P00019,중랑구 상봉동 109-28 외,,AP00019001,,,,50352.0,주거,
+ast_7ab6aebd7878,검단아트에스피씨 주식회사,auto_created,0.94,same_asset_code,1,P00020,"인천광역시 서구 원당동 3203-104, 105",,AP00020001,,,,,주거,
+ast_473b1c633c1b,효제동 주거용 오피스텔,auto_created,0.94,same_asset_code,1,P00022,서울특별시 종로구 효제동 21-3,,AP00022001,37.5749648866918,127.001986488863,,31057.0,주거,
+ast_2afd5e4b541f,안산시 고잔동 오피스텔 및 근린생활시설,auto_created,0.94,same_asset_code,1,P00024,경기도 안산시 단원구 고잔동 542-1,,AP00024001,37.3169443779556,126.841750810388,,,주거,
+ast_9b0de0a4a118,성수동2가오피스,auto_created,0.94,same_asset_code,2,"P00026, P00036",서울특별시 성동구 성수동2가 269-208,,AP00026001,37.5402896708952,127.060773644396,,29368.2,오피스,
+ast_cd2c32700ef7,주식회사 수서역환승센터복합개발,auto_created,0.94,same_asset_code,1,P00027,서울특별시 강남구 수서동 197,,AP00027001,37.4831955230617,127.105746554918,,516079.0,오피스,
+ast_f5307db6bfad,제주화북상업지역 주상복합용지 C1블럭 주상복합시설,auto_created,0.94,same_asset_code,1,P00028,,,AP00028001,,,,146278.0,주거,
+ast_5d4460265c4e,을지로3가 도시환경정비구역 제10지구 신축 오피스,auto_created,0.94,same_asset_code,1,P00029,서울특별시 중구 을지로3가 95-11,,AP00029001,37.5669334147399,126.991086072355,,,오피스,
+ast_7dc6f67bfd0a,은평진관동피에프브이 주식회사,auto_created,0.94,same_asset_code,1,P00033,서울특별시 은평구 진관동 208-10,,AP00033001,37.6336590160995,126.930799855583,,47745.6,오피스복합,
+ast_eb6dfd75233b,울산케이티엑스센트럴포레 주식회사,auto_created,0.94,same_asset_code,1,P00034,울산광역시 울주군 삼남읍 교동리 1682-1,,AP00034001,35.5544763329287,129.135414190167,,120656.0,주거,
+ast_d4da0b74e017,해운대센트럴PFV,auto_created,0.94,same_asset_code,1,P00035,부산광역시 해운대구 중동 256-5,,AP00035001,35.1695431749013,129.172356621818,,16486.0,주거,
+ast_10ad74d3885c,이지스엠에프용답위탁관리부동산투자회사,auto_created,0.94,same_asset_code,1,R00001,서울특별시 성동구 용답동 231,,AR00001001,37.560627357669,127.063532207307,,97570.0,주거,
+ast_45b2d66f02a6,주식회사 이지스용산청년주택위탁관리부동산투자회사,auto_created,0.94,same_asset_code,1,R00004,서울특별시 용산구 원효로3가 1-159,,AR00004001,37.5358895141202,126.957067441113,,99754.5,주거,
+ast_ee8fd3272e9f,이지스데이터센터위탁관리부동산투자회사 주식회사,auto_created,0.94,same_asset_code,1,R00006,야탑동 343-1,,AR00006002,37.413521277,127.124501255,,,데이터센터,
+ast_31b606a68614,주식회사 이지스글로벌레지던스위탁관리부동산투자회사,auto_created,0.94,same_asset_code,1,R00010,"1255 Granville Payne Ave, Brooklyn, NY",,AR00010001,,,,556137.0,주거,
+ast_7f15b2995cda,주식회사타임워크웨스트기업구조조정부동산투자회사,auto_created,0.94,same_asset_code,1,R00014,신도림동 692,,AR00014001,37.508134461,126.888206228,,,오피스,
+ast_b2fa1e20d812,용산전자상가 특별계획구역8 개발사업,auto_created,0.94,same_asset_code,1,P00039,서울특별시 용산구 한강로2가 15-2,,P00039001,37.5339125585088,126.965671508104,,14747.68,리테일,철근콘크리트구조
+ast_498605d11e47,"용답동 231, 231-1 공동주택 및 근린생활시설",auto_created,0.94,same_asset_code,1,R00016,서울특별시 성동구 용답동 231,,R00016001,37.560627357669,127.063532207307,3.0,97558.0,오피스,
+ast_ab2388583a01,이지스엔지제28호사모부동산투자유한회사,auto_created,0.98,same_pnu,1,112029,서울특별시 종로구 적선동 66,1111010700100660000,A112029001,37.5751758160478,126.973971536204,4234.9,34313.0,오피스,일반철골구조
+ast_e0ceeeeea66d,이지스일반사모부동산투자신탁61호,auto_created,0.98,same_pnu,1,112059,서울특별시 종로구 수송동 83-1,1111012400100830001,A112059001,37.5741468845465,126.981326327837,5275.0,50313.0,오피스,철근콘크리트구조
+ast_0abd1bb4f14d,이지스사모부동산투자신탁24호,auto_created,0.98,same_pnu,1,112028,서울특별시 종로구 수송동 156,1111012400101560000,A112028001,37.5727056051729,126.981110920995,2890.2,34747.2,호텔,철근콘크리트구조
+ast_6d034b8b4615,트윈트리타워,auto_created,0.98,same_pnu,3,"112024, 112530, 112531",서울특별시 종로구 중학동 14,1111012500100140000,A112024001,37.5754327198305,126.979710457626,0.0,55785.3,오피스,철근콘크리트구조
+ast_05030615115a,이지스전문투자형사모부동산투자신탁79호,auto_created,0.98,same_pnu,1,112064,서울특별시 종로구 관훈동 38,1111012800100380000,A112064001,37.5742647218634,126.984897381144,1503.2,4535.98,제2종근린생활시설,철근콘크리트구조
+ast_65084c8903f7,이지스일반사모부동산투자신탁120호,auto_created,0.98,same_pnu,3,"112114, 112115, P00007",서울특별시 종로구 관훈동 155-2,1111012800101550002,A112115001,37.5745609052271,126.983792055334,5853.22,45284.0,호텔,철골철근콘크리트구조
+ast_ffba45893a90,이지스전문투자형사모부동산투자신탁178호,auto_created,0.98,same_pnu,1,112217,서울특별시 종로구 관철동 10-2,1111013500100100002,A112217001,37.5685960116053,126.987170722428,1877.4,40836.7,오피스,철골철근콘크리트구조
+ast_1021ffe84641,이지스제81호사모부동산투자유한회사,auto_created,0.98,same_pnu,1,112071,서울특별시 종로구 종로2가 6,1111016400100010032,A112071001,37.5704597344363,126.983850229396,0.0,60600.6,오피스,철골철근콘크리트구조
+ast_0ec4e04d51cb,CGV대학로,auto_created,0.98,same_pnu,2,"112365, 112366",명륜2가 41-9,1111017100100410009,A112365001,37.583456744,126.999838625,901.8,5153.53,리테일,철근콘크리트구조
+ast_298f08960644,종로구 시니어주택 리모델링,auto_created,0.98,same_pnu,4,"112786, 112787, 112788, 112789",서울특별시 종로구 평창동 153-3,1111018300101530003,A112785001,37.6072678993231,126.970790194155,4268.0,16102.0,기타(노유자),철근콘크리트구조
+ast_a6a9c6ac830f,이지스일반사모부동산투자신탁제390호,auto_created,0.98,same_pnu,1,112493,서울특별시 중구 을지로2가 6,1114010400101920011,A112493001,37.5664364917745,126.983546501444,1130.9,122587.0,오피스,철골철근콘크리트구조
+ast_f9f67ace698d,시그니쳐타워,auto_created,0.98,same_pnu,4,"112128, 112139, 112140, 112141",서울특별시 중구 수표동 99,1114011000100990000,A112140001,37.5675231547481,126.988495073243,6937.6,99997.1,오피스,철골철근콘크리트구조
+ast_0b1f522541ea,남대문칠일피에프브이주식회사,auto_created,0.98,same_pnu,1,P00016,서울특별시 중구 남창동 9-1,1114011200100090001,AP00016001,37.5596589252731,126.978951295958,0.0,27945.0,오피스,철근콘크리트구조
+ast_1e14027b3dd6,이지스일반사모부동산투자신탁제247호,auto_created,0.98,same_pnu,1,112268,북창동 17-1,1114011300100170001,A112268001,37.563066781,126.978078499,741.5,5758.45,호텔,철근콘크리트구조
+ast_1c2682afd836,남산그린빌딩,auto_created,0.98,same_pnu,3,"112015, 112016, 112794",서울특별시 중구 남대문로5가 267,1114011800102670000,A112015001,37.5564180051823,126.976053006264,6107.1,58668.3,오피스,일반철골구조
+ast_c1a666d471cf,와이디427피에프브이 주식회사,auto_created,0.98,same_pnu,1,P00030,남대문로5가 395,1114011800103950000,AP00030001,37.555468504,126.975599968,18760.1,82856.5,오피스복합,철근콘크리트구조
+ast_0d7acd82f21d,와이디816피에프브이 주식회사,auto_created,0.98,same_pnu,1,P00037,남대문로5가 537,1114011800105370000,AP00037001,37.556295031,126.974862554,3964.89,41139.6,오피스,철근콘크리트구조
+ast_8d08ba7fb345,서울시티타워,auto_created,0.98,same_pnu,7,"112690, 112691, 112692, 112694, 112695, 112696, 112697",남대문로5가 581,1114011800105810000,A112690001,37.554319218,126.974056911,3828.4,60011.1,오피스,철골철근콘크리트구조
+ast_f27b3f22481d,이지스제104호전문투자형사모부동산투자유한회사,auto_created,0.98,same_pnu,1,112096,서울특별시 중구 남대문로5가 827,1114011800108270000,A112096001,37.5538794762656,126.975789512057,5346.1,41598.1,오피스,철골철근콘크리트구조
+ast_f7a4274b7b95,타임워크명동,auto_created,0.98,same_pnu,3,"112237, 112350, 112351",서울특별시 중구 명동1가 59-5,1114012600100590005,A112350001,37.5641673894965,126.983019790201,4240.42,37285.9,오피스,철골철근콘크리트구조
+ast_7c6e1150891a,이지스일반사모부동산투자신탁7호,auto_created,0.98,same_pnu,1,112006,서울특별시 중구 명동2가 83-5,1114012700100830005,A112006001,37.5634132530821,126.982889617801,3305.8,23834.0,리테일,철근콘크리트구조
+ast_081e3e97bfc0,서울로타워,auto_created,0.98,same_pnu,3,"112237, 112546, P00037",남산동1가 5-2,1114012800100050002,A112546001,37.560421228,126.985029599,0.0,27897.5,오피스,일반목구조
+ast_65e587cdb88a,이지스제333호일반사모부동산투자신탁(운용),auto_created,0.98,same_pnu,2,"112510, R00008",서울특별시 중구 남학동 13-2,1114014000100130002,A112510001,37.5608390054111,126.991277986505,651.1,5464.0,호텔,철골철근콘크리트구조
+ast_1b564b775426,이지스리빙개발투자1의3호일반사모부동산모투자회사,auto_created,0.98,same_pnu,1,112630,서울특별시 중구 광희동2가 238-1,1114014600102380001,A112445003,37.5641365485198,127.008720254959,647.73,5697.0,호텔,철근콘크리트구조
+ast_00af0efeae81,CJ제일제당센터,auto_created,0.98,same_pnu,3,"112475, 112476, 112477",쌍림동 292,1114014700102920000,A112475001,37.564009128,127.003293395,6479.8,80385.3,오피스,철골철근콘크리트구조
+ast_f612ab2bc96b,이든센트럴PFV,auto_created,0.98,same_pnu,1,P00032,서울특별시 중구 을지로2가 1-1,1114015000103140000,AP00032001,37.5662383080792,126.983253795851,0.0,30060.7,오피스,블록구조
+ast_7b6bab007ab5,"세운 6-3-1,2구역 도시환경정비사업 개발사업 중순위 PF대출채권 및 토지신탁 우선수익권을 기초자산으로 ?",auto_created,0.98,same_pnu,1,112276,서울특별시 중구 을지로3가 261-4,1114015500102610004,A112276001,37.5657533467533,126.994446629682,0.0,516.2,주거,일반목구조
+ast_f91a0e6d09c4,이지스일반사모부동산투자신탁제412호,auto_created,0.98,same_pnu,1,112551,서울특별시 중구 충무로3가 43,1114015800100300004,A112551001,37.5625755531273,126.992605614275,0.0,16651.0,오피스,철골철근콘크리트구조
+ast_66b67ef0d466,남산스퀘어,auto_created,0.98,same_pnu,3,"112393, 112394, 112395",충무로3가 60-1,1114015800100600001,A112393001,37.56182408,126.991058511,7942.5,75252.5,업무시설,일반철골구조
+ast_f4515d7fbee4,이지스사모부동산투자신탁26호,auto_created,0.98,same_pnu,1,112045,서울특별시 중구 저동2가 24-1,1114016100100240001,A112045001,37.5644458681787,126.990363974024,2334.9,37266.4,오피스,철근콘크리트구조
+ast_b3e2c7493abd,포포인츠바이쉐라톤조선서울명동,auto_created,0.98,same_pnu,3,"112128, 112197, 112198",저동2가 89,1114016100100890000,A112197001,37.565554365,126.989413698,1546.0,21548.7,호텔,철근콘크리트구조
+ast_f9b98820d94e,태평로빌딩,auto_created,0.98,same_pnu,4,"112104, 112400, 120026, R00011",서울특별시 중구 서소문동 111,1114016600101110000,A112104001,37.5629345471314,126.975714116906,2893.4,40001.8,오피스,철골철근콘크리트구조
+ast_bdc48caf7a58,이지스일반사모부동산투자신탁42호(운용),auto_created,0.98,same_pnu,1,112039,서울특별시 중구 정동 15-5,1114016700100150005,A112039001,37.5674960634874,126.971036652671,1270.59,39343.1,오피스,철근콘크리트구조
+ast_0b4e104eabf3,이지스전문투자형사모부동산투자신탁86호,auto_created,0.98,same_pnu,1,112078,서울특별시 중구 순화동 66,1114016800100660000,A112078001,37.5610742713585,126.972259461074,1828.4,21772.5,오피스,철골철근콘크리트구조
+ast_1cedcac681ee,이지스일반사모부동산투자신탁567호,auto_created,0.98,same_pnu,1,120074,한강로2가 15-2,1117012500100150002,A120074001,37.533959594,126.966023329,10340.5,14747.7,오피스,철근콘크리트구조
+ast_494a0b927a0f,이지스전문투자형사모투자신탁124호,auto_created,0.98,same_pnu,1,112118,서울특별시 용산구 한강로2가 191,1117012500101910000,A112118001,37.5282290161001,126.967891171455,11703.4,105492.0,제2종근린생활시설,일반철골구조
+ast_aac5427c01f4,이지스한남일반사모부동산투자신탁제418호,auto_created,0.98,same_pnu,3,112556,서울특별시 용산구 한남동 736-9,1117013100107360009,A112556003,37.5346084574803,126.997909774991,1270.8,7319.6,오피스,철골철근콘크리트구조
+ast_e67e35a668d5,이지스부동산일반사모투자회사제550호,auto_created,0.98,same_pnu,1,190008,서울특별시 용산구 갈월동 1-1,1117013300101990003,A190008001,37.5498296767843,126.972778322183,1402.1,1496.01,리테일,철근콘크리트구조
+ast_a95df9eb606a,이지스리테일부동산투자신탁194호,auto_created,0.98,same_pnu,1,112205,서울특별시 광진구 자양동 9-4,1121510500100090004,A112205001,37.5397879024759,127.066934414239,2982.5,13068.1,제2종근린생활시설,철골철근콘크리트구조
+ast_0e1977c24f8f,이지스부동산투자신탁145호,auto_created,0.98,same_pnu,1,112154,서울특별시 광진구 화양동 116-2,1121510700101160002,A112154002,37.5475975905032,127.070901997033,906.0,8543.66,주거,철근콘크리트구조
+ast_6b441332704f,이지스리빙개발투자1의2호일반사모부동산모투자회사,auto_created,0.98,same_pnu,1,112557,서울특별시 동대문구 신설동 98-24,1123010100100980024,A112445002,37.5762165490784,127.026063675578,902.8,11588.9,호텔,철골철근콘크리트구조
+ast_a24bfb7f05c2,동대문구 용두동 오피스텔 PF대출채권,auto_created,0.98,same_pnu,1,112529,서울특별시 동대문구 용두동 144-31,1123010200101440031,A112529001,37.5784139319232,127.031931986224,1048.63,11034.7,오피스,철근콘크리트구조
+ast_4f15de89cf7a,이지스센츄리온제238호전문투자형사모부동산투자유한회사,auto_created,0.98,same_pnu,1,112251,휘경동 319-12,1123010900103190012,A112251001,37.589550962,127.056832917,968.0,1352.7,숙박시설,철근콘크리트구조
+ast_db15cef3f4f1,"NH농협생명빌딩 동관(구, 임광빌딩 신관)",auto_created,0.98,same_pnu,1,112003,서울특별시 서대문구 미근동 257,1141010400102570000,A112003002,37.562748456665,126.968548217024,2310.0,29547.3,오피스,철골철근콘크리트구조
+ast_5864d2607555,"NH농협생명빌딩 서관(구, 임광빌딩 본관)",auto_created,0.98,same_pnu,1,112003,서울특별시 서대문구 미근동 267,1141010400102670000,A112003001,37.5623657232981,126.968734883497,3728.7,34608.2,제1종근린생활시설,철근콘크리트구조
+ast_a1773033ed68,이지스부동산론일반사모부동산투자신탁제1호,auto_created,0.98,same_pnu,1,112666,서울특별시 서대문구 충정로2가 67-70,1141010400103320000,A112666001,37.5651928411495,126.961391128506,1931.5,30133.2,업무시설,철골철근콘크리트구조
+ast_82ad52798bf4,KORNER 136,auto_created,0.98,same_pnu,3,"112368, 112369, 112370",서울특별시 마포구 서교동 354-1,1144012000103540001,A112368001,37.5548572163088,126.92169792981,1393.4,5408.0,오피스,철골철근콘크리트구조
+ast_b8957ff7eafe,이지스일반사모부동산투자신탁제331호(운용),auto_created,0.98,same_pnu,2,"112396, R00008",서울특별시 마포구 서교동 460-25,1144012000104600025,AR00008003,37.5562417887527,126.916827412918,3622.1,17606.6,호텔,철근콘크리트구조
+ast_cb780b5fc99f,이지스일반사모부동산투자신탁85호,auto_created,0.98,same_pnu,1,112075,서울특별시 마포구 동교동 165-4,1144012100101650004,A112075001,37.5565120479123,126.924085162129,799.3,4338.47,리테일,철근콘크리트구조
+ast_dafdb23ee054,이지스전문투자형사모부동산투자신탁242호,auto_created,0.98,same_pnu,1,112258,서울특별시 양천구 신정동 329-10,1147010100103290010,A112258001,37.5189514702369,126.870525882734,1238.3,6102.25,제1종근린생활시설,철근콘크리트구조
+ast_388548fb40a5,이지스리테일부동산투자신탁287호,auto_created,0.98,same_pnu,1,112311,서울특별시 양천구 목동 962,1147010200109620000,A112311001,37.5259733847941,126.870374833343,8531.1,24701.1,주거,철근콘크리트구조
+ast_4c0cb008edcc,이지스전문투자형사모부동산투자신탁1호,auto_created,0.98,same_pnu,1,112001,서울특별시 강서구 등촌동 689,1150010200106890000,A112001001,37.5600877291704,126.840398466906,11213.6,110027.0,리테일,일반철골구조
+ast_ecc118b65b9e,원그로브(마곡CP4 복합개발사업),auto_created,0.98,same_pnu,4,"112589, 112590, 112591, P00018",서울특별시 강서구 마곡동 769,1150010500107690000,A112589001,37.5613834809681,126.824808236559,39052.6,463204.0,오피스,철골철근콘크리트구조
+ast_d748899847d0,이지스제90호전문투자형사모부동산투자유한회사,auto_created,0.98,same_pnu,1,112086,서울특별시 구로구 신도림동 337,1153010100103370000,A112086001,37.5094186484077,126.887752654102,16529.0,25454.0,오피스,철근콘크리트구조
+ast_fbb5abbeb546,펨코제17호기업구조조정부동산투자회사의 주식,auto_created,0.98,same_pnu,3,"112680, 112681, 112683",신도림동 692,1153010100106920000,A112680001,37.508134461,126.888206228,25756.8,116587.0,오피스복합,철골철근콘크리트구조
+ast_34ff5704553e,G밸리비즈플라자,auto_created,0.98,same_pnu,4,"112017, 112479, 112480, 112481",서울특별시 구로구 구로동 188-25,1153010200101880025,A112017001,37.4848654064446,126.89634254489,12339.0,99337.9,오피스,철근콘크리트구조
+ast_30d64bd20ac8,이지스KORIF사모부동산모투자신탁18-2호,auto_created,0.98,same_pnu,1,112014,서울특별시 구로구 구로동 1258,1153010200112580000,A112013001,37.5009489898148,126.874678419041,0.0,59596.4,리테일,철근콘크리트구조
+ast_ade3b07f62ce,이지스일반사모부동산투자신탁156호,auto_created,0.98,same_pnu,1,112160,서울특별시 금천구 가산동 60-29,1154510100100600029,A112160001,37.4757133087236,126.887882337494,8247.0,69012.3,물류,철골철근콘크리트구조
+ast_292b217edb37,홈플러스금천점,auto_created,0.98,same_pnu,2,"112008, 112702",서울특별시 금천구 독산동 291-7,1154510200102910007,A112008001,37.4689098518843,126.896941825063,15996.5,59421.6,리테일,철골철근콘크리트구조
+ast_edebae8dd9a4,페어필드 메리어트 서울 메자닌 대출,auto_created,0.98,same_pnu,3,"112053, 112195, 112699",영등포동1가 143-3,1156010200101430003,A112699001,37.517018295,126.909321892,2524.8,32054.8,호텔,철근콘크리트구조
+ast_c9fa185e54af,서울시 영등포 1-3 재정비촉진지구 도시환경정비사업,auto_created,0.98,same_pnu,1,112229,영등포동7가 29-55,1156010800100290055,A112229001,37.522941316,126.909136043,321.0,1166.68,교육연구시설,일반철골구조
+ast_f9d3bfa981d3,이지스제400호부동산일반사모투자회사,auto_created,0.98,same_pnu,1,112700,여의도동 23-2,1156011000100230002,A112700001,37.524839089,126.924184875,4765.0,69974.4,오피스,철근콘크리트구조
+ast_5a2f7e7de588,오투타워,auto_created,0.98,same_pnu,2,"112237, 112238",서울특별시 영등포구 여의도동 23-6,1156011000100230006,A112237001,37.5234013996711,126.92345548522,3176.0,43835.3,오피스,철근콘크리트구조
+ast_5415be68b895,이지스일반사모부동산투자신탁59호,auto_created,0.98,same_pnu,1,112055,서울특별시 영등포구 여의도동 25,1156011000100250000,A112055001,37.524077334151,126.926023745924,1388.0,14861.5,오피스,철근콘크리트구조
+ast_bf4c8b88162d,홈플러스영등포점,auto_created,0.98,same_pnu,2,"112008, 112702",서울특별시 영등포구 문래동3가 55-3,1156012100100550003,A112008004,37.5181793961526,126.895909650533,17190.1,66142.2,리테일,철근콘크리트구조
+ast_9882566370ea,피에스KORIF사모부동산투자신탁8호,auto_created,0.98,same_pnu,1,112002,서울특별시 관악구 신림동 1641-2,1162010200116410002,A112002001,37.4838471968948,126.930186092404,2873.8,37758.8,리테일,철골철근콘크리트구조
+ast_8e171a86dd72,The-K호텔서울 부지 재개발사업,auto_created,0.98,same_pnu,1,190009,서울특별시 서초구 양재동 202,1165010200102020000,A190009001,37.466726447809,127.032666012317,104618.3,98820.8,문화및집회시설,일반철골구조
+ast_49c80f909a10,반포이수화학본사사옥,auto_created,0.98,same_pnu,4,"112270, 112271, 112272, 112292",서울특별시 서초구 반포동 112-4,1165010700101120004,A112270001,37.4980900724202,126.993679055551,2155.0,12184.1,오피스,철근콘크리트구조
+ast_59c516db52af,OPUS459(구. 백암빌딩),auto_created,0.98,same_pnu,4,"112421, 112422, 112423, 112424",서울특별시 서초구 서초동 1303-34,1165010800113030034,A112421001,37.5031021280481,127.024422676264,2000.0,27052.8,오피스,철골철근콘크리트구조
+ast_ffdc4b68ae22,OPUS407,auto_created,0.98,same_pnu,4,"112375, 112376, 112377, 112378",서울특별시 서초구 서초동 1318-1,1165010800113180001,A112375001,37.4989862330624,127.026591027893,673.7,6353.3,제1종근린생활시설,철골철근콘크리트구조
+ast_5642a1753971,강남구 역삼동 오피스텔 및 근린생활시설 신축사업,auto_created,0.98,same_pnu,1,112252,서울특별시 강남구 역삼동 605-17,1168010100106050017,A112252001,37.5066974374472,127.032782384035,1074.0,12986.2,오피스,철근콘크리트구조
+ast_41eea664ba67,센터필드,auto_created,0.98,same_pnu,5,"112209, 112210, 112211, 112212, 112241",서울특별시 강남구 역삼동 676,1168010100106760000,A112209001,37.5031706018767,127.041491481751,18489.7,239188.0,오피스,철골철근콘크리트구조
+ast_8c20507451c1,서울인터내셔널타워(SI타워),auto_created,0.98,same_pnu,2,"120094, R00015",역삼동 679-4,1168010100106790004,AR00015001,37.501610831,127.037716435,3587.2,66202.4,오피스,철골철근콘크리트구조
+ast_75dbb04833c2,선릉위워크타워,auto_created,0.98,same_pnu,2,"112499, 112500",역삼동 706,1168010100107060000,A112499001,37.502491702,127.043563097,1586.6,19646.0,오피스,철골철근콘크리트구조
+ast_6570582962a1,이지스부동산론일반사모부동산투자신탁제1호,auto_created,0.98,same_pnu,1,112666,역삼동 706-1,1168010100107060001,A112666004,37.502482868,127.043952364,2132.4,34460.7,업무시설,철골철근콘크리트구조
+ast_2a7e5a297683,역삼AP타워,auto_created,0.98,same_pnu,3,"112561, 112562, 112563",역삼동 719-1,1168010100107190001,A112561001,37.501500385,127.040414401,1452.0,14457.6,업무시설,철골철근콘크리트구조
+ast_018e4ec1c5ce,더강남832PFV의 지분증권 및 대출채권,auto_created,0.98,same_pnu,2,"112052, 112450",서울특별시 강남구 역삼동 832-2,1168010100108320002,A112052001,37.4926914132066,127.030659320846,2954.5,24515.0,오피스,철근콘크리트구조
+ast_cb4bea954c3e,청담펜트하우스 PFV,auto_created,0.98,same_pnu,1,P00021,서울특별시 강남구 청담동 129,1168010400101290000,AP00021001,37.5260429363184,127.054225708232,2588.3,20623.6,주거,철골철근콘크리트합성구조
+ast_aa15d8376b64,이지스제371호전문투자형사모부동산투자회사(운용),auto_created,0.98,same_pnu,1,112461,서울특별시 강남구 삼성동 3-1,1168010500100030001,A112461001,37.5174147257174,127.044101400866,1232.3,1232.3,주거,철근콘크리트구조
+ast_9ebb82a3752a,이지스전문투자형사모부동산투자신탁184호,auto_created,0.98,same_pnu,1,112196,서울특별시 강남구 삼성동 112-5,1168010500101120005,A112196001,37.5102953151715,127.045338790846,0.0,28602.8,호텔,철근콘크리트구조
+ast_d85caac38985,이지스일반사모부동산투자신탁279호,auto_created,0.98,same_pnu,1,112305,서울특별시 강남구 삼성동 154-8,1168010500101540008,A112305001,37.5098835983429,127.057517938075,1492.7,9401.74,오피스,철골철근콘크리트구조
+ast_6719a0928bcf,V플렉스,auto_created,0.98,same_pnu,3,"112128, 112144, 112146",서울특별시 강남구 삼성동 157-27,1168010500101570027,A112144001,37.5075219504191,127.056749625323,1691.4,26839.1,오피스,철골철근콘크리트구조
+ast_1d190ac3793a,캐나다 물류중개업체 인수 관련 국내 SPC 대출채권,auto_created,0.98,same_pnu,1,112708,삼성동 159,1168010500101590000,A112708001,37.51023309,127.058596939,0.0,107933.0,업무시설,철골철근콘크리트구조
+ast_1756dd921c4c,이지스코어오피스공모부동산투자신탁제117호,auto_created,0.98,same_pnu,1,112110,서울특별시 강남구 대치동 945-27,1168010600109450027,A112110001,37.5074671703469,127.061283376296,915.3,11349.6,오피스,철골철근콘크리트구조
+ast_61e554ab263a,이지스사모부동산투자신탁35호,auto_created,0.98,same_pnu,1,112038,서울특별시 강남구 대치동 948,1168010600109480000,A112038001,37.5061935305982,127.063728035157,8267.1,47721.2,오피스,철골철근콘크리트구조
+ast_0eebe3722ecd,이지스KORIF사모부동산투자신탁16호,auto_created,0.98,same_pnu,1,112012,서울특별시 강남구 대치동 1004,1168010600110040000,A112012001,37.5070703266535,127.066936103562,5431.6,43798.6,오피스,철근콘크리트구조
+ast_3e8fec277620,이지스전문투자형사모부동산투자신탁144호(운용),auto_created,0.98,same_pnu,1,112185,서울특별시 강남구 신사동 533-3,1168010700105330003,A112185001,37.5221787451402,127.022430544855,482.9,1838.66,오피스,철근콘크리트구조
+ast_4f5ea25eb396,이지스일반사모부동산투자신탁제291호,auto_created,0.98,same_pnu,1,112322,서울특별시 강남구 신사동 543,1168010700105430000,A112322001,37.5201806890901,127.023946529811,728.2,2404.65,제2종근린생활시설,철근콘크리트구조
+ast_9a70bf0b0afd,가로골목,auto_created,0.98,same_pnu,3,"112153, 112792, 112793",서울특별시 강남구 신사동 545-18,1168010700105450018,A112153001,37.5204244504764,127.023286401923,725.6,2346.77,제1종근린생활시설,철근콘크리트구조
+ast_a39455191564,이지스 KORIF 사모부동산투자신탁 22호,auto_created,0.98,same_pnu,1,112025,서울특별시 강남구 논현동 70-6,1168010800100700006,A112025003,37.5196297916596,127.034047150685,2245.5,13000.1,오피스,일반철골구조
+ast_31a8b3ea9c30,두산빌딩,auto_created,0.98,same_pnu,2,"112524, 112525",논현동 105-7,1168010800101050007,A112524001,37.519381899,127.035197464,3757.0,31877.8,오피스,철골철근콘크리트구조
+ast_edd6f6c3e3e5,이지스전문투자형사모부동산투자신탁6호,auto_created,0.98,same_pnu,1,112005,서울특별시 강남구 논현동 119,1168010800101190000,A112005001,37.5174929279988,127.040655964645,2986.9,44410.5,오피스,철골철근콘크리트구조
+ast_56e6a7e4b54b,이지스부동산투자신탁280호,auto_created,0.98,same_pnu,1,112298,서울특별시 송파구 잠실동 183-12,1171010100101830012,A112298001,37.5109294236459,127.083643638518,749.2,7628.0,오피스,철근콘크리트구조
+ast_f2e00117756f,B스퀘어,auto_created,0.98,same_pnu,4,"112649, 112650, 112651, 112652",범천동 863-1,2623010400108630001,A112649001,35.149715457,129.058779481,3693.9,14581.8,오피스,철골철근콘크리트구조
+ast_541ce8b9c351,이지스전문투자형사모투자신탁285호,auto_created,0.98,same_pnu,1,112306,부산광역시 동래구 온천동 180-14,2626010800101800014,A112306001,35.2181113387091,129.082588143232,2543.0,34730.9,오피스,철근콘크리트구조
+ast_39df6f35071a,신라스테이해운대,auto_created,0.98,same_pnu,3,"112048, 112677, 112678",부산광역시 해운대구 우동 629-6,2635010500106290006,A112048001,35.159763310997,129.158728364903,2776.0,29620.6,호텔,철골철근콘크리트구조
+ast_ecd738fc0c31,홈플러스센텀시티점,auto_created,0.98,same_pnu,2,"112008, 112702",부산광역시 해운대구 우동 1499,2635010500114990000,A112008003,35.1708980356299,129.133752556126,17289.8,59650.9,리테일,철근콘크리트구조
+ast_6fbb0d555e87,이지스일반사모투자신탁435호(태양광),auto_created,0.98,same_pnu,1,112584,대저1동 1619,2644010100116190000,A112584020,35.209673248,128.954717074,0.0,189.0,판매시설,철근콘크리트구조
+ast_afb26eedbbe3,이지스제114호전문투자형사모부동산투자유한회사,auto_created,0.98,same_pnu,1,112109,부산광역시 강서구 송정동 1715-2,2644010900117150002,A112109001,35.0850630397063,128.840948002681,0.0,24387.9,제2종근린생활시설,철근콘크리트구조
+ast_25e1a4cc6c6f,부산 수영구 광안동 98-1외 7필지 오피스텔 PF대출,auto_created,0.98,same_pnu,1,112163,부산광역시 수영구 광안동 98-1,2650010400100980001,A112163001,35.1649670714848,129.115156918974,2126.9,32799.3,오피스,철근콘크리트구조
+ast_b6574cf0dc13,"부산시 사상구 괘법동 오피스텔, 도시형생활주택 및 근린생활시설 신축사업",auto_created,0.98,same_pnu,1,112252,부산광역시 사상구 괘법동 564-8,2653010400105640008,A112252002,35.161922930757,128.982295559015,1658.2,22920.8,주거,철근콘크리트구조
+ast_1c2b0c57e8b7,이지스티디에이치제32호사모부동산투자유한회사,auto_created,0.98,same_pnu,1,112033,대구광역시 중구 문화동 11-1,2711012100100110001,A112033001,35.8709645189052,128.597706863321,7615.5,86892.5,호텔,일반철골구조
+ast_44e362fded27,이지스리테일제55호사모부동산투자유한회사,auto_created,0.98,same_pnu,1,112054,인천광역시 중구 항동7가 76-2,2811011800100760002,A112054003,37.4480138692455,126.622194743796,20486.0,49778.2,리테일,철근콘크리트구조
+ast_b9718f8cb5fe,아레나스영종,auto_created,0.98,same_pnu,3,"112235, 112320, 112323",인천광역시 중구 운북동 1328-1,2811014800113280001,A112235001,37.510660397356,126.497846754351,0.0,186038.0,물류,경량철골구조
+ast_bd308f82a818,잭니클라우스GC 단독주택부지 담보신탁 1순위 우선수익권 담보부대출,auto_created,0.98,same_pnu,1,112255,인천광역시 연수구 송도동 117-91,2818510600101170091,A112255001,37.3803712229872,126.626001940722,459.7,454.21,주거,철근콘크리트구조
+ast_701635aba4fc,송도 센토피아더샵 공동주택 및 근린생활시설 개발사업 PF Refinancing 대출채권,auto_created,0.98,same_pnu,1,112373,인천광역시 연수구 송도동 308-1,2818510600103080001,A112373001,37.4120749239746,126.612069865029,0.0,15887.3,주거,철근콘크리트구조
+ast_ed6a011723e2,남동테크노타워 지식산업센터 개발사업 PF대출,auto_created,0.98,same_pnu,1,112184,인천광역시 남동구 고잔동 648-1,2820011100106480001,A112184001,37.4004453243097,126.70765190236,5055.6,39881.1,물류,프리케스트콘크리트구조
+ast_ec5c572ce8a7,주식회사 이지스레지던스위탁관리부동산투자회사,auto_created,0.98,same_pnu,1,R00008,인천광역시 부평구 십정동 216,2823710200102160000,AR00008001,37.4784053934111,126.69562913808,4094.0,475458.0,주거,철근콘크리트구조
+ast_b5b13984b5c2,부평 더샵센트럴시티 공공지원민간임대주택,auto_created,0.98,same_pnu,5,"112149, 112169, 112172, 112175, 112181",십정동 630,2823710200106300000,A112149001,37.474635711,126.69874579,161812.4,756766.0,주거,철근콘크리트구조
+ast_0920c9043185,인천석남물류센터,auto_created,0.98,same_pnu,4,"112500, 112751, 120029, 120030",인천광역시 서구 석남동 224-8,2826011000102240008,A112751001,37.5080672604298,126.663419874331,54193.0,299308.0,물류,프리케스트콘크리트구조
+ast_f341642853ae,인천 가좌동 오피스텔 선순위 PF대출채권,auto_created,0.98,same_pnu,1,112213,인천광역시 서구 가좌동 212-8,2826011200102120008,A112213001,37.4928049192366,126.679786160168,2170.8,14903.5,오피스,철근콘크리트구조
+ast_835e9f381ae3,이지스아레나스전문투자형사모부동산투자신탁4호,auto_created,0.98,same_pnu,1,112299,인천광역시 서구 오류동 1549-4,2826011900115490004,A112299001,37.5636469634101,126.603122745631,15197.1,85621.4,물류,철근콘크리트구조
+ast_d2b291b01082,이지스전문투자형사모부동산투자신탁290호(운용),auto_created,0.98,same_pnu,1,112314,월전동 913-1,2920014600109130001,A112314001,35.130892846,126.774188403,0.0,1605.2,공장,일반철골구조
+ast_0d034e04e91f,이지스코어리테일부동산투자신탁302호(운용),auto_created,0.98,same_pnu,1,112344,대전광역시 중구 문화동 1-17,3014011600100010017,A112344002,36.3203754658686,127.407663141452,11078.0,38782.1,리테일,철근콘크리트구조
+ast_e547d4e384c5,대전 둔산파이낸스빌딩,auto_created,0.98,same_pnu,3,"112778, 112779, 112780",대전광역시 서구 둔산동 1413,3017011200114130000,A112778001,36.3510100566816,127.387126085862,1988.3,36207500.0,오피스,철골철근콘크리트구조
+ast_9e54163d0926,롯데마트대덕점,auto_created,0.98,same_pnu,2,"112054, 112592",대전광역시 유성구 관평동 887,3020014600108870000,A112592001,36.4268313379494,127.386794099901,33140.3,171315.0,리테일,철근콘크리트구조
+ast_74fc8d406c81,이지스일반사모부동산투자신탁14호,auto_created,0.98,same_pnu,1,112011,울산광역시 남구 달동 1247-1,3114010500112470001,A112011001,35.5374856528665,129.329257188218,1304.5,18033.2,호텔,철근콘크리트구조
+ast_a422589fe744,이지스제92호사모부동산투자유한회사,auto_created,0.98,same_pnu,1,112080,울산광역시 남구 삼산동 1569-1,3114010600115690001,A112080001,35.5419626590254,129.338828766319,7114.8,62861.2,리테일,철골철근콘크리트구조
+ast_c644d28176a4,㈜동방 보유 유엔씨티㈜ 대출채권 매입,auto_created,0.98,same_pnu,3,"112687, 112688, 112689",황성동 830,3114011400108300000,A112687001,35.458362389,129.363894699,0.0,7113.14,운수시설,철근콘크리트구조
+ast_f0700d6e9655,홈플러스동수원점,auto_created,0.98,same_pnu,2,"112008, 112702",경기도 수원시 팔달구 인계동 1045,4111514100110450000,A112008002,37.2627396158881,127.030124186812,12151.0,54975.6,리테일,철근콘크리트구조
+ast_90a7471e6e20,수원 이비스 앰배서더 수원 호텔 후순위 담보대출,auto_created,0.98,same_pnu,1,112294,경기도 수원시 팔달구 인계동 1132-12,4111514100111320012,A112294001,37.259179487206,127.031348877688,3364.0,39950.8,호텔,철근콘크리트구조
+ast_9b294af79693,광교 아이파크 주상복합 내 판매시설 선순위 담보 대출채권,auto_created,0.98,same_pnu,1,112296,경기도 수원시 영통구 원천동 593,4111710200105930000,A112296001,37.2737264883859,127.060945366876,0.0,152.277,리테일,철근콘크리트구조
+ast_c6d650564064,"이지스411호(200호 재간접, 디어스 판교)",auto_created,0.98,same_pnu,2,R00008,시흥동 321,4113111500103210000,AR00008005,37.413722553,127.099788999,22591.5,39904.1,업무시설,철골철근콘크리트구조
+ast_ea83005ce057,이지스제415호일반사모부동산투자신탁,auto_created,0.98,same_pnu,1,112559,시흥동 322,4113111500103220000,A112559001,37.413434294,127.098394925,13829.9,60021.0,오피스복합,철근콘크리트구조
+ast_578a66328a1e,판교아이스퀘어E동,auto_created,0.98,same_pnu,4,"112535, 112536, 112537, 112538",시흥동 339,4113111500103390000,A112535001,37.412013876,127.097831081,0.0,20759.0,오피스복합,철근콘크리트구조
+ast_19e5bba5f247,이지스 KORIF 사모부동산투자신탁 22호,auto_created,0.98,same_pnu,1,112025,경기도 성남시 분당구 수내동 6-3,4113510200100060003,A112025001,37.3794234903221,127.117027129071,1233.5,15915.9,오피스,철근콘크리트구조
+ast_dd22d6a3cb4f,티맥스수내타워,auto_created,0.98,same_pnu,2,"112517, 112518",경기도 성남시 분당구 수내동 6-4,4113510200100060004,A112517001,37.3792367831701,127.116766922185,1233.5,16578.7,오피스,철골콘크리트구조
+ast_af02aac59036,롯데백화점분당점,auto_created,0.98,same_pnu,4,"112490, 112491, 112492, 112498",경기도 성남시 분당구 수내동 14,4113510200100140000,A112490001,37.3784609106675,127.114294409918,10622.8,79633.9,리테일,철골철근콘크리트구조
+ast_1063cfdde684,이지스비즈성장공간플랫폼일반사모부동산투자신탁제1-2호,auto_created,0.98,same_pnu,1,112586,경기도 성남시 분당구 수내동 22-2,4113510200100220002,A112586001,37.377109662205,127.111078636309,1384.2,9914.61,오피스,철골콘크리트구조
+ast_7a35fc542c9f,이지스데이터센터위탁관리부동산투자회사 주식회사,auto_created,0.98,same_pnu,1,R00006,야탑동 343-1,4113510700103430001,AR00006001,37.413521277,127.124501255,3588.3,14533.4,방송통신시설,일반철골구조
+ast_03afde6453fc,탑빌딩,auto_created,0.98,same_pnu,2,"112025, 112597",경기도 성남시 분당구 야탑동 361-4,4113510700103610004,A112025002,37.412566415335,127.129849963107,1349.3,12182.0,오피스,철근콘크리트구조
+ast_156c375e17dc,삼성중공업판교R&D센터,auto_created,0.98,same_pnu,2,"120058, R00013",경기도 성남시 분당구 삼평동 615,4113510900106150000,AR00013001,37.404158966954,127.098927114743,24661.49,57460.3,기타(교육),철골철근콘크리트구조
+ast_d6b3682a1147,이지스실물우선주일반사모부동산투자신탁제1호,auto_created,0.98,same_pnu,1,200030,경기도 성남시 분당구 백현동 534,4113511000105340000,A200030001,37.3954596631609,127.112129752364,13352.1,197237.0,오피스,철골철근콘크리트합성구조
+ast_eb058774b3aa,이지스전문투자형사모부동산투자신탁133호,auto_created,0.98,same_pnu,1,112148,경기도 성남시 분당구 백현동 539,4113511000105390000,A112148001,37.3933988150284,127.110688616677,2996.0,29958.3,자동차관련시설,일반철골구조
+ast_d2b8095c4603,이지스전문투자형사모부동산투자신탁1호,auto_created,0.98,same_pnu,1,112001,경기도 안양시 만안구 안양동 627-287,4117110100106270287,A112001002,37.3966156352493,126.922801205467,3799.0,25415.7,리테일,철근콘크리트구조
+ast_03b867e56a1e,평촌G스퀘어,auto_created,0.98,same_pnu,3,"112085, 112089, 112090",경기도 안양시 동안구 호계동 1039,4117310400110390000,A112085001,37.3902916085713,126.950631862863,13467.5,238248.0,리테일,철근콘크리트구조
+ast_223bae23bf93,뉴코아아울렛(평촌),auto_created,0.98,same_pnu,2,"112081, 112155",경기도 안양시 동안구 호계동 1039-3,4117310400110390003,A112081002,37.3892636743481,126.951236487881,5745.9,70154.7,리테일,철근콘크리트구조
+ast_6526b194cc13,이지스카스퀘어NPL일반사모부동산투자신탁,auto_created,0.98,same_pnu,1,112720,경기도 부천시 오정구 삼정동 366-1,4119610700103660001,A112720001,37.523086805462,126.761660788164,13329.6,87314.2,자동차관련시설,철근콘크리트구조
+ast_5eda17cd5cf3,이지스광명역세권전문투자형사모부동산투자신탁140호,auto_created,0.98,same_pnu,1,112136,경기도 광명시 일직동 508-4,4121010600105080004,A112136001,37.4209325818682,126.881860407082,2090.2,21739.2,오피스,철근콘크리트구조
+ast_2652e06dfeaa,평택아디다스물류센터,auto_created,0.98,same_pnu,2,"112500, 112604",도일동 1175-3,4122010600111750003,A112500002,37.037935439,127.106727114,63516.7,50825.9,물류센터,철근콘크리트구조
+ast_30c376cd6730,이지스312호 수익증권,auto_created,0.98,same_pnu,3,"112532, 112533, 112534",사동 1422-15,4127110300114220015,A112532001,37.284593483,126.849272116,251.9,91597.1,공동주택,철근콘크리트구조
+ast_53a61027bef6,이지스일반사모투자신탁87호,auto_created,0.98,same_pnu,1,112100,경기도 고양시 덕양구 동산동 370,4128111200103700000,A112100001,37.6470520789327,126.894685838314,90999.9,364806.0,리테일,일반철골구조
+ast_6e943e2850e9,고양시 화정동 아이씨티일산,auto_created,0.98,same_pnu,1,112194,경기도 고양시 덕양구 화정동 1148-6,4128112300111480006,A112194001,37.6269627105124,126.830699242747,1400.0,19707.0,오피스,철근콘크리트구조
+ast_cf7655c37f5e,이지스일반사모부동산투자신탁제336호,auto_created,0.98,same_pnu,1,112414,경기도 고양시 일산동구 장항동 889,4128510400108890000,A112414001,37.6542181556078,126.775960479558,5707.2,19855.8,의료시설,철골철근콘크리트구조
+ast_c9b5f50bc992,뉴코아아울렛(일산),auto_created,0.98,same_pnu,2,"112081, 112155",경기도 고양시 일산동구 마두동 797,4128510500107970000,A112081003,37.6548242991912,126.777078006297,5712.1,60148.0,리테일,철근콘크리트구조
+ast_ee5b4d0511ec,이지스하우징플랫폼일반사모부동산투자신탁제1호(운용),auto_created,0.98,same_pnu,2,"112611, P00031",경기도 구리시 수택동 370,4131010500103700000,A112611002,37.6002599263288,127.136231130136,1956.6,2553.4,제1종근린생활시설,철근콘크리트구조
+ast_288840e4c692,하남미사우성르보아파크,auto_created,0.98,same_pnu,2,"112099, 112189",경기도 하남시 망월동 1079,4145010900110790000,A112099001,37.5667539801001,127.189250585753,3638.4,49689.0,오피스,철근콘크리트구조
+ast_84491d5860d7,하남데이터센터,auto_created,0.98,same_pnu,4,"112442, 112569, 112594, 112595",경기도 하남시 풍산동 607-2,4145011000106070002,A112442001,37.5513139678438,127.194934476745,6637.5,41919.4,데이터센터,철근콘크리트구조
+ast_b1a009f2fa36,이지스전문투자형사모부동산투자신탁제404호,auto_created,0.98,same_pnu,1,112527,경기도 용인시 처인구 백암면 백봉리 767-13,4146135023107670013,A112527003,37.151060940719,127.389087896527,19604.0,29980.0,물류,철골철근콘크리트구조
+ast_8d2911b657d8,이지스전문투자형사모부동산투자신탁259호,auto_created,0.98,same_pnu,1,112277,경기도 파주시 와동동 1433,4148012200114330000,A112277001,37.7277257799842,126.76131089591,1995.8,22922.2,오피스,철근콘크리트구조
+ast_6f4f44b4c3aa,이지스전문투자형230호사모부동산투자유한회사(운용),auto_created,0.98,same_pnu,1,112245,경기도 이천시 백사면 조읍리 25,4150032028100250000,A112245001,37.3152043797974,127.485775199591,0.0,46527.0,물류,일반철골구조
+ast_0264aa763175,이지스전문투자형사모부동산투자신탁286호(운용),auto_created,0.98,same_pnu,1,112328,경기도 이천시 호법면 매곡리 118-2,4150033025101180002,A112328001,37.2150393456074,127.37429531445,25327.0,58552.1,물류,일반철골구조
+ast_5afa53495f87,이지스전문투자형사모부동산투자신탁제404호,auto_created,0.98,same_pnu,1,112527,경기도 이천시 호법면 매곡리 977-5,4150033025109770005,A112527001,37.1902612412431,127.37547805478,54990.0,55338.9,물류,프리케스트콘크리트구조
+ast_349f44ccfd1f,이지스전문투자형사모부동산투자신탁제404호,auto_created,0.98,same_pnu,1,112527,경기도 이천시 대월면 도리리 3-2,4150035029100030002,A112527002,37.2102637027627,127.49375551117,22559.0,18706.2,물류,철근콘크리트구조
+ast_52adbb346181,안성홈플러스물류센터,auto_created,0.98,same_pnu,2,"112500, 112703",경기도 안성시 원곡면 칠곡리 941,4155038022109410000,A112703001,37.0487098936769,127.167397723634,0.0,32824.0,물류,일반철골구조
+ast_109318d66df6,이지스일반사모부동산투자신탁제451호(운용),auto_created,0.98,same_pnu,1,112642,경기도 화성시 만세구 장안면 석포리 147-12,4159135022101470012,A112642001,37.120873028514,126.835956947127,0.0,79103.0,물류,철골철근콘크리트합성구조
+ast_75c6cda594b3,타임테라스동탄,auto_created,0.98,same_pnu,3,"112237, 112290, 112291",경기도 화성시 동탄구 반송동 96,4159710200100960000,A112290001,37.2049769572119,127.068884158537,0.0,142156.0,리테일,철근콘크리트구조
+ast_8f4a16aa66fa,이지스로지스틱스리츠,auto_created,0.98,same_pnu,1,R00007,경기도 여주시 점봉동 204-3,4167011500102040003,AR00007001,37.24938785556,127.640067135937,28879.0,49632.6,물류,철골철근콘크리트합성구조
+ast_3f3767149c5b,이지스제440호부동산일반사모투자회사,auto_created,0.98,same_pnu,1,112606,경기도 여주시 가남읍 본두리 18-3,4167025032100180003,A112606001,37.2495928536339,127.589580464765,65249.0,65307.0,물류,프리케스트콘크리트구조
+ast_3a33a41d444e,충북 청주시 서원구 잠두봉근린공원 공동주택 개발사업 PF 대출채권,auto_created,0.98,same_pnu,1,112387,충청북도 청주시 서원구 수곡동 산 22,4311210700200220000,A112387001,36.614102730784,127.48242742293,0.0,65.39,제1종근린생활시설,철근콘크리트구조
+ast_0bbbe8c5910d,이지스일반사모투자신탁435호(태양광),auto_created,0.98,same_pnu,1,112584,충청북도 충주시 대소원면 완오리 1165,4313033530111650000,A112584046,36.9983951162712,127.837297354945,0.0,660.0,공장,일반철골구조
+ast_e6eadbaa08bd,이지스일반사모부동산투자신탁232호(운용),auto_created,0.98,same_pnu,1,112279,탄부면 상장리 643-3,4372034027106430003,A112279001,36.447215919,127.782121665,8693.0,828506.0,운동시설,철근콘크리트구조
+ast_8bd8d91c9bb8,천안성성동피에프브이주식회사,auto_created,0.98,same_pnu,1,P00017,충청남도 천안시 서북구 성성동 366-3,4413310500103660003,AP00017001,36.8447392271306,127.124036181881,0.0,38851.0,주거,일반철골구조
+ast_d3958acf9d57,아레나스안성,auto_created,0.98,same_pnu,2,"112320, 112505",입장면 용정리 116-5,4413331032101160005,A112505001,36.921094845,127.187055018,312.0,124554.0,물류센터,벽돌구조
+ast_acf1169ec73d,공주시 웅진동 공동주택,auto_created,0.98,same_pnu,1,P00025,충청남도 공주시 웅진동 1-1,4415010700103000009,AP00025001,36.4716427027985,127.113472384628,0.0,53329.0,주거,일반철골구조
+ast_668935b47b6b,이지스KORIF사모부동산 투자신탁12호,auto_created,0.98,same_pnu,1,112007,전라남도 나주시 송월동 1106-2,4617010200111060002,A112007001,35.0132329039111,126.713118289029,5481.4,5963.07,판매시설,철근콘크리트구조
+ast_d4d0f0ff0926,이지스일반사모투자신탁435호(태양광),auto_created,0.98,same_pnu,1,112584,전라남도 광양시 광양읍 세풍리 2224,4623025034122240000,A112584022,34.8966187216681,127.596397155015,0.0,49.5,공장,경량철골구조
+ast_e2fd03212beb,이지스사모부동산투자신탁48호,auto_created,0.98,same_pnu,1,112047,전라남도 무안군 삼향읍 남악리 2622,4684025622126220000,A112047001,34.8023209569853,126.46507824583,64922.66,47054.7,판매시설,철근콘크리트구조
+ast_2599313d9083,이지스사모부동산투자신탁64호,auto_created,0.98,same_pnu,1,112056,경상북도 포항시 남구 지곡동 481-1,4711111500104810001,A112056001,36.027576779256,129.324699955606,9667.6,5497.3,판매시설,일반철골구조
+ast_1f446ce9025d,이지스KORIF사모부동산투자신탁19호,auto_created,0.98,same_pnu,1,112018,경상북도 포항시 북구 죽도동 50-1,4711311600100500001,A112018003,36.0308993275045,129.365099982428,5089.0,20254.0,리테일,일반철골구조
+ast_021767a7f029,강동 성내 역세권 청년주택,auto_created,0.98,same_pnu,3,"112287, 120011, R00012",성내동 190-11,4715010400101900011,A112287001,36.119721124,128.122146053,0.0,190.51,제1종근린생활시설,철근콘크리트구조
+ast_357127c88355,이지스일반사모투자신탁435호(태양광),auto_created,0.98,same_pnu,1,112584,진량읍 신상리 1186-7,4729025321111860007,A112584033,35.876417663,128.831477243,0.0,104.94,공장,일반철골구조
+ast_616c3d79da75,이지스경산로지스제1호일반사모부동산투자회사(운용),auto_created,0.98,same_pnu,1,120085,경상북도 경산시 진량읍 문천리 903,4729025330109030000,A120085001,35.8737058361886,128.841410657044,17813.6,98673.6,물류센터,철근콘크리트구조
+ast_9bedafe14895,이지스제505호부동산일반사모투자회사,auto_created,0.98,same_pnu,1,112755,경상남도 창원시 진해구 두동 1875,4812916100118750000,A112755001,35.119851103815,128.802346237999,47028.9,54566.2,물류센터,철근콘크리트구조
+ast_282ed30bb789,이지스KORIF사모부동산투자신탁19호,auto_created,0.98,same_pnu,1,112018,경상남도 진주시 상대동 181-1,4817011900101810001,A112018002,35.1875328352662,128.117709610606,7104.0,52055.0,리테일,철골철근콘크리트구조
+ast_93fedc1f0d0f,이지스KORIF사모부동산투자신탁19호,auto_created,0.98,same_pnu,1,112018,경상남도 사천시 벌리동 58-3,4824010800100580003,A112018001,34.9404217621935,128.079954657679,5565.4,23228.0,리테일,철근콘크리트구조
+ast_4a2972f3fd4f,주식회사 석암물류(SPC),auto_created,0.98,same_pnu,1,S00002,경상남도 양산시 유산동 509,4833011100105090000,S00002001,35.3628771385706,129.026686856465,23945.6,52739.7,창고시설,프리케스트콘크리트구조
+ast_8f63f7ec9170,이지스리테일제55호사모부동산투자유한회사,auto_created,0.98,same_pnu,1,112054,제주특별자치도 제주시 노형동 708,5011012200107080000,A112054002,33.4824685214112,126.481404912937,4364.9,24520.1,제2종근린생활시설,일반철골구조
+ast_3ac68d303b60,이지스부동산투자신탁187호,auto_created,0.98,same_pnu,1,112194,제주특별자치도 제주시 연동 261-23,5011013700102610023,A112194002,33.4895164122842,126.488655050865,1851.7,24248.4,오피스,철근콘크리트구조
+ast_dd6e846e65f4,신라스테이제주,auto_created,0.98,same_pnu,4,"112034, 112404, 112405, 112406",제주특별자치도 제주시 연동 274-16,5011013700102740016,A112034001,33.4856507636801,126.490902880826,2631.5,19994.2,호텔,철근콘크리트구조
+ast_f5e665f7cf35,이지스일반사모부동산투자신탁294호,auto_created,0.98,same_pnu,1,112310,애월읍 신엄리 2867-3,5011025326128670003,A112310001,33.475927543,126.35573062,0.0,6098.0,호텔,철근콘크리트구조
+ast_8870b9567bcd,애월 복합관광단지 개발,auto_created,0.98,same_pnu,4,"120023, 120024, 120025, P00038",제주특별자치도 제주시 애월읍 상가리 17-6,5011025331100170006,A12002301,33.3994609829231,126.377418321576,0.0,330800.0,동물및식물관련시설,경량철골구조
+ast_e3779cfe5ab2,켄싱턴 제주호텔 부동산담보신탁 1종 수익권,auto_created,0.98,same_pnu,1,112226,제주특별자치도 서귀포시 색달동 2785,5013011900127850000,A112226001,33.2523552040119,126.407910658529,33002.0,31750.5,호텔,철골철근콘크리트구조
+ast_58e37903d5ef,피에스KORIF사모부동산투자신탁5호,auto_created,0.98,same_pnu,1,112004,강원특별자치도 원주시 단계동 1123,5113011000111230000,A112004001,37.3456627082781,127.927519475776,14047.0,83531.7,리테일,철근콘크리트구조
+ast_db3bfd1b4baf,이지스일반사모투자신탁435호(태양광),auto_created,0.98,same_pnu,1,112584,강원특별자치도 원주시 문막읍 반계리 2255-2,5113025029122550002,A112584021,37.2977862965336,127.798699187274,20738.7,13226.8,물류,철근콘크리트구조
+ast_8a93d35b0890,디오션259피에프브이 주식회사,auto_created,0.98,same_pnu,1,P00011,강원특별자치도 강릉시 송정동 259,5115011400102590000,AP00011001,37.7854795011601,128.928248082138,0.0,0.1,호텔,일반철골구조
+ast_222407c92192,이지스일반사모투자신탁392호(태양광),auto_created,0.98,same_pnu,1,112504,남양동 330-3,5123012000103300003,A112504005,37.443710839,129.1683588,0.0,135.27,단독주택,벽돌구조
+ast_765cc3a1898a,이지스코어리테일부동산투자신탁302호(운용),auto_created,0.98,same_pnu,1,112344,전북특별자치도 전주시 완산구 중노송동 495-6,5211112000104950006,A112344003,35.823561447076,127.150069862002,9245.0,49461.8,리테일,철골철근콘크리트구조
+ast_db8fd17c8890,홈플러스전주효자점,auto_created,0.98,same_pnu,3,"112132, 112133, 112134",전북특별자치도 전주시 완산구 효자동1가 431-5,5211114000104310005,A112132001,35.8065988520875,127.113976610906,9703.0,47617.9,리테일,일반철골구조

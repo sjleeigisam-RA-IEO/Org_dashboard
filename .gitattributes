@@ -1,0 +1,8 @@
+*.py text working-tree-encoding=UTF-8
+*.js text working-tree-encoding=UTF-8
+*.css text working-tree-encoding=UTF-8
+*.html text working-tree-encoding=UTF-8
+*.sql text working-tree-encoding=UTF-8
+*.md text working-tree-encoding=UTF-8
+*.csv text working-tree-encoding=UTF-8-BOM
+CRM_base/output/*.csv -text -working-tree-encoding

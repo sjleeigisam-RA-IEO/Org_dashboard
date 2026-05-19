@@ -121,7 +121,7 @@
   async function showDetail(obj, container) {
     const { type, items, targetName, category } = obj;
     const targetPanel = container || detailPanel;
-    
+
     // 분기 처리: 자산(Asset/Fund/Project) vs 기관(Lender/Beneficiary)
     if (type === 'lender' || type === 'ben') {
       return renderInstitutionDetail(obj, targetPanel);
@@ -302,13 +302,13 @@
     const { type, items, targetName } = obj;
     const label = type === 'lender' ? '대주' : '수익자';
     const amountKey = type === 'lender' ? 'committed_amt' : 'invested_amt';
-    
+
     const totalAmount = items.reduce((acc, curr) => acc + (curr[amountKey] || 0), 0);
     const chartId = 'inst-chart-' + Math.random().toString(36).substr(2, 9);
 
     // 펀드 정보 조회: 검색 JOIN 데이터(item.funds)를 1순위로, window.allFunds를 fallback으로 사용
     function resolveFund(item) {
-      const joined = item.funds; 
+      const joined = item.funds;
       const global = (window.allFunds || []).find(f => f.fund_id === item.fund_id);
       return joined || global || null;
     }
@@ -404,7 +404,7 @@
     const newData = years.map(y => yearData[y] || 0);
     const cumulativeData = [];
     let runningSum = 0;
-    
+
     years.forEach(y => {
       runningSum += (yearData[y] || 0);
       cumulativeData.push(runningSum);
@@ -423,11 +423,11 @@
         colors: ['#4f46e5', '#93c5fd'],
         xaxis: { categories: years },
         yaxis: [
-          { 
-            labels: { 
+          {
+            labels: {
               formatter: (val) => val.toLocaleString()
             },
-            title: { text: '단위: 억원' } 
+            title: { text: '단위: 억원' }
           }
         ],
         tooltip: {
@@ -450,11 +450,11 @@
     if (!fund) return;
 
     currentDrawerData = { key: fund.fund_id, name: fund.fund_name, items: [fund] };
-    
+
     // Activate drawer
     document.getElementById('sideDrawer').classList.add('active');
     document.getElementById('sideDrawerOverlay').classList.add('active');
-    
+
     // Show detail
     window.showDrawerDetail(fundId);
   };
@@ -538,7 +538,7 @@
     content.innerHTML = html || '<div style="padding:100px; text-align:center; color:var(--muted);">연결된 펀드나 프로젝트가 없습니다.</div>';
     document.getElementById('sideDrawer').classList.add('active');
     document.getElementById('sideDrawerOverlay').classList.add('active');
-    
+
     window.currentDrawerData = { type: 'asset', key: assetId, name: displayName, items: [] };
   };
 

@@ -1,0 +1,294 @@
+[
+  {
+    "asset_id": "ast_65084c8903f7",
+    "review_reason": "low_confidence_or_name_variation",
+    "current_value": {
+      "canonical_name": "이지스일반사모부동산투자신탁120호",
+      "group_key": "pnu:1111012800101550002",
+      "asset_names": [
+        "PFV_Lotus (사채)",
+        "PFV_Lotus (지분증권)",
+        "안녕인사동"
+      ],
+      "addresses": [
+        "서울특별시 종로구 관훈동 155-2"
+      ],
+      "fund_ids": [
+        "112114",
+        "112115",
+        "P00007"
+      ]
+    },
+    "suggested_action": "verify_merge_or_split",
+    "review_status": "needs_review"
+  },
+  {
+    "asset_id": "ast_8d08ba7fb345",
+    "review_reason": "low_confidence_or_name_variation",
+    "current_value": {
+      "canonical_name": "서울시티타워",
+      "group_key": "pnu:1114011800105810000",
+      "asset_names": [
+        "서울시티타워",
+        "이지스제463호부동산일반사모투자회사"
+      ],
+      "addresses": [
+        "남대문로5가 581"
+      ],
+      "fund_ids": [
+        "112690",
+        "112691",
+        "112692",
+        "112694",
+        "112695",
+        "112696",
+        "112697"
+      ]
+    },
+    "suggested_action": "verify_merge_or_split",
+    "review_status": "needs_review"
+  },
+  {
+    "asset_id": "ast_65e587cdb88a",
+    "review_reason": "low_confidence_or_name_variation",
+    "current_value": {
+      "canonical_name": "이지스제333호일반사모부동산투자신탁(운용)",
+      "group_key": "pnu:1114014000100130002",
+      "asset_names": [
+        "디어스 명동",
+        "이지스333호(디어스 명동)"
+      ],
+      "addresses": [
+        "서울특별시 중구 남학동 13-2"
+      ],
+      "fund_ids": [
+        "112510",
+        "R00008"
+      ]
+    },
+    "suggested_action": "verify_merge_or_split",
+    "review_status": "needs_review"
+  },
+  {
+    "asset_id": "ast_aac5427c01f4",
+    "review_reason": "low_confidence_or_name_variation",
+    "current_value": {
+      "canonical_name": "이지스한남일반사모부동산투자신탁제418호",
+      "group_key": "pnu:1117013100107360009",
+      "asset_names": [
+        "네오밸류한남PFV의 전환사채",
+        "네오밸류한남PFV의 제2종 종류주식",
+        "네오밸류한남PFV의 제3종 종류주식"
+      ],
+      "addresses": [
+        "서울특별시 용산구 한남동 736-9"
+      ],
+      "fund_ids": [
+        "112556"
+      ]
+    },
+    "suggested_action": "verify_merge_or_split",
+    "review_status": "needs_review"
+  },
+  {
+    "asset_id": "ast_b8957ff7eafe",
+    "review_reason": "low_confidence_or_name_variation",
+    "current_value": {
+      "canonical_name": "이지스일반사모부동산투자신탁제331호(운용)",
+      "group_key": "pnu:1144012000104600025",
+      "asset_names": [
+        "누디트 홍대",
+        "이지스333호(홍대 코리빙 복합시설)"
+      ],
+      "addresses": [
+        "서울특별시 마포구 서교동 460-25"
+      ],
+      "fund_ids": [
+        "112396",
+        "R00008"
+      ]
+    },
+    "suggested_action": "verify_merge_or_split",
+    "review_status": "needs_review"
+  },
+  {
+    "asset_id": "ast_ecc118b65b9e",
+    "review_reason": "low_confidence_or_name_variation",
+    "current_value": {
+      "canonical_name": "원그로브(마곡CP4 복합개발사업)",
+      "group_key": "pnu:1150010500107690000",
+      "asset_names": [
+        "마곡CP4 복합시설 개발",
+        "원그로브(마곡CP4 복합개발사업)"
+      ],
+      "addresses": [
+        "서울특별시 강서구 마곡동 769"
+      ],
+      "fund_ids": [
+        "112589",
+        "112590",
+        "112591",
+        "P00018"
+      ]
+    },
+    "suggested_action": "verify_merge_or_split",
+    "review_status": "needs_review"
+  },
+  {
+    "asset_id": "ast_edebae8dd9a4",
+    "review_reason": "low_confidence_or_name_variation",
+    "current_value": {
+      "canonical_name": "페어필드 메리어트 서울 메자닌 대출",
+      "group_key": "pnu:1156010200101430003",
+      "asset_names": [
+        "영등포역 오피스텔 개발사업",
+        "페어필드 메리어트 서울",
+        "페어필드 메리어트 서울 메자닌 대출"
+      ],
+      "addresses": [
+        "서울특별시 영등포구 영등포동1가 143-3",
+        "영등포동1가 143-3"
+      ],
+      "fund_ids": [
+        "112053",
+        "112195",
+        "112699"
+      ]
+    },
+    "suggested_action": "verify_merge_or_split",
+    "review_status": "needs_review"
+  },
+  {
+    "asset_id": "ast_018e4ec1c5ce",
+    "review_reason": "low_confidence_or_name_variation",
+    "current_value": {
+      "canonical_name": "더강남832PFV의 지분증권 및 대출채권",
+      "group_key": "pnu:1168010100108320002",
+      "asset_names": [
+        "더강남832PFV의 지분증권 및 대출채권",
+        "우덕빌딩"
+      ],
+      "addresses": [
+        "서울특별시 강남구 역삼동 832-2",
+        "역삼동 832-2"
+      ],
+      "fund_ids": [
+        "112052",
+        "112450"
+      ]
+    },
+    "suggested_action": "verify_merge_or_split",
+    "review_status": "needs_review"
+  },
+  {
+    "asset_id": "ast_b5b13984b5c2",
+    "review_reason": "low_confidence_or_name_variation",
+    "current_value": {
+      "canonical_name": "부평 더샵센트럴시티 공공지원민간임대주택",
+      "group_key": "pnu:2823710200106300000",
+      "asset_names": [
+        "151호 수익증권(재간접)",
+        "부평 더샵센트럴시티 공공지원민간임대주택"
+      ],
+      "addresses": [
+        "십정동 630"
+      ],
+      "fund_ids": [
+        "112149",
+        "112169",
+        "112172",
+        "112175",
+        "112181"
+      ]
+    },
+    "suggested_action": "verify_merge_or_split",
+    "review_status": "needs_review"
+  },
+  {
+    "asset_id": "ast_c6d650564064",
+    "review_reason": "low_confidence_or_name_variation",
+    "current_value": {
+      "canonical_name": "이지스411호(200호 재간접, 디어스 판교)",
+      "group_key": "pnu:4113111500103210000",
+      "asset_names": [
+        "이지스200호(디어스 판교)",
+        "이지스411호(200호 재간접, 디어스 판교)"
+      ],
+      "addresses": [
+        "시흥동 321"
+      ],
+      "fund_ids": [
+        "R00008"
+      ]
+    },
+    "suggested_action": "verify_merge_or_split",
+    "review_status": "needs_review"
+  },
+  {
+    "asset_id": "ast_578a66328a1e",
+    "review_reason": "low_confidence_or_name_variation",
+    "current_value": {
+      "canonical_name": "판교아이스퀘어E동",
+      "group_key": "pnu:4113111500103390000",
+      "asset_names": [
+        "판교아이스퀘어D동",
+        "판교아이스퀘어E동"
+      ],
+      "addresses": [
+        "시흥동 339"
+      ],
+      "fund_ids": [
+        "112535",
+        "112536",
+        "112537",
+        "112538"
+      ]
+    },
+    "suggested_action": "verify_merge_or_split",
+    "review_status": "needs_review"
+  },
+  {
+    "asset_id": "ast_ee5b4d0511ec",
+    "review_reason": "low_confidence_or_name_variation",
+    "current_value": {
+      "canonical_name": "이지스하우징플랫폼일반사모부동산투자신탁제1호(운용)",
+      "group_key": "pnu:4131010500103700000",
+      "asset_names": [
+        "구리 수택동 오피스텔 사업부지",
+        "구리시 수택동 주거용 오피스텔"
+      ],
+      "addresses": [
+        "경기도 구리시 수택동 370"
+      ],
+      "fund_ids": [
+        "112611",
+        "P00031"
+      ]
+    },
+    "suggested_action": "verify_merge_or_split",
+    "review_status": "needs_review"
+  },
+  {
+    "asset_id": "ast_84491d5860d7",
+    "review_reason": "low_confidence_or_name_variation",
+    "current_value": {
+      "canonical_name": "하남데이터센터",
+      "group_key": "pnu:4145011000106070002",
+      "asset_names": [
+        "이지스354호 수익증권",
+        "하남데이터센터"
+      ],
+      "addresses": [
+        "경기도 하남시 풍산동 607-2"
+      ],
+      "fund_ids": [
+        "112442",
+        "112569",
+        "112594",
+        "112595"
+      ]
+    },
+    "suggested_action": "verify_merge_or_split",
+    "review_status": "needs_review"
+  }
+]

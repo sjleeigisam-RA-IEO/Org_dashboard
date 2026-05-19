@@ -49,12 +49,12 @@
       "부문직속", "부분직속",
       "TFs"
     ]);
-    const needsRestructure = dataObj.sections.length > 5 || 
+    const needsRestructure = dataObj.sections.length > 5 ||
                              dataObj.sections.some(s => !mainSectionNames.has(s.name));
 
     if (needsRestructure) {
       // 1-A. 로컬 정적 데이터 처리 포맷 (그룹별 분할되어 있는 구조를 5대부문으로 수합)
-      
+
       // [사전 처리] CM그룹을 리빙그룹(관리&운영)으로 병합 처리
       const cmGroupIndex = dataObj.sections.findIndex(s => s.name === "CM그룹");
       const livingGroupIndex = dataObj.sections.findIndex(s => s.name === "리빙그룹");
@@ -102,20 +102,20 @@
             };
           }) : []
         };
-        const isRedundant = mainSectionNames.has(rawSection.name) || 
+        const isRedundant = mainSectionNames.has(rawSection.name) ||
                             mainSectionNames.has(rawSection.name.replace("+", "&")) ||
                             mainSectionNames.has(rawSection.name.replace("&", "+"));
 
         if (!isRedundant) {
           parentSection.groups.push(newGroup);
         }
-        
+
         parentSection.assignmentCount += newGroup.assignmentCount;
       });
       dataObj.sections = Array.from(newSectionsMap.values());
     } else {
       // 1-B. 원격 라이브 구글 시트 연동 데이터 처리 포맷 (이미 대부문 구조로 완성되어 내려옴)
-      
+
       // 부문명 기호 통일 ( + 기호를 & 로 교체하여 프론트엔드 탭 필터 이름과 완벽 매칭 )
       dataObj.sections.forEach(section => {
         section.name = section.name.replace("+", "&");
@@ -149,7 +149,7 @@
     dataObj.sections.forEach(section => {
       if (section.groups) {
         section.groups = section.groups.filter(group => {
-          const isRedundant = mainSectionNames.has(group.name) || 
+          const isRedundant = mainSectionNames.has(group.name) ||
                               mainSectionNames.has(group.name.replace("+", "&")) ||
                               mainSectionNames.has(group.name.replace("&", "+"));
           return !isRedundant;
@@ -218,9 +218,9 @@
       }
       if (!isNaN(numA)) return -1;
       if (!isNaN(numB)) return 1;
-      
+
       const customOrder = [
-        "사업파트", "솔루션파트", 
+        "사업파트", "솔루션파트",
         "자산관리", "포트폴리오 / 관리", "포트폴리오/관리",
         "개발솔루션센터(DSC)", "리테일솔루션센터(RSC)",
         "론파이낸스센터(LFC)", "기업마케팅센터(EMC)", "공간솔루션센터(SSC)", "기획추진센터(IEC)",

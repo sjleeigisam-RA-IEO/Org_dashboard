@@ -35,7 +35,7 @@ async function loadInitialData() {
     showLoading(true);
     try {
         const [staffRes, orgsRes] = await Promise.all([
-            _supabase.from('staff').select('*, orgs(*)'), 
+            _supabase.from('staff').select('*, orgs(*)'),
             _supabase.from('orgs').select('*').order('org_name')
         ]);
 
@@ -44,7 +44,7 @@ async function loadInitialData() {
 
         allStaff = staffRes.data || [];
         allOrgs = orgsRes.data || [];
-        
+
         applyCustomSort();
         filteredStaff = [...allStaff];
 
@@ -92,7 +92,7 @@ function applyCustomSort() {
             if (path.includes('부문')) return 4;
             return 99;
         };
-        
+
         const prioA = getSecPrio(a);
         const prioB = getSecPrio(b);
         if (prioA !== prioB) return prioA - prioB;
@@ -124,7 +124,7 @@ function setupEventListeners() {
         header.addEventListener('click', () => {
             const key = header.getAttribute('data-sort');
             handleSort(key);
-            
+
             // Update icons
             sortableHeaders.forEach(h => {
                 const icon = h.querySelector('i');
@@ -141,7 +141,7 @@ function setupEventListeners() {
     // Modal
     addStaffBtn.addEventListener('click', () => openModal());
     closeModalBtns.forEach(btn => btn.addEventListener('click', closeModal));
-    
+
     // Status Toggle Text
     statusToggle.addEventListener('change', (e) => {
         statusText.innerText = e.target.checked ? '재직 중' : '퇴사 (비활성)';
@@ -158,10 +158,10 @@ function filterAndRender() {
     const status = statusFilter.value;
 
     filteredStaff = allStaff.filter(s => {
-        const matchesSearch = s.name.toLowerCase().includes(term) || 
+        const matchesSearch = s.name.toLowerCase().includes(term) ||
                             (s.email && s.email.toLowerCase().includes(term)) ||
                             (s.orgs?.org_name && s.orgs.org_name.toLowerCase().includes(term));
-        
+
         const matchesSection = !section || (s.orgs?.metadata?.full_path || '').includes(section);
         const matchesStatus = !status || s.status === status;
 
@@ -229,7 +229,7 @@ function handleSort(key) {
 function renderStaffTable() {
     // Filter out duplicates (Concurrent positions) - Keep only the 'main' one
     const uniqueStaffMap = new Map();
-    
+
     // Sort to ensure is_main: true comes last to overwrite, or process explicitly
     filteredStaff.forEach(s => {
         const key = s.email || s.name;
@@ -278,14 +278,14 @@ function updateStats() {
 
 function populateOrgDropdown() {
     const orgSelect = document.getElementById('org_id');
-    orgSelect.innerHTML = '<option value="">부서 선택...</option>' + 
+    orgSelect.innerHTML = '<option value="">부서 선택...</option>' +
         allOrgs.map(o => `<option value="${o.org_id}">${o.org_name} (${o.org_type})</option>`).join('');
 }
 
 function openModal(staffId = null) {
     staffForm.reset();
     document.getElementById('editStaffId').value = staffId || '';
-    
+
     if (staffId) {
         modalTitle.innerText = '사원 정보 수정';
         const staff = allStaff.find(s => s.staff_id === staffId);
@@ -303,7 +303,7 @@ function openModal(staffId = null) {
         statusToggle.checked = true;
         statusToggle.dispatchEvent(new Event('change'));
     }
-    
+
     staffModal.classList.add('active');
 }
 

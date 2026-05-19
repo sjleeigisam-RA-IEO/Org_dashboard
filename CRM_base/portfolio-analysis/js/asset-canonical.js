@@ -285,7 +285,7 @@
       const linkFundIds = rawFunds.map(f => f.fund_id);
       const linkProjIds = rawProjects.map(p => p.project_id);
       const uniqueTargetIds = Array.from(new Set([...linkFundIds, ...linkProjIds])).filter(Boolean);
-      
+
       let enrichedDetails = [];
       if (uniqueTargetIds.length > 0) {
         try {

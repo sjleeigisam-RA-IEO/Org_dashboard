@@ -141,19 +141,19 @@ body {
   padding: 1px 5px;
   border-radius: 6px;
 }
-.tab-btn.active { 
-  background: var(--text); 
-  color: white; 
-  border-color: var(--text); 
+.tab-btn.active {
+  background: var(--text);
+  color: white;
+  border-color: var(--text);
 }
-.tab-btn.active .tab-count { 
+.tab-btn.active .tab-count {
   background: rgba(255, 255, 255, 0.2);
   color: white;
-  opacity: 0.95; 
+  opacity: 0.95;
 }
-.tab-btn:hover:not(.active) { 
-  border-color: var(--accent); 
-  color: var(--accent); 
+.tab-btn:hover:not(.active) {
+  border-color: var(--accent);
+  color: var(--accent);
   transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(0,0,0,0.06);
 }

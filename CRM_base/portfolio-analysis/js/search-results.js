@@ -177,7 +177,7 @@ function renderGroupCard(type, name, items) {
 
   card.innerHTML = `
     <div class="group-header">
-      <input type="checkbox" class="card-checkbox" ${isSelected ? 'checked' : ''} 
+      <input type="checkbox" class="card-checkbox" ${isSelected ? 'checked' : ''}
         onclick="toggleBasket(event, '${type}', '${name}', ${JSON.stringify(items).replace(/"/g, '&quot;')})">
       <div style="flex:1">
         <span class="card-tag tag-${type}">${type.toUpperCase()}</span>
@@ -243,7 +243,7 @@ function toggleBasket(event, type, name, items) {
   window.portfolioBasket = portfolioBasket;
   renderBasket();
   if (currentView === 'ranking') renderAnalytics();
-  
+
   // 같은 카테고리 2건 이상 선택 시 비교 차트 렌더링
   checkAndRenderComparison();
 }
@@ -284,7 +284,7 @@ function checkAndRenderComparison() {
     if (!typeGroups[item.type]) typeGroups[item.type] = [];
     typeGroups[item.type].push(item);
   });
-  
+
   // 가장 많이 선택된 같은 카테고리 그룹 찾기
   var bestGroup = null;
   Object.keys(typeGroups).forEach(function(t) {
@@ -294,7 +294,7 @@ function checkAndRenderComparison() {
       }
     }
   });
-  
+
   if (bestGroup) {
     var groupType = bestGroup[0].type;
     if (groupType === 'lender' || groupType === 'ben') {
@@ -312,19 +312,19 @@ function checkAndRenderComparison() {
 function renderComparisonChart(selectedItems) {
   var detailPanel = document.getElementById('detailPanel');
   if (!detailPanel) return;
-  
+
   var type = selectedItems[0].type;
   var isLender = (type === 'lender');
   var amountKey = isLender ? 'committed_amt' : 'invested_amt';
   var label = isLender ? '대주' : '수익자';
   var chartId = 'compare-chart-' + Math.random().toString(36).substr(2, 9);
-  
+
   // 전체 연도 범위 계산
   var allYears = {};
   var minYear = 9999;
   var maxYear = 0;
   var currentYear = new Date().getFullYear();
-  
+
   // 기관별 연도별 데이터 계산
   var seriesData = selectedItems.map(function(sel) {
     var yearData = {};
@@ -345,12 +345,12 @@ function renderComparisonChart(selectedItems) {
     });
     return { name: sel.name, yearData: yearData };
   });
-  
+
   if (maxYear < currentYear) maxYear = currentYear;
-  
+
   var years = [];
   for (var y = minYear; y <= maxYear; y++) years.push(y);
-  
+
   // 시리즈 생성 (누적 막대)
   var series = seriesData.map(function(sd) {
     return {
@@ -358,17 +358,17 @@ function renderComparisonChart(selectedItems) {
       data: years.map(function(y) { return Math.floor((sd.yearData[y] || 0) / 100000000); })
     };
   });
-  
+
   // 총합 계산
   var totals = selectedItems.map(function(sel) {
     var total = sel.items.reduce(function(acc, item) { return acc + (item[amountKey] || 0); }, 0);
     return { name: sel.name, total: total };
   });
-  
+
   // 색상 팔레트
   var colors = ['#4f46e5', '#0ea5e9', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#14b8a6'];
-  
-  detailPanel.innerHTML = 
+
+  detailPanel.innerHTML =
     '<div class="detail-header">' +
       '<span class="card-tag tag-' + type + '">' + label.toUpperCase() + ' COMPARISON</span>' +
       '<h2 style="margin-bottom:4px;">' + selectedItems.map(function(s){return s.name}).join(' vs ') + '</h2>' +
@@ -385,7 +385,7 @@ function renderComparisonChart(selectedItems) {
       '<div class="section-title">연도별 약정액 비교 (Stacked Comparison)</div>' +
       '<div id="' + chartId + '" style="min-height:400px;"></div>' +
     '</div>';
-  
+
   setTimeout(function() {
     if (typeof ApexCharts === 'undefined') return;
     var options = {

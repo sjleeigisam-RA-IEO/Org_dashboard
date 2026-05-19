@@ -116,7 +116,7 @@
     const toast = document.createElement("div");
     toast.innerHTML = `최신 데이터가 동기화되었습니다. <a href="javascript:location.reload()" style="color:#2563eb;text-decoration:underline;margin-left:8px;font-weight:bold;">새로고침</a>`;
     Object.assign(toast.style, {
-      position: "fixed", bottom: "20px", right: "20px", background: "#fff", padding: "12px 20px", 
+      position: "fixed", bottom: "20px", right: "20px", background: "#fff", padding: "12px 20px",
       borderRadius: "8px", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06)",
       border: "1px solid #e5e7eb", zIndex: 9999, fontSize: "14px", color: "#374151",
       animation: "fade-in 0.3s ease-out forwards"
@@ -128,7 +128,7 @@
     // 1. 빠른 로딩을 위해 캐시 또는 정적 파일을 먼저 로드하여 화면을 띄움 (Stale)
     let usedFallback = false;
     let fallbackGeneratedAt = null;
-    
+
     if (loadRemoteCache()) {
       usedFallback = await loadCachedFallback("fast boot");
       fallbackGeneratedAt = loadRemoteCache()?.meta?.generatedAt;

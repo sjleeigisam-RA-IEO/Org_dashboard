@@ -1,0 +1,370 @@
+﻿asset_id,canonical_name,address_text,fund_count,project_count,linked_fund_ids,linked_project_ids
+ast_00df26953973,New York 1551 Broadway Mezzanine Loan,"1551 Broadway New York, NY",1,1,112150,112150
+ast_021767a7f029,강동 성내 역세권 청년주택,성내동 190-11,5,6,"112287, 112288, 112289, 120011, R00012","112287, 112288, 112289, 120011, project_notion_3258ced4-3c47-81af-bbdf-cc83ee3a30ba, R00012"
+ast_0264aa763175,덕평CJ물류센터 (투자),경기도 이천시 호법면 매곡리 118-2,3,3,"112328, 112329, 112330","112328, 112329, 112330"
+ast_02e499cf476b,서울 서초구 반포동 64-1번지 일원 개발사업장 브릿지대출,서울 서초구 반포동 64-1번지 일원,2,4,"120059, 120060","120059, 120060, project_notion_3258ced4-3c47-81c6-aa6d-fd1918557d0c, project_notion_3268ced4-3c47-81eb-b5a0-c02b7f306052"
+ast_03b867e56a1e,평촌G스퀘어,경기도 안양시 동안구 호계동 1039,3,5,"112085, 112089, 112090","112085, 112089, 112090, project_notion_3258ced4-3c47-8189-8e94-ec28b1f3cf28, project_notion_3268ced4-3c47-815e-a4e5-c8bff77f2023"
+ast_04ce3ef6593c,오산세교2지구 M-1BL 주상복합,경기도 오산시 오산세교2지구 M1BL,1,3,P00012,"P00012, project_notion_3258ced4-3c47-81dc-9709-fa150a62a94b, project_notion_3268ced4-3c47-81a2-bc74-d2f1e81e5190"
+ast_0555a6694264,이지스제572호부동산일반사모투자회사(1종),-,3,2,"120084, 190015, 190016","120084, project_notion_3258ced4-3c47-81a6-8956-da51f389ec09"
+ast_0766c7718345,동부산 테마파크 개발사업,부산광역시 기장군 기장읍 일원 (동부산관광단지내),1,3,P00002,"P00002, project_notion_3258ced4-3c47-81dc-a91b-efd55adef7d8, project_notion_3268ced4-3c47-81db-9a2a-fdb39614cb7b"
+ast_08c6f4e86f22,군산수상태양광 PF대출,전라북도 군산시 비응도동 19,1,1,112646,112646
+ast_0920c9043185,인천석남물류센터,인천광역시 서구 석남동 224-8,9,11,"112500, 112717, 112721, 112749, 112750, 112751, 120028, 120029, 120030","112717, 112721, 112749, 112750, 112751, 120028, 120029, 120030, project_notion_3258ced4-3c47-8166-8841-e0de7316e354, project_notion_3258ced4-3c47-8191-95e3-fb016380a726, project_notion_3268ced4-3c47-8175-ac2a-f97421459f44"
+ast_0a0e2cc5bc0e,"MRP Buyer, LLC에 대한 선순위 대출",-,1,1,200034,200034
+ast_0bab0f479396,김포DC 개발사업,경기도 김포시 장기동 2008-6,4,6,"112669, 112670, 112671, 120019","112669, 112670, 112671, 120019, project_notion_3258ced4-3c47-81d8-b179-d43fa8bbe452, project_notion_3268ced4-3c47-81c0-b357-fae2bc9b20e6"
+ast_0bb41d4e593f,GLP Japan Develoment Partners III,-,1,2,112303,"112303, project_notion_3258ced4-3c47-81cc-ad60-cf4af43ad902"
+ast_0bed91ccb4ec,부실채권을 기초자산으로 하는 SPC의 사채,-,4,14,"112318, 112412, 112602, 112603","112318, 112412, 112602, 112603, project_notion_3258ced4-3c47-8147-9434-e49976f6eaf9, project_notion_3258ced4-3c47-815c-8dbc-d5b32ed54523, project_notion_3258ced4-3c47-8178-917e-c3f68c562c3e, project_notion_3258ced4-3c47-81dc-a737-f2cb3c4b352c, project_notion_3258ced4-3c47-81e0-8163-fd56ff4c5225, project_notion_3268ced4-3c47-8131-be56-ec0ac40f45c8, project_notion_3268ced4-3c47-8186-9bf6-f3c210b23ec1, project_notion_3268ced4-3c47-81b2-9dab-cca1334c19df, project_notion_3268ced4-3c47-81d3-bfd5-e2d66940bddd, project_notion_3268ced4-3c47-81e8-95b9-d275ca255ff5"
+ast_0d9b6bc27220,Balbec InSolve Global Credit Fund III,-,2,4,"112174, 112201","112174, 112201, project_notion_3258ced4-3c47-8146-acbe-e1a0f3f406a8, project_notion_3268ced4-3c47-8111-8dd1-f999489f77a3"
+ast_0e8530670140,괌 웨스틴 호텔,"105 Gun Beach Road, Tumon, Guam 96913 U.S.A",1,3,112067,"112067, project_notion_3258ced4-3c47-81ef-83e7-e2f1a916caa3, project_notion_3268ced4-3c47-81f2-9ff9-c1b64060d048"
+ast_0eebe3722ecd,동일타워 (투자),서울특별시 강남구 대치동 1004,1,3,112012,"112012, project_notion_3258ced4-3c47-8131-9a62-c15e42f4c623, project_notion_3268ced4-3c47-8187-a4aa-cd3b979ff0a1"
+ast_0f622a720449,"Partners Group Tactical Real Estate Fund, L.P.",-,1,2,112790,"112790, project_notion_3258ced4-3c47-81d6-9ad5-c8b268f68ae3"
+ast_1063cfdde684,후너스빌딩 (투자),경기도 성남시 분당구 수내동 22-2,1,3,112586,"112586, project_notion_3258ced4-3c47-818b-998b-db152c8abc76, project_notion_3268ced4-3c47-8159-b4ed-fa4f99b0e39d"
+ast_109318d66df6,이지스일반사모부동산투자신탁제451호(운용),경기도 화성시 만세구 장안면 석포리 147-12,5,6,"112642, 112643, 112644, 120027, 120118","112642, 112643, 112644, 120027, project_notion_3258ced4-3c47-816e-a0cf-fe088bbc0c2e, project_notion_3268ced4-3c47-81ed-88ed-e064f8fbf28f"
+ast_10ad74d3885c,용답동 청년주택 개발사업,"서울 성동구 용답동 231,231-1번지",1,1,R00001,R00001
+ast_12056ec44b17,NC백화점(야탑),경기도 성남시 분당구 야탑동 356,2,2,"112081, 112155","112081, 112155"
+ast_1273fe709763,익선동 상업시설 개발,서울 종로구 익선동 138-6,1,1,112264,112264
+ast_1366fb10d2eb,London Office One Poultry,London EC2R 8EJ,1,2,200023,"200023, project_notion_3258ced4-3c47-8134-bcc7-d88d2c3ed5c0"
+ast_13b334c7bf6b,은평 시니어리빙 복합시설 개발,서울특별시 은평구 진관동 160 번지 일원,2,4,"120001, 190001","120001, 190001, project_notion_3258ced4-3c47-815c-a71e-effed6ca2386, project_notion_3268ced4-3c47-81eb-bde1-e34050f5002c"
+ast_146d3e80165b,"신동해빌딩, NICE2사옥","서울특별시 영등포구 여의도동 15-3, 15-28",5,5,"112514, 112515, 112516, 120089, 120090","112514, 112515, 112516, project_notion_3258ced4-3c47-814e-8248-f4ca04db3fd1, project_notion_3268ced4-3c47-814f-a040-f961b6e01c72"
+ast_14f3dd9eb1f9,마제스타시티타워1,서울특별시 서초구 서초동 1501-1,1,1,112101,112101
+ast_15470fbdefbf,GLP Europe Income/Development Partners I,-,1,2,112173,"112173, project_notion_3258ced4-3c47-81bb-bffe-f5da57c16046"
+ast_156c375e17dc,삼성중공업판교R&D센터,경기도 성남시 분당구 삼평동 615,2,4,"120058, R00013","120058, project_notion_3258ced4-3c47-8123-9b77-e65b40d81060, project_notion_3268ced4-3c47-8190-bf32-fc7d759939c2, R00013"
+ast_17db161a53b5,부실채권을 기초자산으로 하는 SPC의 출자지분 및 사채,-,2,2,"112082, 112307","112082, 112307"
+ast_1a7e1fbe1ed6,남양주 다산진건지구 오피스텔,"경기도 남양주 다산진건지구상업3 5-1, 5-2블럭",1,1,112190,112190
+ast_1a8c028a5e37,NY Brooklyn MF SpringCreek Tower,-,1,2,112585,"112585, project_notion_3258ced4-3c47-810e-a1aa-fd3ef4e7a20d"
+ast_1b09ced3f5a7,호수빌딩,대구광역시 중구 동인동2가 50-3,3,4,"112025, 112380, 112471","112025, 112380, 112471, project_notion_3258ced4-3c47-810b-833d-ea07904bffaf"
+ast_1b445b832a9b,Jersey City 65 Bay Street B-Note Loan,"65 Bay Street, Jersey City, NJ",1,2,112183,"112183, project_notion_3258ced4-3c47-817d-b777-eecaedc343f0"
+ast_1bf3c754cc2c,LA Wilshire Grand Center Senior Loan,"900 Wilshire Boulevard, Los Angeles, California",2,2,"112523, 112718","112523, 112718"
+ast_1c98656c9aa6,Pantheon Viking Co-Invest LP,-,2,8,"200006, 200007","200006, 200007, project_notion_3258ced4-3c47-812b-b4a3-d3091d0020b1, project_notion_3258ced4-3c47-81aa-8a38-eca933a0ef3a, project_notion_3258ced4-3c47-81d9-bd6b-cf85190615ef, project_notion_3258ced4-3c47-81f8-a64b-f9120a3bcba5, project_notion_3268ced4-3c47-8127-89d8-c7b8a4e189f0, project_notion_3268ced4-3c47-81e3-9702-c2a1a96d0bca"
+ast_1f446ce9025d,홈플러스죽도점 (투자),경상북도 포항시 북구 죽도동 50-1,5,5,"112018, 112225, 112567, 200003, R00002","112018, project_notion_3258ced4-3c47-8104-93cb-e17d0756539b, project_notion_3258ced4-3c47-819a-a6ab-d0752c7e7cd0, project_notion_3268ced4-3c47-813e-bcba-d8bcadf734f6, project_notion_3268ced4-3c47-81c4-8060-e206573a8da5"
+ast_20262366f9d0,Washington D.C. Office Midtown Center,"1100 15th Street, NW Washington, D.C.",2,3,"112540, 112541","112540, 112541, project_notion_3258ced4-3c47-81cd-b2ae-c5a87f617f2b"
+ast_225077ef8c95,Las Vegas Cosmopolitan Hotel Mezzanine C Loan,"3708 Las Vegas Blvd, Las Vegas, NV 89109",1,1,112164,112164
+ast_22f2b5989936,Nuveen Real Estate U.S. Cities Multifamily Fund,-,1,3,112408,"112408, project_notion_3258ced4-3c47-8107-8ec5-cbecaf705a8d, project_notion_3268ced4-3c47-8192-b83d-c0ae97a27553"
+ast_230b908af3f7,프랑스 Orange Telecome 오피스,"59 avenue Vladimir Ilitch Lénine, ARCEUIL",2,1,"112046, 112224",112046
+ast_2397942b2f4e,광주 월산현대지역주택조합 공동주택 개발사업 Bridge Loan 현대엔지니어링 채무인수 확약 후순위 대출채권,광주광역시 남구 월산동 258번지 일,1,1,112293,112293
+ast_2652e06dfeaa,평택아디다스물류센터,도일동 1175-3,2,3,"112500, 112604","112604, project_notion_3258ced4-3c47-8170-8de5-f9c1b071c202, project_notion_3268ced4-3c47-813c-b7de-e5829f083d59"
+ast_2769c1d0b916,세종시 어반아트리움,세종특별시 나성동 2421-8501,1,1,112154,112154
+ast_27e81b9a9e70,"Golub Capital Partners International 11, L.P.",-,1,3,200018,"200018, project_notion_3258ced4-3c47-813e-9235-f010f6ed603e, project_notion_3258ced4-3c47-81c4-8636-c586cdd9a67c"
+ast_28817669f116,용인기흥 파워센(개발),용인 기흥구 고매동 271번지 일원(총 14개 필지),1,1,112285,112285
+ast_288840e4c692,하남미사우성르보아파크,경기도 하남시 망월동 1079,2,2,"112099, 112189","112099, 112189"
+ast_28fa6c0336df,Blackstone Real Estate Debt Strategies V,-,1,3,200010,"200010, project_notion_3258ced4-3c47-816f-a361-ce65d6ef8825, project_notion_3268ced4-3c47-81aa-9fc1-c0b8f1b642ff"
+ast_2973f4cd4890,참빛솔라 태양광발전소,경상북도 성주군 초천면 고산리 산61,1,1,112504,112504
+ast_29998629e2b9,Essen TA2 Mezzanine Loan,"Theodor Althoff Straße 2, 45133 Essen, Germany",1,1,112356,112356
+ast_2ab8e79a6c7d,효제동 오피스텔 사업부지,서울특별시 종로구 효제동 24-3 외 26필지,3,2,"112611, 112612, 112613","112611, project_notion_3258ced4-3c47-8102-b3eb-f26a4c74477c"
+ast_2afd5e4b541f,안산시 고잔동 오피스텔 및 근린생활시설,경기도 안산시 단원구 고잔동 542-1 외 1필지,1,3,P00024,"P00024, project_notion_3258ced4-3c47-810c-b6ce-c7f33d6c28fc, project_notion_3268ced4-3c47-8122-8042-d520493fbf51"
+ast_2ca6ba796227,154호 수익증권(재간접),-,1,1,112157,112157
+ast_2d9d0a468e18,한림그린에너지 주식 및 대여금,-,1,1,120045,120045
+ast_2dabc46c306b,Atlanta Office Midtown I,"754 PeachtreeStreet, Fulton County, GA 30308, Atlanta",1,3,112049,"112049, project_notion_3258ced4-3c47-815f-b2c0-d9be44fbd27e, project_notion_3268ced4-3c47-8162-8149-efbb53678191"
+ast_2e084a75011d,TPG Real Estate Partners IV,-,1,3,112662,"112662, project_notion_3258ced4-3c47-8172-84d8-c70af74ceece, project_notion_3268ced4-3c47-8155-856d-cc1607f04e63"
+ast_2ee9ca3d2082,"해외 주식, 채권, ETF",-,5,3,"112756, 112757, 112758, 112759, 112760","112756, 112757, 112758"
+ast_307e1f83e0d2,Canyon Distressed Opportunity Fund II,-,1,1,112135,112135
+ast_30937d64ae67,부실채권을 기초자산으로 하는 SPC 사채,-,1,1,112124,112124
+ast_30c376cd6730,이지스312호 수익증권,사동 1422-15,3,3,"112532, 112533, 112534","112532, 112533, 112534"
+ast_30efc1e2c218,이지스경산물류제1호일반사모부동산투자회사의 1종 종류주식,-,2,3,"120076, 120077","120076, project_notion_3258ced4-3c47-81d4-9cfc-eb667306d728, project_notion_3268ced4-3c47-8102-ac19-e5adfb55962b"
+ast_31a8b3ea9c30,두산빌딩,논현동 105-7,3,5,"112524, 112525, 112526","112524, 112525, 112526, project_notion_3258ced4-3c47-8186-a02f-de49c9c22bf2, project_notion_3268ced4-3c47-81d7-b580-daeec8664f2c"
+ast_31d5292aa061,Newark Two Riverfront Plaza Senior B-Note Loan (Panasonic),"Two Riverfront Plaza, Newark, NJ 07102",1,1,112116,112116
+ast_3201a934e6fd,수익/지분증권,-,4,4,"112774, 112775, 112776, 112777","112774, 112775, 112776, 112777"
+ast_327f60afc82b,Uki Retail AEON Mall,"1-1,Gonoe,Ogawamachi,Uki-shi,Kumamoto-ken, Japan",1,1,112230,112230
+ast_329735309847,Tokyo District 23 Residential Portfolio,일본 도쿄도 23구 내,3,5,"112362, 112363, 112364","112362, 112363, 112364, project_notion_3258ced4-3c47-81de-9434-fe924893d737, project_notion_3268ced4-3c47-81cb-ace2-f8adcf89ad47"
+ast_334dab757ff6,Unico Core Plus Partners,-,1,3,112617,"112617, project_notion_3258ced4-3c47-81a8-946f-ca93f4069c30, project_notion_3268ced4-3c47-81b1-9741-fd87a8c3a8e4"
+ast_3363b64de849,JP Morgan AMH HB Venture,-,1,2,112409,"112409, project_notion_3258ced4-3c47-8195-abd3-e4559adacbf4"
+ast_34e35d0dff33,이지스부동산일반사모투자회사제543호,경기도 성남시 분당구 야탑동 403,3,3,"190002, 190003, 190004","190002, project_notion_3258ced4-3c47-812e-b745-f9ba6ea3a900, project_notion_3268ced4-3c47-81ba-bcf5-cc8a02c3cbb5"
+ast_3575c5ffffe0,Dallas KPMG Plaza Senior Loan,"2323 Ross Avenue, Dallas, Texas 75201",2,2,"112073, 200039","112073, 200039"
+ast_3660f9bb2ed5,디어스판교,-,3,4,"112214, 120042, 120043","112214, 120042, 120043, project_notion_3258ced4-3c47-81ea-a0bb-fa9d9ce4ceab"
+ast_36740c106490,한남동 외국인아파트부지 신축 PF대출,서울특별시 용산구 한남동 680-1,1,1,112161,112161
+ast_373f87c6b8d9,Virginia Amazon Warehouse,"25 Strategy Drive, Fredericksburg, Stafford, VA",2,4,"112496, 112497","112496, 112497, project_notion_3258ced4-3c47-8148-8d44-e1119e0d636a, project_notion_3268ced4-3c47-8134-bde8-db87465641ba"
+ast_37df20b9e30d,가산 임대형기숙사개발사업,서울시 금천구 가산동 319-18,3,5,"190005, 190006, 190007","190005, 190006, 190007, project_notion_3258ced4-3c47-8136-96d3-f99474d7d46d, project_notion_3268ced4-3c47-8144-a1df-ff8b63c8e26f"
+ast_38527bcff111,성수동2가 268-2 업무시설 개발사업 브릿지대출,-,3,1,"120037, 120040, 120041",120037
+ast_386a43afd1af,서초동 오피스텔 개발 사업,"서울시 서초구 서초동 1454-1, 2",1,1,112616,112616
+ast_39ccf4397829,Sanofi 본사(파리) 대출,"54/56 Rue la Boetie, Paris, France",1,2,112036,"112036, project_notion_3258ced4-3c47-81d7-9f1b-c67b57b58026"
+ast_39df6f35071a,신라스테이해운대,부산광역시 해운대구 우동 629-6,3,5,"112048, 112677, 112678","112048, 112677, 112678, project_notion_3258ced4-3c47-8157-9c3e-ef6d1102c77c, project_notion_3268ced4-3c47-8138-ace2-e1b46fc2739d"
+ast_3a33a41d444e,충북 청주시 서원구 잠두봉근린공원 공동주택 개발사업 PF,충청북도 청주시 서원구 수곡동 산 22,1,1,112387,112387
+ast_3a760d38807f,"AA- 이상 채권, 국내 상장 리츠, 공모주, 스팩",-,4,1,"112740, 112741, 112742, 112743",112740
+ast_3ad28593fd5f,Brookfield UK Gas Distribution Sidecar (SGN),-,1,2,112648,"112648, project_notion_3258ced4-3c47-8157-823d-d7985c32aae0"
+ast_3aee5443a745,아레나스양지물류센터,경기도 용인시 처인구 양지면 양지리 914,4,7,"112127, 112128, 112129, 112130","112127, 112128, 112129, 112130, project_notion_3258ced4-3c47-8130-a3b0-c57b0247d366, project_notion_3258ced4-3c47-81b7-91a0-d8146935f603, project_notion_3268ced4-3c47-8178-8c58-f9e27b506db3"
+ast_3b4b047a6381,Frankfurt Office Trianon,"Mainzer Landstraße 16, 60325, Frankfurt",4,6,"112242, 112243, 112244, 112254","112242, 112243, 112244, 112254, project_notion_3258ced4-3c47-817a-b713-cc1721ffc64b, project_notion_3268ced4-3c47-81c1-a7ea-f8827a934b01"
+ast_3b7fc78aeb9e,Shiba Park Building,"2-4-1 Shiba-Koen, Minato Ward, Tokyo",1,1,112113,112113
+ast_3e58fbce109d,J.P. Morgan Asia-Pacific Property Fund,-,1,1,112138,112138
+ast_3e8fec277620,와이플러스빌딩 (투자),서울특별시 강남구 신사동 533-3,3,1,"112185, 112186, 112187",112185
+ast_3f19dc443d1d,"StepStone Secondary Opportunities Fund V Offshore, L.P.",-,3,5,"112795, 200012, 200013","112795, 200012, 200013, project_notion_3258ced4-3c47-81c9-8142-c64d22ee4e6a, project_notion_3268ced4-3c47-81e8-857c-da23b338f2d2"
+ast_3f3767149c5b,여주 본두리 물류센터 (투자),경기도 여주시 가남읍 본두리 18-3,1,2,112606,"112606, project_notion_3258ced4-3c47-8125-9191-db4b8b12bacc"
+ast_403ec12279a7,New York 685 5th Avenue Mezzanine Loan,"685 Fifth Avenue, Manhattan, NY",1,3,112256,"112256, project_notion_3258ced4-3c47-8171-943e-fd9cc83dd227, project_notion_3268ced4-3c47-8108-ad18-d962db115fa5"
+ast_4273abf1dd9d,미국 뉴욕 맨하탄 소재 오피스 자산 “285 Madison Avenue”의 선순위 담보대출,"285 Madison Avenue, New York, NY 10017",1,3,200028,"200028, project_notion_3258ced4-3c47-81a5-bc98-e3f88c29b4fb, project_notion_3268ced4-3c47-8170-877d-d4ac221a3d08"
+ast_42ffd5c419d7,Hawaii Sky Ala Moana Senior B-note Loan,"1388, 1400 & Kapiolani Boulevard, Honolulu, Hawaii, United States",3,3,"112539, 112544, 112545","112539, 112544, 112545"
+ast_431f0dbd0f1f,이지스제472호일반사모부동산투자회사의 지분증권 (재간접),-,3,3,"112672, 112673, 112674","112672, 112673, 112674"
+ast_4409771035d2,Ares Landmark Real Estate Partners VIII,-,1,3,112143,"112143, project_notion_3258ced4-3c47-812d-b8db-dc1ea518edaf, project_notion_3268ced4-3c47-8123-a2ec-f00fcd30009b"
+ast_446647af6ed1,세운5구역PFV,"서울시 중구 산림동 190-3번지 일원 (세운지구 5-1, 5-3구역)",1,1,112321,112321
+ast_44e362fded27,이지스리테일제55호사모부동산투자유한회사,인천광역시 중구 항동7가 76-2,2,1,"112054, 112319",112054
+ast_45b2d66f02a6,용산구 원효로3가 역세권 청년주택,서울특별시 용산구 원효로3가 1-159외 3필지,1,1,R00004,R00004
+ast_468704b8269a,Bridge Debt Strategies V Green Bridge LP,-,1,2,200009,"200009, project_notion_3258ced4-3c47-81c6-884e-e6cac4ec9b3c"
+ast_46a7ecc290e9,Hamburg Office Fleet II,"Heidenkampsweg 74-76, 20097 Hamburg, Germany",1,3,112093,"112093, project_notion_3258ced4-3c47-818c-a7f3-d0b5a538aeb4, project_notion_3268ced4-3c47-81b7-9794-e0802c9cca6b"
+ast_473b1c633c1b,효제동 주거용 오피스텔,서울특별시 종로구 효제동 21-3번지 일원,1,3,P00022,"P00022, project_notion_3258ced4-3c47-817a-8987-ca5881e5effb, project_notion_3268ced4-3c47-8116-9985-ee93e8fcc3d3"
+ast_4960a4a8e607,New York Manhattan Holiday Inn B-Note,"99 Washington Street, New York",1,1,112236,112236
+ast_498605d11e47,"용답동 231, 231-1 공동주택 및 근린생활시설",서울특별시 성동구 용답동 231,1,1,R00016,R00016
+ast_4a2972f3fd4f,주식회사 석암물류(SPC),경상남도 양산시 유산동 509,1,3,S00002,"project_notion_3258ced4-3c47-817e-9179-d285c2009a46, project_notion_3268ced4-3c47-8167-a328-f06e22dc7dcc, S00002"
+ast_4a78efdfb00c,이지스제200호일반사모부동산투자유한회사 2종 수익증권,-,1,1,112542,112542
+ast_4ae20e9370ca,이지스아디안유럽인프라일반사모혼합자산투자신탁제494호(재간접),-,1,3,112803,"112803, project_notion_3258ced4-3c47-81f8-b08d-e7fdd34ce1d7, project_notion_3268ced4-3c47-8184-9808-dea3ff489d9c"
+ast_4b343ec79ade,Brookfield Premier Real Estate Partners Australia,-,2,3,"112267, 112269","112267, 112269, project_notion_3258ced4-3c47-81e8-82e8-e855e958d177"
+ast_4b71eb552741,에스피청주 복합상업시설,충북 청주시 홍덕구 강서 2동 일원 (청주테크노폴리스),1,2,112159,"112159, project_notion_3258ced4-3c47-8129-9a2d-f4e99489a8a2"
+ast_4ce1803146bf,Brookfield Strategic Real Estate Partners V,-,1,4,200026,"200026, project_notion_3258ced4-3c47-8144-837f-f766b6b6fd9f, project_notion_3258ced4-3c47-81fb-90c0-e6f4f92bb974, project_notion_3268ced4-3c47-8187-9c21-dde39ac7bb68"
+ast_4d1430b5f175,공모주,-,38,27,"112709, 112710, 112711, 112712, 112713, 112714, 112763, 300006, 300007, 300008, 300009, 300012, 300018, 300019, 300020, 300028, 300032, 300033, 300034, 300035, 300036, 300037, 300039, 300044, 300047, 300050, 300051, 300052, 300054, 300057, 300061, 300063, 300073, 300074, 300075, 300076, 300079, 300080","112710, 112763, 300006, 300012, 300018, 300019, 300020, 300028, 300032, 300036, 300037, 300039, 300044, 300047, 300050, 300051, 300052, 300054, 300057, 300061, 300063, 300073, 300074, 300075, 300076, 300079, 300080"
+ast_4d35344df3a2,Abry Advanced Securities Fund III CV-A,-,1,3,200021,"200021, project_notion_3258ced4-3c47-81a6-a433-ed34928f9dcb, project_notion_3268ced4-3c47-817e-84dc-db6eb8dee5f2"
+ast_4e0ba511036c,EQT Infrastructure VI (No.1) EUR SCSp,-,1,2,200027,"200027, project_notion_3258ced4-3c47-817d-9eed-d3c911c78284"
+ast_4e15ca971054,"부실 및 부실우려 PF사업장 대출채권, 대출, 지분 등에 투자하는 모집합투자기구(모자형 블라인드 펀드)",-,1,3,120039,"120039, project_notion_3258ced4-3c47-814e-82a7-ee711e28e008, project_notion_3268ced4-3c47-8101-8cb6-d9d2a5d40ee2"
+ast_4f18f7d89d7d,청라동 오피스텔 분양사업,인천광역시 서구 청라동 6-7,1,3,P00015,"P00015, project_notion_3258ced4-3c47-8174-9ccc-e400e5a2f47d, project_notion_3268ced4-3c47-8103-8808-c913c77929b1"
+ast_4f430ef52910,New York Jackson Park CMBS Loan,"28-40 Jackson Ave, Long Island City, NY 11101, United States",1,3,112383,"112383, project_notion_3258ced4-3c47-81a4-931d-fa69bddec6ff, project_notion_3268ced4-3c47-810e-a029-ce6227606a25"
+ast_4f5ea25eb396,이지스일반사모부동산투자신탁제291호,서울특별시 강남구 신사동 543,1,2,112322,"112322, project_notion_3258ced4-3c47-8142-8586-c40a29d90ba0"
+ast_508cc8fee1ee,세운5구역PFV(주) 지분,-,2,5,"112641, 112661","112641, 112661, P00006, project_notion_3258ced4-3c47-81fe-863b-d520374af4eb, project_notion_3268ced4-3c47-8131-b1f1-e0223542afc5"
+ast_511ba5b81207,102호 수익증권(재간접),-,1,1,112107,112107
+ast_512881449c97,안산 초지동 데이터센터,경기도 안산시 초지동 624-3,2,4,"112745, 112748","112745, 112748, project_notion_3258ced4-3c47-81cf-88a1-d01be50c7fd0, project_notion_3268ced4-3c47-8111-80c5-f382fb82d91d"
+ast_5264d55d0bc9,Poland Logistics Zalando,"J844+CX Olsztynek, Poland",5,7,"112278, 112286, 112331, 112332, 112371","112278, 112286, 112331, 112332, 112371, project_notion_3258ced4-3c47-8153-ada3-dc9c8d99feef, project_notion_3268ced4-3c47-8151-a62a-c37110f68442"
+ast_52adbb346181,안성홈플러스물류센터,경기도 안성시 원곡면 칠곡리 941,2,3,"112500, 112703","112703, project_notion_3258ced4-3c47-81e0-81b0-fe1420d49b02, project_notion_3268ced4-3c47-813f-b8fd-f6800a53e0d7"
+ast_53985b2bb7f9,수서역세권 공공주택지구 B1-3BL 개발사업 브릿지대출,-,3,3,"120050, 120051, 120052","120050, project_notion_3258ced4-3c47-811c-8b02-fb0dee02d093, project_notion_3268ced4-3c47-8160-8514-e2f637de8531"
+ast_53a61027bef6,스타필드(고양) (투자),경기도 고양시 덕양구 동산동 370,1,3,112100,"112100, project_notion_3258ced4-3c47-818c-952f-d3aaab07234e, project_notion_3268ced4-3c47-81eb-8a57-e3a582501948"
+ast_541ce8b9c351,이지스전문투자형사모투자신탁285호,부산광역시 동래구 온천동 180-14,1,1,112306,112306
+ast_54efcc8cb9d2,New York Office 85 Tenth Avenue Senior Loan,"85 10th Avenue, New York,NY, USA (NY10001)",3,5,"112095, 112097, 112098","112095, 112097, 112098, project_notion_3258ced4-3c47-81cb-93e0-ff36ff99e089, project_notion_3268ced4-3c47-81e3-a203-d7459ffa9df3"
+ast_55478b8ac17a,GIDC 광명역 지식산업센터,경기도 광명시 광명역세권 도시지원시설용지 1-1BL,2,2,"112246, 112248","112246, 112248"
+ast_55e5920ab1cd,당산 지식산업센터 개발사업 PF대출,서울특별시 영등포구 당산동5가 9-9번지 일원,1,2,112666,"112666, project_notion_3258ced4-3c47-81ec-ace8-fb6af8e3eb3f"
+ast_55e5cc352c17,118호 수익증권(재간접),-,1,1,112131,112131
+ast_564945797e16,GLP U.S. Income Partners III,-,1,1,112094,112094
+ast_56e6a7e4b54b,이지스부동산투자신탁280호,서울특별시 송파구 잠실동 183-12,1,1,112298,112298
+ast_576c45603803,신재생에너지 발전사업 PF대출,-,1,1,112647,112647
+ast_578a66328a1e,판교아이스퀘어E동,시흥동 339,4,8,"112535, 112536, 112537, 112538","112535, 112536, 112537, 112538, project_notion_3258ced4-3c47-8190-9c2c-d9cdea369e36, project_notion_3258ced4-3c47-81dc-9708-ed71db63bfd9, project_notion_3268ced4-3c47-8158-8902-f21ce55b3dd5, project_notion_3268ced4-3c47-81a2-b758-f4d08f68a8f7"
+ast_5804290d6389,용산라이프PFV 대여금,서울특별시용산구청파로125 (한강로2가15-2),3,5,"120099, 120100, 120101","120099, 120101, 120102, project_notion_3258ced4-3c47-81c2-be12-f2654447d341, project_notion_3268ced4-3c47-8132-9b5a-f00e03f2d6e7"
+ast_5853b093d79c,제주 신화월드 개발사업(한화전문투자형사모부동산자투자신탁5호6M),-,2,2,"112202, 112215","112202, 112215"
+ast_58e37903d5ef,피에스KORIF사모부동산투자신탁5호,강원특별자치도 원주시 단계동 1123,8,3,"112004, 112040, 112119, 112120, 112121, 112122, 112123, 112565","112004, project_notion_3258ced4-3c47-8182-8ab9-dd2b43a692ec, project_notion_3268ced4-3c47-81af-9629-e74d0039b03f"
+ast_5aa554bf9521,Toronto The One Senior Loan (Term Facility),"One Bloor St. West, Toronto, Ontario",1,4,112355,"112355, project_notion_3258ced4-3c47-8134-98c0-edd349f78c11, project_notion_3258ced4-3c47-81a3-9095-fcd561c82c8b, project_notion_3268ced4-3c47-81c2-8ae5-f29ce628f63b"
+ast_5b15a4c23cb4,SB Holding AB 그룹의 MidCo에 대한 중순위 대출,-,1,1,200020,200020
+ast_5c3c9c2755cf,AEW Partners Real Estate Fund X,-,1,3,200025,"200025, project_notion_3258ced4-3c47-81ed-8a19-fc90ef9a9e18, project_notion_3268ced4-3c47-8192-9902-fb2b11578848"
+ast_5c591e0531aa,Delaware Logistics Amazon FC,"801 Boxwood Rd, Wilmington, Delaware 19804",3,5,"112483, 112484, 112485","112483, 112484, 112485, project_notion_3258ced4-3c47-81a2-98c6-dc94f2fa35c1, project_notion_3268ced4-3c47-8197-807d-fc8814e4f52f"
+ast_5cb81c5d6700,Goldman Sachs West Street Infrastructure Partner IV,-,3,4,"112578, 112619, 112620","112578, 112619, 112620, project_notion_3258ced4-3c47-8108-a2f5-e5ae45e59ab8"
+ast_5d4460265c4e,을지로3가 도시환경정비구역 제10지구 신축 오피스,을지로3가 95-11 일원,1,3,P00029,"P00029, project_notion_3258ced4-3c47-81f5-be7c-d44bb26eea52, project_notion_3268ced4-3c47-8162-a8b7-df7bc124ded0"
+ast_5db71e381d95,LasVegas The Cosmopolitan Hotel Junior Mezzanine Loan,"3708 Las Vegas Blvd, Las Vegas, NV 89109",1,1,112108,112108
+ast_5e6893cec720,Hines European Property Partners,-,2,3,"200001, 200002","200001, 200002, project_notion_3258ced4-3c47-8156-b14e-eef62ab1ede9"
+ast_5e78208b8107,상봉 청년주택 개발,중랑구 상봉동 109-28 외,1,2,P00019,"P00019, project_notion_3258ced4-3c47-819d-90a9-ff29cc1de1d2"
+ast_5eda17cd5cf3,광명 역세권지구 복합시설 신축 (투자),경기도 광명시 일직동 508-4,1,1,112136,112136
+ast_5f1f6f6aa534,판교 창조경제밸리 특별계획구역(I-Square),경기도 판교 창조경제밸리 C2블록,1,1,112152,112152
+ast_616c3d79da75,이지스경산로지스제1호일반사모부동산투자회사(운용),경상북도 경산시 진량읍 문천리 903,4,3,"120085, 120086, 120087, 120088","120085, project_notion_3258ced4-3c47-819b-a52f-e7c8354328c7, project_notion_3268ced4-3c47-8122-96e2-c99bf96da91c"
+ast_617613cdf1a8,역삼동 개발사업,강남구 역삼동 831-19 일원,1,1,112372,112372
+ast_62dfd826ce2e,"공모주, 스팩",-,2,2,"112744, 300017","112744, 300017"
+ast_64855a473d9f,맹그로브 신촌,서울특별시 마포구 노고산동 56-68 외,2,8,"112445, 112448","112445, 112446, 112447, 112448, 112791, project_notion_3258ced4-3c47-81ca-894d-d5b44d3c5ca4, project_notion_3258ced4-3c47-81d3-a117-f74f417a01d0, project_notion_3268ced4-3c47-81f9-b5ed-fd6aad0d5a41"
+ast_6526b194cc13,이지스카스퀘어NPL일반사모부동산투자신탁,경기도 부천시 오정구 삼정동 366-1,1,3,112720,"112720, project_notion_3258ced4-3c47-815d-a7f7-dbdc6a9cb545, project_notion_3268ced4-3c47-8152-85f1-d4094801fe39"
+ast_6620a797dae4,인천 가좌동 소재 개발자산 선매입,-,1,3,112704,"112704, project_notion_3258ced4-3c47-816b-a48f-fe910c82beb6, project_notion_3268ced4-3c47-810e-a5e9-c9dd92e38c0b"
+ast_667927af8983,이지스유에이치 주식 및 대여금,-,2,1,"120045, 120048",120048
+ast_668935b47b6b,이지스KORIF사모부동산 투자신탁12호,전라남도 나주시 송월동 1106-2,1,2,112007,"112007, 112056"
+ast_6943582c5ffa,명동청휘빌딩,서울특별시 중구 명동2가 33-1,1,3,112165,"112165, project_notion_3258ced4-3c47-8127-8ac0-c2f491cf0eec, project_notion_3268ced4-3c47-81e5-a59f-dca9ade179d4"
+ast_6a798e5e30ee,태양광설비회사 대출채권,-,1,1,112142,112142
+ast_6b047e815c5e,해운대구 재송동 한진 CY부지 공동주택 등 개발사업 선순위 BrLoan 담보대출,부산시 해운대구 재송동 856-1번지 일원,1,1,112309,112309
+ast_6b75948563b6,Prologis Targeted European Logistics Fund,-,2,2,"112050, 112125","112050, 112125"
+ast_6c15b114075c,용산더프라임,서울특별시 용산구 원효로1가 121-90,3,5,"120008, 120009, 120010","120008, 120009, 120010, project_notion_3258ced4-3c47-814f-8090-fc2a4dd7a5ac, project_notion_3268ced4-3c47-818b-8630-ff8cfc5a364a"
+ast_6c274653ed0b,고양삼송데이터센터,경기도 고양시 덕양구 오금동 690,5,7,"112608, 112609, 112610, 112804, 112805","112608, 112609, 112610, 112804, 112805, project_notion_3258ced4-3c47-817a-8d9d-ca7fa218d56f, project_notion_3268ced4-3c47-8155-b7a0-c18626b30479"
+ast_6d4a384539b2,Hines Poland Sustainable Income Fund,-,4,3,"112051, 112084, 112151, 112640","112051, 112640, project_notion_3258ced4-3c47-81d0-a607-e5864be9c30d"
+ast_6d51cde27e33,해운대 L7,부산광역시 해운대구 우동 626-14번지 일원,1,2,P00004,"P00004, project_notion_3258ced4-3c47-81ca-ace9-dffaaaa858a5"
+ast_6df0b80f71d4,이지스10호(2종)의  수익증권,-,1,1,120070,120070
+ast_6e943e2850e9,고양시 화정동 아이씨티일산,경기도 고양시 덕양구 화정동 1148-6,1,1,112194,112194
+ast_6f4f44b4c3aa,도지물류센터 (투자),경기도 이천시 백사면 조읍리 25,3,2,"112245, 112265, 112266","112245, project_notion_3258ced4-3c47-8125-9baf-d111888996fe"
+ast_701635aba4fc,송도 센토피아더샵 공동주택 및 근린생활시설 개발사업 PF Refinancing,인천광역시 연수구 송도동 308-1,1,1,112373,112373
+ast_7045c219d59c,Nuveen RE-PCCP U.S. Core-Plus Real Estate Debt Fund,-,1,3,112247,"112247, project_notion_3258ced4-3c47-81c6-8e94-dc4d1e0afe7c, project_notion_3268ced4-3c47-813f-aac2-f88af864f231"
+ast_71252a1db077,수서 역세권B1-3BL B/L(이지스수서PF재구조화 2종 수익증권),서울특별시 강남구 자곡동 198 (수서역세권 공공주택지구 B1-3BL),1,1,120049,120049
+ast_713f8b4e24da,Paris Logistics Amazon,"Base Aerienne 217, 91220 Bretigny-sur-Orge, Paris, France",4,9,"112324, 112325, 112326, 112327","112324, 112325, 112326, project_notion_3258ced4-3c47-8116-b1d2-e72db33d5b84, project_notion_3258ced4-3c47-8118-ae0f-dd60c937a8f8, project_notion_3258ced4-3c47-8193-adc6-c875a6aec45a, project_notion_3268ced4-3c47-815d-bd05-ff3741cc9101, project_notion_3268ced4-3c47-81d7-82d1-d7c0c8e09216, project_notion_3268ced4-3c47-81f9-9bbf-c9aa5f8afcbd"
+ast_71e4c2f1e642,ARES Special Opportunities Fund,-,1,3,112645,"112645, project_notion_3258ced4-3c47-81ba-aaae-e4387fce5d2e, project_notion_3268ced4-3c47-811f-932e-e289eb608c23"
+ast_72434a85fc8f,강서 마곡지구 근린생활시설 개발사업 PF대출,서울특별시 마곡지구 지원시설용지 DS9BL,3,1,"112199, 112203, 112204",112199
+ast_726cfaffb03f,신영문봉PFV의 대출채권 및 지분증권,경기도 고양시 일산동구 문봉동 16-21 외,1,1,120018,120018
+ast_7384f101a20f,Jersey City 65 Bay Street A2-Note Loan,"65 Bay Street, Jersey City, NJ",1,2,112200,"112200, project_notion_3258ced4-3c47-814b-85e3-c2241d3a7342"
+ast_73e5216b97f6,이천 마장면 물류센터,경기도 이천시 마장면 회억리 104,4,3,"112573, 112574, 112575, 190010","112573, 190010, project_notion_3258ced4-3c47-816d-8098-c44b060c2e72"
+ast_73f09d84ccfa,한남동 외국인아파트부지 재개발사업 PF대출,서울특별시 용산구 한남동 680-1,3,1,"112166, 112167, 112168",112166
+ast_74b58d4dd7c7,"Albany, Cleveland, Omaha BTS Logistics",-,2,4,"112582, 112583","112582, 112583, project_notion_3258ced4-3c47-81da-956e-e833fece1802, project_notion_3268ced4-3c47-8117-ae0e-f6a2eeb1c294"
+ast_74fc8d406c81,이지스일반사모부동산투자신탁14호,울산광역시 남구 달동 1247-1,2,2,"112011, 120119","112011, project_notion_3258ced4-3c47-812c-8a70-d7b048349279"
+ast_75c6cda594b3,타임테라스동탄,경기도 화성시 동탄구 반송동 96,3,4,"112237, 112290, 112291","112290, 112291, project_notion_3258ced4-3c47-81e8-94a9-fa596740cf42, project_notion_3268ced4-3c47-8136-bc2c-f9aa4ed4f6d8"
+ast_7658ea6ef139,독일 프랑크푸르트 소재 개발사업부지,Mainzer Landstrasse 23,1,1,112343,112343
+ast_78dab1be1bf0,New York 20 Times Square Senior Loan,701 7th Ave New York NY,1,2,112208,"112208, project_notion_3258ced4-3c47-8144-9e19-c7e9bc6fd9d8"
+ast_7a413edaa9cb,Glennmont REBS Europe Fund I,-,1,2,112250,"112250, project_notion_3258ced4-3c47-81bb-9562-d93cb535570e"
+ast_7a41b6b1cb32,Washington D.C. Washington Square Mezzanine Loan,"1050 Connecticut Avenue NW, Washington, D.C.",1,3,112063,"112063, project_notion_3258ced4-3c47-8110-9810-c4c422e5c402, project_notion_3268ced4-3c47-8186-ae59-ccdbad5d7d04"
+ast_7ab6aebd7878,검단 오피스텔 개발,"인천광역시 서구 원당동 3203-104, 105",1,2,P00020,"P00020, project_notion_3258ced4-3c47-813d-b3bd-d68aceae3c84"
+ast_7b6e6d2a39c2,완장리 물류센터,경기도 용인시 처인구 남사읍 완장리 산100번지 일원,4,3,"112547, 112548, 112549, 112550","112547, project_notion_3258ced4-3c47-815f-a7e6-d5193cd0cdfc, project_notion_3268ced4-3c47-8147-b112-f45702c90f42"
+ast_7b9ae18fb951,명지녹산데이터센터개발사업,부산광역시 강서구 송정동 1711-4번지 외 4필지,1,3,190014,"190014, project_notion_3258ced4-3c47-8146-a972-deb45e2e5bb9, project_notion_3268ced4-3c47-812b-88e3-e4f6d552d62c"
+ast_7dc6f67bfd0a,은평 시니어레지던스,은평구 진관동 208-10 일원,1,3,P00033,"P00033, project_notion_3258ced4-3c47-817a-977f-f625bb42318f, project_notion_3268ced4-3c47-8105-b042-c36e53c4117d"
+ast_7f15b2995cda,신도림 디큐브시티 백화점,-,1,1,R00014,R00014
+ast_7ff7300b8ef6,Nuveen Global Real Estate Debt Partners Fund II (UK),-,2,4,"112182, 112273","112182, 112273, project_notion_3258ced4-3c47-816e-b5d5-c4598a11f0d5, project_notion_3268ced4-3c47-819d-ab18-e5b6425eeb89"
+ast_8037c5fed7e0,"Macquarie Infrasturcture Partners V, L.P",-,1,2,112576,"112576, project_notion_3258ced4-3c47-8177-983d-f35f6e258775"
+ast_8058fee6124d,Sun Crest Kameari,"3-10-14 Kameari, Katsushika-ku, Tokyo",1,1,112188,112188
+ast_808ae65372f4,오시리아타워레지던스,-,1,2,P00003,"P00003, project_notion_3258ced4-3c47-8178-a538-d3245bf6d565"
+ast_8237a62aef6a,신라스테이서대문,서울특별시 서대문구 미근동 163,1,3,112042,"112042, project_notion_3258ced4-3c47-8123-8145-d71caeb10a11, project_notion_3268ced4-3c47-81c8-b742-e7c0a9c0085c"
+ast_82a02139e4fd,동삭센토피아 지역주택조합 아파트,경기도 평택시 동삭동 342번지 일원,1,1,112249,112249
+ast_834d830d4c5a,Manhattan Meatpacking Plaza Senior + Mezz Loan,44-54 Ninth Avenue,1,2,112560,"112560, project_notion_3258ced4-3c47-81a5-8cc1-e2bbe54725d8"
+ast_835e9f381ae3,이지스아레나스전문투자형사모부동산투자신탁4호,인천광역시 서구 오류동 1549-4,1,2,112299,"112299, project_notion_3258ced4-3c47-81a6-9bb7-f9719c5ff02d"
+ast_84491d5860d7,하남데이터센터,경기도 하남시 풍산동 607-2,9,10,"112442, 112443, 112444, 112569, 112570, 112571, 112572, 112594, 112595","112442, 112443, 112444, 112569, 112570, 112571, 112572, 112594, 112595, project_notion_3258ced4-3c47-81bc-8394-d41b2f69b8f2"
+ast_8463e9312b39,이지스 코어에너지인프라 1호 수익증권,-,2,2,"120046, 120047","120046, 120047"
+ast_854de4d7b05b,하남미사 지식산업센터,경기도 하남시 하남미사 자족시설용지 12-2/3BL,1,1,112297,112297
+ast_8574787ff3ec,성수 빅트라이앵글B/L(이지스성수PF재구조화 2종 수익증권),서울특별시 성동구 성수동 268-2번지 외 2필지,1,1,120038,120038
+ast_859c72f41f43,Clarion Lion Properties Fund,-,1,2,112501,"112501, project_notion_3258ced4-3c47-811d-9754-feba4504bba8"
+ast_864ff5655978,TIKEHAU Capital이운용하는TIKEHAU Direct Lending 6L의수익증권,-,1,3,200014,"200014, project_notion_3258ced4-3c47-8197-b5da-ff934491f875, project_notion_3268ced4-3c47-813a-9904-f96bb264a48b"
+ast_867da725ab6d,Brookfield Super-Core Infrastructure Partners Partnership L.P.,-,1,1,200022,200022
+ast_86bf4722d494,US Courtyard by Marriott Portfolio Rescue Capital Loan,아래 자산별 상세 내역,1,3,112478,"112478, project_notion_3258ced4-3c47-81dc-8c41-fd98a32e2344, project_notion_3268ced4-3c47-8125-98b6-fdc24490a505"
+ast_86f45a70b070,이지스 353호 (OPUS 459/舊백암빌딩),-,1,1,112470,112470
+ast_8870b9567bcd,애월 복합관광단지 개발,제주특별자치도 제주시 애월읍 상가리 17-6,4,6,"120023, 120024, 120025, P00038","120023, 120024, 120025, P00038, project_notion_3258ced4-3c47-81d0-aae6-fed0986cadd7, project_notion_3268ced4-3c47-81fb-b3b0-d1d716899402"
+ast_89a1de3b387b,Rockpoint Growth and Income Real Estate Fund II,-,1,4,112147,"112147, 112162, project_notion_3258ced4-3c47-8121-8e24-c851bc7ebcb6, project_notion_3258ced4-3c47-817e-a599-d1294e05518a"
+ast_89a55348d21e,"Ardian Americas Infrastructure Fund V S.C.S., SICAV-RAIF",-,2,4,"112577, 112601","112577, 112601, project_notion_3258ced4-3c47-8154-be8d-ec7a529bfce4, project_notion_3268ced4-3c47-813d-98b2-c476ce584208"
+ast_89fe99414d33,Townsend Europe Logistics Venture II Korea Feeder,-,1,3,112347,"112347, project_notion_3258ced4-3c47-8101-aad6-de7498fabf39, project_notion_3268ced4-3c47-81d8-b739-d3e53faac7dd"
+ast_8a013a44ba44,Dallas Office One AT&T Plaza,"208 South Akard Street, Dallas, Texas 75201",1,3,112333,"112333, project_notion_3258ced4-3c47-81a4-bf1c-d0bb8e56df6a, project_notion_3268ced4-3c47-81a1-8fba-f225c28fa9e0"
+ast_8a2bc4422178,UBS Trumbull Property Income Fund,-,1,3,112180,"112180, project_notion_3258ced4-3c47-817d-bebf-d3487e98e8a7, project_notion_3268ced4-3c47-8170-b1cf-fb18043205ae"
+ast_8a93d35b0890,디오션259피에프브이 주식회사,강원특별자치도 강릉시 송정동 259,1,1,P00011,P00011
+ast_8bd8d91c9bb8,천안성성동피에프브이주식회사,충청남도 천안시 서북구 성성동 366-3,1,3,P00017,"P00017, project_notion_3258ced4-3c47-8168-b61b-f37e347025ae, project_notion_3268ced4-3c47-81c8-8825-e93d7e438b4e"
+ast_8c1cc2a2dfa8,PMBK가 운용하는 APAC Sustainable Infrastructure Fund LP의 수익증권,-,1,1,200029,200029
+ast_8d2911b657d8,이지스전문투자형사모부동산투자신탁259호,경기도 파주시 와동동 1433,1,1,112277,112277
+ast_8e254bfe7df1,런던원우드스트리트 Prime오피스,"One Wood Street, London, EC2",2,2,"112009, 112010","112009, 112010"
+ast_8f4a16aa66fa,이지스로지스틱스리츠,경기도 여주시 점봉동 204-3,1,1,R00007,R00007
+ast_8f71aef30468,도농역 오피스텔,경기도 남양주시 도농동 56-7,1,1,112275,112275
+ast_8fdf7890a11b,판교 알파돔시티 중심상업용지 7-1BL/주차장용지17BL 오피스텔 및 근린생활시설 개발사업 선순위 PF대출,경기 성남시 분당구 백현동 알파돔시티 중심상업용지 7-1BL/주차장용지17BL,1,1,112259,112259
+ast_8fe5e8aa8a5f,"ARDIAN Infrastructure Fund VI S.C.S., SICAV-RAIF",-,2,4,"200016, 200024","200016, 200024, project_notion_3258ced4-3c47-81e5-8a70-da8f98aad94b, project_notion_3268ced4-3c47-8138-851b-c845a969b162"
+ast_90a7471e6e20,수원 이비스 앰배서더 수원 호텔 후순위,경기도 수원시 팔달구 인계동 1132-12,1,1,112294,112294
+ast_91459997fbb8,"CollerCredit Secondaries - Opportunities Fund II-B, L.P.",-,1,2,200019,"200019, project_notion_3258ced4-3c47-81bd-8ae5-ceb54a6c7000"
+ast_91b68c7952e3,청라 오피스텔,"인천광역시 서구
+청라동 6-7, 6-8번지",1,1,112528,112528
+ast_92af696ba01e,Chicago Student Housing Illini Tower,"409E Chalmers St, Champaign, IL",2,4,"112657, R00010","112657, project_notion_3258ced4-3c47-8190-9788-dc95e11ee98a, project_notion_3268ced4-3c47-81ac-bde6-d38709d5ed72, R00010"
+ast_92f36c01f427,DWS Four Columns Junior Capital Fund Ⅵ,-,1,2,112663,"112663, project_notion_3258ced4-3c47-8184-aaff-fa2e50f9f0d5"
+ast_930b2bd97924,공동주택,부산시 해운대 중동 256-5번지 일원,1,3,112719,"112719, project_notion_3258ced4-3c47-8161-8177-ee47f831c551, project_notion_3258ced4-3c47-81e0-ac7b-f1c642311b48"
+ast_931a2e2ed032,Partners Group Private Loan SICAV-SIF,-,1,1,200033,200033
+ast_99b63c12cc89,국내 리츠,-,3,6,"112495, 300015, 300038","112495, 112587, 112596, 112629, 300015, 300038"
+ast_9a70bf0b0afd,가로골목,서울특별시 강남구 신사동 545-18,3,5,"112153, 112792, 112793","112153, 112792, 112793, project_notion_3258ced4-3c47-8156-aa12-c6b4bc475222, project_notion_3268ced4-3c47-81df-830c-da1c411dce6b"
+ast_9b0de0a4a118,성수동2가오피스,서울시 성동구 성수동2가 269-208 일원,2,2,"P00026, P00036","P00026, P00036"
+ast_9b294af79693,광교 아이파크 주상복합 내 판매시설 선순위 담보,경기도 수원시 영통구 원천동 593,1,1,112296,112296
+ast_9bedafe14895,두동 LG전자 통합물류센터 (투자),경상남도 창원시 진해구 두동 1875,1,3,112755,"112755, project_notion_3258ced4-3c47-81fc-841c-c91c6aabb9b9, project_notion_3268ced4-3c47-81a9-bdb2-d84fc8a343c5"
+ast_9c85ee271a7f,이지스경산로지스1호(보통주),-,3,1,"120081, 120082, 120083",120081
+ast_9cf4a8abd36c,평택 고덕 업무12-2-3BL PF 선순위 대출채권,경기도 평택시 고덕면 고덕 국제화계획지구 업무용지 12-2-3BL,1,1,112342,112342
+ast_9de000745f5e,US Courtyard by Marriott Portfolio Mezzanine A Loan,1 Day Hill Road,1,3,112223,"112223, project_notion_3258ced4-3c47-8139-9590-ed11ea9d7b29, project_notion_3268ced4-3c47-8165-bc3d-fcfa6daf78ae"
+ast_9e287de54a5c,Pantheon PGSF VII,-,2,4,"200004, 200005","200004, 200005, project_notion_3258ced4-3c47-81e5-aec3-f801e7ff1b6e, project_notion_3268ced4-3c47-813f-980a-f4da8d9b9edb"
+ast_9e54163d0926,롯데마트대덕점,대전광역시 유성구 관평동 887,2,1,"112054, 112592",112592
+ast_9e6791cd4061,성내동 개발부지 담보대출(브릿지론),-,3,5,"112798, 112799, 112800","112798, 112799, 112800, project_notion_3258ced4-3c47-813e-9d58-d1d583860844, project_notion_3268ced4-3c47-8109-8697-d7c4ca7b70ca"
+ast_9ea926bd721a,HSBC Senior UK Direct Lending Fund 2020 RAIF SICAV-S.A.,-,2,3,"112667, 112668","112667, 112668, project_notion_3258ced4-3c47-8155-a72c-d249de555360"
+ast_a01ce9c12e6b,Quarterra Lennar Multifamily Venture II,-,1,2,112206,"112206, project_notion_3258ced4-3c47-8124-a375-fb1476185f09"
+ast_a08672efd868,하남강변미사지구 업무4BL 3LOT,경기도 하남시 하남미사지구 업무시설용지 4-3 (2043-3),1,1,112163,112163
+ast_a26d74763046,"Ku'damm 12, 13-15","Ku'damm 12, 13-15, 10719 Berlin",1,1,112300,112300
+ast_a422589fe744,업스퀘어 (투자),울산광역시 남구 삼산동 1569-1,1,2,112080,"112080, project_notion_3258ced4-3c47-81a5-982e-f0cf241f9070"
+ast_a48eb6e898c0,Nuveen C-PACE Lending Fund III,-,1,3,200035,"200035, project_notion_3258ced4-3c47-811c-9ec1-ce2e311dd7b4, project_notion_3268ced4-3c47-81d8-80e7-d5887c88a363"
+ast_a497abe03a47,Atlanta Data Center PwC,"2480 Rock House Road, Lithia Springs, GA, USA",1,2,112600,"112600, project_notion_3258ced4-3c47-81ca-a7a2-e8439c07cef7"
+ast_a56330cfa5d8,환성2호태양광발전소,충청남도 서산시 지곡면 환성리 777-90,1,1,112466,112466
+ast_a5ca6d81dcd9,서리풀개발사업,서울시 서초구 서초동 1005-1 외,1,3,P00005,"P00005, project_notion_3258ced4-3c47-81aa-adde-cf3478b10198, project_notion_3268ced4-3c47-8124-9d19-f74df970af1b"
+ast_a5d1e84522ed,진해오션리조트 선순위 대출,경상남도 창원시 진해구 제덕동 일원,1,1,112117,112117
+ast_a69271e859b5,PartnersGroup Real Estate Secondary 2013,-,3,4,"112026, 112030, 112032","112026, 112030, 112032, project_notion_3258ced4-3c47-81b2-89c6-e9d9b93edac3"
+ast_a6bdd852cbf7,부천소사 공동주택,경기도 부천시 소사본동 134,1,3,P00008,"P00008, project_notion_3258ced4-3c47-814d-8058-c37ab0260495, project_notion_3268ced4-3c47-81df-8cdc-ed488ef17136"
+ast_a71132d3cc09,이지스모 43호,이지스모 43호,2,2,"112043, 112044","112043, 112044"
+ast_a809ac0199e2,Nuveen Global Real Estate Debt Partners Fund III (UK),-,1,3,112568,"112568, project_notion_3258ced4-3c47-8112-a022-e02096b475c3, project_notion_3268ced4-3c47-819a-828e-c2b0d84b9a29"
+ast_a86fcdf7e228,CBRE IM European Logistics Partners Fund,-,1,1,112041,112041
+ast_acf1169ec73d,공주시 웅진동 공동주택,충청남도 공주시 웅진동 1-1,1,3,P00025,"P00025, project_notion_3258ced4-3c47-81f1-8acf-fa0dcf911205, project_notion_3268ced4-3c47-819a-988e-e762b25ab325"
+ast_aefd81e93778,Colony Distressed Credit Fund IV,-,3,3,"112057, 112472, 112473","112057, iota-421f, project_notion_3258ced4-3c47-8159-ae59-db31fe363016"
+ast_af02aac59036,롯데백화점분당점,경기도 성남시 분당구 수내동 14,4,6,"112490, 112491, 112492, 112498","112490, 112491, 112492, 112498, project_notion_3258ced4-3c47-81be-a045-f6d9f2ee2c6a, project_notion_3268ced4-3c47-81ab-ab53-d67ec1de875d"
+ast_afb26eedbbe3,부산송정물류센터 (투자),부산광역시 강서구 송정동 1715-2,1,3,112109,"112109, project_notion_3258ced4-3c47-8199-8f47-e575a5da4632, project_notion_3268ced4-3c47-8147-8f6b-f51a419a69f2"
+ast_b0956b6f4029,이지스산업단지환경개선일반사모부동산투자신탁제1호,-,1,2,120044,"120044, project_notion_3258ced4-3c47-8195-ad6e-e420ae6edfea"
+ast_b1a009f2fa36,이지스전문투자형사모부동산투자신탁제404호,경기도 용인시 처인구 백암면 백봉리 767-13,1,2,112527,"112527, project_notion_3258ced4-3c47-81eb-83bd-fd3142dad11f"
+ast_b1bc52e1340b,Erfurt Amazon Robotics Fulfillment Center Senior Mezzanine Loan,"Joseph-Meyer-Straße 5, 99195 Erfurt, Germany",1,2,112665,"112665, project_notion_3258ced4-3c47-8121-b936-ccf64492a8e6"
+ast_b1f5f079a694,Miami Courvoisier Center Senior Loan,"501 Brickell Key Drive, Miami, Florida 33131",2,3,"112065, 200044","112065, 200044, project_notion_3258ced4-3c47-8157-bce3-dd31746e63e3"
+ast_b2fa1e20d812,용산전자상가 특별계획구역8 개발사업,서울특별시 용산구 한강로2가 15-2,1,1,P00039,P00039
+ast_b4128c33bb53,New York 564 6th Avenue Mezzanine Loan,"564 5th Avenue New York, NY 10036",1,1,112295,112295
+ast_b439b42b3d44,TH Real Estate China Outlet Mall Fund,-,1,3,112158,"112158, project_notion_3258ced4-3c47-811b-8c7f-c3ccbce5cadd, project_notion_3268ced4-3c47-816a-92dd-d278c996b3c0"
+ast_b5b13984b5c2,부평 더샵센트럴시티 공공지원민간임대주택,십정동 630,9,6,"112149, 112169, 112172, 112175, 112176, 112177, 112178, 112179, 112181","112149, 112169, 112172, 112175, 112181, project_notion_3258ced4-3c47-8175-927e-e434c7f34ca1"
+ast_b78f4cd39988,Tokyo Office Harumi Island Triton Square Tower W,"1-8-8 Harumi, Chuo-ku, Tokyo",1,3,112361,"112361, project_notion_3258ced4-3c47-816d-b79a-d32f392c6d97, project_notion_3268ced4-3c47-8106-b764-c67e14df2e91"
+ast_b826792d7e17,비상장 상환전환우선주,-,1,1,112709,112709
+ast_b9718f8cb5fe,아레나스영종,인천광역시 중구 운북동 1328-1,7,5,"112235, 112320, 112323, 120114, 120115, 120116, 120117","112235, 112320, 112323, project_notion_3258ced4-3c47-81b0-a461-ff2b7a8ff607, project_notion_3268ced4-3c47-818e-8d7d-c91accb9124b"
+ast_baffca3def0d,Odawara Logistics Amazon FC I,"4-Chome 5-1 Ogicho, Odawara, Kanagawa-Ken",3,5,"112338, 112339, 112340","112338, 112339, 112340, project_notion_3258ced4-3c47-8106-8a3b-d2d13f5f94fc, project_notion_3268ced4-3c47-8116-9b34-c5b964f19827"
+ast_bc4589571b0d,Sanofi 본사(파리),"54/56 Rue la Boetie, Paris, France",1,3,112035,"112035, project_notion_3258ced4-3c47-8122-b87b-da27e0bf4951, project_notion_3268ced4-3c47-8169-a369-de52c7a26de5"
+ast_bd308f82a818,잭니클라우스GC 단독주택부지 담보신탁 1순위 우선수익권 담보부,인천광역시 연수구 송도동 117-91,1,1,112255,112255
+ast_bd54043679c9,"재생에너지 플랫폼회사(""HoldCo"")에 대한 지분 및 주주대여금",-,3,1,"120091, 120092, 120093",120091
+ast_bd9afab36d26,이지스일반사모부동산투자신탁제439호,경기도 고양시 덕양구 오금동 690번지,2,2,"112762, 112802","112802, project_notion_3258ced4-3c47-812e-958b-e755695887e0"
+ast_beb45fea6c85,Toronto The One Super-senior Loan (Receivership Funding),"One Bloor St. West, Toronto, Ontario",1,3,200008,"200008, project_notion_3258ced4-3c47-8120-8974-d89af9db54c3, project_notion_3268ced4-3c47-811a-955d-d4879f6c369a"
+ast_bfb1c5d3da5c,마곡 명소화부지 개발사업,"서울 강서구 마곡동 지원시설용지 DSP1, DSP2",3,5,"112579, 112580, 112581","112579, 112580, 112581, project_notion_3258ced4-3c47-81ed-a229-f6953c68328a, project_notion_3268ced4-3c47-8157-9e5b-c307268410a9"
+ast_c26748845c6b,시흥 센트럴푸르지오 사업장 공사대금 예금반환채권 금전채권신탁 담보대출,-,1,1,112207,112207
+ast_c644d28176a4,㈜동방 보유 유엔씨티㈜ 대출채권 매입,황성동 830,3,3,"112687, 112688, 112689","112687, 112688, 112689"
+ast_c73013f20dc6,이지스 468-2호 수익증권,-,2,3,"112679, 120022","112679, 120022, project_notion_3258ced4-3c47-8153-ae91-c57e1989af10"
+ast_c738d1b8cbc2,Washington D.C. Atlantic Building Senior Loan,"950 F Street, NW Washington, D.C. 20004",1,3,112077,"112077, project_notion_3258ced4-3c47-8170-a96f-f1b19cb9e29e, project_notion_3268ced4-3c47-81bc-818f-e55973faaeb1"
+ast_c77b0263f7c6,PFV_Westwood 지분증권,-,2,2,"112066, 200038","112066, 200038"
+ast_c7abc1f4627e,Toronto The One Senior Loan (Standby Facility),"One Bloor St. West, Toronto, Ontario",1,3,112588,"112588, project_notion_3258ced4-3c47-8184-a631-d5d0ba437068, project_notion_3268ced4-3c47-814f-91fb-f3df2a130f89"
+ast_c8a0466da702,Coller Capital이 운용하는 크레딧 세컨더리 관련 SMA의 집합투자증권,-,1,1,200031,200031
+ast_ca6affbba270,디에스PFV 2종 종류주 및 주주대여,-,3,3,"112653, 112654, 112655","112653, 112654, 112655"
+ast_cad3ca04538a,"메자닌, 공모주, 스팩, 이벤트 드리븐",-,1,1,112782,112782
+ast_cb61fdbd9aa4,Jakarta Office Treasury Tower,"Lot 28, SudirmanCentral Business District",2,4,"112170, 112171","112170, 112171, project_notion_3258ced4-3c47-81f0-8369-c28a6a18e400, project_notion_3268ced4-3c47-812d-b6b2-c87aa3584527"
+ast_cbc413cdfd7f,고양 일산 식사2구역 A2BL 공동주택 개발사업 선순위 PF대출채권,경기 고양시 일산동구 식사2도시개발구역 A2블록,1,1,112274,112274
+ast_cbf922113fc6,판교 제2테크노밸리 C1 C2블록 I-Square 개발,경기도 판교 제2테크노밸리 C1 C2블록,1,3,P00001,"P00001, project_notion_3258ced4-3c47-8157-b1ac-f58d211a8fef, project_notion_3268ced4-3c47-81a4-bed2-e30818696e5a"
+ast_cd234848887e,위례Senior Living 개발사업,서울특별시 송파구 거여동 573-1,8,10,"120062, 120063, 120064, 120065, 120066, 120067, 120068, 120069","120062, 120063, 120064, 120065, 120066, 120067, 120068, 120069, project_notion_3258ced4-3c47-8157-9a3c-d0552bc88d81, project_notion_3268ced4-3c47-81ac-8273-e1d685edeeae"
+ast_cd2c32700ef7,수서역환승센터복합개발사업,서울시 강남구 수서동 197번지 일원,1,3,P00027,"P00027, project_notion_3258ced4-3c47-811e-8425-ec7178f406ba, project_notion_3268ced4-3c47-81d8-9bb3-d48bd44d3e32"
+ast_cd9937cc8678,와이디427피에프브이 주식회사,-,5,5,"112614, 112706, 112707, 120016, 120113","112614, 112706, 112707, 120016, iota-427"
+ast_ce2d13497cbc,New York 30 Hudson Yards Mezzanine Loan,"30 Hudson Yards, New York",1,2,112410,"112410, project_notion_3258ced4-3c47-8189-9ad9-c1f50dda1940"
+ast_ce621c527b00,Frankfurt St.Martine Tower Mezzanine Loan,"Franklinstraße 61-63, 60486, Frankfurt",1,1,112304,112304
+ast_cf7655c37f5e,이지스일반사모부동산투자신탁제336호,경기도 고양시 일산동구 장항동 889,4,2,"112414, 112415, 112416, 112417","112414, project_notion_3258ced4-3c47-8113-b688-db4ec74f20c9"
+ast_d139acda1f42,하남시풍산동9MW 데이터센터,경기도하남시풍산동590-4번지,3,3,"190017, 190018, 190019","190017, project_notion_3258ced4-3c47-819d-982d-faf113678bdf, project_notion_3268ced4-3c47-8135-82f4-c5571b78de16"
+ast_d148de771db5,세원이앤씨(주)의 담보부 신주인수권부 사채,-,1,3,120057,"120057, project_notion_3258ced4-3c47-812d-8b74-fc2d2994a424, project_notion_3268ced4-3c47-813f-8c9b-c523d70148a1"
+ast_d19b7e4dea84,East Alexandria Multifamily The Foundry,"2470 Madeville Ln, Alexandria, VA 22314",2,3,"112598, 112599","112598, 112599, project_notion_3258ced4-3c47-8196-afa0-e81905aa5a35"
+ast_d21464a17e8c,Hines US Property Partners,-,9,10,"112621, 112622, 112623, 112624, 112625, 112659, 112660, 112685, 112686","112621, 112622, 112623, 112624, 112625, 112659, 112660, 112685, 112686, project_notion_3258ced4-3c47-8173-a47a-c7d205063045"
+ast_d27d2be05580,US BioMed Portfolio Senior Loan,16개 자산 포트폴리오,2,1,"112076, 112302",112076
+ast_d2b291b01082,이지스전문투자형사모부동산투자신탁290호(운용),월전동 913-1,3,1,"112314, 112315, 112316",112314
+ast_d3958acf9d57,아레나스안성,입장면 용정리 116-5,2,3,"112320, 112505","112505, project_notion_3258ced4-3c47-8126-ad66-f2a6056c4254, project_notion_3268ced4-3c47-816b-bc66-d6dc896e5830"
+ast_d4da0b74e017,해운대중동공동주택,부산시 해운대 중동 256-5번지 일원,1,3,P00035,"P00035, project_notion_3258ced4-3c47-81a2-8889-e0127ab86d9c, project_notion_3268ced4-3c47-8102-9ac3-daa261cabed7"
+ast_d5b7969befe3,London Canon Bridge House Senior Loan,-,1,2,200017,"200017, project_notion_3258ced4-3c47-81bf-b4c6-d16503557c02"
+ast_d67f522a279c,안성 당목리 물류 개발사업,"경기도 안성시
+죽산면 당목리
+995-46번지 일원",1,1,112522,112522
+ast_d6b3682a1147,판교 테크원타워 (우선주),경기도 성남시 분당구 백현동 534,1,6,200030,"200030, project_notion_3258ced4-3c47-8170-9352-ecf811de25bd, project_notion_3258ced4-3c47-817b-992a-df5b5aaff1f1, project_notion_3258ced4-3c47-81c0-bc85-e679f9a1327d, project_notion_3268ced4-3c47-8141-8a16-c752203e78dc, project_notion_3268ced4-3c47-819b-a152-ff2ec283b4f4"
+ast_d7155e535335,GLP Europe Income Partners II,-,2,3,"112482, 112494","112482, 112494, project_notion_3258ced4-3c47-8190-95cf-fae7375985f9"
+ast_d9f820e5df21,안성 성은지구 물류센터,경기도 안성시 원곡면 성은리 319-1,1,3,P00014,"P00014, project_notion_3258ced4-3c47-8146-b3a1-e78b9a3806b0, project_notion_3268ced4-3c47-81d4-9eaf-d8efbc29e52b"
+ast_da9f73969f26,에스비씨PFV(P00005),서울시 서초구 서초동 1005-1외,1,1,112341,112341
+ast_db35eead7a91,홈플러스 인천인하점,인천광역시 미추홀구 용현동 648,4,1,"112344, 112345, 112346, 112348",112344
+ast_db4e0440e038,AXA Real Estate Development Venture IV,-,1,3,112074,"112074, project_notion_3258ced4-3c47-8158-9ea3-ff51db53ac4e, project_notion_3268ced4-3c47-8145-839d-d9dea5784324"
+ast_db5ed66e1434,Brookfield Super-Core Infrastructure Partners,-,4,5,"112413, 112521, 112607, 112684","112413, 112521, 112607, 112684, project_notion_3258ced4-3c47-814f-a8a9-ca481cba91d1"
+ast_db8623f6f559,에스엔에스랩,-,1,2,120017,"120017, project_notion_3258ced4-3c47-8186-b4df-eb1233f81313"
+ast_db8fd17c8890,홈플러스전주효자점,전북특별자치도 전주시 완산구 효자동1가 431-5,3,3,"112132, 112133, 112134","112132, 112133, 112134"
+ast_dd22d6a3cb4f,티맥스수내타워,경기도 성남시 분당구 수내동 6-4,2,5,"112517, 112518","112517, 112518, project_notion_3258ced4-3c47-8110-979d-cb1bf2ae6f8e, project_notion_3258ced4-3c47-8147-ba74-db2eb51dc58a, project_notion_3268ced4-3c47-81fb-8cc3-d43861ad2f4b"
+ast_dd63895bac49,Starwood European Real Estate Debt Finance II (SEREDF II,-,1,3,200011,"200011, project_notion_3258ced4-3c47-8140-9b02-e2e7471cf4e1, project_notion_3268ced4-3c47-8113-9cf3-c1b62fe76421"
+ast_dd6e846e65f4,신라스테이제주,제주특별자치도 제주시 연동 274-16,5,5,"112034, 112404, 112405, 112406, 120075","112034, 112404, 112405, 112406, project_notion_3258ced4-3c47-811f-b02f-dd412dfef9ea"
+ast_deef81e70ae6,포천정교리물류센터,경기도 포천시 가산면 정교리 272-1번지 외 12필지,1,3,190013,"190013, project_notion_3258ced4-3c47-8115-9bac-f9515d912ba0, project_notion_3268ced4-3c47-81bb-9256-c5e640f30f92"
+ast_dfa1348ddd15,효제동 오피스텔 개발사업,"서울특별시 종로구 효제동 315-1, 315-6",1,3,P00009,"P00009, project_notion_3258ced4-3c47-8144-a246-e143a4860886, project_notion_3268ced4-3c47-81f7-85d5-dfe72814334d"
+ast_e0a9abed71bf,롯데수원역쇼핑타운토지,경기도 수원시 권선구 서둔동 296-77 외 2필지,3,5,"112037, 120106, 120107","112037, 120106, 120107, project_notion_3258ced4-3c47-8180-8b84-fcbb5e944aca, project_notion_3268ced4-3c47-8142-adea-c49f3e4eba09"
+ast_e0d705ed16ed,Clarion Gables Multifamily Fund,-,1,2,112658,"112658, project_notion_3258ced4-3c47-81fd-a8cd-dd762ee701ec"
+ast_e2910b24e5e7,원효로3가 공공지원민간임대주택,서울특별시 용산구 원효로3가 1-159번지 외 3필지,3,1,"112456, 112457, 112458",112456
+ast_e2fd03212beb,남악신도시 복합쇼핑몰 (투자),전라남도 무안군 삼향읍 남악리 2622,1,1,112047,112047
+ast_e3779cfe5ab2,켄싱턴 제주호텔 부동산담보신탁 1종 수익권,제주특별자치도 서귀포시 색달동 2785,3,1,"112226, 112227, 112228",112226
+ast_e3a8955cec50,이지스일반사모부동산투자신탁제468-2호(2종)의 수익증권,-,3,1,"112675, 112676, 112682",112682
+ast_e45b98ccfc65,"세운 6-3-1,2구역 도시환경정비사업",서울특별시 중구 을지로4가 261-1 일원,1,1,112126,112126
+ast_e47c4c7b3344,오산세교 주거시설,"경기도 오산시
+오산세교2지구
+M1BL",1,1,112519,112519
+ast_e505ab13fd73,타이거대체전문투자형사모부동산투자신탁5호(미국캘리포니아주오렌지카운티소재상업용오피스 투자),"2 MacArthur Place, Santa Ana, CA 92707",4,4,"112418, 112419, 112420, 112705","112418, 112419, 112420, 112705"
+ast_e5211e566e98,New York 564 6th Avenue Senior Loan,"564 5th Avenue New York, NY 10036",1,2,112308,"112308, project_notion_3258ced4-3c47-8167-bdc2-fc41bd66f9b4"
+ast_e53c191931b7,하이파킹 대여금,-,1,1,120053,120053
+ast_e547d4e384c5,대전 둔산파이낸스빌딩,대전광역시 서구 둔산동 1413,3,5,"112778, 112779, 112780","112778, 112779, 112780, project_notion_3258ced4-3c47-8191-b315-e81df37e9631, project_notion_3268ced4-3c47-8162-bbc1-c31d85c20612"
+ast_e5daaa392be6,Washington D.C. Woodies Building Senior Loan,"1001 & 1025 F Street NW, Washington, D.C. 20004",3,5,"112092, 112102, 112103","112092, 112102, 112103, project_notion_3258ced4-3c47-814a-b6c2-fcbca891eddd, project_notion_3268ced4-3c47-81dd-8f0a-fd0f8836744c"
+ast_e60d36b43a64,해운대 센텀 한진CY부지 Bridge Loan 선순위 담보대출 투자,부산광역시 해운대구 재송동 856-1,1,1,112449,112449
+ast_e6eadbaa08bd,이지스일반사모부동산투자신탁232호(운용),탄부면 상장리 643-3,4,4,"112279, 112280, 112281, 112282","112279, 112280, 112281, 112282"
+ast_e825b5c5a33f,KKR Real Estate Partners Europe II,-,1,2,112558,"112558, project_notion_3258ced4-3c47-81ab-9af3-dcbd1487452b"
+ast_e82ed4b638d4,New York 787 Seventh Avenue Mezzanine Loan,"787 Seventh Avenue (51st & 52nd Street), NY",2,4,"112068, 112069","112068, 112069, project_notion_3258ced4-3c47-8193-99e0-f53579aa8e9f, project_notion_3268ced4-3c47-8185-aa6b-f930c7c1d8b3"
+ast_e8ad3281d39e,Enlink project patton,-,1,1,112618,112618
+ast_ea83005ce057,이지스제415호일반사모부동산투자신탁,시흥동 322,1,3,112559,"112559, project_notion_3258ced4-3c47-811a-b4c3-f2ab4747275c, project_notion_3268ced4-3c47-81a2-93c9-fa8262b5cbf6"
+ast_eb058774b3aa,판교 알파돔시티 비즈니스호텔 (투자),경기도 성남시 분당구 백현동 539,1,1,112148,112148
+ast_eb5a157872a8,효제아트PFV(주식 및 주주대여),"서울시 종로구 효제동 315-1, 6",1,1,112474,112474
+ast_eb6dfd75233b,KTX울산역 오피스텔 개발사업,울산광역시 울주군 삼남읍 교동리 1682-1번지,1,3,P00034,"P00034, project_notion_3258ced4-3c47-81a1-ae94-e9ff46be5503, project_notion_3268ced4-3c47-81b4-8e89-f7ace4ba83c7"
+ast_ebd723e072c4,Vienna Office & Retail Wien Mitte,"A-1030 Vienna, Austria",1,3,112058,"112058, project_notion_3258ced4-3c47-81a9-abe1-ef1efcd1299a, project_notion_3268ced4-3c47-81fc-b963-dbd5d76cd7d5"
+ast_ec07f6a9ae3d,New York 555 10 Avenue,"555 10th Avenue, NY",1,2,112374,"112374, project_notion_3258ced4-3c47-818c-985f-c8836c802016"
+ast_ec6dcc378dcf,(주)페트로코너지 발행 지분증권 및 투자대상회사(이지스페트로코너지(주))에 대한 대출채권,"경남 양산시 상북면 효충2길13(페트로콕증기생산시설), 경기 시흥시 서울대학로 59-5 배곧가압장(연료전지",1,1,112234,112234
+ast_ed6a011723e2,남동테크노타워 지식산업센터 개발사업 PF,인천광역시 남동구 고잔동 648-1,1,1,112184,112184
+ast_edd6f6c3e3e5,더피나클강남 (투자),서울특별시 강남구 논현동 119,5,5,"112005, 112060, 112091, 200036, 200037","112005, 200036, 200037, project_notion_3258ced4-3c47-8133-9e4f-e15caf3f7fd9, project_notion_3268ced4-3c47-815d-bc7b-f9af47473801"
+ast_ee5b4d0511ec,구리시 수택동 주거용 오피스텔 (투자),경기도 구리시 수택동 370,2,3,"112611, P00031","P00031, project_notion_3258ced4-3c47-81cd-b5e6-d5dbcfd4bc13, project_notion_3268ced4-3c47-8135-b7c2-c2de5c7511d3"
+ast_ee72b3682575,Milano Office Pirelli HQ,"Via Bicocca degliArcimboldi, 3, 20216 Milano MI, Italy",3,5,"112191, 112192, 112193","112191, 112192, 112193, project_notion_3258ced4-3c47-8109-b77c-c27e4235bb64, project_notion_3268ced4-3c47-81b7-9f37-fc206a57c961"
+ast_ee8fd3272e9f,북미DC포트폴리오,-,1,1,R00006,R00006
+ast_efc67c29f4e8,부천소사PFV(P00008),-,1,1,112451,112451
+ast_f02b527b7861,이천 한익스프레스 물류센터 개발사업,경기도 이천시 설성면 대죽리 545-5외 22필지 일원,1,1,112301,112301
+ast_f230c76d6975,"AA- 이상 채권, 국내 상장 리츠, 공모주, 스팩",-,5,4,"112710, 112722, 300011, 300016, 300040","112722, 300011, 300016, 300040"
+ast_f2df751470ee,Nuveen UK Enhanced Debt Fund,7개 포트폴리오,3,2,"112072, 112137, 112460","112072, 112137"
+ast_f2e00117756f,B스퀘어,범천동 863-1,4,5,"112649, 112650, 112651, 112652","112649, 112650, 112651, 112652, project_notion_3258ced4-3c47-81c8-b04e-c4c90d87c1be"
+ast_f341642853ae,인천 가좌동 오피스텔 선순위 PF,인천광역시 서구 가좌동 212-8,1,1,112213,112213
+ast_f4fc6d89a82b,CBRE U.S. Credit Partners LP,-,1,2,112486,"112486, project_notion_3258ced4-3c47-8112-b63d-d3876e135412"
+ast_f5307db6bfad,제주화북상업지역 주상복합용지 C1블럭 주상복합시설,-,1,3,P00028,"P00028, project_notion_3258ced4-3c47-8119-9a2d-caecb456ac92, project_notion_3268ced4-3c47-81cf-9c4d-eeec64e2f354"
+ast_f541715b8374,Barcelona Office Nestle HQ,"Av. dels Països Catalans, 51, 08950 Esplugues de Llobregat, Barcelona, Spain",3,3,"112216, 112221, 112222","112216, 112221, 112222"
+ast_f58dae267b1b,을지로부림빌딩,서울특별시 중구 을지로1가 71-9번지,1,1,112656,112656
+ast_f5e665f7cf35,이지스일반사모부동산투자신탁294호,애월읍 신엄리 2867-3,1,3,112310,"112310, project_notion_3258ced4-3c47-81d4-87f0-c8ebc9069f6d, project_notion_3268ced4-3c47-813d-a930-dc7b3df89c3d"
+ast_f5fc5bbdb980,London Office Ropemaker Place,"28 Ropemaker Place, London, EC2",4,4,"112019, 112020, 112021, 112022","112019, 112020, 112021, 112022"
+ast_f78917a3690c,Apollo European Principal Finance Fund IV,-,1,3,112739,"112739, project_notion_3258ced4-3c47-818b-9ada-c0f8fac21d0a, project_notion_3268ced4-3c47-817d-a536-e0e314dd4828"
+ast_f7a36f9524d4,뉴멕시코주 아마존 물류센터,-,6,4,"112502, 112503, 112506, 112507, 112508, 112509","112502, 112503, project_notion_3258ced4-3c47-819e-adc6-d2f3a6d1dad3, project_notion_3268ced4-3c47-815e-8d21-faffc769a215"
+ast_fa4bc636d98d,"금융기관 등이 보유하는 담보부 부실 대출재권, 기타 부실징후자산 및 기업관련 대출 채권 등(블라인드)",-,1,7,120056,"120056, project_notion_3258ced4-3c47-8120-bf18-edd508d827a6, project_notion_3258ced4-3c47-8180-94e0-dfbdaa53d174, project_notion_3258ced4-3c47-81f2-9672-f0869c23d12e, project_notion_3268ced4-3c47-81ae-9c0e-fd1eb9b5e250, project_notion_3268ced4-3c47-81d0-a5e3-c394d9214f40, project_notion_3268ced4-3c47-81e8-b898-efd26d5e525c"
+ast_fa825d8bd449,성수동 복합시설 개발사업,"서울특별시 성동구 성수동2가 314-10, 314-11, 314-27번지",1,3,P00010,"P00010, project_notion_3258ced4-3c47-814b-bf36-ec234ae43b2d, project_notion_3268ced4-3c47-81fa-9940-efbd6d41063d"
+ast_fbe13b6b1e0a,글로벌 리츠,-,7,28,"112260, 112261, 112262, 112263, 112452, 300010, 300053","112260, 112261, 112262, 112263, 112334, 112335, 112411, 112425, 112426, 112427, 112429, 112430, 112432, 112434, 112435, 112436, 112437, 112438, 112439, 112440, 112441, 112543, 112564, 112626, 112664, 300010, 300053, project_notion_3258ced4-3c47-81b3-bd22-d1bdfae86357"
+ast_fdc6a46958de,이지스제463호부동산일반사모투자회사 주식,-,1,1,112693,112693
+ast_fe67309c28e2,다산1,해남군 해남읍 복평리 995-7,1,1,112584,112584
+ast_ff8a69b5d1fd,San Mauro Torinese,"Piedmont, Torino, Italy",3,1,"112401, 112402, 112403",112401

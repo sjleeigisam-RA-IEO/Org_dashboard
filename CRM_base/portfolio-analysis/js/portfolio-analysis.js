@@ -81,7 +81,7 @@ function initAnalysisFilters() {
     filterSections.forEach(section => {
         const group = document.createElement('div');
         group.className = 'filter-group active'; // Default open
-        
+
         const header = document.createElement('div');
         header.className = 'filter-group-header';
         header.innerHTML = `<span>${section.title}</span><span class="filter-count-badge">0</span>`;
@@ -100,10 +100,10 @@ function initAnalysisFilters() {
             <div id="activeFilterChips" class="basket-items"></div>
         `;
         group.appendChild(basket);
-        
+
         const content = document.createElement('div');
         content.className = 'filter-group-content';
-        
+
         section.cols.forEach(col => {
             const filterItem = document.createElement('div');
             filterItem.className = 'filter-item';
@@ -114,14 +114,14 @@ function initAnalysisFilters() {
 
             const container = document.createElement('div');
             container.className = 'multi-select-container';
-            
+
             const trigger = document.createElement('div');
             trigger.className = 'multi-select-trigger';
             updateTriggerText(trigger, col.key);
-            
+
             const dropdown = document.createElement('div');
             dropdown.className = 'multi-select-dropdown';
-            
+
             // Search Input
             const searchDiv = document.createElement('div');
             searchDiv.className = 'multi-select-search';
@@ -141,7 +141,7 @@ function initAnalysisFilters() {
             // Options container
             const optionsWrapper = document.createElement('div');
             optionsWrapper.className = 'options-wrapper';
-            
+
             // Extract unique values
             const fundsToScan = window.allFunds || [];
             const rawValues = fundsToScan.flatMap(f => {
@@ -160,16 +160,16 @@ function initAnalysisFilters() {
                 if (analysisFilters[col.key] && analysisFilters[col.key].includes(v)) {
                     option.classList.add('selected');
                 }
-                
+
                 option.innerHTML = `
                     <div class="multi-select-checkbox"></div>
                     <span>${v}</span>
                 `;
-                
+
                 option.onclick = (e) => {
                     e.stopPropagation();
                     if (!analysisFilters[col.key]) analysisFilters[col.key] = [];
-                    
+
                     const idx = analysisFilters[col.key].indexOf(v);
                     if (idx > -1) {
                         analysisFilters[col.key].splice(idx, 1);
@@ -178,13 +178,13 @@ function initAnalysisFilters() {
                         analysisFilters[col.key].push(v);
                         option.classList.add('selected');
                     }
-                    
+
                     updateTriggerText(trigger, col.key);
                     updateGroupBadge(group, section.cols);
                     renderFilterBasket();
                     if (window.renderAnalytics) window.renderAnalytics();
                 };
-                
+
                 optionsWrapper.appendChild(option);
             });
 
@@ -243,7 +243,7 @@ function updateGroupBadge(group, cols) {
     cols.forEach(col => {
         totalSelected += (analysisFilters[col.key] || []).length;
     });
-    
+
     const badge = group.querySelector('.filter-count-badge');
     if (badge) {
         badge.innerText = totalSelected;
