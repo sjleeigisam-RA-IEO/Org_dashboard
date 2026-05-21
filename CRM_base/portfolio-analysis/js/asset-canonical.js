@@ -49,6 +49,56 @@
     return result;
   }
 
+  function normalizeDisplayKey(value) {
+    return String(value || '')
+      .toLowerCase()
+      .replace(/\([^)]*\)/g, '')
+      .replace(/\[[^\]]*\]/g, '')
+      .replace(/[\s.,·ㆍ\-_/\\|]+/g, '');
+  }
+
+  function isFundDerivedAssetName(assetName, fundRow) {
+    const normalizedAsset = normalizeDisplayKey(assetName);
+    if (!normalizedAsset) return false;
+
+    const fundName = normalizeDisplayKey(fundRow?.fund_name);
+    if (fundName && (normalizedAsset === fundName || normalizedAsset.includes(fundName) || fundName.includes(normalizedAsset))) {
+      return true;
+    }
+
+    const shortName = normalizeDisplayKey(fundRow?.short_name);
+    return shortName.length >= 4 && (normalizedAsset === shortName || normalizedAsset.includes(shortName));
+  }
+
+  async function fetchFundRelationshipsByAssetIds(assetIds) {
+    const ids = Array.from(new Set((assetIds || []).filter(Boolean)));
+    if (!ids.length) return {};
+
+    const response = await _supabase
+      .from('fund_asset_relationships')
+      .select('asset_id,fund_name,short_name')
+      .in('asset_id', ids)
+      .limit(1000);
+    if (response.error) {
+      console.warn('Could not fetch fund relationships for asset display filtering:', response.error);
+      return {};
+    }
+
+    return (response.data || []).reduce(function (acc, row) {
+      acc[row.asset_id] = acc[row.asset_id] || [];
+      acc[row.asset_id].push(row);
+      return acc;
+    }, {});
+  }
+
+  function shouldHideAssetSearchResult(row, fundRowsByAssetId) {
+    const assetId = row.asset_id || row.canonical_id;
+    const fundRows = fundRowsByAssetId[assetId] || [];
+    return fundRows.some(function (fundRow) {
+      return isFundDerivedAssetName(row.canonical_name, fundRow);
+    });
+  }
+
   async function fetchAssetSummariesByIds(assetIds) {
     const ids = Array.from(new Set((assetIds || []).filter(Boolean)));
     if (!ids.length) return [];
@@ -90,7 +140,11 @@
       }
     });
 
-    const merged = uniqueBy((summaryRes.data || []).concat(aliasSummaries), function (row) { return row.asset_id; })
+    const mergedRows = uniqueBy((summaryRes.data || []).concat(aliasSummaries), function (row) { return row.asset_id; });
+    const fundRowsByAssetId = await fetchFundRelationshipsByAssetIds(mergedRows.map(function (row) { return row.asset_id; }));
+
+    const merged = mergedRows
+      .filter(function (row) { return !shouldHideAssetSearchResult(row, fundRowsByAssetId); })
       .map(function (row) {
         return {
           ...row,
