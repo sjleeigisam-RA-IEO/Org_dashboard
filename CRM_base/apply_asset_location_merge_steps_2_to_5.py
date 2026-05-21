@@ -210,7 +210,7 @@ def link_payload(asset_id: str, fund_id: str, row: dict, relation_type: str = "u
         },
         "exposure_role": "underlying",
         "directness": "direct",
-        "allocation_status": "needs_review",
+        "allocation_status": "mixed_requires_review",
         "include_in_asset_aum": True,
         "needs_allocation_review": True,
     }
