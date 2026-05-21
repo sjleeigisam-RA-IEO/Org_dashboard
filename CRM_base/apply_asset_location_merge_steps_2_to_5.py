@@ -208,7 +208,7 @@ def link_payload(asset_id: str, fund_id: str, row: dict, relation_type: str = "u
             "accepted_asset_name": clean(row.get("accepted_asset_name")),
             "proposed_pnu": clean(row.get("proposed_pnu")),
         },
-        "exposure_role": "underlying",
+        "exposure_role": "direct_owner",
         "directness": "direct",
         "allocation_status": "mixed_requires_review",
         "include_in_asset_aum": True,
