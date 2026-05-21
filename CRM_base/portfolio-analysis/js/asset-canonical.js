@@ -121,7 +121,7 @@
     options = options || {};
     const shortNumeric = options.shortNumeric || terms.every(isShortNumericTerm);
     const summaryColumns = shortNumeric
-      ? ['canonical_name', 'asset_code']
+      ? ['canonical_name', 'address_text', 'asset_code']
       : ['canonical_name', 'address_text', 'pnu', 'asset_code', 'main_usage'];
 
     const summaryFilter = buildOrFilter(
