@@ -289,6 +289,10 @@ function getSearchTerms(query) {
   return Array.from(new Set(expanded));
 }
 
+function isShortNumericSearch(query) {
+  return /^\d{1,4}$/.test(String(query || '').trim());
+}
+
 function buildUniversalFilter(cols, terms) {
   return cols.map(function (col) {
     return terms.map(function (term) {
@@ -372,6 +376,7 @@ window.isAumCountedFund = isAumCountedFund;
 window.getFundSector = getFundSector;
 window.getFundRegion = getFundRegion;
 window.getSearchTerms = getSearchTerms;
+window.isShortNumericSearch = isShortNumericSearch;
 window.buildUniversalFilter = buildUniversalFilter;
 window.ensureAllDataLoaded = ensureAllDataLoaded;
 window.fetchAllRows = fetchAllRows;

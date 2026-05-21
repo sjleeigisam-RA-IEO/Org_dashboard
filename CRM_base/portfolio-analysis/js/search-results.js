@@ -52,15 +52,24 @@ function performSearch(query) {
   }
 
   var terms = getSearchTerms(query);
+  var shortNumeric = isShortNumericSearch(query);
+  var exposureColumns = shortNumeric ? ['fund_id'] : ['lender_clean', 'fund_id'];
+  var beneficiaryColumns = shortNumeric ? ['fund_id'] : ['beneficiary_clean', 'fund_id'];
+  var projectColumns = shortNumeric ? ['project_code', 'project_name'] : ['project_id', 'project_code', 'project_name', 'project_type', 'status'];
 
   return ensureFundSearchColumns().then(function () {
+    var activeFundSearchColumns = shortNumeric
+      ? fundSearchColumns.filter(function (col) {
+        return ['fund_id', 'fund_name', 'short_name', 'project_mission_name'].includes(col);
+      })
+      : fundSearchColumns;
     return Promise.all([
-      _supabase.from('lender_exposures').select('*, funds(*)').or(buildUniversalFilter(['lender_clean', 'fund_id'], terms)).limit(100),
-      _supabase.from('beneficiary_exposures').select('*, funds(*)').or(buildUniversalFilter(['beneficiary_clean', 'fund_id'], terms)).limit(100),
-      _supabase.from('v_funds_enriched').select('*').or(buildUniversalFilter(fundSearchColumns, terms)).limit(100),
-      _supabase.from('projects').select('*').or(buildUniversalFilter(['project_id', 'project_code', 'project_name', 'project_type', 'status'], terms)).limit(100),
+      _supabase.from('lender_exposures').select('*, funds(*)').or(buildUniversalFilter(exposureColumns, terms)).limit(100),
+      _supabase.from('beneficiary_exposures').select('*, funds(*)').or(buildUniversalFilter(beneficiaryColumns, terms)).limit(100),
+      _supabase.from('v_funds_enriched').select('*').or(buildUniversalFilter(activeFundSearchColumns, terms)).limit(100),
+      _supabase.from('projects').select('*').or(buildUniversalFilter(projectColumns, terms)).limit(100),
       window.AssetCanonical
-        ? window.AssetCanonical.searchCanonicalAssets(terms)
+        ? window.AssetCanonical.searchCanonicalAssets(terms, { shortNumeric: shortNumeric })
         : _supabase.from('fund_assets').select('*, funds(*)').or(buildUniversalFilter(['asset_name', 'fund_id'], terms)).limit(100)
     ]);
   }).then(function (responses) {

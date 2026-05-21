@@ -37,6 +37,10 @@
     return parts.join(',');
   }
 
+  function isShortNumericTerm(term) {
+    return /^\d{1,4}$/.test(String(term || '').trim());
+  }
+
   function uniqueBy(list, keyFn) {
     const seen = new Set();
     const result = [];
@@ -111,19 +115,26 @@
     return response.data || [];
   }
 
-  async function searchCanonicalAssets(terms) {
+  async function searchCanonicalAssets(terms, options) {
     terms = (terms || []).map(normalizeTerm).filter(Boolean);
     if (!terms.length) return { data: [] };
+    options = options || {};
+    const shortNumeric = options.shortNumeric || terms.every(isShortNumericTerm);
+    const summaryColumns = shortNumeric
+      ? ['canonical_name', 'asset_code']
+      : ['canonical_name', 'address_text', 'pnu', 'asset_code', 'main_usage'];
 
     const summaryFilter = buildOrFilter(
-      ['canonical_name', 'address_text', 'pnu', 'asset_code', 'main_usage'],
+      summaryColumns,
       terms
     );
-    const aliasFilter = buildOrFilter(['alias_name'], terms);
+    const aliasFilter = shortNumeric ? '' : buildOrFilter(['alias_name'], terms);
 
     const [summaryRes, aliasRes] = await Promise.all([
       _supabase.from('asset_relationship_summary').select('*').or(summaryFilter).limit(100),
-      _supabase.from('asset_aliases').select('asset_id, alias_name, alias_type, confidence').or(aliasFilter).limit(200)
+      aliasFilter
+        ? _supabase.from('asset_aliases').select('asset_id, alias_name, alias_type, confidence').or(aliasFilter).limit(200)
+        : Promise.resolve({ data: [] })
     ]);
 
     if (summaryRes.error) throw summaryRes.error;
