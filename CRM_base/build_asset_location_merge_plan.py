@@ -9,6 +9,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = BASE_DIR / "output"
 INPUT_CSV = OUTPUT_DIR / "asset_location_building_update_candidates.csv"
+DECISIONS_CSV = OUTPUT_DIR / "asset_name_manual_decisions.csv"
 PLAN_CSV = OUTPUT_DIR / "asset_location_merge_plan.csv"
 SUMMARY_MD = OUTPUT_DIR / "asset_location_merge_plan_summary.md"
 
@@ -134,13 +135,29 @@ def risk_level(merge_action: str) -> str:
     return "review"
 
 
+def load_name_decisions() -> dict[str, dict[str, str]]:
+    if not DECISIONS_CSV.exists():
+        return {}
+    with DECISIONS_CSV.open("r", encoding="utf-8-sig", newline="") as handle:
+        return {
+            row["asset_id"]: row
+            for row in csv.DictReader(handle)
+            if clean(row.get("asset_id"))
+        }
+
+
 def main() -> None:
     with INPUT_CSV.open("r", encoding="utf-8-sig", newline="") as handle:
         input_rows = list(csv.DictReader(handle))
+    name_decisions = load_name_decisions()
 
     plan_rows = []
     for row in input_rows:
         merge_action, reason, target_tables = choose_merge_action(row)
+        decision = name_decisions.get(row.get("asset_id", ""), {})
+        final_name = clean(decision.get("final_asset_name")) or row.get("accepted_asset_name", "")
+        asset_semantics = clean(decision.get("asset_semantics"))
+        decision_status = clean(decision.get("decision_status"))
         plan_rows.append(
             {
                 "merge_action": merge_action,
@@ -150,9 +167,10 @@ def main() -> None:
                 "asset_id": row.get("asset_id", ""),
                 "current_asset_name": row.get("current_asset_name", ""),
                 "db_asset_master_name": row.get("db_asset_master_name", ""),
-                "accepted_asset_name": row.get("accepted_asset_name", ""),
+                "accepted_asset_name": final_name,
                 "asset_name_action": row.get("asset_name_action", ""),
-                "asset_semantics_hint": "",
+                "asset_semantics_hint": asset_semantics,
+                "asset_name_decision_status": decision_status,
                 "adoption_source": row.get("adoption_source", ""),
                 "recommended_db_action": row.get("recommended_db_action", ""),
                 "safe_to_update_existing_asset_master": row.get("safe_to_update_existing_asset_master", ""),
