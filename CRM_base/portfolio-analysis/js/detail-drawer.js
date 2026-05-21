@@ -191,6 +191,113 @@
     });
   }
 
+  function escapeDrawerArg(value) {
+    return String(value || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+  }
+
+  function amountValue(row, key) {
+    const value = row && row[key];
+    if (typeof value === 'number') return value;
+    const parsed = Number(String(value || '').replace(/,/g, ''));
+    return Number.isFinite(parsed) ? parsed : 0;
+  }
+
+  window.openInstitutionRelationshipDrawer = async (type, name, items) => {
+    if (!name) return;
+    const isLender = type === 'lender';
+    const label = isLender ? 'LENDER SELECTED' : 'BENEFICIARY SELECTED';
+    const roleLabel = isLender ? '대주' : '수익자';
+    const amountKey = isLender ? 'committed_amt' : 'invested_amt';
+    const sourceItems = items || [];
+    const fundIds = Array.from(new Set(sourceItems.map(function (row) { return row.fund_id; }).filter(Boolean)));
+    const shell = openDrawerShell(label, name, `${roleLabel}가 연결된 펀드/비히클과 기초자산을 함께 확인하세요.`);
+
+    try {
+      let fundRows = sourceItems.map(function (row) { return row.funds; }).filter(Boolean);
+      let assetRows = [];
+
+      if (fundIds.length > 0) {
+        const [fundRes, assetRes] = await Promise.all([
+          _supabase.from('v_funds_enriched').select('*').in('fund_id', fundIds).limit(500),
+          _supabase.from('fund_asset_relationships').select('*').in('fund_id', fundIds).limit(1000)
+        ]);
+        [fundRes, assetRes].forEach(function (res) {
+          if (res.error) throw res.error;
+        });
+        const fundById = {};
+        fundRows.concat(fundRes.data || []).forEach(function (fund) {
+          if (fund && fund.fund_id) fundById[fund.fund_id] = fund;
+        });
+        fundRows = fundIds.map(function (fundId) {
+          return fundById[fundId] || { fund_id: fundId, fund_name: fundId };
+        });
+        assetRows = dedupeAssetRelationshipRows(assetRes.data || []);
+      }
+
+      const totalAmount = sourceItems.reduce(function (acc, row) {
+        return acc + amountValue(row, amountKey);
+      }, 0);
+      const sortedItems = sourceItems.slice().sort(function (a, b) {
+        const aDate = a.drawdown_date || a.start_date || a.invested_date || '';
+        const bDate = b.drawdown_date || b.start_date || b.invested_date || '';
+        return String(bDate).localeCompare(String(aDate));
+      });
+
+      shell.header.querySelector('p').textContent = label;
+      shell.header.querySelector('h2').textContent = name;
+      shell.content.innerHTML = `
+        <div class="detail-section">
+          <div class="section-title">관계 요약</div>
+          <table class="data-table">
+            <tr><th>${roleLabel} 참여 row</th><td>${sourceItems.length}</td><th>연결 펀드/비히클</th><td>${fundRows.length}</td></tr>
+            <tr><th>연결 자산</th><td>${assetRows.length}</td><th>총 약정/투자금액</th><td>${formatNumber(totalAmount)}</td></tr>
+          </table>
+        </div>
+        <div class="detail-section">
+          <div class="section-title">관련 펀드/비히클 (${fundRows.length})</div>
+          ${fundRows.map(function (row) { return fundListCard(row, roleLabel); }).join('') || '<div class="no-results">연결 펀드/비히클이 없습니다.</div>'}
+        </div>
+        <div class="detail-section">
+          <div class="section-title">관련 자산 (${assetRows.length})</div>
+          ${assetRows.map(function (row) { return assetListCard(row, roleLabel); }).join('') || '<div class="no-results">연결 자산이 없습니다.</div>'}
+        </div>
+        <div class="detail-section">
+          <div class="section-title">참여 상세</div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>펀드/비히클</th>
+                <th>금액</th>
+                <th>시작/인출일</th>
+                <th>종료/만기일</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${sortedItems.map(function (row) {
+                const fund = fundRows.find(function (f) { return f.fund_id === row.fund_id; }) || row.funds || {};
+                const fundName = fund.project_mission_name || fund.fund_name || fund.short_name || row.fund_id || '-';
+                const startDate = row.drawdown_date || row.start_date || row.invested_date || fund.setup_date || '-';
+                const endDate = row.loan_maturity_date || row.end_date || fund.maturity_date || fund.termination_date || '-';
+                return `
+                  <tr onclick="openFundRelationshipDrawer('${escapeDrawerArg(row.fund_id)}', '${escapeDrawerArg(fundName)}')" style="cursor:pointer;">
+                    <td style="font-weight:700">${fundName}</td>
+                    <td style="color:var(--accent); font-weight:800;">${formatNumber(amountValue(row, amountKey))}</td>
+                    <td>${startDate}</td>
+                    <td>${endDate}</td>
+                  </tr>
+                `;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+      window.currentDrawerData = { type: 'institution', institutionType: type, key: name, name: name, items: sourceItems };
+    } catch (e) {
+      console.error(e);
+      shell.content.innerHTML = `<div class="no-results">${roleLabel} 관계 정보를 불러오지 못했습니다.</div>`;
+    }
+  };
+
   window.openFundRelationshipDrawer = async (fundId, displayName) => {
     if (!fundId) return;
     const shell = openDrawerShell('FUND SELECTED', displayName || fundId, '이 펀드/비히클에 연결된 기초자산을 선택하세요.');
@@ -271,6 +378,8 @@
       window.openFundRelationshipDrawer(window.currentDrawerData.key, window.currentDrawerData.name);
     } else if (window.currentDrawerData && window.currentDrawerData.type === 'project' && window.openProjectRelationshipDrawer) {
       window.openProjectRelationshipDrawer(window.currentDrawerData.key, window.currentDrawerData.name);
+    } else if (window.currentDrawerData && window.currentDrawerData.type === 'institution' && window.openInstitutionRelationshipDrawer) {
+      window.openInstitutionRelationshipDrawer(window.currentDrawerData.institutionType, window.currentDrawerData.name, window.currentDrawerData.items);
     } else if (window.currentDrawerData && window.currentDrawerData.type === 'asset') {
       window.openAssetDrawer(window.currentDrawerData.key, window.currentDrawerData.name);
     } else {

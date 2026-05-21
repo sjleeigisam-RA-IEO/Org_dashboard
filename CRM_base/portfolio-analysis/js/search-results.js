@@ -209,6 +209,10 @@ function renderGroupCard(type, name, items) {
       var sl = card.querySelector('.sub-list');
       sl.style.display = sl.style.display === 'none' ? 'block' : 'none';
     }
+    if ((type === 'lender' || type === 'ben') && window.openInstitutionRelationshipDrawer) {
+      window.openInstitutionRelationshipDrawer(type, name, items);
+      return;
+    }
     if (type === 'fund' && window.openFundRelationshipDrawer) {
       window.openFundRelationshipDrawer(item0.fund_id, displayTitle);
       return;
