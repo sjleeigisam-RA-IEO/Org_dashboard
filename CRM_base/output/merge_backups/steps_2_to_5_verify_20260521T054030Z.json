@@ -1,0 +1,53 @@
+{
+  "created_asset_master_by_merge_source": 70,
+  "asset_fund_links_by_merge_source": 186,
+  "fund_asset_update_checks": 289,
+  "fund_asset_update_ok": 289,
+  "fund_asset_update_fail": 0,
+  "step2_update_rows": [
+    {
+      "asset_id": "ast_109318d66df6",
+      "canonical_name": "화성 석포리 물류센터",
+      "pnu": "4159037022101470012",
+      "api_enrichment_status": "pending"
+    },
+    {
+      "asset_id": "ast_541ce8b9c351",
+      "canonical_name": "부산 온천동 복합시설 신축사업",
+      "pnu": "2626010800118380000",
+      "api_enrichment_status": "pending"
+    },
+    {
+      "asset_id": "ast_6526b194cc13",
+      "canonical_name": "부천카스퀘어담보대출",
+      "pnu": "4119012300103660001",
+      "api_enrichment_status": "pending"
+    },
+    {
+      "asset_id": "ast_d2b291b01082",
+      "canonical_name": "돈의문3구역 게이트타워",
+      "pnu": "1111017700102340000",
+      "api_enrichment_status": "pending"
+    },
+    {
+      "asset_id": "ast_ea83005ce057",
+      "canonical_name": "판교아이스퀘어C1블럭상업및숙박시설",
+      "pnu": "4113111500102880002",
+      "api_enrichment_status": "pending"
+    },
+    {
+      "asset_id": "ast_f5e665f7cf35",
+      "canonical_name": "제주올레리조트",
+      "pnu": "5011025326128080000",
+      "api_enrichment_status": "pending"
+    }
+  ],
+  "failed_fund_asset_checks": [],
+  "operations": {
+    "create_or_reuse_name_only_asset": 14,
+    "hold_no_db_write": 6,
+    "create_or_reuse_pnu_asset": 242,
+    "link_existing_asset": 41,
+    "update_asset_master": 6
+  }
+}

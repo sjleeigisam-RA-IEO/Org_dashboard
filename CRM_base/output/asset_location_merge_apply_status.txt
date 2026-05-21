@@ -1,0 +1,27 @@
+Asset location merge apply status
+Generated: 2026-05-21 14:41 KST
+
+Applied scope:
+- Step 1: applied 18 asset_master updates.
+- Step 1 skipped: ast_8a93d35b0890 because two candidate names share the same asset_id/PNU.
+- Steps 2-5: applied after guarded dry-runs and DB constraint fixes.
+
+Verification:
+- asset_master rows created by representative_source=asset_location_merge_plan: 70
+- asset_fund_links rows created by source_table=asset_location_merge_plan: 186
+- fund_assets mapping checks: 289/289 ok
+- Step 2 asset_master update rows: 6
+- Step 5 hold/no DB write rows: 6
+- Post-apply dry-run: asset_inserts=0, fund_link_inserts=0, fund_asset_updates=0
+
+Important local evidence files:
+- CRM_base/output/merge_backups/step1_asset_master_backup_20260521T053241Z.csv
+- CRM_base/output/merge_backups/step1_asset_master_plan_20260521T053241Z.csv
+- CRM_base/output/merge_backups/step1_asset_master_verify_20260521T053241Z.csv
+- CRM_base/output/merge_backups/steps_2_to_5_plan_20260521T054030Z.csv
+- CRM_base/output/merge_backups/steps_2_to_5_summary_20260521T054030Z.json
+- CRM_base/output/merge_backups/steps_2_to_5_verify_20260521T054030Z.json
+
+Notes:
+- Ledger inserts were 0. Existing fund_assets metadata did not provide reusable building-ledger payloads for the new proposed PNU targets, so newly located assets are left as api_enrichment_status=pending for later PNU-based building-ledger fetch.
+- Name-only/hold rows remain outside location/PNU updates. They should be handled by search alias or drawer display policy, not by overwriting physical asset locations.
