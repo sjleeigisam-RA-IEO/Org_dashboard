@@ -2420,7 +2420,7 @@ window.ORG_DASHBOARD_DATA = {
       ]
     },
     {
-      "name": "부분직속",
+      "name": "부문직속",
       "assignmentCount": 18,
       "uniquePeopleCount": 18,
       "groups": [
@@ -2436,12 +2436,12 @@ window.ORG_DASHBOARD_DATA = {
               "teams": [
                 {
                   "id": "unit-268",
-                  "section": "부분직속",
+                  "section": "부문직속",
                   "group": "론파이낸스센터",
                   "part": "미지정",
                   "team": "론파이낸스센터",
                   "displayName": "론파이낸스센터",
-                  "path": "부분직속 > 론파이낸스센터 > 미지정 > 론파이낸스센터",
+                  "path": "부문직속 > 론파이낸스센터 > 미지정 > 론파이낸스센터",
                   "members": [
                     {
                       "role": "파트장/센터장",
@@ -2513,12 +2513,12 @@ window.ORG_DASHBOARD_DATA = {
               "teams": [
                 {
                   "id": "unit-276",
-                  "section": "부분직속",
+                  "section": "부문직속",
                   "group": "기업마케팅센터",
                   "part": "미지정",
                   "team": "기업마케팅센터",
                   "displayName": "기업마케팅센터",
-                  "path": "부분직속 > 기업마케팅센터 > 미지정 > 기업마케팅센터",
+                  "path": "부문직속 > 기업마케팅센터 > 미지정 > 기업마케팅센터",
                   "members": [
                     {
                       "role": "파트장/센터장",
@@ -2560,12 +2560,12 @@ window.ORG_DASHBOARD_DATA = {
               "teams": [
                 {
                   "id": "unit-279",
-                  "section": "부분직속",
+                  "section": "부문직속",
                   "group": "공간솔루션센터",
                   "part": "미지정",
                   "team": "공간솔루션센터",
                   "displayName": "공간솔루션센터",
-                  "path": "부분직속 > 공간솔루션센터 > 미지정 > 공간솔루션센터",
+                  "path": "부문직속 > 공간솔루션센터 > 미지정 > 공간솔루션센터",
                   "members": [
                     {
                       "role": "파트장/센터장",
@@ -2605,12 +2605,12 @@ window.ORG_DASHBOARD_DATA = {
               "teams": [
                 {
                   "id": "unit-282",
-                  "section": "부분직속",
+                  "section": "부문직속",
                   "group": "기획추진센터",
                   "part": "미지정",
                   "team": "기획추진센터",
                   "displayName": "기획추진센터",
-                  "path": "부분직속 > 기획추진센터 > 미지정 > 기획추진센터",
+                  "path": "부문직속 > 기획추진센터 > 미지정 > 기획추진센터",
                   "members": [
                     {
                       "role": "파트장/센터장",
