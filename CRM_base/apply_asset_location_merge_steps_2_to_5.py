@@ -125,7 +125,7 @@ def location_payload(row: dict, include_status: bool = False) -> dict:
     if lat is not None and lng is not None:
         payload["geocode_source"] = "deal_board_domestic_completed_20240812"
     if include_status and pnu:
-        payload["api_enrichment_status"] = "needs_building_ledger_fetch"
+        payload["api_enrichment_status"] = "pending"
     return payload
 
 
@@ -157,12 +157,12 @@ def asset_master_insert(asset_id: str, rows: list[dict], name_only: bool = False
         "representative_fund_id": clean(first.get("source_fund_code")) or None,
         "metadata": metadata,
         "geocode_source": None if name_only else "deal_board_domestic_completed_20240812",
-        "api_enrichment_status": "needs_building_ledger_fetch" if pnu else "name_only_no_location",
+        "api_enrichment_status": "pending" if pnu else "not_checked",
         "is_physical": bool(pnu or clean(first.get("proposed_address"))),
-        "is_synthetic": False,
-        "asset_kind": "underlying_asset",
+        "is_synthetic": not bool(pnu or clean(first.get("proposed_address"))),
+        "asset_kind": "physical_asset" if pnu or clean(first.get("proposed_address")) else "fund_interest",
         "manual_input_required": not bool(pnu),
-        "data_completeness": "location_pending" if name_only else "ledger_pending",
+        "data_completeness": "incomplete",
     }
 
 
