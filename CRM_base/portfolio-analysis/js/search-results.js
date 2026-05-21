@@ -58,6 +58,7 @@ function performSearch(query) {
       _supabase.from('lender_exposures').select('*, funds(*)').or(buildUniversalFilter(['lender_clean', 'fund_id'], terms)).limit(100),
       _supabase.from('beneficiary_exposures').select('*, funds(*)').or(buildUniversalFilter(['beneficiary_clean', 'fund_id'], terms)).limit(100),
       _supabase.from('v_funds_enriched').select('*').or(buildUniversalFilter(fundSearchColumns, terms)).limit(100),
+      _supabase.from('projects').select('*').or(buildUniversalFilter(['project_id', 'project_code', 'project_name', 'project_type', 'status'], terms)).limit(100),
       window.AssetCanonical
         ? window.AssetCanonical.searchCanonicalAssets(terms)
         : _supabase.from('fund_assets').select('*, funds(*)').or(buildUniversalFilter(['asset_name', 'fund_id'], terms)).limit(100)
@@ -66,7 +67,8 @@ function performSearch(query) {
     var lenderRes = responses[0];
     var benRes = responses[1];
     var fundRes = responses[2];
-    var assetRes = responses[3];
+    var projectRes = responses[3];
+    var assetRes = responses[4];
     var rawFunds = fundRes.data || [];
     // Map resolved names for UI compatibility
     rawFunds.forEach(f => {
@@ -88,7 +90,7 @@ function performSearch(query) {
       beneficiaries: benRes.data || [],
       funds: normalFunds,
       assets: window.AssetCanonical ? [] : (assetRes.data || []),
-      projects: projects,
+      projects: projects.concat(projectRes.data || []),
       assetGroups: window.AssetCanonical ? (assetRes.data || []) : []
     };
     window.allResults = allResults;
@@ -148,7 +150,7 @@ function groupBy(list, key) {
   return list.reduce(function (acc, obj) {
     var val = obj[key];
     if (key === 'asset_name') val = obj.pnu || obj.asset_name;
-    else if (key === 'fund_name' || key === 'fund_id') val = obj.parent_fund_id || obj.fund_id;
+    else if (key === 'fund_name' || key === 'fund_id') val = obj.parent_fund_id || obj.fund_id || obj.project_id || obj.project_name;
     acc[val] = acc[val] || [];
     acc[val].push(obj);
     return acc;
@@ -169,11 +171,12 @@ function renderGroupCard(type, name, items) {
   } else if (type === 'fund' || type === 'project') {
     var fn = item0.fund_name;
     var sn = item0.short_name;
-    if (fn && sn && fn !== sn) displayTitle = '[' + sn + '] ' + fn;
-    else displayTitle = fn || sn || name;
+    if (type === 'project' && item0.project_name) displayTitle = item0.project_name;
+    else if (fn && sn && fn !== sn) displayTitle = '[' + sn + '] ' + fn;
+    else displayTitle = fn || sn || item0.project_mission_name || item0.project_id || name;
   }
 
-  var subTitle = (type === 'asset' ? (item0.metadata?.pnu || item0.pnu) : item0.fund_id) || '';
+  var subTitle = (type === 'asset' ? (item0.metadata?.pnu || item0.pnu) : (item0.fund_id || item0.project_id)) || '';
 
   card.innerHTML = `
     <div class="group-header">
@@ -191,9 +194,9 @@ function renderGroupCard(type, name, items) {
     <div class="sub-list" style="display:none">
       ${items.map(function (i) {
         return `
-        <div class="sub-item" data-id="${i.fund_id}">
-          <span class="sub-item-name">${i.funds?.fund_name || i.fund_name || i.fund_id}</span>
-          <span class="sub-item-id">${i.fund_id}</span>
+    <div class="sub-item" data-id="${i.fund_id || i.project_id}">
+          <span class="sub-item-name">${i.funds?.fund_name || i.fund_name || i.project_name || i.project_mission_name || i.fund_id || i.project_id}</span>
+          <span class="sub-item-id">${i.fund_id || i.project_id || ''}</span>
         </div>`;
       }).join('')}
     </div>
@@ -206,8 +209,12 @@ function renderGroupCard(type, name, items) {
       var sl = card.querySelector('.sub-list');
       sl.style.display = sl.style.display === 'none' ? 'block' : 'none';
     }
-    if ((type === 'project' || type === 'fund') && item0.primary_asset_id && window.AssetCanonical) {
-      window.AssetCanonical.renderCanonicalAssetDetail(item0.primary_asset_id, displayTitle);
+    if (type === 'fund' && window.openFundRelationshipDrawer) {
+      window.openFundRelationshipDrawer(item0.fund_id, displayTitle);
+      return;
+    }
+    if (type === 'project' && window.openProjectRelationshipDrawer) {
+      window.openProjectRelationshipDrawer(item0.project_id || item0.fund_id, displayTitle);
       return;
     }
     showDetail({ type: type, items: items, targetName: name });
@@ -218,8 +225,10 @@ function renderGroupCard(type, name, items) {
     si.addEventListener('click', function (e) {
       e.stopPropagation();
       var item = items[idx];
-      if ((type === 'project' || type === 'fund') && item.primary_asset_id && window.AssetCanonical) {
-        window.AssetCanonical.renderCanonicalAssetDetail(item.primary_asset_id, item.project_mission_name || item.fund_name || item.short_name || item.fund_id);
+      if (type === 'fund' && window.openFundRelationshipDrawer) {
+        window.openFundRelationshipDrawer(item.fund_id, item.fund_name || item.short_name || item.fund_id);
+      } else if (type === 'project' && window.openProjectRelationshipDrawer) {
+        window.openProjectRelationshipDrawer(item.project_id || item.fund_id, item.project_name || item.project_mission_name || item.fund_name || item.short_name || item.fund_id || item.project_id);
       } else {
         showDetail({ type: 'fund', items: [item], targetName: item.fund_name || item.fund_id });
       }

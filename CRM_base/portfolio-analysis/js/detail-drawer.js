@@ -107,11 +107,171 @@
     header.style.border = 'none';
   };
 
+  function openDrawerShell(label, title, subtitle) {
+    const header = document.getElementById('drawerHeader');
+    const content = document.getElementById('drawerContent');
+    const nav = document.getElementById('drawerNav');
+
+    nav.style.display = 'none';
+    header.style.padding = '40px 40px 30px';
+    header.style.borderBottom = '1px solid #e2e8f0';
+    header.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <p style="color:var(--accent); font-size:12px; font-weight:800; margin-bottom:8px; letter-spacing:1px;">${label}</p>
+          <h2 style="font-size:22px; font-weight:800; line-height:1.3;">${title || '-'}</h2>
+          ${subtitle ? `<p style="margin-top:12px; color:var(--muted); font-size:14px;">${subtitle}</p>` : ''}
+        </div>
+      </div>
+    `;
+    content.innerHTML = '<div class="no-results">관계 정보를 불러오는 중...</div>';
+    document.getElementById('sideDrawer').classList.add('active');
+    document.getElementById('sideDrawerOverlay').classList.add('active');
+    return { header, content, nav };
+  }
+
+  function assetListCard(row, caption) {
+    const assetName = row.canonical_name || row.asset_name || row.asset_id || '-';
+    const address = row.address_text || row.address || '-';
+    const pnu = row.pnu || row.metadata?.pnu || '';
+    const relation = row.relation_type || '';
+    const assetId = row.asset_id || '';
+    return `
+      <div class="fund-detail-card" onclick="AssetCanonical.renderCanonicalAssetDetail('${assetId}', '${String(assetName).replace(/'/g, "\\'")}')" style="cursor:pointer; margin-bottom:12px; border-left:4px solid var(--accent);">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
+          <h3 style="font-size:15px; font-weight:800; flex:1; margin:0;">${assetName}</h3>
+          <span style="padding:3px 8px; border-radius:6px; font-size:11px; font-weight:800; background:#f1f5f9; color:#475569;">${relation || caption || 'asset'}</span>
+        </div>
+        <div class="meta-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr)); gap:12px; margin-top:12px;">
+          <div class="meta-item"><span class="meta-label">주소</span><span class="meta-val">${address}</span></div>
+          <div class="meta-item"><span class="meta-label">PNU</span><span class="meta-val">${pnu || '-'}</span></div>
+        </div>
+      </div>
+    `;
+  }
+
+  function fundListCard(row, caption) {
+    const fundId = row.fund_id || row.project_id || '';
+    const fundName = row.project_mission_name || row.fund_name || row.project_name || row.short_name || fundId || '-';
+    const status = row.fund_status || row.project_status || row.status || '-';
+    const relation = row.relation_type || caption || '';
+    return `
+      <div class="fund-detail-card" onclick="openFundRelationshipDrawer('${fundId}', '${String(fundName).replace(/'/g, "\\'")}')" style="cursor:pointer; margin-bottom:12px; border-left:4px solid #10b981;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
+          <h3 style="font-size:15px; font-weight:800; flex:1; margin:0;">${fundName}</h3>
+          <span style="padding:3px 8px; border-radius:6px; font-size:11px; font-weight:800; background:rgba(16,185,129,0.1); color:#059669;">${relation || 'fund'}</span>
+        </div>
+        <div class="meta-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr)); gap:12px; margin-top:12px;">
+          <div class="meta-item"><span class="meta-label">ID</span><span class="meta-val">${fundId || '-'}</span></div>
+          <div class="meta-item"><span class="meta-label">상태</span><span class="meta-val">${status}</span></div>
+        </div>
+      </div>
+    `;
+  }
+
+  function relationDisplayKey(row) {
+    return row.pnu || row.asset_id || row.canonical_name || row.asset_name || '';
+  }
+
+  function dedupeAssetRelationshipRows(rows) {
+    const priority = { asset_location_merge_plan: 0, fund_assets: 1 };
+    const best = {};
+    (rows || []).forEach(function (row) {
+      const key = relationDisplayKey(row);
+      if (!key) return;
+      const prev = best[key];
+      if (!prev || (priority[row.source_table] ?? 9) < (priority[prev.source_table] ?? 9)) {
+        best[key] = row;
+      }
+    });
+    return Object.values(best).sort(function (a, b) {
+      const sourceScore = (priority[a.source_table] ?? 9) - (priority[b.source_table] ?? 9);
+      if (sourceScore !== 0) return sourceScore;
+      return String(a.canonical_name || '').localeCompare(String(b.canonical_name || ''), 'ko');
+    });
+  }
+
+  window.openFundRelationshipDrawer = async (fundId, displayName) => {
+    if (!fundId) return;
+    const shell = openDrawerShell('FUND SELECTED', displayName || fundId, '이 펀드/비히클에 연결된 기초자산을 선택하세요.');
+    try {
+      const [fundRes, assetRelRes, lenderRes, benRes] = await Promise.all([
+        _supabase.from('v_funds_enriched').select('*').eq('fund_id', fundId).maybeSingle(),
+        _supabase.from('fund_asset_relationships').select('*').eq('fund_id', fundId).limit(300),
+        _supabase.from('lender_exposures').select('*').eq('fund_id', fundId).limit(300),
+        _supabase.from('beneficiary_exposures').select('*').eq('fund_id', fundId).limit(300)
+      ]);
+      [fundRes, assetRelRes, lenderRes, benRes].forEach(function (res) {
+        if (res.error) throw res.error;
+      });
+      const fund = fundRes.data || {};
+      const assets = dedupeAssetRelationshipRows(assetRelRes.data || []);
+      const lenders = lenderRes.data || [];
+      const beneficiaries = benRes.data || [];
+      shell.header.querySelector('p').textContent = 'FUND SELECTED';
+      shell.header.querySelector('h2').textContent = displayName || fund.project_mission_name || fund.fund_name || fund.short_name || fundId;
+      shell.content.innerHTML = `
+        <div class="detail-section">
+          <div class="section-title">연결 자산 (${assets.length})</div>
+          ${assets.map(function (row) { return assetListCard(row, 'asset'); }).join('') || '<div class="no-results">연결 자산이 없습니다.</div>'}
+        </div>
+        <div class="detail-section">
+          <div class="section-title">참여자 요약</div>
+          <table class="data-table">
+            <tr><th>수익자 row</th><td>${beneficiaries.length}</td><th>대주 row</th><td>${lenders.length}</td></tr>
+            <tr><th>설정일</th><td>${fund.setup_date || '-'}</td><th>만기/청산일</th><td>${fund.maturity_date || fund.termination_date || '-'}</td></tr>
+          </table>
+        </div>
+      `;
+      window.currentDrawerData = { type: 'fund', key: fundId, name: displayName || fundId, items: assets };
+    } catch (e) {
+      console.error(e);
+      shell.content.innerHTML = '<div class="no-results">펀드 관계 정보를 불러오지 못했습니다.</div>';
+    }
+  };
+
+  window.openProjectRelationshipDrawer = async (projectId, displayName) => {
+    if (!projectId) return;
+    const shell = openDrawerShell('PROJECT SELECTED', displayName || projectId, '프로젝트에 연결된 자산과 펀드/비히클을 확인하세요.');
+    try {
+      const [projectAssetRes, fundAssetRes, fundRes] = await Promise.all([
+        _supabase.from('project_asset_relationships').select('*').eq('project_id', projectId).limit(300),
+        _supabase.from('fund_asset_relationships').select('*').eq('fund_id', projectId).limit(300),
+        _supabase.from('v_funds_enriched').select('*').eq('fund_id', projectId).maybeSingle()
+      ]);
+      [projectAssetRes, fundAssetRes, fundRes].forEach(function (res) {
+        if (res.error) throw res.error;
+      });
+      const assets = dedupeAssetRelationshipRows(
+        (projectAssetRes.data && projectAssetRes.data.length) ? projectAssetRes.data : (fundAssetRes.data || [])
+      );
+      const fund = fundRes.data;
+      shell.content.innerHTML = `
+        <div class="detail-section">
+          <div class="section-title">연결 자산 (${assets.length})</div>
+          ${assets.map(function (row) { return assetListCard(row, 'project asset'); }).join('') || '<div class="no-results">연결 자산이 없습니다.</div>'}
+        </div>
+        <div class="detail-section">
+          <div class="section-title">연결 펀드/비히클</div>
+          ${fund ? fundListCard(fund, 'vehicle') : '<div class="no-results">동일 ID의 펀드/비히클을 찾지 못했습니다.</div>'}
+        </div>
+      `;
+      window.currentDrawerData = { type: 'project', key: projectId, name: displayName || projectId, items: assets };
+    } catch (e) {
+      console.error(e);
+      shell.content.innerHTML = '<div class="no-results">프로젝트 관계 정보를 불러오지 못했습니다.</div>';
+    }
+  };
+
   window.backToDrawerList = () => {
     const header = document.getElementById('drawerHeader');
     header.style.padding = '40px 40px 30px';
     header.style.borderBottom = '1px solid #e2e8f0';
-    if (window.currentDrawerData && window.currentDrawerData.type === 'asset') {
+    if (window.currentDrawerData && window.currentDrawerData.type === 'fund' && window.openFundRelationshipDrawer) {
+      window.openFundRelationshipDrawer(window.currentDrawerData.key, window.currentDrawerData.name);
+    } else if (window.currentDrawerData && window.currentDrawerData.type === 'project' && window.openProjectRelationshipDrawer) {
+      window.openProjectRelationshipDrawer(window.currentDrawerData.key, window.currentDrawerData.name);
+    } else if (window.currentDrawerData && window.currentDrawerData.type === 'asset') {
       window.openAssetDrawer(window.currentDrawerData.key, window.currentDrawerData.name);
     } else {
       renderDrawerList();
