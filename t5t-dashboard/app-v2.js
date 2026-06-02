@@ -239,6 +239,40 @@ function renderMobileBrief(period) {
   const count = document.getElementById("mobile-brief-count");
   if (summary) summary.textContent = `${period.label} 핵심 요약`;
   if (count) count.textContent = `${period.total_logs}건`;
+
+  const issueList = document.getElementById("mobile-issue-list");
+  const keywordList = document.getElementById("mobile-keyword-list");
+  const stakeholderList = document.getElementById("mobile-stakeholder-list");
+
+  if (issueList) {
+    const issues = (period.issue_categories || []).filter(item => item.count > 0).slice(0, 3);
+    issueList.innerHTML = issues.length ? issues.map(item => `
+      <button class="mobile-pill-button" type="button" onclick='openInsightModal("issue", ${jsString(item.name)})'>
+        <span>${escapeHtml(item.name)}</span>
+        <strong>${item.count}</strong>
+      </button>
+    `).join("") : '<span class="mobile-empty-note">이번 기간 이슈 없음</span>';
+  }
+
+  if (keywordList) {
+    const keywords = (period.top_keywords || []).slice(0, 6);
+    keywordList.innerHTML = keywords.length ? keywords.map(item => `
+      <button class="mobile-pill-button" type="button" onclick='openInsightModal("keyword", ${jsString(item.keyword)})'>
+        <span>#${escapeHtml(item.keyword)}</span>
+        <strong>${item.count}</strong>
+      </button>
+    `).join("") : '<span class="mobile-empty-note">키워드 없음</span>';
+  }
+
+  if (stakeholderList) {
+    const stakeholders = (period.top_stakeholders || []).slice(0, 5);
+    stakeholderList.innerHTML = stakeholders.length ? stakeholders.map(item => `
+      <button class="mobile-mini-row" type="button" onclick='openInsightModal("stakeholder", ${jsString(item.name)})'>
+        <span>${escapeHtml(item.name)}</span>
+        <strong>${item.count} log</strong>
+      </button>
+    `).join("") : '<span class="mobile-empty-note">상대방 없음</span>';
+  }
 }
 
 function renderIssueModule(period) {
