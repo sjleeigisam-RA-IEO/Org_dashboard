@@ -177,7 +177,7 @@
       if (!usedFallback) {
         await usePayload(payload, "remote", "live");
       } else if (remoteGeneratedAt && remoteGeneratedAt !== fallbackGeneratedAt) {
-        showUpdateToast();
+        await usePayload(payload, "remote", "live");
       }
     } catch (error) {
       console.warn("[sheet-loader] Background sync failed:", error.message);

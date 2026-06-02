@@ -9,8 +9,8 @@
     }
   </script>
   <title>IGIS RA Insight | RA부문 통합데이터 시스템</title>
-  <link rel="stylesheet" href="../../shared/ifpdp-system-theme.css?v=ifpdp_system_2">
-  <link rel="stylesheet" href="style.css?v=ifpdp_system_ra_2">
+  <link rel="stylesheet" href="../../shared/ifpdp-system-theme.css?v=ifpdp_system_3">
+  <link rel="stylesheet" href="style.css?v=ifpdp_system_ra_3">
   <link rel="icon" href="data:,">
   <!-- Supabase & VWorld JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -153,6 +153,11 @@
         <span style="font-size: 14px; font-weight: 800;">분석 필터</span>
         <button class="help-btn" onclick="showHelp('analysis')">?</button>
       </div>
+      <section class="mobile-analysis-notice" aria-live="polite">
+        <p class="card-tag tag-project">Portfolio Analysis</p>
+        <h2>종합 분석은 PC 화면에서 확인해 주세요.</h2>
+        <p>그래프와 드릴다운 표가 넓은 화면 기준으로 구성되어 있어 모바일에서는 데이터 조회 중심으로 제공합니다.</p>
+      </section>
       <div id="analysisControls" class="analysis-controls">
           <!-- 상세 필터 섹션 -->
           <div class="analysis-filters" id="analysisFilters">
@@ -241,7 +246,7 @@
         "js/detail-drawer.js",
         "js/analytics-dashboard.js?v=ra_theme_v2",
         "js/portfolio-analysis.js",
-        "app.js"
+        "app.js?v=mobile_patch_20260602b"
       ];
 
       for (const src of scripts) {
@@ -260,9 +265,9 @@
 </script>
   <script src="../../security-lite.js?v=ra_stable_v1"></script>
   <nav class="mobile-dashboard-tabs" aria-label="Mobile dashboard navigation">
-    <a class="mobile-dashboard-tab is-active" href="./index.html">RA</a>
+    <a class="mobile-dashboard-tab is-active" href="./index.html">펀드검색</a>
     <a class="mobile-dashboard-tab" href="../../t5t-dashboard/index.html">T5T</a>
-    <a class="mobile-dashboard-tab" href="../../t5t-input/index.html">작성</a>
+    <a class="mobile-dashboard-tab" href="../../t5t-input/index.html">T5T작성</a>
     <a class="mobile-dashboard-tab" href="../../org_dashboard/index.html">조직</a>
   </nav>
 </body>

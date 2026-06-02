@@ -1516,6 +1516,10 @@ body {
   color: var(--text) !important;
 }
 
+.mobile-analysis-notice {
+  display: none;
+}
+
 @media (max-width: 760px) {
   body.has-mobile-tabs {
     height: auto;
@@ -1572,8 +1576,52 @@ body {
     display: none !important;
   }
 
+  body.list-view .right-panel {
+    display: block !important;
+    width: 100%;
+    min-height: 0;
+    padding: 0 14px 104px;
+    border-left: 0;
+    background: transparent;
+  }
+
+  body.list-view .detail-placeholder {
+    display: none !important;
+  }
+
+  body.analysis-view .right-panel {
+    display: none !important;
+  }
+
   .analytics-container {
     padding: 0 !important;
+  }
+
+  .mobile-analysis-notice {
+    display: block;
+    margin: 12px 0 16px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--panel-solid);
+    box-shadow: var(--shadow);
+  }
+
+  .mobile-analysis-notice h2 {
+    margin: 10px 0 8px;
+    color: var(--text);
+    font-size: 21px;
+    line-height: 1.25;
+  }
+
+  .mobile-analysis-notice p:last-child {
+    margin: 0;
+    color: var(--soft);
+    line-height: 1.55;
+  }
+
+  #analysisControls {
+    display: none !important;
   }
 
   .analysis-filters,
@@ -1612,5 +1660,59 @@ body {
   .drawer-close {
     top: 14px;
     right: 16px;
+  }
+
+  .side-drawer .detail-header {
+    padding-top: 46px !important;
+  }
+
+  .side-drawer .fund-detail-card,
+  .side-drawer .detail-section {
+    padding: 16px !important;
+    border-radius: 18px !important;
+    overflow-x: auto;
+  }
+
+  .side-drawer .fund-detail-card h2,
+  .side-drawer .fund-detail-card h3,
+  .side-drawer .detail-section h2,
+  .side-drawer .detail-section h3 {
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .side-drawer .meta-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .side-drawer .data-table {
+    table-layout: fixed;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .side-drawer .data-table th,
+  .side-drawer .data-table td {
+    padding: 10px 11px !important;
+    line-height: 1.35;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .side-drawer .profile-table tr {
+    display: grid;
+    grid-template-columns: minmax(98px, 0.42fr) minmax(0, 1fr);
+  }
+
+  .side-drawer .profile-table th,
+  .side-drawer .profile-table td {
+    display: block;
+    width: auto !important;
+  }
+
+  .side-drawer .profile-table th {
+    border-right: 1px solid var(--line);
   }
 }

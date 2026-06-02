@@ -22,6 +22,8 @@ function showListView() {
   var analysisResults = document.getElementById('analysisResults');
 
   currentView = 'list';
+  document.body.classList.remove('analysis-view');
+  document.body.classList.add('list-view');
 
   if (listBtn) listBtn.classList.add('active');
   if (chartBtn) chartBtn.classList.remove('active');
@@ -44,6 +46,8 @@ function showChartView() {
   var results = document.getElementById('results');
 
   currentView = 'ranking';
+  document.body.classList.remove('list-view');
+  document.body.classList.add('analysis-view');
 
   if (chartBtn) chartBtn.classList.add('active');
   if (listBtn) listBtn.classList.remove('active');
@@ -114,6 +118,8 @@ function initApp() {
   if (typeof renderBasket === 'function') {
     renderBasket();
   }
+
+  document.body.classList.add(currentView === 'ranking' ? 'analysis-view' : 'list-view');
 }
 
 if (document.readyState === 'loading') {

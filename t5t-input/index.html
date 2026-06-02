@@ -11,8 +11,8 @@
   </script>
   <title>T5T 입력</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../shared/ifpdp-system-theme.css?v=ifpdp_system_2">
-  <link rel="stylesheet" href="style.css?v=ifpdp_system_6">
+  <link rel="stylesheet" href="../shared/ifpdp-system-theme.css?v=ifpdp_system_3">
+  <link rel="stylesheet" href="style.css?v=ifpdp_system_7">
   <script src="../security-lite.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -55,10 +55,7 @@
             <span>작성일</span>
             <input id="work-date" type="date">
           </label>
-          <label class="field">
-            <span>조직명</span>
-            <input id="line-label" type="text" placeholder="이메일 입력 시 자동 조회" readonly>
-          </label>
+          <input id="line-label" type="hidden">
           <label class="field">
             <span>이름</span>
             <input id="week-label" type="text" placeholder="이메일 입력 시 자동 조회" readonly>
@@ -168,9 +165,9 @@
   <script src="../t5t-dashboard/supabase-config.js?v=final_sql_v1"></script>
   <script src="app.js?v=proto_lastweek_6"></script>
   <nav class="mobile-dashboard-tabs" aria-label="Mobile dashboard navigation">
-    <a class="mobile-dashboard-tab" href="../CRM_base/portfolio-analysis/index.html">RA</a>
+    <a class="mobile-dashboard-tab" href="../CRM_base/portfolio-analysis/index.html">펀드검색</a>
     <a class="mobile-dashboard-tab" href="../t5t-dashboard/index.html">T5T</a>
-    <a class="mobile-dashboard-tab is-active" href="./index.html">작성</a>
+    <a class="mobile-dashboard-tab is-active" href="./index.html">T5T작성</a>
     <a class="mobile-dashboard-tab" href="../org_dashboard/index.html">조직</a>
   </nav>
 </body>

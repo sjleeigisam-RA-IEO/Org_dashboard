@@ -133,12 +133,14 @@ a {
     border-radius: 12px;
     background: transparent;
     color: var(--soft);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
     line-height: 1.1;
     text-align: center;
     text-decoration: none;
     white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
     cursor: pointer;
   }
 
@@ -152,5 +154,12 @@ a {
   .mobile-dashboard-tab:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
+  }
+
+  @media (max-width: 380px) {
+    .mobile-dashboard-tab {
+      padding-inline: 2px;
+      font-size: 10px;
+    }
   }
 }

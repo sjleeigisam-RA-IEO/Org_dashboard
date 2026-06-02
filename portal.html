@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Integrated Management System | IGIS RA</title>
-    <link rel="stylesheet" href="./shared/ifpdp-system-theme.css?v=ifpdp_system_2">
+    <link rel="stylesheet" href="./shared/ifpdp-system-theme.css?v=ifpdp_system_3">
     <link rel="stylesheet" href="./org_dashboard/admin.css">
     <style>
         body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #1f1f1e; font-family: var(--font); }
@@ -104,9 +104,9 @@
     </div>
 
     <nav class="mobile-dashboard-tabs" aria-label="Mobile dashboard navigation">
-        <button id="mobile-tab-insight" class="mobile-dashboard-tab is-active" type="button" onclick="switchTab('insight')">RA</button>
+        <button id="mobile-tab-insight" class="mobile-dashboard-tab is-active" type="button" onclick="switchTab('insight')">펀드검색</button>
         <button id="mobile-tab-t5t" class="mobile-dashboard-tab" type="button" onclick="switchTab('t5t')">T5T</button>
-        <button id="mobile-tab-input" class="mobile-dashboard-tab" type="button" onclick="switchTab('input')">작성</button>
+        <button id="mobile-tab-input" class="mobile-dashboard-tab" type="button" onclick="switchTab('input')">T5T작성</button>
         <button id="mobile-tab-org" class="mobile-dashboard-tab" type="button" onclick="switchTab('org')">조직</button>
     </nav>
 
@@ -118,7 +118,7 @@
             org: './org_dashboard/index.html',
             admin: './org_dashboard/admin.html'
         };
-        const FRAME_VERSION = 'mobile_nav_4934f08';
+        const FRAME_VERSION = 'mobile_patch_20260602b';
         const loaded = new Set();
 
         function markEmbeddedFrame(frame) {

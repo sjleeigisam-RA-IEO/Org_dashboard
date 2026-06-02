@@ -1714,6 +1714,10 @@ select,
   border-radius: 8px;
 }
 
+.mobile-org-notice {
+  display: none;
+}
+
 .modal-backdrop {
   background: rgba(8, 8, 8, 0.66);
 }
@@ -1741,6 +1745,35 @@ select,
     padding: 10px 12px !important;
     border-radius: 14px !important;
     text-align: center;
+  }
+
+  .mobile-org-notice {
+    display: block;
+    margin-top: 14px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--panel);
+    box-shadow: var(--shadow);
+  }
+
+  .mobile-org-notice h2 {
+    margin: 0 0 10px;
+    font-size: 22px;
+    line-height: 1.25;
+  }
+
+  .mobile-org-notice p:last-child {
+    margin: 0;
+    color: var(--soft);
+    line-height: 1.55;
+  }
+
+  #viewSwitch,
+  #orgDashboardView,
+  #seatLayoutView,
+  .mobile-seat-notice {
+    display: none !important;
   }
 
   body.has-mobile-tabs {

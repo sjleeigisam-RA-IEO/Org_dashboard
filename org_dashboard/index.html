@@ -23,8 +23,8 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <title>조직구성 대시보드</title>
-    <link rel="stylesheet" href="../shared/ifpdp-system-theme.css?v=ifpdp_system_2" />
-    <link rel="stylesheet" href="./styles.css?v=ifpdp_system_org_2" />
+    <link rel="stylesheet" href="../shared/ifpdp-system-theme.css?v=ifpdp_system_3" />
+    <link rel="stylesheet" href="./styles.css?v=ifpdp_system_org_3" />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f3a5b'/%3E%3Cpath d='M20 46V18h24v28H20Zm4-4h16V22H24v20Zm4-3v-9h8v9h-8Zm0-12v-2h8v2h-8Z' fill='%23f4efe7'/%3E%3C/svg%3E"
@@ -49,6 +49,12 @@
 
       <section class="mobile-seat-notice" id="mobileSeatNotice">
         모바일에서는 조직 리스트만 제공합니다. 자리배치도는 태블릿 또는 PC 화면에서 확인해 주세요.
+      </section>
+
+      <section class="mobile-org-notice" aria-live="polite">
+        <p class="eyebrow">Organization Dashboard</p>
+        <h2>조직구성 대시보드는 PC 또는 태블릿에서 확인해 주세요.</h2>
+        <p>모바일에서는 구성원 이름과 조직 카드가 좁게 깨질 수 있어, 넓은 화면에서 확인하는 방식으로 정리했습니다.</p>
       </section>
 
       <div id="orgDashboardView">
@@ -113,12 +119,12 @@
     <script src="./sheet-linked.config.js?v=ra_cachebust_v3"></script>
     <script src="./org-data.js?v=ra_cachebust_v3"></script>
     <script src="./seat-layout-data.js?v=ra_cachebust_v3"></script>
-    <script src="./sheet-loader.js?v=ra_cachebust_v4"></script>
+    <script src="./sheet-loader.js?v=ra_cachebust_v5"></script>
     <script src="../security-lite.js?v=ra_stable_v2"></script>
     <nav class="mobile-dashboard-tabs" aria-label="Mobile dashboard navigation">
-      <a class="mobile-dashboard-tab" href="../CRM_base/portfolio-analysis/index.html">RA</a>
+      <a class="mobile-dashboard-tab" href="../CRM_base/portfolio-analysis/index.html">펀드검색</a>
       <a class="mobile-dashboard-tab" href="../t5t-dashboard/index.html">T5T</a>
-      <a class="mobile-dashboard-tab" href="../t5t-input/index.html">작성</a>
+      <a class="mobile-dashboard-tab" href="../t5t-input/index.html">T5T작성</a>
       <a class="mobile-dashboard-tab is-active" href="./index.html">조직</a>
     </nav>
   </body>

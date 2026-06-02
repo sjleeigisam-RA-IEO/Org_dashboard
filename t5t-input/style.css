@@ -174,6 +174,10 @@ h3 {
   gap: 14px;
 }
 
+.writer-panel .form-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .field {
   min-width: 0;
   position: relative;
@@ -2029,6 +2033,10 @@ textarea {
     grid-template-columns: 1fr;
   }
 
+  .writer-panel .form-grid {
+    grid-template-columns: 1fr;
+  }
+
   .panel,
   .work-panel,
   .sticky-head,
@@ -2087,21 +2095,13 @@ textarea {
   }
 
   .main-column {
-    display: contents;
-  }
-
-  .writer-panel {
-    order: 1;
+    display: grid;
+    gap: 12px;
   }
 
   .side-panel {
-    order: 2;
     position: static;
     margin-top: 0;
-  }
-
-  .work-panel {
-    order: 3;
   }
 
   .side-panel .panel.compact:first-child {
