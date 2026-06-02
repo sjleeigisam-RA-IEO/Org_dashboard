@@ -103,7 +103,7 @@
             const TIMEOUT_LIMIT = 30 * 60 * 1000;
 
             if (raUser && lastActive && (Date.now() - lastActive < TIMEOUT_LIMIT)) {
-                location.href = './portal.html?v=mobile_patch_20260602b';
+                location.href = './portal.html?v=mobile_patch_78b9400';
             }
         };
         checkSession();
@@ -153,7 +153,7 @@
                     if (redirectTarget) {
                         location.href = redirectTarget;
                     } else {
-                        location.href = './portal.html?v=mobile_patch_20260602b';
+                        location.href = './portal.html?v=mobile_patch_78b9400';
                     }
                 }, 1000);
 
