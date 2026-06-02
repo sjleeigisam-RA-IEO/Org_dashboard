@@ -1886,6 +1886,36 @@ textarea {
   min-height: 108px;
 }
 
+.work-panel .sticky-head {
+  position: static !important;
+  top: auto !important;
+  z-index: auto !important;
+  padding: 12px 18px !important;
+}
+
+.item-stack {
+  padding-top: 12px !important;
+}
+
+.item-stack > .work-card {
+  padding-top: 20px !important;
+}
+
+.item-stack > .work-card .item-no {
+  display: block !important;
+  visibility: visible !important;
+  position: relative;
+  z-index: 1;
+  margin: 0 0 8px !important;
+  line-height: 1;
+  color: var(--accent-2) !important;
+}
+
+.item-stack > .work-card:first-child {
+  margin-top: 0 !important;
+  border-top: 1px solid var(--line);
+}
+
 .work-card-head {
   display: flex;
   align-items: flex-start;

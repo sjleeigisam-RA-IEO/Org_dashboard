@@ -2,7 +2,6 @@ const DRAFT_KEY = "t5t-input-draft";
 const EDGE_SUBMIT_ENDPOINT = "https://qvegpozwrcmspdvjokiz.functions.supabase.co/t5t-submit";
 const IS_LOCAL_HOST = ["localhost", "127.0.0.1", ""].includes(window.location.hostname);
 const SUBMIT_ENDPOINT = window.T5T_SUBMIT_ENDPOINT || (IS_LOCAL_HOST ? "http://localhost:8787/submit_t5t" : EDGE_SUBMIT_ENDPOINT);
-const NOTION_ENDPOINT = window.T5T_NOTION_ENDPOINT || (IS_LOCAL_HOST ? "http://localhost:8787/submit_notion" : `${EDGE_SUBMIT_ENDPOINT}?mode=notion`);
 const SERVER_DRAFT_SAVE_ENDPOINT = window.T5T_DRAFT_SAVE_ENDPOINT || `${EDGE_SUBMIT_ENDPOINT}?mode=draft-save`;
 const SERVER_DRAFT_LOAD_ENDPOINT = window.T5T_DRAFT_LOAD_ENDPOINT || `${EDGE_SUBMIT_ENDPOINT}?mode=draft-load`;
 const LAST_WEEK_ENDPOINT = window.T5T_LAST_WEEK_ENDPOINT || `${EDGE_SUBMIT_ENDPOINT}?mode=last-week-load`;
@@ -55,7 +54,6 @@ function cacheElements() {
     validationList: document.getElementById("validation-list"),
     payloadSummary: document.getElementById("payload-summary"),
     payloadPreview: document.getElementById("payload-preview"),
-    submitNotion: document.getElementById("submit-notion"),
     submitPayload: document.getElementById("submit-payload"),
     submitStatus: document.getElementById("submit-status"),
     saveDraft: document.getElementById("save-draft"),
@@ -81,7 +79,6 @@ function wireHeaderEvents() {
     renderAll();
   });
   on(els.resetForm, "click", resetForm);
-  on(els.submitNotion, "click", submitNotionOnly);
   on(els.submitPayload, "click", submitPayload);
   on(els.saveDraft, "click", saveDraft);
   on(els.loadDraft, "click", loadDraftFromStorage);
@@ -646,17 +643,8 @@ async function submitPayload() {
   await postSubmission({
     endpoint: SUBMIT_ENDPOINT,
     button: els.submitPayload,
-    pendingMessage: "SQL DB와 Notion에 저장하는 중입니다...",
-    successMessage: result => `저장 완료: ${result.submission_id}`,
-  });
-}
-
-async function submitNotionOnly() {
-  await postSubmission({
-    endpoint: NOTION_ENDPOINT,
-    button: els.submitNotion,
-    pendingMessage: "Notion 원문 DB에 저장하는 중입니다...",
-    successMessage: result => `Notion 저장 완료: ${result.notion_url || result.notion_page_id}`,
+    pendingMessage: "제출하는 중입니다...",
+    successMessage: result => `제출 완료: ${result.submission_id}`,
   });
 }
 
