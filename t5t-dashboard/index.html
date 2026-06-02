@@ -13,6 +13,11 @@
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <script>
+    if (new URLSearchParams(window.location.search).has("embedded")) {
+      document.documentElement.classList.add("embedded-frame");
+    }
+  </script>
   <title>T5T Dashboard — RA 부문 업무 현황</title>
   <style>
   .pulse-viz-container::-webkit-scrollbar { height: 2px; }
@@ -22,14 +27,14 @@
   .pulse-dot.active { background: var(--accent-2); box-shadow: 0 0 4px rgba(251,241,103,0.18); }
   </style>
   <meta name="description" content="IGIS Real Asset 부문 T5T 주간업무 대시보드">
-  <link rel="stylesheet" href="../shared/ifpdp-system-theme.css?v=ifpdp_system_1">
+  <link rel="stylesheet" href="../shared/ifpdp-system-theme.css?v=ifpdp_system_2">
   <link rel="stylesheet" href="style.css?v=final_sql_v5">
-  <link rel="stylesheet" href="ifpdp-dashboard.css?v=ifpdp_system_dash_1">
+  <link rel="stylesheet" href="ifpdp-dashboard.css?v=ifpdp_system_dash_2">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=final_sql_v1"></script>
 </head>
-<body>
+<body class="has-mobile-tabs">
 
 <header class="header">
   <div class="header-left">
@@ -247,5 +252,11 @@
 <script src="t5t-charts.js?v=v_infinite_v33"></script>
 <script src="app-v2.js?v=v_infinite_v40"></script>
 <script src="../security-lite.js?v=ra_stable_v1"></script>
+<nav class="mobile-dashboard-tabs" aria-label="Mobile dashboard navigation">
+  <a class="mobile-dashboard-tab" href="../CRM_base/portfolio-analysis/index.html">RA</a>
+  <a class="mobile-dashboard-tab is-active" href="./index.html">T5T</a>
+  <a class="mobile-dashboard-tab" href="../t5t-input/index.html">작성</a>
+  <a class="mobile-dashboard-tab" href="../org_dashboard/index.html">조직</a>
+</nav>
 </body>
 </html>

@@ -114,6 +114,7 @@
 
   function showUpdateToast() {
     const toast = document.createElement("div");
+    toast.className = "mobile-safe-toast";
     toast.innerHTML = `최신 데이터가 동기화되었습니다. <a href="javascript:location.reload()" style="color:#2563eb;text-decoration:underline;margin-left:8px;font-weight:bold;">새로고침</a>`;
     Object.assign(toast.style, {
       position: "fixed", bottom: "20px", right: "20px", background: "#fff", padding: "12px 20px",

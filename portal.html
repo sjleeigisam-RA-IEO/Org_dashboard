@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Integrated Management System | IGIS RA</title>
-    <link rel="stylesheet" href="./shared/ifpdp-system-theme.css?v=ifpdp_system_1">
+    <link rel="stylesheet" href="./shared/ifpdp-system-theme.css?v=ifpdp_system_2">
     <link rel="stylesheet" href="./org_dashboard/admin.css">
     <style>
         body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #1f1f1e; font-family: var(--font); }
@@ -46,9 +46,37 @@
             display: none; /* Default hidden */
         }
         .dashboard-frame.active { display: block; }
+
+        @media (max-width: 760px) {
+            .global-nav {
+                height: 52px;
+                padding: 0 14px;
+            }
+            .nav-brand {
+                margin-right: 0;
+                font-size: 14px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .nav-right {
+                gap: 8px;
+                font-size: 12px;
+            }
+            .user-info {
+                display: none;
+            }
+            .logout-btn {
+                padding: 7px 10px;
+            }
+            .content-wrapper {
+                top: 52px;
+                height: calc(100% - 52px - 78px - env(safe-area-inset-bottom, 0px));
+            }
+        }
     </style>
 </head>
-<body>
+<body class="has-mobile-tabs">
     <nav class="global-nav">
         <div class="nav-left">
             <a href="#" class="nav-brand">🛰️ IGIS RA Portal</a>
@@ -70,23 +98,56 @@
     <div class="content-wrapper">
         <iframe id="iframe-insight" class="dashboard-frame active" src="about:blank"></iframe>
         <iframe id="iframe-t5t" class="dashboard-frame" src="about:blank"></iframe>
+        <iframe id="iframe-input" class="dashboard-frame" src="about:blank"></iframe>
         <iframe id="iframe-org" class="dashboard-frame" src="about:blank"></iframe>
         <iframe id="iframe-admin" class="dashboard-frame" src="about:blank"></iframe>
     </div>
+
+    <nav class="mobile-dashboard-tabs" aria-label="Mobile dashboard navigation">
+        <button id="mobile-tab-insight" class="mobile-dashboard-tab is-active" type="button" onclick="switchTab('insight')">RA</button>
+        <button id="mobile-tab-t5t" class="mobile-dashboard-tab" type="button" onclick="switchTab('t5t')">T5T</button>
+        <button id="mobile-tab-input" class="mobile-dashboard-tab" type="button" onclick="switchTab('input')">작성</button>
+        <button id="mobile-tab-org" class="mobile-dashboard-tab" type="button" onclick="switchTab('org')">조직</button>
+    </nav>
 
     <script>
         const urls = {
             insight: './CRM_base/portfolio-analysis/index.html',
             t5t: './t5t-dashboard/index.html',
+            input: './t5t-input/index.html',
             org: './org_dashboard/index.html',
             admin: './org_dashboard/admin.html'
         };
         const loaded = new Set();
 
+        function markEmbeddedFrame(frame) {
+            try {
+                const doc = frame.contentWindow.document;
+                doc.documentElement.classList.add('embedded-frame');
+                if (doc.body) doc.body.classList.add('embedded-frame');
+            } catch (e) {
+                console.warn("Iframe embedded mode marking limited.");
+            }
+        }
+
+        function bindFrameActivity(frame) {
+            markEmbeddedFrame(frame);
+            try {
+                const doc = frame.contentWindow.document;
+                ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(name => {
+                    doc.addEventListener(name, resetTimer, true);
+                });
+            } catch (e) { console.warn("Iframe activity tracking limited."); }
+        }
+
         function switchTab(id) {
             // Update UI
             document.querySelectorAll('.nav-link-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(`tab-${id}`).classList.add('active');
+            const desktopTab = document.getElementById(`tab-${id}`);
+            if (desktopTab) desktopTab.classList.add('active');
+            document.querySelectorAll('.mobile-dashboard-tab').forEach(b => b.classList.remove('is-active'));
+            const mobileTab = document.getElementById(`mobile-tab-${id}`);
+            if (mobileTab) mobileTab.classList.add('is-active');
 
             // Hide all frames
             document.querySelectorAll('.dashboard-frame').forEach(f => f.classList.remove('active'));
@@ -94,20 +155,14 @@
             // Show target frame
             const frame = document.getElementById(`iframe-${id}`);
             frame.classList.add('active');
+            markEmbeddedFrame(frame);
 
             // Lazy load if needed
             if (!loaded.has(id)) {
-                frame.src = urls[id] + '?v=ra_stable_v1';
+                frame.onload = () => bindFrameActivity(frame);
+                frame.src = urls[id] + '?v=ra_stable_v1&embedded=portal';
                 loaded.add(id);
-                
-                frame.onload = () => {
-                    try {
-                        const doc = frame.contentWindow.document;
-                        ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(name => {
-                            doc.addEventListener(name, resetTimer, true);
-                        });
-                    } catch (e) { console.warn("Iframe activity tracking limited."); }
-                };
+                [150, 500, 1200, 2500].forEach(delay => window.setTimeout(() => markEmbeddedFrame(frame), delay));
             }
             resetTimer();
         }

@@ -2009,8 +2009,13 @@ textarea {
 }
 
 @media (max-width: 720px) {
+  body.has-mobile-tabs {
+    padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
   .topbar {
-    padding-top: 30px;
+    padding-top: 14px;
+    padding-bottom: 10px;
     grid-template-columns: 1fr;
   }
 
@@ -2029,5 +2034,125 @@ textarea {
   .sticky-head,
   .last-week-modal {
     border-radius: 18px;
+  }
+
+  .topbar {
+    gap: 10px;
+  }
+
+  .topbar h1 {
+    font-size: 28px;
+  }
+
+  .login-status-bar {
+    position: static;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .login-status-bar .status-content {
+    padding: 0;
+    gap: 6px;
+  }
+
+  .login-status-bar .logout-btn {
+    min-height: 30px;
+    padding: 4px 8px;
+  }
+
+  .layout {
+    padding-top: 10px;
+    gap: 12px;
+  }
+
+  .status-pill {
+    justify-self: start;
+    min-height: 34px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .writer-panel,
+  .work-panel {
+    padding: 12px;
+  }
+
+  .panel-head {
+    gap: 12px;
+  }
+
+  .panel-head h2,
+  .sticky-head h2 {
+    font-size: 20px;
+  }
+
+  .main-column {
+    display: contents;
+  }
+
+  .writer-panel {
+    order: 1;
+  }
+
+  .side-panel {
+    order: 2;
+    position: static;
+    margin-top: 0;
+  }
+
+  .work-panel {
+    order: 3;
+  }
+
+  .side-panel .panel.compact:first-child {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 10px !important;
+    border-radius: 16px;
+    background: var(--panel);
+  }
+
+  .side-panel .panel.compact:first-child .submit-action-group {
+    margin-bottom: 0 !important;
+  }
+
+  .side-panel .panel.compact:first-child .side-actions {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    margin-top: 0 !important;
+  }
+
+  #load-last-week {
+    grid-column: auto !important;
+  }
+
+  .submit-btn,
+  .side-panel .ghost-btn {
+    min-height: 40px;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .submit-status:not(:empty) {
+    margin: 0;
+    font-size: 12px;
+  }
+
+  .work-card {
+    padding: 14px !important;
+  }
+
+  .work-card-head {
+    padding-right: 46px;
+  }
+
+  .work-card .remove-item {
+    top: 14px;
+    right: 14px;
+  }
+
+  textarea {
+    min-height: 160px;
   }
 }

@@ -3,9 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    if (new URLSearchParams(window.location.search).has("embedded")) {
+      document.documentElement.classList.add("embedded-frame");
+    }
+  </script>
   <title>IGIS RA Insight | RA부문 통합데이터 시스템</title>
-  <link rel="stylesheet" href="../../shared/ifpdp-system-theme.css?v=ifpdp_system_1">
-  <link rel="stylesheet" href="style.css?v=ifpdp_system_ra_1">
+  <link rel="stylesheet" href="../../shared/ifpdp-system-theme.css?v=ifpdp_system_2">
+  <link rel="stylesheet" href="style.css?v=ifpdp_system_ra_2">
   <link rel="icon" href="data:,">
   <!-- Supabase & VWorld JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -96,7 +101,7 @@
       .meta-val { color: var(--text); font-weight: 700; }
     </style>
 </head>
-<body>
+<body class="has-mobile-tabs">
     <div id="sideDrawerOverlay" class="side-drawer-overlay" onclick="closeDrawer()"></div>
     <div id="sideDrawer" class="side-drawer">
         <div class="drawer-nav" id="drawerNav">
@@ -254,5 +259,11 @@
   })();
 </script>
   <script src="../../security-lite.js?v=ra_stable_v1"></script>
+  <nav class="mobile-dashboard-tabs" aria-label="Mobile dashboard navigation">
+    <a class="mobile-dashboard-tab is-active" href="./index.html">RA</a>
+    <a class="mobile-dashboard-tab" href="../../t5t-dashboard/index.html">T5T</a>
+    <a class="mobile-dashboard-tab" href="../../t5t-input/index.html">작성</a>
+    <a class="mobile-dashboard-tab" href="../../org_dashboard/index.html">조직</a>
+  </nav>
 </body>
 </html>

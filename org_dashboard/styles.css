@@ -1733,6 +1733,98 @@ select,
   border-color: var(--line);
 }
 
+@media (max-width: 760px) {
+  .mobile-safe-toast {
+    right: 10px !important;
+    bottom: calc(84px + env(safe-area-inset-bottom, 0px)) !important;
+    left: 10px !important;
+    padding: 10px 12px !important;
+    border-radius: 14px !important;
+    text-align: center;
+  }
+
+  body.has-mobile-tabs {
+    padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .shell {
+    width: min(100% - 20px, 1200px);
+    padding-top: 18px;
+  }
+
+  .hero {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  h1 {
+    font-size: 28px;
+    line-height: 1.1;
+  }
+
+  .hero-copy,
+  .hero-notice {
+    display: none;
+  }
+
+  .hero-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .controls {
+    gap: 10px;
+  }
+
+  .search-box,
+  .filter-box,
+  .panel,
+  .kpi-card,
+  .section-card {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .analytics {
+    display: none;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .section-tabs {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .section-tab {
+    flex: 0 0 auto;
+    min-height: 38px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .org-board {
+    gap: 12px;
+  }
+
+  .team-card {
+    padding: 12px;
+  }
+
+  .member-chip {
+    min-height: 34px;
+  }
+
+  .modal-panel {
+    width: min(100% - 20px, 640px);
+    max-height: calc(100dvh - 104px - env(safe-area-inset-bottom, 0px));
+    padding: 16px;
+  }
+}
 /* IFPDP system UI override */
 :root {
   --bg: #1f1f1e;

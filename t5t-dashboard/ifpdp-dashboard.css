@@ -378,3 +378,114 @@ body {
     font-size: 32px;
   }
 }
+
+@media (max-width: 760px) {
+  body.has-mobile-tabs {
+    padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .header,
+  .nav-wrapper,
+  .main,
+  .mobile-notice-wrap {
+    width: min(100% - 20px, 1200px);
+  }
+
+  .header {
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .header h1 {
+    font-size: 28px;
+  }
+
+  .header-subtitle,
+  .mobile-notice-banner {
+    font-size: 12px;
+  }
+
+  .header-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .header-actions .header-button {
+    display: none;
+  }
+
+  .sync-info {
+    min-height: 34px;
+    font-size: 12px;
+  }
+
+  .nav-wrapper {
+    padding-top: 10px;
+  }
+
+  .nav-tabs {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nav-tab {
+    min-height: 40px;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .intelligence-head {
+    gap: 12px;
+  }
+
+  .section-title {
+    font-size: 22px;
+  }
+
+  .section-copy {
+    display: none;
+  }
+
+  .header-filters,
+  #date-filter-controls,
+  .period-toggle {
+    width: 100%;
+  }
+
+  #date-filter-controls {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .period-input {
+    min-width: 0;
+  }
+
+  .mobile-brief-card {
+    display: block;
+  }
+
+  .intelligence-card:not(.intelligence-card-wide),
+  .stakeholder-ranking-card,
+  .chart-box-body,
+  #pulse-timeline {
+    display: none !important;
+  }
+
+  .issue-bars {
+    gap: 8px;
+  }
+
+  .issue-bar-row {
+    padding: 10px 12px;
+  }
+
+  .keyword-chip-wrap {
+    max-height: 128px;
+    overflow: auto;
+  }
+
+  .modal-panel {
+    width: min(100% - 20px, 640px);
+    max-height: calc(100dvh - 104px - env(safe-area-inset-bottom, 0px));
+    padding: 16px;
+  }
+}
