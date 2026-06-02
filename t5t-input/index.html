@@ -7,7 +7,7 @@
   <title>T5T 입력</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="../shared/ifpdp-system-theme.css?v=ifpdp_system_1">
-  <link rel="stylesheet" href="style.css?v=ifpdp_system_1">
+  <link rel="stylesheet" href="style.css?v=ifpdp_system_2">
   <script src="../security-lite.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -77,8 +77,8 @@
       <!-- 핵심 최종 제출 및 업무 도구 섹션 (가장 위에 띄움) -->
       <section class="panel compact">
         <div class="submit-action-group" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px;">
-          <button class="accent-btn submit-btn" id="submit-payload" type="button" style="width: 100%; margin: 0;">SQL + Notion 저장</button>
-          <button class="ghost-btn submit-btn" id="submit-notion" type="button" style="width: 100%; margin: 0;">Notion만 먼저 저장</button>
+          <button class="accent-btn submit-btn" id="submit-payload" type="button" style="width: 100%; margin: 0;">제출(Submit)</button>
+          <button class="ghost-btn submit-btn" id="submit-notion" type="button" style="width: 100%; margin: 0;">Notion 저장</button>
         </div>
         <p class="submit-status" id="submit-status"></p>
         
@@ -118,8 +118,12 @@
           <p class="item-no"></p>
           <h3>업무 입력</h3>
         </div>
+        <button class="icon-btn remove-item" type="button" title="항목 삭제">×</button>
+      </div>
+
+      <div class="fallback-row">
         <div class="fallback-classifier">
-          <span>기존프로젝트가 아닌 경우 체크</span>
+          <span>기존 프로젝트가 아닌 경우</span>
           <div class="type-toggle" role="group" aria-label="업무 유형">
             <button type="button" data-type="New">신규</button>
             <button type="button" data-type="General">일반</button>
@@ -127,7 +131,6 @@
           </div>
         </div>
         <p class="fallback-help">프로젝트, 펀드, 자산에 해당하지 않을 때만 선택하세요.</p>
-        <button class="icon-btn remove-item" type="button" title="항목 삭제">×</button>
       </div>
 
       <div class="work-meta-grid">
@@ -159,6 +162,6 @@
   </template>
 
   <script src="../t5t-dashboard/supabase-config.js?v=final_sql_v1"></script>
-  <script src="app.js?v=proto_lastweek_3"></script>
+  <script src="app.js?v=proto_lastweek_4"></script>
 </body>
 </html>
