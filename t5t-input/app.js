@@ -584,6 +584,7 @@ function makeAutoSummary(text) {
 }
 
 function renderPayload() {
+  if (!els.payloadSummary || !els.payloadPreview) return;
   const payload = makePayload();
   els.payloadSummary.innerHTML = makePayloadSummary(payload).map(row => `
     <div class="summary-row">
@@ -614,6 +615,7 @@ function makePayloadSummary(payload) {
 }
 
 function renderValidation() {
+  if (!els.validationList) return;
   const payload = makePayload();
   const checks = getValidationChecks(payload);
   els.validationList.innerHTML = checks.map(([label, ok]) => `
