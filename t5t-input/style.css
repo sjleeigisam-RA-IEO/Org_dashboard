@@ -2085,6 +2085,31 @@ textarea {
     padding: 12px;
   }
 
+  .work-panel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .work-panel .sticky-head {
+    display: contents;
+  }
+
+  .work-panel .sticky-head > div {
+    order: 1;
+    display: block;
+    padding: 0 0 12px;
+  }
+
+  .work-panel .item-stack {
+    order: 2;
+  }
+
+  #add-item {
+    order: 3;
+    width: 100%;
+    margin-top: 14px;
+  }
+
   .panel-head {
     gap: 12px;
   }

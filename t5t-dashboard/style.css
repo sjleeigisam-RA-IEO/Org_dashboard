@@ -1333,6 +1333,7 @@ body {
   }
 
   .chart-grid,
+  .pulse-timeline-card,
   #pulse-timeline {
     display: none;
   }
