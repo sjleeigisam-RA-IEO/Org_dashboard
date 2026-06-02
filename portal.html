@@ -118,6 +118,7 @@
             org: './org_dashboard/index.html',
             admin: './org_dashboard/admin.html'
         };
+        const FRAME_VERSION = 'mobile_nav_4934f08';
         const loaded = new Set();
 
         function markEmbeddedFrame(frame) {
@@ -160,7 +161,7 @@
             // Lazy load if needed
             if (!loaded.has(id)) {
                 frame.onload = () => bindFrameActivity(frame);
-                frame.src = urls[id] + '?v=ra_stable_v1&embedded=portal';
+                frame.src = urls[id] + `?v=${FRAME_VERSION}&embedded=portal`;
                 loaded.add(id);
                 [150, 500, 1200, 2500].forEach(delay => window.setTimeout(() => markEmbeddedFrame(frame), delay));
             }

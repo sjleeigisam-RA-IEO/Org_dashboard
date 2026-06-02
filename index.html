@@ -103,7 +103,7 @@
             const TIMEOUT_LIMIT = 30 * 60 * 1000;
 
             if (raUser && lastActive && (Date.now() - lastActive < TIMEOUT_LIMIT)) {
-                location.href = './portal.html';
+                location.href = './portal.html?v=mobile_nav_4934f08';
             }
         };
         checkSession();
@@ -153,7 +153,7 @@
                     if (redirectTarget) {
                         location.href = redirectTarget;
                     } else {
-                        location.href = './portal.html';
+                        location.href = './portal.html?v=mobile_nav_4934f08';
                     }
                 }, 1000);
 
