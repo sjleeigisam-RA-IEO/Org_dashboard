@@ -1,16 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Pretendard+Variable:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --bg: #141415;
-  --panel: #1c1c1e;
-  --panel-light: #2c2c2e;
-  --accent: #c87855;
-  --accent-light: #d8967a;
-  --text: #f5f5f7;
-  --text-muted: #8e8e93;
-  --border: rgba(255, 255, 255, 0.1);
-  --success: #30d158;
+  --bg: #1f1f1e;
+  --panel: #262626;
+  --panel-light: #272727;
+  --item: #222;
+  --accent: #2997ff;
+  --accent-light: #0071e3;
+  --accent-2: #82afb9;
+  --text: #e5e5e5;
+  --text-muted: #86868b;
+  --border: #3c3c3c;
+  --success: #34d399;
   --danger: #ff453a;
+  --warning: #fbf167;
   --font: "Pretendard Variable", sans-serif;
 }
 
@@ -125,7 +128,7 @@ h1 {
 .search-bar input:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 4px rgba(200, 120, 85, 0.15);
+  box-shadow: none;
 }
 
 .filter-stats {

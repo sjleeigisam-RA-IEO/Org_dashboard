@@ -1,0 +1,380 @@
+:root {
+  --bg: #1f1f1e;
+  --panel: #262626;
+  --panel-2: #272727;
+  --item: #222;
+  --text: #e5e5e5;
+  --muted: #86868b;
+  --soft: #a1a1aa;
+  --line: #3c3c3c;
+  --accent: #2997ff;
+  --accent-2: #82afb9;
+  --shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+  --shadow-sm: 0 8px 22px rgba(0, 0, 0, 0.2);
+  --radius-lg: 24px;
+  --radius-sm: 8px;
+  --font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+}
+
+.header,
+.nav-wrapper,
+.main,
+.mobile-notice-wrap {
+  max-width: 1200px;
+}
+
+.header {
+  align-items: start;
+  padding: 50px clamp(18px, 4vw, 44px) 24px;
+}
+
+.header::before {
+  content: none;
+}
+
+.header h1 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-family: var(--font-inter, Inter, var(--font));
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.header-subtitle {
+  margin-top: 0;
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.header-actions {
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.header-button,
+.sync-info,
+.mobile-notice-banner,
+.nav-tabs,
+.period-toggle,
+.period-input,
+.modal-segment,
+.badge,
+.card,
+.issue-bar-row,
+.stakeholder-row,
+.keyword-chip,
+.mobile-brief-block,
+.mobile-pill-button,
+.mobile-rank-button,
+.summary-stat,
+.weekly-summary-section,
+.modal-panel,
+.modal-close,
+.modal-segment-btn,
+.modal-item,
+.crm-placeholder {
+  border-radius: var(--radius-sm) !important;
+}
+
+.card,
+.weekly-summary-section,
+.modal-panel,
+.crm-placeholder {
+  border-radius: var(--radius-lg) !important;
+}
+
+.header-button {
+  min-height: 42px;
+  border-color: #444;
+  background: transparent;
+  color: var(--soft);
+  box-shadow: none;
+}
+
+.header-button-accent {
+  border-color: transparent;
+  background: var(--accent);
+  color: #fff;
+}
+
+.header-button:hover,
+.nav-tab:hover,
+.period-toggle-btn:hover,
+.modal-segment-btn:hover,
+.badge-button:hover {
+  border-color: #555;
+  background: #333;
+  color: var(--text);
+}
+
+.header-button-accent:hover,
+.nav-tab.active:hover,
+.period-toggle-btn.active:hover,
+.modal-segment-btn.active:hover {
+  background: #0071e3;
+  color: #fff;
+}
+
+.sync-info {
+  min-height: 42px;
+  border-color: rgba(52, 211, 153, 0.3);
+  background: rgba(52, 211, 153, 0.1);
+  color: #34d399;
+}
+
+.sync-dot {
+  background: #34d399;
+  box-shadow: 0 0 14px rgba(52, 211, 153, 0.32);
+}
+
+.nav-wrapper,
+.mobile-notice-wrap,
+.main {
+  padding-inline: clamp(18px, 4vw, 44px);
+}
+
+.nav-tabs,
+.period-toggle,
+.modal-segment {
+  border-color: var(--line);
+  background: #1c1c1e;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-tab,
+.period-toggle-btn,
+.modal-segment-btn {
+  border: 1px solid transparent;
+  color: var(--soft);
+}
+
+.nav-tab.active,
+.period-toggle-btn.active,
+.modal-segment-btn.active {
+  background: #3c3c3c;
+  color: #fff;
+}
+
+.period-input {
+  border-color: #333;
+  background: var(--item);
+  color: #fff;
+}
+
+.period-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: none;
+}
+
+.mobile-notice-banner {
+  border-color: #333;
+  background: #222;
+  color: var(--soft);
+}
+
+.section-eyebrow,
+.modal-eyebrow {
+  color: var(--muted);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.section-title,
+.modal-title {
+  color: #fff;
+  font-family: var(--font-inter, Inter, var(--font));
+  font-size: clamp(28px, 3vw, 36px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.section-copy,
+.card-subtitle,
+.chart-center-copy span,
+.modal-copy,
+.mobile-brief-label {
+  color: var(--muted);
+}
+
+.intelligence-grid,
+.summary-grid,
+.chart-grid {
+  gap: 14px;
+}
+
+.card {
+  border-color: var(--line);
+  background: var(--panel);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-title,
+.chart-center-copy strong,
+.issue-name,
+.stakeholder-name,
+.pulse-project-name {
+  color: var(--text);
+}
+
+.intelligence-card-head,
+.summary-stat,
+.mobile-brief-block {
+  border-color: #333;
+  background: #222;
+}
+
+.badge {
+  border-color: #444;
+  background: #222;
+  color: var(--soft);
+}
+
+.issue-bar-row,
+.stakeholder-row,
+.modal-item {
+  border-color: #333;
+  background: #222;
+}
+
+.issue-bar-row:hover,
+.stakeholder-row:hover,
+.keyword-chip:hover,
+.mobile-pill-button:hover,
+.mobile-rank-button:hover {
+  border-color: rgba(130, 175, 185, 0.5);
+  background: #2a2a2c;
+}
+
+.issue-dot,
+.issue-bar-track,
+.issue-bar-fill {
+  border-radius: 999px;
+}
+
+.issue-bar-track {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.keyword-chip {
+  border-color: color-mix(in srgb, var(--chip-color) 48%, #3c3c3c);
+  background: color-mix(in srgb, var(--chip-color) 13%, #222);
+  color: var(--text);
+}
+
+.keyword-chip strong {
+  color: color-mix(in srgb, var(--chip-color) 72%, white);
+}
+
+.keyword-chip small {
+  color: var(--soft);
+}
+
+.stakeholder-chart-body,
+.chart-box-body {
+  border-color: #333;
+}
+
+.pulse-table {
+  border-top: 1px solid #333;
+}
+
+.pulse-header-row {
+  background: #1c1c1e;
+  border-bottom-color: #333;
+}
+
+.pulse-row {
+  border-bottom-color: #333;
+}
+
+.pulse-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.rank-badge,
+.mobile-rank-number {
+  background: var(--accent-2);
+  color: #111;
+}
+
+.summary-row,
+.summary-table,
+.mobile-detail-card {
+  border-color: #333;
+  background: #222;
+}
+
+.summary-table thead {
+  background: #1c1c1e;
+}
+
+.summary-table th,
+.summary-table td {
+  border-bottom-color: #333;
+}
+
+.modal-backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+.modal-panel {
+  border-color: #333;
+  background: var(--panel);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+}
+
+.modal-head,
+.modal-section-head {
+  border-bottom-color: #333;
+}
+
+.modal-close {
+  border-color: #444;
+  background: #222;
+  color: var(--soft);
+}
+
+.modal-close:hover {
+  background: #333;
+  color: #fff;
+}
+
+.loading {
+  background: var(--bg);
+  color: var(--soft);
+}
+
+.spinner {
+  border-color: #333;
+  border-top-color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .header {
+    grid-template-columns: 1fr;
+  }
+
+  .header-actions {
+    justify-content: flex-start;
+  }
+
+  .header h1 {
+    font-size: 32px;
+  }
+}
