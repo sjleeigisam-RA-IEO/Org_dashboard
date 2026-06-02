@@ -1803,6 +1803,89 @@ pre {
   margin-top: 10px !important;
 }
 
+/* Dense input-screen spacing */
+.topbar {
+  max-width: 1360px;
+  padding: 22px clamp(18px, 4vw, 44px) 12px;
+}
+
+.topbar h1 {
+  font-size: clamp(34px, 3.2vw, 44px);
+}
+
+.layout {
+  max-width: 1360px;
+  gap: 14px;
+  padding: 10px clamp(18px, 4vw, 44px) 44px;
+}
+
+.writer-panel {
+  padding: 18px 20px;
+}
+
+.writer-panel .panel-head {
+  margin-bottom: 14px;
+}
+
+.writer-panel .form-grid {
+  margin-top: 0;
+  gap: 12px 14px;
+}
+
+.work-panel {
+  margin-top: 0;
+}
+
+.sticky-head {
+  padding: 14px 18px;
+}
+
+.sticky-head h2,
+.writer-panel h2 {
+  font-size: 22px;
+}
+
+.sticky-head .accent-btn {
+  min-height: 40px;
+  padding-inline: 16px;
+}
+
+.side-panel .panel.compact:first-child {
+  padding: 16px;
+}
+
+.side-panel .panel.compact:first-child .submit-action-group {
+  margin-bottom: 8px !important;
+}
+
+.submit-btn {
+  min-height: 42px;
+}
+
+.work-card {
+  padding: 16px 18px 18px;
+}
+
+.work-card-head {
+  margin-bottom: 10px;
+}
+
+.fallback-row {
+  margin-top: 10px !important;
+}
+
+.fallback-classifier {
+  min-height: 42px;
+}
+
+.type-toggle button {
+  min-height: 34px;
+}
+
+textarea {
+  min-height: 108px;
+}
+
 .work-card-head {
   display: flex;
   align-items: flex-start;
