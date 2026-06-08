@@ -1896,6 +1896,74 @@ select,
     margin-top: 10px;
   }
 
+  .mobile-org-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mobile-org-leader {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 8px;
+    align-items: center;
+    padding: 9px 10px;
+    border: 1px solid rgba(130, 175, 185, 0.24);
+    border-radius: 10px;
+    background: rgba(130, 175, 185, 0.08);
+  }
+
+  .mobile-org-leader span,
+  .mobile-org-leader em,
+  .mobile-org-member-row em,
+  .mobile-org-member-more {
+    color: var(--muted);
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 800;
+  }
+
+  .mobile-org-leader strong {
+    min-width: 0;
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+
+  .mobile-org-leader.is-empty strong {
+    color: var(--muted);
+  }
+
+  .mobile-org-member-list {
+    display: grid;
+    gap: 6px;
+  }
+
+  .mobile-org-member-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+    padding: 8px 9px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.018);
+  }
+
+  .mobile-org-member-row span {
+    min-width: 0;
+    color: var(--text);
+    font-size: 12px;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+
+  .mobile-org-member-more {
+    padding: 4px 2px 0;
+    text-align: right;
+  }
+
   #viewSwitch,
   #orgDashboardView,
   #seatLayoutView,

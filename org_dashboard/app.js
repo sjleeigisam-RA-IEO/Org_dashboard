@@ -1157,35 +1157,109 @@
     return rows;
   }
 
-  function renderMobileOrgSearch() {
-    if (!mobileOrgResults || !mobileOrgSearchInput) {
-      return;
-    }
+  function getMobileOrgRecords() {
+    const records = [];
+    const seen = new Set();
 
-    const keyword = mobileOrgSearchInput.value.trim().toLowerCase();
-    if (!keyword) {
-      mobileOrgResults.innerHTML = "";
-      return;
-    }
+    const pushRecord = ({ type, label, path, members, sectionName, groupName }) => {
+      const normalizedLabel = normalizeDisplayLabel(label);
+      if (!normalizedLabel || seen.has(path)) {
+        return;
+      }
+      seen.add(path);
 
-    const rows = getMobileOrgRows()
-      .filter((row) =>
-        `${row.name} ${row.rawName || ""} ${row.role} ${row.path} ${row.orgText}`.toLowerCase().includes(keyword)
-      )
-      .sort((a, b) => {
-        const nameCompare = a.name.localeCompare(b.name, "ko-KR");
-        return nameCompare || a.path.localeCompare(b.path, "ko-KR");
+      const unique = uniqueMembers(
+        members
+          .filter((member) => member.name && shouldCountMember(groupName || label, member))
+          .map((member) => ({
+            ...member,
+            displayRole: getDisplayRole(groupName || label, member),
+          }))
+      );
+      if (!unique.length) {
+        return;
+      }
+
+      const leader =
+        getLeaderByRole(unique, "그룹장") ||
+        getLeaderByRole(unique, "파트장/센터장") ||
+        null;
+
+      records.push({
+        type,
+        label: normalizedLabel,
+        path,
+        sectionName,
+        groupName,
+        leader,
+        members: unique,
+        searchText: `${normalizedLabel} ${path} ${sectionName || ""} ${groupName || ""}`.toLowerCase(),
       });
+    };
 
-    if (!rows.length) {
-      mobileOrgResults.innerHTML = `<div class="mobile-org-empty">검색 결과가 없습니다. 이름 또는 조직명을 다시 입력해 주세요.</div>`;
-      return;
+    data.sections.forEach((section) => {
+      section.groups.forEach((group) => {
+        const groupMembers = collectGroupMembers(group);
+        pushRecord({
+          type: "그룹/센터",
+          label: group.name,
+          path: [section.name, group.name].join(" > "),
+          members: groupMembers,
+          sectionName: section.name,
+          groupName: group.name,
+        });
+
+        group.parts.forEach((part) => {
+          if (part.name !== "미지정") {
+            const partMembers = collectPartMembers(part);
+            pushRecord({
+              type: "파트",
+              label: part.name,
+              path: [section.name, group.name, normalizeDisplayLabel(part.name)].join(" > "),
+              members: partMembers,
+              sectionName: section.name,
+              groupName: group.name,
+            });
+          }
+
+          part.teams.forEach((team) => {
+            const teamLabel = normalizeDisplayLabel(team.displayName);
+            if (!teamLabel || teamLabel === normalizeDisplayLabel(part.name)) {
+              return;
+            }
+            pushRecord({
+              type: "조직",
+              label: teamLabel,
+              path: [section.name, group.name, part.name === "미지정" ? "" : normalizeDisplayLabel(part.name), teamLabel]
+                .filter(Boolean)
+                .join(" > "),
+              members: team.members || [],
+              sectionName: section.name,
+              groupName: group.name,
+            });
+          });
+        });
+      });
+    });
+
+    return records;
+  }
+
+  function isOrgSearchKeyword(keyword, orgMatches, personMatches) {
+    if (!orgMatches.length) {
+      return false;
     }
+    const exactOrgMatch = orgMatches.some((org) => org.label.toLowerCase() === keyword);
+    const strongOrgMatch = orgMatches.some((org) => org.label.toLowerCase().includes(keyword));
+    const exactPersonMatch = personMatches.some((row) => row.name.toLowerCase() === keyword || String(row.rawName || "").toLowerCase() === keyword);
+    return exactOrgMatch || (strongOrgMatch && !exactPersonMatch);
+  }
 
+  function renderMobilePersonResults(rows) {
     const visibleRows = rows.slice(0, 30);
     const overflow = rows.length - visibleRows.length;
-    mobileOrgResults.innerHTML = `
-      <div class="mobile-org-result-summary">검색 결과 ${fmt(rows.length)}건${overflow > 0 ? ` · 상위 ${visibleRows.length}건 표시` : ""}</div>
+    return `
+      <div class="mobile-org-result-summary">구성원 검색 결과 ${fmt(rows.length)}건${overflow > 0 ? ` · 상위 ${visibleRows.length}건 표시` : ""}</div>
       ${visibleRows
         .map((row) => {
           const tags = row.tags
@@ -1207,6 +1281,96 @@
         })
         .join("")}
     `;
+  }
+
+  function renderMobileOrgCards(records) {
+    const visibleRecords = records.slice(0, 12);
+    const overflow = records.length - visibleRecords.length;
+    return `
+      <div class="mobile-org-result-summary">조직 검색 결과 ${fmt(records.length)}건${overflow > 0 ? ` · 상위 ${visibleRecords.length}개 조직 표시` : ""}</div>
+      ${visibleRecords
+        .map((record) => {
+          const leaderHtml = record.leader
+            ? `<div class="mobile-org-leader"><span>조직장</span><strong>${escapeHtml(record.leader.name)}</strong><em>${escapeHtml(record.leader.displayRole || record.leader.role)}</em></div>`
+            : `<div class="mobile-org-leader is-empty"><span>조직장</span><strong>미지정</strong></div>`;
+          const members = record.members
+            .filter((member) => member.name !== record.leader?.name || member.role !== record.leader?.role)
+            .sort((a, b) => {
+              const roleCompare = ROLE_ORDER.indexOf(a.displayRole || a.role) - ROLE_ORDER.indexOf(b.displayRole || b.role);
+              return roleCompare || a.name.localeCompare(b.name, "ko-KR");
+            });
+          const visibleMembers = members.slice(0, 14);
+          const hiddenCount = members.length - visibleMembers.length;
+
+          return `
+            <article class="mobile-org-result-card mobile-org-card">
+              <div class="mobile-org-result-head">
+                <strong>${escapeHtml(record.label)}</strong>
+                <span>${escapeHtml(record.type)} · ${fmt(record.members.length)}명</span>
+              </div>
+              <p>${escapeHtml(record.path)}</p>
+              ${leaderHtml}
+              <div class="mobile-org-member-list">
+                ${visibleMembers
+                  .map((member) => `
+                    <div class="mobile-org-member-row">
+                      <span>${escapeHtml(member.name)}</span>
+                      <em>${escapeHtml(member.displayRole || member.role)}</em>
+                    </div>
+                  `)
+                  .join("")}
+                ${hiddenCount > 0 ? `<div class="mobile-org-member-more">외 ${fmt(hiddenCount)}명</div>` : ""}
+              </div>
+            </article>
+          `;
+        })
+        .join("")}
+    `;
+  }
+
+  function renderMobileOrgSearch() {
+    if (!mobileOrgResults || !mobileOrgSearchInput) {
+      return;
+    }
+
+    const keyword = mobileOrgSearchInput.value.trim().toLowerCase();
+    if (!keyword) {
+      mobileOrgResults.innerHTML = "";
+      return;
+    }
+
+    const rows = getMobileOrgRows()
+      .filter((row) =>
+        `${row.name} ${row.rawName || ""} ${row.role} ${row.path} ${row.orgText}`.toLowerCase().includes(keyword)
+      )
+      .sort((a, b) => {
+        const nameCompare = a.name.localeCompare(b.name, "ko-KR");
+        return nameCompare || a.path.localeCompare(b.path, "ko-KR");
+      });
+    const personMatches = rows.filter((row) =>
+      `${row.name} ${row.rawName || ""}`.toLowerCase().includes(keyword)
+    );
+    const allOrgMatches = getMobileOrgRecords()
+      .filter((org) => org.searchText.includes(keyword))
+      .sort((a, b) => {
+        const aExact = a.label.toLowerCase() === keyword ? 0 : 1;
+        const bExact = b.label.toLowerCase() === keyword ? 0 : 1;
+        return aExact - bExact || a.path.localeCompare(b.path, "ko-KR");
+      });
+    const exactOrgMatches = allOrgMatches.filter((org) => org.label.toLowerCase() === keyword);
+    const orgMatches = exactOrgMatches.length ? exactOrgMatches : allOrgMatches;
+
+    if (isOrgSearchKeyword(keyword, orgMatches, personMatches)) {
+      mobileOrgResults.innerHTML = renderMobileOrgCards(orgMatches);
+      return;
+    }
+
+    if (!personMatches.length) {
+      mobileOrgResults.innerHTML = `<div class="mobile-org-empty">검색 결과가 없습니다. 이름 또는 조직명을 다시 입력해 주세요.</div>`;
+      return;
+    }
+
+    mobileOrgResults.innerHTML = renderMobilePersonResults(personMatches);
   }
 
   function render() {
