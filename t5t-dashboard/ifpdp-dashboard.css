@@ -397,12 +397,14 @@ body {
   }
 
   .header h1 {
-    font-size: 28px;
+    font-size: 22px;
+    line-height: 1.18;
   }
 
   .header-subtitle,
   .mobile-notice-banner {
     font-size: 12px;
+    line-height: 1.45;
   }
 
   .header-actions {
@@ -437,7 +439,8 @@ body {
   }
 
   .section-title {
-    font-size: 22px;
+    font-size: 20px;
+    line-height: 1.2;
   }
 
   .section-copy {
@@ -476,6 +479,64 @@ body {
 
   .issue-bar-row {
     padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .keyword-chip {
+    font-size: 12px;
+  }
+
+  .person-card-name {
+    font-size: 16px;
+  }
+
+  .person-card-week,
+  .person-card-meta {
+    font-size: 12px;
+  }
+
+  .person-detail-head h2 {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .person-detail-head p,
+  .person-week-select {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .person-week-summary strong,
+  .person-week-summary span {
+    font-size: 12px;
+  }
+
+  .person-log-meta {
+    font-size: 11px;
+  }
+
+  .person-log-card h3 {
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  .person-log-card p {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .summary-content {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .weekly-summary-section h3 {
+    font-size: 14px;
+  }
+
+  .weekly-summary-section li {
+    font-size: 13px;
+    line-height: 1.5;
   }
 
   .keyword-chip-wrap {

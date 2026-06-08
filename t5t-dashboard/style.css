@@ -1503,6 +1503,16 @@ body {
     gap: 12px;
   }
 
+  .header h1 {
+    font-size: 22px;
+    line-height: 1.18;
+  }
+
+  .header-subtitle {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
   .header-actions {
     width: 100%;
     display: grid;
@@ -1543,6 +1553,7 @@ body {
     flex: 0 0 auto;
     justify-content: center;
     min-height: 44px;
+    font-size: 12px;
   }
 
   .header-button,
@@ -1551,13 +1562,19 @@ body {
     justify-content: center;
   }
 
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+
   .section-title {
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.2;
   }
 
   .section-copy {
-    font-size: 13px;
+    font-size: 12px;
+    line-height: 1.5;
   }
 
   .people-head {
@@ -1596,6 +1613,15 @@ body {
     padding: 12px 14px;
   }
 
+  .person-card-name {
+    font-size: 16px;
+  }
+
+  .person-card-week,
+  .person-card-meta {
+    font-size: 12px;
+  }
+
   .person-card-shell.active .person-card {
     border: 0;
     border-bottom: 1px solid var(--line);
@@ -1627,16 +1653,48 @@ body {
   }
 
   .person-detail-head h2 {
-    font-size: 24px;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .person-detail-head p {
+    font-size: 12px;
+    line-height: 1.45;
   }
 
   .person-week-select {
     width: 100%;
     min-width: 0;
+    font-size: 12px;
+  }
+
+  .person-week-summary {
+    padding: 10px 12px;
+  }
+
+  .person-week-summary strong,
+  .person-week-summary span {
+    font-size: 12px;
   }
 
   .person-log-card {
-    padding: 14px;
+    padding: 12px;
+  }
+
+  .person-log-meta {
+    gap: 6px;
+    margin-bottom: 8px;
+    font-size: 11px;
+  }
+
+  .person-log-card h3 {
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  .person-log-card p {
+    font-size: 13px;
+    line-height: 1.55;
   }
 
   .mobile-brief-card {
@@ -1670,8 +1728,19 @@ body {
     border-radius: 18px;
   }
 
+  .card h3,
+  .mobile-brief-head h3 {
+    font-size: 17px;
+    line-height: 1.25;
+  }
+
+  .mobile-brief-block {
+    font-size: 12px;
+  }
+
   .issue-bar-row {
     padding: 12px 14px;
+    font-size: 12px;
   }
 
   .keyword-chip-wrap {
@@ -1680,10 +1749,26 @@ body {
 
   .keyword-chip {
     padding: 8px 12px;
+    font-size: 12px;
   }
 
   .summary-content {
     padding: 24px 18px 28px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .weekly-summary-section {
+    padding: 14px;
+  }
+
+  .weekly-summary-section h3 {
+    font-size: 14px;
+  }
+
+  .weekly-summary-section li {
+    font-size: 13px;
+    line-height: 1.5;
   }
 
   .summary-link {
