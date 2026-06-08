@@ -495,15 +495,19 @@ function renderPersonCard(person) {
   const currentPeriod = getDefaultPersonPeriod(person);
   const currentCount = currentPeriod ? currentPeriod.logs.length : 0;
   const dominantTask = Array.from(person.taskTypes.entries()).sort((a, b) => b[1] - a[1])[0];
+  const isActive = uiState.people.selected === person.name;
   return `
-    <button class="person-card ${uiState.people.selected === person.name ? "active" : ""}" type="button" onclick='selectPerson(${jsString(person.name)})'>
-      <span class="person-card-name">${escapeHtml(person.displayName)}</span>
-      <span class="person-card-meta">${person.total}건 · ${countPersonWeeks(person)}주 누적</span>
-      <span class="person-card-foot">
-        <strong>이번주 ${currentCount}건</strong>
-        <em>${dominantTask ? escapeHtml(dominantTask[0]) : "기록 없음"}</em>
-      </span>
-    </button>
+    <article class="person-card-shell ${isActive ? "active" : ""}">
+      <button class="person-card ${isActive ? "active" : ""}" type="button" onclick='selectPerson(${jsString(person.name)})'>
+        <span class="person-card-name">${escapeHtml(person.displayName)}</span>
+        <span class="person-card-meta">${person.total}건 · ${countPersonWeeks(person)}주 누적</span>
+        <span class="person-card-foot">
+          <strong>이번주 ${currentCount}건</strong>
+          <em>${dominantTask ? escapeHtml(dominantTask[0]) : "기록 없음"}</em>
+        </span>
+      </button>
+      ${isActive ? `<div class="person-mobile-detail">${renderPersonDetailContent(person)}</div>` : ""}
+    </article>
   `;
 }
 
@@ -515,9 +519,7 @@ function selectPerson(name) {
 
 function selectPersonWeek(weekKey) {
   uiState.people.weekKey = weekKey;
-  const people = getPersonEntries();
-  const selected = people.find(person => person.name === uiState.people.selected);
-  if (selected) renderPersonDetail(selected);
+  renderPeopleView();
 }
 
 function countPersonWeeks(person) {
@@ -550,6 +552,10 @@ function getPersonPeriodLabel(period, currentWeek, weekSequence) {
 function renderPersonDetail(person) {
   const detail = document.getElementById("person-detail-card");
   if (!detail) return;
+  detail.innerHTML = renderPersonDetailContent(person);
+}
+
+function renderPersonDetailContent(person) {
   const currentWeek = getCurrentWeekKey();
   const defaultPeriod = getDefaultPersonPeriod(person);
   const selectedKey = uiState.people.weekKey || (defaultPeriod ? defaultPeriod.key : `empty:${currentWeek}`);
@@ -569,7 +575,7 @@ function renderPersonDetail(person) {
   });
   const selectedMeta = optionMeta.find(meta => meta.period.key === selectedPeriod.key);
   const selectedLabel = selectedMeta ? selectedMeta.label : getPersonPeriodLabel(selectedPeriod, currentWeek, 1);
-  detail.innerHTML = `
+  return `
     <div class="person-detail-head">
       <div>
         <div class="section-eyebrow">Writer Timeline</div>

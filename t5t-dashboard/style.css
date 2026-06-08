@@ -1256,6 +1256,10 @@ body {
   padding-right: 4px;
 }
 
+.person-card-shell {
+  display: block;
+}
+
 .person-card {
   width: 100%;
   display: grid;
@@ -1268,6 +1272,10 @@ body {
   text-align: left;
   cursor: pointer;
   box-shadow: var(--shadow-sm);
+}
+
+.person-mobile-detail {
+  display: none;
 }
 
 .person-card:hover,
@@ -1576,8 +1584,42 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .people-layout > .person-detail-card {
+    display: none;
+  }
+
+  .person-card-shell.active {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
   .person-card {
     padding: 14px;
+  }
+
+  .person-card-shell.active .person-card {
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .person-mobile-detail {
+    display: block;
+    padding: 14px;
+    background: var(--panel);
+  }
+
+  .person-mobile-detail .person-detail-head {
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+  }
+
+  .person-mobile-detail .person-week-summary {
+    margin-bottom: 12px;
   }
 
   .person-detail-card {
