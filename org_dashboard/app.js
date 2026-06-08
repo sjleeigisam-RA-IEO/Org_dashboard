@@ -1164,7 +1164,7 @@
 
     const keyword = mobileOrgSearchInput.value.trim().toLowerCase();
     if (!keyword) {
-      mobileOrgResults.innerHTML = `<div class="mobile-org-empty">전체 조직도는 숨겨두었습니다. 이름이나 조직명을 검색해 주세요.</div>`;
+      mobileOrgResults.innerHTML = "";
       return;
     }
 

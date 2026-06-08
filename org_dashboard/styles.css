@@ -1736,6 +1736,18 @@ select,
   color: var(--accent-2);
 }
 
+@media (max-width: 760px) {
+  .hero h1 {
+    font-size: 22px !important;
+    line-height: 1.12 !important;
+  }
+
+  .hero .eyebrow,
+  .mobile-org-notice .eyebrow {
+    font-size: 10px !important;
+  }
+}
+
 .part-block + .part-block,
 .team-card-collapsible[open] .team-summary {
   border-color: var(--line);
@@ -1753,8 +1765,8 @@ select,
 
   .mobile-org-notice {
     display: block;
-    margin-top: 14px;
-    padding: 16px;
+    margin-top: 12px;
+    padding: 14px;
     border: 1px solid var(--line);
     border-radius: 18px;
     background: var(--panel);
@@ -1762,22 +1774,22 @@ select,
   }
 
   .mobile-org-notice h2 {
-    margin: 0 0 8px;
-    font-size: 19px;
+    margin: 0 0 7px;
+    font-size: 16px;
     line-height: 1.25;
   }
 
   .mobile-org-notice p:last-child {
     margin: 0;
     color: var(--soft);
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 11px;
+    line-height: 1.45;
   }
 
   .mobile-org-search {
     display: block;
-    margin-top: 14px;
-    padding: 14px;
+    margin-top: 12px;
+    padding: 12px;
     border: 1px solid var(--line);
     border-radius: 18px;
     background: var(--panel);
@@ -1786,21 +1798,21 @@ select,
 
   .mobile-org-search label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 7px;
     color: var(--muted);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 800;
   }
 
   .mobile-org-search input {
     width: 100%;
-    min-height: 42px;
-    padding: 10px 12px;
+    min-height: 40px;
+    padding: 9px 11px;
     border: 1px solid var(--line);
     border-radius: 12px;
     background: var(--item);
     color: var(--text);
-    font-size: 14px;
+    font-size: 13px;
     outline: none;
   }
 
@@ -1810,9 +1822,9 @@ select,
   }
 
   .mobile-org-search-hint {
-    margin: 9px 0 14px;
+    margin: 8px 0 0;
     color: var(--soft);
-    font-size: 11px;
+    font-size: 10px;
     line-height: 1.45;
   }
 
@@ -1820,16 +1832,17 @@ select,
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-top: 12px;
   }
 
   .mobile-org-result-summary,
   .mobile-org-empty {
-    padding: 11px;
+    padding: 10px;
     border: 1px solid var(--line);
     border-radius: 12px;
     background: var(--item);
     color: var(--soft);
-    font-size: 11px;
+    font-size: 10px;
     line-height: 1.45;
   }
 
@@ -1839,7 +1852,7 @@ select,
   }
 
   .mobile-org-result-card {
-    padding: 12px;
+    padding: 11px;
     border: 1px solid var(--line);
     border-radius: 14px;
     background: var(--item);
@@ -1855,7 +1868,7 @@ select,
   .mobile-org-result-head strong {
     min-width: 0;
     color: var(--text);
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.25;
     overflow-wrap: anywhere;
   }
@@ -1863,14 +1876,14 @@ select,
   .mobile-org-result-head span {
     flex: 0 0 auto;
     color: var(--accent-2);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 800;
   }
 
   .mobile-org-result-card p {
     margin: 8px 0 0;
     color: var(--soft);
-    font-size: 11px;
+    font-size: 10px;
     line-height: 1.45;
     word-break: keep-all;
     overflow-wrap: anywhere;
@@ -1900,12 +1913,16 @@ select,
   }
 
   .hero {
-    padding: 16px;
+    padding: 14px;
     border-radius: 18px;
   }
 
+  .hero .eyebrow {
+    font-size: 11px;
+  }
+
   h1 {
-    font-size: 26px;
+    font-size: 22px;
     line-height: 1.1;
   }
 
@@ -1915,8 +1932,7 @@ select,
   }
 
   .hero-meta {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
+    display: none;
   }
 
   .controls {
