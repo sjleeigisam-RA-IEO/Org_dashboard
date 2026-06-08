@@ -323,6 +323,7 @@ function getPersonEntries() {
         });
       }
     });
+    assignDisplayWeeks(periodChunks);
     person.sortedPeriods = periodChunks.sort((a, b) => {
       const dateDiff = new Date(b.sortDate || 0) - new Date(a.sortDate || 0);
       if (dateDiff) return dateDiff;
@@ -331,6 +332,131 @@ function getPersonEntries() {
     });
     return person;
   }).sort((a, b) => (b.latestDate || 0) - (a.latestDate || 0));
+}
+
+function parseWeekKey(weekKey) {
+  const match = String(weekKey || "").match(/^(\d{4})-W(\d{2})$/);
+  return match ? { year: Number(match[1]), week: Number(match[2]) } : null;
+}
+
+function addWeeksToKey(weekKey, offset) {
+  const parsed = parseWeekKey(weekKey);
+  if (!parsed) return weekKey;
+  let year = parsed.year;
+  let week = parsed.week + offset;
+  while (week < 1) {
+    year -= 1;
+    week += getIsoWeeksInYear(year);
+  }
+  while (week > getIsoWeeksInYear(year)) {
+    week -= getIsoWeeksInYear(year);
+    year += 1;
+  }
+  return `${year}-W${String(week).padStart(2, "0")}`;
+}
+
+function getIsoWeeksInYear(year) {
+  const dec31 = new Date(Date.UTC(year, 11, 31));
+  const day = dec31.getUTCDay() || 7;
+  const isLeap = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  return day === 4 || (day === 5 && isLeap) ? 53 : 52;
+}
+
+function weekSortValue(weekKey) {
+  const parsed = parseWeekKey(weekKey);
+  return parsed ? parsed.year * 100 + parsed.week : 0;
+}
+
+function findFreeDisplayWeek(baseWeek, direction, usedWeeks) {
+  for (let i = 1; i <= 12; i += 1) {
+    const candidate = addWeeksToKey(baseWeek, direction * i);
+    if (!usedWeeks.has(candidate)) return candidate;
+  }
+  return null;
+}
+
+function assignDisplayWeeks(periods) {
+  const groups = new Map();
+  periods.forEach(period => {
+    period.displayWeekKey = period.weekKey;
+    if (!groups.has(period.weekKey)) groups.set(period.weekKey, []);
+    groups.get(period.weekKey).push(period);
+  });
+
+  const usedWeeks = new Set();
+  groups.forEach((group, weekKey) => {
+    if (group.length === 1) usedWeeks.add(weekKey);
+  });
+
+  const occupiedWeeks = Array.from(groups.keys()).sort((a, b) => weekSortValue(a) - weekSortValue(b));
+  const duplicateGroups = Array.from(groups.entries())
+    .filter(([, group]) => group.length > 1)
+    .sort(([a], [b]) => weekSortValue(a) - weekSortValue(b));
+
+  const collectSlots = (weekKey, direction, boundaryWeek, limit) => {
+    const slots = [];
+    for (let i = 1; slots.length < limit && i <= limit + 8; i += 1) {
+      const candidate = addWeeksToKey(weekKey, direction * i);
+      if (boundaryWeek) {
+        const reachedBoundary = direction > 0
+          ? weekSortValue(candidate) >= weekSortValue(boundaryWeek)
+          : weekSortValue(candidate) <= weekSortValue(boundaryWeek);
+        if (reachedBoundary) break;
+      }
+      if (!usedWeeks.has(candidate)) slots.push(candidate);
+    }
+    return slots;
+  };
+
+  duplicateGroups.forEach(([weekKey, group]) => {
+    if (group.length === 1) return;
+
+    const sorted = [...group].sort((a, b) => {
+      const dateDiff = new Date(a.sortDate || 0) - new Date(b.sortDate || 0);
+      if (dateDiff) return dateDiff;
+      return (a.chunkIndex || 1) - (b.chunkIndex || 1);
+    });
+    const extras = sorted.length - 1;
+    const previousBoundary = [...occupiedWeeks].reverse().find(candidate => weekSortValue(candidate) < weekSortValue(weekKey));
+    const nextBoundary = occupiedWeeks.find(candidate => weekSortValue(candidate) > weekSortValue(weekKey));
+    const prevSlots = collectSlots(weekKey, -1, previousBoundary, extras);
+    const nextSlots = collectSlots(weekKey, 1, nextBoundary, extras);
+    const useNextFirst = nextSlots.length > 0 && (Boolean(nextBoundary) || prevSlots.length === 0);
+
+    const keep = useNextFirst ? sorted[0] : sorted[sorted.length - 1];
+    keep.displayWeekKey = weekKey;
+    usedWeeks.add(weekKey);
+    const remaining = sorted.filter(period => period !== keep);
+
+    if (useNextFirst) {
+      nextSlots.forEach(slot => {
+        const period = remaining.pop();
+        if (!period) return;
+        period.displayWeekKey = slot;
+        usedWeeks.add(slot);
+      });
+      prevSlots.forEach(slot => {
+        const period = remaining.shift();
+        if (!period) return;
+        period.displayWeekKey = slot;
+        usedWeeks.add(slot);
+      });
+      return;
+    }
+
+    prevSlots.forEach(slot => {
+      const period = remaining.shift();
+      if (!period) return;
+      period.displayWeekKey = slot;
+      usedWeeks.add(slot);
+    });
+    nextSlots.forEach(slot => {
+      const period = remaining.pop();
+      if (!period) return;
+      period.displayWeekKey = slot;
+      usedWeeks.add(slot);
+    });
+  });
 }
 
 function renderPeopleView() {
@@ -395,12 +521,12 @@ function selectPersonWeek(weekKey) {
 }
 
 function countPersonWeeks(person) {
-  return new Set((person.sortedPeriods || []).map(period => period.weekKey)).size;
+  return new Set((person.sortedPeriods || []).map(period => period.displayWeekKey || period.weekKey)).size;
 }
 
 function getDefaultPersonPeriod(person) {
   const currentWeek = getCurrentWeekKey();
-  return (person.sortedPeriods || []).find(period => period.weekKey === currentWeek) || null;
+  return (person.sortedPeriods || []).find(period => (period.displayWeekKey || period.weekKey) === currentWeek) || null;
 }
 
 function makeEmptyPersonPeriod(weekKey) {
@@ -415,10 +541,10 @@ function makeEmptyPersonPeriod(weekKey) {
 }
 
 function getPersonPeriodLabel(period, currentWeek, weekSequence) {
-  const base = period.weekKey === currentWeek ? "이번주" : period.weekKey;
-  const seq = weekSequence > 1 ? ` #${weekSequence}` : "";
+  const displayWeek = period.displayWeekKey || period.weekKey;
+  const base = displayWeek === currentWeek ? "이번주" : displayWeek;
   const date = period.workDate ? ` · ${period.workDate}` : "";
-  return `${base}${seq}${date}`;
+  return `${base}${date}`;
 }
 
 function renderPersonDetail(person) {
@@ -436,8 +562,9 @@ function renderPersonDetail(person) {
   const latestLogs = person.sortedPeriods.length ? person.sortedPeriods[0].logs || [] : [];
   const weekSeen = new Map();
   const optionMeta = periodOptions.map(period => {
-    const nextSeq = (weekSeen.get(period.weekKey) || 0) + 1;
-    weekSeen.set(period.weekKey, nextSeq);
+    const displayWeek = period.displayWeekKey || period.weekKey;
+    const nextSeq = (weekSeen.get(displayWeek) || 0) + 1;
+    weekSeen.set(displayWeek, nextSeq);
     return { period, label: getPersonPeriodLabel(period, currentWeek, nextSeq) };
   });
   const selectedMeta = optionMeta.find(meta => meta.period.key === selectedPeriod.key);
