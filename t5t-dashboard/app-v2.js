@@ -19,6 +19,8 @@ let uiState = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  initSyncInfo();
+  refreshSyncInfoPreview();
   setupNav();
   setupModals();
   setupDateFilters();
@@ -30,10 +32,42 @@ document.addEventListener("DOMContentLoaded", () => {
   loadData();
 });
 
+function initSyncInfo() {
+  const syncEl = document.getElementById("sync-time");
+  if (!syncEl) return;
+  const cached = getStoredSyncAt();
+  if (cached) {
+    syncEl.textContent = `${formatSyncDate(cached)} SQL 최근 확인`;
+    return;
+  }
+  syncEl.textContent = "SQL 데이터 연결 준비";
+}
+
+async function refreshSyncInfoPreview() {
+  const syncEl = document.getElementById("sync-time");
+  if (!syncEl || typeof supabaseClient === "undefined") return;
+  try {
+    const { data, error } = await supabaseClient
+      .from("t5t_form_items")
+      .select("work_date")
+      .order("work_date", { ascending: false })
+      .limit(1);
+    if (error) throw error;
+    const latestWorkDate = data?.[0]?.work_date;
+    syncEl.textContent = latestWorkDate
+      ? `최신 업무일 ${latestWorkDate} · SQL 연결됨`
+      : "SQL 연결됨";
+  } catch (error) {
+    console.warn("Sync preview check failed", error);
+    syncEl.textContent = "SQL 연결 확인 지연";
+  }
+}
+
 async function loadData() {
   const loadingEl = document.getElementById("loading");
   try {
     dashData = await T5TService.fetchDashboardData();
+    updateSyncInfo();
     initializeDateControlDefaults();
     applyDefaultPeriodFallback();
     updateDateFilterControls();
@@ -176,8 +210,37 @@ function updateDateFilterControls() {
 
 function updateSyncInfo() {
   const meta = dashData?.sync_meta;
-  if (!meta) return;
-  document.getElementById("sync-time").textContent = `${new Date(meta.synced_at).toLocaleString()} SQL 실시간 연동 중`;
+  const syncEl = document.getElementById("sync-time");
+  if (!meta || !syncEl) return;
+  setStoredSyncAt(meta.synced_at);
+  syncEl.textContent = `${formatSyncDate(meta.synced_at)} SQL 최신 확인`;
+}
+
+function getStoredSyncAt() {
+  try {
+    return window.localStorage?.getItem("t5t:lastSyncAt") || "";
+  } catch {
+    return "";
+  }
+}
+
+function setStoredSyncAt(value) {
+  try {
+    window.localStorage?.setItem("t5t:lastSyncAt", value);
+  } catch {
+    // Storage can be unavailable in some embedded browser contexts.
+  }
+}
+
+function formatSyncDate(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleString("ko-KR", {
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
 }
 
 async function loadWeeklySummary() {

@@ -155,7 +155,7 @@ const T5TService = {
 
         console.log(`Total ${allData.length} items loaded.`);
         this.rawItems = allData;
-        return this.aggregateData(allData);
+        return { sync_meta: { synced_at: new Date().toISOString() } };
     },
 
     aggregateData(items, filterOptions = null) {
