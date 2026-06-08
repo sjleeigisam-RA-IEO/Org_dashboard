@@ -1754,7 +1754,7 @@ select,
   .mobile-org-notice {
     display: block;
     margin-top: 14px;
-    padding: 18px;
+    padding: 16px;
     border: 1px solid var(--line);
     border-radius: 18px;
     background: var(--panel);
@@ -1762,21 +1762,22 @@ select,
   }
 
   .mobile-org-notice h2 {
-    margin: 0 0 10px;
-    font-size: 22px;
+    margin: 0 0 8px;
+    font-size: 19px;
     line-height: 1.25;
   }
 
   .mobile-org-notice p:last-child {
     margin: 0;
     color: var(--soft);
-    line-height: 1.55;
+    font-size: 13px;
+    line-height: 1.5;
   }
 
   .mobile-org-search {
     display: block;
     margin-top: 14px;
-    padding: 16px;
+    padding: 14px;
     border: 1px solid var(--line);
     border-radius: 18px;
     background: var(--panel);
@@ -1787,19 +1788,19 @@ select,
     display: block;
     margin-bottom: 8px;
     color: var(--muted);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
   }
 
   .mobile-org-search input {
     width: 100%;
-    min-height: 46px;
-    padding: 12px 14px;
+    min-height: 42px;
+    padding: 10px 12px;
     border: 1px solid var(--line);
     border-radius: 12px;
     background: var(--item);
     color: var(--text);
-    font-size: 15px;
+    font-size: 14px;
     outline: none;
   }
 
@@ -1811,7 +1812,7 @@ select,
   .mobile-org-search-hint {
     margin: 9px 0 14px;
     color: var(--soft);
-    font-size: 12px;
+    font-size: 11px;
     line-height: 1.45;
   }
 
@@ -1823,12 +1824,12 @@ select,
 
   .mobile-org-result-summary,
   .mobile-org-empty {
-    padding: 12px;
+    padding: 11px;
     border: 1px solid var(--line);
     border-radius: 12px;
     background: var(--item);
     color: var(--soft);
-    font-size: 12px;
+    font-size: 11px;
     line-height: 1.45;
   }
 
@@ -1838,7 +1839,7 @@ select,
   }
 
   .mobile-org-result-card {
-    padding: 13px;
+    padding: 12px;
     border: 1px solid var(--line);
     border-radius: 14px;
     background: var(--item);
@@ -1854,7 +1855,7 @@ select,
   .mobile-org-result-head strong {
     min-width: 0;
     color: var(--text);
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.25;
     overflow-wrap: anywhere;
   }
@@ -1862,14 +1863,14 @@ select,
   .mobile-org-result-head span {
     flex: 0 0 auto;
     color: var(--accent-2);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
   }
 
   .mobile-org-result-card p {
     margin: 8px 0 0;
     color: var(--soft);
-    font-size: 12px;
+    font-size: 11px;
     line-height: 1.45;
     word-break: keep-all;
     overflow-wrap: anywhere;
@@ -1904,7 +1905,7 @@ select,
   }
 
   h1 {
-    font-size: 28px;
+    font-size: 26px;
     line-height: 1.1;
   }
 
