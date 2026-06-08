@@ -158,6 +158,34 @@ const T5TService = {
         return { sync_meta: { synced_at: new Date().toISOString() } };
     },
 
+    async fetchStaticDashboardData() {
+        const [dashboardResponse, metaResponse] = await Promise.all([
+            fetch(`data/dashboard.json?v=${Date.now()}`),
+            fetch(`data/_sync_meta.json?v=${Date.now()}`).catch(() => null)
+        ]);
+        if (!dashboardResponse.ok) throw new Error(`Static dashboard fallback failed: HTTP ${dashboardResponse.status}`);
+        const dashboard = await dashboardResponse.json();
+        let meta = dashboard.sync_meta || {};
+        if (metaResponse && metaResponse.ok) {
+            meta = await metaResponse.json();
+        }
+        dashboard.sync_meta = {
+            synced_at: meta.synced_at || dashboard.sync_meta?.synced_at || new Date().toISOString(),
+            source: "static"
+        };
+        dashboard.trend = dashboard.trend || { weeks: [], task_types: [], series: {} };
+        dashboard.pulse = dashboard.pulse || [];
+        dashboard.sorted_weeks = dashboard.sorted_weeks || dashboard.pulse_weeks || [];
+        if (dashboard.intelligence?.periods && !dashboard.intelligence.periods.current) {
+            dashboard.intelligence.periods.current =
+                dashboard.intelligence.periods.week ||
+                dashboard.intelligence.periods.month ||
+                dashboard.intelligence.periods.all;
+        }
+        this.rawItems = [];
+        return dashboard;
+    },
+
     aggregateData(items, filterOptions = null) {
         if (typeof filterOptions === "string") filterOptions = { preset: "year", year: filterOptions };
         const dateFilter = this.getDateFilterRange(filterOptions || { preset: "this_week" });

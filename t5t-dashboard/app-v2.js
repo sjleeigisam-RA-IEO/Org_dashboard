@@ -67,22 +67,34 @@ async function loadData() {
   const loadingEl = document.getElementById("loading");
   try {
     dashData = await T5TService.fetchDashboardData();
-    updateSyncInfo();
-    hideLoading(loadingEl);
-    await yieldToBrowser();
-    initializeDateControlDefaults();
-    applyDefaultPeriodFallback();
-    updateDateFilterControls();
-    dashData = T5TService.aggregateData(T5TService.rawItems, getDateFilterOptions());
-    document.getElementById("view-overview").classList.add("active");
-    renderOverview();
-    renderPeopleView();
-    loadWeeklySummary();
-    updateSyncInfo();
+    await finishDataLoad(loadingEl, true);
   } catch (error) {
-    console.error(error);
-    showLoadingError(loadingEl, error);
+    console.warn("Live SQL data failed. Falling back to bundled dashboard data.", error);
+    try {
+      dashData = await T5TService.fetchStaticDashboardData();
+      await finishDataLoad(loadingEl, false);
+    } catch (fallbackError) {
+      console.error(fallbackError);
+      showLoadingError(loadingEl, fallbackError);
+    }
   }
+}
+
+async function finishDataLoad(loadingEl, canAggregateRawItems) {
+  updateSyncInfo();
+  hideLoading(loadingEl);
+  await yieldToBrowser();
+  initializeDateControlDefaults();
+  applyDefaultPeriodFallback();
+  updateDateFilterControls();
+  if (canAggregateRawItems && (T5TService.rawItems || []).length) {
+    dashData = T5TService.aggregateData(T5TService.rawItems, getDateFilterOptions());
+  }
+  document.getElementById("view-overview").classList.add("active");
+  renderOverview();
+  renderPeopleView();
+  loadWeeklySummary();
+  updateSyncInfo();
 }
 
 function hideLoading(loadingEl) {
@@ -233,7 +245,8 @@ function updateSyncInfo() {
   const syncEl = document.getElementById("sync-time");
   if (!meta || !syncEl) return;
   setStoredSyncAt(meta.synced_at);
-  syncEl.textContent = `${formatSyncDate(meta.synced_at)} SQL 최신 확인`;
+  const sourceLabel = meta.source === "static" ? "백업 데이터" : "SQL 최신 확인";
+  syncEl.textContent = `${formatSyncDate(meta.synced_at)} ${sourceLabel}`;
 }
 
 function getStoredSyncAt() {
