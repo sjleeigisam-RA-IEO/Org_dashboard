@@ -1263,8 +1263,8 @@ body {
 .person-card {
   width: 100%;
   display: grid;
-  gap: 8px;
-  padding: 16px;
+  gap: 6px;
+  padding: 12px 14px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
@@ -1284,6 +1284,14 @@ body {
   background: rgba(251, 241, 103, 0.08);
 }
 
+.person-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+}
+
 .person-card-name {
   min-width: 0;
   font-size: 18px;
@@ -1291,29 +1299,17 @@ body {
   overflow-wrap: anywhere;
 }
 
+.person-card-week {
+  flex: 0 0 auto;
+  color: var(--accent-2);
+  font-size: 13px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
 .person-card-meta {
   color: var(--muted);
   font-size: 13px;
-}
-
-.person-card-foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.person-card-foot strong {
-  color: var(--accent-2);
-  font-size: 13px;
-}
-
-.person-card-foot em {
-  min-width: 0;
-  color: var(--soft);
-  font-size: 12px;
-  font-style: normal;
-  overflow-wrap: anywhere;
 }
 
 .person-detail-card {
@@ -1597,7 +1593,7 @@ body {
   }
 
   .person-card {
-    padding: 14px;
+    padding: 12px 14px;
   }
 
   .person-card-shell.active .person-card {

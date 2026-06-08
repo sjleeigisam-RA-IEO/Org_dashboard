@@ -470,15 +470,11 @@ function renderPeopleView() {
     const haystack = `${person.name} ${person.displayName} ${Array.from(person.aliases || []).join(" ")}`.toLowerCase();
     return !needle || haystack.includes(needle);
   });
-  if (!uiState.people.selected && visiblePeople.length) {
-    uiState.people.selected = visiblePeople[0].name;
-  }
-
   list.innerHTML = visiblePeople.length ? visiblePeople.map(person => renderPersonCard(person)).join("") : `
     <div class="people-empty">검색 결과가 없습니다.</div>
   `;
 
-  const selected = people.find(person => person.name === uiState.people.selected);
+  const selected = visiblePeople.find(person => person.name === uiState.people.selected);
   if (!selected) {
     detail.innerHTML = `
       <div class="person-empty">
@@ -494,17 +490,15 @@ function renderPeopleView() {
 function renderPersonCard(person) {
   const currentPeriod = getDefaultPersonPeriod(person);
   const currentCount = currentPeriod ? currentPeriod.logs.length : 0;
-  const dominantTask = Array.from(person.taskTypes.entries()).sort((a, b) => b[1] - a[1])[0];
   const isActive = uiState.people.selected === person.name;
   return `
     <article class="person-card-shell ${isActive ? "active" : ""}">
       <button class="person-card ${isActive ? "active" : ""}" type="button" onclick='selectPerson(${jsString(person.name)})'>
-        <span class="person-card-name">${escapeHtml(person.displayName)}</span>
-        <span class="person-card-meta">${person.total}건 · ${countPersonWeeks(person)}주 누적</span>
-        <span class="person-card-foot">
-          <strong>이번주 ${currentCount}건</strong>
-          <em>${dominantTask ? escapeHtml(dominantTask[0]) : "기록 없음"}</em>
+        <span class="person-card-top">
+          <span class="person-card-name">${escapeHtml(person.displayName)}</span>
+          <strong class="person-card-week">이번주 ${currentCount}건</strong>
         </span>
+        <span class="person-card-meta">${person.total}건 · ${countPersonWeeks(person)}주 누적</span>
       </button>
       ${isActive ? `<div class="person-mobile-detail">${renderPersonDetailContent(person)}</div>` : ""}
     </article>
