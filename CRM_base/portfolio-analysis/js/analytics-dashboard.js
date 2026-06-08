@@ -41,6 +41,23 @@
     const overseasAssetsCount = activeAssetRecords.filter(isOverseasAssetRecord).length;
     const otherAssetsCount = Math.max(0, activeAssetRecords.length - domesticAssetsCount - overseasAssetsCount);
 
+    if (isMobileAnalyticsView()) {
+        renderMobileAnalytics({
+            filteredFunds,
+            activeFunds,
+            activeAssetRecords,
+            domesticAssetsCount,
+            overseasAssetsCount,
+            otherAssetsCount,
+            totalAum,
+            totalEquity,
+            totalLoan,
+            totalOther,
+            aumConfig
+        });
+        return;
+    }
+
     detailPanel.innerHTML = `
         <div class="analytics-container" style="padding-bottom:60px;">
           <div class="detail-header" style="margin-bottom:40px;">
@@ -146,6 +163,291 @@
 
     renderHistory('mainGrowthChart');
     renderNetGrowth('netGrowthChart');
+}
+
+function isMobileAnalyticsView() {
+    return window.matchMedia && window.matchMedia('(max-width: 760px)').matches;
+}
+
+function escapeAnalysisHtml(value) {
+    return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function renderMobileAnalytics(context) {
+    if (!resultsContainer) return;
+    if (detailPanel) detailPanel.innerHTML = '';
+    resultsContainer.style.display = 'flex';
+    resultsContainer.classList.add('mobile-analysis-results');
+
+    const aumRows = buildMobileAumRows(context.filteredFunds);
+    const recentRows = aumRows.slice(-7).reverse();
+    const fullRows = aumRows.slice().reverse();
+    const netRows = buildMobileNetRows(aumRows);
+    const recentNetRows = netRows.slice(-7).reverse();
+    const turningPoints = netRows
+        .filter(row => row.prevAum > 0 || row.delta !== 0)
+        .slice()
+        .sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta))
+        .slice(0, 3);
+    const compositionRows = buildMobileCompositionRows(context.activeFunds).slice(0, 5);
+    const scopeLabel = currentOrgScope === 'ra' ? 'RA 부문' : '전체 포트폴리오';
+
+    resultsContainer.innerHTML = `
+      <div class="mobile-analysis-shell">
+        <section class="mobile-analysis-card mobile-analysis-intro">
+          <p class="card-tag tag-project">Portfolio Analysis</p>
+          <h2>모바일 종합 분석</h2>
+          <p>차트 대신 핵심 지표와 연도별 변화표로 보여줍니다. 상세 시각화는 PC 화면에서 확인할 수 있습니다.</p>
+        </section>
+
+        <section class="mobile-analysis-card">
+          <div class="mobile-analysis-card-head">
+            <div>
+              <span class="mobile-analysis-kicker">${scopeLabel}</span>
+              <h3>Portfolio Snapshot</h3>
+            </div>
+            <span class="mobile-analysis-date">2026.04.30</span>
+          </div>
+          <div class="mobile-analysis-main-value">${formatNumber(context.totalAum)}</div>
+          <div class="mobile-analysis-main-label">현재 운용 AUM (${context.aumConfig.label})</div>
+          <div class="mobile-analysis-metrics">
+            ${renderMobileMetric('Equity', formatNumber(context.totalEquity))}
+            ${renderMobileMetric('Loan', formatNumber(context.totalLoan))}
+            ${renderMobileMetric('기타', formatNumber(context.totalOther))}
+            ${renderMobileMetric('기초자산', `${context.activeAssetRecords.length.toLocaleString()}개`)}
+          </div>
+          <div class="mobile-analysis-split">
+            <span>국내 ${context.domesticAssetsCount.toLocaleString()}개</span>
+            <span>해외 ${context.overseasAssetsCount.toLocaleString()}개</span>
+            ${context.otherAssetsCount > 0 ? `<span>기타 ${context.otherAssetsCount.toLocaleString()}개</span>` : ''}
+          </div>
+        </section>
+
+        <section class="mobile-analysis-card">
+          <div class="mobile-analysis-card-head">
+            <div>
+              <span class="mobile-analysis-kicker">AUM Trend</span>
+              <h3>연도별 AUM 변화</h3>
+            </div>
+          </div>
+          ${renderMobileAnalysisTable(['연도', 'AUM', '전년 대비', '증감률'], recentRows.map(row => [
+              row.label,
+              formatNumber(row.aum),
+              renderMobileDelta(row.delta),
+              row.pct === null ? '-' : `${row.pct > 0 ? '+' : ''}${row.pct.toFixed(1)}%`
+          ]))}
+          <details class="mobile-analysis-details">
+            <summary>전체 연도 보기</summary>
+            ${renderMobileAnalysisTable(['연도', 'AUM', '전년 대비', '증감률'], fullRows.map(row => [
+                row.label,
+                formatNumber(row.aum),
+                renderMobileDelta(row.delta),
+                row.pct === null ? '-' : `${row.pct > 0 ? '+' : ''}${row.pct.toFixed(1)}%`
+            ]))}
+          </details>
+        </section>
+
+        <section class="mobile-analysis-card">
+          <div class="mobile-analysis-card-head">
+            <div>
+              <span class="mobile-analysis-kicker">Net Change</span>
+              <h3>연도별 순증감</h3>
+            </div>
+          </div>
+          ${renderMobileAnalysisTable(['연도', '신규/증가', '청산/감소', '순증감'], recentNetRows.map(row => [
+              row.label,
+              formatNumber(row.setupAum),
+              formatNumber(row.terminatedAum),
+              renderMobileDelta(row.delta)
+          ]))}
+          <div class="mobile-turning-list">
+            ${turningPoints.map(row => `
+              <details class="mobile-turning-item">
+                <summary>
+                  <span>${row.label}</span>
+                  <strong class="${row.delta >= 0 ? 'is-positive' : 'is-negative'}">${formatSignedNumber(row.delta)}</strong>
+                </summary>
+                ${renderMobileChangeLists(row)}
+              </details>
+            `).join('')}
+          </div>
+        </section>
+
+        <section class="mobile-analysis-card">
+          <div class="mobile-analysis-card-head">
+            <div>
+              <span class="mobile-analysis-kicker">Composition</span>
+              <h3>기초자산 구성 Top 5</h3>
+            </div>
+          </div>
+          ${compositionRows.length ? compositionRows.map(row => `
+            <div class="mobile-composition-row">
+              <div>
+                <strong>${escapeAnalysisHtml(row.name)}</strong>
+                <span>${row.count.toLocaleString()}건</span>
+              </div>
+              <div>
+                <b>${formatNumber(row.aum)}</b>
+                <span>${row.share.toFixed(1)}%</span>
+              </div>
+            </div>
+          `).join('') : '<div class="mobile-analysis-empty">구성 데이터가 없습니다.</div>'}
+        </section>
+      </div>
+    `;
+}
+
+function renderMobileMetric(label, value) {
+    return `
+      <div class="mobile-analysis-metric">
+        <span>${label}</span>
+        <strong>${value}</strong>
+      </div>
+    `;
+}
+
+function buildMobileAumCategories() {
+    const categories = [];
+    for (let y = 2010; y <= 2025; y++) categories.push(String(y));
+    categories.push('2026 (Actual)');
+    return categories;
+}
+
+function getMobileSnapshotDate(label) {
+    if (label === '2026 (Actual)') return new Date('2026-04-30');
+    return new Date(`${label}-12-31`);
+}
+
+function getMobileYearLabel(label) {
+    return label === '2026 (Actual)' ? '2026 YTD' : label;
+}
+
+function buildMobileAumRows(targetFunds) {
+    const column = getMetricColumn('aum', getAumBasisMetric());
+    return buildMobileAumCategories().map((label, idx, categories) => {
+        const active = getSnapshotFunds(targetFunds, label, getMobileSnapshotDate(label));
+        const aum = active.reduce((sum, fund) => sum + getFundAmountWon(fund, column), 0);
+        const prevActive = idx === 0 ? [] : getSnapshotFunds(targetFunds, categories[idx - 1], getMobileSnapshotDate(categories[idx - 1]));
+        const prevAum = idx === 0 ? 0 : prevActive.reduce((sum, fund) => sum + getFundAmountWon(fund, column), 0);
+        const delta = aum - prevAum;
+        return {
+            label: getMobileYearLabel(label),
+            rawLabel: label,
+            aum,
+            prevAum,
+            delta,
+            pct: prevAum > 0 ? (delta / prevAum) * 100 : null
+        };
+    });
+}
+
+function buildMobileNetRows(aumRows) {
+    return aumRows.map(row => {
+        const change = getMobileChangeItems(row.rawLabel);
+        return {
+            ...row,
+            setupItems: change.setupItems,
+            terminatedItems: change.terminatedItems,
+            setupAum: change.setupAum,
+            terminatedAum: change.terminatedAum
+        };
+    });
+}
+
+function getMobileChangeItems(label) {
+    const targetFunds = window.lastTargetFunds || [];
+    const range = getMobileDateRange(label);
+    const newlySetup = targetFunds.filter(fund => {
+        if (!isFundIncludedForCurrentMetric(fund)) return false;
+        const setupStr = getFundSetupDate(fund);
+        const setup = setupStr ? new Date(setupStr) : null;
+        return setup && setup >= range.start && setup <= range.end;
+    });
+    const terminated = targetFunds.filter(fund => {
+        if (!isFundIncludedForCurrentMetric(fund)) return false;
+        const endStr = getFundEndDate(fund);
+        const end = endStr ? new Date(endStr) : null;
+        return end && end >= range.start && end <= range.end;
+    });
+    const setupItems = groupItems(newlySetup, '+', 'aum').sort((a, b) => b.aum - a.aum).slice(0, 5);
+    const terminatedItems = groupItems(terminated, '-', 'aum').sort((a, b) => b.aum - a.aum).slice(0, 5);
+    return {
+        setupItems,
+        terminatedItems,
+        setupAum: setupItems.reduce((sum, item) => sum + item.aum, 0),
+        terminatedAum: terminatedItems.reduce((sum, item) => sum + item.aum, 0)
+    };
+}
+
+function getMobileDateRange(label) {
+    if (label === '2026 (Actual)') {
+        return { start: new Date('2026-01-01'), end: new Date('2026-04-30') };
+    }
+    const year = parseInt(label, 10);
+    return { start: new Date(`${year}-01-01`), end: new Date(`${year}-12-31`) };
+}
+
+function buildMobileCompositionRows(activeFunds) {
+    const column = getMetricColumn('aum', getAumBasisMetric());
+    const total = activeFunds.reduce((sum, fund) => sum + getFundAmountWon(fund, column), 0);
+    const map = new Map();
+    activeFunds.forEach(fund => {
+        const name = cleanAssetText(getFieldValue(fund, 'base_asset_class')) || '미분류';
+        const prev = map.get(name) || { name, aum: 0, count: 0 };
+        prev.aum += getFundAmountWon(fund, column);
+        prev.count += 1;
+        map.set(name, prev);
+    });
+    return Array.from(map.values())
+        .map(row => ({ ...row, share: total > 0 ? (row.aum / total) * 100 : 0 }))
+        .sort((a, b) => b.aum - a.aum);
+}
+
+function renderMobileAnalysisTable(headers, rows) {
+    return `
+      <div class="mobile-analysis-table-wrap">
+        <table class="mobile-analysis-table">
+          <thead><tr>${headers.map(header => `<th>${header}</th>`).join('')}</tr></thead>
+          <tbody>
+            ${rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+}
+
+function renderMobileDelta(value) {
+    const className = value >= 0 ? 'is-positive' : 'is-negative';
+    return `<span class="${className}">${formatSignedNumber(value)}</span>`;
+}
+
+function formatSignedNumber(value) {
+    const num = Number(value) || 0;
+    const sign = num > 0 ? '+' : '';
+    return `${sign}${formatNumber(num)}`;
+}
+
+function renderMobileChangeLists(row) {
+    const renderList = (title, items) => `
+      <div class="mobile-change-list">
+        <span>${title}</span>
+        ${items.length ? items.map(item => `
+          <div class="mobile-change-row">
+            <em>${escapeAnalysisHtml(item.name)}</em>
+            <strong>${formatNumber(item.aum)}</strong>
+          </div>
+        `).join('') : '<div class="mobile-analysis-empty">해당 내역 없음</div>'}
+      </div>
+    `;
+    return `
+      ${renderList('신규/증가', row.setupItems)}
+      ${renderList('청산/감소', row.terminatedItems)}
+    `;
 }
 
 function switchMetric(metric) {
