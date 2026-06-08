@@ -2049,7 +2049,8 @@ textarea {
   }
 
   .topbar h1 {
-    font-size: 28px;
+    font-size: 22px;
+    line-height: 1.12;
   }
 
   .login-status-bar {
@@ -2179,5 +2180,12 @@ textarea {
 
   textarea {
     min-height: 160px;
+  }
+}
+
+@media (max-width: 720px) {
+  .topbar h1 {
+    font-size: 22px !important;
+    line-height: 1.12 !important;
   }
 }
