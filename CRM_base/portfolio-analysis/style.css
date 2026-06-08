@@ -1539,20 +1539,12 @@ body {
   padding: 18px;
 }
 
-.mobile-analysis-intro h2,
 .mobile-analysis-card h3 {
   margin: 4px 0 0;
   color: var(--text);
   font-size: 20px;
   line-height: 1.25;
   letter-spacing: 0;
-}
-
-.mobile-analysis-intro p:last-child {
-  margin: 8px 0 0;
-  color: var(--soft);
-  font-size: 13px;
-  line-height: 1.55;
 }
 
 .mobile-analysis-card-head {

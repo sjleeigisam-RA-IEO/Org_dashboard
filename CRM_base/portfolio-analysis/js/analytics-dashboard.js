@@ -199,19 +199,13 @@ function renderMobileAnalytics(context) {
 
     resultsContainer.innerHTML = `
       <div class="mobile-analysis-shell">
-        <section class="mobile-analysis-card mobile-analysis-intro">
-          <p class="card-tag tag-project">Portfolio Analysis</p>
-          <h2>모바일 종합 분석</h2>
-          <p>차트 대신 핵심 지표와 연도별 변화표로 보여줍니다. 상세 시각화는 PC 화면에서 확인할 수 있습니다.</p>
-        </section>
-
         <section class="mobile-analysis-card">
           <div class="mobile-analysis-card-head">
             <div>
               <span class="mobile-analysis-kicker">${scopeLabel}</span>
               <h3>Portfolio Snapshot</h3>
             </div>
-            <span class="mobile-analysis-date">2026.04.30</span>
+            <span class="mobile-analysis-date">2026.04.30 기준</span>
           </div>
           <div class="mobile-analysis-main-value">${formatNumber(context.totalAum)}</div>
           <div class="mobile-analysis-main-label">현재 운용 AUM (${context.aumConfig.label})</div>
@@ -324,7 +318,7 @@ function getMobileSnapshotDate(label) {
 }
 
 function getMobileYearLabel(label) {
-    return label === '2026 (Actual)' ? '2026 YTD' : label;
+    return label === '2026 (Actual)' ? '2026 YTD (4.30)' : label;
 }
 
 function buildMobileAumRows(targetFunds) {
