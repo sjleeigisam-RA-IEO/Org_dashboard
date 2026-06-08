@@ -263,7 +263,7 @@ function getPersonEntries() {
     const workDate = T5TService.parseDate(item.work_date);
     if (!workDate || T5TService.isHeaderOnlyLog(item)) return;
     const writer = parseWriterLabel(item.writer_name);
-    const name = writer.fullName;
+    const name = writer.displayName;
     const weekKey = T5TService.getWeekKey(workDate);
     const taskType = T5TService.normalizeTaskType(item.task_type || item.match_status);
     const category = T5TService.detectCategory(item);
@@ -277,10 +277,12 @@ function getPersonEntries() {
         total: 0,
         weeks: new Map(),
         latestDate: null,
-        taskTypes: new Map()
+        taskTypes: new Map(),
+        aliases: new Set()
       });
     }
     const person = people.get(name);
+    person.aliases.add(writer.fullName);
     person.total += 1;
     person.latestDate = !person.latestDate || workDate > person.latestDate ? workDate : person.latestDate;
     person.taskTypes.set(taskType, (person.taskTypes.get(taskType) || 0) + 1);
@@ -304,7 +306,7 @@ function renderPeopleView() {
   const people = getPersonEntries();
   const needle = uiState.people.search.toLowerCase();
   const visiblePeople = people.filter(person => {
-    const haystack = `${person.name} ${person.displayName}`.toLowerCase();
+    const haystack = `${person.name} ${person.displayName} ${Array.from(person.aliases || []).join(" ")}`.toLowerCase();
     return !needle || haystack.includes(needle);
   });
   if (!uiState.people.selected && visiblePeople.length) {
