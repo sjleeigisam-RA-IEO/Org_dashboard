@@ -304,7 +304,7 @@ function renderPeopleView() {
   const people = getPersonEntries();
   const needle = uiState.people.search.toLowerCase();
   const visiblePeople = people.filter(person => {
-    const haystack = `${person.name} ${person.displayName} ${person.affiliation}`.toLowerCase();
+    const haystack = `${person.name} ${person.displayName}`.toLowerCase();
     return !needle || haystack.includes(needle);
   });
   if (!uiState.people.selected && visiblePeople.length) {
@@ -334,7 +334,7 @@ function renderPersonCard(person) {
   return `
     <button class="person-card ${uiState.people.selected === person.name ? "active" : ""}" type="button" onclick='selectPerson(${jsString(person.name)})'>
       <span class="person-card-name">${escapeHtml(person.displayName)}</span>
-      <span class="person-card-meta">${person.affiliation ? `${escapeHtml(person.affiliation)} · ` : ""}${person.total}건 · ${person.sortedWeeks.length}주 누적</span>
+      <span class="person-card-meta">${person.total}건 · ${person.sortedWeeks.length}주 누적</span>
       <span class="person-card-foot">
         <strong>이번주 ${currentCount}건</strong>
         <em>${dominantTask ? escapeHtml(dominantTask[0]) : "기록 없음"}</em>
@@ -370,7 +370,7 @@ function renderPersonDetail(person) {
       <div>
         <div class="section-eyebrow">Writer Timeline</div>
         <h2>${escapeHtml(person.displayName)}</h2>
-        <p>${person.affiliation ? `${escapeHtml(person.affiliation)} · ` : ""}${person.total}건 누적 · ${person.sortedWeeks.length}개 주차 · 최근 ${escapeHtml(T5TService.formatDate(person.latestDate))}</p>
+        <p>${person.total}건 누적 · ${person.sortedWeeks.length}개 주차 · 최근 ${escapeHtml(T5TService.formatDate(person.latestDate))}</p>
       </div>
       <select class="period-input person-week-select" onchange="selectPersonWeek(this.value)">
         ${weekOptions.map(week => `<option value="${escapeHtml(week)}" ${week === weekKey ? "selected" : ""}>${week === currentWeek ? "이번주" : escapeHtml(week)} (${(person.weeks.get(week) || []).length}건)</option>`).join("")}
