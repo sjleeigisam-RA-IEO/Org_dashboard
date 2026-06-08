@@ -68,11 +68,12 @@ async function loadData() {
   try {
     dashData = await T5TService.fetchDashboardData();
     updateSyncInfo();
+    hideLoading(loadingEl);
+    await yieldToBrowser();
     initializeDateControlDefaults();
     applyDefaultPeriodFallback();
     updateDateFilterControls();
     dashData = T5TService.aggregateData(T5TService.rawItems, getDateFilterOptions());
-    if (loadingEl) loadingEl.style.display = "none";
     document.getElementById("view-overview").classList.add("active");
     renderOverview();
     renderPeopleView();
@@ -80,8 +81,27 @@ async function loadData() {
     updateSyncInfo();
   } catch (error) {
     console.error(error);
-    if (loadingEl) loadingEl.innerHTML = `<div style="color:red; padding:20px;">데이터 로드 실패: ${error.message}</div>`;
+    showLoadingError(loadingEl, error);
   }
+}
+
+function hideLoading(loadingEl) {
+  if (!loadingEl) return;
+  loadingEl.classList.add("is-hidden");
+  loadingEl.hidden = true;
+  loadingEl.style.display = "none";
+}
+
+function showLoadingError(loadingEl, error) {
+  if (!loadingEl) return;
+  loadingEl.hidden = false;
+  loadingEl.classList.remove("is-hidden");
+  loadingEl.style.display = "flex";
+  loadingEl.innerHTML = `<div style="color:red; padding:20px;">데이터 로드 실패: ${error.message}</div>`;
+}
+
+function yieldToBrowser() {
+  return new Promise(resolve => requestAnimationFrame(() => setTimeout(resolve, 0)));
 }
 
 function initializeDateControlDefaults() {

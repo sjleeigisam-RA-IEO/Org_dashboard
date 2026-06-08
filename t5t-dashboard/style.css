@@ -284,6 +284,11 @@ body {
   gap: 16px;
 }
 
+.loading.is-hidden,
+#loading[hidden] {
+  display: none !important;
+}
+
 .spinner {
   width: 48px;
   height: 48px;
