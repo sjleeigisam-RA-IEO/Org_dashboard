@@ -269,13 +269,15 @@ function getPersonEntries() {
     const category = T5TService.detectCategory(item);
     const log = T5TService.makeLogRecord(item, category, weekKey, taskType);
     log.date_obj = workDate;
+    log.submission_id = item.submission_id || "";
+    log.item_no = item.item_no || "";
     if (!people.has(name)) {
       people.set(name, {
         name,
         displayName: writer.displayName,
         affiliation: writer.affiliation,
         total: 0,
-        weeks: new Map(),
+        periods: new Map(),
         latestDate: null,
         taskTypes: new Map(),
         aliases: new Set()
@@ -286,13 +288,46 @@ function getPersonEntries() {
     person.total += 1;
     person.latestDate = !person.latestDate || workDate > person.latestDate ? workDate : person.latestDate;
     person.taskTypes.set(taskType, (person.taskTypes.get(taskType) || 0) + 1);
-    if (!person.weeks.has(weekKey)) person.weeks.set(weekKey, []);
-    person.weeks.get(weekKey).push(log);
+    const periodKey = item.submission_id ? `submission:${item.submission_id}` : `date:${weekKey}:${item.work_date || ""}`;
+    if (!person.periods.has(periodKey)) {
+      person.periods.set(periodKey, {
+        key: periodKey,
+        weekKey,
+        submissionId: item.submission_id || "",
+        workDate: item.work_date || "",
+        sortDate: workDate,
+        logs: []
+      });
+    }
+    const period = person.periods.get(periodKey);
+    period.sortDate = !period.sortDate || workDate > period.sortDate ? workDate : period.sortDate;
+    period.logs.push(log);
   });
   return Array.from(people.values()).map(person => {
-    person.sortedWeeks = Array.from(person.weeks.keys()).sort().reverse();
-    person.sortedWeeks.forEach(week => {
-      person.weeks.get(week).sort((a, b) => new Date(b.work_date || 0) - new Date(a.work_date || 0));
+    const periodChunks = [];
+    Array.from(person.periods.values()).forEach(period => {
+      period.logs.sort((a, b) => {
+        const itemDiff = Number(a.item_no || 0) - Number(b.item_no || 0);
+        if (itemDiff) return itemDiff;
+        return new Date(a.work_date || 0) - new Date(b.work_date || 0);
+      });
+      for (let start = 0; start < period.logs.length; start += 5) {
+        const chunkIndex = Math.floor(start / 5) + 1;
+        const chunkCount = Math.ceil(period.logs.length / 5);
+        periodChunks.push({
+          ...period,
+          key: chunkCount > 1 ? `${period.key}:part:${chunkIndex}` : period.key,
+          chunkIndex,
+          chunkCount,
+          logs: period.logs.slice(start, start + 5)
+        });
+      }
+    });
+    person.sortedPeriods = periodChunks.sort((a, b) => {
+      const dateDiff = new Date(b.sortDate || 0) - new Date(a.sortDate || 0);
+      if (dateDiff) return dateDiff;
+      if ((a.chunkIndex || 1) !== (b.chunkIndex || 1)) return (a.chunkIndex || 1) - (b.chunkIndex || 1);
+      return String(b.submissionId || "").localeCompare(String(a.submissionId || ""));
     });
     return person;
   }).sort((a, b) => (b.latestDate || 0) - (a.latestDate || 0));
@@ -331,12 +366,13 @@ function renderPeopleView() {
 }
 
 function renderPersonCard(person) {
-  const currentCount = (person.weeks.get(getCurrentWeekKey()) || []).length;
+  const currentPeriod = getDefaultPersonPeriod(person);
+  const currentCount = currentPeriod ? currentPeriod.logs.length : 0;
   const dominantTask = Array.from(person.taskTypes.entries()).sort((a, b) => b[1] - a[1])[0];
   return `
     <button class="person-card ${uiState.people.selected === person.name ? "active" : ""}" type="button" onclick='selectPerson(${jsString(person.name)})'>
       <span class="person-card-name">${escapeHtml(person.displayName)}</span>
-      <span class="person-card-meta">${person.total}건 · ${person.sortedWeeks.length}주 누적</span>
+      <span class="person-card-meta">${person.total}건 · ${countPersonWeeks(person)}주 누적</span>
       <span class="person-card-foot">
         <strong>이번주 ${currentCount}건</strong>
         <em>${dominantTask ? escapeHtml(dominantTask[0]) : "기록 없음"}</em>
@@ -358,24 +394,63 @@ function selectPersonWeek(weekKey) {
   if (selected) renderPersonDetail(selected);
 }
 
+function countPersonWeeks(person) {
+  return new Set((person.sortedPeriods || []).map(period => period.weekKey)).size;
+}
+
+function getDefaultPersonPeriod(person) {
+  const currentWeek = getCurrentWeekKey();
+  return (person.sortedPeriods || []).find(period => period.weekKey === currentWeek) || null;
+}
+
+function makeEmptyPersonPeriod(weekKey) {
+  return {
+    key: `empty:${weekKey}`,
+    weekKey,
+    submissionId: "",
+    workDate: "",
+    sortDate: null,
+    logs: []
+  };
+}
+
+function getPersonPeriodLabel(period, currentWeek, weekSequence) {
+  const base = period.weekKey === currentWeek ? "이번주" : period.weekKey;
+  const seq = weekSequence > 1 ? ` #${weekSequence}` : "";
+  const date = period.workDate ? ` · ${period.workDate}` : "";
+  return `${base}${seq}${date}`;
+}
+
 function renderPersonDetail(person) {
   const detail = document.getElementById("person-detail-card");
   if (!detail) return;
   const currentWeek = getCurrentWeekKey();
-  const weekKey = uiState.people.weekKey || currentWeek;
-  const logs = person.weeks.get(weekKey) || [];
-  const latestLogs = person.sortedWeeks.length ? person.weeks.get(person.sortedWeeks[0]) || [] : [];
-  const weekOptions = [currentWeek, ...person.sortedWeeks.filter(week => week !== currentWeek)];
-  const selectedLabel = weekKey === currentWeek ? "이번주" : weekKey;
+  const defaultPeriod = getDefaultPersonPeriod(person);
+  const selectedKey = uiState.people.weekKey || (defaultPeriod ? defaultPeriod.key : `empty:${currentWeek}`);
+  const emptyCurrentPeriod = makeEmptyPersonPeriod(currentWeek);
+  const periodOptions = defaultPeriod
+    ? [...person.sortedPeriods]
+    : [emptyCurrentPeriod, ...person.sortedPeriods];
+  const selectedPeriod = periodOptions.find(period => period.key === selectedKey) || periodOptions[0] || emptyCurrentPeriod;
+  const logs = selectedPeriod.logs || [];
+  const latestLogs = person.sortedPeriods.length ? person.sortedPeriods[0].logs || [] : [];
+  const weekSeen = new Map();
+  const optionMeta = periodOptions.map(period => {
+    const nextSeq = (weekSeen.get(period.weekKey) || 0) + 1;
+    weekSeen.set(period.weekKey, nextSeq);
+    return { period, label: getPersonPeriodLabel(period, currentWeek, nextSeq) };
+  });
+  const selectedMeta = optionMeta.find(meta => meta.period.key === selectedPeriod.key);
+  const selectedLabel = selectedMeta ? selectedMeta.label : getPersonPeriodLabel(selectedPeriod, currentWeek, 1);
   detail.innerHTML = `
     <div class="person-detail-head">
       <div>
         <div class="section-eyebrow">Writer Timeline</div>
         <h2>${escapeHtml(person.displayName)}</h2>
-        <p>${person.total}건 누적 · ${person.sortedWeeks.length}개 주차 · 최근 ${escapeHtml(T5TService.formatDate(person.latestDate))}</p>
+        <p>${person.total}건 누적 · ${countPersonWeeks(person)}개 주차 · 최근 ${escapeHtml(T5TService.formatDate(person.latestDate))}</p>
       </div>
       <select class="period-input person-week-select" onchange="selectPersonWeek(this.value)">
-        ${weekOptions.map(week => `<option value="${escapeHtml(week)}" ${week === weekKey ? "selected" : ""}>${week === currentWeek ? "이번주" : escapeHtml(week)} (${(person.weeks.get(week) || []).length}건)</option>`).join("")}
+        ${optionMeta.map(meta => `<option value="${escapeHtml(meta.period.key)}" ${meta.period.key === selectedPeriod.key ? "selected" : ""}>${escapeHtml(meta.label)} (${meta.period.logs.length}건)</option>`).join("")}
       </select>
     </div>
     <div class="person-week-summary">
