@@ -296,6 +296,8 @@
   const roleModalTitle = document.getElementById("roleModalTitle");
   const roleModalSummary = document.getElementById("roleModalSummary");
   const roleModalList = document.getElementById("roleModalList");
+  const mobileOrgSearchInput = document.getElementById("mobileOrgSearchInput");
+  const mobileOrgResults = document.getElementById("mobileOrgResults");
 
   const escapeHtml = (value) =>
     String(value ?? "")
@@ -1109,6 +1111,104 @@
       .join("");
   }
 
+  function getMobileOrgRows() {
+    const rows = [];
+    const seen = new Set();
+
+    data.sections.forEach((section) => {
+      section.groups.forEach((group) => {
+        group.parts.forEach((part) => {
+          part.teams.forEach((team) => {
+            const pathParts = [
+              section.name,
+              group.name,
+              part.name === "미지정" ? "" : normalizeDisplayLabel(part.name),
+              normalizeDisplayLabel(team.displayName),
+            ].filter(Boolean);
+            const path = pathParts.join(" > ");
+            const orgText = `${section.name} ${group.name} ${part.name} ${team.displayName} ${team.path}`;
+
+            team.members.forEach((member) => {
+              if (!member.name || !shouldCountMember(group.name, member)) {
+                return;
+              }
+
+              const role = getDisplayRole(group.name, member);
+              const key = `${member.name}|${role}|${path}`;
+              if (seen.has(key)) {
+                return;
+              }
+              seen.add(key);
+
+              rows.push({
+                name: member.name,
+                rawName: member.rawName,
+                role,
+                path,
+                orgText,
+                tags: member.tags || [],
+              });
+            });
+          });
+        });
+      });
+    });
+
+    return rows;
+  }
+
+  function renderMobileOrgSearch() {
+    if (!mobileOrgResults || !mobileOrgSearchInput) {
+      return;
+    }
+
+    const keyword = mobileOrgSearchInput.value.trim().toLowerCase();
+    if (!keyword) {
+      mobileOrgResults.innerHTML = `<div class="mobile-org-empty">전체 조직도는 숨겨두었습니다. 이름이나 조직명을 검색해 주세요.</div>`;
+      return;
+    }
+
+    const rows = getMobileOrgRows()
+      .filter((row) =>
+        `${row.name} ${row.rawName || ""} ${row.role} ${row.path} ${row.orgText}`.toLowerCase().includes(keyword)
+      )
+      .sort((a, b) => {
+        const nameCompare = a.name.localeCompare(b.name, "ko-KR");
+        return nameCompare || a.path.localeCompare(b.path, "ko-KR");
+      });
+
+    if (!rows.length) {
+      mobileOrgResults.innerHTML = `<div class="mobile-org-empty">검색 결과가 없습니다. 이름 또는 조직명을 다시 입력해 주세요.</div>`;
+      return;
+    }
+
+    const visibleRows = rows.slice(0, 30);
+    const overflow = rows.length - visibleRows.length;
+    mobileOrgResults.innerHTML = `
+      <div class="mobile-org-result-summary">검색 결과 ${fmt(rows.length)}건${overflow > 0 ? ` · 상위 ${visibleRows.length}건 표시` : ""}</div>
+      ${visibleRows
+        .map((row) => {
+          const tags = row.tags
+            .map((tag) => {
+              const className = tag === "겸직" ? "shared" : tag === "대행" ? "acting" : "external";
+              return `<span class="member-tag ${className}">${escapeHtml(tag)}</span>`;
+            })
+            .join("");
+          return `
+            <article class="mobile-org-result-card">
+              <div class="mobile-org-result-head">
+                <strong>${escapeHtml(row.name)}</strong>
+                <span>${escapeHtml(row.role)}</span>
+              </div>
+              <p>${escapeHtml(row.path)}</p>
+              ${tags ? `<div class="mobile-org-result-tags">${tags}</div>` : ""}
+            </article>
+          `;
+        })
+        .join("")}
+    `;
+  }
+
   function render() {
     const filteredSections = buildFilteredSections();
     const summary = buildSummary(filteredSections);
@@ -1170,6 +1270,8 @@
     render();
   });
 
+  mobileOrgSearchInput?.addEventListener("input", renderMobileOrgSearch);
+
   roleFilter.addEventListener("change", (event) => {
     state.role = event.target.value;
     render();
@@ -1190,4 +1292,5 @@
   bindViewProtections();
   renderHero();
   render();
+  renderMobileOrgSearch();
 })();

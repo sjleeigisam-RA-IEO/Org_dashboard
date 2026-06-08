@@ -1718,6 +1718,10 @@ select,
   display: none;
 }
 
+.mobile-org-search {
+  display: none;
+}
+
 .modal-backdrop {
   background: rgba(8, 8, 8, 0.66);
 }
@@ -1767,6 +1771,115 @@ select,
     margin: 0;
     color: var(--soft);
     line-height: 1.55;
+  }
+
+  .mobile-org-search {
+    display: block;
+    margin-top: 14px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--panel);
+    box-shadow: var(--shadow);
+  }
+
+  .mobile-org-search label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .mobile-org-search input {
+    width: 100%;
+    min-height: 46px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--item);
+    color: var(--text);
+    font-size: 15px;
+    outline: none;
+  }
+
+  .mobile-org-search input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(41, 151, 255, 0.14);
+  }
+
+  .mobile-org-search-hint {
+    margin: 9px 0 14px;
+    color: var(--soft);
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .mobile-org-results {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mobile-org-result-summary,
+  .mobile-org-empty {
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--item);
+    color: var(--soft);
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .mobile-org-result-summary {
+    color: var(--accent-2);
+    font-weight: 800;
+  }
+
+  .mobile-org-result-card {
+    padding: 13px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--item);
+  }
+
+  .mobile-org-result-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .mobile-org-result-head strong {
+    min-width: 0;
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+
+  .mobile-org-result-head span {
+    flex: 0 0 auto;
+    color: var(--accent-2);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .mobile-org-result-card p {
+    margin: 8px 0 0;
+    color: var(--soft);
+    font-size: 12px;
+    line-height: 1.45;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .mobile-org-result-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
   }
 
   #viewSwitch,
