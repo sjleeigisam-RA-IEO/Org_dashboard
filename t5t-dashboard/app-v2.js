@@ -14,7 +14,8 @@ let uiState = {
   customEnd: "",
   stakeholderDrilldown: null,
   insight: { kind: null, key: null, groupBy: "none" },
-  project: { id: null, groupBy: "none" }
+  project: { id: null, groupBy: "none" },
+  people: { selected: null, weekKey: null, search: "" }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -24,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupStakeholderBack();
   setupInsightGrouping();
   setupProjectGrouping();
+  setupPeopleControls();
   setupDragScroll();
   loadData();
 });
@@ -39,6 +41,7 @@ async function loadData() {
     if (loadingEl) loadingEl.style.display = "none";
     document.getElementById("view-overview").classList.add("active");
     renderOverview();
+    renderPeopleView();
     loadWeeklySummary();
     updateSyncInfo();
   } catch (error) {
@@ -217,6 +220,190 @@ function renderWeeklySummary(summary) {
         </section>
       `).join("")}
     </div>
+  `;
+}
+
+function setupPeopleControls() {
+  const search = document.getElementById("people-search");
+  const reset = document.getElementById("people-reset");
+  if (search) {
+    search.addEventListener("input", () => {
+      uiState.people.search = search.value.trim();
+      renderPeopleView();
+    });
+  }
+  if (reset) {
+    reset.addEventListener("click", () => {
+      uiState.people.search = "";
+      uiState.people.selected = null;
+      uiState.people.weekKey = null;
+      if (search) search.value = "";
+      renderPeopleView();
+    });
+  }
+}
+
+function getCurrentWeekKey() {
+  return T5TService.getWeekKey(T5TService.parseDate(new Date()));
+}
+
+function parseWriterLabel(value) {
+  const fullName = String(value || "익명").trim() || "익명";
+  const parts = fullName.split("/").map(part => part.trim()).filter(Boolean);
+  return {
+    fullName,
+    displayName: parts[0] || fullName,
+    affiliation: parts.length > 1 ? parts.slice(1).join(" / ") : ""
+  };
+}
+
+function getPersonEntries() {
+  const people = new Map();
+  (T5TService.rawItems || []).forEach(item => {
+    const workDate = T5TService.parseDate(item.work_date);
+    if (!workDate || T5TService.isHeaderOnlyLog(item)) return;
+    const writer = parseWriterLabel(item.writer_name);
+    const name = writer.fullName;
+    const weekKey = T5TService.getWeekKey(workDate);
+    const taskType = T5TService.normalizeTaskType(item.task_type || item.match_status);
+    const category = T5TService.detectCategory(item);
+    const log = T5TService.makeLogRecord(item, category, weekKey, taskType);
+    log.date_obj = workDate;
+    if (!people.has(name)) {
+      people.set(name, {
+        name,
+        displayName: writer.displayName,
+        affiliation: writer.affiliation,
+        total: 0,
+        weeks: new Map(),
+        latestDate: null,
+        taskTypes: new Map()
+      });
+    }
+    const person = people.get(name);
+    person.total += 1;
+    person.latestDate = !person.latestDate || workDate > person.latestDate ? workDate : person.latestDate;
+    person.taskTypes.set(taskType, (person.taskTypes.get(taskType) || 0) + 1);
+    if (!person.weeks.has(weekKey)) person.weeks.set(weekKey, []);
+    person.weeks.get(weekKey).push(log);
+  });
+  return Array.from(people.values()).map(person => {
+    person.sortedWeeks = Array.from(person.weeks.keys()).sort().reverse();
+    person.sortedWeeks.forEach(week => {
+      person.weeks.get(week).sort((a, b) => new Date(b.work_date || 0) - new Date(a.work_date || 0));
+    });
+    return person;
+  }).sort((a, b) => (b.latestDate || 0) - (a.latestDate || 0));
+}
+
+function renderPeopleView() {
+  const list = document.getElementById("people-card-list");
+  const detail = document.getElementById("person-detail-card");
+  if (!list || !detail) return;
+
+  const people = getPersonEntries();
+  const needle = uiState.people.search.toLowerCase();
+  const visiblePeople = people.filter(person => {
+    const haystack = `${person.name} ${person.displayName} ${person.affiliation}`.toLowerCase();
+    return !needle || haystack.includes(needle);
+  });
+  if (!uiState.people.selected && visiblePeople.length) {
+    uiState.people.selected = visiblePeople[0].name;
+  }
+
+  list.innerHTML = visiblePeople.length ? visiblePeople.map(person => renderPersonCard(person)).join("") : `
+    <div class="people-empty">검색 결과가 없습니다.</div>
+  `;
+
+  const selected = people.find(person => person.name === uiState.people.selected);
+  if (!selected) {
+    detail.innerHTML = `
+      <div class="person-empty">
+        <strong>작성자를 선택하세요.</strong>
+        <span>카드를 누르면 이번 주 기록과 과거 주차 선택이 표시됩니다.</span>
+      </div>
+    `;
+    return;
+  }
+  renderPersonDetail(selected);
+}
+
+function renderPersonCard(person) {
+  const currentCount = (person.weeks.get(getCurrentWeekKey()) || []).length;
+  const dominantTask = Array.from(person.taskTypes.entries()).sort((a, b) => b[1] - a[1])[0];
+  return `
+    <button class="person-card ${uiState.people.selected === person.name ? "active" : ""}" type="button" onclick='selectPerson(${jsString(person.name)})'>
+      <span class="person-card-name">${escapeHtml(person.displayName)}</span>
+      <span class="person-card-meta">${person.affiliation ? `${escapeHtml(person.affiliation)} · ` : ""}${person.total}건 · ${person.sortedWeeks.length}주 누적</span>
+      <span class="person-card-foot">
+        <strong>이번주 ${currentCount}건</strong>
+        <em>${dominantTask ? escapeHtml(dominantTask[0]) : "기록 없음"}</em>
+      </span>
+    </button>
+  `;
+}
+
+function selectPerson(name) {
+  uiState.people.selected = name;
+  uiState.people.weekKey = null;
+  renderPeopleView();
+}
+
+function selectPersonWeek(weekKey) {
+  uiState.people.weekKey = weekKey;
+  const people = getPersonEntries();
+  const selected = people.find(person => person.name === uiState.people.selected);
+  if (selected) renderPersonDetail(selected);
+}
+
+function renderPersonDetail(person) {
+  const detail = document.getElementById("person-detail-card");
+  if (!detail) return;
+  const currentWeek = getCurrentWeekKey();
+  const weekKey = uiState.people.weekKey || currentWeek;
+  const logs = person.weeks.get(weekKey) || [];
+  const latestLogs = person.sortedWeeks.length ? person.weeks.get(person.sortedWeeks[0]) || [] : [];
+  const weekOptions = [currentWeek, ...person.sortedWeeks.filter(week => week !== currentWeek)];
+  const selectedLabel = weekKey === currentWeek ? "이번주" : weekKey;
+  detail.innerHTML = `
+    <div class="person-detail-head">
+      <div>
+        <div class="section-eyebrow">Writer Timeline</div>
+        <h2>${escapeHtml(person.displayName)}</h2>
+        <p>${person.affiliation ? `${escapeHtml(person.affiliation)} · ` : ""}${person.total}건 누적 · ${person.sortedWeeks.length}개 주차 · 최근 ${escapeHtml(T5TService.formatDate(person.latestDate))}</p>
+      </div>
+      <select class="period-input person-week-select" onchange="selectPersonWeek(this.value)">
+        ${weekOptions.map(week => `<option value="${escapeHtml(week)}" ${week === weekKey ? "selected" : ""}>${week === currentWeek ? "이번주" : escapeHtml(week)} (${(person.weeks.get(week) || []).length}건)</option>`).join("")}
+      </select>
+    </div>
+    <div class="person-week-summary">
+      <strong>${escapeHtml(selectedLabel)}</strong>
+      <span>${logs.length}건</span>
+    </div>
+    <div class="person-log-list">
+      ${logs.length ? logs.map(renderPersonLog).join("") : `
+        <div class="person-empty person-empty-inline">
+          <strong>이번 주 기록이 없습니다.</strong>
+          <span>${latestLogs.length ? "상단 주차 선택에서 과거 기록을 확인할 수 있습니다." : "아직 누적 기록이 없습니다."}</span>
+        </div>
+      `}
+    </div>
+  `;
+}
+
+function renderPersonLog(log) {
+  const keywords = (log.keywords || []).slice(0, 5).map(keyword => `<span>#${escapeHtml(keyword)}</span>`).join("");
+  return `
+    <article class="person-log-card">
+      <div class="person-log-meta">
+        <span>${escapeHtml(log.work_date || "")}</span>
+        <span>${escapeHtml(log.task_type || "")}</span>
+        <span>${escapeHtml(log.project || "미분류")}</span>
+      </div>
+      ${log.summary ? `<h3>${escapeHtml(log.summary)}</h3>` : ""}
+      <p>${escapeHtml(log.raw_text || log.summary || "내용 없음")}</p>
+      ${keywords ? `<div class="person-log-tags">${keywords}</div>` : ""}
+    </article>
   `;
 }
 
@@ -629,6 +816,7 @@ function setupNav() {
       document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
       tab.classList.add("active");
       document.getElementById(tab.dataset.view).classList.add("active");
+      if (tab.dataset.view === "view-people") renderPeopleView();
     };
   });
 }

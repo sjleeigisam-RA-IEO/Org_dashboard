@@ -28,7 +28,7 @@
   </style>
   <meta name="description" content="IGIS Real Asset 부문 T5T 주간업무 대시보드">
   <link rel="stylesheet" href="../shared/ifpdp-system-theme.css?v=ifpdp_system_3">
-  <link rel="stylesheet" href="style.css?v=final_sql_v7">
+  <link rel="stylesheet" href="style.css?v=final_sql_v8">
   <link rel="stylesheet" href="ifpdp-dashboard.css?v=ifpdp_system_dash_2">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -61,6 +61,9 @@
   <nav class="nav-tabs">
     <button class="nav-tab active" data-view="view-overview">
       <span class="icon">📈</span> Executive Overview
+    </button>
+    <button class="nav-tab" data-view="view-people">
+      <span class="icon">👤</span> 개인별 기록
     </button>
     <button class="nav-tab" data-view="view-summary">
       <span class="icon">🗒</span> T5T 요약본
@@ -172,6 +175,31 @@
     </div>
   </div>
 
+  <div id="view-people" class="view">
+    <section class="people-section">
+      <div class="people-head">
+        <div>
+          <div class="section-eyebrow">Personal Timeline</div>
+          <div class="section-title">개인별 T5T 누적 기록</div>
+          <div class="section-copy">작성자별로 이번 주 업무를 먼저 확인하고, 주차를 바꿔 과거 기록을 조회합니다.</div>
+        </div>
+        <div class="people-controls">
+          <input id="people-search" class="period-input people-search" type="search" placeholder="이름 검색">
+          <button id="people-reset" class="period-toggle-btn people-reset" type="button">전체 보기</button>
+        </div>
+      </div>
+      <div class="people-layout">
+        <aside class="people-card-list" id="people-card-list"></aside>
+        <section class="person-detail-card card" id="person-detail-card">
+          <div class="person-empty">
+            <strong>작성자를 선택하세요.</strong>
+            <span>카드를 누르면 이번 주 기록과 과거 주차 선택이 표시됩니다.</span>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+
   <div id="view-summary" class="view">
     <div class="card" style="padding: 0; min-height: 75vh; display: flex; flex-direction: column;">
       <div class="summary-head">
@@ -250,7 +278,7 @@
 
 <script src="t5t-service-v2.js?v=v_infinite_v36"></script>
 <script src="t5t-charts.js?v=v_infinite_v33"></script>
-<script src="app-v2.js?v=v_infinite_v41"></script>
+<script src="app-v2.js?v=v_infinite_v42"></script>
 <script src="../security-lite.js?v=ra_stable_v1"></script>
 <nav class="mobile-dashboard-tabs" aria-label="Mobile dashboard navigation">
   <a class="mobile-dashboard-tab" href="../CRM_base/portfolio-analysis/index.html">펀드검색</a>
