@@ -192,8 +192,7 @@
             switchTab('insight');
         }
 
-        // Session & Idle Timeout Logic
-        const TIMEOUT_LIMIT = RAAuth.IDLE_TIMEOUT_MS;
+        // Session activity marker for child frames. Auto-login expiry is handled server-side.
         function getSession() { return RAAuth.getSessionUser(); }
         function resetTimer() { RAAuth.touch(); }
 
@@ -201,17 +200,8 @@
             document.addEventListener(name, resetTimer, true);
         });
 
-        const idleCheckInterval = setInterval(() => {
-            const lastActive = parseInt(sessionStorage.getItem('last_active') || Date.now());
-            if (Date.now() - lastActive > TIMEOUT_LIMIT) {
-                clearInterval(idleCheckInterval);
-                handleLogout(true);
-            }
-        }, 30000);
-
-        async function handleLogout(isAuto = false) {
+        async function handleLogout() {
             await RAAuth.logout();
-            if (isAuto) alert("30분 동안 활동이 없어 자동으로 로그아웃되었습니다.");
             location.href = './index.html';
         }
     </script>

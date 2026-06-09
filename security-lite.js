@@ -2,7 +2,6 @@
   const AUTH_TOKEN_KEY = "ra_auth_token";
   const USER_KEY = "ra_user";
   const LAST_ACTIVE_KEY = "last_active";
-  const IDLE_TIMEOUT_MS = 30 * 60 * 1000;
   const AUTH_ENDPOINT = "https://qvegpozwrcmspdvjokiz.functions.supabase.co/ra-auth";
 
   boot();
@@ -35,8 +34,7 @@
 
   function hasActiveSession() {
     const user = sessionStorage.getItem(USER_KEY);
-    const lastActive = Number(sessionStorage.getItem(LAST_ACTIVE_KEY) || 0);
-    return Boolean(user && lastActive && Date.now() - lastActive < IDLE_TIMEOUT_MS);
+    return Boolean(user);
   }
 
   function bindActivityTracking() {

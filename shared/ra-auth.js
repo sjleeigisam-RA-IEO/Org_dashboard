@@ -2,7 +2,6 @@
   const AUTH_TOKEN_KEY = "ra_auth_token";
   const USER_KEY = "ra_user";
   const LAST_ACTIVE_KEY = "last_active";
-  const IDLE_TIMEOUT_MS = 30 * 60 * 1000;
 
   function endpoint() {
     if (window.RA_AUTH_ENDPOINT) return window.RA_AUTH_ENDPOINT;
@@ -56,11 +55,6 @@
     sessionStorage.setItem(LAST_ACTIVE_KEY, String(Date.now()));
   }
 
-  function isIdleExpired() {
-    const lastActive = Number(sessionStorage.getItem(LAST_ACTIVE_KEY) || 0);
-    return !lastActive || Date.now() - lastActive > IDLE_TIMEOUT_MS;
-  }
-
   async function resumeRememberedSession() {
     const token = getRememberToken();
     if (!token) return null;
@@ -90,7 +84,6 @@
     AUTH_TOKEN_KEY,
     USER_KEY,
     LAST_ACTIVE_KEY,
-    IDLE_TIMEOUT_MS,
     request,
     getSessionUser,
     setSessionUser,
@@ -98,7 +91,6 @@
     getRememberToken,
     clearLocal,
     touch,
-    isIdleExpired,
     resumeRememberedSession,
     logout,
   };
