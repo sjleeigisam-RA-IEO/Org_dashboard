@@ -1,5 +1,6 @@
 const DRAFT_KEY = "t5t-input-draft";
 const EDGE_SUBMIT_ENDPOINT = "https://qvegpozwrcmspdvjokiz.functions.supabase.co/t5t-submit";
+const RA_AUTH_ENDPOINT = "https://qvegpozwrcmspdvjokiz.functions.supabase.co/ra-auth";
 const IS_LOCAL_HOST = ["localhost", "127.0.0.1", ""].includes(window.location.hostname);
 const SUBMIT_ENDPOINT = window.T5T_SUBMIT_ENDPOINT || (IS_LOCAL_HOST ? "http://localhost:8787/submit_t5t" : EDGE_SUBMIT_ENDPOINT);
 const SERVER_DRAFT_SAVE_ENDPOINT = window.T5T_DRAFT_SAVE_ENDPOINT || `${EDGE_SUBMIT_ENDPOINT}?mode=draft-save`;
@@ -136,12 +137,25 @@ async function loadMasters() {
 
     // 로그아웃 동작 설정
     if (logoutBtnEl) {
-      logoutBtnEl.addEventListener("click", () => {
+      logoutBtnEl.addEventListener("click", async () => {
         if (confirm("로그아웃 하시겠습니까? 메인 페이지로 이동합니다.")) {
+          const authToken = localStorage.getItem("ra_auth_token");
           sessionStorage.removeItem("ra_user");
           sessionStorage.removeItem("last_active");
           localStorage.removeItem("ra_user");
           localStorage.removeItem("last_active");
+          localStorage.removeItem("ra_auth_token");
+          if (authToken) {
+            try {
+              await fetch(RA_AUTH_ENDPOINT, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ mode: "logout", session_token: authToken }),
+              });
+            } catch (error) {
+              console.warn("Failed to revoke remembered auth token", error);
+            }
+          }
           window.top.location.href = "../index.html";
         }
       });

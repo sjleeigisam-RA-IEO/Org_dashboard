@@ -6,6 +6,8 @@
     <title>Integrated Management System | IGIS RA</title>
     <link rel="stylesheet" href="./shared/ifpdp-system-theme.css?v=ifpdp_system_3">
     <link rel="stylesheet" href="./org_dashboard/admin.css">
+    <script src="./CRM_base/portfolio-analysis/config.js"></script>
+    <script src="./shared/ra-auth.js?v=ra_auth_1"></script>
     <style>
         body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #1f1f1e; font-family: var(--font); }
         
@@ -168,30 +170,32 @@
             resetTimer();
         }
 
-        // Initialize first tab & check admin permission
-        window.addEventListener('DOMContentLoaded', () => {
-            const raUser = getSession();
-            if (raUser) {
-                document.getElementById('userNameDisplay').innerText = raUser.name;
-                // '이시정' 사용자에게만 어드민 탭 노출
-                if (raUser.name === '이시정') {
-                    document.getElementById('tab-admin').style.display = 'block';
-                }
+        // Initialize first tab & check auth state
+        window.addEventListener('DOMContentLoaded', initPortal);
+
+        async function initPortal() {
+            let raUser = getSession();
+            if (!raUser) {
+                raUser = await RAAuth.resumeRememberedSession();
             }
+            if (!raUser) {
+                location.href = './index.html';
+                return;
+            }
+
+            document.getElementById('userNameDisplay').innerText = raUser.name;
+            // '이시정' 사용자에게만 어드민 탭 노출
+            if (raUser.name === '이시정') {
+                document.getElementById('tab-admin').style.display = 'block';
+            }
+            resetTimer();
             switchTab('insight');
-        });
+        }
 
         // Session & Idle Timeout Logic
-        const TIMEOUT_LIMIT = 30 * 60 * 1000;
-        function getSession() { return JSON.parse(sessionStorage.getItem('ra_user')); }
-        function resetTimer() { sessionStorage.setItem('last_active', Date.now()); }
-
-        const raUserCheck = getSession();
-        if (!raUserCheck) {
-            location.href = './index.html';
-        } else {
-            resetTimer();
-        }
+        const TIMEOUT_LIMIT = RAAuth.IDLE_TIMEOUT_MS;
+        function getSession() { return RAAuth.getSessionUser(); }
+        function resetTimer() { RAAuth.touch(); }
 
         ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(name => {
             document.addEventListener(name, resetTimer, true);
@@ -205,9 +209,8 @@
             }
         }, 30000);
 
-        function handleLogout(isAuto = false) {
-            sessionStorage.removeItem('ra_user');
-            sessionStorage.removeItem('last_active');
+        async function handleLogout(isAuto = false) {
+            await RAAuth.logout();
             if (isAuto) alert("30분 동안 활동이 없어 자동으로 로그아웃되었습니다.");
             location.href = './index.html';
         }
