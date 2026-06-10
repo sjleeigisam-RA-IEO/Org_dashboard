@@ -1,6 +1,9 @@
 var debounceTimer;
 var currentView = 'list';
 var currentTab = 'all';
+var LEFT_PANEL_WIDTH_KEY = 'ra_insight_left_panel_width_v1';
+var LEFT_PANEL_MIN_WIDTH = 300;
+var LEFT_PANEL_MAX_WIDTH = 460;
 
 function setDisplay(element, value) {
   if (element) element.style.display = value;
@@ -84,6 +87,96 @@ function handleCategoryTabChange(nextTab, tabButtons) {
   }
 }
 
+function clampLeftPanelWidth(value) {
+  var numeric = Number(value);
+  if (!Number.isFinite(numeric)) return LEFT_PANEL_MAX_WIDTH;
+  return Math.max(LEFT_PANEL_MIN_WIDTH, Math.min(LEFT_PANEL_MAX_WIDTH, numeric));
+}
+
+function applyLeftPanelWidth(width, shouldPersist) {
+  var leftPanel = document.getElementById('leftPanel');
+  var resizer = document.getElementById('leftPanelResizer');
+  var clamped = clampLeftPanelWidth(width);
+  document.documentElement.style.setProperty('--left-panel-width', clamped + 'px');
+  if (leftPanel) {
+    leftPanel.classList.toggle('is-compact', clamped <= 360);
+  }
+  if (resizer) {
+    resizer.setAttribute('aria-valuemin', String(LEFT_PANEL_MIN_WIDTH));
+    resizer.setAttribute('aria-valuemax', String(LEFT_PANEL_MAX_WIDTH));
+    resizer.setAttribute('aria-valuenow', String(Math.round(clamped)));
+  }
+  if (shouldPersist) {
+    try {
+      localStorage.setItem(LEFT_PANEL_WIDTH_KEY, String(Math.round(clamped)));
+    } catch (e) {
+      console.warn('Could not persist left panel width:', e);
+    }
+  }
+  return clamped;
+}
+
+function initLeftPanelResize() {
+  var leftPanel = document.getElementById('leftPanel');
+  var resizer = document.getElementById('leftPanelResizer');
+  var layout = document.querySelector('.main-layout.container');
+  if (!leftPanel || !resizer || !layout) return;
+
+  var storedWidth = null;
+  try {
+    storedWidth = localStorage.getItem(LEFT_PANEL_WIDTH_KEY);
+  } catch (e) {
+    storedWidth = null;
+  }
+  var currentWidth = applyLeftPanelWidth(storedWidth || LEFT_PANEL_MAX_WIDTH, false);
+  var isDragging = false;
+
+  function widthFromPointer(event) {
+    var layoutRect = layout.getBoundingClientRect();
+    return event.clientX - layoutRect.left;
+  }
+
+  function onPointerMove(event) {
+    if (!isDragging) return;
+    currentWidth = applyLeftPanelWidth(widthFromPointer(event), false);
+  }
+
+  function onPointerUp() {
+    if (!isDragging) return;
+    isDragging = false;
+    document.body.classList.remove('resizing-left-panel');
+    applyLeftPanelWidth(currentWidth, true);
+    document.removeEventListener('pointermove', onPointerMove);
+    document.removeEventListener('pointerup', onPointerUp);
+  }
+
+  resizer.addEventListener('pointerdown', function (event) {
+    if (event.button !== 0) return;
+    event.preventDefault();
+    isDragging = true;
+    currentWidth = widthFromPointer(event);
+    document.body.classList.add('resizing-left-panel');
+    document.addEventListener('pointermove', onPointerMove);
+    document.addEventListener('pointerup', onPointerUp);
+    currentWidth = applyLeftPanelWidth(currentWidth, false);
+  });
+
+  resizer.addEventListener('dblclick', function () {
+    currentWidth = applyLeftPanelWidth(LEFT_PANEL_MAX_WIDTH, true);
+  });
+
+  resizer.addEventListener('keydown', function (event) {
+    var nextWidth = currentWidth;
+    if (event.key === 'ArrowLeft') nextWidth -= 24;
+    else if (event.key === 'ArrowRight') nextWidth += 24;
+    else if (event.key === 'Home') nextWidth = LEFT_PANEL_MIN_WIDTH;
+    else if (event.key === 'End') nextWidth = LEFT_PANEL_MAX_WIDTH;
+    else return;
+    event.preventDefault();
+    currentWidth = applyLeftPanelWidth(nextWidth, true);
+  });
+}
+
 function initApp() {
   var listBtn = document.getElementById('listViewBtn');
   var chartBtn = document.getElementById('chartViewBtn');
@@ -118,6 +211,8 @@ function initApp() {
   if (typeof renderBasket === 'function') {
     renderBasket();
   }
+
+  initLeftPanelResize();
 
   document.body.classList.add(currentView === 'ranking' ? 'analysis-view' : 'list-view');
 }
