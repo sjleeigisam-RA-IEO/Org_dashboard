@@ -5,6 +5,34 @@
     document.getElementById('drawerNav').style.display = 'none';
   };
 
+  window.detailPanelHistory = window.detailPanelHistory || [];
+
+  window.pushDetailPanelHistory = () => {
+    if (!detailPanel) return;
+    const html = detailPanel.innerHTML || '';
+    if (!html.trim()) return;
+    const last = window.detailPanelHistory[window.detailPanelHistory.length - 1];
+    if (last === html) return;
+    window.detailPanelHistory.push(html);
+  };
+
+  window.goBackDetailPanel = () => {
+    window.closeDrawer();
+    window.relationshipRenderMode = 'inline';
+    if (!detailPanel) return;
+    const previous = window.detailPanelHistory.pop();
+    if (previous) {
+      detailPanel.innerHTML = previous;
+    } else {
+      detailPanel.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">🔍</div>
+          <p>리스트에서 항목을 선택하면<br>상세 정보가 여기에 표시됩니다.</p>
+        </div>
+      `;
+    }
+  };
+
   window.openFundDetail = (groupKey, groupName) => {
     if (!groupKey || String(groupKey).trim() === '' || groupKey === 'undefined' || groupKey === 'null') return;
     const allFunds = window.lastTargetFunds || lastTargetFunds || [];
@@ -107,7 +135,31 @@
     header.style.border = 'none';
   };
 
-  function openDrawerShell(label, title, subtitle) {
+  function openDrawerShell(label, title, subtitle, options) {
+    options = options || {};
+    window.relationshipRenderMode = options.inline ? 'inline' : 'drawer';
+    if (options.inline) {
+      closeDrawer();
+      if (!options.skipHistory) window.pushDetailPanelHistory();
+      detailPanel.innerHTML = `
+        <div class="detail-header">
+          <button type="button" class="back-to-results-btn" onclick="goBackDetailPanel()">← 이전으로</button>
+          <p style="color:var(--accent); font-size:12px; font-weight:800; margin-bottom:8px; letter-spacing:1px;">${label}</p>
+          <h2 style="font-size:24px; font-weight:800; line-height:1.3;">${title}</h2>
+          <div style="margin-top:10px; color:var(--muted); font-size:15px; font-weight:500;">${subtitle || ''}</div>
+        </div>
+        <div id="inlineRelationshipContent" class="detail-section">
+          <div class="no-results">관계 정보를 불러오는 중...</div>
+        </div>
+      `;
+      return {
+        header: detailPanel.querySelector('.detail-header'),
+        content: document.getElementById('inlineRelationshipContent'),
+        nav: null,
+        inline: true
+      };
+    }
+
     const header = document.getElementById('drawerHeader');
     const content = document.getElementById('drawerContent');
     const nav = document.getElementById('drawerNav');
@@ -131,46 +183,99 @@
   }
 
   function assetListCard(row, caption) {
-    const assetName = row.canonical_name || row.asset_name || row.asset_id || '-';
-    const address = row.address_text || row.address || '-';
-    const pnu = row.pnu || row.metadata?.pnu || '';
+    const assetName = assetDisplayName(row);
     const relation = row.relation_type || '';
     const assetId = row.asset_id || '';
     return `
-      <div class="fund-detail-card" onclick="AssetCanonical.renderCanonicalAssetDetail('${assetId}', '${String(assetName).replace(/'/g, "\\'")}')" style="cursor:pointer; margin-bottom:12px; border-left:4px solid var(--accent);">
+      <div class="fund-detail-card" onclick="AssetCanonical.renderCanonicalAssetDetail('${assetId}', '${String(assetName).replace(/'/g, "\\'")}', { inlineOnly: window.relationshipRenderMode === 'inline' })" style="cursor:pointer; margin-bottom:12px; border-left:4px solid var(--accent);">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
           <h3 style="font-size:15px; font-weight:800; flex:1; margin:0;">${assetName}</h3>
           <span style="padding:3px 8px; border-radius:6px; font-size:11px; font-weight:800; background:#f1f5f9; color:#475569;">${relation || caption || 'asset'}</span>
         </div>
-        <div class="meta-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr)); gap:12px; margin-top:12px;">
-          <div class="meta-item"><span class="meta-label">주소</span><span class="meta-val">${address}</span></div>
-          <div class="meta-item"><span class="meta-label">PNU</span><span class="meta-val">${pnu || '-'}</span></div>
-        </div>
+        ${renderClassificationGrid(assetClassificationItems(row))}
       </div>
     `;
   }
 
   function fundListCard(row, caption) {
     const fundId = row.fund_id || row.project_id || '';
-    const fundName = row.project_mission_name || row.fund_name || row.project_name || row.short_name || fundId || '-';
-    const status = row.fund_status || row.project_status || row.status || '-';
+    const fundName = formatFundVehicleName(row);
     const relation = row.relation_type || caption || '';
     return `
-      <div class="fund-detail-card" onclick="openFundRelationshipDrawer('${fundId}', '${String(fundName).replace(/'/g, "\\'")}')" style="cursor:pointer; margin-bottom:12px; border-left:4px solid #10b981;">
+      <div class="fund-detail-card" onclick="openFundRelationshipDrawer('${fundId}', '${String(fundName).replace(/'/g, "\\'")}', { inline: window.relationshipRenderMode === 'inline' })" style="cursor:pointer; margin-bottom:12px; border-left:4px solid #10b981;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
           <h3 style="font-size:15px; font-weight:800; flex:1; margin:0;">${fundName}</h3>
           <span style="padding:3px 8px; border-radius:6px; font-size:11px; font-weight:800; background:rgba(16,185,129,0.1); color:#059669;">${relation || 'fund'}</span>
         </div>
-        <div class="meta-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr)); gap:12px; margin-top:12px;">
-          <div class="meta-item"><span class="meta-label">ID</span><span class="meta-val">${fundId || '-'}</span></div>
-          <div class="meta-item"><span class="meta-label">상태</span><span class="meta-val">${status}</span></div>
-        </div>
+        ${renderClassificationGrid(fundClassificationItems(row))}
+      </div>
+    `;
+  }
+
+  function formatFundVehicleName(row) {
+    if (!row) return '-';
+    if (row.fund_id) {
+      const name = row.fund_name || row.short_name || row.project_mission_name || row.project_name || row.fund_id;
+      return row.short_name && row.fund_name ? `[${row.short_name}] ${row.fund_name}` : name;
+    }
+    return row.project_name || row.project_mission_name || row.fund_name || row.short_name || row.project_id || '-';
+  }
+
+  function formatExposureAmount(row, keys) {
+    for (const key of keys) {
+      if (row && row[key]) return formatNumber(row[key]);
+    }
+    return '-';
+  }
+
+  function renderParticipantTables(beneficiaries, lenders) {
+    return `
+      <div class="detail-section">
+        <div class="section-title">수익자 세부 리스트 (${beneficiaries.length})</div>
+        <table class="data-table">
+          <thead><tr><th>수익자</th><th>구분</th><th>약정금액</th><th>납입금액</th><th>잔여금액</th><th>일자</th></tr></thead>
+          <tbody>${beneficiaries.map(function (row) {
+            return `<tr>
+              <td style="font-weight:700">${row.beneficiary_clean || row.beneficiary_raw || '-'}</td>
+              <td>${row.beneficiary_cat || row.category || '-'}</td>
+              <td>${formatExposureAmount(row, ['committed_amt'])}</td>
+              <td>${formatExposureAmount(row, ['invested_amt'])}</td>
+              <td>${formatExposureAmount(row, ['remaining_amt'])}</td>
+              <td>${row.invested_date || row.start_date || row.drawdown_date || '-'}</td>
+            </tr>`;
+          }).join('') || '<tr><td colspan="6">수익자 정보가 없습니다.</td></tr>'}</tbody>
+        </table>
+      </div>
+      <div class="detail-section">
+        <div class="section-title">대주 세부 리스트 (${lenders.length})</div>
+        <table class="data-table">
+          <thead><tr><th>대주</th><th>약정금액</th><th>실행금액</th><th>잔여금액</th><th>인출일</th><th>만기일</th></tr></thead>
+          <tbody>${lenders.map(function (row) {
+            return `<tr>
+              <td style="font-weight:700">${row.lender_clean || row.lender_raw || '-'}</td>
+              <td>${formatExposureAmount(row, ['committed_amt'])}</td>
+              <td>${formatExposureAmount(row, ['drawn_amt', 'invested_amt'])}</td>
+              <td>${formatExposureAmount(row, ['remaining_amt'])}</td>
+              <td>${row.drawdown_date || row.start_date || '-'}</td>
+              <td>${row.loan_maturity_date || row.end_date || '-'}</td>
+            </tr>`;
+          }).join('') || '<tr><td colspan="6">대주 정보가 없습니다.</td></tr>'}</tbody>
+        </table>
       </div>
     `;
   }
 
   function relationDisplayKey(row) {
-    return row.pnu || row.asset_id || row.canonical_name || row.asset_name || '';
+    return row.asset_id || row.canonical_id || row.asset_code || row.pnu || row.canonical_name || row.asset_name || '';
+  }
+
+  function assetDisplayName(row) {
+    if (!row) return '-';
+    if (row.physical_asset_name) return row.physical_asset_name;
+    if (row.asset_name_cleanup_action && String(row.asset_name_cleanup_action).indexOf('suppress') === 0) {
+      return row.non_physical_asset_label || row.asset_code || row.asset_id || '-';
+    }
+    return row.canonical_name || row.asset_name || row.asset_code || row.asset_id || '-';
   }
 
   function dedupeAssetRelationshipRows(rows) {
@@ -195,6 +300,96 @@
     return String(value || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
   }
 
+  function firstFilledValue(row, keys) {
+    for (const key of keys) {
+      const value = row && row[key];
+      if (value !== undefined && value !== null && String(value).trim() !== '') return value;
+    }
+    return '';
+  }
+
+  function metaValue(row, key) {
+    if (!row) return '';
+    if (typeof getFieldValue === 'function') {
+      const value = getFieldValue(row, key);
+      if (value !== undefined && value !== null && String(value).trim() !== '') return value;
+    }
+    const direct = row[key];
+    if (direct !== undefined && direct !== null && String(direct).trim() !== '') return direct;
+    return row.metadata && row.metadata[key] !== undefined ? row.metadata[key] : '';
+  }
+
+  function renderClassificationGrid(items) {
+    const filtered = (items || []).filter(function (item) {
+      return item && item.value !== undefined && item.value !== null && String(item.value).trim() !== '';
+    });
+    if (!filtered.length) return '';
+    return `
+      <div class="meta-grid classification-grid">
+        ${filtered.slice(0, 8).map(function (item) {
+          const tone = item.tone || 'tone-neutral';
+          return `<div class="meta-item classification-item ${tone}"><span class="meta-label">${item.label}</span><span class="meta-val">${item.value}</span></div>`;
+        }).join('')}
+      </div>
+    `;
+  }
+
+  function compactArea(value) {
+    const numeric = Number(String(value || '').replace(/,/g, ''));
+    if (!Number.isFinite(numeric) || !numeric) return '';
+    const pyeong = numeric * 0.3025;
+    return `${Math.round(numeric).toLocaleString()}㎡ (${Math.round(pyeong).toLocaleString()}py)`;
+  }
+
+  function compactFloors(row) {
+    const down = row && row.floors_down;
+    const up = row && row.floors_up;
+    if (!down && !up) return '';
+    return `B${down || '-'} / ${up || '-'}F`;
+  }
+
+  function assetClassificationItems(row) {
+    return [
+      { label: '유형', value: firstFilledValue(row, ['asset_type', 'asset_kind']), tone: 'tone-asset' },
+      { label: '용도', value: firstFilledValue(row, ['main_usage', 'usage']), tone: 'tone-sector' },
+      { label: '연면적', value: compactArea(firstFilledValue(row, ['gross_floor_area', 'gfa'])), tone: 'tone-size' },
+      { label: '층수', value: compactFloors(row), tone: 'tone-size' },
+      { label: '준공일', value: firstFilledValue(row, ['completion_date']), tone: 'tone-date' },
+      { label: '자산코드', value: firstFilledValue(row, ['asset_code']), tone: 'tone-code' },
+      { label: '데이터상태', value: firstFilledValue(row, ['data_completeness', 'review_status']), tone: 'tone-status' },
+      { label: '주소', value: firstFilledValue(row, ['address_text', 'address']), tone: 'tone-location' }
+    ];
+  }
+
+  function fundClassificationItems(row) {
+    return [
+      { label: '유형', value: metaValue(row, 'fund_type') || metaValue(row, 'asset_nature_class'), tone: 'tone-asset' },
+      { label: '기초자산', value: metaValue(row, 'base_asset_class') || row.sector || row.asset_name, tone: 'tone-asset' },
+      { label: '섹터', value: row.sector || metaValue(row, 'investment_sector'), tone: 'tone-sector' },
+      { label: '전략', value: metaValue(row, 'investment_strategy'), tone: 'tone-strategy' },
+      { label: '지역', value: metaValue(row, 'domestic_overseas') || metaValue(row, 'primary_region'), tone: 'tone-location' },
+      { label: 'Vehicle', value: metaValue(row, 'vehicle_type'), tone: 'tone-code' },
+      { label: '모자구분', value: metaValue(row, 'parent_child_type'), tone: 'tone-code' },
+      { label: '상태', value: row.fund_status || row.project_status || row.status, tone: 'tone-status' }
+    ];
+  }
+
+  async function enrichAssetRows(rows) {
+    const baseRows = rows || [];
+    const ids = Array.from(new Set(baseRows.map(function (row) { return row.asset_id; }).filter(Boolean)));
+    if (!ids.length) return baseRows;
+    const res = await _supabase.from('asset_master').select('*').in('asset_id', ids).limit(500);
+    if (res.error) throw res.error;
+    const byId = {};
+    (res.data || []).forEach(function (asset) {
+      byId[asset.asset_id] = asset;
+    });
+    return baseRows.map(function (row) {
+      const asset = byId[row.asset_id] || {};
+      return { ...asset, ...row, metadata: { ...(asset.metadata || {}), ...(row.metadata || {}) } };
+    });
+  }
+
   function amountValue(row, key) {
     const value = row && row[key];
     if (typeof value === 'number') return value;
@@ -202,7 +397,85 @@
     return Number.isFinite(parsed) ? parsed : 0;
   }
 
-  window.openInstitutionRelationshipDrawer = async (type, name, items) => {
+  async function fetchAssetsByIds(assetIds) {
+    const ids = Array.from(new Set((assetIds || []).filter(Boolean)));
+    if (!ids.length) return [];
+    const res = await _supabase.from('asset_master').select('*').in('asset_id', ids).limit(500);
+    if (res.error) throw res.error;
+    return (res.data || []).map(function (asset) {
+      return { ...asset, relation_type: 'primary_asset', source_table: 'asset_master' };
+    });
+  }
+
+  async function fetchFundsByPrimaryAsset(assetId) {
+    if (!assetId) return [];
+    const res = await _supabase.from('v_funds_enriched').select('*').eq('primary_asset_id', assetId).limit(300);
+    if (res.error) throw res.error;
+    return (res.data || []).map(function (fund) {
+      return { ...fund, relation_type: 'primary_asset_fallback' };
+    });
+  }
+
+  function dedupeFundRows(rows) {
+    const best = {};
+    (rows || []).forEach(function (row) {
+      const key = row.fund_id || row.project_id;
+      if (!key) return;
+      best[key] = Object.assign({}, best[key] || {}, row);
+    });
+    return Object.values(best).sort(function (a, b) {
+      return String(a.fund_name || a.short_name || a.fund_id || '').localeCompare(String(b.fund_name || b.short_name || b.fund_id || ''), 'ko');
+    });
+  }
+
+  function primaryAssetIds(row) {
+    if (!row) return [];
+    const ids = [];
+    if (row.primary_asset_id) ids.push(row.primary_asset_id);
+    if (Array.isArray(row.primary_asset_ids)) ids.push.apply(ids, row.primary_asset_ids);
+    return Array.from(new Set(ids.filter(Boolean)));
+  }
+
+  async function fetchFundRelationshipsByAssetIds(assetIds) {
+    const ids = Array.from(new Set((assetIds || []).filter(Boolean)));
+    if (!ids.length) return [];
+    const res = await _supabase.from('fund_asset_relationships').select('*').in('asset_id', ids).limit(1000);
+    if (res.error) throw res.error;
+    return res.data || [];
+  }
+
+  function uniqueIds(ids) {
+    const seen = {};
+    return (ids || []).filter(function (id) {
+      if (!id || seen[id]) return false;
+      seen[id] = true;
+      return true;
+    });
+  }
+
+  async function fetchChildProjects(projectId) {
+    if (!projectId) return [];
+    const res = await _supabase
+      .from('projects')
+      .select('*')
+      .eq('parent_project_id', projectId)
+      .limit(200);
+    if (res.error) throw res.error;
+    return res.data || [];
+  }
+
+  async function fetchProjectAssetRelationships(projectIds) {
+    const ids = uniqueIds(projectIds);
+    if (!ids.length) return [];
+    const query = _supabase.from('project_asset_relationships').select('*').limit(500);
+    const res = ids.length === 1
+      ? await query.eq('project_id', ids[0])
+      : await query.in('project_id', ids);
+    if (res.error) throw res.error;
+    return res.data || [];
+  }
+
+  window.openInstitutionRelationshipDrawer = async (type, name, items, options) => {
     if (!name) return;
     const isLender = type === 'lender';
     const label = isLender ? 'LENDER SELECTED' : 'BENEFICIARY SELECTED';
@@ -210,7 +483,7 @@
     const amountKey = isLender ? 'committed_amt' : 'invested_amt';
     const sourceItems = items || [];
     const fundIds = Array.from(new Set(sourceItems.map(function (row) { return row.fund_id; }).filter(Boolean)));
-    const shell = openDrawerShell(label, name, `${roleLabel}가 연결된 펀드/비히클과 기초자산을 함께 확인하세요.`);
+    const shell = openDrawerShell(label, name, `${roleLabel}가 연결된 펀드/비히클과 기초자산을 함께 확인하세요.`, options);
 
     try {
       let fundRows = sourceItems.map(function (row) { return row.funds; }).filter(Boolean);
@@ -232,6 +505,11 @@
           return fundById[fundId] || { fund_id: fundId, fund_name: fundId };
         });
         assetRows = dedupeAssetRelationshipRows(assetRes.data || []);
+        if (!assetRows.length) {
+          const fallbackAssetIds = fundRows.map(function (fund) { return fund.primary_asset_id; }).filter(Boolean);
+          assetRows = dedupeAssetRelationshipRows(await fetchAssetsByIds(fallbackAssetIds));
+        }
+        assetRows = await enrichAssetRows(assetRows);
       }
 
       const totalAmount = sourceItems.reduce(function (acc, row) {
@@ -298,9 +576,9 @@
     }
   };
 
-  window.openFundRelationshipDrawer = async (fundId, displayName) => {
+  window.openFundRelationshipDrawer = async (fundId, displayName, options) => {
     if (!fundId) return;
-    const shell = openDrawerShell('FUND SELECTED', displayName || fundId, '이 펀드/비히클에 연결된 기초자산을 선택하세요.');
+    const shell = openDrawerShell('FUND SELECTED', displayName || fundId, '이 펀드/비히클에 연결된 기초자산을 선택하세요.', options);
     try {
       const [fundRes, assetRelRes, lenderRes, benRes] = await Promise.all([
         _supabase.from('v_funds_enriched').select('*').eq('fund_id', fundId).maybeSingle(),
@@ -312,11 +590,16 @@
         if (res.error) throw res.error;
       });
       const fund = fundRes.data || {};
-      const assets = dedupeAssetRelationshipRows(assetRelRes.data || []);
+      let assets = dedupeAssetRelationshipRows(assetRelRes.data || []);
+      if (!assets.length) {
+        assets = dedupeAssetRelationshipRows(await fetchAssetsByIds(primaryAssetIds(fund)));
+      }
+      assets = await enrichAssetRows(assets);
       const lenders = lenderRes.data || [];
       const beneficiaries = benRes.data || [];
+      const canonicalTitle = formatFundVehicleName(fund) || displayName || fundId;
       shell.header.querySelector('p').textContent = 'FUND SELECTED';
-      shell.header.querySelector('h2').textContent = displayName || fund.project_mission_name || fund.fund_name || fund.short_name || fundId;
+      shell.header.querySelector('h2').textContent = canonicalTitle;
       shell.content.innerHTML = `
         <div class="detail-section">
           <div class="section-title">연결 자산 (${assets.length})</div>
@@ -330,37 +613,66 @@
           </table>
         </div>
       `;
-      window.currentDrawerData = { type: 'fund', key: fundId, name: displayName || fundId, items: assets };
+      shell.content.innerHTML = shell.content.innerHTML.replace(
+        /<\/div>\s*$/,
+        '</div>' + renderParticipantTables(beneficiaries, lenders)
+      );
+      window.currentDrawerData = { type: 'fund', key: fundId, name: canonicalTitle, items: assets };
     } catch (e) {
       console.error(e);
       shell.content.innerHTML = '<div class="no-results">펀드 관계 정보를 불러오지 못했습니다.</div>';
     }
   };
 
-  window.openProjectRelationshipDrawer = async (projectId, displayName) => {
+  window.openProjectRelationshipDrawer = async (projectId, displayName, options) => {
     if (!projectId) return;
-    const shell = openDrawerShell('PROJECT SELECTED', displayName || projectId, '프로젝트에 연결된 자산과 펀드/비히클을 확인하세요.');
+    options = options || {};
+    const shell = openDrawerShell('PROJECT SELECTED', displayName || projectId, '프로젝트에 연결된 자산과 펀드/비히클을 확인하세요.', options);
     try {
-      const [projectAssetRes, fundAssetRes, fundRes] = await Promise.all([
-        _supabase.from('project_asset_relationships').select('*').eq('project_id', projectId).limit(300),
-        _supabase.from('fund_asset_relationships').select('*').eq('fund_id', projectId).limit(300),
+      const [projectRes, fundRes] = await Promise.all([
+        _supabase.from('projects').select('*').eq('project_id', projectId).maybeSingle(),
         _supabase.from('v_funds_enriched').select('*').eq('fund_id', projectId).maybeSingle()
       ]);
-      [projectAssetRes, fundAssetRes, fundRes].forEach(function (res) {
+      [projectRes, fundRes].forEach(function (res) {
         if (res.error) throw res.error;
       });
-      const assets = dedupeAssetRelationshipRows(
-        (projectAssetRes.data && projectAssetRes.data.length) ? projectAssetRes.data : (fundAssetRes.data || [])
+      const project = projectRes.data || {};
+      const childProjects = projectRes.data ? await fetchChildProjects(projectId) : [];
+      const projectScope = [project].concat(childProjects).filter(function (row) { return row && row.project_id; });
+      const projectScopeIds = uniqueIds([projectId].concat(projectScope.map(function (row) { return row.project_id; })));
+      const [projectAssetRows, fundAssetRes] = await Promise.all([
+        fetchProjectAssetRelationships(projectScopeIds),
+        _supabase.from('fund_asset_relationships').select('*').eq('fund_id', projectId).limit(300)
+      ]);
+      if (fundAssetRes.error) throw fundAssetRes.error;
+      let assets = dedupeAssetRelationshipRows(
+        projectAssetRows && projectAssetRows.length ? projectAssetRows : []
       );
-      const fund = fundRes.data;
+      if (!assets.length) {
+        const optionAssetIds = Array.isArray(options.relatedAssetIds) ? options.relatedAssetIds : [];
+        const fallbackAssetIds = uniqueIds(optionAssetIds.concat([].concat.apply([], projectScope.map(primaryAssetIds))));
+        assets = dedupeAssetRelationshipRows(await fetchAssetsByIds(fallbackAssetIds));
+      }
+      assets = await enrichAssetRows(assets);
+      let fundRows = dedupeFundRows(await fetchFundRelationshipsByAssetIds(assets.map(function (row) { return row.asset_id; })));
+      if (!fundRows.length && !projectRes.data && fundRes.data) {
+        fundRows = [{ ...fundRes.data, relation_type: 'fund_as_project_fallback' }];
+        assets = dedupeAssetRelationshipRows(fundAssetRes.data || []);
+        if (!assets.length) assets = dedupeAssetRelationshipRows(await fetchAssetsByIds(primaryAssetIds(fundRes.data)));
+        assets = await enrichAssetRows(assets);
+      }
+      if (!fundRows.length) {
+        const fallbackFunds = await Promise.all(primaryAssetIds(project).map(fetchFundsByPrimaryAsset));
+        fundRows = dedupeFundRows([].concat.apply([], fallbackFunds));
+      }
       shell.content.innerHTML = `
         <div class="detail-section">
           <div class="section-title">연결 자산 (${assets.length})</div>
           ${assets.map(function (row) { return assetListCard(row, 'project asset'); }).join('') || '<div class="no-results">연결 자산이 없습니다.</div>'}
         </div>
         <div class="detail-section">
-          <div class="section-title">연결 펀드/비히클</div>
-          ${fund ? fundListCard(fund, 'vehicle') : '<div class="no-results">동일 ID의 펀드/비히클을 찾지 못했습니다.</div>'}
+          <div class="section-title">연결 펀드/비히클 (${fundRows.length})</div>
+          ${fundRows.map(function (row) { return fundListCard(row, 'vehicle'); }).join('') || '<div class="no-results">연결 펀드/비히클을 찾지 못했습니다.</div>'}
         </div>
       `;
       window.currentDrawerData = { type: 'project', key: projectId, name: displayName || projectId, items: assets };
@@ -763,7 +1075,9 @@
       html += funds.map(f => {
         const setupDate = f.setup_date || f.metadata?.setup_date || '-';
         const maturityDate = f.maturity_date || f.metadata?.maturity_date || '-';
-        const aum = f.benchmark_aum || 0;
+        const aum = window.AssetCanonical && typeof window.AssetCanonical.relationAumLabel === 'function'
+          ? window.AssetCanonical.relationAumLabel(f)
+          : (f.benchmark_aum ? formatNumber(f.benchmark_aum) : '-');
         return `
           <div class="fund-detail-card" onclick="showDrawerDetail('${f.fund_id}')" style="cursor:pointer; margin-bottom:12px; border-left: 4px solid var(--accent-2);">
               <div style="display:flex; justify-content:space-between; align-items:flex-start;">
@@ -771,7 +1085,7 @@
                   <span style="padding:3px 8px; border-radius:6px; font-size:11px; font-weight:800; background:#f1f5f9; color:#475569;">${f.fund_status || '운용'}</span>
               </div>
               <div class="meta-grid" style="grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:12px;">
-                  <div class="meta-item"><span class="meta-label">설정액(AUM)</span><span class="meta-val" style="color:var(--accent-2); font-weight:800;">${aum ? formatNumber(aum) : '-'}</span></div>
+                  <div class="meta-item"><span class="meta-label">설정액(AUM)</span><span class="meta-val" style="color:var(--accent-2); font-weight:800;">${aum}</span></div>
                   <div class="meta-item"><span class="meta-label">설정일</span><span class="meta-val">${setupDate}</span></div>
                   <div class="meta-item"><span class="meta-label">만기일</span><span class="meta-val">${maturityDate}</span></div>
               </div>
@@ -789,7 +1103,7 @@
         const maturityDate = p.maturity_date || p.metadata?.maturity_date || '-';
         const aum = p.benchmark_aum || 0;
         return `
-          <div class="fund-detail-card" onclick="showDrawerDetail('${p.fund_id || p.project_id}')" style="cursor:pointer; margin-bottom:12px; border-left: 4px solid #10b981;">
+          <div class="fund-detail-card" onclick="openProjectRelationshipDrawer('${p.project_id || p.fund_id}', '${escapeDrawerArg(p.project_name || p.project_mission_name || p.fund_name || p.fund_id || p.project_id)}', { inline: window.relationshipRenderMode === 'inline' })" style="cursor:pointer; margin-bottom:12px; border-left: 4px solid #10b981;">
               <div style="display:flex; justify-content:space-between; align-items:flex-start;">
                   <h3 style="font-size:14.5px; font-weight:800; flex:1; margin-right:16px; color:#f8fafc;">${p.project_mission_name || p.fund_name || p.project_name || p.fund_id}</h3>
                   <span style="padding:3px 8px; border-radius:6px; font-size:11px; font-weight:800; background:rgba(16, 185, 129, 0.1); color:#059669;">${p.project_status || '검토'}</span>

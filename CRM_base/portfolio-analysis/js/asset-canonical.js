@@ -154,7 +154,7 @@
     const mergedRows = uniqueBy((summaryRes.data || []).concat(aliasSummaries), function (row) { return row.asset_id; });
     const fundRowsByAssetId = await fetchFundRelationshipsByAssetIds(mergedRows.map(function (row) { return row.asset_id; }));
 
-    const merged = mergedRows
+    const merged = dedupeAssetGroups(mergedRows
       .filter(function (row) { return !shouldHideAssetSearchResult(row, fundRowsByAssetId); })
       .map(function (row) {
         return {
@@ -163,7 +163,7 @@
           canonical_id: row.asset_id,
           confidence: row.review_status === 'verified' ? 1 : 0.95
         };
-      })
+      }))
       .sort(function (a, b) {
         const scoreA = (a.matched_aliases?.length || 0) * 5 + (a.fund_count || 0) + (a.project_count || 0);
         const scoreB = (b.matched_aliases?.length || 0) * 5 + (b.fund_count || 0) + (b.project_count || 0);
@@ -172,6 +172,29 @@
       .slice(0, 100);
 
     return { data: merged };
+  }
+
+  function dedupeAssetGroups(groups) {
+    const byDisplayKey = {};
+    (groups || []).forEach(function (group) {
+      const assetKey = group.asset_id || group.canonical_id;
+      const nameKey = normalizeTerm(group.canonical_name || group.asset_name || '');
+      const addressKey = normalizeTerm(group.address_text || group.address || '');
+      const key = assetKey || (nameKey + '|' + addressKey);
+      const current = byDisplayKey[key];
+      if (!current || assetSearchScore(group) > assetSearchScore(current)) {
+        byDisplayKey[key] = group;
+      }
+    });
+    return Object.values(byDisplayKey);
+  }
+
+  function assetSearchScore(group) {
+    return (group.review_status === 'verified' ? 100 : 0)
+      + (Number(group.fund_count) || 0) * 5
+      + (Number(group.project_count) || 0) * 5
+      + ((group.matched_aliases || []).length * 3)
+      + (group.pnu ? 2 : 0);
   }
 
   function adminLogin() {
@@ -217,7 +240,12 @@
 
   function getDisplayName(group) {
     const state = loadState();
-    return state.titleOverrides?.[group.asset_id] || group.canonical_name || group.asset_id;
+    if (state.titleOverrides?.[group.asset_id]) return state.titleOverrides[group.asset_id];
+    if (group.physical_asset_name) return group.physical_asset_name;
+    if (group.asset_name_cleanup_action && String(group.asset_name_cleanup_action).indexOf('suppress') === 0) {
+      return group.non_physical_asset_label || group.asset_code || group.asset_id;
+    }
+    return group.canonical_name || group.asset_name || group.asset_code || group.asset_id;
   }
 
   function formatArea(value) {
@@ -228,6 +256,16 @@
   function formatAmount(value) {
     if (!value) return '-';
     return window.formatNumber ? window.formatNumber(value) : Number(value).toLocaleString();
+  }
+
+  function relationAumLabel(row) {
+    if (!row) return '-';
+    const value = row.benchmark_aum_effective ?? row.benchmark_aum;
+    const base = formatAmount(value);
+    if (row.allocation_status === 'unallocated' || row.needs_allocation_review) {
+      return base + ' (검토 필요)';
+    }
+    return base;
   }
 
   function sumRows(rows, key) {
@@ -250,6 +288,21 @@
       const key = amountKeys[0];
       return (b[key] || 0) - (a[key] || 0);
     });
+  }
+
+  function mergeExposureRows(directRows, derivedRows) {
+    const byId = {};
+    (directRows || []).forEach(function (row) {
+      const key = String(row.id || row.exposure_id || JSON.stringify(row));
+      byId[key] = { ...row, exposure_link_method: row.exposure_link_method || 'direct_asset_id' };
+    });
+    (derivedRows || []).forEach(function (row) {
+      const key = String(row.id || row.exposure_id || JSON.stringify(row));
+      if (!byId[key]) {
+        byId[key] = { ...row, exposure_link_method: 'derived_via_fund_asset_link' };
+      }
+    });
+    return Object.values(byId);
   }
 
   function isFundVehicleBeneficiary(row) {
@@ -317,14 +370,18 @@
 
       card.querySelector('.group-header').addEventListener('click', function (event) {
         if (event.target.type === 'checkbox') return;
-        renderCanonicalAssetDetail(assetId, displayName);
+        renderCanonicalAssetDetail(assetId, displayName, { inlineOnly: true });
       });
       container.appendChild(card);
     });
   }
 
-  async function renderCanonicalAssetDetail(assetId, displayName) {
+  async function renderCanonicalAssetDetail(assetId, displayName, options) {
     if (!assetId) return;
+    options = options || {};
+    if (options.inlineOnly && window.pushDetailPanelHistory && !options.skipHistory) {
+      window.pushDetailPanelHistory();
+    }
     detailPanel.innerHTML = '<div class="no-results">자산 상세 로딩 중...</div>';
 
     try {
@@ -343,39 +400,107 @@
 
       const asset = assetRes.data || {};
       const ledger = ledgerRes.data || {};
-      const rawFunds = fundRelRes.data || [];
-      const rawProjects = projectRelRes.data || [];
+      let rawFunds = fundRelRes.data || [];
+      let rawProjects = projectRelRes.data || [];
+      let lenders = (lenderRes.data || []).map(function (row) {
+        return { ...row, exposure_link_method: 'direct_asset_id' };
+      });
+      let beneficiaries = (benRes.data || []).map(function (row) {
+        return { ...row, exposure_link_method: 'direct_asset_id' };
+      });
+      let aumInputs = [];
+      try {
+        const aumRes = await _supabase.from('asset_fund_aum_inputs').select('*').eq('asset_id', assetId).limit(300);
+        if (!aumRes.error && aumRes.data) aumInputs = aumRes.data;
+      } catch (e) {
+        console.warn('Could not fetch relation-level AUM inputs:', e);
+      }
 
-      // Bulk fetch detailed profiles from v_funds_enriched
-      const linkFundIds = rawFunds.map(f => f.fund_id);
-      const linkProjIds = rawProjects.map(p => p.project_id);
-      const uniqueTargetIds = Array.from(new Set([...linkFundIds, ...linkProjIds])).filter(Boolean);
-
-      let enrichedDetails = [];
-      if (uniqueTargetIds.length > 0) {
-        try {
-          const enrichedRes = await _supabase.from('v_funds_enriched').select('*').in('fund_id', uniqueTargetIds);
-          if (!enrichedRes.error && enrichedRes.data) {
-            enrichedDetails = enrichedRes.data;
+      if (!rawFunds.length) {
+        const exposureFundIds = Array.from(new Set(
+          lenders.concat(beneficiaries).map(function (row) { return row.fund_id; }).filter(Boolean)
+        ));
+        if (exposureFundIds.length) {
+          const fallbackFundRes = await _supabase.from('v_funds_enriched').select('*').in('fund_id', exposureFundIds).limit(300);
+          if (!fallbackFundRes.error && fallbackFundRes.data) {
+            rawFunds = fallbackFundRes.data.map(function (fund) {
+              return { ...fund, asset_id: assetId, canonical_name: getDisplayName(asset), relation_type: 'exposure_linked_fund' };
+            });
           }
-        } catch (e) {
-          console.error("Bulk enriched details fetch error:", e);
         }
       }
 
-      // Map enriched fields onto our relationships
-      const funds = rawFunds.map(f => {
-        const enriched = enrichedDetails.find(ed => ed.fund_id === f.fund_id);
-        return enriched ? { ...enriched, relation_type: f.relation_type } : f;
+      if (!rawProjects.length) {
+        const fallbackProjectRes = await _supabase.from('projects').select('*').eq('primary_asset_id', assetId).limit(100);
+        if (!fallbackProjectRes.error && fallbackProjectRes.data) {
+          rawProjects = fallbackProjectRes.data.map(function (project) {
+            return { ...project, asset_id: assetId, canonical_name: getDisplayName(asset), relation_type: 'primary_asset_project' };
+          });
+        }
+      }
+
+      const linkFundIds = rawFunds.map(f => f.fund_id);
+      const linkProjIds = rawProjects.map(p => p.project_id);
+      const uniqueFundIds = Array.from(new Set(linkFundIds)).filter(Boolean);
+      const uniqueProjectIds = Array.from(new Set(linkProjIds)).filter(Boolean);
+
+      let enrichedFunds = [];
+      if (uniqueFundIds.length > 0) {
+        try {
+          const enrichedRes = await _supabase.from('v_funds_enriched').select('*').in('fund_id', uniqueFundIds);
+          if (!enrichedRes.error && enrichedRes.data) {
+            enrichedFunds = enrichedRes.data;
+          }
+        } catch (e) {
+          console.error("Bulk enriched fund details fetch error:", e);
+        }
+      }
+
+      let enrichedProjects = [];
+      if (uniqueProjectIds.length > 0) {
+        try {
+          const projectRes = await _supabase.from('projects').select('*').in('project_id', uniqueProjectIds);
+          if (!projectRes.error && projectRes.data) {
+            enrichedProjects = projectRes.data;
+          }
+        } catch (e) {
+          console.error("Bulk enriched project details fetch error:", e);
+        }
+      }
+
+      const aumByFundId = {};
+      aumInputs.forEach(function (row) {
+        if (row.fund_id) aumByFundId[row.fund_id] = row;
       });
+
+      const funds = rawFunds.map(f => {
+        const enriched = enrichedFunds.find(ed => ed.fund_id === f.fund_id);
+        const aum = aumByFundId[f.fund_id] || {};
+        return { ...(enriched || f), ...aum, relation_type: f.relation_type || aum.relation_type };
+      });
+
+      if (uniqueFundIds.length > 0) {
+        try {
+          const [derivedLenderRes, derivedBenRes] = await Promise.all([
+            _supabase.from('lender_exposures').select('*, funds(*)').in('fund_id', uniqueFundIds).is('asset_id', null).limit(500),
+            _supabase.from('beneficiary_exposures').select('*, funds(*)').in('fund_id', uniqueFundIds).is('asset_id', null).limit(500)
+          ]);
+          if (!derivedLenderRes.error && derivedLenderRes.data) {
+            lenders = mergeExposureRows(lenders, derivedLenderRes.data);
+          }
+          if (!derivedBenRes.error && derivedBenRes.data) {
+            beneficiaries = mergeExposureRows(beneficiaries, derivedBenRes.data);
+          }
+        } catch (e) {
+          console.warn('Could not fetch fund-derived exposure rows:', e);
+        }
+      }
 
       const projects = rawProjects.map(p => {
-        const enriched = enrichedDetails.find(ed => ed.fund_id === p.project_id);
-        return enriched ? { ...enriched, relation_type: p.relation_type, project_name: p.project_name } : p;
+        const enriched = enrichedProjects.find(ed => ed.project_id === p.project_id);
+        return enriched ? { ...p, ...enriched, relation_type: p.relation_type } : p;
       });
 
-      const lenders = lenderRes.data || [];
-      const beneficiaries = benRes.data || [];
       const externalBeneficiaries = beneficiaries.filter(function (row) { return !isFundVehicleBeneficiary(row); });
       const internalBeneficiaries = beneficiaries.filter(isFundVehicleBeneficiary);
       const lenderGroups = groupExposureRows(lenders, 'lender_clean', ['committed_amt', 'drawn_amt', 'remaining_amt']);
@@ -400,10 +525,10 @@
         <div class="detail-section">
           <div class="section-title">연결 펀드 (${funds.length})</div>
           <table class="data-table">
-            <thead><tr><th>펀드코드</th><th>펀드명</th><th>상태</th><th>관계</th></tr></thead>
+            <thead><tr><th>펀드코드</th><th>펀드명</th><th>상태</th><th>관계</th><th>AUM</th></tr></thead>
             <tbody>${funds.map(function (f) {
-              return `<tr><td>${f.fund_id}</td><td style="font-weight:700">${f.fund_name || f.short_name || '-'}</td><td>${f.fund_status || '-'}</td><td>${f.relation_type || '-'}</td></tr>`;
-            }).join('') || '<tr><td colspan="4">연결 펀드 없음</td></tr>'}</tbody>
+              return `<tr><td>${f.fund_id}</td><td style="font-weight:700">${f.fund_name || f.short_name || '-'}</td><td>${f.fund_status || f.status || '-'}</td><td>${f.relation_type || '-'}</td><td>${relationAumLabel(f)}</td></tr>`;
+            }).join('') || '<tr><td colspan="5">연결 펀드 없음</td></tr>'}</tbody>
           </table>
         </div>
 
@@ -420,8 +545,9 @@
 
       detailPanel.innerHTML = `
         <div class="detail-header">
+          ${options.inlineOnly && window.goBackDetailPanel ? '<button type="button" class="back-to-results-btn" onclick="goBackDetailPanel()">← 이전으로</button>' : ''}
           <span class="card-tag tag-asset">CANONICAL ASSET</span>
-          <h2 style="margin-bottom:4px;">${displayName || asset.canonical_name || assetId}</h2>
+          <h2 style="margin-bottom:4px;">${displayName || getDisplayName(asset) || assetId}</h2>
           <div style="color:var(--muted); font-size:16px;">
             ${asset.asset_id || assetId} | ${asset.asset_code || '-'} | ${asset.pnu || '-'} | ${asset.review_status || '-'}
           </div>
@@ -488,7 +614,7 @@
       renderMap(mapId, asset);
 
       // Trigger side drawer with child funds and projects list
-      if (window.openAssetDrawer) {
+      if (!options.inlineOnly && window.openAssetDrawer) {
         window.openAssetDrawer(assetId, displayName);
       }
     } catch (e) {
@@ -620,6 +746,7 @@
     adminLogin,
     clearOverrides,
     renameGroup,
+    relationAumLabel,
     isAdmin
   };
 })();
