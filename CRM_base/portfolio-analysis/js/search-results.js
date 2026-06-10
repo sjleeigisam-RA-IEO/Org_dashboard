@@ -1489,6 +1489,69 @@ function unifiedSelectionRows(result, basketType) {
     : primaryRowsForUnifiedResult(cluster, result ? result.rootType : '');
 }
 
+function primaryRowForUnifiedResult(result, type) {
+  var rows = primaryRowsForUnifiedResult(result && result.cluster, type || (result && result.rootType)) || [];
+  if (!rows.length && result && result.sourceRows) rows = result.sourceRows;
+  if (!rows.length) return null;
+  var targetId = result && result.detailTarget && result.detailTarget.id;
+  if (targetId) {
+    var matched = rows.find(function (row) {
+      return canonicalEntityId(type || (result && result.rootType), row) === targetId;
+    });
+    if (matched) return matched;
+  }
+  return rows[0];
+}
+
+function openUnifiedResultFinalDetail(result) {
+  if (!result) return;
+  if (result.rootType === 'asset' && window.AssetCanonical && typeof window.AssetCanonical.renderCanonicalAssetDetail === 'function') {
+    var asset = primaryRowForUnifiedResult(result, 'asset');
+    var assetId = canonicalEntityId('asset', asset) || (result.detailTarget && result.detailTarget.id);
+    if (assetId) {
+      window.AssetCanonical.renderCanonicalAssetDetail(
+        assetId,
+        canonicalDisplayTitle('asset', asset) || result.title || assetId,
+        { inlineOnly: true }
+      );
+      return;
+    }
+  }
+
+  if (result.rootType === 'fund' && typeof window.openFundRelationshipDrawer === 'function') {
+    var fund = primaryRowForUnifiedResult(result, 'fund');
+    var fundId = canonicalEntityId('fund', fund) || (result.detailTarget && result.detailTarget.id);
+    if (fundId) {
+      window.openFundRelationshipDrawer(fundId, canonicalDisplayTitle('fund', fund) || result.title || fundId, { inline: true });
+      return;
+    }
+  }
+
+  if (result.rootType === 'project' && typeof window.openProjectRelationshipDrawer === 'function') {
+    var project = primaryRowForUnifiedResult(result, 'project');
+    var projectId = canonicalEntityId('project', project) || (result.detailTarget && result.detailTarget.id);
+    var relatedAssetIds = ((result.cluster && result.cluster.entities && result.cluster.entities.assets) || [])
+      .map(function (row) { return canonicalEntityId('asset', row); })
+      .filter(Boolean);
+    if (projectId) {
+      window.openProjectRelationshipDrawer(projectId, canonicalDisplayTitle('project', project) || result.title || projectId, {
+        inline: true,
+        relatedAssetIds: relatedAssetIds
+      });
+      return;
+    }
+  }
+
+  if (result.rootType === 'party' && typeof window.openInstitutionRelationshipDrawer === 'function') {
+    var type = unifiedResultBasketType(result);
+    var items = unifiedSelectionRows(result, type);
+    window.openInstitutionRelationshipDrawer(type, result.title || '-', items, { inline: true });
+    return;
+  }
+
+  openUnifiedSearchDetail(result);
+}
+
 function renderUnifiedResultCard(result) {
   var card = document.createElement('div');
   var terms = getSearchTerms(window.currentSearchQuery || '');
@@ -1523,7 +1586,7 @@ function renderUnifiedResultCard(result) {
   });
   card.addEventListener('click', function (event) {
     if (event.target && event.target.classList && event.target.classList.contains('unified-card-checkbox')) return;
-    openUnifiedSearchDetail(result);
+    openUnifiedResultFinalDetail(result);
   });
   resultsContainer.appendChild(card);
 }

@@ -4,7 +4,9 @@ const vm = require('vm');
 
 const root = path.resolve(__dirname, '..', '..');
 const searchPath = path.join(root, 'CRM_base', 'portfolio-analysis', 'js', 'search-results.js');
+const assetCanonicalPath = path.join(root, 'CRM_base', 'portfolio-analysis', 'js', 'asset-canonical.js');
 const source = fs.readFileSync(searchPath, 'utf8');
+const assetCanonicalSource = fs.readFileSync(assetCanonicalPath, 'utf8');
 
 const context = {
   console,
@@ -43,6 +45,20 @@ assert(
 assert(
   source.indexOf("performIndexedSearchOn('portfolio_search_results_canonical'") !== -1,
   'indexed search must keep canonical fallback'
+);
+assert(
+  /card\.addEventListener\('click'[\s\S]*openUnifiedResultFinalDetail\(result\)/.test(source),
+  'unified result card click must route to the final detail destination helper'
+);
+assert(
+  /openUnifiedResultFinalDetail[\s\S]*AssetCanonical\.renderCanonicalAssetDetail/.test(source),
+  'asset-root unified results must open canonical asset detail, not the relationship summary page'
+);
+assert(
+  assetCanonicalSource.includes('fetchPeerAssetsByFundIds') &&
+    assetCanonicalSource.includes('asset-relation-navigation') &&
+    assetCanonicalSource.includes('bindAssetRelationNavigation(detailPanel)'),
+  'canonical asset detail must expose clickable related vehicles/assets inside the final asset page'
 );
 
 function keys(object) {
@@ -260,6 +276,8 @@ console.log(JSON.stringify({
     'cluster fallback summary and type labels',
     'search term highlighting',
     'canonical display title helper',
-    'unified search surface first with canonical fallback'
+    'unified search surface first with canonical fallback',
+    'unified cards route asset roots to canonical asset detail',
+    'canonical asset detail exposes related vehicles/assets navigation'
   ]
 }, null, 2));

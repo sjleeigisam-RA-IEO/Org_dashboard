@@ -331,6 +331,179 @@
     });
   }
 
+  function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, function (char) {
+      return {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[char];
+    });
+  }
+
+  function fundDisplayName(fund) {
+    if (!fund) return '';
+    if (fund.short_name && fund.fund_name && fund.short_name !== fund.fund_name) {
+      return '[' + fund.short_name + '] ' + fund.fund_name;
+    }
+    return fund.fund_name || fund.short_name || fund.fund_id || '';
+  }
+
+  function projectDisplayName(project) {
+    return project?.project_name || project?.project_mission_name || project?.project_id || '';
+  }
+
+  function assetDisplayName(row) {
+    return getDisplayName(row || {}) || row?.canonical_name || row?.asset_name || row?.asset_code || row?.asset_id || '';
+  }
+
+  async function fetchPeerAssetsByFundIds(fundIds, currentAssetId) {
+    const ids = Array.from(new Set((fundIds || []).filter(Boolean)));
+    if (!ids.length) return [];
+    try {
+      const relRes = await _supabase
+        .from('fund_asset_relationships')
+        .select('*')
+        .in('fund_id', ids)
+        .limit(1000);
+      if (relRes.error) throw relRes.error;
+
+      const byAssetId = {};
+      (relRes.data || []).forEach(function (row) {
+        if (!row.asset_id || row.asset_id === currentAssetId) return;
+        byAssetId[row.asset_id] = byAssetId[row.asset_id] || {
+          asset_id: row.asset_id,
+          related_fund_ids: [],
+          relation_types: []
+        };
+        byAssetId[row.asset_id] = { ...byAssetId[row.asset_id], ...row };
+        if (row.fund_id && byAssetId[row.asset_id].related_fund_ids.indexOf(row.fund_id) === -1) {
+          byAssetId[row.asset_id].related_fund_ids.push(row.fund_id);
+        }
+        if (row.relation_type && byAssetId[row.asset_id].relation_types.indexOf(row.relation_type) === -1) {
+          byAssetId[row.asset_id].relation_types.push(row.relation_type);
+        }
+      });
+
+      const assetIds = Object.keys(byAssetId);
+      if (!assetIds.length) return [];
+      const masterRes = await _supabase
+        .from('asset_master')
+        .select('*')
+        .in('asset_id', assetIds)
+        .limit(500);
+      const masterById = {};
+      if (!masterRes.error) {
+        (masterRes.data || []).forEach(function (row) {
+          masterById[row.asset_id] = row;
+        });
+      }
+
+      return assetIds.map(function (assetId) {
+        return { ...byAssetId[assetId], ...(masterById[assetId] || {}) };
+      }).sort(function (a, b) {
+        return String(assetDisplayName(a)).localeCompare(String(assetDisplayName(b)), 'ko');
+      });
+    } catch (e) {
+      console.warn('Could not fetch peer assets for connected funds:', e);
+      return [];
+    }
+  }
+
+  function relationCardHtml(type, row, index) {
+    let title = '';
+    let subtitle = '';
+    let meta = '';
+    if (type === 'fund') {
+      title = fundDisplayName(row);
+      subtitle = [row?.status || row?.fund_status, row?.sector || row?.notion_base_asset_class, row?.relation_type].filter(Boolean).join(' · ');
+      meta = relationAumLabel(row);
+    } else if (type === 'project') {
+      title = projectDisplayName(row);
+      subtitle = [row?.project_code, row?.project_status || row?.status, row?.relation_type].filter(Boolean).join(' · ');
+      meta = row?.project_id || '';
+    } else {
+      title = assetDisplayName(row);
+      subtitle = row?.address_text || row?.address || row?.asset_code || '';
+      meta = (row?.related_fund_ids || []).slice(0, 3).join(', ');
+    }
+    return `
+      <button type="button" class="asset-relation-card" data-relation-type="${type}" data-relation-index="${index}">
+        <span class="asset-relation-tag">${type === 'fund' ? '펀드/비히클' : type === 'project' ? '프로젝트' : '자산'}</span>
+        <strong>${escapeHtml(title || '-')}</strong>
+        ${subtitle ? '<small>' + escapeHtml(subtitle) + '</small>' : ''}
+        ${meta && meta !== '-' ? '<em>' + escapeHtml(meta) + '</em>' : ''}
+      </button>
+    `;
+  }
+
+  function relationNavigationSectionHtml(funds, projects, peerAssets) {
+    return `
+      <div class="detail-section asset-relation-navigation">
+        <div class="section-title">연결 관계 탐색</div>
+        <div class="asset-relation-groups">
+          <div class="asset-relation-group">
+            <div class="asset-relation-group-head">
+              <span>연결 펀드/비히클</span>
+              <strong>${funds.length}</strong>
+            </div>
+            <div class="asset-relation-card-grid">
+              ${funds.map(function (row, index) { return relationCardHtml('fund', row, index); }).join('') || '<div class="asset-relation-empty">연결 펀드/비히클이 없습니다.</div>'}
+            </div>
+          </div>
+          <div class="asset-relation-group">
+            <div class="asset-relation-group-head">
+              <span>같은 비히클의 다른 자산</span>
+              <strong>${peerAssets.length}</strong>
+            </div>
+            <div class="asset-relation-card-grid">
+              ${peerAssets.map(function (row, index) { return relationCardHtml('asset', row, index); }).join('') || '<div class="asset-relation-empty">같은 비히클에 연결된 다른 자산이 없습니다.</div>'}
+            </div>
+          </div>
+          <div class="asset-relation-group">
+            <div class="asset-relation-group-head">
+              <span>연결 프로젝트</span>
+              <strong>${projects.length}</strong>
+            </div>
+            <div class="asset-relation-card-grid">
+              ${projects.map(function (row, index) { return relationCardHtml('project', row, index); }).join('') || '<div class="asset-relation-empty">연결 프로젝트가 없습니다.</div>'}
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function bindAssetRelationNavigation(container) {
+    const data = window.AssetCanonical && window.AssetCanonical._lastDetailData;
+    if (!data || !container) return;
+    const collections = {
+      fund: data.funds || [],
+      project: data.projects || [],
+      asset: data.peerAssets || []
+    };
+    container.querySelectorAll('.asset-relation-card').forEach(function (button) {
+      button.addEventListener('click', function () {
+        const type = button.getAttribute('data-relation-type');
+        const index = Number(button.getAttribute('data-relation-index'));
+        const row = (collections[type] || [])[index];
+        if (!row) return;
+        if (type === 'fund' && window.openFundRelationshipDrawer) {
+          window.openFundRelationshipDrawer(row.fund_id, fundDisplayName(row), { inline: true });
+        } else if (type === 'project' && window.openProjectRelationshipDrawer) {
+          window.openProjectRelationshipDrawer(row.project_id, projectDisplayName(row), {
+            inline: true,
+            relatedAssetIds: [data.assetId]
+          });
+        } else if (type === 'asset') {
+          renderCanonicalAssetDetail(row.asset_id, assetDisplayName(row), { inlineOnly: true });
+        }
+      });
+    });
+  }
+
   function renderCanonicalAssetCards(groups, container) {
     renderAdminBar(container);
     if (!groups || !groups.length) return;
@@ -478,6 +651,7 @@
         const aum = aumByFundId[f.fund_id] || {};
         return { ...(enriched || f), ...aum, relation_type: f.relation_type || aum.relation_type };
       });
+      const peerAssets = await fetchPeerAssetsByFundIds(uniqueFundIds, assetId);
 
       if (uniqueFundIds.length > 0) {
         try {
@@ -517,6 +691,7 @@
         assetId: assetId,
         funds: funds,
         projects: projects,
+        peerAssets: peerAssets,
         allBeneficiaries: beneficiaries,
         internalBeneficiaries: internalBeneficiaries
       };
@@ -572,6 +747,8 @@
           </div>
         </div>
 
+        ${relationNavigationSectionHtml(funds, projects, peerAssets)}
+
         <div class="detail-section">
           <div class="section-title">재원 구성 요약</div>
           <table class="data-table">
@@ -611,6 +788,7 @@
         ${adminRelationshipSections}
       `;
 
+      bindAssetRelationNavigation(detailPanel);
       renderMap(mapId, asset);
 
       // Trigger side drawer with child funds and projects list
