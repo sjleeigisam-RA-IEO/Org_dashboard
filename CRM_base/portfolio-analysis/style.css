@@ -545,7 +545,7 @@ body {
 
 .unified-detail-metrics {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 10px;
   margin-top: 18px;
 }
@@ -2490,5 +2490,274 @@ body {
     white-space: normal;
     word-break: keep-all;
     overflow-wrap: anywhere;
+  }
+}
+
+/* Unified search v2: flatter result surfaces and passive relationship rows. */
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  padding-bottom: 12px;
+}
+
+.tab-btn {
+  min-width: 0;
+  min-height: 34px;
+  padding: 7px 8px;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.tab-btn.active {
+  box-shadow: none !important;
+}
+
+.tab-count {
+  flex: 0 0 auto;
+}
+
+.unified-search-summary {
+  margin: 0 0 8px;
+  padding: 8px 11px;
+  border: 1px solid var(--line);
+  border-left: 3px solid rgba(41, 151, 255, 0.72);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.032);
+  color: var(--soft);
+}
+
+.unified-result-card,
+.relationship-cluster-card {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 8px !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.026)) !important;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+
+.relationship-cluster-card {
+  padding: 0 !important;
+}
+
+.unified-result-card::before,
+.relationship-cluster-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  background: rgba(41, 151, 255, 0.65);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.unified-result-asset::before { background: rgba(130, 175, 185, 0.85); }
+.unified-result-fund::before { background: rgba(99, 102, 241, 0.85); }
+.unified-result-project::before { background: rgba(52, 211, 153, 0.78); }
+.unified-result-party::before { background: rgba(251, 146, 60, 0.78); }
+
+.unified-result-card:hover,
+.relationship-cluster-card:hover {
+  border-color: rgba(41, 151, 255, 0.38) !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.068), rgba(255, 255, 255, 0.034)) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.unified-result-main {
+  gap: 12px;
+  padding: 14px 15px 14px 16px;
+}
+
+.relationship-cluster-header {
+  padding: 14px 15px 7px 16px;
+}
+
+.cluster-chip-row {
+  gap: 6px;
+}
+
+.relationship-cluster-card > .cluster-chip-row {
+  padding: 0 15px 11px 16px;
+}
+
+.cluster-preview {
+  padding: 8px 15px 12px 16px;
+}
+
+.unified-result-title,
+.cluster-title {
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.unified-result-subtitle,
+.cluster-subtitle {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.unified-result-arrow,
+.relationship-cluster-card .toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.unified-result-arrow {
+  padding-top: 0;
+  margin-top: 27px;
+}
+
+.relationship-cluster-card .toggle-icon {
+  margin-top: 2px;
+}
+
+.unified-result-card:hover .unified-result-arrow,
+.relationship-cluster-card:hover .toggle-icon {
+  border-color: rgba(41, 151, 255, 0.45);
+  color: var(--text);
+}
+
+.unified-preview-list {
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.unified-preview-item,
+.cluster-preview-row {
+  min-height: 28px;
+  padding: 4px 0;
+}
+
+.unified-detail-list,
+.cluster-detail-list {
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.024);
+}
+
+.unified-entity-row,
+.cluster-detail-row {
+  min-height: 44px;
+  border: 0 !important;
+  border-bottom: 1px solid var(--line) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  cursor: default;
+  transform: none !important;
+}
+
+.unified-entity-row:last-child,
+.cluster-detail-row:last-child {
+  border-bottom: 0 !important;
+}
+
+.unified-entity-row:hover,
+.cluster-detail-row:hover {
+  border-color: var(--line) !important;
+  background: rgba(255, 255, 255, 0.032) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.unified-entity-row:focus-visible,
+.cluster-detail-row:focus-visible {
+  outline: 2px solid rgba(41, 151, 255, 0.65);
+  outline-offset: -2px;
+}
+
+.unified-entity-row .card-tag,
+.cluster-detail-row .card-tag {
+  min-width: 54px;
+  margin-bottom: 0;
+  text-align: center;
+  background: rgba(148, 163, 184, 0.12) !important;
+  border: 1px solid rgba(148, 163, 184, 0.16) !important;
+  color: var(--soft) !important;
+}
+
+.unified-entity-title,
+.cluster-detail-row strong {
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.unified-entity-subtitle,
+.cluster-detail-row small {
+  color: var(--muted);
+  line-height: 1.35;
+  opacity: 0.82;
+}
+
+.cluster-detail-row small {
+  justify-self: end;
+}
+
+@media (max-width: 760px) {
+  .tabs {
+    grid-template-columns: repeat(4, minmax(58px, 1fr));
+    overflow-x: visible;
+    gap: 5px;
+    padding-bottom: 10px;
+  }
+
+  .tab-btn {
+    min-height: 38px;
+    padding: 7px 4px;
+    font-size: 11px;
+  }
+
+  .unified-result-main,
+  .relationship-cluster-header {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .relationship-cluster-card > .cluster-chip-row,
+  .cluster-preview {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .unified-select-wrap {
+    padding-top: 4px;
+  }
+
+  .unified-result-arrow {
+    display: none;
+  }
+
+  .unified-preview-list {
+    grid-template-columns: 1fr;
+  }
+
+  .unified-entity-row {
+    grid-template-columns: 62px minmax(0, 1fr);
+    padding: 10px 11px;
+  }
+
+  .cluster-detail-row {
+    grid-template-columns: 62px minmax(0, 1fr);
+    padding: 10px 11px;
+  }
+
+  .cluster-detail-row small {
+    grid-column: 2;
+    justify-self: start;
   }
 }

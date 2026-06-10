@@ -15,7 +15,15 @@ const DEFAULT_QUERIES = [
   '눈스퀘어',
   '이오타서울',
   '국민연금',
+  'KB',
   '1120'
+];
+
+const SEARCH_V2_TABS = [
+  ['all', '전체'],
+  ['target', '투자대상'],
+  ['beneficiary', '수익자'],
+  ['lender', '대주']
 ];
 
 function readConfig() {
@@ -217,6 +225,23 @@ function normalizeKey(value) {
     .replace(/[()［］\[\]{}·ㆍ\-_]/g, '');
 }
 
+function searchV2TabCounts(results) {
+  const rows = results || [];
+  return {
+    all: rows.length,
+    target: rows.filter((result) => (result.facets || []).includes('target')).length,
+    beneficiary: rows.filter((result) => (result.facets || []).includes('beneficiary')).length,
+    lender: rows.filter((result) => (result.facets || []).includes('lender')).length
+  };
+}
+
+function searchV2TabLabels() {
+  return SEARCH_V2_TABS.reduce((labels, [key, label]) => {
+    labels[key] = label;
+    return labels;
+  }, {});
+}
+
 function analyzeQuery(context, query, result) {
   const titleCounts = {};
   result.unifiedResults.forEach((resultRow) => {
@@ -233,6 +258,8 @@ function analyzeQuery(context, query, result) {
   const hasUnexpectedNumericNoise = isShortNumericSearch(query)
     && result.unifiedResults.some((resultRow) => resultRow.rootType !== 'fund' && resultRow.rootType !== 'project');
   const titles = result.unifiedResults.map((resultRow) => resultRow.title);
+  const tabCounts = searchV2TabCounts(result.unifiedResults);
+  const tabLabels = searchV2TabLabels();
   const scenarioStatus = {};
   if (query === '분당') {
     const expected = ['롯데백화점분당점', '분당야탑물류센터', '분당Hostway IDC'];
@@ -240,21 +267,37 @@ function analyzeQuery(context, query, result) {
       && result.unifiedResults.every((resultRow) => resultRow.rootType === 'asset')
       && expected.every((title) => titles.includes(title))
       && !titles.some((title) => title.includes('북미DC포트폴리오'));
+    scenarioStatus.bundangSearchV2AllAndTargetCountThree = tabCounts.all === 3
+      && tabCounts.target === 3
+      && tabCounts.beneficiary === 0
+      && tabCounts.lender === 0;
   }
   if (query === '홈플러스') {
     scenarioStatus.homeplusUsesAssetRoots = result.unifiedResults.length >= 5
       && result.unifiedResults.every((resultRow) => resultRow.rootType === 'asset');
   }
   if (query === '국민연금') {
-    scenarioStatus.npsUsesInstitutionRoot = result.unifiedResults.length === 1
-      && result.unifiedResults[0].rootType === 'party'
-      && result.unifiedResults[0].rootSubtype === 'beneficiary';
+    scenarioStatus.npsAppearsInBeneficiaryNotLender = tabCounts.beneficiary > 0
+      && tabCounts.lender === 0
+      && result.unifiedResults.every((resultRow) => resultRow.rootSubtype !== 'lender' && !(resultRow.facets || []).includes('lender'));
+  }
+  if (query.toLowerCase() === 'kb') {
+    scenarioStatus.kbHasLenderResults = tabCounts.lender > 0
+      && result.unifiedResults.some((resultRow) => resultRow.relationshipCounts.lender > 0 || (resultRow.facets || []).includes('lender'));
   }
   if (query === '이오타서울') {
     scenarioStatus.iotaUsesProjectRoot = result.unifiedResults.length === 1
       && result.unifiedResults[0].rootType === 'project'
       && result.unifiedResults[0].relationshipCounts.asset >= 2
       && result.unifiedResults[0].relationshipCounts.fund >= 8;
+  }
+  if (query === '1120') {
+    scenarioStatus.shortNumeric1120UsesFundProjectTargetResults = result.unifiedResults.length > 0
+      && tabCounts.all === result.unifiedResults.length
+      && tabCounts.target === result.unifiedResults.length
+      && tabCounts.beneficiary === 0
+      && tabCounts.lender === 0
+      && result.unifiedResults.every((resultRow) => ['fund', 'project'].includes(resultRow.rootType));
   }
 
   return {
@@ -263,6 +306,10 @@ function analyzeQuery(context, query, result) {
     displayAssets: result.rows.assets.map((row) => context.canonicalDisplayTitle('asset', row)),
     clusterCount: result.clusters.length,
     unifiedResultCount: result.unifiedResults.length,
+    searchV2Tabs: {
+      labels: tabLabels,
+      counts: tabCounts
+    },
     unifiedResults: result.unifiedResults.map((resultRow) => ({
       type: resultRow.rootType,
       subtype: resultRow.rootSubtype,
@@ -289,6 +336,7 @@ function analyzeQuery(context, query, result) {
       noGenericOneBucketForMultipleAssets: !genericOneBucket,
       assetRootsMatchQuery: nonMatchingAssetRoots.length === 0,
       shortNumericHasNoAssetOrPartyNoise: !hasUnexpectedNumericNoise,
+      searchV2TabLabels: SEARCH_V2_TABS.every(([key, label]) => tabLabels[key] === label),
       ...scenarioStatus
     }
   };

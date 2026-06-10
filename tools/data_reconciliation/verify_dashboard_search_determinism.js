@@ -49,6 +49,23 @@ function keys(object) {
   return Object.keys(object).sort();
 }
 
+const SEARCH_V2_TABS = [
+  ['all', '전체'],
+  ['target', '투자대상'],
+  ['beneficiary', '수익자'],
+  ['lender', '대주']
+];
+
+function searchV2TabCounts(results) {
+  const rows = results || [];
+  return {
+    all: rows.length,
+    target: rows.filter((result) => (result.facets || []).includes('target')).length,
+    beneficiary: rows.filter((result) => (result.facets || []).includes('beneficiary')).length,
+    lender: rows.filter((result) => (result.facets || []).includes('lender')).length
+  };
+}
+
 const fundRows = context.dedupeEntities([
   { fund_id: '112614', fund_name: '이지스일반사모부동산투자신탁421호(운용)', short_name: '421호' },
   { fund_id: '112614', fund_name: '421호 운용', short_name: '421호', project_mission_name: '와이디427' },
@@ -151,18 +168,61 @@ assert(summaryText.includes('자산 3개') && summaryText.includes('3개 묶음'
 const unifiedBundang = context.buildUnifiedSearchResults('분당');
 assert(unifiedBundang.length === 3, 'Unified Bundang search must render three result cards');
 assert(unifiedBundang.every((result) => result.rootType === 'asset'), 'Bundang unified roots must be assets');
-assert(unifiedBundang.every((result) => result.facets.includes('asset')), 'Bundang unified cards must appear under the asset facet');
-assert(unifiedBundang.some((result) => result.facets.includes('fund')), 'Bundang cards with fund relations must be visible through the fund facet');
+assert(unifiedBundang.every((result) => result.facets.includes('target')), 'Bundang unified cards must appear under the search v2 target facet');
+assert(unifiedBundang.some((result) => result.relationshipCounts.fund > 0), 'Bundang target cards with fund relations must retain relationship counts');
 assert(!unifiedBundang.some((result) => result.title.includes('북미DC포트폴리오')), 'Unified results must not expose absorbed same-location portfolio assets as root cards');
+const bundangV2Counts = searchV2TabCounts(unifiedBundang);
+assert(bundangV2Counts.all === 3 && bundangV2Counts.target === 3, 'Bundang search v2 all/target tabs must count three asset-centered result cards');
+assert(bundangV2Counts.beneficiary === 0 && bundangV2Counts.lender === 0, 'Bundang search v2 institution tabs must not count target cards');
+const bundangAllResults = context.allResults;
+
+context.window.currentSearchQuery = '국민연금';
+context.allResults = {
+  funds: [
+    { fund_id: '112006', fund_name: '국민연금 수익자 연결 펀드', short_name: 'NPS Fund' }
+  ],
+  assetGroups: [],
+  projects: [],
+  lenders: [],
+  beneficiaries: [
+    { id: 10, fund_id: '112006', beneficiary_clean: '국민연금공단' },
+    { id: 11, fund_id: '112008', beneficiary_clean: '국민연금공단' }
+  ],
+  assets: [],
+  _indexRows: [
+    { entity_type: 'beneficiary', entity_id: '10', display_title: '국민연금공단', related_fund_id: '112006' },
+    { entity_type: 'beneficiary', entity_id: '11', display_title: '국민연금공단', related_fund_id: '112008' }
+  ]
+};
+const npsUnified = context.buildUnifiedSearchResults('국민연금');
+const npsV2Counts = searchV2TabCounts(npsUnified);
+assert(npsV2Counts.beneficiary > 0, '국민연금 must appear in the search v2 beneficiary tab');
+assert(npsV2Counts.lender === 0 && !npsUnified.some((result) => (result.facets || []).includes('lender')), '국민연금 must not appear in the search v2 lender tab');
+
+context.window.currentSearchQuery = 'KB';
+context.allResults = {
+  funds: [
+    { fund_id: '112005', fund_name: 'KB 대주 연결 펀드', short_name: 'KB Fund' }
+  ],
+  assetGroups: [],
+  projects: [],
+  lenders: [
+    { id: 20, fund_id: '112005', lender_clean: 'KB국민은행' }
+  ],
+  beneficiaries: [],
+  assets: [],
+  _indexRows: [
+    { entity_type: 'lender', entity_id: '20', display_title: 'KB국민은행', related_fund_id: '112005' }
+  ]
+};
+const kbUnified = context.buildUnifiedSearchResults('KB');
+const kbV2Counts = searchV2TabCounts(kbUnified);
+assert(kbV2Counts.lender > 0, 'KB lender probe must produce search v2 lender-tab results');
 
 context.tabBtns.length = 0;
-[
-  ['all', '전체'],
-  ['asset', '자산'],
-  ['fund', '펀드'],
-  ['project', '프로젝트'],
-  ['party', '기관']
-].forEach(([tab, label]) => {
+context.window.currentSearchQuery = '분당';
+context.allResults = bundangAllResults;
+SEARCH_V2_TABS.forEach(([tab, label]) => {
   context.tabBtns.push({ dataset: { tab }, textContent: label, innerHTML: '' });
 });
 context.updateTabCounts();
@@ -171,10 +231,17 @@ function tabCount(tab) {
   const match = String(button && button.innerHTML || '').match(/tab-count">(\d+)</);
   return match ? Number(match[1]) : NaN;
 }
+function tabLabel(tab) {
+  const button = context.tabBtns.find((btn) => btn.dataset.tab === tab);
+  const match = String(button && button.innerHTML || '').match(/<span>(.*?)<\/span>/);
+  return match ? match[1] : '';
+}
+SEARCH_V2_TABS.forEach(([tab, label]) => {
+  assert(tabLabel(tab) === label, `Search v2 ${tab} tab label must be ${label}`);
+});
 assert(tabCount('all') === 3, 'All tab count must use displayed unified result cards');
-assert(tabCount('asset') === 3, 'Asset tab count must use unified asset result cards');
-assert(tabCount('fund') === 3 && tabCount('project') === 2, 'Fund/project tabs must filter the same unified result cards by facets');
-assert(tabCount('party') === 0, 'Institution tab must replace the old separate beneficiary/lender tabs');
+assert(tabCount('target') === 3, 'Target tab count must use displayed asset/fund/project result cards');
+assert(tabCount('beneficiary') === 0 && tabCount('lender') === 0, 'Beneficiary/lender tab counts must stay separate from target cards');
 assert(context.clusterCardTypeLabel('asset') === '자산', 'relationship card tag must use cluster type label instead of hard-coded RELATION');
 assert(context.highlightTerms('분당Hostway IDC', ['분당']).includes('search-highlight'), 'matched search terms should be highlighted in cluster text');
 
@@ -186,7 +253,9 @@ console.log(JSON.stringify({
     'project_id dedupe/grouping',
     'institution card grouping with exposure row retention',
     'broad region search clusters by display asset',
-    'unified result-card count by facet',
+    'search v2 tab labels and target/institution counts',
+    'beneficiary-only 국민연금 institution routing',
+    'KB lender probe routing',
     'unified result model roots',
     'cluster fallback summary and type labels',
     'search term highlighting',

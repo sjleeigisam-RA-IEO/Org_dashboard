@@ -572,10 +572,9 @@ function updateTabCounts() {
   var unifiedResults = buildUnifiedSearchResults(window.currentSearchQuery || '');
   var counts = {
     all: filteredUnifiedResults(unifiedResults, 'all').length,
-    asset: filteredUnifiedResults(unifiedResults, 'asset').length,
-    fund: filteredUnifiedResults(unifiedResults, 'fund').length,
-    project: filteredUnifiedResults(unifiedResults, 'project').length,
-    party: (unifiedResults || []).filter(function (result) { return (result.facets || []).indexOf('party') !== -1; }).length
+    target: filteredUnifiedResults(unifiedResults, 'target').length,
+    beneficiary: filteredUnifiedResults(unifiedResults, 'beneficiary').length,
+    lender: filteredUnifiedResults(unifiedResults, 'lender').length
   };
 
   tabBtns.forEach(function (btn) {
@@ -595,10 +594,6 @@ function renderResults() {
   var unifiedResults = buildUnifiedSearchResults(window.currentSearchQuery || '');
   var visibleResults = filteredUnifiedResults(unifiedResults, currentTab);
   window.unifiedSearchResults = unifiedResults;
-
-  if (currentTab === 'party') {
-    renderInstitutionFacetControls(unifiedResults);
-  }
 
   var summary = buildUnifiedSearchSummary(window.currentSearchQuery || '', visibleResults, unifiedResults);
   if (summary) {
@@ -884,6 +879,13 @@ function addLinkedPartiesForClusterFunds(cluster, maps, lookups) {
   addLinkedFunds(cluster, fundIds, maps, lookups, false);
 }
 
+function addPeerAssetsForClusterFunds(cluster, maps, lookups) {
+  var fundIds = cluster.entities.funds.map(function (fund) { return canonicalEntityId('fund', fund); });
+  uniqueValues(fundIds).forEach(function (fundId) {
+    addLinkedAssets(cluster, maps.fundAssets[fundId] || [], maps, lookups);
+  });
+}
+
 function addLinkedProjects(cluster, projectIds, maps, lookups) {
   uniqueValues(projectIds).forEach(function (projectId) {
     addEntityById(cluster, 'project', projectId, lookups, 'project');
@@ -1075,6 +1077,7 @@ function buildAssetClusters(query, rows, maps, lookups, terms) {
     addLinkedAssets(cluster, assetIdsForDisplayGroup(asset), maps, lookups);
     addSameTitleProjects(cluster, asset, rows, maps, lookups);
     addLinkedPartiesForClusterFunds(cluster, maps, lookups);
+    addPeerAssetsForClusterFunds(cluster, maps, lookups);
     return cluster;
   }).filter(function (cluster) { return clusterEntityCount(cluster) > 0; });
 }
@@ -1231,12 +1234,12 @@ function institutionSubtypeFromCluster(cluster) {
 
 function tabFacetsForUnifiedResult(rootType, counts, query) {
   var facets = ['all'];
-  if (rootType) facets.push(rootType);
-  if (!isShortNumericSearch(query)) {
-    if (counts.asset) facets.push('asset');
-    if (counts.fund) facets.push('fund');
-    if (counts.project) facets.push('project');
-    if (counts.lender || counts.beneficiary) facets.push('party');
+  if (rootType === 'asset' || rootType === 'fund' || rootType === 'project') {
+    facets.push('target');
+  }
+  if (rootType === 'party' && !isShortNumericSearch(query)) {
+    if (counts.beneficiary) facets.push('beneficiary');
+    if (counts.lender) facets.push('lender');
   }
   return uniqueValues(facets);
 }
@@ -1384,27 +1387,18 @@ function dedupeUnifiedResults(results) {
 
 function filteredUnifiedResults(results, tab) {
   tab = tab || 'all';
-  var visible = (results || []).filter(function (result) {
+  return (results || []).filter(function (result) {
     return tab === 'all' || (result.facets || []).indexOf(tab) !== -1;
   });
-  if (tab === 'party' && currentInstitutionFilter !== 'all') {
-    visible = visible.filter(function (result) {
-      var facets = result.institutionFacets || [];
-      if (currentInstitutionFilter === 'both') return facets.indexOf('both') !== -1;
-      return facets.indexOf(currentInstitutionFilter) !== -1;
-    });
-  }
-  return visible;
 }
 
 function buildUnifiedSearchSummary(query, visibleResults, allUnifiedResults) {
   var q = String(query || '').trim();
   if (!q || !allUnifiedResults.length) return '';
   var scopeLabel = currentTab === 'all' ? '전체' : ({
-    asset: '자산',
-    fund: '펀드',
-    project: '프로젝트',
-    party: '기관'
+    target: '투자대상',
+    beneficiary: '수익자',
+    lender: '대주'
   }[currentTab] || '전체');
   return '"' + q + '" 검색 결과 ' + visibleResults.length + '개 · ' + scopeLabel + ' 기준으로 같은 카드 문법으로 표시';
 }
@@ -1447,7 +1441,8 @@ function unifiedCountChipHtml(result) {
     ['asset', '자산', counts.asset],
     ['fund', '펀드', counts.fund],
     ['project', '프로젝트', counts.project],
-    ['party', '기관', (counts.lender || 0) + (counts.beneficiary || 0)]
+    ['ben', '수익자', counts.beneficiary],
+    ['lender', '대주', counts.lender]
   ].filter(function (entry) { return Number(entry[2]) > 0; }).map(function (entry) {
     return '<span class="cluster-chip cluster-chip-' + entry[0] + '">' + entry[1] + ' ' + entry[2] + '</span>';
   }).join('');
@@ -1472,12 +1467,36 @@ function unifiedPreviewHtml(result, terms) {
   }).join('') + '</div>';
 }
 
+function unifiedResultTagType(result) {
+  if (!result || result.rootType !== 'party') return result && result.rootType ? result.rootType : 'asset';
+  if (result.rootSubtype === 'lender') return 'lender';
+  if (result.rootSubtype === 'beneficiary') return 'ben';
+  if (currentTab === 'lender') return 'lender';
+  return 'ben';
+}
+
+function unifiedResultBasketType(result) {
+  if (!result || result.rootType !== 'party') return result && result.rootType ? result.rootType : 'asset';
+  return unifiedResultTagType(result);
+}
+
+function unifiedSelectionRows(result, basketType) {
+  var cluster = result && result.cluster;
+  if (basketType === 'ben') return cluster && cluster.entities ? (cluster.entities.beneficiaries || []) : [];
+  if (basketType === 'lender') return cluster && cluster.entities ? (cluster.entities.lenders || []) : [];
+  return result && result.sourceRows && result.sourceRows.length
+    ? result.sourceRows
+    : primaryRowsForUnifiedResult(cluster, result ? result.rootType : '');
+}
+
 function renderUnifiedResultCard(result) {
   var card = document.createElement('div');
   var terms = getSearchTerms(window.currentSearchQuery || '');
+  var tagType = unifiedResultTagType(result);
   var tagClass = result.rootType === 'party' ? 'party' : result.rootType;
+  var basketType = unifiedResultBasketType(result);
   card.className = 'unified-result-card unified-result-' + tagClass;
-  var checked = portfolioBasket.some(function (item) { return item.key === result.rootType + '_' + result.groupId; });
+  var checked = portfolioBasket.some(function (item) { return item.key === basketType + '_' + result.groupId; });
   card.innerHTML = `
     <div class="unified-result-main">
       <label class="unified-select-wrap" title="분석 장바구니에 담기">
@@ -1485,8 +1504,8 @@ function renderUnifiedResultCard(result) {
       </label>
       <div class="unified-result-body">
         <div class="unified-result-kicker">
-          <span class="card-tag tag-${tagClass === 'party' ? 'lender' : tagClass}">${escapeHtml((result.badges || [])[0] || clusterCardTypeLabel(result.rootType))}</span>
-          ${result.rootSubtype ? '<span class="unified-subtype-badge">' + escapeHtml(institutionSubtypeLabel(result.rootSubtype)) + '</span>' : ''}
+          <span class="card-tag tag-${tagType}">${escapeHtml(result.rootType === 'party' ? institutionSubtypeLabel(result.rootSubtype) : ((result.badges || [])[0] || clusterCardTypeLabel(result.rootType)))}</span>
+          ${result.rootSubtype && result.rootType !== 'party' ? '<span class="unified-subtype-badge">' + escapeHtml(institutionSubtypeLabel(result.rootSubtype)) + '</span>' : ''}
           ${unifiedQualityBadgesHtml(result)}
         </div>
         <div class="group-title unified-result-title">${highlightTerms(result.title || '-', terms)}</div>
@@ -1499,8 +1518,8 @@ function renderUnifiedResultCard(result) {
   `;
   var checkbox = card.querySelector('.unified-card-checkbox');
   checkbox.addEventListener('click', function (event) {
-    var items = result.sourceRows && result.sourceRows.length ? result.sourceRows : primaryRowsForUnifiedResult(result.cluster, result.rootType);
-    toggleBasket(event, result.rootType, result.groupId, items);
+    var items = unifiedSelectionRows(result, basketType);
+    toggleBasket(event, basketType, result.groupId, items);
   });
   card.addEventListener('click', function (event) {
     if (event.target && event.target.classList && event.target.classList.contains('unified-card-checkbox')) return;
@@ -1513,9 +1532,10 @@ function unifiedDetailMetricHtml(result) {
   var counts = result.relationshipCounts || {};
   return `
     <div class="unified-metric"><span>자산</span><strong>${counts.asset || 0}</strong></div>
-    <div class="unified-metric"><span>펀드</span><strong>${counts.fund || 0}</strong></div>
+    <div class="unified-metric"><span>펀드/비히클</span><strong>${counts.fund || 0}</strong></div>
     <div class="unified-metric"><span>프로젝트</span><strong>${counts.project || 0}</strong></div>
-    <div class="unified-metric"><span>기관</span><strong>${(counts.lender || 0) + (counts.beneficiary || 0)}</strong></div>
+    <div class="unified-metric"><span>수익자</span><strong>${counts.beneficiary || 0}</strong></div>
+    <div class="unified-metric"><span>대주</span><strong>${counts.lender || 0}</strong></div>
   `;
 }
 
@@ -1539,11 +1559,11 @@ function unifiedDetailSectionHtml(type, title, rows) {
           var displayTitle = canonicalDisplayTitle(type, row) || canonicalEntityId(type, row) || '-';
           var subtitle = detailRowSubtitle(type, row);
           return `
-            <button type="button" class="unified-entity-row" data-type="${type}" data-index="${index}">
+            <div class="unified-entity-row" data-type="${type}" data-index="${index}">
               <span class="card-tag tag-${type}">${escapeHtml(clusterTypeLabel(type))}</span>
               <span class="unified-entity-title">${escapeHtml(displayTitle)}</span>
               ${subtitle ? '<span class="unified-entity-subtitle">' + escapeHtml(subtitle) + '</span>' : ''}
-            </button>
+            </div>
           `;
         }).join('')}
       </div>
@@ -1552,27 +1572,7 @@ function unifiedDetailSectionHtml(type, title, rows) {
 }
 
 function bindUnifiedDetailRows(result) {
-  var panel = document.getElementById('detailPanel');
-  if (!panel) return;
-  panel.querySelectorAll('.unified-entity-row').forEach(function (button) {
-    button.addEventListener('click', function () {
-      var type = button.dataset.type;
-      var index = Number(button.dataset.index);
-      var bucket = clusterBucketName(type);
-      var row = result.cluster.entities[bucket] && result.cluster.entities[bucket][index];
-      var title = canonicalDisplayTitle(type, row) || canonicalEntityId(type, row) || '';
-      if (!row) return;
-      if (type === 'asset' && window.AssetCanonical) {
-        window.AssetCanonical.renderCanonicalAssetDetail(canonicalEntityId('asset', row), title, { inlineOnly: true });
-      } else if (type === 'fund' && window.openFundRelationshipDrawer) {
-        window.openFundRelationshipDrawer(canonicalEntityId('fund', row), title, { inline: true });
-      } else if (type === 'project' && window.openProjectRelationshipDrawer) {
-        window.openProjectRelationshipDrawer(canonicalEntityId('project', row), title, { inline: true, relatedAssetIds: relatedAssetIdsForProjectResult(row, title) });
-      } else if ((type === 'lender' || type === 'ben') && window.openInstitutionRelationshipDrawer) {
-        window.openInstitutionRelationshipDrawer(type, title, [row], { inline: true });
-      }
-    });
-  });
+  return result;
 }
 
 function scrollDetailPanelIntoViewOnMobile() {
@@ -1595,15 +1595,15 @@ function openUnifiedSearchDetail(result) {
   var panel = document.getElementById('detailPanel');
   if (!panel || !result) return;
   if (window.pushDetailPanelHistory) window.pushDetailPanelHistory();
-  var tagClass = result.rootType === 'party' ? 'lender' : result.rootType;
+  var tagClass = unifiedResultTagType(result);
   var cluster = result.cluster || { entities: { assets: [], funds: [], projects: [], lenders: [], beneficiaries: [] } };
   window.activeUnifiedSearchResult = result;
   panel.innerHTML = `
     <div class="detail-header unified-detail-header">
       <button type="button" class="back-to-results-btn" onclick="goBackDetailPanel()">← 이전으로</button>
       <div class="unified-result-kicker">
-        <span class="card-tag tag-${tagClass}">${escapeHtml(clusterCardTypeLabel(result.rootType))}</span>
-        ${result.rootSubtype ? '<span class="unified-subtype-badge">' + escapeHtml(institutionSubtypeLabel(result.rootSubtype)) + '</span>' : ''}
+        <span class="card-tag tag-${tagClass}">${escapeHtml(result.rootType === 'party' ? institutionSubtypeLabel(result.rootSubtype) : clusterCardTypeLabel(result.rootType))}</span>
+        ${result.rootSubtype && result.rootType !== 'party' ? '<span class="unified-subtype-badge">' + escapeHtml(institutionSubtypeLabel(result.rootSubtype)) + '</span>' : ''}
         ${unifiedQualityBadgesHtml(result)}
       </div>
       <h2>${escapeHtml(result.title || '-')}</h2>
@@ -1727,11 +1727,11 @@ function clusterDetailSectionHtml(type, title, rows) {
           var displayTitle = canonicalDisplayTitle(type, row) || canonicalEntityId(type, row);
           var subId = canonicalEntityId(type, row);
           return `
-            <button type="button" class="cluster-detail-row" data-cluster-type="${type}" data-cluster-index="${index}">
+            <div class="cluster-detail-row" data-cluster-type="${type}" data-cluster-index="${index}">
               <span class="card-tag tag-${type}">${escapeHtml(clusterTypeLabel(type))}</span>
               <strong>${highlightTerms(displayTitle || '-', terms)}</strong>
               ${subId ? '<small>' + escapeHtml(subId) + '</small>' : ''}
-            </button>
+            </div>
           `;
         }).join('')}
       </div>
@@ -1762,28 +1762,6 @@ function openRelationshipClusterDetail(cluster) {
     ${clusterDetailSectionHtml('lender', '\uC5F0\uACB0 \uB300\uC8FC', cluster.entities.lenders)}
     ${clusterDetailSectionHtml('ben', '\uC5F0\uACB0 \uC218\uC775\uC790', cluster.entities.beneficiaries)}
   `;
-
-  panel.querySelectorAll('.cluster-detail-row').forEach(function (button) {
-    button.addEventListener('click', function () {
-      var type = button.dataset.clusterType;
-      var index = Number(button.dataset.clusterIndex);
-      var bucket = clusterBucketName(type);
-      var row = cluster.entities[bucket] && cluster.entities[bucket][index];
-      var title = canonicalDisplayTitle(type, row) || canonicalEntityId(type, row) || '';
-      if (!row) return;
-      if (type === 'asset' && window.AssetCanonical) {
-        window.AssetCanonical.renderCanonicalAssetDetail(canonicalEntityId('asset', row), title, { inlineOnly: true });
-      } else if (type === 'fund' && window.openFundRelationshipDrawer) {
-        window.openFundRelationshipDrawer(canonicalEntityId('fund', row), title, { inline: true });
-      } else if (type === 'project' && window.openProjectRelationshipDrawer) {
-        window.openProjectRelationshipDrawer(canonicalEntityId('project', row), title, { inline: true, relatedAssetIds: relatedAssetIdsForProjectResult(row, title) });
-      } else if ((type === 'lender' || type === 'ben') && window.openInstitutionRelationshipDrawer) {
-        window.openInstitutionRelationshipDrawer(type, title, [row], { inline: true });
-      } else {
-        showDetail({ type: type, items: [row], targetName: title });
-      }
-    });
-  });
 }
 
 function renderGroupCard(type, name, items) {
