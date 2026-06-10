@@ -2709,32 +2709,45 @@ body {
 }
 
 .asset-relation-navigation {
-  padding-top: 28px;
+  padding: 18px 20px !important;
+  margin-bottom: 24px;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+
+.asset-relation-navigation .section-title {
+  margin-bottom: 14px;
+  font-size: 15px;
+  letter-spacing: 0;
 }
 
 .asset-relation-groups {
   display: grid;
-  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .asset-relation-group {
   display: grid;
-  gap: 10px;
+  align-content: start;
+  gap: 7px;
+  min-width: 0;
 }
 
 .asset-relation-group-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 8px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 800;
+  min-height: 24px;
 }
 
 .asset-relation-group-head strong {
-  min-width: 26px;
-  padding: 3px 8px;
+  min-width: 22px;
+  padding: 2px 7px;
   border: 1px solid var(--line);
   border-radius: 999px;
   color: var(--text);
@@ -2743,26 +2756,39 @@ body {
 
 .asset-relation-card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 10px;
+  grid-template-columns: 1fr;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .asset-relation-card {
   width: 100%;
-  min-height: 82px;
-  padding: 13px 14px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.035);
+  min-height: 42px;
+  padding: 8px 10px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
   color: var(--text);
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr) max-content;
+  column-gap: 10px;
+  row-gap: 2px;
+  align-items: center;
   text-align: left;
   cursor: pointer;
   transition: border-color 0.15s ease, background 0.15s ease;
 }
 
+.asset-relation-card:last-child {
+  border-bottom: 0;
+}
+
 .asset-relation-card:hover {
-  border-color: rgba(41, 151, 255, 0.5);
-  background: rgba(41, 151, 255, 0.075);
+  background: rgba(41, 151, 255, 0.065);
 }
 
 .asset-relation-card:focus-visible {
@@ -2778,40 +2804,60 @@ body {
 }
 
 .asset-relation-tag {
-  width: fit-content;
-  margin-bottom: 8px;
-  padding: 3px 8px;
+  grid-row: 1 / span 2;
+  align-self: center;
+  width: 62px;
+  margin-bottom: 0;
+  padding: 3px 0;
   border-radius: 6px;
   background: rgba(41, 151, 255, 0.14);
   color: var(--accent);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 900;
+  text-align: center;
 }
 
 .asset-relation-card strong {
-  font-size: 14px;
+  grid-column: 2;
+  overflow: hidden;
+  color: var(--text);
+  font-size: 13px;
   line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .asset-relation-card small {
-  margin-top: 5px;
+  grid-column: 2;
+  overflow: hidden;
+  margin-top: 0;
   color: var(--muted);
+  font-size: 11px;
   line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .asset-relation-card em {
-  margin-top: 8px;
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  align-self: center;
+  max-width: 110px;
+  overflow: hidden;
+  margin-top: 0;
   color: var(--soft);
   font-size: 11px;
   font-style: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .asset-relation-empty {
-  padding: 14px;
-  border: 1px dashed var(--line);
-  border-radius: 8px;
+  padding: 10px;
+  border: 0;
+  border-radius: 0;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 @media (max-width: 760px) {
