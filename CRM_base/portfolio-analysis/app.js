@@ -2,6 +2,7 @@ var debounceTimer;
 var currentView = 'list';
 var currentTab = 'all';
 var LEFT_PANEL_WIDTH_KEY = 'ra_insight_left_panel_width_v1';
+var LEFT_PANEL_COLLAPSED_KEY = 'ra_insight_left_panel_collapsed_v1';
 var LEFT_PANEL_MIN_WIDTH = 300;
 var LEFT_PANEL_MAX_WIDTH = 460;
 
@@ -116,19 +117,56 @@ function applyLeftPanelWidth(width, shouldPersist) {
   return clamped;
 }
 
+function setLeftPanelCollapsed(collapsed, widthToRestore) {
+  var leftPanel = document.getElementById('leftPanel');
+  var resizer = document.getElementById('leftPanelResizer');
+  var button = document.getElementById('leftPanelCollapseBtn');
+  var isCollapsed = Boolean(collapsed);
+  if (leftPanel) leftPanel.classList.toggle('collapsed', isCollapsed);
+  document.body.classList.toggle('left-panel-collapsed', isCollapsed);
+  if (resizer) {
+    resizer.setAttribute('aria-disabled', isCollapsed ? 'true' : 'false');
+  }
+  if (button) {
+    button.textContent = isCollapsed ? '>' : '<';
+    button.setAttribute('aria-label', isCollapsed ? 'Expand search panel' : 'Collapse search panel');
+    button.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
+    button.setAttribute('title', isCollapsed ? '검색 패널 펼치기' : '검색 패널 접기');
+  }
+  try {
+    localStorage.setItem(LEFT_PANEL_COLLAPSED_KEY, isCollapsed ? '1' : '0');
+  } catch (e) {
+    console.warn('Could not persist left panel collapsed state:', e);
+  }
+  if (!isCollapsed) {
+    var fallbackWidth = LEFT_PANEL_MAX_WIDTH;
+    try {
+      fallbackWidth = localStorage.getItem(LEFT_PANEL_WIDTH_KEY) || LEFT_PANEL_MAX_WIDTH;
+    } catch (e) {
+      fallbackWidth = LEFT_PANEL_MAX_WIDTH;
+    }
+    applyLeftPanelWidth(widthToRestore || fallbackWidth, false);
+  }
+}
+
 function initLeftPanelResize() {
   var leftPanel = document.getElementById('leftPanel');
   var resizer = document.getElementById('leftPanelResizer');
+  var collapseButton = document.getElementById('leftPanelCollapseBtn');
   var layout = document.querySelector('.main-layout.container');
   if (!leftPanel || !resizer || !layout) return;
 
   var storedWidth = null;
+  var storedCollapsed = false;
   try {
     storedWidth = localStorage.getItem(LEFT_PANEL_WIDTH_KEY);
+    storedCollapsed = localStorage.getItem(LEFT_PANEL_COLLAPSED_KEY) === '1';
   } catch (e) {
     storedWidth = null;
+    storedCollapsed = false;
   }
   var currentWidth = applyLeftPanelWidth(storedWidth || LEFT_PANEL_MAX_WIDTH, false);
+  setLeftPanelCollapsed(storedCollapsed, currentWidth);
   var isDragging = false;
 
   function widthFromPointer(event) {
@@ -151,6 +189,8 @@ function initLeftPanelResize() {
   }
 
   resizer.addEventListener('pointerdown', function (event) {
+    if (event.target === collapseButton) return;
+    if (leftPanel.classList.contains('collapsed')) return;
     if (event.button !== 0) return;
     event.preventDefault();
     isDragging = true;
@@ -162,10 +202,18 @@ function initLeftPanelResize() {
   });
 
   resizer.addEventListener('dblclick', function () {
+    if (leftPanel.classList.contains('collapsed')) return;
     currentWidth = applyLeftPanelWidth(LEFT_PANEL_MAX_WIDTH, true);
   });
 
   resizer.addEventListener('keydown', function (event) {
+    if (leftPanel.classList.contains('collapsed')) {
+      if (event.key === 'Enter' || event.key === ' ' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        setLeftPanelCollapsed(false, currentWidth);
+      }
+      return;
+    }
     var nextWidth = currentWidth;
     if (event.key === 'ArrowLeft') nextWidth -= 24;
     else if (event.key === 'ArrowRight') nextWidth += 24;
@@ -175,6 +223,20 @@ function initLeftPanelResize() {
     event.preventDefault();
     currentWidth = applyLeftPanelWidth(nextWidth, true);
   });
+
+  if (collapseButton) {
+    collapseButton.addEventListener('click', function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      var nextCollapsed = !leftPanel.classList.contains('collapsed');
+      if (!nextCollapsed) {
+        setLeftPanelCollapsed(false, currentWidth);
+      } else {
+        currentWidth = applyLeftPanelWidth(currentWidth, true);
+        setLeftPanelCollapsed(true, currentWidth);
+      }
+    });
+  }
 }
 
 function initApp() {
