@@ -115,7 +115,7 @@ body.resizing-left-panel {
 
 .left-panel-collapse-btn {
   position: absolute;
-  top: 22px;
+  top: 50%;
   left: 50%;
   width: 30px;
   height: 30px;
@@ -127,7 +127,7 @@ body.resizing-left-panel {
   font-weight: 900;
   line-height: 1;
   cursor: pointer;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
   transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
   z-index: 2;
