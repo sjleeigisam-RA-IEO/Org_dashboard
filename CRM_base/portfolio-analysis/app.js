@@ -79,6 +79,9 @@ function handleCategoryTabChange(nextTab, tabButtons) {
   var analysisResults = document.getElementById('analysisResults');
 
   setActiveTab(tabButtons, nextTab);
+  if (typeof resetSearchScopeRefinement === 'function') {
+    resetSearchScopeRefinement();
+  }
 
   setDisplay(results, 'flex');
   setDisplay(analysisResults, 'none');

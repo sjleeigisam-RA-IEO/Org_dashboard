@@ -25,11 +25,16 @@ var ALIASES = window.ALIASES || {
 var portfolioBasket = [];
 var latestSearchRequestId = 0;
 var currentInstitutionFilter = 'all';
+var currentSearchRefinement = {
+  resultType: 'all',
+  exactOnly: false
+};
 window.OPTIONAL_FUND_SEARCH_COLUMNS = OPTIONAL_FUND_SEARCH_COLUMNS;
 window.ALIASES = ALIASES;
 window.portfolioBasket = portfolioBasket;
 window.latestSearchRequestId = latestSearchRequestId;
 window.currentInstitutionFilter = currentInstitutionFilter;
+window.currentSearchRefinement = currentSearchRefinement;
 
 function ensureFundSearchColumns() {
   return _supabase.from('v_funds_enriched').select('*').limit(1).then(function (response) {
@@ -537,7 +542,13 @@ function performLegacySearch(query, requestId) {
 }
 
 function performSearch(query) {
-  window.currentSearchQuery = query || '';
+  var nextQuery = query || '';
+  if (nextQuery !== window.currentSearchQuery) {
+    currentSearchRefinement.resultType = 'all';
+    currentSearchRefinement.exactOnly = false;
+    window.currentSearchRefinement = currentSearchRefinement;
+  }
+  window.currentSearchQuery = nextQuery;
   currentInstitutionFilter = 'all';
   window.currentInstitutionFilter = currentInstitutionFilter;
   window.searchContractMode = 'canonical';
@@ -603,8 +614,10 @@ function renderResults() {
     resultsContainer.appendChild(summaryEl);
   }
 
+  renderSearchRefinementControls(window.currentSearchQuery || '', unifiedResults, visibleResults);
+
   if (!visibleResults.length) {
-    resultsContainer.innerHTML += '<div class="no-results">검색 결과가 없습니다.</div>';
+    resultsContainer.innerHTML += noSearchResultsHtml(window.currentSearchQuery || '', unifiedResults);
     return;
   }
 
@@ -1351,10 +1364,27 @@ function clusterToUnifiedResult(cluster, query, index) {
 
 function matchedReasonForUnifiedResult(cluster, query) {
   var rootType = rootTypeFromCluster(cluster);
-  if (rootType === 'asset') return '검색어와 일치하는 자산 및 연결 관계';
-  if (rootType === 'fund') return '검색어와 일치하는 펀드/비히클';
-  if (rootType === 'project') return '검색어와 일치하는 프로젝트 범위';
-  if (rootType === 'party') return '검색어와 일치하는 기관 참여 관계';
+  var terms = expandedTermsForExactMatch(query || '');
+  var primary = primaryRowsForUnifiedResult(cluster, rootType)[0] || {};
+  var title = cluster.title || canonicalDisplayTitle(rootType, primary) || '';
+  var subtitle = subtitleForUnifiedResult(cluster, rootType) || '';
+  if (rootType === 'asset') {
+    if (textMatchesAnyNormalizedTerm(title, terms)) return '자산명 일치';
+    if (textMatchesAnyNormalizedTerm(subtitle, terms)) return '주소/지역 일치';
+    return '연결 펀드/프로젝트에서 파생';
+  }
+  if (rootType === 'fund') {
+    if (textMatchesAnyNormalizedTerm(title, terms)) return '펀드명/코드 일치';
+    return '연결 자산/프로젝트에서 파생';
+  }
+  if (rootType === 'project') {
+    if (textMatchesAnyNormalizedTerm(title, terms)) return '프로젝트명 일치';
+    return '연결 자산/펀드에서 파생';
+  }
+  if (rootType === 'party') {
+    if (textMatchesAnyNormalizedTerm(title, terms)) return institutionSubtypeLabel(institutionSubtypeFromCluster(cluster)) + '명 일치';
+    return '참여 관계에서 파생';
+  }
   return '"' + String(query || '').trim() + '" 기준 관계 결과';
 }
 
@@ -1385,11 +1415,163 @@ function dedupeUnifiedResults(results) {
   });
 }
 
-function filteredUnifiedResults(results, tab) {
+function expandedTermsForExactMatch(query) {
+  var terms = getSearchTerms(query || '');
+  terms.slice().forEach(function (term) {
+    (ALIASES[String(term).toLowerCase()] || []).forEach(function (alias) {
+      terms.push(alias);
+    });
+  });
+  return uniqueValues(terms).map(normalizeSearchGroupKey).filter(Boolean);
+}
+
+function textMatchesAnyNormalizedTerm(value, normalizedTerms) {
+  var text = normalizeSearchGroupKey(value || '');
+  if (!text) return false;
+  return (normalizedTerms || []).some(function (term) {
+    return term && text.indexOf(term) !== -1;
+  });
+}
+
+function resultHasDirectSearchMatch(result, query) {
+  var terms = expandedTermsForExactMatch(query);
+  if (!terms.length || !result) return true;
+  var values = [result.title, result.subtitle];
+  var primaryRows = result.sourceRows || [];
+  primaryRows.forEach(function (row) {
+    values.push(canonicalDisplayTitle(result.rootType === 'party' ? unifiedResultBasketType(result) : result.rootType, row));
+    values.push(row.address_text || row.address || row.project_name || row.fund_name || row.short_name || '');
+  });
+  return values.some(function (value) {
+    return textMatchesAnyNormalizedTerm(value, terms);
+  });
+}
+
+function tabBaseUnifiedResults(results, tab) {
   tab = tab || 'all';
   return (results || []).filter(function (result) {
     return tab === 'all' || (result.facets || []).indexOf(tab) !== -1;
   });
+}
+
+function filteredUnifiedResults(results, tab) {
+  var rows = tabBaseUnifiedResults(results, tab);
+  var refinement = currentSearchRefinement || {};
+  if ((tab === 'all' || tab === 'target') && refinement.resultType && refinement.resultType !== 'all') {
+    rows = rows.filter(function (result) {
+      return result.rootType === refinement.resultType;
+    });
+  }
+  if (refinement.exactOnly) {
+    rows = rows.filter(function (result) {
+      return resultHasDirectSearchMatch(result, window.currentSearchQuery || '');
+    });
+  }
+  return rows;
+}
+
+function searchRefinementCounts(results) {
+  var base = results || [];
+  return {
+    all: base.length,
+    target: tabBaseUnifiedResults(base, 'target').length,
+    beneficiary: tabBaseUnifiedResults(base, 'beneficiary').length,
+    lender: tabBaseUnifiedResults(base, 'lender').length,
+    asset: base.filter(function (result) { return result.rootType === 'asset'; }).length,
+    fund: base.filter(function (result) { return result.rootType === 'fund'; }).length,
+    project: base.filter(function (result) { return result.rootType === 'project'; }).length,
+    exact: base.filter(function (result) { return resultHasDirectSearchMatch(result, window.currentSearchQuery || ''); }).length
+  };
+}
+
+function syncSearchTabButtons(nextTab) {
+  currentTab = nextTab || currentTab || 'all';
+  tabBtns.forEach(function (button) {
+    button.classList.toggle('active', button.dataset.tab === currentTab);
+  });
+}
+
+function applySearchRefinement(options) {
+  options = options || {};
+  if (options.tab) syncSearchTabButtons(options.tab);
+  if (options.resultType !== undefined) currentSearchRefinement.resultType = options.resultType;
+  if (options.exactOnly !== undefined) currentSearchRefinement.exactOnly = Boolean(options.exactOnly);
+  window.currentSearchRefinement = currentSearchRefinement;
+  updateTabCounts();
+  renderResults();
+}
+
+function resetSearchScopeRefinement() {
+  currentSearchRefinement.resultType = 'all';
+  window.currentSearchRefinement = currentSearchRefinement;
+}
+
+function refinementChipHtml(label, count, attrs, active, disabled) {
+  var attrText = Object.keys(attrs || {}).map(function (key) {
+    return 'data-' + key + '="' + escapeHtml(attrs[key]) + '"';
+  }).join(' ');
+  return '<button type="button" class="search-refinement-chip' + (active ? ' active' : '') + '" ' + attrText + (disabled ? ' disabled' : '') + '>' +
+    '<span>' + escapeHtml(label) + '</span>' +
+    (count !== undefined ? '<strong>' + count + '</strong>' : '') +
+    '</button>';
+}
+
+function bindSearchRefinementPanel(panel) {
+  if (!panel) return;
+  panel.querySelectorAll('[data-refine-tab]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      applySearchRefinement({ tab: button.dataset.refineTab, resultType: 'all' });
+    });
+  });
+  panel.querySelectorAll('[data-refine-type]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      applySearchRefinement({ tab: 'target', resultType: button.dataset.refineType });
+    });
+  });
+  panel.querySelectorAll('[data-refine-exact]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      applySearchRefinement({ exactOnly: button.dataset.refineExact === 'true' });
+    });
+  });
+}
+
+function renderSearchRefinementControls(query, allUnifiedResults, visibleResults) {
+  if (!String(query || '').trim() || !allUnifiedResults.length) return;
+  var counts = searchRefinementCounts(allUnifiedResults);
+  var panel = document.createElement('div');
+  var refinement = currentSearchRefinement || {};
+  var activeScope = currentTab || 'all';
+  panel.className = 'search-refinement-panel';
+  panel.innerHTML = `
+    <div class="search-refinement-head">
+      <span>검색 범위 보정</span>
+      <strong>${visibleResults.length}개 표시</strong>
+    </div>
+    <div class="search-refinement-row">
+      ${refinementChipHtml('전체 후보', counts.all, { 'refine-tab': 'all' }, activeScope === 'all' && refinement.resultType === 'all', !counts.all)}
+      ${refinementChipHtml('투자대상', counts.target, { 'refine-tab': 'target' }, activeScope === 'target' && refinement.resultType === 'all', !counts.target)}
+      ${refinementChipHtml('수익자', counts.beneficiary, { 'refine-tab': 'beneficiary' }, activeScope === 'beneficiary', !counts.beneficiary)}
+      ${refinementChipHtml('대주', counts.lender, { 'refine-tab': 'lender' }, activeScope === 'lender', !counts.lender)}
+    </div>
+    <div class="search-refinement-row search-refinement-secondary">
+      ${refinementChipHtml('자산만', counts.asset, { 'refine-type': 'asset' }, refinement.resultType === 'asset', !counts.asset)}
+      ${refinementChipHtml('펀드/비히클만', counts.fund, { 'refine-type': 'fund' }, refinement.resultType === 'fund', !counts.fund)}
+      ${refinementChipHtml('프로젝트만', counts.project, { 'refine-type': 'project' }, refinement.resultType === 'project', !counts.project)}
+      ${refinement.exactOnly
+        ? refinementChipHtml('관련 후보 포함', undefined, { 'refine-exact': 'false' }, false, false)
+        : refinementChipHtml('이름/주소 일치만', counts.exact, { 'refine-exact': 'true' }, false, !counts.exact)}
+    </div>
+  `;
+  resultsContainer.appendChild(panel);
+  bindSearchRefinementPanel(panel);
+}
+
+function noSearchResultsHtml(query, allUnifiedResults) {
+  var q = escapeHtml(String(query || '').trim());
+  if ((allUnifiedResults || []).length) {
+    return '<div class="no-results search-no-results"><strong>현재 보정 조건에는 결과가 없습니다.</strong><span>위의 범위 보정 칩에서 전체 후보나 관련 후보 포함을 선택해 다시 확인하세요.</span></div>';
+  }
+  return '<div class="no-results search-no-results"><strong>' + q + '에 대한 정확한 결과가 없습니다.</strong><span>검색어를 나누거나 펀드코드, 자산명, 기관명 중 하나로 다시 입력하세요.</span></div>';
 }
 
 function buildUnifiedSearchSummary(query, visibleResults, allUnifiedResults) {
@@ -1400,7 +1582,7 @@ function buildUnifiedSearchSummary(query, visibleResults, allUnifiedResults) {
     beneficiary: '수익자',
     lender: '대주'
   }[currentTab] || '전체');
-  return '"' + q + '" 검색 결과 ' + visibleResults.length + '개 · ' + scopeLabel + ' 기준으로 같은 카드 문법으로 표시';
+  return '"' + q + '"에 대한 ' + scopeLabel + ' 후보 ' + visibleResults.length + '개입니다. 원하는 대상이 아니면 아래 범위로 좁혀 확인하세요.';
 }
 
 function renderInstitutionFacetControls(unifiedResults) {
@@ -1457,6 +1639,23 @@ function unifiedQualityBadgesHtml(result) {
   return badges.map(function (entry) {
     return '<span class="unified-quality-badge ' + entry[1] + '">' + entry[0] + '</span>';
   }).join('');
+}
+
+function unifiedConfidenceBadgeHtml(result) {
+  var direct = resultHasDirectSearchMatch(result, window.currentSearchQuery || '');
+  var flags = result.qualityFlags || {};
+  var label = direct ? '직접 일치' : '관련 후보';
+  var style = direct ? 'strong' : 'related';
+  if (flags.reviewRequired || flags.derived || (flags.sourceMode && flags.sourceMode !== 'unified')) {
+    label = direct ? '보강 후보' : '관련 후보';
+    style = 'related';
+  }
+  return '<span class="unified-confidence-badge ' + style + '">' + label + '</span>';
+}
+
+function unifiedMatchReasonHtml(result) {
+  var reason = result && result.matchedReason ? result.matchedReason : '검색어와 연결된 결과';
+  return '<div class="unified-match-reason"><span>일치 기준</span><strong>' + escapeHtml(reason) + '</strong></div>';
 }
 
 function unifiedPreviewHtml(result, terms) {
@@ -1569,10 +1768,12 @@ function renderUnifiedResultCard(result) {
         <div class="unified-result-kicker">
           <span class="card-tag tag-${tagType}">${escapeHtml(result.rootType === 'party' ? institutionSubtypeLabel(result.rootSubtype) : ((result.badges || [])[0] || clusterCardTypeLabel(result.rootType)))}</span>
           ${result.rootSubtype && result.rootType !== 'party' ? '<span class="unified-subtype-badge">' + escapeHtml(institutionSubtypeLabel(result.rootSubtype)) + '</span>' : ''}
+          ${unifiedConfidenceBadgeHtml(result)}
           ${unifiedQualityBadgesHtml(result)}
         </div>
         <div class="group-title unified-result-title">${highlightTerms(result.title || '-', terms)}</div>
         <div class="unified-result-subtitle">${escapeHtml(result.subtitle || result.matchedReason || '')}</div>
+        ${unifiedMatchReasonHtml(result)}
         <div class="cluster-chip-row unified-count-row">${unifiedCountChipHtml(result)}</div>
         ${unifiedPreviewHtml(result, terms)}
       </div>
@@ -2115,6 +2316,7 @@ window.dedupeEntities = dedupeEntities;
 window.renderGroupCard = renderGroupCard;
 window.buildUnifiedSearchResults = buildUnifiedSearchResults;
 window.filteredUnifiedResults = filteredUnifiedResults;
+window.resetSearchScopeRefinement = resetSearchScopeRefinement;
 window.renderUnifiedResultCard = renderUnifiedResultCard;
 window.openUnifiedSearchDetail = openUnifiedSearchDetail;
 window.toggleBasket = toggleBasket;

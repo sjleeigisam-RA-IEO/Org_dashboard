@@ -55,6 +55,23 @@ assert(
   'asset-root unified results must open canonical asset detail, not the relationship summary page'
 );
 assert(
+  source.includes('renderSearchRefinementControls') &&
+    source.includes('search-refinement-chip') &&
+    source.includes('이름/주소 일치만'),
+  'search results must expose visible refinement controls for correcting search intent'
+);
+assert(
+  source.includes('unifiedMatchReasonHtml') &&
+    source.includes('unifiedConfidenceBadgeHtml') &&
+    source.includes('일치 기준'),
+  'unified result cards must explain why a result matched'
+);
+assert(
+  source.includes('resetSearchScopeRefinement') &&
+    source.includes('window.resetSearchScopeRefinement'),
+  'top-level tab changes must be able to reset sub-scope refinements'
+);
+assert(
   assetCanonicalSource.includes('fetchPeerAssetsByFundIds') &&
     assetCanonicalSource.includes('asset-relation-navigation') &&
     assetCanonicalSource.includes('bindAssetRelationNavigation(detailPanel)'),
