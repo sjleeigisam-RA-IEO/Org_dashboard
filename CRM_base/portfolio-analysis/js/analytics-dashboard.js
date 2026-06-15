@@ -149,9 +149,9 @@
           }
           .segment {
             flex: 1; text-align: center; padding: 6px 0; font-size: 11px; font-weight: 700;
-            color: #64748b; z-index: 1; transition: color 0.3s; position: relative;
+            color: var(--soft); z-index: 1; transition: color 0.3s; position: relative;
           }
-          .segment.active { color: var(--accent); }
+          .segment.active { color: #061626; }
           .segment-slider {
             position: absolute; top: 4px; left: 4px; width: calc(50% - 4px); height: calc(100% - 8px);
             background: var(--accent); border-radius: 6px; box-shadow: none;
@@ -574,6 +574,7 @@ function renderNetGrowth(chartId) {
             height: 350,
             toolbar: { show: false },
             fontFamily: 'Pretendard Variable',
+            foreColor: '#d7d2dc',
             events: {
                 dataPointSelection: (event, chartContext, config) => {
                     const label = categories[config.dataPointIndex];
@@ -597,12 +598,19 @@ function renderNetGrowth(chartId) {
                 return currentChartMetric === 'count' ? `${prefix}${val}개` : `${prefix}${val.toFixed(1)}조`;
             },
             offsetY: -22,
-            style: { fontSize: '11px', fontWeight: 800, colors: ['#f6f1e8'] }
+            style: { fontSize: '12px', fontWeight: 900, colors: ['#f6f1e8'] }
         },
-        xaxis: { categories: categories, labels: { style: { fontSize: '10px', colors: '#a5a5aa' } } },
+        xaxis: {
+            categories: categories,
+            labels: {
+                rotate: -35,
+                trim: false,
+                style: { fontSize: '12px', fontWeight: 700, colors: '#d7d2dc' }
+            }
+        },
         yaxis: {
             labels: {
-                style: { colors: '#a5a5aa' },
+                style: { fontSize: '12px', fontWeight: 700, colors: '#d7d2dc' },
                 formatter: val => {
                     const prefix = val > 0 ? '+' : '';
                     return currentChartMetric === 'count' ? `${prefix}${val}개` : `${prefix}${val.toFixed(1)}조`;
@@ -610,7 +618,7 @@ function renderNetGrowth(chartId) {
             }
         },
         colors: ['#fbf167'],
-        grid: { borderColor: 'rgba(255,255,255,0.09)', yaxis: { lines: { show: true } } },
+        grid: { borderColor: 'rgba(255,255,255,0.14)', yaxis: { lines: { show: true } } },
         tooltip: {
             theme: 'dark',
             shared: true,
@@ -676,7 +684,7 @@ function renderHistory(chartId) {
 
     const options = {
         series: chartSeries,
-        chart: { type: 'bar', height: 450, stacked: true, toolbar: { show: false }, fontFamily: 'Pretendard Variable', foreColor: '#a5a5aa' },
+        chart: { type: 'bar', height: 450, stacked: true, toolbar: { show: false }, fontFamily: 'Pretendard Variable', foreColor: '#d7d2dc' },
         colors: currentChartMetric === 'count' && chartSeries.length === 3 ? ['#fbf167', '#54bcd8', '#7f8a94'] : ['#fbf167', '#54bcd8'],
         plotOptions: {
             bar: {
@@ -686,16 +694,23 @@ function renderHistory(chartId) {
                     total: {
                         enabled: true,
                         offsetY: -10,
-                        style: { fontSize: '11px', fontWeight: 900, colors: ['#f6f1e8'] },
+                        style: { fontSize: '12px', fontWeight: 900, colors: ['#f6f1e8'] },
                         formatter: val => formatHistoryChartValue(val)
                     }
                 }
             }
         },
         dataLabels: { enabled: false },
-        xaxis: { categories: categories, labels: { style: { fontSize: '10px', colors: '#a5a5aa' } } },
-        yaxis: { labels: { style: { colors: '#a5a5aa' }, formatter: val => formatHistoryChartValue(val) } },
-        grid: { borderColor: 'rgba(255,255,255,0.09)', strokeDashArray: 4 },
+        xaxis: {
+            categories: categories,
+            labels: {
+                rotate: -35,
+                trim: false,
+                style: { fontSize: '12px', fontWeight: 700, colors: '#d7d2dc' }
+            }
+        },
+        yaxis: { labels: { style: { fontSize: '12px', fontWeight: 700, colors: '#d7d2dc' }, formatter: val => formatHistoryChartValue(val) } },
+        grid: { borderColor: 'rgba(255,255,255,0.14)', strokeDashArray: 4 },
         tooltip: {
             theme: 'dark',
             shared: true,
@@ -728,7 +743,7 @@ function renderHistory(chartId) {
                 `;
             }
         },
-        legend: { position: 'top', horizontalAlign: 'right', labels: { colors: '#a5a5aa' } }
+        legend: { position: 'top', horizontalAlign: 'right', labels: { colors: '#f6f1e8' } }
     };
 
     const el = document.querySelector(`#${chartId}`);

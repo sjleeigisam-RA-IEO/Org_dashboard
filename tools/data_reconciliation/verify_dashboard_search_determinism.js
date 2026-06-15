@@ -57,7 +57,8 @@ assert(
 assert(
   source.includes('renderSearchRefinementControls') &&
     source.includes('search-refinement-chip') &&
-    source.includes('이름/주소 일치만'),
+    source.includes('직접 일치만') &&
+    source.includes('검색어 해석'),
   'search results must expose visible refinement controls for correcting search intent'
 );
 assert(

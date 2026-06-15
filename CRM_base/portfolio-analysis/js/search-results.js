@@ -1484,6 +1484,44 @@ function searchRefinementCounts(results) {
   };
 }
 
+function inferSearchInterpretation(query, counts) {
+  var q = String(query || '').trim();
+  if (/^\d{1,6}$/.test(q)) {
+    return {
+      label: '코드 단서',
+      text: '숫자 검색어라 펀드/비히클 코드와 프로젝트 코드를 우선 확인합니다.'
+    };
+  }
+  if ((counts.beneficiary || counts.lender) && counts.target === 0) {
+    return {
+      label: '기관명 단서',
+      text: '기관명으로 보이는 검색어라 수익자/대주 관계를 먼저 확인합니다.'
+    };
+  }
+  if (counts.asset >= counts.fund && counts.asset >= counts.project && counts.asset > 0) {
+    return {
+      label: '자산/주소 단서',
+      text: '자산명 또는 주소에 가까운 검색어라 투자대상 후보를 우선 보여줍니다.'
+    };
+  }
+  if (counts.fund >= counts.project && counts.fund > 0) {
+    return {
+      label: '펀드/코드 단서',
+      text: '펀드명, 약칭, 코드와 맞는 후보를 중심으로 보여줍니다.'
+    };
+  }
+  if (counts.project > 0) {
+    return {
+      label: '프로젝트 단서',
+      text: '프로젝트명과 연결 관계를 기준으로 후보를 보여줍니다.'
+    };
+  }
+  return {
+    label: '관계 단서',
+    text: '검색어와 직접 맞는 항목과 연결 관계에서 파생된 후보를 함께 보여줍니다.'
+  };
+}
+
 function syncSearchTabButtons(nextTab) {
   currentTab = nextTab || currentTab || 'all';
   tabBtns.forEach(function (button) {
@@ -1516,6 +1554,11 @@ function refinementChipHtml(label, count, attrs, active, disabled) {
     '</button>';
 }
 
+function optionalRefinementChipHtml(label, count, attrs, active) {
+  if (!active && !(Number(count) > 0)) return '';
+  return refinementChipHtml(label, count, attrs, active, false);
+}
+
 function bindSearchRefinementPanel(panel) {
   if (!panel) return;
   panel.querySelectorAll('[data-refine-tab]').forEach(function (button) {
@@ -1540,27 +1583,34 @@ function renderSearchRefinementControls(query, allUnifiedResults, visibleResults
   var counts = searchRefinementCounts(allUnifiedResults);
   var panel = document.createElement('div');
   var refinement = currentSearchRefinement || {};
-  var activeScope = currentTab || 'all';
+  var intent = inferSearchInterpretation(query, counts);
+  var canNarrowByTargetType = currentTab === 'all' || currentTab === 'target';
+  var narrowChips = [
+    !refinement.exactOnly
+      ? optionalRefinementChipHtml('직접 일치만', counts.exact, { 'refine-exact': 'true' }, false)
+      : '',
+    canNarrowByTargetType ? optionalRefinementChipHtml('자산/주소', counts.asset, { 'refine-type': 'asset' }, refinement.resultType === 'asset') : '',
+    canNarrowByTargetType ? optionalRefinementChipHtml('펀드/코드', counts.fund, { 'refine-type': 'fund' }, refinement.resultType === 'fund') : '',
+    canNarrowByTargetType ? optionalRefinementChipHtml('프로젝트', counts.project, { 'refine-type': 'project' }, refinement.resultType === 'project') : ''
+  ].filter(Boolean).join('');
+  var broadenChips = [
+    refinement.exactOnly ? refinementChipHtml('관계 후보 포함', undefined, { 'refine-exact': 'false' }, false, false) : '',
+    canNarrowByTargetType && refinement.resultType && refinement.resultType !== 'all'
+      ? refinementChipHtml('투자대상 전체', counts.target, { 'refine-type': 'all' }, false, false)
+      : ''
+  ].filter(Boolean).join('');
   panel.className = 'search-refinement-panel';
   panel.innerHTML = `
     <div class="search-refinement-head">
-      <span>검색 범위 보정</span>
+      <span>검색어 해석</span>
       <strong>${visibleResults.length}개 표시</strong>
     </div>
-    <div class="search-refinement-row">
-      ${refinementChipHtml('전체 후보', counts.all, { 'refine-tab': 'all' }, activeScope === 'all' && refinement.resultType === 'all', !counts.all)}
-      ${refinementChipHtml('투자대상', counts.target, { 'refine-tab': 'target' }, activeScope === 'target' && refinement.resultType === 'all', !counts.target)}
-      ${refinementChipHtml('수익자', counts.beneficiary, { 'refine-tab': 'beneficiary' }, activeScope === 'beneficiary', !counts.beneficiary)}
-      ${refinementChipHtml('대주', counts.lender, { 'refine-tab': 'lender' }, activeScope === 'lender', !counts.lender)}
+    <div class="search-refinement-guidance">
+      <strong>${escapeHtml(intent.label)}</strong>
+      <span>${escapeHtml(intent.text)} 원하는 결과가 아니면 아래에서 직접 일치로 좁히거나 관계 후보를 다시 포함하세요.</span>
     </div>
-    <div class="search-refinement-row search-refinement-secondary">
-      ${refinementChipHtml('자산만', counts.asset, { 'refine-type': 'asset' }, refinement.resultType === 'asset', !counts.asset)}
-      ${refinementChipHtml('펀드/비히클만', counts.fund, { 'refine-type': 'fund' }, refinement.resultType === 'fund', !counts.fund)}
-      ${refinementChipHtml('프로젝트만', counts.project, { 'refine-type': 'project' }, refinement.resultType === 'project', !counts.project)}
-      ${refinement.exactOnly
-        ? refinementChipHtml('관련 후보 포함', undefined, { 'refine-exact': 'false' }, false, false)
-        : refinementChipHtml('이름/주소 일치만', counts.exact, { 'refine-exact': 'true' }, false, !counts.exact)}
-    </div>
+    ${narrowChips ? '<div class="search-refinement-group"><span class="search-refinement-group-label">좁혀 보기</span><div class="search-refinement-row search-refinement-secondary">' + narrowChips + '</div></div>' : ''}
+    ${broadenChips ? '<div class="search-refinement-group"><span class="search-refinement-group-label">넓혀 보기</span><div class="search-refinement-row search-refinement-secondary">' + broadenChips + '</div></div>' : ''}
   `;
   resultsContainer.appendChild(panel);
   bindSearchRefinementPanel(panel);
@@ -1569,7 +1619,7 @@ function renderSearchRefinementControls(query, allUnifiedResults, visibleResults
 function noSearchResultsHtml(query, allUnifiedResults) {
   var q = escapeHtml(String(query || '').trim());
   if ((allUnifiedResults || []).length) {
-    return '<div class="no-results search-no-results"><strong>현재 보정 조건에는 결과가 없습니다.</strong><span>위의 범위 보정 칩에서 전체 후보나 관련 후보 포함을 선택해 다시 확인하세요.</span></div>';
+    return '<div class="no-results search-no-results"><strong>현재 해석 조건에는 결과가 없습니다.</strong><span>위의 넓혀 보기에서 관계 후보 포함이나 투자대상 전체를 선택해 다시 확인하세요.</span></div>';
   }
   return '<div class="no-results search-no-results"><strong>' + q + '에 대한 정확한 결과가 없습니다.</strong><span>검색어를 나누거나 펀드코드, 자산명, 기관명 중 하나로 다시 입력하세요.</span></div>';
 }
@@ -1577,12 +1627,14 @@ function noSearchResultsHtml(query, allUnifiedResults) {
 function buildUnifiedSearchSummary(query, visibleResults, allUnifiedResults) {
   var q = String(query || '').trim();
   if (!q || !allUnifiedResults.length) return '';
+  var counts = searchRefinementCounts(allUnifiedResults);
+  var intent = inferSearchInterpretation(query, counts);
   var scopeLabel = currentTab === 'all' ? '전체' : ({
     target: '투자대상',
     beneficiary: '수익자',
     lender: '대주'
   }[currentTab] || '전체');
-  return '"' + q + '"에 대한 ' + scopeLabel + ' 후보 ' + visibleResults.length + '개입니다. 원하는 대상이 아니면 아래 범위로 좁혀 확인하세요.';
+  return '"' + q + '"을 ' + intent.label + '로 해석했습니다. ' + scopeLabel + '에서 ' + visibleResults.length + '개를 표시합니다.';
 }
 
 function renderInstitutionFacetControls(unifiedResults) {
