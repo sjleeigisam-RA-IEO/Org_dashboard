@@ -1,4 +1,5 @@
 import json
+import re
 from argparse import ArgumentParser
 from collections import defaultdict
 from datetime import date, datetime, timedelta
@@ -10,6 +11,29 @@ from t5t_classification import GENERAL_WORK_STATUS
 from t5t_classification import MISSION_STATUS
 from t5t_classification import effective_match_status
 from t5t_classification import effective_task_type
+
+
+IOTA_TARGET_STAFF_IDS = {
+    "staff_10268",
+    "staff_ext_000007",
+    "staff_ext_000111",
+    "staff_ext_000037",
+    "staff_ext_000027",
+}
+IOTA_TARGET_EMAILS = {
+    "sykang@igisam.com",
+    "ksoonil@igisam.com",
+    "jghong@igisam.com",
+    "junhopark@igisam.com",
+    "hyunsoo.kim@igisam.com",
+}
+IOTA_TARGET_NAMES = {
+    "\uac15\uc21c\uc6a9",
+    "\uad8c\uc21c\uc77c",
+    "\ud64d\uc7a5\uad70",
+    "\ubc15\uc900\ud638",
+    "\uae40\ud604\uc218",
+}
 
 
 def parse_date(value):
@@ -40,6 +64,28 @@ def dedupe_by_key(rows, key):
         if value:
             deduped[value] = row
     return list(deduped.values())
+
+
+def is_missing_iota_table_error(error):
+    message = str(error).lower()
+    return "iota_t5t_logs" in message and (
+        "does not exist" in message
+        or "could not find the table" in message
+        or "pgrst205" in message
+    )
+
+
+def upsert_iota_logs(client, iota_logs, chunk_size):
+    if not iota_logs:
+        return
+    try:
+        for batch in chunked(iota_logs, chunk_size):
+            client.table("iota_t5t_logs").upsert(batch, on_conflict="iota_log_id").execute()
+    except Exception as error:
+        if is_missing_iota_table_error(error):
+            print("WARNING: iota_t5t_logs table is not available yet; skipped IOTA copy.")
+            return
+        raise
 
 
 def fetch_all(client, table, select, order=None, date_from=None, date_to=None):
@@ -88,6 +134,61 @@ def build_asset_lookup(fund_assets):
     return by_fund
 
 
+def build_staff_lookup(staff_rows):
+    by_id = {}
+    for row in staff_rows:
+        staff_id = row.get("staff_id")
+        if staff_id:
+            by_id[staff_id] = row
+    return by_id
+
+
+def normalize_email(value):
+    return str(value or "").strip().lower()
+
+
+def is_iota_target_writer(staff_id, staff_lookup):
+    staff = staff_lookup.get(staff_id) or {}
+    name = str(staff.get("name") or "")
+    email = normalize_email(staff.get("email"))
+    return (
+        staff_id in IOTA_TARGET_STAFF_IDS
+        or email in IOTA_TARGET_EMAILS
+        or any(target_name in name for target_name in IOTA_TARGET_NAMES)
+    )
+
+
+def iota_body_text(item, log):
+    # Match only semantic body fields. Do not include metadata to avoid UUID/ID false positives.
+    parts = [
+        item.get("raw_text"),
+        item.get("project_text"),
+        item.get("stakeholder_text"),
+        item.get("classification_summary"),
+        log.get("log_title"),
+        log.get("summary"),
+    ]
+    return " ".join(str(part) for part in parts if part)
+
+
+def find_iota_match_terms(text):
+    text = text or ""
+    terms = []
+    if (
+        re.search(r"(^|[^A-Za-z])I\s*O\s*T\s*A([^A-Za-z]|$)", text, re.IGNORECASE)
+        or "\uc774\uc624\ud0c0" in text
+        or "\uc544\uc774\uc624\ud0c0" in text
+    ):
+        terms.append("IOTA Seoul")
+    if re.search(r"(^|[^0-9])427\s*(호)?([^0-9]|$)", text):
+        terms.append("427")
+    if re.search(r"(^|[^0-9])816\s*(호)?([^0-9]|$)", text):
+        terms.append("816")
+    if re.search(r"(^|[^0-9])421\s*(호)?([^0-9]|$)", text):
+        terms.append("421")
+    return terms
+
+
 def normalize(date_from=None, date_to=None, chunk_size=500):
     url, key = get_required_supabase_config()
     client = create_client(url, key)
@@ -102,10 +203,13 @@ def normalize(date_from=None, date_to=None, chunk_size=500):
     )
     counterparties = fetch_all(client, "counterparties", "counterparty_id,name,category,metadata")
     fund_assets = fetch_all(client, "fund_assets", "id,fund_id,asset_name,asset_id,metadata")
+    staff_rows = fetch_all(client, "staff", "staff_id,name,email,status,metadata")
     counterparties_by_id = build_counterparty_lookup(counterparties)
     assets_by_fund = build_asset_lookup(fund_assets)
+    staff_by_id = build_staff_lookup(staff_rows)
 
     logs = []
+    iota_logs = []
     project_links = []
     stakeholders = []
 
@@ -140,7 +244,7 @@ def normalize(date_from=None, date_to=None, chunk_size=500):
             else MISSION_STATUS if match_status == MISSION_STATUS
             else None
         )
-        logs.append({
+        log = {
             "t5t_log_id": log_id,
             "notion_id": None,
             "writer_staff_id": item.get("writer_staff_id"),
@@ -163,7 +267,45 @@ def normalize(date_from=None, date_to=None, chunk_size=500):
             "source_system": "t5t_form_items",
             "metadata": metadata,
             "updated_at": datetime.utcnow().isoformat(),
-        })
+        }
+        logs.append(log)
+
+        writer = staff_by_id.get(item.get("writer_staff_id"), {})
+        body_text = iota_body_text(item, log)
+        iota_match_terms = find_iota_match_terms(body_text)
+        if is_iota_target_writer(item.get("writer_staff_id"), staff_by_id) and iota_match_terms:
+            iota_logs.append({
+                "iota_log_id": log_id,
+                "source_t5t_log_id": log_id,
+                "source_form_item_id": item.get("form_item_id"),
+                "source_submission_id": item.get("submission_id"),
+                "writer_staff_id": item.get("writer_staff_id"),
+                "writer_name": writer.get("name"),
+                "writer_email": normalize_email(writer.get("email")),
+                "line": log.get("line"),
+                "work_date": item.get("work_date"),
+                "week_key": wk,
+                "week_end_date": week_end,
+                "task_type": log.get("task_type"),
+                "log_title": log["log_title"],
+                "summary": log["summary"],
+                "raw_text": item.get("raw_text"),
+                "body_text": body_text,
+                "source_url": metadata.get("source_url"),
+                "matching_status": log.get("matching_status"),
+                "matching_basis": log.get("matching_basis"),
+                "needs_manual_review": log.get("needs_manual_review"),
+                "classification_summary": log.get("classification_summary"),
+                "classification_tokens": log.get("classification_tokens") or [],
+                "match_terms": iota_match_terms,
+                "source_system": "t5t_logs_iota_copy",
+                "metadata": {
+                    "copy_source": "normalize_t5t_logs",
+                    "copied_from": "t5t_logs",
+                    "source_metadata": metadata,
+                },
+                "updated_at": log["updated_at"],
+            })
 
         if item.get("matched_project_id"):
             project_links.append({
@@ -192,6 +334,7 @@ def normalize(date_from=None, date_to=None, chunk_size=500):
 
     for batch in chunked(logs, chunk_size):
         client.table("t5t_logs").upsert(batch, on_conflict="t5t_log_id").execute()
+    upsert_iota_logs(client, iota_logs, chunk_size)
     project_links = dedupe_by_key(project_links, "link_id")
     stakeholders = dedupe_by_key(stakeholders, "stakeholder_id")
 
@@ -203,6 +346,7 @@ def normalize(date_from=None, date_to=None, chunk_size=500):
     summary = {
         "source_items": len(items),
         "t5t_logs": len(logs),
+        "iota_t5t_logs": len(iota_logs),
         "t5t_log_project_links": len(project_links),
         "t5t_log_stakeholders": len(stakeholders),
     }

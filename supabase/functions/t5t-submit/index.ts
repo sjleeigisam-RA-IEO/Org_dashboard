@@ -1,4 +1,25 @@
 const NOTION_VERSION = "2022-06-28";
+const IOTA_TARGET_STAFF_IDS = new Set([
+  "staff_10268",
+  "staff_ext_000007",
+  "staff_ext_000111",
+  "staff_ext_000037",
+  "staff_ext_000027",
+]);
+const IOTA_TARGET_EMAILS = new Set([
+  "sykang@igisam.com",
+  "ksoonil@igisam.com",
+  "jghong@igisam.com",
+  "junhopark@igisam.com",
+  "hyunsoo.kim@igisam.com",
+]);
+const IOTA_TARGET_NAMES = [
+  "\uac15\uc21c\uc6a9",
+  "\uad8c\uc21c\uc77c",
+  "\ud64d\uc7a5\uad70",
+  "\ubc15\uc900\ud638",
+  "\uae40\ud604\uc218",
+];
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -562,5 +583,141 @@ async function saveToSupabase(payload: T5TPayload, notionPage: { id: string; url
   });
 
   if (itemRows.length) await upsertRows("t5t_form_items", itemRows, "form_item_id");
+  const iotaRows = iotaRowsFromSubmission(payload, sid, itemRows, sourceUrl);
+  if (iotaRows.length) await upsertIotaRows(iotaRows);
   return sid;
+}
+
+async function upsertIotaRows(rows: unknown[]) {
+  try {
+    await upsertRows("iota_t5t_logs", rows, "iota_log_id");
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    const lower = message.toLowerCase();
+    const tableMissing = lower.includes("iota_t5t_logs") &&
+      (lower.includes("does not exist") || lower.includes("could not find the table") || lower.includes("pgrst205"));
+    if (!tableMissing) throw error;
+    console.warn("iota_t5t_logs table is not available yet; skipped IOTA copy.");
+  }
+}
+
+function iotaRowsFromSubmission(
+  payload: T5TPayload,
+  submissionIdValue: string,
+  itemRows: Array<Record<string, any>>,
+  sourceUrl: string | null,
+) {
+  if (!isIotaTargetWriter(payload)) return [];
+  return itemRows
+    .map((row) => {
+      const bodyText = iotaBodyText(row);
+      const matchTerms = iotaMatchTerms(bodyText);
+      if (!matchTerms.length) return null;
+      const formItemId = row.form_item_id;
+      const logId = `form_item_${formItemId}`;
+      const summary = row.classification_summary || row.raw_text || "";
+      const week = workWeek(payload.work_date);
+      return {
+        iota_log_id: logId,
+        source_t5t_log_id: logId,
+        source_form_item_id: formItemId,
+        source_submission_id: submissionIdValue,
+        writer_staff_id: payload.writer_staff_id || null,
+        writer_name: payload.writer_name || null,
+        writer_email: normalizeEmail(payload.writer_email),
+        line: payload.line || null,
+        work_date: payload.work_date || null,
+        week_key: payload.week_key || week.weekKey || null,
+        week_end_date: week.weekEndDate || null,
+        task_type: row.task_type || null,
+        log_title: row.project_text || row.classification_summary || `T5T ${row.item_no}`,
+        summary: String(summary).slice(0, 120),
+        raw_text: row.raw_text || "",
+        body_text: bodyText,
+        source_url: sourceUrl,
+        matching_status: row.match_status || null,
+        matching_basis: iotaMatchingBasis(row),
+        needs_manual_review: false,
+        classification_summary: row.classification_summary || null,
+        classification_tokens: [],
+        match_terms: matchTerms,
+        source_system: "t5t_input_edge_iota_copy",
+        metadata: {
+          copy_source: "t5t-submit",
+          copied_from: "t5t_form_items",
+          source_metadata: row.metadata || {},
+        },
+      };
+    })
+    .filter(Boolean);
+}
+
+function isIotaTargetWriter(payload: T5TPayload) {
+  const staffId = payload.writer_staff_id || "";
+  const email = normalizeEmail(payload.writer_email);
+  const name = String(payload.writer_name || "");
+  return IOTA_TARGET_STAFF_IDS.has(staffId) ||
+    IOTA_TARGET_EMAILS.has(email) ||
+    IOTA_TARGET_NAMES.some((targetName) => name.includes(targetName));
+}
+
+function normalizeEmail(value?: string | null) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function iotaBodyText(row: Record<string, any>) {
+  return [
+    row.raw_text,
+    row.project_text,
+    row.stakeholder_text,
+    row.classification_summary,
+  ].filter(Boolean).join(" ");
+}
+
+function iotaMatchTerms(text: string) {
+  const terms: string[] = [];
+  if (
+    /(^|[^A-Za-z])I\s*O\s*T\s*A([^A-Za-z]|$)/i.test(text) ||
+    text.includes("\uc774\uc624\ud0c0") ||
+    text.includes("\uc544\uc774\uc624\ud0c0")
+  ) {
+    terms.push("IOTA Seoul");
+  }
+  if (/(^|[^0-9])427\s*(\ud638)?([^0-9]|$)/.test(text)) terms.push("427");
+  if (/(^|[^0-9])816\s*(\ud638)?([^0-9]|$)/.test(text)) terms.push("816");
+  if (/(^|[^0-9])421\s*(\ud638)?([^0-9]|$)/.test(text)) terms.push("421");
+  return terms;
+}
+
+function iotaMatchingBasis(row: Record<string, any>) {
+  if (row.matched_project_id) return "project";
+  if (row.matched_review_project_id) return "review_project";
+  if (row.matched_fund_id) return "fund";
+  const assetIds = row.metadata?.asset_ids || [];
+  if (Array.isArray(assetIds) && assetIds.length) return "asset";
+  return null;
+}
+
+function workWeek(value?: string | null) {
+  if (!value) return { weekKey: null, weekEndDate: null };
+  const date = parseDateOnly(value);
+  if (!date) return { weekKey: null, weekEndDate: null };
+  const day = date.getUTCDay();
+  const mondayBased = day === 0 ? 6 : day - 1;
+  const addDays = (7 - mondayBased) % 7;
+  const weekEnd = new Date(date.getTime() + addDays * 24 * 60 * 60 * 1000);
+  const iso = isoWeek(weekEnd);
+  return {
+    weekKey: `${iso.year}-W${String(iso.week).padStart(2, "0")}`,
+    weekEndDate: formatDateOnly(weekEnd),
+  };
+}
+
+function isoWeek(value: Date) {
+  const date = new Date(Date.UTC(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate()));
+  const day = date.getUTCDay() || 7;
+  date.setUTCDate(date.getUTCDate() + 4 - day);
+  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+  const week = Math.ceil((((date.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
+  return { year: date.getUTCFullYear(), week };
 }
