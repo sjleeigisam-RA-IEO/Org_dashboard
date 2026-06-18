@@ -206,6 +206,9 @@
         <div style="font-weight: 800; font-size: 20px; color: var(--text);">주간 업무 요약</div>
         <div style="font-size: 13px; color: var(--muted); margin-top: 6px;">SQL에 적재된 T5T 로그를 기준으로 매주 월요일 오전 8시에 자동 생성됩니다.</div>
         <span class="summary-link summary-badge">SQL 자동 요약</span>
+        <select id="summary-week-select" class="period-input summary-week-select" aria-label="Summary week">
+          <option value="">Latest summary</option>
+        </select>
       </div>
       <div id="summary-content" class="summary-content">
         <div style="color: var(--muted); text-align: center; padding: 40px 0;">요약본 데이터를 불러오는 중입니다...</div>

@@ -964,6 +964,12 @@ body {
   border: 1px solid rgba(251, 241, 103, 0.35);
 }
 
+.summary-week-select {
+  margin-top: 16px;
+  max-width: 520px;
+  width: min(100%, 520px);
+}
+
 .summary-content {
   padding: 40px 32px;
   font-size: 15px;

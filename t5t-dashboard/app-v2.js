@@ -15,6 +15,7 @@ let uiState = {
   stakeholderDrilldown: null,
   insight: { kind: null, key: null, groupBy: "none" },
   project: { id: null, groupBy: "none" },
+  summary: { weekKey: null, snapshots: [] },
   people: { selected: null, weekKey: null, search: "" }
 };
 
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupInsightGrouping();
   setupProjectGrouping();
   setupPeopleControls();
+  setupSummaryControls();
   setupDragScroll();
   loadData();
 });
@@ -280,9 +282,7 @@ async function loadWeeklySummary() {
   const container = document.getElementById("summary-content");
   if (!container) return;
   try {
-    const response = await fetch(`data/weekly_summary.json?v=${Date.now()}`);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const summary = await response.json();
+    const summary = await loadSelectedWeeklySummary();
     renderWeeklySummary(summary);
   } catch (error) {
     container.innerHTML = `
@@ -292,6 +292,61 @@ async function loadWeeklySummary() {
       </div>
     `;
   }
+}
+
+function setupSummaryControls() {
+  const select = document.getElementById("summary-week-select");
+  if (!select) return;
+  select.addEventListener("change", () => {
+    uiState.summary.weekKey = select.value || null;
+    loadWeeklySummary();
+  });
+}
+
+async function loadSelectedWeeklySummary() {
+  if (typeof supabaseClient !== "undefined") {
+    const snapshots = await fetchWeeklySummarySnapshots();
+    if (snapshots.length) {
+      uiState.summary.snapshots = snapshots;
+      if (!uiState.summary.weekKey || !snapshots.some(row => row.week_key === uiState.summary.weekKey)) {
+        uiState.summary.weekKey = snapshots[0].week_key;
+      }
+      renderSummaryWeekOptions(snapshots);
+      const selected = snapshots.find(row => row.week_key === uiState.summary.weekKey) || snapshots[0];
+      return selected.summary_json || {};
+    }
+  }
+  const response = await fetch(`data/weekly_summary.json?v=${Date.now()}`);
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  const summary = await response.json();
+  renderSummaryWeekOptions([{
+    week_key: summary.week_key || "",
+    week_start: summary.week_start || "",
+    week_end: summary.week_end || "",
+    total_logs: summary.total_logs || 0,
+    summary_json: summary
+  }]);
+  return summary;
+}
+
+async function fetchWeeklySummarySnapshots() {
+  const { data, error } = await supabaseClient
+    .from("t5t_weekly_summary_snapshots")
+    .select("week_key,week_start,week_end,total_logs,generated_at,summary_json")
+    .order("week_end", { ascending: false })
+    .limit(120);
+  if (error) throw error;
+  return data || [];
+}
+
+function renderSummaryWeekOptions(snapshots) {
+  const select = document.getElementById("summary-week-select");
+  if (!select) return;
+  select.innerHTML = snapshots.map(row => {
+    const label = `${row.week_key || ""} · ${row.week_start || ""}~${row.week_end || ""} · ${Number(row.total_logs || 0).toLocaleString()}건`;
+    return `<option value="${escapeHtml(row.week_key || "")}" ${row.week_key === uiState.summary.weekKey ? "selected" : ""}>${escapeHtml(label)}</option>`;
+  }).join("");
+  select.disabled = snapshots.length <= 1;
 }
 
 function renderWeeklySummary(summary) {

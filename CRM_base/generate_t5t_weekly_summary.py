@@ -41,6 +41,11 @@ def reporting_week(ref_date):
     return week_end - timedelta(days=6), week_end
 
 
+def week_key_from_end(week_end):
+    iso = week_end.isocalendar()
+    return f"{iso.year}-W{iso.week:02d}"
+
+
 def fetch_all(client, table, select, date_from, date_to):
     rows = []
     start = 0
@@ -201,12 +206,33 @@ def write_json(path, payload):
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def upsert_summary_snapshot(client, payload, source="generate_t5t_weekly_summary"):
+    week_start = parse_date(payload.get("week_start"))
+    week_end = parse_date(payload.get("week_end"))
+    if not week_start or not week_end:
+        raise ValueError("summary payload must include week_start and week_end")
+    week_key = payload.get("week_key") or week_key_from_end(week_end)
+    row = {
+        "week_key": week_key,
+        "week_start": week_start.isoformat(),
+        "week_end": week_end.isoformat(),
+        "total_logs": int(payload.get("total_logs") or 0),
+        "summary_json": payload,
+        "source": source,
+        "generated_at": payload.get("generated_at"),
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+    }
+    client.table("t5t_weekly_summary_snapshots").upsert(row, on_conflict="week_key").execute()
+    return week_key
+
+
 def main():
     parser = ArgumentParser(description="Generate a dashboard-ready weekly T5T summary from SQL rows.")
     parser.add_argument("--as-of", help="Reference date in KST, YYYY-MM-DD. Defaults to today.")
     parser.add_argument("--date-from", help="Override inclusive start date, YYYY-MM-DD.")
     parser.add_argument("--date-to", help="Override inclusive end date, YYYY-MM-DD.")
     parser.add_argument("--out", default=str(DEFAULT_OUT), help="Output JSON path.")
+    parser.add_argument("--no-db-snapshot", action="store_true", help="Only write the JSON file; do not upsert the DB snapshot.")
     args = parser.parse_args()
 
     if args.date_from and args.date_to:
@@ -229,8 +255,18 @@ def main():
     funds = fetch_lookup(client, "funds", "fund_id,fund_name,short_name,asset_name", "fund_id")
 
     payload = build_summary(rows, staff, projects, funds, week_start, week_end)
+    payload["week_key"] = week_key_from_end(week_end)
     write_json(Path(args.out), payload)
-    print(json.dumps({"status": "ok", "out": str(args.out), "total_logs": payload["total_logs"]}, ensure_ascii=False))
+    snapshot_week_key = None
+    if not args.no_db_snapshot:
+        snapshot_week_key = upsert_summary_snapshot(client, payload)
+    print(json.dumps({
+        "status": "ok",
+        "out": str(args.out),
+        "week_key": payload["week_key"],
+        "snapshot_week_key": snapshot_week_key,
+        "total_logs": payload["total_logs"],
+    }, ensure_ascii=False))
 
 
 if __name__ == "__main__":
