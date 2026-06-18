@@ -61,8 +61,7 @@ WITH source_rows AS (
     FROM public.t5t_logs log
     LEFT JOIN public.staff staff
         ON staff.staff_id = log.writer_staff_id
-    WHERE log.work_date >= DATE '2026-03-01'
-      AND (
+    WHERE (
           lower(coalesce(staff.email, '')) IN (
               'sykang@igisam.com',
               'ksoonil@igisam.com',
