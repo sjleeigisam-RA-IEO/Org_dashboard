@@ -20,6 +20,20 @@ const IOTA_TARGET_NAMES = [
   "\ubc15\uc900\ud638",
   "\uae40\ud604\uc218",
 ];
+const IOTA_TARGET_STAFF_NAMES = new Map([
+  ["staff_10268", "\uac15\uc21c\uc6a9"],
+  ["staff_ext_000007", "\uad8c\uc21c\uc77c"],
+  ["staff_ext_000111", "\ud64d\uc7a5\uad70"],
+  ["staff_ext_000037", "\ubc15\uc900\ud638"],
+  ["staff_ext_000027", "\uae40\ud604\uc218"],
+]);
+const IOTA_TARGET_EMAIL_NAMES = new Map([
+  ["sykang@igisam.com", "\uac15\uc21c\uc6a9"],
+  ["ksoonil@igisam.com", "\uad8c\uc21c\uc77c"],
+  ["jghong@igisam.com", "\ud64d\uc7a5\uad70"],
+  ["junhopark@igisam.com", "\ubc15\uc900\ud638"],
+  ["hyunsoo.kim@igisam.com", "\uae40\ud604\uc218"],
+]);
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -623,7 +637,7 @@ function iotaRowsFromSubmission(
         source_form_item_id: formItemId,
         source_submission_id: submissionIdValue,
         writer_staff_id: payload.writer_staff_id || null,
-        writer_name: payload.writer_name || null,
+        writer_name: canonicalIotaWriterName(payload),
         writer_email: normalizeEmail(payload.writer_email),
         line: payload.line || null,
         work_date: payload.work_date || null,
@@ -659,6 +673,18 @@ function isIotaTargetWriter(payload: T5TPayload) {
   return IOTA_TARGET_STAFF_IDS.has(staffId) ||
     IOTA_TARGET_EMAILS.has(email) ||
     IOTA_TARGET_NAMES.some((targetName) => name.includes(targetName));
+}
+
+function canonicalIotaWriterName(payload: T5TPayload) {
+  const staffId = payload.writer_staff_id || "";
+  const email = normalizeEmail(payload.writer_email);
+  if (IOTA_TARGET_STAFF_NAMES.has(staffId)) return IOTA_TARGET_STAFF_NAMES.get(staffId) || null;
+  if (IOTA_TARGET_EMAIL_NAMES.has(email)) return IOTA_TARGET_EMAIL_NAMES.get(email) || null;
+  const name = String(payload.writer_name || "");
+  for (const targetName of IOTA_TARGET_NAMES) {
+    if (name.includes(targetName)) return targetName;
+  }
+  return name.split("/", 1)[0]?.trim() || null;
 }
 
 function normalizeEmail(value?: string | null) {

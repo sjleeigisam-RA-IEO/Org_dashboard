@@ -127,7 +127,14 @@ SELECT
     metadata->>'source_form_item_id',
     metadata->>'source_submission_id',
     writer_staff_id,
-    COALESCE(staff_name, writer_name),
+    CASE
+        WHEN writer_staff_id = 'staff_10268' OR lower(coalesce(staff_email, '')) = 'sykang@igisam.com' THEN U&'\AC15\C21C\C6A9'
+        WHEN writer_staff_id = 'staff_ext_000007' OR lower(coalesce(staff_email, '')) = 'ksoonil@igisam.com' THEN U&'\AD8C\C21C\C77C'
+        WHEN writer_staff_id = 'staff_ext_000111' OR lower(coalesce(staff_email, '')) = 'jghong@igisam.com' THEN U&'\D64D\C7A5\AD70'
+        WHEN writer_staff_id = 'staff_ext_000037' OR lower(coalesce(staff_email, '')) = 'junhopark@igisam.com' THEN U&'\BC15\C900\D638'
+        WHEN writer_staff_id = 'staff_ext_000027' OR lower(coalesce(staff_email, '')) = 'hyunsoo.kim@igisam.com' THEN U&'\AE40\D604\C218'
+        ELSE trim(split_part(COALESCE(staff_name, writer_name), '/', 1))
+    END,
     staff_email,
     line,
     work_date,

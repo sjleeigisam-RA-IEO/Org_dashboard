@@ -34,6 +34,20 @@ IOTA_TARGET_NAMES = {
     "\ubc15\uc900\ud638",
     "\uae40\ud604\uc218",
 }
+IOTA_TARGET_STAFF_NAMES = {
+    "staff_10268": "\uac15\uc21c\uc6a9",
+    "staff_ext_000007": "\uad8c\uc21c\uc77c",
+    "staff_ext_000111": "\ud64d\uc7a5\uad70",
+    "staff_ext_000037": "\ubc15\uc900\ud638",
+    "staff_ext_000027": "\uae40\ud604\uc218",
+}
+IOTA_TARGET_EMAIL_NAMES = {
+    "sykang@igisam.com": "\uac15\uc21c\uc6a9",
+    "ksoonil@igisam.com": "\uad8c\uc21c\uc77c",
+    "jghong@igisam.com": "\ud64d\uc7a5\uad70",
+    "junhopark@igisam.com": "\ubc15\uc900\ud638",
+    "hyunsoo.kim@igisam.com": "\uae40\ud604\uc218",
+}
 
 
 def parse_date(value):
@@ -158,6 +172,19 @@ def is_iota_target_writer(staff_id, staff_lookup):
     )
 
 
+def canonical_iota_writer_name(staff_id, staff):
+    email = normalize_email((staff or {}).get("email"))
+    if staff_id in IOTA_TARGET_STAFF_NAMES:
+        return IOTA_TARGET_STAFF_NAMES[staff_id]
+    if email in IOTA_TARGET_EMAIL_NAMES:
+        return IOTA_TARGET_EMAIL_NAMES[email]
+    name = str((staff or {}).get("name") or "")
+    for target_name in IOTA_TARGET_NAMES:
+        if target_name in name:
+            return target_name
+    return name.split("/", 1)[0].strip() or None
+
+
 def iota_body_text(item, log):
     # Match only semantic body fields. Do not include metadata to avoid UUID/ID false positives.
     parts = [
@@ -280,7 +307,7 @@ def normalize(date_from=None, date_to=None, chunk_size=500):
                 "source_form_item_id": item.get("form_item_id"),
                 "source_submission_id": item.get("submission_id"),
                 "writer_staff_id": item.get("writer_staff_id"),
-                "writer_name": writer.get("name"),
+                "writer_name": canonical_iota_writer_name(item.get("writer_staff_id"), writer),
                 "writer_email": normalize_email(writer.get("email")),
                 "line": log.get("line"),
                 "work_date": item.get("work_date"),
