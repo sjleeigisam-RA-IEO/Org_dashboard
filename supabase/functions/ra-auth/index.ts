@@ -97,6 +97,7 @@ async function handleLogin(payload: AuthPayload) {
   await patchRows("ra_user_credentials", `staff_id=eq.${encodeURIComponent(staff.staff_id)}`, {
     last_login_at: new Date().toISOString(),
   });
+  await recordStaffAccess(staff.staff_id);
 
   const session = await maybeCreateSession(staff, Boolean(payload.remember));
   return jsonResponse({
@@ -124,6 +125,7 @@ async function handleResumeSession(payload: AuthPayload) {
 
   const staff = await findActiveStaffById(session.staff_id);
   await patchRows("ra_auth_sessions", `token_hash=eq.${tokenHash}`, { last_seen_at: now.toISOString() });
+  await recordStaffAccess(staff.staff_id);
   return jsonResponse({ ok: true, user: publicUser(staff) });
 }
 
@@ -214,6 +216,16 @@ async function patchRows(table: string, filter: string, body: Record<string, unk
     method: "PATCH",
     query: filter,
     body: JSON.stringify(body),
+  });
+}
+
+async function recordStaffAccess(staffId: string) {
+  const now = new Date().toISOString();
+  const staff = await selectOne("staff", `staff_id=eq.${encodeURIComponent(staffId)}&select=login_count`);
+  const nextCount = Number(staff?.login_count || 0) + 1;
+  await patchRows("staff", `staff_id=eq.${encodeURIComponent(staffId)}`, {
+    last_login: now,
+    login_count: nextCount,
   });
 }
 

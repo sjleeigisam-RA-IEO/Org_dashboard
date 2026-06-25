@@ -27,6 +27,10 @@ const sortableHeaders = document.querySelectorAll('.sortable');
 
 // Init
 document.addEventListener('DOMContentLoaded', async () => {
+    if (window.__RA_ADMIN_READY__) {
+        const allowed = await window.__RA_ADMIN_READY__;
+        if (!allowed) return;
+    }
     await loadInitialData();
     setupEventListeners();
 });

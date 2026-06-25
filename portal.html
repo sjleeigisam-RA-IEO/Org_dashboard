@@ -120,7 +120,8 @@
             org: './org_dashboard/index.html',
             admin: './org_dashboard/admin.html'
         };
-        const FRAME_VERSION = 'mobile_patch_78b9400';
+        const ADMIN_EMAIL = 'sjlee@igisam.com';
+        const FRAME_VERSION = 'admin_access_log_1';
         const loaded = new Set();
 
         function markEmbeddedFrame(frame) {
@@ -184,8 +185,7 @@
             }
 
             document.getElementById('userNameDisplay').innerText = raUser.name;
-            // '이시정' 사용자에게만 어드민 탭 노출
-            if (raUser.name === '이시정') {
+            if (String(raUser.email || '').toLowerCase() === ADMIN_EMAIL) {
                 document.getElementById('tab-admin').style.display = 'block';
             }
             resetTimer();
