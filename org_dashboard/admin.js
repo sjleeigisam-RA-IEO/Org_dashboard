@@ -260,7 +260,7 @@ function renderStaffTable() {
                 <div style="font-size: 0.75em; color: var(--text-muted);">${s.orgs?.metadata?.full_path?.split(' > ')[0] || ''}</div>
             </td>
             <td>${s.title || ''} ${s.level ? '/ ' + s.level : ''}</td>
-            <td style="font-size: 0.85em; color: var(--text-muted);">${s.last_login || '-'}</td>
+            <td style="font-size: 0.85em; color: var(--text-muted);">${formatKstDateTime(s.last_login)}</td>
             <td style="text-align: center; font-weight: 600;">${s.login_count || 0}</td>
             <td>
                 <button class="btn-secondary" onclick="openModal('${s.staff_id}')">수정</button>
@@ -268,6 +268,24 @@ function renderStaffTable() {
         </tr>
         `;
     }).join('');
+}
+
+function formatKstDateTime(value) {
+    if (!value) return '-';
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return value;
+    const parts = new Intl.DateTimeFormat('ko-KR', {
+        timeZone: 'Asia/Seoul',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+    }).formatToParts(date);
+    const byType = Object.fromEntries(parts.map(part => [part.type, part.value]));
+    return `${byType.year}-${byType.month}-${byType.day} ${byType.hour}:${byType.minute}:${byType.second}`;
 }
 
 function updateStats() {
