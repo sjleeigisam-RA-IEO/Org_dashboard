@@ -2,6 +2,10 @@ name: Sync T5T Notion to Supabase
 
 on:
   schedule:
+    # Weekday morning sync: 09:30 KST (00:30 UTC)
+    - cron: '30 0 * * 1-5'
+    # Weekday midday sync: 12:30 KST (03:30 UTC)
+    - cron: '30 3 * * 1-5'
     # Friday midnight checkpoint: Saturday 00:00 KST (Friday 15:00 UTC)
     - cron: '0 15 * * 5'
     # Monday first completion: Monday 08:00 KST (Sunday 23:00 UTC)
@@ -55,6 +59,54 @@ jobs:
           DATE_TO=$(TZ=Asia/Seoul date +%F)
           echo "Running T5T pipeline for ${DATE_FROM}..${DATE_TO}"
           python CRM_base/run_t5t_pipeline.py --date-from "$DATE_FROM" --date-to "$DATE_TO"
+
+      - name: Verify IOTA log API source freshness
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_KEY }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import urllib.parse
+          import urllib.request
+
+          base = os.environ["SUPABASE_URL"].rstrip("/")
+          key = os.environ["SUPABASE_KEY"]
+          headers = {
+              "apikey": key,
+              "Authorization": f"Bearer {key}",
+              "Accept": "application/json",
+          }
+
+          def fetch(table, query):
+              url = f"{base}/rest/v1/{table}?{query}"
+              request = urllib.request.Request(url, headers=headers)
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  return json.loads(response.read().decode("utf-8"))
+
+          latest_iota = fetch(
+              "iota_t5t_logs",
+              urllib.parse.urlencode({
+                  "select": "work_date,writer_name",
+                  "order": "work_date.desc",
+                  "limit": "1",
+              }),
+          )
+          latest_t5t = fetch(
+              "t5t_form_items",
+              urllib.parse.urlencode({
+                  "select": "work_date",
+                  "order": "work_date.desc",
+                  "limit": "1",
+              }),
+          )
+          print(json.dumps({
+              "latest_t5t_work_date": latest_t5t[0]["work_date"] if latest_t5t else None,
+              "latest_iota_work_date": latest_iota[0]["work_date"] if latest_iota else None,
+              "latest_iota_writer": latest_iota[0].get("writer_name") if latest_iota else None,
+          }, ensure_ascii=False))
+          PY
 
       - name: Generate weekly T5T summary
         if: github.event.schedule == '0 23 * * 0'
