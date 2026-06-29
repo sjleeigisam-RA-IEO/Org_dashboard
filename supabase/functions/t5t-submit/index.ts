@@ -82,6 +82,7 @@ Deno.serve(async (request) => {
 
   try {
     const payload = await request.json() as T5TPayload;
+    normalizePayloadText(payload);
     const mode = new URL(request.url).searchParams.get("mode") || payload.mode;
     if (mode === "draft-save") {
       const draft = await saveDraft(payload);
@@ -600,6 +601,45 @@ async function saveToSupabase(payload: T5TPayload, notionPage: { id: string; url
   const iotaRows = iotaRowsFromSubmission(payload, sid, itemRows, sourceUrl);
   if (iotaRows.length) await upsertIotaRows(iotaRows);
   return sid;
+}
+
+function normalizePayloadText(payload: T5TPayload) {
+  (payload.items || []).forEach((item) => {
+    item.raw_text = normalizeT5TListBreaks(item.raw_text || "");
+    item.summary = item.summary ? normalizeT5TListBreaks(item.summary) : item.summary;
+  });
+}
+
+function normalizeT5TListBreaks(value: string) {
+  let text = String(value || "").replace(/\r\n?/g, "\n").trim();
+  if (!text) return text;
+
+  const protectedSpace = "\uE000";
+  text = text.replace(/(\([^\n()]{1,40})\n([0-9]{1,2}\))/g, "$1 $2");
+  text = text.replace(/(\([^\n()]{1,40})[\t ]+([0-9]{1,2}\))/g, `$1${protectedSpace}$2`);
+  text = text.replace(/([^\n])[\t ]+([-–—])[\t ]+(?=\S)/g, "$1\n$2 ");
+  for (let index = 0; index < 2; index += 1) {
+    text = text.replace(/([^\n])[\t ]+([0-9]{1,2}[\.)])[\t ]+(?=\S)/g, (match, previous, marker, offset, fullText) => {
+      const prefix = fullText.slice(0, offset);
+      const lastLine = `${prefix.split("\n").pop() || ""}${previous}`;
+      if (marker.endsWith(")") && lastLine.lastIndexOf("(") > lastLine.lastIndexOf(")")) return match;
+      return `${previous}\n${marker} `;
+    });
+  }
+  text = text.replace(/([^\n])[\t ]+([①-⑳])[\t ]*(?=\S)/g, "$1\n$2 ");
+  text = text.replace(/([^\n])[\t ]+([•ㆍ·])[\t ]*(?=\S)/g, "$1\n$2 ");
+
+  return text
+    .split("\n")
+    .map((line) => line.replace(/[\t ]{2,}/g, " ").trimEnd())
+    .filter((line) => {
+      const markerOnly = line.trim().replace(/ /g, "");
+      return !(markerOnly && /^[-–—]+$/.test(markerOnly));
+    })
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .replaceAll(protectedSpace, " ")
+    .trim();
 }
 
 async function upsertIotaRows(rows: unknown[]) {

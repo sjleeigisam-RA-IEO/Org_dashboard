@@ -9,6 +9,7 @@ from datetime import date
 from datetime import datetime
 
 from supabase import create_client
+from t5t_text_format import normalize_t5t_list_breaks
 
 from env_utils import get_required_supabase_config
 from apply_t5t_manual_aliases import ALIAS_PATH
@@ -351,7 +352,7 @@ def run_sync(date_from=None, date_to=None):
             parsed_items = parse_t5t_properties(props)
 
         for item in parsed_items:
-            raw_text = " ".join(part for part in [item["text"], item["project"], item["stakeholder"]] if part)
+            raw_text = normalize_t5t_list_breaks(" ".join(part for part in [item["text"], item["project"], item["stakeholder"]] if part))
             if is_t5t_header_text(raw_text):
                 continue
             matched_project_id = None
