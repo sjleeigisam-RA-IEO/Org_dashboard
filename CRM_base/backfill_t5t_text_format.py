@@ -63,10 +63,12 @@ def load_candidates(date_from=None, date_to=None):
         "("
         "raw_text ~ '[^\\n][[:space:]]+[-–—][[:space:]]+[^\\n]'"
         " or raw_text ~ '[^\\n][[:space:]]+[0-9]{1,2}[\\.)][[:space:]]+[^\\n]'"
+        " or raw_text ~ '[^\\n][[:space:]]+ㅇ[[:space:]]+[^\\n]'"
         " or raw_text ~ '[^\\n][[:space:]]+[①-⑳][[:space:]]*[^\\n]'"
         " or raw_text ~ '[^\\n][[:space:]]+[•ㆍ·][[:space:]]*[^\\n]'"
         " or classification_summary ~ '[^\\n][[:space:]]+[-–—][[:space:]]+[^\\n]'"
         " or classification_summary ~ '[^\\n][[:space:]]+[0-9]{1,2}[\\.)][[:space:]]+[^\\n]'"
+        " or classification_summary ~ '[^\\n][[:space:]]+ㅇ[[:space:]]+[^\\n]'"
         ")"
     ]
     if date_from:

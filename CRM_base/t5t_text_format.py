@@ -17,6 +17,7 @@ def normalize_t5t_list_breaks(value):
     text = re.sub(r"([^\n])[\t ]+([-–—])[\t ]+(?=\S)", r"\1\n\2 ", text)
     for _ in range(2):
         text = re.sub(r"([^\n])[\t ]+([0-9]{1,2}[\.)])[\t ]+(?=\S)", _numbered_marker_break, text)
+    text = re.sub(r"([^\n])[\t ]+(ㅇ)[\t ]+(?=\S)", r"\1\n\2 ", text)
     text = re.sub(r"([^\n])[\t ]+([①-⑳])[\t ]*(?=\S)", r"\1\n\2 ", text)
     text = re.sub(r"([^\n])[\t ]+([•ㆍ·])[\t ]*(?=\S)", r"\1\n\2 ", text)
 

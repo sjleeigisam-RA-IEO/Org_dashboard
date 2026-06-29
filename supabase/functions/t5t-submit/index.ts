@@ -626,6 +626,7 @@ function normalizeT5TListBreaks(value: string) {
       return `${previous}\n${marker} `;
     });
   }
+  text = text.replace(/([^\n])[\t ]+(ㅇ)[\t ]+(?=\S)/g, "$1\n$2 ");
   text = text.replace(/([^\n])[\t ]+([①-⑳])[\t ]*(?=\S)/g, "$1\n$2 ");
   text = text.replace(/([^\n])[\t ]+([•ㆍ·])[\t ]*(?=\S)/g, "$1\n$2 ");
 
