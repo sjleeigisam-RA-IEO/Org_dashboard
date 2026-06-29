@@ -230,11 +230,15 @@ def parse_t5t_blocks(blocks):
         elif label_matches(label, STAKEHOLDER_LABELS):
             current_item["stakeholder"] = value
         else:
-            current_item["text"] = f"{current_item['text']} {text}".strip()
+            current_item["text"] = join_text_parts(current_item["text"], text)
 
     if current_item and current_item.get("text"):
         items.append(current_item)
     return items
+
+
+def join_text_parts(*parts):
+    return "\n".join(str(part).strip() for part in parts if str(part or "").strip())
 
 
 def parse_t5t_properties(props):
@@ -352,7 +356,7 @@ def run_sync(date_from=None, date_to=None):
             parsed_items = parse_t5t_properties(props)
 
         for item in parsed_items:
-            raw_text = normalize_t5t_list_breaks(" ".join(part for part in [item["text"], item["project"], item["stakeholder"]] if part))
+            raw_text = normalize_t5t_list_breaks(join_text_parts(item["text"], item["project"], item["stakeholder"]))
             if is_t5t_header_text(raw_text):
                 continue
             matched_project_id = None
