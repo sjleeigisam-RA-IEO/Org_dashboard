@@ -378,8 +378,13 @@ function setupPeopleControls() {
   const search = document.getElementById("people-search");
   const reset = document.getElementById("people-reset");
   if (search) {
+    search.placeholder = "작성자, 프로젝트, 업무 내용 검색";
     search.addEventListener("input", () => {
       uiState.people.search = search.value.trim();
+      if (uiState.people.search) {
+        uiState.people.selected = null;
+        uiState.people.weekKey = null;
+      }
       renderPeopleView();
     });
   }
@@ -395,7 +400,82 @@ function setupPeopleControls() {
 }
 
 function getCurrentWeekKey() {
-  return T5TService.getWeekKey(T5TService.parseDate(new Date()));
+  const currentRange = T5TService.getReportingWeekRange(new Date(), 0);
+  return T5TService.getWeekKey(currentRange.end);
+}
+
+function normalizePeopleSearch(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function getPersonLogSearchText(person, log) {
+  return [
+    person?.name,
+    person?.displayName,
+    person?.affiliation,
+    ...(person?.aliases ? Array.from(person.aliases) : []),
+    log?.work_date,
+    log?.task_type,
+    log?.project,
+    log?.summary,
+    log?.raw_text,
+    ...(Array.isArray(log?.keywords) ? log.keywords : [])
+  ].filter(Boolean).join(" ").toLowerCase();
+}
+
+function personLogMatchesSearch(person, log, needle) {
+  if (!needle) return true;
+  const terms = needle.split(/\s+/).filter(Boolean);
+  const haystack = getPersonLogSearchText(person, log);
+  return terms.every(term => haystack.includes(term));
+}
+
+function getPeopleSearchResults(people, needle) {
+  if (!needle) return [];
+  const results = [];
+  people.forEach(person => {
+    (person.sortedPeriods || []).forEach(period => {
+      (period.logs || []).forEach(log => {
+        if (!personLogMatchesSearch(person, log, needle)) return;
+        results.push({ person, period, log });
+      });
+    });
+  });
+  return results.sort((a, b) => {
+    const dateDiff = new Date(b.log?.date_obj || b.log?.work_date || 0) - new Date(a.log?.date_obj || a.log?.work_date || 0);
+    if (dateDiff) return dateDiff;
+    return String(a.person?.displayName || "").localeCompare(String(b.person?.displayName || ""), "ko");
+  });
+}
+
+function renderPeopleSearchResults(results, needle) {
+  const visibleResults = results.slice(0, 80);
+  const overflowCount = Math.max(0, results.length - visibleResults.length);
+  return `
+    <div class="person-search-results">
+      <div class="person-search-summary">
+        <div>
+          <div class="section-eyebrow">Search Results</div>
+          <strong>"${escapeHtml(needle)}" 검색 결과</strong>
+        </div>
+        <span>${results.length.toLocaleString()}건</span>
+      </div>
+      ${visibleResults.length ? `
+        <div class="person-log-list">
+          ${visibleResults.map(result => renderPersonLog(result.log, {
+            personName: result.person.displayName,
+            weekLabel: result.period.displayWeekKey || result.period.weekKey
+          })).join("")}
+        </div>
+        ${overflowCount ? `<div class="people-empty">상위 ${visibleResults.length}건만 표시했습니다. 검색어를 더 구체적으로 입력해 주세요.</div>` : ""}
+      ` : `
+        <div class="person-empty person-empty-inline">
+          <strong>검색 결과가 없습니다.</strong>
+          <span>작성자, 프로젝트, 업무 내용에 포함된 단어로 다시 검색해 주세요.</span>
+        </div>
+      `}
+    </div>
+  `;
 }
 
 function parseWriterLabel(value) {
@@ -613,19 +693,28 @@ function assignDisplayWeeks(periods) {
 function renderPeopleView() {
   const list = document.getElementById("people-card-list");
   const detail = document.getElementById("person-detail-card");
+  const mobileResults = document.getElementById("people-search-results-mobile");
   if (!list || !detail) return;
 
   const people = getPersonEntries();
-  const needle = uiState.people.search.toLowerCase();
+  const needle = normalizePeopleSearch(uiState.people.search);
+  const searchResults = getPeopleSearchResults(people, needle);
+  const resultPeople = new Set(searchResults.map(result => result.person.name));
   const visiblePeople = people.filter(person => {
-    const haystack = `${person.name} ${person.displayName} ${Array.from(person.aliases || []).join(" ")}`.toLowerCase();
-    return !needle || haystack.includes(needle);
+    return !needle || resultPeople.has(person.name);
   });
+  if (mobileResults) {
+    mobileResults.innerHTML = needle ? renderPeopleSearchResults(searchResults, needle) : "";
+  }
   list.innerHTML = visiblePeople.length ? visiblePeople.map(person => renderPersonCard(person)).join("") : `
     <div class="people-empty">검색 결과가 없습니다.</div>
   `;
 
   const selected = visiblePeople.find(person => person.name === uiState.people.selected);
+  if (needle) {
+    detail.innerHTML = renderPeopleSearchResults(searchResults, needle);
+    return;
+  }
   if (!selected) {
     detail.innerHTML = `
       <div class="person-empty">
@@ -746,11 +835,13 @@ function renderPersonDetailContent(person) {
   `;
 }
 
-function renderPersonLog(log) {
+function renderPersonLog(log, context = {}) {
   const keywords = (log.keywords || []).slice(0, 5).map(keyword => `<span>#${escapeHtml(keyword)}</span>`).join("");
+  const contextMeta = [context.personName, context.weekLabel].filter(Boolean);
   return `
     <article class="person-log-card">
       <div class="person-log-meta">
+        ${contextMeta.map(value => `<span>${escapeHtml(value)}</span>`).join("")}
         <span>${escapeHtml(log.work_date || "")}</span>
         <span>${escapeHtml(log.task_type || "")}</span>
         <span>${escapeHtml(log.project || "미분류")}</span>

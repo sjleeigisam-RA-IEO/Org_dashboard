@@ -435,8 +435,9 @@ const T5TService = {
 
     getReportingWeekRange(referenceDate = new Date(), offsetWeeks = 0) {
         const ref = this.parseDate(referenceDate);
+        const daysSinceMonday = (ref.getDay() + 6) % 7;
         const end = new Date(ref);
-        end.setDate(ref.getDate() + ((8 - ref.getDay()) % 7) + offsetWeeks * 7);
+        end.setDate(ref.getDate() - daysSinceMonday + offsetWeeks * 7);
         const start = new Date(end);
         start.setDate(end.getDate() - 6);
         return { start, end };

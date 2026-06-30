@@ -1327,6 +1327,41 @@ body {
   min-height: 460px;
 }
 
+.people-search-results-mobile {
+  display: none;
+}
+
+.person-search-results {
+  display: grid;
+  gap: 14px;
+}
+
+.person-search-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--item);
+}
+
+.person-search-summary strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.person-search-summary span {
+  flex: 0 0 auto;
+  color: var(--accent-2);
+  font-weight: 900;
+}
+
 .person-empty {
   min-height: 280px;
   display: grid;
@@ -1608,6 +1643,14 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .people-search-results-mobile {
+    display: block;
+  }
+
+  .people-search-results-mobile:empty {
+    display: none;
+  }
+
   .people-layout > .person-detail-card {
     display: none;
   }
@@ -1686,6 +1729,14 @@ body {
   .person-week-summary strong,
   .person-week-summary span {
     font-size: 12px;
+  }
+
+  .person-search-summary {
+    padding: 10px 12px;
+  }
+
+  .person-search-summary strong {
+    font-size: 14px;
   }
 
   .person-log-card {
