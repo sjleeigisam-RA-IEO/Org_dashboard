@@ -1,0 +1,2098 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rent Map - NOC Surface</title>
+  <link rel="icon" href="data:," />
+  <style>
+    :root {
+      color-scheme: light;
+      --panel: rgba(255, 255, 255, 0.86);
+      --ink: #17202a;
+      --muted: #52606d;
+      --line: rgba(35, 45, 57, 0.14);
+      --accent: #355c7d;
+      --blue: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; font-family: Inter, Arial, "Noto Sans KR", sans-serif; color: var(--ink); overflow: hidden; }
+    #app { position: fixed; inset: 0; background: #111820; }
+    canvas { display: block; width: 100%; height: 100%; }
+    .topbar { position: fixed; inset: 0; pointer-events: none; z-index: 4; }
+    .panel {
+      pointer-events: auto; background: var(--panel); backdrop-filter: blur(10px);
+      border: 1px solid rgba(216, 221, 230, 0.72); border-radius: 8px; box-shadow: 0 12px 30px rgba(0,0,0,0.14);
+    }
+    .leftDock {
+      position: fixed; left: 14px; top: 14px; bottom: 14px; width: 386px; z-index: 4; padding: 0;
+      display: grid; grid-template-rows: auto minmax(0, 1fr); overflow: hidden;
+    }
+    .brand { padding: 12px 14px 10px; border-bottom: 1px solid var(--line); }
+    h1 { margin: 0; font-size: 15px; line-height: 1.2; letter-spacing: 0; }
+    .sub { margin-top: 4px; color: var(--muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .tabContent { display: none; min-height: 0; overflow: auto; padding: 12px 14px 14px; }
+    .tabContent.is-active { display: block; }
+    .panelSection { margin-bottom: 14px; }
+    .panelSection:last-child { margin-bottom: 0; }
+    .panelTitle { margin: 0 0 8px; font-size: 12px; font-weight: 900; color: var(--ink); }
+    .controls { padding: 0; display: grid; grid-template-columns: 1fr auto; gap: 8px 12px; align-items: center; }
+    label { font-size: 12px; color: var(--muted); }
+    .periodLabel { font-size: 13px; font-weight: 700; text-align: right; }
+    input[type="range"] { width: 100%; accent-color: var(--accent); }
+    .mapSelect {
+      width: 100%; height: 34px; border: 1px solid var(--line); border-radius: 6px; padding: 0 9px;
+      background: #fff; color: var(--ink); font-size: 12px; outline: none;
+    }
+    .mapSelect:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.13); }
+    .providerStatus { margin-top: 7px; color: var(--muted); font-size: 11px; line-height: 1.4; }
+    .toggles { display: flex; gap: 10px; flex-wrap: wrap; grid-column: 1 / -1; }
+    .toggles label { display: inline-flex; align-items: center; gap: 5px; color: var(--ink); }
+    .search { padding: 0; }
+    #searchInput {
+      width: 100%; height: 36px; border: 1px solid var(--line); border-radius: 6px; padding: 0 10px; font-size: 13px; outline: none;
+    }
+    #searchInput:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.13); }
+    #results { margin-top: 8px; max-height: 236px; overflow: auto; display: grid; gap: 6px; }
+    .result {
+      width: 100%; text-align: left; border: 1px solid var(--line); border-radius: 6px; background: #fff; padding: 8px; cursor: pointer;
+      font-size: 12px; line-height: 1.35; color: var(--ink);
+    }
+    .result:hover { border-color: var(--blue); }
+    .result b { font-size: 13px; }
+    .caseList {
+      position: fixed; right: 14px; top: 14px; width: min(392px, calc(100vw - 28px)); max-height: calc(100vh - 28px); overflow: hidden; padding: 0; z-index: 4;
+    }
+    .caseListHeader { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 10px 11px 8px; border-bottom: 1px solid var(--line); }
+    .caseListHeader strong { font-size: 13px; color: var(--ink); }
+    .caseListHeader span { font-size: 11px; color: var(--muted); }
+    .caseRows { max-height: calc(100vh - 82px); overflow: auto; padding: 7px; display: grid; gap: 6px; }
+    .caseItem { width: 100%; text-align: left; border: 1px solid #dfe6ee; border-radius: 7px; background: #fff; padding: 8px; cursor: pointer; color: var(--ink); }
+    .caseItem:hover { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.10); }
+    .caseItem b { display: block; font-size: 12px; line-height: 1.25; }
+    .caseItem span { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; line-height: 1.35; }
+    .caseItem .caseCondition { color: #475569; }
+    .caseItem.is-active { border-color: #d7263d; box-shadow: 0 0 0 3px rgba(215,38,61,0.12); }
+    .caseEmpty { padding: 10px 11px; color: var(--muted); font-size: 12px; line-height: 1.4; }
+    .side { min-height: 0; overflow: visible; }
+    .inspectorHeader { position: sticky; top: 0; background: rgba(255,255,255,0.94); border-bottom: 1px solid var(--line); padding: 12px 14px 10px; z-index: 1; }
+    .inspectorEyebrow { color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: 0; }
+    .inspectorTitle { margin-top: 4px; font-size: 17px; line-height: 1.25; font-weight: 800; color: var(--ink); }
+    .inspectorSub { margin-top: 4px; font-size: 12px; color: var(--muted); }
+    .inspectorBody { padding: 12px 14px 14px; }
+    .sectionTitle { margin: 12px 0 7px; font-size: 12px; font-weight: 800; color: var(--ink); }
+    .statGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .stat { border: 1px solid #e7ebf0; border-radius: 7px; padding: 8px; background: rgba(248,250,252,0.82); min-height: 58px; }
+    .stat span { display: block; color: var(--muted); font-size: 11px; }
+    .stat strong { display: block; margin-top: 4px; font-size: 14px; line-height: 1.2; color: var(--ink); overflow-wrap: anywhere; }
+    .metricRow { display: grid; grid-template-columns: 118px 1fr; gap: 10px; padding: 6px 0; border-bottom: 1px solid #eef1f5; font-size: 12px; }
+    .metricRow span:first-child { color: var(--muted); }
+    .caseCard { border: 1px solid #dfe6ee; border-radius: 7px; padding: 10px; margin-top: 8px; background: #fff; font-size: 12px; line-height: 1.45; }
+    .caseCard strong { display: block; font-size: 13px; color: var(--ink); margin-bottom: 3px; }
+    .caseMeta { color: var(--muted); }
+    .caseTerms { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+    .term { border-radius: 6px; background: #f5f7fa; padding: 6px; }
+    .term span { display: block; color: var(--muted); font-size: 10px; }
+    .term b { display: block; margin-top: 2px; font-size: 12px; }
+    .emptyCase { border: 1px dashed #cfd7e3; border-radius: 7px; padding: 10px; color: var(--muted); font-size: 12px; line-height: 1.45; background: rgba(248,250,252,0.74); }
+    .legend {
+      padding: 0;
+    }
+    .bar { height: 12px; border-radius: 999px; background: linear-gradient(90deg, #2f80ed, #36c2b4, #f6e86e, #ff9f43, #d7263d); border: 1px solid rgba(0,0,0,0.12); }
+    .legendLabels { display: flex; justify-content: space-between; margin-top: 6px; font-size: 11px; color: var(--muted); }
+    .caseLegend { display: flex; align-items: center; gap: 8px; margin-top: 8px; color: var(--muted); font-size: 11px; }
+    .caseGlyph { width: 18px; height: 20px; display: inline-flex; align-items: flex-end; gap: 4px; }
+    .caseGlyph::before, .caseGlyph::after { content: ""; display: block; border-radius: 999px 999px 2px 2px; background: #ff9f43; }
+    .caseGlyph::before { width: 3px; height: 15px; opacity: 0.55; }
+    .caseGlyph::after { width: 7px; height: 20px; opacity: 0.95; }
+    .hint { margin-top: 8px; color: var(--muted); font-size: 11px; line-height: 1.4; }
+    .overviewGrid { display: grid; gap: 6px; }
+    .overviewGrid .metricRow { grid-template-columns: 108px 1fr; }
+    .sourceNote { margin-top: 9px; color: var(--muted); font-size: 11px; line-height: 1.4; }
+    .tooltip {
+      position: fixed; pointer-events: none; z-index: 5; display: none; max-width: 260px;
+      padding: 8px 10px; border-radius: 6px; background: rgba(15, 23, 42, 0.92); color: white; font-size: 12px; line-height: 1.35;
+    }
+    .selectionClear {
+      position: fixed; z-index: 6; display: none; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 999px; border: 1px solid rgba(37,99,235,0.42);
+      background: rgba(255,255,255,0.96); color: #2563eb; box-shadow: 0 8px 22px rgba(15,23,42,0.18);
+      font-size: 15px; line-height: 1; font-weight: 900; cursor: pointer; pointer-events: auto;
+    }
+    .selectionClear:hover { background: #2563eb; color: #fff; }
+    .attribution {
+      position: fixed; left: 50%; bottom: 6px; transform: translateX(-50%); color: rgba(255,255,255,0.76); font-size: 10px; z-index: 3; text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+    .loading { position: fixed; inset: 0; display: grid; place-items: center; color: white; font-size: 14px; background: #0b1015; }
+    @media (max-width: 840px) {
+      .leftDock { left: 10px; right: 10px; top: 10px; bottom: auto; width: auto; max-height: 48vh; }
+      .brand { display: none; }
+      .tabContent { max-height: 48vh; padding: 10px 12px 12px; }
+      .caseList { left: 10px; right: 10px; top: auto; bottom: 10px; width: auto; max-height: 44px; transition: max-height 0.18s ease; z-index: 6; }
+      .caseList.is-empty { display: none; }
+      .caseListHeader { cursor: pointer; padding: 12px; border-bottom: 0; }
+      .caseListHeader::after { content: "펼치기"; flex: 0 0 auto; color: var(--blue); font-size: 11px; font-weight: 700; }
+      .caseList.is-open { max-height: 46vh; }
+      .caseList.is-open .caseListHeader { border-bottom: 1px solid var(--line); }
+      .caseList.is-open .caseListHeader::after { content: "접기"; }
+      .caseRows { display: none; max-height: calc(46vh - 46px); }
+      .caseList.is-open .caseRows { display: grid; }
+      body.case-list-open .leftDock { display: none; }
+      .attribution { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <div class="loading" id="loading">NOC surface loading</div>
+  <div class="topbar">
+    <section class="panel leftDock" id="leftDock">
+      <div class="brand">
+        <h1>Seoul Office NOC Surface</h1>
+        <div class="sub">NOC terrain + rent cases + building register overview</div>
+      </div>
+      <div class="tabContent is-active" id="tab-info" role="tabpanel">
+        <section class="side is-empty" id="detailPanel"></section>
+        <div id="mapProviderStatus" class="providerStatus" hidden></div>
+        <div class="panelSection">
+          <div class="panelTitle">시점</div>
+          <section class="controls">
+            <label for="periodSlider">분기</label>
+            <div class="periodLabel" id="periodLabel"></div>
+            <input id="periodSlider" type="range" min="0" max="0" value="0" />
+            <div class="toggles">
+              <label><input id="toggleSurface" type="checkbox" checked /> 표면</label>
+              <label><input id="togglePoints" type="checkbox" checked /> 실측막대</label>
+              <label><input id="toggleLabels" type="checkbox" checked /> 위치라벨</label>
+              <label><input id="toggleLocalVector" type="checkbox" /> 벡터선</label>
+            </div>
+          </section>
+        </div>
+        <div class="panelSection">
+          <div class="panelTitle">범례</div>
+          <section class="legend">
+            <div class="bar"></div>
+            <div class="legendLabels"><span id="legendMin"></span><span>NOC</span><span id="legendMax"></span></div>
+            <div class="caseLegend"><span class="caseGlyph"></span><span>굵은 막대는 해당 분기 실제 임대사례 연결</span></div>
+            <div class="hint">색은 NOC 수준, 높이는 실제 관측 NOC입니다. 표면은 권역 흐름을 보는 보간값이고, 막대가 실제 관측 건물입니다.</div>
+          </section>
+        </div>
+        <div class="panelSection">
+          <div class="panelTitle">검색</div>
+          <section class="search">
+            <input id="searchInput" placeholder="건물, 임차인, DART 회사명 검색" />
+            <div id="results"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <section class="panel caseList" id="caseListPanel">
+      <div class="caseListHeader"><strong>현재 분기 임대사례</strong><span id="caseListCount"></span></div>
+      <div class="caseRows" id="caseRows"></div>
+    </section>
+  </div>
+  <div class="attribution">Map tiles by CARTO, data by OpenStreetMap contributors</div>
+  <div class="tooltip" id="tooltip"></div>
+  <button class="selectionClear" id="selectionClear" type="button" aria-label="Clear selected bar">X</button>
+  <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script>
+    const DATA_URL = "rent_noc_surface_data.json";
+    const SEOUL_VECTOR_URL = "seoul_overview_compact.json";
+    const MAP_CONFIG = {"vworldKey":"02B5F8FA-CC59-3109-86FD-0C9C1B98B5BF","defaultProvider":"seoulVector","seoulVectorAvailable":true,"supabaseUrl":"https://qvegpozwrcmspdvjokiz.supabase.co","supabaseKey":"sb_publishable_Eb3TAC7BPbFrv8Odwwjc1g_Vv81Nf4P","marketDataSource":"rent_map_office_noc_surface_2026q1","marketDataCategories":{"meta":"office_noc_dataset_meta","surface":"office_noc_surface_grid","observation":"office_noc_observation","tenantCase":"office_noc_tenant_case","buildingOverview":"office_building_register_overview"}};
+    const CONTEXT_LABELS_URL = "rent_noc_context_labels.json";
+    const app = document.getElementById("app");
+    const loading = document.getElementById("loading");
+    const attribution = document.querySelector(".attribution");
+    const mapProviderSelect = document.getElementById("mapProviderSelect");
+    const mapProviderStatus = document.getElementById("mapProviderStatus");
+    const periodSlider = document.getElementById("periodSlider");
+    const periodLabel = document.getElementById("periodLabel");
+    const detailPanel = document.getElementById("detailPanel");
+    const tooltip = document.getElementById("tooltip");
+    const selectionClear = document.getElementById("selectionClear");
+    const searchInput = document.getElementById("searchInput");
+    const results = document.getElementById("results");
+    const caseListPanel = document.getElementById("caseListPanel");
+    const caseListHeader = caseListPanel.querySelector(".caseListHeader");
+    const caseListCount = document.getElementById("caseListCount");
+    const caseRows = document.getElementById("caseRows");
+    const toggleSurface = document.getElementById("toggleSurface");
+    const togglePoints = document.getElementById("togglePoints");
+    const toggleLabels = document.getElementById("toggleLabels");
+    const toggleLocalVector = document.getElementById("toggleLocalVector");
+    const tabButtons = Array.from(document.querySelectorAll(".tabButton"));
+    const tabPanels = Array.from(document.querySelectorAll(".tabContent"));
+
+    let data, scene, camera, renderer, controls, surface, pointMesh, highlight, labelGroup, referenceGroup, contextLabelGroup, localVectorGroup, seoulVectorGroup, baseMapPlane, focusMapPlane, selectedColumn;
+    let raycaster, pointer, currentPeriod, currentPoints = [], selectedPoint = null, currentCaseRows = [];
+    let positionArray, colorArray;
+    const selectionClearVector = new THREE.Vector3();
+    let reviewMode = false;
+    const heightScale = 420;
+    const horizontalScale = 0.058;
+    const valueLift = 7;
+    const columnHeightScale = 0.42;
+    const columnRadiusScale = 0.64;
+    const columnZoomReference = 2050;
+    const columnZoomMinScale = 0.068;
+    const columnZoomMaxScale = 1.02;
+    let lastColumnVisualScale = null;
+    const mapPlaneY = 0;
+    const columnGroundY = 0.18;
+    const tileSize = 256;
+    const focusTileSize = 512;
+    const mapProviders = {
+      carto: {
+        label: "CARTO / OSM",
+        type: "carto",
+        baseZoom: 13,
+        retina: true,
+        tileSize: focusTileSize,
+        subdomains: ["a", "b", "c", "d"],
+        focusSpecs: [
+          { maxDistance: 80, z: 21, radius: 5 },
+          { maxDistance: 165, z: 20, radius: 6 },
+          { maxDistance: 340, z: 19, radius: 7 },
+          { maxDistance: Infinity, z: 18, radius: 7 },
+        ],
+        attribution: "Map tiles by CARTO, data by OpenStreetMap contributors",
+      },
+      vworldBase: {
+        label: "VWorld 일반",
+        type: "vworld",
+        layer: "Base",
+        extension: "png",
+        baseZoom: 13,
+        retina: false,
+        tileSize,
+        focusSpecs: [
+          { maxDistance: 95, z: 19, radius: 5 },
+          { maxDistance: 190, z: 18, radius: 6 },
+          { maxDistance: 380, z: 17, radius: 7 },
+          { maxDistance: Infinity, z: 16, radius: 7 },
+        ],
+        attribution: "Map tiles by VWorld",
+      },
+      vworldSatellite: {
+        label: "VWorld 위성",
+        type: "vworld",
+        layer: "Satellite",
+        extension: "jpeg",
+        baseZoom: 13,
+        retina: false,
+        tileSize,
+        focusSpecs: [
+          { maxDistance: 95, z: 19, radius: 5 },
+          { maxDistance: 190, z: 18, radius: 6 },
+          { maxDistance: 380, z: 17, radius: 7 },
+          { maxDistance: Infinity, z: 16, radius: 7 },
+        ],
+        attribution: "Map tiles by VWorld",
+      },
+      vworldHybrid: {
+        label: "VWorld 하이브리드",
+        type: "vworld",
+        layers: [
+          { layer: "Satellite", extension: "jpeg" },
+          { layer: "Hybrid", extension: "png" },
+        ],
+        baseZoom: 13,
+        retina: false,
+        tileSize,
+        focusSpecs: [
+          { maxDistance: 95, z: 19, radius: 5 },
+          { maxDistance: 190, z: 18, radius: 6 },
+          { maxDistance: 380, z: 17, radius: 7 },
+          { maxDistance: Infinity, z: 16, radius: 7 },
+        ],
+        attribution: "Map tiles by VWorld",
+      },
+      localVector: {
+        label: "로컬 벡터",
+        type: "local",
+        vectorSource: "sample",
+        backdropProvider: "vworldBase",
+        baseBlend: 0.68,
+        focusBlend: 0.78,
+        focusSpecs: [
+          { maxDistance: 95, z: 17, radius: 7 },
+          { maxDistance: 190, z: 17, radius: 7 },
+          { maxDistance: 380, z: 16, radius: 8 },
+          { maxDistance: Infinity, z: 16, radius: 7 },
+        ],
+        attribution: "Map tiles by VWorld, vector sample from VWorld Data API",
+      },
+      seoulVector: {
+        label: "서울 전체 벡터",
+        type: "local",
+        vectorSource: "seoul",
+        backdropProvider: "vworldBase",
+        baseBlend: 0.62,
+        focusBlend: 0.76,
+        focusSpecs: [
+          { maxDistance: 95, z: 17, radius: 7 },
+          { maxDistance: 190, z: 17, radius: 7 },
+          { maxDistance: 380, z: 16, radius: 8 },
+          { maxDistance: Infinity, z: 16, radius: 7 },
+        ],
+        attribution: "Map tiles by VWorld, Seoul vector from VWorld Data API",
+      },
+    };
+    const defaultMapProviderId = mapProviders[MAP_CONFIG.defaultProvider] ? MAP_CONFIG.defaultProvider : "carto";
+    let activeMapProviderId = defaultMapProviderId;
+    const tileImageCache = new Map();
+    let focusMapRequestId = 0;
+    let focusMapKey = "";
+    let lastFocusMapCheckAt = 0;
+    let contextLabelRequestId = 0;
+    const contextLabelCache = new Map();
+    let contextLabelsData = null;
+    let contextLabelsPromise = null;
+    let seoulVectorData = null;
+    let seoulVectorPromise = null;
+
+    const fmt = new Intl.NumberFormat("ko-KR", { maximumFractionDigits: 0 });
+    const fmt1 = new Intl.NumberFormat("ko-KR", { maximumFractionDigits: 1 });
+
+    function normalize(value) {
+      const min = data.meta.valueDomain.p03;
+      const max = data.meta.valueDomain.p97;
+      return Math.max(0, Math.min(1, (value - min) / (max - min || 1)));
+    }
+
+    function height(value) {
+      const n = normalize(value);
+      return 10 + Math.pow(n, 1.35) * heightScale;
+    }
+
+    function columnBaseHeight(value) {
+      return Math.max(10, 8 + (height(value) - 10) * columnHeightScale);
+    }
+
+    function columnZoomScale() {
+      if (!camera || !controls) return 1;
+      const distance = camera.position.distanceTo(controls.target);
+      const minScale = reviewMode ? 0.055 : columnZoomMinScale;
+      const maxScale = reviewMode ? 0.24 : columnZoomMaxScale;
+      return THREE.MathUtils.clamp(distance / columnZoomReference, minScale, maxScale);
+    }
+
+    function isSelectedPoint(point) {
+      return Boolean(reviewMode && selectedPoint && point && point.assetId === selectedPoint.assetId);
+    }
+
+    function columnHeightForPoint(point, visualScale = columnZoomScale()) {
+      const reviewHeightFactor = reviewMode ? (isSelectedPoint(point) ? 1.02 : 0.92) : 1;
+      return columnBaseHeight(point.noc) * visualScale * reviewHeightFactor;
+    }
+
+    function columnRadiusForPoint(point, visualScale = columnZoomScale()) {
+      const reviewRadiusFactor = reviewMode ? (isSelectedPoint(point) ? 0.90 : 0.72) : 1;
+      const radiusBase = point.tenantCount ? 7.2 : 1.85;
+      return radiusBase * columnRadiusScale * Math.sqrt(visualScale) * reviewRadiusFactor;
+    }
+
+    function columnTopY(point) {
+      return columnGroundY + columnHeightForPoint(point);
+    }
+
+    function composeColumnMatrix(matrix, point, visualScale) {
+      const barHeight = columnHeightForPoint(point, visualScale);
+      const radius = columnRadiusForPoint(point, visualScale);
+      matrix.compose(
+        new THREE.Vector3(sx(point.x), barHeight / 2 + columnGroundY, sz(point.y)),
+        new THREE.Quaternion(),
+        new THREE.Vector3(radius, barHeight, radius)
+      );
+    }
+
+    function colorFor(value) {
+      const n = normalize(value);
+      const stops = [
+        [0.00, [47, 128, 237]],
+        [0.30, [54, 194, 180]],
+        [0.55, [246, 232, 110]],
+        [0.78, [255, 159, 67]],
+        [1.00, [215, 38, 61]],
+      ];
+      for (let i = 0; i < stops.length - 1; i++) {
+        const [a, ca] = stops[i];
+        const [b, cb] = stops[i + 1];
+        if (n >= a && n <= b) {
+          const t = (n - a) / (b - a);
+          return new THREE.Color(
+            (ca[0] + (cb[0] - ca[0]) * t) / 255,
+            (ca[1] + (cb[1] - ca[1]) * t) / 255,
+            (ca[2] + (cb[2] - ca[2]) * t) / 255,
+          );
+        }
+      }
+      return new THREE.Color(0xd7263d);
+    }
+
+    function sx(x) { return x * horizontalScale; }
+    function sz(y) { return -y * horizontalScale; }
+    function xyFromLonLat(lon, lat) {
+      const center = data.meta.center;
+      return [
+        (lon - center.lon) * 111320 * Math.cos(center.lat * Math.PI / 180),
+        (lat - center.lat) * 110540,
+      ];
+    }
+
+    function lonToTileX(lon, z) { return (lon + 180) / 360 * Math.pow(2, z); }
+    function latToTileY(lat, z) {
+      const rad = lat * Math.PI / 180;
+      return (1 - Math.log(Math.tan(rad) + 1 / Math.cos(rad)) / Math.PI) / 2 * Math.pow(2, z);
+    }
+    function tileXToLon(x, z) { return x / Math.pow(2, z) * 360 - 180; }
+    function tileYToLat(y, z) {
+      const n = Math.PI - 2 * Math.PI * y / Math.pow(2, z);
+      return 180 / Math.PI * Math.atan(0.5 * (Math.exp(n) - Math.exp(-n)));
+    }
+
+    function activeMapProvider() {
+      const provider = mapProviders[activeMapProviderId] || mapProviders.carto;
+      if (provider.type === "vworld" && !MAP_CONFIG.vworldKey) return mapProviders.carto;
+      return provider;
+    }
+
+    function baseTileProvider(provider = activeMapProvider()) {
+      if (!provider.backdropProvider) return provider;
+      const backdrop = mapProviders[provider.backdropProvider];
+      if (backdrop && isProviderAvailable(provider.backdropProvider)) return backdrop;
+      return mapProviders.carto;
+    }
+
+    function tileBlend(provider = activeMapProvider(), kind = "base") {
+      const value = kind === "focus" ? provider.focusBlend : provider.baseBlend;
+      return Number.isFinite(Number(value)) ? Number(value) : 1;
+    }
+
+    function isProviderAvailable(providerId) {
+      const provider = mapProviders[providerId];
+      if (!provider) return false;
+      if (provider.type === "vworld") return Boolean(MAP_CONFIG.vworldKey);
+      if (provider.type === "local" && provider.vectorSource === "sample") return Boolean(data && data.localVector && data.localVector.available);
+      if (provider.type === "local" && provider.vectorSource === "seoul") return Boolean(MAP_CONFIG.seoulVectorAvailable);
+      return true;
+    }
+
+    function setupMapProviderControl() {
+      if (!mapProviderSelect) {
+        updateMapProviderStatus();
+        return;
+      }
+      for (const option of mapProviderSelect.options) {
+        const provider = mapProviders[option.value];
+        if (provider) option.disabled = !isProviderAvailable(option.value);
+      }
+      mapProviderSelect.value = activeMapProviderId;
+      updateMapProviderStatus();
+    }
+
+    function updateMapProviderStatus() {
+      const provider = activeMapProvider();
+      if (attribution) attribution.textContent = provider.attribution;
+      if (!mapProviderStatus) return;
+      if (provider.type === "local" && provider.vectorSource === "seoul") {
+        mapProviderStatus.textContent = "밝게 합성한 VWorld 지도를 배경으로 깔고, 서울 전체 도로/구/동 경계 벡터를 얹습니다. 건물 전체는 타일별 개수만 보관했습니다.";
+      } else if (provider.type === "local") {
+        const summary = data.localVector && data.localVector.summary;
+        const building = summary && summary.center ? summary.center.building : "샘플";
+        mapProviderStatus.textContent = `밝게 합성한 VWorld 지도를 배경으로 깔고, VWorld 벡터 샘플을 표시합니다. 기준: ${building} 주변.`;
+      } else if (provider.type === "vworld") {
+        mapProviderStatus.textContent = "VWorld는 현재 타일 응답 기준 최대 z19까지 사용합니다.";
+      } else {
+        mapProviderStatus.textContent = "CARTO는 근접 검토에서 z21 @2x까지 사용합니다.";
+      }
+    }
+
+    async function setMapProvider(providerId) {
+      if (!isProviderAvailable(providerId)) {
+        updateMapProviderStatus();
+        return;
+      }
+      if (activeMapProviderId === providerId) return;
+      activeMapProviderId = providerId;
+      const url = new URL(window.location.href);
+      url.searchParams.set("provider", activeMapProviderId);
+      window.history.replaceState(null, "", url);
+      updateMapProviderStatus();
+      clearFocusMap();
+      removeBaseMapPlane();
+      await buildBase();
+      if (activeMapProvider().vectorSource === "seoul") await ensureSeoulVectorLayer();
+      updateLocalVectorVisibility();
+      if (selectedPoint) updateFocusMap(selectedPoint, { force: true });
+    }
+
+    function marketDataConfigured() {
+      return Boolean(MAP_CONFIG.supabaseUrl && MAP_CONFIG.supabaseKey && MAP_CONFIG.marketDataSource && MAP_CONFIG.marketDataCategories);
+    }
+
+    function rowExtraInfo(row) {
+      if (!row || row.extra_info == null) return {};
+      if (typeof row.extra_info === "string") {
+        try {
+          return JSON.parse(row.extra_info);
+        } catch (error) {
+          return {};
+        }
+      }
+      return row.extra_info;
+    }
+
+    async function fetchMarketDataCategory(category) {
+      const pageSize = 1000;
+      const rows = [];
+      for (let offset = 0; ; offset += pageSize) {
+        const params = new URLSearchParams({
+          select: "id,category,region,value,base_date,source,extra_info,lat,lng",
+          source: `eq.${MAP_CONFIG.marketDataSource}`,
+          category: `eq.${category}`,
+          order: "id.asc",
+          limit: String(pageSize),
+          offset: String(offset),
+        });
+        const response = await fetch(`${MAP_CONFIG.supabaseUrl}/rest/v1/market_data?${params.toString()}`, {
+          headers: {
+            apikey: MAP_CONFIG.supabaseKey,
+            Authorization: `Bearer ${MAP_CONFIG.supabaseKey}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error(`market_data fetch failed: ${category} ${response.status}`);
+        }
+        const page = await response.json();
+        rows.push(...page);
+        if (page.length < pageSize) break;
+      }
+      return rows;
+    }
+
+    function buildSurfaceDataFromMarketRows(groups) {
+      const metaInfo = rowExtraInfo(groups.meta[0]);
+      if (!metaInfo.meta || !metaInfo.grid || !Array.isArray(metaInfo.periods)) {
+        throw new Error("market_data meta row is missing dashboard metadata");
+      }
+      const surfaces = {};
+      for (const row of groups.surface) {
+        const info = rowExtraInfo(row);
+        if (info.period) surfaces[info.period] = info.values || [];
+      }
+      const pointsByPeriod = Object.fromEntries(metaInfo.periods.map(period => [period, []]));
+      for (const row of groups.observation) {
+        const info = rowExtraInfo(row);
+        const point = info.point || {};
+        const period = info.period || point.period;
+        if (!period) continue;
+        if (!pointsByPeriod[period]) pointsByPeriod[period] = [];
+        if (point.lat == null && row.lat != null) point.lat = row.lat;
+        if (point.lon == null && row.lng != null) point.lon = row.lng;
+        if (point.noc == null && row.value != null) point.noc = row.value;
+        delete point.period;
+        pointsByPeriod[period].push(point);
+      }
+      const tenantCases = groups.tenantCase.map(row => {
+        const info = rowExtraInfo(row);
+        const item = info.case || {};
+        if (item.lat == null && row.lat != null) item.lat = row.lat;
+        if (item.lon == null && row.lng != null) item.lon = row.lng;
+        return item;
+      });
+      const buildingByPnu = {};
+      for (const row of groups.buildingOverview) {
+        const info = rowExtraInfo(row);
+        if (info.pnu) buildingByPnu[info.pnu] = info.overview || {};
+      }
+      return {
+        meta: metaInfo.meta,
+        grid: metaInfo.grid,
+        periods: metaInfo.periods,
+        surfaces,
+        pointsByPeriod,
+        tenantCases,
+        buildingByPnu,
+        labels: metaInfo.labels || {},
+        referenceLines: metaInfo.referenceLines || [],
+        localVector: metaInfo.localVector || { available: false },
+      };
+    }
+
+    async function loadSurfaceData() {
+      if (marketDataConfigured()) {
+        try {
+          const categories = MAP_CONFIG.marketDataCategories;
+          const [meta, surface, observation, tenantCase, buildingOverview] = await Promise.all([
+            fetchMarketDataCategory(categories.meta),
+            fetchMarketDataCategory(categories.surface),
+            fetchMarketDataCategory(categories.observation),
+            fetchMarketDataCategory(categories.tenantCase),
+            fetchMarketDataCategory(categories.buildingOverview),
+          ]);
+          if (meta.length && surface.length && observation.length) {
+            const marketData = buildSurfaceDataFromMarketRows({ meta, surface, observation, tenantCase, buildingOverview });
+            marketData.meta.sourceMode = "supabase_market_data";
+            marketData.meta.marketDataSource = MAP_CONFIG.marketDataSource;
+            return marketData;
+          }
+        } catch (error) {
+          console.warn("Supabase market_data load failed; falling back to local JSON", error);
+        }
+      }
+      const localData = await fetch(`${DATA_URL}?v=${Date.now()}`).then(r => r.json());
+      localData.meta.sourceMode = "local_json";
+      return localData;
+    }
+
+    async function boot() {
+      data = await loadSurfaceData();
+      window.rentMapData = data;
+      document.body.dataset.sourceMode = data.meta.sourceMode || "";
+      document.getElementById("legendMin").textContent = fmt.format(data.meta.valueDomain.p03);
+      document.getElementById("legendMax").textContent = fmt.format(data.meta.valueDomain.p97);
+      setupScene();
+      setupMapProviderControl();
+      buildSurface();
+      await buildBase();
+      buildMapReferences();
+      buildLocalVectorLayer();
+      if (activeMapProvider().vectorSource === "seoul") await ensureSeoulVectorLayer();
+      periodSlider.max = data.periods.length - 1;
+      periodSlider.value = data.periods.length - 1;
+      setPeriod(data.periods[data.periods.length - 1]);
+      bindEvents();
+      loading.style.display = "none";
+      animate();
+    }
+
+    function setupScene() {
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x111820);
+      renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true, powerPreference: "high-performance" });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      app.appendChild(renderer.domElement);
+      camera = new THREE.PerspectiveCamera(48, window.innerWidth / window.innerHeight, 2, 10000);
+      camera.position.set(0, 1700, 1250);
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.target.set(0, 85, 0);
+      controls.maxPolarAngle = Math.PI * 0.47;
+      controls.minDistance = 42;
+      controls.maxDistance = 6400;
+      scene.add(new THREE.HemisphereLight(0xffffff, 0x223344, 1.25));
+      const sun = new THREE.DirectionalLight(0xffffff, 1.0);
+      sun.position.set(850, 1700, 1200);
+      scene.add(sun);
+      raycaster = new THREE.Raycaster();
+      pointer = new THREE.Vector2();
+      raycaster.params.Points.threshold = 8;
+    }
+
+    async function buildBase() {
+      const mapLayer = await buildMapTexture();
+      if (mapLayer) {
+        baseMapPlane = mapLayer;
+        scene.add(baseMapPlane);
+        return;
+      }
+
+      const xs = data.grid.xs;
+      const ys = data.grid.ys;
+      const w = (xs[xs.length - 1] - xs[0]) * horizontalScale;
+      const h = (ys[ys.length - 1] - ys[0]) * horizontalScale;
+      baseMapPlane = new THREE.Mesh(
+        new THREE.PlaneGeometry(w, h),
+        new THREE.MeshBasicMaterial({ color: 0xe8edf1, side: THREE.DoubleSide })
+      );
+      baseMapPlane.rotation.x = -Math.PI / 2;
+      baseMapPlane.position.y = mapPlaneY;
+      scene.add(baseMapPlane);
+    }
+
+    async function buildMapTexture() {
+      const bounds = data.meta.boundsLatLon;
+      if (!bounds) return null;
+      const displayProvider = activeMapProvider();
+      const provider = baseTileProvider(displayProvider);
+      if (provider.type === "local") return null;
+      const blend = tileBlend(displayProvider, "base");
+      const baseZoom = provider.baseZoom || 13;
+      let x0 = Math.floor(lonToTileX(bounds.west, baseZoom)) - 1;
+      let x1 = Math.floor(lonToTileX(bounds.east, baseZoom)) + 1;
+      let y0 = Math.floor(latToTileY(bounds.north, baseZoom)) - 1;
+      let y1 = Math.floor(latToTileY(bounds.south, baseZoom)) + 1;
+      const cols = x1 - x0 + 1;
+      const rows = y1 - y0 + 1;
+      if (cols <= 0 || rows <= 0 || cols * rows > 220) return null;
+
+      const canvas = document.createElement("canvas");
+      canvas.width = cols * tileSize;
+      canvas.height = rows * tileSize;
+      const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#f8fafc";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      let loaded = 0;
+      const jobs = [];
+      for (let ty = y0; ty <= y1; ty++) {
+        for (let tx = x0; tx <= x1; tx++) {
+          const urls = mapTileUrls(provider, baseZoom, tx, ty, provider.retina);
+          const fallbackUrls = provider.retina ? mapTileUrls(provider, baseZoom, tx, ty, false) : [];
+          if (!urls.length) continue;
+          jobs.push(loadTileStack(urls, fallbackUrls).then(images => {
+            if (images.length) {
+              ctx.save();
+              ctx.globalAlpha = blend;
+              for (const img of images) ctx.drawImage(img, (tx - x0) * tileSize, (ty - y0) * tileSize, tileSize, tileSize);
+              ctx.restore();
+              loaded += images.length;
+            }
+          }));
+        }
+      }
+      await Promise.all(jobs);
+      if (!loaded) return null;
+
+      const west = tileXToLon(x0, baseZoom);
+      const east = tileXToLon(x1 + 1, baseZoom);
+      const north = tileYToLat(y0, baseZoom);
+      const south = tileYToLat(y1 + 1, baseZoom);
+      const [xWest] = xyFromLonLat(west, data.meta.center.lat);
+      const [xEast] = xyFromLonLat(east, data.meta.center.lat);
+      const [, ySouth] = xyFromLonLat(data.meta.center.lon, south);
+      const [, yNorth] = xyFromLonLat(data.meta.center.lon, north);
+      const width = Math.abs(xEast - xWest) * horizontalScale;
+      const height = Math.abs(yNorth - ySouth) * horizontalScale;
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.encoding = THREE.sRGBEncoding;
+      texture.generateMipmaps = false;
+      texture.minFilter = THREE.LinearFilter;
+      texture.magFilter = THREE.LinearFilter;
+      texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy ? renderer.capabilities.getMaxAnisotropy() : 1);
+      const plane = new THREE.Mesh(
+        new THREE.PlaneGeometry(width, height),
+        new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide })
+      );
+      plane.rotation.x = -Math.PI / 2;
+      plane.position.set(((xWest + xEast) / 2) * horizontalScale, mapPlaneY, -((ySouth + yNorth) / 2) * horizontalScale);
+      return plane;
+    }
+
+    function currentFocusMapSpec() {
+      const distance = camera && controls ? camera.position.distanceTo(controls.target) : 9999;
+      const specs = activeMapProvider().focusSpecs;
+      return specs.find(spec => distance <= spec.maxDistance) || specs[specs.length - 1];
+    }
+
+    function makeFocusMapKey(point, spec) {
+      const id = point.assetId || `${point.lat},${point.lon}`;
+      return `${activeMapProviderId}:${id}:${spec.z}:${spec.radius}`;
+    }
+
+    async function updateFocusMap(point, options = {}) {
+      if (!point || !Number.isFinite(Number(point.lat)) || !Number.isFinite(Number(point.lon))) return;
+      const spec = currentFocusMapSpec();
+      const key = makeFocusMapKey(point, spec);
+      if (!options.force && focusMapPlane && focusMapKey === key) return;
+      const requestId = ++focusMapRequestId;
+      const plane = await buildFocusMapTexture(point, spec);
+      if (requestId !== focusMapRequestId) {
+        disposeMapPlane(plane);
+        return;
+      }
+      removeFocusMapPlane();
+      if (plane) {
+        focusMapPlane = plane;
+        focusMapKey = key;
+        scene.add(focusMapPlane);
+      }
+    }
+
+    function clearFocusMap() {
+      focusMapRequestId += 1;
+      focusMapKey = "";
+      removeFocusMapPlane();
+    }
+
+    function removeBaseMapPlane() {
+      if (!baseMapPlane) return;
+      scene.remove(baseMapPlane);
+      disposeMapPlane(baseMapPlane);
+      baseMapPlane = null;
+    }
+
+    function removeFocusMapPlane() {
+      if (!focusMapPlane) return;
+      scene.remove(focusMapPlane);
+      disposeMapPlane(focusMapPlane);
+      focusMapPlane = null;
+    }
+
+    function disposeMapPlane(plane) {
+      if (!plane) return;
+      if (plane.material && plane.material.map) plane.material.map.dispose();
+      if (plane.material) plane.material.dispose();
+      if (plane.geometry) plane.geometry.dispose();
+    }
+
+    async function buildFocusMapTexture(point, spec) {
+      const displayProvider = activeMapProvider();
+      const provider = baseTileProvider(displayProvider);
+      if (provider.type === "local") return null;
+      const blend = tileBlend(displayProvider, "focus");
+      const z = spec.z;
+      const centerX = Math.floor(lonToTileX(point.lon, z));
+      const centerY = Math.floor(latToTileY(point.lat, z));
+      const radius = spec.radius;
+      const x0 = centerX - radius;
+      const x1 = centerX + radius;
+      const y0 = centerY - radius;
+      const y1 = centerY + radius;
+      const cols = x1 - x0 + 1;
+      const rows = y1 - y0 + 1;
+      const maxTextureSize = renderer.capabilities.maxTextureSize || 8192;
+      const providerTileSize = provider.tileSize || tileSize;
+      const drawTileSize = Math.max(tileSize, Math.min(providerTileSize, Math.floor(maxTextureSize / Math.max(cols, rows))));
+      const canvas = document.createElement("canvas");
+      canvas.width = cols * drawTileSize;
+      canvas.height = rows * drawTileSize;
+      const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#f8fafc";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      let loaded = 0;
+      const jobs = [];
+      for (let ty = y0; ty <= y1; ty++) {
+        for (let tx = x0; tx <= x1; tx++) {
+          const urls = mapTileUrls(provider, z, tx, ty, provider.retina);
+          const fallbackUrls = provider.retina ? mapTileUrls(provider, z, tx, ty, false) : [];
+          if (!urls.length) continue;
+          jobs.push(loadTileStack(urls, fallbackUrls).then(images => {
+            if (images.length) {
+              ctx.save();
+              ctx.globalAlpha = blend;
+              for (const img of images) ctx.drawImage(img, (tx - x0) * drawTileSize, (ty - y0) * drawTileSize, drawTileSize, drawTileSize);
+              ctx.restore();
+              loaded += images.length;
+            }
+          }));
+        }
+      }
+      await Promise.all(jobs);
+      if (!loaded) return null;
+
+      const west = tileXToLon(x0, z);
+      const east = tileXToLon(x1 + 1, z);
+      const north = tileYToLat(y0, z);
+      const south = tileYToLat(y1 + 1, z);
+      const [xWest] = xyFromLonLat(west, data.meta.center.lat);
+      const [xEast] = xyFromLonLat(east, data.meta.center.lat);
+      const [, ySouth] = xyFromLonLat(data.meta.center.lon, south);
+      const [, yNorth] = xyFromLonLat(data.meta.center.lon, north);
+      const width = Math.abs(xEast - xWest) * horizontalScale;
+      const height = Math.abs(yNorth - ySouth) * horizontalScale;
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.encoding = THREE.sRGBEncoding;
+      texture.generateMipmaps = false;
+      texture.minFilter = THREE.LinearFilter;
+      texture.magFilter = THREE.LinearFilter;
+      texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy ? renderer.capabilities.getMaxAnisotropy() : 1);
+      const plane = new THREE.Mesh(
+        new THREE.PlaneGeometry(width, height),
+        new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide })
+      );
+      plane.rotation.x = -Math.PI / 2;
+      plane.position.set(((xWest + xEast) / 2) * horizontalScale, mapPlaneY + 0.02, -((ySouth + yNorth) / 2) * horizontalScale);
+      plane.renderOrder = 2;
+      return plane;
+    }
+
+    function mapTileUrls(provider, z, tx, ty, retina = false) {
+      if (provider.type === "vworld") {
+        if (!MAP_CONFIG.vworldKey) return [];
+        const layers = provider.layers || [provider];
+        return layers.map(layer => `https://api.vworld.kr/req/wmts/1.0.0/${encodeURIComponent(MAP_CONFIG.vworldKey)}/${layer.layer}/${z}/${ty}/${tx}.${layer.extension || "png"}`);
+      }
+      const subdomains = provider.subdomains || ["a", "b", "c", "d"];
+      const sub = subdomains[Math.abs(tx + ty) % subdomains.length];
+      return [`https://cartodb-basemaps-${sub}.global.ssl.fastly.net/rastertiles/voyager/${z}/${tx}/${ty}${retina ? "@2x" : ""}.png`];
+    }
+
+    async function loadTileStack(urls, fallbackUrls = []) {
+      const images = [];
+      for (let i = 0; i < urls.length; i++) {
+        const img = await loadTile(urls[i], fallbackUrls[i] || null);
+        if (img) images.push(img);
+      }
+      return images;
+    }
+
+    function loadTile(url, fallbackUrl = null) {
+      if (tileImageCache.has(url)) {
+        return tileImageCache.get(url).then(img => img || (fallbackUrl ? loadTile(fallbackUrl) : null));
+      }
+      const promise = new Promise(resolve => {
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(null);
+        img.src = url;
+      });
+      tileImageCache.set(url, promise);
+      return promise.then(img => img || (fallbackUrl ? loadTile(fallbackUrl) : null));
+    }
+
+    function makeTextSprite(text, options = {}) {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      const fontSize = options.fontSize || 34;
+      const paddingX = 18;
+      const paddingY = 10;
+      ctx.font = `700 ${fontSize}px Arial, Noto Sans KR, sans-serif`;
+      const metrics = ctx.measureText(text);
+      canvas.width = Math.ceil(metrics.width + paddingX * 2);
+      canvas.height = Math.ceil(fontSize + paddingY * 2);
+      ctx.font = `700 ${fontSize}px Arial, Noto Sans KR, sans-serif`;
+      ctx.textBaseline = "middle";
+      ctx.fillStyle = options.background || "rgba(255,255,255,0.86)";
+      roundRect(ctx, 0, 0, canvas.width, canvas.height, 10);
+      ctx.fill();
+      ctx.fillStyle = options.color || "#17202a";
+      ctx.fillText(text, paddingX, canvas.height / 2 + 1);
+      const texture = new THREE.CanvasTexture(canvas);
+      const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, transparent: true, depthTest: false }));
+      const scale = options.scale || 0.8;
+      sprite.userData.labelKind = options.kind || "label";
+      sprite.userData.canvasWidth = canvas.width;
+      sprite.userData.canvasHeight = canvas.height;
+      sprite.userData.baseScale = scale;
+      sprite.scale.set(canvas.width * scale, canvas.height * scale, 1);
+      sprite.renderOrder = 20;
+      return sprite;
+    }
+
+    function roundRect(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+    }
+
+    function addLabel(text, x, z, y, options = {}) {
+      const sprite = makeTextSprite(text, options);
+      sprite.position.set(x, y, z);
+      sprite.userData.baseX = x;
+      sprite.userData.baseY = y;
+      sprite.userData.baseZ = z;
+      labelGroup.add(sprite);
+      return sprite;
+    }
+
+    function buildMapReferences() {
+      labelGroup = new THREE.Group();
+      referenceGroup = new THREE.Group();
+      contextLabelGroup = new THREE.Group();
+      scene.add(referenceGroup);
+      scene.add(labelGroup);
+      scene.add(contextLabelGroup);
+
+      const bounds = data.meta.boundsMeters;
+      const minX = sx(bounds.xMin), maxX = sx(bounds.xMax), minZ = sz(bounds.yMax), maxZ = sz(bounds.yMin);
+      const lineMaterial = new THREE.LineBasicMaterial({ color: 0x6aa8ff, transparent: true, opacity: 0.8, depthTest: false });
+      for (const ref of data.referenceLines || []) {
+        const verts = [];
+        for (const p of ref.points) verts.push(sx(p.x), mapPlaneY + 0.16, sz(p.y));
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute("position", new THREE.Float32BufferAttribute(verts, 3));
+        const line = new THREE.Line(geometry, lineMaterial);
+        line.renderOrder = 14;
+        referenceGroup.add(line);
+        const mid = ref.points[Math.floor(ref.points.length / 2)];
+        addLabel(ref.name, sx(mid.x), sz(mid.y), 34, { fontSize: 28, scale: 0.62, kind: "reference", color: "#0f4c81", background: "rgba(229,244,255,0.86)" });
+      }
+
+      for (const row of data.labels.region || []) {
+        addLabel(row.label, sx(row.x), sz(row.y), 72, { fontSize: 40, scale: 0.82, kind: "region", color: "#7c2d12", background: "rgba(255,247,237,0.9)" });
+      }
+      for (const row of data.labels.gu || []) {
+        addLabel(row.label, sx(row.x), sz(row.y), 36, { fontSize: 28, scale: 0.55, kind: "gu", color: "#1f2937", background: "rgba(255,255,255,0.72)" });
+      }
+
+      addLabel("N", 0, minZ - 90, 60, { fontSize: 42, scale: 0.68, kind: "compass", color: "#ffffff", background: "rgba(15,23,42,0.72)" });
+      addLabel("S", 0, maxZ + 90, 60, { fontSize: 42, scale: 0.68, kind: "compass", color: "#ffffff", background: "rgba(15,23,42,0.72)" });
+      addLabel("W", minX - 90, 0, 60, { fontSize: 42, scale: 0.68, kind: "compass", color: "#ffffff", background: "rgba(15,23,42,0.72)" });
+      addLabel("E", maxX + 90, 0, 60, { fontSize: 42, scale: 0.68, kind: "compass", color: "#ffffff", background: "rgba(15,23,42,0.72)" });
+      labelGroup.visible = toggleLabels.checked;
+      referenceGroup.visible = toggleLabels.checked;
+      contextLabelGroup.visible = false;
+      updateLabelScale(true);
+    }
+
+    function addVectorSegments(group, features, color, opacity, y, renderOrder) {
+      const verts = [];
+      const addRing = (ring) => {
+        if (!Array.isArray(ring) || ring.length < 2) return;
+        for (let i = 0; i < ring.length; i++) {
+          const a = ring[i];
+          const b = ring[(i + 1) % ring.length];
+          if (!Array.isArray(a) || !Array.isArray(b)) continue;
+          verts.push(sx(a[0]), y, sz(a[1]), sx(b[0]), y, sz(b[1]));
+        }
+      };
+      const addLine = (line) => {
+        if (!Array.isArray(line) || line.length < 2) return;
+        for (let i = 0; i < line.length - 1; i++) {
+          const a = line[i];
+          const b = line[i + 1];
+          if (!Array.isArray(a) || !Array.isArray(b)) continue;
+          verts.push(sx(a[0]), y, sz(a[1]), sx(b[0]), y, sz(b[1]));
+        }
+      };
+      for (const feature of features || []) {
+        const geometry = feature.geometry || {};
+        const coords = geometry.coordinates || [];
+        if (geometry.type === "Polygon") {
+          for (const ring of coords) addRing(ring);
+        } else if (geometry.type === "MultiPolygon") {
+          for (const polygon of coords) for (const ring of polygon) addRing(ring);
+        } else if (geometry.type === "LineString") {
+          addLine(coords);
+        } else if (geometry.type === "MultiLineString") {
+          for (const line of coords) addLine(line);
+        }
+      }
+      if (!verts.length) return;
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute("position", new THREE.Float32BufferAttribute(verts, 3));
+      const material = new THREE.LineBasicMaterial({ color, transparent: true, opacity, depthTest: false });
+      const mesh = new THREE.LineSegments(geometry, material);
+      mesh.renderOrder = renderOrder;
+      group.add(mesh);
+    }
+
+    function buildLocalVectorLayer() {
+      localVectorGroup = new THREE.Group();
+      localVectorGroup.name = "localVectorLayer";
+      scene.add(localVectorGroup);
+      const vector = data.localVector;
+      if (!vector || !vector.available || !vector.layers) {
+        updateLocalVectorVisibility();
+        return;
+      }
+      addVectorSegments(localVectorGroup, vector.layers.buildings?.features, 0x334155, 0.40, mapPlaneY + 0.18, 24);
+      addVectorSegments(localVectorGroup, vector.layers.roads?.features, 0xf97316, 0.72, mapPlaneY + 0.22, 25);
+      addVectorSegments(localVectorGroup, vector.layers.dong_boundary?.features, 0x10b981, 0.82, mapPlaneY + 0.26, 26);
+      addVectorSegments(localVectorGroup, vector.layers.gu_boundary?.features, 0x2563eb, 0.92, mapPlaneY + 0.30, 27);
+      updateLocalVectorVisibility();
+    }
+
+    async function loadSeoulVectorData() {
+      if (seoulVectorData) return seoulVectorData;
+      if (!seoulVectorPromise) {
+        seoulVectorPromise = fetch(`${SEOUL_VECTOR_URL}?v=${Date.now()}`)
+          .then(response => response.ok ? response.json() : null)
+          .then(payload => {
+            seoulVectorData = payload;
+            return seoulVectorData;
+          });
+      }
+      return seoulVectorPromise;
+    }
+
+    async function ensureSeoulVectorLayer() {
+      if (seoulVectorGroup) {
+        updateLocalVectorVisibility();
+        return;
+      }
+      const vector = await loadSeoulVectorData();
+      seoulVectorGroup = new THREE.Group();
+      seoulVectorGroup.name = "seoulVectorLayer";
+      scene.add(seoulVectorGroup);
+      if (vector && vector.layers) {
+        addVectorSegments(seoulVectorGroup, vector.layers.roads?.features, 0xf97316, 0.42, mapPlaneY + 0.22, 23);
+        addVectorSegments(seoulVectorGroup, vector.layers.dong_boundary?.features, 0x10b981, 0.68, mapPlaneY + 0.26, 24);
+        addVectorSegments(seoulVectorGroup, vector.layers.gu_boundary?.features, 0x2563eb, 0.92, mapPlaneY + 0.30, 25);
+      }
+      updateLocalVectorVisibility();
+    }
+
+    function updateLocalVectorVisibility() {
+      const provider = activeMapProvider();
+      const showVectorOverlay = Boolean(toggleLocalVector && toggleLocalVector.checked);
+      if (localVectorGroup) {
+        const available = Boolean(data.localVector && data.localVector.available);
+        localVectorGroup.visible = available && showVectorOverlay && (provider.vectorSource === "sample" || provider.type !== "local");
+      }
+      if (seoulVectorGroup) {
+        seoulVectorGroup.visible = showVectorOverlay && provider.vectorSource === "seoul";
+      }
+    }
+
+    function clearContextLabels() {
+      contextLabelRequestId += 1;
+      if (!contextLabelGroup) return;
+      for (const child of [...contextLabelGroup.children]) {
+        contextLabelGroup.remove(child);
+        if (child.material && child.material.map) child.material.map.dispose();
+        if (child.material) child.material.dispose();
+        if (child.geometry) child.geometry.dispose();
+      }
+    }
+
+    function contextLabelCacheKey(point) {
+      return `${Math.round(Number(point.lat) * 10000)}:${Math.round(Number(point.lon) * 10000)}`;
+    }
+
+    function buildOverpassQuery(point) {
+      const lat = Number(point.lat);
+      const lon = Number(point.lon);
+      return `
+        [out:json][timeout:14];
+        (
+          way(around:780,${lat},${lon})["highway"]["name"];
+          node(around:1400,${lat},${lon})["railway"="station"]["name"];
+          way(around:1400,${lat},${lon})["railway"="station"]["name"];
+          relation(around:1400,${lat},${lon})["railway"="station"]["name"];
+          node(around:1400,${lat},${lon})["station"="subway"]["name"];
+          way(around:1400,${lat},${lon})["station"="subway"]["name"];
+          relation(around:1400,${lat},${lon})["station"="subway"]["name"];
+          node(around:1400,${lat},${lon})["subway"="yes"]["name"];
+          way(around:1400,${lat},${lon})["subway"="yes"]["name"];
+          relation(around:1400,${lat},${lon})["subway"="yes"]["name"];
+          node(around:1400,${lat},${lon})["railway"="subway_entrance"]["name"];
+        );
+        out tags center 160;
+      `;
+    }
+
+    async function fetchContextElements(point) {
+      const query = buildOverpassQuery(point);
+      const endpoints = [
+        "https://overpass-api.de/api/interpreter",
+        "https://overpass.kumi.systems/api/interpreter",
+      ];
+      for (const endpoint of endpoints) {
+        try {
+          const response = await fetch(`${endpoint}?data=${encodeURIComponent(query)}`);
+          if (!response.ok) continue;
+          const payload = await response.json();
+          if (payload && Array.isArray(payload.elements)) return payload.elements;
+        } catch (err) {
+          console.warn("Context label fetch failed", err);
+        }
+      }
+      return [];
+    }
+
+    function roadRank(highway) {
+      const ranks = {
+        motorway: 1, trunk: 2, primary: 3, secondary: 4, tertiary: 5,
+        unclassified: 6, residential: 7, living_street: 8, service: 9,
+      };
+      return ranks[highway] || 10;
+    }
+
+    function normalizeLabelName(name) {
+      return String(name || "").replace(/\s+/g, " ").trim();
+    }
+
+    function isStationTags(tags) {
+      if (!tags || !tags.name) return false;
+      return tags.station === "subway" || tags.subway === "yes" ||
+        tags.railway === "station" || tags.railway === "stop";
+    }
+
+    function parseContextLabels(elements, point) {
+      const labels = [];
+      const seen = new Set();
+      for (const element of elements) {
+        const tags = element.tags || {};
+        const center = element.center || element;
+        const lat = Number(center.lat);
+        const lon = Number(center.lon);
+        if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
+        const [x, y] = xyFromLonLat(lon, lat);
+        const distance = Math.hypot(x - point.x, y - point.y);
+
+        if (isStationTags(tags)) {
+          if (distance > 1400) continue;
+          const name = normalizeLabelName(tags.name);
+          const key = `station:${name}`;
+          if (!name || seen.has(key)) continue;
+          seen.add(key);
+          labels.push({ type: "station", name: `M ${name}`, x, y, distance, rank: 0 });
+          continue;
+        }
+
+        if (tags.highway && tags.name && distance <= 780) {
+          const rank = roadRank(tags.highway);
+          if (rank > 9) continue;
+          const name = normalizeLabelName(tags.name);
+          const key = `road:${name}`;
+          if (!name || seen.has(key)) continue;
+          seen.add(key);
+          labels.push({ type: "road", name, x, y, distance, rank });
+        }
+      }
+
+      labels.sort((a, b) => {
+        if (a.type !== b.type) return a.type === "station" ? -1 : 1;
+        return a.rank - b.rank || a.distance - b.distance;
+      });
+
+      const selected = [];
+      for (const label of labels) {
+        const maxCount = label.type === "station" ? 6 : 12;
+        if (selected.filter(item => item.type === label.type).length >= maxCount) continue;
+        if (selected.some(item => Math.hypot(item.x - label.x, item.y - label.y) < (label.type === "station" ? 120 : 132))) continue;
+        selected.push(label);
+      }
+      return selected.slice(0, 18);
+    }
+
+    async function loadContextLabels() {
+      if (contextLabelsData) return contextLabelsData;
+      if (!contextLabelsPromise) {
+        contextLabelsPromise = fetch(`${CONTEXT_LABELS_URL}?v=${Date.now()}`)
+          .then(response => response.ok ? response.json() : [])
+          .then(rows => {
+            contextLabelsData = Array.isArray(rows) ? rows : [];
+            return contextLabelsData;
+          })
+          .catch(err => {
+            console.warn("Local context labels failed", err);
+            contextLabelsData = [];
+            return contextLabelsData;
+          });
+      }
+      return contextLabelsPromise;
+    }
+
+    function selectLocalContextLabels(point) {
+      const source = contextLabelsData || [];
+      const labels = [];
+      for (const row of source) {
+        const x = Number(row.x);
+        const y = Number(row.y);
+        if (!Number.isFinite(x) || !Number.isFinite(y)) continue;
+        const distance = Math.hypot(x - point.x, y - point.y);
+        if (row.type === "station") {
+          if (distance <= 1450) labels.push({ ...row, x, y, distance, rank: 0 });
+        } else if (row.type === "road" && distance <= 780) {
+          labels.push({ ...row, x, y, distance, rank: Number(row.rank || 9) });
+        }
+      }
+      labels.sort((a, b) => {
+        if (a.type !== b.type) return a.type === "station" ? -1 : 1;
+        return a.rank - b.rank || a.distance - b.distance;
+      });
+      const selected = [];
+      for (const label of labels) {
+        const maxCount = label.type === "station" ? 6 : 12;
+        if (selected.filter(item => item.type === label.type).length >= maxCount) continue;
+        if (selected.some(item => Math.hypot(item.x - label.x, item.y - label.y) < (label.type === "station" ? 120 : 132))) continue;
+        selected.push(label);
+      }
+      return selected.slice(0, 18);
+    }
+
+    async function updateContextLabels(point) {
+      return;
+      if (!contextLabelGroup || !point || !Number.isFinite(Number(point.lat)) || !Number.isFinite(Number(point.lon))) return;
+      const requestId = ++contextLabelRequestId;
+      const key = contextLabelCacheKey(point);
+      let labels = contextLabelCache.get(key);
+      if (!labels) {
+        await loadContextLabels();
+        labels = selectLocalContextLabels(point);
+        if (!labels.length) {
+          const elements = await fetchContextElements(point);
+          labels = parseContextLabels(elements, point);
+        }
+        contextLabelCache.set(key, labels);
+      }
+      if (requestId !== contextLabelRequestId) return;
+      clearContextLabels();
+      contextLabelRequestId = requestId;
+      contextLabelGroup.visible = toggleLabels.checked && reviewMode;
+      window.__contextLabels = labels.map(label => ({
+        type: label.type,
+        name: label.name,
+        distance: Math.round(label.distance),
+      }));
+      for (const label of labels) {
+        const isStation = label.type === "station";
+        const sprite = makeTextSprite(label.name, {
+          fontSize: isStation ? 27 : 23,
+          scale: isStation ? 0.052 : 0.036,
+          color: isStation ? "#0f3f8f" : "#111827",
+          background: isStation ? "rgba(219,234,254,0.94)" : "rgba(255,255,255,0.90)",
+          kind: "context",
+        });
+        sprite.userData.labelText = label.name;
+        sprite.userData.labelType = label.type;
+        sprite.position.set(sx(label.x), columnGroundY + (isStation ? 5.8 : 4.2), sz(label.y));
+        sprite.renderOrder = 46;
+        contextLabelGroup.add(sprite);
+      }
+
+      const nearestStations = labels.filter(label => label.type === "station").slice(0, 3);
+      nearestStations.forEach((label, index) => {
+        const angle = Math.atan2(label.y - point.y, label.x - point.x);
+        const offset = 170 + index * 62;
+        const calloutText = `${label.name} ${fmt.format(Math.round(label.distance))}m`;
+        const sprite = makeTextSprite(calloutText, {
+          fontSize: 27,
+          scale: 0.058,
+          color: "#0f3f8f",
+          background: "rgba(219,234,254,0.96)",
+          kind: "contextStationSummary",
+        });
+        sprite.userData.labelText = calloutText;
+        sprite.userData.labelType = "stationSummary";
+        sprite.position.set(
+          sx(point.x + Math.cos(angle) * offset),
+          columnGroundY + 9.0 + index * 0.6,
+          sz(point.y + Math.sin(angle) * offset)
+        );
+        sprite.renderOrder = 52;
+        contextLabelGroup.add(sprite);
+      });
+    }
+
+    function buildSurface() {
+      const nx = data.grid.nx;
+      const ny = data.grid.ny;
+      const xs = data.grid.xs;
+      const ys = data.grid.ys;
+      const vertices = [];
+      const colors = [];
+      const indices = [];
+      for (let j = 0; j < ny; j++) {
+        for (let i = 0; i < nx; i++) {
+          vertices.push(sx(xs[i]), 0, sz(ys[j]));
+          colors.push(1, 1, 1);
+        }
+      }
+      for (let j = 0; j < ny - 1; j++) {
+        for (let i = 0; i < nx - 1; i++) {
+          const a = j * nx + i;
+          const b = a + 1;
+          const c = a + nx;
+          const d = c + 1;
+          indices.push(a, c, b, b, c, d);
+        }
+      }
+      const geometry = new THREE.BufferGeometry();
+      geometry.setIndex(indices);
+      geometry.setAttribute("position", new THREE.Float32BufferAttribute(vertices, 3));
+      geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
+      positionArray = geometry.attributes.position.array;
+      colorArray = geometry.attributes.color.array;
+      surface = new THREE.Mesh(
+        geometry,
+        new THREE.MeshStandardMaterial({
+          vertexColors: true,
+          transparent: true,
+          opacity: 0.54,
+          roughness: 0.74,
+          metalness: 0.03,
+          depthWrite: false,
+          side: THREE.DoubleSide,
+        })
+      );
+      scene.add(surface);
+    }
+
+    function updateSurface(period) {
+      const values = data.surfaces[period];
+      for (let idx = 0; idx < values.length; idx++) {
+        positionArray[idx * 3 + 1] = height(values[idx]);
+        const c = colorFor(values[idx]);
+        colorArray[idx * 3] = c.r;
+        colorArray[idx * 3 + 1] = c.g;
+        colorArray[idx * 3 + 2] = c.b;
+      }
+      surface.geometry.attributes.position.needsUpdate = true;
+      surface.geometry.attributes.color.needsUpdate = true;
+      surface.geometry.computeVertexNormals();
+    }
+
+    function surfaceHeightAt(x, y, values = data.surfaces[currentPeriod]) {
+      const nx = data.grid.nx;
+      const ny = data.grid.ny;
+      const xs = data.grid.xs;
+      const ys = data.grid.ys;
+      const dx = (xs[xs.length - 1] - xs[0]) / (nx - 1);
+      const dy = (ys[ys.length - 1] - ys[0]) / (ny - 1);
+      const fx = Math.max(0, Math.min(nx - 1.001, (x - xs[0]) / dx));
+      const fy = Math.max(0, Math.min(ny - 1.001, (y - ys[0]) / dy));
+      const i = Math.floor(fx);
+      const j = Math.floor(fy);
+      const tx = fx - i;
+      const ty = fy - j;
+      const i1 = Math.min(i + 1, nx - 1);
+      const j1 = Math.min(j + 1, ny - 1);
+      const v00 = values[j * nx + i];
+      const v10 = values[j * nx + i1];
+      const v01 = values[j1 * nx + i];
+      const v11 = values[j1 * nx + i1];
+      const v0 = v00 + (v10 - v00) * tx;
+      const v1 = v01 + (v11 - v01) * tx;
+      return height(v0 + (v1 - v0) * ty);
+    }
+
+    function buildPoints(period) {
+      if (pointMesh) scene.remove(pointMesh);
+      currentPoints = data.pointsByPeriod[period] || [];
+      const geometry = new THREE.CylinderGeometry(1, 1, 1, 12, 1, false);
+      const bucketCount = 11;
+      const min = data.meta.valueDomain.p03;
+      const max = data.meta.valueDomain.p97;
+      const buckets = Array.from({ length: bucketCount }, () => []);
+      for (let i = 0; i < currentPoints.length; i++) {
+        const bucket = Math.min(bucketCount - 1, Math.floor(normalize(currentPoints[i].noc) * bucketCount));
+        buckets[bucket].push(i);
+      }
+      pointMesh = new THREE.Group();
+      pointMesh.userData.kind = "observedPoint";
+      const matrix = new THREE.Matrix4();
+      const visualScale = columnZoomScale();
+      for (let bucket = 0; bucket < buckets.length; bucket++) {
+        const indices = buckets[bucket];
+        if (!indices.length) continue;
+        const sample = min + (max - min) * ((bucket + 0.5) / bucketCount);
+        const material = new THREE.MeshBasicMaterial({
+          color: colorFor(sample),
+          transparent: true,
+          opacity: 0.92,
+        });
+        const mesh = new THREE.InstancedMesh(geometry, material, indices.length);
+        mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+        mesh.userData.pointIndices = indices;
+        for (let localIndex = 0; localIndex < indices.length; localIndex++) {
+          const point = currentPoints[indices[localIndex]];
+          composeColumnMatrix(matrix, point, visualScale);
+          mesh.setMatrixAt(localIndex, matrix);
+        }
+        mesh.instanceMatrix.needsUpdate = true;
+        pointMesh.add(mesh);
+      }
+      lastColumnVisualScale = visualScale;
+      pointMesh.visible = togglePoints.checked;
+      scene.add(pointMesh);
+    }
+
+    function updateColumnScale(force = false) {
+      if (!pointMesh || !pointMesh.children.length) return;
+      const visualScale = columnZoomScale();
+      if (!force && lastColumnVisualScale !== null && Math.abs(visualScale - lastColumnVisualScale) < 0.012) return;
+      lastColumnVisualScale = visualScale;
+      const matrix = new THREE.Matrix4();
+      for (const mesh of pointMesh.children) {
+        const indices = mesh.userData.pointIndices || [];
+        for (let localIndex = 0; localIndex < indices.length; localIndex++) {
+          composeColumnMatrix(matrix, currentPoints[indices[localIndex]], visualScale);
+          mesh.setMatrixAt(localIndex, matrix);
+        }
+        mesh.instanceMatrix.needsUpdate = true;
+      }
+      updateSelectedColumn();
+      updateHighlightPosition();
+      updateSelectionClearButton();
+    }
+
+    function selectedColumnHeight(point) {
+      return columnHeightForPoint(point);
+    }
+
+    function selectedColumnRadius(point) {
+      return columnRadiusForPoint(point) * 1.18;
+    }
+
+    function ensureSelectedColumn() {
+      if (!selectedPoint) return;
+      if (!selectedColumn) {
+        selectedColumn = new THREE.Mesh(
+          new THREE.CylinderGeometry(1, 1, 1, 20, 1, false),
+          new THREE.MeshBasicMaterial({
+            color: 0x2563eb,
+            transparent: true,
+            opacity: 0.96,
+            depthTest: false,
+          })
+        );
+        selectedColumn.renderOrder = 38;
+        scene.add(selectedColumn);
+      }
+      updateSelectedColumn();
+    }
+
+    function updateSelectedColumn() {
+      if (!selectedColumn || !selectedPoint) return;
+      const barHeight = selectedColumnHeight(selectedPoint);
+      const radius = selectedColumnRadius(selectedPoint);
+      selectedColumn.position.set(sx(selectedPoint.x), barHeight / 2 + columnGroundY, sz(selectedPoint.y));
+      selectedColumn.scale.set(radius, barHeight, radius);
+      selectedColumn.visible = Boolean(reviewMode || selectedPoint);
+    }
+
+    function clearSelectedColumn() {
+      if (!selectedColumn) return;
+      scene.remove(selectedColumn);
+      if (selectedColumn.geometry) selectedColumn.geometry.dispose();
+      if (selectedColumn.material) selectedColumn.material.dispose();
+      selectedColumn = null;
+    }
+
+    function setPeriod(period) {
+      currentPeriod = period;
+      periodSlider.value = data.periods.indexOf(period);
+      periodLabel.textContent = period;
+      updateSurface(period);
+      buildPoints(period);
+      selectedPoint = null;
+      if (highlight) highlight.visible = false;
+      clearSelectedColumn();
+      clearFocusMap();
+      clearContextLabels();
+      setCloseFocusMode(false);
+      renderDetail(null);
+      buildCaseList();
+      runSearch();
+    }
+
+    function activateTab(name) {
+      tabButtons.forEach(button => button.classList.toggle("is-active", button.dataset.tab === name));
+      tabPanels.forEach(panel => panel.classList.toggle("is-active", panel.id === `tab-${name}`));
+    }
+
+    function getBuildingOverview(point) {
+      if (!point || !point.pnu || !data.buildingByPnu) return null;
+      return data.buildingByPnu[point.pnu] || null;
+    }
+
+    function bindEvents() {
+      tabButtons.forEach(button => {
+        button.addEventListener("click", () => activateTab(button.dataset.tab));
+      });
+      if (mapProviderSelect) {
+        mapProviderSelect.addEventListener("change", event => setMapProvider(event.target.value));
+      }
+      periodSlider.addEventListener("input", () => setPeriod(data.periods[Number(periodSlider.value)]));
+      toggleSurface.addEventListener("change", () => {
+        if (!reviewMode) surface.visible = toggleSurface.checked;
+      });
+      togglePoints.addEventListener("change", () => pointMesh.visible = togglePoints.checked);
+      toggleLabels.addEventListener("change", () => {
+        labelGroup.visible = toggleLabels.checked;
+        referenceGroup.visible = toggleLabels.checked;
+        if (contextLabelGroup) contextLabelGroup.visible = false;
+      });
+      if (toggleLocalVector) {
+        toggleLocalVector.addEventListener("change", updateLocalVectorVisibility);
+      }
+      if (selectionClear) {
+        selectionClear.addEventListener("click", event => {
+          event.stopPropagation();
+          clearSelection({ keepReviewContext: true });
+        });
+      }
+      searchInput.addEventListener("input", runSearch);
+      detailPanel.addEventListener("click", event => event.stopPropagation());
+      caseListPanel.addEventListener("click", event => event.stopPropagation());
+      caseListHeader.addEventListener("click", () => {
+        if (!isMobileLayout() || caseListPanel.classList.contains("is-empty")) return;
+        setCaseListOpen(!caseListPanel.classList.contains("is-open"));
+      });
+      caseRows.addEventListener("click", event => {
+        const button = event.target.closest(".caseItem");
+        if (!button) return;
+        const row = currentCaseRows[Number(button.dataset.index)];
+        if (!row) return;
+        selectPoint(row.point, { zoom: true });
+        highlightCaseItem(Number(button.dataset.index));
+        if (isMobileLayout()) setCaseListOpen(false);
+      });
+      window.addEventListener("resize", onResize);
+      window.addEventListener("pointermove", onPointerMove);
+      window.addEventListener("click", onClick);
+    }
+
+    function onResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      if (!isMobileLayout()) setCaseListOpen(false);
+    }
+
+    function pointerToNdc(event) {
+      pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+      pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    }
+
+    function pickPoint(event) {
+      if (!pointMesh || !togglePoints.checked) return null;
+      pointerToNdc(event);
+      raycaster.setFromCamera(pointer, camera);
+      const hits = raycaster.intersectObjects(pointMesh.children, false);
+      if (!hits.length) return null;
+      const hit = hits[0];
+      return currentPoints[hit.object.userData.pointIndices[hit.instanceId]];
+    }
+
+    function onPointerMove(event) {
+      const point = pickPoint(event);
+      if (!point) {
+        tooltip.style.display = "none";
+        return;
+      }
+      tooltip.innerHTML = `<b>${escapeHtml(point.building)}</b><br>NOC ${fmt.format(point.noc)}<br>${escapeHtml(point.gu)} ${escapeHtml(point.dong)}`;
+      tooltip.style.left = `${Math.min(event.clientX + 14, window.innerWidth - 280)}px`;
+      tooltip.style.top = `${Math.min(event.clientY + 14, window.innerHeight - 120)}px`;
+      tooltip.style.display = "block";
+    }
+
+    function onClick(event) {
+      if (event.target.closest(".panel")) return;
+      const point = pickPoint(event);
+      if (point) {
+        selectPoint(point, { zoom: true });
+      }
+    }
+
+    function clearSelection(options = {}) {
+      selectedPoint = null;
+      if (highlight) highlight.visible = false;
+      if (selectionClear) selectionClear.style.display = "none";
+      clearSelectedColumn();
+      renderDetail(null);
+      highlightMatchingCase(null);
+      if (!options.keepReviewContext) {
+        clearFocusMap();
+        clearContextLabels();
+        setCloseFocusMode(false);
+      }
+    }
+
+    function selectPoint(point, options = {}) {
+      selectedPoint = point;
+      renderDetail(point);
+      activateTab("info");
+      if (!highlight) {
+        highlight = new THREE.Mesh(
+          new THREE.RingGeometry(4.5, 6.5, 64),
+          new THREE.MeshBasicMaterial({
+            color: 0x2563eb,
+            side: THREE.DoubleSide,
+            transparent: true,
+            opacity: 0.88,
+            depthTest: false,
+          })
+        );
+        highlight.rotation.x = -Math.PI / 2;
+        highlight.renderOrder = 40;
+        scene.add(highlight);
+      }
+      controls.target.set(sx(point.x), options.zoom ? 0 : 120, sz(point.y));
+      const destination = options.zoom
+        ? new THREE.Vector3(sx(point.x) + 3.8, 46, sz(point.y) + 18)
+        : new THREE.Vector3(sx(point.x) + 980, 760, sz(point.y) + 1200);
+      if (options.zoom) camera.position.copy(destination);
+      else camera.position.lerp(destination, 0.45);
+      controls.update();
+      if (options.zoom) {
+        setCloseFocusMode(true);
+        updateFocusMap(point, { force: true });
+        clearContextLabels();
+      }
+      ensureSelectedColumn();
+      highlight.visible = true;
+      updateHighlightPosition();
+      if (!options.skipCaseHighlight) highlightMatchingCase(point);
+    }
+
+    function updateHighlightPosition() {
+      if (!highlight || !selectedPoint) return;
+      const ringY = reviewMode ? columnGroundY + 0.06 : columnTopY(selectedPoint) + 7;
+      highlight.position.set(sx(selectedPoint.x), ringY, sz(selectedPoint.y));
+      const ringScale = THREE.MathUtils.clamp(columnZoomScale() * 0.86, reviewMode ? 0.16 : 0.16, reviewMode ? 0.22 : 0.40);
+      highlight.scale.set(ringScale, ringScale, ringScale);
+    }
+
+    function updateSelectionClearButton() {
+      if (!selectionClear) return;
+      if (!selectedPoint || !selectedColumn) {
+        selectionClear.style.display = "none";
+        return;
+      }
+      const barHeight = selectedColumnHeight(selectedPoint);
+      const radius = selectedColumnRadius(selectedPoint);
+      selectionClearVector.set(
+        sx(selectedPoint.x) + radius * 2.1,
+        columnGroundY + barHeight * 0.78,
+        sz(selectedPoint.y)
+      );
+      selectionClearVector.project(camera);
+      const x = (selectionClearVector.x * 0.5 + 0.5) * window.innerWidth;
+      const y = (-selectionClearVector.y * 0.5 + 0.5) * window.innerHeight;
+      const visible = selectionClearVector.z > -1 && selectionClearVector.z < 1 && x >= 0 && x <= window.innerWidth && y >= 0 && y <= window.innerHeight;
+      if (!visible) {
+        selectionClear.style.display = "none";
+        return;
+      }
+      selectionClear.style.display = "flex";
+      selectionClear.style.left = `${x}px`;
+      selectionClear.style.top = `${y}px`;
+    }
+
+    function isMobileLayout() {
+      return window.matchMedia("(max-width: 840px)").matches;
+    }
+
+    function setCaseListOpen(open) {
+      const shouldOpen = Boolean(open) && isMobileLayout() && !caseListPanel.classList.contains("is-empty");
+      caseListPanel.classList.toggle("is-open", shouldOpen);
+      document.body.classList.toggle("case-list-open", shouldOpen);
+    }
+
+    function setCloseFocusMode(enabled) {
+      reviewMode = Boolean(enabled);
+      if (surface) surface.visible = enabled ? false : toggleSurface.checked;
+      if (surface && surface.material) surface.material.opacity = enabled ? 0.08 : 0.54;
+      if (pointMesh) {
+        pointMesh.visible = togglePoints.checked;
+        for (const mesh of pointMesh.children) {
+          if (mesh.material) mesh.material.opacity = enabled ? 0.64 : 0.92;
+        }
+        updateColumnScale(true);
+      }
+      if (enabled) ensureSelectedColumn();
+      else {
+        clearSelectedColumn();
+        clearContextLabels();
+      }
+      updateHighlightPosition();
+      if (enabled) {
+        labelGroup.visible = toggleLabels.checked;
+        referenceGroup.visible = toggleLabels.checked;
+        if (contextLabelGroup) contextLabelGroup.visible = false;
+        updateLabelScale(true);
+      }
+      updateLocalVectorVisibility();
+    }
+
+    function buildCaseList() {
+      currentCaseRows = [];
+      for (const point of currentPoints) {
+        for (const tenant of point.tenants || []) {
+          currentCaseRows.push({ point, tenant });
+        }
+      }
+      currentCaseRows.sort((a, b) =>
+        String(a.point.region || "").localeCompare(String(b.point.region || ""), "ko") ||
+        String(a.point.gu || "").localeCompare(String(b.point.gu || ""), "ko") ||
+        String(a.tenant.tenant || "").localeCompare(String(b.tenant.tenant || ""), "ko")
+      );
+      caseListCount.textContent = `${fmt.format(currentCaseRows.length)}건`;
+      caseListPanel.classList.toggle("is-empty", currentCaseRows.length === 0);
+      setCaseListOpen(false);
+      if (!currentCaseRows.length) {
+        caseRows.innerHTML = `<div class="caseEmpty">이 분기에 연결된 실제 임대사례가 없습니다.</div>`;
+        return;
+      }
+      caseRows.innerHTML = currentCaseRows.map((row, index) => {
+        const point = row.point;
+        const tenant = row.tenant;
+        const noc = tenant.conditionNoc || point.noc;
+        const rent = tenant.conditionRent || point.rent;
+        return `
+          <button class="caseItem" data-index="${index}">
+            <b>${escapeHtml(tenant.tenant || "임차인 미상")}</b>
+            <span>${escapeHtml(point.building)} · ${escapeHtml(point.region || "기타")} · ${escapeHtml(point.gu)}</span>
+            <span class="caseCondition">NOC ${moneyText(noc, "원/평")} · 월임대료 ${moneyText(rent, "원/평")}</span>
+          </button>
+        `;
+      }).join("");
+      highlightMatchingCase(selectedPoint);
+    }
+
+    function highlightCaseItem(index) {
+      caseRows.querySelectorAll(".caseItem").forEach((button, i) => {
+        button.classList.toggle("is-active", i === index);
+        if (i === index) button.scrollIntoView({ block: "nearest" });
+      });
+    }
+
+    function highlightMatchingCase(point) {
+      if (!point) {
+        highlightCaseItem(-1);
+        return;
+      }
+      const index = currentCaseRows.findIndex(row => row.point.assetId === point.assetId);
+      highlightCaseItem(index);
+    }
+
+    function renderDetail(point) {
+      if (!point) {
+        const count = currentPoints.length;
+        detailPanel.className = "side is-empty";
+        detailPanel.innerHTML = `
+          <div class="inspectorHeader">
+            <div class="inspectorEyebrow">선택 없음</div>
+            <div class="inspectorTitle">건물 막대를 클릭하세요</div>
+            <div class="inspectorSub">${currentPeriod || ""} · 관측 건물 ${fmt.format(count)}개</div>
+          </div>
+          <div class="inspectorBody">
+            <div class="metricRow"><span>Z값</span><strong>NOC</strong></div>
+            <div class="metricRow"><span>보간</span><strong>IDW / 실측막대 병행</strong></div>
+          </div>
+        `;
+        return;
+      }
+      detailPanel.className = "side is-selected";
+      const overview = getBuildingOverview(point);
+      const overviewHtml = overview ? `
+        <div class="sectionTitle">건축물대장 일반개요</div>
+        <div class="overviewGrid">
+          <div class="metricRow"><span>대장 상태</span><strong>${escapeHtml(buildingStatusText(overview.status))}</strong></div>
+          <div class="metricRow"><span>대지위치</span><strong>${escapeHtml(overview.platPlace || "-")}</strong></div>
+          <div class="metricRow"><span>대장 건물명</span><strong>${escapeHtml(overview.buildingNameRegister || "-")}</strong></div>
+          <div class="metricRow"><span>주용도</span><strong>${escapeHtml(overview.mainUse || "-")}</strong></div>
+          <div class="metricRow"><span>구조</span><strong>${escapeHtml(overview.mainStructure || "-")}</strong></div>
+          <div class="metricRow"><span>사용승인일</span><strong>${escapeHtml(overview.approvalDate || "-")}</strong></div>
+          <div class="metricRow"><span>연면적</span><strong>${sqmText(overview.totalFloorAreaSqm)}</strong></div>
+          <div class="metricRow"><span>건축면적</span><strong>${sqmText(overview.buildingAreaSqm)}</strong></div>
+          <div class="metricRow"><span>대지면적</span><strong>${sqmText(overview.siteAreaSqm)}</strong></div>
+          <div class="metricRow"><span>층수</span><strong>지상 ${countText(overview.groundFloorCount)} / 지하 ${countText(overview.basementFloorCount)}</strong></div>
+          <div class="metricRow"><span>높이</span><strong>${meterText(overview.heightM)}</strong></div>
+          <div class="metricRow"><span>주차</span><strong>옥내 ${countText(overview.parkingIndoorCount)} / 옥외 ${countText(overview.parkingOutdoorCount)}</strong></div>
+        </div>
+        <div class="sourceNote">출처: VWorld 좌표/PNU, 건축물대장 HUB 표제부 API</div>
+      ` : `
+        <div class="sectionTitle">건축물대장 일반개요</div>
+        <div class="emptyCase">이 PNU에 연결된 건축물대장 일반개요가 아직 없습니다.</div>
+      `;
+      const tenants = point.tenants || [];
+      const tenantHtml = tenants.length
+        ? tenants.map(t => `
+          <div class="caseCard">
+            <strong>${escapeHtml(t.tenant)}</strong>
+            <div class="caseMeta">${escapeHtml(t.demand || "임대사례")} · ${escapeHtml(t.industrySmall || t.industry || "-")}</div>
+            <div class="metricRow"><span>입주 위치</span><strong>${escapeHtml(point.building)} · ${escapeHtml(t.toAddress || point.gu + " " + point.dong)}</strong></div>
+            <div class="metricRow"><span>이전 위치</span><strong>${escapeHtml(t.fromBuilding || t.fromAddress || "-")}</strong></div>
+            <div class="metricRow"><span>전용면적</span><strong>${areaText(t.exclusiveArea)}${t.areaChange !== null ? " · 증감 " + fmt1.format(t.areaChange) + "㎡" : ""}</strong></div>
+            <div class="caseTerms">
+              <div class="term"><span>NOC</span><b>${moneyText(t.conditionNoc, "원/평")}</b></div>
+              <div class="term"><span>보증금</span><b>${moneyText(t.conditionDeposit, "원/평")}</b></div>
+              <div class="term"><span>월임대료</span><b>${moneyText(t.conditionRent, "원/평")}</b></div>
+              <div class="term"><span>관리비</span><b>${moneyText(t.conditionMaintenance, "원/평")}</b></div>
+              <div class="term"><span>렌트프리</span><b>${monthText(t.conditionRentFree)}</b></div>
+              <div class="term"><span>공실률</span><b>${percentText(t.conditionVacancyRate)}</b></div>
+            </div>
+            <div class="metricRow"><span>DART</span><strong>${escapeHtml(t.corpName || "미매칭")} ${t.stockCode ? "(" + escapeHtml(t.stockCode) + ")" : ""}</strong></div>
+            <div class="metricRow"><span>조건 연결</span><strong>${escapeHtml(conditionStatusText(t.conditionStatus))}</strong></div>
+          </div>
+        `).join("")
+        : `<div class="emptyCase">이 분기 이 건물에 연결된 실제 임대사례는 아직 없습니다. 위 임대료 수준은 관측 임대료/NOC 기준입니다.</div>`;
+      detailPanel.innerHTML = `
+        <div class="inspectorHeader">
+          <div class="inspectorEyebrow">임대료 수준 · ${escapeHtml(currentPeriod)}</div>
+          <div class="inspectorTitle">${escapeHtml(point.building)}</div>
+          <div class="inspectorSub">${escapeHtml(point.region || "기타")} · ${escapeHtml(point.gu)} ${escapeHtml(point.dong)} · 임대사례 ${fmt.format(point.tenantCount || 0)}건</div>
+        </div>
+        <div class="inspectorBody">
+          <div class="statGrid">
+            <div class="stat"><span>NOC</span><strong>${moneyText(point.noc, "원/평")}</strong></div>
+            <div class="stat"><span>월임대료</span><strong>${moneyText(point.rent, "원/평")}</strong></div>
+            <div class="stat"><span>관리비</span><strong>${moneyText(point.maintenance, "원/평")}</strong></div>
+            <div class="stat"><span>보증금</span><strong>${moneyText(point.deposit, "원/평")}</strong></div>
+            <div class="stat"><span>렌트프리</span><strong>${monthText(point.rentFree)}</strong></div>
+            <div class="stat"><span>공실률</span><strong>${percentText(point.vacancyRate)}</strong></div>
+          </div>
+          ${overviewHtml}
+          <div class="sectionTitle">실제 임대사례</div>
+          ${tenantHtml}
+        </div>
+      `;
+    }
+
+    function moneyText(value, suffix) {
+      if (value === null || value === undefined || value === "") return "-";
+      const n = Number(value);
+      return Number.isFinite(n) ? `${fmt.format(n)} ${suffix}` : "-";
+    }
+
+    function monthText(value) {
+      if (value === null || value === undefined || value === "") return "-";
+      const n = Number(value);
+      return Number.isFinite(n) ? `${fmt1.format(n)} 개월/년` : "-";
+    }
+
+    function areaText(value) {
+      if (value === null || value === undefined || value === "") return "-";
+      const n = Number(value);
+      return Number.isFinite(n) ? `${fmt1.format(n)}㎡` : "-";
+    }
+
+    function sqmText(value) {
+      if (value === null || value === undefined || value === "") return "-";
+      const n = Number(value);
+      return Number.isFinite(n) ? `${fmt.format(n)}㎡` : "-";
+    }
+
+    function meterText(value) {
+      if (value === null || value === undefined || value === "") return "-";
+      const n = Number(value);
+      return Number.isFinite(n) ? `${fmt1.format(n)}m` : "-";
+    }
+
+    function countText(value) {
+      if (value === null || value === undefined || value === "") return "-";
+      const n = Number(value);
+      return Number.isFinite(n) ? fmt.format(n) : "-";
+    }
+
+    function percentText(value) {
+      if (value === null || value === undefined || value === "") return "-";
+      const n = Number(value);
+      if (!Number.isFinite(n)) return "-";
+      return `${fmt1.format(Math.abs(n) <= 1 ? n * 100 : n)}%`;
+    }
+
+    function coordText(value) {
+      const n = Number(value);
+      return Number.isFinite(n) ? n.toFixed(5) : "-";
+    }
+
+    function conditionStatusText(value) {
+      const map = {
+        rent_condition_found: "임대조건 연결",
+        matched: "임대조건 연결",
+        no_asset_match: "자산 미매칭",
+        no_period_in_rent_fact: "동일 분기 임대료 없음",
+        no_rent_condition: "조건 없음",
+      };
+      return map[value] || value || "-";
+    }
+
+    function buildingStatusText(value) {
+      const map = {
+        found: "조회 성공",
+        not_found: "대장 미발견",
+        error: "조회 오류",
+        pending: "대기",
+      };
+      return map[value] || value || "-";
+    }
+
+    function runSearch() {
+      const q = searchInput.value.trim().toLowerCase();
+      if (!q) {
+        results.innerHTML = "";
+        return;
+      }
+      const matches = [];
+      const pointRows = currentPoints.map(p => ({ type: "point", period: currentPeriod, point: p, text: [p.building, p.region, p.gu, p.dong, ...(p.tenants || []).flatMap(t => [t.tenant, t.corpName, t.stockCode])].join(" ").toLowerCase() }));
+      const tenantRows = data.tenantCases.map(t => ({ type: "tenant", period: t.period, tenant: t, text: [t.tenant, t.corpName, t.stockCode, t.building, t.gu, t.dong, t.industry].join(" ").toLowerCase() }));
+      for (const row of [...pointRows, ...tenantRows]) {
+        if (row.text.includes(q)) matches.push(row);
+        if (matches.length >= 9) break;
+      }
+      results.innerHTML = matches.map((m, idx) => {
+        if (m.type === "point") {
+          const p = m.point;
+          return `<button class="result" data-kind="point" data-index="${idx}"><b>${escapeHtml(p.building)}</b><br>${escapeHtml(m.period)} · NOC ${fmt.format(p.noc)} · ${escapeHtml(p.gu)}</button>`;
+        }
+        const t = m.tenant;
+        return `<button class="result" data-kind="tenant" data-index="${idx}"><b>${escapeHtml(t.tenant)}</b><br>${escapeHtml(t.period)} · ${escapeHtml(t.building)} · ${escapeHtml(t.corpName || "DART 미매칭")}</button>`;
+      }).join("");
+      [...results.querySelectorAll(".result")].forEach((btn) => {
+        const m = matches[Number(btn.dataset.index)];
+        btn.addEventListener("click", () => {
+          if (m.period !== currentPeriod) setPeriod(m.period);
+          setTimeout(() => {
+            if (m.type === "point") selectPoint(m.point, { zoom: true });
+            else {
+              const p = (data.pointsByPeriod[m.period] || []).find(row => row.assetId === m.tenant.assetId)
+                || { ...m.tenant, noc: data.meta.valueDomain.p03, tenants: [m.tenant], region: "", gu: m.tenant.gu, dong: m.tenant.dong };
+              selectPoint(p, { zoom: true });
+            }
+          }, 0);
+        });
+      });
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+    }
+
+    function refreshFocusMapForCamera() {
+      if (!reviewMode || !selectedPoint) return;
+      const now = Date.now();
+      if (now - lastFocusMapCheckAt < 650) return;
+      lastFocusMapCheckAt = now;
+      updateFocusMap(selectedPoint);
+    }
+
+    function updateLabelScale(force = false) {
+      if (!labelGroup || !camera || !controls) return;
+      const distance = camera.position.distanceTo(controls.target);
+      for (const sprite of labelGroup.children) {
+        const kind = sprite.userData.labelKind || "label";
+        const canvasWidth = sprite.userData.canvasWidth || 1;
+        const canvasHeight = sprite.userData.canvasHeight || 1;
+        const baseScale = sprite.userData.baseScale || 1;
+        const baseX = sprite.userData.baseX ?? sprite.position.x;
+        const baseY = sprite.userData.baseY ?? sprite.position.y;
+        const baseZ = sprite.userData.baseZ ?? sprite.position.z;
+        if (reviewMode) {
+          const distanceFromSelection = selectedPoint
+            ? Math.hypot(baseX - sx(selectedPoint.x), baseZ - sz(selectedPoint.y))
+            : 0;
+          const visibleRadius = kind === "region" ? 190 : 130;
+          sprite.visible = kind !== "compass" && distanceFromSelection <= visibleRadius;
+          const groundOffset = kind === "region" ? 4.8 : (kind === "gu" ? 3.2 : 2.4);
+          sprite.position.y = columnGroundY + groundOffset;
+        } else {
+          sprite.visible = true;
+          sprite.position.y = baseY;
+        }
+        const maxFactor = kind === "region" ? 1.0 : 0.86;
+        const minFactor = kind === "compass" ? 0.18 : (kind === "region" ? 0.055 : 0.04);
+        const factor = THREE.MathUtils.clamp(distance / 1800, minFactor, maxFactor);
+        if (!force && Math.abs((sprite.userData.lastLabelFactor || 0) - factor) < 0.006) continue;
+        sprite.userData.lastLabelFactor = factor;
+        sprite.scale.set(canvasWidth * baseScale * factor, canvasHeight * baseScale * factor, 1);
+      }
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      updateColumnScale();
+      refreshFocusMapForCamera();
+      updateLabelScale();
+      updateSelectionClearButton();
+      renderer.render(scene, camera);
+    }
+
+    boot().catch(err => {
+      console.error(err);
+      loading.textContent = "Failed to load NOC surface";
+    });
+  </script>
+</body>
+</html>
