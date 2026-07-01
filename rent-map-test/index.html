@@ -73,6 +73,8 @@
     .caseItem span { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; line-height: 1.35; }
     .caseItem .caseCondition { color: #475569; }
     .caseItem.is-active { border-color: #d7263d; box-shadow: 0 0 0 3px rgba(215,38,61,0.12); }
+    .caseItem.isTransaction { border-color: rgba(124,58,237,0.26); background: linear-gradient(180deg, #fff, #fbf7ff); }
+    .caseItem.isTransaction .caseCondition { color: #6d28d9; font-weight: 700; }
     .caseEmpty { padding: 10px 11px; color: var(--muted); font-size: 12px; line-height: 1.4; }
     .side { min-height: 0; overflow: visible; }
     .inspectorHeader { position: sticky; top: 0; background: rgba(255,255,255,0.94); border-bottom: 1px solid var(--line); padding: 12px 14px 10px; z-index: 1; }
@@ -163,6 +165,7 @@
             <div class="toggles">
               <label><input id="toggleSurface" type="checkbox" checked /> 표면</label>
               <label><input id="togglePoints" type="checkbox" checked /> 실측막대</label>
+              <label><input id="toggleTransactions" type="checkbox" checked /> 매매사례</label>
               <label><input id="toggleLabels" type="checkbox" checked /> 위치라벨</label>
               <label><input id="toggleLocalVector" type="checkbox" /> 벡터선</label>
             </div>
@@ -187,7 +190,7 @@
       </div>
     </section>
     <section class="panel caseList" id="caseListPanel">
-      <div class="caseListHeader"><strong>현재 분기 임대사례</strong><span id="caseListCount"></span></div>
+      <div class="caseListHeader"><strong>현재 분기 사례</strong><span id="caseListCount"></span></div>
       <div class="caseRows" id="caseRows"></div>
     </section>
   </div>
@@ -199,7 +202,7 @@
   <script>
     const DATA_URL = "rent_noc_surface_data.json";
     const SEOUL_VECTOR_URL = "seoul_overview_compact.json";
-    const MAP_CONFIG = {"vworldKey":"02B5F8FA-CC59-3109-86FD-0C9C1B98B5BF","defaultProvider":"seoulVector","seoulVectorAvailable":true,"supabaseUrl":"https://qvegpozwrcmspdvjokiz.supabase.co","supabaseKey":"sb_publishable_Eb3TAC7BPbFrv8Odwwjc1g_Vv81Nf4P","marketDataSource":"rent_map_office_noc_surface_2026q1","marketDataCategories":{"meta":"office_noc_dataset_meta","surface":"office_noc_surface_grid","observation":"office_noc_observation","tenantCase":"office_noc_tenant_case","buildingOverview":"office_building_register_overview"}};
+    const MAP_CONFIG = {"vworldKey":"02B5F8FA-CC59-3109-86FD-0C9C1B98B5BF","defaultProvider":"seoulVector","seoulVectorAvailable":true,"supabaseUrl":"https://qvegpozwrcmspdvjokiz.supabase.co","supabaseKey":"sb_publishable_Eb3TAC7BPbFrv8Odwwjc1g_Vv81Nf4P","marketDataSource":"rent_map_office_noc_surface_2026q1","marketDataCategories":{"meta":"office_noc_dataset_meta","surface":"office_noc_surface_grid","observation":"office_noc_observation","tenantCase":"office_noc_tenant_case","transactionCase":"office_transaction_case","buildingOverview":"office_building_register_overview"}};
     const CONTEXT_LABELS_URL = "rent_noc_context_labels.json";
     const app = document.getElementById("app");
     const loading = document.getElementById("loading");
@@ -219,13 +222,14 @@
     const caseRows = document.getElementById("caseRows");
     const toggleSurface = document.getElementById("toggleSurface");
     const togglePoints = document.getElementById("togglePoints");
+    const toggleTransactions = document.getElementById("toggleTransactions");
     const toggleLabels = document.getElementById("toggleLabels");
     const toggleLocalVector = document.getElementById("toggleLocalVector");
     const tabButtons = Array.from(document.querySelectorAll(".tabButton"));
     const tabPanels = Array.from(document.querySelectorAll(".tabContent"));
 
-    let data, scene, camera, renderer, controls, surface, highContourGroup, pointMesh, highlight, labelGroup, referenceGroup, contextLabelGroup, localVectorGroup, seoulVectorGroup, baseMapPlane, focusMapPlane, selectedColumn;
-    let raycaster, pointer, currentPeriod, currentPoints = [], selectedPoint = null, currentCaseRows = [];
+    let data, scene, camera, renderer, controls, surface, highContourGroup, pointMesh, transactionGroup, highlight, labelGroup, referenceGroup, contextLabelGroup, localVectorGroup, seoulVectorGroup, baseMapPlane, focusMapPlane, selectedColumn;
+    let raycaster, pointer, currentPeriod, currentPoints = [], currentTransactions = [], selectedPoint = null, currentCaseRows = [];
     let positionArray, colorArray;
     const selectionClearVector = new THREE.Vector3();
     const periodStatsCache = new Map();
@@ -689,6 +693,13 @@
         if (item.lon == null && row.lng != null) item.lon = row.lng;
         return item;
       });
+      const transactionCases = (groups.transactionCase || []).map(row => {
+        const info = rowExtraInfo(row);
+        const item = info.case || {};
+        if (item.lat == null && row.lat != null) item.lat = row.lat;
+        if (item.lon == null && row.lng != null) item.lon = row.lng;
+        return item;
+      });
       const buildingByPnu = {};
       for (const row of groups.buildingOverview) {
         const info = rowExtraInfo(row);
@@ -701,6 +712,7 @@
         surfaces,
         pointsByPeriod,
         tenantCases,
+        transactionCases,
         buildingByPnu,
         labels: metaInfo.labels || {},
         referenceLines: metaInfo.referenceLines || [],
@@ -712,15 +724,16 @@
       if (marketDataConfigured()) {
         try {
           const categories = MAP_CONFIG.marketDataCategories;
-          const [meta, surface, observation, tenantCase, buildingOverview] = await Promise.all([
+          const [meta, surface, observation, tenantCase, transactionCase, buildingOverview] = await Promise.all([
             fetchMarketDataCategory(categories.meta),
             fetchMarketDataCategory(categories.surface),
             fetchMarketDataCategory(categories.observation),
             fetchMarketDataCategory(categories.tenantCase),
+            categories.transactionCase ? fetchMarketDataCategory(categories.transactionCase) : Promise.resolve([]),
             fetchMarketDataCategory(categories.buildingOverview),
           ]);
           if (meta.length && surface.length && observation.length) {
-            const marketData = buildSurfaceDataFromMarketRows({ meta, surface, observation, tenantCase, buildingOverview });
+            const marketData = buildSurfaceDataFromMarketRows({ meta, surface, observation, tenantCase, transactionCase, buildingOverview });
             marketData.meta.sourceMode = "supabase_market_data";
             marketData.meta.marketDataSource = MAP_CONFIG.marketDataSource;
             return marketData;
@@ -1687,6 +1700,88 @@
       scene.add(pointMesh);
     }
 
+    function transactionPoint(tx) {
+      return {
+        isTransaction: true,
+        assetId: `transaction:${tx.transactionCaseId || tx.pnu || tx.building}`,
+        pnu: tx.pnu,
+        building: tx.building || "매매사례",
+        region: tx.region || "",
+        gu: tx.gu || "",
+        dong: tx.dong || "",
+        x: tx.x,
+        y: tx.y,
+        lat: tx.lat,
+        lon: tx.lon,
+        noc: data.meta.valueDomain.p03,
+        transaction: tx,
+        tenantCount: 0,
+        tenants: [],
+      };
+    }
+
+    function transactionValueNorm(value) {
+      const values = (data.transactionCases || [])
+        .map(tx => Number(tx.dealPriceThousandKrw))
+        .filter(value => Number.isFinite(value) && value > 0)
+        .sort((a, b) => a - b);
+      if (!values.length) return 0.5;
+      const min = Math.log(values[0]);
+      const max = Math.log(values[values.length - 1]);
+      const n = Math.log(Math.max(1, Number(value) || values[0]));
+      return THREE.MathUtils.clamp((n - min) / (max - min || 1), 0, 1);
+    }
+
+    function buildTransactions(period) {
+      if (transactionGroup) {
+        scene.remove(transactionGroup);
+        disposeObject3D(transactionGroup);
+      }
+      currentTransactions = (data.transactionCases || []).filter(tx =>
+        tx.period === period && Number.isFinite(Number(tx.x)) && Number.isFinite(Number(tx.y))
+      );
+      transactionGroup = new THREE.Group();
+      transactionGroup.userData.kind = "transactionCase";
+      const geometry = new THREE.CylinderGeometry(1, 1, 1, 24, 1, false);
+      const bucketCount = 6;
+      const buckets = Array.from({ length: bucketCount }, () => []);
+      for (let i = 0; i < currentTransactions.length; i++) {
+        const n = transactionValueNorm(currentTransactions[i].dealPriceThousandKrw);
+        buckets[Math.min(bucketCount - 1, Math.floor(n * bucketCount))].push(i);
+      }
+      const matrix = new THREE.Matrix4();
+      const colors = [0x8b5cf6, 0x7c3aed, 0xa855f7, 0xd946ef, 0xf59e0b, 0xf97316];
+      for (let bucket = 0; bucket < buckets.length; bucket++) {
+        const indices = buckets[bucket];
+        if (!indices.length) continue;
+        const material = new THREE.MeshBasicMaterial({
+          color: colors[bucket],
+          transparent: true,
+          opacity: 0.56,
+          depthWrite: false,
+        });
+        const mesh = new THREE.InstancedMesh(geometry, material, indices.length);
+        mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+        mesh.userData.transactionIndices = indices;
+        for (let localIndex = 0; localIndex < indices.length; localIndex++) {
+          const tx = currentTransactions[indices[localIndex]];
+          const n = transactionValueNorm(tx.dealPriceThousandKrw);
+          const radius = 0.85 + n * 1.55;
+          const markerHeight = 0.55 + n * 1.15;
+          matrix.compose(
+            new THREE.Vector3(sx(tx.x), columnGroundY + markerHeight / 2 + 0.35, sz(tx.y)),
+            new THREE.Quaternion(),
+            new THREE.Vector3(radius, markerHeight, radius)
+          );
+          mesh.setMatrixAt(localIndex, matrix);
+        }
+        mesh.instanceMatrix.needsUpdate = true;
+        transactionGroup.add(mesh);
+      }
+      transactionGroup.visible = toggleTransactions.checked;
+      scene.add(transactionGroup);
+    }
+
     function updateColumnScale(force = false) {
       if (!pointMesh || !pointMesh.children.length) return;
       const visualScale = columnZoomScale();
@@ -1707,15 +1802,20 @@
     }
 
     function selectedColumnHeight(point) {
+      if (point && point.isTransaction) return 0;
       return columnHeightForPoint(point);
     }
 
     function selectedColumnRadius(point) {
+      if (point && point.isTransaction) return 0;
       return columnRadiusForPoint(point) * 1.18;
     }
 
     function ensureSelectedColumn() {
-      if (!selectedPoint) return;
+      if (!selectedPoint || selectedPoint.isTransaction) {
+        clearSelectedColumn();
+        return;
+      }
       if (!selectedColumn) {
         selectedColumn = new THREE.Mesh(
           new THREE.CylinderGeometry(1, 1, 1, 20, 1, false),
@@ -1756,6 +1856,7 @@
       updateSurface(period);
       updateHighContours(period);
       buildPoints(period);
+      buildTransactions(period);
       selectedPoint = null;
       if (highlight) highlight.visible = false;
       clearSelectedColumn();
@@ -1790,6 +1891,10 @@
         if (highContourGroup) highContourGroup.visible = Boolean(toggleSurface.checked && !reviewMode);
       });
       togglePoints.addEventListener("change", () => pointMesh.visible = togglePoints.checked);
+      toggleTransactions.addEventListener("change", () => {
+        if (transactionGroup) transactionGroup.visible = toggleTransactions.checked;
+        buildCaseList();
+      });
       toggleLabels.addEventListener("change", () => {
         labelGroup.visible = toggleLabels.checked;
         referenceGroup.visible = toggleLabels.checked;
@@ -1847,13 +1952,30 @@
       return currentPoints[hit.object.userData.pointIndices[hit.instanceId]];
     }
 
+    function pickTransaction(event) {
+      if (!transactionGroup || !toggleTransactions.checked) return null;
+      pointerToNdc(event);
+      raycaster.setFromCamera(pointer, camera);
+      const hits = raycaster.intersectObjects(transactionGroup.children, false);
+      if (!hits.length) return null;
+      const hit = hits[0];
+      const indices = hit.object.userData.transactionIndices || [];
+      const tx = currentTransactions[indices[hit.instanceId]];
+      return tx ? transactionPoint(tx) : null;
+    }
+
     function onPointerMove(event) {
-      const point = pickPoint(event);
+      const point = pickPoint(event) || pickTransaction(event);
       if (!point) {
         tooltip.style.display = "none";
         return;
       }
-      tooltip.innerHTML = `<b>${escapeHtml(point.building)}</b><br>NOC ${fmt.format(point.noc)}<br>${escapeHtml(point.gu)} ${escapeHtml(point.dong)}`;
+      if (point.isTransaction) {
+        const tx = point.transaction;
+        tooltip.innerHTML = `<b>${escapeHtml(tx.building)}</b><br>매매사례 ${krwBillionText(tx.dealPriceThousandKrw)}<br>${escapeHtml(tx.period)} · ${escapeHtml(tx.gu)} ${escapeHtml(tx.dong)}`;
+      } else {
+        tooltip.innerHTML = `<b>${escapeHtml(point.building)}</b><br>NOC ${fmt.format(point.noc)}<br>${escapeHtml(point.gu)} ${escapeHtml(point.dong)}`;
+      }
       tooltip.style.left = `${Math.min(event.clientX + 14, window.innerWidth - 280)}px`;
       tooltip.style.top = `${Math.min(event.clientY + 14, window.innerHeight - 120)}px`;
       tooltip.style.display = "block";
@@ -1861,7 +1983,7 @@
 
     function onClick(event) {
       if (event.target.closest(".panel")) return;
-      const point = pickPoint(event);
+      const point = pickPoint(event) || pickTransaction(event);
       if (point) {
         selectPoint(point, { zoom: true });
       }
@@ -1912,7 +2034,8 @@
         updateFocusMap(point, { force: true });
         clearContextLabels();
       }
-      ensureSelectedColumn();
+      if (point.isTransaction) clearSelectedColumn();
+      else ensureSelectedColumn();
       highlight.visible = true;
       updateHighlightPosition();
       if (!options.skipCaseHighlight) highlightMatchingCase(point);
@@ -1920,25 +2043,37 @@
 
     function updateHighlightPosition() {
       if (!highlight || !selectedPoint) return;
-      const ringY = reviewMode ? columnGroundY + 0.06 : columnTopY(selectedPoint) + 7;
+      const ringY = selectedPoint.isTransaction
+        ? columnGroundY + 0.08
+        : (reviewMode ? columnGroundY + 0.06 : columnTopY(selectedPoint) + 7);
       highlight.position.set(sx(selectedPoint.x), ringY, sz(selectedPoint.y));
-      const ringScale = THREE.MathUtils.clamp(columnZoomScale() * 0.86, reviewMode ? 0.16 : 0.16, reviewMode ? 0.22 : 0.40);
+      const ringScale = selectedPoint.isTransaction
+        ? THREE.MathUtils.clamp(columnZoomScale() * 0.52, 0.12, 0.20)
+        : THREE.MathUtils.clamp(columnZoomScale() * 0.86, reviewMode ? 0.16 : 0.16, reviewMode ? 0.22 : 0.40);
       highlight.scale.set(ringScale, ringScale, ringScale);
     }
 
     function updateSelectionClearButton() {
       if (!selectionClear) return;
-      if (!selectedPoint || !selectedColumn) {
+      if (!selectedPoint) {
         selectionClear.style.display = "none";
         return;
       }
-      const barHeight = selectedColumnHeight(selectedPoint);
-      const radius = selectedColumnRadius(selectedPoint);
-      selectionClearVector.set(
-        sx(selectedPoint.x) + radius * 2.1,
-        columnGroundY + barHeight * 0.78,
-        sz(selectedPoint.y)
-      );
+      if (selectedPoint.isTransaction) {
+        selectionClearVector.set(sx(selectedPoint.x) + 10, columnGroundY + 8, sz(selectedPoint.y));
+      } else {
+        if (!selectedColumn) {
+          selectionClear.style.display = "none";
+          return;
+        }
+        const barHeight = selectedColumnHeight(selectedPoint);
+        const radius = selectedColumnRadius(selectedPoint);
+        selectionClearVector.set(
+          sx(selectedPoint.x) + radius * 2.1,
+          columnGroundY + barHeight * 0.78,
+          sz(selectedPoint.y)
+        );
+      }
       selectionClearVector.project(camera);
       const x = (selectionClearVector.x * 0.5 + 0.5) * window.innerWidth;
       const y = (-selectionClearVector.y * 0.5 + 0.5) * window.innerHeight;
@@ -1974,11 +2109,12 @@
         }
         updateColumnScale(true);
       }
-      if (enabled) ensureSelectedColumn();
+      if (enabled && selectedPoint && !selectedPoint.isTransaction) ensureSelectedColumn();
       else {
         clearSelectedColumn();
         clearContextLabels();
       }
+      if (transactionGroup) transactionGroup.visible = toggleTransactions.checked;
       updateHighlightPosition();
       if (enabled) {
         labelGroup.visible = toggleLabels.checked;
@@ -1990,25 +2126,40 @@
     }
 
     function buildCaseList() {
-      currentCaseRows = [];
+      const leaseRows = [];
       for (const point of currentPoints) {
         for (const tenant of point.tenants || []) {
-          currentCaseRows.push({ point, tenant });
+          leaseRows.push({ type: "lease", point, tenant });
         }
       }
+      const transactionRows = toggleTransactions.checked
+        ? currentTransactions.map(transaction => ({ type: "transaction", point: transactionPoint(transaction), transaction }))
+        : [];
+      currentCaseRows = [...leaseRows, ...transactionRows];
       currentCaseRows.sort((a, b) =>
         String(a.point.region || "").localeCompare(String(b.point.region || ""), "ko") ||
         String(a.point.gu || "").localeCompare(String(b.point.gu || ""), "ko") ||
-        String(a.tenant.tenant || "").localeCompare(String(b.tenant.tenant || ""), "ko")
+        String(a.type || "").localeCompare(String(b.type || ""), "ko") ||
+        String((a.tenant && a.tenant.tenant) || (a.transaction && a.transaction.building) || "").localeCompare(String((b.tenant && b.tenant.tenant) || (b.transaction && b.transaction.building) || ""), "ko")
       );
-      caseListCount.textContent = `${fmt.format(currentCaseRows.length)}건`;
+      caseListCount.textContent = `임대 ${fmt.format(leaseRows.length)} · 매매 ${fmt.format(transactionRows.length)}`;
       caseListPanel.classList.toggle("is-empty", currentCaseRows.length === 0);
       setCaseListOpen(false);
       if (!currentCaseRows.length) {
-        caseRows.innerHTML = `<div class="caseEmpty">이 분기에 연결된 실제 임대사례가 없습니다.</div>`;
+        caseRows.innerHTML = `<div class="caseEmpty">이 분기에 연결된 임대/매매 사례가 없습니다.</div>`;
         return;
       }
       caseRows.innerHTML = currentCaseRows.map((row, index) => {
+        if (row.type === "transaction") {
+          const tx = row.transaction;
+          return `
+            <button class="caseItem isTransaction" data-index="${index}">
+              <b>${escapeHtml(tx.building || "매매사례")}</b>
+              <span>매매사례 · ${escapeHtml(tx.region || "기타")} · ${escapeHtml(tx.gu)} ${escapeHtml(tx.dong || "")}</span>
+              <span class="caseCondition">거래가 ${krwBillionText(tx.dealPriceThousandKrw)} · 평당가 ${thousandKrwText(tx.pricePerPyeongThousandKrw)}</span>
+            </button>
+          `;
+        }
         const point = row.point;
         const tenant = row.tenant;
         const noc = tenant.conditionNoc || point.noc;
@@ -2036,7 +2187,12 @@
         highlightCaseItem(-1);
         return;
       }
-      const index = currentCaseRows.findIndex(row => row.point.assetId === point.assetId);
+      const index = currentCaseRows.findIndex(row => {
+        if (point.isTransaction) {
+          return row.type === "transaction" && row.transaction.transactionCaseId === point.transaction.transactionCaseId;
+        }
+        return row.point.assetId === point.assetId;
+      });
       highlightCaseItem(index);
     }
 
@@ -2053,6 +2209,60 @@
           <div class="inspectorBody">
             <div class="metricRow"><span>Z값</span><strong>NOC</strong></div>
             <div class="metricRow"><span>보간</span><strong>IDW / 실측막대 병행</strong></div>
+          </div>
+        `;
+        return;
+      }
+      if (point.isTransaction) {
+        const tx = point.transaction || {};
+        const capValue = tx.stabilizedNominalCapOperation ?? tx.stabilizedNominalCap ?? tx.stabilizedRealCapOperation ?? tx.stabilizedRealCap ?? tx.asisNominalCapOperation ?? tx.asisRealCapOperation ?? tx.imCap;
+        const seller = [tx.sellerName, tx.sellerType].filter(Boolean).join(" · ");
+        const buyer = [tx.buyerName, tx.buyerType, tx.buyerDetail].filter(Boolean).join(" · ");
+        const overview = getBuildingOverview(point);
+        const overviewHtml = overview ? `
+          <div class="sectionTitle">건축물대장 일반개요</div>
+          <div class="overviewGrid">
+            <div class="metricRow"><span>대장 상태</span><strong>${escapeHtml(buildingStatusText(overview.status))}</strong></div>
+            <div class="metricRow"><span>대지위치</span><strong>${escapeHtml(overview.platPlace || "-")}</strong></div>
+            <div class="metricRow"><span>주용도</span><strong>${escapeHtml(overview.mainUse || "-")}</strong></div>
+            <div class="metricRow"><span>구조</span><strong>${escapeHtml(overview.mainStructure || "-")}</strong></div>
+            <div class="metricRow"><span>사용승인일</span><strong>${escapeHtml(overview.approvalDate || "-")}</strong></div>
+            <div class="metricRow"><span>연면적</span><strong>${sqmText(overview.totalFloorAreaSqm)}</strong></div>
+            <div class="metricRow"><span>층수</span><strong>지상 ${countText(overview.groundFloorCount)} / 지하 ${countText(overview.basementFloorCount)}</strong></div>
+          </div>
+        ` : `
+          <div class="sectionTitle">건축물대장 일반개요</div>
+          <div class="emptyCase">이 매매사례 PNU에 연결된 건축물대장 일반개요가 아직 없습니다.</div>
+        `;
+        detailPanel.className = "side is-selected";
+        detailPanel.innerHTML = `
+          <div class="inspectorHeader">
+            <div class="inspectorEyebrow">매매사례 · ${escapeHtml(tx.period || currentPeriod)}</div>
+            <div class="inspectorTitle">${escapeHtml(tx.building || "매매사례")}</div>
+            <div class="inspectorSub">${escapeHtml(tx.region || "기타")} · ${escapeHtml(tx.gu)} ${escapeHtml(tx.dong || "")} · ${escapeHtml(tx.closingDate || tx.contractDate || "-")}</div>
+          </div>
+          <div class="inspectorBody">
+            <div class="statGrid">
+              <div class="stat"><span>거래가</span><strong>${krwBillionText(tx.dealPriceThousandKrw)}</strong></div>
+              <div class="stat"><span>평당가</span><strong>${thousandKrwText(tx.pricePerPyeongThousandKrw)}</strong></div>
+              <div class="stat"><span>연면적</span><strong>${sqmText(tx.grossFloorAreaSqm)}</strong></div>
+              <div class="stat"><span>거래면적</span><strong>${sqmText(tx.transactedAreaSqm)}</strong></div>
+              <div class="stat"><span>Cap</span><strong>${percentText(capValue)}</strong></div>
+              <div class="stat"><span>NOI</span><strong>${thousandKrwText(tx.noi, "천원")}</strong></div>
+            </div>
+            <div class="sectionTitle">거래 정보</div>
+            <div class="overviewGrid">
+              <div class="metricRow"><span>계약일</span><strong>${escapeHtml(tx.contractDate || "-")}</strong></div>
+              <div class="metricRow"><span>잔금일</span><strong>${escapeHtml(tx.closingDate || "-")}</strong></div>
+              <div class="metricRow"><span>매도인</span><strong>${escapeHtml(seller || "-")}</strong></div>
+              <div class="metricRow"><span>매수인</span><strong>${escapeHtml(buyer || "-")}</strong></div>
+              <div class="metricRow"><span>매입 목적</span><strong>${escapeHtml(tx.acquisitionPurpose || "-")}</strong></div>
+              <div class="metricRow"><span>Vehicle</span><strong>${escapeHtml(tx.investmentVehicle || tx.investmentVehicleDetail || "-")}</strong></div>
+              <div class="metricRow"><span>거래 유형</span><strong>${escapeHtml(tx.transactionType || "-")}</strong></div>
+              <div class="metricRow"><span>주소</span><strong>${escapeHtml(tx.legalAddress || tx.address || "-")}</strong></div>
+              <div class="metricRow"><span>PNU</span><strong>${escapeHtml(tx.pnu || "-")}</strong></div>
+            </div>
+            ${overviewHtml}
           </div>
         `;
         return;
@@ -2130,6 +2340,18 @@
       return Number.isFinite(n) ? `${fmt.format(n)} ${suffix}` : "-";
     }
 
+    function krwBillionText(valueThousand) {
+      if (valueThousand === null || valueThousand === undefined || valueThousand === "") return "-";
+      const n = Number(valueThousand);
+      return Number.isFinite(n) ? `${fmt1.format(n / 100000)} 억원` : "-";
+    }
+
+    function thousandKrwText(value, suffix = "천원/평") {
+      if (value === null || value === undefined || value === "") return "-";
+      const n = Number(value);
+      return Number.isFinite(n) ? `${fmt.format(n)} ${suffix}` : "-";
+    }
+
     function monthText(value) {
       if (value === null || value === undefined || value === "") return "-";
       const n = Number(value);
@@ -2202,7 +2424,8 @@
       const matches = [];
       const pointRows = currentPoints.map(p => ({ type: "point", period: currentPeriod, point: p, text: [p.building, p.region, p.gu, p.dong, ...(p.tenants || []).flatMap(t => [t.tenant, t.corpName, t.stockCode])].join(" ").toLowerCase() }));
       const tenantRows = data.tenantCases.map(t => ({ type: "tenant", period: t.period, tenant: t, text: [t.tenant, t.corpName, t.stockCode, t.building, t.gu, t.dong, t.industry].join(" ").toLowerCase() }));
-      for (const row of [...pointRows, ...tenantRows]) {
+      const transactionRows = (data.transactionCases || []).map(t => ({ type: "transaction", period: t.period, transaction: t, text: [t.building, t.region, t.gu, t.dong, t.legalAddress, t.address, t.sellerName, t.buyerName, t.buyerDetail, t.acquisitionPurpose, t.investmentVehicle, t.investmentVehicleDetail].join(" ").toLowerCase() }));
+      for (const row of [...pointRows, ...tenantRows, ...transactionRows]) {
         if (row.text.includes(q)) matches.push(row);
         if (matches.length >= 9) break;
       }
@@ -2210,6 +2433,10 @@
         if (m.type === "point") {
           const p = m.point;
           return `<button class="result" data-kind="point" data-index="${idx}"><b>${escapeHtml(p.building)}</b><br>${escapeHtml(m.period)} · NOC ${fmt.format(p.noc)} · ${escapeHtml(p.gu)}</button>`;
+        }
+        if (m.type === "transaction") {
+          const t = m.transaction;
+          return `<button class="result" data-kind="transaction" data-index="${idx}"><b>${escapeHtml(t.building || "매매사례")}</b><br>${escapeHtml(t.period)} · 매매 ${krwBillionText(t.dealPriceThousandKrw)} · ${escapeHtml(t.gu)}</button>`;
         }
         const t = m.tenant;
         return `<button class="result" data-kind="tenant" data-index="${idx}"><b>${escapeHtml(t.tenant)}</b><br>${escapeHtml(t.period)} · ${escapeHtml(t.building)} · ${escapeHtml(t.corpName || "DART 미매칭")}</button>`;
@@ -2220,6 +2447,7 @@
           if (m.period !== currentPeriod) setPeriod(m.period);
           setTimeout(() => {
             if (m.type === "point") selectPoint(m.point, { zoom: true });
+            else if (m.type === "transaction") selectPoint(transactionPoint(m.transaction), { zoom: true });
             else {
               const p = (data.pointsByPeriod[m.period] || []).find(row => row.assetId === m.tenant.assetId)
                 || { ...m.tenant, noc: data.meta.valueDomain.p03, tenants: [m.tenant], region: "", gu: m.tenant.gu, dong: m.tenant.dong };
