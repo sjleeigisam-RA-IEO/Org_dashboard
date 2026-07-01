@@ -98,7 +98,7 @@
     .legend {
       padding: 0;
     }
-    .bar { height: 12px; border-radius: 999px; background: linear-gradient(90deg, #2f80ed, #36c2b4, #f6e86e, #ff9f43, #d7263d); border: 1px solid rgba(0,0,0,0.12); }
+    .bar { height: 12px; border-radius: 999px; background: linear-gradient(90deg, #2f80ed 0%, #36c2b4 30%, #f6e86e 55%, #ff9f43 76%, #d7263d 86%, #b0184c 94%, #5c123e 100%); border: 1px solid rgba(0,0,0,0.12); }
     .legendLabels { display: flex; justify-content: space-between; margin-top: 6px; font-size: 11px; color: var(--muted); }
     .caseLegend { display: flex; align-items: center; gap: 8px; margin-top: 8px; color: var(--muted); font-size: 11px; }
     .caseGlyph { width: 18px; height: 20px; display: inline-flex; align-items: flex-end; gap: 4px; }
@@ -172,7 +172,7 @@
           <div class="panelTitle">범례</div>
           <section class="legend">
             <div class="bar"></div>
-            <div class="legendLabels"><span id="legendMin"></span><span>NOC</span><span id="legendMax"></span></div>
+            <div class="legendLabels"><span id="legendMin"></span><span id="legendP97"></span><span id="legendMax"></span></div>
             <div class="caseLegend"><span class="caseGlyph"></span><span>굵은 막대는 해당 분기 실제 임대사례 연결</span></div>
             <div class="hint">색은 NOC 수준, 높이는 실제 관측 NOC입니다. 표면은 권역 흐름을 보는 보간값이고, 막대가 실제 관측 건물입니다.</div>
           </section>
@@ -238,6 +238,8 @@
     const columnZoomReference = 2050;
     const columnZoomMinScale = 0.068;
     const columnZoomMaxScale = 1.02;
+    const highTailVisualStart = 0.86;
+    const highTailCurve = 0.72;
     let lastColumnVisualScale = null;
     const mapPlaneY = 0;
     const columnGroundY = 0.18;
@@ -383,10 +385,35 @@
       return periodStatsCache.get(period);
     }
 
+    function visualDomain() {
+      const domain = data.meta.valueDomain || {};
+      const min = Number.isFinite(domain.p03) ? domain.p03 : domain.min;
+      const p97 = Number.isFinite(domain.p97) ? domain.p97 : domain.max;
+      const max = Math.max(Number.isFinite(domain.max) ? domain.max : p97, p97);
+      return { min, p97, max, hasTail: max > p97 };
+    }
+
     function normalize(value) {
-      const min = data.meta.valueDomain.p03;
-      const max = data.meta.valueDomain.p97;
-      return Math.max(0, Math.min(1, (value - min) / (max - min || 1)));
+      const domain = visualDomain();
+      const lowerSpan = domain.p97 - domain.min || 1;
+      if (!domain.hasTail || value <= domain.p97) {
+        const upper = domain.hasTail ? highTailVisualStart : 1;
+        return Math.max(0, Math.min(upper, ((value - domain.min) / lowerSpan) * upper));
+      }
+      const tailSpan = domain.max - domain.p97 || 1;
+      const tailT = Math.max(0, Math.min(1, (value - domain.p97) / tailSpan));
+      return highTailVisualStart + Math.pow(tailT, highTailCurve) * (1 - highTailVisualStart);
+    }
+
+    function valueForVisualNorm(norm) {
+      const domain = visualDomain();
+      const n = Math.max(0, Math.min(1, norm));
+      if (domain.hasTail && n > highTailVisualStart) {
+        const tailT = (n - highTailVisualStart) / (1 - highTailVisualStart);
+        return domain.p97 + Math.pow(tailT, 1 / highTailCurve) * (domain.max - domain.p97);
+      }
+      const upper = domain.hasTail ? highTailVisualStart : 1;
+      return domain.min + (n / (upper || 1)) * (domain.p97 - domain.min);
     }
 
     function height(value) {
@@ -456,8 +483,10 @@
         [0.00, [47, 128, 237]],
         [0.30, [54, 194, 180]],
         [0.55, [246, 232, 110]],
-        [0.78, [255, 159, 67]],
-        [1.00, [215, 38, 61]],
+        [0.76, [255, 159, 67]],
+        [0.86, [215, 38, 61]],
+        [0.94, [176, 24, 76]],
+        [1.00, [92, 18, 62]],
       ];
       for (let i = 0; i < stops.length - 1; i++) {
         const [a, ca] = stops[i];
@@ -471,7 +500,7 @@
           );
         }
       }
-      return new THREE.Color(0xd7263d);
+      return new THREE.Color(0x5c123e);
     }
 
     function surfaceColorFor(value, stats) {
@@ -481,10 +510,10 @@
       const meanN = normalize(stats.mean);
       const aboveMean = meanN >= 0.98 ? (n >= meanN ? 1 : 0) : THREE.MathUtils.smoothstep(n, meanN, 1);
       if (aboveMean > 0) {
-        color.lerp(new THREE.Color(0xfff3c4), Math.min(0.24, aboveMean * 0.18));
+        color.lerp(new THREE.Color(0xfff3c4), Math.min(0.16, aboveMean * 0.12));
       }
       if (Number.isFinite(stats.p90) && value >= stats.p90) {
-        color.lerp(new THREE.Color(0xff335f), 0.22);
+        color.lerp(new THREE.Color(0xff335f), 0.12);
       }
       return color;
     }
@@ -709,8 +738,9 @@
       data = await loadSurfaceData();
       window.rentMapData = data;
       document.body.dataset.sourceMode = data.meta.sourceMode || "";
-      document.getElementById("legendMin").textContent = fmt.format(data.meta.valueDomain.p03);
-      document.getElementById("legendMax").textContent = fmt.format(data.meta.valueDomain.p97);
+      document.getElementById("legendMin").textContent = `P03 ${fmt.format(data.meta.valueDomain.p03)}`;
+      document.getElementById("legendP97").textContent = `P97 ${fmt.format(data.meta.valueDomain.p97)}`;
+      document.getElementById("legendMax").textContent = `Max ${fmt.format(data.meta.valueDomain.max)}`;
       setupScene();
       setupMapProviderControl();
       buildSurface();
@@ -1622,9 +1652,7 @@
       if (pointMesh) scene.remove(pointMesh);
       currentPoints = data.pointsByPeriod[period] || [];
       const geometry = new THREE.CylinderGeometry(1, 1, 1, 12, 1, false);
-      const bucketCount = 11;
-      const min = data.meta.valueDomain.p03;
-      const max = data.meta.valueDomain.p97;
+      const bucketCount = 21;
       const buckets = Array.from({ length: bucketCount }, () => []);
       for (let i = 0; i < currentPoints.length; i++) {
         const bucket = Math.min(bucketCount - 1, Math.floor(normalize(currentPoints[i].noc) * bucketCount));
@@ -1637,7 +1665,7 @@
       for (let bucket = 0; bucket < buckets.length; bucket++) {
         const indices = buckets[bucket];
         if (!indices.length) continue;
-        const sample = min + (max - min) * ((bucket + 0.5) / bucketCount);
+        const sample = valueForVisualNorm((bucket + 0.5) / bucketCount);
         const material = new THREE.MeshBasicMaterial({
           color: colorFor(sample),
           transparent: true,
