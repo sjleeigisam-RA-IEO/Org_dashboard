@@ -122,6 +122,15 @@
       font-size: 15px; line-height: 1; font-weight: 900; cursor: pointer; pointer-events: auto;
     }
     .selectionClear:hover { background: #2563eb; color: #fff; }
+    .viewReset {
+      position: fixed; right: 454px; top: 16px; z-index: 6; pointer-events: auto;
+      display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 11px;
+      border: 1px solid rgba(37,99,235,0.28); border-radius: 999px; background: rgba(255,255,255,0.92);
+      color: #1d4ed8; box-shadow: 0 8px 22px rgba(15,23,42,0.14); font-size: 12px; font-weight: 800; cursor: pointer;
+      backdrop-filter: blur(8px);
+    }
+    .viewReset:hover { border-color: rgba(37,99,235,0.55); background: #fff; }
+    .viewResetIcon { font-size: 15px; line-height: 1; transform: translateY(-0.5px); }
     .attribution {
       position: fixed; left: 50%; bottom: 6px; transform: translateX(-50%); color: rgba(255,255,255,0.76); font-size: 10px; z-index: 3; text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
@@ -141,6 +150,7 @@
       .caseList.is-open .caseRows { display: grid; }
       body.case-list-open .leftDock { display: none; }
       .attribution { display: none; }
+      .viewReset { right: 12px; top: calc(48vh + 18px); height: 32px; padding: 0 10px; }
     }
   </style>
 </head>
@@ -196,6 +206,7 @@
   </div>
   <div class="attribution">Map tiles by CARTO, data by OpenStreetMap contributors</div>
   <div class="tooltip" id="tooltip"></div>
+  <button class="viewReset" id="viewReset" type="button" aria-label="Reset to full Seoul view"><span class="viewResetIcon">↺</span><span>전체보기</span></button>
   <button class="selectionClear" id="selectionClear" type="button" aria-label="Clear selected bar">X</button>
   <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
   <script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
@@ -214,6 +225,7 @@
     const detailPanel = document.getElementById("detailPanel");
     const tooltip = document.getElementById("tooltip");
     const selectionClear = document.getElementById("selectionClear");
+    const viewReset = document.getElementById("viewReset");
     const searchInput = document.getElementById("searchInput");
     const results = document.getElementById("results");
     const caseListPanel = document.getElementById("caseListPanel");
@@ -233,6 +245,8 @@
     let positionArray, colorArray;
     const selectionClearVector = new THREE.Vector3();
     const periodStatsCache = new Map();
+    const homeCameraPosition = new THREE.Vector3(0, 1700, 1250);
+    const homeControlsTarget = new THREE.Vector3(0, 85, 0);
     let reviewMode = false;
     const heightScale = 420;
     const horizontalScale = 0.058;
@@ -777,10 +791,10 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
       app.appendChild(renderer.domElement);
       camera = new THREE.PerspectiveCamera(48, window.innerWidth / window.innerHeight, 2, 10000);
-      camera.position.set(0, 1700, 1250);
+      camera.position.copy(homeCameraPosition);
       controls = new THREE.OrbitControls(camera, renderer.domElement);
       controls.enableDamping = true;
-      controls.target.set(0, 85, 0);
+      controls.target.copy(homeControlsTarget);
       controls.maxPolarAngle = Math.PI * 0.47;
       controls.minDistance = 42;
       controls.maxDistance = 6400;
@@ -1910,6 +1924,12 @@
           clearSelection({ keepReviewContext: true });
         });
       }
+      if (viewReset) {
+        viewReset.addEventListener("click", event => {
+          event.stopPropagation();
+          resetView();
+        });
+      }
       searchInput.addEventListener("input", runSearch);
       detailPanel.addEventListener("click", event => event.stopPropagation());
       caseListPanel.addEventListener("click", event => event.stopPropagation());
@@ -2002,6 +2022,25 @@
         clearContextLabels();
         setCloseFocusMode(false);
       }
+    }
+
+    function resetView() {
+      clearSelection();
+      setCaseListOpen(false);
+      if (camera && controls) {
+        camera.position.copy(homeCameraPosition);
+        controls.target.copy(homeControlsTarget);
+        controls.update();
+      }
+      if (surface) surface.visible = toggleSurface.checked;
+      if (highContourGroup) highContourGroup.visible = Boolean(toggleSurface.checked && !reviewMode);
+      if (pointMesh) pointMesh.visible = togglePoints.checked;
+      if (transactionGroup) transactionGroup.visible = toggleTransactions.checked;
+      labelGroup.visible = toggleLabels.checked;
+      referenceGroup.visible = toggleLabels.checked;
+      updateColumnScale(true);
+      updateLabelScale(true);
+      updateSelectionClearButton();
     }
 
     function selectPoint(point, options = {}) {
