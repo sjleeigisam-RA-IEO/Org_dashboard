@@ -1850,6 +1850,7 @@
     }
 
     function setPeriod(period) {
+      if (!data.periods.includes(period)) period = data.periods[data.periods.length - 1];
       currentPeriod = period;
       periodSlider.value = data.periods.indexOf(period);
       periodLabel.textContent = period;
@@ -2424,7 +2425,10 @@
       const matches = [];
       const pointRows = currentPoints.map(p => ({ type: "point", period: currentPeriod, point: p, text: [p.building, p.region, p.gu, p.dong, ...(p.tenants || []).flatMap(t => [t.tenant, t.corpName, t.stockCode])].join(" ").toLowerCase() }));
       const tenantRows = data.tenantCases.map(t => ({ type: "tenant", period: t.period, tenant: t, text: [t.tenant, t.corpName, t.stockCode, t.building, t.gu, t.dong, t.industry].join(" ").toLowerCase() }));
-      const transactionRows = (data.transactionCases || []).map(t => ({ type: "transaction", period: t.period, transaction: t, text: [t.building, t.region, t.gu, t.dong, t.legalAddress, t.address, t.sellerName, t.buyerName, t.buyerDetail, t.acquisitionPurpose, t.investmentVehicle, t.investmentVehicleDetail].join(" ").toLowerCase() }));
+      const visiblePeriods = new Set(data.periods || []);
+      const transactionRows = (data.transactionCases || [])
+        .filter(t => visiblePeriods.has(t.period))
+        .map(t => ({ type: "transaction", period: t.period, transaction: t, text: [t.building, t.region, t.gu, t.dong, t.legalAddress, t.address, t.sellerName, t.buyerName, t.buyerDetail, t.acquisitionPurpose, t.investmentVehicle, t.investmentVehicleDetail].join(" ").toLowerCase() }));
       for (const row of [...pointRows, ...tenantRows, ...transactionRows]) {
         if (row.text.includes(q)) matches.push(row);
         if (matches.length >= 9) break;
