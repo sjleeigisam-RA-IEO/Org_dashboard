@@ -63,10 +63,15 @@
     .caseList {
       position: fixed; right: 14px; top: 14px; width: min(392px, calc(100vw - 28px)); max-height: calc(100vh - 28px); overflow: hidden; padding: 0; z-index: 4;
     }
-    .caseListHeader { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 10px 11px 8px; border-bottom: 1px solid var(--line); }
+    .caseListHeader { display: grid; gap: 8px; padding: 10px 11px 9px; border-bottom: 1px solid var(--line); }
+    .caseListTitle { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
     .caseListHeader strong { font-size: 13px; color: var(--ink); }
     .caseListHeader span { font-size: 11px; color: var(--muted); }
-    .caseRows { max-height: calc(100vh - 82px); overflow: auto; padding: 7px; display: grid; gap: 6px; }
+    .caseTabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .caseTab { height: 30px; border: 1px solid #dbe3ed; border-radius: 7px; background: rgba(255,255,255,0.78); color: #334155; font-size: 12px; font-weight: 800; cursor: pointer; }
+    .caseTab.is-active { border-color: rgba(37,99,235,0.42); background: #eff6ff; color: #1d4ed8; box-shadow: 0 0 0 3px rgba(37,99,235,0.08); }
+    .caseTab[data-case-tab="transaction"].is-active { border-color: rgba(124,58,237,0.45); background: #f5f3ff; color: #6d28d9; box-shadow: 0 0 0 3px rgba(124,58,237,0.10); }
+    .caseRows { max-height: calc(100vh - 124px); overflow: auto; padding: 7px; display: grid; gap: 6px; }
     .caseItem { width: 100%; text-align: left; border: 1px solid #dfe6ee; border-radius: 7px; background: #fff; padding: 8px; cursor: pointer; color: var(--ink); }
     .caseItem:hover { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.10); }
     .caseItem b { display: block; font-size: 12px; line-height: 1.25; }
@@ -107,6 +112,7 @@
     .caseGlyph::before, .caseGlyph::after { content: ""; display: block; border-radius: 999px 999px 2px 2px; background: #ff9f43; }
     .caseGlyph::before { width: 3px; height: 15px; opacity: 0.55; }
     .caseGlyph::after { width: 7px; height: 20px; opacity: 0.95; }
+    .transactionGlyph { width: 18px; height: 18px; border-radius: 999px; background: #7c3aed; box-shadow: 0 0 0 5px rgba(124,58,237,0.22); display: inline-block; }
     .hint { margin-top: 8px; color: var(--muted); font-size: 11px; line-height: 1.4; }
     .overviewGrid { display: grid; gap: 6px; }
     .overviewGrid .metricRow { grid-template-columns: 108px 1fr; }
@@ -142,11 +148,13 @@
       .caseList { left: 10px; right: 10px; top: auto; bottom: 10px; width: auto; max-height: 44px; transition: max-height 0.18s ease; z-index: 6; }
       .caseList.is-empty { display: none; }
       .caseListHeader { cursor: pointer; padding: 12px; border-bottom: 0; }
+      .caseTabs { display: none; }
       .caseListHeader::after { content: "펼치기"; flex: 0 0 auto; color: var(--blue); font-size: 11px; font-weight: 700; }
       .caseList.is-open { max-height: 46vh; }
       .caseList.is-open .caseListHeader { border-bottom: 1px solid var(--line); }
+      .caseList.is-open .caseTabs { display: grid; }
       .caseList.is-open .caseListHeader::after { content: "접기"; }
-      .caseRows { display: none; max-height: calc(46vh - 46px); }
+      .caseRows { display: none; max-height: calc(46vh - 88px); }
       .caseList.is-open .caseRows { display: grid; }
       body.case-list-open .leftDock { display: none; }
       .attribution { display: none; }
@@ -187,6 +195,7 @@
             <div class="bar"></div>
             <div class="legendLabels"><span id="legendMin"></span><span id="legendP97"></span><span id="legendMax"></span></div>
             <div class="caseLegend"><span class="caseGlyph"></span><span>굵은 막대는 해당 분기 실제 임대사례 연결</span></div>
+            <div class="caseLegend"><span class="transactionGlyph"></span><span>보라색 포인트는 해당 분기 매매사례 위치</span></div>
             <div class="hint">색은 NOC 수준, 높이는 실제 관측 NOC입니다. 표면은 권역 흐름을 보는 보간값이고, 막대가 실제 관측 건물입니다.</div>
           </section>
         </div>
@@ -200,7 +209,13 @@
       </div>
     </section>
     <section class="panel caseList" id="caseListPanel">
-      <div class="caseListHeader"><strong>현재 분기 사례</strong><span id="caseListCount"></span></div>
+      <div class="caseListHeader">
+        <div class="caseListTitle"><strong>현재 분기 사례</strong><span id="caseListCount"></span></div>
+        <div class="caseTabs" role="tablist" aria-label="현재 분기 사례 유형">
+          <button class="caseTab is-active" type="button" data-case-tab="lease">임대사례 <span id="leaseCaseCount">0</span></button>
+          <button class="caseTab" type="button" data-case-tab="transaction">매매사례 <span id="transactionCaseCount">0</span></button>
+        </div>
+      </div>
       <div class="caseRows" id="caseRows"></div>
     </section>
   </div>
@@ -231,6 +246,9 @@
     const caseListPanel = document.getElementById("caseListPanel");
     const caseListHeader = caseListPanel.querySelector(".caseListHeader");
     const caseListCount = document.getElementById("caseListCount");
+    const leaseCaseCount = document.getElementById("leaseCaseCount");
+    const transactionCaseCount = document.getElementById("transactionCaseCount");
+    const caseTabButtons = Array.from(document.querySelectorAll(".caseTab"));
     const caseRows = document.getElementById("caseRows");
     const toggleSurface = document.getElementById("toggleSurface");
     const togglePoints = document.getElementById("togglePoints");
@@ -258,7 +276,10 @@
     const columnZoomMaxScale = 1.02;
     const highTailVisualStart = 0.86;
     const highTailCurve = 0.72;
+    const transactionColor = 0x7c3aed;
+    const transactionHaloColor = 0xc4b5fd;
     let lastColumnVisualScale = null;
+    let activeCaseTab = "lease";
     const mapPlaneY = 0;
     const columnGroundY = 0.18;
     const tileSize = 256;
@@ -1746,6 +1767,26 @@
       return THREE.MathUtils.clamp((n - min) / (max - min || 1), 0, 1);
     }
 
+    function transactionPointTexture() {
+      if (transactionPointTexture.cached) return transactionPointTexture.cached;
+      const canvas = document.createElement("canvas");
+      canvas.width = 64;
+      canvas.height = 64;
+      const ctx = canvas.getContext("2d");
+      const gradient = ctx.createRadialGradient(32, 32, 4, 32, 32, 31);
+      gradient.addColorStop(0, "rgba(255,255,255,1)");
+      gradient.addColorStop(0.26, "rgba(255,255,255,1)");
+      gradient.addColorStop(0.34, "rgba(124,58,237,1)");
+      gradient.addColorStop(0.68, "rgba(124,58,237,0.92)");
+      gradient.addColorStop(1, "rgba(124,58,237,0)");
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(32, 32, 31, 0, Math.PI * 2);
+      ctx.fill();
+      transactionPointTexture.cached = new THREE.CanvasTexture(canvas);
+      return transactionPointTexture.cached;
+    }
+
     function buildTransactions(period) {
       if (transactionGroup) {
         scene.remove(transactionGroup);
@@ -1756,41 +1797,52 @@
       );
       transactionGroup = new THREE.Group();
       transactionGroup.userData.kind = "transactionCase";
-      const geometry = new THREE.CylinderGeometry(1, 1, 1, 24, 1, false);
-      const bucketCount = 6;
-      const buckets = Array.from({ length: bucketCount }, () => []);
+      const positions = [];
+      const indices = [];
       for (let i = 0; i < currentTransactions.length; i++) {
-        const n = transactionValueNorm(currentTransactions[i].dealPriceThousandKrw);
-        buckets[Math.min(bucketCount - 1, Math.floor(n * bucketCount))].push(i);
+        const tx = currentTransactions[i];
+        positions.push(sx(tx.x), columnGroundY + 5.2, sz(tx.y));
+        indices.push(i);
       }
-      const matrix = new THREE.Matrix4();
-      const colors = [0x8b5cf6, 0x7c3aed, 0xa855f7, 0xd946ef, 0xf59e0b, 0xf97316];
-      for (let bucket = 0; bucket < buckets.length; bucket++) {
-        const indices = buckets[bucket];
-        if (!indices.length) continue;
-        const material = new THREE.MeshBasicMaterial({
-          color: colors[bucket],
-          transparent: true,
-          opacity: 0.56,
-          depthWrite: false,
-        });
-        const mesh = new THREE.InstancedMesh(geometry, material, indices.length);
-        mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-        mesh.userData.transactionIndices = indices;
-        for (let localIndex = 0; localIndex < indices.length; localIndex++) {
-          const tx = currentTransactions[indices[localIndex]];
-          const n = transactionValueNorm(tx.dealPriceThousandKrw);
-          const radius = 0.85 + n * 1.55;
-          const markerHeight = 0.55 + n * 1.15;
-          matrix.compose(
-            new THREE.Vector3(sx(tx.x), columnGroundY + markerHeight / 2 + 0.35, sz(tx.y)),
-            new THREE.Quaternion(),
-            new THREE.Vector3(radius, markerHeight, radius)
-          );
-          mesh.setMatrixAt(localIndex, matrix);
-        }
-        mesh.instanceMatrix.needsUpdate = true;
-        transactionGroup.add(mesh);
+      if (positions.length) {
+        const texture = transactionPointTexture();
+        const haloGeometry = new THREE.BufferGeometry();
+        haloGeometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+        const halo = new THREE.Points(
+          haloGeometry,
+          new THREE.PointsMaterial({
+            color: transactionHaloColor,
+            map: texture,
+            size: 23,
+            sizeAttenuation: false,
+            transparent: true,
+            opacity: 0.48,
+            depthTest: false,
+            depthWrite: false,
+          })
+        );
+        halo.userData.transactionIndices = indices;
+        halo.renderOrder = 30;
+
+        const dotGeometry = new THREE.BufferGeometry();
+        dotGeometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+        const dot = new THREE.Points(
+          dotGeometry,
+          new THREE.PointsMaterial({
+            color: transactionColor,
+            map: texture,
+            size: 11,
+            sizeAttenuation: false,
+            transparent: true,
+            opacity: 0.98,
+            depthTest: false,
+            depthWrite: false,
+          })
+        );
+        dot.userData.transactionIndices = indices;
+        dot.renderOrder = 31;
+        transactionGroup.add(halo);
+        transactionGroup.add(dot);
       }
       transactionGroup.visible = toggleTransactions.checked;
       scene.add(transactionGroup);
@@ -1933,9 +1985,18 @@
       searchInput.addEventListener("input", runSearch);
       detailPanel.addEventListener("click", event => event.stopPropagation());
       caseListPanel.addEventListener("click", event => event.stopPropagation());
-      caseListHeader.addEventListener("click", () => {
+      caseListHeader.addEventListener("click", event => {
+        if (event.target.closest(".caseTab")) return;
         if (!isMobileLayout() || caseListPanel.classList.contains("is-empty")) return;
         setCaseListOpen(!caseListPanel.classList.contains("is-open"));
+      });
+      caseTabButtons.forEach(button => {
+        button.addEventListener("click", event => {
+          event.stopPropagation();
+          activeCaseTab = button.dataset.caseTab === "transaction" ? "transaction" : "lease";
+          buildCaseList();
+          if (isMobileLayout()) setCaseListOpen(true);
+        });
       });
       caseRows.addEventListener("click", event => {
         const button = event.target.closest(".caseItem");
@@ -1981,7 +2042,7 @@
       if (!hits.length) return null;
       const hit = hits[0];
       const indices = hit.object.userData.transactionIndices || [];
-      const tx = currentTransactions[indices[hit.instanceId]];
+      const tx = currentTransactions[indices[hit.index]];
       return tx ? transactionPoint(tx) : null;
     }
 
@@ -2026,6 +2087,8 @@
 
     function resetView() {
       clearSelection();
+      activeCaseTab = "lease";
+      buildCaseList();
       setCaseListOpen(false);
       if (camera && controls) {
         camera.position.copy(homeCameraPosition);
@@ -2045,6 +2108,8 @@
 
     function selectPoint(point, options = {}) {
       selectedPoint = point;
+      activeCaseTab = point.isTransaction ? "transaction" : "lease";
+      buildCaseList();
       renderDetail(point);
       activateTab("info");
       if (!highlight) {
@@ -2172,21 +2237,35 @@
           leaseRows.push({ type: "lease", point, tenant });
         }
       }
-      const transactionRows = toggleTransactions.checked
-        ? currentTransactions.map(transaction => ({ type: "transaction", point: transactionPoint(transaction), transaction }))
-        : [];
-      currentCaseRows = [...leaseRows, ...transactionRows];
+      const transactionRows = currentTransactions.map(transaction => ({ type: "transaction", point: transactionPoint(transaction), transaction }));
+      const sortRows = rows => rows.sort((a, b) =>
+        String(a.point.region || "").localeCompare(String(b.point.region || ""), "ko") ||
+        String(a.point.gu || "").localeCompare(String(b.point.gu || ""), "ko") ||
+        String((a.tenant && a.tenant.tenant) || (a.transaction && a.transaction.building) || "").localeCompare(String((b.tenant && b.tenant.tenant) || (b.transaction && b.transaction.building) || ""), "ko")
+      );
+      sortRows(leaseRows);
+      sortRows(transactionRows);
+      currentCaseRows = activeCaseTab === "transaction" ? transactionRows : leaseRows;
       currentCaseRows.sort((a, b) =>
         String(a.point.region || "").localeCompare(String(b.point.region || ""), "ko") ||
         String(a.point.gu || "").localeCompare(String(b.point.gu || ""), "ko") ||
         String(a.type || "").localeCompare(String(b.type || ""), "ko") ||
         String((a.tenant && a.tenant.tenant) || (a.transaction && a.transaction.building) || "").localeCompare(String((b.tenant && b.tenant.tenant) || (b.transaction && b.transaction.building) || ""), "ko")
       );
-      caseListCount.textContent = `임대 ${fmt.format(leaseRows.length)} · 매매 ${fmt.format(transactionRows.length)}`;
-      caseListPanel.classList.toggle("is-empty", currentCaseRows.length === 0);
+      caseTabButtons.forEach(button => {
+        button.classList.toggle("is-active", button.dataset.caseTab === activeCaseTab);
+      });
+      leaseCaseCount.textContent = fmt.format(leaseRows.length);
+      transactionCaseCount.textContent = fmt.format(transactionRows.length);
+      caseListCount.textContent = currentPeriod || "";
+      const totalRows = leaseRows.length + transactionRows.length;
+      caseListPanel.classList.toggle("is-empty", totalRows === 0);
       setCaseListOpen(false);
       if (!currentCaseRows.length) {
-        caseRows.innerHTML = `<div class="caseEmpty">이 분기에 연결된 임대/매매 사례가 없습니다.</div>`;
+        const emptyText = activeCaseTab === "transaction"
+          ? "이 분기에 연결된 매매사례가 없습니다."
+          : "이 분기에 연결된 실제 임대사례가 없습니다.";
+        caseRows.innerHTML = `<div class="caseEmpty">${emptyText}</div>`;
         return;
       }
       caseRows.innerHTML = currentCaseRows.map((row, index) => {
