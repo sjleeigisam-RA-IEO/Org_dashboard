@@ -2238,26 +2238,37 @@
         }
       }
       const transactionRows = currentTransactions.map(transaction => ({ type: "transaction", point: transactionPoint(transaction), transaction }));
-      const sortRows = rows => rows.sort((a, b) =>
-        String(a.point.region || "").localeCompare(String(b.point.region || ""), "ko") ||
-        String(a.point.gu || "").localeCompare(String(b.point.gu || ""), "ko") ||
-        String((a.tenant && a.tenant.tenant) || (a.transaction && a.transaction.building) || "").localeCompare(String((b.tenant && b.tenant.tenant) || (b.transaction && b.transaction.building) || ""), "ko")
-      );
-      sortRows(leaseRows);
-      sortRows(transactionRows);
+      const numericSortValue = value => {
+        const n = Number(value);
+        return Number.isFinite(n) ? n : -Infinity;
+      };
+      const stableCaseName = row => String((row.tenant && row.tenant.tenant) || (row.transaction && row.transaction.building) || "");
+      leaseRows.sort((a, b) => {
+        const aNoc = numericSortValue(a.tenant.conditionNoc ?? a.point.noc);
+        const bNoc = numericSortValue(b.tenant.conditionNoc ?? b.point.noc);
+        if (bNoc !== aNoc) return bNoc - aNoc;
+        const aRent = numericSortValue(a.tenant.conditionRent ?? a.point.rent);
+        const bRent = numericSortValue(b.tenant.conditionRent ?? b.point.rent);
+        if (bRent !== aRent) return bRent - aRent;
+        return stableCaseName(a).localeCompare(stableCaseName(b), "ko");
+      });
+      transactionRows.sort((a, b) => {
+        const aUnit = numericSortValue(a.transaction.pricePerPyeongThousandKrw);
+        const bUnit = numericSortValue(b.transaction.pricePerPyeongThousandKrw);
+        if (bUnit !== aUnit) return bUnit - aUnit;
+        const aPrice = numericSortValue(a.transaction.dealPriceThousandKrw);
+        const bPrice = numericSortValue(b.transaction.dealPriceThousandKrw);
+        if (bPrice !== aPrice) return bPrice - aPrice;
+        return stableCaseName(a).localeCompare(stableCaseName(b), "ko");
+      });
       currentCaseRows = activeCaseTab === "transaction" ? transactionRows : leaseRows;
-      currentCaseRows.sort((a, b) =>
-        String(a.point.region || "").localeCompare(String(b.point.region || ""), "ko") ||
-        String(a.point.gu || "").localeCompare(String(b.point.gu || ""), "ko") ||
-        String(a.type || "").localeCompare(String(b.type || ""), "ko") ||
-        String((a.tenant && a.tenant.tenant) || (a.transaction && a.transaction.building) || "").localeCompare(String((b.tenant && b.tenant.tenant) || (b.transaction && b.transaction.building) || ""), "ko")
-      );
       caseTabButtons.forEach(button => {
         button.classList.toggle("is-active", button.dataset.caseTab === activeCaseTab);
       });
       leaseCaseCount.textContent = fmt.format(leaseRows.length);
       transactionCaseCount.textContent = fmt.format(transactionRows.length);
-      caseListCount.textContent = currentPeriod || "";
+      const sortLabel = activeCaseTab === "transaction" ? "평당가 높은순" : "NOC 높은순";
+      caseListCount.textContent = `${currentPeriod || ""} · ${sortLabel}`;
       const totalRows = leaseRows.length + transactionRows.length;
       caseListPanel.classList.toggle("is-empty", totalRows === 0);
       setCaseListOpen(false);
