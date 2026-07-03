@@ -38,7 +38,14 @@
     .panelTitle { margin: 0 0 8px; font-size: 12px; font-weight: 900; color: var(--ink); }
     .controls { padding: 0; display: grid; grid-template-columns: 1fr auto; gap: 8px 12px; align-items: center; }
     label { font-size: 12px; color: var(--muted); }
-    .periodLabel { font-size: 13px; font-weight: 700; text-align: right; }
+    .periodTools { display: flex; justify-content: flex-end; align-items: center; gap: 8px; }
+    .periodLabel { font-size: 13px; font-weight: 700; text-align: right; min-width: 56px; }
+    .periodPlay {
+      height: 28px; border: 1px solid rgba(37,99,235,0.28); border-radius: 999px; background: #fff;
+      color: #1d4ed8; padding: 0 9px; font-size: 12px; font-weight: 800; cursor: pointer;
+    }
+    .periodPlay:hover { border-color: rgba(37,99,235,0.55); box-shadow: 0 0 0 3px rgba(37,99,235,0.10); }
+    .periodPlay.is-playing { background: #eff6ff; border-color: rgba(37,99,235,0.48); }
     input[type="range"] { width: 100%; accent-color: var(--accent); }
     .mapSelect {
       width: 100%; height: 34px; border: 1px solid var(--line); border-radius: 6px; padding: 0 9px;
@@ -178,7 +185,10 @@
           <div class="panelTitle">시점</div>
           <section class="controls">
             <label for="periodSlider">분기</label>
-            <div class="periodLabel" id="periodLabel"></div>
+            <div class="periodTools">
+              <button class="periodPlay" id="periodPlay" type="button" aria-label="Play periods">▶ 재생</button>
+              <div class="periodLabel" id="periodLabel"></div>
+            </div>
             <input id="periodSlider" type="range" min="0" max="0" value="0" />
             <div class="toggles">
               <label><input id="toggleSurface" type="checkbox" checked /> 표면</label>
@@ -236,6 +246,7 @@
     const mapProviderSelect = document.getElementById("mapProviderSelect");
     const mapProviderStatus = document.getElementById("mapProviderStatus");
     const periodSlider = document.getElementById("periodSlider");
+    const periodPlay = document.getElementById("periodPlay");
     const periodLabel = document.getElementById("periodLabel");
     const detailPanel = document.getElementById("detailPanel");
     const tooltip = document.getElementById("tooltip");
@@ -280,6 +291,9 @@
     const transactionHaloColor = 0xc4b5fd;
     let lastColumnVisualScale = null;
     let activeCaseTab = "lease";
+    let periodPlaybackTimer = null;
+    let periodPlaybackActive = false;
+    const periodPlaybackIntervalMs = 1400;
     const mapPlaneY = 0;
     const columnGroundY = 0.18;
     const tileSize = 256;
@@ -1935,6 +1949,42 @@
       runSearch();
     }
 
+    function updatePeriodPlayButton() {
+      if (!periodPlay) return;
+      periodPlay.classList.toggle("is-playing", periodPlaybackActive);
+      periodPlay.innerHTML = periodPlaybackActive ? "Ⅱ 정지" : "▶ 재생";
+      periodPlay.setAttribute("aria-label", periodPlaybackActive ? "Pause periods" : "Play periods");
+    }
+
+    function advancePeriodPlayback() {
+      const index = data.periods.indexOf(currentPeriod);
+      const nextIndex = index >= 0 ? (index + 1) % data.periods.length : 0;
+      setPeriod(data.periods[nextIndex]);
+    }
+
+    function stopPeriodPlayback() {
+      if (periodPlaybackTimer) window.clearInterval(periodPlaybackTimer);
+      periodPlaybackTimer = null;
+      periodPlaybackActive = false;
+      updatePeriodPlayButton();
+    }
+
+    function startPeriodPlayback() {
+      if (!data || !data.periods || data.periods.length < 2) return;
+      stopPeriodPlayback();
+      periodPlaybackActive = true;
+      if (data.periods.indexOf(currentPeriod) === data.periods.length - 1) {
+        setPeriod(data.periods[0]);
+      }
+      periodPlaybackTimer = window.setInterval(advancePeriodPlayback, periodPlaybackIntervalMs);
+      updatePeriodPlayButton();
+    }
+
+    function togglePeriodPlayback() {
+      if (periodPlaybackActive) stopPeriodPlayback();
+      else startPeriodPlayback();
+    }
+
     function activateTab(name) {
       tabButtons.forEach(button => button.classList.toggle("is-active", button.dataset.tab === name));
       tabPanels.forEach(panel => panel.classList.toggle("is-active", panel.id === `tab-${name}`));
@@ -1952,7 +2002,11 @@
       if (mapProviderSelect) {
         mapProviderSelect.addEventListener("change", event => setMapProvider(event.target.value));
       }
-      periodSlider.addEventListener("input", () => setPeriod(data.periods[Number(periodSlider.value)]));
+      if (periodPlay) periodPlay.addEventListener("click", togglePeriodPlayback);
+      periodSlider.addEventListener("input", () => {
+        stopPeriodPlayback();
+        setPeriod(data.periods[Number(periodSlider.value)]);
+      });
       toggleSurface.addEventListener("change", () => {
         if (!reviewMode) surface.visible = toggleSurface.checked;
         if (highContourGroup) highContourGroup.visible = Boolean(toggleSurface.checked && !reviewMode);
@@ -2086,6 +2140,7 @@
     }
 
     function resetView() {
+      stopPeriodPlayback();
       clearSelection();
       activeCaseTab = "lease";
       buildCaseList();
