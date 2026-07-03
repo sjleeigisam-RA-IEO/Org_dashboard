@@ -1,0 +1,2513 @@
+{
+  "generated_at": "2026-07-03 22:05:06 KST",
+  "source_note": "OpenDART API에서 회사별 투자판단, 출자, 시설투자, M&A/구조개편, 자금조달, 특수관계인 거래성 공시를 조회해 생성한 기업 방향성 캐시입니다.",
+  "query": {
+    "start_date": "20210703",
+    "end_date": "20260703",
+    "lookback_years": 5,
+    "per_company": 5,
+    "report_keywords": [
+      "투자판단관련주요경영사항",
+      "타법인주식및출자증권취득결정",
+      "타법인주식및출자증권처분결정",
+      "신규시설투자등",
+      "유형자산취득결정",
+      "유형자산처분결정",
+      "영업양수결정",
+      "영업양도결정",
+      "회사합병결정",
+      "회사분할결정",
+      "유상증자결정",
+      "전환사채권발행결정",
+      "신주인수권부사채권발행결정",
+      "특수관계인에대한출자",
+      "특수관계인에대한자금대여",
+      "특수관계인으로부터부동산매수",
+      "특수관계인에대한담보제공"
+    ],
+    "key_source": ".env:key"
+  },
+  "companies_collected": 103,
+  "companies_matched": 90,
+  "companies_with_strategy_disclosures": 24,
+  "unmatched_companies": [
+    {
+      "company": "(주)범한엔지니어링",
+      "sources": [
+        "kacem.rows"
+      ]
+    },
+    {
+      "company": "(주)비씨엠피",
+      "sources": [
+        "cm.rows"
+      ]
+    },
+    {
+      "company": "(주)상아매니지먼트컨설팅",
+      "sources": [
+        "cm.rows"
+      ]
+    },
+    {
+      "company": "(주)아리씨엠",
+      "sources": [
+        "cm.rows"
+      ]
+    },
+    {
+      "company": "(주)엘씨젠",
+      "sources": [
+        "etis.overall_rows"
+      ]
+    },
+    {
+      "company": "(주)우석이엔씨건축사사무소",
+      "sources": [
+        "cm.rows"
+      ]
+    },
+    {
+      "company": "(주)하우빌드",
+      "sources": [
+        "cm.rows"
+      ]
+    },
+    {
+      "company": "건일이엔지 주식회사",
+      "sources": [
+        "etis.overall_rows",
+        "etis.construction_rows",
+        "kacem.rows"
+      ]
+    },
+    {
+      "company": "아이파크현대산업개발(주)",
+      "sources": [
+        "cak.rows"
+      ]
+    },
+    {
+      "company": "에이치엘디앤아이한라(주)",
+      "sources": [
+        "cak.rows"
+      ]
+    },
+    {
+      "company": "주식회사 디엠에이앤씨건축사사무소",
+      "sources": [
+        "kacem.rows"
+      ]
+    },
+    {
+      "company": "한국전력기술(주)",
+      "sources": [
+        "etis.overall_rows"
+      ]
+    },
+    {
+      "company": "한전케이피에스(주)",
+      "sources": [
+        "etis.overall_rows"
+      ]
+    }
+  ],
+  "errors": [],
+  "companies": [
+    {
+      "company": "(주)대우건설",
+      "aliases": [
+        "(주)대우건설",
+        "대우건설",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00124540",
+        "corp_name": "대우건설",
+        "corp_eng_name": "DAEWOO ENGINEERING & CONSTRUCTION CO.,LTD",
+        "stock_code": "047040",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "(주)대우건설"
+      },
+      "articles": [
+        {
+          "title": "투자판단: 천호A1-1구역 공공재개발정비사업 시공자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260518800200",
+          "source": "OpenDART 전략공시",
+          "published": "2026.05.18",
+          "summary": "제목: 천호A1-1구역 공공재개발정비사업 시공자 선정 · 주요내용: - 당사는 천호A1-1구역 공공재개발정비사업 주민대표회의에서 시공자로 선정됨 - 본 사업의 공사금액은 약 3,720억원임(V... · 이사회결의일(결정일)또는사실확인일: 2026-05-16",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260518800200",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 신대방역세권 재개발정비사업 시공자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260427800114",
+          "source": "OpenDART 전략공시",
+          "published": "2026.04.27",
+          "summary": "제목: 신대방역세권 재개발정비사업 시공자 선정 · 주요내용: - 당사는 신대방역세권 재개발정비사업 조합 총회에서 시공자로 선정됨 - 본 사업의 공사금액은 약 2,908억원임(VAT 제외... · 이사회결의일(결정일)또는사실확인일: 2026-04-25",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260427800114",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 의왕초평A1, 원주무실S1 공공지원민간임대주택사업 우선협상대상자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260421800001",
+          "source": "OpenDART 전략공시",
+          "published": "2026.04.21",
+          "summary": "제목: 의왕초평A1, 원주무실S1 공공지원민간임대주택사업 우선협상대상자 선정 · 주요내용: 당사는 아래와 같이 한국토지주택공사 (LH)에서 발주한 의왕초평A1, 원주무실S1 공공지원민간임대주택사업의 우선협상대상자로... · 이사회결의일(결정일)또는사실확인일: 2026-04-20",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260421800001",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "그룹/계열거래: 안산그린파워(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260410000674",
+          "source": "OpenDART 전략공시",
+          "published": "2026.04.10",
+          "summary": "회사명: (주)대우건설 · 거래상대방: 안산그린파워(주) · 사.거래상대방총잔액: 16,350",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한담보제공"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260410000674",
+          "report_name": "특수관계인에대한담보제공"
+        },
+        {
+          "title": "출자/지분: 안산그린파워(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260410000567",
+          "source": "OpenDART 전략공시",
+          "published": "2026.04.10",
+          "summary": "회사명: (주)대우건설 · 거래상대방: 안산그린파워(주)",
+          "primary_category": "equity_investment",
+          "categories": [
+            "dart_strategy",
+            "equity_investment"
+          ],
+          "matched_terms": [
+            "특수관계인에대한출자"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260410000567",
+          "report_name": "특수관계인에대한출자"
+        }
+      ]
+    },
+    {
+      "company": "(주)도화엔지니어링",
+      "aliases": [
+        "(주)도화엔지니어링",
+        "도화엔지니어링",
+        "주",
+        "(주)도화엔지니어링(DOHWA ENGINEERING CO.,Ltd)"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00114552",
+        "corp_name": "도화엔지니어링",
+        "corp_eng_name": "DOHWA ENGINEERING Co., Ltd.",
+        "stock_code": "002150",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "(주)도화엔지니어링"
+      },
+      "articles": [
+        {
+          "title": "출자/지분: 일본 내 태양광사업 확장",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250507800206",
+          "source": "OpenDART 전략공시",
+          "published": "2025.05.07",
+          "summary": "회사명: 합동회사 BluePower Oita Kitsuki1 · 주요사업: 태양광 발전 · 취득금액(원): 4,979,600 · 취득방법: 현금취득",
+          "primary_category": "equity_investment",
+          "categories": [
+            "dart_strategy",
+            "equity_investment"
+          ],
+          "matched_terms": [
+            "타법인주식및출자증권취득결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20250507800206",
+          "report_name": "타법인주식및출자증권취득결정(종속회사의주요경영사항)"
+        }
+      ]
+    },
+    {
+      "company": "(주)반도건설",
+      "aliases": [
+        "(주)반도건설",
+        "반도건설",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00656492",
+        "corp_name": "반도건설",
+        "corp_eng_name": "Bndo Engineering & Construction co, ltd",
+        "stock_code": "",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "(주)반도건설"
+      },
+      "articles": [
+        {
+          "title": "그룹/계열거래: (주)반도종합건설",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260618000132",
+          "source": "OpenDART 전략공시",
+          "published": "2026.06.18",
+          "summary": "회사명: (주)반도건설 · 거래상대방: (주)반도종합건설 · 다.거래상대방총잔액: 60,230",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260618000132",
+          "report_name": "특수관계인에대한자금대여"
+        },
+        {
+          "title": "출자/지분: (주)제이비유보라제1호기업구조조정부동산투자회사",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250912000098",
+          "source": "OpenDART 전략공시",
+          "published": "2025.09.12",
+          "summary": "회사명: (주)반도건설 · 거래상대방: (주)제이비유보라제1호기업구조조정부동산투자회사",
+          "primary_category": "equity_investment",
+          "categories": [
+            "dart_strategy",
+            "equity_investment"
+          ],
+          "matched_terms": [
+            "특수관계인에대한출자"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20250912000098",
+          "report_name": "특수관계인에대한출자"
+        },
+        {
+          "title": "그룹/계열거래: (주)코어스트랜드",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250617000341",
+          "source": "OpenDART 전략공시",
+          "published": "2025.06.17",
+          "summary": "회사명: (주)반도건설 · 거래상대방: (주)코어스트랜드",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인으로부터부동산매수"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20250617000341",
+          "report_name": "특수관계인으로부터부동산매수"
+        },
+        {
+          "title": "그룹/계열거래: (주)반도홀딩스",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250109000341",
+          "source": "OpenDART 전략공시",
+          "published": "2025.01.09",
+          "summary": "회사명: (주)반도건설 · 거래상대방: (주)반도홀딩스 · 다.거래상대방총잔액: 11,950",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20250109000341",
+          "report_name": "특수관계인에대한자금대여"
+        },
+        {
+          "title": "M&A/구조개편: 회사명",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220914000419",
+          "source": "OpenDART 전략공시",
+          "published": "2022.09.14",
+          "summary": "회사명: 공시일자 · 합병상대회사: 회사명",
+          "primary_category": "ma_restructuring",
+          "categories": [
+            "dart_strategy",
+            "ma_restructuring"
+          ],
+          "matched_terms": [
+            "회사합병결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20220914000419",
+          "report_name": "회사합병결정"
+        }
+      ]
+    },
+    {
+      "company": "(주)유신",
+      "aliases": [
+        "(주)유신",
+        "유신",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00144650",
+        "corp_name": "유신",
+        "corp_eng_name": "Yooshin Engineering Corporation",
+        "stock_code": "054930",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "(주)유신"
+      },
+      "articles": [
+        {
+          "title": "M&A/구조개편: 회사명",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20241211000509",
+          "source": "OpenDART 전략공시",
+          "published": "2024.12.11",
+          "summary": "회사명: 주식회사 유신 · 합병상대회사: 회사명 · 합병이사회결의일: 2024.12.11 · 합병승인이사회결의일: 2025.01.20",
+          "primary_category": "ma_restructuring",
+          "categories": [
+            "dart_strategy",
+            "ma_restructuring"
+          ],
+          "matched_terms": [
+            "회사합병결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20241211000509",
+          "report_name": "주요사항보고서(회사합병결정)"
+        }
+      ]
+    },
+    {
+      "company": "(주)태영건설",
+      "aliases": [
+        "(주)태영건설",
+        "태영건설",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00153861",
+        "corp_name": "태영건설",
+        "corp_eng_name": "TAEYOUNG ENGINEERING & CONSTRUCTION",
+        "stock_code": "009410",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "(주)태영건설"
+      },
+      "articles": [
+        {
+          "title": "투자판단: 과천공공하수처리시설 현대화사업 실시설계적격자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260701800746",
+          "source": "OpenDART 전략공시",
+          "published": "2026.07.01",
+          "summary": "제목: 과천공공하수처리시설 현대화사업 실시설계적격자 선정 · 주요내용: 당사는 아래와 같이 한국환경공단에서 발주한 과천공공하수처리시설 현대화사업의 실시설계적격자로 선정되었습니다. - 아 래 - 1... · 이사회결의일(결정일)또는사실확인일: 2026-07-01",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260701800746",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 오산오산 1BL, 인천검단 AA31BL, 인천영종 A-57BL 및 A-63BL 통합형 민간참여 공...",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260401801348",
+          "source": "OpenDART 전략공시",
+          "published": "2026.04.01",
+          "summary": "제목: 오산오산 1BL, 인천검단 AA31BL, 인천영종 A-57BL 및 A-63BL 통합형 민간참여 공공주택건설사업 우선협상대상자 선정 · 주요내용: 당사는 아래와 같이 2026년 4월 1일, 한국토지주택공사 (LH)에서 발주한 오산오산 1BL, 인천검단 AA31BL, 인천... · 이사회결의일(결정일)또는사실확인일: 2026-04-01",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260401801348",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 서부산 행정복합타운 건립사업 실시설계적격자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260330801925",
+          "source": "OpenDART 전략공시",
+          "published": "2026.03.30",
+          "summary": "제목: 서부산 행정복합타운 건립사업 실시설계적격자 선정 · 주요내용: 당사는 아래와 같이 부산도시공사에서 발주한 서부산 행정복합타운 건립공사의 실시설계적격자로 선정되었습니다. - 아 래 - 1.... · 이사회결의일(결정일)또는사실확인일: 2026-03-30",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260330801925",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "그룹/계열거래: 거래 취소에 따른 정정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260213002419",
+          "source": "OpenDART 전략공시",
+          "published": "2026.02.13",
+          "summary": "다.거래상대방총잔액: 거래 취소에 따른 정정 · -상기2의가.거래일자는최초대여금지급예정일이며,변경될수있음.-상기2의다.거래상대방총잔액은금회대여금이포함된금액임.-본자금대여거래는(주)네오시티가자체적으로자금조달이가능하게될경우취소될수있음.: - 상기 2의 가. 거래일자는 최초 대여금 지급 예정일이며, 변경 될 수 있음.- 상기 2의 다. 거래상대방 총잔액 은 금회... · 회사명: (주)태영건설 · 거래상대방: 네오시티(주)",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260213002419",
+          "report_name": "특수관계인에대한자금대여"
+        },
+        {
+          "title": "그룹/계열거래: 네오시티(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260212001276",
+          "source": "OpenDART 전략공시",
+          "published": "2026.02.12",
+          "summary": "회사명: (주)태영건설 · 거래상대방: 네오시티(주) · 다.거래상대방총잔액: 102,000",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260212001276",
+          "report_name": "특수관계인에대한자금대여"
+        }
+      ]
+    },
+    {
+      "company": "(주)포스코에이앤씨건축사사무소",
+      "aliases": [
+        "(주)포스코에이앤씨건축사사무소",
+        "포스코에이앤씨건축사사무소",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00224761",
+        "corp_name": "포스코에이앤씨건축사사무소",
+        "corp_eng_name": "POSCO A&C CO.,LTD.",
+        "stock_code": "",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "(주)포스코에이앤씨건축사사무소"
+      },
+      "articles": [
+        {
+          "title": "M&A/구조개편: 공시일자",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250523000244",
+          "source": "OpenDART 전략공시",
+          "published": "2025.05.23",
+          "summary": "회사명: 공시일자",
+          "primary_category": "ma_restructuring",
+          "categories": [
+            "dart_strategy",
+            "ma_restructuring"
+          ],
+          "matched_terms": [
+            "영업양도결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20250523000244",
+          "report_name": "영업양도결정"
+        }
+      ]
+    },
+    {
+      "company": "(주)한화",
+      "aliases": [
+        "(주)한화",
+        "한화",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00160588",
+        "corp_name": "한화",
+        "corp_eng_name": "HANWHA CORP",
+        "stock_code": "000880",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "(주)한화"
+      },
+      "articles": [
+        {
+          "title": "자금조달: 801,550,000,000",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260612800541",
+          "source": "OpenDART 전략공시",
+          "published": "2026.06.12",
+          "summary": "자금조달의목적-채무상환자금(원): 801,550,000,000 · 한화솔루션㈜의[기재정정]주요사항보고서(유상증자결정)공시(2026.05.26)'24.기타투자판단에참고할사항-가.신주발행가액산정방법'참조: 한화솔루션㈜의 [기재정정]주요사항보고서(유상증자결정) 공시(2026.06.12)'24.기타 투자판단에 참고할 사항-가.신주... · 한화솔루션㈜의[기재정정]주요사항보고서(유상증자결정)공시(2026.05.26)'24.기타투자판단에참고할사항-나.신주의배정방법'참조: 한화솔루션㈜의 [기재정정]주요사항보고서(유상증자결정) 공시(2026.06.12)'24.기타 투자판단에 참고할 사항-나.신주의... · 기타투자판단과관련한중요사항: - 상기 사항 이외의 자세한 사항은 한화솔루션㈜가 금융감독원 전자공시시스템(DART)에 2026.05.26 공시한 [기재정정...",
+          "primary_category": "financing",
+          "categories": [
+            "dart_strategy",
+            "financing"
+          ],
+          "matched_terms": [
+            "유상증자결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260612800541",
+          "report_name": "유상증자결정(종속회사의주요경영사항)"
+        },
+        {
+          "title": "출자/지분: (주)에이치씨앤디",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260602000352",
+          "source": "OpenDART 전략공시",
+          "published": "2026.06.02",
+          "summary": "회사명: (주)한화 · 거래상대방: (주)에이치씨앤디",
+          "primary_category": "equity_investment",
+          "categories": [
+            "dart_strategy",
+            "equity_investment"
+          ],
+          "matched_terms": [
+            "특수관계인에대한출자"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260602000352",
+          "report_name": "특수관계인에대한출자"
+        },
+        {
+          "title": "자금조달: 906,700,000,000",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260526800490",
+          "source": "OpenDART 전략공시",
+          "published": "2026.05.26",
+          "summary": "자금조달의목적-채무상환자금(원): 906,700,000,000 · 한화솔루션㈜의[기재정정]주요사항보고서(유상증자결정)공시(2026.05.14)'24.기타투자판단에참고할사항-가.신주발행가액산정방법'참조: 한화솔루션㈜의 [기재정정]주요사항보고서(유상증자결정) 공시(2026.05.26)'24.기타 투자판단에 참고할 사항-가.신주... · 한화솔루션㈜의[기재정정]주요사항보고서(유상증자결정)공시(2026.05.14)'24.기타투자판단에참고할사항-나.신주의배정방법'참조: 한화솔루션㈜의 [기재정정]주요사항보고서(유상증자결정) 공시(2026.05.26)'24.기타 투자판단에 참고할 사항-나.신주의... · 이사회결의일(결정일): 2026-05-14",
+          "primary_category": "financing",
+          "categories": [
+            "dart_strategy",
+            "financing"
+          ],
+          "matched_terms": [
+            "유상증자결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260526800490",
+          "report_name": "유상증자결정(종속회사의주요경영사항)"
+        },
+        {
+          "title": "그룹/계열거래: (주)알이씨데이터센터",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260518000044",
+          "source": "OpenDART 전략공시",
+          "published": "2026.05.18",
+          "summary": "회사명: (주)한화 · 거래상대방: (주)알이씨데이터센터 · 사.거래상대방총잔액: 180,000",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한담보제공"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260518000044",
+          "report_name": "특수관계인에대한담보제공"
+        },
+        {
+          "title": "자금조달: 한화솔루션㈜의 [기재정정]주요사항보고서(유상증자결정) 공시(2026.05.14)'24.기타 투자판...",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260514800857",
+          "source": "OpenDART 전략공시",
+          "published": "2026.05.14",
+          "summary": "한화솔루션㈜의[기재정정]주요사항보고서(유상증자결정)공시(2026.05.12)'24.기타투자판단에참고할사항-가.신주발행가액산정방법'참조: 한화솔루션㈜의 [기재정정]주요사항보고서(유상증자결정) 공시(2026.05.14)'24.기타 투자판단에 참고할 사항-가.신주... · 한화솔루션㈜의[기재정정]주요사항보고서(유상증자결정)공시(2026.05.12)'24.기타투자판단에참고할사항-나.신주의배정방법'참조: 한화솔루션㈜의 [기재정정]주요사항보고서(유상증자결정) 공시(2026.05.14)'24.기타 투자판단에 참고할 사항-나.신주의... · 이사회결의일(결정일): 2026-04-17 · 기타투자판단과관련한중요사항: - 상기 사항 이외의 자세한 사항은 한화솔루션㈜가 금융감독원 전자공시시스템(DART)에 2026.05.12 공시한 [기재정정...",
+          "primary_category": "financing",
+          "categories": [
+            "dart_strategy",
+            "financing"
+          ],
+          "matched_terms": [
+            "유상증자결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260514800857",
+          "report_name": "유상증자결정(종속회사의주요경영사항)"
+        }
+      ]
+    },
+    {
+      "company": "(주)호반건설",
+      "aliases": [
+        "(주)호반건설",
+        "호반건설",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00236614",
+        "corp_name": "호반건설",
+        "corp_eng_name": "Hoban Construction Co., Ltd.",
+        "stock_code": "",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "(주)호반건설"
+      },
+      "articles": [
+        {
+          "title": "그룹/계열거래: 자양5구역피에프브이(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260623000218",
+          "source": "OpenDART 전략공시",
+          "published": "2026.06.23",
+          "summary": "회사명: (주)호반건설 · 거래상대방: 자양5구역피에프브이(주) · 다.거래상대방총잔액: 170,236",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260623000218",
+          "report_name": "특수관계인에대한자금대여"
+        },
+        {
+          "title": "그룹/계열거래: (주)에이치비양재",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260416000386",
+          "source": "OpenDART 전략공시",
+          "published": "2026.04.16",
+          "summary": "회사명: (주)호반건설 · 거래상대방: (주)에이치비양재 · 사.거래상대방총잔액: 60,253",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한담보제공"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260416000386",
+          "report_name": "특수관계인에대한담보제공"
+        },
+        {
+          "title": "그룹/계열거래: (주)씨더블유씨앤디",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260109000268",
+          "source": "OpenDART 전략공시",
+          "published": "2026.01.09",
+          "summary": "회사명: (주)호반건설 · 거래상대방: (주)씨더블유씨앤디 · 다.거래상대방총잔액: 54,797",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260109000268",
+          "report_name": "특수관계인에대한자금대여"
+        },
+        {
+          "title": "출자/지분: 대치복합개발피에프브이(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251219000049",
+          "source": "OpenDART 전략공시",
+          "published": "2025.12.19",
+          "summary": "회사명: (주)호반건설 · 거래상대방: 대치복합개발피에프브이(주)",
+          "primary_category": "equity_investment",
+          "categories": [
+            "dart_strategy",
+            "equity_investment"
+          ],
+          "matched_terms": [
+            "특수관계인에대한출자"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251219000049",
+          "report_name": "특수관계인에대한출자"
+        },
+        {
+          "title": "그룹/계열거래: (주)에이치원에스디아이",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251215000258",
+          "source": "OpenDART 전략공시",
+          "published": "2025.12.15",
+          "summary": "회사명: (주)호반건설 · 거래상대방: (주)에이치원에스디아이 · 다.거래상대방총잔액: 13,500",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251215000258",
+          "report_name": "특수관계인에대한자금대여"
+        }
+      ]
+    },
+    {
+      "company": "계룡건설산업(주)",
+      "aliases": [
+        "계룡건설산업(주)",
+        "계룡건설산업",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00102432",
+        "corp_name": "계룡건설산업",
+        "corp_eng_name": "KYE-RYONG CONSTRUCTION INDUSTRIAL CO.,LTD",
+        "stock_code": "013580",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "계룡건설산업(주)"
+      },
+      "articles": [
+        {
+          "title": "투자판단: 벡스코 제3전시장 건립사업 실시설계적격자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260703800479",
+          "source": "OpenDART 전략공시",
+          "published": "2026.07.03",
+          "summary": "제목: 벡스코 제3전시장 건립사업 실시설계적격자 선정 · 주요내용: 당사는 아래와 같이 벡스코 제3전시장 건립사업 실시설계적격자로 선정되었습니다. - 아 래 - 1. 선정일자 : 2026.07... · 이사회결의일(결정일)또는사실확인일: 2026-07-03",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260703800479",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 성남~서초 고속도로 민간투자사업(BTO-a) 우선협상대상자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260623800656",
+          "source": "OpenDART 전략공시",
+          "published": "2026.06.23",
+          "summary": "제목: 성남~서초 고속도로 민간투자사업(BTO-a) 우선협상대상자 선정 · 주요내용: 당사는 아래와 같이 \"성남~서초 고속도로 민간투자사업(BTO-a)\" 우선협상대상자로 선정되었습니다. - 아 래 - 1. 선정... · 이사회결의일(결정일)또는사실확인일: 2026-06-23",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260623800656",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 강동하남남양주선 광역철도 6공구 건설공사 실시설계적격자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260616800689",
+          "source": "OpenDART 전략공시",
+          "published": "2026.06.16",
+          "summary": "제목: 강동하남남양주선 광역철도 6공구 건설공사 실시설계적격자 선정 · 주요내용: 당사는 아래와 같이 강동하남남양주선 광역철도 6공구 건설공사 실시설계적격자로 선정되었습니다. - 아 래 - 1. 선정일자 :... · 이사회결의일(결정일)또는사실확인일: 2026-06-16",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260616800689",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "출자/지분: 공공지원민간임대주택 개발사업 참여",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260522800345",
+          "source": "OpenDART 전략공시",
+          "published": "2026.05.22",
+          "summary": "회사명: (주)계룡케이비고양제7호위탁관리부동산투자회사 · 주요사업: 부동산업 · 취득금액(원): 49,400,000,000 · 취득방법: 현금 취득",
+          "primary_category": "equity_investment",
+          "categories": [
+            "dart_strategy",
+            "equity_investment"
+          ],
+          "matched_terms": [
+            "타법인주식및출자증권취득결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260522800345",
+          "report_name": "타법인주식및출자증권취득결정"
+        },
+        {
+          "title": "투자판단: 고척1구역(홍진은성우정연립) 가로주택정비사업 시공사 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260518800413",
+          "source": "OpenDART 전략공시",
+          "published": "2026.05.18",
+          "summary": "제목: 고척1구역(홍진은성우정연립) 가로주택정비사업 시공사 선정 · 주요내용: 당사는 아래와 같이 고척1구역(홍진은성우정연립) 가로주택정비사업 시공사로 선정되었습니다. - 아 래 - 1. 선정일자 : 2... · 이사회결의일(결정일)또는사실확인일: 2026-05-16",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260518800413",
+          "report_name": "투자판단관련주요경영사항"
+        }
+      ]
+    },
+    {
+      "company": "금호건설(주)",
+      "aliases": [
+        "금호건설(주)",
+        "금호건설",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00106313",
+        "corp_name": "금호건설",
+        "corp_eng_name": "KUMHO Engineering & Construction Co., Ltd.",
+        "stock_code": "002990",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "금호건설(주)"
+      },
+      "articles": [
+        {
+          "title": "투자판단: 에코델타시티 8BL 민간참여 공공분양주택 건립사업 우선협상대상자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260522800524",
+          "source": "OpenDART 전략공시",
+          "published": "2026.05.22",
+          "summary": "제목: 에코델타시티 8BL 민간참여 공공분양주택 건립사업 우선협상대상자 선정 · 주요내용: 당사는 아래와 같이 '에코델타시티 8BL 민간참여 공공분양주택 건립사업'의 우선협상대상자로 선정되었음. - 아 래 - 1)... · 이사회결의일(결정일)또는사실확인일: 2026-05-22",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260522800524",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "자금조달: 금호건설(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260417000439",
+          "source": "OpenDART 전략공시",
+          "published": "2026.04.17",
+          "summary": "기타투자판단에참고할사항: 주1) · 회사명: 금호건설(주) · 자금조달의목적: 시설자금 (원)",
+          "primary_category": "financing",
+          "categories": [
+            "dart_strategy",
+            "financing"
+          ],
+          "matched_terms": [
+            "유상증자결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260417000439",
+          "report_name": "주요사항보고서(유상증자결정)"
+        },
+        {
+          "title": "투자판단: 가음3구역재건축정비사업 공사도급가계약 체결",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260326802792",
+          "source": "OpenDART 전략공시",
+          "published": "2026.03.26",
+          "summary": "제목: 가음3구역재건축정비사업 공사도급가계약 체결 · 주요내용: 당사는 아래와 같이 '가음3구역재건축정비사업'과 관련하여 공사도급가계약을 체결함 - 아 래 - 1.계약상대: 가음3구역재건축... · 이사회결의일(결정일)또는사실확인일: 2026-03-26",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260326802792",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 평택~시흥 고속도로 확장 민간투자사업 우선협상대상자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251218800237",
+          "source": "OpenDART 전략공시",
+          "published": "2025.12.18",
+          "summary": "제목: 평택~시흥 고속도로 확장 민간투자사업 우선협상대상자 선정 · 주요내용: 당사는 아래와 같이 '평택~시흥 고속도로 확장 민간투자사업'의 우선협상대상자로 선정되었음. - 아 래 - 1) 주무관청 :... · 이사회결의일(결정일)또는사실확인일: 2025-12-18",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251218800237",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 제3판교 테크노밸리 건립사업 우선협상대상자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251028800358",
+          "source": "OpenDART 전략공시",
+          "published": "2025.10.28",
+          "summary": "제목: 제3판교 테크노밸리 건립사업 우선협상대상자 선정 · 주요내용: 당사는 아래와 같이 '제3판교 테크노밸리 건립사업'의 우선협상대상자로 선정되었음. - 아 래 - 1) 발주처 : 경기주택도시... · 이사회결의일(결정일)또는사실확인일: 2025-10-28",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251028800358",
+          "report_name": "투자판단관련주요경영사항"
+        }
+      ]
+    },
+    {
+      "company": "대방건설(주)",
+      "aliases": [
+        "대방건설(주)",
+        "대방건설",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00319166",
+        "corp_name": "대방건설",
+        "corp_eng_name": "DAEBANG CONSTRUCTION CO.LTE",
+        "stock_code": "",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "대방건설(주)"
+      },
+      "articles": [
+        {
+          "title": "그룹/계열거래: 대방산업개발(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260625000232",
+          "source": "OpenDART 전략공시",
+          "published": "2026.06.25",
+          "summary": "회사명: 대방건설(주) · 거래상대방: 대방산업개발(주) · 다.거래상대방총잔액: 174,225",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260625000232",
+          "report_name": "특수관계인에대한자금대여"
+        },
+        {
+          "title": "그룹/계열거래: 대방이엔씨(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260429000961",
+          "source": "OpenDART 전략공시",
+          "published": "2026.04.29",
+          "summary": "회사명: 대방건설(주) · 거래상대방: 대방이엔씨(주) · 다.거래상대방총잔액: 41,800",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260429000961",
+          "report_name": "특수관계인에대한자금대여"
+        },
+        {
+          "title": "그룹/계열거래: 대방이노베이션(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260429000959",
+          "source": "OpenDART 전략공시",
+          "published": "2026.04.29",
+          "summary": "회사명: 대방건설(주) · 거래상대방: 대방이노베이션(주) · 다.거래상대방총잔액: 20,374",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260429000959",
+          "report_name": "특수관계인에대한자금대여"
+        },
+        {
+          "title": "그룹/계열거래: 디비하우징(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260410002708",
+          "source": "OpenDART 전략공시",
+          "published": "2026.04.10",
+          "summary": "회사명: 대방건설(주) · 거래상대방: 디비하우징(주) · 다.거래상대방총잔액: 76,239",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260410002708",
+          "report_name": "특수관계인에대한자금대여"
+        },
+        {
+          "title": "그룹/계열거래: 디비토건(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260410002701",
+          "source": "OpenDART 전략공시",
+          "published": "2026.04.10",
+          "summary": "회사명: 대방건설(주) · 거래상대방: 디비토건(주) · 다.거래상대방총잔액: 76,189",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260410002701",
+          "report_name": "특수관계인에대한자금대여"
+        }
+      ]
+    },
+    {
+      "company": "동부건설(주)",
+      "aliases": [
+        "동부건설(주)",
+        "동부건설",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00115612",
+        "corp_name": "동부건설",
+        "corp_eng_name": "Dongbu Corporation",
+        "stock_code": "005960",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "동부건설(주)"
+      },
+      "articles": [
+        {
+          "title": "투자판단: 성남~서초 고속도로 민간투자사업(BTO-a) 우선협상대상자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260623800650",
+          "source": "OpenDART 전략공시",
+          "published": "2026.06.23",
+          "summary": "제목: 성남~서초 고속도로 민간투자사업(BTO-a) 우선협상대상자 선정 · 주요내용: 당사는 아래와 같이 2026년 6월 23일, 성남~서초 고속도로 민간투자사업(BTO-a)의 우선협상대상자로 선정되었음을 확인... · 이사회결의일(결정일)또는사실확인일: 2026-06-23",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260623800650",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 제천~영월간 고속국도 건설공사 2공구 낙찰자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260617800664",
+          "source": "OpenDART 전략공시",
+          "published": "2026.06.17",
+          "summary": "제목: 제천~영월간 고속국도 건설공사 2공구 낙찰자 선정 · 주요내용: 당사는 아래와 같이 2026년 6월 17일, 한국도로공사에서 발주한 제천~영월 고속국도 건설공사 2공구의 낙찰자로 선정되었음... · 이사회결의일(결정일)또는사실확인일: 2026-06-17",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260617800664",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "자금조달: 동부건설 주식회사",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260416000470",
+          "source": "OpenDART 전략공시",
+          "published": "2026.04.16",
+          "summary": "회사명: 동부건설 주식회사 · 자금조달의목적: 시설자금 (원)",
+          "primary_category": "financing",
+          "categories": [
+            "dart_strategy",
+            "financing"
+          ],
+          "matched_terms": [
+            "전환사채권발행결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260416000470",
+          "report_name": "주요사항보고서(전환사채권발행결정)"
+        },
+        {
+          "title": "투자판단: 오산오산 1BL, 인천검단 AA31BL, 인천영종 A-57BL 및 A-63BL 통합형 민간참여 공...",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260401800986",
+          "source": "OpenDART 전략공시",
+          "published": "2026.04.01",
+          "summary": "제목: 오산오산 1BL, 인천검단 AA31BL, 인천영종 A-57BL 및 A-63BL 통합형 민간참여 공공주택건설사업 우선협상대상자 선정 · 주요내용: 당사는 아래와 같이 2026년 4월 1일, 한국토지주택공사 (LH)에서 발주한 오산오산 1BL, 인천검단 AA31BL, 인천... · 이사회결의일(결정일)또는사실확인일: 2026-04-01",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260401800986",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 계양~강화 고속국도 건설공사 3공구 낙찰자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318801798",
+          "source": "OpenDART 전략공시",
+          "published": "2026.03.18",
+          "summary": "제목: 계양~강화 고속국도 건설공사 3공구 낙찰자 선정 · 주요내용: 당사는 아래와 같이 2026년 3월 18일, 한국도로공사에서 발주한 계양~강화 고속국도 건설공사 3공구의 낙찰자로 선정되었음... · 이사회결의일(결정일)또는사실확인일: 2026-03-18",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260318801798",
+          "report_name": "투자판단관련주요경영사항"
+        }
+      ]
+    },
+    {
+      "company": "두산에너빌리티(주)",
+      "aliases": [
+        "두산에너빌리티(주)",
+        "두산에너빌리티",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00159616",
+        "corp_name": "두산에너빌리티",
+        "corp_eng_name": "DOOSAN ENERBILITY CO., LTD.",
+        "stock_code": "034020",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "두산에너빌리티(주)"
+      },
+      "articles": [
+        {
+          "title": "출자/지분: Doosan Enerbility Vietnam Co., Ltd.",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251219800511",
+          "source": "OpenDART 전략공시",
+          "published": "2025.12.19",
+          "summary": "처분내역-처분금액(원): 291,717,456,658 · 기타투자판단과관련한중요사항: 3) 상기 '2. 처분내역'의 처분금액은 USD 209,959,304이며, 공시제출일 최초 고시 매매기준환율(1USD=1,3... · 3)상기'2.처분내역'의처분금액은USD209,959,304이며,공시제출일최초고시매매기준환율(1USD=1,389.40)을적용하여환산한금액입니다.위처분금액은지분매매계약상매매대금조정조항에따라변경될가능성이있습니다.: 3) 상기 '2. 처분내역'의 처분금액은 USD 254,105,687이며, 이는 거래종결일 기준 지분매매계약상 매매대금 조정... · 기타투자판단과관련한중요사항: 5) 상기 '5. 처분예정일자'는 본건 매각과 관련한 지분 양수도 절차가 완료되는 거래종결일을 의미하며, 관련 정부 인허가(...",
+          "primary_category": "equity_investment",
+          "categories": [
+            "dart_strategy",
+            "equity_investment"
+          ],
+          "matched_terms": [
+            "타법인주식및출자증권처분결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251219800511",
+          "report_name": "타법인주식및출자증권처분결정"
+        },
+        {
+          "title": "설비/자산투자: SMR 전용공장 신축 및 기존 공장 최적화, 혁신제조 시설 구축",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251217800832",
+          "source": "OpenDART 전략공시",
+          "published": "2025.12.17",
+          "summary": "투자구분: 신규시설투자 · -투자대상: SMR 전용공장 신축 및 기존 공장 최적화, 혁신제조 시설 구축 · 투자금액(원): 806,800,000,000 · 투자목적: SMR 사업확대에 따른 제작 Capacity 확보",
+          "primary_category": "asset_capex",
+          "categories": [
+            "dart_strategy",
+            "asset_capex"
+          ],
+          "matched_terms": [
+            "신규시설투자등"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251217800832",
+          "report_name": "신규시설투자등"
+        },
+        {
+          "title": "출자/지분: 비핵심자산 매각을 통한 주력사업 투자 재원 확보",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250930800675",
+          "source": "OpenDART 전략공시",
+          "published": "2025.09.30",
+          "summary": "기타투자판단과관련한중요사항: 본 건은 당사가 보유한 발행회사 지분 전부를 처분하는 공시입니다. 당사는 매수인을 에이치디한국조선해양㈜로 하여 지분매매계약을... · 회사명: Doosan Enerbility Vietnam Co., Ltd. · 주요사업: 기타기계 및 장비제조업 · 처분금액(원): 291,717,456,658",
+          "primary_category": "equity_investment",
+          "categories": [
+            "dart_strategy",
+            "equity_investment"
+          ],
+          "matched_terms": [
+            "타법인주식및출자증권처분결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20250930800675",
+          "report_name": "타법인주식및출자증권처분결정"
+        },
+        {
+          "title": "출자/지분: 지배구조 개편을 통한 경영 효율성 제고",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20241210800502",
+          "source": "OpenDART 전략공시",
+          "published": "2024.12.10",
+          "summary": "처분내역처분금액(원): 64,400,000,000 · 처분목적: 지배구조 개편을 통한 경영 효율성 제고 · 이사회결의일(결정일): 2024-07-11 · 기타투자판단과관련한중요사항: 1) 상기 '2. 처분내역'의 자기자본은 2023년말 연결 재무제표 기준입니다. 2) 상기 '2. 처분내역'의 처분주식수는...",
+          "primary_category": "equity_investment",
+          "categories": [
+            "dart_strategy",
+            "equity_investment"
+          ],
+          "matched_terms": [
+            "타법인주식및출자증권처분결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20241210800502",
+          "report_name": "타법인주식및출자증권처분결정(자율공시)"
+        },
+        {
+          "title": "출자/지분: 두산지오솔루션(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240627000567",
+          "source": "OpenDART 전략공시",
+          "published": "2024.06.27",
+          "summary": "회사명: 두산에너빌리티(주) · 거래상대방: 두산지오솔루션(주)",
+          "primary_category": "equity_investment",
+          "categories": [
+            "dart_strategy",
+            "equity_investment"
+          ],
+          "matched_terms": [
+            "특수관계인에대한출자"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20240627000567",
+          "report_name": "특수관계인에대한출자"
+        }
+      ]
+    },
+    {
+      "company": "디엘건설(주)",
+      "aliases": [
+        "디엘건설(주)",
+        "디엘건설",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00128971",
+        "corp_name": "디엘건설",
+        "corp_eng_name": "DL Construction Co., LTD.",
+        "stock_code": "001880",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "디엘건설(주)"
+      },
+      "articles": [
+        {
+          "title": "투자판단: 문화3 성황구역 재개발사업 시공사 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240226800433",
+          "source": "OpenDART 전략공시",
+          "published": "2024.02.26",
+          "summary": "제목: 문화3 성황구역 재개발사업 시공사 선정 · 주요내용: 당사는 문화3 성황구역 재개발사업 시공사로 선정되었습니다. 1. 선정 공문수령일 : 2024.02.26 (월) 2. 공사예정... · 이사회결의일(결정일)또는사실확인일: 2024-02-26",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20240226800433",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 회원2구역 주택재개발정비사업 시공사 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20231219800475",
+          "source": "OpenDART 전략공시",
+          "published": "2023.12.19",
+          "summary": "제목: 회원2구역 주택재개발정비사업 시공사 선정 · 주요내용: 당사는 회원2구역 주택재개발정비사업 시공사로 선정되었습니다. 1. 선정 공문수령일 : 2023.12.19 (화) 2. 공사예... · 이사회결의일(결정일)또는사실확인일: 2023-12-19",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20231219800475",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 광주 동서작구역재개발 정비사업 시공사 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20231026800176",
+          "source": "OpenDART 전략공시",
+          "published": "2023.10.26",
+          "summary": "제목: 광주 동서작구역재개발 정비사업 시공사 선정 · 주요내용: 당사는 광주 동서작구역재개발 정비사업 시공사로 선정되었습니다. 1. 선정일자 : 2023.10.26 (목) 2. 공사예정금액... · 이사회결의일(결정일)또는사실확인일: 2023-10-26",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20231026800176",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 옥정~포천 광역철도 2공구 건설공사 실시설계 적격자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20231012800355",
+          "source": "OpenDART 전략공시",
+          "published": "2023.10.12",
+          "summary": "제목: 옥정~포천 광역철도 2공구 건설공사 실시설계 적격자 선정 · 주요내용: 당사는 옥정~포천 광역철도 2공구 건설공사 실시설계 적격자로 선정되었습니다. 1. 선정일자 : 2023.10.12 (목) 2... · 이사회결의일(결정일)또는사실확인일: 2023-10-12",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20231012800355",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 안양 호계동 533-1일원 준공업지역 지식산업센터 신축공사 우선협상대상자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230323801991",
+          "source": "OpenDART 전략공시",
+          "published": "2023.03.23",
+          "summary": "주요내용: 최근매출액 : 1,962,419,334,798원 매출액대비: 약 8.2% · 제목: 안양 호계동 533-1일원 준공업지역 지식산업센터 신축공사 우선협상대상자 선정 · 주요내용: 당사는 안양 호계동 533-1일원 준공업지역 지식산업센터 신축공사 우선협상대상자로 선정되었습니다. 1. 선정일자 : 2023... · 이사회결의일(결정일)또는사실확인일: 2023-03-23",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20230323801991",
+          "report_name": "투자판단관련주요경영사항"
+        }
+      ]
+    },
+    {
+      "company": "디엘이앤씨(주)",
+      "aliases": [
+        "디엘이앤씨(주)",
+        "디엘이앤씨",
+        "주",
+        "DL이앤씨"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "01524093",
+        "corp_name": "DL이앤씨",
+        "corp_eng_name": "DL E&C CO.,LTD.",
+        "stock_code": "375500",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "DL이앤씨"
+      },
+      "articles": [
+        {
+          "title": "그룹/계열거래: 오산랜드마크프로젝트(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260629000577",
+          "source": "OpenDART 전략공시",
+          "published": "2026.06.29",
+          "summary": "회사명: 디엘이앤씨(주) · 거래상대방: 오산랜드마크프로젝트(주) · 다.거래상대방총잔액: 620,000",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260629000577",
+          "report_name": "특수관계인에대한자금대여"
+        },
+        {
+          "title": "투자판단: 목동6단지아파트 재건축정비사업 시공사 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260629800037",
+          "source": "OpenDART 전략공시",
+          "published": "2026.06.29",
+          "summary": "제목: 목동6단지아파트 재건축정비사업 시공사 선정 · 주요내용: 당사는 목동6단지아파트 재건축정비사업의 시공사로 선정되었습니다. - 선정일자 : 2026.06.27 (토) - 예상 공사비... · 이사회결의일(결정일)또는사실확인일: 2026-06-29",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260629800037",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 목동6단지아파트 재건축정비사업 우선협상대상자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260529801693",
+          "source": "OpenDART 전략공시",
+          "published": "2026.05.29",
+          "summary": "제목: 목동6단지아파트 재건축정비사업 우선협상대상자 선정 · 주요내용: 당사는 목동6단지아파트 재건축정비사업의 우선협상대상자로 선정되었습니다. - 예상 공사비 : 1조 2,868억 (VAT 제외)... · 이사회결의일(결정일)또는사실확인일: 2026-05-29",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260529801693",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: \"제주청정에너지 복합화력발전소 건설공사\" 낙찰자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260424800004",
+          "source": "OpenDART 전략공시",
+          "published": "2026.04.24",
+          "summary": "제목: \"제주청정에너지 복합화력발전소 건설공사\" 낙찰자 선정 · 주요내용: - 당사는 \"제주청정에너지 복합화력발전소 건설공사\"에 대한 낙찰자로 선정되었습니다. - 발주처 : 한국동서발전 주식회사 -... · 이사회결의일(결정일)또는사실확인일: 2026-04-23",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260424800004",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 오산오산 1BL, 인천검단 AA31BL, 인천영종 A-57BL 및 A-63BL 통합형 민간참여 공...",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260401801545",
+          "source": "OpenDART 전략공시",
+          "published": "2026.04.01",
+          "summary": "제목: 오산오산 1BL, 인천검단 AA31BL, 인천영종 A-57BL 및 A-63BL 통합형 민간참여 공공주택건설사업 우선협상대상자 선정 · 주요내용: 당사는 오산오산 1BL, 인천검단 AA31BL, 인천영종 A-57BL 및 A-63BL 통합형 민간참여 공공주택건설사업의 우선... · 이사회결의일(결정일)또는사실확인일: 2026-04-01",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260401801545",
+          "report_name": "투자판단관련주요경영사항"
+        }
+      ]
+    },
+    {
+      "company": "롯데건설(주)",
+      "aliases": [
+        "롯데건설(주)",
+        "롯데건설",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00120438",
+        "corp_name": "롯데건설",
+        "corp_eng_name": "LOTTE Engineering & Construction Co.,Ltd",
+        "stock_code": "",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "롯데건설(주)"
+      },
+      "articles": [
+        {
+          "title": "그룹/계열거래: 롯데캐피탈(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250714000415",
+          "source": "OpenDART 전략공시",
+          "published": "2025.07.15",
+          "summary": "회사명: 롯데건설(주) · 거래상대방: 롯데캐피탈(주) · 사.거래상대방총잔액: 165,000",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한담보제공"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20250714000415",
+          "report_name": "특수관계인에대한담보제공"
+        },
+        {
+          "title": "그룹/계열거래: 롯데정밀화학(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250714000405",
+          "source": "OpenDART 전략공시",
+          "published": "2025.07.14",
+          "summary": "회사명: 롯데건설(주) · 거래상대방: 롯데정밀화학(주) · 사.거래상대방총잔액: 240,000",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한담보제공"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20250714000405",
+          "report_name": "특수관계인에대한담보제공"
+        },
+        {
+          "title": "그룹/계열거래: (주)호텔롯데",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250714000395",
+          "source": "OpenDART 전략공시",
+          "published": "2025.07.14",
+          "summary": "회사명: 롯데건설(주) · 거래상대방: (주)호텔롯데 · 사.거래상대방총잔액: 174,000",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한담보제공"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20250714000395",
+          "report_name": "특수관계인에대한담보제공"
+        },
+        {
+          "title": "그룹/계열거래: 롯데물산(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250714000389",
+          "source": "OpenDART 전략공시",
+          "published": "2025.07.14",
+          "summary": "회사명: 롯데건설(주) · 거래상대방: 롯데물산(주) · 사.거래상대방총잔액: 232,000",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한담보제공"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20250714000389",
+          "report_name": "특수관계인에대한담보제공"
+        },
+        {
+          "title": "자금조달: 롯데건설 주식회사",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20221222000355",
+          "source": "OpenDART 전략공시",
+          "published": "2022.12.22",
+          "summary": "회사명: 롯데건설 주식회사 · 자금조달의목적: 시설자금 (원)",
+          "primary_category": "financing",
+          "categories": [
+            "dart_strategy",
+            "financing"
+          ],
+          "matched_terms": [
+            "전환사채권발행결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20221222000355",
+          "report_name": "주요사항보고서(전환사채권발행결정)"
+        }
+      ]
+    },
+    {
+      "company": "리뉴어스 주식회사",
+      "aliases": [
+        "리뉴어스 주식회사",
+        "리뉴어스"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "01303612",
+        "corp_name": "리뉴어스",
+        "corp_eng_name": "renewus Co., Ltd.",
+        "stock_code": "",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "리뉴어스 주식회사"
+      },
+      "articles": [
+        {
+          "title": "자금조달: 공시일자",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251121000055",
+          "source": "OpenDART 전략공시",
+          "published": "2025.11.21",
+          "summary": "회사명: 공시일자 · 자금조달의목적: 시설자금 (원)",
+          "primary_category": "financing",
+          "categories": [
+            "dart_strategy",
+            "financing"
+          ],
+          "matched_terms": [
+            "유상증자결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251121000055",
+          "report_name": "유상증자결정"
+        },
+        {
+          "title": "그룹/계열거래: 리뉴에너지충북(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251113000335",
+          "source": "OpenDART 전략공시",
+          "published": "2025.11.13",
+          "summary": "회사명: 리뉴어스(주) · 거래상대방: 리뉴에너지충북(주) · 다.거래상대방총잔액: 41,000",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251113000335",
+          "report_name": "특수관계인에대한자금대여"
+        },
+        {
+          "title": "그룹/계열거래: 리뉴랜드신경주(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251113000326",
+          "source": "OpenDART 전략공시",
+          "published": "2025.11.13",
+          "summary": "회사명: 리뉴어스(주) · 거래상대방: 리뉴랜드신경주(주) · 다.거래상대방총잔액: 105,000",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251113000326",
+          "report_name": "특수관계인에대한자금대여"
+        },
+        {
+          "title": "출자/지분: 리뉴리퀴드호남(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251104000059",
+          "source": "OpenDART 전략공시",
+          "published": "2025.11.04",
+          "summary": "회사명: 리뉴어스(주) · 거래상대방: 리뉴리퀴드호남(주)",
+          "primary_category": "equity_investment",
+          "categories": [
+            "dart_strategy",
+            "equity_investment"
+          ],
+          "matched_terms": [
+            "특수관계인에대한출자"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251104000059",
+          "report_name": "특수관계인에대한출자"
+        },
+        {
+          "title": "그룹/계열거래: (주)삼원이엔티",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240131000240",
+          "source": "OpenDART 전략공시",
+          "published": "2024.01.31",
+          "summary": "회사명: 환경시설관리(주) · 거래상대방: (주)삼원이엔티 · 사.거래상대방총잔액: 112,800",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한담보제공"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20240131000240",
+          "report_name": "특수관계인에대한담보제공"
+        }
+      ]
+    },
+    {
+      "company": "신세계건설(주)",
+      "aliases": [
+        "신세계건설(주)",
+        "신세계건설",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00217947",
+        "corp_name": "신세계건설",
+        "corp_eng_name": "Shinsegae Engineering & Construction C.,Ltd.",
+        "stock_code": "034300",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "신세계건설(주)"
+      },
+      "articles": [
+        {
+          "title": "출자/지분: (주)에스밸류기업구조조정부동산투자회사",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251111000274",
+          "source": "OpenDART 전략공시",
+          "published": "2025.11.11",
+          "summary": "회사명: 신세계건설(주) · 거래상대방: (주)에스밸류기업구조조정부동산투자회사",
+          "primary_category": "equity_investment",
+          "categories": [
+            "dart_strategy",
+            "equity_investment"
+          ],
+          "matched_terms": [
+            "특수관계인에대한출자"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251111000274",
+          "report_name": "특수관계인에대한출자"
+        },
+        {
+          "title": "M&A/구조개편: 회사명(성명)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240829000861",
+          "source": "OpenDART 전략공시",
+          "published": "2024.08.29",
+          "summary": "회사명: 신세계건설(주) · 거래상대방: 회사명(성명)",
+          "primary_category": "ma_restructuring",
+          "categories": [
+            "dart_strategy",
+            "ma_restructuring"
+          ],
+          "matched_terms": [
+            "영업양도결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20240829000861",
+          "report_name": "주요사항보고서(영업양도결정)"
+        },
+        {
+          "title": "그룹/계열거래: (주)신세계아이앤씨",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240119000125",
+          "source": "OpenDART 전략공시",
+          "published": "2024.01.19",
+          "summary": "회사명: 신세계건설(주) · 거래상대방: (주)신세계아이앤씨 · 사.거래상대방총잔액: 72,000",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한담보제공"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20240119000125",
+          "report_name": "특수관계인에대한담보제공"
+        },
+        {
+          "title": "M&A/구조개편: 회사명",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20231114002230",
+          "source": "OpenDART 전략공시",
+          "published": "2023.11.14",
+          "summary": "회사명: 신세계건설(주) · 합병상대회사: 회사명 · 합병이사회결의일: 2023년 11월 14일 · 합병종료보고주주총회갈음이사회결의일: 2024년 01월 26일",
+          "primary_category": "ma_restructuring",
+          "categories": [
+            "dart_strategy",
+            "ma_restructuring"
+          ],
+          "matched_terms": [
+            "회사합병결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20231114002230",
+          "report_name": "주요사항보고서(회사합병결정)"
+        },
+        {
+          "title": "설비/자산투자: 골프코스 증설",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20221219800219",
+          "source": "OpenDART 전략공시",
+          "published": "2022.12.19",
+          "summary": "투자구분: 시설증설 · -투자대상: 골프코스 증설 · 투자금액(원): 85,000,000,000 · 투자목적: 골프장 운영의 효율성 및 수익성 제고",
+          "primary_category": "asset_capex",
+          "categories": [
+            "dart_strategy",
+            "asset_capex"
+          ],
+          "matched_terms": [
+            "신규시설투자등"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20221219800219",
+          "report_name": "신규시설투자등"
+        }
+      ]
+    },
+    {
+      "company": "쌍용건설(주)",
+      "aliases": [
+        "쌍용건설(주)",
+        "쌍용건설",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00138206",
+        "corp_name": "쌍용건설",
+        "corp_eng_name": "Ssangyong Engineering & Construction Co., Ltd.",
+        "stock_code": "012650",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "쌍용건설(주)"
+      },
+      "articles": [
+        {
+          "title": "그룹/계열거래: 글로벌세아(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251230000730",
+          "source": "OpenDART 전략공시",
+          "published": "2025.12.30",
+          "summary": "회사명: 쌍용건설(주) · 거래상대방: 글로벌세아(주) · 다.거래상대방총잔액: 23,500",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251230000730",
+          "report_name": "특수관계인에대한자금대여"
+        },
+        {
+          "title": "자금조달: 공시일자",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250225000665",
+          "source": "OpenDART 전략공시",
+          "published": "2025.02.25",
+          "summary": "회사명: 공시일자 · 자금조달의목적: 시설자금 (원)",
+          "primary_category": "financing",
+          "categories": [
+            "dart_strategy",
+            "financing"
+          ],
+          "matched_terms": [
+            "유상증자결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20250225000665",
+          "report_name": "유상증자결정"
+        }
+      ]
+    },
+    {
+      "company": "에스케이에코플랜트(주)",
+      "aliases": [
+        "에스케이에코플랜트(주)",
+        "에스케이에코플랜트",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00131799",
+        "corp_name": "에스케이에코플랜트",
+        "corp_eng_name": "SK ecoplant Co., Ltd.",
+        "stock_code": "",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "에스케이에코플랜트(주)"
+      },
+      "articles": [
+        {
+          "title": "출자/지분: 에스케이에코엔지니어링(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260306000287",
+          "source": "OpenDART 전략공시",
+          "published": "2026.03.06",
+          "summary": "회사명: 에스케이에코플랜트(주) · 거래상대방: 에스케이에코엔지니어링(주)",
+          "primary_category": "equity_investment",
+          "categories": [
+            "dart_strategy",
+            "equity_investment"
+          ],
+          "matched_terms": [
+            "특수관계인에대한출자"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260306000287",
+          "report_name": "특수관계인에대한출자"
+        },
+        {
+          "title": "출자/지분: 성주테크(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260130000293",
+          "source": "OpenDART 전략공시",
+          "published": "2026.01.30",
+          "summary": "회사명: 에스케이에코플랜트(주) · 거래상대방: 성주테크(주)",
+          "primary_category": "equity_investment",
+          "categories": [
+            "dart_strategy",
+            "equity_investment"
+          ],
+          "matched_terms": [
+            "특수관계인에대한출자"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260130000293",
+          "report_name": "특수관계인에대한출자"
+        },
+        {
+          "title": "자금조달: 에스케이에코플랜트(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251030000496",
+          "source": "OpenDART 전략공시",
+          "published": "2025.10.30",
+          "summary": "기타투자판단에참고할사항-(2)전환조건: 전환비율 및 전환가액 변경 · 타법인증권취득자금: Econovation,LLC (미국) · 타법인증권취득자금: Ecoplant HoldingMalaysia Sdn. Bhd.(말레이시아) · 회사명: 에스케이에코플랜트(주)",
+          "primary_category": "financing",
+          "categories": [
+            "dart_strategy",
+            "financing"
+          ],
+          "matched_terms": [
+            "유상증자결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251030000496",
+          "report_name": "주요사항보고서(유상증자결정)"
+        },
+        {
+          "title": "출자/지분: 공시일자",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250716000306",
+          "source": "OpenDART 전략공시",
+          "published": "2025.07.16",
+          "summary": "회사명: 공시일자 · 회사명(국적): 대표이사",
+          "primary_category": "equity_investment",
+          "categories": [
+            "dart_strategy",
+            "equity_investment"
+          ],
+          "matched_terms": [
+            "타법인주식및출자증권처분결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20250716000306",
+          "report_name": "타법인주식및출자증권처분결정"
+        },
+        {
+          "title": "그룹/계열거래: 리뉴어스(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240909000179",
+          "source": "OpenDART 전략공시",
+          "published": "2024.09.09",
+          "summary": "회사명: 에스케이에코플랜트(주) · 거래상대방: 리뉴어스(주) · 다.거래상대방총잔액: 86,845",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20240909000179",
+          "report_name": "특수관계인에대한자금대여"
+        }
+      ]
+    },
+    {
+      "company": "코오롱글로벌(주)",
+      "aliases": [
+        "코오롱글로벌(주)",
+        "코오롱글로벌",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00152880",
+        "corp_name": "코오롱글로벌",
+        "corp_eng_name": "KolonGlobalCorporation CO.,LTD",
+        "stock_code": "003070",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "코오롱글로벌(주)"
+      },
+      "articles": [
+        {
+          "title": "설비/자산투자: 재무구조 개선 및 유동성 확보",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251224800608",
+          "source": "OpenDART 전략공시",
+          "published": "2025.12.24",
+          "summary": "처분금액(원): 135,982,302,655 · 처분목적: 재무구조 개선 및 유동성 확보 · 이사회결의일(결정일): 2025-12-24",
+          "primary_category": "asset_capex",
+          "categories": [
+            "dart_strategy",
+            "asset_capex"
+          ],
+          "matched_terms": [
+            "유형자산처분결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251224800608",
+          "report_name": "유형자산처분결정"
+        },
+        {
+          "title": "M&A/구조개편: 회사명",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250929000321",
+          "source": "OpenDART 전략공시",
+          "published": "2025.09.29",
+          "summary": "기타투자판단과관련한중요사항: 일정 변경에따른 기재 정정 및 추가기재 · 합병결정이사회결의일: 2025-07-01 · 회사명: 코오롱글로벌 주식회사 · 합병상대회사: 회사명",
+          "primary_category": "ma_restructuring",
+          "categories": [
+            "dart_strategy",
+            "ma_restructuring"
+          ],
+          "matched_terms": [
+            "회사합병결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20250929000321",
+          "report_name": "주요사항보고서(회사합병결정)"
+        },
+        {
+          "title": "투자판단: 고속국도 제30호 서산~영덕선 대산~당진간 건설공사(제1공구) 낙찰예정자 결정 통보",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240313801646",
+          "source": "OpenDART 전략공시",
+          "published": "2024.03.13",
+          "summary": "제목: 고속국도 제30호 서산~영덕선 대산~당진간 건설공사(제1공구) 낙찰예정자 결정 통보 · 주요내용: 당사는 고속국도 제30호 서산~영덕선 대산~당진간 건설공사(제1공구)의 낙찰예정자로 선정되었습니다. 1. 공사개요: 충청남도... · 이사회결의일(결정일)또는사실확인일: 2024-03-13",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20240313801646",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 경기고양 기업성장센터 건립사업 우선협상대상자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230925800410",
+          "source": "OpenDART 전략공시",
+          "published": "2023.09.25",
+          "summary": "제목: 경기고양 기업성장센터 건립사업 우선협상대상자 선정 · 주요내용: 당사가 주관한 코오롱글로벌(주) 컨소시엄은 경기고양 기업성장센터 건립사업 우선협상대상자로 선정되었습니다. 1. 공사개요: 경... · 이사회결의일(결정일)또는사실확인일: 2023-09-25",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20230925800410",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "설비/자산투자: 투자 및 임대수익 위한 부동산 취득",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230830800486",
+          "source": "OpenDART 전략공시",
+          "published": "2023.08.30",
+          "summary": "취득목적: 투자 및 임대수익 위한 부동산 취득 · 취득예정일자: 2023-08-30 · 이사회결의일(결정일): 2023-08-30",
+          "primary_category": "asset_capex",
+          "categories": [
+            "dart_strategy",
+            "asset_capex"
+          ],
+          "matched_terms": [
+            "유형자산취득결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20230830800486",
+          "report_name": "유형자산취득결정"
+        }
+      ]
+    },
+    {
+      "company": "한신공영(주)",
+      "aliases": [
+        "한신공영(주)",
+        "한신공영",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00162063",
+        "corp_name": "한신공영",
+        "corp_eng_name": "HANSHIN CONSTRUCTION CO.,LTD",
+        "stock_code": "004960",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "한신공영(주)"
+      },
+      "articles": [
+        {
+          "title": "투자판단: 제천~영월간 고속국도 건설공사 제5공구 낙찰자 결정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260617800652",
+          "source": "OpenDART 전략공시",
+          "published": "2026.06.17",
+          "summary": "제목: 제천~영월간 고속국도 건설공사 제5공구 낙찰자 결정 · 주요내용: 당사는 아래와 같이 2026년 6월 17일, 한국도로공사가 발주한 제천~영월간 고속국도 건설공사 제5공구의 최종 종합심사 결... · 이사회결의일(결정일)또는사실확인일: 2026-06-17",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260617800652",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 시흥1동 864-1일대 가로주택정비사업 시공자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251103800292",
+          "source": "OpenDART 전략공시",
+          "published": "2025.11.03",
+          "summary": "제목: 시흥1동 864-1일대 가로주택정비사업 시공자 선정 · 주요내용: 당사는 아래와 같이 2025년 11월 1일, 시흥1동 864-1일대 가로주택정비사업조합이 발주한 시흥1동 864-1일대 가로... · 이사회결의일(결정일)또는사실확인일: 2025-11-03",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251103800292",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 시흥1동 859일대 가로주택정비사업 시공자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251103800286",
+          "source": "OpenDART 전략공시",
+          "published": "2025.11.03",
+          "summary": "제목: 시흥1동 859일대 가로주택정비사업 시공자 선정 · 주요내용: 당사는 아래와 같이 2025년 11월 1일, 시흥1동 859일대 가로주택정비사업조합이 발주한 시흥1동 859일대 가로주택정비... · 이사회결의일(결정일)또는사실확인일: 2025-11-03",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251103800286",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 대조동 A3구역 가로주택정비사업 시공자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250929800107",
+          "source": "OpenDART 전략공시",
+          "published": "2025.09.29",
+          "summary": "제목: 대조동 A3구역 가로주택정비사업 시공자 선정 · 주요내용: 당사는 아래와 같이 2025년 9월 27일, 대조동 A3구역 가로주택정비사업조합이 발주한 대조동 A3구역 가로주택정비사업(서... · 이사회결의일(결정일)또는사실확인일: 2025-09-29",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20250929800107",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "출자/지분: 경상남도 양산시 양산한신더휴의 공동주택을 매입하여 임대하는 사업을 추진하기 위하여 설립된 기업구조...",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250805800461",
+          "source": "OpenDART 전략공시",
+          "published": "2025.08.05",
+          "summary": "회사명: 주식회사 제이비와이에스케이제3호기업구조조정부동산투자회사 · 주요사업: 부동산업 · 취득금액(원): 27,700,000,000 · 취득방법: 현금취득",
+          "primary_category": "equity_investment",
+          "categories": [
+            "dart_strategy",
+            "equity_investment"
+          ],
+          "matched_terms": [
+            "타법인주식및출자증권취득결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20250805800461",
+          "report_name": "타법인주식및출자증권취득결정"
+        }
+      ]
+    },
+    {
+      "company": "현대건설(주)",
+      "aliases": [
+        "현대건설(주)",
+        "현대건설",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "00164478",
+        "corp_name": "현대건설",
+        "corp_eng_name": "HYUNDAI ENGINEERING & CONSTRUCTION CO.,LTD",
+        "stock_code": "000720",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "현대건설(주)"
+      },
+      "articles": [
+        {
+          "title": "자금조달: 현대건설 주식회사",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260609000517",
+          "source": "OpenDART 전략공시",
+          "published": "2026.06.09",
+          "summary": "회사명: 현대건설 주식회사 · 자금조달의목적: 시설자금 (원)",
+          "primary_category": "financing",
+          "categories": [
+            "dart_strategy",
+            "financing"
+          ],
+          "matched_terms": [
+            "전환사채권발행결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260609000517",
+          "report_name": "주요사항보고서(전환사채권발행결정)"
+        },
+        {
+          "title": "투자판단: 압구정아파트지구 특별계획구역5 재건축정비사업 시공자선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601800132",
+          "source": "OpenDART 전략공시",
+          "published": "2026.06.01",
+          "summary": "제목: 압구정아파트지구 특별계획구역5 재건축정비사업 시공자선정 · 주요내용: - 당사는 아래와 같이 2026년 5월 30일 압구정아파트지구 특별계획구역5 재건축정비사업의 시공자로 선정되었습니다. - 아... · 이사회결의일(결정일)또는사실확인일: 2026-06-01",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260601800132",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 압구정아파트지구 특별계획구역3 재건축정비사업 시공자선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260526800002",
+          "source": "OpenDART 전략공시",
+          "published": "2026.05.26",
+          "summary": "제목: 압구정아파트지구 특별계획구역3 재건축정비사업 시공자선정 · 주요내용: - 당사는 아래와 같이 2026년 5월 25일 압구정아파트지구 특별계획구역3 재건축정비사업의 시공자로 선정되었습니다. - 아... · 이사회결의일(결정일)또는사실확인일: 2026-05-25",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260526800002",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: EPC 프로젝트 우선협상대상자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251215800893",
+          "source": "OpenDART 전략공시",
+          "published": "2025.12.15",
+          "summary": "제목: EPC 프로젝트 우선협상대상자 선정 · 주요내용: 현대건설은 계약금액이 최근 매출액의 2.5% 이상에 해당하는 EPC프로젝트에 대해 우선협상대상자로 선정되었습니다. · 이사회결의일(결정일)또는사실확인일: 2025-12-15",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251215800893",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 장위15구역 재개발정비사업 시공자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251201800008",
+          "source": "OpenDART 전략공시",
+          "published": "2025.12.01",
+          "summary": "제목: 장위15구역 재개발정비사업 시공자 선정 · 주요내용: - 현대건설은 아래와 같이 2025년 11월 29일, 장위15구역 재개발정비사업조합이 발주한 장위15구역 재개발정비사업의 시... · 이사회결의일(결정일)또는사실확인일: 2025-11-29",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251201800008",
+          "report_name": "투자판단관련주요경영사항"
+        }
+      ]
+    },
+    {
+      "company": "효성중공업(주)",
+      "aliases": [
+        "효성중공업(주)",
+        "효성중공업",
+        "주"
+      ],
+      "source_name": "OpenDART 전략공시",
+      "source_url": "https://opendart.fss.or.kr/",
+      "dart": {
+        "corp_code": "01316245",
+        "corp_name": "효성중공업",
+        "corp_eng_name": "Hyosung Heavy Industries Corporation",
+        "stock_code": "298040",
+        "match_score": 1.0,
+        "match_method": "exact",
+        "alias_used": "효성중공업(주)"
+      },
+      "articles": [
+        {
+          "title": "투자판단: 초고압변압기, 리액터 등 전력기기 장기공급 기본계약 체결",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260702800001",
+          "source": "OpenDART 전략공시",
+          "published": "2026.07.02",
+          "summary": "제목: 초고압변압기, 리액터 등 전력기기 장기공급 기본계약 체결 · 주요내용: 당사는 호주 오스넷(AusNet)社와 초고압변압기, 리액터 등 전력기기를 호주 주요 지역에 장기 공급하는 기본계약(Frame... · 이사회결의일(결정일)또는사실확인일: 2026-07-01",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260702800001",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 성남~서초 고속도로 민간투자사업(BTO-a) 우선협상대상자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260623800510",
+          "source": "OpenDART 전략공시",
+          "published": "2026.06.23",
+          "summary": "제목: 성남~서초 고속도로 민간투자사업(BTO-a) 우선협상대상자 선정 · 주요내용: 당사는 \"성남~서초 고속도로 민간투자사업(BTO-a)\"과 관련하여 아래와 같이 우선협상대상자로 선정되었음을 통보받음. -아래... · 이사회결의일(결정일)또는사실확인일: 2026-06-23",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260623800510",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "투자판단: 답십리 자동차 부품상가 도시정비형 재개발 정비사업 시공자 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260511800803",
+          "source": "OpenDART 전략공시",
+          "published": "2026.05.11",
+          "summary": "제목: 답십리 자동차 부품상가 도시정비형 재개발 정비사업 시공자 선정 · 주요내용: 당사는 \"답십리 자동차 부품상가 도시정비형 재개발 정비사업\"과 관련하여 아래와 같이 시공자로 선정되었음을 통보받음. -아래-... · 이사회결의일(결정일)또는사실확인일: 2026-05-11",
+          "primary_category": "investment_decision",
+          "categories": [
+            "dart_strategy",
+            "investment_decision"
+          ],
+          "matched_terms": [
+            "투자판단관련주요경영사항"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260511800803",
+          "report_name": "투자판단관련주요경영사항"
+        },
+        {
+          "title": "그룹/계열거래: 그랜드제오차 외 7개社",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251031000407",
+          "source": "OpenDART 전략공시",
+          "published": "2025.10.31",
+          "summary": "회사명: 효성중공업(주) · 거래상대방: 그랜드제오차 외 7개社 · 다.거래상대방총잔액: 332,683 · -당사는2018년6월1일을분할기일로(주)효성의중공업/건설사업부문을인적분할하여설립된신설법인입니다.-본공시는분할전(주)효성이발전사업운영법인에旣대여한대여금의만기연장에대한공시입니다.(변경후만기일2027.02.28)-상기2항의가.거래일자는만기일연장에관한ESG경영위원회의결일입니다.-상기2항의나.거래금액은금번ESG경영위원회를통해만기일연장을승인받은총금액입니다.-상기4항의이사회의결일은ESG경영위원회의결일입니다.-각운영법인별대여금만기연장에대한상세내역은아래와같습니다.거래상대방: 대여금액",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20251031000407",
+          "report_name": "특수관계인에대한자금대여"
+        },
+        {
+          "title": "설비/자산투자: HVDC(초고압 직류송전)용 변압기 공장 신설",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250730800037",
+          "source": "OpenDART 전략공시",
+          "published": "2025.07.30",
+          "summary": "투자구분: 신규시설투자 · -투자대상: HVDC(초고압 직류송전)용 변압기 공장 신설 · 투자금액(원): 253,800,000,000 · 투자목적: HVDC용 변압기 시장 대응을 위한 변압기 공장 신설",
+          "primary_category": "asset_capex",
+          "categories": [
+            "dart_strategy",
+            "asset_capex"
+          ],
+          "matched_terms": [
+            "신규시설투자등"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20250730800037",
+          "report_name": "신규시설투자등"
+        }
+      ]
+    }
+  ]
+}

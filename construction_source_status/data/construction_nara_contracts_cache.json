@@ -1,0 +1,181 @@
+{
+  "generated_at": "2026-07-03 18:36:45 KST",
+  "source_note": "조달청_나라장터 계약정보서비스의 공사 계약현황 조회 결과를 회사명 기준으로 필터링해 생성하는 자동 캐시입니다.",
+  "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+  "query": {
+    "start_date": "202607010000",
+    "end_date": "202607032359",
+    "per_company": 5,
+    "max_pages": 10,
+    "rows_per_page": 100
+  },
+  "status": "ok",
+  "companies": [
+    {
+      "company": "(주)유신",
+      "aliases": [
+        "(주)유신",
+        "유신",
+        "주"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "광석리 34-4번지 외 4개소 배수 시설 개선 공사",
+          "client": "경기도 양주시",
+          "amount": "0.20억원",
+          "category": "수의계약",
+          "date": "2026-07-01",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "20460000"
+        }
+      ]
+    },
+    {
+      "company": "(주)이산",
+      "aliases": [
+        "(주)이산",
+        "이산",
+        "주"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "스무숲2공원 내 시설(퍼걸러) 유지관리를 위한 보수 공사",
+          "client": "강원특별자치도 춘천시",
+          "amount": "0.05억원",
+          "category": "수의계약",
+          "date": "2026-07-01",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "4737600"
+        }
+      ]
+    },
+    {
+      "company": "(주)한화",
+      "aliases": [
+        "(주)한화",
+        "한화",
+        "주"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "송포초등학교 각종 시설물 보수 계약",
+          "client": "경기도고양교육청 송포초등학교",
+          "amount": "0.08억원",
+          "category": "수의계약",
+          "date": "2026-07-01",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "7525000"
+        }
+      ]
+    },
+    {
+      "company": "두산에너빌리티(주)",
+      "aliases": [
+        "두산에너빌리티(주)",
+        "두산에너빌리티",
+        "주"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "대변항 정비사업(5차)",
+          "client": "조달청",
+          "amount": "271억원",
+          "category": "제한경쟁",
+          "date": "2026-07-01",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "27090833000"
+        }
+      ]
+    },
+    {
+      "company": "우미건설(주)",
+      "aliases": [
+        "우미건설(주)",
+        "우미건설",
+        "주"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "2026년 하반기 상수도 긴급누수보수공사(단가계약)(5권역)",
+          "client": "충청남도 보령시 경제도시국 수도과",
+          "amount": "1.15억원",
+          "category": "수의계약",
+          "date": "2026-07-01",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "115062070"
+        },
+        {
+          "project": "자인면 단북리 도로 개설 공사",
+          "client": "경상북도 경산시",
+          "amount": "0.57억원",
+          "category": "수의계약",
+          "date": "2026-07-01",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "56548940"
+        }
+      ]
+    },
+    {
+      "company": "제일건설(주)",
+      "aliases": [
+        "제일건설(주)",
+        "제일건설",
+        "주"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "장천면 묵어리 농로 정비 및 세천 보수 공사",
+          "client": "경상북도 구미시 장천면",
+          "amount": "0.08억원",
+          "category": "수의계약",
+          "date": "2026-06-30",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "7780000"
+        }
+      ]
+    },
+    {
+      "company": "주식회사 서현",
+      "aliases": [
+        "주식회사 서현"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "서울이태원초 외 1교 수전용량증설 전기공사",
+          "client": "서울특별시교육청 서울특별시중부교육지원청",
+          "amount": "0.42억원",
+          "category": "수의계약",
+          "date": "2025-10-21",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "41778000"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "rows_fetched": 1000,
+  "companies_collected": 103,
+  "companies_with_awards": 7
+}

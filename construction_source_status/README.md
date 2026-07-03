@@ -1,0 +1,16 @@
+# Construction Source Status Dashboard
+
+This folder is the tracked bundle for the construction ranking/source-status dashboard.
+
+- `index.html`: deployed static page for GitHub Pages.
+- `data/`: latest JSON snapshots used to build the current page.
+- `scripts/`: source snapshot for the collectors and HTML builder used in this refresh.
+
+Operational refresh normally runs from the repository root with the canonical scripts under `tools/`, then copies the refreshed `outputs/` artifacts back into this folder before committing.
+
+Current refresh snapshot:
+
+- OpenDART awards: 2021-07-03 to 2026-07-03, max 5 per company.
+- OpenDART strategy disclosures: investment, equity/capex, M&A/restructuring, financing, and related-party signals, max 5 per company.
+- Google News RSS: 730-day window, max 5 per company.
+- Dashboard rows render top-30 ranking tables and expandable company detail panels.
