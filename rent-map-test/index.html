@@ -206,7 +206,7 @@
             <div class="legendLabels"><span id="legendMin"></span><span id="legendP97"></span><span id="legendMax"></span></div>
             <div class="caseLegend"><span class="caseGlyph"></span><span>굵은 막대는 해당 분기 실제 임대사례 연결</span></div>
             <div class="caseLegend"><span class="transactionGlyph"></span><span>보라색 포인트는 해당 분기 매매사례 위치</span></div>
-            <div class="hint">색은 NOC 수준, 높이는 실제 관측 NOC입니다. 표면은 권역 흐름을 보는 보간값이고, 막대가 실제 관측 건물입니다.</div>
+            <div class="hint">색은 NOC 수준, 높이는 최저 관측값 근처를 기준선으로 둔 실제 관측 NOC입니다. 표면은 권역 흐름을 보는 보간값이고, 막대가 실제 관측 건물입니다.</div>
           </section>
         </div>
         <div class="panelSection">
@@ -287,6 +287,7 @@
     const columnZoomMaxScale = 1.02;
     const highTailVisualStart = 0.86;
     const highTailCurve = 0.72;
+    const heightCurve = 1.08;
     const transactionColor = 0x7c3aed;
     const transactionHaloColor = 0xc4b5fd;
     let lastColumnVisualScale = null;
@@ -469,9 +470,27 @@
       return domain.min + (n / (upper || 1)) * (domain.p97 - domain.min);
     }
 
+    function heightDomain() {
+      const domain = data.meta.heightDomain || {};
+      const valueDomain = data.meta.valueDomain || {};
+      const observedMin = Number.isFinite(Number(domain.min))
+        ? Number(domain.min)
+        : (Number.isFinite(Number(valueDomain.min)) ? Number(valueDomain.min) : Number(valueDomain.p03) || 0);
+      const fallbackBaseline = Math.max(0, observedMin * 0.92);
+      const baseline = Number.isFinite(Number(domain.baseline)) ? Number(domain.baseline) : fallbackBaseline;
+      const maxCandidate = Number.isFinite(Number(domain.max)) ? Number(domain.max) : Number(valueDomain.max);
+      const max = Math.max(Number.isFinite(maxCandidate) ? maxCandidate : baseline + 1, baseline + 1);
+      return { baseline, max };
+    }
+
+    function normalizeHeight(value) {
+      const domain = heightDomain();
+      return THREE.MathUtils.clamp((value - domain.baseline) / (domain.max - domain.baseline || 1), 0, 1);
+    }
+
     function height(value) {
-      const n = normalize(value);
-      return 10 + Math.pow(n, 1.35) * heightScale;
+      const n = normalizeHeight(value);
+      return 10 + Math.pow(n, heightCurve) * heightScale;
     }
 
     function columnBaseHeight(value) {
@@ -479,10 +498,10 @@
     }
 
     function columnHeightEmphasis(point) {
-      const n = normalize(point.noc);
+      const n = normalizeHeight(point.noc);
       const stats = periodStats().points;
       const topDecile = Number.isFinite(stats.p90) && point.noc >= stats.p90;
-      return 0.98 + Math.pow(n, 1.7) * 0.11 + (topDecile ? 0.15 : 0);
+      return 0.96 + Math.pow(n, 1.55) * 0.16 + (topDecile ? 0.17 : 0);
     }
 
     function columnRadiusEmphasis(point) {
@@ -754,7 +773,7 @@
         const info = rowExtraInfo(row);
         if (info.pnu) buildingByPnu[info.pnu] = info.overview || {};
       }
-      return {
+      return ensureHeightDomain({
         meta: metaInfo.meta,
         grid: metaInfo.grid,
         periods: metaInfo.periods,
@@ -766,7 +785,38 @@
         labels: metaInfo.labels || {},
         referenceLines: metaInfo.referenceLines || [],
         localVector: metaInfo.localVector || { available: false },
+      });
+    }
+
+    function ensureHeightDomain(surfaceData) {
+      const meta = surfaceData.meta || {};
+      const existing = meta.heightDomain || {};
+      if (Number.isFinite(Number(existing.baseline)) && Number.isFinite(Number(existing.max))) {
+        return surfaceData;
+      }
+      const values = [];
+      for (const points of Object.values(surfaceData.pointsByPeriod || {})) {
+        for (const point of points || []) {
+          const value = Number(point.noc);
+          if (Number.isFinite(value) && value > 0) values.push(value);
+        }
+      }
+      const valueDomain = meta.valueDomain || {};
+      const minFromData = values.length ? Math.min(...values) : NaN;
+      const maxFromData = values.length ? Math.max(...values) : NaN;
+      const observedMin = Number.isFinite(Number(valueDomain.min)) ? Number(valueDomain.min) : minFromData;
+      const observedMax = Number.isFinite(Number(valueDomain.max)) ? Number(valueDomain.max) : maxFromData;
+      if (!Number.isFinite(observedMin) || !Number.isFinite(observedMax)) {
+        return surfaceData;
+      }
+      meta.heightDomain = {
+        baseline: Math.max(0, observedMin * 0.92),
+        min: observedMin,
+        max: Math.max(observedMax, observedMin + 1),
+        mode: "client_truncated_observed_min",
       };
+      surfaceData.meta = meta;
+      return surfaceData;
     }
 
     async function loadSurfaceData() {
@@ -793,13 +843,16 @@
       }
       const localData = await fetch(`${DATA_URL}?v=${Date.now()}`).then(r => r.json());
       localData.meta.sourceMode = "local_json";
-      return localData;
+      return ensureHeightDomain(localData);
     }
 
     async function boot() {
       data = await loadSurfaceData();
       window.rentMapData = data;
       document.body.dataset.sourceMode = data.meta.sourceMode || "";
+      document.body.dataset.heightBaseline = String(data.meta.heightDomain?.baseline ?? "");
+      document.body.dataset.heightMin = String(data.meta.heightDomain?.min ?? "");
+      document.body.dataset.heightMax = String(data.meta.heightDomain?.max ?? "");
       document.getElementById("legendMin").textContent = `P03 ${fmt.format(data.meta.valueDomain.p03)}`;
       document.getElementById("legendP97").textContent = `P97 ${fmt.format(data.meta.valueDomain.p97)}`;
       document.getElementById("legendMax").textContent = `Max ${fmt.format(data.meta.valueDomain.max)}`;
