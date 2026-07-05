@@ -1333,7 +1333,8 @@ body.left-panel-collapsed .right-panel {
 }
 
 .vehicle-beneficiary-row td {
-  background: #fffdf7;
+  background: rgba(251, 241, 103, 0.04) !important;
+  color: var(--text) !important;
 }
 
 .vehicle-badge {
@@ -1341,16 +1342,17 @@ body.left-panel-collapsed .right-panel {
   align-items: center;
   padding: 3px 8px;
   border-radius: 999px;
-  background: #fff7ed;
-  color: #9a3412;
+  background: rgba(251, 146, 60, 0.13);
+  color: #fdba74;
+  border: 1px solid rgba(251, 146, 60, 0.24);
   font-size: 11px;
   font-weight: 800;
 }
 
 .lookthrough-btn {
-  border: 1px solid #c7d2fe;
-  background: #eef2ff;
-  color: #4338ca;
+  border: 1px solid rgba(41, 151, 255, 0.42);
+  background: rgba(41, 151, 255, 0.13);
+  color: #9fd0ff;
   border-radius: 8px;
   padding: 6px 10px;
   font-size: 11px;
@@ -1359,8 +1361,8 @@ body.left-panel-collapsed .right-panel {
 }
 
 .lookthrough-btn:hover {
-  background: #e0e7ff;
-  border-color: #818cf8;
+  background: rgba(41, 151, 255, 0.2);
+  border-color: rgba(41, 151, 255, 0.65);
 }
 
 .asset-modal-overlay {
