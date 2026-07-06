@@ -131,6 +131,7 @@
     .caseGlyph::before { width: 3px; height: 12px; opacity: 0.55; }
     .caseGlyph::after { width: 6px; height: 17px; opacity: 0.95; }
     .transactionGlyph { width: 13px; height: 13px; border-radius: 999px; background: #7c3aed; box-shadow: 0 0 0 4px rgba(124,58,237,0.20); display: inline-block; flex: 0 0 auto; }
+    .clusterGlyph { width: 18px; height: 13px; border-radius: 999px 999px 8px 8px; background: rgba(254,237,165,0.88); border: 1px solid rgba(30,58,138,0.72); box-shadow: 0 2px 5px rgba(30,58,138,0.18); display: inline-block; flex: 0 0 auto; }
     .ownedAssetGlyph { position: relative; width: 16px; height: 14px; display: inline-block; flex: 0 0 auto; filter: drop-shadow(0 1px 2px rgba(15,23,42,0.18)); }
     .ownedAssetGlyph::before { content: ""; position: absolute; inset: 0; background: #1e3a8a; clip-path: polygon(50% 100%, 0 0, 100% 0); }
     .ownedAssetGlyph::after { content: ""; position: absolute; left: 3px; top: 2px; width: 10px; height: 9px; background: #fef3c7; clip-path: polygon(50% 100%, 0 0, 100% 0); }
@@ -221,6 +222,7 @@
             <div class="legendLabels"><span id="legendMin"></span><span id="legendP97"></span><span id="legendMax"></span></div>
             <div class="caseLegend"><span class="caseGlyph"></span><span>굵은 막대: 임대사례 연결</span></div>
             <div class="caseLegend"><span class="transactionGlyph"></span><span>보라색 포인트: 매매사례</span></div>
+            <div class="caseLegend"><span class="clusterGlyph"></span><span>구름형 버블: 줌아웃 클러스터 건수</span></div>
             <div class="caseLegend"><span class="ownedAssetGlyph"></span><span>하향 삼각형: 포트폴리오 자산 위치</span></div>
             <div class="hint">색=NOC 수준, 높이=절단축 NOC. 표면은 보간 흐름, 막대는 실제 관측 건물입니다.</div>
           </section>
@@ -2227,7 +2229,7 @@
     }
 
     function clusterBaseScale(count) {
-      return 0.30 + Math.min(0.12, Math.log(Math.max(1, count)) / Math.log(10) * 0.05);
+      return 0.42 + Math.min(0.18, Math.log(Math.max(1, count)) / Math.log(10) * 0.07);
     }
 
     function clusterBubbleTexture(kind, count) {
@@ -2236,30 +2238,52 @@
       if (clusterBubbleTexture.cache.has(cacheKey)) return clusterBubbleTexture.cache.get(cacheKey);
 
       const canvas = document.createElement("canvas");
-      canvas.width = 96;
-      canvas.height = 96;
+      canvas.width = 160;
+      canvas.height = 118;
       const ctx = canvas.getContext("2d");
       const isTransaction = kind === "transaction";
-      const fill = isTransaction ? "rgba(245,243,255,0.96)" : "rgba(254,243,199,0.97)";
-      const stroke = isTransaction ? "rgba(109,40,217,0.98)" : "rgba(30,58,138,0.98)";
-      const shadow = isTransaction ? "rgba(88,28,135,0.22)" : "rgba(15,23,42,0.20)";
+      const fill = isTransaction ? "rgba(244,232,255,0.74)" : "rgba(255,246,205,0.76)";
+      const fillStrong = isTransaction ? "rgba(238,214,255,0.92)" : "rgba(254,237,165,0.94)";
+      const stroke = isTransaction ? "rgba(109,40,217,0.78)" : "rgba(30,58,138,0.82)";
+      const text = isTransaction ? "rgba(82,24,132,0.98)" : "rgba(18,43,105,0.98)";
+      const shadow = isTransaction ? "rgba(88,28,135,0.22)" : "rgba(30,58,138,0.20)";
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.shadowColor = shadow;
-      ctx.shadowBlur = 8;
-      ctx.shadowOffsetY = 3;
-      ctx.fillStyle = fill;
+      ctx.shadowBlur = 16;
+      ctx.shadowOffsetY = 5;
       ctx.strokeStyle = stroke;
-      ctx.lineWidth = 6;
+      ctx.lineWidth = 4.5;
+
+      const cloud = new Path2D();
+      cloud.moveTo(33, 79);
+      cloud.bezierCurveTo(15, 79, 12, 55, 31, 49);
+      cloud.bezierCurveTo(32, 31, 52, 23, 67, 33);
+      cloud.bezierCurveTo(78, 12, 112, 18, 116, 42);
+      cloud.bezierCurveTo(138, 39, 151, 55, 144, 73);
+      cloud.bezierCurveTo(139, 89, 118, 91, 103, 86);
+      cloud.bezierCurveTo(87, 96, 59, 96, 49, 84);
+      cloud.bezierCurveTo(44, 88, 38, 89, 33, 79);
+      cloud.closePath();
+
+      const haze = ctx.createRadialGradient(80, 60, 18, 80, 60, 74);
+      haze.addColorStop(0, fillStrong);
+      haze.addColorStop(0.55, fill);
+      haze.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.fillStyle = haze;
       ctx.beginPath();
-      ctx.arc(48, 48, 34, 0, Math.PI * 2);
+      ctx.ellipse(80, 62, 74, 44, 0, 0, Math.PI * 2);
       ctx.fill();
+
+      ctx.fillStyle = fillStrong;
+      ctx.fill(cloud);
       ctx.shadowColor = "rgba(0,0,0,0)";
-      ctx.stroke();
-      ctx.fillStyle = stroke;
-      ctx.font = `800 ${count >= 100 ? 25 : 31}px Arial, Noto Sans KR, sans-serif`;
+      ctx.stroke(cloud);
+
+      ctx.fillStyle = text;
+      ctx.font = `900 ${count >= 100 ? 34 : 40}px Arial, Noto Sans KR, sans-serif`;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillText(String(count), 48, 49);
+      ctx.fillText(String(count), 80, 62);
 
       const texture = new THREE.CanvasTexture(canvas);
       clusterBubbleTexture.cache.set(cacheKey, texture);
@@ -2298,16 +2322,16 @@
       const sprite = new THREE.Sprite(new THREE.SpriteMaterial({
         map: texture,
         transparent: true,
-        opacity: cluster.count > 1 ? 0.96 : 0.84,
-        depthTest: false,
+        opacity: cluster.count > 1 ? 0.88 : 0.72,
+        depthTest: true,
         depthWrite: false,
       }));
-      sprite.position.set(sx(cluster.x), columnGroundY + 20, sz(cluster.y));
+      sprite.position.set(sx(cluster.x), columnGroundY + 4.2, sz(cluster.y));
       sprite.userData.markerCluster = cluster;
-      sprite.userData.canvasWidth = 96;
-      sprite.userData.canvasHeight = 96;
+      sprite.userData.canvasWidth = 160;
+      sprite.userData.canvasHeight = 118;
       sprite.userData.baseScale = clusterBaseScale(cluster.count);
-      sprite.renderOrder = cluster.kind === "transaction" ? 36 : 37;
+      sprite.renderOrder = cluster.kind === "transaction" ? 18 : 19;
       return sprite;
     }
 
