@@ -952,23 +952,47 @@ def parse_recent_item_date(value: Any) -> datetime | None:
         return None
 
 
-def row_has_recent_update(row: dict[str, Any], days: int = 31) -> bool:
+def recent_update_reasons(row: dict[str, Any], days: int = 31) -> list[tuple[datetime, str]]:
     cutoff = datetime.now(KST) - timedelta(days=days)
     company_key = normalize_award_company(row.get("company"))
     comment_source = PDF_COMMENTS.get("source") or {}
+    reasons: list[tuple[datetime, str]] = []
+
+    def add_reason(item_date: datetime | None, kind: str, title: Any = "") -> None:
+        if not item_date or item_date < cutoff:
+            return
+        date_text = item_date.strftime("%Y-%m-%d")
+        title_text = compact_text(title)
+        if len(title_text) > 34:
+            title_text = f"{title_text[:34]}..."
+        label = f"{kind} {date_text}"
+        if title_text:
+            label = f"{label}: {title_text}"
+        reasons.append((item_date, label))
+
     for comment in get_pdf_comments(company_key):
         item_date = parse_recent_item_date(comment.get("date") or comment_source.get("date"))
-        if item_date and item_date >= cutoff:
-            return True
+        add_reason(item_date, "Comment", comment.get("body") or comment.get("summary"))
     for award in row.get("recent_awards") or []:
         item_date = parse_recent_item_date(award.get("date"))
-        if item_date and item_date >= cutoff:
-            return True
+        add_reason(item_date, "수주", award.get("project") or award.get("title") or award.get("client"))
     for article in row.get("related_articles") or []:
         item_date = parse_recent_item_date(article.get("published"))
-        if item_date and item_date >= cutoff:
-            return True
-    return False
+        source = compact_text(article.get("source"))
+        kind = "전략공시" if "OpenDART" in source else "기사/전략"
+        add_reason(item_date, kind, article.get("title"))
+    return sorted(reasons, key=lambda item: item[0], reverse=True)
+
+
+def row_has_recent_update(row: dict[str, Any], days: int = 31) -> bool:
+    return bool(recent_update_reasons(row, days))
+
+
+def recent_update_title(row: dict[str, Any], days: int = 31) -> str:
+    reasons = recent_update_reasons(row, days)
+    if not reasons:
+        return "최근 1개월 내 업데이트 없음"
+    return "최근 업데이트: " + " / ".join(label for _, label in reasons[:3])
 
 
 def add_status_column(columns: list[tuple[str, str, str]]) -> list[tuple[str, str, str]]:
@@ -1004,7 +1028,8 @@ def render_recent_update(row: dict[str, Any]) -> str:
     comment_key = f"company-comment:{company_key}"
     new_badge = ""
     if row_has_recent_update(row):
-        new_badge = '<span class="new-badge" title="최근 1개월 내 업데이트">N</span>'
+        title = html.escape(recent_update_title(row), quote=True)
+        new_badge = f'<span class="new-badge" title="{title}" aria-label="{title}">N</span>'
     return (
         f'<div class="update-status" data-comment-key="{html.escape(comment_key)}">'
         f"{new_badge}</div>"
@@ -2724,7 +2749,8 @@ def render_html(data: dict[str, Any]) -> str:
       if (status.querySelector(".new-badge")) return;
       const badge = document.createElement("span");
       badge.className = "new-badge";
-      badge.title = "최근 1개월 내 업데이트";
+      badge.title = "최근 업데이트: Comment";
+      badge.setAttribute("aria-label", "최근 업데이트: Comment");
       badge.textContent = "N";
       status.appendChild(badge);
     }}
