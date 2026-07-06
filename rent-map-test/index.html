@@ -311,6 +311,7 @@
     const tileSize = 256;
     const focusTileSize = 512;
     const autoFocusMapMaxDistance = 620;
+    const closeFocusExitDistance = autoFocusMapMaxDistance;
     const mapProviders = {
       carto: {
         label: "CARTO / OSM",
@@ -917,6 +918,10 @@
       const qaAutoFocus = Number(new URLSearchParams(window.location.search).get("qaAutoFocus"));
       if (Number.isFinite(qaAutoFocus) && qaAutoFocus > 0) {
         window.setTimeout(() => window.rentMapDebug.triggerViewportFocus(qaAutoFocus), 300);
+      }
+      const qaReviewExit = Number(new URLSearchParams(window.location.search).get("qaReviewExit"));
+      if (Number.isFinite(qaReviewExit) && qaReviewExit > 0) {
+        window.setTimeout(() => window.rentMapDebug.triggerReviewExit(qaReviewExit), 500);
       }
       animate();
     }
@@ -2372,6 +2377,7 @@
 
     function setCloseFocusMode(enabled) {
       reviewMode = Boolean(enabled);
+      document.body.dataset.reviewMode = reviewMode ? "true" : "false";
       if (surface) surface.visible = enabled ? false : toggleSurface.checked;
       if (surface && surface.material) surface.material.opacity = enabled ? 0.08 : 0.58;
       if (highContourGroup) highContourGroup.visible = enabled ? false : toggleSurface.checked;
@@ -2393,8 +2399,12 @@
         labelGroup.visible = toggleLabels.checked;
         referenceGroup.visible = toggleLabels.checked;
         if (contextLabelGroup) contextLabelGroup.visible = false;
-        updateLabelScale(true);
+      } else {
+        if (labelGroup) labelGroup.visible = toggleLabels.checked;
+        if (referenceGroup) referenceGroup.visible = toggleLabels.checked;
+        if (contextLabelGroup) contextLabelGroup.visible = false;
       }
+      updateLabelScale(true);
       updateLocalVectorVisibility();
     }
 
@@ -2784,6 +2794,21 @@
           refreshFocusMapForCamera();
           return this.focusMapState();
         },
+        triggerReviewExit(distance = 1250) {
+          const point = currentPoints[0];
+          if (!point || !camera || !controls) return null;
+          selectPoint(point, { zoom: true });
+          window.setTimeout(() => {
+            const target = controls.target.clone();
+            camera.position.set(target.x + distance * 0.62, Math.max(260, distance * 0.46), target.z + distance * 0.72);
+            controls.update();
+            lastFocusMapCheckAt = 0;
+            refreshFocusMapForCamera();
+            updateLabelScale(true);
+            updateSelectionClearButton();
+          }, 450);
+          return this.focusMapState();
+        },
       };
     }
 
@@ -2794,7 +2819,10 @@
       lastFocusMapCheckAt = now;
       const distance = camera.position.distanceTo(controls.target);
       document.body.dataset.cameraDistance = String(Math.round(distance));
-      if (distance > autoFocusMapMaxDistance && !reviewMode) {
+      if (reviewMode && distance > closeFocusExitDistance) {
+        setCloseFocusMode(false);
+      }
+      if (distance > autoFocusMapMaxDistance) {
         if (focusMapPlane || focusMapPendingKey) clearFocusMap();
         return;
       }
