@@ -1403,7 +1403,7 @@ def render_html(data: dict[str, Any]) -> str:
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: "Segoe UI", "Malgun Gothic", Arial, sans-serif;
+      font-family: var(--font, "Segoe UI", "Malgun Gothic", Arial, sans-serif);
       color: var(--ink);
       background: var(--band);
       line-height: 1.45;
@@ -1923,6 +1923,7 @@ def render_html(data: dict[str, Any]) -> str:
       resize: vertical;
       border: 1px solid #cad5dd;
       border-radius: 6px;
+      background: var(--paper);
       padding: 8px 10px;
       color: var(--ink);
       font: inherit;
@@ -2066,6 +2067,7 @@ def render_html(data: dict[str, Any]) -> str:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>건설·CM·엔지니어링 순위/실적 대시보드</title>
+  <link rel="stylesheet" href="../shared/ifpdp-system-theme.css?v=ifpdp_system_3">
   <style>{css}</style>
 </head>
 <body>
