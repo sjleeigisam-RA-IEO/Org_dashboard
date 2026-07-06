@@ -1129,7 +1129,6 @@ def render_detail_panel(row: dict[str, Any], fields: list[tuple[str, str, str]])
     <div class="detail-summary">
       <dl class="detail-grid">{"".join(items)}</dl>
     </div>
-    {render_credit_rating(row)}
     <div class="detail-split">
       {render_recent_awards(row)}
       {render_related_articles(row)}
