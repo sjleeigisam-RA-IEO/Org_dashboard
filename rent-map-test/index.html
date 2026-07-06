@@ -25,39 +25,43 @@
       border: 1px solid rgba(216, 221, 230, 0.72); border-radius: 8px; box-shadow: 0 12px 30px rgba(0,0,0,0.14);
     }
     .leftDock {
-      position: fixed; left: 14px; top: 14px; bottom: 14px; width: 386px; z-index: 4; padding: 0;
+      position: fixed; left: 14px; top: 14px; width: 374px; max-height: calc(100vh - 28px); z-index: 4; padding: 0;
       display: grid; grid-template-rows: auto minmax(0, 1fr); overflow: hidden;
     }
-    .brand { padding: 12px 14px 10px; border-bottom: 1px solid var(--line); }
+    .brand { padding: 10px 12px 8px; border-bottom: 1px solid var(--line); }
     h1 { margin: 0; font-size: 15px; line-height: 1.2; letter-spacing: 0; }
-    .sub { margin-top: 4px; color: var(--muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .tabContent { display: none; min-height: 0; overflow: auto; padding: 12px 14px 14px; }
+    .sub { margin-top: 3px; color: var(--muted); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .tabContent { display: none; min-height: 0; overflow: auto; padding: 10px 12px 12px; }
     .tabContent.is-active { display: block; }
-    .panelSection { margin-bottom: 14px; }
+    .panelSection { margin-bottom: 10px; }
     .panelSection:last-child { margin-bottom: 0; }
-    .panelTitle { margin: 0 0 8px; font-size: 12px; font-weight: 900; color: var(--ink); }
-    .controls { padding: 0; display: grid; grid-template-columns: 1fr auto; gap: 8px 12px; align-items: center; }
-    label { font-size: 12px; color: var(--muted); }
-    .periodTools { display: flex; justify-content: flex-end; align-items: center; gap: 8px; }
+    .panelTitle { margin: 0 0 6px; font-size: 12px; font-weight: 900; color: var(--ink); }
+    .controls { padding: 0; display: grid; grid-template-columns: auto 1fr auto; gap: 6px 8px; align-items: center; }
+    label { font-size: 11px; color: var(--muted); }
+    .periodTools { display: flex; justify-content: flex-end; align-items: center; gap: 6px; grid-column: 3; }
     .periodLabel { font-size: 13px; font-weight: 700; text-align: right; min-width: 56px; }
     .periodPlay {
-      height: 28px; border: 1px solid rgba(37,99,235,0.28); border-radius: 999px; background: #fff;
-      color: #1d4ed8; padding: 0 9px; font-size: 12px; font-weight: 800; cursor: pointer;
+      height: 26px; border: 1px solid rgba(37,99,235,0.28); border-radius: 999px; background: #fff;
+      color: #1d4ed8; padding: 0 8px; font-size: 11px; font-weight: 800; cursor: pointer;
     }
     .periodPlay:hover { border-color: rgba(37,99,235,0.55); box-shadow: 0 0 0 3px rgba(37,99,235,0.10); }
     .periodPlay.is-playing { background: #eff6ff; border-color: rgba(37,99,235,0.48); }
-    input[type="range"] { width: 100%; accent-color: var(--accent); }
+    input[type="range"] { width: 100%; accent-color: var(--accent); grid-column: 1 / -1; margin: -2px 0 0; }
     .mapSelect {
       width: 100%; height: 34px; border: 1px solid var(--line); border-radius: 6px; padding: 0 9px;
       background: #fff; color: var(--ink); font-size: 12px; outline: none;
     }
     .mapSelect:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.13); }
-    .providerStatus { margin-top: 7px; color: var(--muted); font-size: 11px; line-height: 1.4; }
-    .toggles { display: flex; gap: 10px; flex-wrap: wrap; grid-column: 1 / -1; }
-    .toggles label { display: inline-flex; align-items: center; gap: 5px; color: var(--ink); }
+    .providerStatus { margin-top: 6px; color: var(--muted); font-size: 10px; line-height: 1.35; }
+    .toggles { display: grid; grid-template-columns: repeat(3, minmax(0, auto)); gap: 5px 6px; grid-column: 1 / -1; }
+    .toggles label {
+      display: inline-flex; align-items: center; gap: 4px; color: var(--ink); min-height: 23px; padding: 2px 6px;
+      border: 1px solid rgba(35,45,57,0.10); border-radius: 999px; background: rgba(248,250,252,0.74); white-space: nowrap;
+    }
+    .toggles input { width: 13px; height: 13px; margin: 0; }
     .search { padding: 0; }
     #searchInput {
-      width: 100%; height: 36px; border: 1px solid var(--line); border-radius: 6px; padding: 0 10px; font-size: 13px; outline: none;
+      width: 100%; height: 33px; border: 1px solid var(--line); border-radius: 6px; padding: 0 9px; font-size: 12px; outline: none;
     }
     #searchInput:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.13); }
     #results { margin-top: 8px; max-height: 236px; overflow: auto; display: grid; gap: 6px; }
@@ -89,11 +93,18 @@
     .caseItem.isTransaction .caseCondition { color: #6d28d9; font-weight: 700; }
     .caseEmpty { padding: 10px 11px; color: var(--muted); font-size: 12px; line-height: 1.4; }
     .side { min-height: 0; overflow: visible; }
-    .inspectorHeader { position: sticky; top: 0; background: rgba(255,255,255,0.94); border-bottom: 1px solid var(--line); padding: 12px 14px 10px; z-index: 1; }
+    .inspectorHeader { position: sticky; top: 0; background: rgba(255,255,255,0.94); border-bottom: 1px solid var(--line); padding: 10px 12px 9px; z-index: 1; }
     .inspectorEyebrow { color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: 0; }
-    .inspectorTitle { margin-top: 4px; font-size: 17px; line-height: 1.25; font-weight: 800; color: var(--ink); }
-    .inspectorSub { margin-top: 4px; font-size: 12px; color: var(--muted); }
-    .inspectorBody { padding: 12px 14px 14px; }
+    .inspectorTitle { margin-top: 3px; font-size: 16px; line-height: 1.22; font-weight: 800; color: var(--ink); }
+    .inspectorSub { margin-top: 3px; font-size: 11px; color: var(--muted); }
+    .inspectorBody { padding: 10px 12px 12px; }
+    .side.is-empty { margin-bottom: 9px; border: 1px solid rgba(35,45,57,0.08); border-radius: 7px; overflow: hidden; background: rgba(255,255,255,0.62); }
+    .side.is-empty .inspectorHeader { position: static; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 8px; padding: 8px 10px 7px; }
+    .side.is-empty .inspectorEyebrow { grid-column: 1; font-size: 10px; }
+    .side.is-empty .inspectorTitle { grid-column: 1; margin-top: 0; font-size: 15px; }
+    .side.is-empty .inspectorSub { grid-column: 2; grid-row: 1 / 3; align-self: center; margin: 0; font-size: 11px; white-space: nowrap; }
+    .side.is-empty .inspectorBody { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 7px 10px 8px; }
+    .side.is-empty .metricRow { grid-template-columns: auto 1fr; gap: 6px; padding: 5px 7px; border: 1px solid #eef1f5; border-radius: 6px; background: rgba(248,250,252,0.78); font-size: 11px; }
     .sectionTitle { margin: 12px 0 7px; font-size: 12px; font-weight: 800; color: var(--ink); }
     .statGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .stat { border: 1px solid #e7ebf0; border-radius: 7px; padding: 8px; background: rgba(248,250,252,0.82); min-height: 58px; }
@@ -112,15 +123,15 @@
     .legend {
       padding: 0;
     }
-    .bar { height: 12px; border-radius: 999px; background: linear-gradient(90deg, #2f80ed 0%, #36c2b4 30%, #f6e86e 55%, #ff9f43 76%, #d7263d 86%, #b0184c 94%, #5c123e 100%); border: 1px solid rgba(0,0,0,0.12); }
-    .legendLabels { display: flex; justify-content: space-between; margin-top: 6px; font-size: 11px; color: var(--muted); }
-    .caseLegend { display: flex; align-items: center; gap: 8px; margin-top: 8px; color: var(--muted); font-size: 11px; }
-    .caseGlyph { width: 18px; height: 20px; display: inline-flex; align-items: flex-end; gap: 4px; }
+    .bar { height: 10px; border-radius: 999px; background: linear-gradient(90deg, #2f80ed 0%, #36c2b4 30%, #f6e86e 55%, #ff9f43 76%, #d7263d 86%, #b0184c 94%, #5c123e 100%); border: 1px solid rgba(0,0,0,0.12); }
+    .legendLabels { display: flex; justify-content: space-between; margin-top: 4px; font-size: 10px; color: var(--muted); }
+    .caseLegend { display: flex; align-items: center; gap: 6px; margin-top: 5px; color: var(--muted); font-size: 10.5px; line-height: 1.25; }
+    .caseGlyph { width: 15px; height: 17px; display: inline-flex; align-items: flex-end; gap: 3px; flex: 0 0 auto; }
     .caseGlyph::before, .caseGlyph::after { content: ""; display: block; border-radius: 999px 999px 2px 2px; background: #ff9f43; }
-    .caseGlyph::before { width: 3px; height: 15px; opacity: 0.55; }
-    .caseGlyph::after { width: 7px; height: 20px; opacity: 0.95; }
-    .transactionGlyph { width: 18px; height: 18px; border-radius: 999px; background: #7c3aed; box-shadow: 0 0 0 5px rgba(124,58,237,0.22); display: inline-block; }
-    .hint { margin-top: 8px; color: var(--muted); font-size: 11px; line-height: 1.4; }
+    .caseGlyph::before { width: 3px; height: 12px; opacity: 0.55; }
+    .caseGlyph::after { width: 6px; height: 17px; opacity: 0.95; }
+    .transactionGlyph { width: 13px; height: 13px; border-radius: 999px; background: #7c3aed; box-shadow: 0 0 0 4px rgba(124,58,237,0.20); display: inline-block; flex: 0 0 auto; }
+    .hint { margin-top: 6px; color: var(--muted); font-size: 10.5px; line-height: 1.32; }
     .overviewGrid { display: grid; gap: 6px; }
     .overviewGrid .metricRow { grid-template-columns: 108px 1fr; }
     .sourceNote { margin-top: 9px; color: var(--muted); font-size: 11px; line-height: 1.4; }
@@ -204,9 +215,9 @@
           <section class="legend">
             <div class="bar"></div>
             <div class="legendLabels"><span id="legendMin"></span><span id="legendP97"></span><span id="legendMax"></span></div>
-            <div class="caseLegend"><span class="caseGlyph"></span><span>굵은 막대는 해당 분기 실제 임대사례 연결</span></div>
-            <div class="caseLegend"><span class="transactionGlyph"></span><span>보라색 포인트는 해당 분기 매매사례 위치</span></div>
-            <div class="hint">색은 NOC 수준, 높이는 최저 관측값 근처를 기준선으로 둔 실제 관측 NOC입니다. 표면은 권역 흐름을 보는 보간값이고, 막대가 실제 관측 건물입니다.</div>
+            <div class="caseLegend"><span class="caseGlyph"></span><span>굵은 막대: 임대사례 연결</span></div>
+            <div class="caseLegend"><span class="transactionGlyph"></span><span>보라색 포인트: 매매사례</span></div>
+            <div class="hint">색=NOC 수준, 높이=절단축 NOC. 표면은 보간 흐름, 막대는 실제 관측 건물입니다.</div>
           </section>
         </div>
         <div class="panelSection">
