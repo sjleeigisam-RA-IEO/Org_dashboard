@@ -1456,6 +1456,9 @@ def render_html(data: dict[str, Any]) -> str:
       --construction-soft: var(--soft, #a1a1aa);
       --construction-radius: 8px;
       --construction-shadow: var(--shadow, 0 18px 48px rgba(0, 0, 0, 0.22));
+      --construction-selected-bg: rgba(41, 151, 255, 0.11);
+      --construction-selected-bg-soft: rgba(130, 175, 185, 0.08);
+      --construction-selected-border: rgba(41, 151, 255, 0.58);
     }
     * { box-sizing: border-box; }
     body {
@@ -1570,12 +1573,33 @@ def render_html(data: dict[str, Any]) -> str:
     .rank-row td {
       transition: background 0.15s ease, border-color 0.15s ease;
     }
-    .rank-row:hover td,
-    .rank-row.expanded td {
+    .rank-row:hover:not(.expanded) td {
       background: var(--construction-panel-strong);
     }
     .rank-row.expanded td {
-      border-bottom-color: #555;
+      background: linear-gradient(
+        90deg,
+        var(--construction-selected-bg),
+        var(--construction-selected-bg-soft) 44%,
+        var(--construction-panel-strong)
+      );
+      border-top: 1px solid var(--construction-selected-border);
+      border-bottom-color: var(--construction-selected-border);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+    .rank-row.expanded td:first-child {
+      position: relative;
+      color: #fff;
+    }
+    .rank-row.expanded td:first-child::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: -1px;
+      left: 0;
+      width: 4px;
+      border-radius: 0 3px 3px 0;
+      background: var(--blue);
     }
     td:first-child, th:first-child {
       width: 64px;
@@ -1695,7 +1719,17 @@ def render_html(data: dict[str, Any]) -> str:
       line-height: 1;
     }
     .rank-row.expanded .toggle-symbol {
+      border-left-color: var(--blue);
       transform: rotate(90deg);
+    }
+    .rank-row.expanded .row-toggle {
+      color: #fff;
+    }
+    .rank-row.expanded .comment-count {
+      color: #fff;
+    }
+    .rank-row.expanded .new-badge {
+      box-shadow: 0 0 0 2px rgba(41, 151, 255, 0.18);
     }
     .detail-row[hidden] {
       display: none;
@@ -1703,16 +1737,20 @@ def render_html(data: dict[str, Any]) -> str:
     .detail-row td {
       width: auto;
       padding: 0;
-      background: var(--construction-panel-strong);
+      background: linear-gradient(90deg, rgba(41, 151, 255, 0.08), var(--construction-panel-strong) 22%);
       color: var(--ink);
-      border-bottom-color: #555;
+      border-bottom-color: var(--construction-selected-border);
       text-align: left;
       white-space: normal;
+      box-shadow: inset 4px 0 0 var(--blue);
     }
     .detail-panel {
       padding: 16px 18px 18px clamp(18px, 7vw, 112px);
       overflow: hidden;
       text-align: left;
+      border-right: 1px solid rgba(41, 151, 255, 0.18);
+      border-bottom: 1px solid rgba(41, 151, 255, 0.18);
+      background: rgba(255, 255, 255, 0.018);
     }
     .detail-summary {
       padding-bottom: 12px;
