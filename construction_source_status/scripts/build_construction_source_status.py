@@ -973,14 +973,6 @@ def recent_update_reasons(row: dict[str, Any], days: int = 31) -> list[tuple[dat
     for comment in get_pdf_comments(company_key):
         item_date = parse_recent_item_date(comment.get("date") or comment_source.get("date"))
         add_reason(item_date, "Comment", comment.get("body") or comment.get("summary"))
-    for award in row.get("recent_awards") or []:
-        item_date = parse_recent_item_date(award.get("date"))
-        add_reason(item_date, "수주", award.get("project") or award.get("title") or award.get("client"))
-    for article in row.get("related_articles") or []:
-        item_date = parse_recent_item_date(article.get("published"))
-        source = compact_text(article.get("source"))
-        kind = "전략공시" if "OpenDART" in source else "기사/전략"
-        add_reason(item_date, kind, article.get("title"))
     return sorted(reasons, key=lambda item: item[0], reverse=True)
 
 
@@ -991,8 +983,8 @@ def row_has_recent_update(row: dict[str, Any], days: int = 31) -> bool:
 def recent_update_title(row: dict[str, Any], days: int = 31) -> str:
     reasons = recent_update_reasons(row, days)
     if not reasons:
-        return "최근 1개월 내 업데이트 없음"
-    return "최근 업데이트: " + " / ".join(label for _, label in reasons[:3])
+        return "최근 1개월 내 Comment 없음"
+    return "최근 Comment: " + " / ".join(label for _, label in reasons[:3])
 
 
 def add_status_column(columns: list[tuple[str, str, str]]) -> list[tuple[str, str, str]]:
@@ -1007,7 +999,7 @@ def add_status_column(columns: list[tuple[str, str, str]]) -> list[tuple[str, st
             if not has_comment_status:
                 enriched.append(("row_status", "Comment", "status"))
             if not has_recent_update:
-                enriched.append(("recent_update", "Update", "recent"))
+                enriched.append(("recent_update", "New", "recent"))
     return enriched
 
 
@@ -2749,8 +2741,8 @@ def render_html(data: dict[str, Any]) -> str:
       if (status.querySelector(".new-badge")) return;
       const badge = document.createElement("span");
       badge.className = "new-badge";
-      badge.title = "최근 업데이트: Comment";
-      badge.setAttribute("aria-label", "최근 업데이트: Comment");
+      badge.title = "최근 Comment";
+      badge.setAttribute("aria-label", "최근 Comment");
       badge.textContent = "N";
       status.appendChild(badge);
     }}
