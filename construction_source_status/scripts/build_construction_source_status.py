@@ -1553,6 +1553,7 @@ def render_html(data: dict[str, Any]) -> str:
       width: 100%;
       border-collapse: collapse;
       font-size: 13px;
+      table-layout: fixed;
       min-width: 920px;
     }
     th, td {
@@ -1633,18 +1634,18 @@ def render_html(data: dict[str, Any]) -> str:
       font-weight: 600;
     }
     .col-company {
-      width: 18%;
-      min-width: 150px;
-      max-width: 220px;
+      width: 26%;
+      min-width: 220px;
+      max-width: 360px;
     }
     .col-row_status {
-      width: 86px;
-      min-width: 86px;
+      width: 104px;
+      min-width: 104px;
       text-align: center;
     }
     .col-credit_rating_label {
-      width: 96px;
-      min-width: 96px;
+      width: 90px;
+      min-width: 90px;
     }
     td.col-rank_change,
     th.col-rank_change {
@@ -1658,6 +1659,31 @@ def render_html(data: dict[str, Any]) -> str:
     .cell-change {
       color: var(--muted);
       font-weight: 650;
+    }
+    th.cell-moneybar,
+    td.cell-moneybar {
+      width: 220px;
+      min-width: 190px;
+      max-width: 230px;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+    th.col-region,
+    td.col-region {
+      width: 76px;
+      min-width: 72px;
+      max-width: 84px;
+    }
+    th.col-representative,
+    td.col-representative {
+      width: 104px;
+      min-width: 96px;
+      max-width: 116px;
+    }
+    td.col-region,
+    td.col-representative {
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .rating-pill {
       display: inline-flex;
@@ -1702,7 +1728,7 @@ def render_html(data: dict[str, Any]) -> str:
     }
     .row-toggle span:last-child {
       display: block;
-      max-width: min(220px, 24vw);
+      max-width: min(360px, 32vw);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -1721,7 +1747,7 @@ def render_html(data: dict[str, Any]) -> str:
       align-items: center;
       justify-content: center;
       gap: 5px;
-      min-width: 62px;
+      min-width: 74px;
       white-space: nowrap;
     }
     .comment-count {
@@ -2136,7 +2162,8 @@ def render_html(data: dict[str, Any]) -> str:
     .change {
       display: inline-flex;
       align-items: center;
-      min-width: 54px;
+      justify-content: center;
+      min-width: 34px;
       font-weight: 800;
     }
     .change.up { color: var(--good, #34d399); }
@@ -2146,6 +2173,7 @@ def render_html(data: dict[str, Any]) -> str:
     .bar {
       display: block;
       width: min(var(--w), 100%);
+      max-width: 220px;
       height: 4px;
       margin-top: 5px;
       background: linear-gradient(90deg, var(--teal), var(--amber));
