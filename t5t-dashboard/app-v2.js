@@ -478,12 +478,23 @@ function renderPeopleSearchResults(results, needle) {
   `;
 }
 
+const WRITER_NAME_ALIASES = {
+  "이승훈c": "이승훈"
+};
+
+function canonicalizeWriterDisplayName(value) {
+  const displayName = String(value || "").trim();
+  const compactKey = displayName.replace(/\s+/g, "").toLowerCase();
+  return WRITER_NAME_ALIASES[compactKey] || displayName;
+}
+
 function parseWriterLabel(value) {
   const fullName = String(value || "익명").trim() || "익명";
   const parts = fullName.split("/").map(part => part.trim()).filter(Boolean);
+  const rawDisplayName = parts[0] || fullName;
   return {
     fullName,
-    displayName: parts[0] || fullName,
+    displayName: canonicalizeWriterDisplayName(rawDisplayName),
     affiliation: parts.length > 1 ? parts.slice(1).join(" / ") : ""
   };
 }
