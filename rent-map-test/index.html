@@ -131,6 +131,7 @@
     .caseGlyph::before { width: 3px; height: 12px; opacity: 0.55; }
     .caseGlyph::after { width: 6px; height: 17px; opacity: 0.95; }
     .transactionGlyph { width: 13px; height: 13px; border-radius: 999px; background: #7c3aed; box-shadow: 0 0 0 4px rgba(124,58,237,0.20); display: inline-block; flex: 0 0 auto; }
+    .ownedAssetGlyph { width: 13px; height: 13px; transform: rotate(45deg); border-radius: 3px; background: #0f62fe; box-shadow: 0 0 0 4px rgba(15,98,254,0.18); display: inline-block; flex: 0 0 auto; }
     .hint { margin-top: 6px; color: var(--muted); font-size: 10.5px; line-height: 1.32; }
     .overviewGrid { display: grid; gap: 6px; }
     .overviewGrid .metricRow { grid-template-columns: 108px 1fr; }
@@ -205,6 +206,7 @@
               <label><input id="toggleSurface" type="checkbox" checked /> 표면</label>
               <label><input id="togglePoints" type="checkbox" checked /> 실측막대</label>
               <label><input id="toggleTransactions" type="checkbox" checked /> 매매사례</label>
+              <label><input id="toggleOwnedAssets" type="checkbox" checked /> 우리자산</label>
               <label><input id="toggleLabels" type="checkbox" checked /> 위치라벨</label>
               <label><input id="toggleLocalVector" type="checkbox" /> 벡터선</label>
             </div>
@@ -217,6 +219,7 @@
             <div class="legendLabels"><span id="legendMin"></span><span id="legendP97"></span><span id="legendMax"></span></div>
             <div class="caseLegend"><span class="caseGlyph"></span><span>굵은 막대: 임대사례 연결</span></div>
             <div class="caseLegend"><span class="transactionGlyph"></span><span>보라색 포인트: 매매사례</span></div>
+            <div class="caseLegend"><span class="ownedAssetGlyph"></span><span>파란 다이아: SQL DB 우리자산 위치</span></div>
             <div class="hint">색=NOC 수준, 높이=절단축 NOC. 표면은 보간 흐름, 막대는 실제 관측 건물입니다.</div>
           </section>
         </div>
@@ -275,13 +278,14 @@
     const toggleSurface = document.getElementById("toggleSurface");
     const togglePoints = document.getElementById("togglePoints");
     const toggleTransactions = document.getElementById("toggleTransactions");
+    const toggleOwnedAssets = document.getElementById("toggleOwnedAssets");
     const toggleLabels = document.getElementById("toggleLabels");
     const toggleLocalVector = document.getElementById("toggleLocalVector");
     const tabButtons = Array.from(document.querySelectorAll(".tabButton"));
     const tabPanels = Array.from(document.querySelectorAll(".tabContent"));
 
-    let data, scene, camera, renderer, controls, surface, highContourGroup, pointMesh, transactionGroup, highlight, labelGroup, referenceGroup, contextLabelGroup, localVectorGroup, seoulVectorGroup, baseMapPlane, focusMapPlane, selectedColumn;
-    let raycaster, pointer, currentPeriod, currentPoints = [], currentTransactions = [], selectedPoint = null, currentCaseRows = [];
+    let data, scene, camera, renderer, controls, surface, highContourGroup, pointMesh, transactionGroup, ownedAssetGroup, highlight, labelGroup, referenceGroup, contextLabelGroup, localVectorGroup, seoulVectorGroup, baseMapPlane, focusMapPlane, selectedColumn;
+    let raycaster, pointer, currentPeriod, currentPoints = [], currentTransactions = [], ownedAssets = [], selectedPoint = null, currentCaseRows = [];
     let positionArray, colorArray;
     const selectionClearVector = new THREE.Vector3();
     const periodStatsCache = new Map();
@@ -301,6 +305,8 @@
     const heightCurve = 1.14;
     const transactionColor = 0x7c3aed;
     const transactionHaloColor = 0xc4b5fd;
+    const ownedAssetColor = 0x0f62fe;
+    const ownedAssetHaloColor = 0x93c5fd;
     let lastColumnVisualScale = null;
     let lastTerrainVisualScale = null;
     let activeCaseTab = "lease";
@@ -795,6 +801,31 @@
       return rows;
     }
 
+    async function fetchSupabaseRows(tableName, queryPairs = []) {
+      if (!MAP_CONFIG.supabaseUrl || !MAP_CONFIG.supabaseKey) return [];
+      const pageSize = 1000;
+      const rows = [];
+      for (let offset = 0; ; offset += pageSize) {
+        const params = new URLSearchParams();
+        for (const [key, value] of queryPairs) params.append(key, value);
+        params.set("limit", String(pageSize));
+        params.set("offset", String(offset));
+        const response = await fetch(`${MAP_CONFIG.supabaseUrl}/rest/v1/${tableName}?${params.toString()}`, {
+          headers: {
+            apikey: MAP_CONFIG.supabaseKey,
+            Authorization: `Bearer ${MAP_CONFIG.supabaseKey}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error(`${tableName} fetch failed: ${response.status}`);
+        }
+        const page = await response.json();
+        rows.push(...page);
+        if (page.length < pageSize) break;
+      }
+      return rows;
+    }
+
     function buildSurfaceDataFromMarketRows(groups) {
       const metaInfo = rowExtraInfo(groups.meta[0]);
       if (!metaInfo.meta || !metaInfo.grid || !Array.isArray(metaInfo.periods)) {
@@ -926,6 +957,9 @@
       await buildBase();
       buildMapReferences();
       buildLocalVectorLayer();
+      ownedAssets = await loadOwnedAssets();
+      data.ownedAssets = ownedAssets;
+      buildOwnedAssetLayer();
       if (activeMapProvider().vectorSource === "seoul") await ensureSeoulVectorLayer();
       periodSlider.max = data.periods.length - 1;
       periodSlider.value = data.periods.length - 1;
@@ -2007,6 +2041,165 @@
       scene.add(transactionGroup);
     }
 
+    async function loadOwnedAssets() {
+      if (!MAP_CONFIG.supabaseUrl || !MAP_CONFIG.supabaseKey || !data?.meta?.boundsLatLon) return [];
+      const bounds = data.meta.boundsLatLon;
+      const pad = 0.03;
+      const select = [
+        "asset_id",
+        "canonical_name",
+        "physical_asset_name",
+        "non_physical_asset_label",
+        "address_text",
+        "latitude",
+        "longitude",
+        "pnu",
+        "asset_code",
+        "main_usage",
+        "review_status",
+        "fund_count",
+        "project_count",
+        "fund_ids",
+        "project_ids",
+      ].join(",");
+      const rows = await fetchSupabaseRows("asset_relationship_summary", [
+        ["select", select],
+        ["latitude", "not.is.null"],
+        ["longitude", "not.is.null"],
+        ["latitude", `gte.${bounds.south - pad}`],
+        ["latitude", `lte.${bounds.north + pad}`],
+        ["longitude", `gte.${bounds.west - pad}`],
+        ["longitude", `lte.${bounds.east + pad}`],
+        ["order", "canonical_name.asc"],
+      ]);
+      const seen = new Set();
+      const assets = [];
+      for (const row of rows) {
+        const lat = Number(row.latitude);
+        const lon = Number(row.longitude);
+        if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
+        if (seen.has(row.asset_id)) continue;
+        seen.add(row.asset_id);
+        const [x, y] = xyFromLonLat(lon, lat);
+        assets.push({
+          isOwnedAsset: true,
+          assetId: `owned:${row.asset_id}`,
+          rawAssetId: row.asset_id,
+          building: row.physical_asset_name || row.canonical_name || "우리자산",
+          canonicalName: row.canonical_name || "",
+          address: row.address_text || "",
+          assetCode: row.asset_code || "",
+          mainUsage: row.main_usage || "",
+          reviewStatus: row.review_status || "",
+          fundCount: Number(row.fund_count || 0),
+          projectCount: Number(row.project_count || 0),
+          fundIds: Array.isArray(row.fund_ids) ? row.fund_ids : [],
+          projectIds: Array.isArray(row.project_ids) ? row.project_ids : [],
+          pnu: row.pnu || "",
+          lat,
+          lon,
+          x,
+          y,
+          noc: data.meta.valueDomain.p03,
+          tenantCount: 0,
+          tenants: [],
+        });
+      }
+      document.body.dataset.ownedAssetCount = String(assets.length);
+      return assets;
+    }
+
+    function ownedAssetDiamondTexture() {
+      if (ownedAssetDiamondTexture.cached) return ownedAssetDiamondTexture.cached;
+      const canvas = document.createElement("canvas");
+      canvas.width = 64;
+      canvas.height = 64;
+      const ctx = canvas.getContext("2d");
+      ctx.translate(32, 32);
+      ctx.rotate(Math.PI / 4);
+      ctx.fillStyle = "rgba(255,255,255,0.96)";
+      ctx.strokeStyle = "rgba(15,98,254,1)";
+      ctx.lineWidth = 8;
+      roundRect(ctx, -17, -17, 34, 34, 7);
+      ctx.fill();
+      ctx.stroke();
+      ownedAssetDiamondTexture.cached = new THREE.CanvasTexture(canvas);
+      return ownedAssetDiamondTexture.cached;
+    }
+
+    function ownedAssetHaloTexture() {
+      if (ownedAssetHaloTexture.cached) return ownedAssetHaloTexture.cached;
+      const canvas = document.createElement("canvas");
+      canvas.width = 64;
+      canvas.height = 64;
+      const ctx = canvas.getContext("2d");
+      const gradient = ctx.createRadialGradient(32, 32, 5, 32, 32, 31);
+      gradient.addColorStop(0, "rgba(147,197,253,0.92)");
+      gradient.addColorStop(0.46, "rgba(147,197,253,0.42)");
+      gradient.addColorStop(1, "rgba(147,197,253,0)");
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(32, 32, 31, 0, Math.PI * 2);
+      ctx.fill();
+      ownedAssetHaloTexture.cached = new THREE.CanvasTexture(canvas);
+      return ownedAssetHaloTexture.cached;
+    }
+
+    function buildOwnedAssetLayer() {
+      if (ownedAssetGroup) {
+        scene.remove(ownedAssetGroup);
+        disposeObject3D(ownedAssetGroup);
+      }
+      ownedAssetGroup = new THREE.Group();
+      ownedAssetGroup.userData.kind = "ownedAsset";
+      const positions = [];
+      const indices = [];
+      for (let i = 0; i < ownedAssets.length; i++) {
+        const asset = ownedAssets[i];
+        if (!Number.isFinite(Number(asset.x)) || !Number.isFinite(Number(asset.y))) continue;
+        positions.push(sx(asset.x), columnGroundY + 7.8, sz(asset.y));
+        indices.push(i);
+      }
+      if (positions.length) {
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+        const halo = new THREE.Points(
+          geometry.clone(),
+          new THREE.PointsMaterial({
+            color: ownedAssetHaloColor,
+            map: ownedAssetHaloTexture(),
+            size: 25,
+            sizeAttenuation: false,
+            transparent: true,
+            opacity: 0.72,
+            depthTest: false,
+            depthWrite: false,
+          })
+        );
+        halo.userData.ownedAssetIndices = indices;
+        halo.renderOrder = 33;
+        const marker = new THREE.Points(
+          geometry,
+          new THREE.PointsMaterial({
+            color: ownedAssetColor,
+            map: ownedAssetDiamondTexture(),
+            size: 14,
+            sizeAttenuation: false,
+            transparent: true,
+            opacity: 0.98,
+            depthTest: false,
+            depthWrite: false,
+          })
+        );
+        marker.userData.ownedAssetIndices = indices;
+        marker.renderOrder = 34;
+        ownedAssetGroup.add(halo);
+        ownedAssetGroup.add(marker);
+      }
+      ownedAssetGroup.visible = !toggleOwnedAssets || toggleOwnedAssets.checked;
+      scene.add(ownedAssetGroup);
+    }
+
     function updateColumnScale(force = false) {
       if (!pointMesh || !pointMesh.children.length) return;
       const visualScale = columnZoomScale();
@@ -2027,17 +2220,17 @@
     }
 
     function selectedColumnHeight(point) {
-      if (point && point.isTransaction) return 0;
+      if (point && (point.isTransaction || point.isOwnedAsset)) return 0;
       return columnHeightForPoint(point);
     }
 
     function selectedColumnRadius(point) {
-      if (point && point.isTransaction) return 0;
+      if (point && (point.isTransaction || point.isOwnedAsset)) return 0;
       return columnRadiusForPoint(point) * 1.18;
     }
 
     function ensureSelectedColumn() {
-      if (!selectedPoint || selectedPoint.isTransaction) {
+      if (!selectedPoint || selectedPoint.isTransaction || selectedPoint.isOwnedAsset) {
         clearSelectedColumn();
         return;
       }
@@ -2087,6 +2280,9 @@
           return transactionPoint(tx).assetId === point.assetId;
         });
         return match ? transactionPoint(match) : null;
+      }
+      if (point.isOwnedAsset) {
+        return ownedAssets.find(row => row.assetId === point.assetId) || point;
       }
       return currentPoints.find(row => row.assetId === point.assetId) || null;
     }
@@ -2213,6 +2409,11 @@
         if (transactionGroup) transactionGroup.visible = toggleTransactions.checked;
         buildCaseList();
       });
+      if (toggleOwnedAssets) {
+        toggleOwnedAssets.addEventListener("change", () => {
+          if (ownedAssetGroup) ownedAssetGroup.visible = toggleOwnedAssets.checked;
+        });
+      }
       toggleLabels.addEventListener("change", () => {
         labelGroup.visible = toggleLabels.checked;
         referenceGroup.visible = toggleLabels.checked;
@@ -2297,13 +2498,26 @@
       return tx ? transactionPoint(tx) : null;
     }
 
+    function pickOwnedAsset(event) {
+      if (!ownedAssetGroup || (toggleOwnedAssets && !toggleOwnedAssets.checked)) return null;
+      pointerToNdc(event);
+      raycaster.setFromCamera(pointer, camera);
+      const hits = raycaster.intersectObjects(ownedAssetGroup.children, false);
+      if (!hits.length) return null;
+      const hit = hits[0];
+      const indices = hit.object.userData.ownedAssetIndices || [];
+      return ownedAssets[indices[hit.index]] || null;
+    }
+
     function onPointerMove(event) {
-      const point = pickPoint(event) || pickTransaction(event);
+      const point = pickPoint(event) || pickTransaction(event) || pickOwnedAsset(event);
       if (!point) {
         tooltip.style.display = "none";
         return;
       }
-      if (point.isTransaction) {
+      if (point.isOwnedAsset) {
+        tooltip.innerHTML = `<b>${escapeHtml(point.building)}</b><br>우리자산 · ${escapeHtml(point.mainUsage || "용도 미상")}<br>${escapeHtml(point.address || point.pnu || "")}`;
+      } else if (point.isTransaction) {
         const tx = point.transaction;
         tooltip.innerHTML = `<b>${escapeHtml(tx.building)}</b><br>매매사례 ${krwBillionText(tx.dealPriceThousandKrw)}<br>${escapeHtml(tx.period)} · ${escapeHtml(tx.gu)} ${escapeHtml(tx.dong)}`;
       } else {
@@ -2316,7 +2530,7 @@
 
     function onClick(event) {
       if (event.target.closest(".panel")) return;
-      const point = pickPoint(event) || pickTransaction(event);
+      const point = pickPoint(event) || pickTransaction(event) || pickOwnedAsset(event);
       if (point) {
         selectPoint(point, { zoom: true });
       }
@@ -2351,6 +2565,7 @@
       if (highContourGroup) highContourGroup.visible = Boolean(toggleSurface.checked && !reviewMode);
       if (pointMesh) pointMesh.visible = togglePoints.checked;
       if (transactionGroup) transactionGroup.visible = toggleTransactions.checked;
+      if (ownedAssetGroup) ownedAssetGroup.visible = !toggleOwnedAssets || toggleOwnedAssets.checked;
       labelGroup.visible = toggleLabels.checked;
       referenceGroup.visible = toggleLabels.checked;
       updateColumnScale(true);
@@ -2392,7 +2607,7 @@
         updateFocusMap(point, { force: true });
         clearContextLabels();
       }
-      if (point.isTransaction) clearSelectedColumn();
+      if (point.isTransaction || point.isOwnedAsset) clearSelectedColumn();
       else ensureSelectedColumn();
       highlight.visible = true;
       updateHighlightPosition();
@@ -2401,12 +2616,12 @@
 
     function updateHighlightPosition() {
       if (!highlight || !selectedPoint) return;
-      const ringY = selectedPoint.isTransaction
+      const ringY = selectedPoint.isTransaction || selectedPoint.isOwnedAsset
         ? columnGroundY + 0.08
         : (reviewMode ? columnGroundY + 0.06 : columnTopY(selectedPoint) + 7);
       highlight.position.set(sx(selectedPoint.x), ringY, sz(selectedPoint.y));
-      const ringScale = selectedPoint.isTransaction
-        ? THREE.MathUtils.clamp(columnZoomScale() * 0.52, 0.12, 0.20)
+      const ringScale = selectedPoint.isTransaction || selectedPoint.isOwnedAsset
+        ? THREE.MathUtils.clamp(columnZoomScale() * (selectedPoint.isOwnedAsset ? 0.64 : 0.52), 0.12, selectedPoint.isOwnedAsset ? 0.24 : 0.20)
         : THREE.MathUtils.clamp(columnZoomScale() * 0.86, reviewMode ? 0.16 : 0.16, reviewMode ? 0.22 : 0.40);
       highlight.scale.set(ringScale, ringScale, ringScale);
     }
@@ -2417,7 +2632,7 @@
         selectionClear.style.display = "none";
         return;
       }
-      if (selectedPoint.isTransaction) {
+      if (selectedPoint.isTransaction || selectedPoint.isOwnedAsset) {
         selectionClearVector.set(sx(selectedPoint.x) + 10, columnGroundY + 8, sz(selectedPoint.y));
       } else {
         if (!selectedColumn) {
@@ -2468,12 +2683,13 @@
         }
         updateColumnScale(true);
       }
-      if (enabled && selectedPoint && !selectedPoint.isTransaction) ensureSelectedColumn();
+      if (enabled && selectedPoint && !selectedPoint.isTransaction && !selectedPoint.isOwnedAsset) ensureSelectedColumn();
       else {
         clearSelectedColumn();
         clearContextLabels();
       }
       if (transactionGroup) transactionGroup.visible = toggleTransactions.checked;
+      if (ownedAssetGroup) ownedAssetGroup.visible = !toggleOwnedAssets || toggleOwnedAssets.checked;
       updateHighlightPosition();
       updateTerrainScale(true);
       if (enabled) {
@@ -2598,6 +2814,36 @@
           <div class="inspectorBody">
             <div class="metricRow"><span>Z값</span><strong>NOC</strong></div>
             <div class="metricRow"><span>보간</span><strong>IDW / 실측막대 병행</strong></div>
+          </div>
+        `;
+        return;
+      }
+      if (point.isOwnedAsset) {
+        detailPanel.className = "side";
+        detailPanel.innerHTML = `
+          <div class="inspectorHeader">
+            <div class="inspectorEyebrow">우리자산 위치</div>
+            <div class="inspectorTitle">${escapeHtml(point.building)}</div>
+            <div class="inspectorSub">SQL DB asset_relationship_summary · 좌표 보유 자산</div>
+          </div>
+          <div class="inspectorBody">
+            <div class="statGrid">
+              <div class="stat"><span>펀드 연결</span><strong>${fmt.format(point.fundCount)}개</strong></div>
+              <div class="stat"><span>프로젝트 연결</span><strong>${fmt.format(point.projectCount)}개</strong></div>
+              <div class="stat"><span>주용도</span><strong>${escapeHtml(point.mainUsage || "-")}</strong></div>
+              <div class="stat"><span>검수상태</span><strong>${escapeHtml(point.reviewStatus || "-")}</strong></div>
+            </div>
+            <div class="sectionTitle">자산 기본정보</div>
+            <div class="overviewGrid">
+              <div class="metricRow"><span>자산 ID</span><strong>${escapeHtml(point.rawAssetId || "-")}</strong></div>
+              <div class="metricRow"><span>자산 코드</span><strong>${escapeHtml(point.assetCode || "-")}</strong></div>
+              <div class="metricRow"><span>대표명</span><strong>${escapeHtml(point.canonicalName || point.building || "-")}</strong></div>
+              <div class="metricRow"><span>주소</span><strong>${escapeHtml(point.address || "-")}</strong></div>
+              <div class="metricRow"><span>PNU</span><strong>${escapeHtml(point.pnu || "-")}</strong></div>
+              <div class="metricRow"><span>좌표</span><strong>${point.lat.toFixed(5)} / ${point.lon.toFixed(5)}</strong></div>
+              <div class="metricRow"><span>펀드코드</span><strong>${escapeHtml(point.fundIds.slice(0, 6).join(", ") || "-")}</strong></div>
+              <div class="metricRow"><span>프로젝트</span><strong>${escapeHtml(point.projectIds.slice(0, 4).join(", ") || "-")}</strong></div>
+            </div>
           </div>
         `;
         return;
@@ -2817,7 +3063,9 @@
       const transactionRows = (data.transactionCases || [])
         .filter(t => visiblePeriods.has(t.period))
         .map(t => ({ type: "transaction", period: t.period, transaction: t, text: [t.building, t.region, t.gu, t.dong, t.legalAddress, t.address, t.sellerName, t.buyerName, t.buyerDetail, t.acquisitionPurpose, t.investmentVehicle, t.investmentVehicleDetail].join(" ").toLowerCase() }));
-      for (const row of [...pointRows, ...tenantRows, ...transactionRows]) {
+      const ownedRows = (ownedAssets || [])
+        .map(asset => ({ type: "ownedAsset", point: asset, text: [asset.building, asset.canonicalName, asset.address, asset.assetCode, asset.mainUsage, asset.pnu, ...(asset.fundIds || [])].join(" ").toLowerCase() }));
+      for (const row of [...pointRows, ...tenantRows, ...transactionRows, ...ownedRows]) {
         if (row.text.includes(q)) matches.push(row);
         if (matches.length >= 9) break;
       }
@@ -2830,6 +3078,10 @@
           const t = m.transaction;
           return `<button class="result" data-kind="transaction" data-index="${idx}"><b>${escapeHtml(t.building || "매매사례")}</b><br>${escapeHtml(t.period)} · 매매 ${krwBillionText(t.dealPriceThousandKrw)} · ${escapeHtml(t.gu)}</button>`;
         }
+        if (m.type === "ownedAsset") {
+          const p = m.point;
+          return `<button class="result" data-kind="ownedAsset" data-index="${idx}"><b>${escapeHtml(p.building)}</b><br>우리자산 · ${escapeHtml(p.mainUsage || "용도 미상")} · ${escapeHtml(p.address || p.pnu || "")}</button>`;
+        }
         const t = m.tenant;
         return `<button class="result" data-kind="tenant" data-index="${idx}"><b>${escapeHtml(t.tenant)}</b><br>${escapeHtml(t.period)} · ${escapeHtml(t.building)} · ${escapeHtml(t.corpName || "DART 미매칭")}</button>`;
       }).join("");
@@ -2840,6 +3092,7 @@
           setTimeout(() => {
             if (m.type === "point") selectPoint(m.point, { zoom: true });
             else if (m.type === "transaction") selectPoint(transactionPoint(m.transaction), { zoom: true });
+            else if (m.type === "ownedAsset") selectPoint(m.point, { zoom: true });
             else {
               const p = (data.pointsByPeriod[m.period] || []).find(row => row.assetId === m.tenant.assetId)
                 || { ...m.tenant, noc: data.meta.valueDomain.p03, tenants: [m.tenant], region: "", gu: m.tenant.gu, dong: m.tenant.dong };
