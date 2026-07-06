@@ -954,6 +954,12 @@ def parse_recent_item_date(value: Any) -> datetime | None:
 
 def row_has_recent_update(row: dict[str, Any], days: int = 31) -> bool:
     cutoff = datetime.now(KST) - timedelta(days=days)
+    company_key = normalize_award_company(row.get("company"))
+    comment_source = PDF_COMMENTS.get("source") or {}
+    for comment in get_pdf_comments(company_key):
+        item_date = parse_recent_item_date(comment.get("date") or comment_source.get("date"))
+        if item_date and item_date >= cutoff:
+            return True
     for award in row.get("recent_awards") or []:
         item_date = parse_recent_item_date(award.get("date"))
         if item_date and item_date >= cutoff:
@@ -983,7 +989,7 @@ def render_row_status(row: dict[str, Any]) -> str:
     count_class = " has-comments" if seed_count else ""
     new_badge = ""
     if row_has_recent_update(row):
-        new_badge = '<span class="new-badge" title="최근 1개월 내 수주/기사">N</span>'
+        new_badge = '<span class="new-badge" title="최근 1개월 내 업데이트">N</span>'
     return (
         f'<div class="row-status" data-comment-key="{html.escape(comment_key)}">'
         f'<span class="comment-count{count_class}" title="Comment {seed_count}개" aria-label="코멘트 {seed_count}개">({seed_count})</span>'
@@ -2670,6 +2676,26 @@ def render_html(data: dict[str, Any]) -> str:
       return (seedCommentCounts[key] || 0) + (onlineCommentsByKey.get(key) || []).length;
     }}
 
+    function isRecentCommentUpdate(value) {{
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return false;
+      const elapsed = Date.now() - date.getTime();
+      return elapsed >= 0 && elapsed <= 31 * 24 * 60 * 60 * 1000;
+    }}
+
+    function hasRecentOnlineComment(key) {{
+      return (onlineCommentsByKey.get(key) || []).some((item) => isRecentCommentUpdate(item.created_at));
+    }}
+
+    function ensureRecentBadge(status) {{
+      if (status.querySelector(".new-badge")) return;
+      const badge = document.createElement("span");
+      badge.className = "new-badge";
+      badge.title = "최근 1개월 내 업데이트";
+      badge.textContent = "N";
+      status.appendChild(badge);
+    }}
+
     function updateCommentBadges(changedKey) {{
       document.querySelectorAll(".row-status[data-comment-key]").forEach((status) => {{
         const key = status.dataset.commentKey;
@@ -2679,7 +2705,9 @@ def render_html(data: dict[str, Any]) -> str:
         if (!countBadge) return;
         countBadge.textContent = `(${{count}})`;
         countBadge.classList.toggle("has-comments", count > 0);
+        countBadge.setAttribute("title", `Comment ${{count}}개`);
         countBadge.setAttribute("aria-label", `코멘트 ${{count}}개`);
+        if (hasRecentOnlineComment(key)) ensureRecentBadge(status);
       }});
     }}
 
