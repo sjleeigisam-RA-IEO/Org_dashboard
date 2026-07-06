@@ -972,7 +972,7 @@ def add_status_column(columns: list[tuple[str, str, str]]) -> list[tuple[str, st
     for column in columns:
         enriched.append(column)
         if column[0] == "company":
-            enriched.append(("row_status", "코멘트", "status"))
+            enriched.append(("row_status", "Comment", "status"))
     return enriched
 
 
@@ -1297,34 +1297,25 @@ def render_comment_box(row: dict[str, Any]) -> str:
         meta = " · ".join(part for part in [date, source_file] if part)
         seed_items.append(
             f"""
-        <li>
+        <li data-seed-comment="true">
           <div class="comment-meta">
-            <span class="comment-author">작성자 {html.escape(author)}</span>
+            <span class="comment-author">{html.escape(author)}</span>
             {f'<span>{html.escape(meta)}</span>' if meta else ''}
           </div>
           <p>{html.escape(compact_text(item.get("text")))}</p>
         </li>
             """
         )
-    seed_html = ""
-    if seed_items:
-        seed_html = f"""
-      <div class="seed-comments">
-        <h4>PDF 기록</h4>
-        <ul>{''.join(seed_items)}</ul>
-      </div>
-        """
+    empty_attr = " hidden" if seed_items else ""
     return f"""
     <section class="company-comment" data-comment-key="company-comment:{html.escape(key)}" data-company-key="{html.escape(key)}" data-company-name="{html.escape(company)}">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-      {seed_html}
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list">{''.join(seed_items)}</ul>
+        <p class="comment-empty"{empty_attr}>아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -1652,7 +1643,7 @@ def render_html(data: dict[str, Any]) -> str:
         '<li><strong>기사/전략 정보</strong>: Google News RSS에서 회사명과 수주/계약/실적/경영/투자/계열사/신사업 키워드로 검색한 기사와 OpenDART 투자판단ㆍ출자ㆍ시설투자ㆍM&Aㆍ특수관계인 거래성 공시를 합쳐 표시합니다. 같은 프로젝트ㆍ이벤트로 보이는 유사 기사군은 대표 1건만 남기고 최대 5건까지 노출합니다.</li>'
     )
     source_notes.append(
-        f'<li><strong>코멘트</strong>: <code>{html.escape(str((PDF_COMMENTS.get("source") or {}).get("file", "시공사_동향_20260703.pdf")))}</code>의 회사별 기록을 기본 코멘트로 표시하고, 추가 코멘트는 온라인 DB에 저장해 사용자 간 공유됩니다. {html.escape(DEFAULT_COMMENT_AUTHOR)} 작성자명은 공식 PDF 기록에만 사용합니다.</li>'
+        f'<li><strong>Comment</strong>: 회사별 기본 기록과 사용자가 남긴 메모를 한 목록으로 표시합니다. {html.escape(DEFAULT_COMMENT_AUTHOR)} 작성자명은 공식 기록에만 사용합니다.</li>'
     )
 
     disclaimer_html = ""
@@ -2351,47 +2342,35 @@ def render_html(data: dict[str, Any]) -> str:
       font-size: 14px;
       letter-spacing: 0;
     }
-    .seed-comments,
-    .online-comments,
+    .comment-list-wrap,
     .comment-controls {
       grid-column: 2;
     }
-    .seed-comments,
-    .online-comments {
+    .comment-list-wrap {
       min-width: 0;
       display: grid;
       gap: 8px;
     }
-    .seed-comments h4,
-    .online-comments h4 {
-      margin: 0;
-      color: var(--construction-accent);
-      font-size: 12px;
-      letter-spacing: 0;
-    }
-    .seed-comments ul,
-    .online-comments ul {
+    .comment-list {
       display: grid;
       gap: 8px;
       margin: 0;
       padding: 0;
       list-style: none;
     }
-    .seed-comments li,
-    .online-comments li {
+    .comment-list li {
       border: 1px solid var(--line);
       border-radius: var(--construction-radius);
       background: var(--construction-item);
       padding: 10px 12px;
     }
-    .seed-comments p,
-    .online-comments p {
+    .comment-list p {
       margin: 6px 0 0;
       color: var(--ink);
       font-size: 13px;
       line-height: 1.45;
     }
-    .online-comment-empty {
+    .comment-empty {
       margin: 0;
       color: var(--muted);
       font-size: 12px;
@@ -2571,8 +2550,7 @@ def render_html(data: dict[str, Any]) -> str:
         border-left: 0;
       }
       .company-comment { grid-template-columns: 1fr; }
-      .seed-comments,
-      .online-comments,
+      .comment-list-wrap,
       .comment-controls {
         grid-column: 1;
       }
@@ -2707,15 +2685,16 @@ def render_html(data: dict[str, Any]) -> str:
 
     function renderOnlineComments(box) {{
       const key = box.dataset.commentKey;
-      const list = box.querySelector(".online-comment-list");
-      const empty = box.querySelector(".online-comment-empty");
+      const list = box.querySelector(".comment-list");
+      const empty = box.querySelector(".comment-empty");
       if (!key || !list) return;
       const comments = onlineCommentsByKey.get(key) || [];
-      list.innerHTML = comments.map((item) => {{
+      list.querySelectorAll("[data-online-comment='true']").forEach((item) => item.remove());
+      const onlineHtml = comments.map((item) => {{
         const author = String(item.author_name || "").trim() || "작성자 미기재";
         const date = formatCommentDate(item.created_at);
         return `
-        <li>
+        <li data-online-comment="true">
           <div class="comment-meta">
             <span class="comment-author">${{escapeCommentHtml(author)}}</span>
             ${{date ? `<span>${{escapeCommentHtml(date)}}</span>` : ""}}
@@ -2723,7 +2702,9 @@ def render_html(data: dict[str, Any]) -> str:
           <p>${{escapeCommentHtml(item.body || "")}}</p>
         </li>`;
       }}).join("");
-      if (empty) empty.hidden = comments.length > 0;
+      if (onlineHtml) list.insertAdjacentHTML("beforeend", onlineHtml);
+      const seedCount = list.querySelectorAll("[data-seed-comment='true']").length;
+      if (empty) empty.hidden = seedCount + comments.length > 0;
     }}
 
     function renderAllOnlineComments() {{
@@ -2733,7 +2714,7 @@ def render_html(data: dict[str, Any]) -> str:
     async function loadOnlineComments() {{
       if (!commentApiUrl || !commentApiKey) {{
         document.querySelectorAll(".comment-saved").forEach((saved) => {{
-          saved.textContent = "온라인 저장소 설정이 없습니다.";
+          saved.textContent = "저장 설정이 없습니다.";
         }});
         return;
       }}
@@ -2757,7 +2738,7 @@ def render_html(data: dict[str, Any]) -> str:
         updateCommentBadges();
       }} catch (error) {{
         document.querySelectorAll(".comment-saved").forEach((saved) => {{
-          saved.textContent = "온라인 코멘트를 불러오지 못했습니다.";
+          saved.textContent = "코멘트를 불러오지 못했습니다.";
         }});
       }}
     }}
@@ -2771,7 +2752,7 @@ def render_html(data: dict[str, Any]) -> str:
       const button = box.querySelector("button");
       const saved = box.querySelector(".comment-saved");
       if (!key || !companyKey || !authorInput || !textarea || !button || !saved) return;
-      saved.textContent = "온라인 DB에 저장됩니다.";
+      saved.textContent = "";
       button.addEventListener("click", async () => {{
         const value = textarea.value.trim();
         const author = authorInput.value.trim();
@@ -2780,11 +2761,11 @@ def render_html(data: dict[str, Any]) -> str:
           return;
         }}
         if (author === defaultCommentAuthor) {{
-          saved.textContent = `${{defaultCommentAuthor}} 작성자명은 공식 PDF 기록에만 사용합니다.`;
+          saved.textContent = `${{defaultCommentAuthor}} 작성자명은 공식 기록에만 사용합니다.`;
           return;
         }}
         if (!commentApiUrl || !commentApiKey) {{
-          saved.textContent = "온라인 저장소 설정이 없습니다.";
+          saved.textContent = "저장 설정이 없습니다.";
           return;
         }}
         button.disabled = true;
@@ -2817,11 +2798,11 @@ def render_html(data: dict[str, Any]) -> str:
           const items = onlineCommentsByKey.get(key) || [];
           onlineCommentsByKey.set(key, [created, ...items]);
           textarea.value = "";
-          saved.textContent = "온라인 저장됨";
+          saved.textContent = "Saved";
           renderOnlineComments(box);
           updateCommentBadges(key);
         }} catch (error) {{
-          saved.textContent = "온라인 저장 실패";
+          saved.textContent = "저장 실패";
         }} finally {{
           button.disabled = false;
         }}

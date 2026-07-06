@@ -683,47 +683,35 @@
       font-size: 14px;
       letter-spacing: 0;
     }
-    .seed-comments,
-    .online-comments,
+    .comment-list-wrap,
     .comment-controls {
       grid-column: 2;
     }
-    .seed-comments,
-    .online-comments {
+    .comment-list-wrap {
       min-width: 0;
       display: grid;
       gap: 8px;
     }
-    .seed-comments h4,
-    .online-comments h4 {
-      margin: 0;
-      color: var(--construction-accent);
-      font-size: 12px;
-      letter-spacing: 0;
-    }
-    .seed-comments ul,
-    .online-comments ul {
+    .comment-list {
       display: grid;
       gap: 8px;
       margin: 0;
       padding: 0;
       list-style: none;
     }
-    .seed-comments li,
-    .online-comments li {
+    .comment-list li {
       border: 1px solid var(--line);
       border-radius: var(--construction-radius);
       background: var(--construction-item);
       padding: 10px 12px;
     }
-    .seed-comments p,
-    .online-comments p {
+    .comment-list p {
       margin: 6px 0 0;
       color: var(--ink);
       font-size: 13px;
       line-height: 1.45;
     }
-    .online-comment-empty {
+    .comment-empty {
       margin: 0;
       color: var(--muted);
       font-size: 12px;
@@ -903,8 +891,7 @@
         border-left: 0;
       }
       .company-comment { grid-template-columns: 1fr; }
-      .seed-comments,
-      .online-comments,
+      .comment-list-wrap,
       .comment-controls {
         grid-column: 1;
       }
@@ -940,7 +927,7 @@
         </div>
         <a href="https://www.cak.or.kr/lay1/S1T54C56/sublink.do" target="_blank" rel="noreferrer">원문</a>
       </div>
-      <div class="table-wrap"><table class="rank-table" data-table-id="cak"><thead><tr><th scope="col" class="col-rank cell-number">순위</th><th scope="col" class="col-previous_rank cell-rank">전년순위</th><th scope="col" class="col-rank_change cell-change">변동</th><th scope="col" class="col-company cell-text">회사명</th><th scope="col" class="col-row_status cell-status">코멘트</th><th scope="col" class="col-credit_rating_label cell-rating">신용등급</th><th scope="col" class="col-amount_million_krw cell-moneybar">시평액</th><th scope="col" class="col-region cell-text">지역</th><th scope="col" class="col-representative cell-text">대표자</th></tr></thead><tbody><tr class="rank-row" data-detail-row="cak-detail-1" aria-expanded="false"><td class="col-rank cell-number">1</td><td class="col-previous_rank cell-rank">1</td><td class="col-rank_change cell-change"><span class="change same">0</span></td><td class="col-company cell-text"><button class="row-toggle" type="button" aria-expanded="false" aria-controls="cak-detail-1"><span class="toggle-symbol" aria-hidden="true"></span><span>삼성물산 주식회사</span></button></td><td class="col-row_status cell-status"><div class="row-status" data-comment-key="company-comment:삼성물산"><span class="comment-count has-comments" aria-label="코멘트 1개">(1)</span><span class="new-badge" title="최근 1개월 내 수주/기사">N</span></div></td><td class="col-credit_rating_label cell-rating"><span class="rating-pill">AA+</span></td><td class="col-amount_million_krw cell-moneybar">34,721,868<span class="bar" style="--w:100%"></span></td><td class="col-region cell-text">서울</td><td class="col-representative cell-text">오세철</td></tr><tr id="cak-detail-1" class="detail-row" hidden><td colspan="9"><div class="detail-panel">
+      <div class="table-wrap"><table class="rank-table" data-table-id="cak"><thead><tr><th scope="col" class="col-rank cell-number">순위</th><th scope="col" class="col-previous_rank cell-rank">전년순위</th><th scope="col" class="col-rank_change cell-change">변동</th><th scope="col" class="col-company cell-text">회사명</th><th scope="col" class="col-row_status cell-status">Comment</th><th scope="col" class="col-credit_rating_label cell-rating">신용등급</th><th scope="col" class="col-amount_million_krw cell-moneybar">시평액</th><th scope="col" class="col-region cell-text">지역</th><th scope="col" class="col-representative cell-text">대표자</th></tr></thead><tbody><tr class="rank-row" data-detail-row="cak-detail-1" aria-expanded="false"><td class="col-rank cell-number">1</td><td class="col-previous_rank cell-rank">1</td><td class="col-rank_change cell-change"><span class="change same">0</span></td><td class="col-company cell-text"><button class="row-toggle" type="button" aria-expanded="false" aria-controls="cak-detail-1"><span class="toggle-symbol" aria-hidden="true"></span><span>삼성물산 주식회사</span></button></td><td class="col-row_status cell-status"><div class="row-status" data-comment-key="company-comment:삼성물산"><span class="comment-count has-comments" aria-label="코멘트 1개">(1)</span><span class="new-badge" title="최근 1개월 내 수주/기사">N</span></div></td><td class="col-credit_rating_label cell-rating"><span class="rating-pill">AA+</span></td><td class="col-amount_million_krw cell-moneybar">34,721,868<span class="bar" style="--w:100%"></span></td><td class="col-region cell-text">서울</td><td class="col-representative cell-text">오세철</td></tr><tr id="cak-detail-1" class="detail-row" hidden><td colspan="9"><div class="detail-panel">
     <div class="detail-summary">
       <dl class="detail-grid">
             <div class="detail-item">
@@ -1034,27 +1021,20 @@
 
     <section class="company-comment" data-comment-key="company-comment:삼성물산" data-company-key="삼성물산" data-company-name="삼성물산 주식회사">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="seed-comments">
-        <h4>PDF 기록</h4>
-        <ul>
-        <li>
+      <div class="comment-list-wrap">
+        <ul class="comment-list">
+        <li data-seed-comment="true">
           <div class="comment-meta">
-            <span class="comment-author">작성자 개발솔루션센터 센터장</span>
+            <span class="comment-author">개발솔루션센터 센터장</span>
             <span>2026-07-03 · 시공사_동향_20260703.pdf</span>
           </div>
           <p>수주잔고는 2026년 1분기 31.7조원으로 전년 대비 증가. 애널리스트 인터뷰상 비정비사업 보증은 없고, 그룹공사 외 적극 수주의향은 낮은 것으로 기록됨.</p>
         </li>
             </ul>
-      </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+        <p class="comment-empty" hidden>아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -1218,27 +1198,20 @@
 
     <section class="company-comment" data-comment-key="company-comment:현대건설" data-company-key="현대건설" data-company-name="현대건설(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="seed-comments">
-        <h4>PDF 기록</h4>
-        <ul>
-        <li>
+      <div class="comment-list-wrap">
+        <ul class="comment-list">
+        <li data-seed-comment="true">
           <div class="comment-meta">
-            <span class="comment-author">작성자 개발솔루션센터 센터장</span>
+            <span class="comment-author">개발솔루션센터 센터장</span>
             <span>2026-07-03 · 시공사_동향_20260703.pdf</span>
           </div>
           <p>수주잔고는 2026년 1분기 92.3조원. 애널리스트 인터뷰상 PF보증 규모가 5조원대로 리스크가 높고, IOTA 건은 상대적으로 안정적인 편으로 기록됨.</p>
         </li>
             </ul>
-      </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+        <p class="comment-empty" hidden>아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -1402,27 +1375,20 @@
 
     <section class="company-comment" data-comment-key="company-comment:대우건설" data-company-key="대우건설" data-company-name="(주)대우건설">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="seed-comments">
-        <h4>PDF 기록</h4>
-        <ul>
-        <li>
+      <div class="comment-list-wrap">
+        <ul class="comment-list">
+        <li data-seed-comment="true">
           <div class="comment-meta">
-            <span class="comment-author">작성자 개발솔루션센터 센터장</span>
+            <span class="comment-author">개발솔루션센터 센터장</span>
             <span>2026-07-03 · 시공사_동향_20260703.pdf</span>
           </div>
           <p>개발사업팀/DC영업팀 인터뷰상 단순 책임준공 또는 조건부 채무인수로 시공참여 가능. 시공권 확보 차원의 Equity 참여 가능성이 있고, 우발채무는 회계팀 별도 관리 및 협조가 필요함.</p>
         </li>
             </ul>
-      </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+        <p class="comment-empty" hidden>아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -1586,27 +1552,20 @@
 
     <section class="company-comment" data-comment-key="company-comment:디엘이앤씨" data-company-key="디엘이앤씨" data-company-name="디엘이앤씨(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="seed-comments">
-        <h4>PDF 기록</h4>
-        <ul>
-        <li>
+      <div class="comment-list-wrap">
+        <ul class="comment-list">
+        <li data-seed-comment="true">
           <div class="comment-meta">
-            <span class="comment-author">작성자 개발솔루션센터 센터장</span>
+            <span class="comment-author">개발솔루션센터 센터장</span>
             <span>2026-07-03 · 시공사_동향_20260703.pdf</span>
           </div>
           <p>공사비 100% 확보 구조를 전제로 참여. DC, 오피스, 호텔, 주택 위주로 영업하며 특히 DC사업에 적극적. 사업 규모에 따라 조기 회수 조건의 Equity 투자 검토 가능, PCS 연계 수주도 긍정적으로 기록됨.</p>
         </li>
             </ul>
-      </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+        <p class="comment-empty" hidden>아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -1750,27 +1709,20 @@
 
     <section class="company-comment" data-comment-key="company-comment:지에스건설" data-company-key="지에스건설" data-company-name="지에스건설(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="seed-comments">
-        <h4>PDF 기록</h4>
-        <ul>
-        <li>
+      <div class="comment-list-wrap">
+        <ul class="comment-list">
+        <li data-seed-comment="true">
           <div class="comment-meta">
-            <span class="comment-author">작성자 개발솔루션센터 센터장</span>
+            <span class="comment-author">개발솔루션센터 센터장</span>
             <span>2026-07-03 · 시공사_동향_20260703.pdf</span>
           </div>
           <p>단순 책임준공 또는 조건부 채무인수로 참여 가능하나, 채무인수 조건일 경우 추가 요구조건이 예상됨. Equity 참여는 시공권 확보 차원에서 가능하며, 2028년까지 수주확대 니즈가 있는 것으로 기록됨.</p>
         </li>
             </ul>
-      </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+        <p class="comment-empty" hidden>아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -1883,14 +1835,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:현대엔지니어링" data-company-key="현대엔지니어링" data-company-name="현대엔지니어링(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -1972,27 +1922,20 @@
 
     <section class="company-comment" data-comment-key="company-comment:포스코이앤씨" data-company-key="포스코이앤씨" data-company-name="주식회사 포스코이앤씨">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="seed-comments">
-        <h4>PDF 기록</h4>
-        <ul>
-        <li>
+      <div class="comment-list-wrap">
+        <ul class="comment-list">
+        <li data-seed-comment="true">
           <div class="comment-meta">
-            <span class="comment-author">작성자 개발솔루션센터 센터장</span>
+            <span class="comment-author">개발솔루션센터 센터장</span>
             <span>2026-07-03 · 시공사_동향_20260703.pdf</span>
           </div>
           <p>영업그룹 간 경쟁적으로 수주영업 활동 중이며, 프로젝트 확보 그룹에 실적이 귀속되는 구조. PF 사업은 공사비 100% 확보가 전제되면 참여 가능하나, 지급 구조와 설계변경 공사비 회수 구조는 내부 검토에서 쟁점이 될 수 있음.</p>
         </li>
             </ul>
-      </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+        <p class="comment-empty" hidden>아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -2105,27 +2048,20 @@
 
     <section class="company-comment" data-comment-key="company-comment:롯데건설" data-company-key="롯데건설" data-company-name="롯데건설(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="seed-comments">
-        <h4>PDF 기록</h4>
-        <ul>
-        <li>
+      <div class="comment-list-wrap">
+        <ul class="comment-list">
+        <li data-seed-comment="true">
           <div class="comment-meta">
-            <span class="comment-author">작성자 개발솔루션센터 센터장</span>
+            <span class="comment-author">개발솔루션센터 센터장</span>
             <span>2026-07-03 · 시공사_동향_20260703.pdf</span>
           </div>
           <p>단순 책임준공 또는 자금보충약정 가능. 레고랜드 이후 전단채 보증이 6.9조원까지 발생했으나 현재 3조원대로 감소했고, 2026년 말 2조원대 감소를 예상. PF 익스포저가 높고, Equity 투자는 시공권 확보 차원에서 가능하다고 기록됨.</p>
         </li>
             </ul>
-      </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+        <p class="comment-empty" hidden>아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -2238,14 +2174,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:에스케이에코플랜트" data-company-key="에스케이에코플랜트" data-company-name="에스케이에코플랜트(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -2327,14 +2261,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:아이파크현대산업개발" data-company-key="아이파크현대산업개발" data-company-name="아이파크현대산업개발(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -2478,14 +2410,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:한화" data-company-key="한화" data-company-name="(주)한화">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -2598,14 +2528,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:호반건설" data-company-key="호반건설" data-company-name="(주)호반건설">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -2763,14 +2691,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:디엘건설" data-company-key="디엘건설" data-company-name="디엘건설(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -2934,14 +2860,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:두산에너빌리티" data-company-key="두산에너빌리티" data-company-name="두산에너빌리티(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -3105,14 +3029,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:계룡건설산업" data-company-key="계룡건설산업" data-company-name="계룡건설산업(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -3252,27 +3174,20 @@
 
     <section class="company-comment" data-comment-key="company-comment:서희건설" data-company-key="서희건설" data-company-name="(주)서희건설">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="seed-comments">
-        <h4>PDF 기록</h4>
-        <ul>
-        <li>
+      <div class="comment-list-wrap">
+        <ul class="comment-list">
+        <li data-seed-comment="true">
           <div class="comment-meta">
-            <span class="comment-author">작성자 개발솔루션센터 센터장</span>
+            <span class="comment-author">개발솔루션센터 센터장</span>
             <span>2026-07-03 · 시공사_동향_20260703.pdf</span>
           </div>
           <p>신용등급이 없는 건설사 중 투자검토 가능 기업으로 언급됨. 최근 반도체기업 주식투자로 현금보유 여지가 있는 것으로 기록됨.</p>
         </li>
             </ul>
-      </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+        <p class="comment-empty" hidden>아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -3390,14 +3305,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:제일건설" data-company-key="제일건설" data-company-name="제일건설(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -3561,14 +3474,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:코오롱글로벌" data-company-key="코오롱글로벌" data-company-name="코오롱글로벌(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -3732,14 +3643,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:태영건설" data-company-key="태영건설" data-company-name="(주)태영건설">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -3821,27 +3730,20 @@
 
     <section class="company-comment" data-comment-key="company-comment:케이씨씨건설" data-company-key="케이씨씨건설" data-company-name="(주)케이씨씨건설">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="seed-comments">
-        <h4>PDF 기록</h4>
-        <ul>
-        <li>
+      <div class="comment-list-wrap">
+        <ul class="comment-list">
+        <li data-seed-comment="true">
           <div class="comment-meta">
-            <span class="comment-author">작성자 개발솔루션센터 센터장</span>
+            <span class="comment-author">개발솔루션센터 센터장</span>
             <span>2026-07-03 · 시공사_동향_20260703.pdf</span>
           </div>
           <p>건축사업/영업 담당 인터뷰상 적극적 수주 의향이 있고, 시공권 확보 차원의 Equity 투자 의향이 있는 것으로 기록됨. 도급순위 20위권 초과라도 신용등급 A- 수준이면 책임준공 검토 가능 사례로 언급됨.</p>
         </li>
             </ul>
-      </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+        <p class="comment-empty" hidden>아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -3963,14 +3865,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:우미건설" data-company-key="우미건설" data-company-name="우미건설(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -4083,14 +3983,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:대방건설" data-company-key="대방건설" data-company-name="대방건설(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -4203,14 +4101,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:쌍용건설" data-company-key="쌍용건설" data-company-name="쌍용건설(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -4374,14 +4270,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:금호건설" data-company-key="금호건설" data-company-name="금호건설(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -4470,14 +4364,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:두산건설" data-company-key="두산건설" data-company-name="두산건설(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -4629,14 +4521,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:한신공영" data-company-key="한신공영" data-company-name="한신공영(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -4800,27 +4690,20 @@
 
     <section class="company-comment" data-comment-key="company-comment:효성중공업" data-company-key="효성중공업" data-company-name="효성중공업(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="seed-comments">
-        <h4>PDF 기록</h4>
-        <ul>
-        <li>
+      <div class="comment-list-wrap">
+        <ul class="comment-list">
+        <li data-seed-comment="true">
           <div class="comment-meta">
-            <span class="comment-author">작성자 개발솔루션센터 센터장</span>
+            <span class="comment-author">개발솔루션센터 센터장</span>
             <span>2026-07-03 · 시공사_동향_20260703.pdf</span>
           </div>
           <p>공사비 100% 조달 조건이면 채무인수 조건으로 PF사업 수주 가능. DC사업은 공격적 참여 지침이 있고 Equity 투자 가능성이 있으며, 변압기 납품 연계 사유도 있는 것으로 기록됨.</p>
         </li>
             </ul>
-      </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+        <p class="comment-empty" hidden>아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -4984,14 +4867,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:동부건설" data-company-key="동부건설" data-company-name="동부건설(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -5080,27 +4961,20 @@
 
     <section class="company-comment" data-comment-key="company-comment:에이치엘디앤아이한라" data-company-key="에이치엘디앤아이한라" data-company-name="에이치엘디앤아이한라(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="seed-comments">
-        <h4>PDF 기록</h4>
-        <ul>
-        <li>
+      <div class="comment-list-wrap">
+        <ul class="comment-list">
+        <li data-seed-comment="true">
           <div class="comment-meta">
-            <span class="comment-author">작성자 개발솔루션센터 센터장</span>
+            <span class="comment-author">개발솔루션센터 센터장</span>
             <span>2026-07-03 · 시공사_동향_20260703.pdf</span>
           </div>
           <p>지주사 책임준공은 하지 않음. 시공권 확보 차원의 Equity 투자는 가능하나, 올해는 보수적으로 보고 있으며 Cash-Flow 중심으로 판단하는 것으로 기록됨.</p>
         </li>
             </ul>
-      </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+        <p class="comment-empty" hidden>아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -5213,14 +5087,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:반도건설" data-company-key="반도건설" data-company-name="(주)반도건설">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -5243,7 +5115,7 @@
         </div>
         <a href="http://www.kiscon.net/pcm/detail_search.asp?GONGSI_YEAR=2025" target="_blank" rel="noreferrer">원문</a>
       </div>
-      <div class="table-wrap"><table class="rank-table" data-table-id="cm"><thead><tr><th scope="col" class="col-rank cell-number">순위</th><th scope="col" class="col-previous_rank cell-rank">전년순위</th><th scope="col" class="col-rank_change cell-change">변동</th><th scope="col" class="col-company cell-text">회사명</th><th scope="col" class="col-row_status cell-status">코멘트</th><th scope="col" class="col-service_cm_amount_million_krw cell-moneybar">2024 용역형 CM</th><th scope="col" class="col-cm_at_risk_amount_million_krw cell-number">2024 시공책임형 CM</th><th scope="col" class="col-people cell-number">인력</th></tr></thead><tbody><tr class="rank-row" data-detail-row="cm-detail-1" aria-expanded="false"><td class="col-rank cell-number">1</td><td class="col-previous_rank cell-rank">1</td><td class="col-rank_change cell-change"><span class="change same">0</span></td><td class="col-company cell-text"><button class="row-toggle" type="button" aria-expanded="false" aria-controls="cm-detail-1"><span class="toggle-symbol" aria-hidden="true"></span><span>(주)삼우씨엠건축사사무소</span></button></td><td class="col-row_status cell-status"><div class="row-status" data-comment-key="company-comment:삼우씨엠건축사사무소"><span class="comment-count" aria-label="코멘트 0개">(0)</span></div></td><td class="col-service_cm_amount_million_krw cell-moneybar">101,601<span class="bar" style="--w:100%"></span></td><td class="col-cm_at_risk_amount_million_krw cell-number">0</td><td class="col-people cell-number">719</td></tr><tr id="cm-detail-1" class="detail-row" hidden><td colspan="8"><div class="detail-panel">
+      <div class="table-wrap"><table class="rank-table" data-table-id="cm"><thead><tr><th scope="col" class="col-rank cell-number">순위</th><th scope="col" class="col-previous_rank cell-rank">전년순위</th><th scope="col" class="col-rank_change cell-change">변동</th><th scope="col" class="col-company cell-text">회사명</th><th scope="col" class="col-row_status cell-status">Comment</th><th scope="col" class="col-service_cm_amount_million_krw cell-moneybar">2024 용역형 CM</th><th scope="col" class="col-cm_at_risk_amount_million_krw cell-number">2024 시공책임형 CM</th><th scope="col" class="col-people cell-number">인력</th></tr></thead><tbody><tr class="rank-row" data-detail-row="cm-detail-1" aria-expanded="false"><td class="col-rank cell-number">1</td><td class="col-previous_rank cell-rank">1</td><td class="col-rank_change cell-change"><span class="change same">0</span></td><td class="col-company cell-text"><button class="row-toggle" type="button" aria-expanded="false" aria-controls="cm-detail-1"><span class="toggle-symbol" aria-hidden="true"></span><span>(주)삼우씨엠건축사사무소</span></button></td><td class="col-row_status cell-status"><div class="row-status" data-comment-key="company-comment:삼우씨엠건축사사무소"><span class="comment-count" aria-label="코멘트 0개">(0)</span></div></td><td class="col-service_cm_amount_million_krw cell-moneybar">101,601<span class="bar" style="--w:100%"></span></td><td class="col-cm_at_risk_amount_million_krw cell-number">0</td><td class="col-people cell-number">719</td></tr><tr id="cm-detail-1" class="detail-row" hidden><td colspan="8"><div class="detail-panel">
     <div class="detail-summary">
       <dl class="detail-grid">
             <div class="detail-item">
@@ -5365,14 +5237,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:삼우씨엠건축사사무소" data-company-key="삼우씨엠건축사사무소" data-company-name="(주)삼우씨엠건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -5444,14 +5314,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:건축사사무소건원엔지니어링" data-company-key="건축사사무소건원엔지니어링" data-company-name="(주)건축사사무소 건원엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -5530,14 +5398,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:무영씨엠건축사사무소" data-company-key="무영씨엠건축사사무소" data-company-name="(주)무영씨엠건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -5616,14 +5482,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:포스코에이앤씨건축사사무소" data-company-key="포스코에이앤씨건축사사무소" data-company-name="(주)포스코에이앤씨건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -5777,14 +5641,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:희림종합건축사사무소" data-company-key="희림종합건축사사무소" data-company-name="(주)희림종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -5856,14 +5718,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:에이치케이건축사사무소" data-company-key="에이치케이건축사사무소" data-company-name="(주)에이치케이건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -5935,14 +5795,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:선엔지니어링종합건축사사무소" data-company-key="선엔지니어링종합건축사사무소" data-company-name="(주)선엔지니어링종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -6014,14 +5872,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:아이티엠건축사사무소" data-company-key="아이티엠건축사사무소" data-company-name="(주)아이티엠건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -6100,14 +5956,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:선진엔지니어링종합건축사사무소" data-company-key="선진엔지니어링종합건축사사무소" data-company-name="(주)선진엔지니어링종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -6186,14 +6040,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:토펙엔지니어링건축사사무소" data-company-key="토펙엔지니어링건축사사무소" data-company-name="(주)토펙엔지니어링건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -6265,14 +6117,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:종합건축사사무소동일건축" data-company-key="종합건축사사무소동일건축" data-company-name="(주)종합건축사사무소동일건축">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -6344,14 +6194,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:한국종합건축사사무소" data-company-key="한국종합건축사사무소" data-company-name="(주)한국종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -6430,14 +6278,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:행림종합건축사사무소" data-company-key="행림종합건축사사무소" data-company-name="(주)행림종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -6509,14 +6355,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:정림씨엠건축사사무소" data-company-key="정림씨엠건축사사무소" data-company-name="(주)정림씨엠건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -6588,14 +6432,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:해안종합건축사사무소" data-company-key="해안종합건축사사무소" data-company-name="(주)해안종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -6667,14 +6509,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:전인씨엠건축사사무소" data-company-key="전인씨엠건축사사무소" data-company-name="(주)전인씨엠건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -6746,14 +6586,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:신화엔지니어링종합건축사사무소" data-company-key="신화엔지니어링종합건축사사무소" data-company-name="(주)신화엔지니어링종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -6825,14 +6663,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:토문엔지니어링건축사사무소" data-company-key="토문엔지니어링건축사사무소" data-company-name="(주)토문엔지니어링건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -6904,14 +6740,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:나우씨엠건축사사무소" data-company-key="나우씨엠건축사사무소" data-company-name="(주)나우씨엠건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -6983,14 +6817,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:다인씨엠건축사사무소" data-company-key="다인씨엠건축사사무소" data-company-name="(주)다인씨엠건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -7062,14 +6894,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:범씨엠건축사사무소" data-company-key="범씨엠건축사사무소" data-company-name="(주)범씨엠건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -7141,14 +6971,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:디엠이엔지종합건축사사무소" data-company-key="디엠이엔지종합건축사사무소" data-company-name="(주)디엠이엔지종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -7220,14 +7048,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:도원엔지니어링건축사사무소" data-company-key="도원엔지니어링건축사사무소" data-company-name="(주)도원엔지니어링건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -7381,14 +7207,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:신세계건설" data-company-key="신세계건설" data-company-name="신세계건설(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -7460,14 +7284,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:상아매니지먼트컨설팅" data-company-key="상아매니지먼트컨설팅" data-company-name="(주)상아매니지먼트컨설팅">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -7539,14 +7361,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:하우빌드" data-company-key="하우빌드" data-company-name="(주)하우빌드">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -7618,14 +7438,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:우석이엔씨건축사사무소" data-company-key="우석이엔씨건축사사무소" data-company-name="(주)우석이엔씨건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -7697,14 +7515,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:비씨엠피" data-company-key="비씨엠피" data-company-name="(주)비씨엠피">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -7783,14 +7599,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:아리씨엠" data-company-key="아리씨엠" data-company-name="(주)아리씨엠">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -7862,14 +7676,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:건영" data-company-key="건영" data-company-name="(주)건영">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -7892,7 +7704,7 @@
         </div>
         <a href="https://www.etis.or.kr/webs/statistics/siljuk_ranking.jsp?leftParam=911&amp;topParam=3" target="_blank" rel="noreferrer">원문</a>
       </div>
-      <div class="table-wrap"><table class="rank-table" data-table-id="etis-all"><thead><tr><th scope="col" class="col-rank cell-number">순위</th><th scope="col" class="col-previous_rank cell-rank">전년순위</th><th scope="col" class="col-rank_change cell-change">변동</th><th scope="col" class="col-company cell-text">업체명</th><th scope="col" class="col-row_status cell-status">코멘트</th><th scope="col" class="col-count cell-number">건수</th><th scope="col" class="col-amount_million_krw cell-moneybar">금액</th><th scope="col" class="col-registration_no cell-text">신고번호</th></tr></thead><tbody><tr class="rank-row" data-detail-row="etis-all-detail-1" aria-expanded="false"><td class="col-rank cell-number">1</td><td class="col-previous_rank cell-rank">10</td><td class="col-rank_change cell-change"><span class="change up">▲9</span></td><td class="col-company cell-text"><button class="row-toggle" type="button" aria-expanded="false" aria-controls="etis-all-detail-1"><span class="toggle-symbol" aria-hidden="true"></span><span>한국전력기술(주)</span></button></td><td class="col-row_status cell-status"><div class="row-status" data-comment-key="company-comment:한국전력기술"><span class="comment-count" aria-label="코멘트 0개">(0)</span></div></td><td class="col-count cell-number">52</td><td class="col-amount_million_krw cell-moneybar">1,979,107<span class="bar" style="--w:100%"></span></td><td class="col-registration_no cell-text">E15000009</td></tr><tr id="etis-all-detail-1" class="detail-row" hidden><td colspan="8"><div class="detail-panel">
+      <div class="table-wrap"><table class="rank-table" data-table-id="etis-all"><thead><tr><th scope="col" class="col-rank cell-number">순위</th><th scope="col" class="col-previous_rank cell-rank">전년순위</th><th scope="col" class="col-rank_change cell-change">변동</th><th scope="col" class="col-company cell-text">업체명</th><th scope="col" class="col-row_status cell-status">Comment</th><th scope="col" class="col-count cell-number">건수</th><th scope="col" class="col-amount_million_krw cell-moneybar">금액</th><th scope="col" class="col-registration_no cell-text">신고번호</th></tr></thead><tbody><tr class="rank-row" data-detail-row="etis-all-detail-1" aria-expanded="false"><td class="col-rank cell-number">1</td><td class="col-previous_rank cell-rank">10</td><td class="col-rank_change cell-change"><span class="change up">▲9</span></td><td class="col-company cell-text"><button class="row-toggle" type="button" aria-expanded="false" aria-controls="etis-all-detail-1"><span class="toggle-symbol" aria-hidden="true"></span><span>한국전력기술(주)</span></button></td><td class="col-row_status cell-status"><div class="row-status" data-comment-key="company-comment:한국전력기술"><span class="comment-count" aria-label="코멘트 0개">(0)</span></div></td><td class="col-count cell-number">52</td><td class="col-amount_million_krw cell-moneybar">1,979,107<span class="bar" style="--w:100%"></span></td><td class="col-registration_no cell-text">E15000009</td></tr><tr id="etis-all-detail-1" class="detail-row" hidden><td colspan="8"><div class="detail-panel">
     <div class="detail-summary">
       <dl class="detail-grid">
             <div class="detail-item">
@@ -7972,14 +7784,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:한국전력기술" data-company-key="한국전력기술" data-company-name="한국전력기술(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -8104,14 +7914,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:도화엔지니어링" data-company-key="도화엔지니어링" data-company-name="(주)도화엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -8248,14 +8056,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:유신" data-company-key="유신" data-company-name="(주)유신">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -8335,14 +8141,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:건화" data-company-key="건화" data-company-name="(주)건화">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -8479,14 +8283,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:한국종합기술" data-company-key="한국종합기술" data-company-name="(주)한국종합기술">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -8560,14 +8362,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:케이지엔지니어링종합건축사사무소" data-company-key="케이지엔지니어링종합건축사사무소" data-company-name="(주)케이지엔지니어링종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -8653,14 +8453,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:동해종합기술공사" data-company-key="동해종합기술공사" data-company-name="(주)동해종합기술공사">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -8727,14 +8525,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:삼안" data-company-key="삼안" data-company-name="(주)삼안">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -8826,14 +8622,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:리뉴어스" data-company-key="리뉴어스" data-company-name="리뉴어스 주식회사">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -8907,14 +8701,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:동명기술공단종합건축사사무소" data-company-key="동명기술공단종합건축사사무소" data-company-name="(주)동명기술공단종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -9005,14 +8797,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:이산" data-company-key="이산" data-company-name="(주)이산">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -9092,14 +8882,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:경동엔지니어링" data-company-key="경동엔지니어링" data-company-name="(주)경동엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -9191,14 +8979,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:동일기술공사" data-company-key="동일기술공사" data-company-name="(주)동일기술공사">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -9272,14 +9058,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:제일엔지니어링종합건축사사무소" data-company-key="제일엔지니어링종합건축사사무소" data-company-name="(주)제일엔지니어링종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -9359,14 +9143,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:서영엔지니어링" data-company-key="서영엔지니어링" data-company-name="(주)서영엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -9440,14 +9222,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:케이워터기술" data-company-key="케이워터기술" data-company-name="케이워터기술 주식회사">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -9521,14 +9301,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:동성엔지니어링" data-company-key="동성엔지니어링" data-company-name="(주)동성엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -9602,14 +9380,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:동부엔지니어링" data-company-key="동부엔지니어링" data-company-name="동부엔지니어링(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -9689,14 +9465,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:홍익기술단" data-company-key="홍익기술단" data-company-name="(주)홍익기술단">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -9763,14 +9537,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:다산컨설턴트" data-company-key="다산컨설턴트" data-company-name="(주)다산컨설턴트">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -9844,14 +9616,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:대보정보통신" data-company-key="대보정보통신" data-company-name="대보정보통신(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -9931,14 +9701,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:드림엔지니어링" data-company-key="드림엔지니어링" data-company-name="(주)드림엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -10018,14 +9786,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:한국지역난방기술" data-company-key="한국지역난방기술" data-company-name="한국지역난방기술(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -10099,14 +9865,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:수성엔지니어링" data-company-key="수성엔지니어링" data-company-name="(주)수성엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -10180,14 +9944,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:대한콘설탄트" data-company-key="대한콘설탄트" data-company-name="(주)대한콘설탄트">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -10261,14 +10023,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:삼보기술단" data-company-key="삼보기술단" data-company-name="(주)삼보기술단">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -10342,14 +10102,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:엘씨젠" data-company-key="엘씨젠" data-company-name="(주)엘씨젠">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -10429,14 +10187,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:한전케이피에스" data-company-key="한전케이피에스" data-company-name="한전케이피에스(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -10503,14 +10259,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:건일이엔지" data-company-key="건일이엔지" data-company-name="건일이엔지 주식회사">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -10584,14 +10338,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:글로텍엔지니어링" data-company-key="글로텍엔지니어링" data-company-name="(주)글로텍엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -10614,7 +10366,7 @@
         </div>
         <a href="https://www.etis.or.kr/webs/statistics/siljuk_ranking2.jsp?leftParam=912&amp;topParam=3" target="_blank" rel="noreferrer">원문</a>
       </div>
-      <div class="table-wrap"><table class="rank-table" data-table-id="etis-con"><thead><tr><th scope="col" class="col-rank cell-number">순위</th><th scope="col" class="col-previous_rank cell-rank">전년순위</th><th scope="col" class="col-rank_change cell-change">변동</th><th scope="col" class="col-company cell-text">업체명</th><th scope="col" class="col-row_status cell-status">코멘트</th><th scope="col" class="col-count cell-number">건수</th><th scope="col" class="col-amount_million_krw cell-moneybar">금액</th><th scope="col" class="col-registration_no cell-text">신고번호</th></tr></thead><tbody><tr class="rank-row" data-detail-row="etis-con-detail-1" aria-expanded="false"><td class="col-rank cell-number">1</td><td class="col-previous_rank cell-rank">1</td><td class="col-rank_change cell-change"><span class="change same">0</span></td><td class="col-company cell-text"><button class="row-toggle" type="button" aria-expanded="false" aria-controls="etis-con-detail-1"><span class="toggle-symbol" aria-hidden="true"></span><span>(주)도화엔지니어링</span></button></td><td class="col-row_status cell-status"><div class="row-status" data-comment-key="company-comment:도화엔지니어링"><span class="comment-count" aria-label="코멘트 0개">(0)</span><span class="new-badge" title="최근 1개월 내 수주/기사">N</span></div></td><td class="col-count cell-number">601</td><td class="col-amount_million_krw cell-moneybar">568,338<span class="bar" style="--w:100%"></span></td><td class="col-registration_no cell-text">E09000064</td></tr><tr id="etis-con-detail-1" class="detail-row" hidden><td colspan="8"><div class="detail-panel">
+      <div class="table-wrap"><table class="rank-table" data-table-id="etis-con"><thead><tr><th scope="col" class="col-rank cell-number">순위</th><th scope="col" class="col-previous_rank cell-rank">전년순위</th><th scope="col" class="col-rank_change cell-change">변동</th><th scope="col" class="col-company cell-text">업체명</th><th scope="col" class="col-row_status cell-status">Comment</th><th scope="col" class="col-count cell-number">건수</th><th scope="col" class="col-amount_million_krw cell-moneybar">금액</th><th scope="col" class="col-registration_no cell-text">신고번호</th></tr></thead><tbody><tr class="rank-row" data-detail-row="etis-con-detail-1" aria-expanded="false"><td class="col-rank cell-number">1</td><td class="col-previous_rank cell-rank">1</td><td class="col-rank_change cell-change"><span class="change same">0</span></td><td class="col-company cell-text"><button class="row-toggle" type="button" aria-expanded="false" aria-controls="etis-con-detail-1"><span class="toggle-symbol" aria-hidden="true"></span><span>(주)도화엔지니어링</span></button></td><td class="col-row_status cell-status"><div class="row-status" data-comment-key="company-comment:도화엔지니어링"><span class="comment-count" aria-label="코멘트 0개">(0)</span><span class="new-badge" title="최근 1개월 내 수주/기사">N</span></div></td><td class="col-count cell-number">601</td><td class="col-amount_million_krw cell-moneybar">568,338<span class="bar" style="--w:100%"></span></td><td class="col-registration_no cell-text">E09000064</td></tr><tr id="etis-con-detail-1" class="detail-row" hidden><td colspan="8"><div class="detail-panel">
     <div class="detail-summary">
       <dl class="detail-grid">
             <div class="detail-item">
@@ -10727,14 +10479,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:도화엔지니어링" data-company-key="도화엔지니어링" data-company-name="(주)도화엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -10871,14 +10621,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:유신" data-company-key="유신" data-company-name="(주)유신">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -10958,14 +10706,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:건화" data-company-key="건화" data-company-name="(주)건화">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -11039,14 +10785,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:케이지엔지니어링종합건축사사무소" data-company-key="케이지엔지니어링종합건축사사무소" data-company-name="(주)케이지엔지니어링종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -11183,14 +10927,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:한국종합기술" data-company-key="한국종합기술" data-company-name="(주)한국종합기술">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -11276,14 +11018,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:동해종합기술공사" data-company-key="동해종합기술공사" data-company-name="(주)동해종합기술공사">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -11357,14 +11097,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:동명기술공단종합건축사사무소" data-company-key="동명기술공단종합건축사사무소" data-company-name="(주)동명기술공단종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -11431,14 +11169,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:삼안" data-company-key="삼안" data-company-name="(주)삼안">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -11518,14 +11254,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:경동엔지니어링" data-company-key="경동엔지니어링" data-company-name="(주)경동엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -11599,14 +11333,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:케이워터기술" data-company-key="케이워터기술" data-company-name="케이워터기술 주식회사">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -11698,14 +11430,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:동일기술공사" data-company-key="동일기술공사" data-company-name="(주)동일기술공사">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -11779,14 +11509,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:동부엔지니어링" data-company-key="동부엔지니어링" data-company-name="동부엔지니어링(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -11866,14 +11594,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:서영엔지니어링" data-company-key="서영엔지니어링" data-company-name="(주)서영엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -11947,14 +11673,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:동성엔지니어링" data-company-key="동성엔지니어링" data-company-name="(주)동성엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -12034,14 +11758,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:홍익기술단" data-company-key="홍익기술단" data-company-name="(주)홍익기술단">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -12132,14 +11854,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:이산" data-company-key="이산" data-company-name="(주)이산">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -12206,14 +11926,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:다산컨설턴트" data-company-key="다산컨설턴트" data-company-name="(주)다산컨설턴트">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -12287,14 +12005,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:제일엔지니어링종합건축사사무소" data-company-key="제일엔지니어링종합건축사사무소" data-company-name="(주)제일엔지니어링종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -12386,14 +12102,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:리뉴어스" data-company-key="리뉴어스" data-company-name="리뉴어스 주식회사">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -12467,14 +12181,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:대한콘설탄트" data-company-key="대한콘설탄트" data-company-name="(주)대한콘설탄트">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -12548,14 +12260,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:수성엔지니어링" data-company-key="수성엔지니어링" data-company-name="(주)수성엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -12629,14 +12339,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:삼보기술단" data-company-key="삼보기술단" data-company-name="(주)삼보기술단">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -12703,14 +12411,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:건일이엔지" data-company-key="건일이엔지" data-company-name="건일이엔지 주식회사">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -12788,14 +12494,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:서현" data-company-key="서현" data-company-name="주식회사 서현">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -12869,14 +12573,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:세광종합기술단" data-company-key="세광종합기술단" data-company-name="(주)세광종합기술단">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -12956,14 +12658,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:태조엔지니어링" data-company-key="태조엔지니어링" data-company-name="(주)태조엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -13043,14 +12743,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:케이씨아이" data-company-key="케이씨아이" data-company-name="(주)케이씨아이">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -13124,14 +12822,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:경호엔지니어링종합건축사사무소" data-company-key="경호엔지니어링종합건축사사무소" data-company-name="(주)경호엔지니어링종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -13205,14 +12901,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:아라기술" data-company-key="아라기술" data-company-name="(주)아라기술">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -13286,14 +12980,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:선진엔지니어링종합건축사사무소" data-company-key="선진엔지니어링종합건축사사무소" data-company-name="(주)선진엔지니어링종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -13316,7 +13008,7 @@
         </div>
         <a href="http://www.ekacem.or.kr/storehouse/stat-member/20260331-1.pdf" target="_blank" rel="noreferrer">원문</a>
       </div>
-      <div class="table-wrap"><table class="rank-table" data-table-id="kacem"><thead><tr><th scope="col" class="col-rank cell-number">순위</th><th scope="col" class="col-previous_rank cell-rank">전년순위</th><th scope="col" class="col-rank_change cell-change">변동</th><th scope="col" class="col-company cell-text">회사명</th><th scope="col" class="col-row_status cell-status">코멘트</th><th scope="col" class="col-total_count cell-number">총건수</th><th scope="col" class="col-total_amount_100m_krw cell-moneybar">총금액</th><th scope="col" class="col-public_design_amount_100m_krw cell-number">공공 설계등</th><th scope="col" class="col-public_cm_amount_100m_krw cell-number">공공 CM</th></tr></thead><tbody><tr class="rank-row" data-detail-row="kacem-detail-1" aria-expanded="false"><td class="col-rank cell-number">1</td><td class="col-previous_rank cell-rank">1</td><td class="col-rank_change cell-change"><span class="change same">0</span></td><td class="col-company cell-text"><button class="row-toggle" type="button" aria-expanded="false" aria-controls="kacem-detail-1"><span class="toggle-symbol" aria-hidden="true"></span><span>(주)도화엔지니어링</span></button></td><td class="col-row_status cell-status"><div class="row-status" data-comment-key="company-comment:도화엔지니어링"><span class="comment-count" aria-label="코멘트 0개">(0)</span><span class="new-badge" title="최근 1개월 내 수주/기사">N</span></div></td><td class="col-total_count cell-number">84</td><td class="col-total_amount_100m_krw cell-moneybar">968<span class="bar" style="--w:100%"></span></td><td class="col-public_design_amount_100m_krw cell-number">473</td><td class="col-public_cm_amount_100m_krw cell-number">496</td></tr><tr id="kacem-detail-1" class="detail-row" hidden><td colspan="9"><div class="detail-panel">
+      <div class="table-wrap"><table class="rank-table" data-table-id="kacem"><thead><tr><th scope="col" class="col-rank cell-number">순위</th><th scope="col" class="col-previous_rank cell-rank">전년순위</th><th scope="col" class="col-rank_change cell-change">변동</th><th scope="col" class="col-company cell-text">회사명</th><th scope="col" class="col-row_status cell-status">Comment</th><th scope="col" class="col-total_count cell-number">총건수</th><th scope="col" class="col-total_amount_100m_krw cell-moneybar">총금액</th><th scope="col" class="col-public_design_amount_100m_krw cell-number">공공 설계등</th><th scope="col" class="col-public_cm_amount_100m_krw cell-number">공공 CM</th></tr></thead><tbody><tr class="rank-row" data-detail-row="kacem-detail-1" aria-expanded="false"><td class="col-rank cell-number">1</td><td class="col-previous_rank cell-rank">1</td><td class="col-rank_change cell-change"><span class="change same">0</span></td><td class="col-company cell-text"><button class="row-toggle" type="button" aria-expanded="false" aria-controls="kacem-detail-1"><span class="toggle-symbol" aria-hidden="true"></span><span>(주)도화엔지니어링</span></button></td><td class="col-row_status cell-status"><div class="row-status" data-comment-key="company-comment:도화엔지니어링"><span class="comment-count" aria-label="코멘트 0개">(0)</span><span class="new-badge" title="최근 1개월 내 수주/기사">N</span></div></td><td class="col-total_count cell-number">84</td><td class="col-total_amount_100m_krw cell-moneybar">968<span class="bar" style="--w:100%"></span></td><td class="col-public_design_amount_100m_krw cell-number">473</td><td class="col-public_cm_amount_100m_krw cell-number">496</td></tr><tr id="kacem-detail-1" class="detail-row" hidden><td colspan="9"><div class="detail-panel">
     <div class="detail-summary">
       <dl class="detail-grid">
             <div class="detail-item">
@@ -13474,14 +13166,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:도화엔지니어링" data-company-key="도화엔지니어링" data-company-name="(주)도화엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -13593,14 +13283,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:삼안" data-company-key="삼안" data-company-name="(주)삼안">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -13782,14 +13470,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:한국종합기술" data-company-key="한국종합기술" data-company-name="(주)한국종합기술">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -13908,14 +13594,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:동명기술공단종합건축사사무소" data-company-key="동명기술공단종합건축사사무소" data-company-name="(주)동명기술공단종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -14034,14 +13718,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:무영씨엠건축사사무소" data-company-key="무영씨엠건축사사무소" data-company-name="(주)무영씨엠건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -14153,14 +13835,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:신화엔지니어링종합건축사사무소" data-company-key="신화엔지니어링종합건축사사무소" data-company-name="(주)신화엔지니어링종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -14342,14 +14022,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:유신" data-company-key="유신" data-company-name="(주)유신">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -14474,14 +14152,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:건화" data-company-key="건화" data-company-name="(주)건화">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -14600,14 +14276,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:경호엔지니어링종합건축사사무소" data-company-key="경호엔지니어링종합건축사사무소" data-company-name="(주)경호엔지니어링종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -14801,14 +14475,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:희림종합건축사사무소" data-company-key="희림종합건축사사무소" data-company-name="(주)희림종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -14939,14 +14611,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:동해종합기술공사" data-company-key="동해종합기술공사" data-company-name="(주)동해종합기술공사">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -15065,14 +14735,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:동성엔지니어링" data-company-key="동성엔지니어링" data-company-name="(주)동성엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -15191,14 +14859,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:제일엔지니어링종합건축사사무소" data-company-key="제일엔지니어링종합건축사사무소" data-company-name="(주)제일엔지니어링종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -15310,14 +14976,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:펨코엔지니어링건축사사무소" data-company-key="펨코엔지니어링건축사사무소" data-company-name="(주)펨코엔지니어링건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -15436,14 +15100,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:케이지엔지니어링종합건축사사무소" data-company-key="케이지엔지니어링종합건축사사무소" data-company-name="(주)케이지엔지니어링종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -15568,14 +15230,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:경동엔지니어링" data-company-key="경동엔지니어링" data-company-name="(주)경동엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -15687,14 +15347,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:아이티엠건축사사무소" data-company-key="아이티엠건축사사무소" data-company-name="(주)아이티엠건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -15813,14 +15471,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:수성엔지니어링" data-company-key="수성엔지니어링" data-company-name="(주)수성엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -15932,14 +15588,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:선엔지니어링종합건축사사무소" data-company-key="선엔지니어링종합건축사사무소" data-company-name="(주)선엔지니어링종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -16051,14 +15705,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:건일이엔지" data-company-key="건일이엔지" data-company-name="건일이엔지 주식회사">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -16170,14 +15822,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:종합건축사사무소동일건축" data-company-key="종합건축사사무소동일건축" data-company-name="(주)종합건축사사무소 동일건축">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -16289,14 +15939,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:건축사사무소건원엔지니어링" data-company-key="건축사사무소건원엔지니어링" data-company-name="(주)건축사사무소건원엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -16408,14 +16056,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:디엠에이앤씨건축사사무소" data-company-key="디엠에이앤씨건축사사무소" data-company-name="주식회사 디엠에이앤씨건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -16551,14 +16197,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:이산" data-company-key="이산" data-company-name="(주)이산">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -16670,14 +16314,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:범한엔지니어링" data-company-key="범한엔지니어링" data-company-name="(주)범한엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -16789,14 +16431,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:동우이앤씨" data-company-key="동우이앤씨" data-company-name="(주)동우이앤씨">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -16908,14 +16548,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:한국종합건축사사무소" data-company-key="한국종합건축사사무소" data-company-name="(주)한국종합건축사사무소">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -17027,14 +16665,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:건축사사무소광장" data-company-key="건축사사무소광장" data-company-name="(주)건축사사무소 광장">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -17146,14 +16782,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:연안항만엔지니어링" data-company-key="연안항만엔지니어링" data-company-name="주식회사 연안항만엔지니어링">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -17272,14 +16906,12 @@
 
     <section class="company-comment" data-comment-key="company-comment:벽산엔지니어링" data-company-key="벽산엔지니어링" data-company-name="벽산엔지니어링(주)">
       <div>
-        <h3>코멘트</h3>
+        <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
-
-      <div class="online-comments">
-        <h4>온라인 코멘트</h4>
-        <ul class="online-comment-list"></ul>
-        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      <div class="comment-list-wrap">
+        <ul class="comment-list"></ul>
+        <p class="comment-empty">아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
         <label class="comment-author-field">
@@ -17297,7 +16929,7 @@
 
     <section class="disclaimer">
       <h2>출처 및 유의사항</h2>
-      <ul><li><strong>대한건설협회</strong>: 현재 순위는 <a href="https://www.cak.or.kr/lay1/S1T54C56/sublink.do" target="_blank" rel="noreferrer">건설업체 검색</a>의 공개 AJAX JSON을 사용했습니다. 전년순위는 <a href="https://www.cak.or.kr/download.do?uuid=13e9142b-03c3-4727-882e-e573f178f8ae.xlsx" target="_blank" rel="noreferrer">2024년 공시자료 xlsx</a>의 토건 시트 기준입니다.</li><li><strong>신용등급</strong>: KIS/NICE 공개 회사별 등급검색을 우선 사용하고, 공개 등급이 비는 회사는 <a href="https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS006&amp;apiId=2020055" target="_blank" rel="noreferrer">OpenDART 채무증권 API</a>의 최근 5년 신용등급 필드로 보조했습니다. 현재 캐시 기준 17/30개 회사에서 등급을 확인했습니다.</li><li><strong>CM/KISCON</strong>: <a href="http://www.kiscon.net/pcm/detail_search.asp?GONGSI_YEAR=2025" target="_blank" rel="noreferrer">KISCON 공시업체 검색</a>에서 2025 공시연도 전체 업체를 읽어 2024년도 용역형 CM 실적순으로 정렬했습니다. 전년순위는 <a href="http://www.kiscon.net/pcm/detail_search.asp?GONGSI_YEAR=2024" target="_blank" rel="noreferrer">2024 공시연도</a> 기준입니다.</li><li><strong>ETIS</strong>: <a href="https://www.etis.or.kr/webs/statistics/receive_eng_next.jsp" target="_blank" rel="noreferrer">ETIS 통계 페이지</a>의 공식 PDF를 표 추출했습니다. 전년순위는 각각 <a href="https://www.etis.or.kr/webs/pdfdata/2024siljuk_all.pdf" target="_blank" rel="noreferrer">전체</a>, <a href="https://www.etis.or.kr/webs/pdfdata/2024siljuk_con.pdf" target="_blank" rel="noreferrer">건설부문</a>의 2024년 PDF 기준입니다.</li><li><strong>KACEM</strong>: <a href="http://www.ekacem.or.kr/storehouse/record.asp" target="_blank" rel="noreferrer">건설엔지니어링 통계</a>의 최신 분기 PDF를 표 추출했습니다. 전년순위는 <a href="http://www.ekacem.or.kr/storehouse/stat-member/20250331-1.pdf" target="_blank" rel="noreferrer">2025년 1/4분기</a> PDF 기준입니다. PDF 주석상 민간 기술형 입찰, 턴키, 해외 수주실적은 제외됩니다.</li><li><strong>최근 수주/계약</strong>: 산군/보도 수동 캐시, OpenDART 단일판매ㆍ공급계약체결 공시, 나라장터 계약정보서비스 공사 계약현황 캐시를 회사명으로 합쳐 최근 5년 이내 자료 중 최신 5건만 표시합니다. 공사비 단가는 DART 원문에서 연면적이 추출되는 경우에만 계약금액 ÷ 연면적으로 산정합니다.</li><li><strong>기사/전략 정보</strong>: Google News RSS에서 회사명과 수주/계약/실적/경영/투자/계열사/신사업 키워드로 검색한 기사와 OpenDART 투자판단ㆍ출자ㆍ시설투자ㆍM&Aㆍ특수관계인 거래성 공시를 합쳐 표시합니다. 같은 프로젝트ㆍ이벤트로 보이는 유사 기사군은 대표 1건만 남기고 최대 5건까지 노출합니다.</li><li><strong>코멘트</strong>: <code>시공사_동향_20260703.pdf</code>의 회사별 기록을 기본 코멘트로 표시하고, 추가 코멘트는 온라인 DB에 저장해 사용자 간 공유됩니다. 개발솔루션센터 센터장 작성자명은 공식 PDF 기록에만 사용합니다.</li></ul>
+      <ul><li><strong>대한건설협회</strong>: 현재 순위는 <a href="https://www.cak.or.kr/lay1/S1T54C56/sublink.do" target="_blank" rel="noreferrer">건설업체 검색</a>의 공개 AJAX JSON을 사용했습니다. 전년순위는 <a href="https://www.cak.or.kr/download.do?uuid=13e9142b-03c3-4727-882e-e573f178f8ae.xlsx" target="_blank" rel="noreferrer">2024년 공시자료 xlsx</a>의 토건 시트 기준입니다.</li><li><strong>신용등급</strong>: KIS/NICE 공개 회사별 등급검색을 우선 사용하고, 공개 등급이 비는 회사는 <a href="https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS006&amp;apiId=2020055" target="_blank" rel="noreferrer">OpenDART 채무증권 API</a>의 최근 5년 신용등급 필드로 보조했습니다. 현재 캐시 기준 17/30개 회사에서 등급을 확인했습니다.</li><li><strong>CM/KISCON</strong>: <a href="http://www.kiscon.net/pcm/detail_search.asp?GONGSI_YEAR=2025" target="_blank" rel="noreferrer">KISCON 공시업체 검색</a>에서 2025 공시연도 전체 업체를 읽어 2024년도 용역형 CM 실적순으로 정렬했습니다. 전년순위는 <a href="http://www.kiscon.net/pcm/detail_search.asp?GONGSI_YEAR=2024" target="_blank" rel="noreferrer">2024 공시연도</a> 기준입니다.</li><li><strong>ETIS</strong>: <a href="https://www.etis.or.kr/webs/statistics/receive_eng_next.jsp" target="_blank" rel="noreferrer">ETIS 통계 페이지</a>의 공식 PDF를 표 추출했습니다. 전년순위는 각각 <a href="https://www.etis.or.kr/webs/pdfdata/2024siljuk_all.pdf" target="_blank" rel="noreferrer">전체</a>, <a href="https://www.etis.or.kr/webs/pdfdata/2024siljuk_con.pdf" target="_blank" rel="noreferrer">건설부문</a>의 2024년 PDF 기준입니다.</li><li><strong>KACEM</strong>: <a href="http://www.ekacem.or.kr/storehouse/record.asp" target="_blank" rel="noreferrer">건설엔지니어링 통계</a>의 최신 분기 PDF를 표 추출했습니다. 전년순위는 <a href="http://www.ekacem.or.kr/storehouse/stat-member/20250331-1.pdf" target="_blank" rel="noreferrer">2025년 1/4분기</a> PDF 기준입니다. PDF 주석상 민간 기술형 입찰, 턴키, 해외 수주실적은 제외됩니다.</li><li><strong>최근 수주/계약</strong>: 산군/보도 수동 캐시, OpenDART 단일판매ㆍ공급계약체결 공시, 나라장터 계약정보서비스 공사 계약현황 캐시를 회사명으로 합쳐 최근 5년 이내 자료 중 최신 5건만 표시합니다. 공사비 단가는 DART 원문에서 연면적이 추출되는 경우에만 계약금액 ÷ 연면적으로 산정합니다.</li><li><strong>기사/전략 정보</strong>: Google News RSS에서 회사명과 수주/계약/실적/경영/투자/계열사/신사업 키워드로 검색한 기사와 OpenDART 투자판단ㆍ출자ㆍ시설투자ㆍM&Aㆍ특수관계인 거래성 공시를 합쳐 표시합니다. 같은 프로젝트ㆍ이벤트로 보이는 유사 기사군은 대표 1건만 남기고 최대 5건까지 노출합니다.</li><li><strong>Comment</strong>: 회사별 기본 기록과 사용자가 남긴 메모를 한 목록으로 표시합니다. 개발솔루션센터 센터장 작성자명은 공식 기록에만 사용합니다.</li></ul>
       <p>전년순위는 등록번호가 있는 소스는 등록번호를 우선 사용하고, 없으면 회사명 정규화 매칭으로 보조합니다. 사명 변경, 합병, 표기 차이가 있으면 일부 행은 신규/권외로 표시될 수 있습니다.</p>
     </section>
 
@@ -17398,15 +17030,16 @@
 
     function renderOnlineComments(box) {
       const key = box.dataset.commentKey;
-      const list = box.querySelector(".online-comment-list");
-      const empty = box.querySelector(".online-comment-empty");
+      const list = box.querySelector(".comment-list");
+      const empty = box.querySelector(".comment-empty");
       if (!key || !list) return;
       const comments = onlineCommentsByKey.get(key) || [];
-      list.innerHTML = comments.map((item) => {
+      list.querySelectorAll("[data-online-comment='true']").forEach((item) => item.remove());
+      const onlineHtml = comments.map((item) => {
         const author = String(item.author_name || "").trim() || "작성자 미기재";
         const date = formatCommentDate(item.created_at);
         return `
-        <li>
+        <li data-online-comment="true">
           <div class="comment-meta">
             <span class="comment-author">${escapeCommentHtml(author)}</span>
             ${date ? `<span>${escapeCommentHtml(date)}</span>` : ""}
@@ -17414,7 +17047,9 @@
           <p>${escapeCommentHtml(item.body || "")}</p>
         </li>`;
       }).join("");
-      if (empty) empty.hidden = comments.length > 0;
+      if (onlineHtml) list.insertAdjacentHTML("beforeend", onlineHtml);
+      const seedCount = list.querySelectorAll("[data-seed-comment='true']").length;
+      if (empty) empty.hidden = seedCount + comments.length > 0;
     }
 
     function renderAllOnlineComments() {
@@ -17424,7 +17059,7 @@
     async function loadOnlineComments() {
       if (!commentApiUrl || !commentApiKey) {
         document.querySelectorAll(".comment-saved").forEach((saved) => {
-          saved.textContent = "온라인 저장소 설정이 없습니다.";
+          saved.textContent = "저장 설정이 없습니다.";
         });
         return;
       }
@@ -17448,7 +17083,7 @@
         updateCommentBadges();
       } catch (error) {
         document.querySelectorAll(".comment-saved").forEach((saved) => {
-          saved.textContent = "온라인 코멘트를 불러오지 못했습니다.";
+          saved.textContent = "코멘트를 불러오지 못했습니다.";
         });
       }
     }
@@ -17462,7 +17097,7 @@
       const button = box.querySelector("button");
       const saved = box.querySelector(".comment-saved");
       if (!key || !companyKey || !authorInput || !textarea || !button || !saved) return;
-      saved.textContent = "온라인 DB에 저장됩니다.";
+      saved.textContent = "";
       button.addEventListener("click", async () => {
         const value = textarea.value.trim();
         const author = authorInput.value.trim();
@@ -17471,11 +17106,11 @@
           return;
         }
         if (author === defaultCommentAuthor) {
-          saved.textContent = `${defaultCommentAuthor} 작성자명은 공식 PDF 기록에만 사용합니다.`;
+          saved.textContent = `${defaultCommentAuthor} 작성자명은 공식 기록에만 사용합니다.`;
           return;
         }
         if (!commentApiUrl || !commentApiKey) {
-          saved.textContent = "온라인 저장소 설정이 없습니다.";
+          saved.textContent = "저장 설정이 없습니다.";
           return;
         }
         button.disabled = true;
@@ -17508,11 +17143,11 @@
           const items = onlineCommentsByKey.get(key) || [];
           onlineCommentsByKey.set(key, [created, ...items]);
           textarea.value = "";
-          saved.textContent = "온라인 저장됨";
+          saved.textContent = "Saved";
           renderOnlineComments(box);
           updateCommentBadges(key);
         } catch (error) {
-          saved.textContent = "온라인 저장 실패";
+          saved.textContent = "저장 실패";
         } finally {
           button.disabled = false;
         }
