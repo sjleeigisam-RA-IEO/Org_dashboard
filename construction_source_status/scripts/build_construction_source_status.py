@@ -2632,14 +2632,14 @@ def render_html(data: dict[str, Any]) -> str:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Built Signal Index</title>
+  <title>Construction Information</title>
   <link rel="stylesheet" href="../shared/ifpdp-system-theme.css?v=ifpdp_system_3">
   <link rel="stylesheet" href="../org_dashboard/styles.css?v=ifpdp_system_org_7">
   <style>{css}</style>
 </head>
 <body>
   <header>
-    <h1>Built Signal Index</h1>
+    <h1>Construction Information</h1>
   </header>
   <main>
     {errors_html}
