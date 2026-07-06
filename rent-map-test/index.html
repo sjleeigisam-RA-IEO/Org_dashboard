@@ -287,7 +287,7 @@
     const columnZoomMaxScale = 1.02;
     const highTailVisualStart = 0.86;
     const highTailCurve = 0.72;
-    const heightCurve = 1.08;
+    const heightCurve = 1.14;
     const transactionColor = 0x7c3aed;
     const transactionHaloColor = 0xc4b5fd;
     let lastColumnVisualScale = null;
@@ -417,7 +417,7 @@
         .map(value => Number(value))
         .filter(value => Number.isFinite(value))
         .sort((a, b) => a - b);
-      if (!sorted.length) return { mean: 0, p75: 0, p90: 0 };
+      if (!sorted.length) return { min: 0, mean: 0, p75: 0, p90: 0, p95: 0, max: 0 };
       const mean = sorted.reduce((sum, value) => sum + value, 0) / sorted.length;
       const pick = pct => {
         const idx = (sorted.length - 1) * pct;
@@ -426,7 +426,7 @@
         const t = idx - lo;
         return sorted[lo] + (sorted[hi] - sorted[lo]) * t;
       };
-      return { mean, p75: pick(0.75), p90: pick(0.90) };
+      return { min: sorted[0], mean, p75: pick(0.75), p90: pick(0.90), p95: pick(0.95), max: sorted[sorted.length - 1] };
     }
 
     function periodStats(period = currentPeriod) {
@@ -501,7 +501,9 @@
       const n = normalizeHeight(point.noc);
       const stats = periodStats().points;
       const topDecile = Number.isFinite(stats.p90) && point.noc >= stats.p90;
-      return 0.96 + Math.pow(n, 1.55) * 0.16 + (topDecile ? 0.17 : 0);
+      const topRange = Math.max(1, (Number.isFinite(stats.max) ? stats.max : point.noc) - stats.p90);
+      const topT = topDecile ? THREE.MathUtils.clamp((point.noc - stats.p90) / topRange, 0, 1) : 0;
+      return 0.94 + Math.pow(n, 1.7) * 0.12 + (topDecile ? 0.12 : 0) + Math.pow(topT, 0.72) * 0.22;
     }
 
     function columnRadiusEmphasis(point) {
