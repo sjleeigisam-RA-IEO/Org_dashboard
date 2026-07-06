@@ -972,13 +972,18 @@ def row_has_recent_update(row: dict[str, Any], days: int = 31) -> bool:
 
 
 def add_status_column(columns: list[tuple[str, str, str]]) -> list[tuple[str, str, str]]:
-    if any(key == "row_status" for key, _, _ in columns):
+    has_comment_status = any(key == "row_status" for key, _, _ in columns)
+    has_recent_update = any(key == "recent_update" for key, _, _ in columns)
+    if has_comment_status and has_recent_update:
         return columns
     enriched: list[tuple[str, str, str]] = []
     for column in columns:
         enriched.append(column)
         if column[0] == "company":
-            enriched.append(("row_status", "Comment", "status"))
+            if not has_comment_status:
+                enriched.append(("row_status", "Comment", "status"))
+            if not has_recent_update:
+                enriched.append(("recent_update", "Update", "recent"))
     return enriched
 
 
@@ -987,12 +992,21 @@ def render_row_status(row: dict[str, Any]) -> str:
     comment_key = f"company-comment:{company_key}"
     seed_count = len(get_pdf_comments(company_key))
     count_class = " has-comments" if seed_count else ""
+    return (
+        f'<div class="row-status" data-comment-key="{html.escape(comment_key)}">'
+        f'<span class="comment-count{count_class}" title="Comment {seed_count}개" aria-label="코멘트 {seed_count}개">({seed_count})</span>'
+        f"</div>"
+    )
+
+
+def render_recent_update(row: dict[str, Any]) -> str:
+    company_key = normalize_award_company(row.get("company"))
+    comment_key = f"company-comment:{company_key}"
     new_badge = ""
     if row_has_recent_update(row):
         new_badge = '<span class="new-badge" title="최근 1개월 내 업데이트">N</span>'
     return (
-        f'<div class="row-status" data-comment-key="{html.escape(comment_key)}">'
-        f'<span class="comment-count{count_class}" title="Comment {seed_count}개" aria-label="코멘트 {seed_count}개">({seed_count})</span>'
+        f'<div class="update-status" data-comment-key="{html.escape(comment_key)}">'
         f"{new_badge}</div>"
     )
 
@@ -1377,7 +1391,12 @@ def render_rank_table(
         detail_id = f"{table_id}-detail-{index}"
         cells = []
         for key, _, kind in columns:
-            content = render_row_status(row) if key == "row_status" else render_value(row.get(key, ""), kind, max_amount)
+            if key == "row_status":
+                content = render_row_status(row)
+            elif key == "recent_update":
+                content = render_recent_update(row)
+            else:
+                content = render_value(row.get(key, ""), kind, max_amount)
             if key == "company":
                 content = (
                     f'<button class="row-toggle" type="button" aria-expanded="false" '
@@ -1868,8 +1887,15 @@ def render_html(data: dict[str, Any]) -> str:
       max-width: 360px;
     }
     .col-row_status {
-      width: 104px;
-      min-width: 104px;
+      width: 72px;
+      min-width: 70px;
+      max-width: 76px;
+      text-align: center;
+    }
+    .col-recent_update {
+      width: 70px;
+      min-width: 64px;
+      max-width: 76px;
       text-align: center;
     }
     .col-credit_rating_label {
@@ -1975,8 +2001,15 @@ def render_html(data: dict[str, Any]) -> str:
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
-      min-width: 74px;
+      min-width: 38px;
+      white-space: nowrap;
+    }
+    .update-status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 24px;
+      min-height: 22px;
       white-space: nowrap;
     }
     .comment-count {
@@ -2707,11 +2740,19 @@ def render_html(data: dict[str, Any]) -> str:
         countBadge.classList.toggle("has-comments", count > 0);
         countBadge.setAttribute("title", `Comment ${{count}}개`);
         countBadge.setAttribute("aria-label", `코멘트 ${{count}}개`);
+      }});
+    }}
+
+    function updateRecentBadges(changedKey) {{
+      document.querySelectorAll(".update-status[data-comment-key]").forEach((status) => {{
+        const key = status.dataset.commentKey;
+        if (changedKey && key !== changedKey) return;
         if (hasRecentOnlineComment(key)) ensureRecentBadge(status);
       }});
     }}
 
     updateCommentBadges();
+    updateRecentBadges();
 
     function renderOnlineComments(box) {{
       const key = box.dataset.commentKey;
@@ -2766,6 +2807,7 @@ def render_html(data: dict[str, Any]) -> str:
         }});
         renderAllOnlineComments();
         updateCommentBadges();
+        updateRecentBadges();
       }} catch (error) {{
         document.querySelectorAll(".comment-saved").forEach((saved) => {{
           saved.textContent = "코멘트를 불러오지 못했습니다.";
@@ -2831,6 +2873,7 @@ def render_html(data: dict[str, Any]) -> str:
           saved.textContent = "Saved";
           renderOnlineComments(box);
           updateCommentBadges(key);
+          updateRecentBadges(key);
         }} catch (error) {{
           saved.textContent = "저장 실패";
         }} finally {{
