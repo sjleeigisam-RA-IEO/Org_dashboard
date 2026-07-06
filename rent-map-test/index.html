@@ -302,6 +302,7 @@
     const transactionColor = 0x7c3aed;
     const transactionHaloColor = 0xc4b5fd;
     let lastColumnVisualScale = null;
+    let lastTerrainVisualScale = null;
     let activeCaseTab = "lease";
     let periodPlaybackTimer = null;
     let periodPlaybackActive = false;
@@ -534,6 +535,23 @@
       const minScale = reviewMode ? 0.055 : columnZoomMinScale;
       const maxScale = reviewMode ? 0.24 : columnZoomMaxScale;
       return THREE.MathUtils.clamp(distance / columnZoomReference, minScale, maxScale);
+    }
+
+    function terrainZoomScale() {
+      if (!camera || !controls) return 1;
+      const distance = camera.position.distanceTo(controls.target);
+      const minScale = reviewMode ? 0.06 : columnZoomMinScale;
+      return THREE.MathUtils.clamp(distance / columnZoomReference, minScale, 1.0);
+    }
+
+    function updateTerrainScale(force = false) {
+      if (!surface && !highContourGroup) return;
+      const visualScale = terrainZoomScale();
+      if (!force && lastTerrainVisualScale !== null && Math.abs(visualScale - lastTerrainVisualScale) < 0.012) return;
+      lastTerrainVisualScale = visualScale;
+      if (surface) surface.scale.y = visualScale;
+      if (highContourGroup) highContourGroup.scale.y = visualScale;
+      document.body.dataset.terrainScale = visualScale.toFixed(3);
     }
 
     function isSelectedPoint(point) {
@@ -1612,6 +1630,9 @@
         sprite.userData.labelText = label.name;
         sprite.userData.labelType = label.type;
         sprite.position.set(sx(label.x), columnGroundY + (isStation ? 5.8 : 4.2), sz(label.y));
+        sprite.userData.baseX = sprite.position.x;
+        sprite.userData.baseY = sprite.position.y;
+        sprite.userData.baseZ = sprite.position.z;
         sprite.renderOrder = 46;
         contextLabelGroup.add(sprite);
       }
@@ -1635,6 +1656,9 @@
           columnGroundY + 9.0 + index * 0.6,
           sz(point.y + Math.sin(angle) * offset)
         );
+        sprite.userData.baseX = sprite.position.x;
+        sprite.userData.baseY = sprite.position.y;
+        sprite.userData.baseZ = sprite.position.z;
         sprite.renderOrder = 52;
         contextLabelGroup.add(sprite);
       });
@@ -1682,6 +1706,7 @@
         })
       );
       scene.add(surface);
+      updateTerrainScale(true);
     }
 
     function updateSurface(period) {
@@ -1697,6 +1722,7 @@
       surface.geometry.attributes.position.needsUpdate = true;
       surface.geometry.attributes.color.needsUpdate = true;
       surface.geometry.computeVertexNormals();
+      updateTerrainScale(true);
     }
 
     function disposeObject3D(object) {
@@ -1802,6 +1828,7 @@
       }
       highContourGroup.visible = Boolean(toggleSurface.checked && !reviewMode);
       scene.add(highContourGroup);
+      updateTerrainScale(true);
     }
 
     function surfaceHeightAt(x, y, values = data.surfaces[currentPeriod]) {
@@ -2275,6 +2302,7 @@
       labelGroup.visible = toggleLabels.checked;
       referenceGroup.visible = toggleLabels.checked;
       updateColumnScale(true);
+      updateTerrainScale(true);
       updateLabelScale(true);
       updateSelectionClearButton();
     }
@@ -2395,6 +2423,7 @@
       }
       if (transactionGroup) transactionGroup.visible = toggleTransactions.checked;
       updateHighlightPosition();
+      updateTerrainScale(true);
       if (enabled) {
         labelGroup.visible = toggleLabels.checked;
         referenceGroup.visible = toggleLabels.checked;
@@ -2838,9 +2867,24 @@
       if (point) updateFocusMap(point);
     }
 
-    function updateLabelScale(force = false) {
-      if (!labelGroup || !camera || !controls) return;
+    function labelZoomFactor(kind = "label") {
+      const visualScale = columnZoomScale();
+      const maxFactor = kind === "region" ? 1.0 : 0.86;
+      const minFactor = kind === "compass" ? 0.18 : (kind === "region" ? 0.055 : 0.04);
+      const scaleBias = kind === "region" ? 1.05 : 0.92;
+      return THREE.MathUtils.clamp(visualScale * scaleBias, minFactor, maxFactor);
+    }
+
+    function contextLabelZoomFactor() {
+      if (!camera || !controls) return 1;
       const distance = camera.position.distanceTo(controls.target);
+      return THREE.MathUtils.clamp(distance / autoFocusMapMaxDistance, 0.56, 1.0);
+    }
+
+    function updateLabelScale(force = false) {
+      if (!camera || !controls) return;
+      if (!labelGroup && !contextLabelGroup) return;
+      if (labelGroup) {
       for (const sprite of labelGroup.children) {
         const kind = sprite.userData.labelKind || "label";
         const canvasWidth = sprite.userData.canvasWidth || 1;
@@ -2861,19 +2905,31 @@
           sprite.visible = true;
           sprite.position.y = baseY;
         }
-        const maxFactor = kind === "region" ? 1.0 : 0.86;
-        const minFactor = kind === "compass" ? 0.18 : (kind === "region" ? 0.055 : 0.04);
-        const factor = THREE.MathUtils.clamp(distance / 1800, minFactor, maxFactor);
+        const factor = labelZoomFactor(kind);
         if (!force && Math.abs((sprite.userData.lastLabelFactor || 0) - factor) < 0.006) continue;
         sprite.userData.lastLabelFactor = factor;
         sprite.scale.set(canvasWidth * baseScale * factor, canvasHeight * baseScale * factor, 1);
       }
+      }
+      if (contextLabelGroup) {
+        const contextFactor = contextLabelZoomFactor();
+        for (const sprite of contextLabelGroup.children) {
+          const canvasWidth = sprite.userData.canvasWidth || 1;
+          const canvasHeight = sprite.userData.canvasHeight || 1;
+          const baseScale = sprite.userData.baseScale || 1;
+          if (!force && Math.abs((sprite.userData.lastLabelFactor || 0) - contextFactor) < 0.006) continue;
+          sprite.userData.lastLabelFactor = contextFactor;
+          sprite.scale.set(canvasWidth * baseScale * contextFactor, canvasHeight * baseScale * contextFactor, 1);
+        }
+      }
+      document.body.dataset.labelScale = labelZoomFactor("region").toFixed(3);
     }
 
     function animate() {
       requestAnimationFrame(animate);
       controls.update();
       updateColumnScale();
+      updateTerrainScale();
       refreshFocusMapForCamera();
       updateLabelScale();
       updateSelectionClearButton();
