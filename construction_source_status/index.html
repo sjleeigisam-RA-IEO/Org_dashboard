@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>건설·CM·엔지니어링 순위/실적 대시보드</title>
+  <title>Built Signal Index</title>
   <link rel="stylesheet" href="../shared/ifpdp-system-theme.css?v=ifpdp_system_3">
   <link rel="stylesheet" href="../org_dashboard/styles.css?v=ifpdp_system_org_7">
   <style>
@@ -165,10 +165,36 @@
       border-radius: 0 3px 3px 0;
       background: var(--blue);
     }
-    td:first-child, th:first-child {
-      width: 64px;
+    td.col-rank,
+    th.col-rank {
+      width: 52px;
+      min-width: 52px;
+      padding-left: 8px;
+      padding-right: 8px;
       text-align: right;
+    }
+    tbody td.col-rank {
+      color: #fff;
+      font-size: 15px;
+      font-weight: 850;
+      letter-spacing: 0;
+    }
+    th.col-rank {
+      color: var(--construction-soft);
+      font-weight: 800;
+    }
+    td.col-previous_rank,
+    th.col-previous_rank {
+      width: 66px;
+      min-width: 66px;
+      max-width: 66px;
+      padding-left: 6px;
+      padding-right: 6px;
+      text-align: center;
+    }
+    tbody td.col-previous_rank {
       color: var(--muted);
+      font-weight: 600;
     }
     .col-company {
       width: 18%;
@@ -184,8 +210,18 @@
       width: 96px;
       min-width: 96px;
     }
+    td.col-rank_change,
+    th.col-rank_change {
+      width: 58px;
+      min-width: 58px;
+      max-width: 58px;
+      padding-left: 6px;
+      padding-right: 6px;
+      text-align: center;
+    }
     .cell-change {
-      min-width: 72px;
+      color: var(--muted);
+      font-weight: 650;
     }
     .rating-pill {
       display: inline-flex;
@@ -782,7 +818,7 @@
 </head>
 <body>
   <header>
-    <h1>건설·CM·엔지니어링 순위/실적 대시보드</h1>
+    <h1>Built Signal Index</h1>
   </header>
   <main>
 
