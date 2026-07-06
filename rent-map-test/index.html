@@ -299,6 +299,7 @@
     const columnGroundY = 0.18;
     const tileSize = 256;
     const focusTileSize = 512;
+    const autoFocusMapMaxDistance = 620;
     const mapProviders = {
       carto: {
         label: "CARTO / OSM",
@@ -401,6 +402,7 @@
     const tileImageCache = new Map();
     let focusMapRequestId = 0;
     let focusMapKey = "";
+    let focusMapPendingKey = "";
     let lastFocusMapCheckAt = 0;
     let contextLabelRequestId = 0;
     const contextLabelCache = new Map();
@@ -600,6 +602,36 @@
         (lon - center.lon) * 111320 * Math.cos(center.lat * Math.PI / 180),
         (lat - center.lat) * 110540,
       ];
+    }
+
+    function lonLatFromXy(x, y) {
+      const center = data.meta.center;
+      return {
+        lon: center.lon + x / (111320 * Math.cos(center.lat * Math.PI / 180)),
+        lat: center.lat + y / 110540,
+      };
+    }
+
+    function focusPointFromControlsTarget() {
+      if (!controls || !data || !data.meta || !data.meta.center) return null;
+      const x = controls.target.x / horizontalScale;
+      const y = -controls.target.z / horizontalScale;
+      const coord = lonLatFromXy(x, y);
+      const bounds = data.meta.boundsLatLon;
+      if (bounds) {
+        const pad = 0.015;
+        if (
+          coord.lon < bounds.west - pad || coord.lon > bounds.east + pad ||
+          coord.lat < bounds.south - pad || coord.lat > bounds.north + pad
+        ) return null;
+      }
+      return {
+        focusSource: "viewport",
+        x,
+        y,
+        lat: coord.lat,
+        lon: coord.lon,
+      };
     }
 
     function lonToTileX(lon, z) { return (lon + 180) / 360 * Math.pow(2, z); }
@@ -870,6 +902,11 @@
       setPeriod(data.periods[data.periods.length - 1]);
       bindEvents();
       loading.style.display = "none";
+      exposeDebugHelpers();
+      const qaAutoFocus = Number(new URLSearchParams(window.location.search).get("qaAutoFocus"));
+      if (Number.isFinite(qaAutoFocus) && qaAutoFocus > 0) {
+        window.setTimeout(() => window.rentMapDebug.triggerViewportFocus(qaAutoFocus), 300);
+      }
       animate();
     }
 
@@ -995,7 +1032,7 @@
     }
 
     function makeFocusMapKey(point, spec) {
-      const id = point.assetId || `${point.lat},${point.lon}`;
+      const id = point.assetId || `viewport:${Math.floor(lonToTileX(point.lon, spec.z))}:${Math.floor(latToTileY(point.lat, spec.z))}`;
       return `${activeMapProviderId}:${id}:${spec.z}:${spec.radius}`;
     }
 
@@ -1004,8 +1041,11 @@
       const spec = currentFocusMapSpec();
       const key = makeFocusMapKey(point, spec);
       if (!options.force && focusMapPlane && focusMapKey === key) return;
+      if (!options.force && focusMapPendingKey === key) return;
       const requestId = ++focusMapRequestId;
+      focusMapPendingKey = key;
       const plane = await buildFocusMapTexture(point, spec);
+      if (focusMapPendingKey === key) focusMapPendingKey = "";
       if (requestId !== focusMapRequestId) {
         disposeMapPlane(plane);
         return;
@@ -1014,6 +1054,9 @@
       if (plane) {
         focusMapPlane = plane;
         focusMapKey = key;
+        document.body.dataset.focusMapMode = point.assetId ? "selected" : "viewport";
+        document.body.dataset.focusMapZ = String(spec.z);
+        document.body.dataset.focusMapKey = key;
         scene.add(focusMapPlane);
       }
     }
@@ -1021,6 +1064,10 @@
     function clearFocusMap() {
       focusMapRequestId += 1;
       focusMapKey = "";
+      focusMapPendingKey = "";
+      document.body.dataset.focusMapMode = "";
+      document.body.dataset.focusMapZ = "";
+      document.body.dataset.focusMapKey = "";
       removeFocusMapPlane();
     }
 
@@ -2705,12 +2752,51 @@
       return String(value ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
     }
 
+    function exposeDebugHelpers() {
+      window.rentMapDebug = {
+        focusMapState() {
+          return {
+            mode: document.body.dataset.focusMapMode || "",
+            z: document.body.dataset.focusMapZ || "",
+            key: document.body.dataset.focusMapKey || "",
+            distance: camera && controls ? camera.position.distanceTo(controls.target) : null,
+            sourceMode: document.body.dataset.sourceMode || "",
+          };
+        },
+        triggerViewportFocus(distance = 120) {
+          if (!camera || !controls) return null;
+          const target = controls.target.clone();
+          controls.target.set(target.x, 0, target.z);
+          camera.position.set(target.x + distance * 0.08, Math.max(44, distance * 0.36), target.z + distance * 0.72);
+          controls.update();
+          lastFocusMapCheckAt = 0;
+          refreshFocusMapForCamera();
+          return this.focusMapState();
+        },
+      };
+    }
+
     function refreshFocusMapForCamera() {
-      if (!reviewMode || !selectedPoint) return;
+      if (!camera || !controls) return;
       const now = Date.now();
       if (now - lastFocusMapCheckAt < 650) return;
       lastFocusMapCheckAt = now;
-      updateFocusMap(selectedPoint);
+      const distance = camera.position.distanceTo(controls.target);
+      document.body.dataset.cameraDistance = String(Math.round(distance));
+      if (distance > autoFocusMapMaxDistance && !reviewMode) {
+        if (focusMapPlane || focusMapPendingKey) clearFocusMap();
+        return;
+      }
+      let point = focusPointFromControlsTarget();
+      if (point && selectedPoint && Number.isFinite(Number(selectedPoint.x)) && Number.isFinite(Number(selectedPoint.y))) {
+        const selectedDistance = Math.hypot(point.x - selectedPoint.x, point.y - selectedPoint.y);
+        if (selectedDistance < 120) point = selectedPoint;
+      }
+      if (!point) {
+        if (!reviewMode && (focusMapPlane || focusMapPendingKey)) clearFocusMap();
+        return;
+      }
+      if (point) updateFocusMap(point);
     }
 
     function updateLabelScale(force = false) {
