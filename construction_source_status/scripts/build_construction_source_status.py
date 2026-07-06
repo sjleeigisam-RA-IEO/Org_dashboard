@@ -849,8 +849,8 @@ def render_recent_awards(row: dict[str, Any]) -> str:
         else:
             message = "아직 매핑된 최근 수주 데이터가 없습니다."
         return f"""
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>{message}</p>
@@ -885,8 +885,8 @@ def render_recent_awards(row: dict[str, Any]) -> str:
             """
         )
     return f"""
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span>{source_link}</span>
       </div>
@@ -906,8 +906,8 @@ def render_related_articles(row: dict[str, Any]) -> str:
 
     if not articles:
         return f"""
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -932,8 +932,8 @@ def render_related_articles(row: dict[str, Any]) -> str:
             """
         )
     return f"""
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>{source_link}</span>
       </div>
@@ -1717,32 +1717,38 @@ def render_html(data: dict[str, Any]) -> str:
     }
     .detail-split {
       display: grid;
-      grid-template-columns: minmax(430px, 1.1fr) minmax(360px, 0.9fr);
-      gap: 20px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
       align-items: start;
       margin-top: 16px;
     }
-    .recent-awards,
-    .related-news {
+    .detail-feed {
       min-width: 0;
     }
+    .detail-feed-head,
     .recent-awards-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      min-height: 28px;
-      margin-bottom: 10px;
+      height: 32px;
+      margin: 0 0 10px;
     }
+    .detail-feed-head > *,
     .recent-awards-head > * {
       min-width: 0;
     }
-    .recent-awards h3 {
+    .detail-feed h3,
+    .recent-awards h3,
+    .related-news h3 {
       margin: 0;
       color: #173f62;
       font-size: 15px;
+      font-weight: 800;
+      line-height: 1.2;
       letter-spacing: 0;
     }
+    .detail-feed-head span,
     .recent-awards-head span {
       color: var(--muted);
       font-size: 12px;
@@ -1753,21 +1759,25 @@ def render_html(data: dict[str, Any]) -> str:
     .recent-awards ul,
     .related-news ul {
       display: grid;
-      gap: 9px;
+      gap: 10px;
       margin: 0;
       padding: 0;
       list-style: none;
     }
-    .recent-awards li {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(196px, 0.52fr);
-      gap: 9px 12px;
-      align-items: start;
-      padding: 11px 12px;
+    .recent-awards li,
+    .related-news li {
+      min-height: 118px;
       border: 1px solid #dfe8e6;
       border-radius: 7px;
       background: #ffffff;
       box-shadow: 0 1px 0 rgba(23, 32, 42, 0.03);
+    }
+    .recent-awards li {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(168px, 0.34fr);
+      gap: 9px 12px;
+      align-items: start;
+      padding: 11px 12px;
     }
     .award-main {
       min-width: 0;
@@ -1785,10 +1795,13 @@ def render_html(data: dict[str, Any]) -> str:
       overflow-wrap: anywhere;
     }
     .recent-awards strong {
-      display: block;
+      display: -webkit-box;
       color: #24384c;
       font-size: 14px;
       line-height: 1.4;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
       white-space: normal;
       overflow-wrap: anywhere;
     }
@@ -1797,6 +1810,7 @@ def render_html(data: dict[str, Any]) -> str:
       margin-top: 3px;
       color: var(--muted);
       font-size: 12px;
+      line-height: 1.35;
       white-space: normal;
       overflow-wrap: anywhere;
     }
@@ -1807,7 +1821,7 @@ def render_html(data: dict[str, Any]) -> str:
       justify-self: end;
       min-width: 0;
       width: 100%;
-      max-width: 220px;
+      max-width: 172px;
     }
     .award-metrics span {
       display: block;
@@ -1841,34 +1855,36 @@ def render_html(data: dict[str, Any]) -> str:
       white-space: normal;
       overflow-wrap: anywhere;
     }
-    .related-news {
-      padding-left: 18px;
-      border-left: 1px solid #dce7e5;
-    }
     .related-news li {
+      display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr);
+      gap: 5px;
       padding: 11px 12px;
-      border: 1px solid #e3e9ef;
       border-left: 3px solid #d3dfe8;
-      border-radius: 7px;
-      background: #ffffff;
-      box-shadow: 0 1px 0 rgba(23, 32, 42, 0.03);
     }
-    .related-news a {
-      display: block;
+    .related-news li > a {
+      display: -webkit-box;
       color: var(--ink);
       font-size: 14px;
       font-weight: 800;
       line-height: 1.4;
       text-align: left;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
       white-space: normal;
       overflow-wrap: anywhere;
     }
     .related-news p {
-      margin: 6px 0 0;
+      display: -webkit-box;
+      margin: 0;
       color: #536272;
       font-size: 12px;
       line-height: 1.45;
       text-align: left;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
       overflow-wrap: anywhere;
     }
     .recent-awards.empty p,
@@ -2014,9 +2030,15 @@ def render_html(data: dict[str, Any]) -> str:
       .recent-awards-head {
         align-items: flex-start;
         flex-direction: column;
+        height: auto;
+        min-height: 32px;
         gap: 4px;
       }
       .recent-awards-head span { text-align: left; }
+      .recent-awards li,
+      .related-news li {
+        min-height: 0;
+      }
       .recent-awards li { grid-template-columns: minmax(0, 1fr); }
       .award-metrics {
         grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
@@ -2024,9 +2046,9 @@ def render_html(data: dict[str, Any]) -> str:
         max-width: none;
       }
       .related-news {
-        padding-top: 14px;
+        padding-top: 0;
         padding-left: 0;
-        border-top: 1px solid #dce7e5;
+        border-top: 0;
         border-left: 0;
       }
       .company-comment { grid-template-columns: 1fr; }

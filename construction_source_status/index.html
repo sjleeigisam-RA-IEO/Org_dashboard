@@ -332,32 +332,38 @@
     }
     .detail-split {
       display: grid;
-      grid-template-columns: minmax(430px, 1.1fr) minmax(360px, 0.9fr);
-      gap: 20px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
       align-items: start;
       margin-top: 16px;
     }
-    .recent-awards,
-    .related-news {
+    .detail-feed {
       min-width: 0;
     }
+    .detail-feed-head,
     .recent-awards-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      min-height: 28px;
-      margin-bottom: 10px;
+      height: 32px;
+      margin: 0 0 10px;
     }
+    .detail-feed-head > *,
     .recent-awards-head > * {
       min-width: 0;
     }
-    .recent-awards h3 {
+    .detail-feed h3,
+    .recent-awards h3,
+    .related-news h3 {
       margin: 0;
       color: #173f62;
       font-size: 15px;
+      font-weight: 800;
+      line-height: 1.2;
       letter-spacing: 0;
     }
+    .detail-feed-head span,
     .recent-awards-head span {
       color: var(--muted);
       font-size: 12px;
@@ -368,21 +374,25 @@
     .recent-awards ul,
     .related-news ul {
       display: grid;
-      gap: 9px;
+      gap: 10px;
       margin: 0;
       padding: 0;
       list-style: none;
     }
-    .recent-awards li {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(196px, 0.52fr);
-      gap: 9px 12px;
-      align-items: start;
-      padding: 11px 12px;
+    .recent-awards li,
+    .related-news li {
+      min-height: 118px;
       border: 1px solid #dfe8e6;
       border-radius: 7px;
       background: #ffffff;
       box-shadow: 0 1px 0 rgba(23, 32, 42, 0.03);
+    }
+    .recent-awards li {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(168px, 0.34fr);
+      gap: 9px 12px;
+      align-items: start;
+      padding: 11px 12px;
     }
     .award-main {
       min-width: 0;
@@ -400,10 +410,13 @@
       overflow-wrap: anywhere;
     }
     .recent-awards strong {
-      display: block;
+      display: -webkit-box;
       color: #24384c;
       font-size: 14px;
       line-height: 1.4;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
       white-space: normal;
       overflow-wrap: anywhere;
     }
@@ -412,6 +425,7 @@
       margin-top: 3px;
       color: var(--muted);
       font-size: 12px;
+      line-height: 1.35;
       white-space: normal;
       overflow-wrap: anywhere;
     }
@@ -422,7 +436,7 @@
       justify-self: end;
       min-width: 0;
       width: 100%;
-      max-width: 220px;
+      max-width: 172px;
     }
     .award-metrics span {
       display: block;
@@ -456,34 +470,36 @@
       white-space: normal;
       overflow-wrap: anywhere;
     }
-    .related-news {
-      padding-left: 18px;
-      border-left: 1px solid #dce7e5;
-    }
     .related-news li {
+      display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr);
+      gap: 5px;
       padding: 11px 12px;
-      border: 1px solid #e3e9ef;
       border-left: 3px solid #d3dfe8;
-      border-radius: 7px;
-      background: #ffffff;
-      box-shadow: 0 1px 0 rgba(23, 32, 42, 0.03);
     }
-    .related-news a {
-      display: block;
+    .related-news li > a {
+      display: -webkit-box;
       color: var(--ink);
       font-size: 14px;
       font-weight: 800;
       line-height: 1.4;
       text-align: left;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
       white-space: normal;
       overflow-wrap: anywhere;
     }
     .related-news p {
-      margin: 6px 0 0;
+      display: -webkit-box;
+      margin: 0;
       color: #536272;
       font-size: 12px;
       line-height: 1.45;
       text-align: left;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
       overflow-wrap: anywhere;
     }
     .recent-awards.empty p,
@@ -629,9 +645,15 @@
       .recent-awards-head {
         align-items: flex-start;
         flex-direction: column;
+        height: auto;
+        min-height: 32px;
         gap: 4px;
       }
       .recent-awards-head span { text-align: left; }
+      .recent-awards li,
+      .related-news li {
+        min-height: 0;
+      }
       .recent-awards li { grid-template-columns: minmax(0, 1fr); }
       .award-metrics {
         grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
@@ -639,9 +661,9 @@
         max-width: none;
       }
       .related-news {
-        padding-top: 14px;
+        padding-top: 0;
         padding-left: 0;
-        border-top: 1px solid #dce7e5;
+        border-top: 0;
         border-left: 0;
       }
       .company-comment { grid-template-columns: 1fr; }
@@ -664,7 +686,7 @@
 <body>
   <header>
     <h1>공사 관련 순위/실적 소스 현황</h1>
-    <p>생성 시각: 2026-07-06 09:32:25 KST. 각 표는 탭으로 나누고, 현재 순위와 전년도 순위/변동을 함께 표시했습니다. 순위표는 검토용으로 상위 30위까지만 표시합니다.</p>
+    <p>생성 시각: 2026-07-06 09:57:46 KST. 각 표는 탭으로 나누고, 현재 순위와 전년도 순위/변동을 함께 표시했습니다. 순위표는 검토용으로 상위 30위까지만 표시합니다.</p>
   </header>
   <main>
 
@@ -760,8 +782,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://www.sankun.com/company-info/n7o9WuKFOL8htHl_ftZolw" target="_blank" rel="noreferrer">산군 인사이트</a></span>
       </div>
@@ -779,8 +801,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -894,8 +916,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -953,8 +975,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -1095,8 +1117,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -1154,8 +1176,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -1287,8 +1309,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -1346,8 +1368,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -1479,8 +1501,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://www.sankun.com/company-info/C-F1_lJ2YHOFaftIIamaxw" target="_blank" rel="noreferrer">산군</a></span>
       </div>
@@ -1518,8 +1540,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -1660,16 +1682,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -1801,16 +1823,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -1911,16 +1933,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -2052,16 +2074,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -2193,16 +2215,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -2303,8 +2325,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://www.data.go.kr/data/15129427/openapi.do" target="_blank" rel="noreferrer">나라장터 계약정보</a></span>
       </div>
@@ -2342,8 +2364,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -2475,16 +2497,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -2625,8 +2647,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -2684,8 +2706,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -2826,8 +2848,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://www.data.go.kr/data/15129427/openapi.do" target="_blank" rel="noreferrer">나라장터 계약정보</a></span>
       </div>
@@ -2885,8 +2907,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -3027,8 +3049,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -3086,8 +3108,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -3219,8 +3241,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -3278,8 +3300,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -3396,8 +3418,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://www.data.go.kr/data/15129427/openapi.do" target="_blank" rel="noreferrer">나라장터 계약정보</a></span>
       </div>
@@ -3415,8 +3437,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -3557,8 +3579,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -3616,8 +3638,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -3758,8 +3780,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -3817,8 +3839,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -3950,16 +3972,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -4069,8 +4091,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://www.data.go.kr/data/15129427/openapi.do" target="_blank" rel="noreferrer">나라장터 계약정보</a></span>
       </div>
@@ -4098,8 +4120,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -4240,16 +4262,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -4390,16 +4412,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -4540,8 +4562,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -4599,8 +4621,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -4741,16 +4763,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -4867,8 +4889,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -4926,8 +4948,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -5059,8 +5081,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -5118,8 +5140,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -5260,8 +5282,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -5319,8 +5341,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -5461,16 +5483,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -5587,16 +5609,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -5699,8 +5721,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://www.sankun.com/company-info/Mq2QyLs0P7BJXCeRY06zOg" target="_blank" rel="noreferrer">산군</a></span>
       </div>
@@ -5738,8 +5760,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -5831,16 +5853,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -5901,16 +5923,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -5978,16 +6000,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -6055,8 +6077,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -6114,8 +6136,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -6207,16 +6229,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -6277,16 +6299,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -6347,16 +6369,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -6417,16 +6439,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -6494,16 +6516,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -6571,16 +6593,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -6641,16 +6663,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -6711,16 +6733,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -6788,16 +6810,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -6858,16 +6880,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -6928,16 +6950,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -6998,16 +7020,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -7068,16 +7090,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -7138,16 +7160,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -7208,16 +7230,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -7278,16 +7300,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -7348,16 +7370,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -7418,16 +7440,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -7488,8 +7510,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -7547,8 +7569,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -7640,16 +7662,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -7710,16 +7732,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -7780,16 +7802,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -7850,16 +7872,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -7920,16 +7942,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -7997,16 +8019,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -8073,16 +8095,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -8163,8 +8185,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -8222,8 +8244,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -8286,8 +8308,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://www.data.go.kr/data/15129427/openapi.do" target="_blank" rel="noreferrer">나라장터 계약정보</a></span>
       </div>
@@ -8345,8 +8367,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -8421,16 +8443,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -8499,8 +8521,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -8558,8 +8580,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -8634,16 +8656,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -8706,16 +8728,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -8790,16 +8812,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -8855,16 +8877,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -8951,16 +8973,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -9023,8 +9045,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://www.data.go.kr/data/15129427/openapi.do" target="_blank" rel="noreferrer">나라장터 계약정보</a></span>
       </div>
@@ -9042,8 +9064,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -9112,16 +9134,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -9190,16 +9212,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -9280,16 +9302,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -9352,16 +9374,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -9430,16 +9452,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -9502,16 +9524,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -9574,16 +9596,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -9646,16 +9668,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -9724,16 +9746,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -9789,16 +9811,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -9861,16 +9883,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -9939,16 +9961,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -10017,16 +10039,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -10089,16 +10111,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -10161,16 +10183,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -10233,16 +10255,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -10305,16 +10327,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -10383,16 +10405,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -10448,16 +10470,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -10531,8 +10553,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -10590,8 +10612,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -10654,8 +10676,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://www.data.go.kr/data/15129427/openapi.do" target="_blank" rel="noreferrer">나라장터 계약정보</a></span>
       </div>
@@ -10713,8 +10735,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -10789,16 +10811,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -10867,16 +10889,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -10939,8 +10961,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -10998,8 +11020,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -11074,16 +11096,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -11158,16 +11180,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -11230,16 +11252,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -11295,16 +11317,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -11373,16 +11395,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -11445,16 +11467,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -11535,16 +11557,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -11607,16 +11629,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -11685,16 +11707,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -11757,16 +11779,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -11835,8 +11857,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://www.data.go.kr/data/15129427/openapi.do" target="_blank" rel="noreferrer">나라장터 계약정보</a></span>
       </div>
@@ -11854,8 +11876,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -11924,16 +11946,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -11989,16 +12011,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -12061,16 +12083,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -12157,16 +12179,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -12229,16 +12251,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -12301,16 +12323,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -12373,16 +12395,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -12438,8 +12460,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://www.data.go.kr/data/15129427/openapi.do" target="_blank" rel="noreferrer">나라장터 계약정보</a></span>
       </div>
@@ -12457,8 +12479,8 @@
     </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -12514,16 +12536,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -12586,16 +12608,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -12664,16 +12686,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -12742,16 +12764,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -12814,16 +12836,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -12886,16 +12908,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -13014,8 +13036,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -13073,8 +13095,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -13182,16 +13204,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -13292,8 +13314,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -13351,8 +13373,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -13472,16 +13494,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -13589,16 +13611,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -13706,16 +13728,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -13816,8 +13838,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://www.data.go.kr/data/15129427/openapi.do" target="_blank" rel="noreferrer">나라장터 계약정보</a></span>
       </div>
@@ -13875,8 +13897,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span>Google News + OpenDART 전략공시</span>
       </div>
@@ -13996,16 +14018,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -14119,16 +14141,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -14236,8 +14258,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://opendart.fss.or.kr/" target="_blank" rel="noreferrer">OpenDART</a></span>
       </div>
@@ -14295,8 +14317,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -14428,16 +14450,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -14557,16 +14579,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -14674,16 +14696,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -14791,16 +14813,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -14901,16 +14923,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -15018,16 +15040,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -15141,16 +15163,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -15251,16 +15273,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -15368,16 +15390,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -15478,16 +15500,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -15588,16 +15610,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -15698,16 +15720,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -15808,16 +15830,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -15918,8 +15940,8 @@
 
     <div class="detail-split">
 
-    <section class="recent-awards">
-      <div class="recent-awards-head">
+    <section class="detail-feed recent-awards">
+      <div class="detail-feed-head recent-awards-head">
         <h3>최근 수주/계약 5건</h3>
         <span><a href="https://www.data.go.kr/data/15129427/openapi.do" target="_blank" rel="noreferrer">나라장터 계약정보</a></span>
       </div>
@@ -15937,8 +15959,8 @@
     </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
@@ -16052,16 +16074,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -16162,16 +16184,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -16272,16 +16294,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -16382,16 +16404,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -16492,16 +16514,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-        <section class="related-news empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed related-news empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>기사/전략 정보 5건</h3>
           </div>
           <p>아직 매핑된 관련 기사 또는 전략공시가 없습니다.</p>
@@ -16602,16 +16624,16 @@
 
     <div class="detail-split">
 
-        <section class="recent-awards empty">
-          <div class="recent-awards-head">
+        <section class="detail-feed recent-awards empty">
+          <div class="detail-feed-head recent-awards-head">
             <h3>최근 수주/계약 5건</h3>
           </div>
           <p>아직 매핑된 최근 수주 데이터가 없습니다.</p>
         </section>
 
 
-    <section class="related-news">
-      <div class="recent-awards-head">
+    <section class="detail-feed related-news">
+      <div class="detail-feed-head recent-awards-head">
         <h3>기사/전략 정보 5건</h3>
         <span><a href="https://news.google.com/" target="_blank" rel="noreferrer">Google News</a></span>
       </div>
