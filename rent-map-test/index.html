@@ -131,7 +131,7 @@
     .caseGlyph::before { width: 3px; height: 12px; opacity: 0.55; }
     .caseGlyph::after { width: 6px; height: 17px; opacity: 0.95; }
     .transactionGlyph { width: 13px; height: 13px; border-radius: 999px; background: #7c3aed; box-shadow: 0 0 0 4px rgba(124,58,237,0.20); display: inline-block; flex: 0 0 auto; }
-    .ownedAssetGlyph { width: 13px; height: 13px; transform: rotate(45deg); border-radius: 3px; background: #111827; border: 1px solid rgba(255,255,255,0.92); box-shadow: 0 0 0 4px rgba(255,255,255,0.42); display: inline-block; flex: 0 0 auto; }
+    .ownedAssetGlyph { width: 12px; height: 12px; transform: rotate(45deg); border-radius: 3px; background: #475569; border: 1px solid rgba(255,255,255,0.78); box-shadow: 0 0 0 3px rgba(15,23,42,0.12); display: inline-block; flex: 0 0 auto; }
     .hint { margin-top: 6px; color: var(--muted); font-size: 10.5px; line-height: 1.32; }
     .overviewGrid { display: grid; gap: 6px; }
     .overviewGrid .metricRow { grid-template-columns: 108px 1fr; }
@@ -206,7 +206,7 @@
               <label><input id="toggleSurface" type="checkbox" checked /> 표면</label>
               <label><input id="togglePoints" type="checkbox" checked /> 실측막대</label>
               <label><input id="toggleTransactions" type="checkbox" checked /> 매매사례</label>
-              <label><input id="toggleOwnedAssets" type="checkbox" checked /> 우리자산</label>
+              <label><input id="toggleOwnedAssets" type="checkbox" checked /> 포트폴리오 자산</label>
               <label><input id="toggleLabels" type="checkbox" checked /> 위치라벨</label>
               <label><input id="toggleLocalVector" type="checkbox" /> 벡터선</label>
             </div>
@@ -219,7 +219,7 @@
             <div class="legendLabels"><span id="legendMin"></span><span id="legendP97"></span><span id="legendMax"></span></div>
             <div class="caseLegend"><span class="caseGlyph"></span><span>굵은 막대: 임대사례 연결</span></div>
             <div class="caseLegend"><span class="transactionGlyph"></span><span>보라색 포인트: 매매사례</span></div>
-            <div class="caseLegend"><span class="ownedAssetGlyph"></span><span>검정 다이아: SQL DB 우리자산 위치</span></div>
+            <div class="caseLegend"><span class="ownedAssetGlyph"></span><span>회색 다이아: 포트폴리오 자산 위치</span></div>
             <div class="hint">색=NOC 수준, 높이=절단축 NOC. 표면은 보간 흐름, 막대는 실제 관측 건물입니다.</div>
           </section>
         </div>
@@ -305,8 +305,8 @@
     const heightCurve = 1.14;
     const transactionColor = 0x7c3aed;
     const transactionHaloColor = 0xc4b5fd;
-    const ownedAssetColor = 0x111827;
-    const ownedAssetHaloColor = 0xffffff;
+    const ownedAssetColor = 0x475569;
+    const ownedAssetHaloColor = 0xe2e8f0;
     let lastColumnVisualScale = null;
     let lastTerrainVisualScale = null;
     let activeCaseTab = "lease";
@@ -2085,7 +2085,7 @@
           isOwnedAsset: true,
           assetId: `owned:${row.asset_id}`,
           rawAssetId: row.asset_id,
-          building: row.physical_asset_name || row.canonical_name || "우리자산",
+          building: row.physical_asset_name || row.canonical_name || "포트폴리오 자산",
           canonicalName: row.canonical_name || "",
           address: row.address_text || "",
           assetCode: row.asset_code || "",
@@ -2118,7 +2118,7 @@
       ctx.translate(32, 32);
       ctx.rotate(Math.PI / 4);
       ctx.fillStyle = "rgba(255,255,255,0.96)";
-      ctx.strokeStyle = "rgba(17,24,39,1)";
+      ctx.strokeStyle = "rgba(71,85,105,0.92)";
       ctx.lineWidth = 8;
       roundRect(ctx, -17, -17, 34, 34, 7);
       ctx.fill();
@@ -2134,9 +2134,9 @@
       canvas.height = 64;
       const ctx = canvas.getContext("2d");
       const gradient = ctx.createRadialGradient(32, 32, 5, 32, 32, 31);
-      gradient.addColorStop(0, "rgba(147,197,253,0.92)");
-      gradient.addColorStop(0.46, "rgba(147,197,253,0.42)");
-      gradient.addColorStop(1, "rgba(147,197,253,0)");
+      gradient.addColorStop(0, "rgba(226,232,240,0.76)");
+      gradient.addColorStop(0.46, "rgba(226,232,240,0.28)");
+      gradient.addColorStop(1, "rgba(226,232,240,0)");
       ctx.fillStyle = gradient;
       ctx.beginPath();
       ctx.arc(32, 32, 31, 0, Math.PI * 2);
@@ -2168,10 +2168,10 @@
           new THREE.PointsMaterial({
             color: ownedAssetHaloColor,
             map: ownedAssetHaloTexture(),
-            size: 25,
+            size: 18,
             sizeAttenuation: false,
             transparent: true,
-            opacity: 0.72,
+            opacity: 0.38,
             depthTest: false,
             depthWrite: false,
           })
@@ -2183,10 +2183,10 @@
           new THREE.PointsMaterial({
             color: ownedAssetColor,
             map: ownedAssetDiamondTexture(),
-            size: 14,
+            size: 11,
             sizeAttenuation: false,
             transparent: true,
-            opacity: 0.98,
+            opacity: 0.84,
             depthTest: false,
             depthWrite: false,
           })
@@ -2516,7 +2516,7 @@
         return;
       }
       if (point.isOwnedAsset) {
-        tooltip.innerHTML = `<b>${escapeHtml(point.building)}</b><br>우리자산 · ${escapeHtml(point.mainUsage || "용도 미상")}<br>${escapeHtml(point.address || point.pnu || "")}`;
+        tooltip.innerHTML = `<b>${escapeHtml(point.building)}</b><br>포트폴리오 자산 · ${escapeHtml(point.mainUsage || "용도 미상")}<br>${escapeHtml(point.address || point.pnu || "")}`;
       } else if (point.isTransaction) {
         const tx = point.transaction;
         tooltip.innerHTML = `<b>${escapeHtml(tx.building)}</b><br>매매사례 ${krwBillionText(tx.dealPriceThousandKrw)}<br>${escapeHtml(tx.period)} · ${escapeHtml(tx.gu)} ${escapeHtml(tx.dong)}`;
@@ -2822,9 +2822,9 @@
         detailPanel.className = "side";
         detailPanel.innerHTML = `
           <div class="inspectorHeader">
-            <div class="inspectorEyebrow">우리자산 위치</div>
+            <div class="inspectorEyebrow">포트폴리오 자산 위치</div>
             <div class="inspectorTitle">${escapeHtml(point.building)}</div>
-            <div class="inspectorSub">SQL DB asset_relationship_summary · 좌표 보유 자산</div>
+            <div class="inspectorSub">SQL DB asset_relationship_summary · 좌표 보유 포트폴리오 자산</div>
           </div>
           <div class="inspectorBody">
             <div class="statGrid">
@@ -3080,7 +3080,7 @@
         }
         if (m.type === "ownedAsset") {
           const p = m.point;
-          return `<button class="result" data-kind="ownedAsset" data-index="${idx}"><b>${escapeHtml(p.building)}</b><br>우리자산 · ${escapeHtml(p.mainUsage || "용도 미상")} · ${escapeHtml(p.address || p.pnu || "")}</button>`;
+          return `<button class="result" data-kind="ownedAsset" data-index="${idx}"><b>${escapeHtml(p.building)}</b><br>포트폴리오 자산 · ${escapeHtml(p.mainUsage || "용도 미상")} · ${escapeHtml(p.address || p.pnu || "")}</button>`;
         }
         const t = m.tenant;
         return `<button class="result" data-kind="tenant" data-index="${idx}"><b>${escapeHtml(t.tenant)}</b><br>${escapeHtml(t.period)} · ${escapeHtml(t.building)} · ${escapeHtml(t.corpName || "DART 미매칭")}</button>`;
