@@ -15622,24 +15622,39 @@
 
     <section class="disclaimer">
       <h2>출처 및 유의사항</h2>
-      <ul><li><strong>대한건설협회</strong>: 현재 순위는 <a href="https://www.cak.or.kr/lay1/S1T54C56/sublink.do" target="_blank" rel="noreferrer">건설업체 검색</a>의 공개 AJAX JSON을 사용했습니다. 전년순위는 <a href="https://www.cak.or.kr/download.do?uuid=13e9142b-03c3-4727-882e-e573f178f8ae.xlsx" target="_blank" rel="noreferrer">2024년 공시자료 xlsx</a>의 토건 시트 기준입니다.</li><li><strong>CM/KISCON</strong>: <a href="http://www.kiscon.net/pcm/detail_search.asp?GONGSI_YEAR=2025" target="_blank" rel="noreferrer">KISCON 공시업체 검색</a>에서 2025 공시연도 전체 업체를 읽어 2024년도 용역형 CM 실적순으로 정렬했습니다. 전년순위는 <a href="http://www.kiscon.net/pcm/detail_search.asp?GONGSI_YEAR=2024" target="_blank" rel="noreferrer">2024 공시연도</a> 기준입니다.</li><li><strong>ETIS</strong>: <a href="https://www.etis.or.kr/webs/statistics/receive_eng_next.jsp" target="_blank" rel="noreferrer">ETIS 통계 페이지</a>의 공식 PDF를 표 추출했습니다. 전년순위는 각각 <a href="https://www.etis.or.kr/webs/pdfdata/2024siljuk_all.pdf" target="_blank" rel="noreferrer">전체</a>, <a href="https://www.etis.or.kr/webs/pdfdata/2024siljuk_con.pdf" target="_blank" rel="noreferrer">건설부문</a>의 2024년 PDF 기준입니다.</li><li><strong>KACEM</strong>: <a href="http://www.ekacem.or.kr/storehouse/record.asp" target="_blank" rel="noreferrer">건설엔지니어링 통계</a>의 최신 분기 PDF를 표 추출했습니다. 전년순위는 <a href="http://www.ekacem.or.kr/storehouse/stat-member/20250331-1.pdf" target="_blank" rel="noreferrer">2025년 1/4분기</a> PDF 기준입니다. PDF 주석상 민간 기술형 입찰, 턴키, 해외 수주실적은 제외됩니다.</li><li><strong>최근 수주/계약</strong>: 산군/보도 수동 캐시, OpenDART 단일판매ㆍ공급계약체결 공시, 나라장터 계약정보서비스 공사 계약현황 캐시를 회사명으로 합쳐 최근 5년 이내 자료 중 최신 5건만 표시합니다. 공사비 단가는 DART 원문에서 연면적이 추출되는 경우에만 계약금액 ÷ 연면적으로 산정합니다.</li><li><strong>기사/전략 정보</strong>: Google News RSS에서 회사명과 수주/계약/실적/경영/투자/계열사/신사업 키워드로 검색한 기사와 OpenDART 투자판단ㆍ출자ㆍ시설투자ㆍM&Aㆍ특수관계인 거래성 공시를 합쳐 최신 5건만 표시합니다. 주가성 단신은 가능한 제외했지만 최종 적합성은 확인이 필요합니다.</li><li><strong>한줄 코멘트</strong>: 현재 프로토타입에서는 브라우저 localStorage에만 저장됩니다. 다른 PC/브라우저와 공유하려면 DB 저장 API로 전환해야 합니다.</li></ul>
+      <ul><li><strong>대한건설협회</strong>: 현재 순위는 <a href="https://www.cak.or.kr/lay1/S1T54C56/sublink.do" target="_blank" rel="noreferrer">건설업체 검색</a>의 공개 AJAX JSON을 사용했습니다. 전년순위는 <a href="https://www.cak.or.kr/download.do?uuid=13e9142b-03c3-4727-882e-e573f178f8ae.xlsx" target="_blank" rel="noreferrer">2024년 공시자료 xlsx</a>의 토건 시트 기준입니다.</li><li><strong>신용등급</strong>: KIS/NICE 공개 회사별 등급검색을 우선 사용하고, 공개 등급이 비는 회사는 <a href="https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS006&amp;apiId=2020055" target="_blank" rel="noreferrer">OpenDART 채무증권 API</a>의 최근 5년 신용등급 필드로 보조했습니다. 현재 캐시 기준 17/30개 회사에서 등급을 확인했습니다.</li><li><strong>CM/KISCON</strong>: <a href="http://www.kiscon.net/pcm/detail_search.asp?GONGSI_YEAR=2025" target="_blank" rel="noreferrer">KISCON 공시업체 검색</a>에서 2025 공시연도 전체 업체를 읽어 2024년도 용역형 CM 실적순으로 정렬했습니다. 전년순위는 <a href="http://www.kiscon.net/pcm/detail_search.asp?GONGSI_YEAR=2024" target="_blank" rel="noreferrer">2024 공시연도</a> 기준입니다.</li><li><strong>ETIS</strong>: <a href="https://www.etis.or.kr/webs/statistics/receive_eng_next.jsp" target="_blank" rel="noreferrer">ETIS 통계 페이지</a>의 공식 PDF를 표 추출했습니다. 전년순위는 각각 <a href="https://www.etis.or.kr/webs/pdfdata/2024siljuk_all.pdf" target="_blank" rel="noreferrer">전체</a>, <a href="https://www.etis.or.kr/webs/pdfdata/2024siljuk_con.pdf" target="_blank" rel="noreferrer">건설부문</a>의 2024년 PDF 기준입니다.</li><li><strong>KACEM</strong>: <a href="http://www.ekacem.or.kr/storehouse/record.asp" target="_blank" rel="noreferrer">건설엔지니어링 통계</a>의 최신 분기 PDF를 표 추출했습니다. 전년순위는 <a href="http://www.ekacem.or.kr/storehouse/stat-member/20250331-1.pdf" target="_blank" rel="noreferrer">2025년 1/4분기</a> PDF 기준입니다. PDF 주석상 민간 기술형 입찰, 턴키, 해외 수주실적은 제외됩니다.</li><li><strong>최근 수주/계약</strong>: 산군/보도 수동 캐시, OpenDART 단일판매ㆍ공급계약체결 공시, 나라장터 계약정보서비스 공사 계약현황 캐시를 회사명으로 합쳐 최근 5년 이내 자료 중 최신 5건만 표시합니다. 공사비 단가는 DART 원문에서 연면적이 추출되는 경우에만 계약금액 ÷ 연면적으로 산정합니다.</li><li><strong>기사/전략 정보</strong>: Google News RSS에서 회사명과 수주/계약/실적/경영/투자/계열사/신사업 키워드로 검색한 기사와 OpenDART 투자판단ㆍ출자ㆍ시설투자ㆍM&Aㆍ특수관계인 거래성 공시를 합쳐 최신 5건만 표시합니다. 주가성 단신은 가능한 제외했지만 최종 적합성은 확인이 필요합니다.</li><li><strong>한줄 코멘트</strong>: 현재 프로토타입에서는 브라우저 localStorage에만 저장됩니다. 다른 PC/브라우저와 공유하려면 DB 저장 API로 전환해야 합니다.</li></ul>
       <p>전년순위는 등록번호가 있는 소스는 등록번호를 우선 사용하고, 없으면 회사명 정규화 매칭으로 보조합니다. 사명 변경, 합병, 표기 차이가 있으면 일부 행은 신규/권외로 표시될 수 있습니다.</p>
     </section>
 
   </main>
   <script>
-    function toggleRankRow(row) {
+    function setRankRowExpanded(row, expanded) {
       if (!row) return;
       const detail = document.getElementById(row.dataset.detailRow);
       if (!detail) return;
-      const expanded = row.getAttribute("aria-expanded") === "true";
-      const nextExpanded = !expanded;
-      row.setAttribute("aria-expanded", nextExpanded ? "true" : "false");
-      row.classList.toggle("expanded", nextExpanded);
-      detail.hidden = !nextExpanded;
+      row.setAttribute("aria-expanded", expanded ? "true" : "false");
+      row.classList.toggle("expanded", expanded);
+      detail.hidden = !expanded;
       row.querySelectorAll(".row-toggle").forEach((button) => {
-        button.setAttribute("aria-expanded", nextExpanded ? "true" : "false");
+        button.setAttribute("aria-expanded", expanded ? "true" : "false");
       });
+    }
+
+    function closeOtherRankRows(activeRow) {
+      document.querySelectorAll(".rank-row.expanded").forEach((row) => {
+        if (row !== activeRow) setRankRowExpanded(row, false);
+      });
+    }
+
+    function toggleRankRow(row) {
+      if (!row) return;
+      const expanded = row.getAttribute("aria-expanded") === "true";
+      if (expanded) {
+        setRankRowExpanded(row, false);
+        return;
+      }
+      closeOtherRankRows(row);
+      setRankRowExpanded(row, true);
     }
 
     document.querySelectorAll(".rank-row").forEach((row) => {

@@ -2299,18 +2299,33 @@ def render_html(data: dict[str, Any]) -> str:
     {disclaimer_html}
   </main>
   <script>
-    function toggleRankRow(row) {{
+    function setRankRowExpanded(row, expanded) {{
       if (!row) return;
       const detail = document.getElementById(row.dataset.detailRow);
       if (!detail) return;
-      const expanded = row.getAttribute("aria-expanded") === "true";
-      const nextExpanded = !expanded;
-      row.setAttribute("aria-expanded", nextExpanded ? "true" : "false");
-      row.classList.toggle("expanded", nextExpanded);
-      detail.hidden = !nextExpanded;
+      row.setAttribute("aria-expanded", expanded ? "true" : "false");
+      row.classList.toggle("expanded", expanded);
+      detail.hidden = !expanded;
       row.querySelectorAll(".row-toggle").forEach((button) => {{
-        button.setAttribute("aria-expanded", nextExpanded ? "true" : "false");
+        button.setAttribute("aria-expanded", expanded ? "true" : "false");
       }});
+    }}
+
+    function closeOtherRankRows(activeRow) {{
+      document.querySelectorAll(".rank-row.expanded").forEach((row) => {{
+        if (row !== activeRow) setRankRowExpanded(row, false);
+      }});
+    }}
+
+    function toggleRankRow(row) {{
+      if (!row) return;
+      const expanded = row.getAttribute("aria-expanded") === "true";
+      if (expanded) {{
+        setRankRowExpanded(row, false);
+        return;
+      }}
+      closeOtherRankRows(row);
+      setRankRowExpanded(row, true);
     }}
 
     document.querySelectorAll(".rank-row").forEach((row) => {{
