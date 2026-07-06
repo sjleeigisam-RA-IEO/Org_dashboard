@@ -233,13 +233,13 @@ def normalize_title(value: str) -> str:
 def make_strategy_article(report: dict[str, Any], document_text: str) -> dict[str, Any]:
     report_name = clean_report_name(compact_text(report.get("report_nm")))
     receipt_no = compact_text(report.get("rcept_no"))
-    category_key, category_label = strategy_category(report_name)
+    category_key, _category_label = strategy_category(report_name)
     fields = extract_strategy_fields(document_text)
     hint = select_title_hint(fields)
     title = report_name
     if hint:
         brief = hint[:54].rstrip() + ("..." if len(hint) > 54 else "")
-        title = f"{category_label}: {brief}"
+        title = brief
     return {
         "title": title,
         "url": f"{DART_VIEWER_URL}{receipt_no}" if receipt_no else "https://opendart.fss.or.kr/",

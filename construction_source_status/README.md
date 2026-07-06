@@ -12,7 +12,7 @@ Operational refresh normally runs from the repository root with the scripts unde
 Current refresh snapshot:
 
 - OpenDART awards: 2021-07-03 to 2026-07-03, max 5 per company.
-- OpenDART strategy disclosures: investment, equity/capex, M&A/restructuring, financing, and related-party signals, max 5 per company.
+- OpenDART strategy disclosures: investment, equity/capex, M&A/restructuring, financing, and related-party signals, max 5 per company. Category labels are retained only for filtering/dedupe metadata, not as visible article-title prefixes.
 - Google News RSS: 730-day window, max 5 per company.
 - Credit ratings: CAK top-30 companies, KIS/NICE public company search first, OpenDART bond/debt securities rating fields as fallback, 2021-07-06 to 2026-07-06.
 - Dashboard rows render top-30 ranking tables and expandable company detail panels.
