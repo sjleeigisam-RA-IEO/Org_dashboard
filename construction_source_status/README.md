@@ -5,8 +5,9 @@ This folder is the tracked bundle for the construction ranking/source-status das
 - `index.html`: deployed static page for GitHub Pages.
 - `data/`: latest JSON snapshots used to build the current page.
 - `scripts/`: source snapshot for the collectors and HTML builder used in this refresh.
+- `HANDOFF.md`: build history, source mapping, refresh procedure, and operating notes.
 
-Operational refresh normally runs from the repository root with the canonical scripts under `tools/`, then copies the refreshed `outputs/` artifacts back into this folder before committing.
+Operational refresh normally runs from the repository root with the scripts under `construction_source_status/scripts/`, then copies the refreshed `outputs/` artifacts back into this folder before committing.
 
 Current refresh snapshot:
 
