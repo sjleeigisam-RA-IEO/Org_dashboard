@@ -1724,6 +1724,10 @@ def render_html(data: dict[str, Any]) -> str:
       --construction-selected-bg: rgba(41, 151, 255, 0.11);
       --construction-selected-bg-soft: rgba(130, 175, 185, 0.08);
       --construction-selected-border: rgba(41, 151, 255, 0.58);
+      --comment-accent: #ffd84d;
+      --comment-accent-soft: #ffe89a;
+      --comment-bg: rgba(255, 216, 77, 0.075);
+      --comment-border: rgba(255, 216, 77, 0.44);
     }
     * { box-sizing: border-box; }
     body {
@@ -2388,9 +2392,15 @@ def render_html(data: dict[str, Any]) -> str:
       grid-template-columns: minmax(140px, 180px) minmax(0, 1fr);
       gap: 14px;
       align-items: start;
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px solid var(--line);
+      margin-top: 18px;
+      padding: 14px;
+      border: 1px solid var(--comment-border);
+      border-left: 5px solid var(--comment-accent);
+      border-radius: var(--construction-radius);
+      background:
+        linear-gradient(90deg, rgba(255, 216, 77, 0.12), transparent 34%),
+        var(--comment-bg);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
     }
     .company-comment > div {
       min-width: 0;
@@ -2399,6 +2409,7 @@ def render_html(data: dict[str, Any]) -> str:
       margin: 0;
       font-size: 14px;
       letter-spacing: 0;
+      color: var(--comment-accent);
     }
     .comment-list-wrap,
     .comment-controls {
@@ -2417,14 +2428,14 @@ def render_html(data: dict[str, Any]) -> str:
       list-style: none;
     }
     .comment-list li {
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255, 216, 77, 0.34);
       border-radius: var(--construction-radius);
-      background: var(--construction-item);
+      background: rgba(255, 216, 77, 0.065);
       padding: 10px 12px;
     }
     .comment-list p {
       margin: 6px 0 0;
-      color: var(--ink);
+      color: var(--comment-accent-soft);
       font-size: 13px;
       line-height: 1.45;
     }
@@ -2437,12 +2448,12 @@ def render_html(data: dict[str, Any]) -> str:
       display: flex;
       flex-wrap: wrap;
       gap: 6px 10px;
-      color: var(--muted);
+      color: rgba(255, 232, 154, 0.72);
       font-size: 11px;
       line-height: 1.3;
     }
     .comment-author {
-      color: var(--ink);
+      color: var(--comment-accent);
       font-weight: 800;
     }
     .comment-saved {
@@ -2461,7 +2472,7 @@ def render_html(data: dict[str, Any]) -> str:
       display: grid;
       gap: 4px;
       min-width: 0;
-      color: var(--muted);
+      color: rgba(255, 232, 154, 0.82);
       font-size: 11px;
       font-weight: 800;
     }
@@ -2470,9 +2481,9 @@ def render_html(data: dict[str, Any]) -> str:
       display: block;
       min-width: 0;
       width: 100%;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255, 216, 77, 0.28);
       border-radius: var(--construction-radius);
-      background: var(--construction-item);
+      background: rgba(20, 20, 20, 0.62);
       padding: 8px 10px;
       color: var(--ink);
       font: inherit;
@@ -2489,8 +2500,8 @@ def render_html(data: dict[str, Any]) -> str:
     .comment-controls button {
       border: 0;
       border-radius: var(--construction-radius);
-      background: #3c3c3c;
-      color: #fff;
+      background: var(--comment-accent);
+      color: #1b1b1b;
       cursor: pointer;
       font: inherit;
       font-size: 13px;
