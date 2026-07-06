@@ -684,38 +684,49 @@
       letter-spacing: 0;
     }
     .seed-comments,
+    .online-comments,
     .comment-controls {
       grid-column: 2;
     }
-    .seed-comments {
+    .seed-comments,
+    .online-comments {
       min-width: 0;
       display: grid;
       gap: 8px;
     }
-    .seed-comments h4 {
+    .seed-comments h4,
+    .online-comments h4 {
       margin: 0;
       color: var(--construction-accent);
       font-size: 12px;
       letter-spacing: 0;
     }
-    .seed-comments ul {
+    .seed-comments ul,
+    .online-comments ul {
       display: grid;
       gap: 8px;
       margin: 0;
       padding: 0;
       list-style: none;
     }
-    .seed-comments li {
+    .seed-comments li,
+    .online-comments li {
       border: 1px solid var(--line);
       border-radius: var(--construction-radius);
       background: var(--construction-item);
       padding: 10px 12px;
     }
-    .seed-comments p {
+    .seed-comments p,
+    .online-comments p {
       margin: 6px 0 0;
       color: var(--ink);
       font-size: 13px;
       line-height: 1.45;
+    }
+    .online-comment-empty {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
     }
     .comment-meta {
       display: flex;
@@ -782,6 +793,10 @@
       min-width: 72px;
       padding: 0 14px;
       white-space: nowrap;
+    }
+    .comment-controls button:disabled {
+      cursor: wait;
+      opacity: 0.58;
     }
     .change {
       display: inline-flex;
@@ -889,6 +904,7 @@
       }
       .company-comment { grid-template-columns: 1fr; }
       .seed-comments,
+      .online-comments,
       .comment-controls {
         grid-column: 1;
       }
@@ -1016,7 +1032,7 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:삼성물산">
+    <section class="company-comment" data-comment-key="company-comment:삼성물산" data-company-key="삼성물산" data-company-name="삼성물산 주식회사">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
@@ -1035,10 +1051,15 @@
             </ul>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="삼성물산 주식회사에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -1195,7 +1216,7 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:현대건설">
+    <section class="company-comment" data-comment-key="company-comment:현대건설" data-company-key="현대건설" data-company-name="현대건설(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
@@ -1214,10 +1235,15 @@
             </ul>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="현대건설(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -1374,7 +1400,7 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:대우건설">
+    <section class="company-comment" data-comment-key="company-comment:대우건설" data-company-key="대우건설" data-company-name="(주)대우건설">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
@@ -1393,10 +1419,15 @@
             </ul>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)대우건설에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -1553,7 +1584,7 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:디엘이앤씨">
+    <section class="company-comment" data-comment-key="company-comment:디엘이앤씨" data-company-key="디엘이앤씨" data-company-name="디엘이앤씨(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
@@ -1572,10 +1603,15 @@
             </ul>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="디엘이앤씨(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -1712,7 +1748,7 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:지에스건설">
+    <section class="company-comment" data-comment-key="company-comment:지에스건설" data-company-key="지에스건설" data-company-name="지에스건설(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
@@ -1731,10 +1767,15 @@
             </ul>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="지에스건설(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -1840,16 +1881,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:현대엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:현대엔지니어링" data-company-key="현대엔지니어링" data-company-name="현대엔지니어링(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="현대엔지니어링(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -1924,7 +1970,7 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:포스코이앤씨">
+    <section class="company-comment" data-comment-key="company-comment:포스코이앤씨" data-company-key="포스코이앤씨" data-company-name="주식회사 포스코이앤씨">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
@@ -1943,10 +1989,15 @@
             </ul>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="주식회사 포스코이앤씨에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -2052,7 +2103,7 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:롯데건설">
+    <section class="company-comment" data-comment-key="company-comment:롯데건설" data-company-key="롯데건설" data-company-name="롯데건설(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
@@ -2071,10 +2122,15 @@
             </ul>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="롯데건설(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -2180,16 +2236,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:에스케이에코플랜트">
+    <section class="company-comment" data-comment-key="company-comment:에스케이에코플랜트" data-company-key="에스케이에코플랜트" data-company-name="에스케이에코플랜트(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="에스케이에코플랜트(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -2264,16 +2325,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:아이파크현대산업개발">
+    <section class="company-comment" data-comment-key="company-comment:아이파크현대산업개발" data-company-key="아이파크현대산업개발" data-company-name="아이파크현대산업개발(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="아이파크현대산업개발(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -2410,16 +2476,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:한화">
+    <section class="company-comment" data-comment-key="company-comment:한화" data-company-key="한화" data-company-name="(주)한화">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)한화에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -2525,16 +2596,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:호반건설">
+    <section class="company-comment" data-comment-key="company-comment:호반건설" data-company-key="호반건설" data-company-name="(주)호반건설">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)호반건설에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -2691,16 +2767,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:디엘건설">
+    <section class="company-comment" data-comment-key="company-comment:디엘건설" data-company-key="디엘건설" data-company-name="디엘건설(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="디엘건설(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -2857,16 +2938,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:두산에너빌리티">
+    <section class="company-comment" data-comment-key="company-comment:두산에너빌리티" data-company-key="두산에너빌리티" data-company-name="두산에너빌리티(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="두산에너빌리티(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -3023,16 +3109,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:계룡건설산업">
+    <section class="company-comment" data-comment-key="company-comment:계룡건설산업" data-company-key="계룡건설산업" data-company-name="계룡건설산업(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="계룡건설산업(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -3165,7 +3256,7 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:서희건설">
+    <section class="company-comment" data-comment-key="company-comment:서희건설" data-company-key="서희건설" data-company-name="(주)서희건설">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
@@ -3184,10 +3275,15 @@
             </ul>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)서희건설에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -3304,16 +3400,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:제일건설">
+    <section class="company-comment" data-comment-key="company-comment:제일건설" data-company-key="제일건설" data-company-name="제일건설(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="제일건설(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -3470,16 +3571,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:코오롱글로벌">
+    <section class="company-comment" data-comment-key="company-comment:코오롱글로벌" data-company-key="코오롱글로벌" data-company-name="코오롱글로벌(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="코오롱글로벌(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -3636,16 +3742,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:태영건설">
+    <section class="company-comment" data-comment-key="company-comment:태영건설" data-company-key="태영건설" data-company-name="(주)태영건설">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)태영건설에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -3720,7 +3831,7 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:케이씨씨건설">
+    <section class="company-comment" data-comment-key="company-comment:케이씨씨건설" data-company-key="케이씨씨건설" data-company-name="(주)케이씨씨건설">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
@@ -3739,10 +3850,15 @@
             </ul>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)케이씨씨건설에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -3869,16 +3985,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:우미건설">
+    <section class="company-comment" data-comment-key="company-comment:우미건설" data-company-key="우미건설" data-company-name="우미건설(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="우미건설(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -3984,16 +4105,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:대방건설">
+    <section class="company-comment" data-comment-key="company-comment:대방건설" data-company-key="대방건설" data-company-name="대방건설(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="대방건설(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -4099,16 +4225,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:쌍용건설">
+    <section class="company-comment" data-comment-key="company-comment:쌍용건설" data-company-key="쌍용건설" data-company-name="쌍용건설(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="쌍용건설(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -4265,16 +4396,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:금호건설">
+    <section class="company-comment" data-comment-key="company-comment:금호건설" data-company-key="금호건설" data-company-name="금호건설(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="금호건설(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -4356,16 +4492,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:두산건설">
+    <section class="company-comment" data-comment-key="company-comment:두산건설" data-company-key="두산건설" data-company-name="두산건설(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="두산건설(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -4522,16 +4663,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:한신공영">
+    <section class="company-comment" data-comment-key="company-comment:한신공영" data-company-key="한신공영" data-company-name="한신공영(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="한신공영(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -4688,7 +4834,7 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:효성중공업">
+    <section class="company-comment" data-comment-key="company-comment:효성중공업" data-company-key="효성중공업" data-company-name="효성중공업(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
@@ -4707,10 +4853,15 @@
             </ul>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="효성중공업(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -4867,16 +5018,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:동부건설">
+    <section class="company-comment" data-comment-key="company-comment:동부건설" data-company-key="동부건설" data-company-name="동부건설(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="동부건설(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -4958,7 +5114,7 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:에이치엘디앤아이한라">
+    <section class="company-comment" data-comment-key="company-comment:에이치엘디앤아이한라" data-company-key="에이치엘디앤아이한라" data-company-name="에이치엘디앤아이한라(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
@@ -4977,10 +5133,15 @@
             </ul>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="에이치엘디앤아이한라(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -5086,16 +5247,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:반도건설">
+    <section class="company-comment" data-comment-key="company-comment:반도건설" data-company-key="반도건설" data-company-name="(주)반도건설">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)반도건설에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -5233,16 +5399,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:삼우씨엠건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:삼우씨엠건축사사무소" data-company-key="삼우씨엠건축사사무소" data-company-name="(주)삼우씨엠건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)삼우씨엠건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -5307,16 +5478,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:건축사사무소건원엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:건축사사무소건원엔지니어링" data-company-key="건축사사무소건원엔지니어링" data-company-name="(주)건축사사무소 건원엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)건축사사무소 건원엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -5388,16 +5564,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:무영씨엠건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:무영씨엠건축사사무소" data-company-key="무영씨엠건축사사무소" data-company-name="(주)무영씨엠건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)무영씨엠건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -5469,16 +5650,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:포스코에이앤씨건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:포스코에이앤씨건축사사무소" data-company-key="포스코에이앤씨건축사사무소" data-company-name="(주)포스코에이앤씨건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)포스코에이앤씨건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -5625,16 +5811,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:희림종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:희림종합건축사사무소" data-company-key="희림종합건축사사무소" data-company-name="(주)희림종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)희림종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -5699,16 +5890,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:에이치케이건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:에이치케이건축사사무소" data-company-key="에이치케이건축사사무소" data-company-name="(주)에이치케이건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)에이치케이건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -5773,16 +5969,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:선엔지니어링종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:선엔지니어링종합건축사사무소" data-company-key="선엔지니어링종합건축사사무소" data-company-name="(주)선엔지니어링종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)선엔지니어링종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -5847,16 +6048,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:아이티엠건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:아이티엠건축사사무소" data-company-key="아이티엠건축사사무소" data-company-name="(주)아이티엠건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)아이티엠건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -5928,16 +6134,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:선진엔지니어링종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:선진엔지니어링종합건축사사무소" data-company-key="선진엔지니어링종합건축사사무소" data-company-name="(주)선진엔지니어링종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)선진엔지니어링종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -6009,16 +6220,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:토펙엔지니어링건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:토펙엔지니어링건축사사무소" data-company-key="토펙엔지니어링건축사사무소" data-company-name="(주)토펙엔지니어링건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)토펙엔지니어링건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -6083,16 +6299,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:종합건축사사무소동일건축">
+    <section class="company-comment" data-comment-key="company-comment:종합건축사사무소동일건축" data-company-key="종합건축사사무소동일건축" data-company-name="(주)종합건축사사무소동일건축">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)종합건축사사무소동일건축에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -6157,16 +6378,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:한국종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:한국종합건축사사무소" data-company-key="한국종합건축사사무소" data-company-name="(주)한국종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)한국종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -6238,16 +6464,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:행림종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:행림종합건축사사무소" data-company-key="행림종합건축사사무소" data-company-name="(주)행림종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)행림종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -6312,16 +6543,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:정림씨엠건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:정림씨엠건축사사무소" data-company-key="정림씨엠건축사사무소" data-company-name="(주)정림씨엠건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)정림씨엠건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -6386,16 +6622,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:해안종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:해안종합건축사사무소" data-company-key="해안종합건축사사무소" data-company-name="(주)해안종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)해안종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -6460,16 +6701,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:전인씨엠건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:전인씨엠건축사사무소" data-company-key="전인씨엠건축사사무소" data-company-name="(주)전인씨엠건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)전인씨엠건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -6534,16 +6780,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:신화엔지니어링종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:신화엔지니어링종합건축사사무소" data-company-key="신화엔지니어링종합건축사사무소" data-company-name="(주)신화엔지니어링종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)신화엔지니어링종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -6608,16 +6859,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:토문엔지니어링건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:토문엔지니어링건축사사무소" data-company-key="토문엔지니어링건축사사무소" data-company-name="(주)토문엔지니어링건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)토문엔지니어링건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -6682,16 +6938,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:나우씨엠건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:나우씨엠건축사사무소" data-company-key="나우씨엠건축사사무소" data-company-name="(주)나우씨엠건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)나우씨엠건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -6756,16 +7017,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:다인씨엠건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:다인씨엠건축사사무소" data-company-key="다인씨엠건축사사무소" data-company-name="(주)다인씨엠건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)다인씨엠건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -6830,16 +7096,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:범씨엠건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:범씨엠건축사사무소" data-company-key="범씨엠건축사사무소" data-company-name="(주)범씨엠건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)범씨엠건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -6904,16 +7175,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:디엠이엔지종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:디엠이엔지종합건축사사무소" data-company-key="디엠이엔지종합건축사사무소" data-company-name="(주)디엠이엔지종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)디엠이엔지종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -6978,16 +7254,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:도원엔지니어링건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:도원엔지니어링건축사사무소" data-company-key="도원엔지니어링건축사사무소" data-company-name="(주)도원엔지니어링건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)도원엔지니어링건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -7134,16 +7415,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:신세계건설">
+    <section class="company-comment" data-comment-key="company-comment:신세계건설" data-company-key="신세계건설" data-company-name="신세계건설(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="신세계건설(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -7208,16 +7494,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:상아매니지먼트컨설팅">
+    <section class="company-comment" data-comment-key="company-comment:상아매니지먼트컨설팅" data-company-key="상아매니지먼트컨설팅" data-company-name="(주)상아매니지먼트컨설팅">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)상아매니지먼트컨설팅에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -7282,16 +7573,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:하우빌드">
+    <section class="company-comment" data-comment-key="company-comment:하우빌드" data-company-key="하우빌드" data-company-name="(주)하우빌드">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)하우빌드에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -7356,16 +7652,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:우석이엔씨건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:우석이엔씨건축사사무소" data-company-key="우석이엔씨건축사사무소" data-company-name="(주)우석이엔씨건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)우석이엔씨건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -7430,16 +7731,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:비씨엠피">
+    <section class="company-comment" data-comment-key="company-comment:비씨엠피" data-company-key="비씨엠피" data-company-name="(주)비씨엠피">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)비씨엠피에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -7511,16 +7817,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:아리씨엠">
+    <section class="company-comment" data-comment-key="company-comment:아리씨엠" data-company-key="아리씨엠" data-company-name="(주)아리씨엠">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)아리씨엠에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -7585,16 +7896,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:건영">
+    <section class="company-comment" data-comment-key="company-comment:건영" data-company-key="건영" data-company-name="(주)건영">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)건영에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -7690,16 +8006,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:한국전력기술">
+    <section class="company-comment" data-comment-key="company-comment:한국전력기술" data-company-key="한국전력기술" data-company-name="한국전력기술(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="한국전력기술(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -7817,16 +8138,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:도화엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:도화엔지니어링" data-company-key="도화엔지니어링" data-company-name="(주)도화엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)도화엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -7956,16 +8282,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:유신">
+    <section class="company-comment" data-comment-key="company-comment:유신" data-company-key="유신" data-company-name="(주)유신">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)유신에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -8038,16 +8369,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:건화">
+    <section class="company-comment" data-comment-key="company-comment:건화" data-company-key="건화" data-company-name="(주)건화">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)건화에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -8177,16 +8513,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:한국종합기술">
+    <section class="company-comment" data-comment-key="company-comment:한국종합기술" data-company-key="한국종합기술" data-company-name="(주)한국종합기술">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)한국종합기술에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -8253,16 +8594,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:케이지엔지니어링종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:케이지엔지니어링종합건축사사무소" data-company-key="케이지엔지니어링종합건축사사무소" data-company-name="(주)케이지엔지니어링종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)케이지엔지니어링종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -8341,16 +8687,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:동해종합기술공사">
+    <section class="company-comment" data-comment-key="company-comment:동해종합기술공사" data-company-key="동해종합기술공사" data-company-name="(주)동해종합기술공사">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)동해종합기술공사에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -8410,16 +8761,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:삼안">
+    <section class="company-comment" data-comment-key="company-comment:삼안" data-company-key="삼안" data-company-name="(주)삼안">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)삼안에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -8510,16 +8866,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:리뉴어스">
+    <section class="company-comment" data-comment-key="company-comment:리뉴어스" data-company-key="리뉴어스" data-company-name="리뉴어스 주식회사">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="리뉴어스 주식회사에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -8586,16 +8947,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:동명기술공단종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:동명기술공단종합건축사사무소" data-company-key="동명기술공단종합건축사사무소" data-company-name="(주)동명기술공단종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)동명기술공단종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -8679,16 +9045,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:이산">
+    <section class="company-comment" data-comment-key="company-comment:이산" data-company-key="이산" data-company-name="(주)이산">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)이산에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -8761,16 +9132,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:경동엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:경동엔지니어링" data-company-key="경동엔지니어링" data-company-name="(주)경동엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)경동엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -8855,16 +9231,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:동일기술공사">
+    <section class="company-comment" data-comment-key="company-comment:동일기술공사" data-company-key="동일기술공사" data-company-name="(주)동일기술공사">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)동일기술공사에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -8931,16 +9312,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:제일엔지니어링종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:제일엔지니어링종합건축사사무소" data-company-key="제일엔지니어링종합건축사사무소" data-company-name="(주)제일엔지니어링종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)제일엔지니어링종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -9013,16 +9399,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:서영엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:서영엔지니어링" data-company-key="서영엔지니어링" data-company-name="(주)서영엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)서영엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -9089,16 +9480,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:케이워터기술">
+    <section class="company-comment" data-comment-key="company-comment:케이워터기술" data-company-key="케이워터기술" data-company-name="케이워터기술 주식회사">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="케이워터기술 주식회사에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -9165,16 +9561,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:동성엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:동성엔지니어링" data-company-key="동성엔지니어링" data-company-name="(주)동성엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)동성엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -9241,16 +9642,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:동부엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:동부엔지니어링" data-company-key="동부엔지니어링" data-company-name="동부엔지니어링(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="동부엔지니어링(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -9323,16 +9729,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:홍익기술단">
+    <section class="company-comment" data-comment-key="company-comment:홍익기술단" data-company-key="홍익기술단" data-company-name="(주)홍익기술단">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)홍익기술단에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -9392,16 +9803,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:다산컨설턴트">
+    <section class="company-comment" data-comment-key="company-comment:다산컨설턴트" data-company-key="다산컨설턴트" data-company-name="(주)다산컨설턴트">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)다산컨설턴트에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -9468,16 +9884,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:대보정보통신">
+    <section class="company-comment" data-comment-key="company-comment:대보정보통신" data-company-key="대보정보통신" data-company-name="대보정보통신(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="대보정보통신(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -9550,16 +9971,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:드림엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:드림엔지니어링" data-company-key="드림엔지니어링" data-company-name="(주)드림엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)드림엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -9632,16 +10058,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:한국지역난방기술">
+    <section class="company-comment" data-comment-key="company-comment:한국지역난방기술" data-company-key="한국지역난방기술" data-company-name="한국지역난방기술(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="한국지역난방기술(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -9708,16 +10139,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:수성엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:수성엔지니어링" data-company-key="수성엔지니어링" data-company-name="(주)수성엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)수성엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -9784,16 +10220,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:대한콘설탄트">
+    <section class="company-comment" data-comment-key="company-comment:대한콘설탄트" data-company-key="대한콘설탄트" data-company-name="(주)대한콘설탄트">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)대한콘설탄트에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -9860,16 +10301,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:삼보기술단">
+    <section class="company-comment" data-comment-key="company-comment:삼보기술단" data-company-key="삼보기술단" data-company-name="(주)삼보기술단">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)삼보기술단에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -9936,16 +10382,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:엘씨젠">
+    <section class="company-comment" data-comment-key="company-comment:엘씨젠" data-company-key="엘씨젠" data-company-name="(주)엘씨젠">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)엘씨젠에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -10018,16 +10469,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:한전케이피에스">
+    <section class="company-comment" data-comment-key="company-comment:한전케이피에스" data-company-key="한전케이피에스" data-company-name="한전케이피에스(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="한전케이피에스(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -10087,16 +10543,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:건일이엔지">
+    <section class="company-comment" data-comment-key="company-comment:건일이엔지" data-company-key="건일이엔지" data-company-name="건일이엔지 주식회사">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="건일이엔지 주식회사에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -10163,16 +10624,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:글로텍엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:글로텍엔지니어링" data-company-key="글로텍엔지니어링" data-company-name="(주)글로텍엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)글로텍엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -10301,16 +10767,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:도화엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:도화엔지니어링" data-company-key="도화엔지니어링" data-company-name="(주)도화엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)도화엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -10440,16 +10911,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:유신">
+    <section class="company-comment" data-comment-key="company-comment:유신" data-company-key="유신" data-company-name="(주)유신">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)유신에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -10522,16 +10998,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:건화">
+    <section class="company-comment" data-comment-key="company-comment:건화" data-company-key="건화" data-company-name="(주)건화">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)건화에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -10598,16 +11079,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:케이지엔지니어링종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:케이지엔지니어링종합건축사사무소" data-company-key="케이지엔지니어링종합건축사사무소" data-company-name="(주)케이지엔지니어링종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)케이지엔지니어링종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -10737,16 +11223,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:한국종합기술">
+    <section class="company-comment" data-comment-key="company-comment:한국종합기술" data-company-key="한국종합기술" data-company-name="(주)한국종합기술">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)한국종합기술에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -10825,16 +11316,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:동해종합기술공사">
+    <section class="company-comment" data-comment-key="company-comment:동해종합기술공사" data-company-key="동해종합기술공사" data-company-name="(주)동해종합기술공사">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)동해종합기술공사에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -10901,16 +11397,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:동명기술공단종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:동명기술공단종합건축사사무소" data-company-key="동명기술공단종합건축사사무소" data-company-name="(주)동명기술공단종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)동명기술공단종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -10970,16 +11471,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:삼안">
+    <section class="company-comment" data-comment-key="company-comment:삼안" data-company-key="삼안" data-company-name="(주)삼안">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)삼안에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -11052,16 +11558,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:경동엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:경동엔지니어링" data-company-key="경동엔지니어링" data-company-name="(주)경동엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)경동엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -11128,16 +11639,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:케이워터기술">
+    <section class="company-comment" data-comment-key="company-comment:케이워터기술" data-company-key="케이워터기술" data-company-name="케이워터기술 주식회사">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="케이워터기술 주식회사에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -11222,16 +11738,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:동일기술공사">
+    <section class="company-comment" data-comment-key="company-comment:동일기술공사" data-company-key="동일기술공사" data-company-name="(주)동일기술공사">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)동일기술공사에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -11298,16 +11819,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:동부엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:동부엔지니어링" data-company-key="동부엔지니어링" data-company-name="동부엔지니어링(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="동부엔지니어링(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -11380,16 +11906,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:서영엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:서영엔지니어링" data-company-key="서영엔지니어링" data-company-name="(주)서영엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)서영엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -11456,16 +11987,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:동성엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:동성엔지니어링" data-company-key="동성엔지니어링" data-company-name="(주)동성엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)동성엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -11538,16 +12074,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:홍익기술단">
+    <section class="company-comment" data-comment-key="company-comment:홍익기술단" data-company-key="홍익기술단" data-company-name="(주)홍익기술단">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)홍익기술단에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -11631,16 +12172,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:이산">
+    <section class="company-comment" data-comment-key="company-comment:이산" data-company-key="이산" data-company-name="(주)이산">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)이산에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -11700,16 +12246,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:다산컨설턴트">
+    <section class="company-comment" data-comment-key="company-comment:다산컨설턴트" data-company-key="다산컨설턴트" data-company-name="(주)다산컨설턴트">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)다산컨설턴트에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -11776,16 +12327,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:제일엔지니어링종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:제일엔지니어링종합건축사사무소" data-company-key="제일엔지니어링종합건축사사무소" data-company-name="(주)제일엔지니어링종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)제일엔지니어링종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -11876,16 +12432,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:리뉴어스">
+    <section class="company-comment" data-comment-key="company-comment:리뉴어스" data-company-key="리뉴어스" data-company-name="리뉴어스 주식회사">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="리뉴어스 주식회사에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -11952,16 +12513,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:대한콘설탄트">
+    <section class="company-comment" data-comment-key="company-comment:대한콘설탄트" data-company-key="대한콘설탄트" data-company-name="(주)대한콘설탄트">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)대한콘설탄트에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -12028,16 +12594,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:수성엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:수성엔지니어링" data-company-key="수성엔지니어링" data-company-name="(주)수성엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)수성엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -12104,16 +12675,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:삼보기술단">
+    <section class="company-comment" data-comment-key="company-comment:삼보기술단" data-company-key="삼보기술단" data-company-name="(주)삼보기술단">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)삼보기술단에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -12173,16 +12749,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:건일이엔지">
+    <section class="company-comment" data-comment-key="company-comment:건일이엔지" data-company-key="건일이엔지" data-company-name="건일이엔지 주식회사">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="건일이엔지 주식회사에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -12253,16 +12834,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:서현">
+    <section class="company-comment" data-comment-key="company-comment:서현" data-company-key="서현" data-company-name="주식회사 서현">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="주식회사 서현에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -12329,16 +12915,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:세광종합기술단">
+    <section class="company-comment" data-comment-key="company-comment:세광종합기술단" data-company-key="세광종합기술단" data-company-name="(주)세광종합기술단">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)세광종합기술단에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -12411,16 +13002,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:태조엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:태조엔지니어링" data-company-key="태조엔지니어링" data-company-name="(주)태조엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)태조엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -12493,16 +13089,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:케이씨아이">
+    <section class="company-comment" data-comment-key="company-comment:케이씨아이" data-company-key="케이씨아이" data-company-name="(주)케이씨아이">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)케이씨아이에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -12569,16 +13170,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:경호엔지니어링종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:경호엔지니어링종합건축사사무소" data-company-key="경호엔지니어링종합건축사사무소" data-company-name="(주)경호엔지니어링종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)경호엔지니어링종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -12645,16 +13251,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:아라기술">
+    <section class="company-comment" data-comment-key="company-comment:아라기술" data-company-key="아라기술" data-company-name="(주)아라기술">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)아라기술에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -12721,16 +13332,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:선진엔지니어링종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:선진엔지니어링종합건축사사무소" data-company-key="선진엔지니어링종합건축사사무소" data-company-name="(주)선진엔지니어링종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)선진엔지니어링종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -12904,16 +13520,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:도화엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:도화엔지니어링" data-company-key="도화엔지니어링" data-company-name="(주)도화엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)도화엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -13018,16 +13639,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:삼안">
+    <section class="company-comment" data-comment-key="company-comment:삼안" data-company-key="삼안" data-company-name="(주)삼안">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)삼안에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -13202,16 +13828,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:한국종합기술">
+    <section class="company-comment" data-comment-key="company-comment:한국종합기술" data-company-key="한국종합기술" data-company-name="(주)한국종합기술">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)한국종합기술에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -13323,16 +13954,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:동명기술공단종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:동명기술공단종합건축사사무소" data-company-key="동명기술공단종합건축사사무소" data-company-name="(주)동명기술공단종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)동명기술공단종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -13444,16 +14080,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:무영씨엠건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:무영씨엠건축사사무소" data-company-key="무영씨엠건축사사무소" data-company-name="(주)무영씨엠건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)무영씨엠건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -13558,16 +14199,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:신화엔지니어링종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:신화엔지니어링종합건축사사무소" data-company-key="신화엔지니어링종합건축사사무소" data-company-name="(주)신화엔지니어링종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)신화엔지니어링종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -13742,16 +14388,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:유신">
+    <section class="company-comment" data-comment-key="company-comment:유신" data-company-key="유신" data-company-name="(주)유신">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)유신에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -13869,16 +14520,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:건화">
+    <section class="company-comment" data-comment-key="company-comment:건화" data-company-key="건화" data-company-name="(주)건화">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)건화에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -13990,16 +14646,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:경호엔지니어링종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:경호엔지니어링종합건축사사무소" data-company-key="경호엔지니어링종합건축사사무소" data-company-name="(주)경호엔지니어링종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)경호엔지니어링종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -14186,16 +14847,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:희림종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:희림종합건축사사무소" data-company-key="희림종합건축사사무소" data-company-name="(주)희림종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)희림종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -14319,16 +14985,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:동해종합기술공사">
+    <section class="company-comment" data-comment-key="company-comment:동해종합기술공사" data-company-key="동해종합기술공사" data-company-name="(주)동해종합기술공사">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)동해종합기술공사에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -14440,16 +15111,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:동성엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:동성엔지니어링" data-company-key="동성엔지니어링" data-company-name="(주)동성엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)동성엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -14561,16 +15237,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:제일엔지니어링종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:제일엔지니어링종합건축사사무소" data-company-key="제일엔지니어링종합건축사사무소" data-company-name="(주)제일엔지니어링종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)제일엔지니어링종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -14675,16 +15356,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:펨코엔지니어링건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:펨코엔지니어링건축사사무소" data-company-key="펨코엔지니어링건축사사무소" data-company-name="(주)펨코엔지니어링건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)펨코엔지니어링건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -14796,16 +15482,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:케이지엔지니어링종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:케이지엔지니어링종합건축사사무소" data-company-key="케이지엔지니어링종합건축사사무소" data-company-name="(주)케이지엔지니어링종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)케이지엔지니어링종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -14923,16 +15614,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:경동엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:경동엔지니어링" data-company-key="경동엔지니어링" data-company-name="(주)경동엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)경동엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -15037,16 +15733,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:아이티엠건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:아이티엠건축사사무소" data-company-key="아이티엠건축사사무소" data-company-name="(주)아이티엠건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)아이티엠건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -15158,16 +15859,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:수성엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:수성엔지니어링" data-company-key="수성엔지니어링" data-company-name="(주)수성엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)수성엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -15272,16 +15978,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:선엔지니어링종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:선엔지니어링종합건축사사무소" data-company-key="선엔지니어링종합건축사사무소" data-company-name="(주)선엔지니어링종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)선엔지니어링종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -15386,16 +16097,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:건일이엔지">
+    <section class="company-comment" data-comment-key="company-comment:건일이엔지" data-company-key="건일이엔지" data-company-name="건일이엔지 주식회사">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="건일이엔지 주식회사에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -15500,16 +16216,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:종합건축사사무소동일건축">
+    <section class="company-comment" data-comment-key="company-comment:종합건축사사무소동일건축" data-company-key="종합건축사사무소동일건축" data-company-name="(주)종합건축사사무소 동일건축">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)종합건축사사무소 동일건축에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -15614,16 +16335,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:건축사사무소건원엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:건축사사무소건원엔지니어링" data-company-key="건축사사무소건원엔지니어링" data-company-name="(주)건축사사무소건원엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)건축사사무소건원엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -15728,16 +16454,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:디엠에이앤씨건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:디엠에이앤씨건축사사무소" data-company-key="디엠에이앤씨건축사사무소" data-company-name="주식회사 디엠에이앤씨건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="주식회사 디엠에이앤씨건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -15866,16 +16597,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:이산">
+    <section class="company-comment" data-comment-key="company-comment:이산" data-company-key="이산" data-company-name="(주)이산">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)이산에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -15980,16 +16716,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:범한엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:범한엔지니어링" data-company-key="범한엔지니어링" data-company-name="(주)범한엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)범한엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -16094,16 +16835,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:동우이앤씨">
+    <section class="company-comment" data-comment-key="company-comment:동우이앤씨" data-company-key="동우이앤씨" data-company-name="(주)동우이앤씨">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)동우이앤씨에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -16208,16 +16954,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:한국종합건축사사무소">
+    <section class="company-comment" data-comment-key="company-comment:한국종합건축사사무소" data-company-key="한국종합건축사사무소" data-company-name="(주)한국종합건축사사무소">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)한국종합건축사사무소에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -16322,16 +17073,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:건축사사무소광장">
+    <section class="company-comment" data-comment-key="company-comment:건축사사무소광장" data-company-key="건축사사무소광장" data-company-name="(주)건축사사무소 광장">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="(주)건축사사무소 광장에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -16436,16 +17192,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:연안항만엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:연안항만엔지니어링" data-company-key="연안항만엔지니어링" data-company-name="주식회사 연안항만엔지니어링">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="주식회사 연안항만엔지니어링에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -16557,16 +17318,21 @@
 
     </div>
 
-    <section class="company-comment" data-comment-key="company-comment:벽산엔지니어링">
+    <section class="company-comment" data-comment-key="company-comment:벽산엔지니어링" data-company-key="벽산엔지니어링" data-company-name="벽산엔지니어링(주)">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
 
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="개발솔루션센터 센터장" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="벽산엔지니어링(주)에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -16579,7 +17345,7 @@
 
     <section class="disclaimer">
       <h2>출처 및 유의사항</h2>
-      <ul><li><strong>대한건설협회</strong>: 현재 순위는 <a href="https://www.cak.or.kr/lay1/S1T54C56/sublink.do" target="_blank" rel="noreferrer">건설업체 검색</a>의 공개 AJAX JSON을 사용했습니다. 전년순위는 <a href="https://www.cak.or.kr/download.do?uuid=13e9142b-03c3-4727-882e-e573f178f8ae.xlsx" target="_blank" rel="noreferrer">2024년 공시자료 xlsx</a>의 토건 시트 기준입니다.</li><li><strong>신용등급</strong>: KIS/NICE 공개 회사별 등급검색을 우선 사용하고, 공개 등급이 비는 회사는 <a href="https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS006&amp;apiId=2020055" target="_blank" rel="noreferrer">OpenDART 채무증권 API</a>의 최근 5년 신용등급 필드로 보조했습니다. 현재 캐시 기준 17/30개 회사에서 등급을 확인했습니다.</li><li><strong>CM/KISCON</strong>: <a href="http://www.kiscon.net/pcm/detail_search.asp?GONGSI_YEAR=2025" target="_blank" rel="noreferrer">KISCON 공시업체 검색</a>에서 2025 공시연도 전체 업체를 읽어 2024년도 용역형 CM 실적순으로 정렬했습니다. 전년순위는 <a href="http://www.kiscon.net/pcm/detail_search.asp?GONGSI_YEAR=2024" target="_blank" rel="noreferrer">2024 공시연도</a> 기준입니다.</li><li><strong>ETIS</strong>: <a href="https://www.etis.or.kr/webs/statistics/receive_eng_next.jsp" target="_blank" rel="noreferrer">ETIS 통계 페이지</a>의 공식 PDF를 표 추출했습니다. 전년순위는 각각 <a href="https://www.etis.or.kr/webs/pdfdata/2024siljuk_all.pdf" target="_blank" rel="noreferrer">전체</a>, <a href="https://www.etis.or.kr/webs/pdfdata/2024siljuk_con.pdf" target="_blank" rel="noreferrer">건설부문</a>의 2024년 PDF 기준입니다.</li><li><strong>KACEM</strong>: <a href="http://www.ekacem.or.kr/storehouse/record.asp" target="_blank" rel="noreferrer">건설엔지니어링 통계</a>의 최신 분기 PDF를 표 추출했습니다. 전년순위는 <a href="http://www.ekacem.or.kr/storehouse/stat-member/20250331-1.pdf" target="_blank" rel="noreferrer">2025년 1/4분기</a> PDF 기준입니다. PDF 주석상 민간 기술형 입찰, 턴키, 해외 수주실적은 제외됩니다.</li><li><strong>최근 수주/계약</strong>: 산군/보도 수동 캐시, OpenDART 단일판매ㆍ공급계약체결 공시, 나라장터 계약정보서비스 공사 계약현황 캐시를 회사명으로 합쳐 최근 5년 이내 자료 중 최신 5건만 표시합니다. 공사비 단가는 DART 원문에서 연면적이 추출되는 경우에만 계약금액 ÷ 연면적으로 산정합니다.</li><li><strong>기사/전략 정보</strong>: Google News RSS에서 회사명과 수주/계약/실적/경영/투자/계열사/신사업 키워드로 검색한 기사와 OpenDART 투자판단ㆍ출자ㆍ시설투자ㆍM&Aㆍ특수관계인 거래성 공시를 합쳐 최신 5건만 표시합니다. 주가성 단신은 가능한 제외했지만 최종 적합성은 확인이 필요합니다.</li><li><strong>코멘트</strong>: <code>시공사_동향_20260703.pdf</code>의 회사별 기록을 기본 코멘트로 표시하고, 추가 코멘트는 현재 브라우저 localStorage에 저장됩니다. 기본 작성자는 개발솔루션센터 센터장입니다.</li></ul>
+      <ul><li><strong>대한건설협회</strong>: 현재 순위는 <a href="https://www.cak.or.kr/lay1/S1T54C56/sublink.do" target="_blank" rel="noreferrer">건설업체 검색</a>의 공개 AJAX JSON을 사용했습니다. 전년순위는 <a href="https://www.cak.or.kr/download.do?uuid=13e9142b-03c3-4727-882e-e573f178f8ae.xlsx" target="_blank" rel="noreferrer">2024년 공시자료 xlsx</a>의 토건 시트 기준입니다.</li><li><strong>신용등급</strong>: KIS/NICE 공개 회사별 등급검색을 우선 사용하고, 공개 등급이 비는 회사는 <a href="https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS006&amp;apiId=2020055" target="_blank" rel="noreferrer">OpenDART 채무증권 API</a>의 최근 5년 신용등급 필드로 보조했습니다. 현재 캐시 기준 17/30개 회사에서 등급을 확인했습니다.</li><li><strong>CM/KISCON</strong>: <a href="http://www.kiscon.net/pcm/detail_search.asp?GONGSI_YEAR=2025" target="_blank" rel="noreferrer">KISCON 공시업체 검색</a>에서 2025 공시연도 전체 업체를 읽어 2024년도 용역형 CM 실적순으로 정렬했습니다. 전년순위는 <a href="http://www.kiscon.net/pcm/detail_search.asp?GONGSI_YEAR=2024" target="_blank" rel="noreferrer">2024 공시연도</a> 기준입니다.</li><li><strong>ETIS</strong>: <a href="https://www.etis.or.kr/webs/statistics/receive_eng_next.jsp" target="_blank" rel="noreferrer">ETIS 통계 페이지</a>의 공식 PDF를 표 추출했습니다. 전년순위는 각각 <a href="https://www.etis.or.kr/webs/pdfdata/2024siljuk_all.pdf" target="_blank" rel="noreferrer">전체</a>, <a href="https://www.etis.or.kr/webs/pdfdata/2024siljuk_con.pdf" target="_blank" rel="noreferrer">건설부문</a>의 2024년 PDF 기준입니다.</li><li><strong>KACEM</strong>: <a href="http://www.ekacem.or.kr/storehouse/record.asp" target="_blank" rel="noreferrer">건설엔지니어링 통계</a>의 최신 분기 PDF를 표 추출했습니다. 전년순위는 <a href="http://www.ekacem.or.kr/storehouse/stat-member/20250331-1.pdf" target="_blank" rel="noreferrer">2025년 1/4분기</a> PDF 기준입니다. PDF 주석상 민간 기술형 입찰, 턴키, 해외 수주실적은 제외됩니다.</li><li><strong>최근 수주/계약</strong>: 산군/보도 수동 캐시, OpenDART 단일판매ㆍ공급계약체결 공시, 나라장터 계약정보서비스 공사 계약현황 캐시를 회사명으로 합쳐 최근 5년 이내 자료 중 최신 5건만 표시합니다. 공사비 단가는 DART 원문에서 연면적이 추출되는 경우에만 계약금액 ÷ 연면적으로 산정합니다.</li><li><strong>기사/전략 정보</strong>: Google News RSS에서 회사명과 수주/계약/실적/경영/투자/계열사/신사업 키워드로 검색한 기사와 OpenDART 투자판단ㆍ출자ㆍ시설투자ㆍM&Aㆍ특수관계인 거래성 공시를 합쳐 최신 5건만 표시합니다. 주가성 단신은 가능한 제외했지만 최종 적합성은 확인이 필요합니다.</li><li><strong>코멘트</strong>: <code>시공사_동향_20260703.pdf</code>의 회사별 기록을 기본 코멘트로 표시하고, 추가 코멘트는 온라인 DB에 저장해 사용자 간 공유됩니다. 개발솔루션센터 센터장 작성자명은 공식 PDF 기록에만 사용합니다.</li></ul>
       <p>전년순위는 등록번호가 있는 소스는 등록번호를 우선 사용하고, 없으면 회사명 정규화 매칭으로 보조합니다. 사명 변경, 합병, 표기 차이가 있으면 일부 행은 신규/권외로 표시될 수 있습니다.</p>
     </section>
 
@@ -16629,74 +17395,38 @@
 
     const seedCommentCounts = {"company-comment:삼성물산": 1, "company-comment:현대건설": 1, "company-comment:대우건설": 1, "company-comment:디엘이앤씨": 1, "company-comment:지에스건설": 1, "company-comment:포스코이앤씨": 1, "company-comment:롯데건설": 1, "company-comment:케이씨씨건설": 1, "company-comment:효성중공업": 1, "company-comment:에이치엘디앤아이한라": 1, "company-comment:서희건설": 1, "company-comment:동원개발": 1};
     const defaultCommentAuthor = "개발솔루션센터 센터장";
+    const commentApiUrl = "https://qvegpozwrcmspdvjokiz.supabase.co/rest/v1/construction_company_comments";
+    const commentApiKey = "sb_publishable_Eb3TAC7BPbFrv8Odwwjc1g_Vv81Nf4P";
+    const onlineCommentsByKey = new Map();
 
-    function countCommentItems(items) {
-      if (!Array.isArray(items)) return 0;
-      return items.filter((item) => {
-        if (typeof item === "string") return item.trim();
-        if (item && typeof item === "object") {
-          return String(item.text || item.comment || "").trim();
-        }
-        return false;
-      }).length;
+    function escapeCommentHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      }[char]));
     }
 
-    function readStoredComment(key) {
-      const raw = localStorage.getItem(key);
-      if (!raw) return { author: defaultCommentAuthor, text: "" };
+    function formatCommentDate(value) {
+      if (!value) return "";
       try {
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed)) {
-          const first = parsed.find((item) => String(item || "").trim());
-          return { author: defaultCommentAuthor, text: first ? String(first).trim() : "" };
-        }
-        if (parsed && Array.isArray(parsed.comments)) {
-          const first = parsed.comments.find((item) => {
-            if (typeof item === "string") return item.trim();
-            if (item && typeof item === "object") return String(item.text || item.comment || "").trim();
-            return false;
-          });
-          if (first && typeof first === "object") {
-            return {
-              author: String(first.author || parsed.author || defaultCommentAuthor).trim(),
-              text: String(first.text || first.comment || "").trim(),
-            };
-          }
-          return {
-            author: String(parsed.author || defaultCommentAuthor).trim(),
-            text: first ? String(first).trim() : "",
-          };
-        }
-        if (parsed && typeof parsed === "object") {
-          return {
-            author: String(parsed.author || defaultCommentAuthor).trim(),
-            text: String(parsed.text || parsed.comment || "").trim(),
-          };
-        }
+        return new Intl.DateTimeFormat("ko-KR", {
+          timeZone: "Asia/Seoul",
+          year: "2-digit",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+        }).format(new Date(value));
       } catch (error) {
-        // Existing comments are stored as plain text.
+        return "";
       }
-      return { author: defaultCommentAuthor, text: String(raw).trim() };
-    }
-
-    function getStoredCommentCount(key) {
-      const raw = localStorage.getItem(key);
-      if (!raw) return 0;
-      try {
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed)) return countCommentItems(parsed);
-        if (parsed && Array.isArray(parsed.comments)) return countCommentItems(parsed.comments);
-        if (parsed && typeof parsed === "object") {
-          return String(parsed.text || parsed.comment || "").trim() ? 1 : 0;
-        }
-      } catch (error) {
-        // Existing comments are stored as plain text.
-      }
-      return String(raw).trim() ? 1 : 0;
     }
 
     function getCommentCount(key) {
-      return (seedCommentCounts[key] || 0) + getStoredCommentCount(key);
+      return (seedCommentCounts[key] || 0) + (onlineCommentsByKey.get(key) || []).length;
     }
 
     function updateCommentBadges(changedKey) {
@@ -16714,34 +17444,131 @@
 
     updateCommentBadges();
 
+    function renderOnlineComments(box) {
+      const key = box.dataset.commentKey;
+      const list = box.querySelector(".online-comment-list");
+      const empty = box.querySelector(".online-comment-empty");
+      if (!key || !list) return;
+      const comments = onlineCommentsByKey.get(key) || [];
+      list.innerHTML = comments.map((item) => {
+        const author = String(item.author_name || "").trim() || "작성자 미기재";
+        const date = formatCommentDate(item.created_at);
+        return `
+        <li>
+          <div class="comment-meta">
+            <span class="comment-author">${escapeCommentHtml(author)}</span>
+            ${date ? `<span>${escapeCommentHtml(date)}</span>` : ""}
+          </div>
+          <p>${escapeCommentHtml(item.body || "")}</p>
+        </li>`;
+      }).join("");
+      if (empty) empty.hidden = comments.length > 0;
+    }
+
+    function renderAllOnlineComments() {
+      document.querySelectorAll(".company-comment").forEach(renderOnlineComments);
+    }
+
+    async function loadOnlineComments() {
+      if (!commentApiUrl || !commentApiKey) {
+        document.querySelectorAll(".comment-saved").forEach((saved) => {
+          saved.textContent = "온라인 저장소 설정이 없습니다.";
+        });
+        return;
+      }
+      try {
+        const response = await fetch(`${commentApiUrl}?select=id,company_key,author_name,body,created_at&is_deleted=eq.false&order=created_at.desc&limit=1000`, {
+          headers: {
+            apikey: commentApiKey,
+            Authorization: `Bearer ${commentApiKey}`,
+          },
+        });
+        if (!response.ok) throw new Error(await response.text());
+        const rows = await response.json();
+        onlineCommentsByKey.clear();
+        rows.forEach((row) => {
+          const key = `company-comment:${row.company_key}`;
+          const items = onlineCommentsByKey.get(key) || [];
+          items.push(row);
+          onlineCommentsByKey.set(key, items);
+        });
+        renderAllOnlineComments();
+        updateCommentBadges();
+      } catch (error) {
+        document.querySelectorAll(".comment-saved").forEach((saved) => {
+          saved.textContent = "온라인 코멘트를 불러오지 못했습니다.";
+        });
+      }
+    }
+
     document.querySelectorAll(".company-comment").forEach((box) => {
       const key = box.dataset.commentKey;
+      const companyKey = box.dataset.companyKey || "";
+      const companyName = box.dataset.companyName || "";
       const authorInput = box.querySelector(".comment-author-field input");
       const textarea = box.querySelector("textarea");
       const button = box.querySelector("button");
       const saved = box.querySelector(".comment-saved");
-      if (!key || !authorInput || !textarea || !button || !saved) return;
-      const existing = readStoredComment(key);
-      authorInput.value = existing.author || defaultCommentAuthor;
-      textarea.value = existing.text || "";
-      saved.textContent = existing.text ? `저장된 코멘트가 있습니다. 작성자: ${authorInput.value}` : "로컬 브라우저에 저장됩니다.";
-      button.addEventListener("click", () => {
+      if (!key || !companyKey || !authorInput || !textarea || !button || !saved) return;
+      saved.textContent = "온라인 DB에 저장됩니다.";
+      button.addEventListener("click", async () => {
         const value = textarea.value.trim();
-        const author = (authorInput.value || defaultCommentAuthor).trim();
-        if (value) {
-          localStorage.setItem(key, JSON.stringify({
-            author,
-            comments: [{ author, text: value }],
-            updatedAt: new Date().toISOString(),
-          }));
-          saved.textContent = `저장됨 · 작성자: ${author}`;
-        } else {
-          localStorage.removeItem(key);
-          saved.textContent = "코멘트가 비어 있어 삭제했습니다.";
+        const author = authorInput.value.trim();
+        if (!value) {
+          saved.textContent = "코멘트가 비어 있습니다.";
+          return;
         }
-        updateCommentBadges(key);
+        if (author === defaultCommentAuthor) {
+          saved.textContent = `${defaultCommentAuthor} 작성자명은 공식 PDF 기록에만 사용합니다.`;
+          return;
+        }
+        if (!commentApiUrl || !commentApiKey) {
+          saved.textContent = "온라인 저장소 설정이 없습니다.";
+          return;
+        }
+        button.disabled = true;
+        saved.textContent = "저장 중";
+        try {
+          const payload = {
+            company_key: companyKey,
+            company_name: companyName,
+            tab_id: box.closest(".tab-panel")?.id || "",
+            source: "user",
+            author_name: author || null,
+            body: value,
+          };
+          const response = await fetch(commentApiUrl, {
+            method: "POST",
+            headers: {
+              apikey: commentApiKey,
+              Authorization: `Bearer ${commentApiKey}`,
+              "Content-Type": "application/json",
+              Prefer: "return=representation",
+            },
+            body: JSON.stringify(payload),
+          });
+          if (!response.ok) throw new Error(await response.text());
+          const rows = await response.json();
+          const created = rows && rows[0] ? rows[0] : {
+            ...payload,
+            created_at: new Date().toISOString(),
+          };
+          const items = onlineCommentsByKey.get(key) || [];
+          onlineCommentsByKey.set(key, [created, ...items]);
+          textarea.value = "";
+          saved.textContent = "온라인 저장됨";
+          renderOnlineComments(box);
+          updateCommentBadges(key);
+        } catch (error) {
+          saved.textContent = "온라인 저장 실패";
+        } finally {
+          button.disabled = false;
+        }
       });
     });
+
+    renderAllOnlineComments();
+    loadOnlineComments();
 
     document.querySelectorAll(".tab-button").forEach((button) => {
       button.addEventListener("click", () => {

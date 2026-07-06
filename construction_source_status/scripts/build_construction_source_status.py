@@ -26,6 +26,7 @@ HTML_OUT = OUTPUT_DIR / "construction_source_status.html"
 JSON_OUT = OUTPUT_DIR / "construction_source_status_data.json"
 SOURCE_MAP_PATH = ROOT / "tools" / "construction_company_source_map.json"
 PDF_COMMENTS_PATH = ROOT / "construction_source_status" / "data" / "construction_pdf_comments.json"
+PUBLIC_CONFIG_PATH = ROOT / "CRM_base" / "portfolio-analysis" / "config.js"
 AWARDS_CACHE_OUT = OUTPUT_DIR / "construction_awards_cache.json"
 DART_AWARDS_CACHE_OUT = OUTPUT_DIR / "construction_dart_awards_cache.json"
 NARA_CONTRACTS_CACHE_OUT = OUTPUT_DIR / "construction_nara_contracts_cache.json"
@@ -142,6 +143,21 @@ def build_seed_comment_counts() -> dict[str, int]:
         if count:
             counts[f"company-comment:{company_key}"] = count
     return counts
+
+
+def load_public_supabase_config() -> dict[str, str]:
+    if not PUBLIC_CONFIG_PATH.exists():
+        return {"url": "", "key": ""}
+    try:
+        text = PUBLIC_CONFIG_PATH.read_text(encoding="utf-8")
+    except OSError:
+        return {"url": "", "key": ""}
+    url_match = re.search(r'SUPABASE_URL\s*=\s*"([^"]+)"', text)
+    key_match = re.search(r'SUPABASE_KEY\s*=\s*"([^"]+)"', text)
+    return {
+        "url": url_match.group(1) if url_match else "",
+        "key": key_match.group(1) if key_match else "",
+    }
 
 
 def rank_change(current_rank: int, previous_rank: int | None) -> str:
@@ -1174,16 +1190,21 @@ def render_comment_box(row: dict[str, Any]) -> str:
       </div>
         """
     return f"""
-    <section class="company-comment" data-comment-key="company-comment:{html.escape(key)}">
+    <section class="company-comment" data-comment-key="company-comment:{html.escape(key)}" data-company-key="{html.escape(key)}" data-company-name="{html.escape(company)}">
       <div>
         <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
       {seed_html}
+      <div class="online-comments">
+        <h4>온라인 코멘트</h4>
+        <ul class="online-comment-list"></ul>
+        <p class="online-comment-empty">아직 온라인 코멘트가 없습니다.</p>
+      </div>
       <div class="comment-controls">
         <label class="comment-author-field">
           <span>작성자</span>
-          <input type="text" value="{html.escape(DEFAULT_COMMENT_AUTHOR)}" aria-label="작성자">
+          <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
         </label>
         <textarea rows="2" placeholder="{html.escape(company)}에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
@@ -1506,7 +1527,7 @@ def render_html(data: dict[str, Any]) -> str:
         '<li><strong>기사/전략 정보</strong>: Google News RSS에서 회사명과 수주/계약/실적/경영/투자/계열사/신사업 키워드로 검색한 기사와 OpenDART 투자판단ㆍ출자ㆍ시설투자ㆍM&Aㆍ특수관계인 거래성 공시를 합쳐 최신 5건만 표시합니다. 주가성 단신은 가능한 제외했지만 최종 적합성은 확인이 필요합니다.</li>'
     )
     source_notes.append(
-        f'<li><strong>코멘트</strong>: <code>{html.escape(str((PDF_COMMENTS.get("source") or {}).get("file", "시공사_동향_20260703.pdf")))}</code>의 회사별 기록을 기본 코멘트로 표시하고, 추가 코멘트는 현재 브라우저 localStorage에 저장됩니다. 기본 작성자는 {html.escape(DEFAULT_COMMENT_AUTHOR)}입니다.</li>'
+        f'<li><strong>코멘트</strong>: <code>{html.escape(str((PDF_COMMENTS.get("source") or {}).get("file", "시공사_동향_20260703.pdf")))}</code>의 회사별 기록을 기본 코멘트로 표시하고, 추가 코멘트는 온라인 DB에 저장해 사용자 간 공유됩니다. {html.escape(DEFAULT_COMMENT_AUTHOR)} 작성자명은 공식 PDF 기록에만 사용합니다.</li>'
     )
 
     disclaimer_html = ""
@@ -1521,6 +1542,12 @@ def render_html(data: dict[str, Any]) -> str:
 
     seed_comment_counts_json = json.dumps(build_seed_comment_counts(), ensure_ascii=False)
     default_comment_author_json = json.dumps(DEFAULT_COMMENT_AUTHOR, ensure_ascii=False)
+    public_supabase_config = load_public_supabase_config()
+    comment_api_url = ""
+    if public_supabase_config["url"]:
+        comment_api_url = public_supabase_config["url"].rstrip("/") + "/rest/v1/construction_company_comments"
+    comment_api_url_json = json.dumps(comment_api_url, ensure_ascii=False)
+    comment_api_key_json = json.dumps(public_supabase_config["key"], ensure_ascii=False)
 
     css = """
     :root {
@@ -2200,38 +2227,49 @@ def render_html(data: dict[str, Any]) -> str:
       letter-spacing: 0;
     }
     .seed-comments,
+    .online-comments,
     .comment-controls {
       grid-column: 2;
     }
-    .seed-comments {
+    .seed-comments,
+    .online-comments {
       min-width: 0;
       display: grid;
       gap: 8px;
     }
-    .seed-comments h4 {
+    .seed-comments h4,
+    .online-comments h4 {
       margin: 0;
       color: var(--construction-accent);
       font-size: 12px;
       letter-spacing: 0;
     }
-    .seed-comments ul {
+    .seed-comments ul,
+    .online-comments ul {
       display: grid;
       gap: 8px;
       margin: 0;
       padding: 0;
       list-style: none;
     }
-    .seed-comments li {
+    .seed-comments li,
+    .online-comments li {
       border: 1px solid var(--line);
       border-radius: var(--construction-radius);
       background: var(--construction-item);
       padding: 10px 12px;
     }
-    .seed-comments p {
+    .seed-comments p,
+    .online-comments p {
       margin: 6px 0 0;
       color: var(--ink);
       font-size: 13px;
       line-height: 1.45;
+    }
+    .online-comment-empty {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
     }
     .comment-meta {
       display: flex;
@@ -2298,6 +2336,10 @@ def render_html(data: dict[str, Any]) -> str:
       min-width: 72px;
       padding: 0 14px;
       white-space: nowrap;
+    }
+    .comment-controls button:disabled {
+      cursor: wait;
+      opacity: 0.58;
     }
     .change {
       display: inline-flex;
@@ -2405,6 +2447,7 @@ def render_html(data: dict[str, Any]) -> str:
       }
       .company-comment { grid-template-columns: 1fr; }
       .seed-comments,
+      .online-comments,
       .comment-controls {
         grid-column: 1;
       }
@@ -2488,74 +2531,38 @@ def render_html(data: dict[str, Any]) -> str:
 
     const seedCommentCounts = {seed_comment_counts_json};
     const defaultCommentAuthor = {default_comment_author_json};
+    const commentApiUrl = {comment_api_url_json};
+    const commentApiKey = {comment_api_key_json};
+    const onlineCommentsByKey = new Map();
 
-    function countCommentItems(items) {{
-      if (!Array.isArray(items)) return 0;
-      return items.filter((item) => {{
-        if (typeof item === "string") return item.trim();
-        if (item && typeof item === "object") {{
-          return String(item.text || item.comment || "").trim();
-        }}
-        return false;
-      }}).length;
+    function escapeCommentHtml(value) {{
+      return String(value ?? "").replace(/[&<>"']/g, (char) => ({{
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      }}[char]));
     }}
 
-    function readStoredComment(key) {{
-      const raw = localStorage.getItem(key);
-      if (!raw) return {{ author: defaultCommentAuthor, text: "" }};
+    function formatCommentDate(value) {{
+      if (!value) return "";
       try {{
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed)) {{
-          const first = parsed.find((item) => String(item || "").trim());
-          return {{ author: defaultCommentAuthor, text: first ? String(first).trim() : "" }};
-        }}
-        if (parsed && Array.isArray(parsed.comments)) {{
-          const first = parsed.comments.find((item) => {{
-            if (typeof item === "string") return item.trim();
-            if (item && typeof item === "object") return String(item.text || item.comment || "").trim();
-            return false;
-          }});
-          if (first && typeof first === "object") {{
-            return {{
-              author: String(first.author || parsed.author || defaultCommentAuthor).trim(),
-              text: String(first.text || first.comment || "").trim(),
-            }};
-          }}
-          return {{
-            author: String(parsed.author || defaultCommentAuthor).trim(),
-            text: first ? String(first).trim() : "",
-          }};
-        }}
-        if (parsed && typeof parsed === "object") {{
-          return {{
-            author: String(parsed.author || defaultCommentAuthor).trim(),
-            text: String(parsed.text || parsed.comment || "").trim(),
-          }};
-        }}
+        return new Intl.DateTimeFormat("ko-KR", {{
+          timeZone: "Asia/Seoul",
+          year: "2-digit",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+        }}).format(new Date(value));
       }} catch (error) {{
-        // Existing comments are stored as plain text.
+        return "";
       }}
-      return {{ author: defaultCommentAuthor, text: String(raw).trim() }};
-    }}
-
-    function getStoredCommentCount(key) {{
-      const raw = localStorage.getItem(key);
-      if (!raw) return 0;
-      try {{
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed)) return countCommentItems(parsed);
-        if (parsed && Array.isArray(parsed.comments)) return countCommentItems(parsed.comments);
-        if (parsed && typeof parsed === "object") {{
-          return String(parsed.text || parsed.comment || "").trim() ? 1 : 0;
-        }}
-      }} catch (error) {{
-        // Existing comments are stored as plain text.
-      }}
-      return String(raw).trim() ? 1 : 0;
     }}
 
     function getCommentCount(key) {{
-      return (seedCommentCounts[key] || 0) + getStoredCommentCount(key);
+      return (seedCommentCounts[key] || 0) + (onlineCommentsByKey.get(key) || []).length;
     }}
 
     function updateCommentBadges(changedKey) {{
@@ -2573,34 +2580,131 @@ def render_html(data: dict[str, Any]) -> str:
 
     updateCommentBadges();
 
+    function renderOnlineComments(box) {{
+      const key = box.dataset.commentKey;
+      const list = box.querySelector(".online-comment-list");
+      const empty = box.querySelector(".online-comment-empty");
+      if (!key || !list) return;
+      const comments = onlineCommentsByKey.get(key) || [];
+      list.innerHTML = comments.map((item) => {{
+        const author = String(item.author_name || "").trim() || "작성자 미기재";
+        const date = formatCommentDate(item.created_at);
+        return `
+        <li>
+          <div class="comment-meta">
+            <span class="comment-author">${{escapeCommentHtml(author)}}</span>
+            ${{date ? `<span>${{escapeCommentHtml(date)}}</span>` : ""}}
+          </div>
+          <p>${{escapeCommentHtml(item.body || "")}}</p>
+        </li>`;
+      }}).join("");
+      if (empty) empty.hidden = comments.length > 0;
+    }}
+
+    function renderAllOnlineComments() {{
+      document.querySelectorAll(".company-comment").forEach(renderOnlineComments);
+    }}
+
+    async function loadOnlineComments() {{
+      if (!commentApiUrl || !commentApiKey) {{
+        document.querySelectorAll(".comment-saved").forEach((saved) => {{
+          saved.textContent = "온라인 저장소 설정이 없습니다.";
+        }});
+        return;
+      }}
+      try {{
+        const response = await fetch(`${{commentApiUrl}}?select=id,company_key,author_name,body,created_at&is_deleted=eq.false&order=created_at.desc&limit=1000`, {{
+          headers: {{
+            apikey: commentApiKey,
+            Authorization: `Bearer ${{commentApiKey}}`,
+          }},
+        }});
+        if (!response.ok) throw new Error(await response.text());
+        const rows = await response.json();
+        onlineCommentsByKey.clear();
+        rows.forEach((row) => {{
+          const key = `company-comment:${{row.company_key}}`;
+          const items = onlineCommentsByKey.get(key) || [];
+          items.push(row);
+          onlineCommentsByKey.set(key, items);
+        }});
+        renderAllOnlineComments();
+        updateCommentBadges();
+      }} catch (error) {{
+        document.querySelectorAll(".comment-saved").forEach((saved) => {{
+          saved.textContent = "온라인 코멘트를 불러오지 못했습니다.";
+        }});
+      }}
+    }}
+
     document.querySelectorAll(".company-comment").forEach((box) => {{
       const key = box.dataset.commentKey;
+      const companyKey = box.dataset.companyKey || "";
+      const companyName = box.dataset.companyName || "";
       const authorInput = box.querySelector(".comment-author-field input");
       const textarea = box.querySelector("textarea");
       const button = box.querySelector("button");
       const saved = box.querySelector(".comment-saved");
-      if (!key || !authorInput || !textarea || !button || !saved) return;
-      const existing = readStoredComment(key);
-      authorInput.value = existing.author || defaultCommentAuthor;
-      textarea.value = existing.text || "";
-      saved.textContent = existing.text ? `저장된 코멘트가 있습니다. 작성자: ${{authorInput.value}}` : "로컬 브라우저에 저장됩니다.";
-      button.addEventListener("click", () => {{
+      if (!key || !companyKey || !authorInput || !textarea || !button || !saved) return;
+      saved.textContent = "온라인 DB에 저장됩니다.";
+      button.addEventListener("click", async () => {{
         const value = textarea.value.trim();
-        const author = (authorInput.value || defaultCommentAuthor).trim();
-        if (value) {{
-          localStorage.setItem(key, JSON.stringify({{
-            author,
-            comments: [{{ author, text: value }}],
-            updatedAt: new Date().toISOString(),
-          }}));
-          saved.textContent = `저장됨 · 작성자: ${{author}}`;
-        }} else {{
-          localStorage.removeItem(key);
-          saved.textContent = "코멘트가 비어 있어 삭제했습니다.";
+        const author = authorInput.value.trim();
+        if (!value) {{
+          saved.textContent = "코멘트가 비어 있습니다.";
+          return;
         }}
-        updateCommentBadges(key);
+        if (author === defaultCommentAuthor) {{
+          saved.textContent = `${{defaultCommentAuthor}} 작성자명은 공식 PDF 기록에만 사용합니다.`;
+          return;
+        }}
+        if (!commentApiUrl || !commentApiKey) {{
+          saved.textContent = "온라인 저장소 설정이 없습니다.";
+          return;
+        }}
+        button.disabled = true;
+        saved.textContent = "저장 중";
+        try {{
+          const payload = {{
+            company_key: companyKey,
+            company_name: companyName,
+            tab_id: box.closest(".tab-panel")?.id || "",
+            source: "user",
+            author_name: author || null,
+            body: value,
+          }};
+          const response = await fetch(commentApiUrl, {{
+            method: "POST",
+            headers: {{
+              apikey: commentApiKey,
+              Authorization: `Bearer ${{commentApiKey}}`,
+              "Content-Type": "application/json",
+              Prefer: "return=representation",
+            }},
+            body: JSON.stringify(payload),
+          }});
+          if (!response.ok) throw new Error(await response.text());
+          const rows = await response.json();
+          const created = rows && rows[0] ? rows[0] : {{
+            ...payload,
+            created_at: new Date().toISOString(),
+          }};
+          const items = onlineCommentsByKey.get(key) || [];
+          onlineCommentsByKey.set(key, [created, ...items]);
+          textarea.value = "";
+          saved.textContent = "온라인 저장됨";
+          renderOnlineComments(box);
+          updateCommentBadges(key);
+        }} catch (error) {{
+          saved.textContent = "온라인 저장 실패";
+        }} finally {{
+          button.disabled = false;
+        }}
       }});
     }});
+
+    renderAllOnlineComments();
+    loadOnlineComments();
 
     document.querySelectorAll(".tab-button").forEach((button) => {{
       button.addEventListener("click", () => {{
