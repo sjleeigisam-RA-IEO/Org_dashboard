@@ -27,6 +27,15 @@
         }
         .nav-link-btn:hover { background: #333; color: #fff; }
         .nav-link-btn.active { color: #fff; background: #3c3c3c; border-color: #3c3c3c; }
+        .nav-link-btn.external-dashboard-link {
+            border-color: rgba(255,216,77,0.34);
+            color: #ffd84d;
+        }
+        .nav-link-btn.external-dashboard-link:hover {
+            background: rgba(255,216,77,0.12);
+            border-color: rgba(255,216,77,0.54);
+            color: #ffe89a;
+        }
         
         .nav-right { display: flex; align-items: center; gap: 20px; font-size: 14px; }
         .user-info { color: var(--text-muted); display: flex; align-items: center; gap: 4px; }
@@ -75,6 +84,13 @@
                 top: 52px;
                 height: calc(100% - 52px - 78px - env(safe-area-inset-bottom, 0px));
             }
+            .portal-mobile-tabs {
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+            }
+            .mobile-dashboard-tab.external-dashboard-link {
+                border-color: rgba(255,216,77,0.34);
+                color: #ffd84d;
+            }
         }
     </style>
 </head>
@@ -86,6 +102,7 @@
                 <div id="tab-insight" class="nav-link-btn active" onclick="switchTab('insight')">RA Insight</div>
                 <div id="tab-t5t" class="nav-link-btn" onclick="switchTab('t5t')">T5T 업무</div>
                 <div id="tab-org" class="nav-link-btn" onclick="switchTab('org')">조직구성</div>
+                <a id="tab-construction" class="nav-link-btn external-dashboard-link" href="https://sjleeigisam-ra-ieo.github.io/Org_dashboard/construction_source_status/" target="_blank" rel="noopener noreferrer">공사정보</a>
                 <div id="tab-admin" class="nav-link-btn" style="display:none;" onclick="switchTab('admin')">어드민 (Local)</div>
             </div>
         </div>
@@ -105,11 +122,12 @@
         <iframe id="iframe-admin" class="dashboard-frame" src="about:blank"></iframe>
     </div>
 
-    <nav class="mobile-dashboard-tabs" aria-label="Mobile dashboard navigation">
+    <nav class="mobile-dashboard-tabs portal-mobile-tabs" aria-label="Mobile dashboard navigation">
         <button id="mobile-tab-insight" class="mobile-dashboard-tab is-active" type="button" onclick="switchTab('insight')">펀드검색</button>
         <button id="mobile-tab-t5t" class="mobile-dashboard-tab" type="button" onclick="switchTab('t5t')">T5T</button>
         <button id="mobile-tab-input" class="mobile-dashboard-tab" type="button" onclick="switchTab('input')">T5T작성</button>
         <button id="mobile-tab-org" class="mobile-dashboard-tab" type="button" onclick="switchTab('org')">조직</button>
+        <a id="mobile-tab-construction" class="mobile-dashboard-tab external-dashboard-link" href="https://sjleeigisam-ra-ieo.github.io/Org_dashboard/construction_source_status/" target="_blank" rel="noopener noreferrer">공사</a>
     </nav>
 
     <script>

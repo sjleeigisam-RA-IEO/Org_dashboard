@@ -105,6 +105,25 @@
         }
         .login-btn:hover { background: var(--accent-light); box-shadow: none; }
         .login-btn:disabled { opacity: 0.6; cursor: wait; }
+        .public-dashboard-link {
+            display: block;
+            margin-top: 18px;
+            padding: 14px 16px;
+            border: 1px solid rgba(255,216,77,0.38);
+            border-radius: 10px;
+            background: rgba(255,216,77,0.08);
+            color: #ffd84d;
+            font-size: 14px;
+            font-weight: 800;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .public-dashboard-link:hover {
+            background: rgba(255,216,77,0.14);
+            border-color: rgba(255,216,77,0.58);
+            color: #ffe89a;
+        }
         .helper-text {
             margin: 12px 0 0;
             color: #8e8e93;
@@ -173,6 +192,8 @@
             <button type="submit" class="login-btn" id="setupBtn">비밀번호 설정</button>
             <p class="helper-text">설정 코드는 최초 비밀번호 설정과 재설정에만 사용합니다.</p>
         </form>
+
+        <a class="public-dashboard-link" href="https://sjleeigisam-ra-ieo.github.io/Org_dashboard/construction_source_status/" target="_blank" rel="noopener noreferrer">공사 정보 공개 대시보드</a>
 
         <div id="messageArea" class="message" aria-live="polite"></div>
     </main>

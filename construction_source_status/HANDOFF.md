@@ -6,6 +6,8 @@
 
 현재 공개 URL: `https://sjleeigisam-ra-ieo.github.io/Org_dashboard/construction_source_status/`
 
+포탈 진입점: 루트 로그인 화면 `index.html`과 로그인 후 포탈 `portal.html`에는 이 공개 URL을 새 탭으로 여는 `공사 정보` 외부 링크 버튼을 둔다. 이 대시보드는 포탈 로그인 없이 직접 열람할 수 있는 공개 페이지로 운영한다.
+
 ## 1. 목적
 
 `Construction Information`은 공사 관련 회사의 공개 순위/실적 자료를 한 화면에서 비교하고, 각 회사의 최근 수주, 기사/전략 신호, 신용등급, 코멘트를 함께 확인하기 위한 정적 GitHub Pages 대시보드다.
