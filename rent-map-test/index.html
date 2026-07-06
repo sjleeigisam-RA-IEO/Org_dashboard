@@ -132,9 +132,9 @@
     .caseGlyph::after { width: 6px; height: 17px; opacity: 0.95; }
     .transactionGlyph { width: 13px; height: 13px; border-radius: 999px; background: #7c3aed; box-shadow: 0 0 0 4px rgba(124,58,237,0.20); display: inline-block; flex: 0 0 auto; }
     .clusterGlyph { width: 16px; height: 16px; border-radius: 999px; background: radial-gradient(circle, rgba(251,191,36,0.96) 0%, rgba(245,158,11,0.76) 58%, rgba(245,158,11,0.24) 100%); border: 1px solid rgba(255,255,255,0.82); box-shadow: 0 2px 7px rgba(245,158,11,0.24); display: inline-block; flex: 0 0 auto; }
-    .ownedAssetGlyph { position: relative; width: 24px; height: 20px; display: inline-block; flex: 0 0 auto; filter: drop-shadow(0 1px 2px rgba(15,23,42,0.20)); }
+    .ownedAssetGlyph { position: relative; width: 34px; height: 28px; display: inline-block; flex: 0 0 auto; filter: drop-shadow(0 1px 2px rgba(15,23,42,0.20)); }
     .ownedAssetGlyph::before { content: ""; position: absolute; inset: 0; background: #0f2a5f; clip-path: polygon(50% 100%, 0 0, 100% 0); }
-    .ownedAssetGlyph::after { content: "IGIS"; position: absolute; left: 0; right: 0; top: 3px; color: #fff; font-size: 7px; line-height: 1; font-weight: 900; text-align: center; letter-spacing: 0; }
+    .ownedAssetGlyph::after { content: "IGIS"; position: absolute; left: 0; right: 0; top: 6px; color: #fff; font-size: 10px; line-height: 1; font-weight: 900; text-align: center; letter-spacing: 0; }
     .hint { margin-top: 6px; color: var(--muted); font-size: 10.5px; line-height: 1.32; }
     .overviewGrid { display: grid; gap: 6px; }
     .overviewGrid .metricRow { grid-template-columns: 108px 1fr; }
@@ -148,6 +148,7 @@
       width: 26px; height: 26px; border-radius: 999px; border: 1px solid rgba(37,99,235,0.42);
       background: rgba(255,255,255,0.96); color: #2563eb; box-shadow: 0 8px 22px rgba(15,23,42,0.18);
       font-size: 15px; line-height: 1; font-weight: 900; cursor: pointer; pointer-events: auto;
+      transform: translate(-50%, -50%);
     }
     .selectionClear:hover { background: #2563eb; color: #fff; }
     .viewReset {
@@ -2117,25 +2118,25 @@
     function ownedAssetTriangleTexture() {
       if (ownedAssetTriangleTexture.cached) return ownedAssetTriangleTexture.cached;
       const canvas = document.createElement("canvas");
-      canvas.width = 64;
-      canvas.height = 64;
+      canvas.width = 96;
+      canvas.height = 96;
       const ctx = canvas.getContext("2d");
       ctx.fillStyle = "rgba(15,42,95,0.98)";
       ctx.strokeStyle = "rgba(255,255,255,0.92)";
-      ctx.lineWidth = 6;
+      ctx.lineWidth = 8;
       ctx.lineJoin = "round";
       ctx.beginPath();
-      ctx.moveTo(32, 55);
-      ctx.lineTo(10, 13);
-      ctx.lineTo(54, 13);
+      ctx.moveTo(48, 84);
+      ctx.lineTo(14, 18);
+      ctx.lineTo(82, 18);
       ctx.closePath();
       ctx.fill();
       ctx.stroke();
       ctx.fillStyle = "rgba(255,255,255,0.98)";
-      ctx.font = "900 13px Arial, Noto Sans KR, sans-serif";
+      ctx.font = "900 20px Arial, Noto Sans KR, sans-serif";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillText("IGIS", 32, 28);
+      ctx.fillText("IGIS", 48, 40);
       ownedAssetTriangleTexture.cached = new THREE.CanvasTexture(canvas);
       return ownedAssetTriangleTexture.cached;
     }
@@ -2181,10 +2182,10 @@
           new THREE.PointsMaterial({
             color: ownedAssetHaloColor,
             map: ownedAssetHaloTexture(),
-            size: 28,
+            size: 52,
             sizeAttenuation: false,
             transparent: true,
-            opacity: 0.22,
+            opacity: 0.20,
             depthTest: false,
             depthWrite: false,
           })
@@ -2196,7 +2197,7 @@
           new THREE.PointsMaterial({
             color: ownedAssetColor,
             map: ownedAssetTriangleTexture(),
-            size: 24,
+            size: 40,
             sizeAttenuation: false,
             transparent: true,
             opacity: 0.92,
@@ -2884,8 +2885,12 @@
         selectionClear.style.display = "none";
         return;
       }
+      let pixelOffsetX = 0;
+      let pixelOffsetY = 0;
       if (selectedPoint.isTransaction || selectedPoint.isOwnedAsset) {
-        selectionClearVector.set(sx(selectedPoint.x) + 10, columnGroundY + 8, sz(selectedPoint.y));
+        selectionClearVector.set(sx(selectedPoint.x), columnGroundY + 0.18, sz(selectedPoint.y));
+        pixelOffsetX = 18;
+        pixelOffsetY = -18;
       } else {
         if (!selectedColumn) {
           selectionClear.style.display = "none";
@@ -2894,20 +2899,23 @@
         const barHeight = selectedColumnHeight(selectedPoint);
         const radius = selectedColumnRadius(selectedPoint);
         selectionClearVector.set(
-          sx(selectedPoint.x) + radius * 2.1,
-          columnGroundY + barHeight * 0.78,
+          sx(selectedPoint.x) + radius * 1.15,
+          columnGroundY + barHeight * 0.92,
           sz(selectedPoint.y)
         );
+        pixelOffsetX = 10;
+        pixelOffsetY = -8;
       }
       selectionClearVector.project(camera);
-      const x = (selectionClearVector.x * 0.5 + 0.5) * window.innerWidth;
-      const y = (-selectionClearVector.y * 0.5 + 0.5) * window.innerHeight;
+      const x = (selectionClearVector.x * 0.5 + 0.5) * window.innerWidth + pixelOffsetX;
+      const y = (-selectionClearVector.y * 0.5 + 0.5) * window.innerHeight + pixelOffsetY;
       const visible = selectionClearVector.z > -1 && selectionClearVector.z < 1 && x >= 0 && x <= window.innerWidth && y >= 0 && y <= window.innerHeight;
       if (!visible) {
         selectionClear.style.display = "none";
         return;
       }
       selectionClear.style.display = "flex";
+      selectionClear.style.transform = "translate(-50%, -50%)";
       selectionClear.style.left = `${x}px`;
       selectionClear.style.top = `${y}px`;
     }
