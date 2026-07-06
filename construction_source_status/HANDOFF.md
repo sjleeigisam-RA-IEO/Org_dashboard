@@ -164,6 +164,8 @@ Copy-Item .\outputs\construction_nara_contracts_cache.json .\construction_source
 
 대시보드를 개선하면서 데이터 소스, DB, 캐시 파일, 수집 스크립트, Supabase 테이블, 배포 절차 중 하나라도 바뀌면 이 문서와 `README.md`의 업데이트 관련 내용을 함께 수정한다. 화면만 바꾸는 작업처럼 보여도 `Comment`, `New`, 기사/전략 정보, 신용등급, 수주 캐시의 의미가 달라지면 운영 문서를 같이 갱신해야 한다.
 
+이 대시보드 개선 작업은 로컬 커밋에서 멈추지 않고 `origin/main` 푸시와 GitHub Pages 반영 확인까지 한 세트로 처리한다.
+
 ### 매일 또는 주 2~3회
 
 기사/전략 정보와 DART 수주 캐시는 변화가 잦다. 의사결정 회의용으로 쓰려면 주 2~3회 이상 갱신하는 편이 좋다.
