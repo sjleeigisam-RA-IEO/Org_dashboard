@@ -286,7 +286,7 @@
     const tabButtons = Array.from(document.querySelectorAll(".tabButton"));
     const tabPanels = Array.from(document.querySelectorAll(".tabContent"));
 
-    let data, scene, camera, renderer, controls, surface, highContourGroup, pointMesh, transactionGroup, ownedAssetGroup, highlight, labelGroup, referenceGroup, contextLabelGroup, localVectorGroup, seoulVectorGroup, baseMapPlane, focusMapPlane, selectedColumn;
+    let data, scene, camera, renderer, controls, surface, highContourGroup, pointMesh, transactionGroup, transactionClusterGroup, ownedAssetGroup, ownedAssetClusterGroup, highlight, labelGroup, referenceGroup, contextLabelGroup, localVectorGroup, seoulVectorGroup, baseMapPlane, focusMapPlane, selectedColumn;
     let raycaster, pointer, currentPeriod, currentPoints = [], currentTransactions = [], ownedAssets = [], selectedPoint = null, currentCaseRows = [];
     let positionArray, colorArray;
     const selectionClearVector = new THREE.Vector3();
@@ -311,6 +311,7 @@
     const ownedAssetHaloColor = 0xdbeafe;
     let lastColumnVisualScale = null;
     let lastTerrainVisualScale = null;
+    let markerClusterSignature = "";
     let activeCaseTab = "lease";
     let periodPlaybackTimer = null;
     let periodPlaybackActive = false;
@@ -2205,6 +2206,221 @@
       scene.add(ownedAssetGroup);
     }
 
+    function cameraDistance() {
+      return camera && controls
+        ? camera.position.distanceTo(controls.target)
+        : homeCameraPosition.distanceTo(homeControlsTarget);
+    }
+
+    function markerClusterState() {
+      const distance = cameraDistance();
+      if (reviewMode || distance <= 360) return { key: "points", cellSize: 0, distance };
+      if (distance <= 620) return { key: "street", cellSize: 220, distance };
+      if (distance <= 1050) return { key: "block", cellSize: 420, distance };
+      if (distance <= 1700) return { key: "neighborhood", cellSize: 780, distance };
+      if (distance <= 2800) return { key: "district", cellSize: 1250, distance };
+      return { key: "city", cellSize: 2200, distance };
+    }
+
+    function clusterSpriteZoomFactor() {
+      return THREE.MathUtils.clamp(cameraDistance() / columnZoomReference, 0.42, 1.36);
+    }
+
+    function clusterBaseScale(count) {
+      return 0.30 + Math.min(0.12, Math.log(Math.max(1, count)) / Math.log(10) * 0.05);
+    }
+
+    function clusterBubbleTexture(kind, count) {
+      const cacheKey = `${kind}:${count}`;
+      clusterBubbleTexture.cache = clusterBubbleTexture.cache || new Map();
+      if (clusterBubbleTexture.cache.has(cacheKey)) return clusterBubbleTexture.cache.get(cacheKey);
+
+      const canvas = document.createElement("canvas");
+      canvas.width = 96;
+      canvas.height = 96;
+      const ctx = canvas.getContext("2d");
+      const isTransaction = kind === "transaction";
+      const fill = isTransaction ? "rgba(245,243,255,0.96)" : "rgba(254,243,199,0.97)";
+      const stroke = isTransaction ? "rgba(109,40,217,0.98)" : "rgba(30,58,138,0.98)";
+      const shadow = isTransaction ? "rgba(88,28,135,0.22)" : "rgba(15,23,42,0.20)";
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.shadowColor = shadow;
+      ctx.shadowBlur = 8;
+      ctx.shadowOffsetY = 3;
+      ctx.fillStyle = fill;
+      ctx.strokeStyle = stroke;
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      ctx.arc(48, 48, 34, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowColor = "rgba(0,0,0,0)";
+      ctx.stroke();
+      ctx.fillStyle = stroke;
+      ctx.font = `800 ${count >= 100 ? 25 : 31}px Arial, Noto Sans KR, sans-serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(String(count), 48, 49);
+
+      const texture = new THREE.CanvasTexture(canvas);
+      clusterBubbleTexture.cache.set(cacheKey, texture);
+      return texture;
+    }
+
+    function buildMarkerClusters(items, kind, cellSize) {
+      const buckets = new Map();
+      for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        if (!Number.isFinite(Number(item.x)) || !Number.isFinite(Number(item.y))) continue;
+        const gx = Math.floor(Number(item.x) / cellSize);
+        const gy = Math.floor(Number(item.y) / cellSize);
+        const key = `${gx}:${gy}`;
+        let bucket = buckets.get(key);
+        if (!bucket) {
+          bucket = { kind, count: 0, xSum: 0, ySum: 0, items: [] };
+          buckets.set(key, bucket);
+        }
+        bucket.count += 1;
+        bucket.xSum += Number(item.x);
+        bucket.ySum += Number(item.y);
+        bucket.items.push(item);
+      }
+      return Array.from(buckets.values()).map(bucket => ({
+        kind,
+        count: bucket.count,
+        x: bucket.xSum / bucket.count,
+        y: bucket.ySum / bucket.count,
+        items: bucket.items,
+      })).sort((a, b) => b.count - a.count);
+    }
+
+    function makeClusterSprite(cluster) {
+      const texture = clusterBubbleTexture(cluster.kind, cluster.count);
+      const sprite = new THREE.Sprite(new THREE.SpriteMaterial({
+        map: texture,
+        transparent: true,
+        opacity: cluster.count > 1 ? 0.96 : 0.84,
+        depthTest: false,
+        depthWrite: false,
+      }));
+      sprite.position.set(sx(cluster.x), columnGroundY + 20, sz(cluster.y));
+      sprite.userData.markerCluster = cluster;
+      sprite.userData.canvasWidth = 96;
+      sprite.userData.canvasHeight = 96;
+      sprite.userData.baseScale = clusterBaseScale(cluster.count);
+      sprite.renderOrder = cluster.kind === "transaction" ? 36 : 37;
+      return sprite;
+    }
+
+    function buildMarkerClusterGroup(items, kind, cellSize) {
+      const group = new THREE.Group();
+      group.userData.kind = `${kind}Cluster`;
+      if (cellSize <= 0) return group;
+      const clusters = buildMarkerClusters(items, kind, cellSize);
+      for (const cluster of clusters) group.add(makeClusterSprite(cluster));
+      return group;
+    }
+
+    function disposeMarkerClusterGroups() {
+      if (transactionClusterGroup) {
+        scene.remove(transactionClusterGroup);
+        disposeObject3D(transactionClusterGroup);
+        transactionClusterGroup = null;
+      }
+      if (ownedAssetClusterGroup) {
+        scene.remove(ownedAssetClusterGroup);
+        disposeObject3D(ownedAssetClusterGroup);
+        ownedAssetClusterGroup = null;
+      }
+    }
+
+    function updateMarkerClusterScale() {
+      const factor = clusterSpriteZoomFactor();
+      for (const group of [transactionClusterGroup, ownedAssetClusterGroup]) {
+        if (!group) continue;
+        for (const sprite of group.children) {
+          const width = sprite.userData.canvasWidth || 96;
+          const height = sprite.userData.canvasHeight || 96;
+          const baseScale = sprite.userData.baseScale || 0.32;
+          sprite.scale.set(width * baseScale * factor, height * baseScale * factor, 1);
+        }
+      }
+      document.body.dataset.markerClusterScale = factor.toFixed(3);
+    }
+
+    function updateMarkerLayerVisibility() {
+      const state = markerClusterState();
+      const useClusters = state.cellSize > 0;
+      const showTransactions = Boolean(toggleTransactions && toggleTransactions.checked);
+      const showOwnedAssets = Boolean(!toggleOwnedAssets || toggleOwnedAssets.checked);
+      if (transactionGroup) transactionGroup.visible = showTransactions && !useClusters;
+      if (transactionClusterGroup) transactionClusterGroup.visible = showTransactions && useClusters;
+      if (ownedAssetGroup) ownedAssetGroup.visible = showOwnedAssets && !useClusters;
+      if (ownedAssetClusterGroup) ownedAssetClusterGroup.visible = showOwnedAssets && useClusters;
+      document.body.dataset.markerClusterMode = useClusters ? "cluster" : "point";
+      document.body.dataset.markerClusterCellSize = String(state.cellSize);
+    }
+
+    function updateMarkerClusters(force = false) {
+      const state = markerClusterState();
+      const signature = [
+        state.key,
+        currentPeriod || "",
+        currentTransactions.length,
+        ownedAssets.length,
+      ].join(":");
+      if (!force && markerClusterSignature === signature) {
+        updateMarkerLayerVisibility();
+        if (state.cellSize > 0) updateMarkerClusterScale();
+        return;
+      }
+      markerClusterSignature = signature;
+      disposeMarkerClusterGroups();
+      if (state.cellSize > 0) {
+        transactionClusterGroup = buildMarkerClusterGroup(currentTransactions, "transaction", state.cellSize);
+        ownedAssetClusterGroup = buildMarkerClusterGroup(ownedAssets, "ownedAsset", state.cellSize);
+        scene.add(transactionClusterGroup);
+        scene.add(ownedAssetClusterGroup);
+      }
+      updateMarkerLayerVisibility();
+      updateMarkerClusterScale();
+      document.body.dataset.markerClusterCount = String(
+        (transactionClusterGroup ? transactionClusterGroup.children.length : 0) +
+        (ownedAssetClusterGroup ? ownedAssetClusterGroup.children.length : 0)
+      );
+    }
+
+    function pickMarkerCluster(event) {
+      pointerToNdc(event);
+      raycaster.setFromCamera(pointer, camera);
+      const objects = [];
+      if (transactionClusterGroup && transactionClusterGroup.visible) objects.push(...transactionClusterGroup.children);
+      if (ownedAssetClusterGroup && ownedAssetClusterGroup.visible) objects.push(...ownedAssetClusterGroup.children);
+      if (!objects.length) return null;
+      const hits = raycaster.intersectObjects(objects, false);
+      return hits.length ? hits[0].object.userData.markerCluster || null : null;
+    }
+
+    function zoomToCluster(cluster) {
+      if (!cluster || !camera || !controls) return;
+      stopPeriodPlayback();
+      clearSelection();
+      const target = new THREE.Vector3(sx(cluster.x), 0, sz(cluster.y));
+      const nextDistance = Math.max(260, cameraDistance() * 0.48);
+      controls.target.copy(target);
+      camera.position.set(
+        target.x + nextDistance * 0.16,
+        Math.max(100, nextDistance * 0.44),
+        target.z + nextDistance * 0.72
+      );
+      controls.update();
+      markerClusterSignature = "";
+      updateMarkerClusters(true);
+      updateColumnScale(true);
+      updateTerrainScale(true);
+      updateLabelScale(true);
+      refreshFocusMapForCamera();
+    }
+
     function updateColumnScale(force = false) {
       if (!pointMesh || !pointMesh.children.length) return;
       const visualScale = columnZoomScale();
@@ -2315,6 +2531,7 @@
       updateHighContours(period);
       buildPoints(period);
       buildTransactions(period);
+      updateMarkerClusters(true);
       selectedPoint = preserveView ? matchingSelectionForPeriod(previousSelection) : null;
 
       if (selectedPoint) {
@@ -2411,12 +2628,12 @@
       });
       togglePoints.addEventListener("change", () => pointMesh.visible = togglePoints.checked);
       toggleTransactions.addEventListener("change", () => {
-        if (transactionGroup) transactionGroup.visible = toggleTransactions.checked;
+        updateMarkerClusters(true);
         buildCaseList();
       });
       if (toggleOwnedAssets) {
         toggleOwnedAssets.addEventListener("change", () => {
-          if (ownedAssetGroup) ownedAssetGroup.visible = toggleOwnedAssets.checked;
+          updateMarkerClusters(true);
         });
       }
       toggleLabels.addEventListener("change", () => {
@@ -2492,7 +2709,7 @@
     }
 
     function pickTransaction(event) {
-      if (!transactionGroup || !toggleTransactions.checked) return null;
+      if (!transactionGroup || !transactionGroup.visible || !toggleTransactions.checked) return null;
       pointerToNdc(event);
       raycaster.setFromCamera(pointer, camera);
       const hits = raycaster.intersectObjects(transactionGroup.children, false);
@@ -2504,7 +2721,7 @@
     }
 
     function pickOwnedAsset(event) {
-      if (!ownedAssetGroup || (toggleOwnedAssets && !toggleOwnedAssets.checked)) return null;
+      if (!ownedAssetGroup || !ownedAssetGroup.visible || (toggleOwnedAssets && !toggleOwnedAssets.checked)) return null;
       pointerToNdc(event);
       raycaster.setFromCamera(pointer, camera);
       const hits = raycaster.intersectObjects(ownedAssetGroup.children, false);
@@ -2515,12 +2732,16 @@
     }
 
     function onPointerMove(event) {
-      const point = pickPoint(event) || pickTransaction(event) || pickOwnedAsset(event);
+      const cluster = pickMarkerCluster(event);
+      const point = cluster || pickPoint(event) || pickTransaction(event) || pickOwnedAsset(event);
       if (!point) {
         tooltip.style.display = "none";
         return;
       }
-      if (point.isOwnedAsset) {
+      if (point.kind === "transaction" || point.kind === "ownedAsset") {
+        const label = point.kind === "transaction" ? "매매사례" : "포트폴리오 자산";
+        tooltip.innerHTML = `<b>${label} 클러스터</b><br>${fmt.format(point.count)}건 · 확대하면 개별 위치 표시`;
+      } else if (point.isOwnedAsset) {
         tooltip.innerHTML = `<b>${escapeHtml(point.building)}</b><br>포트폴리오 자산 · ${escapeHtml(point.mainUsage || "용도 미상")}<br>${escapeHtml(point.address || point.pnu || "")}`;
       } else if (point.isTransaction) {
         const tx = point.transaction;
@@ -2535,6 +2756,11 @@
 
     function onClick(event) {
       if (event.target.closest(".panel")) return;
+      const cluster = pickMarkerCluster(event);
+      if (cluster) {
+        zoomToCluster(cluster);
+        return;
+      }
       const point = pickPoint(event) || pickTransaction(event) || pickOwnedAsset(event);
       if (point) {
         selectPoint(point, { zoom: true });
@@ -2569,8 +2795,7 @@
       if (surface) surface.visible = toggleSurface.checked;
       if (highContourGroup) highContourGroup.visible = Boolean(toggleSurface.checked && !reviewMode);
       if (pointMesh) pointMesh.visible = togglePoints.checked;
-      if (transactionGroup) transactionGroup.visible = toggleTransactions.checked;
-      if (ownedAssetGroup) ownedAssetGroup.visible = !toggleOwnedAssets || toggleOwnedAssets.checked;
+      updateMarkerClusters(true);
       labelGroup.visible = toggleLabels.checked;
       referenceGroup.visible = toggleLabels.checked;
       updateColumnScale(true);
@@ -2693,8 +2918,7 @@
         clearSelectedColumn();
         clearContextLabels();
       }
-      if (transactionGroup) transactionGroup.visible = toggleTransactions.checked;
-      if (ownedAssetGroup) ownedAssetGroup.visible = !toggleOwnedAssets || toggleOwnedAssets.checked;
+      updateMarkerClusters(true);
       updateHighlightPosition();
       updateTerrainScale(true);
       if (enabled) {
@@ -3240,6 +3464,7 @@
       controls.update();
       updateColumnScale();
       updateTerrainScale();
+      updateMarkerClusters();
       refreshFocusMapForCamera();
       updateLabelScale();
       updateSelectionClearButton();
