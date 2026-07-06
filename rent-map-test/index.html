@@ -131,7 +131,7 @@
     .caseGlyph::before { width: 3px; height: 12px; opacity: 0.55; }
     .caseGlyph::after { width: 6px; height: 17px; opacity: 0.95; }
     .transactionGlyph { width: 13px; height: 13px; border-radius: 999px; background: #7c3aed; box-shadow: 0 0 0 4px rgba(124,58,237,0.20); display: inline-block; flex: 0 0 auto; }
-    .ownedAssetGlyph { width: 13px; height: 13px; transform: rotate(45deg); border-radius: 3px; background: #0f62fe; box-shadow: 0 0 0 4px rgba(15,98,254,0.18); display: inline-block; flex: 0 0 auto; }
+    .ownedAssetGlyph { width: 13px; height: 13px; transform: rotate(45deg); border-radius: 3px; background: #111827; border: 1px solid rgba(255,255,255,0.92); box-shadow: 0 0 0 4px rgba(255,255,255,0.42); display: inline-block; flex: 0 0 auto; }
     .hint { margin-top: 6px; color: var(--muted); font-size: 10.5px; line-height: 1.32; }
     .overviewGrid { display: grid; gap: 6px; }
     .overviewGrid .metricRow { grid-template-columns: 108px 1fr; }
@@ -219,7 +219,7 @@
             <div class="legendLabels"><span id="legendMin"></span><span id="legendP97"></span><span id="legendMax"></span></div>
             <div class="caseLegend"><span class="caseGlyph"></span><span>굵은 막대: 임대사례 연결</span></div>
             <div class="caseLegend"><span class="transactionGlyph"></span><span>보라색 포인트: 매매사례</span></div>
-            <div class="caseLegend"><span class="ownedAssetGlyph"></span><span>파란 다이아: SQL DB 우리자산 위치</span></div>
+            <div class="caseLegend"><span class="ownedAssetGlyph"></span><span>검정 다이아: SQL DB 우리자산 위치</span></div>
             <div class="hint">색=NOC 수준, 높이=절단축 NOC. 표면은 보간 흐름, 막대는 실제 관측 건물입니다.</div>
           </section>
         </div>
@@ -305,8 +305,8 @@
     const heightCurve = 1.14;
     const transactionColor = 0x7c3aed;
     const transactionHaloColor = 0xc4b5fd;
-    const ownedAssetColor = 0x0f62fe;
-    const ownedAssetHaloColor = 0x93c5fd;
+    const ownedAssetColor = 0x111827;
+    const ownedAssetHaloColor = 0xffffff;
     let lastColumnVisualScale = null;
     let lastTerrainVisualScale = null;
     let activeCaseTab = "lease";
@@ -2118,7 +2118,7 @@
       ctx.translate(32, 32);
       ctx.rotate(Math.PI / 4);
       ctx.fillStyle = "rgba(255,255,255,0.96)";
-      ctx.strokeStyle = "rgba(15,98,254,1)";
+      ctx.strokeStyle = "rgba(17,24,39,1)";
       ctx.lineWidth = 8;
       roundRect(ctx, -17, -17, 34, 34, 7);
       ctx.fill();
