@@ -131,7 +131,9 @@
     .caseGlyph::before { width: 3px; height: 12px; opacity: 0.55; }
     .caseGlyph::after { width: 6px; height: 17px; opacity: 0.95; }
     .transactionGlyph { width: 13px; height: 13px; border-radius: 999px; background: #7c3aed; box-shadow: 0 0 0 4px rgba(124,58,237,0.20); display: inline-block; flex: 0 0 auto; }
-    .ownedAssetGlyph { width: 12px; height: 12px; transform: rotate(45deg); border-radius: 3px; background: #475569; border: 1px solid rgba(255,255,255,0.78); box-shadow: 0 0 0 3px rgba(15,23,42,0.12); display: inline-block; flex: 0 0 auto; }
+    .ownedAssetGlyph { position: relative; width: 16px; height: 14px; display: inline-block; flex: 0 0 auto; filter: drop-shadow(0 1px 2px rgba(15,23,42,0.18)); }
+    .ownedAssetGlyph::before { content: ""; position: absolute; inset: 0; background: #1e3a8a; clip-path: polygon(50% 100%, 0 0, 100% 0); }
+    .ownedAssetGlyph::after { content: ""; position: absolute; left: 3px; top: 2px; width: 10px; height: 9px; background: #fef3c7; clip-path: polygon(50% 100%, 0 0, 100% 0); }
     .hint { margin-top: 6px; color: var(--muted); font-size: 10.5px; line-height: 1.32; }
     .overviewGrid { display: grid; gap: 6px; }
     .overviewGrid .metricRow { grid-template-columns: 108px 1fr; }
@@ -219,7 +221,7 @@
             <div class="legendLabels"><span id="legendMin"></span><span id="legendP97"></span><span id="legendMax"></span></div>
             <div class="caseLegend"><span class="caseGlyph"></span><span>굵은 막대: 임대사례 연결</span></div>
             <div class="caseLegend"><span class="transactionGlyph"></span><span>보라색 포인트: 매매사례</span></div>
-            <div class="caseLegend"><span class="ownedAssetGlyph"></span><span>회색 다이아: 포트폴리오 자산 위치</span></div>
+            <div class="caseLegend"><span class="ownedAssetGlyph"></span><span>하향 삼각형: 포트폴리오 자산 위치</span></div>
             <div class="hint">색=NOC 수준, 높이=절단축 NOC. 표면은 보간 흐름, 막대는 실제 관측 건물입니다.</div>
           </section>
         </div>
@@ -305,8 +307,8 @@
     const heightCurve = 1.14;
     const transactionColor = 0x7c3aed;
     const transactionHaloColor = 0xc4b5fd;
-    const ownedAssetColor = 0x475569;
-    const ownedAssetHaloColor = 0xe2e8f0;
+    const ownedAssetColor = 0xffffff;
+    const ownedAssetHaloColor = 0xdbeafe;
     let lastColumnVisualScale = null;
     let lastTerrainVisualScale = null;
     let activeCaseTab = "lease";
@@ -2109,22 +2111,25 @@
       return assets;
     }
 
-    function ownedAssetDiamondTexture() {
-      if (ownedAssetDiamondTexture.cached) return ownedAssetDiamondTexture.cached;
+    function ownedAssetTriangleTexture() {
+      if (ownedAssetTriangleTexture.cached) return ownedAssetTriangleTexture.cached;
       const canvas = document.createElement("canvas");
       canvas.width = 64;
       canvas.height = 64;
       const ctx = canvas.getContext("2d");
-      ctx.translate(32, 32);
-      ctx.rotate(Math.PI / 4);
-      ctx.fillStyle = "rgba(255,255,255,0.96)";
-      ctx.strokeStyle = "rgba(71,85,105,0.92)";
-      ctx.lineWidth = 8;
-      roundRect(ctx, -17, -17, 34, 34, 7);
+      ctx.fillStyle = "rgba(254,243,199,0.98)";
+      ctx.strokeStyle = "rgba(30,58,138,0.98)";
+      ctx.lineWidth = 7;
+      ctx.lineJoin = "round";
+      ctx.beginPath();
+      ctx.moveTo(32, 55);
+      ctx.lineTo(10, 13);
+      ctx.lineTo(54, 13);
+      ctx.closePath();
       ctx.fill();
       ctx.stroke();
-      ownedAssetDiamondTexture.cached = new THREE.CanvasTexture(canvas);
-      return ownedAssetDiamondTexture.cached;
+      ownedAssetTriangleTexture.cached = new THREE.CanvasTexture(canvas);
+      return ownedAssetTriangleTexture.cached;
     }
 
     function ownedAssetHaloTexture() {
@@ -2168,10 +2173,10 @@
           new THREE.PointsMaterial({
             color: ownedAssetHaloColor,
             map: ownedAssetHaloTexture(),
-            size: 18,
+            size: 17,
             sizeAttenuation: false,
             transparent: true,
-            opacity: 0.38,
+            opacity: 0.24,
             depthTest: false,
             depthWrite: false,
           })
@@ -2182,8 +2187,8 @@
           geometry,
           new THREE.PointsMaterial({
             color: ownedAssetColor,
-            map: ownedAssetDiamondTexture(),
-            size: 11,
+            map: ownedAssetTriangleTexture(),
+            size: 13,
             sizeAttenuation: false,
             transparent: true,
             opacity: 0.84,
