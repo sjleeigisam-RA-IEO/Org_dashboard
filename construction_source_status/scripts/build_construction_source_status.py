@@ -986,7 +986,7 @@ def render_row_status(row: dict[str, Any]) -> str:
         new_badge = '<span class="new-badge" title="최근 1개월 내 수주/기사">N</span>'
     return (
         f'<div class="row-status" data-comment-key="{html.escape(comment_key)}">'
-        f'<span class="comment-count{count_class}" aria-label="코멘트 {seed_count}개">({seed_count})</span>'
+        f'<span class="comment-count{count_class}" title="Comment {seed_count}개" aria-label="코멘트 {seed_count}개">({seed_count})</span>'
         f"{new_badge}</div>"
     )
 
@@ -1997,8 +1997,9 @@ def render_html(data: dict[str, Any]) -> str:
       min-width: 19px;
       min-height: 19px;
       border-radius: 999px;
-      background: var(--accent);
-      color: #fff;
+      border: 1px solid rgba(240, 190, 20, 0.72);
+      background: #ffd84d;
+      color: #111827;
       font-size: 11px;
       font-weight: 900;
       line-height: 1;
@@ -2014,7 +2015,8 @@ def render_html(data: dict[str, Any]) -> str:
       color: #fff;
     }
     .rank-row.expanded .new-badge {
-      box-shadow: 0 0 0 2px rgba(41, 151, 255, 0.18);
+      color: #111827;
+      box-shadow: 0 0 0 2px rgba(255, 216, 77, 0.24);
     }
     .detail-row[hidden] {
       display: none;
