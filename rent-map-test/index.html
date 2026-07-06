@@ -926,10 +926,6 @@
       const equityByFund = records.map(row => firstNumeric([row.fund.equity_won, metadataValue(row.lifecycle, ["equity_won"])]));
       const loanByFund = records.map(row => firstNumeric([row.fund.loan_won, metadataValue(row.lifecycle, ["loan_won"])]));
       const depositByFund = records.map(row => firstNumeric([row.fund.deposit_won, metadataValue(row.lifecycle, ["deposit_won"])]));
-      const purchaseByFund = records.map(row => firstNumeric([
-        metadataValue(row.fund, ["purchase_price_won", "purchase_price", "acquisition_price_won", "acquisition_price", "매입가격"]),
-        metadataValue(row.lifecycle, ["purchase_price_won", "purchase_price", "acquisition_price_won", "acquisition_price", "매입가격"]),
-      ]));
       const primary = records.find((row, idx) => numericValue(amountByFund[idx]) && numericValue(amountByFund[idx]) > 0) || records[0] || { id: "", lifecycle: {}, fund: {} };
       return {
         fundIds: ids,
@@ -945,7 +941,6 @@
         equityWon: sumNumeric(equityByFund),
         loanWon: sumNumeric(loanByFund),
         depositWon: sumNumeric(depositByFund),
-        purchasePriceWon: sumNumeric(purchaseByFund),
         source: records.length ? "fund_lifecycle / funds" : "",
       };
     }
@@ -3235,9 +3230,7 @@
         const fund = point.fundSummary || {};
         const fundIdSource = (point.relationshipFundIds || []).length ? "" : (point.inferredFundId ? " (자산코드 추정)" : "");
         const liquidationOrMaturity = fund.liquidationDate || fund.maturityDate || "";
-        const purchasePriceText = fund.purchasePriceWon ? krwWonText(fund.purchasePriceWon) : "DB 없음";
         const amountDateText = fund.amountDate ? ` · ${escapeHtml(fund.amountDate)} 기준` : "";
-        const lifecycleNote = fund.purchasePriceWon ? "" : `<div class="hint">현재 SQL DB에는 실제 매입가 컬럼이 비어 있어 투자/AUM 기준액을 보조값으로 표시합니다.</div>`;
         detailPanel.className = "side";
         detailPanel.innerHTML = `
           <div class="inspectorHeader">
@@ -3247,28 +3240,26 @@
           </div>
           <div class="inspectorBody">
             <div class="statGrid">
-              <div class="stat"><span>펀드 연결</span><strong>${fmt.format(point.fundCount)}개</strong></div>
-              <div class="stat"><span>프로젝트 연결</span><strong>${fmt.format(point.projectCount)}개</strong></div>
+              <div class="stat"><span>투자/AUM</span><strong>${krwWonText(fund.amountWon)}</strong></div>
+              <div class="stat"><span>자기자본</span><strong>${krwWonText(fund.equityWon)}</strong></div>
+              <div class="stat"><span>대출</span><strong>${krwWonText(fund.loanWon)}</strong></div>
               <div class="stat"><span>설정일</span><strong>${escapeHtml(fund.setupDate || "-")}</strong></div>
               <div class="stat"><span>청산/만기</span><strong>${escapeHtml(liquidationOrMaturity || "-")}</strong></div>
-              <div class="stat"><span>매입가</span><strong>${escapeHtml(purchasePriceText)}</strong></div>
-              <div class="stat"><span>투자/AUM</span><strong>${krwWonText(fund.amountWon)}</strong></div>
+              <div class="stat"><span>펀드 연결</span><strong>${fmt.format(point.fundCount)}개</strong></div>
             </div>
             <div class="sectionTitle">펀드 생애주기 / 투자 기준</div>
             <div class="overviewGrid">
+              <div class="metricRow"><span>투자/AUM 기준액</span><strong>${krwWonText(fund.amountWon)}${amountDateText}</strong></div>
+              <div class="metricRow"><span>자기자본</span><strong>${krwWonText(fund.equityWon)}</strong></div>
+              <div class="metricRow"><span>대출</span><strong>${krwWonText(fund.loanWon)}</strong></div>
+              <div class="metricRow"><span>보증금</span><strong>${krwWonText(fund.depositWon)}</strong></div>
               <div class="metricRow"><span>대표 펀드</span><strong>${escapeHtml(fund.fundName || fund.fundShortName || "-")}</strong></div>
               <div class="metricRow"><span>펀드 상태</span><strong>${escapeHtml(fund.status || "-")}</strong></div>
               <div class="metricRow"><span>설정일</span><strong>${escapeHtml(fund.setupDate || "-")}</strong></div>
               <div class="metricRow"><span>청산일</span><strong>${escapeHtml(fund.liquidationDate || "-")}</strong></div>
               <div class="metricRow"><span>만기일</span><strong>${escapeHtml(fund.maturityDate || "-")}</strong></div>
-              <div class="metricRow"><span>실제 매입가</span><strong>${escapeHtml(purchasePriceText)}</strong></div>
-              <div class="metricRow"><span>투자/AUM 기준액</span><strong>${krwWonText(fund.amountWon)}${amountDateText}</strong></div>
-              <div class="metricRow"><span>자기자본</span><strong>${krwWonText(fund.equityWon)}</strong></div>
-              <div class="metricRow"><span>대출</span><strong>${krwWonText(fund.loanWon)}</strong></div>
-              <div class="metricRow"><span>보증금</span><strong>${krwWonText(fund.depositWon)}</strong></div>
               <div class="metricRow"><span>데이터 출처</span><strong>${escapeHtml(fund.source || "-")}</strong></div>
             </div>
-            ${lifecycleNote}
             <div class="sectionTitle">자산 기본정보</div>
             <div class="overviewGrid">
               <div class="metricRow"><span>자산 ID</span><strong>${escapeHtml(point.rawAssetId || "-")}</strong></div>
