@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-03 22:05:07 KST",
+  "generated_at": "2026-07-06 09:24:17 KST",
   "cak": {
     "ok": true,
     "data": {
@@ -78,7 +78,62 @@
             "url": "https://news.google.com/",
             "updated_at": "2026-07-03 21:56:24 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "AA+",
+          "credit_rating_status": "ready",
+          "credit_rating_representative": {
+            "agency": "한국신용평가",
+            "product": "company_bond",
+            "rating": "AA+",
+            "outlook": "",
+            "date": "",
+            "source": "KIS 회사별 등급검색",
+            "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+            "raw": "AA+"
+          },
+          "credit_rating_sources": [
+            {
+              "ok": true,
+              "source": "KIS",
+              "query": "삼성물산",
+              "matched_name": "삼성물산",
+              "matched_code": "810053",
+              "items": [
+                {
+                  "agency": "한국신용평가",
+                  "product": "company_bond",
+                  "rating": "AA+",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "AA+"
+                },
+                {
+                  "agency": "한국신용평가",
+                  "product": "commercial_paper",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A1"
+                }
+              ],
+              "message": "ok"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "삼성물산(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            }
+          ],
+          "credit_rating_messages": [
+            "NICE: no matching public company-search row"
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 2,
@@ -274,7 +329,63 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "AA-",
+          "credit_rating_status": "ready",
+          "credit_rating_representative": {
+            "agency": "NICE신용평가",
+            "product": "company_bond",
+            "rating": "AA-",
+            "outlook": "",
+            "date": "",
+            "source": "NICE 기업별 등급검색",
+            "source_url": "https://www.nicerating.com/disclosure/companySearch.do?searchText=%ED%98%84%EB%8C%80%EA%B1%B4%EC%84%A4",
+            "raw": "AA-/S"
+          },
+          "credit_rating_sources": [
+            {
+              "ok": true,
+              "source": "KIS",
+              "query": "현대건설",
+              "matched_name": "현대건설",
+              "matched_code": "500577",
+              "items": [
+                {
+                  "agency": "한국신용평가",
+                  "product": "company_bond",
+                  "rating": "AA-",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "AA-"
+                }
+              ],
+              "message": "ok"
+            },
+            {
+              "ok": true,
+              "source": "NICE",
+              "query": "현대건설",
+              "matched_name": "현대건설(주)",
+              "matched_code": "1155318",
+              "items": [
+                {
+                  "agency": "NICE신용평가",
+                  "product": "company_bond",
+                  "rating": "AA-",
+                  "outlook": "",
+                  "date": "",
+                  "source": "NICE 기업별 등급검색",
+                  "source_url": "https://www.nicerating.com/disclosure/companySearch.do?searchText=%ED%98%84%EB%8C%80%EA%B1%B4%EC%84%A4",
+                  "raw": "AA-/S"
+                }
+              ],
+              "message": "ok"
+            }
+          ],
+          "credit_rating_messages": [],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 3,
@@ -470,7 +581,44 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "미확인",
+          "credit_rating_status": "empty",
+          "credit_rating_representative": {},
+          "credit_rating_sources": [
+            {
+              "ok": false,
+              "source": "KIS",
+              "query": "대우건설",
+              "matched_name": "대우건설",
+              "matched_code": "158130",
+              "items": [],
+              "message": "matched row has no public rating fields"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "(주)대우건설",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "OpenDART",
+              "matched_name": "대우건설",
+              "matched_code": "00124540",
+              "stock_code": "047040",
+              "items": [],
+              "bond_rows": [],
+              "message": "조회된 데이타가 없습니다."
+            }
+          ],
+          "credit_rating_messages": [
+            "KIS: matched row has no public rating fields",
+            "NICE: no matching public company-search row",
+            "OpenDART: 조회된 데이타가 없습니다."
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 4,
@@ -664,7 +812,52 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "A",
+          "credit_rating_status": "ready",
+          "credit_rating_representative": {
+            "agency": "한국신용평가",
+            "product": "commercial_paper",
+            "rating": "A",
+            "outlook": "",
+            "date": "",
+            "source": "KIS 회사별 등급검색",
+            "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+            "raw": "A1"
+          },
+          "credit_rating_sources": [
+            {
+              "ok": true,
+              "source": "KIS",
+              "query": "디엘이앤씨",
+              "matched_name": "디엘이앤씨",
+              "matched_code": "MB6072",
+              "items": [
+                {
+                  "agency": "한국신용평가",
+                  "product": "commercial_paper",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A1"
+                }
+              ],
+              "message": "ok"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "DL이앤씨",
+              "items": [],
+              "message": "no matching public company-search row"
+            }
+          ],
+          "credit_rating_messages": [
+            "NICE: no matching public company-search row"
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 5,
@@ -804,7 +997,52 @@
             "url": "https://news.google.com/",
             "updated_at": "2026-07-03 21:56:24 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "A",
+          "credit_rating_status": "ready",
+          "credit_rating_representative": {
+            "agency": "한국신용평가",
+            "product": "commercial_paper",
+            "rating": "A",
+            "outlook": "",
+            "date": "",
+            "source": "KIS 회사별 등급검색",
+            "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+            "raw": "A2"
+          },
+          "credit_rating_sources": [
+            {
+              "ok": true,
+              "source": "KIS",
+              "query": "지에스건설",
+              "matched_name": "지에스건설",
+              "matched_code": "500143",
+              "items": [
+                {
+                  "agency": "한국신용평가",
+                  "product": "commercial_paper",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A2"
+                }
+              ],
+              "message": "ok"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "GS건설",
+              "items": [],
+              "message": "no matching public company-search row"
+            }
+          ],
+          "credit_rating_messages": [
+            "NICE: no matching public company-search row"
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 6,
@@ -906,7 +1144,44 @@
             "url": "https://news.google.com/",
             "updated_at": "2026-07-03 21:56:24 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "미확인",
+          "credit_rating_status": "empty",
+          "credit_rating_representative": {},
+          "credit_rating_sources": [
+            {
+              "ok": false,
+              "source": "KIS",
+              "query": "현대엔지니어링",
+              "matched_name": "현대엔지니어링",
+              "matched_code": "160216",
+              "items": [],
+              "message": "matched row has no public rating fields"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "현대엔지니어링(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "OpenDART",
+              "matched_name": "현대엔지니어링",
+              "matched_code": "01229727",
+              "stock_code": "",
+              "items": [],
+              "bond_rows": [],
+              "message": "조회된 데이타가 없습니다."
+            }
+          ],
+          "credit_rating_messages": [
+            "KIS: matched row has no public rating fields",
+            "NICE: no matching public company-search row",
+            "OpenDART: 조회된 데이타가 없습니다."
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 7,
@@ -926,7 +1201,62 @@
             "url": "https://news.google.com/",
             "updated_at": "2026-07-03 21:56:24 KST"
           },
-          "related_articles_status": "empty"
+          "related_articles_status": "empty",
+          "credit_rating_label": "A+",
+          "credit_rating_status": "ready",
+          "credit_rating_representative": {
+            "agency": "한국신용평가",
+            "product": "company_bond",
+            "rating": "A+",
+            "outlook": "",
+            "date": "",
+            "source": "KIS 회사별 등급검색",
+            "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+            "raw": "A+"
+          },
+          "credit_rating_sources": [
+            {
+              "ok": true,
+              "source": "KIS",
+              "query": "포스코이앤씨",
+              "matched_name": "포스코이앤씨",
+              "matched_code": "502146",
+              "items": [
+                {
+                  "agency": "한국신용평가",
+                  "product": "company_bond",
+                  "rating": "A+",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A+"
+                },
+                {
+                  "agency": "한국신용평가",
+                  "product": "commercial_paper",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A2+"
+                }
+              ],
+              "message": "ok"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "주식회사 포스코이앤씨",
+              "items": [],
+              "message": "no matching public company-search row"
+            }
+          ],
+          "credit_rating_messages": [
+            "NICE: no matching public company-search row"
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 8,
@@ -1022,7 +1352,72 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "A",
+          "credit_rating_status": "ready",
+          "credit_rating_representative": {
+            "agency": "한국신용평가",
+            "product": "company_bond",
+            "rating": "A",
+            "outlook": "",
+            "date": "",
+            "source": "KIS 회사별 등급검색",
+            "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+            "raw": "A"
+          },
+          "credit_rating_sources": [
+            {
+              "ok": true,
+              "source": "KIS",
+              "query": "롯데건설",
+              "matched_name": "롯데건설",
+              "matched_code": "500160",
+              "items": [
+                {
+                  "agency": "한국신용평가",
+                  "product": "company_bond",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A"
+                },
+                {
+                  "agency": "한국신용평가",
+                  "product": "commercial_paper",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A2"
+                },
+                {
+                  "agency": "한국신용평가",
+                  "product": "short_term_bond",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A2"
+                }
+              ],
+              "message": "ok"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "롯데건설(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            }
+          ],
+          "credit_rating_messages": [
+            "NICE: no matching public company-search row"
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 9,
@@ -1131,7 +1526,72 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "A-",
+          "credit_rating_status": "ready",
+          "credit_rating_representative": {
+            "agency": "한국신용평가",
+            "product": "company_bond",
+            "rating": "A-",
+            "outlook": "",
+            "date": "",
+            "source": "KIS 회사별 등급검색",
+            "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+            "raw": "A-"
+          },
+          "credit_rating_sources": [
+            {
+              "ok": true,
+              "source": "KIS",
+              "query": "에스케이에코플랜트",
+              "matched_name": "에스케이에코플랜트",
+              "matched_code": "500283",
+              "items": [
+                {
+                  "agency": "한국신용평가",
+                  "product": "company_bond",
+                  "rating": "A-",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A-"
+                },
+                {
+                  "agency": "한국신용평가",
+                  "product": "commercial_paper",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A2-"
+                },
+                {
+                  "agency": "한국신용평가",
+                  "product": "short_term_bond",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A2-"
+                }
+              ],
+              "message": "ok"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "에스케이에코플랜트(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            }
+          ],
+          "credit_rating_messages": [
+            "NICE: no matching public company-search row"
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 10,
@@ -1151,7 +1611,52 @@
             "url": "https://news.google.com/",
             "updated_at": "2026-07-03 21:56:24 KST"
           },
-          "related_articles_status": "empty"
+          "related_articles_status": "empty",
+          "credit_rating_label": "A",
+          "credit_rating_status": "ready",
+          "credit_rating_representative": {
+            "agency": "한국신용평가",
+            "product": "company_bond",
+            "rating": "A",
+            "outlook": "",
+            "date": "",
+            "source": "KIS 회사별 등급검색",
+            "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+            "raw": "A"
+          },
+          "credit_rating_sources": [
+            {
+              "ok": true,
+              "source": "KIS",
+              "query": "아이파크현대산업개발",
+              "matched_name": "아이파크현대산업개발",
+              "matched_code": "JC3042",
+              "items": [
+                {
+                  "agency": "한국신용평가",
+                  "product": "company_bond",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A"
+                }
+              ],
+              "message": "ok"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "아이파크현대산업개발(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            }
+          ],
+          "credit_rating_messages": [
+            "NICE: no matching public company-search row"
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 11,
@@ -1311,7 +1816,83 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "A+",
+          "credit_rating_status": "ready",
+          "credit_rating_representative": {
+            "agency": "NICE신용평가",
+            "product": "company_bond",
+            "rating": "A+",
+            "outlook": "",
+            "date": "",
+            "source": "NICE 기업별 등급검색",
+            "source_url": "https://www.nicerating.com/disclosure/companySearch.do?searchText=%ED%95%9C%ED%99%94",
+            "raw": "A+/S"
+          },
+          "credit_rating_sources": [
+            {
+              "ok": true,
+              "source": "KIS",
+              "query": "한화",
+              "matched_name": "한화",
+              "matched_code": "350893",
+              "items": [
+                {
+                  "agency": "한국신용평가",
+                  "product": "company_bond",
+                  "rating": "A+",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A+"
+                },
+                {
+                  "agency": "한국신용평가",
+                  "product": "commercial_paper",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A2+"
+                }
+              ],
+              "message": "ok"
+            },
+            {
+              "ok": true,
+              "source": "NICE",
+              "query": "한화",
+              "matched_name": "(주)한화",
+              "matched_code": "1709744",
+              "items": [
+                {
+                  "agency": "NICE신용평가",
+                  "product": "company_bond",
+                  "rating": "A+",
+                  "outlook": "",
+                  "date": "",
+                  "source": "NICE 기업별 등급검색",
+                  "source_url": "https://www.nicerating.com/disclosure/companySearch.do?searchText=%ED%95%9C%ED%99%94",
+                  "raw": "A+/S"
+                },
+                {
+                  "agency": "NICE신용평가",
+                  "product": "commercial_paper",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "NICE 기업별 등급검색",
+                  "source_url": "https://www.nicerating.com/disclosure/companySearch.do?searchText=%ED%95%9C%ED%99%94",
+                  "raw": "A2+"
+                }
+              ],
+              "message": "ok"
+            }
+          ],
+          "credit_rating_messages": [],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 12,
@@ -1415,7 +1996,73 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "A",
+          "credit_rating_status": "ready",
+          "credit_rating_representative": {
+            "agency": "NICE신용평가",
+            "product": "corporate_credit",
+            "rating": "A",
+            "outlook": "",
+            "date": "",
+            "source": "NICE 기업별 등급검색",
+            "source_url": "https://www.nicerating.com/disclosure/companySearch.do?searchText=%ED%98%B8%EB%B0%98%EA%B1%B4%EC%84%A4",
+            "raw": "A/S"
+          },
+          "credit_rating_sources": [
+            {
+              "ok": true,
+              "source": "KIS",
+              "query": "호반건설",
+              "matched_name": "호반건설",
+              "matched_code": "133127",
+              "items": [
+                {
+                  "agency": "한국신용평가",
+                  "product": "commercial_paper",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A2"
+                }
+              ],
+              "message": "ok"
+            },
+            {
+              "ok": true,
+              "source": "NICE",
+              "query": "호반건설",
+              "matched_name": "(주)호반건설",
+              "matched_code": "1624279",
+              "items": [
+                {
+                  "agency": "NICE신용평가",
+                  "product": "commercial_paper",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "NICE 기업별 등급검색",
+                  "source_url": "https://www.nicerating.com/disclosure/companySearch.do?searchText=%ED%98%B8%EB%B0%98%EA%B1%B4%EC%84%A4",
+                  "raw": "A2"
+                },
+                {
+                  "agency": "NICE신용평가",
+                  "product": "corporate_credit",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "NICE 기업별 등급검색",
+                  "source_url": "https://www.nicerating.com/disclosure/companySearch.do?searchText=%ED%98%B8%EB%B0%98%EA%B1%B4%EC%84%A4",
+                  "raw": "A/S"
+                }
+              ],
+              "message": "ok"
+            }
+          ],
+          "credit_rating_messages": [],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 13,
@@ -1614,7 +2261,158 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "A- / 안정적",
+          "credit_rating_status": "ready",
+          "credit_rating_representative": {
+            "agency": "한국기업평가",
+            "product": "dart_bond",
+            "rating": "A-",
+            "outlook": "안정적",
+            "date": "2021-09-09",
+            "source": "OpenDART 채무증권",
+            "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210903000413",
+            "raw": "A- (안정적) / A- (안정적) (한국기업평가 / 한국신용평가)"
+          },
+          "credit_rating_sources": [
+            {
+              "ok": false,
+              "source": "KIS",
+              "query": "디엘건설",
+              "matched_name": "디엘건설",
+              "matched_code": "500739",
+              "items": [],
+              "message": "matched row has no public rating fields"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "디엘건설(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": true,
+              "source": "OpenDART",
+              "matched_name": "디엘건설",
+              "matched_code": "00128971",
+              "stock_code": "001880",
+              "items": [
+                {
+                  "agency": "한국기업평가",
+                  "product": "dart_bond",
+                  "rating": "A-",
+                  "outlook": "안정적",
+                  "date": "2021-09-09",
+                  "source": "OpenDART 채무증권",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210903000413",
+                  "raw": "A- (안정적) / A- (안정적) (한국기업평가 / 한국신용평가)"
+                },
+                {
+                  "agency": "한국신용평가",
+                  "product": "dart_bond",
+                  "rating": "A-",
+                  "outlook": "안정적",
+                  "date": "2021-09-09",
+                  "source": "OpenDART 채무증권",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210903000413",
+                  "raw": "A- (안정적) / A- (안정적) (한국기업평가 / 한국신용평가)"
+                },
+                {
+                  "agency": "한국기업평가",
+                  "product": "dart_bond",
+                  "rating": "A-",
+                  "outlook": "안정적",
+                  "date": "2021-09-09",
+                  "source": "OpenDART 채무증권",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210903000413",
+                  "raw": "A- (안정적) / A- (안정적) (한국기업평가 / 한국신용평가)"
+                },
+                {
+                  "agency": "한국신용평가",
+                  "product": "dart_bond",
+                  "rating": "A-",
+                  "outlook": "안정적",
+                  "date": "2021-09-09",
+                  "source": "OpenDART 채무증권",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210903000413",
+                  "raw": "A- (안정적) / A- (안정적) (한국기업평가 / 한국신용평가)"
+                }
+              ],
+              "bond_rows": [
+                {
+                  "issue_name": "무보증사채",
+                  "round": "1-1",
+                  "issue_amount": "20,000,000,000",
+                  "issue_date": "2021-09-09",
+                  "maturity_date": "2023-09-08",
+                  "raw_rating": "A- (안정적) / A- (안정적) (한국기업평가 / 한국신용평가)",
+                  "receipt_no": "20210903000413",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210903000413",
+                  "items": [
+                    {
+                      "agency": "한국기업평가",
+                      "product": "dart_bond",
+                      "rating": "A-",
+                      "outlook": "안정적",
+                      "date": "",
+                      "source": "OpenDART 채무증권",
+                      "source_url": "https://opendart.fss.or.kr/",
+                      "raw": "A- (안정적) / A- (안정적) (한국기업평가 / 한국신용평가)"
+                    },
+                    {
+                      "agency": "한국신용평가",
+                      "product": "dart_bond",
+                      "rating": "A-",
+                      "outlook": "안정적",
+                      "date": "",
+                      "source": "OpenDART 채무증권",
+                      "source_url": "https://opendart.fss.or.kr/",
+                      "raw": "A- (안정적) / A- (안정적) (한국기업평가 / 한국신용평가)"
+                    }
+                  ]
+                },
+                {
+                  "issue_name": "무보증사채",
+                  "round": "1-2",
+                  "issue_amount": "39,000,000,000",
+                  "issue_date": "2021-09-09",
+                  "maturity_date": "2024-09-09",
+                  "raw_rating": "A- (안정적) / A- (안정적) (한국기업평가 / 한국신용평가)",
+                  "receipt_no": "20210903000413",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210903000413",
+                  "items": [
+                    {
+                      "agency": "한국기업평가",
+                      "product": "dart_bond",
+                      "rating": "A-",
+                      "outlook": "안정적",
+                      "date": "",
+                      "source": "OpenDART 채무증권",
+                      "source_url": "https://opendart.fss.or.kr/",
+                      "raw": "A- (안정적) / A- (안정적) (한국기업평가 / 한국신용평가)"
+                    },
+                    {
+                      "agency": "한국신용평가",
+                      "product": "dart_bond",
+                      "rating": "A-",
+                      "outlook": "안정적",
+                      "date": "",
+                      "source": "OpenDART 채무증권",
+                      "source_url": "https://opendart.fss.or.kr/",
+                      "raw": "A- (안정적) / A- (안정적) (한국기업평가 / 한국신용평가)"
+                    }
+                  ]
+                }
+              ],
+              "message": "정상"
+            }
+          ],
+          "credit_rating_messages": [
+            "KIS: matched row has no public rating fields",
+            "NICE: no matching public company-search row"
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 14,
@@ -1801,7 +2599,158 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "BBB0",
+          "credit_rating_status": "ready",
+          "credit_rating_representative": {
+            "agency": "한국기업평가",
+            "product": "dart_bond",
+            "rating": "BBB0",
+            "outlook": "",
+            "date": "2022-09-29",
+            "source": "OpenDART 채무증권",
+            "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220923000475",
+            "raw": "BBB0/안정적 (한국기업평가/ NICE신용평가)"
+          },
+          "credit_rating_sources": [
+            {
+              "ok": false,
+              "source": "KIS",
+              "query": "두산에너빌리티",
+              "matched_name": "두산에너빌리티",
+              "matched_code": "382647",
+              "items": [],
+              "message": "matched row has no public rating fields"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "두산에너빌리티(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": true,
+              "source": "OpenDART",
+              "matched_name": "두산에너빌리티",
+              "matched_code": "00159616",
+              "stock_code": "034020",
+              "items": [
+                {
+                  "agency": "한국기업평가",
+                  "product": "dart_bond",
+                  "rating": "BBB0",
+                  "outlook": "",
+                  "date": "2022-09-29",
+                  "source": "OpenDART 채무증권",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220923000475",
+                  "raw": "BBB0/안정적 (한국기업평가/ NICE신용평가)"
+                },
+                {
+                  "agency": "NICE신용평가",
+                  "product": "dart_bond",
+                  "rating": "안정적",
+                  "outlook": "안정적",
+                  "date": "2022-09-29",
+                  "source": "OpenDART 채무증권",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220923000475",
+                  "raw": "BBB0/안정적 (한국기업평가/ NICE신용평가)"
+                },
+                {
+                  "agency": "한국기업평가",
+                  "product": "dart_bond",
+                  "rating": "BBB0",
+                  "outlook": "",
+                  "date": "2022-05-30",
+                  "source": "OpenDART 채무증권",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220524000333",
+                  "raw": "BBB0/안정적 (한국기업평가/ NICE신용평가)"
+                },
+                {
+                  "agency": "NICE신용평가",
+                  "product": "dart_bond",
+                  "rating": "안정적",
+                  "outlook": "안정적",
+                  "date": "2022-05-30",
+                  "source": "OpenDART 채무증권",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220524000333",
+                  "raw": "BBB0/안정적 (한국기업평가/ NICE신용평가)"
+                }
+              ],
+              "bond_rows": [
+                {
+                  "issue_name": "무보증사채",
+                  "round": "74",
+                  "issue_amount": "80,000,000,000",
+                  "issue_date": "2022-09-29",
+                  "maturity_date": "2024-09-27",
+                  "raw_rating": "BBB0/안정적 (한국기업평가/ NICE신용평가)",
+                  "receipt_no": "20220923000475",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220923000475",
+                  "items": [
+                    {
+                      "agency": "한국기업평가",
+                      "product": "dart_bond",
+                      "rating": "BBB0",
+                      "outlook": "",
+                      "date": "",
+                      "source": "OpenDART 채무증권",
+                      "source_url": "https://opendart.fss.or.kr/",
+                      "raw": "BBB0/안정적 (한국기업평가/ NICE신용평가)"
+                    },
+                    {
+                      "agency": "NICE신용평가",
+                      "product": "dart_bond",
+                      "rating": "안정적",
+                      "outlook": "안정적",
+                      "date": "",
+                      "source": "OpenDART 채무증권",
+                      "source_url": "https://opendart.fss.or.kr/",
+                      "raw": "BBB0/안정적 (한국기업평가/ NICE신용평가)"
+                    }
+                  ]
+                },
+                {
+                  "issue_name": "무보증사채",
+                  "round": "73",
+                  "issue_amount": "80,000,000,000",
+                  "issue_date": "2022-05-30",
+                  "maturity_date": "2024-05-30",
+                  "raw_rating": "BBB0/안정적 (한국기업평가/ NICE신용평가)",
+                  "receipt_no": "20220524000333",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220524000333",
+                  "items": [
+                    {
+                      "agency": "한국기업평가",
+                      "product": "dart_bond",
+                      "rating": "BBB0",
+                      "outlook": "",
+                      "date": "",
+                      "source": "OpenDART 채무증권",
+                      "source_url": "https://opendart.fss.or.kr/",
+                      "raw": "BBB0/안정적 (한국기업평가/ NICE신용평가)"
+                    },
+                    {
+                      "agency": "NICE신용평가",
+                      "product": "dart_bond",
+                      "rating": "안정적",
+                      "outlook": "안정적",
+                      "date": "",
+                      "source": "OpenDART 채무증권",
+                      "source_url": "https://opendart.fss.or.kr/",
+                      "raw": "BBB0/안정적 (한국기업평가/ NICE신용평가)"
+                    }
+                  ]
+                }
+              ],
+              "message": "정상"
+            }
+          ],
+          "credit_rating_messages": [
+            "KIS: matched row has no public rating fields",
+            "NICE: no matching public company-search row"
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 15,
@@ -2003,7 +2952,44 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "미확인",
+          "credit_rating_status": "empty",
+          "credit_rating_representative": {},
+          "credit_rating_sources": [
+            {
+              "ok": false,
+              "source": "KIS",
+              "query": "계룡건설산업",
+              "matched_name": "계룡건설산업",
+              "matched_code": "500038",
+              "items": [],
+              "message": "matched row has no public rating fields"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "계룡건설산업(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "OpenDART",
+              "matched_name": "계룡건설산업",
+              "matched_code": "00102432",
+              "stock_code": "013580",
+              "items": [],
+              "bond_rows": [],
+              "message": "조회된 데이타가 없습니다."
+            }
+          ],
+          "credit_rating_messages": [
+            "KIS: matched row has no public rating fields",
+            "NICE: no matching public company-search row",
+            "OpenDART: 조회된 데이타가 없습니다."
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 16,
@@ -2130,7 +3116,52 @@
             "url": "https://news.google.com/",
             "updated_at": "2026-07-03 21:56:24 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "A",
+          "credit_rating_status": "ready",
+          "credit_rating_representative": {
+            "agency": "한국신용평가",
+            "product": "commercial_paper",
+            "rating": "A",
+            "outlook": "",
+            "date": "",
+            "source": "KIS 회사별 등급검색",
+            "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+            "raw": "A3+"
+          },
+          "credit_rating_sources": [
+            {
+              "ok": true,
+              "source": "KIS",
+              "query": "서희건설",
+              "matched_name": "서희건설",
+              "matched_code": "283223",
+              "items": [
+                {
+                  "agency": "한국신용평가",
+                  "product": "commercial_paper",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A3+"
+                }
+              ],
+              "message": "ok"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "(주)서희건설",
+              "items": [],
+              "message": "no matching public company-search row"
+            }
+          ],
+          "credit_rating_messages": [
+            "NICE: no matching public company-search row"
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 17,
@@ -2246,7 +3277,42 @@
             "url": "https://news.google.com/",
             "updated_at": "2026-07-03 21:56:24 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "미확인",
+          "credit_rating_status": "empty",
+          "credit_rating_representative": {},
+          "credit_rating_sources": [
+            {
+              "ok": false,
+              "source": "KIS",
+              "query": "제일건설",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "제일건설(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "OpenDART",
+              "matched_name": "제일건설",
+              "matched_code": "00185408",
+              "stock_code": "",
+              "items": [],
+              "bond_rows": [],
+              "message": "조회된 데이타가 없습니다."
+            }
+          ],
+          "credit_rating_messages": [
+            "KIS: no matching public company-search row",
+            "NICE: no matching public company-search row",
+            "OpenDART: 조회된 데이타가 없습니다."
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 18,
@@ -2447,7 +3513,42 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "미확인",
+          "credit_rating_status": "empty",
+          "credit_rating_representative": {},
+          "credit_rating_sources": [
+            {
+              "ok": false,
+              "source": "KIS",
+              "query": "코오롱글로벌",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "코오롱글로벌(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "OpenDART",
+              "matched_name": "코오롱글로벌",
+              "matched_code": "00152880",
+              "stock_code": "003070",
+              "items": [],
+              "bond_rows": [],
+              "message": "조회된 데이타가 없습니다."
+            }
+          ],
+          "credit_rating_messages": [
+            "KIS: no matching public company-search row",
+            "NICE: no matching public company-search row",
+            "OpenDART: 조회된 데이타가 없습니다."
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 19,
@@ -2640,7 +3741,126 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "A0",
+          "credit_rating_status": "ready",
+          "credit_rating_representative": {
+            "agency": "OpenDART",
+            "product": "dart_bond",
+            "rating": "A0",
+            "outlook": "",
+            "date": "2021-07-19",
+            "source": "OpenDART 채무증권",
+            "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210707000440",
+            "raw": "한국기업평가(주) A0 / 한국신용평가(주) A0 / NICE신용평가(주) A0"
+          },
+          "credit_rating_sources": [
+            {
+              "ok": false,
+              "source": "KIS",
+              "query": "태영건설",
+              "matched_name": "태영건설",
+              "matched_code": "501662",
+              "items": [],
+              "message": "matched row has no public rating fields"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "(주)태영건설",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": true,
+              "source": "OpenDART",
+              "matched_name": "태영건설",
+              "matched_code": "00153861",
+              "stock_code": "009410",
+              "items": [
+                {
+                  "agency": "OpenDART",
+                  "product": "dart_bond",
+                  "rating": "A0",
+                  "outlook": "",
+                  "date": "2021-07-19",
+                  "source": "OpenDART 채무증권",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210707000440",
+                  "raw": "한국기업평가(주) A0 / 한국신용평가(주) A0 / NICE신용평가(주) A0"
+                },
+                {
+                  "agency": "OpenDART",
+                  "product": "dart_bond",
+                  "rating": "A0",
+                  "outlook": "",
+                  "date": "2021-07-19",
+                  "source": "OpenDART 채무증권",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210707000440",
+                  "raw": "한국기업평가(주) A0 / 한국신용평가(주) A0 / NICE신용평가(주) A0"
+                },
+                {
+                  "agency": "OpenDART",
+                  "product": "dart_bond",
+                  "rating": "C",
+                  "outlook": "",
+                  "date": "2021-07-19",
+                  "source": "OpenDART 채무증권",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210707000440",
+                  "raw": "한국기업평가(주) A0 / 한국신용평가(주) A0 / NICE신용평가(주) A0"
+                }
+              ],
+              "bond_rows": [
+                {
+                  "issue_name": "무보증사채",
+                  "round": "68",
+                  "issue_amount": "100,000,000,000",
+                  "issue_date": "2021-07-19",
+                  "maturity_date": "2024-07-19",
+                  "raw_rating": "한국기업평가(주) A0 / 한국신용평가(주) A0 / NICE신용평가(주) A0",
+                  "receipt_no": "20210707000440",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210707000440",
+                  "items": [
+                    {
+                      "agency": "OpenDART",
+                      "product": "dart_bond",
+                      "rating": "A0",
+                      "outlook": "",
+                      "date": "",
+                      "source": "OpenDART 채무증권",
+                      "source_url": "https://opendart.fss.or.kr/",
+                      "raw": "한국기업평가(주) A0 / 한국신용평가(주) A0 / NICE신용평가(주) A0"
+                    },
+                    {
+                      "agency": "OpenDART",
+                      "product": "dart_bond",
+                      "rating": "A0",
+                      "outlook": "",
+                      "date": "",
+                      "source": "OpenDART 채무증권",
+                      "source_url": "https://opendart.fss.or.kr/",
+                      "raw": "한국기업평가(주) A0 / 한국신용평가(주) A0 / NICE신용평가(주) A0"
+                    },
+                    {
+                      "agency": "OpenDART",
+                      "product": "dart_bond",
+                      "rating": "C",
+                      "outlook": "",
+                      "date": "",
+                      "source": "OpenDART 채무증권",
+                      "source_url": "https://opendart.fss.or.kr/",
+                      "raw": "한국기업평가(주) A0 / 한국신용평가(주) A0 / NICE신용평가(주) A0"
+                    }
+                  ]
+                }
+              ],
+              "message": "정상"
+            }
+          ],
+          "credit_rating_messages": [
+            "KIS: matched row has no public rating fields",
+            "NICE: no matching public company-search row"
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 20,
@@ -2660,7 +3880,72 @@
             "url": "https://news.google.com/",
             "updated_at": "2026-07-03 21:56:24 KST"
           },
-          "related_articles_status": "empty"
+          "related_articles_status": "empty",
+          "credit_rating_label": "A-",
+          "credit_rating_status": "ready",
+          "credit_rating_representative": {
+            "agency": "한국신용평가",
+            "product": "company_bond",
+            "rating": "A-",
+            "outlook": "",
+            "date": "",
+            "source": "KIS 회사별 등급검색",
+            "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+            "raw": "A-"
+          },
+          "credit_rating_sources": [
+            {
+              "ok": true,
+              "source": "KIS",
+              "query": "케이씨씨건설",
+              "matched_name": "케이씨씨건설",
+              "matched_code": "513644",
+              "items": [
+                {
+                  "agency": "한국신용평가",
+                  "product": "company_bond",
+                  "rating": "A-",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A-"
+                },
+                {
+                  "agency": "한국신용평가",
+                  "product": "commercial_paper",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A2-"
+                },
+                {
+                  "agency": "한국신용평가",
+                  "product": "short_term_bond",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A2-"
+                }
+              ],
+              "message": "ok"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "(주)케이씨씨건설",
+              "items": [],
+              "message": "no matching public company-search row"
+            }
+          ],
+          "credit_rating_messages": [
+            "NICE: no matching public company-search row"
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 21,
@@ -2783,7 +4068,44 @@
             "url": "https://news.google.com/",
             "updated_at": "2026-07-03 21:56:24 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "미확인",
+          "credit_rating_status": "empty",
+          "credit_rating_representative": {},
+          "credit_rating_sources": [
+            {
+              "ok": false,
+              "source": "KIS",
+              "query": "우미건설",
+              "matched_name": "우미건설",
+              "matched_code": "769380",
+              "items": [],
+              "message": "matched row has no public rating fields"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "우미건설(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "OpenDART",
+              "matched_name": "우미건설",
+              "matched_code": "00209115",
+              "stock_code": "",
+              "items": [],
+              "bond_rows": [],
+              "message": "조회된 데이타가 없습니다."
+            }
+          ],
+          "credit_rating_messages": [
+            "KIS: matched row has no public rating fields",
+            "NICE: no matching public company-search row",
+            "OpenDART: 조회된 데이타가 없습니다."
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 22,
@@ -2893,7 +4215,42 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "미확인",
+          "credit_rating_status": "empty",
+          "credit_rating_representative": {},
+          "credit_rating_sources": [
+            {
+              "ok": false,
+              "source": "KIS",
+              "query": "대방건설",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "대방건설(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "OpenDART",
+              "matched_name": "대방건설",
+              "matched_code": "00319166",
+              "stock_code": "",
+              "items": [],
+              "bond_rows": [],
+              "message": "조회된 데이타가 없습니다."
+            }
+          ],
+          "credit_rating_messages": [
+            "KIS: no matching public company-search row",
+            "NICE: no matching public company-search row",
+            "OpenDART: 조회된 데이타가 없습니다."
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 23,
@@ -2999,7 +4356,44 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "미확인",
+          "credit_rating_status": "empty",
+          "credit_rating_representative": {},
+          "credit_rating_sources": [
+            {
+              "ok": false,
+              "source": "KIS",
+              "query": "쌍용건설",
+              "matched_name": "쌍용건설",
+              "matched_code": "500330",
+              "items": [],
+              "message": "matched row has no public rating fields"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "쌍용건설(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "OpenDART",
+              "matched_name": "쌍용건설",
+              "matched_code": "00138206",
+              "stock_code": "012650",
+              "items": [],
+              "bond_rows": [],
+              "message": "조회된 데이타가 없습니다."
+            }
+          ],
+          "credit_rating_messages": [
+            "KIS: matched row has no public rating fields",
+            "NICE: no matching public company-search row",
+            "OpenDART: 조회된 데이타가 없습니다."
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 24,
@@ -3192,7 +4586,44 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "미확인",
+          "credit_rating_status": "empty",
+          "credit_rating_representative": {},
+          "credit_rating_sources": [
+            {
+              "ok": false,
+              "source": "KIS",
+              "query": "금호건설",
+              "matched_name": "금호건설",
+              "matched_code": "610364",
+              "items": [],
+              "message": "matched row has no public rating fields"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "금호건설(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "OpenDART",
+              "matched_name": "금호건설",
+              "matched_code": "00106313",
+              "stock_code": "002990",
+              "items": [],
+              "bond_rows": [],
+              "message": "조회된 데이타가 없습니다."
+            }
+          ],
+          "credit_rating_messages": [
+            "KIS: matched row has no public rating fields",
+            "NICE: no matching public company-search row",
+            "OpenDART: 조회된 데이타가 없습니다."
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 25,
@@ -3229,7 +4660,44 @@
             "url": "https://news.google.com/",
             "updated_at": "2026-07-03 21:56:24 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "미확인",
+          "credit_rating_status": "empty",
+          "credit_rating_representative": {},
+          "credit_rating_sources": [
+            {
+              "ok": false,
+              "source": "KIS",
+              "query": "두산건설",
+              "matched_name": "두산건설",
+              "matched_code": "360171",
+              "items": [],
+              "message": "matched row has no public rating fields"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "두산건설(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "OpenDART",
+              "matched_name": "두산건설",
+              "matched_code": "00115852",
+              "stock_code": "002950",
+              "items": [],
+              "bond_rows": [],
+              "message": "조회된 데이타가 없습니다."
+            }
+          ],
+          "credit_rating_messages": [
+            "KIS: matched row has no public rating fields",
+            "NICE: no matching public company-search row",
+            "OpenDART: 조회된 데이타가 없습니다."
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 26,
@@ -3431,7 +4899,106 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "BBB+",
+          "credit_rating_status": "ready",
+          "credit_rating_representative": {
+            "agency": "한국기업평가",
+            "product": "dart_bond",
+            "rating": "BBB+",
+            "outlook": "",
+            "date": "2022-02-22",
+            "source": "OpenDART 채무증권",
+            "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220216000622",
+            "raw": "한국기업평가(BBB+)/한국신용평가(BBB)"
+          },
+          "credit_rating_sources": [
+            {
+              "ok": false,
+              "source": "KIS",
+              "query": "한신공영",
+              "matched_name": "한신공영",
+              "matched_code": "500542",
+              "items": [],
+              "message": "matched row has no public rating fields"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "한신공영(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": true,
+              "source": "OpenDART",
+              "matched_name": "한신공영",
+              "matched_code": "00162063",
+              "stock_code": "004960",
+              "items": [
+                {
+                  "agency": "한국신용평가",
+                  "product": "dart_bond",
+                  "rating": "BBB",
+                  "outlook": "",
+                  "date": "2022-02-22",
+                  "source": "OpenDART 채무증권",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220216000622",
+                  "raw": "한국기업평가(BBB+)/한국신용평가(BBB)"
+                },
+                {
+                  "agency": "한국기업평가",
+                  "product": "dart_bond",
+                  "rating": "BBB+",
+                  "outlook": "",
+                  "date": "2022-02-22",
+                  "source": "OpenDART 채무증권",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220216000622",
+                  "raw": "한국기업평가(BBB+)/한국신용평가(BBB)"
+                }
+              ],
+              "bond_rows": [
+                {
+                  "issue_name": "무보증사채",
+                  "round": "46",
+                  "issue_amount": "85,000,000,000",
+                  "issue_date": "2022-02-22",
+                  "maturity_date": "2024-02-22",
+                  "raw_rating": "한국기업평가(BBB+)/한국신용평가(BBB)",
+                  "receipt_no": "20220216000622",
+                  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220216000622",
+                  "items": [
+                    {
+                      "agency": "한국신용평가",
+                      "product": "dart_bond",
+                      "rating": "BBB",
+                      "outlook": "",
+                      "date": "",
+                      "source": "OpenDART 채무증권",
+                      "source_url": "https://opendart.fss.or.kr/",
+                      "raw": "한국기업평가(BBB+)/한국신용평가(BBB)"
+                    },
+                    {
+                      "agency": "한국기업평가",
+                      "product": "dart_bond",
+                      "rating": "BBB+",
+                      "outlook": "",
+                      "date": "",
+                      "source": "OpenDART 채무증권",
+                      "source_url": "https://opendart.fss.or.kr/",
+                      "raw": "한국기업평가(BBB+)/한국신용평가(BBB)"
+                    }
+                  ]
+                }
+              ],
+              "message": "정상"
+            }
+          ],
+          "credit_rating_messages": [
+            "KIS: matched row has no public rating fields",
+            "NICE: no matching public company-search row"
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 27,
@@ -3627,7 +5194,52 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "A",
+          "credit_rating_status": "ready",
+          "credit_rating_representative": {
+            "agency": "한국신용평가",
+            "product": "commercial_paper",
+            "rating": "A",
+            "outlook": "",
+            "date": "",
+            "source": "KIS 회사별 등급검색",
+            "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+            "raw": "A2+"
+          },
+          "credit_rating_sources": [
+            {
+              "ok": true,
+              "source": "KIS",
+              "query": "효성중공업",
+              "matched_name": "효성중공업",
+              "matched_code": "JD2262",
+              "items": [
+                {
+                  "agency": "한국신용평가",
+                  "product": "commercial_paper",
+                  "rating": "A",
+                  "outlook": "",
+                  "date": "",
+                  "source": "KIS 회사별 등급검색",
+                  "source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+                  "raw": "A2+"
+                }
+              ],
+              "message": "ok"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "효성중공업(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            }
+          ],
+          "credit_rating_messages": [
+            "NICE: no matching public company-search row"
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 28,
@@ -3826,7 +5438,44 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "미확인",
+          "credit_rating_status": "empty",
+          "credit_rating_representative": {},
+          "credit_rating_sources": [
+            {
+              "ok": false,
+              "source": "KIS",
+              "query": "동부건설",
+              "matched_name": "동부건설",
+              "matched_code": "500178",
+              "items": [],
+              "message": "matched row has no public rating fields"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "동부건설(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "OpenDART",
+              "matched_name": "동부건설",
+              "matched_code": "00115612",
+              "stock_code": "005960",
+              "items": [],
+              "bond_rows": [],
+              "message": "조회된 데이타가 없습니다."
+            }
+          ],
+          "credit_rating_messages": [
+            "KIS: matched row has no public rating fields",
+            "NICE: no matching public company-search row",
+            "OpenDART: 조회된 데이타가 없습니다."
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 29,
@@ -3862,7 +5511,38 @@
             "url": "https://news.google.com/",
             "updated_at": "2026-07-03 21:56:24 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "미확인",
+          "credit_rating_status": "empty",
+          "credit_rating_representative": {},
+          "credit_rating_sources": [
+            {
+              "ok": false,
+              "source": "KIS",
+              "query": "에이치엘디앤아이한라",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "에이치엘디앤아이한라(주)",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "OpenDART",
+              "items": [],
+              "message": "no corp-code match"
+            }
+          ],
+          "credit_rating_messages": [
+            "KIS: no matching public company-search row",
+            "NICE: no matching public company-search row",
+            "OpenDART: no corp-code match"
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         },
         {
           "rank": 30,
@@ -3972,7 +5652,42 @@
             "url": "",
             "updated_at": "2026-07-03 22:05:06 KST"
           },
-          "related_articles_status": "ready"
+          "related_articles_status": "ready",
+          "credit_rating_label": "미확인",
+          "credit_rating_status": "empty",
+          "credit_rating_representative": {},
+          "credit_rating_sources": [
+            {
+              "ok": false,
+              "source": "KIS",
+              "query": "반도건설",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "NICE",
+              "query": "(주)반도건설",
+              "items": [],
+              "message": "no matching public company-search row"
+            },
+            {
+              "ok": false,
+              "source": "OpenDART",
+              "matched_name": "반도건설",
+              "matched_code": "00656492",
+              "stock_code": "",
+              "items": [],
+              "bond_rows": [],
+              "message": "조회된 데이타가 없습니다."
+            }
+          ],
+          "credit_rating_messages": [
+            "KIS: no matching public company-search row",
+            "NICE: no matching public company-search row",
+            "OpenDART: 조회된 데이타가 없습니다."
+          ],
+          "credit_rating_updated_at": "2026-07-06 09:15:02 KST"
         }
       ]
     },
@@ -10144,5 +11859,28 @@
       ]
     },
     "error": null
+  },
+  "credit_ratings": {
+    "ok": true,
+    "generated_at": "2026-07-06 09:15:02 KST",
+    "source_note": "KIS/NICE 공개 회사별 등급검색에서 확인되는 신평사 등급을 우선 수집하고, OpenDART 채무증권 API의 신용등급 필드로 보조했습니다. 한국기업평가 유효등급 List 및 NICE 유효등급 리스트는 로그인/유료 영역이므로 자동 수집 대상에서 제외했습니다.",
+    "companies_collected": 30,
+    "companies_with_rating": 17,
+    "query": {
+      "start_date": "20210706",
+      "end_date": "20260706",
+      "lookback_years": 5,
+      "scope": "cak",
+      "dart_mode": "fallback",
+      "key_source": ".env:key",
+      "kis_source_url": "https://www.kisrating.com/ratingsSearch/corp_search.do",
+      "nice_source_url": "https://www.nicerating.com/disclosure/companySearch.do",
+      "opendart_source_url": "https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS006&apiId=2020055",
+      "dart_key_status": {
+        "status": "000",
+        "message": "정상",
+        "sample_corp_name": "삼성전자(주)"
+      }
+    }
   }
 }

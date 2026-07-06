@@ -17,7 +17,10 @@ import pandas as pd
 import pdfplumber
 
 
-ROOT = Path(__file__).resolve().parents[2]
+HERE = Path(__file__).resolve()
+ROOT = HERE.parents[1]
+if HERE.parent.name == "scripts" and HERE.parent.parent.name == "construction_source_status":
+    ROOT = HERE.parents[2]
 OUTPUT_DIR = ROOT / "outputs"
 HTML_OUT = OUTPUT_DIR / "construction_source_status.html"
 JSON_OUT = OUTPUT_DIR / "construction_source_status_data.json"
@@ -27,6 +30,7 @@ DART_AWARDS_CACHE_OUT = OUTPUT_DIR / "construction_dart_awards_cache.json"
 NARA_CONTRACTS_CACHE_OUT = OUTPUT_DIR / "construction_nara_contracts_cache.json"
 NEWS_CACHE_OUT = OUTPUT_DIR / "construction_company_news_cache.json"
 DART_STRATEGY_CACHE_OUT = OUTPUT_DIR / "construction_dart_strategy_cache.json"
+CREDIT_RATINGS_CACHE_OUT = OUTPUT_DIR / "construction_credit_ratings_cache.json"
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 KST = timezone(timedelta(hours=9))
@@ -293,6 +297,45 @@ def load_article_lookup() -> dict[str, dict[str, Any]]:
     return lookup
 
 
+def load_credit_rating_lookup() -> tuple[dict[str, dict[str, Any]], dict[str, Any]]:
+    lookup: dict[str, dict[str, Any]] = {}
+    cache = read_json_file(CREDIT_RATINGS_CACHE_OUT)
+    generated_at = cache.get("generated_at") or ""
+
+    def entry_score(entry: dict[str, Any]) -> int:
+        if entry.get("status") == "ready" and entry.get("rating_label"):
+            return 3
+        if entry.get("sources"):
+            return 2
+        return 1
+
+    for entry in cache.get("companies", []) or []:
+        packed = {
+            "company": entry.get("company"),
+            "aliases": entry.get("aliases") or [],
+            "status": entry.get("status") or "empty",
+            "rating_label": entry.get("rating_label") or "",
+            "representative": entry.get("representative") or {},
+            "sources": entry.get("sources") or [],
+            "messages": entry.get("messages") or [],
+            "updated_at": generated_at,
+        }
+        for key in company_lookup_keys(entry):
+            current = lookup.get(key)
+            if not current or entry_score(packed) > entry_score(current):
+                lookup[key] = packed
+
+    meta = {
+        "ok": bool(cache),
+        "generated_at": generated_at,
+        "source_note": cache.get("source_note") or "",
+        "companies_collected": cache.get("companies_collected") or 0,
+        "companies_with_rating": cache.get("companies_with_rating") or 0,
+        "query": cache.get("query") or {},
+    }
+    return lookup, meta
+
+
 def article_identity(article: dict[str, Any]) -> str:
     return normalize_award_company(article.get("url")) or normalize_award_company(article.get("title"))
 
@@ -354,6 +397,27 @@ def attach_articles_to_rows(rows: list[dict[str, Any]], article_lookup: dict[str
         row["related_articles_status"] = "ready" if row["related_articles"] else "empty"
 
 
+def attach_credit_ratings_to_rows(rows: list[dict[str, Any]], rating_lookup: dict[str, dict[str, Any]]) -> None:
+    for row in rows:
+        keys = [normalize_award_company(row.get("company"))]
+        keys.extend(normalize_award_company(alias) for alias in row.get("aliases", []) or [])
+        entry = next((rating_lookup[key] for key in keys if key in rating_lookup), None)
+        if not entry:
+            row["credit_rating_label"] = "미확인"
+            row["credit_rating_status"] = "unmapped"
+            row["credit_rating_representative"] = {}
+            row["credit_rating_sources"] = []
+            row["credit_rating_messages"] = ["신용등급 캐시에 매칭된 회사명이 없습니다."]
+            row["credit_rating_updated_at"] = ""
+            continue
+        row["credit_rating_label"] = entry.get("rating_label") or "미확인"
+        row["credit_rating_status"] = entry.get("status") or "empty"
+        row["credit_rating_representative"] = entry.get("representative") or {}
+        row["credit_rating_sources"] = entry.get("sources") or []
+        row["credit_rating_messages"] = entry.get("messages") or []
+        row["credit_rating_updated_at"] = entry.get("updated_at") or ""
+
+
 def attach_recent_awards(results: dict[str, Any]) -> None:
     award_lookup = load_recent_award_lookup()
     article_lookup = load_article_lookup()
@@ -374,6 +438,14 @@ def attach_recent_awards(results: dict[str, Any]) -> None:
         attach_recent_awards_to_rows(etis.data.get("construction_rows", []), award_lookup)
         attach_articles_to_rows(etis.data.get("overall_rows", []), article_lookup)
         attach_articles_to_rows(etis.data.get("construction_rows", []), article_lookup)
+
+
+def attach_credit_ratings(results: dict[str, Any]) -> None:
+    rating_lookup, meta = load_credit_rating_lookup()
+    results["credit_ratings"] = meta
+    cak = results.get("cak")
+    if isinstance(cak, FetchResult) and cak.ok and cak.data:
+        attach_credit_ratings_to_rows(cak.data.get("rows", []), rating_lookup)
 
 
 def fetch_cak_top30() -> dict[str, Any]:
@@ -702,6 +774,10 @@ def render_value(value: Any, kind: str, max_amount: int = 0) -> str:
         return f"{format_num(value)}{money_bar(parse_int(value), max_amount)}"
     if kind == "money":
         return format_num(value)
+    if kind == "rating":
+        text = compact_text(value)
+        rating_class = " empty" if not text or text == "미확인" else ""
+        return f'<span class="rating-pill{rating_class}">{html.escape(text or "미확인")}</span>'
     text = compact_text(value)
     return html.escape(text if text else "-")
 
@@ -865,6 +941,108 @@ def render_related_articles(row: dict[str, Any]) -> str:
     """
 
 
+CREDIT_PRODUCT_LABELS = {
+    "company_bond": "회사채",
+    "company_bond_alt": "회사채",
+    "corporate_credit": "기업신용등급",
+    "commercial_paper": "기업어음",
+    "short_term_bond": "단기사채",
+    "dart_bond": "DART 채무증권",
+    "abs": "ABS",
+    "ifsr": "보험금지급능력",
+}
+
+
+def rating_product_label(value: Any) -> str:
+    key = compact_text(value)
+    if not key:
+        return ""
+    return CREDIT_PRODUCT_LABELS.get(key, key)
+
+
+def render_rating_item(item: dict[str, Any]) -> str:
+    rating = compact_text(item.get("rating"))
+    if not rating:
+        return ""
+    outlook = compact_text(item.get("outlook"))
+    label = f"{rating} / {outlook}" if outlook else rating
+    agency = compact_text(item.get("agency"))
+    product = rating_product_label(item.get("product"))
+    date = compact_text(item.get("date"))
+    meta = " · ".join(part for part in [agency, product, date] if part)
+    source_url = compact_text(item.get("source_url"))
+    badge = f'<span class="rating-pill small">{html.escape(label)}</span>'
+    if source_url:
+        badge = f'<a href="{html.escape(source_url)}" target="_blank" rel="noreferrer">{badge}</a>'
+    return f"<li>{badge}<span>{html.escape(meta)}</span></li>"
+
+
+def render_credit_rating(row: dict[str, Any]) -> str:
+    if "credit_rating_status" not in row:
+        return ""
+
+    label = compact_text(row.get("credit_rating_label")) or "미확인"
+    status = compact_text(row.get("credit_rating_status")) or "empty"
+    updated_at = compact_text(row.get("credit_rating_updated_at"))
+    representative = row.get("credit_rating_representative") or {}
+    sources = row.get("credit_rating_sources") or []
+    messages = row.get("credit_rating_messages") or []
+    rep_meta = " · ".join(
+        part
+        for part in [
+            compact_text(representative.get("agency")),
+            rating_product_label(representative.get("product")),
+            compact_text(representative.get("source")),
+        ]
+        if part
+    )
+    if updated_at:
+        rep_meta = f"{rep_meta} · 갱신 {updated_at}" if rep_meta else f"갱신 {updated_at}"
+
+    source_items = []
+    for source in sources:
+        source_name = compact_text(source.get("source")) or "외부 소스"
+        matched_name = compact_text(source.get("matched_name"))
+        ok_label = "확인" if source.get("ok") else "미확인"
+        message = compact_text(source.get("message"))
+        if message.lower() == "ok":
+            message = ""
+        source_meta = " · ".join(part for part in [matched_name, message] if part)
+        rating_items = "".join(render_rating_item(item) for item in (source.get("items") or [])[:4])
+        if not rating_items:
+            rating_items = '<li><span class="rating-pill empty small">미확인</span><span>공개 등급 필드가 비어 있습니다.</span></li>'
+        source_items.append(
+            f"""
+            <li>
+              <div class="credit-source-head">
+                <strong>{html.escape(source_name)}</strong>
+                <span class="source-state">{html.escape(ok_label)}</span>
+              </div>
+              {f'<p>{html.escape(source_meta)}</p>' if source_meta else ''}
+              <ul>{rating_items}</ul>
+            </li>
+            """
+        )
+
+    message_html = ""
+    if status != "ready" and messages:
+        message_html = "<p>" + html.escape(" / ".join(compact_text(message) for message in messages[:3] if compact_text(message))) + "</p>"
+
+    return f"""
+    <section class="credit-ratings status-{html.escape(css_token(status))}">
+      <div class="credit-rating-head">
+        <div>
+          <h3>신용등급</h3>
+          {f'<p>{html.escape(rep_meta)}</p>' if rep_meta else ''}
+        </div>
+        <span class="rating-pill{' empty' if label == '미확인' else ''}">{html.escape(label)}</span>
+      </div>
+      {message_html}
+      <ul class="credit-source-list">{"".join(source_items)}</ul>
+    </section>
+    """
+
+
 def render_comment_box(row: dict[str, Any]) -> str:
     company = compact_text(row.get("company"))
     key = normalize_award_company(company)
@@ -897,6 +1075,7 @@ def render_detail_panel(row: dict[str, Any], fields: list[tuple[str, str, str]])
     <div class="detail-summary">
       <dl class="detail-grid">{"".join(items)}</dl>
     </div>
+    {render_credit_rating(row)}
     <div class="detail-split">
       {render_recent_awards(row)}
       {render_related_articles(row)}
@@ -983,6 +1162,7 @@ def render_html(data: dict[str, Any]) -> str:
 
     tabs: list[dict[str, str]] = []
     source_notes: list[str] = []
+    credit_ratings = data.get("credit_ratings") or {}
     if cak:
         tabs.append(
             {
@@ -998,6 +1178,7 @@ def render_html(data: dict[str, Any]) -> str:
                         ("previous_rank", "전년순위", "rank"),
                         ("rank_change", "변동", "change"),
                         ("company", "회사명", "text"),
+                        ("credit_rating_label", "신용등급", "rating"),
                         ("amount_million_krw", "시평액", "moneybar"),
                         ("region", "지역", "text"),
                         ("representative", "대표자", "text"),
@@ -1008,6 +1189,7 @@ def render_html(data: dict[str, Any]) -> str:
                         ("amount_million_krw", "시공능력평가액(백만원)", "money"),
                         ("registration_no", "등록번호", "text"),
                         ("business_type", "업종", "text"),
+                        ("credit_rating_label", "신용등급", "rating"),
                         ("region", "지역", "text"),
                         ("representative", "대표자", "text"),
                         ("rank", "현재순위", "rank"),
@@ -1020,6 +1202,11 @@ def render_html(data: dict[str, Any]) -> str:
         source_notes.append(
             f'<li><strong>대한건설협회</strong>: 현재 순위는 <a href="{html.escape(cak["source_url"])}" target="_blank" rel="noreferrer">건설업체 검색</a>의 공개 AJAX JSON을 사용했습니다. 전년순위는 <a href="{html.escape(cak.get("previous_source_url", ""))}" target="_blank" rel="noreferrer">{html.escape(cak["previous_year"])}년 공시자료 xlsx</a>의 토건 시트 기준입니다.</li>'
         )
+        if credit_ratings.get("ok"):
+            query = credit_ratings.get("query") or {}
+            source_notes.append(
+                f'<li><strong>신용등급</strong>: KIS/NICE 공개 회사별 등급검색을 우선 사용하고, 공개 등급이 비는 회사는 <a href="{html.escape(query.get("opendart_source_url", "https://opendart.fss.or.kr/"))}" target="_blank" rel="noreferrer">OpenDART 채무증권 API</a>의 최근 {html.escape(str(query.get("lookback_years", 5)))}년 신용등급 필드로 보조했습니다. 현재 캐시 기준 {html.escape(str(credit_ratings.get("companies_with_rating", 0)))}/{html.escape(str(credit_ratings.get("companies_collected", 0)))}개 회사에서 등급을 확인했습니다.</li>'
+            )
     if cm:
         tabs.append(
             {
@@ -1306,7 +1493,7 @@ def render_html(data: dict[str, Any]) -> str:
       width: 100%;
       border-collapse: collapse;
       font-size: 13px;
-      min-width: 820px;
+      min-width: 920px;
     }
     th, td {
       padding: 9px 10px;
@@ -1341,8 +1528,39 @@ def render_html(data: dict[str, Any]) -> str:
     .col-company {
       min-width: 220px;
     }
+    .col-credit_rating_label {
+      width: 96px;
+      min-width: 96px;
+    }
     .cell-change {
       min-width: 72px;
+    }
+    .rating-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 54px;
+      min-height: 24px;
+      padding: 3px 8px;
+      border: 1px solid #98c5bf;
+      border-radius: 999px;
+      background: #edf8f6;
+      color: #0f6864;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+    .rating-pill.empty {
+      border-color: #d7dde5;
+      background: #f4f6f8;
+      color: #6a7886;
+    }
+    .rating-pill.small {
+      min-width: 46px;
+      min-height: 22px;
+      padding: 2px 7px;
+      font-size: 11px;
     }
     .row-toggle {
       display: inline-flex;
@@ -1406,6 +1624,87 @@ def render_html(data: dict[str, Any]) -> str:
       color: var(--ink);
       font-weight: 760;
       overflow-wrap: anywhere;
+    }
+    .credit-ratings {
+      min-width: 0;
+      margin-top: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #dce7e5;
+    }
+    .credit-rating-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .credit-rating-head h3 {
+      margin: 0;
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+    .credit-rating-head p,
+    .credit-ratings > p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+    .credit-source-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .credit-source-list > li {
+      min-width: 0;
+      padding: 9px 10px;
+      border: 1px solid #e2e9ee;
+      border-radius: 8px;
+      background: #ffffff;
+    }
+    .credit-source-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+    .credit-source-head strong {
+      font-size: 12px;
+    }
+    .source-state {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 750;
+    }
+    .credit-source-list p {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: 11px;
+      overflow-wrap: anywhere;
+    }
+    .credit-source-list ul {
+      display: grid;
+      gap: 5px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .credit-source-list ul li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+    .credit-source-list ul span:last-child {
+      min-width: 0;
+      color: var(--muted);
+      font-size: 11px;
+      overflow-wrap: anywhere;
+      white-space: normal;
     }
     .detail-split {
       display: grid;
@@ -1682,6 +1981,14 @@ def render_html(data: dict[str, Any]) -> str:
       }
       .detail-split { grid-template-columns: minmax(0, 1fr); gap: 14px; }
       .detail-grid { grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); }
+      .credit-rating-head {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .credit-source-list {
+        grid-template-columns: minmax(0, 1fr);
+      }
       .recent-awards-head {
         align-items: flex-start;
         flex-direction: column;
@@ -1815,6 +2122,10 @@ def serializable_results(results: dict[str, Any]) -> dict[str, Any]:
     return packed
 
 
+def strip_trailing_whitespace(text: str) -> str:
+    return "\n".join(line.rstrip() for line in text.splitlines()) + "\n"
+
+
 def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     results: dict[str, Any] = {
@@ -1825,7 +2136,8 @@ def main() -> None:
         "kacem": guarded("kacem", fetch_kacem_rankings),
     }
     attach_recent_awards(results)
-    HTML_OUT.write_text(render_html(results), encoding="utf-8")
+    attach_credit_ratings(results)
+    HTML_OUT.write_text(strip_trailing_whitespace(render_html(results)), encoding="utf-8")
     JSON_OUT.write_text(json.dumps(serializable_results(results), ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Wrote {HTML_OUT}")
     print(f"Wrote {JSON_OUT}")
