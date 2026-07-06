@@ -38,6 +38,55 @@ DEFAULT_COMMENT_AUTHOR = "개발솔루션센터 센터장"
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 KST = timezone(timedelta(hours=9))
 
+ARTICLE_TOPIC_STOPWORDS = {
+    "주식회사",
+    "회사명",
+    "제목",
+    "주요내용",
+    "단독",
+    "종합",
+    "속보",
+    "공시",
+    "전략공시",
+    "투자판단",
+    "그룹",
+    "계열거래",
+    "관련",
+    "선정일자",
+    "예상",
+    "이사회결의일",
+    "또는",
+    "사실확인일",
+}
+ARTICLE_EVENT_TERMS = (
+    "재건축",
+    "재개발",
+    "정비사업",
+    "시공사",
+    "우선협상대상자",
+    "수주",
+    "계약",
+    "낙찰",
+    "선정",
+    "투자",
+    "출자",
+    "시설투자",
+    "인수",
+    "합병",
+)
+ARTICLE_PROJECT_SUFFIXES = (
+    "재건축정비사업",
+    "재개발정비사업",
+    "도시정비사업",
+    "정비사업",
+    "아파트",
+    "복합개발사업",
+    "개발사업",
+    "건설공사",
+    "공사",
+    "사업",
+)
+
 
 @dataclass
 class FetchResult:
@@ -354,7 +403,8 @@ def load_article_lookup() -> dict[str, dict[str, Any]]:
             packed["source_name"] = "뉴스/전략공시"
         source_urls = packed.get("source_urls") or []
         packed["source_url"] = source_urls[0] if len(source_urls) == 1 else ""
-        packed["articles"] = sorted(packed.get("articles", []), key=article_date_key, reverse=True)[:5]
+        articles = sorted(packed.get("articles", []), key=article_date_key, reverse=True)
+        packed["articles"] = unique_display_articles(articles, limit=5)
     return lookup
 
 
@@ -410,6 +460,81 @@ def article_date_key(article: dict[str, Any]) -> int:
     month = parse_int(match.group(2)) if match.group(2) else 0
     day = parse_int(match.group(3)) if match.group(3) else 0
     return year * 10000 + month * 100 + day
+
+
+def article_plain_text(article: dict[str, Any]) -> str:
+    text = " ".join(
+        compact_text(article.get(key))
+        for key in ("title", "summary")
+        if compact_text(article.get(key))
+    )
+    text = re.sub(r"\[[^\]]+\]|\([^)]*\)", " ", text)
+    return text.lower()
+
+
+def article_words(article: dict[str, Any]) -> list[str]:
+    return re.findall(r"[0-9a-z가-힣]+", article_plain_text(article))
+
+
+def article_project_terms(article: dict[str, Any]) -> set[str]:
+    terms: set[str] = set()
+    for word in article_words(article):
+        for match in re.findall(r"[가-힣a-z]+[0-9]+(?:단지|bl|블록|구역|지구|공구)", word):
+            terms.add(match)
+        for suffix in ARTICLE_PROJECT_SUFFIXES:
+            if word.endswith(suffix) and len(word) > len(suffix) + 1:
+                terms.add(word[: -len(suffix)])
+    return {term for term in terms if len(term) >= 3}
+
+
+def article_event_terms(article: dict[str, Any]) -> set[str]:
+    text = article_plain_text(article)
+    return {term for term in ARTICLE_EVENT_TERMS if term in text}
+
+
+def article_topic_terms(article: dict[str, Any]) -> set[str]:
+    terms: set[str] = set(article_project_terms(article))
+    for word in article_words(article):
+        if len(word) < 2 or word in ARTICLE_TOPIC_STOPWORDS:
+            continue
+        for suffix in ARTICLE_PROJECT_SUFFIXES:
+            if word.endswith(suffix) and len(word) > len(suffix) + 1:
+                word = word[: -len(suffix)]
+                break
+        if len(word) >= 2 and word not in ARTICLE_TOPIC_STOPWORDS:
+            terms.add(word)
+    terms.update(article_event_terms(article))
+    return terms
+
+
+def is_redundant_article(candidate: dict[str, Any], selected: dict[str, Any]) -> bool:
+    candidate_projects = article_project_terms(candidate)
+    selected_projects = article_project_terms(selected)
+    shared_projects = candidate_projects & selected_projects
+    if shared_projects:
+        candidate_events = article_event_terms(candidate)
+        selected_events = article_event_terms(selected)
+        if candidate_events & selected_events:
+            return True
+
+    candidate_terms = article_topic_terms(candidate)
+    selected_terms = article_topic_terms(selected)
+    if not candidate_terms or not selected_terms:
+        return False
+    shared = candidate_terms & selected_terms
+    overlap_base = min(len(candidate_terms), len(selected_terms))
+    return len(shared) >= 4 and len(shared) / overlap_base >= 0.55
+
+
+def unique_display_articles(articles: list[dict[str, Any]], limit: int = 5) -> list[dict[str, Any]]:
+    selected: list[dict[str, Any]] = []
+    for article in articles:
+        if any(is_redundant_article(article, existing) for existing in selected):
+            continue
+        selected.append(article)
+        if len(selected) >= limit:
+            break
+    return selected
 
 
 def merge_article_entry(lookup: dict[str, dict[str, Any]], entry: dict[str, Any], updated_at: str) -> None:
@@ -1524,7 +1649,7 @@ def render_html(data: dict[str, Any]) -> str:
         '<li><strong>최근 수주/계약</strong>: 산군/보도 수동 캐시, OpenDART 단일판매ㆍ공급계약체결 공시, 나라장터 계약정보서비스 공사 계약현황 캐시를 회사명으로 합쳐 최근 5년 이내 자료 중 최신 5건만 표시합니다. 공사비 단가는 DART 원문에서 연면적이 추출되는 경우에만 계약금액 ÷ 연면적으로 산정합니다.</li>'
     )
     source_notes.append(
-        '<li><strong>기사/전략 정보</strong>: Google News RSS에서 회사명과 수주/계약/실적/경영/투자/계열사/신사업 키워드로 검색한 기사와 OpenDART 투자판단ㆍ출자ㆍ시설투자ㆍM&Aㆍ특수관계인 거래성 공시를 합쳐 최신 5건만 표시합니다. 주가성 단신은 가능한 제외했지만 최종 적합성은 확인이 필요합니다.</li>'
+        '<li><strong>기사/전략 정보</strong>: Google News RSS에서 회사명과 수주/계약/실적/경영/투자/계열사/신사업 키워드로 검색한 기사와 OpenDART 투자판단ㆍ출자ㆍ시설투자ㆍM&Aㆍ특수관계인 거래성 공시를 합쳐 표시합니다. 같은 프로젝트ㆍ이벤트로 보이는 유사 기사군은 대표 1건만 남기고 최대 5건까지 노출합니다.</li>'
     )
     source_notes.append(
         f'<li><strong>코멘트</strong>: <code>{html.escape(str((PDF_COMMENTS.get("source") or {}).get("file", "시공사_동향_20260703.pdf")))}</code>의 회사별 기록을 기본 코멘트로 표시하고, 추가 코멘트는 온라인 DB에 저장해 사용자 간 공유됩니다. {html.escape(DEFAULT_COMMENT_AUTHOR)} 작성자명은 공식 PDF 기록에만 사용합니다.</li>'

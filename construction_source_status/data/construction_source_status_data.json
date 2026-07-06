@@ -276,24 +276,6 @@
               "report_name": "투자판단관련주요경영사항"
             },
             {
-              "title": "투자판단: 압구정아파트지구 특별계획구역3 재건축정비사업 시공자선정",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260526800002",
-              "source": "OpenDART 전략공시",
-              "published": "2026.05.26",
-              "summary": "제목: 압구정아파트지구 특별계획구역3 재건축정비사업 시공자선정 · 주요내용: - 당사는 아래와 같이 2026년 5월 25일 압구정아파트지구 특별계획구역3 재건축정비사업의 시공자로 선정되었습니다. - 아... · 이사회결의일(결정일)또는사실확인일: 2026-05-25",
-              "primary_category": "investment_decision",
-              "categories": [
-                "dart_strategy",
-                "investment_decision"
-              ],
-              "matched_terms": [
-                "투자판단관련주요경영사항"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20260526800002",
-              "report_name": "투자판단관련주요경영사항"
-            },
-            {
               "title": "[단독] 현대건설, (주)한화와 컨소로 '압구정5구역' 재건축한다",
               "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9IVHk3SkJNYlZHMkhpM3dhdWw5OHJGWlo1UU9MZWJZdFhwb0lvUklsalpGT2NQNktmNHJOUWphVnpJZHBxTC1PZDA2aHZ6ZktlWkpKRnZweTFoMklTWDVMQVlyaVViT3oyWUd4Mmw4dHE?oc=5",
               "source": "meconomynews.com",
@@ -322,6 +304,24 @@
                 "건설"
               ],
               "direction_signal": false
+            },
+            {
+              "title": "현대건설 주총서 올해 수주 목표 33.4조 제시, 이한우 \"에너지 밸류체인 경쟁력 강화\"",
+              "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBwVGp0WlFLYUtodkRCMzZaTXYxSHV1T3QtY2tEYzktLVo5Tk1HbGZRNWx5cHMzVnhOWDVWUmx4Q21lZzUxRjFiRmhHRWNTQ1RFajllRUhycGdZUk9Oa3d1VmRudmdSdjVNUWZDMkpRRQ?oc=5",
+              "source": "비즈니스포스트",
+              "published": "2026.03.26",
+              "summary": "현대건설 주총서 올해 수주 목표 33.4조 제시, 이한우 \"에너지 밸류체인 경쟁력 강화\" 비즈니스포스트",
+              "primary_category": "award_contract",
+              "categories": [
+                "award_contract",
+                "capex_energy"
+              ],
+              "matched_terms": [
+                "수주",
+                "건설",
+                "에너지"
+              ],
+              "direction_signal": true
             }
           ],
           "related_articles_source": {
@@ -540,24 +540,6 @@
               "direction_signal": false
             },
             {
-              "title": "투자판단: 신대방역세권 재개발정비사업 시공자 선정",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260427800114",
-              "source": "OpenDART 전략공시",
-              "published": "2026.04.27",
-              "summary": "제목: 신대방역세권 재개발정비사업 시공자 선정 · 주요내용: - 당사는 신대방역세권 재개발정비사업 조합 총회에서 시공자로 선정됨 - 본 사업의 공사금액은 약 2,908억원임(VAT 제외... · 이사회결의일(결정일)또는사실확인일: 2026-04-25",
-              "primary_category": "investment_decision",
-              "categories": [
-                "dart_strategy",
-                "investment_decision"
-              ],
-              "matched_terms": [
-                "투자판단관련주요경영사항"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20260427800114",
-              "report_name": "투자판단관련주요경영사항"
-            },
-            {
               "title": "투자판단: 의왕초평A1, 원주무실S1 공공지원민간임대주택사업 우선협상대상자 선정",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260421800001",
               "source": "OpenDART 전략공시",
@@ -574,6 +556,21 @@
               "direction_signal": true,
               "receipt_no": "20260421800001",
               "report_name": "투자판단관련주요경영사항"
+            },
+            {
+              "title": "국토장관, 대우건설 회장 면담…가덕도신공항 성공 노력 당부",
+              "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBURzg2ZGRfMGVmVFh4a3czQndLSDQxaWhTc0VCYkdjaHJOcmhXVzlZT2pyakl2bVJjcXJ5RlAzYXcyVk5LRGFQZnQwTFRlUHJJRTZ5cUpPV2VVcknSAWBBVV95cUxNakpnR1dHYXBMdzVHVXY0ZEtDeU5jd2VoanBxS2pNRkhHNWlCdzJLbWVnWFpGVlcwbGZEVnJEbkpNdkV0a011b204eEJWYWZ3TVFIbDl3Vm80WS1iLTM2N2U?oc=5",
+              "source": "연합뉴스",
+              "published": "2026.04.16",
+              "summary": "국토장관, 대우건설 회장 면담…가덕도신공항 성공 노력 당부 연합뉴스",
+              "primary_category": "award_contract",
+              "categories": [
+                "award_contract"
+              ],
+              "matched_terms": [
+                "건설"
+              ],
+              "direction_signal": false
             }
           ],
           "related_articles_source": {
@@ -761,37 +758,6 @@
               "report_name": "투자판단관련주요경영사항"
             },
             {
-              "title": "DL이앤씨, 목동6단지 재건축 잡았다…마수걸이 수주",
-              "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9xZmtoZ3dQbXJOS0JMTGw0WnNsU3o2b0J6akd6bk01SW5KZUJKS2pDWkFzdGlNbVhaN3Zwd21EMW1UcEgzQngzMzdROEh3blByOGtaT3dkaFZHcDNZaWFCRHd6dHU?oc=5",
-              "source": "MTN 머니투데이방송",
-              "published": "2026.06.27",
-              "summary": "DL이앤씨, 목동6단지 재건축 잡았다…마수걸이 수주 MTN 머니투데이방송",
-              "primary_category": "award_contract",
-              "categories": [
-                "award_contract"
-              ],
-              "matched_terms": [
-                "수주"
-              ],
-              "direction_signal": false
-            },
-            {
-              "title": "DL이앤씨, '1.2조' 목동6단지 재건축 시공사로 선정…수주 반등 도모",
-              "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1zcjEyOUxCaDJMdGlsNUlmZmVwbWNhalhlNG9Gell5NUFkanZTN2YxcEstTmcwMUJaNmk5cS1YRnNheGZJdmlzclVrbnEzX1pkbnF1VXhQREViVlR1TVhHclIwandtaThod0NaOVNUUkw?oc=5",
-              "source": "연합인포맥스",
-              "published": "2026.06.27",
-              "summary": "DL이앤씨, '1.2조' 목동6단지 재건축 시공사로 선정…수주 반등 도모 연합인포맥스",
-              "primary_category": "award_contract",
-              "categories": [
-                "award_contract"
-              ],
-              "matched_terms": [
-                "수주",
-                "공사"
-              ],
-              "direction_signal": false
-            },
-            {
               "title": "키움證 \"DL이앤씨, 종전합의 수혜…현지 수주이력 주목\"",
               "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE54MnRpd2VYLUNGYTZZbElWUnBNanNYNFRJaXlXNElXeTY5WE1UdVVqZG5WTERxcGZJbXdEaFFJbHZvS0dyZ19ZQnJWRXh4UWhWZDNUXzJFZVROaWvSAWBBVV95cUxORFp5NTIwWUo0WDR0MGNPQUx2TzFQMnJXMUZLc1I2R2FjY0h6NlhNaWNObFBwZlE1bXgtb1FLem1HSGlPZlZYNElSc255ckRzSjk3NmZaQUpGQW1jN0ZaVzQ?oc=5",
               "source": "연합뉴스",
@@ -805,6 +771,40 @@
                 "수주"
               ],
               "direction_signal": false
+            },
+            {
+              "title": "'수주 제로' DL이앤씨·IPARK현산, '1.8조' 성수2지구서 반전 노린다",
+              "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFA1MmZlRVlsZlNWMGlQX0d3RTllbUVtQ3l2Q0d4TkNaalhHQU90ODNmU2Iwbk5hQzZyWWU5SlBzek5vWHFVN3NESUtlR2Zyb3R3QXFRNlFSUVNkSHR2NHpvU2FVbw?oc=5",
+              "source": "더구루",
+              "published": "2026.06.10",
+              "summary": "'수주 제로' DL이앤씨·IPARK현산, '1.8조' 성수2지구서 반전 노린다 더구루",
+              "primary_category": "award_contract",
+              "categories": [
+                "award_contract"
+              ],
+              "matched_terms": [
+                "수주"
+              ],
+              "direction_signal": false
+            },
+            {
+              "title": "DL이앤씨, 상반기 플랜트 수주 1조원 돌파…플랜트·에너지 성장축",
+              "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9VN3ZjbkxwYWJ2a0QxUlBOUS1iSkl4SERidWNpaXNXUGN4WXlodE0xWDRzR0Z1cEkwQnFOdkIzYVNvNDdOZkIzc0JVQUprbjRTNlJxMWVwWVMxSFBUYjhHbjR2ZkhfXy1x?oc=5",
+              "source": "녹색경제신문",
+              "published": "2026.06.09",
+              "summary": "DL이앤씨, 상반기 플랜트 수주 1조원 돌파…플랜트·에너지 성장축 녹색경제신문",
+              "primary_category": "award_contract",
+              "categories": [
+                "award_contract",
+                "new_business_expansion",
+                "capex_energy"
+              ],
+              "matched_terms": [
+                "수주",
+                "플랜트",
+                "에너지"
+              ],
+              "direction_signal": true
             }
           ],
           "related_articles_source": {
@@ -1302,21 +1302,6 @@
               "direction_signal": false
             },
             {
-              "title": "롯데건설, 오일근 신임 대표이사 선임… “부동산 개발 실무형 CEO”",
-              "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5pd3hNeFFIQWRyZHJUZzFNeFJyaEljN2doWkFtLW42VlNQc0FHNkdYbWp4QzQ4YUJSa2liUjhyRms5X3pRbTlObVVIUThBQkFJQmFBWW0wbi1qemx5REE?oc=5",
-              "source": "스마트투데이",
-              "published": "2025.11.26",
-              "summary": "롯데건설, 오일근 신임 대표이사 선임… “부동산 개발 실무형 CEO” 스마트투데이",
-              "primary_category": "award_contract",
-              "categories": [
-                "award_contract"
-              ],
-              "matched_terms": [
-                "건설"
-              ],
-              "direction_signal": false
-            },
-            {
               "title": "롯데건설, 김해시에 이웃사랑 잡곡쌀 200세트 기탁",
               "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBubkpFaGpHQ3otVkFGcHMwNE85WkxEb0ZfMFdvdTh2OE1OSjJCQjFHckVEOXktV0YzZmthY2FyOGFGOVdpS3VSN2lZTEN5dzFYbS03NFpZOVpuenFyb3U1QzF4QXFleHdEcGVZRXIyandieU9jT2FJ?oc=5",
               "source": "OhmyNews",
@@ -1345,6 +1330,24 @@
                 "건설"
               ],
               "direction_signal": false
+            },
+            {
+              "title": "그룹/계열거래: 롯데캐피탈(주)",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250714000415",
+              "source": "OpenDART 전략공시",
+              "published": "2025.07.15",
+              "summary": "회사명: 롯데건설(주) · 거래상대방: 롯데캐피탈(주) · 사.거래상대방총잔액: 165,000",
+              "primary_category": "group_transaction",
+              "categories": [
+                "dart_strategy",
+                "group_transaction"
+              ],
+              "matched_terms": [
+                "특수관계인에대한담보제공"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20250714000415",
+              "report_name": "특수관계인에대한담보제공"
             }
           ],
           "related_articles_source": {
@@ -1503,22 +1506,22 @@
               "report_name": "특수관계인에대한출자"
             },
             {
-              "title": "출자/지분: 성주테크(주)",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260130000293",
+              "title": "자금조달: 에스케이에코플랜트(주)",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251030000496",
               "source": "OpenDART 전략공시",
-              "published": "2026.01.30",
-              "summary": "회사명: 에스케이에코플랜트(주) · 거래상대방: 성주테크(주)",
-              "primary_category": "equity_investment",
+              "published": "2025.10.30",
+              "summary": "기타투자판단에참고할사항-(2)전환조건: 전환비율 및 전환가액 변경 · 타법인증권취득자금: Econovation,LLC (미국) · 타법인증권취득자금: Ecoplant HoldingMalaysia Sdn. Bhd.(말레이시아) · 회사명: 에스케이에코플랜트(주)",
+              "primary_category": "financing",
               "categories": [
                 "dart_strategy",
-                "equity_investment"
+                "financing"
               ],
               "matched_terms": [
-                "특수관계인에대한출자"
+                "유상증자결정"
               ],
               "direction_signal": true,
-              "receipt_no": "20260130000293",
-              "report_name": "특수관계인에대한출자"
+              "receipt_no": "20251030000496",
+              "report_name": "주요사항보고서(유상증자결정)"
             }
           ],
           "related_articles_source": {
@@ -1758,24 +1761,6 @@
               "report_name": "특수관계인에대한출자"
             },
             {
-              "title": "자금조달: 906,700,000,000",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260526800490",
-              "source": "OpenDART 전략공시",
-              "published": "2026.05.26",
-              "summary": "자금조달의목적-채무상환자금(원): 906,700,000,000 · 한화솔루션㈜의[기재정정]주요사항보고서(유상증자결정)공시(2026.05.14)'24.기타투자판단에참고할사항-가.신주발행가액산정방법'참조: 한화솔루션㈜의 [기재정정]주요사항보고서(유상증자결정) 공시(2026.05.26)'24.기타 투자판단에 참고할 사항-가.신주... · 한화솔루션㈜의[기재정정]주요사항보고서(유상증자결정)공시(2026.05.14)'24.기타투자판단에참고할사항-나.신주의배정방법'참조: 한화솔루션㈜의 [기재정정]주요사항보고서(유상증자결정) 공시(2026.05.26)'24.기타 투자판단에 참고할 사항-나.신주의... · 이사회결의일(결정일): 2026-05-14",
-              "primary_category": "financing",
-              "categories": [
-                "dart_strategy",
-                "financing"
-              ],
-              "matched_terms": [
-                "유상증자결정"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20260526800490",
-              "report_name": "유상증자결정(종속회사의주요경영사항)"
-            },
-            {
               "title": "한화그룹, 74년 만에 재계 ‘빅5’ 입성…’방산·조선·에너지’로 판 흔들었다",
               "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFA5MWhHV3g4WTlmWFBCQVJXd2hvTEVOYldxOW03UEdVVFJ3Y3BrTGJGWkZiZHJaVGRfQUR5VjZ3dURNemdQeG84SE5VVFlINWpqVE40MQ?oc=5",
               "source": "더밸류뉴스",
@@ -1809,6 +1794,23 @@
               "direction_signal": true,
               "receipt_no": "20260518000044",
               "report_name": "특수관계인에대한담보제공"
+            },
+            {
+              "title": "한화그룹, 홍콩서 고려아연 지분 매각 추진 중... 한화솔루션 유증 자금 마련하나 - 조선비즈",
+              "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOeTFPc1pFQlYxZjVjejlLM1A4QTlRWW40aDlXMF84NlNDczBELUNTcUlTX0VlemZOSGRnM1ZpVWpXNUt6bE1LS1RRTTZqUWxZR0lyY244cXd2Vmx3Zlk4UXRsbk5FUXhaZ3F6SkphN2szN19fbjltaE15Q0ZZLWRVSXhVd21yRk3SAZsBQVVfeXFMTnN2V0pLWmpLSmZMajA1dVprWXJHQlJteVB0Z0p5LXlSQXRSQVhoODRDaGw2Ty1TS1dMV1Bnakg4NWFJMWZJUHJIb3IyYS1zaGEyNGNXYmhrWlAyQk5LMVV2WjdJa0ItLXFDMHN2NHMwUmFPWU0tVWExSE1NbFJtdjB1NHZiZGIwZVVsV3NQVWpVV1NheWpLa2NsaGs?oc=5",
+              "source": "Chosunbiz",
+              "published": "2026.03.30",
+              "summary": "한화그룹, 홍콩서 고려아연 지분 매각 추진 중... 한화솔루션 유증 자금 마련하나 - 조선비즈 Chosunbiz",
+              "primary_category": "group_investment",
+              "categories": [
+                "group_investment",
+                "ma_restructuring"
+              ],
+              "matched_terms": [
+                "그룹",
+                "매각"
+              ],
+              "direction_signal": true
             }
           ],
           "related_articles_source": {
@@ -2202,42 +2204,6 @@
               "report_name": "투자판단관련주요경영사항"
             },
             {
-              "title": "투자판단: 회원2구역 주택재개발정비사업 시공사 선정",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20231219800475",
-              "source": "OpenDART 전략공시",
-              "published": "2023.12.19",
-              "summary": "제목: 회원2구역 주택재개발정비사업 시공사 선정 · 주요내용: 당사는 회원2구역 주택재개발정비사업 시공사로 선정되었습니다. 1. 선정 공문수령일 : 2023.12.19 (화) 2. 공사예... · 이사회결의일(결정일)또는사실확인일: 2023-12-19",
-              "primary_category": "investment_decision",
-              "categories": [
-                "dart_strategy",
-                "investment_decision"
-              ],
-              "matched_terms": [
-                "투자판단관련주요경영사항"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20231219800475",
-              "report_name": "투자판단관련주요경영사항"
-            },
-            {
-              "title": "투자판단: 광주 동서작구역재개발 정비사업 시공사 선정",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20231026800176",
-              "source": "OpenDART 전략공시",
-              "published": "2023.10.26",
-              "summary": "제목: 광주 동서작구역재개발 정비사업 시공사 선정 · 주요내용: 당사는 광주 동서작구역재개발 정비사업 시공사로 선정되었습니다. 1. 선정일자 : 2023.10.26 (목) 2. 공사예정금액... · 이사회결의일(결정일)또는사실확인일: 2023-10-26",
-              "primary_category": "investment_decision",
-              "categories": [
-                "dart_strategy",
-                "investment_decision"
-              ],
-              "matched_terms": [
-                "투자판단관련주요경영사항"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20231026800176",
-              "report_name": "투자판단관련주요경영사항"
-            },
-            {
               "title": "투자판단: 옥정~포천 광역철도 2공구 건설공사 실시설계 적격자 선정",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20231012800355",
               "source": "OpenDART 전략공시",
@@ -2253,6 +2219,24 @@
               ],
               "direction_signal": true,
               "receipt_no": "20231012800355",
+              "report_name": "투자판단관련주요경영사항"
+            },
+            {
+              "title": "투자판단: 안양 호계동 533-1일원 준공업지역 지식산업센터 신축공사 우선협상대상자 선정",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230323801991",
+              "source": "OpenDART 전략공시",
+              "published": "2023.03.23",
+              "summary": "주요내용: 최근매출액 : 1,962,419,334,798원 매출액대비: 약 8.2% · 제목: 안양 호계동 533-1일원 준공업지역 지식산업센터 신축공사 우선협상대상자 선정 · 주요내용: 당사는 안양 호계동 533-1일원 준공업지역 지식산업센터 신축공사 우선협상대상자로 선정되었습니다. 1. 선정일자 : 2023... · 이사회결의일(결정일)또는사실확인일: 2023-03-23",
+              "primary_category": "investment_decision",
+              "categories": [
+                "dart_strategy",
+                "investment_decision"
+              ],
+              "matched_terms": [
+                "투자판단관련주요경영사항"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20230323801991",
               "report_name": "투자판단관련주요경영사항"
             }
           ],
@@ -2893,24 +2877,6 @@
               "report_name": "투자판단관련주요경영사항"
             },
             {
-              "title": "투자판단: 강동하남남양주선 광역철도 6공구 건설공사 실시설계적격자 선정",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260616800689",
-              "source": "OpenDART 전략공시",
-              "published": "2026.06.16",
-              "summary": "제목: 강동하남남양주선 광역철도 6공구 건설공사 실시설계적격자 선정 · 주요내용: 당사는 아래와 같이 강동하남남양주선 광역철도 6공구 건설공사 실시설계적격자로 선정되었습니다. - 아 래 - 1. 선정일자 :... · 이사회결의일(결정일)또는사실확인일: 2026-06-16",
-              "primary_category": "investment_decision",
-              "categories": [
-                "dart_strategy",
-                "investment_decision"
-              ],
-              "matched_terms": [
-                "투자판단관련주요경영사항"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20260616800689",
-              "report_name": "투자판단관련주요경영사항"
-            },
-            {
               "title": "출자/지분: 공공지원민간임대주택 개발사업 참여",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260522800345",
               "source": "OpenDART 전략공시",
@@ -2945,6 +2911,21 @@
               "direction_signal": true,
               "receipt_no": "20260518800413",
               "report_name": "투자판단관련주요경영사항"
+            },
+            {
+              "title": "인천도시공사(iH), ‘검암 S-2BL’ 민간참여 공공주택 사업 본격화… 1,032세대 랜드마크 조성",
+              "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE56czZYM1FHdXRWaGZnNmcxRnRWT0hZTzhlT2RHdEU3ekFOS3NHN3V2cU1sd00wSG9qcHRXdURYMkxxMmtHSm9FeHJEWWVoaUVxN3VIbXkyZmtsdGFZM3hwNl8wQQ?oc=5",
+              "source": "우리일보",
+              "published": "2026.04.30",
+              "summary": "인천도시공사(iH), ‘검암 S-2BL’ 민간참여 공공주택 사업 본격화… 1,032세대 랜드마크 조성 우리일보",
+              "primary_category": "award_contract",
+              "categories": [
+                "award_contract"
+              ],
+              "matched_terms": [
+                "공사"
+              ],
+              "direction_signal": false
             }
           ],
           "related_articles_source": {
@@ -3210,23 +3191,6 @@
               "direction_signal": true
             },
             {
-              "title": "제일건설(주) ‘지제역 반도체밸리 풍경채 어바니티’ 입주 개시..커뮤니티 시설 본격 운영",
-              "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1aNjY2dkpHdXFjcW93WE9oSVNVQjBSQ0U4c2JPWjh1RWpQb1RoMkVrcUp5VnhXS3VZWEdvOUxYZTZxQ1pQa3c?oc=5",
-              "source": "v.daum.net",
-              "published": "2026.03.31",
-              "summary": "제일건설(주) ‘지제역 반도체밸리 풍경채 어바니티’ 입주 개시..커뮤니티 시설 본격 운영 v.daum.net",
-              "primary_category": "award_contract",
-              "categories": [
-                "award_contract",
-                "new_business_expansion"
-              ],
-              "matched_terms": [
-                "건설",
-                "반도체"
-              ],
-              "direction_signal": true
-            },
-            {
               "title": "국토부, 2026년도 상반기 공공주택 하자판정 상위 건설사 명단 공개",
               "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE52eTVuUzA5ekJJXzhNR3JUQjdodVhSeXBaaTZuWW1ieXlXOEhjTUFZRW9kUDZvZml2aFNnTW5OTWFXa3g2R1ZUb2M1OVNrelJaaWItU0szOWRLZ25wNGVBRnQ0T1VOaXc?oc=5",
               "source": "대한건축사협회 건축사신문",
@@ -3471,25 +3435,6 @@
               "direction_signal": true
             },
             {
-              "title": "코오롱 자회사 코오롱글로벌, 한국도로공사와 975억원 규모 공사수주 계약 체결",
-              "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBOVEQ4aGRHd2lkWEdIaUdaWU9MYjVlc2hFeW5fdTlCSjIzM0FQQkdpMnFWeXM5bm45MmNmeXlpaWIxN3NDMkt5Mlh0ejBMQWdsMFBSSGc2WF84WG4wSUNhSzFmM2ZCQVQ1M1ZRWUhlOXRmdlk?oc=5",
-              "source": "디지털투데이",
-              "published": "2025.11.17",
-              "summary": "코오롱 자회사 코오롱글로벌, 한국도로공사와 975억원 규모 공사수주 계약 체결 디지털투데이",
-              "primary_category": "award_contract",
-              "categories": [
-                "award_contract",
-                "group_investment"
-              ],
-              "matched_terms": [
-                "수주",
-                "계약",
-                "공사",
-                "자회사"
-              ],
-              "direction_signal": true
-            },
-            {
               "title": "M&A/구조개편: 회사명",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250929000321",
               "source": "OpenDART 전략공시",
@@ -3506,6 +3451,21 @@
               "direction_signal": true,
               "receipt_no": "20250929000321",
               "report_name": "주요사항보고서(회사합병결정)"
+            },
+            {
+              "title": "코오롱글로벌, 완도 해상풍력 사업 본격화…DNV와 기술 협력",
+              "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE12ZDZUWEk2SXZhSU1HTkNjX2NPXzBpVEQwNkJnMjJUblpMZjlSVlJGSVA4RnBnTDdKQkJJRVRsSVhSRWdzd0UwTnRGM2FBS3l1ZW9rRGxQWFNZZmNDRE9EOVFfSG9ta0V3M2hkN09rcGJoZw?oc=5",
+              "source": "글로벌이코노믹",
+              "published": "2025.08.21",
+              "summary": "코오롱글로벌, 완도 해상풍력 사업 본격화…DNV와 기술 협력 글로벌이코노믹",
+              "primary_category": "capex_energy",
+              "categories": [
+                "capex_energy"
+              ],
+              "matched_terms": [
+                "풍력"
+              ],
+              "direction_signal": true
             }
           ],
           "related_articles_source": {
@@ -3703,21 +3663,6 @@
               "direction_signal": false
             },
             {
-              "title": "전북개발공사, 고창 덕산 민간참여 공동주택(분양) 건립사업 추진 본격화",
-              "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBOR2FiY2I2cUJweWFYS3VJQ0FhLUZrNWh2TnJiYlRMM0tNVW03a1NpWUh2b1ZuQV9GS3hpOHBXOWZwM28yd01qMmxyUmpnMkZVV3c?oc=5",
-              "source": "전라매일",
-              "published": "2026.04.03",
-              "summary": "전북개발공사, 고창 덕산 민간참여 공동주택(분양) 건립사업 추진 본격화 전라매일",
-              "primary_category": "award_contract",
-              "categories": [
-                "award_contract"
-              ],
-              "matched_terms": [
-                "공사"
-              ],
-              "direction_signal": false
-            },
-            {
               "title": "투자판단: 오산오산 1BL, 인천검단 AA31BL, 인천영종 A-57BL 및 A-63BL 통합형 민간참여 공...",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260401801348",
               "source": "OpenDART 전략공시",
@@ -3734,6 +3679,24 @@
               "direction_signal": true,
               "receipt_no": "20260401801348",
               "report_name": "투자판단관련주요경영사항"
+            },
+            {
+              "title": "그룹/계열거래: 거래 취소에 따른 정정",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260213002419",
+              "source": "OpenDART 전략공시",
+              "published": "2026.02.13",
+              "summary": "다.거래상대방총잔액: 거래 취소에 따른 정정 · -상기2의가.거래일자는최초대여금지급예정일이며,변경될수있음.-상기2의다.거래상대방총잔액은금회대여금이포함된금액임.-본자금대여거래는(주)네오시티가자체적으로자금조달이가능하게될경우취소될수있음.: - 상기 2의 가. 거래일자는 최초 대여금 지급 예정일이며, 변경 될 수 있음.- 상기 2의 다. 거래상대방 총잔액 은 금회... · 회사명: (주)태영건설 · 거래상대방: 네오시티(주)",
+              "primary_category": "group_transaction",
+              "categories": [
+                "dart_strategy",
+                "group_transaction"
+              ],
+              "matched_terms": [
+                "특수관계인에대한자금대여"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260213002419",
+              "report_name": "특수관계인에대한자금대여"
             }
           ],
           "related_articles_source": {
@@ -4017,21 +3980,6 @@
               "direction_signal": false
             },
             {
-              "title": "스마트건설기술로 건설 현장을 혁신하다 | 우미건설(주)의 생생한 인터뷰 확인하기, 건설업 3.5 평점",
-              "url": "https://news.google.com/rss/articles/CBMiqwJBVV95cUxOOVoybjBDSENlNnI2ZjV3VE5IZXlyLWMtTmNVeElCQU13RDJKSVFlSXg3MTlUdHVhTGxDaF84bEVzUTh5c3lxRXYtNE05QWhFakNIaEFrSXl3T0o4ZDlrb1NSNWQzNXdiMnBLSEdObEdUUVAyMVB0RXJ3Nnk1OVRaQV9Nc3I3NE1rS25wMUV0QkFZZlhCcnBkUUUzRV84NEhpMktNaFdsaWpjXzlTUXFNbl9UWV83WkFkc2xaRk5qTU5zcUFRSk42dy1qTlYtMElDd0RJbzk5NFBXN0dKdF9zNWF4V3FyTW1MZlUxcTBkTHNRb3RvcVZJTEFDYk5scERCUEIybTBLajdqY0Qwa1NIbThfQmo2WlpTYmxYMzJpdllBM2UwWkZWbmg3TQ?oc=5",
-              "source": "잡플래닛",
-              "published": "2024.11.22",
-              "summary": "스마트건설기술로 건설 현장을 혁신하다 | 우미건설(주)의 생생한 인터뷰 확인하기, 건설업 3.5 평점 잡플래닛",
-              "primary_category": "award_contract",
-              "categories": [
-                "award_contract"
-              ],
-              "matched_terms": [
-                "건설"
-              ],
-              "direction_signal": false
-            },
-            {
               "title": "우미와 함께 성장한 10년, 공사현장의 리더를 만나다 | 우미건설(주)의 생생한 인터뷰 확인하기, 건설업 3.5 평점",
               "url": "https://news.google.com/rss/articles/CBMi1gJBVV95cUxPSlNEZl83c1pOamdyQmY1T2twZUhCekNKYnRLeU0zSzJjXy1RWkxtZDI5MXp0MlMtd0VmM1JHdjdMYWdxTmRDRDVSZnFQdnVNcmJwXy15YXpoOGlvM195aGZpejEwQjdCOTY1SmRlaER5UEJPTjVNWWFiaW9zdmhmaTVIRWNnZjNsVDNZU1pFYWZYZ1A1Ni1odDVYNU15REZveTBRYjNSYXhsV1REeE5UdXZOSGpVaU16YWxMeXAtMWNEQk5CYmRIWmFrTEpESkpiemM2bjhvT3dRdHpiQS1JMTJFMmpOZWR6UEpWUXk1SExQZHBNS1JhMWdoMEJ4cENCbERwd2FoVEx2Q2k1dlpTbTJxX3RyVjRGdTRvaHFsbEp4Q09ENEhSRkpVQlZaMXJrYV9MQVJGMUs2SlhrTDBzcXVvaUNUYmRlX0ZDNTBxSVlPS1RqelE?oc=5",
               "source": "잡플래닛",
@@ -4043,21 +3991,6 @@
               ],
               "matched_terms": [
                 "공사",
-                "건설"
-              ],
-              "direction_signal": false
-            },
-            {
-              "title": "우미의 개발영업팀을 요약할 수 있는 3가지 키워드! | 우미건설(주)의 생생한 인터뷰 확인하기, 건설업 3.5 평점",
-              "url": "https://news.google.com/rss/articles/CBMi1AJBVV95cUxPQ2lHaWY0SVNJS0QwbTZCOHN0eVhQY0lnaXNXaVctSGZIVWluRk5ZcGhjT0xHa2MtTElreHo2bFhLRlpnRVJDdHA3ZkhtQ1hyUThod0hUaEpGeUhJS0tLNV9vTTVydnlxd2Zzc1pHUFR3T2RCbTY4TktzWU4wdENhalRWdFV6cktUd19rZDNrd3dKbUYtTkdiMlVaX0NvenpqZFpVVU1LWDBsZk5paTRjeG9nMGY2R2hLRW5QeEwwODkySGd3S2djbGN0aXpCdzdkYl9weEtobWlzUTdXZENIczNiUkF3bHd1clJqX2d6NGctQm8zYzd2LUZ6aC1RdjhXRXJzNzlZbXdYVXJmclpNRUR1Skl1c2FYbUFmblJvZFRPSXhXNi1ienVSSE1wTzZwR0txZzlILVpvM1JJZEZFanpZRmR3clhOUEpnYmp3aG9tNEdT?oc=5",
-              "source": "잡플래닛",
-              "published": "2024.11.22",
-              "summary": "우미의 개발영업팀을 요약할 수 있는 3가지 키워드! | 우미건설(주)의 생생한 인터뷰 확인하기, 건설업 3.5 평점 잡플래닛",
-              "primary_category": "award_contract",
-              "categories": [
-                "award_contract"
-              ],
-              "matched_terms": [
                 "건설"
               ],
               "direction_signal": false
@@ -4533,36 +4466,6 @@
               "direction_signal": false
             },
             {
-              "title": "이원준 상무, 금호건설 주식 3313주 보유 보고",
-              "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5yMHl2cXJLRVNGVUF6cVFQdVFXX3R4c251X0h5YXhBRzFvLUtCaklkS3RUcHY4eU1pRFQycGVjMWhLVW03SG01U2JMcEhzeWtJVjFpaFN0MUpBVlZ3Rlp2WjZwdXhCT0ZVTVBJQWk3al9KMlE?oc=5",
-              "source": "디지털투데이",
-              "published": "2026.04.17",
-              "summary": "이원준 상무, 금호건설 주식 3313주 보유 보고 디지털투데이",
-              "primary_category": "award_contract",
-              "categories": [
-                "award_contract"
-              ],
-              "matched_terms": [
-                "건설"
-              ],
-              "direction_signal": false
-            },
-            {
-              "title": "설용훈 상무, 금호건설 주식 2899주 보유 공시",
-              "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE0ydGtjUHROUzlEMlRqSkxhVUJIOExsY0VMcktPMGJpaFl2X2xNQXVlMWhod0NqV0I1YW8zQ2pLNkhYRnlGb0ZHR3hDNF9EOUhGZXZNU25Ud0pRSk5weGpRbkdYRlBhOG9oVm1OeXdNODBHVUU?oc=5",
-              "source": "디지털투데이",
-              "published": "2026.04.17",
-              "summary": "설용훈 상무, 금호건설 주식 2899주 보유 공시 디지털투데이",
-              "primary_category": "award_contract",
-              "categories": [
-                "award_contract"
-              ],
-              "matched_terms": [
-                "건설"
-              ],
-              "direction_signal": false
-            },
-            {
               "title": "자금조달: 금호건설(주)",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260417000439",
               "source": "OpenDART 전략공시",
@@ -4579,6 +4482,42 @@
               "direction_signal": true,
               "receipt_no": "20260417000439",
               "report_name": "주요사항보고서(유상증자결정)"
+            },
+            {
+              "title": "투자판단: 가음3구역재건축정비사업 공사도급가계약 체결",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260326802792",
+              "source": "OpenDART 전략공시",
+              "published": "2026.03.26",
+              "summary": "제목: 가음3구역재건축정비사업 공사도급가계약 체결 · 주요내용: 당사는 아래와 같이 '가음3구역재건축정비사업'과 관련하여 공사도급가계약을 체결함 - 아 래 - 1.계약상대: 가음3구역재건축... · 이사회결의일(결정일)또는사실확인일: 2026-03-26",
+              "primary_category": "investment_decision",
+              "categories": [
+                "dart_strategy",
+                "investment_decision"
+              ],
+              "matched_terms": [
+                "투자판단관련주요경영사항"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260326802792",
+              "report_name": "투자판단관련주요경영사항"
+            },
+            {
+              "title": "투자판단: 평택~시흥 고속도로 확장 민간투자사업 우선협상대상자 선정",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251218800237",
+              "source": "OpenDART 전략공시",
+              "published": "2025.12.18",
+              "summary": "제목: 평택~시흥 고속도로 확장 민간투자사업 우선협상대상자 선정 · 주요내용: 당사는 아래와 같이 '평택~시흥 고속도로 확장 민간투자사업'의 우선협상대상자로 선정되었음. - 아 래 - 1) 주무관청 :... · 이사회결의일(결정일)또는사실확인일: 2025-12-18",
+              "primary_category": "investment_decision",
+              "categories": [
+                "dart_strategy",
+                "investment_decision"
+              ],
+              "matched_terms": [
+                "투자판단관련주요경영사항"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20251218800237",
+              "report_name": "투자판단관련주요경영사항"
             }
           ],
           "related_articles_source": {
@@ -4837,42 +4776,6 @@
               ],
               "direction_signal": true,
               "receipt_no": "20251103800292",
-              "report_name": "투자판단관련주요경영사항"
-            },
-            {
-              "title": "투자판단: 시흥1동 859일대 가로주택정비사업 시공자 선정",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251103800286",
-              "source": "OpenDART 전략공시",
-              "published": "2025.11.03",
-              "summary": "제목: 시흥1동 859일대 가로주택정비사업 시공자 선정 · 주요내용: 당사는 아래와 같이 2025년 11월 1일, 시흥1동 859일대 가로주택정비사업조합이 발주한 시흥1동 859일대 가로주택정비... · 이사회결의일(결정일)또는사실확인일: 2025-11-03",
-              "primary_category": "investment_decision",
-              "categories": [
-                "dart_strategy",
-                "investment_decision"
-              ],
-              "matched_terms": [
-                "투자판단관련주요경영사항"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20251103800286",
-              "report_name": "투자판단관련주요경영사항"
-            },
-            {
-              "title": "투자판단: 대조동 A3구역 가로주택정비사업 시공자 선정",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250929800107",
-              "source": "OpenDART 전략공시",
-              "published": "2025.09.29",
-              "summary": "제목: 대조동 A3구역 가로주택정비사업 시공자 선정 · 주요내용: 당사는 아래와 같이 2025년 9월 27일, 대조동 A3구역 가로주택정비사업조합이 발주한 대조동 A3구역 가로주택정비사업(서... · 이사회결의일(결정일)또는사실확인일: 2025-09-29",
-              "primary_category": "investment_decision",
-              "categories": [
-                "dart_strategy",
-                "investment_decision"
-              ],
-              "matched_terms": [
-                "투자판단관련주요경영사항"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20250929800107",
               "report_name": "투자판단관련주요경영사항"
             },
             {
@@ -5156,24 +5059,6 @@
               "direction_signal": true
             },
             {
-              "title": "투자판단: 답십리 자동차 부품상가 도시정비형 재개발 정비사업 시공자 선정",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260511800803",
-              "source": "OpenDART 전략공시",
-              "published": "2026.05.11",
-              "summary": "제목: 답십리 자동차 부품상가 도시정비형 재개발 정비사업 시공자 선정 · 주요내용: 당사는 \"답십리 자동차 부품상가 도시정비형 재개발 정비사업\"과 관련하여 아래와 같이 시공자로 선정되었음을 통보받음. -아래-... · 이사회결의일(결정일)또는사실확인일: 2026-05-11",
-              "primary_category": "investment_decision",
-              "categories": [
-                "dart_strategy",
-                "investment_decision"
-              ],
-              "matched_terms": [
-                "투자판단관련주요경영사항"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20260511800803",
-              "report_name": "투자판단관련주요경영사항"
-            },
-            {
               "title": "효성중공업, 1분기 영업이익1523억2200만원… 전년 대비48.77% 증가",
               "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFA3Qk9ldUN5TnMtU1kxeFQyazhQbU42NWJoZjlKT0NXc2hLZ1o0ME5pU2EtRi02Ykd1WmV6YjJydTM5TkpOZUhvUTlya21zZGxfT2dSMTJqRHVXNEhSWjJwSXZJbW1IYnlfSFRmUEpwUkFMS1E?oc=5",
               "source": "디지털투데이",
@@ -5185,6 +5070,21 @@
               ],
               "matched_terms": [
                 "영업이익"
+              ],
+              "direction_signal": false
+            },
+            {
+              "title": "효성중공업 주총서 '이사수 축소' 부결…경영권 방어막 약화하나",
+              "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1vZmg1S0hIOFlUdFNFRExfd3Y2SkJ1eFlJM3BkWmRSZUYzMkRyXzY5Tmdhb2dPdFRsVFVpbHo5QnNvV0k5aTlBWVJyQ2s3T3NreVVzS3otTUl3TXhxM0N6OGVCQ1lnVXg5?oc=5",
+              "source": "한국NGO신문",
+              "published": "2026.03.19",
+              "summary": "효성중공업 주총서 '이사수 축소' 부결…경영권 방어막 약화하나 한국NGO신문",
+              "primary_category": "performance_management",
+              "categories": [
+                "performance_management"
+              ],
+              "matched_terms": [
+                "경영"
               ],
               "direction_signal": false
             }
@@ -7585,24 +7485,6 @@
               "report_name": "특수관계인에대한자금대여"
             },
             {
-              "title": "그룹/계열거래: 리뉴랜드신경주(주)",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251113000326",
-              "source": "OpenDART 전략공시",
-              "published": "2025.11.13",
-              "summary": "회사명: 리뉴어스(주) · 거래상대방: 리뉴랜드신경주(주) · 다.거래상대방총잔액: 105,000",
-              "primary_category": "group_transaction",
-              "categories": [
-                "dart_strategy",
-                "group_transaction"
-              ],
-              "matched_terms": [
-                "특수관계인에대한자금대여"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20251113000326",
-              "report_name": "특수관계인에대한자금대여"
-            },
-            {
               "title": "출자/지분: 리뉴리퀴드호남(주)",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251104000059",
               "source": "OpenDART 전략공시",
@@ -9690,24 +9572,6 @@
               ],
               "direction_signal": true,
               "receipt_no": "20251113000335",
-              "report_name": "특수관계인에대한자금대여"
-            },
-            {
-              "title": "그룹/계열거래: 리뉴랜드신경주(주)",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251113000326",
-              "source": "OpenDART 전략공시",
-              "published": "2025.11.13",
-              "summary": "회사명: 리뉴어스(주) · 거래상대방: 리뉴랜드신경주(주) · 다.거래상대방총잔액: 105,000",
-              "primary_category": "group_transaction",
-              "categories": [
-                "dart_strategy",
-                "group_transaction"
-              ],
-              "matched_terms": [
-                "특수관계인에대한자금대여"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20251113000326",
               "report_name": "특수관계인에대한자금대여"
             },
             {
