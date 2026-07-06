@@ -1330,8 +1330,8 @@ def render_comment_box(row: dict[str, Any]) -> str:
     for item in get_pdf_comments(key):
         author = compact_text(item.get("author") or source.get("author") or DEFAULT_COMMENT_AUTHOR)
         date = compact_text(item.get("date") or source.get("date"))
-        source_file = compact_text(item.get("source") or source.get("file"))
-        meta = " · ".join(part for part in [date, source_file] if part)
+        interviewee_role = compact_text(item.get("interviewee_role"))
+        meta = " · ".join(part for part in [date, interviewee_role] if part)
         seed_items.append(
             f"""
         <li data-seed-comment="true">
