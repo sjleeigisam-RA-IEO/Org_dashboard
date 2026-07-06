@@ -2074,8 +2074,39 @@
       selectedColumn = null;
     }
 
-    function setPeriod(period) {
+    function isCloseViewport() {
+      if (!camera || !controls) return false;
+      return camera.position.distanceTo(controls.target) <= autoFocusMapMaxDistance;
+    }
+
+    function matchingSelectionForPeriod(point) {
+      if (!point) return null;
+      if (point.isTransaction) {
+        const match = currentTransactions.find(tx => {
+          if (point.transaction && tx.transactionCaseId && tx.transactionCaseId === point.transaction.transactionCaseId) return true;
+          return transactionPoint(tx).assetId === point.assetId;
+        });
+        return match ? transactionPoint(match) : null;
+      }
+      return currentPoints.find(row => row.assetId === point.assetId) || null;
+    }
+
+    function refreshCloseFocusAfterPeriod() {
+      if (selectedPoint && Number.isFinite(Number(selectedPoint.lat)) && Number.isFinite(Number(selectedPoint.lon))) {
+        updateFocusMap(selectedPoint);
+        return;
+      }
+      if (isCloseViewport()) {
+        lastFocusMapCheckAt = 0;
+        refreshFocusMapForCamera();
+      }
+    }
+
+    function setPeriod(period, options = {}) {
       if (!data.periods.includes(period)) period = data.periods[data.periods.length - 1];
+      const previousSelection = selectedPoint;
+      const wasReviewMode = reviewMode;
+      const preserveView = Boolean(options.preserveView || periodPlaybackActive || isCloseViewport() || wasReviewMode);
       currentPeriod = period;
       periodSlider.value = data.periods.indexOf(period);
       periodLabel.textContent = period;
@@ -2083,15 +2114,36 @@
       updateHighContours(period);
       buildPoints(period);
       buildTransactions(period);
-      selectedPoint = null;
-      if (highlight) highlight.visible = false;
-      clearSelectedColumn();
-      clearFocusMap();
-      clearContextLabels();
-      setCloseFocusMode(false);
-      renderDetail(null);
+      selectedPoint = preserveView ? matchingSelectionForPeriod(previousSelection) : null;
+
+      if (selectedPoint) {
+        if (highlight) highlight.visible = true;
+        if (wasReviewMode) setCloseFocusMode(true);
+        if (selectedPoint.isTransaction) clearSelectedColumn();
+        else ensureSelectedColumn();
+        updateHighlightPosition();
+      } else {
+        if (highlight) highlight.visible = false;
+        clearSelectedColumn();
+        if (wasReviewMode) setCloseFocusMode(false);
+      }
+
+      if (preserveView) {
+        clearContextLabels();
+        refreshCloseFocusAfterPeriod();
+      } else {
+        clearFocusMap();
+        clearContextLabels();
+        setCloseFocusMode(false);
+      }
+
+      renderDetail(selectedPoint);
       buildCaseList();
       runSearch();
+      updateColumnScale(true);
+      updateTerrainScale(true);
+      updateLabelScale(true);
+      updateSelectionClearButton();
     }
 
     function updatePeriodPlayButton() {
@@ -2104,7 +2156,7 @@
     function advancePeriodPlayback() {
       const index = data.periods.indexOf(currentPeriod);
       const nextIndex = index >= 0 ? (index + 1) % data.periods.length : 0;
-      setPeriod(data.periods[nextIndex]);
+      setPeriod(data.periods[nextIndex], { preserveView: true });
     }
 
     function stopPeriodPlayback() {
@@ -2119,7 +2171,7 @@
       stopPeriodPlayback();
       periodPlaybackActive = true;
       if (data.periods.indexOf(currentPeriod) === data.periods.length - 1) {
-        setPeriod(data.periods[0]);
+        setPeriod(data.periods[0], { preserveView: true });
       }
       periodPlaybackTimer = window.setInterval(advancePeriodPlayback, periodPlaybackIntervalMs);
       updatePeriodPlayButton();
