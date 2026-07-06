@@ -750,6 +750,59 @@ def css_token(value: str) -> str:
     return re.sub(r"[^a-z0-9_-]+", "-", value.lower()).strip("-") or "value"
 
 
+def parse_recent_item_date(value: Any) -> datetime | None:
+    text = compact_text(value)
+    match = re.search(r"(20\d{2})\D+(\d{1,2})\D+(\d{1,2})", text)
+    if not match:
+        return None
+    try:
+        return datetime(
+            parse_int(match.group(1)),
+            parse_int(match.group(2)),
+            parse_int(match.group(3)),
+            tzinfo=KST,
+        )
+    except ValueError:
+        return None
+
+
+def row_has_recent_update(row: dict[str, Any], days: int = 31) -> bool:
+    cutoff = datetime.now(KST) - timedelta(days=days)
+    for award in row.get("recent_awards") or []:
+        item_date = parse_recent_item_date(award.get("date"))
+        if item_date and item_date >= cutoff:
+            return True
+    for article in row.get("related_articles") or []:
+        item_date = parse_recent_item_date(article.get("published"))
+        if item_date and item_date >= cutoff:
+            return True
+    return False
+
+
+def add_status_column(columns: list[tuple[str, str, str]]) -> list[tuple[str, str, str]]:
+    if any(key == "row_status" for key, _, _ in columns):
+        return columns
+    enriched: list[tuple[str, str, str]] = []
+    for column in columns:
+        enriched.append(column)
+        if column[0] == "company":
+            enriched.append(("row_status", "코멘트", "status"))
+    return enriched
+
+
+def render_row_status(row: dict[str, Any]) -> str:
+    company_key = normalize_award_company(row.get("company"))
+    comment_key = f"company-comment:{company_key}"
+    new_badge = ""
+    if row_has_recent_update(row):
+        new_badge = '<span class="new-badge" title="최근 1개월 내 수주/기사">N</span>'
+    return (
+        f'<div class="row-status" data-comment-key="{html.escape(comment_key)}">'
+        '<span class="comment-count" aria-label="코멘트 0개">(0)</span>'
+        f"{new_badge}</div>"
+    )
+
+
 def change_class(value: Any) -> str:
     text = str(value or "")
     if text.startswith("▲"):
@@ -1092,6 +1145,7 @@ def render_rank_table(
     amount_key: str | None = None,
     detail_fields: list[tuple[str, str, str]] | None = None,
 ) -> str:
+    columns = add_status_column(columns)
     max_amount = max((parse_int(row.get(amount_key)) for row in rows), default=0) if amount_key else 0
     head = "".join(
         f'<th scope="col" class="col-{css_token(key)} cell-{css_token(kind)}">{html.escape(label)}</th>'
@@ -1103,7 +1157,7 @@ def render_rank_table(
         detail_id = f"{table_id}-detail-{index}"
         cells = []
         for key, _, kind in columns:
-            content = render_value(row.get(key, ""), kind, max_amount)
+            content = render_row_status(row) if key == "row_status" else render_value(row.get(key, ""), kind, max_amount)
             if key == "company":
                 content = (
                     f'<button class="row-toggle" type="button" aria-expanded="false" '
@@ -1529,7 +1583,14 @@ def render_html(data: dict[str, Any]) -> str:
       color: var(--muted);
     }
     .col-company {
-      min-width: 220px;
+      width: 18%;
+      min-width: 150px;
+      max-width: 220px;
+    }
+    .col-row_status {
+      width: 86px;
+      min-width: 86px;
+      text-align: center;
     }
     .col-credit_rating_label {
       width: 96px;
@@ -1569,6 +1630,7 @@ def render_html(data: dict[str, Any]) -> str:
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      max-width: 100%;
       border: 0;
       background: transparent;
       color: var(--ink);
@@ -1578,6 +1640,13 @@ def render_html(data: dict[str, Any]) -> str:
       padding: 0;
       text-align: left;
     }
+    .row-toggle span:last-child {
+      display: block;
+      max-width: min(220px, 24vw);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
     .toggle-symbol {
       width: 0;
       height: 0;
@@ -1586,6 +1655,44 @@ def render_html(data: dict[str, Any]) -> str:
       border-left: 5px solid var(--muted);
       flex: 0 0 auto;
       transition: transform 0.16s ease;
+    }
+    .row-status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      min-width: 62px;
+      white-space: nowrap;
+    }
+    .comment-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 30px;
+      min-height: 22px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .comment-count.has-comments {
+      border: 1px solid rgba(130, 175, 185, 0.46);
+      border-radius: 999px;
+      background: rgba(130, 175, 185, 0.14);
+      color: var(--teal);
+    }
+    .new-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 19px;
+      min-height: 19px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1;
     }
     .rank-row.expanded .toggle-symbol {
       transform: rotate(90deg);
@@ -2118,6 +2225,38 @@ def render_html(data: dict[str, Any]) -> str:
       }});
     }});
 
+    function getCommentCount(key) {{
+      const raw = localStorage.getItem(key);
+      if (!raw) return 0;
+      try {{
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {{
+          return parsed.filter((item) => String(item || "").trim()).length;
+        }}
+        if (parsed && Array.isArray(parsed.comments)) {{
+          return parsed.comments.filter((item) => String(item || "").trim()).length;
+        }}
+      }} catch (error) {{
+        // Existing comments are stored as plain text.
+      }}
+      return String(raw).trim() ? 1 : 0;
+    }}
+
+    function updateCommentBadges(changedKey) {{
+      document.querySelectorAll(".row-status[data-comment-key]").forEach((status) => {{
+        const key = status.dataset.commentKey;
+        if (changedKey && key !== changedKey) return;
+        const count = getCommentCount(key);
+        const countBadge = status.querySelector(".comment-count");
+        if (!countBadge) return;
+        countBadge.textContent = `(${{count}})`;
+        countBadge.classList.toggle("has-comments", count > 0);
+        countBadge.setAttribute("aria-label", `코멘트 ${{count}}개`);
+      }});
+    }}
+
+    updateCommentBadges();
+
     document.querySelectorAll(".company-comment").forEach((box) => {{
       const key = box.dataset.commentKey;
       const textarea = box.querySelector("textarea");
@@ -2136,6 +2275,7 @@ def render_html(data: dict[str, Any]) -> str:
           localStorage.removeItem(key);
           saved.textContent = "코멘트가 비어 있어 삭제했습니다.";
         }}
+        updateCommentBadges(key);
       }});
     }});
 
