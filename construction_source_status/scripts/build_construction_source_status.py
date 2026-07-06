@@ -875,11 +875,12 @@ def render_recent_awards(row: dict[str, Any]) -> str:
             f"""
             <li>
               <div class="award-main">
+                {f'<span class="item-meta">{html.escape(meta)}</span>' if meta else ''}
                 <strong>{project}</strong>
-                <span>{client}</span>
+                <span class="item-subtitle">{client}</span>
               </div>
               {metrics}
-              <div class="award-meta">{html.escape(meta)} · {source_badge}</div>
+              <div class="award-meta">{source_badge}</div>
             </li>
             """
         )
@@ -924,8 +925,8 @@ def render_related_articles(row: dict[str, Any]) -> str:
         items.append(
             f"""
             <li>
+              {f'<span class="news-meta">{html.escape(meta)}</span>' if meta else ''}
               <a href="{html.escape(link)}" target="_blank" rel="noreferrer">{title}</a>
-              <span>{html.escape(meta)}</span>
               {f'<p>{summary}</p>' if summary else ''}
             </li>
             """
@@ -1591,17 +1592,21 @@ def render_html(data: dict[str, Any]) -> str:
       display: none;
     }
     .detail-row td {
+      width: auto;
       padding: 0;
       background: #f8fbfb;
+      color: var(--ink);
       border-bottom-color: #d4e2df;
+      text-align: left;
       white-space: normal;
     }
     .detail-panel {
-      padding: 14px 18px 16px clamp(18px, 8vw, 128px);
+      padding: 16px 18px 18px clamp(18px, 7vw, 112px);
       overflow: hidden;
+      text-align: left;
     }
     .detail-summary {
-      padding-bottom: 14px;
+      padding-bottom: 12px;
       border-bottom: 1px solid #dce7e5;
     }
     .detail-grid {
@@ -1628,19 +1633,22 @@ def render_html(data: dict[str, Any]) -> str:
     .credit-ratings {
       min-width: 0;
       margin-top: 14px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid #dce7e5;
+      padding: 12px 14px;
+      border: 1px solid #dce7e5;
+      border-radius: 8px;
+      background: #f7fbfa;
     }
     .credit-rating-head {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .credit-rating-head h3 {
       margin: 0;
-      font-size: 14px;
+      color: #173f62;
+      font-size: 15px;
       letter-spacing: 0;
     }
     .credit-rating-head p,
@@ -1652,17 +1660,17 @@ def render_html(data: dict[str, Any]) -> str:
     }
     .credit-source-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 10px;
       margin: 0;
       padding: 0;
       list-style: none;
     }
     .credit-source-list > li {
       min-width: 0;
-      padding: 9px 10px;
+      padding: 10px 11px;
       border: 1px solid #e2e9ee;
-      border-radius: 8px;
+      border-radius: 7px;
       background: #ffffff;
     }
     .credit-source-head {
@@ -1673,10 +1681,11 @@ def render_html(data: dict[str, Any]) -> str:
       margin-bottom: 5px;
     }
     .credit-source-head strong {
+      color: #24384c;
       font-size: 12px;
     }
     .source-state {
-      color: var(--muted);
+      color: #44627a;
       font-size: 11px;
       font-weight: 750;
     }
@@ -1708,12 +1717,13 @@ def render_html(data: dict[str, Any]) -> str:
     }
     .detail-split {
       display: grid;
-      grid-template-columns: minmax(420px, 1.15fr) minmax(340px, 0.85fr);
-      gap: 18px;
+      grid-template-columns: minmax(430px, 1.1fr) minmax(360px, 0.9fr);
+      gap: 20px;
       align-items: start;
-      margin-top: 14px;
+      margin-top: 16px;
     }
-    .recent-awards {
+    .recent-awards,
+    .related-news {
       min-width: 0;
     }
     .recent-awards-head {
@@ -1721,14 +1731,16 @@ def render_html(data: dict[str, Any]) -> str:
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 9px;
+      min-height: 28px;
+      margin-bottom: 10px;
     }
     .recent-awards-head > * {
       min-width: 0;
     }
     .recent-awards h3 {
       margin: 0;
-      font-size: 14px;
+      color: #173f62;
+      font-size: 15px;
       letter-spacing: 0;
     }
     .recent-awards-head span {
@@ -1741,7 +1753,7 @@ def render_html(data: dict[str, Any]) -> str:
     .recent-awards ul,
     .related-news ul {
       display: grid;
-      gap: 8px;
+      gap: 9px;
       margin: 0;
       padding: 0;
       list-style: none;
@@ -1749,24 +1761,38 @@ def render_html(data: dict[str, Any]) -> str:
     .recent-awards li {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(196px, 0.52fr);
-      gap: 8px 12px;
+      gap: 9px 12px;
       align-items: start;
-      padding: 9px 10px;
+      padding: 11px 12px;
       border: 1px solid #dfe8e6;
-      border-radius: 6px;
+      border-radius: 7px;
       background: #ffffff;
+      box-shadow: 0 1px 0 rgba(23, 32, 42, 0.03);
     }
     .award-main {
       min-width: 0;
+      text-align: left;
     }
-    .recent-awards strong {
+    .item-meta,
+    .news-meta {
       display: block;
-      font-size: 13px;
-      line-height: 1.35;
+      margin: 0 0 5px;
+      color: #245a9c;
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.3;
       white-space: normal;
       overflow-wrap: anywhere;
     }
-    .recent-awards li span {
+    .recent-awards strong {
+      display: block;
+      color: #24384c;
+      font-size: 14px;
+      line-height: 1.4;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .recent-awards li .item-subtitle {
       display: block;
       margin-top: 3px;
       color: var(--muted);
@@ -1781,15 +1807,15 @@ def render_html(data: dict[str, Any]) -> str:
       justify-self: end;
       min-width: 0;
       width: 100%;
-      max-width: 260px;
+      max-width: 220px;
     }
     .award-metrics span {
       display: block;
       min-width: 0;
       margin: 0;
-      padding: 5px 7px;
+      padding: 7px 8px;
       border-radius: 5px;
-      background: #f3f7f7;
+      background: #f4f8f8;
       color: #263846;
       font-size: 12px;
       font-weight: 800;
@@ -1809,44 +1835,40 @@ def render_html(data: dict[str, Any]) -> str:
       grid-column: 1 / -1;
       min-width: 0;
       color: #415162;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 750;
       text-align: left;
       white-space: normal;
       overflow-wrap: anywhere;
     }
     .related-news {
-      min-width: 0;
       padding-left: 18px;
       border-left: 1px solid #dce7e5;
     }
     .related-news li {
-      padding: 9px 10px;
-      border-left: 3px solid #d7e1e8;
+      padding: 11px 12px;
+      border: 1px solid #e3e9ef;
+      border-left: 3px solid #d3dfe8;
+      border-radius: 7px;
       background: #ffffff;
+      box-shadow: 0 1px 0 rgba(23, 32, 42, 0.03);
     }
     .related-news a {
       display: block;
       color: var(--ink);
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 800;
-      line-height: 1.35;
+      line-height: 1.4;
+      text-align: left;
       white-space: normal;
       overflow-wrap: anywhere;
     }
-    .related-news li span {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 650;
-      overflow-wrap: anywhere;
-    }
     .related-news p {
-      margin: 5px 0 0;
+      margin: 6px 0 0;
       color: #536272;
       font-size: 12px;
-      line-height: 1.35;
+      line-height: 1.45;
+      text-align: left;
       overflow-wrap: anywhere;
     }
     .recent-awards.empty p,
