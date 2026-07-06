@@ -25,12 +25,14 @@ OUTPUT_DIR = ROOT / "outputs"
 HTML_OUT = OUTPUT_DIR / "construction_source_status.html"
 JSON_OUT = OUTPUT_DIR / "construction_source_status_data.json"
 SOURCE_MAP_PATH = ROOT / "tools" / "construction_company_source_map.json"
+PDF_COMMENTS_PATH = ROOT / "construction_source_status" / "data" / "construction_pdf_comments.json"
 AWARDS_CACHE_OUT = OUTPUT_DIR / "construction_awards_cache.json"
 DART_AWARDS_CACHE_OUT = OUTPUT_DIR / "construction_dart_awards_cache.json"
 NARA_CONTRACTS_CACHE_OUT = OUTPUT_DIR / "construction_nara_contracts_cache.json"
 NEWS_CACHE_OUT = OUTPUT_DIR / "construction_company_news_cache.json"
 DART_STRATEGY_CACHE_OUT = OUTPUT_DIR / "construction_dart_strategy_cache.json"
 CREDIT_RATINGS_CACHE_OUT = OUTPUT_DIR / "construction_credit_ratings_cache.json"
+DEFAULT_COMMENT_AUTHOR = "개발솔루션센터 센터장"
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 KST = timezone(timedelta(hours=9))
@@ -97,6 +99,49 @@ def normalize_award_company(value: Any) -> str:
     text = re.sub(r"\(주\)|㈜|주식회사", "", text)
     text = re.sub(r"co\.?,?\s*ltd\.?|corporation|inc\.?", "", text)
     return re.sub(r"[^0-9a-z가-힣]", "", text)
+
+
+def load_pdf_comments() -> dict[str, Any]:
+    if not PDF_COMMENTS_PATH.exists():
+        return {"source": {"author": DEFAULT_COMMENT_AUTHOR}, "comments": {}}
+    try:
+        payload = json.loads(PDF_COMMENTS_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {"source": {"author": DEFAULT_COMMENT_AUTHOR}, "comments": {}}
+
+    normalized_comments: dict[str, list[dict[str, Any]]] = {}
+    for key, items in (payload.get("comments") or {}).items():
+        normalized_key = normalize_award_company(key)
+        if not normalized_key or not isinstance(items, list):
+            continue
+        clean_items = []
+        for item in items:
+            if isinstance(item, dict) and compact_text(item.get("text")):
+                clean_items.append(item)
+        if clean_items:
+            normalized_comments[normalized_key] = clean_items
+    payload["comments"] = normalized_comments
+    payload.setdefault("source", {}).setdefault("author", DEFAULT_COMMENT_AUTHOR)
+    return payload
+
+
+PDF_COMMENTS = load_pdf_comments()
+
+
+def get_pdf_comments(company_key: str) -> list[dict[str, Any]]:
+    comments = PDF_COMMENTS.get("comments") or {}
+    items = comments.get(company_key) or []
+    return items if isinstance(items, list) else []
+
+
+def build_seed_comment_counts() -> dict[str, int]:
+    counts: dict[str, int] = {}
+    comments = PDF_COMMENTS.get("comments") or {}
+    for company_key, items in comments.items():
+        count = len(items) if isinstance(items, list) else 0
+        if count:
+            counts[f"company-comment:{company_key}"] = count
+    return counts
 
 
 def rank_change(current_rank: int, previous_rank: int | None) -> str:
@@ -793,12 +838,14 @@ def add_status_column(columns: list[tuple[str, str, str]]) -> list[tuple[str, st
 def render_row_status(row: dict[str, Any]) -> str:
     company_key = normalize_award_company(row.get("company"))
     comment_key = f"company-comment:{company_key}"
+    seed_count = len(get_pdf_comments(company_key))
+    count_class = " has-comments" if seed_count else ""
     new_badge = ""
     if row_has_recent_update(row):
         new_badge = '<span class="new-badge" title="최근 1개월 내 수주/기사">N</span>'
     return (
         f'<div class="row-status" data-comment-key="{html.escape(comment_key)}">'
-        '<span class="comment-count" aria-label="코멘트 0개">(0)</span>'
+        f'<span class="comment-count{count_class}" aria-label="코멘트 {seed_count}개">({seed_count})</span>'
         f"{new_badge}</div>"
     )
 
@@ -1100,13 +1147,44 @@ def render_credit_rating(row: dict[str, Any]) -> str:
 def render_comment_box(row: dict[str, Any]) -> str:
     company = compact_text(row.get("company"))
     key = normalize_award_company(company)
+    source = PDF_COMMENTS.get("source") or {}
+    seed_items = []
+    for item in get_pdf_comments(key):
+        author = compact_text(item.get("author") or source.get("author") or DEFAULT_COMMENT_AUTHOR)
+        date = compact_text(item.get("date") or source.get("date"))
+        source_file = compact_text(item.get("source") or source.get("file"))
+        meta = " · ".join(part for part in [date, source_file] if part)
+        seed_items.append(
+            f"""
+        <li>
+          <div class="comment-meta">
+            <span class="comment-author">작성자 {html.escape(author)}</span>
+            {f'<span>{html.escape(meta)}</span>' if meta else ''}
+          </div>
+          <p>{html.escape(compact_text(item.get("text")))}</p>
+        </li>
+            """
+        )
+    seed_html = ""
+    if seed_items:
+        seed_html = f"""
+      <div class="seed-comments">
+        <h4>PDF 기록</h4>
+        <ul>{''.join(seed_items)}</ul>
+      </div>
+        """
     return f"""
     <section class="company-comment" data-comment-key="company-comment:{html.escape(key)}">
       <div>
-        <h3>한줄 코멘트</h3>
+        <h3>코멘트</h3>
         <p class="comment-saved" aria-live="polite"></p>
       </div>
+      {seed_html}
       <div class="comment-controls">
+        <label class="comment-author-field">
+          <span>작성자</span>
+          <input type="text" value="{html.escape(DEFAULT_COMMENT_AUTHOR)}" aria-label="작성자">
+        </label>
         <textarea rows="2" placeholder="{html.escape(company)}에 대한 메모를 남기세요."></textarea>
         <button type="button">저장</button>
       </div>
@@ -1428,7 +1506,7 @@ def render_html(data: dict[str, Any]) -> str:
         '<li><strong>기사/전략 정보</strong>: Google News RSS에서 회사명과 수주/계약/실적/경영/투자/계열사/신사업 키워드로 검색한 기사와 OpenDART 투자판단ㆍ출자ㆍ시설투자ㆍM&Aㆍ특수관계인 거래성 공시를 합쳐 최신 5건만 표시합니다. 주가성 단신은 가능한 제외했지만 최종 적합성은 확인이 필요합니다.</li>'
     )
     source_notes.append(
-        '<li><strong>한줄 코멘트</strong>: 현재 프로토타입에서는 브라우저 localStorage에만 저장됩니다. 다른 PC/브라우저와 공유하려면 DB 저장 API로 전환해야 합니다.</li>'
+        f'<li><strong>코멘트</strong>: <code>{html.escape(str((PDF_COMMENTS.get("source") or {}).get("file", "시공사_동향_20260703.pdf")))}</code>의 회사별 기록을 기본 코멘트로 표시하고, 추가 코멘트는 현재 브라우저 localStorage에 저장됩니다. 기본 작성자는 {html.escape(DEFAULT_COMMENT_AUTHOR)}입니다.</li>'
     )
 
     disclaimer_html = ""
@@ -1440,6 +1518,9 @@ def render_html(data: dict[str, Any]) -> str:
       <p>전년순위는 등록번호가 있는 소스는 등록번호를 우선 사용하고, 없으면 회사명 정규화 매칭으로 보조합니다. 사명 변경, 합병, 표기 차이가 있으면 일부 행은 신규/권외로 표시될 수 있습니다.</p>
     </section>
         """
+
+    seed_comment_counts_json = json.dumps(build_seed_comment_counts(), ensure_ascii=False)
+    default_comment_author_json = json.dumps(DEFAULT_COMMENT_AUTHOR, ensure_ascii=False)
 
     css = """
     :root {
@@ -2118,6 +2199,52 @@ def render_html(data: dict[str, Any]) -> str:
       font-size: 14px;
       letter-spacing: 0;
     }
+    .seed-comments,
+    .comment-controls {
+      grid-column: 2;
+    }
+    .seed-comments {
+      min-width: 0;
+      display: grid;
+      gap: 8px;
+    }
+    .seed-comments h4 {
+      margin: 0;
+      color: var(--construction-accent);
+      font-size: 12px;
+      letter-spacing: 0;
+    }
+    .seed-comments ul {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .seed-comments li {
+      border: 1px solid var(--line);
+      border-radius: var(--construction-radius);
+      background: var(--construction-item);
+      padding: 10px 12px;
+    }
+    .seed-comments p {
+      margin: 6px 0 0;
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .comment-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.3;
+    }
+    .comment-author {
+      color: var(--ink);
+      font-weight: 800;
+    }
     .comment-saved {
       margin: 5px 0 0;
       color: var(--muted);
@@ -2125,17 +2252,24 @@ def render_html(data: dict[str, Any]) -> str:
     }
     .comment-controls {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-columns: minmax(150px, 220px) minmax(0, 1fr) auto;
       gap: 8px;
       align-items: stretch;
       min-width: 0;
     }
+    .comment-author-field {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .comment-author-field input,
     .comment-controls textarea {
       display: block;
       min-width: 0;
       width: 100%;
-      min-height: 52px;
-      resize: vertical;
       border: 1px solid var(--line);
       border-radius: var(--construction-radius);
       background: var(--construction-item);
@@ -2144,6 +2278,13 @@ def render_html(data: dict[str, Any]) -> str:
       font: inherit;
       font-size: 13px;
       line-height: 1.35;
+    }
+    .comment-author-field input {
+      min-height: 36px;
+    }
+    .comment-controls textarea {
+      min-height: 52px;
+      resize: vertical;
     }
     .comment-controls button {
       border: 0;
@@ -2263,6 +2404,10 @@ def render_html(data: dict[str, Any]) -> str:
         border-left: 0;
       }
       .company-comment { grid-template-columns: 1fr; }
+      .seed-comments,
+      .comment-controls {
+        grid-column: 1;
+      }
       .comment-controls { grid-template-columns: 1fr; }
       .comment-controls button {
         width: 100%;
@@ -2341,21 +2486,76 @@ def render_html(data: dict[str, Any]) -> str:
       }});
     }});
 
-    function getCommentCount(key) {{
+    const seedCommentCounts = {seed_comment_counts_json};
+    const defaultCommentAuthor = {default_comment_author_json};
+
+    function countCommentItems(items) {{
+      if (!Array.isArray(items)) return 0;
+      return items.filter((item) => {{
+        if (typeof item === "string") return item.trim();
+        if (item && typeof item === "object") {{
+          return String(item.text || item.comment || "").trim();
+        }}
+        return false;
+      }}).length;
+    }}
+
+    function readStoredComment(key) {{
+      const raw = localStorage.getItem(key);
+      if (!raw) return {{ author: defaultCommentAuthor, text: "" }};
+      try {{
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {{
+          const first = parsed.find((item) => String(item || "").trim());
+          return {{ author: defaultCommentAuthor, text: first ? String(first).trim() : "" }};
+        }}
+        if (parsed && Array.isArray(parsed.comments)) {{
+          const first = parsed.comments.find((item) => {{
+            if (typeof item === "string") return item.trim();
+            if (item && typeof item === "object") return String(item.text || item.comment || "").trim();
+            return false;
+          }});
+          if (first && typeof first === "object") {{
+            return {{
+              author: String(first.author || parsed.author || defaultCommentAuthor).trim(),
+              text: String(first.text || first.comment || "").trim(),
+            }};
+          }}
+          return {{
+            author: String(parsed.author || defaultCommentAuthor).trim(),
+            text: first ? String(first).trim() : "",
+          }};
+        }}
+        if (parsed && typeof parsed === "object") {{
+          return {{
+            author: String(parsed.author || defaultCommentAuthor).trim(),
+            text: String(parsed.text || parsed.comment || "").trim(),
+          }};
+        }}
+      }} catch (error) {{
+        // Existing comments are stored as plain text.
+      }}
+      return {{ author: defaultCommentAuthor, text: String(raw).trim() }};
+    }}
+
+    function getStoredCommentCount(key) {{
       const raw = localStorage.getItem(key);
       if (!raw) return 0;
       try {{
         const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed)) {{
-          return parsed.filter((item) => String(item || "").trim()).length;
-        }}
-        if (parsed && Array.isArray(parsed.comments)) {{
-          return parsed.comments.filter((item) => String(item || "").trim()).length;
+        if (Array.isArray(parsed)) return countCommentItems(parsed);
+        if (parsed && Array.isArray(parsed.comments)) return countCommentItems(parsed.comments);
+        if (parsed && typeof parsed === "object") {{
+          return String(parsed.text || parsed.comment || "").trim() ? 1 : 0;
         }}
       }} catch (error) {{
         // Existing comments are stored as plain text.
       }}
       return String(raw).trim() ? 1 : 0;
+    }}
+
+    function getCommentCount(key) {{
+      return (seedCommentCounts[key] || 0) + getStoredCommentCount(key);
     }}
 
     function updateCommentBadges(changedKey) {{
@@ -2375,18 +2575,25 @@ def render_html(data: dict[str, Any]) -> str:
 
     document.querySelectorAll(".company-comment").forEach((box) => {{
       const key = box.dataset.commentKey;
+      const authorInput = box.querySelector(".comment-author-field input");
       const textarea = box.querySelector("textarea");
       const button = box.querySelector("button");
       const saved = box.querySelector(".comment-saved");
-      if (!key || !textarea || !button || !saved) return;
-      const existing = localStorage.getItem(key) || "";
-      textarea.value = existing;
-      saved.textContent = existing ? "저장된 코멘트가 있습니다." : "로컬 브라우저에 저장됩니다.";
+      if (!key || !authorInput || !textarea || !button || !saved) return;
+      const existing = readStoredComment(key);
+      authorInput.value = existing.author || defaultCommentAuthor;
+      textarea.value = existing.text || "";
+      saved.textContent = existing.text ? `저장된 코멘트가 있습니다. 작성자: ${{authorInput.value}}` : "로컬 브라우저에 저장됩니다.";
       button.addEventListener("click", () => {{
         const value = textarea.value.trim();
+        const author = (authorInput.value || defaultCommentAuthor).trim();
         if (value) {{
-          localStorage.setItem(key, value);
-          saved.textContent = "저장됨";
+          localStorage.setItem(key, JSON.stringify({{
+            author,
+            comments: [{{ author, text: value }}],
+            updatedAt: new Date().toISOString(),
+          }}));
+          saved.textContent = `저장됨 · 작성자: ${{author}}`;
         }} else {{
           localStorage.removeItem(key);
           saved.textContent = "코멘트가 비어 있어 삭제했습니다.";
