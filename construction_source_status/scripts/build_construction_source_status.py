@@ -1390,15 +1390,18 @@ def render_html(data: dict[str, Any]) -> str:
 
     css = """
     :root {
-      color-scheme: light;
-      --ink: #17202a;
-      --muted: #607080;
-      --line: #d8dee6;
-      --paper: #ffffff;
-      --band: #f5f7f9;
-      --blue: #245a9c;
-      --teal: #197c7a;
-      --amber: #a96d16;
+      color-scheme: dark;
+      --ink: var(--text, #e5e5e5);
+      --paper: var(--panel, #262626);
+      --band: var(--bg, #1f1f1e);
+      --blue: var(--accent, #2997ff);
+      --teal: var(--accent-2, #82afb9);
+      --amber: var(--accent, #2997ff);
+      --construction-panel-strong: var(--panel-strong, #272727);
+      --construction-item: var(--item, #222);
+      --construction-soft: var(--soft, #a1a1aa);
+      --construction-radius: 8px;
+      --construction-shadow: var(--shadow, 0 18px 48px rgba(0, 0, 0, 0.22));
     }
     * { box-sizing: border-box; }
     body {
@@ -1409,19 +1412,24 @@ def render_html(data: dict[str, Any]) -> str:
       line-height: 1.45;
     }
     header {
+      width: min(1440px, calc(100% - 32px));
+      margin: 28px auto 0;
       background: var(--paper);
-      border-bottom: 1px solid var(--line);
-      padding: 26px clamp(18px, 4vw, 56px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl, 24px);
+      box-shadow: var(--construction-shadow);
+      padding: 26px 28px;
     }
     header h1 {
       margin: 0;
-      font-size: clamp(24px, 3vw, 36px);
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.06;
       letter-spacing: 0;
     }
     main {
-      width: min(1480px, 100%);
+      width: min(1440px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 22px clamp(14px, 3vw, 36px) 44px;
+      padding: 18px 0 56px;
     }
     a {
       color: var(--blue);
@@ -1436,14 +1444,14 @@ def render_html(data: dict[str, Any]) -> str:
       padding: 6px;
       margin-bottom: 12px;
       border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--paper);
+      border-radius: var(--construction-radius);
+      background: var(--construction-panel-strong);
     }
     .tab-button {
       border: 0;
-      border-radius: 6px;
+      border-radius: var(--construction-radius);
       background: transparent;
-      color: #415162;
+      color: var(--muted);
       cursor: pointer;
       flex: 0 0 auto;
       font: inherit;
@@ -1452,14 +1460,15 @@ def render_html(data: dict[str, Any]) -> str:
       padding: 10px 13px;
     }
     .tab-button.active {
-      background: #17202a;
+      background: #3c3c3c;
       color: #fff;
     }
     .tab-panel {
       background: var(--paper);
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: var(--radius-lg, 16px);
       overflow: hidden;
+      box-shadow: var(--construction-shadow);
     }
     .tab-panel[hidden] { display: none; }
     .section-head {
@@ -1491,14 +1500,14 @@ def render_html(data: dict[str, Any]) -> str:
     }
     th, td {
       padding: 9px 10px;
-      border-bottom: 1px solid #e8edf2;
+      border-bottom: 1px solid var(--line);
       text-align: left;
       vertical-align: middle;
       white-space: nowrap;
     }
     th {
-      color: #344250;
-      background: #f8fafc;
+      color: var(--construction-soft);
+      background: var(--construction-item);
       font-weight: 700;
     }
     .rank-row {
@@ -1509,10 +1518,10 @@ def render_html(data: dict[str, Any]) -> str:
     }
     .rank-row:hover td,
     .rank-row.expanded td {
-      background: #f8fbfb;
+      background: var(--construction-panel-strong);
     }
     .rank-row.expanded td {
-      border-bottom-color: #d4e2df;
+      border-bottom-color: #555;
     }
     td:first-child, th:first-child {
       width: 64px;
@@ -1536,19 +1545,19 @@ def render_html(data: dict[str, Any]) -> str:
       min-width: 54px;
       min-height: 24px;
       padding: 3px 8px;
-      border: 1px solid #98c5bf;
+      border: 1px solid rgba(130, 175, 185, 0.46);
       border-radius: 999px;
-      background: #edf8f6;
-      color: #0f6864;
+      background: rgba(130, 175, 185, 0.14);
+      color: var(--teal);
       font-size: 12px;
       font-weight: 800;
       line-height: 1.2;
       white-space: nowrap;
     }
     .rating-pill.empty {
-      border-color: #d7dde5;
-      background: #f4f6f8;
-      color: #6a7886;
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.045);
+      color: var(--muted);
     }
     .rating-pill.small {
       min-width: 46px;
@@ -1574,7 +1583,7 @@ def render_html(data: dict[str, Any]) -> str:
       height: 0;
       border-top: 4px solid transparent;
       border-bottom: 4px solid transparent;
-      border-left: 5px solid #607080;
+      border-left: 5px solid var(--muted);
       flex: 0 0 auto;
       transition: transform 0.16s ease;
     }
@@ -1587,9 +1596,9 @@ def render_html(data: dict[str, Any]) -> str:
     .detail-row td {
       width: auto;
       padding: 0;
-      background: #f8fbfb;
+      background: var(--construction-panel-strong);
       color: var(--ink);
-      border-bottom-color: #d4e2df;
+      border-bottom-color: #555;
       text-align: left;
       white-space: normal;
     }
@@ -1600,7 +1609,7 @@ def render_html(data: dict[str, Any]) -> str:
     }
     .detail-summary {
       padding-bottom: 12px;
-      border-bottom: 1px solid #dce7e5;
+      border-bottom: 1px solid var(--line);
     }
     .detail-grid {
       display: grid;
@@ -1627,9 +1636,9 @@ def render_html(data: dict[str, Any]) -> str:
       min-width: 0;
       margin-top: 14px;
       padding: 12px 14px;
-      border: 1px solid #dce7e5;
-      border-radius: 8px;
-      background: #f7fbfa;
+      border: 1px solid var(--line);
+      border-radius: var(--construction-radius);
+      background: var(--construction-item);
     }
     .credit-rating-head {
       display: flex;
@@ -1640,7 +1649,7 @@ def render_html(data: dict[str, Any]) -> str:
     }
     .credit-rating-head h3 {
       margin: 0;
-      color: #173f62;
+      color: var(--teal);
       font-size: 15px;
       letter-spacing: 0;
     }
@@ -1662,9 +1671,9 @@ def render_html(data: dict[str, Any]) -> str:
     .credit-source-list > li {
       min-width: 0;
       padding: 10px 11px;
-      border: 1px solid #e2e9ee;
-      border-radius: 7px;
-      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: var(--construction-radius);
+      background: var(--construction-panel-strong);
     }
     .credit-source-head {
       display: flex;
@@ -1674,11 +1683,11 @@ def render_html(data: dict[str, Any]) -> str:
       margin-bottom: 5px;
     }
     .credit-source-head strong {
-      color: #24384c;
+      color: var(--ink);
       font-size: 12px;
     }
     .source-state {
-      color: #44627a;
+      color: var(--teal);
       font-size: 11px;
       font-weight: 750;
     }
@@ -1735,7 +1744,7 @@ def render_html(data: dict[str, Any]) -> str:
     .recent-awards h3,
     .related-news h3 {
       margin: 0;
-      color: #173f62;
+      color: var(--teal);
       font-size: 15px;
       font-weight: 800;
       line-height: 1.2;
@@ -1760,10 +1769,10 @@ def render_html(data: dict[str, Any]) -> str:
     .recent-awards li,
     .related-news li {
       min-height: 118px;
-      border: 1px solid #dfe8e6;
-      border-radius: 7px;
-      background: #ffffff;
-      box-shadow: 0 1px 0 rgba(23, 32, 42, 0.03);
+      border: 1px solid var(--line);
+      border-radius: var(--construction-radius);
+      background: var(--construction-panel-strong);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
     }
     .recent-awards li {
       display: grid;
@@ -1780,7 +1789,7 @@ def render_html(data: dict[str, Any]) -> str:
     .news-meta {
       display: block;
       margin: 0 0 5px;
-      color: #245a9c;
+      color: var(--blue);
       font-size: 11px;
       font-weight: 800;
       line-height: 1.3;
@@ -1789,7 +1798,7 @@ def render_html(data: dict[str, Any]) -> str:
     }
     .recent-awards strong {
       display: -webkit-box;
-      color: #24384c;
+      color: var(--ink);
       font-size: 14px;
       line-height: 1.4;
       -webkit-box-orient: vertical;
@@ -1822,8 +1831,8 @@ def render_html(data: dict[str, Any]) -> str:
       margin: 0;
       padding: 7px 8px;
       border-radius: 5px;
-      background: #f4f8f8;
-      color: #263846;
+      background: var(--construction-item);
+      color: var(--ink);
       font-size: 12px;
       font-weight: 800;
       line-height: 1.2;
@@ -1841,7 +1850,7 @@ def render_html(data: dict[str, Any]) -> str:
     .award-meta {
       grid-column: 1 / -1;
       min-width: 0;
-      color: #415162;
+      color: var(--construction-soft);
       font-size: 11px;
       font-weight: 750;
       text-align: left;
@@ -1853,7 +1862,7 @@ def render_html(data: dict[str, Any]) -> str:
       grid-template-rows: auto auto minmax(0, 1fr);
       gap: 5px;
       padding: 11px 12px;
-      border-left: 3px solid #d3dfe8;
+      border-left: 3px solid var(--blue);
     }
     .related-news li > a {
       display: -webkit-box;
@@ -1871,7 +1880,7 @@ def render_html(data: dict[str, Any]) -> str:
     .related-news p {
       display: -webkit-box;
       margin: 0;
-      color: #536272;
+      color: var(--construction-soft);
       font-size: 12px;
       line-height: 1.45;
       text-align: left;
@@ -1893,7 +1902,7 @@ def render_html(data: dict[str, Any]) -> str:
       align-items: start;
       margin-top: 16px;
       padding-top: 14px;
-      border-top: 1px solid #dce7e5;
+      border-top: 1px solid var(--line);
     }
     .company-comment > div {
       min-width: 0;
@@ -1921,9 +1930,9 @@ def render_html(data: dict[str, Any]) -> str:
       width: 100%;
       min-height: 52px;
       resize: vertical;
-      border: 1px solid #cad5dd;
-      border-radius: 6px;
-      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--construction-radius);
+      background: var(--construction-item);
       padding: 8px 10px;
       color: var(--ink);
       font: inherit;
@@ -1932,8 +1941,8 @@ def render_html(data: dict[str, Any]) -> str:
     }
     .comment-controls button {
       border: 0;
-      border-radius: 6px;
-      background: #17202a;
+      border-radius: var(--construction-radius);
+      background: #3c3c3c;
       color: #fff;
       cursor: pointer;
       font: inherit;
@@ -1949,10 +1958,10 @@ def render_html(data: dict[str, Any]) -> str:
       min-width: 54px;
       font-weight: 800;
     }
-    .change.up { color: #0f766e; }
-    .change.down { color: #b45309; }
+    .change.up { color: var(--good, #34d399); }
+    .change.down { color: var(--warning, #fbf167); }
     .change.same { color: var(--muted); }
-    .change.new { color: #6b7280; font-weight: 700; }
+    .change.new { color: var(--teal); font-weight: 700; }
     .bar {
       display: block;
       width: min(var(--w), 100%);
@@ -1962,9 +1971,9 @@ def render_html(data: dict[str, Any]) -> str:
       border-radius: 999px;
     }
     .errors {
-      background: #fff7ed;
-      border: 1px solid #fed7aa;
-      border-radius: 8px;
+      background: rgba(251, 241, 103, 0.08);
+      border: 1px solid rgba(251, 241, 103, 0.22);
+      border-radius: var(--construction-radius);
       padding: 14px 16px;
       margin-bottom: 14px;
     }
@@ -1984,7 +1993,7 @@ def render_html(data: dict[str, Any]) -> str:
       margin-top: 14px;
       background: var(--paper);
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: var(--radius-lg, 16px);
       padding: 16px 18px;
       color: var(--muted);
       font-size: 13px;
@@ -2068,6 +2077,7 @@ def render_html(data: dict[str, Any]) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>건설·CM·엔지니어링 순위/실적 대시보드</title>
   <link rel="stylesheet" href="../shared/ifpdp-system-theme.css?v=ifpdp_system_3">
+  <link rel="stylesheet" href="../org_dashboard/styles.css?v=ifpdp_system_org_7">
   <style>{css}</style>
 </head>
 <body>
