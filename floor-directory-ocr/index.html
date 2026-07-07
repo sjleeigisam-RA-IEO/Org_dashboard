@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>층별현황판 OCR</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="top-bar">
+        <div>
+          <p class="eyebrow">Building Directory OCR</p>
+          <h1>층별현황판 OCR</h1>
+        </div>
+        <div class="top-actions">
+          <label class="button primary" for="cameraInput">
+            사진 촬영
+          </label>
+          <input id="cameraInput" type="file" accept="image/*" capture="environment">
+          <label class="button" for="imageInput">
+            사진 불러오기
+          </label>
+          <input id="imageInput" type="file" accept="image/*">
+          <button id="sampleButton" class="button" type="button">샘플 입력</button>
+        </div>
+      </header>
+
+      <section class="workbench" aria-label="층별현황판 OCR 작업 영역">
+        <section class="capture-panel" aria-labelledby="captureTitle">
+          <div class="panel-head">
+            <div>
+              <h2 id="captureTitle">사진</h2>
+              <p id="fileMeta">촬영하거나 저장된 이미지를 선택하십시오.</p>
+            </div>
+            <label class="switch">
+              <input id="enhanceToggle" type="checkbox" checked>
+              <span>고대비 보정</span>
+            </label>
+          </div>
+
+          <div id="dropZone" class="drop-zone">
+            <canvas id="previewCanvas" width="1200" height="840" aria-label="선택한 층별현황판 사진 미리보기"></canvas>
+            <div id="emptyState" class="empty-state">
+              <strong>사진 대기 중</strong>
+              <span>층수와 회사명이 보이도록 정면에서 촬영하십시오.</span>
+            </div>
+          </div>
+
+          <div class="scan-actions">
+            <button id="runOcrButton" class="button primary" type="button" disabled>OCR 실행</button>
+            <button id="clearButton" class="button" type="button">초기화</button>
+          </div>
+
+          <div class="status-box" aria-live="polite">
+            <div class="status-row">
+              <span id="statusText">대기 중</span>
+              <span id="statusPercent">0%</span>
+            </div>
+            <div class="progress-track">
+              <div id="progressBar" class="progress-bar"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="result-panel" aria-labelledby="resultTitle">
+          <div class="panel-head">
+            <div>
+              <h2 id="resultTitle">표 변환</h2>
+              <p>OCR 원문을 수정하면 표가 즉시 다시 정리됩니다.</p>
+            </div>
+            <div class="result-actions">
+              <button id="copyCsvButton" class="icon-button" type="button" title="CSV 복사" aria-label="CSV 복사">CSV</button>
+              <button id="downloadCsvButton" class="icon-button" type="button" title="CSV 다운로드" aria-label="CSV 다운로드">↓</button>
+            </div>
+          </div>
+
+          <label class="field-label" for="rawText">OCR 원문</label>
+          <textarea id="rawText" spellcheck="false" placeholder="OCR 결과가 여기에 표시됩니다. 직접 붙여넣어도 표로 변환됩니다."></textarea>
+
+          <div class="summary-row">
+            <span id="rowCount">0개 항목</span>
+            <span id="confidenceNote">신뢰도는 OCR 단어 단위 평균값입니다.</span>
+          </div>
+
+          <div class="sheet-box">
+            <div class="sheet-head">
+              <div>
+                <h3>구글시트 저장</h3>
+                <p>공용 구글시트에 한 촬영 건을 한 행으로 저장합니다.</p>
+              </div>
+              <label class="switch">
+                <input id="autoSaveToggle" type="checkbox">
+                <span>OCR 후 자동 저장</span>
+              </label>
+            </div>
+            <div class="sheet-controls">
+              <label class="building-field" for="buildingNameInput">
+                <span>건물명</span>
+                <input id="buildingNameInput" type="text" placeholder="예: 강남N타워" autocomplete="organization">
+              </label>
+              <button id="saveSheetButton" class="button primary" type="button" disabled>시트 저장</button>
+            </div>
+            <p id="sheetStatus" class="sheet-status">건물명과 표 항목이 있으면 저장할 수 있습니다.</p>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">층</th>
+                  <th scope="col">회사 / 시설</th>
+                  <th scope="col">원문</th>
+                  <th scope="col">신뢰도</th>
+                </tr>
+              </thead>
+              <tbody id="resultBody">
+                <tr class="placeholder-row">
+                  <td colspan="4">변환된 항목이 없습니다.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

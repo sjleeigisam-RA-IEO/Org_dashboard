@@ -1,0 +1,680 @@
+const cameraInput = document.querySelector("#cameraInput");
+const imageInput = document.querySelector("#imageInput");
+const sampleButton = document.querySelector("#sampleButton");
+const runOcrButton = document.querySelector("#runOcrButton");
+const clearButton = document.querySelector("#clearButton");
+const enhanceToggle = document.querySelector("#enhanceToggle");
+const dropZone = document.querySelector("#dropZone");
+const emptyState = document.querySelector("#emptyState");
+const previewCanvas = document.querySelector("#previewCanvas");
+const rawText = document.querySelector("#rawText");
+const resultBody = document.querySelector("#resultBody");
+const rowCount = document.querySelector("#rowCount");
+const confidenceNote = document.querySelector("#confidenceNote");
+const fileMeta = document.querySelector("#fileMeta");
+const statusText = document.querySelector("#statusText");
+const statusPercent = document.querySelector("#statusPercent");
+const progressBar = document.querySelector("#progressBar");
+const copyCsvButton = document.querySelector("#copyCsvButton");
+const downloadCsvButton = document.querySelector("#downloadCsvButton");
+const buildingNameInput = document.querySelector("#buildingNameInput");
+const saveSheetButton = document.querySelector("#saveSheetButton");
+const autoSaveToggle = document.querySelector("#autoSaveToggle");
+const sheetStatus = document.querySelector("#sheetStatus");
+
+const previewContext = previewCanvas.getContext("2d", { willReadFrequently: true });
+const autoSaveStorageKey = "floorDirectoryOcr.autoSave";
+const buildingNameStorageKey = "floorDirectoryOcr.buildingName";
+const googleSheetWebAppUrl =
+  "https://script.google.com/macros/s/AKfycbx4WaX0l6o7I5BTTfHLC9f9t40_uSfYLAZB_80WsPsBsVOMlBgM2fFKCxDVXImg9Uw11w/exec";
+
+let selectedFile = null;
+let processedDataUrl = "";
+let wordConfidenceByLine = new Map();
+let parsedRows = [];
+
+const sampleText = `층별현황
+10F 이지스자산운용
+9F 삼일회계법인
+8F 법무법인 한결 / 회의실
+7F 주식회사 라온테크
+6F 서울도시연구소
+5F 공실
+4F 카페 테라스
+3F 하나은행
+2F 공유오피스 스테이션
+1F 로비 안내데스크
+B1 주차장 / 관리사무소`;
+
+cameraInput.addEventListener("change", (event) => {
+  const [file] = event.target.files || [];
+  if (file) {
+    handleImageFile(file);
+  }
+});
+
+imageInput.addEventListener("change", (event) => {
+  const [file] = event.target.files || [];
+  if (file) {
+    handleImageFile(file);
+  }
+});
+
+sampleButton.addEventListener("click", () => {
+  rawText.value = sampleText;
+  wordConfidenceByLine = new Map();
+  setStatus("샘플 텍스트 입력", 100);
+  renderParsedRows();
+});
+
+runOcrButton.addEventListener("click", runOcr);
+
+clearButton.addEventListener("click", () => {
+  selectedFile = null;
+  processedDataUrl = "";
+  wordConfidenceByLine = new Map();
+  parsedRows = [];
+  rawText.value = "";
+  cameraInput.value = "";
+  imageInput.value = "";
+  fileMeta.textContent = "촬영하거나 저장된 이미지를 선택하십시오.";
+  runOcrButton.disabled = true;
+  clearPreview();
+  setStatus("대기 중", 0);
+  renderParsedRows();
+});
+
+enhanceToggle.addEventListener("change", () => {
+  if (selectedFile) {
+    renderSelectedImage(selectedFile);
+  }
+});
+
+rawText.addEventListener("input", () => {
+  renderParsedRows();
+});
+
+buildingNameInput.value = localStorage.getItem(buildingNameStorageKey) || "";
+autoSaveToggle.checked = localStorage.getItem(autoSaveStorageKey) === "true";
+
+buildingNameInput.addEventListener("input", () => {
+  localStorage.setItem(buildingNameStorageKey, buildingNameInput.value.trim());
+  updateSheetControls();
+});
+
+autoSaveToggle.addEventListener("change", () => {
+  localStorage.setItem(autoSaveStorageKey, String(autoSaveToggle.checked));
+});
+
+saveSheetButton.addEventListener("click", () => {
+  saveToGoogleSheet();
+});
+
+copyCsvButton.addEventListener("click", async () => {
+  if (!parsedRows.length) {
+    setStatus("복사할 항목 없음", 0);
+    return;
+  }
+
+  const csv = toCsv(parsedRows);
+  try {
+    await navigator.clipboard.writeText(csv);
+    setStatus("CSV 복사 완료", 100);
+  } catch {
+    setStatus("브라우저 권한 때문에 복사 실패", 0);
+  }
+});
+
+downloadCsvButton.addEventListener("click", () => {
+  if (!parsedRows.length) {
+    setStatus("다운로드할 항목 없음", 0);
+    return;
+  }
+
+  const blob = new Blob(["\ufeff" + toCsv(parsedRows)], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `floor-directory-${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+});
+
+["dragenter", "dragover"].forEach((eventName) => {
+  dropZone.addEventListener(eventName, (event) => {
+    event.preventDefault();
+    dropZone.classList.add("dragging");
+  });
+});
+
+["dragleave", "drop"].forEach((eventName) => {
+  dropZone.addEventListener(eventName, (event) => {
+    event.preventDefault();
+    dropZone.classList.remove("dragging");
+  });
+});
+
+dropZone.addEventListener("drop", (event) => {
+  const [file] = event.dataTransfer.files || [];
+  if (file && file.type.startsWith("image/")) {
+    handleImageFile(file);
+  }
+});
+
+async function handleImageFile(file) {
+  selectedFile = file;
+  fileMeta.textContent = `${file.name} · ${formatBytes(file.size)}`;
+  runOcrButton.disabled = true;
+  setStatus("이미지 준비 중", 15);
+  await renderSelectedImage(file);
+  runOcrButton.disabled = false;
+  setStatus("OCR 실행 가능", 0);
+}
+
+async function renderSelectedImage(file) {
+  const bitmap = await createImageBitmap(file);
+  const scale = Math.min(1, 1800 / Math.max(bitmap.width, bitmap.height));
+  const width = Math.max(1, Math.round(bitmap.width * scale));
+  const height = Math.max(1, Math.round(bitmap.height * scale));
+
+  previewCanvas.width = width;
+  previewCanvas.height = height;
+  previewContext.fillStyle = "#ffffff";
+  previewContext.fillRect(0, 0, width, height);
+  previewContext.drawImage(bitmap, 0, 0, width, height);
+
+  if (enhanceToggle.checked) {
+    enhanceCanvas(previewContext, width, height);
+  }
+
+  processedDataUrl = previewCanvas.toDataURL("image/png");
+  emptyState.hidden = true;
+}
+
+async function runOcr() {
+  if (!processedDataUrl) {
+    return;
+  }
+
+  if (!window.Tesseract) {
+    setStatus("OCR 라이브러리 로드 실패", 0);
+    return;
+  }
+
+  runOcrButton.disabled = true;
+  setStatus("OCR 준비 중", 5);
+
+  try {
+    const result = await Tesseract.recognize(processedDataUrl, "kor+eng", {
+      logger(message) {
+        const progress = Math.round((message.progress || 0) * 100);
+        if (message.status) {
+          setStatus(translateOcrStatus(message.status), progress);
+        }
+      },
+    });
+
+    rawText.value = result.data.text.trim();
+    wordConfidenceByLine = buildConfidenceMap(result.data);
+    setStatus("OCR 완료", 100);
+    renderParsedRows();
+
+    if (autoSaveToggle.checked && parsedRows.length) {
+      await saveToGoogleSheet();
+    }
+  } catch (error) {
+    console.error(error);
+    setStatus("OCR 실패. 원문 영역에 직접 붙여넣을 수 있습니다.", 0);
+  } finally {
+    runOcrButton.disabled = false;
+  }
+}
+
+function enhanceCanvas(context, width, height) {
+  const imageData = context.getImageData(0, 0, width, height);
+  const data = imageData.data;
+
+  for (let index = 0; index < data.length; index += 4) {
+    const luminance = data[index] * 0.299 + data[index + 1] * 0.587 + data[index + 2] * 0.114;
+    const contrasted = Math.max(0, Math.min(255, (luminance - 128) * 1.65 + 128));
+    data[index] = contrasted;
+    data[index + 1] = contrasted;
+    data[index + 2] = contrasted;
+  }
+
+  context.putImageData(imageData, 0, 0);
+}
+
+function renderParsedRows() {
+  parsedRows = parseDirectoryText(rawText.value, wordConfidenceByLine);
+  rowCount.textContent = `${parsedRows.length}개 항목`;
+  confidenceNote.textContent = wordConfidenceByLine.size
+    ? "신뢰도 70% 미만 항목은 재확인 대상입니다."
+    : "직접 입력한 텍스트는 신뢰도 없음으로 표시됩니다.";
+
+  if (!parsedRows.length) {
+    resultBody.innerHTML = `<tr class="placeholder-row"><td colspan="4">변환된 항목이 없습니다.</td></tr>`;
+    updateSheetControls();
+    return;
+  }
+
+  resultBody.innerHTML = parsedRows
+    .map((row) => {
+      const confidence = row.confidence == null ? "" : `${Math.round(row.confidence)}%`;
+      const confidenceClass = row.confidence != null && row.confidence < 70 ? " class=\"low-confidence\"" : "";
+      return `<tr>
+        <td>${escapeHtml(row.floor)}</td>
+        <td>${escapeHtml(row.company)}</td>
+        <td>${escapeHtml(row.source)}</td>
+        <td${confidenceClass}>${confidence}</td>
+      </tr>`;
+    })
+    .join("");
+  updateSheetControls();
+}
+
+function parseDirectoryText(text, confidenceMap) {
+  const lines = normalizeText(text)
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  const rows = [];
+  let currentFloor = "";
+
+  for (const line of lines) {
+    if (isNoiseLine(line)) {
+      continue;
+    }
+
+    const floorParts = splitPackedFloorLine(line);
+    const targetLines = floorParts.length > 1 ? floorParts : [line];
+
+    for (const targetLine of targetLines) {
+      const floorMatch = extractFloor(targetLine);
+
+      if (floorMatch) {
+        currentFloor = floorMatch.floor;
+        addCompanies(rows, currentFloor, floorMatch.rest, targetLine, confidenceMap);
+        continue;
+      }
+
+      if (currentFloor && looksLikeTenantLine(targetLine)) {
+        addCompanies(rows, currentFloor, targetLine, targetLine, confidenceMap);
+      }
+    }
+  }
+
+  return mergeDuplicateRows(rows);
+}
+
+function normalizeText(text) {
+  return text
+    .replace(/\r/g, "\n")
+    .replace(/[|｜]/g, " ")
+    .replace(/[·ㆍ•]/g, " / ")
+    .replace(/[：]/g, ":")
+    .replace(/[–—]/g, "-")
+    .replace(/\s+\n/g, "\n")
+    .replace(/[ \t]{2,}/g, " ")
+    .trim();
+}
+
+function extractFloor(line) {
+  const cleaned = line.replace(/^[^\w가-힣]+/, "").trim();
+  const match = cleaned.match(
+    /^(지하\s*\d{1,2}|B\s*\d{1,2}|B\d{1,2}|[0-9]{1,2}\s*(?:F|FL|층)|[0-9]{1,2}\s+(?=[가-힣A-Za-z(㈜])|RF|R\s*F|옥상|로비|LOBBY)\s*[:.\-]?\s*(.*)$/i
+  );
+
+  if (!match) {
+    return null;
+  }
+
+  const floor = normalizeFloorLabel(match[1]);
+  const rest = cleanupTenant(match[2] || "");
+
+  if (!floor) {
+    return null;
+  }
+
+  return { floor, rest };
+}
+
+function normalizeFloorLabel(value) {
+  const token = value.toUpperCase().replace(/\s+/g, "");
+
+  if (/^지하\d{1,2}$/.test(token)) {
+    return `B${token.replace("지하", "")}`;
+  }
+
+  if (/^B\d{1,2}$/.test(token)) {
+    return token;
+  }
+
+  if (/^\d{1,2}(F|FL|층)?$/.test(token)) {
+    const number = Number(token.replace(/\D/g, ""));
+    if (number < 1 || number > 80) {
+      return "";
+    }
+    return `${number}F`;
+  }
+
+  if (token === "RF" || token === "R" || token === "옥상") {
+    return "RF";
+  }
+
+  if (token === "로비" || token === "LOBBY") {
+    return "1F";
+  }
+
+  return "";
+}
+
+function splitPackedFloorLine(line) {
+  const packedPattern = /(지하\s*\d{1,2}|B\s*\d{1,2}|B\d{1,2}|[0-9]{1,2}\s*(?:F|FL|층)|RF|R\s*F|옥상|로비|LOBBY)\s*[:.\-]?\s*/gi;
+  const matches = [...line.matchAll(packedPattern)];
+
+  if (matches.length < 2) {
+    return [];
+  }
+
+  return matches.map((match, index) => {
+    const start = match.index;
+    const end = matches[index + 1]?.index ?? line.length;
+    return line.slice(start, end).trim();
+  });
+}
+
+function addCompanies(rows, floor, rawTenantText, source, confidenceMap) {
+  const tenantText = cleanupTenant(rawTenantText);
+  if (!tenantText || isNoiseLine(tenantText)) {
+    return;
+  }
+
+  const companies = tenantText
+    .split(/\s*[,，/]\s*|\s{3,}/)
+    .map(cleanupTenant)
+    .filter((company) => company && !isNoiseLine(company));
+
+  for (const company of companies) {
+    rows.push({
+      floor,
+      company,
+      source,
+      confidence: getLineConfidence(source, confidenceMap),
+    });
+  }
+}
+
+function cleanupTenant(value) {
+  return value
+    .replace(/^[\s:.\-()[\]{}]+/, "")
+    .replace(/[\s:.\-]+$/, "")
+    .replace(/\bTEL\b.*$/i, "")
+    .replace(/\bOPEN\b.*$/i, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+function isNoiseLine(line) {
+  const compact = line.replace(/\s/g, "").toUpperCase();
+  if (!compact) {
+    return true;
+  }
+
+  const noiseWords = [
+    "층별현황",
+    "층별안내",
+    "입주사안내",
+    "BUILDINGDIRECTORY",
+    "DIRECTORY",
+    "FLOORGUIDE",
+    "FLOORINFORMATION",
+    "안내",
+    "현황판",
+  ];
+
+  return noiseWords.includes(compact) || /^[0-9.\-:]+$/.test(compact);
+}
+
+function looksLikeTenantLine(line) {
+  const cleaned = cleanupTenant(line);
+  return cleaned.length >= 2 && /[가-힣A-Za-z0-9]/.test(cleaned) && !extractFloor(cleaned);
+}
+
+function mergeDuplicateRows(rows) {
+  const seen = new Set();
+  const merged = [];
+
+  for (const row of rows) {
+    const key = `${row.floor}|${row.company}`.toLowerCase();
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    merged.push(row);
+  }
+
+  return merged.sort(compareFloorDesc);
+}
+
+function compareFloorDesc(a, b) {
+  return floorOrder(b.floor) - floorOrder(a.floor);
+}
+
+function floorOrder(floor) {
+  if (floor === "RF") {
+    return 1000;
+  }
+
+  if (/^B\d+$/.test(floor)) {
+    return -Number(floor.slice(1));
+  }
+
+  if (/^\d+F$/.test(floor)) {
+    return Number(floor.slice(0, -1));
+  }
+
+  return 0;
+}
+
+function buildConfidenceMap(data) {
+  const map = new Map();
+  const words = data.words || [];
+
+  for (const word of words) {
+    const text = (word.text || "").trim();
+    if (!text) {
+      continue;
+    }
+
+    const key = normalizeForConfidence(text);
+    if (!key) {
+      continue;
+    }
+
+    const entry = map.get(key) || { total: 0, count: 0 };
+    entry.total += Number(word.confidence || 0);
+    entry.count += 1;
+    map.set(key, entry);
+  }
+
+  return map;
+}
+
+function getLineConfidence(source, confidenceMap) {
+  if (!confidenceMap.size) {
+    return null;
+  }
+
+  const tokens = normalizeForConfidence(source).split(" ").filter(Boolean);
+  let total = 0;
+  let count = 0;
+
+  for (const token of tokens) {
+    const entry = confidenceMap.get(token);
+    if (entry) {
+      total += entry.total / entry.count;
+      count += 1;
+    }
+  }
+
+  return count ? total / count : null;
+}
+
+function normalizeForConfidence(value) {
+  return value
+    .replace(/[^\w가-힣]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function toCsv(rows) {
+  const header = ["층", "회사/시설", "원문", "신뢰도"];
+  const body = rows.map((row) => [
+    row.floor,
+    row.company,
+    row.source,
+    row.confidence == null ? "" : Math.round(row.confidence),
+  ]);
+
+  return [header, ...body]
+    .map((cells) => cells.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(","))
+    .join("\n");
+}
+
+async function saveToGoogleSheet() {
+  const buildingName = buildingNameInput.value.trim();
+
+  if (!buildingName) {
+    setSheetStatus("건물명을 입력하십시오.");
+    buildingNameInput.focus();
+    return;
+  }
+
+  if (!parsedRows.length) {
+    setSheetStatus("저장할 표 항목이 없습니다.");
+    return;
+  }
+
+  saveSheetButton.disabled = true;
+  setSheetStatus("구글시트로 전송 중입니다.");
+
+  try {
+    await fetch(googleSheetWebAppUrl, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8",
+      },
+      body: JSON.stringify(buildSheetPayload()),
+    });
+    setSheetStatus("전송 완료. Apps Script CORS 제한으로 브라우저에서는 응답을 확인하지 않습니다.");
+  } catch (error) {
+    console.error(error);
+    setSheetStatus("전송 실패. Web App URL과 배포 권한을 확인하십시오.");
+  } finally {
+    updateSheetControls();
+  }
+}
+
+function buildSheetPayload() {
+  return {
+    version: "floor-directory-ocr-v1",
+    capturedAt: new Date().toISOString(),
+    buildingName: buildingNameInput.value.trim(),
+    sourceName: selectedFile?.name || "manual-input",
+    rawText: rawText.value,
+    rows: parsedRows,
+    floors: groupRowsByFloor(parsedRows),
+  };
+}
+
+function groupRowsByFloor(rows) {
+  const grouped = Object.fromEntries(getSheetFloorKeys().map((floor) => [floor, ""]));
+  const buckets = new Map();
+
+  for (const row of rows) {
+    if (!Object.prototype.hasOwnProperty.call(grouped, row.floor)) {
+      continue;
+    }
+
+    const companies = buckets.get(row.floor) || new Set();
+    companies.add(row.company);
+    buckets.set(row.floor, companies);
+  }
+
+  for (const [floor, companies] of buckets.entries()) {
+    grouped[floor] = [...companies].join(", ");
+  }
+
+  return grouped;
+}
+
+function getSheetFloorKeys() {
+  const basementFloors = Array.from({ length: 5 }, (_, index) => `B${5 - index}`);
+  const aboveGroundFloors = Array.from({ length: 100 }, (_, index) => `${index + 1}F`);
+  return [...basementFloors, ...aboveGroundFloors];
+}
+
+function updateSheetControls() {
+  saveSheetButton.disabled = !parsedRows.length || !buildingNameInput.value.trim();
+}
+
+function setSheetStatus(message) {
+  sheetStatus.textContent = message;
+}
+
+function setStatus(message, percent) {
+  const clamped = Math.max(0, Math.min(100, Number(percent) || 0));
+  statusText.textContent = message;
+  statusPercent.textContent = `${clamped}%`;
+  progressBar.style.width = `${clamped}%`;
+}
+
+function translateOcrStatus(status) {
+  const labels = {
+    "loading tesseract core": "OCR 코어 로드 중",
+    "initializing tesseract": "OCR 초기화 중",
+    "loading language traineddata": "언어 데이터 로드 중",
+    "initializing api": "OCR API 준비 중",
+    "recognizing text": "텍스트 인식 중",
+  };
+
+  return labels[status] || status;
+}
+
+function clearPreview() {
+  previewCanvas.width = 1200;
+  previewCanvas.height = 840;
+  previewContext.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+  emptyState.hidden = false;
+}
+
+function formatBytes(bytes) {
+  if (bytes < 1024) {
+    return `${bytes} B`;
+  }
+
+  if (bytes < 1024 * 1024) {
+    return `${(bytes / 1024).toFixed(1)} KB`;
+  }
+
+  return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+clearPreview();
+renderParsedRows();
+updateSheetControls();
