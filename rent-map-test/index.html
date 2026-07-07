@@ -25,14 +25,32 @@
       border: 1px solid rgba(216, 221, 230, 0.72); border-radius: 8px; box-shadow: 0 12px 30px rgba(0,0,0,0.14);
     }
     .leftDock {
-      position: fixed; left: 14px; top: 14px; width: 374px; max-height: calc(100vh - 28px); z-index: 4; padding: 0;
+      position: fixed; left: 14px; top: 58px; width: 374px; max-height: calc(100vh - 72px); z-index: 4; padding: 0;
       display: grid; grid-template-rows: auto minmax(0, 1fr); overflow: hidden;
     }
     .brand { padding: 10px 12px 8px; border-bottom: 1px solid var(--line); }
     h1 { margin: 0; font-size: 15px; line-height: 1.2; letter-spacing: 0; }
     .sub { margin-top: 3px; color: var(--muted); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .tabContent { display: none; min-height: 0; overflow: auto; padding: 10px 12px 12px; }
-    .tabContent.is-active { display: block; }
+    .appTabs {
+      position: fixed; left: 14px; top: 12px; z-index: 8; pointer-events: auto;
+      display: grid; grid-template-columns: 1fr 1fr; width: 252px; height: 36px; overflow: hidden;
+      border: 1px solid rgba(216, 221, 230, 0.78); border-radius: 999px;
+      background: rgba(255,255,255,0.90); backdrop-filter: blur(10px); box-shadow: 0 10px 24px rgba(15,23,42,0.14);
+    }
+    .pageTab { border: 0; background: transparent; color: #334155; font-size: 12px; font-weight: 900; cursor: pointer; }
+    .pageTab.is-active { color: #fff; background: #2563eb; }
+    .mapTools { min-height: 0; overflow: auto; padding: 10px 12px 12px; }
+    .appPage { display: none; }
+    .rentStatusPage {
+      position: fixed; inset: 58px 14px 14px; z-index: 5; pointer-events: auto;
+      overflow: hidden; padding: 0; background: rgba(248,250,252,0.96); backdrop-filter: blur(12px);
+    }
+    body[data-view="status"] #app,
+    body[data-view="status"] .topbar,
+    body[data-view="status"] .viewReset,
+    body[data-view="status"] .selectionClear,
+    body[data-view="status"] .attribution { display: none; }
+    body[data-view="status"] .rentStatusPage { display: block; }
     .panelSection { margin-bottom: 10px; }
     .panelSection:last-child { margin-bottom: 0; }
     .panelTitle { margin: 0 0 6px; font-size: 12px; font-weight: 900; color: var(--ink); }
@@ -71,8 +89,65 @@
     }
     .result:hover { border-color: var(--blue); }
     .result b { font-size: 13px; }
+    .tenantLab { display: grid; gap: 10px; }
+    .tenantLabPage { height: 100%; min-height: 0; overflow: auto; padding: 12px; }
+    .tenantLabPage .tenantSplit { grid-template-columns: minmax(280px, 0.72fr) minmax(520px, 1.58fr); align-items: start; }
+    .tenantLabPage .targetAssetList { max-height: calc(100vh - 172px); }
+    .tenantLabPage .tenantObjectRows { max-height: none; min-height: 0; overflow: visible; }
+    .tenantLabPage .savedList { max-height: calc(100vh - 180px); }
+    .tenantLabHeader { border: 1px solid #e3e9f1; border-radius: 7px; background: rgba(248,250,252,0.82); padding: 9px; }
+    .tenantLabHeader strong { display: block; font-size: 13px; color: var(--ink); }
+    .tenantLabHeader span { display: block; margin-top: 3px; font-size: 11px; line-height: 1.35; color: var(--muted); }
+    .tenantModeTabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .tenantModeButton { height: 31px; border: 1px solid #dbe3ed; border-radius: 7px; background: #fff; color: #334155; font-size: 12px; font-weight: 900; cursor: pointer; }
+    .tenantModeButton.is-active { color: #1d4ed8; border-color: rgba(37,99,235,0.42); background: #eff6ff; box-shadow: 0 0 0 3px rgba(37,99,235,0.08); }
+    .tenantSplit { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 8px; min-height: 0; }
+    .targetAssetList { display: grid; gap: 6px; max-height: 62vh; overflow: auto; padding-right: 2px; }
+    .targetAssetItem { width: 100%; border: 1px solid #dfe6ee; border-radius: 7px; background: #fff; padding: 8px; text-align: left; cursor: pointer; color: var(--ink); }
+    .targetAssetItem.is-active { border-color: rgba(37,99,235,0.62); box-shadow: 0 0 0 3px rgba(37,99,235,0.10); }
+    .targetAssetItem b { display: block; font-size: 12px; line-height: 1.25; }
+    .targetAssetItem span { display: block; margin-top: 3px; font-size: 10.5px; color: var(--muted); line-height: 1.32; }
+    .targetAssetForm { display: grid; gap: 8px; min-height: 0; }
+    .targetCard { border: 1px solid #e3e9f1; border-radius: 7px; background: #fff; padding: 9px; }
+    .targetCard h2 { margin: 0; font-size: 15px; line-height: 1.25; }
+    .targetCard .meta { margin-top: 4px; color: var(--muted); font-size: 11px; line-height: 1.35; }
+    .targetActions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+    .smallButton { height: 28px; border: 1px solid #dbe3ed; border-radius: 7px; background: #fff; color: #334155; padding: 0 8px; font-size: 11px; font-weight: 800; cursor: pointer; }
+    .smallButton:hover { border-color: var(--blue); color: #1d4ed8; }
+    .inputGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .field { display: grid; gap: 4px; }
+    .field label { font-size: 10.5px; font-weight: 800; color: var(--muted); }
+    .field input, .field select, .field textarea { width: 100%; border: 1px solid #dbe3ed; border-radius: 6px; background: #fff; color: var(--ink); font-size: 12px; padding: 7px; outline: none; }
+    .field textarea { min-height: 72px; resize: vertical; line-height: 1.35; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.10); }
+    .field.is-wide { grid-column: 1 / -1; }
+    .tenantSummary { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+    .tenantSummaryItem { display: inline-flex; align-items: center; gap: 5px; border: 1px solid #dbe3ed; border-radius: 999px; background: #fff; padding: 4px 8px; font-size: 11px; font-weight: 800; color: #334155; }
+    .tenantObjectRows { display: grid; gap: 8px; max-height: 42vh; overflow: auto; padding-right: 2px; }
+    .tenantObjectCard { border: 1px solid #e3e9f1; border-radius: 7px; background: rgba(255,255,255,0.98); padding: 10px; }
+    .tenantObjectCard.is-review { border-color: #fbbf24; background: #fffaf0; }
+    .tenantObjectHead { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 8px; }
+    .tenantObjectHead b { min-width: 0; font-size: 13px; line-height: 1.28; color: var(--ink); overflow-wrap: anywhere; }
+    .tenantRank { color: var(--muted); font-size: 10.5px; font-weight: 800; }
+    .statusPill { display: inline-flex; align-items: center; justify-content: center; min-width: 54px; height: 24px; padding: 0 9px; border-radius: 999px; border: 1px solid transparent; font-size: 11px; font-weight: 900; white-space: nowrap; }
+    .statusPill.is-active { color: #065f46; background: #d1fae5; border-color: #6ee7b7; }
+    .statusPill.is-expired { color: #7f1d1d; background: #fee2e2; border-color: #fca5a5; }
+    .statusPill.is-unknown { color: #5b4b08; background: #fef3c7; border-color: #facc15; }
+    .tenantObjectMeta { margin-top: 6px; color: var(--muted); font-size: 11px; line-height: 1.35; }
+    .tenantFactGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 8px; }
+    .tenantFact { border: 1px solid #edf1f6; border-radius: 6px; background: #f8fafc; padding: 7px; min-height: 48px; }
+    .tenantFact span { display: block; color: var(--muted); font-size: 10px; font-weight: 800; }
+    .tenantFact strong { display: block; margin-top: 3px; color: var(--ink); font-size: 12px; line-height: 1.2; overflow-wrap: anywhere; }
+    .tenantReviewGrid { display: grid; grid-template-columns: 0.75fr 0.95fr 0.9fr 1.4fr; gap: 6px; margin-top: 8px; }
+    .tenantReviewGrid label { display: grid; gap: 3px; color: var(--muted); font-size: 10px; font-weight: 800; }
+    .tenantReviewGrid input, .tenantReviewGrid select { width: 100%; height: 30px; border: 1px solid #dbe3ed; border-radius: 6px; padding: 0 7px; font-size: 11px; background: #fff; color: var(--ink); }
+    .savedList { display: grid; gap: 7px; max-height: 68vh; overflow: auto; }
+    .savedCard { border: 1px solid #e3e9f1; border-radius: 7px; background: #fff; padding: 9px; }
+    .savedCard b { display: block; font-size: 13px; }
+    .savedCard span { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; line-height: 1.35; }
+    .tenantEmpty { border: 1px dashed #cfd7e3; border-radius: 7px; padding: 10px; color: var(--muted); font-size: 12px; line-height: 1.45; background: rgba(248,250,252,0.74); }
     .caseList {
-      position: fixed; right: 14px; top: 14px; width: min(392px, calc(100vw - 28px)); max-height: calc(100vh - 28px); overflow: hidden; padding: 0; z-index: 4;
+      position: fixed; right: 14px; top: 58px; width: min(392px, calc(100vw - 28px)); max-height: calc(100vh - 72px); overflow: hidden; padding: 0; z-index: 4;
     }
     .caseListHeader { display: grid; gap: 8px; padding: 10px 11px 9px; border-bottom: 1px solid var(--line); }
     .caseListTitle { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
@@ -132,9 +207,9 @@
     .caseGlyph::after { width: 6px; height: 17px; opacity: 0.95; }
     .transactionGlyph { width: 13px; height: 13px; border-radius: 999px; background: #7c3aed; box-shadow: 0 0 0 4px rgba(124,58,237,0.20); display: inline-block; flex: 0 0 auto; }
     .clusterGlyph { width: 16px; height: 16px; border-radius: 999px; background: radial-gradient(circle, rgba(251,191,36,0.96) 0%, rgba(245,158,11,0.76) 58%, rgba(245,158,11,0.24) 100%); border: 1px solid rgba(255,255,255,0.82); box-shadow: 0 2px 7px rgba(245,158,11,0.24); display: inline-block; flex: 0 0 auto; }
-    .ownedAssetGlyph { position: relative; width: 34px; height: 28px; display: inline-block; flex: 0 0 auto; filter: drop-shadow(0 1px 2px rgba(15,23,42,0.20)); }
-    .ownedAssetGlyph::before { content: ""; position: absolute; inset: 0; background: #0f2a5f; clip-path: polygon(50% 100%, 0 0, 100% 0); }
-    .ownedAssetGlyph::after { content: "IGIS"; position: absolute; left: 0; right: 0; top: 6px; color: #fff; font-size: 10px; line-height: 1; font-weight: 900; text-align: center; letter-spacing: 0; }
+    .ownedAssetGlyph { position: relative; width: 34px; height: 28px; display: inline-block; flex: 0 0 auto; filter: drop-shadow(0 1px 2px rgba(15,23,42,0.24)); }
+    .ownedAssetGlyph::before { content: ""; position: absolute; inset: 0; background: #0f2a5f; clip-path: polygon(50% 100%, 0 0, 100% 0); box-shadow: inset 0 0 0 2px #06163a; }
+    .ownedAssetGlyph::after { content: "IGIS"; position: absolute; left: 0; right: 0; top: 4px; color: #fff; font-size: 10px; line-height: 1; font-weight: 900; text-align: center; letter-spacing: 0; text-shadow: 0 1px 1px rgba(6,22,58,0.65); }
     .hint { margin-top: 6px; color: var(--muted); font-size: 10.5px; line-height: 1.32; }
     .overviewGrid { display: grid; gap: 6px; }
     .overviewGrid .metricRow { grid-template-columns: 108px 1fr; }
@@ -165,9 +240,14 @@
     }
     .loading { position: fixed; inset: 0; display: grid; place-items: center; color: white; font-size: 14px; background: #0b1015; }
     @media (max-width: 840px) {
-      .leftDock { left: 10px; right: 10px; top: 10px; bottom: auto; width: auto; max-height: 48vh; }
+      .appTabs { left: 10px; right: 10px; top: 10px; width: auto; }
+      .leftDock { left: 10px; right: 10px; top: 54px; bottom: auto; width: auto; max-height: 44vh; }
       .brand { display: none; }
-      .tabContent { max-height: 48vh; padding: 10px 12px 12px; }
+      .mapTools { max-height: 44vh; padding: 10px 12px 12px; }
+      .rentStatusPage { inset: 54px 10px 10px; }
+      .tenantSplit { grid-template-columns: 1fr; }
+      .targetAssetList, .tenantObjectRows, .savedList { max-height: 28vh; }
+      .inputGrid, .tenantReviewGrid { grid-template-columns: 1fr; }
       .caseList { left: 10px; right: 10px; top: auto; bottom: 10px; width: auto; max-height: 44px; transition: max-height 0.18s ease; z-index: 6; }
       .caseList.is-empty { display: none; }
       .caseListHeader { cursor: pointer; padding: 12px; border-bottom: 0; }
@@ -181,20 +261,24 @@
       .caseList.is-open .caseRows { display: grid; }
       body.case-list-open .leftDock { display: none; }
       .attribution { display: none; }
-      .viewReset { right: 12px; top: calc(48vh + 18px); height: 32px; padding: 0 10px; }
+      .viewReset { right: 12px; top: calc(44vh + 62px); height: 32px; padding: 0 10px; }
     }
   </style>
 </head>
-<body>
+<body data-view="map">
   <div id="app"></div>
   <div class="loading" id="loading">NOC surface loading</div>
+  <nav class="appTabs" role="tablist" aria-label="Rent dashboard pages">
+    <button class="pageTab is-active" type="button" data-page="map">렌트맵</button>
+    <button class="pageTab" type="button" data-page="status">렌트현황</button>
+  </nav>
   <div class="topbar">
     <section class="panel leftDock" id="leftDock">
       <div class="brand">
         <h1>Seoul Office NOC Surface</h1>
         <div class="sub">NOC terrain + rent cases + building register overview</div>
       </div>
-      <div class="tabContent is-active" id="tab-info" role="tabpanel">
+      <div class="mapTools">
         <section class="side is-empty" id="detailPanel"></section>
         <div id="mapProviderStatus" class="providerStatus" hidden></div>
         <div class="panelSection">
@@ -248,6 +332,9 @@
       <div class="caseRows" id="caseRows"></div>
     </section>
   </div>
+  <section class="panel rentStatusPage appPage" id="page-status" role="tabpanel" aria-label="렌트현황">
+    <section class="tenantLab tenantLabPage" id="tenantLab"></section>
+  </section>
   <div class="attribution">Map tiles by CARTO, data by OpenStreetMap contributors</div>
   <div class="tooltip" id="tooltip"></div>
   <button class="viewReset" id="viewReset" type="button" aria-label="Reset to full Seoul view"><span class="viewResetIcon">↺</span><span>전체보기</span></button>
@@ -273,6 +360,7 @@
     const viewReset = document.getElementById("viewReset");
     const searchInput = document.getElementById("searchInput");
     const results = document.getElementById("results");
+    const tenantLab = document.getElementById("tenantLab");
     const caseListPanel = document.getElementById("caseListPanel");
     const caseListHeader = caseListPanel.querySelector(".caseListHeader");
     const caseListCount = document.getElementById("caseListCount");
@@ -286,8 +374,8 @@
     const toggleOwnedAssets = document.getElementById("toggleOwnedAssets");
     const toggleLabels = document.getElementById("toggleLabels");
     const toggleLocalVector = document.getElementById("toggleLocalVector");
-    const tabButtons = Array.from(document.querySelectorAll(".tabButton"));
-    const tabPanels = Array.from(document.querySelectorAll(".tabContent"));
+    const pageButtons = Array.from(document.querySelectorAll(".pageTab"));
+    const appPages = Array.from(document.querySelectorAll(".appPage"));
 
     let data, scene, camera, renderer, controls, surface, highContourGroup, pointMesh, transactionGroup, transactionClusterGroup, ownedAssetGroup, ownedAssetClusterGroup, highlight, labelGroup, referenceGroup, contextLabelGroup, localVectorGroup, seoulVectorGroup, baseMapPlane, focusMapPlane, selectedColumn;
     let raycaster, pointer, currentPeriod, currentPoints = [], currentTransactions = [], ownedAssets = [], selectedPoint = null, currentCaseRows = [];
@@ -297,6 +385,7 @@
     const homeCameraPosition = new THREE.Vector3(0, 1700, 1250);
     const homeControlsTarget = new THREE.Vector3(0, 85, 0);
     let reviewMode = false;
+    let activePage = "map";
     const heightScale = 420;
     const horizontalScale = 0.058;
     const valueLift = 7;
@@ -316,6 +405,10 @@
     let lastTerrainVisualScale = null;
     let markerClusterSignature = "";
     let activeCaseTab = "lease";
+    const tenantInputStorageKey = "rentMapTenantTargetInputs:v1";
+    let tenantLabMode = "input";
+    let selectedTargetAssetEvent = "";
+    let tenantInputStore = {};
     let periodPlaybackTimer = null;
     let periodPlaybackActive = false;
     const periodPlaybackIntervalMs = 900;
@@ -1033,6 +1126,14 @@
       return surfaceData;
     }
 
+    let localSurfaceDataPromise = null;
+    async function loadLocalSurfaceData() {
+      if (!localSurfaceDataPromise) {
+        localSurfaceDataPromise = fetch(`${DATA_URL}?v=${Date.now()}`).then(r => r.json());
+      }
+      return localSurfaceDataPromise;
+    }
+
     async function loadSurfaceData() {
       if (marketDataConfigured()) {
         try {
@@ -1047,6 +1148,13 @@
           ]);
           if (meta.length && surface.length && observation.length) {
             const marketData = buildSurfaceDataFromMarketRows({ meta, surface, observation, tenantCase, transactionCase, buildingOverview });
+            try {
+              const localExtras = await loadLocalSurfaceData();
+              marketData.tenantTargetLab = localExtras.tenantTargetLab || { available: false, targetAssets: [], tenantObjects: [] };
+            } catch (localError) {
+              console.warn("Local tenant target lab load failed", localError);
+              marketData.tenantTargetLab = { available: false, targetAssets: [], tenantObjects: [] };
+            }
             marketData.meta.sourceMode = "supabase_market_data";
             marketData.meta.marketDataSource = MAP_CONFIG.marketDataSource;
             return marketData;
@@ -1055,7 +1163,7 @@
           console.warn("Supabase market_data load failed; falling back to local JSON", error);
         }
       }
-      const localData = await fetch(`${DATA_URL}?v=${Date.now()}`).then(r => r.json());
+      const localData = await loadLocalSurfaceData();
       localData.meta.sourceMode = "local_json";
       return ensureHeightDomain(localData);
     }
@@ -1063,10 +1171,13 @@
     async function boot() {
       data = await loadSurfaceData();
       window.rentMapData = data;
+      loadTenantInputStore();
+      renderTenantLab();
       document.body.dataset.sourceMode = data.meta.sourceMode || "";
       document.body.dataset.heightBaseline = String(data.meta.heightDomain?.baseline ?? "");
       document.body.dataset.heightMin = String(data.meta.heightDomain?.min ?? "");
       document.body.dataset.heightMax = String(data.meta.heightDomain?.max ?? "");
+      document.body.dataset.tenantTargetAssetCount = String(data.tenantTargetLab?.targetAssetCount || 0);
       document.getElementById("legendMin").textContent = `P03 ${fmt.format(data.meta.valueDomain.p03)}`;
       document.getElementById("legendP97").textContent = `P97 ${fmt.format(data.meta.valueDomain.p97)}`;
       document.getElementById("legendMax").textContent = `Max ${fmt.format(data.meta.valueDomain.max)}`;
@@ -2271,8 +2382,8 @@
       canvas.height = 96;
       const ctx = canvas.getContext("2d");
       ctx.fillStyle = "rgba(15,42,95,0.98)";
-      ctx.strokeStyle = "rgba(255,255,255,0.92)";
-      ctx.lineWidth = 8;
+      ctx.strokeStyle = "rgba(6,22,58,0.98)";
+      ctx.lineWidth = 10;
       ctx.lineJoin = "round";
       ctx.beginPath();
       ctx.moveTo(48, 84);
@@ -2282,10 +2393,13 @@
       ctx.fill();
       ctx.stroke();
       ctx.fillStyle = "rgba(255,255,255,0.98)";
+      ctx.shadowColor = "rgba(6,22,58,0.72)";
+      ctx.shadowBlur = 2;
+      ctx.shadowOffsetY = 1;
       ctx.font = "900 20px Arial, Noto Sans KR, sans-serif";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillText("IGIS", 48, 40);
+      ctx.fillText("IGIS", 48, 36);
       ownedAssetTriangleTexture.cached = new THREE.CanvasTexture(canvas);
       return ownedAssetTriangleTexture.cached;
     }
@@ -2772,9 +2886,352 @@
       else startPeriodPlayback();
     }
 
-    function activateTab(name) {
-      tabButtons.forEach(button => button.classList.toggle("is-active", button.dataset.tab === name));
-      tabPanels.forEach(panel => panel.classList.toggle("is-active", panel.id === `tab-${name}`));
+    function tenantLabData() {
+      return data?.tenantTargetLab || { available: false, targetAssets: [], tenantObjects: [] };
+    }
+
+    function loadTenantInputStore() {
+      try {
+        tenantInputStore = JSON.parse(localStorage.getItem(tenantInputStorageKey) || "{}") || {};
+      } catch (error) {
+        console.warn("Failed to parse tenant target input store", error);
+        tenantInputStore = {};
+      }
+    }
+
+    function saveTenantInputStore() {
+      localStorage.setItem(tenantInputStorageKey, JSON.stringify(tenantInputStore));
+      document.body.dataset.tenantInputCount = String(Object.keys(tenantInputStore).length);
+    }
+
+    function ensureTenantAssetInput(assetEvent) {
+      if (!tenantInputStore[assetEvent]) tenantInputStore[assetEvent] = { asset: {}, tenants: {}, updatedAt: "" };
+      if (!tenantInputStore[assetEvent].asset) tenantInputStore[assetEvent].asset = {};
+      if (!tenantInputStore[assetEvent].tenants) tenantInputStore[assetEvent].tenants = {};
+      return tenantInputStore[assetEvent];
+    }
+
+    function targetAssetPoint(asset) {
+      if (!asset || !Number.isFinite(Number(asset.x)) || !Number.isFinite(Number(asset.y))) return null;
+      return {
+        isTenantTarget: true,
+        assetId: `tenant-target:${asset.assetEvent}`,
+        building: asset.assetName,
+        region: "Bid PJT",
+        gu: "",
+        dong: "",
+        x: Number(asset.x),
+        y: Number(asset.y),
+        lat: asset.lat,
+        lon: asset.lon,
+        noc: asset.targetMetricNocPerPy || asset.activeMaxNocPerPy || asset.activeWaNocPerPy || data.meta.valueDomain.p03,
+        rent: null,
+        maintenance: null,
+        deposit: null,
+        rentFree: null,
+        vacancyRate: null,
+        tenantCount: asset.tenantGroupsActive || 0,
+        tenants: [],
+        targetAsset: asset,
+      };
+    }
+
+    function focusTargetAsset(asset) {
+      const point = targetAssetPoint(asset);
+      if (!point) return false;
+      selectPoint(point, { zoom: true });
+      return true;
+    }
+
+    function selectedTargetAsset() {
+      const targets = tenantLabData().targetAssets || [];
+      if (!targets.length) return null;
+      if (!selectedTargetAssetEvent) selectedTargetAssetEvent = targets[0].assetEvent;
+      return targets.find(asset => asset.assetEvent === selectedTargetAssetEvent) || targets[0];
+    }
+
+    function tenantStatusLabel(status) {
+      if (status === "active") return "활성";
+      if (status === "expired") return "만료";
+      return "데이터 없음";
+    }
+
+    function tenantStatusClass(status) {
+      if (status === "active") return "is-active";
+      if (status === "expired") return "is-expired";
+      return "is-unknown";
+    }
+
+    function qualityLabel(flag) {
+      if (!flag || flag === "ok") return "";
+      if (flag === "review_high_noc") return "NOC 검토";
+      if (flag === "review_small_area") return "면적 검토";
+      return flag;
+    }
+
+    function tenantInputValue(assetInput, tenantId, field) {
+      return assetInput.tenants?.[tenantId]?.[field] || "";
+    }
+
+    function renderTargetAssetList(targets, selected) {
+      return `
+        <div class="targetAssetList">
+          ${targets.map(asset => `
+            <button class="targetAssetItem ${selected && selected.assetEvent === asset.assetEvent ? "is-active" : ""}" type="button" data-target-asset="${escapeHtml(asset.assetEvent)}">
+              <b>${asset.targetRank}. ${escapeHtml(asset.assetName || "자산명 미상")}</b>
+              <span>기준 NOC ${moneyText(asset.targetMetricNocPerPy || asset.activeMaxNocPerPy, "원/평")} · 정상 ${fmt.format(asset.targetRankableTenantCount || 0)}건</span>
+              <span>${escapeHtml(asset.targetTopTenant || asset.activeTopTenant || "상위 임차인 미상")}</span>
+              <span>${asset.lat && asset.lon ? "좌표 있음" : "좌표 없음"} · ${escapeHtml(asset.nocReviewFlags || "검토 플래그 없음")}</span>
+            </button>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function renderTenantRowsForAsset(asset, assetInput) {
+      const active = asset.tenants?.active || [];
+      const expired = asset.tenants?.expired || [];
+      const unknown = asset.tenants?.unknownEnd || [];
+      const rows = [...active, ...expired, ...unknown].slice(0, 80);
+      if (!rows.length) return `<div class="tenantEmpty">이 자산에 연결된 임차인 객체가 없습니다.</div>`;
+      return `
+        <div class="tenantSummary">
+          <span class="tenantSummaryItem"><span class="statusPill is-active">활성</span>${fmt.format(active.length)}건</span>
+          <span class="tenantSummaryItem"><span class="statusPill is-expired">만료</span>${fmt.format(expired.length)}건</span>
+          <span class="tenantSummaryItem"><span class="statusPill is-unknown">데이터 없음</span>${fmt.format(unknown.length)}건</span>
+        </div>
+        <div class="tenantObjectRows">
+          ${rows.map(tenant => {
+            const flagText = qualityLabel(tenant.qualityFlag);
+            const isReview = Boolean(flagText);
+            const statusClass = tenantStatusClass(tenant.contractStatus);
+            const periodText = `${tenant.leaseStartDate || "-"} ~ ${tenant.leaseEndDate || "데이터 없음"}`;
+            return `
+              <div class="tenantObjectCard ${isReview ? "is-review" : ""}">
+                <div class="tenantObjectHead">
+                  <span class="statusPill ${statusClass}">${tenantStatusLabel(tenant.contractStatus)}</span>
+                  <b>${escapeHtml(tenant.tenant || "임차인 미상")}</b>
+                  <span class="tenantRank">${tenant.rankInAssetStatus ? "#" + fmt.format(tenant.rankInAssetStatus) : ""}</span>
+                </div>
+                <div class="tenantObjectMeta">${escapeHtml(tenant.floorUnit || "-")} · ${escapeHtml(tenant.useType || "용도 없음")}${flagText ? " · 검토: " + escapeHtml(flagText) : ""}</div>
+                <div class="tenantFactGrid">
+                  <div class="tenantFact"><span>NOC</span><strong>${moneyText(tenant.nocPerPy, "원/평")}</strong></div>
+                  <div class="tenantFact"><span>임대료</span><strong>${moneyText(tenant.monthlyRentPerPy, "원/평")}</strong></div>
+                  <div class="tenantFact"><span>관리비</span><strong>${moneyText(tenant.monthlyCamPerPy, "원/평")}</strong></div>
+                  <div class="tenantFact"><span>임차면적</span><strong>${areaPyText(tenant.leasedAreaPy)}</strong></div>
+                  <div class="tenantFact"><span>보증금</span><strong>${krwWonText(tenant.depositTotal)}</strong></div>
+                  <div class="tenantFact"><span>임대기간</span><strong>${escapeHtml(periodText)}</strong></div>
+                </div>
+                <div class="tenantReviewGrid">
+                  <label>검토상태
+                    <select data-tenant-id="${escapeHtml(tenant.tenantObjectId)}" data-tenant-field="contactStatus">
+                      ${["", "미검토", "관찰", "후보", "접촉", "보류", "제외"].map(value => `<option value="${value}" ${tenantInputValue(assetInput, tenant.tenantObjectId, "contactStatus") === value ? "selected" : ""}>${value || "선택"}</option>`).join("")}
+                    </select>
+                  </label>
+                  <label>공실/데이터 확인
+                    <select data-tenant-id="${escapeHtml(tenant.tenantObjectId)}" data-tenant-field="occupancyStatus">
+                      ${["", "데이터 없음", "임차 확인", "공실 가능", "현장 확인 필요", "현장 확인 완료"].map(value => `<option value="${value}" ${tenantInputValue(assetInput, tenant.tenantObjectId, "occupancyStatus") === value ? "selected" : ""}>${value || "선택"}</option>`).join("")}
+                    </select>
+                  </label>
+                  <label>담당자
+                    <input data-tenant-id="${escapeHtml(tenant.tenantObjectId)}" data-tenant-field="owner" placeholder="담당자" value="${escapeHtml(tenantInputValue(assetInput, tenant.tenantObjectId, "owner"))}" />
+                  </label>
+                  <label>현장조사 메모
+                    <input data-tenant-id="${escapeHtml(tenant.tenantObjectId)}" data-tenant-field="memo" placeholder="구간, 확인내용, 변동사항" value="${escapeHtml(tenantInputValue(assetInput, tenant.tenantObjectId, "memo"))}" />
+                  </label>
+                </div>
+              </div>
+            `;
+          }).join("")}
+        </div>
+      `;
+    }
+
+    function renderTenantInputMode(lab, targets, selected) {
+      if (!selected) return `<div class="tenantEmpty">상위 NOC 타깃 자산이 없습니다.</div>`;
+      const assetInput = ensureTenantAssetInput(selected.assetEvent);
+      const assetFields = assetInput.asset || {};
+      return `
+        <div class="tenantSplit">
+          ${renderTargetAssetList(targets, selected)}
+          <div class="targetAssetForm">
+            <div class="targetCard">
+              <h2>${escapeHtml(selected.assetName || "자산명 미상")}</h2>
+              <div class="meta">상위 ${selected.targetRank}위 · 기준 NOC ${moneyText(selected.targetMetricNocPerPy || selected.activeMaxNocPerPy, "원/평")} · 정상 임차인 ${fmt.format(selected.targetRankableTenantCount || 0)}건</div>
+              <div class="meta">${escapeHtml(selected.assetAddress || "주소 없음")}</div>
+              <div class="targetActions">
+                <button class="smallButton" type="button" data-tenant-action="locate" ${selected.lat && selected.lon ? "" : "disabled"}>지도 위치</button>
+                <button class="smallButton" type="button" data-tenant-action="clearAsset">자산 입력 초기화</button>
+              </div>
+            </div>
+            <div class="targetCard">
+              <div class="inputGrid">
+                <div class="field">
+                  <label>우선순위</label>
+                  <select data-asset-field="priority">
+                    ${["", "A", "B", "C", "보류"].map(value => `<option value="${value}" ${assetFields.priority === value ? "selected" : ""}>${value || "선택"}</option>`).join("")}
+                  </select>
+                </div>
+                <div class="field">
+                  <label>검토상태</label>
+                  <select data-asset-field="status">
+                    ${["", "미검토", "검토중", "타깃", "제외"].map(value => `<option value="${value}" ${assetFields.status === value ? "selected" : ""}>${value || "선택"}</option>`).join("")}
+                  </select>
+                </div>
+                <div class="field">
+                  <label>담당자</label>
+                  <input data-asset-field="owner" value="${escapeHtml(assetFields.owner || "")}" placeholder="담당자" />
+                </div>
+                <div class="field">
+                  <label>다음 액션일</label>
+                  <input data-asset-field="nextActionDate" type="date" value="${escapeHtml(assetFields.nextActionDate || "")}" />
+                </div>
+                <div class="field">
+                  <label>공실/데이터 확인</label>
+                  <select data-asset-field="vacancyReviewStatus">
+                    ${["", "미확인", "데이터 없음", "임차 확인", "공실 가능", "현장 확인 완료"].map(value => `<option value="${value}" ${assetFields.vacancyReviewStatus === value ? "selected" : ""}>${value || "선택"}</option>`).join("")}
+                  </select>
+                </div>
+                <div class="field">
+                  <label>현장조사일</label>
+                  <input data-asset-field="siteSurveyDate" type="date" value="${escapeHtml(assetFields.siteSurveyDate || "")}" />
+                </div>
+                <div class="field is-wide">
+                  <label>데이터 없음/공실 추정 구간</label>
+                  <input data-asset-field="vacancyRange" value="${escapeHtml(assetFields.vacancyRange || "")}" placeholder="예: 3F 일부, B1 로비, 150평 내외 등" />
+                </div>
+                <div class="field is-wide">
+                  <label>마케팅 포인트</label>
+                  <textarea data-asset-field="marketingAngle" placeholder="예: 고NOC 소형 리테일 수요, 법무/IT 확장 수요 등">${escapeHtml(assetFields.marketingAngle || "")}</textarea>
+                </div>
+                <div class="field is-wide">
+                  <label>현장조사/변동사항 메모</label>
+                  <textarea data-asset-field="assetMemo" placeholder="원천 검토, 현장 확인내용, 임차인 변동, 공실/제안 가능 면적 등">${escapeHtml(assetFields.assetMemo || "")}</textarea>
+                </div>
+              </div>
+            </div>
+            <div class="targetCard">
+              <div class="panelTitle">임차인 객체</div>
+              ${renderTenantRowsForAsset(selected, assetInput)}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSavedTenantInputs(targets) {
+      const savedEvents = Object.keys(tenantInputStore).filter(event => {
+        const record = tenantInputStore[event] || {};
+        return Object.keys(record.asset || {}).some(key => record.asset[key]) || Object.keys(record.tenants || {}).length;
+      });
+      if (!savedEvents.length) return `<div class="tenantEmpty">아직 저장된 입력이 없습니다. 대상 자산에서 우선순위, 메모, 임차인별 상태를 입력하면 여기에 모입니다.</div>`;
+      const byEvent = Object.fromEntries(targets.map(asset => [asset.assetEvent, asset]));
+      return `
+        <div class="savedList">
+          ${savedEvents.map(event => {
+            const asset = byEvent[event] || { assetName: event, activeMaxNocPerPy: null };
+            const record = tenantInputStore[event] || { asset: {}, tenants: {} };
+            const tenantCount = Object.values(record.tenants || {}).filter(item => Object.values(item || {}).some(Boolean)).length;
+            return `
+              <button class="savedCard" type="button" data-target-asset="${escapeHtml(event)}" data-tenant-mode-jump="input">
+                <b>${escapeHtml(asset.assetName || event)}</b>
+                <span>우선순위 ${escapeHtml(record.asset?.priority || "-")} · 상태 ${escapeHtml(record.asset?.status || "-")} · 공실/데이터 ${escapeHtml(record.asset?.vacancyReviewStatus || "-")} · 임차인 입력 ${fmt.format(tenantCount)}건</span>
+                <span>${escapeHtml(record.asset?.marketingAngle || record.asset?.assetMemo || "메모 없음")}</span>
+              </button>
+            `;
+          }).join("")}
+        </div>
+      `;
+    }
+
+    function renderTenantLab() {
+      if (!tenantLab) return;
+      const lab = tenantLabData();
+      if (!lab.available) {
+        tenantLab.innerHTML = `<div class="tenantEmpty">Bid PJT NOC 타깃 데이터가 없습니다. ${escapeHtml(lab.reason || "")}</div>`;
+        return;
+      }
+      const targets = lab.targetAssets || [];
+      if (!selectedTargetAssetEvent && targets[0]) selectedTargetAssetEvent = targets[0].assetEvent;
+      const selected = selectedTargetAsset();
+      tenantLab.innerHTML = `
+        <div class="tenantLabHeader">
+          <strong>Bid PJT 고NOC 임차인 타깃</strong>
+          <span>오피스 자산 ${fmt.format(lab.assetCount || 0)}개 중 정상 NOC 산출 자산 ${fmt.format(lab.activeNocAssetCount || 0)}개, 상위 ${fmt.format(lab.targetAssetCount || targets.length)}개를 입력 대상으로 잡았습니다.</span>
+        </div>
+        <div class="tenantModeTabs">
+          <button class="tenantModeButton ${tenantLabMode === "input" ? "is-active" : ""}" type="button" data-tenant-mode="input">자산별 입력</button>
+          <button class="tenantModeButton ${tenantLabMode === "saved" ? "is-active" : ""}" type="button" data-tenant-mode="saved">입력 보기</button>
+        </div>
+        ${tenantLabMode === "saved" ? renderSavedTenantInputs(targets) : renderTenantInputMode(lab, targets, selected)}
+      `;
+      bindTenantLabControls();
+    }
+
+    function bindTenantLabControls() {
+      tenantLab.querySelectorAll("[data-tenant-mode]").forEach(button => {
+        button.addEventListener("click", () => {
+          tenantLabMode = button.dataset.tenantMode || "input";
+          renderTenantLab();
+        });
+      });
+      tenantLab.querySelectorAll("[data-target-asset]").forEach(button => {
+        button.addEventListener("click", () => {
+          selectedTargetAssetEvent = button.dataset.targetAsset || selectedTargetAssetEvent;
+          tenantLabMode = button.dataset.tenantModeJump || tenantLabMode;
+          renderTenantLab();
+        });
+      });
+      tenantLab.querySelectorAll("[data-asset-field]").forEach(input => {
+        const save = () => {
+          const asset = selectedTargetAsset();
+          if (!asset) return;
+          const record = ensureTenantAssetInput(asset.assetEvent);
+          record.asset[input.dataset.assetField] = input.value;
+          record.updatedAt = new Date().toISOString();
+          saveTenantInputStore();
+        };
+        input.addEventListener("input", save);
+        input.addEventListener("change", save);
+      });
+      tenantLab.querySelectorAll("[data-tenant-field]").forEach(input => {
+        const save = () => {
+          const asset = selectedTargetAsset();
+          if (!asset) return;
+          const record = ensureTenantAssetInput(asset.assetEvent);
+          const tenantId = input.dataset.tenantId;
+          if (!record.tenants[tenantId]) record.tenants[tenantId] = {};
+          record.tenants[tenantId][input.dataset.tenantField] = input.value;
+          record.updatedAt = new Date().toISOString();
+          saveTenantInputStore();
+        };
+        input.addEventListener("input", save);
+        input.addEventListener("change", save);
+      });
+      tenantLab.querySelectorAll("[data-tenant-action]").forEach(button => {
+        button.addEventListener("click", () => {
+          const action = button.dataset.tenantAction;
+          const asset = selectedTargetAsset();
+          if (action === "locate" && asset) focusTargetAsset(asset);
+          if (action === "clearAsset" && asset && window.confirm(`${asset.assetName} 입력값을 초기화할까요?`)) {
+            delete tenantInputStore[asset.assetEvent];
+            saveTenantInputStore();
+            renderTenantLab();
+          }
+        });
+      });
+    }
+
+    function activatePage(name) {
+      activePage = name === "status" ? "status" : "map";
+      document.body.dataset.view = activePage;
+      pageButtons.forEach(button => button.classList.toggle("is-active", button.dataset.page === activePage));
+      appPages.forEach(panel => panel.classList.toggle("is-active", panel.id === `page-${activePage}`));
+      if (activePage === "status") renderTenantLab();
+      if (activePage === "map") {
+        onResize();
+        updateSelectionClearButton();
+      }
     }
 
     function getBuildingOverview(point) {
@@ -2783,8 +3240,8 @@
     }
 
     function bindEvents() {
-      tabButtons.forEach(button => {
-        button.addEventListener("click", () => activateTab(button.dataset.tab));
+      pageButtons.forEach(button => {
+        button.addEventListener("click", () => activatePage(button.dataset.page));
       });
       if (mapProviderSelect) {
         mapProviderSelect.addEventListener("change", event => setMapProvider(event.target.value));
@@ -2981,7 +3438,7 @@
       activeCaseTab = point.isTransaction ? "transaction" : "lease";
       buildCaseList();
       renderDetail(point);
-      activateTab("info");
+      activatePage("map");
       if (!highlight) {
         highlight = new THREE.Mesh(
           new THREE.RingGeometry(4.5, 6.5, 64),
@@ -3226,6 +3683,53 @@
         `;
         return;
       }
+      if (point.isTenantTarget) {
+        const asset = point.targetAsset || {};
+        const activeTenants = asset.tenants?.active || [];
+        const tenantHtml = activeTenants.length
+          ? activeTenants.slice(0, 10).map(t => `
+            <div class="caseCard">
+              <strong>${escapeHtml(t.tenant || "임차인 미상")}</strong>
+              <div class="caseMeta">${tenantStatusLabel(t.contractStatus)} · ${escapeHtml(t.floorUnit || t.useType || "-")}</div>
+              <div class="caseTerms">
+                <div class="term"><span>NOC</span><b>${moneyText(t.nocPerPy, "원/평")}</b></div>
+                <div class="term"><span>월임대료</span><b>${moneyText(t.monthlyRentPerPy, "원/평")}</b></div>
+                <div class="term"><span>관리비</span><b>${moneyText(t.monthlyCamPerPy, "원/평")}</b></div>
+                <div class="term"><span>임차면적</span><b>${areaPyText(t.leasedAreaPy)}</b></div>
+              </div>
+              <div class="metricRow"><span>계약기간</span><strong>${escapeHtml(t.leaseStartDate || "-")} ~ ${escapeHtml(t.leaseEndDate || "-")}</strong></div>
+              <div class="metricRow"><span>검토상태</span><strong>${escapeHtml(qualityLabel(t.qualityFlag) || "정상")}</strong></div>
+            </div>
+          `).join("")
+          : `<div class="emptyCase">이 자산에 연결된 활성 임차인 객체가 없습니다.</div>`;
+        detailPanel.className = "side";
+        detailPanel.innerHTML = `
+          <div class="inspectorHeader">
+            <div class="inspectorEyebrow">Bid PJT NOC 타깃 자산</div>
+            <div class="inspectorTitle">${escapeHtml(asset.assetName || point.building)}</div>
+            <div class="inspectorSub">상위 ${fmt.format(asset.targetRank || 0)}위 · 활성 임차인 ${fmt.format(asset.tenantGroupsActive || 0)}건</div>
+          </div>
+          <div class="inspectorBody">
+            <div class="statGrid">
+              <div class="stat"><span>기준 NOC</span><strong>${moneyText(asset.targetMetricNocPerPy || asset.activeMaxNocPerPy, "원/평")}</strong></div>
+              <div class="stat"><span>원본 최고 NOC</span><strong>${moneyText(asset.activeMaxNocPerPy, "원/평")}</strong></div>
+              <div class="stat"><span>가중평균 NOC</span><strong>${moneyText(asset.activeWaNocPerPy, "원/평")}</strong></div>
+              <div class="stat"><span>활성 월NOC</span><strong>${krwWonText(asset.activeMonthlyNocTotal)}</strong></div>
+              <div class="stat"><span>연면적</span><strong>${areaPyText(asset.grossFloorAreaPy)}</strong></div>
+            </div>
+            <div class="sectionTitle">자산 정보</div>
+            <div class="overviewGrid">
+              <div class="metricRow"><span>주소</span><strong>${escapeHtml(asset.assetAddress || "-")}</strong></div>
+              <div class="metricRow"><span>주용도</span><strong>${escapeHtml(asset.assetMainUse || "-")}</strong></div>
+              <div class="metricRow"><span>기준 임차인</span><strong>${escapeHtml(asset.targetTopTenant || asset.activeTopTenant || "-")}</strong></div>
+              <div class="metricRow"><span>검토 플래그</span><strong>${escapeHtml(asset.nocReviewFlags || "없음")}</strong></div>
+            </div>
+            <div class="sectionTitle">활성 임차인 NOC 상위</div>
+            ${tenantHtml}
+          </div>
+        `;
+        return;
+      }
       if (point.isOwnedAsset) {
         const fund = point.fundSummary || {};
         const fundIdSource = (point.relationshipFundIds || []).length ? "" : (point.inferredFundId ? " (자산코드 추정)" : "");
@@ -3404,6 +3908,12 @@
       return Number.isFinite(n) ? `${fmt.format(n)} ${suffix}` : "-";
     }
 
+    function areaPyText(value) {
+      if (value === null || value === undefined || value === "") return "-";
+      const n = Number(value);
+      return Number.isFinite(n) ? `${fmt1.format(n)}평` : "-";
+    }
+
     function krwWonText(value) {
       if (value === null || value === undefined || value === "") return "-";
       const n = Number(value);
@@ -3502,7 +4012,11 @@
         .map(t => ({ type: "transaction", period: t.period, transaction: t, text: [t.building, t.region, t.gu, t.dong, t.legalAddress, t.address, t.sellerName, t.buyerName, t.buyerDetail, t.acquisitionPurpose, t.investmentVehicle, t.investmentVehicleDetail].join(" ").toLowerCase() }));
       const ownedRows = (ownedAssets || [])
         .map(asset => ({ type: "ownedAsset", point: asset, text: [asset.building, asset.canonicalName, asset.address, asset.assetCode, asset.mainUsage, asset.pnu, asset.fundSummary?.fundName, asset.fundSummary?.fundShortName, asset.fundSummary?.status, asset.fundSummary?.setupDate, asset.fundSummary?.liquidationDate, asset.fundSummary?.maturityDate, ...(asset.fundIds || [])].join(" ").toLowerCase() }));
-      for (const row of [...pointRows, ...tenantRows, ...transactionRows, ...ownedRows]) {
+      const targetAssetRows = (data.tenantTargetLab?.targetAssets || [])
+        .map(asset => ({ type: "targetAsset", asset, text: [asset.assetName, asset.assetAddress, asset.assetMainUse, asset.targetTopTenant, asset.activeTopTenant, asset.expiredTopTenant].join(" ").toLowerCase() }));
+      const tenantObjectRows = (data.tenantTargetLab?.tenantObjects || [])
+        .map(tenant => ({ type: "tenantObject", tenant, text: [tenant.tenant, tenant.assetName, tenant.assetAddress, tenant.useType, tenant.floorUnit, tenant.detailTerms].join(" ").toLowerCase() }));
+      for (const row of [...pointRows, ...tenantRows, ...transactionRows, ...ownedRows, ...targetAssetRows, ...tenantObjectRows]) {
         if (row.text.includes(q)) matches.push(row);
         if (matches.length >= 9) break;
       }
@@ -3519,17 +4033,36 @@
           const p = m.point;
           return `<button class="result" data-kind="ownedAsset" data-index="${idx}"><b>${escapeHtml(p.building)}</b><br>포트폴리오 자산 · ${escapeHtml(p.mainUsage || "용도 미상")} · ${escapeHtml(p.address || p.pnu || "")}</button>`;
         }
+        if (m.type === "targetAsset") {
+          const a = m.asset;
+          return `<button class="result" data-kind="targetAsset" data-index="${idx}"><b>${escapeHtml(a.assetName || "NOC 타깃 자산")}</b><br>Bid PJT 타깃 · 기준 NOC ${moneyText(a.targetMetricNocPerPy || a.activeMaxNocPerPy, "원/평")} · ${escapeHtml(a.targetTopTenant || a.activeTopTenant || "")}</button>`;
+        }
+        if (m.type === "tenantObject") {
+          const t = m.tenant;
+          return `<button class="result" data-kind="tenantObject" data-index="${idx}"><b>${escapeHtml(t.tenant || "임차인 객체")}</b><br>${tenantStatusLabel(t.contractStatus)} · ${escapeHtml(t.assetName)} · NOC ${moneyText(t.nocPerPy, "원/평")}</button>`;
+        }
         const t = m.tenant;
         return `<button class="result" data-kind="tenant" data-index="${idx}"><b>${escapeHtml(t.tenant)}</b><br>${escapeHtml(t.period)} · ${escapeHtml(t.building)} · ${escapeHtml(t.corpName || "DART 미매칭")}</button>`;
       }).join("");
       [...results.querySelectorAll(".result")].forEach((btn) => {
         const m = matches[Number(btn.dataset.index)];
         btn.addEventListener("click", () => {
-          if (m.period !== currentPeriod) setPeriod(m.period);
+          if (m.period && m.period !== currentPeriod) setPeriod(m.period);
           setTimeout(() => {
             if (m.type === "point") selectPoint(m.point, { zoom: true });
             else if (m.type === "transaction") selectPoint(transactionPoint(m.transaction), { zoom: true });
             else if (m.type === "ownedAsset") selectPoint(m.point, { zoom: true });
+            else if (m.type === "targetAsset") {
+              selectedTargetAssetEvent = m.asset.assetEvent;
+              tenantLabMode = "input";
+              activatePage("status");
+            }
+            else if (m.type === "tenantObject") {
+              const asset = (data.tenantTargetLab?.targetAssets || []).find(row => row.assetEvent === m.tenant.assetEvent);
+              selectedTargetAssetEvent = m.tenant.assetEvent;
+              tenantLabMode = "input";
+              activatePage("status");
+            }
             else {
               const p = (data.pointsByPeriod[m.period] || []).find(row => row.assetId === m.tenant.assetId)
                 || { ...m.tenant, noc: data.meta.valueDomain.p03, tenants: [m.tenant], region: "", gu: m.tenant.gu, dong: m.tenant.dong };
