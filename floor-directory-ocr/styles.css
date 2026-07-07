@@ -236,6 +236,10 @@ h3 {
   color: var(--muted);
 }
 
+.empty-state[hidden] {
+  display: none;
+}
+
 .empty-state strong {
   color: var(--text);
   font-size: 18px;
