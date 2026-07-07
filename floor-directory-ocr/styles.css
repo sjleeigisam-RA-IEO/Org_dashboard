@@ -193,6 +193,7 @@ h3 {
   border: 1px dashed #b8c6cc;
   border-radius: 8px;
   min-height: 420px;
+  aspect-ratio: 10 / 7;
   background:
     linear-gradient(90deg, rgba(23, 32, 38, 0.04) 1px, transparent 1px),
     linear-gradient(rgba(23, 32, 38, 0.04) 1px, transparent 1px),
@@ -208,8 +209,8 @@ h3 {
 #previewCanvas {
   display: block;
   width: 100%;
-  aspect-ratio: 10 / 7;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
 }
 
 .empty-state {
@@ -442,27 +443,54 @@ tr:last-child td {
 
 @media (max-width: 960px) {
   .app-shell {
-    padding: 16px;
+    padding: 14px;
   }
 
   .top-bar {
     align-items: flex-start;
     flex-direction: column;
+    gap: 12px;
+    min-height: 0;
+  }
+
+  h1 {
+    font-size: 30px;
   }
 
   .workbench {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
 
   .drop-zone {
-    min-height: 300px;
+    min-height: 0;
+    aspect-ratio: 3 / 4;
+    max-height: 58vh;
   }
 }
 
 @media (max-width: 560px) {
+  body {
+    background: var(--bg);
+  }
+
+  .app-shell {
+    padding: 10px;
+  }
+
+  .eyebrow {
+    margin-bottom: 4px;
+    font-size: 11px;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
   .capture-panel,
   .result-panel {
-    padding: 14px;
+    padding: 12px;
+    border-radius: 8px;
   }
 
   .panel-head,
@@ -471,19 +499,76 @@ tr:last-child td {
   .summary-row {
     flex-direction: column;
     align-items: flex-start;
+    gap: 8px;
   }
 
   .top-actions,
   .scan-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     width: 100%;
+    gap: 8px;
   }
 
   .button {
-    flex: 1 1 150px;
+    width: 100%;
+    min-height: 48px;
+    padding: 0 10px;
+  }
+
+  .switch {
+    font-size: 12px;
+  }
+
+  .drop-zone {
+    aspect-ratio: 4 / 5;
+    max-height: 52vh;
+  }
+
+  .empty-state {
+    padding: 14px;
+  }
+
+  .empty-state strong {
+    font-size: 16px;
+  }
+
+  .empty-state span {
+    max-width: 210px;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .status-box,
+  .sheet-box {
+    padding: 10px;
+  }
+
+  textarea {
+    min-height: 150px;
+  }
+
+  .result-actions {
+    width: 100%;
+  }
+
+  .icon-button {
+    flex: 1 1 0;
+    width: auto;
+    min-height: 42px;
   }
 
   .sheet-controls input,
   .sheet-controls button {
     width: 100%;
+  }
+
+  input[type="text"],
+  input[type="url"] {
+    min-width: 0;
+  }
+
+  table {
+    min-width: 620px;
   }
 }

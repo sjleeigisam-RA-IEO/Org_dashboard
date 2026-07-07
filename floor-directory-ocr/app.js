@@ -1,6 +1,5 @@
 const cameraInput = document.querySelector("#cameraInput");
 const imageInput = document.querySelector("#imageInput");
-const sampleButton = document.querySelector("#sampleButton");
 const runOcrButton = document.querySelector("#runOcrButton");
 const clearButton = document.querySelector("#clearButton");
 const enhanceToggle = document.querySelector("#enhanceToggle");
@@ -33,19 +32,6 @@ let processedDataUrl = "";
 let wordConfidenceByLine = new Map();
 let parsedRows = [];
 
-const sampleText = `층별현황
-10F 이지스자산운용
-9F 삼일회계법인
-8F 법무법인 한결 / 회의실
-7F 주식회사 라온테크
-6F 서울도시연구소
-5F 공실
-4F 카페 테라스
-3F 하나은행
-2F 공유오피스 스테이션
-1F 로비 안내데스크
-B1 주차장 / 관리사무소`;
-
 cameraInput.addEventListener("change", (event) => {
   const [file] = event.target.files || [];
   if (file) {
@@ -58,13 +44,6 @@ imageInput.addEventListener("change", (event) => {
   if (file) {
     handleImageFile(file);
   }
-});
-
-sampleButton.addEventListener("click", () => {
-  rawText.value = sampleText;
-  wordConfidenceByLine = new Map();
-  setStatus("샘플 텍스트 입력", 100);
-  renderParsedRows();
 });
 
 runOcrButton.addEventListener("click", runOcr);
