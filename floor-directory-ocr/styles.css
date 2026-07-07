@@ -510,10 +510,14 @@ tr:last-child td {
     gap: 8px;
   }
 
-  .button {
+  .button,
+  .scan-actions .button {
     width: 100%;
     min-height: 48px;
     padding: 0 10px;
+    font-size: 14px;
+    line-height: 1.2;
+    white-space: normal;
   }
 
   .switch {
@@ -545,17 +549,21 @@ tr:last-child td {
   }
 
   textarea {
-    min-height: 150px;
+    min-height: 132px;
+    font-size: 14px;
   }
 
   .result-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     width: 100%;
+    gap: 8px;
   }
 
   .icon-button {
-    flex: 1 1 0;
-    width: auto;
-    min-height: 42px;
+    width: 100%;
+    min-height: 48px;
+    font-size: 14px;
   }
 
   .sheet-controls input,
@@ -568,7 +576,95 @@ tr:last-child td {
     min-width: 0;
   }
 
+  .table-wrap {
+    max-height: none;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+  }
+
+  table,
+  thead,
+  tbody,
+  tr,
+  th,
+  td {
+    display: block;
+  }
+
   table {
-    min-width: 620px;
+    min-width: 0;
+    background: transparent;
+  }
+
+  thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  tbody {
+    display: grid;
+    gap: 8px;
+  }
+
+  tbody tr {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #ffffff;
+    overflow: hidden;
+  }
+
+  td {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 10px;
+    width: 100% !important;
+    min-width: 0 !important;
+    border-bottom: 1px solid var(--line);
+    padding: 9px 10px;
+    font-size: 13px;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  td::before {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  td:nth-child(1)::before {
+    content: "층";
+  }
+
+  td:nth-child(2)::before {
+    content: "회사";
+  }
+
+  td:nth-child(3)::before {
+    content: "원문";
+  }
+
+  td:nth-child(4)::before {
+    content: "신뢰도";
+  }
+
+  td:last-child {
+    border-bottom: 0;
+  }
+
+  .placeholder-row td {
+    display: block;
+    height: auto;
+    padding: 28px 12px;
+    text-align: center;
+  }
+
+  .placeholder-row td::before {
+    content: "";
   }
 }
