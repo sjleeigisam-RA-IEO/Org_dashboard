@@ -19,10 +19,8 @@ py -m http.server 5178 --bind 127.0.0.1
 - 저장된 사진 불러오기 입력
 - 이미지 고대비 전처리
 - Google Cloud Vision `DOCUMENT_TEXT_DETECTION` 기반 OCR
-- OCR 원문 수동 보정
-- 층/회사명 자동 파싱
-- 건물명 직접 입력 및 저장 태그 처리
-- CSV 복사 및 다운로드
+- 층/회사명 자동 파싱 및 결과 표 표시
+- 촬영 전 건물명 직접 입력 및 저장 태그 처리
 - 공용 Google Apps Script Web App URL을 통한 구글시트 행 추가 저장
 
 ## 구글시트 연결

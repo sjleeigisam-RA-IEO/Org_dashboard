@@ -9,20 +9,15 @@ const previewCanvas = document.querySelector("#previewCanvas");
 const rawText = document.querySelector("#rawText");
 const resultBody = document.querySelector("#resultBody");
 const rowCount = document.querySelector("#rowCount");
-const confidenceNote = document.querySelector("#confidenceNote");
 const fileMeta = document.querySelector("#fileMeta");
 const statusText = document.querySelector("#statusText");
 const statusPercent = document.querySelector("#statusPercent");
 const progressBar = document.querySelector("#progressBar");
-const copyCsvButton = document.querySelector("#copyCsvButton");
-const downloadCsvButton = document.querySelector("#downloadCsvButton");
 const buildingNameInput = document.querySelector("#buildingNameInput");
 const saveSheetButton = document.querySelector("#saveSheetButton");
-const autoSaveToggle = document.querySelector("#autoSaveToggle");
 const sheetStatus = document.querySelector("#sheetStatus");
 
 const previewContext = previewCanvas.getContext("2d", { willReadFrequently: true });
-const autoSaveStorageKey = "floorDirectoryOcr.autoSave";
 const buildingNameStorageKey = "floorDirectoryOcr.buildingName";
 const maxOcrImageSide = 2400;
 const googleSheetWebAppUrl =
@@ -70,56 +65,15 @@ enhanceToggle.addEventListener("change", () => {
   }
 });
 
-rawText.addEventListener("input", () => {
-  renderParsedRows();
-});
-
 buildingNameInput.value = localStorage.getItem(buildingNameStorageKey) || "";
-autoSaveToggle.checked = localStorage.getItem(autoSaveStorageKey) === "true";
 
 buildingNameInput.addEventListener("input", () => {
   localStorage.setItem(buildingNameStorageKey, buildingNameInput.value.trim());
   updateSheetControls();
 });
 
-autoSaveToggle.addEventListener("change", () => {
-  localStorage.setItem(autoSaveStorageKey, String(autoSaveToggle.checked));
-});
-
 saveSheetButton.addEventListener("click", () => {
   saveToGoogleSheet();
-});
-
-copyCsvButton.addEventListener("click", async () => {
-  if (!parsedRows.length) {
-    setStatus("복사할 항목 없음", 0);
-    return;
-  }
-
-  const csv = toCsv(parsedRows);
-  try {
-    await navigator.clipboard.writeText(csv);
-    setStatus("CSV 복사 완료", 100);
-  } catch {
-    setStatus("브라우저 권한 때문에 복사 실패", 0);
-  }
-});
-
-downloadCsvButton.addEventListener("click", () => {
-  if (!parsedRows.length) {
-    setStatus("다운로드할 항목 없음", 0);
-    return;
-  }
-
-  const blob = new Blob(["\ufeff" + toCsv(parsedRows)], { type: "text/csv;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = `floor-directory-${new Date().toISOString().slice(0, 10)}.csv`;
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  URL.revokeObjectURL(url);
 });
 
 ["dragenter", "dragover"].forEach((eventName) => {
@@ -187,10 +141,6 @@ async function runOcr() {
     wordConfidenceByLine = buildConfidenceMap({ words: result.words || [] });
     setStatus("OCR 완료", 100);
     renderParsedRows();
-
-    if (autoSaveToggle.checked && parsedRows.length) {
-      await saveToGoogleSheet();
-    }
   } catch (error) {
     console.error(error);
     setStatus(`OCR 실패: ${error.message || "원문 영역에 직접 붙여넣을 수 있습니다."}`, 0);
@@ -252,25 +202,18 @@ function enhanceCanvas(context, width, height) {
 function renderParsedRows() {
   parsedRows = parseDirectoryText(rawText.value, wordConfidenceByLine);
   rowCount.textContent = `${parsedRows.length}개 항목`;
-  confidenceNote.textContent = wordConfidenceByLine.size
-    ? "신뢰도 70% 미만 항목은 재확인 대상입니다."
-    : "직접 입력한 텍스트는 신뢰도 없음으로 표시됩니다.";
 
   if (!parsedRows.length) {
-    resultBody.innerHTML = `<tr class="placeholder-row"><td colspan="4">변환된 항목이 없습니다.</td></tr>`;
+    resultBody.innerHTML = `<tr class="placeholder-row"><td colspan="2">변환된 항목이 없습니다.</td></tr>`;
     updateSheetControls();
     return;
   }
 
   resultBody.innerHTML = parsedRows
     .map((row) => {
-      const confidence = row.confidence == null ? "" : `${Math.round(row.confidence)}%`;
-      const confidenceClass = row.confidence != null && row.confidence < 70 ? " class=\"low-confidence\"" : "";
       return `<tr>
         <td>${escapeHtml(row.floor)}</td>
         <td>${escapeHtml(row.company)}</td>
-        <td>${escapeHtml(row.source)}</td>
-        <td${confidenceClass}>${confidence}</td>
       </tr>`;
     })
     .join("");
@@ -532,20 +475,6 @@ function normalizeForConfidence(value) {
     .replace(/\s+/g, " ")
     .trim()
     .toLowerCase();
-}
-
-function toCsv(rows) {
-  const header = ["층", "회사/시설", "원문", "신뢰도"];
-  const body = rows.map((row) => [
-    row.floor,
-    row.company,
-    row.source,
-    row.confidence == null ? "" : Math.round(row.confidence),
-  ]);
-
-  return [header, ...body]
-    .map((cells) => cells.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(","))
-    .join("\n");
 }
 
 async function saveToGoogleSheet() {

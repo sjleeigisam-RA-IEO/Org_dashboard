@@ -13,6 +13,13 @@
           <p class="eyebrow">Building Directory OCR</p>
           <h1>층별현황판 OCR</h1>
         </div>
+      </header>
+
+      <section class="setup-card" aria-label="촬영 전 입력">
+        <label class="building-field top-building-field" for="buildingNameInput">
+          <span>건물명</span>
+          <input id="buildingNameInput" type="text" placeholder="예: 강남N타워" autocomplete="organization">
+        </label>
         <div class="top-actions">
           <label class="button primary" for="cameraInput">
             사진 촬영
@@ -23,7 +30,7 @@
           </label>
           <input id="imageInput" type="file" accept="image/*">
         </div>
-      </header>
+      </section>
 
       <section class="workbench" aria-label="층별현황판 OCR 작업 영역">
         <section class="capture-panel" aria-labelledby="captureTitle">
@@ -65,41 +72,19 @@
         <section class="result-panel" aria-labelledby="resultTitle">
           <div class="panel-head">
             <div>
-              <h2 id="resultTitle">표 변환</h2>
-              <p>OCR 원문을 수정하면 표가 즉시 다시 정리됩니다.</p>
-            </div>
-            <div class="result-actions">
-              <button id="copyCsvButton" class="icon-button" type="button" title="CSV 복사" aria-label="CSV 복사">CSV</button>
-              <button id="downloadCsvButton" class="icon-button" type="button" title="CSV 다운로드" aria-label="CSV 다운로드">↓</button>
+              <h2 id="resultTitle">변환 결과</h2>
+              <p>층별 회사와 시설만 확인한 뒤 시트에 저장합니다.</p>
             </div>
           </div>
 
-          <label class="field-label" for="rawText">OCR 원문</label>
-          <textarea id="rawText" spellcheck="false" placeholder="OCR 결과가 여기에 표시됩니다. 직접 붙여넣어도 표로 변환됩니다."></textarea>
+          <textarea id="rawText" hidden></textarea>
 
           <div class="summary-row">
             <span id="rowCount">0개 항목</span>
-            <span id="confidenceNote">신뢰도는 OCR 단어 단위 평균값입니다.</span>
           </div>
 
           <div class="sheet-box">
-            <div class="sheet-head">
-              <div>
-                <h3>구글시트 저장</h3>
-                <p>공용 구글시트에 한 촬영 건을 한 행으로 저장합니다.</p>
-              </div>
-              <label class="switch">
-                <input id="autoSaveToggle" type="checkbox">
-                <span>OCR 후 자동 저장</span>
-              </label>
-            </div>
-            <div class="sheet-controls">
-              <label class="building-field" for="buildingNameInput">
-                <span>건물명</span>
-                <input id="buildingNameInput" type="text" placeholder="예: 강남N타워" autocomplete="organization">
-              </label>
-              <button id="saveSheetButton" class="button primary" type="button" disabled>시트 저장</button>
-            </div>
+            <button id="saveSheetButton" class="button primary" type="button" disabled>구글시트 저장</button>
             <p id="sheetStatus" class="sheet-status">건물명과 표 항목이 있으면 저장할 수 있습니다.</p>
           </div>
 
@@ -109,13 +94,11 @@
                 <tr>
                   <th scope="col">층</th>
                   <th scope="col">회사 / 시설</th>
-                  <th scope="col">원문</th>
-                  <th scope="col">신뢰도</th>
                 </tr>
               </thead>
               <tbody id="resultBody">
                 <tr class="placeholder-row">
-                  <td colspan="4">변환된 항목이 없습니다.</td>
+                  <td colspan="2">변환된 항목이 없습니다.</td>
                 </tr>
               </tbody>
             </table>
