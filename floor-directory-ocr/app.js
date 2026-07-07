@@ -203,10 +203,9 @@ function enhanceCanvas(context, width, height) {
 }
 
 function renderParsedRows() {
-  parsedRows = parseDirectoryWords(visionWords);
-  if (!parsedRows.length) {
-    parsedRows = parseDirectoryText(rawText.value, wordConfidenceByLine);
-  }
+  const wordRows = parseDirectoryWords(visionWords);
+  const textRows = parseDirectoryText(rawText.value, wordConfidenceByLine);
+  parsedRows = scoreParsedRows(wordRows) >= scoreParsedRows(textRows) ? wordRows : textRows;
   rowCount.textContent = `${parsedRows.length}개 항목`;
 
   if (!parsedRows.length) {
@@ -237,46 +236,43 @@ function parseDirectoryWords(words) {
     return [];
   }
 
-  const floorBands = buildFloorBands(floorCandidates);
-  const floorRight = Math.max(...floorCandidates.map((floor) => floor.bounds.right));
-  const minTenantLeft = floorRight + Math.max(8, median(floorCandidates.map((floor) => floor.bounds.width)) * 0.25);
+  const floorRows = buildFloorRows(floorCandidates);
   const floorWordIndexes = new Set(floorCandidates.map((floor) => floor.wordIndex));
-  const grouped = new Map();
-
-  for (const word of positionedWords) {
-    if (floorWordIndexes.has(word.index) || !isTenantWord(word.text)) {
-      continue;
-    }
-    if (word.bounds.left < minTenantLeft) {
-      continue;
-    }
-
-    const band = findFloorBand(word.bounds.centerY, floorBands);
-    if (!band) {
-      continue;
-    }
-
-    const existing = grouped.get(band.floor) || [];
-    existing.push(word);
-    grouped.set(band.floor, existing);
-  }
-
   const rows = [];
-  for (const band of floorBands) {
-    const rowWords = filterDominantRowWords(grouped.get(band.floor) || []);
-    const source = joinVisionWords(rowWords);
-    const company = cleanupTenant(source);
 
-    if (!company || isNoiseLine(company)) {
-      continue;
-    }
-
-    rows.push({
-      floor: band.floor,
-      company,
-      source,
-      confidence: averageConfidence(rowWords),
+  for (const floorRow of floorRows) {
+    const rowWords = positionedWords.filter((word) => {
+      return (
+        !floorWordIndexes.has(word.index) &&
+        isTenantWord(word.text) &&
+        word.bounds.centerY >= floorRow.top &&
+        word.bounds.centerY < floorRow.bottom
+      );
     });
+
+    const floors = floorRow.floors.sort((a, b) => a.bounds.left - b.bounds.left);
+    for (let index = 0; index < floors.length; index += 1) {
+      const floor = floors[index];
+      const nextFloor = floors[index + 1] || null;
+      const leftLimit = floor.bounds.right + Math.max(6, floor.bounds.width * 0.12);
+      const rightLimit = nextFloor ? nextFloor.bounds.left - Math.max(6, nextFloor.bounds.width * 0.12) : Infinity;
+      const tenantWords = filterDominantRowWords(
+        rowWords.filter((word) => word.bounds.left >= leftLimit && word.bounds.left < rightLimit)
+      );
+      const source = joinVisionWords(tenantWords);
+      const company = cleanupTenant(source);
+
+      if (!company || isNoiseLine(company)) {
+        continue;
+      }
+
+      rows.push({
+        floor: floor.floor,
+        company,
+        source,
+        confidence: averageConfidence(tenantWords),
+      });
+    }
   }
 
   return mergeDuplicateRows(rows);
@@ -350,8 +346,8 @@ function floorFromWord(text) {
     return `B${token.replace("지하", "")}`;
   }
 
-  if (/^B\d{1,2}$/.test(token)) {
-    return token;
+  if (/^B\d{1,2}F?$/.test(token)) {
+    return token.replace(/F$/, "");
   }
 
   if (/^\d{1,2}(F|FL|층)?$/.test(token)) {
@@ -438,6 +434,38 @@ function buildFloorBands(floors) {
   });
 }
 
+function buildFloorRows(floors) {
+  const sortedFloors = [...floors].sort((a, b) => a.bounds.centerY - b.bounds.centerY || a.bounds.left - b.bounds.left);
+  const rowTolerance = Math.max(10, median(sortedFloors.map((floor) => floor.bounds.height)) * 0.75);
+  const rows = [];
+
+  for (const floor of sortedFloors) {
+    const lastRow = rows[rows.length - 1];
+    if (lastRow && Math.abs(lastRow.centerY - floor.bounds.centerY) <= rowTolerance) {
+      lastRow.floors.push(floor);
+      lastRow.centerY =
+        lastRow.floors.reduce((sum, item) => sum + item.bounds.centerY, 0) / lastRow.floors.length;
+    } else {
+      rows.push({
+        centerY: floor.bounds.centerY,
+        floors: [floor],
+      });
+    }
+  }
+
+  return rows.map((row, index) => {
+    const previous = rows[index - 1];
+    const next = rows[index + 1];
+    const rowHeight = Math.max(...row.floors.map((floor) => floor.bounds.height));
+    return {
+      centerY: row.centerY,
+      top: previous ? (previous.centerY + row.centerY) / 2 : row.centerY - rowHeight,
+      bottom: next ? (row.centerY + next.centerY) / 2 : row.centerY + rowHeight,
+      floors: row.floors,
+    };
+  });
+}
+
 function findFloorBand(centerY, bands) {
   return bands.find((band) => centerY >= band.top && centerY < band.bottom) || null;
 }
@@ -496,6 +524,15 @@ function median(values) {
   return sorted[Math.floor(sorted.length / 2)];
 }
 
+function scoreParsedRows(rows) {
+  return rows.reduce((score, row) => {
+    const floorNumber = /^\d+F$/.test(row.floor) ? Number(row.floor.slice(0, -1)) : 0;
+    const floorPenalty = floorNumber > 30 ? 2 : 0;
+    const companyPenalty = /\d{3,}/.test(row.company) ? 1 : 0;
+    return score + 1 - floorPenalty - companyPenalty;
+  }, 0);
+}
+
 function parseDirectoryText(text, confidenceMap) {
   const lines = normalizeText(text)
     .split("\n")
@@ -551,7 +588,7 @@ function extractFloor(line) {
   }
 
   const match = cleaned.match(
-    /^(지하\s*\d{1,2}|B\s*\d{1,2}|B\d{1,2}|[0-9]{1,2}\s*(?:F|FL|층)|[0-9]{1,2}\s+(?=[가-힣A-Za-z(㈜])|RF|R\s*F|옥상|로비|LOBBY)\s*[:.\-]?\s*(.*)$/i
+    /^(지하\s*\d{1,2}|B\s*\d{1,2}\s*F?|B\d{1,2}F?|[0-9]{1,2}\s*(?:F|FL|층)|[0-9]{1,2}\s+(?=[가-힣A-Za-z(㈜])|RF(?![A-Za-z0-9가-힣])|R\s*F|옥상|로비|LOBBY)\s*[:.\-]?\s*(.*)$/i
   );
 
   if (!match) {
@@ -575,8 +612,8 @@ function normalizeFloorLabel(value) {
     return `B${token.replace("지하", "")}`;
   }
 
-  if (/^B\d{1,2}$/.test(token)) {
-    return token;
+  if (/^B\d{1,2}F?$/.test(token)) {
+    return token.replace(/F$/, "");
   }
 
   if (/^\d{1,2}(F|FL|층)?$/.test(token)) {
