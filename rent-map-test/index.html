@@ -224,7 +224,8 @@
     .clusterGlyph { width: 16px; height: 16px; border-radius: 999px; background: radial-gradient(circle, rgba(251,191,36,0.96) 0%, rgba(245,158,11,0.76) 58%, rgba(245,158,11,0.24) 100%); border: 1px solid rgba(255,255,255,0.82); box-shadow: 0 2px 7px rgba(245,158,11,0.24); display: inline-block; flex: 0 0 auto; }
     .ownedAssetGlyph { position: relative; width: 34px; height: 28px; display: inline-block; flex: 0 0 auto; filter: drop-shadow(0 1px 2px rgba(15,23,42,0.24)); }
     .ownedAssetGlyph::before { content: ""; position: absolute; inset: 0; background: #0f2a5f; clip-path: polygon(50% 100%, 0 0, 100% 0); box-shadow: inset 0 0 0 2px #06163a; }
-    .ownedAssetGlyph.is-liquidated::before { background: #6b7280; box-shadow: inset 0 0 0 2px #374151; }
+    .ownedAssetGlyph.is-liquidated::before { background: #9ca3af; box-shadow: inset 0 0 0 3px #4b5563; }
+    .ownedAssetGlyph.is-liquidated::after { text-shadow: 0 1px 1px rgba(55,65,81,0.72); }
     .ownedAssetGlyph::after { content: "IGIS"; position: absolute; left: 0; right: 0; top: 4px; color: #fff; font-size: 10px; line-height: 1; font-weight: 900; text-align: center; letter-spacing: 0; text-shadow: 0 1px 1px rgba(6,22,58,0.65); }
     .hint { margin-top: 6px; color: var(--muted); font-size: 10.5px; line-height: 1.32; }
     .overviewGrid { display: grid; gap: 6px; }
@@ -418,6 +419,7 @@
     const transactionHaloColor = 0xc4b5fd;
     const ownedAssetColor = 0xffffff;
     const ownedAssetHaloColor = 0xdbeafe;
+    const ownedAssetLiquidatedHaloColor = 0xd1d5db;
     let lastColumnVisualScale = null;
     let lastTerrainVisualScale = null;
     let markerClusterSignature = "";
@@ -2480,7 +2482,7 @@
       if (!ownedAssetTriangleTexture.cache) ownedAssetTriangleTexture.cache = new Map();
       if (ownedAssetTriangleTexture.cache.has(key)) return ownedAssetTriangleTexture.cache.get(key);
       const palette = key === "liquidated"
-        ? { fill: "rgba(107,114,128,0.98)", stroke: "rgba(55,65,81,0.98)", shadow: "rgba(31,41,55,0.66)" }
+        ? { fill: "rgba(156,163,175,0.98)", stroke: "rgba(75,85,99,1)", shadow: "rgba(55,65,81,0.72)" }
         : { fill: "rgba(15,42,95,0.98)", stroke: "rgba(6,22,58,0.98)", shadow: "rgba(6,22,58,0.72)" };
       const canvas = document.createElement("canvas");
       canvas.width = 96;
@@ -2535,8 +2537,10 @@
       }
       ownedAssetGroup = new THREE.Group();
       ownedAssetGroup.userData.kind = "ownedAsset";
-      const haloPositions = [];
-      const haloIndices = [];
+      const haloBuckets = {
+        active: { positions: [], indices: [] },
+        liquidated: { positions: [], indices: [] },
+      };
       const markerBuckets = {
         active: { positions: [], indices: [] },
         liquidated: { positions: [], indices: [] },
@@ -2545,32 +2549,37 @@
         const asset = ownedAssets[i];
         if (!Number.isFinite(Number(asset.x)) || !Number.isFinite(Number(asset.y))) continue;
         const pointPosition = [sx(asset.x), columnGroundY + 7.8, sz(asset.y)];
-        const bucket = asset.operationStatus === "liquidated" ? markerBuckets.liquidated : markerBuckets.active;
-        haloPositions.push(...pointPosition);
-        haloIndices.push(i);
-        bucket.positions.push(...pointPosition);
-        bucket.indices.push(i);
+        const status = asset.operationStatus === "liquidated" ? "liquidated" : "active";
+        const markerBucket = markerBuckets[status];
+        const haloBucket = haloBuckets[status];
+        haloBucket.positions.push(...pointPosition);
+        haloBucket.indices.push(i);
+        markerBucket.positions.push(...pointPosition);
+        markerBucket.indices.push(i);
       }
-      if (haloPositions.length) {
+      const addHaloBucket = (bucket, status) => {
+        if (!bucket.positions.length) return;
         const geometry = new THREE.BufferGeometry();
-        geometry.setAttribute("position", new THREE.Float32BufferAttribute(haloPositions, 3));
+        geometry.setAttribute("position", new THREE.Float32BufferAttribute(bucket.positions, 3));
         const halo = new THREE.Points(
           geometry,
           new THREE.PointsMaterial({
-            color: ownedAssetHaloColor,
+            color: status === "liquidated" ? ownedAssetLiquidatedHaloColor : ownedAssetHaloColor,
             map: ownedAssetHaloTexture(),
             size: 52,
             sizeAttenuation: false,
             transparent: true,
-            opacity: 0.20,
+            opacity: status === "liquidated" ? 0.28 : 0.20,
             depthTest: false,
             depthWrite: false,
           })
         );
-        halo.userData.ownedAssetIndices = haloIndices;
+        halo.userData.ownedAssetIndices = bucket.indices;
         halo.renderOrder = 33;
         ownedAssetGroup.add(halo);
-      }
+      };
+      addHaloBucket(haloBuckets.active, "active");
+      addHaloBucket(haloBuckets.liquidated, "liquidated");
       const addMarkerBucket = (bucket, status, renderOrder) => {
         if (!bucket.positions.length) return;
         const geometry = new THREE.BufferGeometry();
