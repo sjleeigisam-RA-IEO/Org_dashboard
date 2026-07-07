@@ -24,6 +24,7 @@ const sheetStatus = document.querySelector("#sheetStatus");
 const previewContext = previewCanvas.getContext("2d", { willReadFrequently: true });
 const autoSaveStorageKey = "floorDirectoryOcr.autoSave";
 const buildingNameStorageKey = "floorDirectoryOcr.buildingName";
+const maxOcrImageSide = 2400;
 const googleSheetWebAppUrl =
   "https://script.google.com/macros/s/AKfycbx4WaX0l6o7I5BTTfHLC9f9t40_uSfYLAZB_80WsPsBsVOMlBgM2fFKCxDVXImg9Uw11w/exec";
 
@@ -154,7 +155,7 @@ async function handleImageFile(file) {
 
 async function renderSelectedImage(file) {
   const bitmap = await createImageBitmap(file);
-  const scale = Math.min(1, 1800 / Math.max(bitmap.width, bitmap.height));
+  const scale = Math.min(1, maxOcrImageSide / Math.max(bitmap.width, bitmap.height));
   const width = Math.max(1, Math.round(bitmap.width * scale));
   const height = Math.max(1, Math.round(bitmap.height * scale));
 
@@ -168,7 +169,7 @@ async function renderSelectedImage(file) {
     enhanceCanvas(previewContext, width, height);
   }
 
-  processedDataUrl = previewCanvas.toDataURL("image/png");
+  processedDataUrl = previewCanvas.toDataURL("image/jpeg", 0.92);
   emptyState.hidden = true;
 }
 
@@ -177,26 +178,13 @@ async function runOcr() {
     return;
   }
 
-  if (!window.Tesseract) {
-    setStatus("OCR 라이브러리 로드 실패", 0);
-    return;
-  }
-
   runOcrButton.disabled = true;
-  setStatus("OCR 준비 중", 5);
+  setStatus("Google Vision OCR 전송 중", 10);
 
   try {
-    const result = await Tesseract.recognize(processedDataUrl, "kor+eng", {
-      logger(message) {
-        const progress = Math.round((message.progress || 0) * 100);
-        if (message.status) {
-          setStatus(translateOcrStatus(message.status), progress);
-        }
-      },
-    });
-
-    rawText.value = result.data.text.trim();
-    wordConfidenceByLine = buildConfidenceMap(result.data);
+    const result = await requestGoogleVisionOcr();
+    rawText.value = (result.rawText || "").trim();
+    wordConfidenceByLine = buildConfidenceMap({ words: result.words || [] });
     setStatus("OCR 완료", 100);
     renderParsedRows();
 
@@ -205,10 +193,45 @@ async function runOcr() {
     }
   } catch (error) {
     console.error(error);
-    setStatus("OCR 실패. 원문 영역에 직접 붙여넣을 수 있습니다.", 0);
+    setStatus(`OCR 실패: ${error.message || "원문 영역에 직접 붙여넣을 수 있습니다."}`, 0);
   } finally {
     runOcrButton.disabled = false;
   }
+}
+
+async function requestGoogleVisionOcr() {
+  const response = await fetch(googleSheetWebAppUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8",
+    },
+    body: JSON.stringify({
+      action: "ocr",
+      version: "floor-directory-ocr-v2",
+      capturedAt: new Date().toISOString(),
+      sourceName: selectedFile?.name || "camera-image",
+      imageData: processedDataUrl,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Apps Script OCR request failed: ${response.status}`);
+  }
+
+  const responseText = await response.text();
+  let result;
+  try {
+    result = JSON.parse(responseText);
+  } catch {
+    throw new Error("Apps Script가 JSON 응답을 반환하지 않았습니다.");
+  }
+
+  if (!result.ok) {
+    throw new Error(result.error || "Google Vision OCR failed");
+  }
+
+  setStatus("Google Vision OCR 결과 정리 중", 85);
+  return result;
 }
 
 function enhanceCanvas(context, width, height) {
@@ -562,6 +585,7 @@ async function saveToGoogleSheet() {
 
 function buildSheetPayload() {
   return {
+    action: "save",
     version: "floor-directory-ocr-v1",
     capturedAt: new Date().toISOString(),
     buildingName: buildingNameInput.value.trim(),
@@ -612,18 +636,6 @@ function setStatus(message, percent) {
   statusText.textContent = message;
   statusPercent.textContent = `${clamped}%`;
   progressBar.style.width = `${clamped}%`;
-}
-
-function translateOcrStatus(status) {
-  const labels = {
-    "loading tesseract core": "OCR 코어 로드 중",
-    "initializing tesseract": "OCR 초기화 중",
-    "loading language traineddata": "언어 데이터 로드 중",
-    "initializing api": "OCR API 준비 중",
-    "recognizing text": "텍스트 인식 중",
-  };
-
-  return labels[status] || status;
 }
 
 function clearPreview() {
