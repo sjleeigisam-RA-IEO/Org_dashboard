@@ -26,6 +26,7 @@ const googleSheetWebAppUrl =
 let selectedFile = null;
 let processedDataUrl = "";
 let wordConfidenceByLine = new Map();
+let visionWords = [];
 let parsedRows = [];
 
 cameraInput.addEventListener("change", (event) => {
@@ -48,6 +49,7 @@ clearButton.addEventListener("click", () => {
   selectedFile = null;
   processedDataUrl = "";
   wordConfidenceByLine = new Map();
+  visionWords = [];
   parsedRows = [];
   rawText.value = "";
   cameraInput.value = "";
@@ -138,7 +140,8 @@ async function runOcr() {
   try {
     const result = await requestGoogleVisionOcr();
     rawText.value = (result.rawText || "").trim();
-    wordConfidenceByLine = buildConfidenceMap({ words: result.words || [] });
+    visionWords = result.words || [];
+    wordConfidenceByLine = buildConfidenceMap({ words: visionWords });
     setStatus("OCR 완료", 100);
     renderParsedRows();
   } catch (error) {
@@ -200,7 +203,10 @@ function enhanceCanvas(context, width, height) {
 }
 
 function renderParsedRows() {
-  parsedRows = parseDirectoryText(rawText.value, wordConfidenceByLine);
+  parsedRows = parseDirectoryWords(visionWords);
+  if (!parsedRows.length) {
+    parsedRows = parseDirectoryText(rawText.value, wordConfidenceByLine);
+  }
   rowCount.textContent = `${parsedRows.length}개 항목`;
 
   if (!parsedRows.length) {
@@ -220,6 +226,276 @@ function renderParsedRows() {
   updateSheetControls();
 }
 
+function parseDirectoryWords(words) {
+  const positionedWords = normalizeVisionWords(words);
+  if (positionedWords.length < 4) {
+    return [];
+  }
+
+  const floorCandidates = dedupeFloorCandidates(collectFloorCandidates(positionedWords));
+  if (floorCandidates.length < 2) {
+    return [];
+  }
+
+  const floorBands = buildFloorBands(floorCandidates);
+  const floorRight = Math.max(...floorCandidates.map((floor) => floor.bounds.right));
+  const minTenantLeft = floorRight + Math.max(8, median(floorCandidates.map((floor) => floor.bounds.width)) * 0.25);
+  const floorWordIndexes = new Set(floorCandidates.map((floor) => floor.wordIndex));
+  const grouped = new Map();
+
+  for (const word of positionedWords) {
+    if (floorWordIndexes.has(word.index) || !isTenantWord(word.text)) {
+      continue;
+    }
+    if (word.bounds.left < minTenantLeft) {
+      continue;
+    }
+
+    const band = findFloorBand(word.bounds.centerY, floorBands);
+    if (!band) {
+      continue;
+    }
+
+    const existing = grouped.get(band.floor) || [];
+    existing.push(word);
+    grouped.set(band.floor, existing);
+  }
+
+  const rows = [];
+  for (const band of floorBands) {
+    const rowWords = filterDominantRowWords(grouped.get(band.floor) || []);
+    const source = joinVisionWords(rowWords);
+    const company = cleanupTenant(source);
+
+    if (!company || isNoiseLine(company)) {
+      continue;
+    }
+
+    rows.push({
+      floor: band.floor,
+      company,
+      source,
+      confidence: averageConfidence(rowWords),
+    });
+  }
+
+  return mergeDuplicateRows(rows);
+}
+
+function normalizeVisionWords(words) {
+  return (words || [])
+    .map((word, index) => ({
+      index,
+      text: String(word.text || "").trim(),
+      confidence: word.confidence == null ? null : Number(word.confidence),
+      bounds: normalizeBounds(word.bounds),
+    }))
+    .filter((word) => word.text && word.bounds);
+}
+
+function normalizeBounds(bounds) {
+  if (!bounds) {
+    return null;
+  }
+
+  const left = Number(bounds.left);
+  const top = Number(bounds.top);
+  const right = Number(bounds.right);
+  const bottom = Number(bounds.bottom);
+  if (![left, top, right, bottom].every(Number.isFinite) || right <= left || bottom <= top) {
+    return null;
+  }
+
+  return {
+    left,
+    top,
+    right,
+    bottom,
+    width: right - left,
+    height: bottom - top,
+    centerX: (left + right) / 2,
+    centerY: (top + bottom) / 2,
+  };
+}
+
+function collectFloorCandidates(words) {
+  const candidates = [];
+
+  for (const word of words) {
+    const floor = floorFromWord(word.text);
+    if (floor) {
+      candidates.push({
+        floor,
+        wordIndex: word.index,
+        bounds: word.bounds,
+        confidence: word.confidence,
+        synthetic: false,
+      });
+      continue;
+    }
+
+    candidates.push(...splitCompactFloorWord(word));
+  }
+
+  return candidates;
+}
+
+function floorFromWord(text) {
+  const token = String(text || "")
+    .toUpperCase()
+    .replace(/[｜|]/g, "1")
+    .replace(/[^0-9A-Z가-힣]/g, "");
+
+  if (/^지하\d{1,2}$/.test(token)) {
+    return `B${token.replace("지하", "")}`;
+  }
+
+  if (/^B\d{1,2}$/.test(token)) {
+    return token;
+  }
+
+  if (/^\d{1,2}(F|FL|층)?$/.test(token)) {
+    const number = Number(token.replace(/\D/g, ""));
+    if (number >= 1 && number <= 100) {
+      return `${number}F`;
+    }
+  }
+
+  if (token === "RF" || token === "옥상") {
+    return "RF";
+  }
+
+  return "";
+}
+
+function splitCompactFloorWord(word) {
+  const digits = word.text.replace(/\D/g, "");
+  if (digits.length < 3 || digits.length > 9 || !isDescendingDigitRun(digits)) {
+    return [];
+  }
+
+  const step = word.bounds.height / digits.length;
+  return digits.split("").map((digit, index) => {
+    const top = word.bounds.top + step * index;
+    const bottom = top + step;
+    return {
+      floor: `${Number(digit)}F`,
+      wordIndex: word.index,
+      bounds: {
+        left: word.bounds.left,
+        top,
+        right: word.bounds.right,
+        bottom,
+        width: word.bounds.width,
+        height: step,
+        centerX: word.bounds.centerX,
+        centerY: (top + bottom) / 2,
+      },
+      confidence: word.confidence,
+      synthetic: true,
+    };
+  });
+}
+
+function isDescendingDigitRun(value) {
+  for (let index = 1; index < value.length; index += 1) {
+    if (Number(value[index - 1]) - Number(value[index]) !== 1) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function dedupeFloorCandidates(candidates) {
+  const byFloor = new Map();
+
+  for (const candidate of candidates) {
+    const existing = byFloor.get(candidate.floor);
+    if (
+      !existing ||
+      (existing.synthetic && !candidate.synthetic) ||
+      Number(candidate.confidence || 0) > Number(existing.confidence || 0)
+    ) {
+      byFloor.set(candidate.floor, candidate);
+    }
+  }
+
+  return [...byFloor.values()].sort((a, b) => a.bounds.centerY - b.bounds.centerY);
+}
+
+function buildFloorBands(floors) {
+  return floors.map((floor, index) => {
+    const previous = floors[index - 1];
+    const next = floors[index + 1];
+    const top = previous ? (previous.bounds.centerY + floor.bounds.centerY) / 2 : floor.bounds.top - floor.bounds.height;
+    const bottom = next ? (floor.bounds.centerY + next.bounds.centerY) / 2 : floor.bounds.bottom + floor.bounds.height;
+    return {
+      floor: floor.floor,
+      centerY: floor.bounds.centerY,
+      top,
+      bottom,
+    };
+  });
+}
+
+function findFloorBand(centerY, bands) {
+  return bands.find((band) => centerY >= band.top && centerY < band.bottom) || null;
+}
+
+function isTenantWord(text) {
+  const cleaned = cleanupTenant(text);
+  return (
+    cleaned.length >= 2 &&
+    /[가-힣A-Za-z]/.test(cleaned) &&
+    !floorFromWord(cleaned) &&
+    !isCompactFloorText(cleaned) &&
+    !isNoiseLine(cleaned)
+  );
+}
+
+function isCompactFloorText(text) {
+  const digits = String(text || "").replace(/\D/g, "");
+  return digits.length >= 3 && digits.length <= 9 && isDescendingDigitRun(digits);
+}
+
+function filterDominantRowWords(words) {
+  if (words.length <= 2) {
+    return words.sort(compareWordPosition);
+  }
+
+  const maxHeight = Math.max(...words.map((word) => word.bounds.height));
+  return words
+    .filter((word) => word.bounds.height >= maxHeight * 0.38)
+    .sort(compareWordPosition);
+}
+
+function joinVisionWords(words) {
+  return words.map((word) => word.text).join(" ").replace(/\s+/g, " ").trim();
+}
+
+function averageConfidence(words) {
+  const values = words.map((word) => word.confidence).filter((value) => Number.isFinite(value));
+  if (!values.length) {
+    return null;
+  }
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+function compareWordPosition(a, b) {
+  if (Math.abs(a.bounds.centerY - b.bounds.centerY) > Math.max(a.bounds.height, b.bounds.height) * 0.7) {
+    return a.bounds.centerY - b.bounds.centerY;
+  }
+  return a.bounds.left - b.bounds.left;
+}
+
+function median(values) {
+  const sorted = values.filter(Number.isFinite).sort((a, b) => a - b);
+  if (!sorted.length) {
+    return 0;
+  }
+  return sorted[Math.floor(sorted.length / 2)];
+}
+
 function parseDirectoryText(text, confidenceMap) {
   const lines = normalizeText(text)
     .split("\n")
@@ -230,10 +506,6 @@ function parseDirectoryText(text, confidenceMap) {
   let currentFloor = "";
 
   for (const line of lines) {
-    if (isNoiseLine(line)) {
-      continue;
-    }
-
     const floorParts = splitPackedFloorLine(line);
     const targetLines = floorParts.length > 1 ? floorParts : [line];
 
@@ -243,6 +515,10 @@ function parseDirectoryText(text, confidenceMap) {
       if (floorMatch) {
         currentFloor = floorMatch.floor;
         addCompanies(rows, currentFloor, floorMatch.rest, targetLine, confidenceMap);
+        continue;
+      }
+
+      if (isNoiseLine(targetLine)) {
         continue;
       }
 
@@ -269,6 +545,11 @@ function normalizeText(text) {
 
 function extractFloor(line) {
   const cleaned = line.replace(/^[^\w가-힣]+/, "").trim();
+  const bareFloor = cleaned.match(/^(?:[1-9]|[1-9][0-9])$/);
+  if (bareFloor) {
+    return { floor: normalizeFloorLabel(bareFloor[0]), rest: "" };
+  }
+
   const match = cleaned.match(
     /^(지하\s*\d{1,2}|B\s*\d{1,2}|B\d{1,2}|[0-9]{1,2}\s*(?:F|FL|층)|[0-9]{1,2}\s+(?=[가-힣A-Za-z(㈜])|RF|R\s*F|옥상|로비|LOBBY)\s*[:.\-]?\s*(.*)$/i
   );
@@ -355,7 +636,7 @@ function addCompanies(rows, floor, rawTenantText, source, confidenceMap) {
 
 function cleanupTenant(value) {
   return value
-    .replace(/^[\s:.\-()[\]{}]+/, "")
+    .replace(/^[\s:.\-[\]{}]+/, "")
     .replace(/[\s:.\-]+$/, "")
     .replace(/\bTEL\b.*$/i, "")
     .replace(/\bOPEN\b.*$/i, "")

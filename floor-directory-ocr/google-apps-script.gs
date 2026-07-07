@@ -177,6 +177,7 @@ function extractVisionWords_(fullTextAnnotation) {
   var symbols;
   var text;
   var confidence;
+  var bounds;
 
   if (!fullTextAnnotation) {
     return words;
@@ -225,9 +226,12 @@ function extractVisionWords_(fullTextAnnotation) {
             }
           }
 
+          bounds = getVisionBounds_(word.boundingBox);
+
           words.push({
             text: text,
-            confidence: confidence
+            confidence: confidence,
+            bounds: bounds
           });
         }
       }
@@ -235,6 +239,59 @@ function extractVisionWords_(fullTextAnnotation) {
   }
 
   return words;
+}
+
+function getVisionBounds_(boundingBox) {
+  var result = {};
+  var vertices;
+  var i;
+  var vertex;
+  var x;
+  var y;
+  var minX = null;
+  var minY = null;
+  var maxX = null;
+  var maxY = null;
+
+  if (!boundingBox) {
+    return null;
+  }
+  if (!boundingBox.vertices) {
+    return null;
+  }
+
+  vertices = boundingBox.vertices;
+  for (i = 0; i < vertices.length; i += 1) {
+    vertex = vertices[i];
+    x = Number(vertex.x || 0);
+    y = Number(vertex.y || 0);
+
+    if (minX === null) {
+      minX = x;
+      minY = y;
+      maxX = x;
+      maxY = y;
+    } else {
+      minX = Math.min(minX, x);
+      minY = Math.min(minY, y);
+      maxX = Math.max(maxX, x);
+      maxY = Math.max(maxY, y);
+    }
+  }
+
+  if (minX === null) {
+    return null;
+  }
+
+  result.left = minX;
+  result.top = minY;
+  result.right = maxX;
+  result.bottom = maxY;
+  result.width = maxX - minX;
+  result.height = maxY - minY;
+  result.centerX = (minX + maxX) / 2;
+  result.centerY = (minY + maxY) / 2;
+  return result;
 }
 
 function parsePayload_(e) {
