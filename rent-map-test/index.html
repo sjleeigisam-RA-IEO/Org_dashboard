@@ -2316,7 +2316,10 @@
         ["longitude", `lte.${bounds.east + pad}`],
         ["order", "canonical_name.asc"],
       ]);
-      const candidateFundIds = uniqueNonEmpty(rows.flatMap(row => [
+      const officeRows = rows.filter(row => isOwnedOfficeUsage(row.main_usage));
+      document.body.dataset.ownedAssetCandidateCount = String(rows.length);
+      document.body.dataset.ownedAssetUsageFilter = "office_or_office_mixed";
+      const candidateFundIds = uniqueNonEmpty(officeRows.flatMap(row => [
         ...(Array.isArray(row.fund_ids) ? row.fund_ids : []),
         inferredFundIdFromAssetCode(row.asset_code),
       ]));
@@ -2346,7 +2349,7 @@
       const fundById = new Map(fundRows.map(row => [String(row.fund_id), row]));
       const seen = new Set();
       const assets = [];
-      for (const row of rows) {
+      for (const row of officeRows) {
         const lat = Number(row.latitude);
         const lon = Number(row.longitude);
         if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
@@ -2386,6 +2389,12 @@
       }
       document.body.dataset.ownedAssetCount = String(assets.length);
       return assets;
+    }
+
+    function isOwnedOfficeUsage(mainUsage) {
+      const text = String(mainUsage || "").toLowerCase().replace(/\s+/g, "");
+      if (!text) return false;
+      return text.includes("업무시설") || text.includes("오피스") || text.includes("office");
     }
 
     function ownedAssetTriangleTexture() {
