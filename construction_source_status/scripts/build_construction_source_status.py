@@ -936,6 +936,23 @@ def css_token(value: str) -> str:
     return re.sub(r"[^a-z0-9_-]+", "-", value.lower()).strip("-") or "value"
 
 
+def rating_tone_class(value: Any) -> str:
+    text = compact_text(value).upper()
+    if not text:
+        return "empty"
+    if text.startswith(("AAA", "AA")):
+        return "grade-aa"
+    if text.startswith("A"):
+        return "grade-a"
+    if text.startswith("BBB"):
+        return "grade-bbb"
+    if text.startswith(("BB", "B")):
+        return "grade-b"
+    if text.startswith(("CCC", "CC", "C", "D")):
+        return "grade-c"
+    return "empty"
+
+
 def parse_recent_item_date(value: Any) -> datetime | None:
     text = compact_text(value)
     match = re.search(r"(20\d{2})\D+(\d{1,2})\D+(\d{1,2})", text)
@@ -1054,8 +1071,8 @@ def render_value(value: Any, kind: str, max_amount: int = 0) -> str:
         return format_num(value)
     if kind == "rating":
         text = compact_text(value)
-        rating_class = " empty" if not text or text == "미확인" else ""
-        return f'<span class="rating-pill{rating_class}">{html.escape(text or "미확인")}</span>'
+        rating_class = rating_tone_class(text)
+        return f'<span class="rating-pill {rating_class}">{html.escape(text or "미확인")}</span>'
     text = compact_text(value)
     return html.escape(text if text else "-")
 
@@ -1250,7 +1267,7 @@ def render_rating_item(item: dict[str, Any]) -> str:
     date = compact_text(item.get("date"))
     meta = " · ".join(part for part in [agency, product, date] if part)
     source_url = compact_text(item.get("source_url"))
-    badge = f'<span class="rating-pill small">{html.escape(label)}</span>'
+    badge = f'<span class="rating-pill {rating_tone_class(label)} small">{html.escape(label)}</span>'
     if source_url:
         badge = f'<a href="{html.escape(source_url)}" target="_blank" rel="noreferrer">{badge}</a>'
     return f"<li>{badge}<span>{html.escape(meta)}</span></li>"
@@ -1314,7 +1331,7 @@ def render_credit_rating(row: dict[str, Any]) -> str:
           <h3>신용등급</h3>
           {f'<p>{html.escape(rep_meta)}</p>' if rep_meta else ''}
         </div>
-        <span class="rating-pill{' empty' if label == '미확인' else ''}">{html.escape(label)}</span>
+        <span class="rating-pill {rating_tone_class(label)}">{html.escape(label)}</span>
       </div>
       {message_html}
       <ul class="credit-source-list">{"".join(source_items)}</ul>
@@ -1976,6 +1993,31 @@ def render_html(data: dict[str, Any]) -> str:
       font-weight: 800;
       line-height: 1.2;
       white-space: nowrap;
+    }
+    .rating-pill.grade-aa {
+      border-color: rgba(50, 215, 75, 0.52);
+      background: rgba(50, 215, 75, 0.13);
+      color: #32d74b;
+    }
+    .rating-pill.grade-a {
+      border-color: rgba(41, 151, 255, 0.58);
+      background: rgba(41, 151, 255, 0.14);
+      color: #2997ff;
+    }
+    .rating-pill.grade-bbb {
+      border-color: rgba(255, 216, 77, 0.56);
+      background: rgba(255, 216, 77, 0.13);
+      color: #ffd84d;
+    }
+    .rating-pill.grade-b {
+      border-color: rgba(255, 159, 67, 0.58);
+      background: rgba(255, 159, 67, 0.13);
+      color: #ff9f43;
+    }
+    .rating-pill.grade-c {
+      border-color: rgba(255, 69, 58, 0.58);
+      background: rgba(255, 69, 58, 0.13);
+      color: #ff453a;
     }
     .rating-pill.empty {
       border-color: var(--line);
