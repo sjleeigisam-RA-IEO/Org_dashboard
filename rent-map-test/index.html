@@ -138,6 +138,19 @@
     .tenantFact { border: 1px solid #edf1f6; border-radius: 6px; background: #f8fafc; padding: 7px; min-height: 48px; }
     .tenantFact span { display: block; color: var(--muted); font-size: 10px; font-weight: 800; }
     .tenantFact strong { display: block; margin-top: 3px; color: var(--ink); font-size: 12px; line-height: 1.2; overflow-wrap: anywhere; }
+    .tenantFactGrid.is-market { margin-top: 7px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .marketStackSummary { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+    .marketStackChip { display: inline-flex; align-items: center; gap: 5px; border: 1px solid #bfdbfe; border-radius: 999px; background: #eff6ff; color: #1e3a8a; padding: 4px 8px; font-size: 11px; font-weight: 900; }
+    .marketCaseMatchList { display: grid; gap: 6px; margin-top: 8px; }
+    .marketCaseCard { border: 1px solid #bfdbfe; border-left: 4px solid #2563eb; border-radius: 7px; background: #f8fbff; padding: 8px; }
+    .marketCaseCard.is-unassigned { border-color: #cbd5e1; border-left-color: #64748b; background: #f8fafc; }
+    .marketCaseHead { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .marketCaseHead b { font-size: 12px; line-height: 1.3; color: var(--ink); overflow-wrap: anywhere; }
+    .marketCaseHead span { flex: 0 0 auto; color: #1d4ed8; font-size: 10.5px; font-weight: 900; }
+    .marketCaseMeta { margin-top: 4px; color: var(--muted); font-size: 10.5px; line-height: 1.38; }
+    .marketCaseSection { display: grid; gap: 6px; margin-top: 9px; padding-top: 8px; border-top: 1px dashed #cbd5e1; }
+    .marketCaseSectionTitle { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; color: var(--ink); font-size: 12px; font-weight: 900; }
+    .marketCaseSectionTitle span { color: var(--muted); font-size: 10.5px; font-weight: 800; }
     .tenantReviewGrid { display: grid; grid-template-columns: 0.75fr 0.95fr 0.9fr 1.4fr; gap: 6px; margin-top: 8px; }
     .tenantReviewGrid label { display: grid; gap: 3px; color: var(--muted); font-size: 10px; font-weight: 800; }
     .tenantReviewGrid input, .tenantReviewGrid select { width: 100%; height: 30px; border: 1px solid #dbe3ed; border-radius: 6px; padding: 0 7px; font-size: 11px; background: #fff; color: var(--ink); }
@@ -2969,6 +2982,72 @@
       return flag;
     }
 
+    function marketJoinLabel(value) {
+      if (value === "high_address_coord") return "주소+좌표 확인";
+      if (value === "high_address") return "주소 확인";
+      if (value === "high_coord") return "좌표 확인";
+      if (value === "medium_address") return "주소 후보";
+      if (value === "medium_name") return "자산명 후보";
+      if (value === "review_short_name") return "짧은 명칭 검토";
+      return "계약사례";
+    }
+
+    function renderMarketCaseCard(caseItem, className = "") {
+      const confidence = marketJoinLabel(caseItem.joinConfidence);
+      const moveText = caseItem.fromBuilding || caseItem.fromAddress
+        ? `이전 ${escapeHtml(caseItem.fromBuilding || caseItem.fromAddress)}`
+        : "이전 정보 없음";
+      const hasDistance = caseItem.joinDistanceMeters !== null && caseItem.joinDistanceMeters !== undefined && caseItem.joinDistanceMeters !== "";
+      const distanceText = hasDistance && Number.isFinite(Number(caseItem.joinDistanceMeters))
+        ? ` · 좌표차 ${fmt1.format(Number(caseItem.joinDistanceMeters))}m`
+        : "";
+      return `
+        <div class="marketCaseCard ${className}">
+          <div class="marketCaseHead">
+            <b>${escapeHtml(caseItem.tenant || "임차인 미상")}</b>
+            <span>${escapeHtml(caseItem.period || "-")}</span>
+          </div>
+          <div class="marketCaseMeta">${escapeHtml(caseItem.building || "-")} · ${escapeHtml(confidence)}${distanceText}</div>
+          <div class="tenantFactGrid is-market">
+            <div class="tenantFact"><span>NOC</span><strong>${moneyText(caseItem.conditionNoc, "원/평")}</strong></div>
+            <div class="tenantFact"><span>임대료</span><strong>${moneyText(caseItem.conditionRent, "원/평")}</strong></div>
+            <div class="tenantFact"><span>관리비</span><strong>${moneyText(caseItem.conditionMaintenance, "원/평")}</strong></div>
+            <div class="tenantFact"><span>전용면적</span><strong>${areaText(caseItem.exclusiveArea)}</strong></div>
+            <div class="tenantFact"><span>보증금</span><strong>${moneyText(caseItem.conditionDeposit, "원/평")}</strong></div>
+            <div class="tenantFact"><span>렌트프리</span><strong>${monthText(caseItem.conditionRentFree)}</strong></div>
+            <div class="tenantFact"><span>공실률</span><strong>${percentText(caseItem.conditionVacancyRate)}</strong></div>
+            <div class="tenantFact"><span>수요/업종</span><strong>${escapeHtml(caseItem.demand || caseItem.industrySmall || "-")}</strong></div>
+          </div>
+          <div class="marketCaseMeta">${moveText}${caseItem.corpName ? " · DART " + escapeHtml(caseItem.corpName) : ""}</div>
+        </div>
+      `;
+    }
+
+    function renderTenantMarketMatches(matches) {
+      const rows = matches || [];
+      if (!rows.length) return "";
+      return `
+        <div class="marketCaseMatchList">
+          <div class="marketStackChip">렌트맵 계약사례 ${fmt.format(rows.length)}건 연결</div>
+          ${rows.slice(0, 3).map(item => renderMarketCaseCard(item)).join("")}
+        </div>
+      `;
+    }
+
+    function renderUnassignedMarketLeaseCases(asset) {
+      const rows = asset.marketLeaseUnassignedCases || [];
+      if (!rows.length) return "";
+      return `
+        <div class="marketCaseSection">
+          <div class="marketCaseSectionTitle">
+            <strong>원천 렌트롤 외 계약사례 관측</strong>
+            <span>동일 자산 후보 · ${fmt.format(rows.length)}건</span>
+          </div>
+          ${rows.slice(0, 12).map(item => renderMarketCaseCard(item, "is-unassigned")).join("")}
+        </div>
+      `;
+    }
+
     function tenantInputValue(assetInput, tenantId, field) {
       return assetInput.tenants?.[tenantId]?.[field] || "";
     }
@@ -2981,7 +3060,7 @@
               <b>${asset.targetRank}. ${escapeHtml(asset.assetName || "자산명 미상")}</b>
               <span>기준 NOC ${moneyText(asset.targetMetricNocPerPy || asset.activeMaxNocPerPy, "원/평")} · 정상 ${fmt.format(asset.targetRankableTenantCount || 0)}건</span>
               <span>${escapeHtml(asset.targetTopTenant || asset.activeTopTenant || "상위 임차인 미상")}</span>
-              <span>${asset.lat && asset.lon ? "좌표 있음" : "좌표 없음"} · ${escapeHtml(asset.nocReviewFlags || "검토 플래그 없음")}</span>
+              <span>${asset.lat && asset.lon ? "좌표 있음" : "좌표 없음"} · 렌트맵 사례 ${fmt.format(asset.marketLeaseCaseCount || 0)}건 · ${escapeHtml(asset.nocReviewFlags || "검토 플래그 없음")}</span>
             </button>
           `).join("")}
         </div>
@@ -2999,6 +3078,7 @@
           <span class="tenantSummaryItem"><span class="statusPill is-active">활성</span>${fmt.format(active.length)}건</span>
           <span class="tenantSummaryItem"><span class="statusPill is-expired">만료</span>${fmt.format(expired.length)}건</span>
           <span class="tenantSummaryItem"><span class="statusPill is-unknown">데이터 없음</span>${fmt.format(unknown.length)}건</span>
+          ${asset.marketLeaseCaseCount ? `<span class="marketStackChip">렌트맵 계약사례 ${fmt.format(asset.marketLeaseCaseCount)}건</span>` : ""}
         </div>
         <div class="tenantObjectRows">
           ${rows.map(tenant => {
@@ -3022,6 +3102,7 @@
                   <div class="tenantFact"><span>보증금</span><strong>${krwWonText(tenant.depositTotal)}</strong></div>
                   <div class="tenantFact"><span>임대기간</span><strong>${escapeHtml(periodText)}</strong></div>
                 </div>
+                ${renderTenantMarketMatches(tenant.marketCaseMatches)}
                 <div class="tenantReviewGrid">
                   <label>검토상태
                     <select data-tenant-id="${escapeHtml(tenant.tenantObjectId)}" data-tenant-field="contactStatus">
@@ -3044,6 +3125,7 @@
             `;
           }).join("")}
         </div>
+        ${renderUnassignedMarketLeaseCases(asset)}
       `;
     }
 
