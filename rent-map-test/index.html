@@ -100,8 +100,10 @@
     .tenantLabHeaderText { min-width: 0; }
     .tenantLabHeader strong { display: block; font-size: 13px; color: var(--ink); }
     .tenantLabHeader span { display: block; margin-top: 3px; font-size: 11px; line-height: 1.35; color: var(--muted); }
-    .floorStackToolButton { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; height: 32px; border: 1px solid rgba(37,99,235,0.28); border-radius: 999px; background: #fff; color: #1d4ed8; padding: 0 12px; font-size: 11px; font-weight: 900; text-decoration: none; white-space: nowrap; }
-    .floorStackToolButton:hover { border-color: rgba(37,99,235,0.58); box-shadow: 0 0 0 3px rgba(37,99,235,0.10); }
+    .tenantLabHeaderActions { display: inline-flex; align-items: center; justify-content: flex-end; gap: 7px; flex: 0 0 auto; }
+    .floorStackToolButton, .surveyCsvDownloadButton { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; height: 32px; border: 1px solid rgba(37,99,235,0.28); border-radius: 999px; background: #fff; color: #1d4ed8; padding: 0 12px; font-size: 11px; font-weight: 900; text-decoration: none; white-space: nowrap; cursor: pointer; }
+    .surveyCsvDownloadButton { border-color: rgba(15,42,95,0.22); color: #0f2a5f; background: #f8fafc; }
+    .floorStackToolButton:hover, .surveyCsvDownloadButton:hover { border-color: rgba(37,99,235,0.58); box-shadow: 0 0 0 3px rgba(37,99,235,0.10); }
     .tenantWingSelector { display: flex; align-items: center; justify-content: space-between; gap: 10px; border: 1px solid #e3e9f1; border-radius: 7px; background: rgba(248,250,252,0.88); padding: 8px 9px; margin: 0 0 8px; }
     .tenantWingSelector label { display: inline-flex; align-items: center; gap: 6px; color: #334155; font-size: 11px; font-weight: 900; }
     .tenantWingSelector select { height: 30px; min-width: 180px; border: 1px solid #cbd5e1; border-radius: 7px; background: #fff; color: var(--ink); font-size: 12px; padding: 0 8px; outline: none; }
@@ -346,7 +348,8 @@
       .tenantLabHeaderText { display: none; }
       .tenantLabHeader strong { font-size: 12px; }
       .tenantLabHeader span { font-size: 10.5px; }
-      .floorStackToolButton { width: 100%; height: 34px; font-size: 11.5px; }
+      .tenantLabHeaderActions { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+      .floorStackToolButton, .surveyCsvDownloadButton { width: 100%; height: 34px; font-size: 11.5px; padding: 0 8px; }
       .tenantLabPage .tenantSplit {
         height: 100%; min-height: 0; overflow: hidden; display: grid;
         grid-template-columns: 1fr; grid-template-rows: 116px minmax(0, 1fr); gap: 8px;
@@ -3253,13 +3256,40 @@
       };
     }
 
-    function normalizeTenantInputRecord(record) {
+    function nowIsoString() {
+      return new Date().toISOString();
+    }
+
+    function normalizeFloorSurveyPayload(floorSurvey, fallbackAt = "") {
+      const normalized = {};
+      if (!floorSurvey || typeof floorSurvey !== "object") return normalized;
+      for (const [floorKey, rows] of Object.entries(floorSurvey)) {
+        if (!Array.isArray(rows)) continue;
+        const cleanRows = rows.map((row, index) => {
+          const source = row && typeof row === "object" ? row : { tenantName: String(row || "") };
+          const tenantName = String(source.tenantName || "");
+          const rowTime = source.inputAt || source.updatedAt || source.createdAt || fallbackAt || "";
+          return {
+            id: source.id || `fs${Date.now().toString(36)}${index}${Math.random().toString(36).slice(2, 7)}`,
+            tenantName,
+            createdAt: source.createdAt || rowTime,
+            inputAt: source.inputAt || (tenantName.trim() ? rowTime : ""),
+            updatedAt: source.updatedAt || rowTime,
+          };
+        }).filter(row => row.id || row.tenantName.trim());
+        if (cleanRows.length) normalized[floorKey] = cleanRows;
+      }
+      return normalized;
+    }
+
+    function normalizeTenantInputRecord(record, savedAt = "") {
       const payload = record && typeof record === "object" ? record : {};
+      const fallbackAt = payload.updatedAt || savedAt || "";
       return {
         asset: payload.asset && typeof payload.asset === "object" ? payload.asset : {},
         tenants: payload.tenants && typeof payload.tenants === "object" ? payload.tenants : {},
-        floorSurvey: payload.floorSurvey && typeof payload.floorSurvey === "object" ? payload.floorSurvey : {},
-        updatedAt: payload.updatedAt || "",
+        floorSurvey: normalizeFloorSurveyPayload(payload.floorSurvey, fallbackAt),
+        updatedAt: fallbackAt,
       };
     }
 
@@ -3282,26 +3312,33 @@
       }
     }
 
+    async function fetchTenantInputStoreFromSupabase() {
+      const store = {};
+      if (!tenantInputDbConfigured()) return store;
+      const params = new URLSearchParams({
+        select: "asset_event,payload,updated_at",
+        dataset_version: `eq.${tenantInputDatasetVersion}`,
+        order: "updated_at.desc",
+        limit: "1000",
+      });
+      const response = await fetch(`${MAP_CONFIG.supabaseUrl}/rest/v1/rent_map_research_survey_inputs?${params.toString()}`, {
+        headers: tenantInputHeaders(),
+      });
+      if (!response.ok) throw new Error(`survey input fetch failed ${response.status}`);
+      const rows = await response.json();
+      for (const row of rows) {
+        const record = normalizeTenantInputRecord(row.payload, row.updated_at);
+        if (tenantInputHasContent(record)) store[row.asset_event] = record;
+      }
+      return store;
+    }
+
     async function loadTenantInputStore() {
       tenantInputStore = {};
       document.body.dataset.tenantInputStorage = "memory";
       if (tenantInputDbConfigured()) {
         try {
-          const params = new URLSearchParams({
-            select: "asset_event,payload,updated_at",
-            dataset_version: `eq.${tenantInputDatasetVersion}`,
-            order: "updated_at.desc",
-            limit: "1000",
-          });
-          const response = await fetch(`${MAP_CONFIG.supabaseUrl}/rest/v1/rent_map_research_survey_inputs?${params.toString()}`, {
-            headers: tenantInputHeaders(),
-          });
-          if (!response.ok) throw new Error(`survey input fetch failed ${response.status}`);
-          const rows = await response.json();
-          for (const row of rows) {
-            const record = normalizeTenantInputRecord(row.payload);
-            if (tenantInputHasContent(record)) tenantInputStore[row.asset_event] = record;
-          }
+          tenantInputStore = await fetchTenantInputStoreFromSupabase();
           document.body.dataset.tenantInputStorage = "supabase";
         } catch (error) {
           console.warn("Supabase survey input load failed", error);
@@ -3337,9 +3374,9 @@
 
     async function persistTenantInputRecord(assetEvent) {
       if (!assetEvent || !tenantInputDbConfigured()) return;
-      const record = tenantInputStore[assetEvent] || { asset: {}, tenants: {}, floorSurvey: {}, updatedAt: new Date().toISOString() };
+      const record = tenantInputStore[assetEvent] || { asset: {}, tenants: {}, floorSurvey: {}, updatedAt: nowIsoString() };
       const payload = normalizeTenantInputRecord(record);
-      payload.updatedAt = record.updatedAt || new Date().toISOString();
+      payload.updatedAt = record.updatedAt || nowIsoString();
       try {
         const response = await fetch(`${MAP_CONFIG.supabaseUrl}/rest/v1/rent_map_research_survey_inputs`, {
           method: "POST",
@@ -3766,6 +3803,117 @@
       `;
     }
 
+    function floorSurveyCsvFloorLabel(key) {
+      const numeric = Number(key);
+      if (!Number.isFinite(numeric)) return key === "unknown" ? "" : String(key || "");
+      if (numeric < 0) return `B${Math.abs(numeric)}`;
+      return `${numeric}F`;
+    }
+
+    function surveyTimestampText(value) {
+      if (!value) return "";
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return String(value);
+      const pad = part => String(part).padStart(2, "0");
+      return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+    }
+
+    function csvCell(value) {
+      const text = String(value ?? "");
+      return /[",\r\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+    }
+
+    function downloadTextFile(filename, content, mimeType = "text/csv;charset=utf-8") {
+      const blob = new Blob([content], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function sortedFloorSurveyEntries(floorSurvey) {
+      return Object.entries(floorSurvey || {}).sort(([a], [b]) => {
+        const an = Number(a);
+        const bn = Number(b);
+        if (Number.isFinite(an) && Number.isFinite(bn)) return bn - an;
+        return String(a).localeCompare(String(b));
+      });
+    }
+
+    async function downloadSurveyCsv() {
+      if (tenantInputDbConfigured()) {
+        try {
+          tenantInputStore = await fetchTenantInputStoreFromSupabase();
+          document.body.dataset.tenantInputStorage = "supabase";
+          document.body.dataset.tenantInputCount = String(Object.keys(tenantInputStore).length);
+        } catch (error) {
+          console.warn("Supabase survey input refresh failed before CSV download", error);
+          document.body.dataset.tenantInputStorage = "supabase_error";
+        }
+      }
+      const lab = tenantLabData();
+      const targets = lab.targetAssets || [];
+      const byEvent = Object.fromEntries(targets.map(asset => [asset.assetEvent, asset]));
+      const columns = [
+        "자산",
+        "층",
+        "회사이름",
+        "조사입력시점",
+        "임차면적(평)",
+        "임차면적(㎡)",
+        "임대료(원/평)",
+        "관리비(원/평)",
+        "보증금",
+        "임대시작일",
+        "임대종료일",
+        "렌트프리",
+        "무료주차",
+        "임대료상승조건",
+        "관리비상승조건",
+        "세부조건메모",
+      ];
+      const csvRows = [columns];
+      const orderedEvents = [
+        ...targets.map(asset => asset.assetEvent),
+        ...Object.keys(tenantInputStore).filter(event => !byEvent[event]),
+      ];
+      for (const event of orderedEvents) {
+        const asset = byEvent[event] || { assetName: event };
+        const record = normalizeTenantInputRecord(tenantInputStore[event] || {});
+        for (const [floorKey, rows] of sortedFloorSurveyEntries(record.floorSurvey)) {
+          for (const row of rows || []) {
+            const tenantName = String(row.tenantName || "").trim();
+            if (!tenantName) continue;
+            csvRows.push([
+              asset.assetName || event,
+              floorSurveyCsvFloorLabel(floorKey),
+              tenantName,
+              surveyTimestampText(row.inputAt || row.updatedAt || row.createdAt || record.updatedAt),
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+            ]);
+          }
+        }
+      }
+      const stamp = surveyTimestampText(nowIsoString()).replace(/[-: ]/g, "").slice(0, 14);
+      const csv = "\uFEFF" + csvRows.map(row => row.map(csvCell).join(",")).join("\r\n");
+      downloadTextFile(`rent_map_floor_survey_${tenantInputDatasetVersion}_${stamp}.csv`, csv);
+    }
+
     function renderTargetAssetList(targets, selected) {
       const selectedEvent = selected?.assetEvent || "";
       return `
@@ -4102,7 +4250,10 @@
             <strong>리서치 조사대상 워크리스트</strong>
             <span>엑셀 조사대상 ${fmt.format(lab.assetCount || 0)}개를 순서대로 표시합니다. 연결 임차인 ${fmt.format(lab.bidPrefillTenantCount || 0)}건.</span>
           </div>
-          <a class="floorStackToolButton" href="https://floorstack.vercel.app/" target="_blank" rel="noopener noreferrer">층별 입력 도구 열기</a>
+          <div class="tenantLabHeaderActions">
+            <a class="floorStackToolButton" href="https://floorstack.vercel.app/" target="_blank" rel="noopener noreferrer">층별 입력 도구 열기</a>
+            <button class="surveyCsvDownloadButton" type="button" data-tenant-action="downloadSurveyCsv">조사 CSV 다운로드</button>
+          </div>
         </div>
         ${renderTenantInputMode(lab, targets, selected)}
       `;
@@ -4179,9 +4330,10 @@
           const record = ensureTenantAssetInput(asset.assetEvent);
           const key = button.dataset.floorSurveyAdd || "unknown";
           if (!record.floorSurvey[key]) record.floorSurvey[key] = [];
-          const row = { id: `fs${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`, tenantName: "" };
+          const now = nowIsoString();
+          const row = { id: `fs${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`, tenantName: "", createdAt: now, inputAt: "", updatedAt: now };
           record.floorSurvey[key].push(row);
-          record.updatedAt = new Date().toISOString();
+          record.updatedAt = now;
           saveTenantInputStore();
           renderTenantLab();
           window.setTimeout(() => {
@@ -4198,7 +4350,7 @@
           const rowId = button.dataset.surveyRowId || "";
           record.floorSurvey[key] = (record.floorSurvey[key] || []).filter(row => row.id !== rowId);
           if (!record.floorSurvey[key]?.length) delete record.floorSurvey[key];
-          record.updatedAt = new Date().toISOString();
+          record.updatedAt = nowIsoString();
           saveTenantInputStore();
           renderTenantLab();
         });
@@ -4213,8 +4365,15 @@
           const rows = record.floorSurvey[key] || [];
           const row = rows.find(item => item.id === rowId);
           if (!row) return;
-          row[input.dataset.floorSurveyField || "tenantName"] = input.value;
-          record.updatedAt = new Date().toISOString();
+          const field = input.dataset.floorSurveyField || "tenantName";
+          const now = nowIsoString();
+          row[field] = input.value;
+          row.updatedAt = now;
+          if (field === "tenantName") {
+            row.inputAt = input.value.trim() ? now : "";
+            if (!row.createdAt) row.createdAt = now;
+          }
+          record.updatedAt = now;
           saveTenantInputStore();
         };
         input.addEventListener("input", save);
@@ -4224,6 +4383,7 @@
         button.addEventListener("click", () => {
           const action = button.dataset.tenantAction;
           const asset = selectedTargetAsset();
+          if (action === "downloadSurveyCsv") downloadSurveyCsv();
           if (action === "locate" && asset) focusTargetAsset(asset);
           if (action === "clearAsset" && asset && window.confirm(`${asset.assetName} 입력값을 초기화할까요?`)) {
             delete tenantInputStore[asset.assetEvent];
