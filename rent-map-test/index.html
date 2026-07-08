@@ -109,7 +109,7 @@
     .tenantWingMeta { color: var(--muted); font-size: 11px; font-weight: 800; }
     .tenantSplit { display: grid; grid-template-columns: minmax(240px, 0.45fr) minmax(0, 1.55fr); gap: 8px; min-height: 0; }
     .targetAssetList { display: grid; gap: 5px; max-height: 62vh; overflow: auto; padding-right: 2px; }
-    .targetAssetItem { width: 100%; border: 1px solid #dfe6ee; border-radius: 7px; background: #fff; padding: 8px 10px; text-align: left; cursor: pointer; color: var(--ink); }
+    .targetAssetItem { position: relative; width: 100%; border: 1px solid #dfe6ee; border-radius: 7px; background: #fff; padding: 8px 10px; text-align: left; cursor: pointer; color: var(--ink); }
     .targetAssetItem.is-active { border-color: rgba(37,99,235,0.62); box-shadow: 0 0 0 3px rgba(37,99,235,0.10); }
     .targetAssetItem.is-portfolio { border-color: rgba(15,42,95,0.68); background: linear-gradient(180deg, #dbeafe 0%, #eef5ff 55%, #ffffff 100%); box-shadow: inset 5px 0 0 #0f2a5f; }
     .targetAssetItem.is-liquidated { border-color: #9ca3af; background: linear-gradient(180deg, #e5e7eb 0%, #f3f4f6 62%, #fff 100%); box-shadow: inset 5px 0 0 #525252; }
@@ -118,6 +118,7 @@
     .targetAssetTitle { display: block; min-width: 0; }
     .targetAssetItem b { display: block; font-size: 12.5px; line-height: 1.24; overflow-wrap: anywhere; }
     .targetAssetItem span { display: block; margin-top: 2px; font-size: 10.5px; color: var(--muted); line-height: 1.28; }
+    .targetAssetSelectedCue { display: none; }
     .targetAssetBadges { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0 2px; }
     .targetAssetMetaLine { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .targetAssetMetricLine { color: #334155 !important; font-weight: 800; }
@@ -348,24 +349,62 @@
       .floorStackToolButton { width: 100%; height: 34px; font-size: 11.5px; }
       .tenantLabPage .tenantSplit {
         height: 100%; min-height: 0; overflow: hidden; display: grid;
-        grid-template-columns: 1fr; grid-template-rows: 104px minmax(0, 1fr); gap: 7px;
+        grid-template-columns: 1fr; grid-template-rows: 116px minmax(0, 1fr); gap: 8px;
       }
       .tenantLabPage .targetAssetList, .targetAssetList {
-        height: 100%; max-height: none; overflow: auto; padding: 4px;
-        border: 1px solid #dbe3ed; border-radius: 8px; background: rgba(248,250,252,0.92);
-        align-content: start;
+        position: relative; height: 100%; max-height: none; overflow: auto; padding: 24px 7px 7px;
+        border: 1px solid rgba(37,99,235,0.42); border-radius: 10px;
+        background: linear-gradient(180deg, rgba(219,234,254,0.96) 0%, rgba(239,246,255,0.94) 58%, rgba(248,250,252,0.96) 100%);
+        box-shadow: 0 8px 20px rgba(15,23,42,0.10), inset 0 1px 0 rgba(255,255,255,0.90);
+        align-content: start; gap: 5px;
       }
-      .targetAssetItem { min-height: 29px; padding: 6px 8px; border-radius: 6px; display: flex; align-items: center; }
+      .tenantLabPage .targetAssetList::before {
+        content: "조사대상 리스트"; position: absolute; top: 6px; left: 9px;
+        color: #1e3a8a; font-size: 10px; font-weight: 900; letter-spacing: 0;
+      }
+      .targetAssetItem {
+        min-height: 31px; padding: 6px 62px 6px 9px; border-radius: 7px;
+        display: flex; align-items: center; background: rgba(255,255,255,0.94);
+        border-color: rgba(148,163,184,0.70);
+        box-shadow: 0 1px 3px rgba(15,23,42,0.05);
+      }
       .targetAssetItem b { font-size: 11.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       .targetAssetItem span { font-size: 10px; line-height: 1.22; }
+      .targetAssetItem.is-portfolio:not(.is-active) {
+        background: linear-gradient(90deg, #dbeafe 0%, #eff6ff 54%, #fff 100%);
+        box-shadow: inset 4px 0 0 #0f2a5f, 0 1px 3px rgba(15,23,42,0.06);
+      }
+      .targetAssetItem.is-liquidated:not(.is-active) {
+        background: linear-gradient(90deg, #e5e7eb 0%, #f8fafc 58%, #fff 100%);
+        box-shadow: inset 4px 0 0 #6b7280, 0 1px 3px rgba(15,23,42,0.06);
+      }
+      .targetAssetItem.is-active {
+        border-color: #1d4ed8; background: linear-gradient(90deg, #0f2a5f 0%, #1d4ed8 100%);
+        color: #fff; box-shadow: 0 0 0 3px rgba(37,99,235,0.20), 0 8px 18px rgba(15,42,95,0.24);
+      }
+      .targetAssetItem.is-active b { color: #fff; }
+      .targetAssetItem.is-active.is-portfolio,
+      .targetAssetItem.is-active.is-liquidated { box-shadow: inset 4px 0 0 #93c5fd, 0 0 0 3px rgba(37,99,235,0.22), 0 8px 18px rgba(15,42,95,0.24); }
+      .targetAssetSelectedCue {
+        position: absolute; right: 7px; top: 50%; transform: translateY(-50%);
+        display: none; align-items: center; justify-content: center;
+        height: 20px; border-radius: 999px; padding: 0 7px;
+        font-size: 9.5px; font-weight: 900; line-height: 1;
+      }
+      .targetAssetItem.is-active .targetAssetSelectedCue {
+        display: inline-flex; color: #1e3a8a; background: #fff; border: 1px solid rgba(191,219,254,0.98);
+      }
       .tenantLabPage .targetAssetForm {
         height: 100%; max-height: 100%; min-height: 0; overflow: hidden;
         display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 6px;
       }
       .selectedAssetCard {
-        position: sticky; top: 0; z-index: 2; padding: 7px 8px;
-        box-shadow: 0 8px 18px rgba(15,23,42,0.08);
+        position: sticky; top: 0; z-index: 2; padding: 7px 8px 7px 10px;
+        border-color: rgba(37,99,235,0.34); border-left: 5px solid #2563eb;
+        background: linear-gradient(180deg, #eff6ff 0%, #fff 100%);
+        box-shadow: 0 8px 18px rgba(15,23,42,0.10);
       }
+      .selectedAssetCard::before { content: "선택 자산"; display: inline-flex; margin-bottom: 3px; color: #1d4ed8; font-size: 9.5px; font-weight: 900; }
       .selectedAssetCard h2 { font-size: 13px; line-height: 1.18; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       .selectedAssetCard .meta { font-size: 10.5px; line-height: 1.25; }
       .selectedAssetCard .meta:nth-of-type(2), .selectedAssetCard .targetActions { display: none; }
@@ -3728,11 +3767,13 @@
     }
 
     function renderTargetAssetList(targets, selected) {
+      const selectedEvent = selected?.assetEvent || "";
       return `
         <div class="targetAssetList">
           ${targets.map(asset => `
-            <button class="${targetAssetCardClass(asset, selected)}" type="button" data-target-asset="${escapeHtml(asset.assetEvent)}">
+            <button class="${targetAssetCardClass(asset, selected)}" type="button" data-target-asset="${escapeHtml(asset.assetEvent)}" aria-current="${asset.assetEvent === selectedEvent ? "true" : "false"}">
               <div class="targetAssetTitle"><b>${asset.targetRank}. ${escapeHtml(asset.assetName || "조사대상 자산")}</b></div>
+              <span class="targetAssetSelectedCue">선택됨</span>
             </button>
           `).join("")}
         </div>
