@@ -630,6 +630,7 @@
     let activeCaseTab = "lease";
     let mapToolsCollapsed = false;
     const tenantInputDatasetVersion = "research_target_20260707";
+    const surveyCsvDownloadAccessCode = "+3AODr-8BW3kMx4";
     const tenantInputStorageKey = "rentMapResearchSurveyInputs:20260707:v1";
     let tenantLabMode = "input";
     let selectedTargetAssetEvent = "";
@@ -3857,7 +3858,16 @@
       });
     }
 
+    function confirmSurveyCsvDownloadAccess() {
+      const input = window.prompt("조사 CSV 다운로드 승인코드를 입력하세요.");
+      if (input === null) return false;
+      if (String(input).trim() === surveyCsvDownloadAccessCode) return true;
+      window.alert("승인코드가 일치하지 않습니다.");
+      return false;
+    }
+
     async function downloadSurveyCsv() {
+      if (!confirmSurveyCsvDownloadAccess()) return;
       if (tenantInputDbConfigured()) {
         try {
           tenantInputStore = await fetchTenantInputStoreFromSupabase();
