@@ -237,6 +237,7 @@
     .caseListTitle { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
     .caseListHeader strong { font-size: 13px; color: var(--ink); }
     .caseListHeader span { font-size: 11px; color: var(--muted); }
+    .caseListToggle { display: none; }
     .caseTabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
     .caseTab { height: 30px; border: 1px solid #dbe3ed; border-radius: 7px; background: rgba(255,255,255,0.78); color: #334155; font-size: 12px; font-weight: 800; cursor: pointer; }
     .caseTab.is-active { border-color: rgba(37,99,235,0.42); background: #eff6ff; color: #1d4ed8; box-shadow: 0 0 0 3px rgba(37,99,235,0.08); }
@@ -452,15 +453,22 @@
       .floorSurveyAdd { width: 100%; height: 26px; justify-self: stretch; }
       .floorSurveyRemove { width: 24px; height: 24px; }
       .inputGrid, .tenantReviewGrid { grid-template-columns: 1fr; }
-      .caseList { left: 10px; right: 10px; top: auto; bottom: 10px; width: auto; max-height: 44px; transition: max-height 0.18s ease; z-index: 6; }
+      .caseList { left: 10px; right: 10px; top: auto; bottom: 10px; width: auto; max-height: 52px; transition: max-height 0.18s ease; z-index: 6; }
       .caseList.is-empty { display: none; }
-      .caseListHeader { cursor: pointer; padding: 12px; border-bottom: 0; }
+      .caseListHeader { cursor: pointer; padding: 10px 12px; border-bottom: 0; gap: 8px; }
+      .caseListTitle { align-items: center; }
+      .caseListTitle strong { font-size: 13px; }
+      .caseListTitle span { font-size: 10.5px; text-align: right; }
+      .caseListToggle {
+        display: inline-flex; align-items: center; justify-content: center;
+        height: 26px; min-width: 58px; border: 1px solid rgba(37,99,235,0.28);
+        border-radius: 999px; background: #eff6ff; color: #1d4ed8;
+        font-size: 11px; font-weight: 900; cursor: pointer; flex: 0 0 auto;
+      }
       .caseTabs { display: none; }
-      .caseListHeader::after { content: "펼치기"; flex: 0 0 auto; color: var(--blue); font-size: 11px; font-weight: 700; }
       .caseList.is-open { max-height: 46vh; }
       .caseList.is-open .caseListHeader { border-bottom: 1px solid var(--line); }
       .caseList.is-open .caseTabs { display: grid; }
-      .caseList.is-open .caseListHeader::after { content: "접기"; }
       .caseRows { display: none; max-height: calc(46vh - 88px); }
       .caseList.is-open .caseRows { display: grid; }
       body.case-list-open .leftDock { display: none; }
@@ -531,7 +539,11 @@
     </section>
     <section class="panel caseList" id="caseListPanel">
       <div class="caseListHeader">
-        <div class="caseListTitle"><strong>현재 분기 사례</strong><span id="caseListCount"></span></div>
+        <div class="caseListTitle">
+          <strong>현재 분기 사례</strong>
+          <span id="caseListCount"></span>
+          <button class="caseListToggle" id="caseListToggle" type="button" aria-expanded="false">펼치기</button>
+        </div>
         <div class="caseTabs" role="tablist" aria-label="현재 분기 사례 유형">
           <button class="caseTab is-active" type="button" data-case-tab="lease">임대사례 <span id="leaseCaseCount">0</span></button>
           <button class="caseTab" type="button" data-case-tab="transaction">매매사례 <span id="transactionCaseCount">0</span></button>
@@ -572,6 +584,7 @@
     const mobileDockToggle = document.getElementById("mobileDockToggle");
     const caseListPanel = document.getElementById("caseListPanel");
     const caseListHeader = caseListPanel.querySelector(".caseListHeader");
+    const caseListToggle = document.getElementById("caseListToggle");
     const caseListCount = document.getElementById("caseListCount");
     const leaseCaseCount = document.getElementById("leaseCaseCount");
     const transactionCaseCount = document.getElementById("transactionCaseCount");
@@ -4478,10 +4491,17 @@
       detailPanel.addEventListener("click", event => event.stopPropagation());
       caseListPanel.addEventListener("click", event => event.stopPropagation());
       caseListHeader.addEventListener("click", event => {
-        if (event.target.closest(".caseTab")) return;
+        if (event.target.closest(".caseTab") || event.target.closest(".caseListToggle")) return;
         if (!isMobileLayout() || caseListPanel.classList.contains("is-empty")) return;
         setCaseListOpen(!caseListPanel.classList.contains("is-open"));
       });
+      if (caseListToggle) {
+        caseListToggle.addEventListener("click", event => {
+          event.stopPropagation();
+          if (!isMobileLayout() || caseListPanel.classList.contains("is-empty")) return;
+          setCaseListOpen(!caseListPanel.classList.contains("is-open"));
+        });
+      }
       caseTabButtons.forEach(button => {
         button.addEventListener("click", event => {
           event.stopPropagation();
@@ -4733,6 +4753,10 @@
       const shouldOpen = Boolean(open) && isMobileLayout() && !caseListPanel.classList.contains("is-empty");
       caseListPanel.classList.toggle("is-open", shouldOpen);
       document.body.classList.toggle("case-list-open", shouldOpen);
+      if (caseListToggle) {
+        caseListToggle.textContent = shouldOpen ? "접기" : "펼치기";
+        caseListToggle.setAttribute("aria-expanded", String(shouldOpen));
+      }
     }
 
     function setCloseFocusMode(enabled) {
