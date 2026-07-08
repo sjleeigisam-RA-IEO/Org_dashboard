@@ -569,6 +569,7 @@
     let markerClusterSignature = "";
     let activeCaseTab = "lease";
     let mapToolsCollapsed = false;
+    const tenantInputDatasetVersion = "research_target_20260707";
     const tenantInputStorageKey = "rentMapResearchSurveyInputs:20260707:v1";
     let tenantLabMode = "input";
     let selectedTargetAssetEvent = "";
@@ -576,6 +577,7 @@
     let tenantTargetListScrollTop = 0;
     let tenantLabScrollTop = 0;
     let tenantInputStore = {};
+    const tenantInputSaveTimers = new Map();
     let periodPlaybackTimer = null;
     let periodPlaybackActive = false;
     const periodPlaybackIntervalMs = 900;
@@ -1405,7 +1407,7 @@
     async function boot() {
       data = await loadSurfaceData();
       window.rentMapData = data;
-      loadTenantInputStore();
+      await loadTenantInputStore();
       renderTenantLab();
       document.body.dataset.sourceMode = data.meta.sourceMode || "";
       document.body.dataset.heightBaseline = String(data.meta.heightDomain?.baseline ?? "");
@@ -3195,18 +3197,125 @@
       return data?.tenantTargetLab || { available: false, targetAssets: [], tenantObjects: [] };
     }
 
-    function loadTenantInputStore() {
+    function tenantInputDbConfigured() {
+      return Boolean(MAP_CONFIG.supabaseUrl && MAP_CONFIG.supabaseKey);
+    }
+
+    function tenantInputHeaders(extra = {}) {
+      return {
+        apikey: MAP_CONFIG.supabaseKey,
+        Authorization: `Bearer ${MAP_CONFIG.supabaseKey}`,
+        ...extra,
+      };
+    }
+
+    function normalizeTenantInputRecord(record) {
+      const payload = record && typeof record === "object" ? record : {};
+      return {
+        asset: payload.asset && typeof payload.asset === "object" ? payload.asset : {},
+        tenants: payload.tenants && typeof payload.tenants === "object" ? payload.tenants : {},
+        floorSurvey: payload.floorSurvey && typeof payload.floorSurvey === "object" ? payload.floorSurvey : {},
+        updatedAt: payload.updatedAt || "",
+      };
+    }
+
+    function tenantInputHasContent(record) {
+      if (!record) return false;
+      return Boolean(
+        Object.keys(record.asset || {}).some(key => record.asset[key])
+        || Object.keys(record.tenants || {}).length
+        || Object.keys(record.floorSurvey || {}).length
+      );
+    }
+
+    function loadLegacyTenantInputStore() {
       try {
-        tenantInputStore = JSON.parse(localStorage.getItem(tenantInputStorageKey) || "{}") || {};
+        const raw = localStorage.getItem(tenantInputStorageKey);
+        return raw ? (JSON.parse(raw) || {}) : {};
       } catch (error) {
-        console.warn("Failed to parse tenant target input store", error);
-        tenantInputStore = {};
+        console.warn("Failed to parse legacy tenant target local store", error);
+        return {};
       }
     }
 
-    function saveTenantInputStore() {
-      localStorage.setItem(tenantInputStorageKey, JSON.stringify(tenantInputStore));
+    async function loadTenantInputStore() {
+      tenantInputStore = {};
+      document.body.dataset.tenantInputStorage = "memory";
+      if (tenantInputDbConfigured()) {
+        try {
+          const params = new URLSearchParams({
+            select: "asset_event,payload,updated_at",
+            dataset_version: `eq.${tenantInputDatasetVersion}`,
+            order: "updated_at.desc",
+            limit: "1000",
+          });
+          const response = await fetch(`${MAP_CONFIG.supabaseUrl}/rest/v1/rent_map_research_survey_inputs?${params.toString()}`, {
+            headers: tenantInputHeaders(),
+          });
+          if (!response.ok) throw new Error(`survey input fetch failed ${response.status}`);
+          const rows = await response.json();
+          for (const row of rows) {
+            const record = normalizeTenantInputRecord(row.payload);
+            if (tenantInputHasContent(record)) tenantInputStore[row.asset_event] = record;
+          }
+          document.body.dataset.tenantInputStorage = "supabase";
+        } catch (error) {
+          console.warn("Supabase survey input load failed", error);
+          document.body.dataset.tenantInputStorage = "supabase_error";
+        }
+      }
+      const legacyStore = loadLegacyTenantInputStore();
+      const legacyEvents = Object.keys(legacyStore || {}).filter(event => tenantInputHasContent(legacyStore[event]));
+      if (legacyEvents.length) {
+        for (const event of legacyEvents) {
+          if (!tenantInputStore[event]) tenantInputStore[event] = normalizeTenantInputRecord(legacyStore[event]);
+          scheduleTenantInputSave(event, 0);
+        }
+        try { localStorage.removeItem(tenantInputStorageKey); } catch (error) {}
+      }
       document.body.dataset.tenantInputCount = String(Object.keys(tenantInputStore).length);
+    }
+
+    function saveTenantInputStore(assetEvent = selectedTargetAssetEvent, delayMs = 350) {
+      document.body.dataset.tenantInputCount = String(Object.keys(tenantInputStore).length);
+      if (assetEvent) scheduleTenantInputSave(assetEvent, delayMs);
+    }
+
+    function scheduleTenantInputSave(assetEvent, delayMs = 350) {
+      if (!assetEvent || !tenantInputDbConfigured()) return;
+      if (tenantInputSaveTimers.has(assetEvent)) window.clearTimeout(tenantInputSaveTimers.get(assetEvent));
+      const timer = window.setTimeout(() => {
+        tenantInputSaveTimers.delete(assetEvent);
+        persistTenantInputRecord(assetEvent);
+      }, delayMs);
+      tenantInputSaveTimers.set(assetEvent, timer);
+    }
+
+    async function persistTenantInputRecord(assetEvent) {
+      if (!assetEvent || !tenantInputDbConfigured()) return;
+      const record = tenantInputStore[assetEvent] || { asset: {}, tenants: {}, floorSurvey: {}, updatedAt: new Date().toISOString() };
+      const payload = normalizeTenantInputRecord(record);
+      payload.updatedAt = record.updatedAt || new Date().toISOString();
+      try {
+        const response = await fetch(`${MAP_CONFIG.supabaseUrl}/rest/v1/rent_map_research_survey_inputs`, {
+          method: "POST",
+          headers: tenantInputHeaders({
+            "Content-Type": "application/json",
+            Prefer: "resolution=merge-duplicates,return=minimal",
+          }),
+          body: JSON.stringify([{
+            dataset_version: tenantInputDatasetVersion,
+            asset_event: assetEvent,
+            payload,
+            updated_at: payload.updatedAt,
+          }]),
+        });
+        if (!response.ok) throw new Error(`survey input save failed ${response.status}`);
+        document.body.dataset.tenantInputStorage = "supabase";
+      } catch (error) {
+        console.warn("Supabase survey input save failed", error);
+        document.body.dataset.tenantInputStorage = "supabase_error";
+      }
     }
 
     function ensureTenantAssetInput(assetEvent) {
@@ -3903,7 +4012,7 @@
     function renderSavedTenantInputs(targets) {
       const savedEvents = Object.keys(tenantInputStore).filter(event => {
         const record = tenantInputStore[event] || {};
-        return Object.keys(record.asset || {}).some(key => record.asset[key]) || Object.keys(record.tenants || {}).length;
+        return tenantInputHasContent(record);
       });
       if (!savedEvents.length) return `<div class="tenantEmpty">아직 저장된 입력이 없습니다. 대상 자산에서 우선순위, 메모, 임차인별 상태를 입력하면 여기에 모입니다.</div>`;
       const byEvent = Object.fromEntries(targets.map(asset => [asset.assetEvent, asset]));
@@ -3911,12 +4020,13 @@
         <div class="savedList">
           ${savedEvents.map(event => {
             const asset = byEvent[event] || { assetName: event, activeMaxNocPerPy: null };
-            const record = tenantInputStore[event] || { asset: {}, tenants: {} };
+            const record = tenantInputStore[event] || { asset: {}, tenants: {}, floorSurvey: {} };
             const tenantCount = Object.values(record.tenants || {}).filter(item => Object.values(item || {}).some(Boolean)).length;
+            const floorSurveyCount = Object.values(record.floorSurvey || {}).reduce((sum, rows) => sum + (Array.isArray(rows) ? rows.length : 0), 0);
             return `
               <button class="savedCard" type="button" data-target-asset="${escapeHtml(event)}" data-tenant-mode-jump="input">
                 <b>${escapeHtml(asset.assetName || event)}</b>
-                <span>우선순위 ${escapeHtml(record.asset?.priority || "-")} · 상태 ${escapeHtml(record.asset?.status || "-")} · 공실/데이터 ${escapeHtml(record.asset?.vacancyReviewStatus || "-")} · 임차인 입력 ${fmt.format(tenantCount)}건</span>
+                <span>우선순위 ${escapeHtml(record.asset?.priority || "-")} · 상태 ${escapeHtml(record.asset?.status || "-")} · 공실/데이터 ${escapeHtml(record.asset?.vacancyReviewStatus || "-")} · 임차인 입력 ${fmt.format(tenantCount)}건 · 층별 조사 ${fmt.format(floorSurveyCount)}건</span>
                 <span>${escapeHtml(record.asset?.marketingAngle || record.asset?.assetMemo || "메모 없음")}</span>
               </button>
             `;
