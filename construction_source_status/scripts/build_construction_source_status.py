@@ -1366,6 +1366,11 @@ def render_comment_box(row: dict[str, Any]) -> str:
       <div>
         <h3>Comment</h3>
         <p class="comment-saved" aria-live="polite"></p>
+        <div class="comment-auth" data-comment-auth>
+          <span class="comment-auth-status">로그인 확인 중</span>
+          <a class="comment-login-link" href="./login.html?redirect=./">로그인</a>
+          <button class="comment-logout-button" type="button" hidden>로그아웃</button>
+        </div>
       </div>
       <div class="comment-list-wrap">
         <ul class="comment-list">{''.join(seed_items)}</ul>
@@ -2513,6 +2518,41 @@ def render_html(data: dict[str, Any]) -> str:
       color: var(--muted);
       font-size: 12px;
     }
+    .comment-auth {
+      display: grid;
+      gap: 6px;
+      margin-top: 10px;
+      color: rgba(255, 232, 154, 0.82);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .comment-auth-status {
+      color: rgba(255, 232, 154, 0.78);
+      font-weight: 700;
+    }
+    .comment-login-link,
+    .comment-logout-button {
+      justify-self: start;
+      min-height: 30px;
+      border: 1px solid rgba(255, 216, 77, 0.36);
+      border-radius: var(--construction-radius);
+      background: rgba(255, 216, 77, 0.11);
+      color: var(--comment-accent);
+      padding: 6px 10px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.2;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .comment-logout-button {
+      background: transparent;
+      color: rgba(255, 232, 154, 0.82);
+    }
+    .company-comment.is-locked .comment-controls {
+      opacity: 0.64;
+    }
     .comment-controls {
       display: grid;
       grid-template-columns: minmax(150px, 220px) minmax(0, 1fr) auto;
@@ -2762,6 +2802,8 @@ def render_html(data: dict[str, Any]) -> str:
   <title>Construction Information</title>
   <link rel="stylesheet" href="../shared/ifpdp-system-theme.css?v=ifpdp_system_3">
   <link rel="stylesheet" href="../org_dashboard/styles.css?v=ifpdp_system_org_7">
+  <script src="../CRM_base/portfolio-analysis/config.js"></script>
+  <script src="../shared/ra-auth.js?v=construction_auth_1"></script>
   <style>{css}</style>
 </head>
 <body>
@@ -2822,6 +2864,67 @@ def render_html(data: dict[str, Any]) -> str:
     const commentApiUrl = {comment_api_url_json};
     const commentApiKey = {comment_api_key_json};
     const onlineCommentsByKey = new Map();
+    let constructionAuthUser = null;
+
+    function commentLoginUrl() {{
+      const loginUrl = new URL("./login.html", window.location.href);
+      loginUrl.searchParams.set("redirect", "./");
+      return loginUrl.href;
+    }}
+
+    function authDisplayName(user) {{
+      return String(user?.name || user?.email || "").trim();
+    }}
+
+    function setConstructionAuthUser(user) {{
+      constructionAuthUser = user || null;
+      const displayName = authDisplayName(constructionAuthUser);
+      document.querySelectorAll(".company-comment").forEach((box) => {{
+        const authorInput = box.querySelector(".comment-author-field input");
+        const status = box.querySelector(".comment-auth-status");
+        const loginLink = box.querySelector(".comment-login-link");
+        const logoutButton = box.querySelector(".comment-logout-button");
+        const locked = !constructionAuthUser;
+        box.classList.toggle("is-locked", locked);
+        box.querySelectorAll(".comment-collaboration-input, .comment-project-input, textarea").forEach((input) => {{
+          input.disabled = locked;
+        }});
+        box.querySelectorAll(".comment-controls button").forEach((button) => {{
+          button.disabled = locked;
+        }});
+        if (authorInput) {{
+          authorInput.value = displayName;
+          authorInput.readOnly = Boolean(constructionAuthUser);
+          authorInput.disabled = locked;
+          authorInput.placeholder = locked ? "로그인 후 자동 입력" : "작성자";
+        }}
+        if (status) {{
+          status.textContent = constructionAuthUser ? `${{displayName}} 로그인` : "코멘트 작성은 로그인 필요";
+        }}
+        if (loginLink) {{
+          loginLink.href = commentLoginUrl();
+          loginLink.hidden = Boolean(constructionAuthUser);
+        }}
+        if (logoutButton) logoutButton.hidden = !constructionAuthUser;
+      }});
+    }}
+
+    async function initConstructionAuth() {{
+      if (!window.RAAuth) {{
+        setConstructionAuthUser(null);
+        return;
+      }}
+      let user = RAAuth.getSessionUser();
+      if (!user) setConstructionAuthUser(null);
+      if (!user) {{
+        try {{
+          user = await RAAuth.resumeRememberedSession();
+        }} catch (error) {{
+          user = null;
+        }}
+      }}
+      setConstructionAuthUser(user);
+    }}
 
     function escapeCommentHtml(value) {{
       return String(value ?? "").replace(/[&<>"']/g, (char) => ({{
@@ -3012,15 +3115,19 @@ def render_html(data: dict[str, Any]) -> str:
       const projectInput = box.querySelector(".comment-project-input");
       const authorInput = box.querySelector(".comment-author-field input");
       const textarea = box.querySelector("textarea");
-      const button = box.querySelector("button");
+      const button = box.querySelector(".comment-controls button");
       const saved = box.querySelector(".comment-saved");
       if (!key || !companyKey || !authorInput || !textarea || !button || !saved) return;
       saved.textContent = "";
       button.addEventListener("click", async () => {{
         const value = textarea.value.trim();
-        const author = authorInput.value.trim();
+        const author = authDisplayName(constructionAuthUser) || authorInput.value.trim();
         const collaboration = Boolean(collaborationInput && collaborationInput.checked);
         const project = projectInput ? projectInput.value.trim() : "";
+        if (!constructionAuthUser) {{
+          saved.textContent = "로그인 후 저장할 수 있습니다.";
+          return;
+        }}
         if (!value) {{
           saved.textContent = "코멘트가 비어 있습니다.";
           return;
@@ -3077,6 +3184,19 @@ def render_html(data: dict[str, Any]) -> str:
       }});
     }});
 
+    document.querySelectorAll(".comment-logout-button").forEach((button) => {{
+      button.addEventListener("click", async () => {{
+        button.disabled = true;
+        try {{
+          if (window.RAAuth) await RAAuth.logout();
+        }} finally {{
+          setConstructionAuthUser(null);
+          button.disabled = false;
+        }}
+      }});
+    }});
+
+    initConstructionAuth();
     renderAllOnlineComments();
     loadOnlineComments();
 

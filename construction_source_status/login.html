@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Construction Information</title>
+  <link rel="stylesheet" href="../shared/ifpdp-system-theme.css?v=ifpdp_system_3">
+  <link rel="stylesheet" href="../org_dashboard/admin.css">
+  <script src="../CRM_base/portfolio-analysis/config.js"></script>
+  <script src="../shared/ra-auth.js?v=construction_auth_1"></script>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 24px;
+      background: #1f1f1e;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      box-sizing: border-box;
+    }
+    .login-card {
+      width: 100%;
+      max-width: 460px;
+      padding: 40px;
+      border: 1px solid #3c3c3c;
+      border-radius: 24px;
+      background: #262626;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+    }
+    .login-logo {
+      margin-bottom: 20px;
+      color: #ffd84d;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      font-weight: 800;
+      text-align: center;
+    }
+    p.subtitle {
+      margin: 0 0 28px;
+      color: #8e8e93;
+      font-size: 15px;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .auth-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 24px;
+      padding: 6px;
+      border: 1px solid #3c3c3c;
+      border-radius: 14px;
+      background: #1f1f1e;
+    }
+    .auth-tab {
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 10px;
+      background: transparent;
+      color: #8e8e93;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .auth-tab.active {
+      background: #3c3c3c;
+      color: #fff;
+    }
+    .auth-panel { display: none; }
+    .auth-panel.active { display: block; }
+    .input-group {
+      margin-bottom: 18px;
+      text-align: left;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #8e8e93;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .input-group input {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 15px 16px;
+      color: #fff;
+      font-size: 16px;
+    }
+    .input-group input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 2px 0 18px;
+      color: #c7c7cc;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .check-row input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+    }
+    .login-btn {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      background: var(--accent);
+      padding: 16px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 800;
+    }
+    .login-btn:hover { background: var(--accent-light); }
+    .login-btn:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+    .back-link {
+      display: block;
+      margin-top: 16px;
+      color: #ffd84d;
+      font-size: 14px;
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+    }
+    .helper-text {
+      margin: 12px 0 0;
+      color: #8e8e93;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .message {
+      min-height: 20px;
+      margin-top: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .error { color: #ff453a; }
+    .success { color: #32d74b; }
+    @media (max-width: 520px) {
+      body {
+        align-items: flex-start;
+        padding: 14px;
+      }
+      .login-card {
+        margin-top: 28px;
+        padding: 28px 20px;
+        border-radius: 20px;
+      }
+      h1 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="login-card">
+    <div class="login-logo">Construction Information</div>
+    <h1>시공사 정보 로그인</h1>
+    <p class="subtitle">시공사 정보 대시보드의 코멘트 작성을 위한 별도 진입 화면입니다.</p>
+
+    <div class="auth-tabs" role="tablist" aria-label="로그인 방식">
+      <button class="auth-tab active" id="loginTab" type="button" data-panel="loginPanel">로그인</button>
+      <button class="auth-tab" id="setupTab" type="button" data-panel="setupPanel">처음 설정</button>
+    </div>
+
+    <form id="loginPanel" class="auth-panel active">
+      <div class="input-group">
+        <label for="loginEmail">회사 이메일</label>
+        <input type="email" id="loginEmail" autocomplete="username" placeholder="example@igisam.com" required>
+      </div>
+      <div class="input-group">
+        <label for="loginPassword">비밀번호</label>
+        <input type="password" id="loginPassword" autocomplete="current-password" placeholder="비밀번호를 입력하세요" required>
+      </div>
+      <label class="check-row">
+        <input type="checkbox" id="rememberLogin">
+        <span>자동로그인 유지</span>
+      </label>
+      <button type="submit" class="login-btn" id="loginBtn">로그인</button>
+      <p class="helper-text">포탈 화면으로 이동하지 않고 시공사 정보 대시보드로 돌아갑니다.</p>
+    </form>
+
+    <form id="setupPanel" class="auth-panel">
+      <div class="input-group">
+        <label for="setupEmail">회사 이메일</label>
+        <input type="email" id="setupEmail" autocomplete="username" placeholder="example@igisam.com" required>
+      </div>
+      <div class="input-group">
+        <label for="setupCode">설정 코드</label>
+        <input type="password" id="setupCode" autocomplete="one-time-code" placeholder="RA2026" required>
+      </div>
+      <div class="input-group">
+        <label for="setupPassword">새 비밀번호</label>
+        <input type="password" id="setupPassword" autocomplete="new-password" placeholder="8자 이상" minlength="8" required>
+      </div>
+      <div class="input-group">
+        <label for="setupPasswordConfirm">새 비밀번호 확인</label>
+        <input type="password" id="setupPasswordConfirm" autocomplete="new-password" placeholder="한 번 더 입력하세요" minlength="8" required>
+      </div>
+      <label class="check-row">
+        <input type="checkbox" id="rememberAfterSetup">
+        <span>설정 후 자동로그인</span>
+      </label>
+      <button type="submit" class="login-btn" id="setupBtn">비밀번호 설정</button>
+      <p class="helper-text">최초 설정 코드는 RA2026입니다. 포탈과 같은 계정 체계를 사용하되, 로그인 후에는 시공사 정보 대시보드로 돌아갑니다.</p>
+    </form>
+
+    <a class="back-link" id="backLink" href="./">대시보드로 돌아가기</a>
+    <div id="messageArea" class="message" aria-live="polite"></div>
+  </main>
+
+  <script>
+    const messageArea = document.getElementById("messageArea");
+    const redirectTarget = safeRedirect(new URLSearchParams(window.location.search).get("redirect"));
+    document.getElementById("backLink").href = redirectTarget;
+
+    document.querySelectorAll(".auth-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".auth-tab").forEach(button => button.classList.remove("active"));
+        document.querySelectorAll(".auth-panel").forEach(panel => panel.classList.remove("active"));
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.panel).classList.add("active");
+        setMessage("");
+      });
+    });
+
+    boot();
+
+    async function boot() {
+      const current = RAAuth.getSessionUser();
+      if (current) {
+        goNext();
+        return;
+      }
+      const resumed = await RAAuth.resumeRememberedSession();
+      if (resumed) goNext();
+    }
+
+    document.getElementById("loginPanel").addEventListener("submit", async event => {
+      event.preventDefault();
+      const button = document.getElementById("loginBtn");
+      const payload = {
+        email: document.getElementById("loginEmail").value,
+        password: document.getElementById("loginPassword").value,
+        remember: document.getElementById("rememberLogin").checked,
+      };
+      await runAuth(button, "로그인 중...", async () => {
+        const data = await RAAuth.request("login", payload);
+        completeLogin(data);
+      });
+    });
+
+    document.getElementById("setupPanel").addEventListener("submit", async event => {
+      event.preventDefault();
+      const password = document.getElementById("setupPassword").value;
+      const confirm = document.getElementById("setupPasswordConfirm").value;
+      if (password !== confirm) {
+        setMessage("비밀번호 확인이 일치하지 않습니다.", "error");
+        return;
+      }
+      const button = document.getElementById("setupBtn");
+      const payload = {
+        email: document.getElementById("setupEmail").value,
+        setup_code: document.getElementById("setupCode").value,
+        password,
+        remember: document.getElementById("rememberAfterSetup").checked,
+      };
+      await runAuth(button, "설정 중...", async () => {
+        await RAAuth.request("setup-check", {
+          email: payload.email,
+          setup_code: payload.setup_code,
+        });
+        const data = await RAAuth.request("set-password", payload);
+        completeLogin(data);
+      });
+    });
+
+    async function runAuth(button, loadingText, task) {
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = loadingText;
+      setMessage("");
+      try {
+        await task();
+      } catch (error) {
+        setMessage(error.message || "인증 처리 중 오류가 발생했습니다.", "error");
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+    }
+
+    function completeLogin(data) {
+      RAAuth.setSessionUser(data.user);
+      if (data.session_token) RAAuth.saveRememberToken(data.session_token);
+      setMessage(`${data.user.name}님 환영합니다. 대시보드로 돌아갑니다...`, "success");
+      window.setTimeout(goNext, 500);
+    }
+
+    function goNext() {
+      location.href = redirectTarget;
+    }
+
+    function safeRedirect(raw) {
+      const fallback = new URL("./", window.location.href);
+      try {
+        const target = new URL(raw || "./", window.location.href);
+        if (target.origin === fallback.origin && target.pathname.startsWith(fallback.pathname)) {
+          return target.href;
+        }
+      } catch (error) {
+        return fallback.href;
+      }
+      return fallback.href;
+    }
+
+    function setMessage(text, type = "") {
+      messageArea.innerHTML = text ? `<span class="${type}">${text}</span>` : "";
+    }
+  </script>
+</body>
+</html>

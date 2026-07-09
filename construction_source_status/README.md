@@ -3,6 +3,7 @@
 This folder is the tracked bundle for the construction ranking/source-status dashboard.
 
 - `index.html`: deployed static page for GitHub Pages.
+- `login.html`: construction-dashboard-specific login page. It uses the shared RA auth API but returns to this dashboard instead of the portal shell.
 - `data/`: latest JSON snapshots used to build the current page.
 - `scripts/`: source snapshot for the collectors and HTML builder used in this refresh.
 - `HANDOFF.md`: build history, source mapping, refresh procedure, and operating notes.
@@ -17,3 +18,4 @@ Current refresh snapshot:
 - Credit ratings: CAK top-30 companies, KIS/NICE public company search first, OpenDART bond/debt securities rating fields as fallback, 2021-07-06 to 2026-07-06.
 - Dashboard rows render top-30 ranking tables and expandable company detail panels.
 - Comments can mark a company as a partner/collaboration company and record the related project. Until the Supabase table is migrated to dedicated fields, those values are stored in the existing comment `body` as readable metadata lines and rendered as tags in the dashboard.
+- Viewing remains public, but comment writing is gated by the construction-specific login UI. This is a browser-level gate; DB-level enforcement requires moving comment writes behind a session-verifying Edge Function.
