@@ -1769,6 +1769,20 @@ def render_html(data: dict[str, Any]) -> str:
       background: var(--band);
       line-height: 1.45;
     }
+    body.auth-pending header,
+    body.auth-pending main {
+      visibility: hidden;
+    }
+    body.auth-pending::before {
+      content: "로그인 확인 중";
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+    }
     header {
       width: min(1440px, calc(100% - 32px));
       margin: 28px auto 0;
@@ -2806,7 +2820,7 @@ def render_html(data: dict[str, Any]) -> str:
   <script src="../shared/ra-auth.js?v=construction_auth_1"></script>
   <style>{css}</style>
 </head>
-<body>
+<body class="auth-pending">
   <header>
     <h1>Construction Information</h1>
   </header>
@@ -2868,7 +2882,7 @@ def render_html(data: dict[str, Any]) -> str:
 
     function commentLoginUrl() {{
       const loginUrl = new URL("./login.html", window.location.href);
-      loginUrl.searchParams.set("redirect", "./");
+      loginUrl.searchParams.set("redirect", window.location.href);
       return loginUrl.href;
     }}
 
@@ -2876,9 +2890,21 @@ def render_html(data: dict[str, Any]) -> str:
       return String(user?.name || user?.email || "").trim();
     }}
 
+    function authAuthorValue(user) {{
+      const name = String(user?.name || "").trim();
+      const email = String(user?.email || "").trim();
+      if (name && email) return `${{name}} (${{email}})`;
+      return name || email;
+    }}
+
+    function redirectToConstructionLogin() {{
+      window.location.replace(commentLoginUrl());
+    }}
+
     function setConstructionAuthUser(user) {{
       constructionAuthUser = user || null;
       const displayName = authDisplayName(constructionAuthUser);
+      const authorValue = authAuthorValue(constructionAuthUser);
       document.querySelectorAll(".company-comment").forEach((box) => {{
         const authorInput = box.querySelector(".comment-author-field input");
         const status = box.querySelector(".comment-auth-status");
@@ -2893,7 +2919,7 @@ def render_html(data: dict[str, Any]) -> str:
           button.disabled = locked;
         }});
         if (authorInput) {{
-          authorInput.value = displayName;
+          authorInput.value = authorValue;
           authorInput.readOnly = Boolean(constructionAuthUser);
           authorInput.disabled = locked;
           authorInput.placeholder = locked ? "로그인 후 자동 입력" : "작성자";
@@ -2911,7 +2937,7 @@ def render_html(data: dict[str, Any]) -> str:
 
     async function initConstructionAuth() {{
       if (!window.RAAuth) {{
-        setConstructionAuthUser(null);
+        redirectToConstructionLogin();
         return;
       }}
       let user = RAAuth.getSessionUser();
@@ -2923,7 +2949,12 @@ def render_html(data: dict[str, Any]) -> str:
           user = null;
         }}
       }}
+      if (!user) {{
+        redirectToConstructionLogin();
+        return;
+      }}
       setConstructionAuthUser(user);
+      document.body.classList.remove("auth-pending");
     }}
 
     function escapeCommentHtml(value) {{
@@ -3121,7 +3152,7 @@ def render_html(data: dict[str, Any]) -> str:
       saved.textContent = "";
       button.addEventListener("click", async () => {{
         const value = textarea.value.trim();
-        const author = authDisplayName(constructionAuthUser) || authorInput.value.trim();
+        const author = authAuthorValue(constructionAuthUser) || authorInput.value.trim();
         const collaboration = Boolean(collaborationInput && collaborationInput.checked);
         const project = projectInput ? projectInput.value.trim() : "";
         if (!constructionAuthUser) {{

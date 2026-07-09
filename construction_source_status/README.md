@@ -18,4 +18,4 @@ Current refresh snapshot:
 - Credit ratings: CAK top-30 companies, KIS/NICE public company search first, OpenDART bond/debt securities rating fields as fallback, 2021-07-06 to 2026-07-06.
 - Dashboard rows render top-30 ranking tables and expandable company detail panels.
 - Comments can mark a company as a partner/collaboration company and record the related project. Until the Supabase table is migrated to dedicated fields, those values are stored in the existing comment `body` as readable metadata lines and rendered as tags in the dashboard.
-- Viewing remains public, but comment writing is gated by the construction-specific login UI. This is a browser-level gate; DB-level enforcement requires moving comment writes behind a session-verifying Edge Function.
+- Dashboard viewing and comment writing are gated by the construction-specific login UI. New comment author fields are prefilled as `name (email)` from the RA auth session, while existing stored author names are left unchanged. This is a browser-level gate; DB-level enforcement requires moving comment writes behind a session-verifying Edge Function.

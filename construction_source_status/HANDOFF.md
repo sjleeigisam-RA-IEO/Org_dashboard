@@ -104,7 +104,7 @@ UI에는 출처 구분 라벨을 두지 않고 `Comment`로만 담백하게 표�
 
 코멘트 입력에는 `우리회사 협업사` 체크와 `관련 프로젝트` 입력을 함께 둔다. 현재 Supabase 스키마를 즉시 늘리지 않기 위해 이 정보는 기존 `body` 컬럼 앞부분에 `협업: 예`, `프로젝트: ...` 줄로 저장하고, 화면에서는 이를 파싱해 코멘트 본문 위의 태그로 분리 표시한다. 향후 `is_partner`, `project_name` 같은 별도 컬럼을 추가할 경우 이 앞줄을 기준으로 마이그레이션할 수 있다.
 
-대시보드 조회는 공개 상태를 유지하되 코멘트 작성 UI는 로그인 사용자에게만 열리도록 했다. 로그인은 루트 포탈 로그인 화면으로 보내지 않고 `construction_source_status/login.html`에서 처리한다. 이 화면은 `shared/ra-auth.js`와 Supabase `ra-auth` Edge Function을 공유하지만, 로그인 성공 후 `portal.html`이 아니라 시공사 정보 대시보드로 돌아간다. 최초 설정 코드는 기존 포탈과 같은 `RA2026` bootstrap code를 사용한다. 현재 단계의 작성 제한은 브라우저 UI 기준이며, DB 레벨에서 RA 세션을 강제하려면 댓글 저장을 별도 Edge Function으로 프록시하고 `construction_company_comments`의 anon insert 정책을 닫아야 한다.
+대시보드 조회와 코멘트 작성은 로그인 사용자에게만 열리도록 했다. 로그인은 루트 포탈 로그인 화면으로 보내지 않고 `construction_source_status/login.html`에서 처리한다. 이 화면은 `shared/ra-auth.js`와 Supabase `ra-auth` Edge Function을 공유하지만, 로그인 성공 후 `portal.html`이 아니라 시공사 정보 대시보드로 돌아간다. 최초 설정 코드는 기존 포탈과 같은 `RA2026` bootstrap code를 사용한다. 로그인 후 새 코멘트 작성자 칸에는 `이름 (이메일)`이 미리 들어가며, 기존에 저장된 코멘트의 `author_name`은 그대로 유지한다. 현재 단계의 접근 제한은 브라우저 UI 기준이며, DB 레벨에서 RA 세션을 강제하려면 댓글 저장을 별도 Edge Function으로 프록시하고 `construction_company_comments`의 anon insert 정책을 닫아야 한다.
 
 ## 4. 화면 표현 방식
 
