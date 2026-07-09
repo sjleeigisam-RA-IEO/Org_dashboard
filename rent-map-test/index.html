@@ -388,7 +388,10 @@
     @media (max-width: 840px) {
       .appTabs { left: 10px; right: 10px; top: 10px; width: auto; }
       .authCard { padding: 20px; }
-      .authUserBar { right: 10px; top: 54px; max-width: calc(100vw - 20px); }
+      .authUserBar {
+        left: auto; right: 10px; top: auto; bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+        max-width: calc(100vw - 20px);
+      }
       .leftDock { left: 10px; right: 10px; top: 54px; bottom: auto; width: auto; max-height: 44vh; overflow: hidden; }
       .brand { display: none; }
       .mobileDockToggle {
@@ -543,7 +546,7 @@
     <div class="authCard">
       <div class="authLogo">IGIS</div>
       <h1 class="authTitle">Rent Map 로그인</h1>
-      <p class="authSub">회사 이메일과 개인 비밀번호로 접속합니다. 최초 접속자는 설정 코드 RA2026으로 비밀번호를 등록하세요.</p>
+      <p class="authSub">회사 이메일과 개인 비밀번호로 접속합니다. 최초 접속자는 별도 안내된 설정 코드로 비밀번호를 등록하세요.</p>
       <div class="authTabs" role="tablist" aria-label="로그인 방식">
         <button class="authTab is-active" type="button" data-auth-panel="authLoginPanel">로그인</button>
         <button class="authTab" type="button" data-auth-panel="authSetupPanel">처음 설정</button>
@@ -567,7 +570,7 @@
         </div>
         <div class="authField">
           <label for="authSetupCode">설정 코드</label>
-          <input id="authSetupCode" type="password" autocomplete="one-time-code" placeholder="RA2026" required />
+          <input id="authSetupCode" type="password" autocomplete="one-time-code" placeholder="설정 코드 입력" required />
         </div>
         <div class="authField">
           <label for="authSetupPassword">새 비밀번호</label>
