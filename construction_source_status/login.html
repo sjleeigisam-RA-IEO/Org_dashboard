@@ -134,15 +134,6 @@
       opacity: 0.6;
       cursor: wait;
     }
-    .back-link {
-      display: block;
-      margin-top: 16px;
-      color: #ffd84d;
-      font-size: 14px;
-      font-weight: 800;
-      text-align: center;
-      text-decoration: none;
-    }
     .helper-text {
       margin: 12px 0 0;
       color: #8e8e93;
@@ -207,7 +198,7 @@
       </div>
       <div class="input-group">
         <label for="setupCode">설정 코드</label>
-        <input type="password" id="setupCode" autocomplete="one-time-code" placeholder="RA2026" required>
+        <input type="password" id="setupCode" autocomplete="one-time-code" placeholder="설정 코드를 입력하세요" required>
       </div>
       <div class="input-group">
         <label for="setupPassword">새 비밀번호</label>
@@ -222,17 +213,15 @@
         <span>설정 후 자동로그인</span>
       </label>
       <button type="submit" class="login-btn" id="setupBtn">비밀번호 설정</button>
-      <p class="helper-text">최초 설정 코드는 RA2026입니다. 포탈과 같은 계정 체계를 사용하되, 로그인 후에는 시공사 정보 대시보드로 돌아갑니다.</p>
+      <p class="helper-text">별도로 안내받은 설정 코드를 입력합니다. 포탈과 같은 계정 체계를 사용하되, 로그인 후에는 시공사 정보 대시보드로 돌아갑니다.</p>
     </form>
 
-    <a class="back-link" id="backLink" href="./">대시보드로 돌아가기</a>
     <div id="messageArea" class="message" aria-live="polite"></div>
   </main>
 
   <script>
     const messageArea = document.getElementById("messageArea");
     const redirectTarget = safeRedirect(new URLSearchParams(window.location.search).get("redirect"));
-    document.getElementById("backLink").href = redirectTarget;
 
     document.querySelectorAll(".auth-tab").forEach(tab => {
       tab.addEventListener("click", () => {

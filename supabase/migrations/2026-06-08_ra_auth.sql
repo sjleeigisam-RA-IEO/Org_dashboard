@@ -49,11 +49,11 @@ alter table public.ra_user_credentials enable row level security;
 alter table public.ra_setup_codes enable row level security;
 alter table public.ra_auth_sessions enable row level security;
 
--- Bootstrap setup/reset code: RA2026.
+-- Bootstrap setup/reset code.
 -- This is only for first password setup/reset, not for regular login.
 insert into public.ra_setup_codes (label, code_hash, purpose, max_uses, expires_at)
 values (
-  'bootstrap-RA2026',
+  'bootstrap-default',
   'fc8626cbe559dc2f667a197deb043ea1820097c13ac9342fe0cabb49895ca1d1',
   'password_setup',
   null,
