@@ -1,11 +1,17 @@
 var SHEET_NAME = "floor_directory_log";
 var VISION_API_KEY_PROPERTY = "GOOGLE_VISION_API_KEY";
+var VISION_API_KEY_PROPERTY_1 = "GOOGLE_VISION_API_KEY_1";
+var VISION_API_KEY_PROPERTY_2 = "GOOGLE_VISION_API_KEY_2";
+var OCR_MONTHLY_LIMIT_PER_KEY_PROPERTY = "OCR_MONTHLY_LIMIT_PER_KEY";
+var DEFAULT_OCR_MONTHLY_LIMIT_PER_KEY = 990;
+var OCR_USAGE_PROPERTY_PREFIX = "VISION_OCR_USAGE_";
 
 function doGet() {
   var result = {};
   result.ok = true;
   result.message = "Floor directory OCR endpoint is running.";
   result.ocrEngine = "google_vision_document_text_detection";
+  result.ocrQuota = getOcrQuotaStatus_();
   return json_(result);
 }
 
@@ -68,7 +74,8 @@ function handleOcr_(payload) {
 }
 
 function callVisionOcr_(imageData) {
-  var apiKey = PropertiesService.getScriptProperties().getProperty(VISION_API_KEY_PROPERTY);
+  var keyReservation = reserveVisionApiKey_();
+  var apiKey = keyReservation.apiKey;
   var base64Image;
   var requestBody;
   var response;
@@ -77,10 +84,6 @@ function callVisionOcr_(imageData) {
   var parsed;
   var visionResult;
   var result = {};
-
-  if (!apiKey) {
-    throw new Error("Missing GOOGLE_VISION_API_KEY in Apps Script Properties");
-  }
 
   base64Image = stripImageDataPrefix_(imageData);
   requestBody = {
@@ -135,9 +138,154 @@ function callVisionOcr_(imageData) {
 
   result.ok = true;
   result.engine = "google_vision_document_text_detection";
+  result.ocrQuota = buildClientQuotaResult_(keyReservation);
   result.rawText = extractVisionText_(visionResult);
   result.words = extractVisionWords_(visionResult.fullTextAnnotation);
   return result;
+}
+
+function reserveVisionApiKey_() {
+  var lock = LockService.getScriptLock();
+  var properties;
+  var slots;
+  var limit;
+  var month;
+  var i;
+  var slot;
+  var usageProperty;
+  var used;
+
+  lock.waitLock(10000);
+  try {
+    properties = PropertiesService.getScriptProperties();
+    slots = getVisionApiKeySlots_(properties);
+    limit = getOcrMonthlyLimit_(properties);
+    month = getOcrUsageMonth_();
+
+    for (i = 0; i < slots.length; i += 1) {
+      slot = slots[i];
+      if (!slot.apiKey) {
+        continue;
+      }
+
+      usageProperty = getOcrUsagePropertyName_(slot.slot, month);
+      used = getOcrUsageCount_(properties, usageProperty);
+      if (used < limit) {
+        used += 1;
+        properties.setProperty(usageProperty, String(used));
+        return {
+          apiKey: slot.apiKey,
+          slot: slot.slot,
+          propertyName: slot.propertyName,
+          month: month,
+          used: used,
+          limit: limit,
+          remaining: Math.max(0, limit - used)
+        };
+      }
+    }
+  } finally {
+    lock.releaseLock();
+  }
+
+  throw new Error(
+    "No available Google Vision API key. Add GOOGLE_VISION_API_KEY_1 and GOOGLE_VISION_API_KEY_2, or raise OCR_MONTHLY_LIMIT_PER_KEY."
+  );
+}
+
+function getOcrQuotaStatus_() {
+  var properties = PropertiesService.getScriptProperties();
+  var slots = getVisionApiKeySlots_(properties);
+  var limit = getOcrMonthlyLimit_(properties);
+  var month = getOcrUsageMonth_();
+  var status = [];
+  var i;
+  var slot;
+  var used;
+
+  for (i = 0; i < slots.length; i += 1) {
+    slot = slots[i];
+    used = getOcrUsageCount_(properties, getOcrUsagePropertyName_(slot.slot, month));
+    status.push({
+      slot: slot.slot,
+      propertyName: slot.propertyName,
+      configured: slot.apiKey !== "",
+      month: month,
+      used: used,
+      limit: limit,
+      remaining: Math.max(0, limit - used)
+    });
+  }
+
+  return status;
+}
+
+function getVisionApiKeySlots_(properties) {
+  var key1 = String(properties.getProperty(VISION_API_KEY_PROPERTY_1) || "").trim();
+  var key1PropertyName = VISION_API_KEY_PROPERTY_1;
+  var legacyKey = String(properties.getProperty(VISION_API_KEY_PROPERTY) || "").trim();
+  var key2 = String(properties.getProperty(VISION_API_KEY_PROPERTY_2) || "").trim();
+
+  if (!key1) {
+    key1 = legacyKey;
+    if (legacyKey) {
+      key1PropertyName = VISION_API_KEY_PROPERTY;
+    }
+  }
+
+  return [
+    {
+      slot: 1,
+      propertyName: key1PropertyName,
+      apiKey: key1
+    },
+    {
+      slot: 2,
+      propertyName: VISION_API_KEY_PROPERTY_2,
+      apiKey: key2
+    }
+  ];
+}
+
+function getOcrMonthlyLimit_(properties) {
+  var value = Number(properties.getProperty(OCR_MONTHLY_LIMIT_PER_KEY_PROPERTY) || DEFAULT_OCR_MONTHLY_LIMIT_PER_KEY);
+  if (!isFinite(value)) {
+    return DEFAULT_OCR_MONTHLY_LIMIT_PER_KEY;
+  }
+  if (value <= 0) {
+    return DEFAULT_OCR_MONTHLY_LIMIT_PER_KEY;
+  }
+  return Math.floor(value);
+}
+
+function getOcrUsageMonth_() {
+  return Utilities.formatDate(new Date(), Session.getScriptTimeZone() || "Asia/Seoul", "yyyy_MM");
+}
+
+function getOcrUsagePropertyName_(slot, month) {
+  return OCR_USAGE_PROPERTY_PREFIX + String(slot) + "_" + month;
+}
+
+function getOcrUsageCount_(properties, propertyName) {
+  var value = Number(properties.getProperty(propertyName) || 0);
+  if (!isFinite(value)) {
+    return 0;
+  }
+  if (value < 0) {
+    return 0;
+  }
+  return Math.floor(value);
+}
+
+function buildClientQuotaResult_(reservation) {
+  return {
+    slot: reservation.slot,
+    propertyName: reservation.propertyName,
+    month: reservation.month,
+    used: reservation.used,
+    limit: reservation.limit,
+    remaining: reservation.remaining
+  };
 }
 
 function stripImageDataPrefix_(imageData) {

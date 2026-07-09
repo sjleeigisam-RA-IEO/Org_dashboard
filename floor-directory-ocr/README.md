@@ -29,7 +29,10 @@ py -m http.server 5178 --bind 127.0.0.1
 2. `확장 프로그램` > `Apps Script`를 엽니다.
 3. `google-apps-script.gs` 내용을 붙여넣습니다.
 4. Google Cloud 프로젝트에서 Cloud Vision API를 사용 설정하고 API 키를 발급합니다.
-5. Apps Script의 `프로젝트 설정` > `스크립트 속성`에 `GOOGLE_VISION_API_KEY` 이름으로 API 키를 저장합니다.
+5. Apps Script의 `프로젝트 설정` > `스크립트 속성`에 OCR 키와 월별 제한값을 저장합니다.
+   - `GOOGLE_VISION_API_KEY_1`: 1번 Google Vision API 키
+   - `GOOGLE_VISION_API_KEY_2`: 2번 Google Vision API 키
+   - `OCR_MONTHLY_LIMIT_PER_KEY`: 키별 월 사용 제한값. 기본 권장값은 `990`입니다.
 6. `배포` > `새 배포` > `웹 앱`을 선택합니다.
 7. 실행 계정은 본인, 접근 권한은 사용할 범위에 맞게 설정합니다.
 8. 배포된 Web App URL을 `app.js`의 `googleSheetWebAppUrl` 값으로 설정합니다.
@@ -39,6 +42,7 @@ py -m http.server 5178 --bind 127.0.0.1
 ## 제약
 
 - OCR 요청은 Apps Script가 Google Vision API로 중계합니다. API 키를 웹앱 코드에 직접 넣지 마십시오.
+- Apps Script Web App URL에 접속하면 `ocrQuota` 응답에서 키별 설정 여부와 현재 월 사용량을 확인할 수 있습니다. 실제 API 키 값은 응답에 포함되지 않습니다.
 - Google Vision API 사용량에 따라 Google Cloud 과금이 발생할 수 있습니다.
 - Apps Script 저장 요청은 브라우저 CORS 제한 때문에 화면에서 응답 본문을 확인하지 않습니다. 실제 저장 여부는 구글시트에서 확인하십시오.
 - 촬영 각도, 반사, 조명, 현황판 글꼴에 따라 인식률이 크게 달라질 수 있습니다.

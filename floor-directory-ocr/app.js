@@ -142,7 +142,7 @@ async function runOcr() {
     rawText.value = (result.rawText || "").trim();
     visionWords = result.words || [];
     wordConfidenceByLine = buildConfidenceMap({ words: visionWords });
-    setStatus("OCR 완료", 100);
+    setStatus(formatOcrQuotaStatus(result.ocrQuota), 100);
     renderParsedRows();
   } catch (error) {
     console.error(error);
@@ -185,6 +185,17 @@ async function requestGoogleVisionOcr() {
 
   setStatus("Google Vision OCR 결과 정리 중", 85);
   return result;
+}
+
+function formatOcrQuotaStatus(ocrQuota) {
+  if (!ocrQuota) {
+    return "OCR 완료";
+  }
+
+  const slot = ocrQuota.slot || "?";
+  const used = Number.isFinite(Number(ocrQuota.used)) ? Number(ocrQuota.used) : "?";
+  const limit = Number.isFinite(Number(ocrQuota.limit)) ? Number(ocrQuota.limit) : "?";
+  return `OCR 완료 (키 ${slot}: ${used}/${limit})`;
 }
 
 function enhanceCanvas(context, width, height) {
