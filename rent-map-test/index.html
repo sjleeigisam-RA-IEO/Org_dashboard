@@ -326,8 +326,69 @@
       position: fixed; left: 50%; bottom: 6px; transform: translateX(-50%); color: rgba(255,255,255,0.76); font-size: 10px; z-index: 3; text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
     .loading { position: fixed; inset: 0; display: grid; place-items: center; color: white; font-size: 14px; background: #0b1015; }
+    body.auth-pending #app,
+    body.auth-pending .appTabs,
+    body.auth-pending .topbar,
+    body.auth-pending .rentStatusPage,
+    body.auth-pending .viewReset,
+    body.auth-pending .selectionClear,
+    body.auth-pending .attribution,
+    body.auth-pending .loading,
+    body.auth-pending .authUserBar { display: none !important; }
+    body.auth-ready .authGate { display: none !important; }
+    .authGate {
+      position: fixed; inset: 0; z-index: 10000; display: grid; place-items: center; padding: 22px;
+      background: radial-gradient(circle at 52% 18%, rgba(37,99,235,0.18), transparent 34%), #111820;
+      color: #f8fafc;
+    }
+    .authCard {
+      width: min(430px, 100%); border: 1px solid rgba(148,163,184,0.26); border-radius: 12px;
+      background: rgba(15,23,42,0.94); box-shadow: 0 24px 72px rgba(0,0,0,0.34); padding: 24px;
+    }
+    .authLogo { font-size: 28px; font-weight: 950; letter-spacing: 0; color: #fff; }
+    .authTitle { margin: 12px 0 4px; font-size: 22px; line-height: 1.25; font-weight: 950; }
+    .authSub { margin: 0 0 18px; color: #a9b7c9; font-size: 13px; line-height: 1.5; }
+    .authTabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 5px; border-radius: 10px; background: rgba(30,41,59,0.9); margin-bottom: 16px; }
+    .authTab { height: 34px; border: 0; border-radius: 8px; background: transparent; color: #9fb1c7; font-size: 13px; font-weight: 900; cursor: pointer; }
+    .authTab.is-active { background: #2563eb; color: #fff; }
+    .authPanel { display: none; gap: 12px; }
+    .authPanel.is-active { display: grid; }
+    .authField { display: grid; gap: 6px; }
+    .authField label { color: #cbd5e1; font-size: 12px; font-weight: 900; }
+    .authField input {
+      width: 100%; height: 42px; border: 1px solid rgba(148,163,184,0.26); border-radius: 8px;
+      padding: 0 11px; background: rgba(255,255,255,0.07); color: #fff; font-size: 14px; outline: none;
+    }
+    .authField input:focus { border-color: rgba(96,165,250,0.8); box-shadow: 0 0 0 3px rgba(37,99,235,0.2); }
+    .authRemember { display: inline-flex; align-items: center; gap: 8px; color: #cbd5e1; font-size: 12px; font-weight: 800; }
+    .authRemember input { width: 16px; height: 16px; accent-color: #2563eb; }
+    .authButton {
+      height: 42px; border: 0; border-radius: 8px; background: #2563eb; color: #fff;
+      font-size: 14px; font-weight: 950; cursor: pointer;
+    }
+    .authButton:hover { background: #1d4ed8; }
+    .authButton:disabled { opacity: 0.64; cursor: wait; }
+    .authHint { margin: 0; color: #9fb1c7; font-size: 11px; line-height: 1.5; }
+    .authMessage { min-height: 18px; margin-top: 14px; font-size: 12px; font-weight: 900; color: #cbd5e1; }
+    .authMessage.is-error { color: #fca5a5; }
+    .authMessage.is-success { color: #86efac; }
+    .authUserBar {
+      position: fixed; right: 14px; top: 12px; z-index: 8; display: inline-flex; align-items: center; gap: 8px;
+      min-height: 36px; max-width: min(360px, calc(100vw - 300px)); padding: 5px 6px 5px 11px;
+      border: 1px solid rgba(216,221,230,0.78); border-radius: 999px; background: rgba(255,255,255,0.90);
+      backdrop-filter: blur(10px); box-shadow: 0 10px 24px rgba(15,23,42,0.14); color: #334155;
+      font-size: 11px; font-weight: 900;
+    }
+    .authUserName { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .authLogout {
+      height: 26px; border: 1px solid rgba(37,99,235,0.24); border-radius: 999px; background: #fff;
+      color: #1d4ed8; padding: 0 9px; font-size: 11px; font-weight: 900; cursor: pointer;
+    }
+    .authLogout:hover { background: #eff6ff; border-color: rgba(37,99,235,0.48); }
     @media (max-width: 840px) {
       .appTabs { left: 10px; right: 10px; top: 10px; width: auto; }
+      .authCard { padding: 20px; }
+      .authUserBar { right: 10px; top: 54px; max-width: calc(100vw - 20px); }
       .leftDock { left: 10px; right: 10px; top: 54px; bottom: auto; width: auto; max-height: 44vh; overflow: hidden; }
       .brand { display: none; }
       .mobileDockToggle {
@@ -477,13 +538,62 @@
     }
   </style>
 </head>
-<body data-view="map">
+<body data-view="map" class="auth-pending">
+  <section class="authGate" id="authGate" aria-label="Rent Map login">
+    <div class="authCard">
+      <div class="authLogo">IGIS</div>
+      <h1 class="authTitle">Rent Map 로그인</h1>
+      <p class="authSub">회사 이메일과 개인 비밀번호로 접속합니다. 최초 접속자는 설정 코드 RA2026으로 비밀번호를 등록하세요.</p>
+      <div class="authTabs" role="tablist" aria-label="로그인 방식">
+        <button class="authTab is-active" type="button" data-auth-panel="authLoginPanel">로그인</button>
+        <button class="authTab" type="button" data-auth-panel="authSetupPanel">처음 설정</button>
+      </div>
+      <form class="authPanel is-active" id="authLoginPanel">
+        <div class="authField">
+          <label for="authLoginEmail">회사 이메일</label>
+          <input id="authLoginEmail" type="email" autocomplete="username" placeholder="name@igisam.com" required />
+        </div>
+        <div class="authField">
+          <label for="authLoginPassword">비밀번호</label>
+          <input id="authLoginPassword" type="password" autocomplete="current-password" placeholder="비밀번호" required />
+        </div>
+        <label class="authRemember"><input id="authRememberLogin" type="checkbox" /> 자동로그인 유지</label>
+        <button class="authButton" id="authLoginButton" type="submit">로그인</button>
+      </form>
+      <form class="authPanel" id="authSetupPanel">
+        <div class="authField">
+          <label for="authSetupEmail">회사 이메일</label>
+          <input id="authSetupEmail" type="email" autocomplete="username" placeholder="name@igisam.com" required />
+        </div>
+        <div class="authField">
+          <label for="authSetupCode">설정 코드</label>
+          <input id="authSetupCode" type="password" autocomplete="one-time-code" placeholder="RA2026" required />
+        </div>
+        <div class="authField">
+          <label for="authSetupPassword">새 비밀번호</label>
+          <input id="authSetupPassword" type="password" autocomplete="new-password" minlength="8" placeholder="8자 이상" required />
+        </div>
+        <div class="authField">
+          <label for="authSetupPasswordConfirm">새 비밀번호 확인</label>
+          <input id="authSetupPasswordConfirm" type="password" autocomplete="new-password" minlength="8" placeholder="한 번 더 입력" required />
+        </div>
+        <label class="authRemember"><input id="authRememberSetup" type="checkbox" /> 설정 후 자동로그인</label>
+        <button class="authButton" id="authSetupButton" type="submit">비밀번호 설정</button>
+        <p class="authHint">설정 코드는 최초 비밀번호 등록에만 사용합니다.</p>
+      </form>
+      <div class="authMessage" id="authMessage" aria-live="polite"></div>
+    </div>
+  </section>
   <div id="app"></div>
   <div class="loading" id="loading">Rent map loading</div>
   <nav class="appTabs" role="tablist" aria-label="Rent dashboard pages">
     <button class="pageTab is-active" type="button" data-page="map">렌트맵</button>
     <button class="pageTab" type="button" data-page="status">렌트현황조사</button>
   </nav>
+  <div class="authUserBar" id="authUserBar" hidden>
+    <span class="authUserName" id="authUserName"></span>
+    <button class="authLogout" id="authLogout" type="button">로그아웃</button>
+  </div>
   <div class="topbar">
     <section class="panel leftDock" id="leftDock">
       <button class="mobileDockToggle" id="mobileDockToggle" type="button" aria-expanded="true">
@@ -558,6 +668,7 @@
   <div class="tooltip" id="tooltip"></div>
   <button class="viewReset" id="viewReset" type="button" aria-label="Reset to full Seoul view"><span class="viewResetIcon">↺</span><span>전체보기</span></button>
   <button class="selectionClear" id="selectionClear" type="button" aria-label="Clear selected bar">X</button>
+  <script src="../shared/ra-auth.js?v=ra_auth_1"></script>
   <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
   <script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   <script>
@@ -567,6 +678,11 @@
     const CONTEXT_LABELS_URL = "rent_noc_context_labels.json";
     const app = document.getElementById("app");
     const loading = document.getElementById("loading");
+    const authGate = document.getElementById("authGate");
+    const authMessage = document.getElementById("authMessage");
+    const authUserBar = document.getElementById("authUserBar");
+    const authUserName = document.getElementById("authUserName");
+    const authLogout = document.getElementById("authLogout");
     const attribution = document.querySelector(".attribution");
     const mapProviderSelect = document.getElementById("mapProviderSelect");
     const mapProviderStatus = document.getElementById("mapProviderStatus");
@@ -1460,6 +1576,131 @@
       const localData = await loadLocalSurfaceData();
       localData.meta.sourceMode = "local_json";
       return ensureHeightDomain(localData);
+    }
+
+    let rentMapAuthResolve = null;
+    let authEventsBound = false;
+
+    function bindAuthEvents() {
+      if (authEventsBound) return;
+      authEventsBound = true;
+
+      document.querySelectorAll(".authTab").forEach(tab => {
+        tab.addEventListener("click", () => {
+          document.querySelectorAll(".authTab").forEach(button => button.classList.remove("is-active"));
+          document.querySelectorAll(".authPanel").forEach(panel => panel.classList.remove("is-active"));
+          tab.classList.add("is-active");
+          document.getElementById(tab.dataset.authPanel).classList.add("is-active");
+          setAuthMessage("");
+        });
+      });
+
+      document.getElementById("authLoginPanel").addEventListener("submit", async event => {
+        event.preventDefault();
+        const button = document.getElementById("authLoginButton");
+        await runAuthAction(button, "로그인 중...", async () => {
+          const data = await RAAuth.request("login", {
+            email: document.getElementById("authLoginEmail").value,
+            password: document.getElementById("authLoginPassword").value,
+            remember: document.getElementById("authRememberLogin").checked,
+          });
+          completeRentMapAuth(data);
+        });
+      });
+
+      document.getElementById("authSetupPanel").addEventListener("submit", async event => {
+        event.preventDefault();
+        const password = document.getElementById("authSetupPassword").value;
+        const confirm = document.getElementById("authSetupPasswordConfirm").value;
+        if (password !== confirm) {
+          setAuthMessage("비밀번호 확인이 일치하지 않습니다.", "error");
+          return;
+        }
+        const button = document.getElementById("authSetupButton");
+        await runAuthAction(button, "설정 중...", async () => {
+          const payload = {
+            email: document.getElementById("authSetupEmail").value,
+            setup_code: document.getElementById("authSetupCode").value,
+            password,
+            remember: document.getElementById("authRememberSetup").checked,
+          };
+          await RAAuth.request("setup-check", {
+            email: payload.email,
+            setup_code: payload.setup_code,
+          });
+          const data = await RAAuth.request("set-password", payload);
+          completeRentMapAuth(data);
+        });
+      });
+
+      authLogout.addEventListener("click", async () => {
+        await RAAuth.logout();
+        location.reload();
+      });
+    }
+
+    async function runAuthAction(button, loadingText, task) {
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = loadingText;
+      setAuthMessage("");
+      try {
+        await task();
+      } catch (error) {
+        setAuthMessage(error?.message || "인증 처리 중 오류가 발생했습니다.", "error");
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+    }
+
+    function completeRentMapAuth(data) {
+      if (!data?.user) {
+        setAuthMessage("사용자 정보를 확인하지 못했습니다.", "error");
+        return;
+      }
+      RAAuth.setSessionUser(data.user);
+      if (data.session_token) RAAuth.saveRememberToken(data.session_token);
+      setAuthenticatedUser(data.user);
+      setAuthMessage(data.user.name + "님, 접속되었습니다.", "success");
+      if (rentMapAuthResolve) {
+        const resolve = rentMapAuthResolve;
+        rentMapAuthResolve = null;
+        window.setTimeout(() => resolve(data.user), 180);
+      }
+    }
+
+    function setAuthenticatedUser(user) {
+      document.body.classList.remove("auth-pending");
+      document.body.classList.add("auth-ready");
+      authGate.hidden = true;
+      authUserBar.hidden = false;
+      authUserName.textContent = (user?.name || user?.email || "사용자") + " 접속 중";
+      RAAuth.touch();
+    }
+
+    async function ensureRentMapAuth() {
+      if (!window.RAAuth) throw new Error("인증 모듈을 불러오지 못했습니다.");
+      let user = RAAuth.getSessionUser();
+      if (!user) user = await RAAuth.resumeRememberedSession();
+      if (user) {
+        setAuthenticatedUser(user);
+        return user;
+      }
+      return await new Promise(resolve => {
+        rentMapAuthResolve = resolve;
+      });
+    }
+
+    function setAuthMessage(message, type = "") {
+      authMessage.textContent = message || "";
+      authMessage.classList.toggle("is-error", type === "error");
+      authMessage.classList.toggle("is-success", type === "success");
+    }
+
+    async function startRentMap() {
+      bindAuthEvents();
+      await ensureRentMapAuth();
+      await boot();
     }
 
     async function boot() {
@@ -5348,7 +5589,7 @@
       renderer.render(scene, camera);
     }
 
-    boot().catch(err => {
+    startRentMap().catch(err => {
       console.error(err);
       loading.textContent = "Failed to load rent map";
     });
