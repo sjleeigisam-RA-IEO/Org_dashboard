@@ -101,6 +101,8 @@ UI에는 출처 구분 라벨을 두지 않고 `Comment`로만 담백하게 표�
 
 온라인 코멘트는 `CRM_base/portfolio-analysis/config.js`의 Supabase 공개 URL/키를 읽어 정적 HTML 안에 반영한다. 이 키는 브라우저에서 쓰는 publishable key이며, 운영 시에는 Supabase RLS 정책을 반드시 유지해야 한다.
 
+코멘트 입력에는 `우리회사 협업사` 체크와 `관련 프로젝트` 입력을 함께 둔다. 현재 Supabase 스키마를 즉시 늘리지 않기 위해 이 정보는 기존 `body` 컬럼 앞부분에 `협업: 예`, `프로젝트: ...` 줄로 저장하고, 화면에서는 이를 파싱해 코멘트 본문 위의 태그로 분리 표시한다. 향후 `is_partner`, `project_name` 같은 별도 컬럼을 추가할 경우 이 앞줄을 기준으로 마이그레이션할 수 있다.
+
 ## 4. 화면 표현 방식
 
 - 첫 화면 제목은 `Construction Information`이다.

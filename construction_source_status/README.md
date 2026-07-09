@@ -16,3 +16,4 @@ Current refresh snapshot:
 - Google News RSS: 730-day window, max 5 per company.
 - Credit ratings: CAK top-30 companies, KIS/NICE public company search first, OpenDART bond/debt securities rating fields as fallback, 2021-07-06 to 2026-07-06.
 - Dashboard rows render top-30 ranking tables and expandable company detail panels.
+- Comments can mark a company as a partner/collaboration company and record the related project. Until the Supabase table is migrated to dedicated fields, those values are stored in the existing comment `body` as readable metadata lines and rendered as tags in the dashboard.

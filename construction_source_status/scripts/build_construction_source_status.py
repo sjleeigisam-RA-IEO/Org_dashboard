@@ -1372,6 +1372,16 @@ def render_comment_box(row: dict[str, Any]) -> str:
         <p class="comment-empty"{empty_attr}>아직 코멘트가 없습니다.</p>
       </div>
       <div class="comment-controls">
+        <div class="comment-relationship">
+          <label class="comment-check-field">
+            <input class="comment-collaboration-input" type="checkbox" aria-label="우리회사 협업사">
+            <span>우리회사 협업사</span>
+          </label>
+          <label class="comment-project-field">
+            <span>관련 프로젝트</span>
+            <input class="comment-project-input" type="text" placeholder="프로젝트명 입력(선택)" aria-label="관련 프로젝트">
+          </label>
+        </div>
         <label class="comment-author-field">
           <span>작성자</span>
           <input type="text" value="" placeholder="실명/소속 입력(선택)" aria-label="작성자">
@@ -2510,6 +2520,14 @@ def render_html(data: dict[str, Any]) -> str:
       align-items: stretch;
       min-width: 0;
     }
+    .comment-relationship {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(150px, 220px) minmax(0, 1fr);
+      gap: 8px;
+      align-items: end;
+      min-width: 0;
+    }
     .comment-author-field {
       display: grid;
       gap: 4px;
@@ -2518,7 +2536,36 @@ def render_html(data: dict[str, Any]) -> str:
       font-size: 11px;
       font-weight: 800;
     }
+    .comment-check-field,
+    .comment-project-field {
+      min-width: 0;
+      color: rgba(255, 232, 154, 0.82);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .comment-check-field {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      gap: 8px;
+      border: 1px solid rgba(255, 216, 77, 0.28);
+      border-radius: var(--construction-radius);
+      background: rgba(20, 20, 20, 0.62);
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+    .comment-check-field input {
+      width: 15px;
+      height: 15px;
+      margin: 0;
+      accent-color: var(--comment-accent);
+    }
+    .comment-project-field {
+      display: grid;
+      gap: 4px;
+    }
     .comment-author-field input,
+    .comment-project-field input,
     .comment-controls textarea {
       display: block;
       min-width: 0;
@@ -2534,6 +2581,32 @@ def render_html(data: dict[str, Any]) -> str:
     }
     .comment-author-field input {
       min-height: 36px;
+    }
+    .comment-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 8px;
+    }
+    .comment-tag {
+      display: inline-flex;
+      align-items: center;
+      max-width: 100%;
+      min-height: 22px;
+      border: 1px solid rgba(255, 216, 77, 0.42);
+      border-radius: 999px;
+      background: rgba(255, 216, 77, 0.13);
+      padding: 2px 8px;
+      color: var(--comment-accent);
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+    .comment-tag.project {
+      background: rgba(112, 197, 255, 0.12);
+      border-color: rgba(112, 197, 255, 0.34);
+      color: #b7e5ff;
     }
     .comment-controls textarea {
       min-height: 52px;
@@ -2666,6 +2739,7 @@ def render_html(data: dict[str, Any]) -> str:
         grid-column: 1;
       }
       .comment-controls { grid-template-columns: 1fr; }
+      .comment-relationship { grid-template-columns: 1fr; }
       .comment-controls button {
         width: 100%;
         min-height: 40px;
@@ -2775,6 +2849,44 @@ def render_html(data: dict[str, Any]) -> str:
       }}
     }}
 
+    function parseCommentBody(value) {{
+      const raw = String(value || "").trim();
+      if (!raw) return {{ collaboration: false, project: "", text: "" }};
+      const lines = raw.split(/\\r?\\n/);
+      let collaboration = false;
+      let project = "";
+      let cursor = 0;
+      while (cursor < lines.length) {{
+        const line = lines[cursor].trim();
+        if (!line) {{
+          cursor += 1;
+          continue;
+        }}
+        const collaborationMatch = line.match(/^협업\\s*:\\s*(.+)$/);
+        if (collaborationMatch) {{
+          collaboration = /^(예|y|yes|true|1|우리회사|협업사)$/i.test(collaborationMatch[1].trim());
+          cursor += 1;
+          continue;
+        }}
+        const projectMatch = line.match(/^프로젝트\\s*:\\s*(.+)$/);
+        if (projectMatch) {{
+          project = projectMatch[1].trim();
+          cursor += 1;
+          continue;
+        }}
+        break;
+      }}
+      const text = lines.slice(cursor).join("\\n").trim() || raw;
+      return {{ collaboration, project, text }};
+    }}
+
+    function buildCommentBody(text, collaboration, project) {{
+      const metaLines = [];
+      if (collaboration) metaLines.push("협업: 예");
+      if (project) metaLines.push(`프로젝트: ${{project}}`);
+      return metaLines.length ? `${{metaLines.join("\\n")}}\\n\\n${{text}}` : text;
+    }}
+
     function getCommentCount(key) {{
       return (seedCommentCounts[key] || 0) + (onlineCommentsByKey.get(key) || []).length;
     }}
@@ -2835,13 +2947,19 @@ def render_html(data: dict[str, Any]) -> str:
       const onlineHtml = comments.map((item) => {{
         const author = String(item.author_name || "").trim() || "작성자 미기재";
         const date = formatCommentDate(item.created_at);
+        const parsed = parseCommentBody(item.body || "");
+        const tags = [
+          parsed.collaboration ? `<span class="comment-tag">우리회사 협업</span>` : "",
+          parsed.project ? `<span class="comment-tag project">프로젝트: ${{escapeCommentHtml(parsed.project)}}</span>` : "",
+        ].filter(Boolean).join("");
         return `
         <li data-online-comment="true">
           <div class="comment-meta">
             <span class="comment-author">${{escapeCommentHtml(author)}}</span>
             ${{date ? `<span>${{escapeCommentHtml(date)}}</span>` : ""}}
           </div>
-          <p>${{escapeCommentHtml(item.body || "")}}</p>
+          ${{tags ? `<div class="comment-tags">${{tags}}</div>` : ""}}
+          <p>${{escapeCommentHtml(parsed.text || "")}}</p>
         </li>`;
       }}).join("");
       if (onlineHtml) list.insertAdjacentHTML("beforeend", onlineHtml);
@@ -2890,6 +3008,8 @@ def render_html(data: dict[str, Any]) -> str:
       const key = box.dataset.commentKey;
       const companyKey = box.dataset.companyKey || "";
       const companyName = box.dataset.companyName || "";
+      const collaborationInput = box.querySelector(".comment-collaboration-input");
+      const projectInput = box.querySelector(".comment-project-input");
       const authorInput = box.querySelector(".comment-author-field input");
       const textarea = box.querySelector("textarea");
       const button = box.querySelector("button");
@@ -2899,6 +3019,8 @@ def render_html(data: dict[str, Any]) -> str:
       button.addEventListener("click", async () => {{
         const value = textarea.value.trim();
         const author = authorInput.value.trim();
+        const collaboration = Boolean(collaborationInput && collaborationInput.checked);
+        const project = projectInput ? projectInput.value.trim() : "";
         if (!value) {{
           saved.textContent = "코멘트가 비어 있습니다.";
           return;
@@ -2920,7 +3042,7 @@ def render_html(data: dict[str, Any]) -> str:
             tab_id: box.closest(".tab-panel")?.id || "",
             source: "user",
             author_name: author || null,
-            body: value,
+            body: buildCommentBody(value, collaboration, project),
           }};
           const response = await fetch(commentApiUrl, {{
             method: "POST",
@@ -2941,6 +3063,8 @@ def render_html(data: dict[str, Any]) -> str:
           const items = onlineCommentsByKey.get(key) || [];
           onlineCommentsByKey.set(key, [created, ...items]);
           textarea.value = "";
+          if (collaborationInput) collaborationInput.checked = false;
+          if (projectInput) projectInput.value = "";
           saved.textContent = "Saved";
           renderOnlineComments(box);
           updateCommentBadges(key);
