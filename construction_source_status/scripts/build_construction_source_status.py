@@ -133,6 +133,21 @@ def compact_text(value: Any) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+def multiline_text(value: Any) -> str:
+    text = "" if value is None else str(value)
+    text = text.replace("\\r\\n", "\n").replace("\\n", "\n")
+    text = text.replace("\r\n", "\n").replace("\r", "\n")
+    lines = [re.sub(r"[ \t\f\v]+", " ", line).strip() for line in text.split("\n")]
+    return "\n".join(line for line in lines if line)
+
+
+def seed_comment_text(value: Any) -> str:
+    text = multiline_text(value)
+    if "\n" not in text:
+        text = re.sub(r"(?<=[.!?])\s+(?=[0-9A-Za-z가-힣])", "\n", text)
+    return text
+
+
 def normalize_company(value: Any) -> str:
     return re.sub(r"\s+", "", compact_text(value))
 
@@ -166,7 +181,7 @@ def load_pdf_comments() -> dict[str, Any]:
             continue
         clean_items = []
         for item in items:
-            if isinstance(item, dict) and compact_text(item.get("text")):
+            if isinstance(item, dict) and multiline_text(item.get("text")):
                 clean_items.append(item)
         if clean_items:
             normalized_comments[normalized_key] = clean_items
@@ -1356,7 +1371,7 @@ def render_comment_box(row: dict[str, Any]) -> str:
             <span class="comment-author">{html.escape(author)}</span>
             {f'<span>{html.escape(meta)}</span>' if meta else ''}
           </div>
-          <p>{html.escape(compact_text(item.get("text")))}</p>
+          <p>{html.escape(seed_comment_text(item.get("text")))}</p>
         </li>
             """
         )
@@ -2541,6 +2556,8 @@ def render_html(data: dict[str, Any]) -> str:
       color: var(--comment-accent-soft);
       font-size: 13px;
       line-height: 1.45;
+      white-space: pre-line;
+      overflow-wrap: anywhere;
     }
     .comment-empty {
       margin: 0;
@@ -3048,8 +3065,16 @@ def render_html(data: dict[str, Any]) -> str:
       }}
     }}
 
+    function normalizeCommentText(value) {{
+      return String(value || "")
+        .replace(/\\\\r\\\\n/g, "\\n")
+        .replace(/\\\\n/g, "\\n")
+        .replace(/\\r\\n?/g, "\\n")
+        .trim();
+    }}
+
     function parseCommentBody(value) {{
-      const raw = String(value || "").trim();
+      const raw = normalizeCommentText(value);
       if (!raw) return {{ collaboration: false, project: "", text: "" }};
       const lines = raw.split(/\\r?\\n/);
       let collaboration = false;
@@ -3080,10 +3105,11 @@ def render_html(data: dict[str, Any]) -> str:
     }}
 
     function buildCommentBody(text, collaboration, project) {{
+      const normalizedText = normalizeCommentText(text);
       const metaLines = [];
       if (collaboration) metaLines.push("협업: 예");
       if (project) metaLines.push(`프로젝트: ${{project}}`);
-      return metaLines.length ? `${{metaLines.join("\\n")}}\\n\\n${{text}}` : text;
+      return metaLines.length ? `${{metaLines.join("\\n")}}\\n\\n${{normalizedText}}` : normalizedText;
     }}
 
     function getCommentCount(key) {{
