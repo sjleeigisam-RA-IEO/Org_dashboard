@@ -1798,6 +1798,38 @@ def render_html(data: dict[str, Any]) -> str:
       line-height: 1.06;
       letter-spacing: 0;
     }
+    .header-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .dashboard-auth-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 34px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.25;
+      white-space: nowrap;
+    }
+    .dashboard-auth-bar button {
+      border: 1px solid rgba(255, 69, 58, 0.28);
+      border-radius: var(--construction-radius);
+      background: rgba(255, 69, 58, 0.1);
+      color: #ff8a80;
+      cursor: pointer;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 900;
+      padding: 7px 10px;
+    }
+    .dashboard-auth-bar button:hover {
+      background: rgba(255, 69, 58, 0.18);
+      color: #ffc1bc;
+    }
     main {
       width: min(1440px, calc(100% - 32px));
       margin: 0 auto;
@@ -2747,6 +2779,15 @@ def render_html(data: dict[str, Any]) -> str:
       margin: 10px 0 0;
     }
     @media (max-width: 900px) {
+      .header-top {
+        align-items: stretch;
+        flex-direction: column;
+      }
+      .dashboard-auth-bar {
+        justify-content: space-between;
+        width: 100%;
+        white-space: normal;
+      }
       .section-head { flex-direction: column; }
       table { font-size: 12px; }
       .detail-panel {
@@ -2822,7 +2863,13 @@ def render_html(data: dict[str, Any]) -> str:
 </head>
 <body class="auth-pending">
   <header>
-    <h1>Construction Information</h1>
+    <div class="header-top">
+      <h1>Construction Information</h1>
+      <div class="dashboard-auth-bar" aria-label="로그인 상태">
+        <span id="constructionUserStatus">로그인 확인 중</span>
+        <button id="constructionLogoutButton" type="button">로그아웃</button>
+      </div>
+    </div>
   </header>
   <main>
     {errors_html}
@@ -2905,6 +2952,14 @@ def render_html(data: dict[str, Any]) -> str:
       constructionAuthUser = user || null;
       const displayName = authDisplayName(constructionAuthUser);
       const authorValue = authAuthorValue(constructionAuthUser);
+      const globalStatus = document.getElementById("constructionUserStatus");
+      const globalLogout = document.getElementById("constructionLogoutButton");
+      if (globalStatus) {{
+        globalStatus.textContent = constructionAuthUser ? `${{authorValue}} 로그인` : "로그인 필요";
+      }}
+      if (globalLogout) {{
+        globalLogout.hidden = !constructionAuthUser;
+      }}
       document.querySelectorAll(".company-comment").forEach((box) => {{
         const authorInput = box.querySelector(".comment-author-field input");
         const status = box.querySelector(".comment-auth-status");
@@ -2955,6 +3010,16 @@ def render_html(data: dict[str, Any]) -> str:
       }}
       setConstructionAuthUser(user);
       document.body.classList.remove("auth-pending");
+    }}
+
+    async function logoutConstructionDashboard(button) {{
+      if (button) button.disabled = true;
+      try {{
+        if (window.RAAuth) await RAAuth.logout();
+      }} finally {{
+        setConstructionAuthUser(null);
+        redirectToConstructionLogin();
+      }}
     }}
 
     function escapeCommentHtml(value) {{
@@ -3217,15 +3282,16 @@ def render_html(data: dict[str, Any]) -> str:
 
     document.querySelectorAll(".comment-logout-button").forEach((button) => {{
       button.addEventListener("click", async () => {{
-        button.disabled = true;
-        try {{
-          if (window.RAAuth) await RAAuth.logout();
-        }} finally {{
-          setConstructionAuthUser(null);
-          button.disabled = false;
-        }}
+        await logoutConstructionDashboard(button);
       }});
     }});
+
+    const constructionLogoutButton = document.getElementById("constructionLogoutButton");
+    if (constructionLogoutButton) {{
+      constructionLogoutButton.addEventListener("click", async () => {{
+        await logoutConstructionDashboard(constructionLogoutButton);
+      }});
+    }}
 
     initConstructionAuth();
     renderAllOnlineComments();
