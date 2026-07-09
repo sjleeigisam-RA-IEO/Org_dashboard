@@ -599,7 +599,7 @@
     const pageButtons = Array.from(document.querySelectorAll(".pageTab"));
     const appPages = Array.from(document.querySelectorAll(".appPage"));
 
-    let data, scene, camera, renderer, controls, surface, highContourGroup, pointMesh, transactionGroup, transactionClusterGroup, ownedAssetGroup, ownedAssetClusterGroup, highlight, labelGroup, referenceGroup, contextLabelGroup, localVectorGroup, seoulVectorGroup, baseMapPlane, focusMapPlane, selectedColumn;
+    let data, scene, camera, renderer, controls, surface, pointMesh, transactionGroup, transactionClusterGroup, ownedAssetGroup, ownedAssetClusterGroup, highlight, labelGroup, referenceGroup, contextLabelGroup, localVectorGroup, seoulVectorGroup, baseMapPlane, focusMapPlane, selectedColumn;
     let raycaster, pointer, currentPeriod, currentPoints = [], currentTransactions = [], ownedAssets = [], selectedPoint = null, currentCaseRows = [];
     let positionArray, colorArray;
     const selectionClearVector = new THREE.Vector3();
@@ -880,12 +880,11 @@
     }
 
     function updateTerrainScale(force = false) {
-      if (!surface && !highContourGroup) return;
+      if (!surface) return;
       const visualScale = terrainZoomScale();
       if (!force && lastTerrainVisualScale !== null && Math.abs(visualScale - lastTerrainVisualScale) < 0.012) return;
       lastTerrainVisualScale = visualScale;
       if (surface) surface.scale.y = visualScale;
-      if (highContourGroup) highContourGroup.scale.y = visualScale;
       document.body.dataset.terrainScale = visualScale.toFixed(3);
     }
 
@@ -2300,101 +2299,6 @@
       });
     }
 
-    function contourSegments(values, level) {
-      const xs = data.grid.xs;
-      const ys = data.grid.ys;
-      const nx = data.grid.nx;
-      const ny = data.grid.ny;
-      const positions = [];
-      const interpolate = (a, b) => {
-        const denom = b.v - a.v;
-        const t = Math.abs(denom) < 0.000001 ? 0.5 : (level - a.v) / denom;
-        return {
-          x: a.x + (b.x - a.x) * t,
-          y: a.y + (b.y - a.y) * t,
-        };
-      };
-      const addSegment = (a, b) => {
-        const y = height(level) + 2.4;
-        positions.push(sx(a.x), y, sz(a.y), sx(b.x), y, sz(b.y));
-      };
-      for (let j = 0; j < ny - 1; j++) {
-        for (let i = 0; i < nx - 1; i++) {
-          const corners = [
-            { x: xs[i], y: ys[j], v: values[j * nx + i] },
-            { x: xs[i + 1], y: ys[j], v: values[j * nx + i + 1] },
-            { x: xs[i + 1], y: ys[j + 1], v: values[(j + 1) * nx + i + 1] },
-            { x: xs[i], y: ys[j + 1], v: values[(j + 1) * nx + i] },
-          ];
-          if (corners.some(corner => !Number.isFinite(corner.v))) continue;
-          const cuts = [];
-          const edges = [[0, 1], [1, 2], [2, 3], [3, 0]];
-          for (const [aIdx, bIdx] of edges) {
-            const a = corners[aIdx];
-            const b = corners[bIdx];
-            if ((a.v < level && b.v >= level) || (a.v >= level && b.v < level)) {
-              cuts.push(interpolate(a, b));
-            }
-          }
-          if (cuts.length === 2) addSegment(cuts[0], cuts[1]);
-          else if (cuts.length === 4) {
-            addSegment(cuts[0], cuts[1]);
-            addSegment(cuts[2], cuts[3]);
-          }
-        }
-      }
-      return positions;
-    }
-
-    function updateHighContours(period) {
-      if (highContourGroup) {
-        scene.remove(highContourGroup);
-        disposeObject3D(highContourGroup);
-      }
-      highContourGroup = new THREE.Group();
-      highContourGroup.userData.kind = "highContours";
-      const values = data.surfaces[period] || [];
-      const stats = periodStats(period).surface;
-      const levels = [
-        { label: "mean", value: stats.mean, color: 0xfff3c4, opacity: 0.62 },
-        { label: "top10", value: stats.p90, color: 0xff335f, opacity: 0.86 },
-      ];
-      for (const level of levels) {
-        if (!Number.isFinite(level.value)) continue;
-        const positions = contourSegments(values, level.value);
-        if (!positions.length) continue;
-        const geometry = new THREE.BufferGeometry();
-        geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-        const shadow = new THREE.LineSegments(
-          geometry.clone(),
-          new THREE.LineBasicMaterial({
-            color: 0x172033,
-            transparent: true,
-            opacity: level.opacity * 0.38,
-            depthTest: false,
-            depthWrite: false,
-          })
-        );
-        shadow.renderOrder = 30;
-        const line = new THREE.LineSegments(
-          geometry,
-          new THREE.LineBasicMaterial({
-            color: level.color,
-            transparent: true,
-            opacity: level.opacity,
-            depthTest: false,
-            depthWrite: false,
-          })
-        );
-        line.renderOrder = 31;
-        highContourGroup.add(shadow);
-        highContourGroup.add(line);
-      }
-      highContourGroup.visible = Boolean(toggleSurface.checked && !reviewMode);
-      scene.add(highContourGroup);
-      updateTerrainScale(true);
-    }
-
     function surfaceHeightAt(x, y, values = data.surfaces[currentPeriod]) {
       const nx = data.grid.nx;
       const ny = data.grid.ny;
@@ -3182,7 +3086,6 @@
       periodSlider.value = data.periods.indexOf(period);
       periodLabel.textContent = period;
       updateSurface(period);
-      updateHighContours(period);
       buildPoints(period);
       buildTransactions(period);
       updateMarkerClusters(true);
@@ -4465,7 +4368,6 @@
       });
       toggleSurface.addEventListener("change", () => {
         if (!reviewMode) surface.visible = toggleSurface.checked;
-        if (highContourGroup) highContourGroup.visible = Boolean(toggleSurface.checked && !reviewMode);
       });
       togglePoints.addEventListener("change", () => pointMesh.visible = togglePoints.checked);
       toggleTransactions.addEventListener("change", () => {
@@ -4651,7 +4553,6 @@
         controls.update();
       }
       if (surface) surface.visible = toggleSurface.checked;
-      if (highContourGroup) highContourGroup.visible = Boolean(toggleSurface.checked && !reviewMode);
       if (pointMesh) pointMesh.visible = togglePoints.checked;
       updateMarkerClusters(true);
       labelGroup.visible = toggleLabels.checked;
@@ -4774,7 +4675,6 @@
       document.body.dataset.reviewMode = reviewMode ? "true" : "false";
       if (surface) surface.visible = enabled ? false : toggleSurface.checked;
       if (surface && surface.material) surface.material.opacity = enabled ? 0.08 : 0.58;
-      if (highContourGroup) highContourGroup.visible = enabled ? false : toggleSurface.checked;
       if (pointMesh) {
         pointMesh.visible = togglePoints.checked;
         for (const mesh of pointMesh.children) {
