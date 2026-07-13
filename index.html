@@ -9,134 +9,164 @@
     <script src="./CRM_base/portfolio-analysis/config.js"></script>
     <script src="./shared/ra-auth.js?v=ra_auth_1"></script>
     <style>
+        * { box-sizing: border-box; }
         body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: grid;
+            place-items: center;
             min-height: 100vh;
             margin: 0;
-            padding: 24px;
-            background: #1f1f1e;
-            font-family: 'Segoe UI', sans-serif;
-            color: #fff;
-            box-sizing: border-box;
+            padding: 22px;
+            background: radial-gradient(circle at 52% 18%, rgba(37,99,235,0.18), transparent 34%), #111820;
+            color: #f8fafc;
+            font-family: Inter, Arial, "Noto Sans KR", sans-serif;
         }
         .login-card {
-            width: 100%;
-            max-width: 460px;
-            padding: 40px;
-            background: #262626;
-            border: 1px solid #3c3c3c;
-            border-radius: 24px;
-            box-shadow: 0 18px 48px rgba(0,0,0,0.22);
+            width: min(430px, 100%);
+            padding: 24px;
+            background: rgba(15,23,42,0.94);
+            border: 1px solid rgba(148,163,184,0.26);
+            border-radius: 12px;
+            box-shadow: 0 24px 72px rgba(0,0,0,0.34);
         }
-        .login-logo { font-size: 44px; margin-bottom: 20px; text-align: center; }
-        h1 { margin: 0 0 8px; font-size: 32px; font-weight: 800; text-align: center; }
-        p.subtitle { color: #8e8e93; margin: 0 0 28px; font-size: 15px; text-align: center; }
+        .login-logo {
+            margin: 0;
+            color: #fff;
+            font-size: 28px;
+            font-weight: 950;
+            letter-spacing: 0;
+            line-height: 1.1;
+        }
+        h1 {
+            margin: 12px 0 4px;
+            color: #fff;
+            font-size: 22px;
+            font-weight: 950;
+            line-height: 1.25;
+        }
+        p.subtitle {
+            margin: 0 0 18px;
+            color: #a9b7c9;
+            font-size: 13px;
+            line-height: 1.5;
+        }
         .auth-tabs {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 24px;
-            padding: 6px;
-            background: #1f1f1e;
-            border: 1px solid #3c3c3c;
-            border-radius: 14px;
-        }
-        .auth-tab {
+            gap: 6px;
+            margin-bottom: 16px;
+            padding: 5px;
+            background: rgba(30,41,59,0.9);
             border: 0;
             border-radius: 10px;
-            padding: 12px 10px;
+        }
+        .auth-tab {
+            height: 34px;
+            border: 0;
+            border-radius: 8px;
             background: transparent;
-            color: #8e8e93;
-            font-size: 14px;
-            font-weight: 800;
+            color: #9fb1c7;
+            font-size: 13px;
+            font-weight: 900;
             cursor: pointer;
         }
-        .auth-tab.active { background: #3c3c3c; color: #fff; }
-        .auth-panel { display: none; }
-        .auth-panel.active { display: block; }
-        .input-group { text-align: left; margin-bottom: 18px; }
+        .auth-tab.active { background: #2563eb; color: #fff; }
+        .auth-panel { display: none; gap: 12px; }
+        .auth-panel.active { display: grid; }
+        .input-group {
+            display: grid;
+            gap: 6px;
+            margin: 0;
+            text-align: left;
+        }
         .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 700;
-            color: #8e8e93;
-            font-size: 13px;
+            color: #cbd5e1;
+            font-size: 12px;
+            font-weight: 900;
         }
         .input-group input {
             width: 100%;
-            padding: 15px 16px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            height: 42px;
+            padding: 0 11px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(148,163,184,0.26);
             border-radius: 8px;
             color: #fff;
-            font-size: 16px;
-            transition: all 0.2s;
-            box-sizing: border-box;
-        }
-        .input-group input:focus {
+            font-size: 14px;
             outline: none;
-            border-color: var(--accent);
-            background: rgba(255,255,255,0.08);
-            box-shadow: none;
+        }
+        .input-group input::placeholder { color: #7b8798; }
+        .input-group input:focus {
+            border-color: rgba(96,165,250,0.8);
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
         }
         .check-row {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 10px;
-            margin: 2px 0 18px;
-            color: #c7c7cc;
-            font-size: 14px;
-            font-weight: 700;
+            gap: 8px;
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 12px;
+            font-weight: 800;
         }
-        .check-row input { width: 18px; height: 18px; accent-color: var(--accent); }
+        .check-row input { width: 16px; height: 16px; accent-color: #2563eb; }
         .login-btn {
             width: 100%;
-            padding: 16px;
-            background: var(--accent);
+            height: 42px;
+            padding: 0 14px;
+            background: #2563eb;
             color: #fff;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .login-btn:hover { background: var(--accent-light); box-shadow: none; }
-        .login-btn:disabled { opacity: 0.6; cursor: wait; }
-        .public-dashboard-link {
-            display: block;
-            margin-top: 18px;
-            padding: 14px 16px;
-            border: 1px solid rgba(255,216,77,0.38);
-            border-radius: 10px;
-            background: rgba(255,216,77,0.08);
-            color: #ffd84d;
+            border: 0;
+            border-radius: 8px;
             font-size: 14px;
-            font-weight: 800;
+            font-weight: 950;
+            cursor: pointer;
+        }
+        .login-btn:hover { background: #1d4ed8; }
+        .login-btn:disabled { opacity: 0.64; cursor: wait; }
+        .public-dashboard-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 42px;
+            margin-top: 14px;
+            padding: 0 14px;
+            border: 1px solid rgba(96,165,250,0.32);
+            border-radius: 8px;
+            background: rgba(37,99,235,0.12);
+            color: #bfdbfe;
+            font-size: 13px;
+            font-weight: 900;
             text-align: center;
             text-decoration: none;
-            transition: all 0.2s;
         }
         .public-dashboard-link:hover {
-            background: rgba(255,216,77,0.14);
-            border-color: rgba(255,216,77,0.58);
-            color: #ffe89a;
+            background: rgba(37,99,235,0.20);
+            border-color: rgba(96,165,250,0.58);
+            color: #fff;
         }
         .helper-text {
-            margin: 12px 0 0;
-            color: #8e8e93;
-            font-size: 13px;
-            line-height: 1.55;
+            margin: 0;
+            color: #9fb1c7;
+            font-size: 11px;
+            line-height: 1.5;
         }
-        .message { margin-top: 20px; font-size: 14px; min-height: 20px; font-weight: 700; text-align: center; }
-        .error { color: #ff453a; }
-        .success { color: #32d74b; }
+        .message {
+            min-height: 18px;
+            margin-top: 14px;
+            color: #cbd5e1;
+            font-size: 12px;
+            font-weight: 900;
+        }
+        .error { color: #fca5a5; }
+        .success { color: #86efac; }
         @media (max-width: 520px) {
-            body { padding: 14px; align-items: flex-start; }
-            .login-card { padding: 28px 20px; border-radius: 20px; margin-top: 28px; }
-            h1 { font-size: 28px; }
+            body {
+                place-items: start center;
+                padding: 14px;
+            }
+            .login-card {
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -154,11 +184,11 @@
         <form id="loginPanel" class="auth-panel active">
             <div class="input-group">
                 <label for="loginEmail">회사 이메일</label>
-                <input type="email" id="loginEmail" autocomplete="username" placeholder="example@igisam.com" required>
+                <input type="email" id="loginEmail" autocomplete="username" placeholder="name@igisam.com" required>
             </div>
             <div class="input-group">
                 <label for="loginPassword">비밀번호</label>
-                <input type="password" id="loginPassword" autocomplete="current-password" placeholder="비밀번호를 입력하세요" required>
+                <input type="password" id="loginPassword" autocomplete="current-password" placeholder="비밀번호" required>
             </div>
             <label class="check-row">
                 <input type="checkbox" id="rememberLogin">
@@ -171,11 +201,11 @@
         <form id="setupPanel" class="auth-panel">
             <div class="input-group">
                 <label for="setupEmail">회사 이메일</label>
-                <input type="email" id="setupEmail" autocomplete="username" placeholder="example@igisam.com" required>
+                <input type="email" id="setupEmail" autocomplete="username" placeholder="name@igisam.com" required>
             </div>
             <div class="input-group">
                 <label for="setupCode">설정 코드</label>
-                <input type="password" id="setupCode" autocomplete="one-time-code" placeholder="처음 설정 코드를 입력하세요" required>
+                <input type="password" id="setupCode" autocomplete="one-time-code" placeholder="설정 코드 입력" required>
             </div>
             <div class="input-group">
                 <label for="setupPassword">새 비밀번호</label>
@@ -183,7 +213,7 @@
             </div>
             <div class="input-group">
                 <label for="setupPasswordConfirm">새 비밀번호 확인</label>
-                <input type="password" id="setupPasswordConfirm" autocomplete="new-password" placeholder="한 번 더 입력하세요" minlength="8" required>
+                <input type="password" id="setupPasswordConfirm" autocomplete="new-password" placeholder="한 번 더 입력" minlength="8" required>
             </div>
             <label class="check-row">
                 <input type="checkbox" id="rememberAfterSetup">
