@@ -19,6 +19,7 @@ from t5t_classification import GENERAL_WORK_TASK_TYPE
 from t5t_classification import MISSION_STATUS
 from t5t_classification import MISSION_TASK_TYPE
 from t5t_classification import is_general_work
+from t5t_writer_identity import WriterIdentityResolver
 
 
 ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -314,37 +315,15 @@ def run_sync(date_from=None, date_to=None):
 
     staff_rows = staff_res.data or []
 
-    def staff_identity_priority(row):
-        metadata = row.get("metadata") or {}
-        return (
-            bool(metadata.get("is_main")),
-            metadata.get("division_scope") == "RA",
-            not str(row.get("staff_id") or "").startswith("staff_ext_"),
-        )
-
-    staff_map = {}
-    staff_name_map = {}
-    staff_by_id = {}
-    for staff_row in sorted(staff_rows, key=staff_identity_priority, reverse=True):
-        staff_id = staff_row.get("staff_id")
-        if not staff_id:
-            continue
-        staff_by_id[staff_id] = staff_row
-        email = str(staff_row.get("email") or "").strip().lower()
-        name = str(staff_row.get("name") or "").strip()
-        if email:
-            staff_map.setdefault(email, staff_id)
-        if name:
-            staff_name_map.setdefault(name.casefold(), staff_id)
+    identity_resolver = WriterIdentityResolver(staff_rows)
 
     masters = {
         "projects": proj_res.data or [],
         "funds": fund_res.data or [],
         "new_projects": new_proj_list,
         "counterparties": sorted(cp_res.data or [], key=lambda x: len(x.get("name") or ""), reverse=True),
-        "staff_map": staff_map,
-        "staff_name_map": staff_name_map,
-        "staff_by_id": staff_by_id,
+        "identity_resolver": identity_resolver,
+        "staff_by_id": identity_resolver.staff_by_id,
     }
 
     print(f"--- Fetching Raw Submissions ({config['RAW_T5T_DB_ID']}) ---")
@@ -358,12 +337,9 @@ def run_sync(date_from=None, date_to=None):
         date_val = get_date(props)
         if not in_date_window(date_val, date_from, date_to):
             continue
-        staff_id = masters["staff_map"].get(email.lower()) if email else None
-        identity_match_source = "email" if staff_id else None
-        if not staff_id and author_name:
-            staff_id = masters["staff_name_map"].get(author_name.casefold())
-            if staff_id:
-                identity_match_source = "author_name"
+        identity = masters["identity_resolver"].resolve(email, author_name)
+        staff_id = identity.get("staff_id") if identity else None
+        identity_match_source = identity.get("source") if identity else None
         matched_staff = masters["staff_by_id"].get(staff_id) or {}
         line = get_select_name(props, LINE_KEYS, "N/A")
 
@@ -372,14 +348,15 @@ def run_sync(date_from=None, date_to=None):
             "writer_staff_id": staff_id,
             "submitted_at": f"{date_val}T09:00:00Z" if date_val else datetime.now().isoformat(),
             "work_date": date_val,
-            "writer_name": matched_staff.get("name") or author_name or (email.split("@")[0] if email else "Unknown"),
-            "writer_email": email,
+            "writer_name": (identity or {}).get("name") or matched_staff.get("name") or author_name or (email.split("@")[0] if email else "Unknown"),
+            "writer_email": (identity or {}).get("email") or email,
             "line": line,
             "source_file": "Notion-Raw-T5T",
             "metadata": {
                 "notion_page_id": page_id,
                 "source_url": page.get("url"),
                 "source_author_name": author_name,
+                "source_author_email": email,
                 "identity_match_source": identity_match_source or "unmatched",
             },
         }
@@ -398,7 +375,14 @@ def run_sync(date_from=None, date_to=None):
             matched_fund_id = None
             match_source = "none"
             alias_task_type = None
-            metadata = {"match_source": match_source, "notion_page_id": page_id, "source_url": page.get("url")}
+            metadata = {
+                "match_source": match_source,
+                "notion_page_id": page_id,
+                "source_url": page.get("url"),
+                "source_writer_name": author_name,
+                "source_writer_email": email,
+                "identity_match_source": identity_match_source or "unmatched",
+            }
 
             alias_row = {
                 "project_text": item["project"],

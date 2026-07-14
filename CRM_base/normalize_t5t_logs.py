@@ -110,6 +110,8 @@ def fetch_all(client, table, select, order=None, date_from=None, date_to=None):
         query = client.table(table).select(select)
         if order:
             query = query.order(order)
+            if table == "t5t_form_items" and order != "form_item_id":
+                query = query.order("form_item_id")
         if date_from:
             query = query.gte("work_date", date_from.isoformat())
         if date_to:
@@ -228,6 +230,7 @@ def normalize(date_from=None, date_to=None, chunk_size=500):
         date_from=date_from,
         date_to=date_to,
     )
+    items = dedupe_by_key(items, "form_item_id")
     counterparties = fetch_all(client, "counterparties", "counterparty_id,name,category,metadata")
     fund_assets = fetch_all(client, "fund_assets", "id,fund_id,asset_name,asset_id,metadata")
     staff_rows = fetch_all(client, "staff", "staff_id,name,email,status,metadata")
@@ -361,6 +364,7 @@ def normalize(date_from=None, date_to=None, chunk_size=500):
 
     for batch in chunked(logs, chunk_size):
         client.table("t5t_logs").upsert(batch, on_conflict="t5t_log_id").execute()
+    iota_logs = dedupe_by_key(iota_logs, "iota_log_id")
     upsert_iota_logs(client, iota_logs, chunk_size)
     project_links = dedupe_by_key(project_links, "link_id")
     stakeholders = dedupe_by_key(stakeholders, "stakeholder_id")

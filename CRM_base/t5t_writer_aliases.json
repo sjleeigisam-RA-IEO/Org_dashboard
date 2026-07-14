@@ -1,0 +1,56 @@
+[
+  {
+    "canonical_staff_id": "staff_ext_000054",
+    "canonical_name": "윤관식",
+    "canonical_email": "gwansik.yoon@igisam.com",
+    "name_aliases": ["윤관식", "gwansik.yoon"],
+    "email_aliases": ["gwansik.yoon@igisam.com"]
+  },
+  {
+    "canonical_staff_id": "staff_2025_5005",
+    "canonical_name": "최자령",
+    "canonical_email": "jchoi1041@igisam.com",
+    "name_aliases": ["최자령", "jchoi1041"],
+    "email_aliases": [
+      "jchoi1041@igisam.com",
+      "jchoi1041@igis.com",
+      "jchoi1041@gmail.com"
+    ]
+  },
+  {
+    "canonical_staff_id": "staff_10678",
+    "canonical_name": "현철호",
+    "canonical_email": "chyun@igisam.com",
+    "name_aliases": ["현철호", "chyun"],
+    "email_aliases": ["chyun@igisam.com", "chyun@igisam.co"]
+  },
+  {
+    "canonical_staff_id": "staff_10171",
+    "canonical_name": "권순일",
+    "canonical_email": "ksoonil@igisam.com",
+    "name_aliases": ["권순일", "ksoonil"],
+    "email_aliases": [
+      "ksoonil@igisam.com",
+      "ksoon@igisam.com",
+      "ksoonil@igiam.com"
+    ]
+  },
+  {
+    "canonical_staff_id": "staff_10367",
+    "canonical_name": "안지하",
+    "canonical_email": "jiha.ahn@igisam.com",
+    "name_aliases": ["안지하", "jiha.ahn", "jihaa17"],
+    "email_aliases": [
+      "jiha.ahn@igisam.com",
+      "jiha.ahn@igisaml.com",
+      "jihaa17@gmail.com"
+    ]
+  },
+  {
+    "canonical_staff_id": "staff_10346",
+    "canonical_name": "신민재",
+    "canonical_email": "minjae.sheen@igisam.com",
+    "name_aliases": ["신민재", "minjae.sheen"],
+    "email_aliases": ["minjae.sheen@igisam.com"]
+  }
+]

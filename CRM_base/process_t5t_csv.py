@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from supabase import create_client
 from env_utils import get_required_supabase_config
+from t5t_writer_identity import WriterIdentityResolver
 
 # 설정 및 초기화
 url, key = get_required_supabase_config()
@@ -29,13 +30,14 @@ def run_full_ingest():
     proj_res = supabase.table('projects').select('project_id, project_name').execute()
     fund_res = supabase.table('funds').select('fund_id, fund_name, short_name, asset_name').execute()
     cp_res = supabase.table('counterparties').select('counterparty_id, name').execute()
-    staff_res = supabase.table('staff').select('staff_id, name, email').execute()
+    staff_res = supabase.table('staff').select('staff_id, name, email, metadata').execute()
+    identity_resolver = WriterIdentityResolver(staff_res.data or [])
     
     masters = {
         'projects': proj_res.data,
         'funds': fund_res.data,
         'counterparties': sorted(cp_res.data, key=lambda x: len(x['name']), reverse=True),
-        'staff': pd.DataFrame(staff_res.data)
+        'identity_resolver': identity_resolver
     }
     
     proj_name_map = {p['project_name']: p['project_id'] for p in masters['projects']}
@@ -58,21 +60,27 @@ def run_full_ingest():
         submitted_at = pd.to_datetime(row['Submitted at'])
         meeting_monday = get_meeting_monday(submitted_at).date()
         
-        email = str(row['E-mail'])
-        staff_match = masters['staff'][masters['staff']['email'] == email]
-        staff_id = staff_match['staff_id'].values[0] if not staff_match.empty else None
+        email = str(row['E-mail']).strip()
+        writer_name = str(row['이름(Name)']).strip()
+        identity = masters['identity_resolver'].resolve(email, writer_name)
+        staff_id = identity.get('staff_id') if identity else None
         
         submission_batch.append({
             'submission_id': sub_id,
             'respondent_id': str(row['Respondent ID']),
             'submitted_at': submitted_at.isoformat(),
             'writer_staff_id': staff_id,
-            'writer_name': row['이름(Name)'],
-            'writer_email': email,
+            'writer_name': (identity or {}).get('name') or writer_name,
+            'writer_email': (identity or {}).get('email') or email,
             'position': row['직책(Position)'],
             'work_date': row['작성일(Date)'],
             'line': row['소속(Line)'],
-            'source_file': os.path.basename(CSV_PATH)
+            'source_file': os.path.basename(CSV_PATH),
+            'metadata': {
+                'source_writer_name': writer_name,
+                'source_writer_email': email,
+                'identity_match_source': (identity or {}).get('source', 'unmatched')
+            }
         })
 
         for i in range(1, 6):
@@ -123,7 +131,12 @@ def run_full_ingest():
                 'classification_tokens': tokens,
                 'stakeholder_ids': list(set([c['counterparty_id'] for c in matched_cps])),
                 'task_type': 'Project' if (matched_project_id or matched_fund_id) else 'General',
-                'match_status': 'matched' if (matched_project_id or matched_fund_id) else 'raw_unmatched'
+                'match_status': 'matched' if (matched_project_id or matched_fund_id) else 'raw_unmatched',
+                'metadata': {
+                    'source_writer_name': writer_name,
+                    'source_writer_email': email,
+                    'identity_match_source': (identity or {}).get('source', 'unmatched')
+                }
             })
 
         # 안전 적재: 부모(Submissions) 먼저, 그 다음 자식(Items)

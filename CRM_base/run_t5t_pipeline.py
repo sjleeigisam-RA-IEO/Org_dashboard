@@ -47,7 +47,11 @@ def main():
         )
 
     run_step(
-        "2. Apply alias/project/mission rules to unmatched rows",
+        "2. Resolve missing T5T writer identities",
+        ["CRM_base/backfill_t5t_writer_ids.py", "--apply", "--require-complete"],
+    )
+    run_step(
+        "3. Apply alias/project/mission rules to unmatched rows",
         append_date_args(
             ["CRM_base/apply_t5t_manual_aliases.py", "--apply", "--sample-size", "0"],
             args.date_from,
@@ -55,7 +59,7 @@ def main():
         ),
     )
     run_step(
-        "3. Re-apply alias rules to prior general-work rows",
+        "4. Re-apply alias rules to prior general-work rows",
         append_date_args(
             [
                 "CRM_base/apply_t5t_manual_aliases.py",
@@ -70,15 +74,15 @@ def main():
         ),
     )
     run_step(
-        "4. Classify remaining non-project work as general work",
+        "5. Classify remaining non-project work as general work",
         append_date_args(["CRM_base/classify_t5t_general_work.py", "--apply", "--sample-size", "0"], args.date_from, args.date_to),
     )
     run_step(
-        "5. Match remaining items against project/fund/asset masters",
+        "6. Match remaining items against project/fund/asset masters",
         append_date_args(["CRM_base/match_t5t_entities.py", "--apply", "--sample-size", "0"], args.date_from, args.date_to),
     )
     run_step(
-        "6. Normalize dashboard tables",
+        "7. Normalize dashboard tables",
         append_date_args(["CRM_base/normalize_t5t_logs.py"], args.date_from, args.date_to),
     )
 

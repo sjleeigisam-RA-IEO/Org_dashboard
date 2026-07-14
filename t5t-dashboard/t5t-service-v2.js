@@ -140,7 +140,9 @@ const T5TService = {
             } else {
                 // 작성자 실명 매핑
                 data.forEach(item => {
-                    item.writer_name = staffMap[item.writer_staff_id] || "익명";
+                    item.writer_name = staffMap[item.writer_staff_id]
+                        || item.metadata?.source_writer_name
+                        || "익명";
                 });
                 allData = allData.concat(data);
                 if (data.length < 1000) {
