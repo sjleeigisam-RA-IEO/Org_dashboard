@@ -36,8 +36,9 @@ def parse_date(value):
 
 
 def reporting_week(ref_date):
-    # T5T reporting weeks run Tuesday through Monday, ending on the meeting Monday.
-    week_end = ref_date + timedelta(days=(7 - ref_date.weekday()) % 7)
+    # Use the latest closed Tuesday-Monday period. On Monday, that day is the close;
+    # from Tuesday onward, keep the previous Monday as the reporting-week end.
+    week_end = ref_date - timedelta(days=ref_date.weekday())
     return week_end - timedelta(days=6), week_end
 
 

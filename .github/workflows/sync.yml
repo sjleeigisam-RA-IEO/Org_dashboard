@@ -61,6 +61,7 @@ jobs:
           python CRM_base/run_t5t_pipeline.py --date-from "$DATE_FROM" --date-to "$DATE_TO"
 
       - name: Verify IOTA log API source freshness
+        if: ${{ always() }}
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_KEY }}
@@ -109,7 +110,8 @@ jobs:
           PY
 
       - name: Generate weekly T5T summary
-        if: github.event.schedule == '0 23 * * 0'
+        id: weekly_summary
+        if: ${{ always() && (github.event_name != 'schedule' || github.event.schedule == '0 23 * * 0' || github.event.schedule == '0 0 * * 2') }}
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_KEY }}
@@ -117,7 +119,7 @@ jobs:
           python CRM_base/generate_t5t_weekly_summary.py --out t5t-dashboard/data/weekly_summary.json
 
       - name: Commit weekly T5T summary
-        if: github.event.schedule == '0 23 * * 0'
+        if: ${{ always() && steps.weekly_summary.outcome == 'success' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

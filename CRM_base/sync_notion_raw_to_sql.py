@@ -303,7 +303,7 @@ def run_sync(date_from=None, date_to=None):
     proj_res = supabase.table("projects").select("project_id, project_name").execute()
     fund_res = supabase.table("funds").select("fund_id, fund_name, short_name, asset_name").execute()
     cp_res = supabase.table("counterparties").select("counterparty_id, name").execute()
-    staff_res = supabase.table("staff").select("staff_id, name, email").execute()
+    staff_res = supabase.table("staff").select("staff_id, name, email, metadata").execute()
     alias_rules = json.loads(ALIAS_PATH.read_text(encoding="utf-8")) if ALIAS_PATH.exists() else []
 
     new_proj_list = []
@@ -312,16 +312,39 @@ def run_sync(date_from=None, date_to=None):
         if title:
             new_proj_list.append(title)
 
+    staff_rows = staff_res.data or []
+
+    def staff_identity_priority(row):
+        metadata = row.get("metadata") or {}
+        return (
+            bool(metadata.get("is_main")),
+            metadata.get("division_scope") == "RA",
+            not str(row.get("staff_id") or "").startswith("staff_ext_"),
+        )
+
+    staff_map = {}
+    staff_name_map = {}
+    staff_by_id = {}
+    for staff_row in sorted(staff_rows, key=staff_identity_priority, reverse=True):
+        staff_id = staff_row.get("staff_id")
+        if not staff_id:
+            continue
+        staff_by_id[staff_id] = staff_row
+        email = str(staff_row.get("email") or "").strip().lower()
+        name = str(staff_row.get("name") or "").strip()
+        if email:
+            staff_map.setdefault(email, staff_id)
+        if name:
+            staff_name_map.setdefault(name.casefold(), staff_id)
+
     masters = {
         "projects": proj_res.data or [],
         "funds": fund_res.data or [],
         "new_projects": new_proj_list,
         "counterparties": sorted(cp_res.data or [], key=lambda x: len(x.get("name") or ""), reverse=True),
-        "staff_map": {
-            s["email"].lower(): s["staff_id"]
-            for s in (staff_res.data or [])
-            if s.get("email") and s.get("staff_id")
-        },
+        "staff_map": staff_map,
+        "staff_name_map": staff_name_map,
+        "staff_by_id": staff_by_id,
     }
 
     print(f"--- Fetching Raw Submissions ({config['RAW_T5T_DB_ID']}) ---")
@@ -331,10 +354,17 @@ def run_sync(date_from=None, date_to=None):
         page_id = page["id"]
         props = page.get("properties", {})
         email = get_email(props)
+        author_name = page_title(props)
         date_val = get_date(props)
         if not in_date_window(date_val, date_from, date_to):
             continue
         staff_id = masters["staff_map"].get(email.lower()) if email else None
+        identity_match_source = "email" if staff_id else None
+        if not staff_id and author_name:
+            staff_id = masters["staff_name_map"].get(author_name.casefold())
+            if staff_id:
+                identity_match_source = "author_name"
+        matched_staff = masters["staff_by_id"].get(staff_id) or {}
         line = get_select_name(props, LINE_KEYS, "N/A")
 
         sub_data = {
@@ -342,11 +372,16 @@ def run_sync(date_from=None, date_to=None):
             "writer_staff_id": staff_id,
             "submitted_at": f"{date_val}T09:00:00Z" if date_val else datetime.now().isoformat(),
             "work_date": date_val,
-            "writer_name": email.split("@")[0] if email else page_title(props) or "Unknown",
+            "writer_name": matched_staff.get("name") or author_name or (email.split("@")[0] if email else "Unknown"),
             "writer_email": email,
             "line": line,
             "source_file": "Notion-Raw-T5T",
-            "metadata": {"notion_page_id": page_id, "source_url": page.get("url")},
+            "metadata": {
+                "notion_page_id": page_id,
+                "source_url": page.get("url"),
+                "source_author_name": author_name,
+                "identity_match_source": identity_match_source or "unmatched",
+            },
         }
         supabase.table("t5t_form_submissions").upsert(sub_data, on_conflict="submission_id").execute()
 
