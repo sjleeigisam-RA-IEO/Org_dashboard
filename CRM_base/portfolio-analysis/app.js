@@ -1,8 +1,8 @@
 var debounceTimer;
-var currentView = 'list';
+var currentView = 'ranking';
 var currentTab = 'all';
 var LEFT_PANEL_WIDTH_KEY = 'ra_insight_left_panel_width_v1';
-var LEFT_PANEL_COLLAPSED_KEY = 'ra_insight_left_panel_collapsed_v1';
+var LEFT_PANEL_COLLAPSED_KEY = 'ra_insight_left_panel_collapsed_v2';
 var LEFT_PANEL_MIN_WIDTH = 300;
 var LEFT_PANEL_MAX_WIDTH = 460;
 
@@ -24,6 +24,7 @@ function showListView() {
   var analysisViewControls = document.getElementById('analysisViewControls');
   var results = document.getElementById('results');
   var analysisResults = document.getElementById('analysisResults');
+  var detailPanel = document.getElementById('detailPanel');
 
   currentView = 'list';
   document.body.classList.remove('analysis-view');
@@ -36,6 +37,15 @@ function showListView() {
   setDisplay(analysisViewControls, 'none');
   setDisplay(results, 'flex');
   setDisplay(analysisResults, 'none');
+
+  if (detailPanel && detailPanel.querySelector('.analytics-container')) {
+    detailPanel.innerHTML = `
+      <div class="detail-placeholder">
+        <div class="placeholder-icon">📋</div>
+        <p>검색 결과에서 항목을 선택하면<br>상세 정보가 여기에 표시됩니다.</p>
+      </div>
+    `;
+  }
 
   if (typeof renderResults === 'function') {
     renderResults();
@@ -128,7 +138,7 @@ function setLeftPanelCollapsed(collapsed, widthToRestore) {
   if (leftPanel) leftPanel.classList.toggle('collapsed', isCollapsed);
   document.body.classList.toggle('left-panel-collapsed', isCollapsed);
   if (resizer) {
-    resizer.setAttribute('aria-disabled', isCollapsed ? 'true' : 'false');
+    resizer.removeAttribute('aria-disabled');
   }
   if (button) {
     button.textContent = isCollapsed ? '>' : '<';
@@ -160,13 +170,13 @@ function initLeftPanelResize() {
   if (!leftPanel || !resizer || !layout) return;
 
   var storedWidth = null;
-  var storedCollapsed = false;
+  var storedCollapsed = true;
   try {
     storedWidth = localStorage.getItem(LEFT_PANEL_WIDTH_KEY);
-    storedCollapsed = localStorage.getItem(LEFT_PANEL_COLLAPSED_KEY) === '1';
+    storedCollapsed = localStorage.getItem(LEFT_PANEL_COLLAPSED_KEY) !== '0';
   } catch (e) {
     storedWidth = null;
-    storedCollapsed = false;
+    storedCollapsed = true;
   }
   var currentWidth = applyLeftPanelWidth(storedWidth || LEFT_PANEL_MAX_WIDTH, false);
   setLeftPanelCollapsed(storedCollapsed, currentWidth);
@@ -279,7 +289,11 @@ function initApp() {
 
   initLeftPanelResize();
 
-  document.body.classList.add(currentView === 'ranking' ? 'analysis-view' : 'list-view');
+  if (currentView === 'ranking') {
+    showChartView();
+  } else {
+    showListView();
+  }
 }
 
 if (document.readyState === 'loading') {

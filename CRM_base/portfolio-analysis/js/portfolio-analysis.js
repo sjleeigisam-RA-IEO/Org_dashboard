@@ -208,7 +208,7 @@ function initAnalysisFilters() {
                     } else {
                         dropdown.style.maxHeight = `${Math.max(180, Math.min(320, spaceBelow))}px`;
                     }
-                    searchInput.focus();
+                    searchInput.focus({ preventScroll: true });
                 }
             };
 

@@ -18,9 +18,12 @@
     }
     // Use filtered data if available
     const filteredFunds = (typeof getFilteredData === 'function') ? getFilteredData() : targetFunds;
-    window.lastTargetFunds = filteredFunds;
+    const historyFunds = (typeof getFilteredData === 'function')
+        ? getFilteredData({ countBasis: 'fund_code', ignoreKeys: ['operational_status'] })
+        : targetFunds;
+    window.lastTargetFunds = historyFunds;
     
-    const snapshotDate = new Date('2026-04-30');
+    const snapshotDate = getAnalysisSnapshotDate();
     const activeFunds = filteredFunds.filter(isActiveAumSnapshotFund);
 
     const aumMetric = getAumBasisMetric();
@@ -63,13 +66,12 @@
           <div class="detail-header" style="margin-bottom:40px;">
             <p class="card-tag tag-project" style="margin-bottom:12px;">REAL-TIME PORTFOLIO TRACKER</p>
             <h2 style="font-size:32px; font-weight:800;">부문 통합 자산 성장 추이</h2>
-            <p style="color:var(--muted); font-size:16px;">2010년부터 현재까지의 성장 궤적과 2026년 말 청산 가능 펀드를 반영했습니다.</p>
           </div>
 
-          <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px; margin-bottom:32px;">
+          <div class="current-aum-overview" style="display:grid; grid-template-columns: 2fr 1fr; gap:24px; margin-bottom:32px;">
             <div class="kpi-card" style="padding:40px;">
               <div class="kpi-label" style="font-size:14px; letter-spacing:1px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;">
-                <span>현재 운용 AUM (${aumConfig.label}, 2026.04.30 기준)</span>
+                <span>현재 운용 AUM (${aumConfig.label}, ${getAnalysisSnapshotDateLabel()} 기준)</span>
                 <div id="aumBasisToggle" class="segmented-control" data-active="${aumMetric}" onclick="toggleAumBasis()">
                     <div class="segment-slider"></div>
                     <div class="segment ${aumMetric === 'benchmark_aum' ? 'active' : ''}" data-val="benchmark_aum">약정</div>
@@ -95,9 +97,9 @@
 
             <div class="kpi-card" style="padding:40px; display:flex; flex-direction:column; justify-content:space-between;">
               <div>
-                <div class="kpi-label" style="margin-bottom:16px;">운용 기초자산</div>
+                <div class="kpi-label" style="margin-bottom:16px;">AUM 대상 실물자산</div>
                 <div class="kpi-value" style="font-size:48px; font-weight:900; color:var(--text);">${activeAssetRecords.length}<span style="font-size:18px; font-weight:500; margin-left:4px; color:var(--muted);">개</span></div>
-                <div style="margin-top:10px; color:var(--muted); font-size:11px; line-height:1.5;">주소/PNU 확인 실물 부동산 기준<br>재간접, 증권, 포트폴리오 묶음 제외</div>
+                <div style="margin-top:10px; color:var(--muted); font-size:11px; line-height:1.5;">AUM 운용·자펀드 제외, fund_assets 주소/PNU 기준<br>재간접, 증권, 포트폴리오 묶음 제외</div>
               </div>
               <div style="margin-top:24px; padding-top:20px; border-top:1px dashed var(--line); display:grid; grid-template-columns: repeat(${otherAssetsCount > 0 ? 3 : 2}, 1fr); gap:12px;">
                 <div class="kpi-sub">
@@ -118,15 +120,30 @@
           </div>
 
           <div class="detail-section" style="padding:40px;">
-            <h3 class="section-title" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
-              <span style="font-size:20px; font-weight:800;">연도별 포트폴리오 성장 궤적 (2010 - 2026)</span>
-              <div class="chart-toggle-group" style="display:flex; padding:4px; border-radius:8px; gap:4px;">
-                 <button id="toggle-aum" class="chart-toggle-btn ${currentChartMetric === 'aum' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('aum')">AUM</button>
-                 <button id="toggle-equity" class="chart-toggle-btn ${currentChartMetric === 'equity' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('equity')">Equity</button>
-                 <button id="toggle-loan" class="chart-toggle-btn ${currentChartMetric === 'loan' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('loan')">Loan</button>
-                 <button id="toggle-count" class="chart-toggle-btn ${currentChartMetric === 'count' ? 'active' : ''}" style="padding:8px 20px; border-radius:10px;" onclick="switchMetric('count')">건수</button>
+            <div class="history-chart-heading">
+              <div>
+                <h3>연도별 포트폴리오 성장 궤적 (2010 - 2026)</h3>
+                <span id="historyChartSubtitle">${currentChartBreakdown === 'portfolio' ? '기초자산 포트폴리오 스택' : '국내·해외 스택'}</span>
               </div>
-            </h3>
+              <div class="history-chart-controls">
+                <div class="history-chart-control">
+                  <span>지표</span>
+                  <div class="chart-toggle-group">
+                    <button type="button" id="toggle-aum" class="chart-toggle-btn ${currentChartMetric === 'aum' ? 'active' : ''}" onclick="switchMetric('aum', event)">AUM</button>
+                    <button type="button" id="toggle-equity" class="chart-toggle-btn ${currentChartMetric === 'equity' ? 'active' : ''}" onclick="switchMetric('equity', event)">Equity</button>
+                    <button type="button" id="toggle-loan" class="chart-toggle-btn ${currentChartMetric === 'loan' ? 'active' : ''}" onclick="switchMetric('loan', event)">Loan</button>
+                    <button type="button" id="toggle-count" class="chart-toggle-btn ${currentChartMetric === 'count' ? 'active' : ''}" onclick="switchMetric('count', event)">건수</button>
+                  </div>
+                </div>
+                <div class="history-chart-control">
+                  <span>스택</span>
+                  <div class="chart-toggle-group">
+                    <button type="button" id="toggle-region" class="chart-toggle-btn ${currentChartBreakdown === 'region' ? 'active' : ''}" onclick="switchChartBreakdown('region', event)">국내/해외</button>
+                    <button type="button" id="toggle-portfolio" class="chart-toggle-btn ${currentChartBreakdown === 'portfolio' ? 'active' : ''}" onclick="switchChartBreakdown('portfolio', event)" title="기초자산 구성">포트폴리오</button>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <div id="mainGrowthChart" style="min-height:450px; margin-bottom:60px;"></div>
 
@@ -169,6 +186,27 @@ function isMobileAnalyticsView() {
     return window.matchMedia && window.matchMedia('(max-width: 760px)').matches;
 }
 
+function getAnalysisSnapshotDateText() {
+    const dates = (window.allFunds || [])
+        .map(fund => cleanAssetText(fund?.aum_base_date || fund?.metadata?.aum_base_date))
+        .filter(value => /^\d{4}-\d{2}-\d{2}$/.test(value))
+        .sort();
+    return dates.length ? dates[dates.length - 1] : '2026-04-30';
+}
+
+function getAnalysisSnapshotDate() {
+    return new Date(`${getAnalysisSnapshotDateText()}T00:00:00`);
+}
+
+function getAnalysisSnapshotDateLabel() {
+    return getAnalysisSnapshotDateText().replace(/-/g, '.');
+}
+
+function getAnalysisSnapshotMonthDayLabel() {
+    const date = getAnalysisSnapshotDate();
+    return `${date.getMonth() + 1}.${String(date.getDate()).padStart(2, '0')}`;
+}
+
 function escapeAnalysisHtml(value) {
     return String(value ?? '')
         .replace(/&/g, '&amp;')
@@ -199,13 +237,13 @@ function renderMobileAnalytics(context) {
 
     resultsContainer.innerHTML = `
       <div class="mobile-analysis-shell">
-        <section class="mobile-analysis-card">
+        <section class="mobile-analysis-card mobile-analysis-snapshot">
           <div class="mobile-analysis-card-head">
             <div>
               <span class="mobile-analysis-kicker">${scopeLabel}</span>
               <h3>Portfolio Snapshot</h3>
             </div>
-            <span class="mobile-analysis-date">2026.04.30 기준</span>
+            <span class="mobile-analysis-date">${getAnalysisSnapshotDateLabel()} 기준</span>
           </div>
           <div class="mobile-analysis-main-value">${formatNumber(context.totalAum)}</div>
           <div class="mobile-analysis-main-label">현재 운용 AUM (${context.aumConfig.label})</div>
@@ -213,7 +251,7 @@ function renderMobileAnalytics(context) {
             ${renderMobileMetric('Equity', formatNumber(context.totalEquity))}
             ${renderMobileMetric('Loan', formatNumber(context.totalLoan))}
             ${renderMobileMetric('기타', formatNumber(context.totalOther))}
-            ${renderMobileMetric('기초자산', `${context.activeAssetRecords.length.toLocaleString()}개`)}
+            ${renderMobileMetric('AUM 실물자산', `${context.activeAssetRecords.length.toLocaleString()}개`)}
           </div>
           <div class="mobile-analysis-split">
             <span>국내 ${context.domesticAssetsCount.toLocaleString()}개</span>
@@ -313,12 +351,12 @@ function buildMobileAumCategories() {
 }
 
 function getMobileSnapshotDate(label) {
-    if (label === '2026 (Actual)') return new Date('2026-04-30');
+    if (label === '2026 (Actual)') return getAnalysisSnapshotDate();
     return new Date(`${label}-12-31`);
 }
 
 function getMobileYearLabel(label) {
-    return label === '2026 (Actual)' ? '2026 YTD (4.30)' : label;
+    return label === '2026 (Actual)' ? `2026 YTD (${getAnalysisSnapshotMonthDayLabel()})` : label;
 }
 
 function buildMobileAumRows(targetFunds) {
@@ -380,7 +418,7 @@ function getMobileChangeItems(label) {
 
 function getMobileDateRange(label) {
     if (label === '2026 (Actual)') {
-        return { start: new Date('2026-01-01'), end: new Date('2026-04-30') };
+        return { start: new Date('2026-01-01'), end: getAnalysisSnapshotDate() };
     }
     const year = parseInt(label, 10);
     return { start: new Date(`${year}-01-01`), end: new Date(`${year}-12-31`) };
@@ -444,10 +482,53 @@ function renderMobileChangeLists(row) {
     `;
 }
 
-function switchMetric(metric) {
+function refreshHistoryChartView() {
+    const panel = document.getElementById('detailPanel');
+    const scrollTop = panel?.scrollTop || 0;
+
+    ['aum', 'equity', 'loan', 'count'].forEach(metric => {
+        document.getElementById(`toggle-${metric}`)?.classList.toggle('active', metric === currentChartMetric);
+    });
+    ['region', 'portfolio'].forEach(breakdown => {
+        document.getElementById(`toggle-${breakdown}`)?.classList.toggle('active', breakdown === currentChartBreakdown);
+    });
+
+    const subtitle = document.getElementById('historyChartSubtitle');
+    if (subtitle) {
+        subtitle.textContent = currentChartBreakdown === 'portfolio'
+            ? '기초자산 포트폴리오 스택'
+            : '국내·해외 스택';
+    }
+
+    const restoreScroll = () => {
+        if (panel) panel.scrollTop = scrollTop;
+    };
+    restoreScroll();
+
+    const renderResult = renderHistory('mainGrowthChart');
+    requestAnimationFrame(restoreScroll);
+    if (renderResult?.finally) {
+        renderResult.finally(() => {
+            restoreScroll();
+            requestAnimationFrame(restoreScroll);
+        });
+    }
+}
+
+function switchMetric(metric, event) {
+    event?.preventDefault();
+    if (!['aum', 'equity', 'loan', 'count'].includes(metric) || metric === currentChartMetric) return;
     currentChartMetric = metric;
     window.currentChartMetric = currentChartMetric;
-    renderAnalytics();
+    refreshHistoryChartView();
+}
+
+function switchChartBreakdown(breakdown, event) {
+    event?.preventDefault();
+    if (!['region', 'portfolio'].includes(breakdown) || breakdown === currentChartBreakdown) return;
+    currentChartBreakdown = breakdown;
+    window.currentChartBreakdown = currentChartBreakdown;
+    refreshHistoryChartView();
 }
 
 function toggleAumBasis() {
@@ -473,7 +554,9 @@ function renderNetChangeDetails(label) {
 
     let startDate, endDate, title;
     if (label === '2026 (Actual)') {
-        startDate = new Date('2026-01-01'); endDate = new Date('2026-04-30'); title = '2026년 누계(4월말)';
+        startDate = new Date('2026-01-01');
+        endDate = getAnalysisSnapshotDate();
+        title = `2026년 누계(${endDate.getMonth() + 1}월말)`;
     } else if (label === '2026 (Proj.)') {
         startDate = new Date('2026-05-01'); endDate = new Date('2026-12-31'); title = '2026년 잔여';
     } else {
@@ -532,8 +615,6 @@ function renderNetChangeDetails(label) {
         ${renderDrillSection('청산 펀드', '-', terminatedItems)}
     `;
     
-    // Scroll to drill panel
-    drillPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function renderNetGrowth(chartId) {
@@ -547,7 +628,7 @@ function renderNetGrowth(chartId) {
 
     const totals = categories.map(cat => {
         let snapshotDate;
-        if (cat === '2026 (Actual)') snapshotDate = new Date('2026-04-30');
+        if (cat === '2026 (Actual)') snapshotDate = getAnalysisSnapshotDate();
         else if (cat === '2026 (Proj.)') snapshotDate = new Date('2026-12-31');
         else snapshotDate = new Date(`${cat}-12-31`);
 
@@ -632,8 +713,147 @@ function renderNetGrowth(chartId) {
     const el = document.querySelector(`#${chartId}`);
     if (el) {
         el.innerHTML = '';
-        new ApexCharts(el, options).render();
+        return new ApexCharts(el, options).render();
     }
+
+    return null;
+}
+
+const HISTORY_PORTFOLIO_COLORS = {
+    '오피스': '#2997ff',
+    '주거': '#32d6a2',
+    '물류센터': '#f5b84b',
+    '리테일': '#ff7a7a',
+    '데이터센터': '#82afb9',
+    '특별자산': '#f58bc5',
+    '금융상품': '#58c4dd',
+    '호텔': '#c9d35f',
+    '인프라': '#d6945f',
+    'NPL': '#65a66a',
+    '기업주식': '#9e8bc7',
+    '미분류': '#737883',
+    '기타': '#b68cff'
+};
+
+function getHistoryStackColor(label, index) {
+    if (currentChartBreakdown === 'region') {
+        return { '국내': '#2997ff', '해외': '#32d6a2', '미분류': '#737883' }[label] || '#82afb9';
+    }
+    const fallback = ['#2997ff', '#32d6a2', '#f5b84b', '#ff7a7a', '#82afb9', '#b68cff', '#f58bc5', '#58c4dd'];
+    return HISTORY_PORTFOLIO_COLORS[label] || fallback[index % fallback.length];
+}
+
+function getHistorySemanticSource() {
+    if (typeof window.getCurrentAnalysisResult !== 'function') return null;
+    return window.getCurrentAnalysisResult({ countBasis: 'fund_code', ignoreKeys: ['operational_status'] });
+}
+
+function getSnapshotSemanticResult(activeFunds, semanticSource) {
+    if (!semanticSource) return null;
+    const activeIds = new Set((activeFunds || []).map(fund => fund.fund_id).filter(Boolean));
+    return {
+        facts: (semanticSource.facts || []).filter(fact => activeIds.has(fact.fundId)),
+        exposures: (semanticSource.exposures || []).filter(exposure => activeIds.has(exposure.fundId))
+    };
+}
+
+function buildHistoryAmountDistribution(activeFunds, semanticSource) {
+    const engine = window.PortfolioAnalysisEngine;
+    const column = getMetricColumn(currentChartMetric);
+    const values = new Map();
+
+    if (currentChartBreakdown === 'region') {
+        (activeFunds || []).forEach(fund => {
+            const label = isOverseasFund(fund) ? '해외' : '국내';
+            values.set(label, (values.get(label) || 0) + (getFundAmountWon(fund, column) / 1e12));
+        });
+        return values;
+    }
+
+    const snapshotResult = getSnapshotSemanticResult(activeFunds, semanticSource);
+
+    if (engine && snapshotResult && typeof engine.buildAumComposition === 'function') {
+        const composition = engine.buildAumComposition(snapshotResult, {
+            amountField: column,
+            amountGetter: fund => getFundAmountWon(fund, column)
+        });
+        (composition.distributions.base_asset_class || []).forEach(row => {
+            values.set(row.label, row.amount / 1e12);
+        });
+        return values;
+    }
+
+    (activeFunds || []).forEach(fund => {
+        const amount = getFundAmountWon(fund, column) / 1e12;
+        const labels = engine && typeof engine.normalizeAssetClasses === 'function'
+            ? engine.normalizeAssetClasses([getFieldValue(fund, 'base_asset_class'), fund?.asset_name])
+            : [getFieldValue(fund, 'base_asset_class') || '미분류'];
+        const normalized = labels.filter(Boolean);
+        const perLabel = normalized.length ? amount / normalized.length : amount;
+        (normalized.length ? normalized : ['미분류']).forEach(label => {
+            values.set(label, (values.get(label) || 0) + perLabel);
+        });
+    });
+    return values;
+}
+
+function getAssetPortfolioLabel(asset) {
+    const engine = window.PortfolioAnalysisEngine;
+    const metadata = asset?.metadata || {};
+    if (engine && typeof engine.normalizeAssetClasses === 'function') {
+        const labels = engine.normalizeAssetClasses([
+            asset?.asset_type,
+            metadata.asset_type,
+            metadata.base_asset_class,
+            metadata.investment_sector,
+            asset?.asset_name
+        ]);
+        return labels.find(label => label && label !== engine.UNKNOWN) || engine.UNKNOWN;
+    }
+    return asset?.asset_type || metadata.base_asset_class || '미분류';
+}
+
+function buildHistoryCountDistribution(activeFunds) {
+    const values = new Map();
+    getActiveAssetRecords(activeFunds).forEach(asset => {
+        let label;
+        if (currentChartBreakdown === 'region') {
+            label = isOverseasAssetRecord(asset) ? '해외' : (isDomesticAssetRecord(asset) ? '국내' : '미분류');
+        } else {
+            label = getAssetPortfolioLabel(asset);
+        }
+        values.set(label, (values.get(label) || 0) + 1);
+    });
+    return values;
+}
+
+function selectHistoryStackLabels(distributions) {
+    if (currentChartBreakdown === 'region') {
+        const labels = ['국내', '해외'];
+        if (distributions.some(values => (values.get('미분류') || 0) > 0)) labels.push('미분류');
+        return labels;
+    }
+
+    const totals = new Map();
+    distributions.forEach(values => values.forEach((value, label) => {
+        totals.set(label, (totals.get(label) || 0) + value);
+    }));
+    const ranked = Array.from(totals.entries())
+        .filter(entry => entry[1] > 0)
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'ko'))
+        .map(entry => entry[0]);
+    if (ranked.length <= 8) return ranked;
+    return ranked.filter(label => label !== '기타').slice(0, 7).concat('기타');
+}
+
+function historyStackValue(values, label, visibleLabels) {
+    if (currentChartBreakdown !== 'portfolio' || label !== '기타') return values.get(label) || 0;
+    const visible = new Set(visibleLabels.filter(item => item !== '기타'));
+    let total = 0;
+    values.forEach((value, key) => {
+        if (!visible.has(key)) total += value;
+    });
+    return total;
 }
 
 function renderHistory(chartId) {
@@ -644,48 +864,28 @@ function renderHistory(chartId) {
     for (let y = 2010; y <= 2025; y++) categories.push(y.toString());
     categories.push('2026 (Actual)', '2026 (Proj.)');
 
-    const domesticSeries = [];
-    const overseasSeries = [];
-    const otherSeries = [];
-
-    categories.forEach(cat => {
+    const semanticSource = getHistorySemanticSource();
+    const distributions = categories.map(cat => {
         let snap;
-        if (cat === '2026 (Actual)') snap = new Date('2026-04-30');
+        if (cat === '2026 (Actual)') snap = getAnalysisSnapshotDate();
         else if (cat === '2026 (Proj.)') snap = new Date('2026-12-31');
         else snap = new Date(`${cat}-12-31`);
-
         const active = getSnapshotFunds(targetFunds, cat, snap);
-
-        const overseas = active.filter(isOverseasFund);
-        const domestic = active.filter(f => !isOverseasFund(f));
-
-        if (currentChartMetric === 'count') {
-            const activeAssets = getActiveAssetRecords(active);
-            const domesticAssets = activeAssets.filter(isDomesticAssetRecord);
-            const overseasAssets = activeAssets.filter(isOverseasAssetRecord);
-            domesticSeries.push(domesticAssets.length);
-            overseasSeries.push(overseasAssets.length);
-            otherSeries.push(Math.max(0, activeAssets.length - domesticAssets.length - overseasAssets.length));
-        } else {
-            const column = getMetricColumn(currentChartMetric);
-            domesticSeries.push(domestic.reduce((sum, f) => sum + getFundAmountWon(f, column), 0) / 1e12);
-            overseasSeries.push(overseas.reduce((sum, f) => sum + getFundAmountWon(f, column), 0) / 1e12);
-            otherSeries.push(0);
-        }
+        return currentChartMetric === 'count'
+            ? buildHistoryCountDistribution(active)
+            : buildHistoryAmountDistribution(active, semanticSource);
     });
 
-    const chartSeries = [
-        { name: '국내', data: domesticSeries },
-        { name: '해외', data: overseasSeries }
-    ];
-    if (currentChartMetric === 'count' && otherSeries.some(v => v > 0)) {
-        chartSeries.push({ name: '기타', data: otherSeries });
-    }
+    const stackLabels = selectHistoryStackLabels(distributions);
+    const chartSeries = stackLabels.map(label => ({
+        name: label,
+        data: distributions.map(values => historyStackValue(values, label, stackLabels))
+    }));
 
     const options = {
         series: chartSeries,
         chart: { type: 'bar', height: 450, stacked: true, toolbar: { show: false }, fontFamily: 'Pretendard Variable', foreColor: '#d7d2dc' },
-        colors: currentChartMetric === 'count' && chartSeries.length === 3 ? ['#fbf167', '#54bcd8', '#7f8a94'] : ['#fbf167', '#54bcd8'],
+        colors: stackLabels.map(getHistoryStackColor),
         plotOptions: {
             bar: {
                 columnWidth: '60%',
@@ -694,8 +894,12 @@ function renderHistory(chartId) {
                     total: {
                         enabled: true,
                         offsetY: -10,
-                        style: { fontSize: '12px', fontWeight: 900, colors: ['#f6f1e8'] },
-                        formatter: val => formatHistoryChartValue(val)
+                        style: { fontSize: '10px', fontWeight: 900, colors: ['#f6f1e8'] },
+                        formatter: (val, opts) => {
+                            const index = opts?.dataPointIndex;
+                            const isFinalPair = index >= categories.length - 2;
+                            return isFinalPair || index % 2 === 0 ? formatHistoryChartValue(val) : '';
+                        }
                     }
                 }
             }
@@ -717,8 +921,8 @@ function renderHistory(chartId) {
             intersect: false,
             custom: function ({ series, dataPointIndex, w }) {
                 const label = w.globals.labels[dataPointIndex] || w.globals.categoryLabels[dataPointIndex] || '';
-                const order = currentChartMetric === 'count' && series.length === 3 ? [2, 1, 0] : [1, 0];
-                const rows = order.map(idx => {
+                const order = Array.from({ length: series.length }, (_, index) => series.length - index - 1);
+                const rows = order.filter(idx => (series[idx][dataPointIndex] || 0) !== 0).map(idx => {
                     const name = w.globals.seriesNames[idx];
                     const value = series[idx][dataPointIndex] || 0;
                     const color = w.globals.colors[idx];
@@ -743,7 +947,7 @@ function renderHistory(chartId) {
                 `;
             }
         },
-        legend: { position: 'top', horizontalAlign: 'right', labels: { colors: '#f6f1e8' } }
+        legend: { position: 'top', horizontalAlign: 'right', fontSize: '11px', labels: { colors: '#f6f1e8' } }
     };
 
     const el = document.querySelector(`#${chartId}`);
@@ -942,15 +1146,11 @@ function applyFiltersAndShowList(page = 1) {
                 <span style="font-size:13px; opacity:0.8; margin-top:8px; display:block;">전체 데이터를 불러올 경우 시스템 속도가 저하될 수 있습니다.</span>
             </div>
         `;
-        drillPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
         return;
     }
 
     let filteredFunds = (typeof getFilteredData === 'function') ? getFilteredData() : (window.lastTargetFunds || []);
     
-    // Filter out liquidated (청산) funds to remove clutter, but keep development/pre-purchase/active funds
-    filteredFunds = filteredFunds.filter(f => getFundAumSourceStatus(f) !== '청산');
-
     drillPanel.style.display = 'block';
     if (page === 1) {
         drillPanel.innerHTML = '<div style="text-align:center; padding:40px; color:var(--muted);">검색 결과를 생성 중입니다...</div>';
@@ -960,7 +1160,7 @@ function applyFiltersAndShowList(page = 1) {
         drillPanel.innerHTML = `
             <div class="drill-title">조회 결과</div>
             <div style="padding:40px; text-align:center; background:var(--item); border-radius:8px; color:var(--muted);">
-                조건에 맞는 운용 중인 펀드가 없습니다. 필터를 조정해 보세요.
+                조건에 맞는 펀드 또는 투자기구가 없습니다. 필터를 조정해 보세요.
             </div>
         `;
         return;
@@ -1075,12 +1275,12 @@ function applyFiltersAndShowList(page = 1) {
         ${paginationHtml}
     `;
 
-    drillPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 window.applyFiltersAndShowList = applyFiltersAndShowList;
 window.renderAnalytics = renderAnalytics;
 window.switchMetric = switchMetric;
+window.switchChartBreakdown = switchChartBreakdown;
 window.switchScope = switchScope;
 window.toggleOrgScope = toggleOrgScope;
 window.toggleAumBasis = toggleAumBasis;

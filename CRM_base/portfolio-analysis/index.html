@@ -10,7 +10,7 @@
   </script>
   <title>IGIS RA Insight | RA부문 통합데이터 시스템</title>
   <link rel="stylesheet" href="../../shared/ifpdp-system-theme.css?v=ifpdp_system_3">
-  <link rel="stylesheet" href="style.css?v=beneficiary_vehicle_contrast_20260706a">
+  <link rel="stylesheet" href="style.css?v=viewport_stable_20260715h">
   <link rel="icon" href="data:,">
   <!-- Supabase & VWorld JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -101,7 +101,7 @@
       .meta-val { color: var(--text); font-weight: 700; }
     </style>
 </head>
-<body class="has-mobile-tabs">
+<body class="has-mobile-tabs analysis-view left-panel-collapsed">
     <div id="sideDrawerOverlay" class="side-drawer-overlay" onclick="closeDrawer()"></div>
     <div id="sideDrawer" class="side-drawer">
         <div class="drawer-nav" id="drawerNav">
@@ -112,29 +112,29 @@
         <div id="drawerContent" class="drawer-content"></div>
     </div>
 
+<nav class="view-toggle floating-view-toggle" aria-label="화면 모드 선택">
+  <button type="button" id="chartViewBtn" class="active">종합 분석</button>
+  <button type="button" id="listViewBtn">데이터 조회</button>
+</nav>
+
 <div class="main-layout container">
   <!-- Left Panel: Search & List -->
-  <div class="left-panel" id="leftPanel">
+  <div class="left-panel collapsed" id="leftPanel">
     <div class="header">
       <h1>IGIS RA Insight</h1>
       <p>RA부문 통합데이터 시스템</p>
-      <p class="data-source">Sources : 2026.4.30 IGIS업무시스템 기준.<br>(업무시스템에 업데이트되지 않은 정보는 실제와 다를 수 있습니다)</p>
-    </div>
-
-    <div class="view-toggle">
-      <button id="listViewBtn" class="active">데이터 조회</button>
-      <button id="chartViewBtn">종합 분석</button>
+      <p class="data-source">Sources: Supabase 통합 DB<br>(AUM 기준일은 최신 적재일을 자동 표시합니다)</p>
     </div>
 
     <!-- 데이터 조회용 컨트롤 그룹 -->
-    <div id="searchViewControls">
+    <div id="searchViewControls" style="display:none;">
       <div style="margin-bottom: 12px; display: flex; align-items: center;">
         <span style="font-size: 14px; font-weight: 800;">검색 및 조회</span>
         <button class="help-btn" onclick="showHelp('search')">?</button>
       </div>
       <div class="search-container">
         <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" placeholder="자산명, 펀드/코드, 프로젝트, 수익자/대주 검색..." autocomplete="off">
+        <input type="text" id="searchInput" placeholder="이름·코드 검색 또는 '국내 개발 오피스 펀드는 몇 개?'" autocomplete="off">
       </div>
 
       <div class="tabs">
@@ -146,7 +146,7 @@
     </div>
 
     <!-- 종합 분석용 컨트롤 그룹 -->
-    <div id="analysisViewControls" style="display:none;">
+    <div id="analysisViewControls">
       <div style="margin-bottom: 12px; display: flex; align-items: center;">
         <span style="font-size: 14px; font-weight: 800;">분석 필터</span>
         <button class="help-btn" onclick="showHelp('analysis')">?</button>
@@ -154,7 +154,7 @@
       <section class="mobile-analysis-notice" aria-live="polite">
         <p class="card-tag tag-project">Portfolio Analysis</p>
         <h2>모바일 종합 분석</h2>
-        <p>모바일에서는 핵심 표만 제공합니다. 2026년은 2026.04.30 현재 기준입니다.</p>
+        <p>모바일에서는 핵심 표만 제공합니다. 2026년 값은 최신 AUM 적재일 기준입니다.</p>
       </section>
       <div id="analysisControls" class="analysis-controls">
           <!-- 상세 필터 섹션 -->
@@ -179,13 +179,13 @@
     </div>
 
     <!-- 결과 리스트 영역 (조회용) -->
-    <div id="results" class="results-container">
+    <div id="results" class="results-container" style="display:none;">
       <div class="no-results">조회를 시작하세요.</div>
     </div>
   </div>
 
   <div id="leftPanelResizer" class="left-panel-resizer" role="separator" aria-orientation="vertical" aria-label="Resize search panel" tabindex="0">
-    <button id="leftPanelCollapseBtn" class="left-panel-collapse-btn" type="button" aria-label="Collapse search panel" aria-controls="leftPanel" aria-expanded="true" title="검색 패널 접기">&lt;</button>
+    <button id="leftPanelCollapseBtn" class="left-panel-collapse-btn" type="button" aria-label="Expand search panel" aria-controls="leftPanel" aria-expanded="false" title="검색 패널 펼치기">&gt;</button>
   </div>
 
   <!-- Right Panel: Dynamic Details -->
@@ -242,13 +242,15 @@
     try {
       const scripts = [
         "config.js",
-        "js/core.js",
+        "js/core.js?v=portfolio_layout_20260715d",
+        "js/portfolio-analysis-engine.js?v=portfolio_layout_20260715d",
         "js/asset-canonical.js?v=asset_detail_destination_20260610a",
-        "js/search-results.js?v=search_interpretation_20260615a",
+        "js/search-results.js?v=viewport_stable_20260715h",
         "js/detail-drawer.js?v=relationship_cluster_20260609d",
-        "js/analytics-dashboard.js?v=analysis_contrast_20260615a",
-        "js/portfolio-analysis.js",
-        "app.js?v=search_refinement_20260613a"
+        "js/analytics-dashboard.js?v=viewport_stable_20260715h",
+        "js/portfolio-analysis.js?v=viewport_stable_20260715h",
+        "js/portfolio-analysis-integration.js?v=viewport_stable_20260715j",
+        "app.js?v=portfolio_layout_20260715f"
       ];
 
       for (const src of scripts) {

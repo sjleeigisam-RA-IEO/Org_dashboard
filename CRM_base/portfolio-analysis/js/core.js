@@ -11,6 +11,7 @@ var currentTab = 'all';
 // Default AUM basis is the commitment-basis group from the AUM workbook.
 var currentAumBasis = 'benchmark_aum';
 var currentChartMetric = 'aum';
+var currentChartBreakdown = 'region';
 var currentOrgScope = 'all';
 var allResults = { lenders: [], beneficiaries: [], funds: [], assets: [], projects: [] };
 var globalSummary = { kpi: {}, lenders: [], beneficiaries: [], sectors: [], maturities: [] };
@@ -18,10 +19,12 @@ var fundSearchColumns = ['fund_name', 'fund_id', 'short_name'];
 var lastTargetFunds = [];
 var allFunds = [];
 var allFundAssets = [];
+var allAssetMaster = [];
+var allAssetFundLinks = [];
 var analysisFilters = {};
 var analysisView = 'year';
 var analysisMode = 'aum';
-var currentView = 'list';
+var currentView = 'ranking';
 var currentDrawerData = null;
 
 var AUM_METRIC_CONFIG = {
@@ -54,6 +57,8 @@ window.fundSearchColumns = fundSearchColumns;
 window.lastTargetFunds = lastTargetFunds;
 window.allFunds = allFunds;
 window.allFundAssets = allFundAssets;
+window.allAssetMaster = allAssetMaster;
+window.allAssetFundLinks = allAssetFundLinks;
 window.analysisFilters = analysisFilters;
 window.analysisView = analysisView;
 window.analysisMode = analysisMode;
@@ -62,6 +67,7 @@ window.currentDrawerData = currentDrawerData;
 window.AUM_METRIC_CONFIG = AUM_METRIC_CONFIG;
 window.currentAumBasis = currentAumBasis;
 window.currentChartMetric = currentChartMetric;
+window.currentChartBreakdown = currentChartBreakdown;
 
 var EXCLUDE_DEPTS = window.EXCLUDE_DEPTS || [
   '인프라전략',
@@ -306,7 +312,15 @@ async function ensureAllDataLoaded() {
     try {
       var responses = await Promise.all([
         fetchAllRows('v_funds_enriched', '*'),
-        fetchAllRows('fund_assets', '*')
+        fetchAllRows('fund_assets', '*'),
+        fetchAllRows('asset_master', '*').catch(function (error) {
+          console.warn('asset_master unavailable; falling back to fund_assets.', error);
+          return [];
+        }),
+        fetchAllRows('asset_fund_links', '*').catch(function (error) {
+          console.warn('asset_fund_links unavailable; falling back to fund_assets.', error);
+          return [];
+        })
       ]);
 
       allFunds = responses[0] || [];
@@ -326,8 +340,12 @@ async function ensureAllDataLoaded() {
       });
 
       allFundAssets = responses[1] || [];
+      allAssetMaster = responses[2] || [];
+      allAssetFundLinks = responses[3] || [];
       window.allFunds = allFunds;
       window.allFundAssets = allFundAssets;
+      window.allAssetMaster = allAssetMaster;
+      window.allAssetFundLinks = allAssetFundLinks;
 
       // 데이터 로딩 후 필터 목록 재생성 (리팩토링 후 필터 유실 방지)
       if (typeof window.initAnalysisFilters === 'function') {
@@ -338,7 +356,12 @@ async function ensureAllDataLoaded() {
     }
   }
 
-  return { funds: window.allFunds, assets: window.allFundAssets };
+  return {
+    funds: window.allFunds,
+    assets: window.allFundAssets,
+    assetMaster: window.allAssetMaster,
+    assetFundLinks: window.allAssetFundLinks
+  };
 }
 
 async function fetchAllRows(tableName, selectClause, pageSize) {

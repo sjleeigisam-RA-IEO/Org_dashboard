@@ -1891,22 +1891,6 @@ function bindUnifiedDetailRows(result) {
   return result;
 }
 
-function scrollDetailPanelIntoViewOnMobile() {
-  var panel = document.getElementById('detailPanel');
-  if (!panel || typeof window === 'undefined') return;
-  var isMobile = window.matchMedia
-    ? window.matchMedia('(max-width: 768px)').matches
-    : window.innerWidth <= 768;
-  if (!isMobile || !panel.scrollIntoView) return;
-  window.setTimeout(function () {
-    var top = panel.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0) - 8;
-    var scroller = document.scrollingElement || document.documentElement || document.body;
-    if (window.scrollTo) window.scrollTo({ top: top, behavior: 'auto' });
-    if (scroller) scroller.scrollTop = top;
-    if (document.body) document.body.scrollTop = top;
-  }, 40);
-}
-
 function openUnifiedSearchDetail(result) {
   var panel = document.getElementById('detailPanel');
   if (!panel || !result) return;
@@ -1937,7 +1921,6 @@ function openUnifiedSearchDetail(result) {
     ${unifiedDetailSectionHtml('lender', '연결 대주', cluster.entities.lenders)}
   `;
   bindUnifiedDetailRows(result);
-  scrollDetailPanelIntoViewOnMobile();
 }
 
 function groupEntities(list, type) {
