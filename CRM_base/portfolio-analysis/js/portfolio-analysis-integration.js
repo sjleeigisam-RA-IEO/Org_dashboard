@@ -430,7 +430,9 @@
   function applyAnalysisPreset(key, value) {
     if (!key || !value) return;
     var viewportState = getStableViewportState();
-    window.analysisFilters[key] = [value];
+    var values = (Array.isArray(value) ? value : [value]).map(Engine.clean).filter(Boolean);
+    if (!values.length) return;
+    window.analysisFilters[key] = Array.from(new Set(values));
     analysisFilters = window.analysisFilters;
     initSemanticAnalysisFilters();
     rerenderAnalysis(viewportState);
@@ -460,14 +462,27 @@
 
   function formatWonCompact(value) {
     var amount = Number(value || 0);
-    if (amount >= 1e12 && typeof window.formatNumber === 'function') return window.formatNumber(amount);
-    if (amount >= 1e12) {
-      var trillion = Math.floor((amount / 1e12) * 100) / 100;
-      return trillion.toLocaleString('ko-KR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '조';
-    }
-    if (amount >= 1e8) return (amount / 1e8).toLocaleString('ko-KR', { maximumFractionDigits: 1 }) + '억';
-    if (amount >= 1e4) return (amount / 1e4).toLocaleString('ko-KR', { maximumFractionDigits: 1 }) + '만';
-    return Math.round(amount).toLocaleString('ko-KR') + '원';
+    var trillion = Math.floor((amount / 1e12) * 100) / 100;
+    return trillion.toLocaleString('ko-KR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '조';
+  }
+
+  function mergeBaseAssetCompositionRows(rows) {
+    var merged = new Map();
+    (rows || []).forEach(function (row) {
+      var label = row.label === '기업주식' ? '기타' : row.label;
+      var current = merged.get(label) || { label: label, amount: 0, filterValues: [] };
+      current.amount += Number(row.amount || 0);
+      if (!current.filterValues.includes(row.label)) current.filterValues.push(row.label);
+      merged.set(label, current);
+    });
+    var total = Array.from(merged.values()).reduce(function (sum, row) { return sum + row.amount; }, 0);
+    return Array.from(merged.values()).map(function (row) {
+      return Object.assign(row, { ratio: total ? (row.amount / total) * 100 : 0 });
+    }).sort(function (a, b) {
+      if (a.label === '기타' && b.label !== '기타') return 1;
+      if (b.label === '기타' && a.label !== '기타') return -1;
+      return b.amount - a.amount || a.label.localeCompare(b.label, 'ko');
+    });
   }
 
   function compositionColor(key, label, index) {
@@ -495,6 +510,7 @@
     composition.metricLabel = typeof window.getAumMetricConfig === 'function'
       ? window.getAumMetricConfig(metric).shortLabel
       : (metric === 'invested_aum' ? '투입액' : '약정액');
+    composition.distributions.base_asset_class = mergeBaseAssetCompositionRows(composition.distributions.base_asset_class);
     return composition;
   }
 
@@ -520,7 +536,7 @@
       <div class="semantic-composition-bars">
         ${(rows || []).map(function (row, index) {
           return `
-            <button type="button" data-semantic-preset-key="${escapeHtml(key)}" data-semantic-preset-value="${escapeHtml(row.label)}">
+            <button type="button" data-semantic-preset-key="${escapeHtml(key)}" data-semantic-preset-value="${escapeHtml(row.label)}" data-semantic-preset-values="${escapeHtml((row.filterValues || [row.label]).join('|'))}">
               <span class="semantic-composition-bar-label"><b>${escapeHtml(row.label)}</b><em>${formatRatio(row.ratio)}</em></span>
               <span class="semantic-composition-bar-track"><i style="--composition-size:${Math.max(0, row.ratio)}%; --composition-color:${compositionColor(key, row.label, index)}"></i></span>
               <strong>${formatWonCompact(row.amount)}</strong>
@@ -620,7 +636,10 @@
     });
     root.querySelectorAll('[data-semantic-preset-key]').forEach(function (button) {
       button.addEventListener('click', function () {
-        applyAnalysisPreset(button.dataset.semanticPresetKey, button.dataset.semanticPresetValue);
+        var values = button.dataset.semanticPresetValues
+          ? button.dataset.semanticPresetValues.split('|').map(Engine.clean).filter(Boolean)
+          : button.dataset.semanticPresetValue;
+        applyAnalysisPreset(button.dataset.semanticPresetKey, values);
       });
     });
   }
