@@ -180,6 +180,19 @@
       return "매니저";
     }
 
+    function normalizeRoleLabel(rawRole) {
+      const clean = String(rawRole || "").trim().replace(/\s+/g, "");
+      if (clean.includes("부문대표")) return "부문대표";
+      if (clean.includes("부대표")) return "부대표";
+      if (clean.includes("그룹장")) return "그룹장";
+      if (clean.includes("센터장")) return "센터장";
+      if (clean.includes("파트장")) return "파트장";
+      if (clean === "담당" || clean.includes("담당디렉터") || clean.includes("디렉터")) return "담당";
+      if (clean === "리더") return "리더";
+      if (clean.includes("Sr.Manager") || clean.includes("Sr.매니저") || clean.includes("시니어")) return "Sr.매니저";
+      return "매니저";
+    }
+
     dataObj.sections.forEach(section => {
       section.groups.forEach(group => {
         if (group.parts) {
@@ -188,7 +201,10 @@
               part.teams.forEach(team => {
                 if (team.members) {
                   team.members.forEach(member => {
-                    member.role = normalizeRole(member.role);
+                    const sourceRole = member.role;
+                    member.roleLabel = member.roleLabel || normalizeRoleLabel(sourceRole);
+                    member.role = normalizeRole(sourceRole);
+                    member.tags = Array.isArray(member.tags) ? member.tags : [];
                   });
                 }
               });
@@ -276,6 +292,7 @@
 
   const ROLE_ORDER = ["디렉터", "그룹장", "파트장/센터장", "담당디렉터", "시니어매니저", "매니저"];
   const ROLE_FILTER_ORDER = ["그룹장", "파트장/센터장", "담당디렉터", "시니어매니저", "매니저"];
+  const ROLE_LABEL_ORDER = ["부문대표", "부대표", "그룹장", "파트장", "센터장", "담당", "리더", "Sr.매니저", "매니저"];
 
   const state = {
     activeSection: "all",
@@ -308,7 +325,7 @@
       .replaceAll("'", "&#39;");
 
   const fmt = (value) => new Intl.NumberFormat("ko-KR").format(value);
-  const ACTING_PART_LEADERS = new Set(["권진명", "임성훈"]);
+  const ACTING_PART_LEADERS = new Set(["임성훈"]);
   const NON_COUNTED_TF_MEMBERS = {
     "SS&C TF": new Set(["신호선", "신동열", "신민재", "윤우섭"]),
   };
@@ -717,13 +734,16 @@
                 return;
               }
 
-              const key = `${member.name}|${role}`;
+              const key = `${member.email || member.name}|${role}`;
 
               if (!rosterMap.has(key)) {
                 rosterMap.set(key, {
                   name: member.name,
+                  email: member.email || "",
                   rawName: member.rawName,
                   role,
+                  roleLabel: member.roleLabel || role,
+                  tags: Array.isArray(member.tags) ? member.tags : [],
                   paths: new Set(),
                 });
               }
@@ -774,21 +794,35 @@
   }
 
   function groupMembersByRole(members) {
-    return ROLE_ORDER
-      .map((role) => ({
+    const grouped = new Map();
+    members.forEach((member) => {
+      const roleLabel = member.roleLabel || member.displayRole || member.role;
+      if (!grouped.has(roleLabel)) grouped.set(roleLabel, []);
+      grouped.get(roleLabel).push(member);
+    });
+    return [...grouped.entries()]
+      .map(([role, roleMembers]) => ({
         role,
-        members: members
-          .filter((member) => member.displayRole === role)
-          .sort((a, b) => a.name.localeCompare(b.name, "ko-KR")),
+        members: roleMembers.sort((a, b) => a.name.localeCompare(b.name, "ko-KR")),
       }))
-      .filter((item) => item.members.length > 0);
+      .sort((a, b) => {
+        const aIndex = ROLE_LABEL_ORDER.indexOf(a.role);
+        const bIndex = ROLE_LABEL_ORDER.indexOf(b.role);
+        return (aIndex === -1 ? 999 : aIndex) - (bIndex === -1 ? 999 : bIndex);
+      });
   }
 
   function renderMember(member) {
-    const tags = member.tags
+    const tags = (Array.isArray(member.tags) ? member.tags : [])
       .map((tag) => {
         const className =
-          tag === "겸직" ? "shared" : tag === "대행" ? "acting" : "external";
+          tag === "겸직"
+            ? "shared"
+            : tag === "대행"
+              ? "acting"
+              : tag === "인턴"
+                ? "intern"
+                : "external";
         return `<span class="member-tag ${className}">${escapeHtml(tag)}</span>`;
       })
       .join("");
@@ -812,7 +846,8 @@
   function uniqueMembers(members) {
     const seen = new Set();
     return members.filter((member) => {
-      const key = `${member.name}|${member.role}`;
+      const identity = member.email || member.name;
+      const key = `${identity}|${member.role}|${member.roleLabel || ""}`;
       if (!member.name || seen.has(key)) {
         return false;
       }
@@ -850,11 +885,19 @@
     );
   }
 
+  function isActingMember(member) {
+    return Boolean(
+      member &&
+        ((Array.isArray(member.tags) && member.tags.includes("대행")) ||
+          ACTING_PART_LEADERS.has(member.name))
+    );
+  }
+
   function renderLeaderPill(label, member) {
     if (!member) {
       return "";
     }
-    const acting = ACTING_PART_LEADERS.has(member.name) && label.includes("파트장");
+    const acting = isActingMember(member) && label.includes("파트장");
     return `
       <div class="leader-pill">
         <span class="leader-label">${escapeHtml(label)}</span>
@@ -865,12 +908,12 @@
   }
 
   function getModalPersonName(item) {
-    const acting = item.role === "파트장/센터장" && ACTING_PART_LEADERS.has(item.name);
+    const acting = item.role === "파트장/센터장" && isActingMember(item);
     return `${item.name}${acting ? "(대행)" : ""}`;
   }
 
   function getModalPersonSubrole(item) {
-    if (item.role === "파트장/센터장" && ACTING_PART_LEADERS.has(item.name)) {
+    if (item.role === "파트장/센터장" && isActingMember(item)) {
       return "실직책: 시니어매니저";
     }
     return "";
@@ -1133,8 +1176,8 @@
                 return;
               }
 
-              const role = getDisplayRole(group.name, member);
-              const key = `${member.name}|${role}|${path}`;
+              const role = member.roleLabel || getDisplayRole(group.name, member);
+              const key = `${member.email || member.name}|${role}|${path}`;
               if (seen.has(key)) {
                 return;
               }
@@ -1174,6 +1217,7 @@
           .map((member) => ({
             ...member,
             displayRole: getDisplayRole(groupName || label, member),
+            roleLabel: member.roleLabel || getDisplayRole(groupName || label, member),
           }))
       );
       if (!unique.length) {
@@ -1264,7 +1308,14 @@
         .map((row) => {
           const tags = row.tags
             .map((tag) => {
-              const className = tag === "겸직" ? "shared" : tag === "대행" ? "acting" : "external";
+              const className =
+                tag === "겸직"
+                  ? "shared"
+                  : tag === "대행"
+                    ? "acting"
+                    : tag === "인턴"
+                      ? "intern"
+                      : "external";
               return `<span class="member-tag ${className}">${escapeHtml(tag)}</span>`;
             })
             .join("");
@@ -1291,7 +1342,7 @@
       ${visibleRecords
         .map((record) => {
           const leaderHtml = record.leader
-            ? `<div class="mobile-org-leader"><span>조직장</span><strong>${escapeHtml(record.leader.name)}</strong><em>${escapeHtml(record.leader.displayRole || record.leader.role)}</em></div>`
+            ? `<div class="mobile-org-leader"><span>조직장</span><strong>${escapeHtml(record.leader.name)}</strong><em>${escapeHtml(record.leader.roleLabel || record.leader.displayRole || record.leader.role)}</em></div>`
             : `<div class="mobile-org-leader is-empty"><span>조직장</span><strong>미지정</strong></div>`;
           const members = record.members
             .filter((member) => member.name !== record.leader?.name || member.role !== record.leader?.role)
@@ -1315,7 +1366,7 @@
                   .map((member) => `
                     <div class="mobile-org-member-row">
                       <span>${escapeHtml(member.name)}</span>
-                      <em>${escapeHtml(member.displayRole || member.role)}</em>
+                      <em>${escapeHtml(member.roleLabel || member.displayRole || member.role)}</em>
                     </div>
                   `)
                   .join("")}

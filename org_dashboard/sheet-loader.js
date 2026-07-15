@@ -3,7 +3,8 @@
   const CALLBACK_NAME = "__ORG_DASHBOARD_REMOTE_CALLBACK__";
   const localOrgData = window.ORG_DASHBOARD_DATA || null;
   const isLocalhost = /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
-  const REMOTE_CACHE_KEY = "org_dashboard_remote_payload_v2"; // 로컬 스토리지 캐시 버스팅을 위한 키 버전 갱신
+  const REMOTE_CACHE_KEY = "org_dashboard_remote_payload_v3"; // 로컬 스토리지 캐시 버스팅을 위한 키 버전 갱신
+  const preferStaticOrganizations = config.organizationSource === "static";
 
   function loadScript(src) {
     return new Promise((resolve, reject) => {
@@ -39,6 +40,20 @@
 
   function isValidPayload(payload) {
     return !!(payload && Array.isArray(payload.sections));
+  }
+
+  function composeDisplayPayload(remotePayload) {
+    if (!preferStaticOrganizations || !isValidPayload(localOrgData)) {
+      return remotePayload;
+    }
+    return {
+      ...localOrgData,
+      meta: {
+        ...(localOrgData.meta || {}),
+        seatLayoutGeneratedAt: remotePayload?.meta?.generatedAt || "",
+      },
+      seatLayout: remotePayload?.seatLayout || localOrgData.seatLayout || null,
+    };
   }
 
   function saveRemoteCache(payload) {
@@ -130,7 +145,16 @@
     let usedFallback = false;
     let fallbackGeneratedAt = null;
 
-    if (loadRemoteCache()) {
+    if (preferStaticOrganizations && localOrgData) {
+      const cachedPayload = loadRemoteCache();
+      await usePayload(
+        composeDisplayPayload(cachedPayload || {}),
+        cachedPayload ? "static+seat-cache" : "static",
+        "staff roster"
+      );
+      usedFallback = true;
+      fallbackGeneratedAt = localOrgData?.meta?.generatedAt;
+    } else if (loadRemoteCache()) {
       usedFallback = await loadCachedFallback("fast boot");
       fallbackGeneratedAt = loadRemoteCache()?.meta?.generatedAt;
     } else if (localOrgData) {
@@ -171,13 +195,16 @@
       }
 
       saveRemoteCache(payload);
-      const remoteGeneratedAt = payload?.meta?.generatedAt;
+      const displayPayload = composeDisplayPayload(payload);
+      const remoteGeneratedAt = displayPayload?.meta?.generatedAt;
 
       // 3. 만약 화면을 안 띄운 상태라면 바로 렌더링, 띄운 상태인데 데이터가 갱신되었다면 토스트 알림
       if (!usedFallback) {
-        await usePayload(payload, "remote", "live");
+        await usePayload(displayPayload, preferStaticOrganizations ? "static+remote-seat" : "remote", "live");
+      } else if (preferStaticOrganizations) {
+        await usePayload(displayPayload, "static+remote-seat", "live");
       } else if (remoteGeneratedAt && remoteGeneratedAt !== fallbackGeneratedAt) {
-        await usePayload(payload, "remote", "live");
+        await usePayload(displayPayload, "remote", "live");
       }
     } catch (error) {
       console.warn("[sheet-loader] Background sync failed:", error.message);

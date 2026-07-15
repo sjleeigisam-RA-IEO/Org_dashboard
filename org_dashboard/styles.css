@@ -343,7 +343,7 @@ select {
 
 .group-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
 }
 
@@ -582,6 +582,12 @@ select {
 .member-tag.external {
   background: rgba(122, 158, 126, 0.18);
   color: #466149;
+}
+
+.member-tag.intern {
+  border: 1px solid rgba(255, 199, 0, 0.34);
+  background: rgba(255, 199, 0, 0.12);
+  color: #ffd75a;
 }
 
 .empty-state {
@@ -1557,6 +1563,12 @@ select {
 
 /* ── Responsive ────────────────────────────────── */
 
+@media (max-width: 1200px) {
+  .group-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 1080px) {
   .hero,
   .controls,
@@ -1595,6 +1607,10 @@ select {
 }
 
 @media (max-width: 720px) {
+  .group-grid {
+    grid-template-columns: 1fr;
+  }
+
   .shell {
     width: min(100% - 20px, 1440px);
   }

@@ -1,18 +1,27 @@
 window.ORG_DASHBOARD_DATA = {
   "meta": {
-    "generatedAt": "2026-05-18 12:59:50",
-    "source": "google-sheets"
+    "sourceFile": "★리얼에셋부문 인력현황_260701기준.xlsx",
+    "sheetName": "구성원list",
+    "rosterAsOf": "2026-07-01",
+    "generatedAt": "2026-07-15T16:28:52+09:00",
+    "organizationSource": "staff-roster-static"
+  },
+  "summary": {
+    "uniquePeopleCount": 272,
+    "sectionCount": 5,
+    "groupCount": 22,
+    "teamCount": 49
   },
   "sections": [
     {
       "name": "투자+펀딩",
-      "assignmentCount": 99,
-      "uniquePeopleCount": 89,
+      "assignmentCount": 107,
+      "uniquePeopleCount": 95,
       "groups": [
         {
           "name": "투자1그룹",
-          "assignmentCount": 39,
-          "uniquePeopleCount": 35,
+          "assignmentCount": 41,
+          "uniquePeopleCount": 37,
           "parts": [
             {
               "name": "1파트",
@@ -20,151 +29,221 @@ window.ORG_DASHBOARD_DATA = {
               "uniquePeopleCount": 9,
               "teams": [
                 {
-                  "id": "unit-1",
+                  "id": "unit_51812c0046eb",
                   "section": "투자+펀딩",
                   "group": "투자1그룹",
                   "part": "1파트",
                   "team": "1파트",
                   "displayName": "1파트",
                   "path": "투자+펀딩 > 투자1그룹 > 1파트 > 1파트",
+                  "assignmentCount": 9,
+                  "uniquePeopleCount": 9,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "윤관식",
                       "name": "윤관식",
-                      "tags": []
+                      "email": "gwansik.yoon@igisam.com",
+                      "tags": [
+                        "겸직"
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "파트장",
                       "rawName": "홍봉석",
                       "name": "홍봉석",
-                      "tags": []
+                      "email": "bs.hong@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
-                      "rawName": "송기석",
-                      "name": "송기석",
-                      "tags": []
-                    },
-                    {
-                      "role": "시니어매니저",
-                      "rawName": "이강일",
-                      "name": "이강일",
-                      "tags": []
-                    },
-                    {
-                      "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "공석현",
                       "name": "공석현",
-                      "tags": []
+                      "email": "ksh0727@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
+                      "rawName": "송기석",
+                      "name": "송기석",
+                      "email": "ksong@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
+                      "rawName": "이강일",
+                      "name": "이강일",
+                      "email": "ki.lee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "강병옥",
                       "name": "강병옥",
-                      "tags": []
+                      "email": "jason.kang@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "신용우",
                       "name": "신용우",
-                      "tags": []
+                      "email": "yongwoo.shin@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "진정용",
                       "name": "진정용",
-                      "tags": []
+                      "email": "jyjin@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "황선필",
                       "name": "황선필",
-                      "tags": []
+                      "email": "wspil@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 9,
-                  "uniquePeopleCount": 9
+                  ]
                 }
               ]
             },
             {
               "name": "2파트",
-              "assignmentCount": 10,
-              "uniquePeopleCount": 10,
+              "assignmentCount": 11,
+              "uniquePeopleCount": 11,
               "teams": [
                 {
-                  "id": "unit-10",
+                  "id": "unit_86626436c986",
                   "section": "투자+펀딩",
                   "group": "투자1그룹",
                   "part": "2파트",
                   "team": "2파트",
                   "displayName": "2파트",
                   "path": "투자+펀딩 > 투자1그룹 > 2파트 > 2파트",
+                  "assignmentCount": 11,
+                  "uniquePeopleCount": 11,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "윤관식",
                       "name": "윤관식",
-                      "tags": []
+                      "email": "gwansik.yoon@igisam.com",
+                      "tags": [
+                        "겸직"
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "파트장",
                       "rawName": "문준식",
                       "name": "문준식",
-                      "tags": []
+                      "email": "jun.moon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
-                      "rawName": "전형진B",
-                      "name": "전형진B",
-                      "tags": []
-                    },
-                    {
-                      "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "장민호",
                       "name": "장민호",
-                      "tags": []
+                      "email": "mhjang@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
+                      "rawName": "전형진B",
+                      "name": "전형진B",
+                      "email": "hjjeon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "정재각",
                       "name": "정재각",
-                      "tags": []
+                      "email": "jkjeong@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "김연우",
                       "name": "김연우",
-                      "tags": []
+                      "email": "kyw240@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "김용준",
                       "name": "김용준",
-                      "tags": []
+                      "email": "yjoonkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "김휘수",
                       "name": "김휘수",
-                      "tags": []
+                      "email": "hskim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "박정수",
                       "name": "박정수",
-                      "tags": []
+                      "email": "jspark@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "안지원",
+                      "name": "안지원",
+                      "email": "jw.ahn@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "이춘호",
                       "name": "이춘호",
-                      "tags": []
+                      "email": "choonholee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 10,
-                  "uniquePeopleCount": 10
+                  ]
                 }
               ]
             },
@@ -174,159 +253,234 @@ window.ORG_DASHBOARD_DATA = {
               "uniquePeopleCount": 8,
               "teams": [
                 {
-                  "id": "unit-20",
+                  "id": "unit_c7db31c6a65b",
                   "section": "투자+펀딩",
                   "group": "투자1그룹",
                   "part": "3파트",
                   "team": "3파트",
                   "displayName": "3파트",
                   "path": "투자+펀딩 > 투자1그룹 > 3파트 > 3파트",
+                  "assignmentCount": 8,
+                  "uniquePeopleCount": 8,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "윤관식",
                       "name": "윤관식",
-                      "tags": []
+                      "email": "gwansik.yoon@igisam.com",
+                      "tags": [
+                        "겸직"
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "파트장",
                       "rawName": "안지하",
                       "name": "안지하",
-                      "tags": []
+                      "email": "jiha.ahn@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "김태헌",
                       "name": "김태헌",
-                      "tags": []
+                      "email": "tkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "경규명",
                       "name": "경규명",
-                      "tags": []
+                      "email": "gm.gyeong@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "김동준",
                       "name": "김동준",
-                      "tags": []
+                      "email": "kdj5784@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "이준기",
                       "name": "이준기",
-                      "tags": []
+                      "email": "jungi.lee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "정현민",
                       "name": "정현민",
-                      "tags": []
+                      "email": "hyunmin.jung@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "황준식",
                       "name": "황준식",
-                      "tags": []
+                      "email": "junsik.hwang@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 8,
-                  "uniquePeopleCount": 8
+                  ]
                 }
               ]
             },
             {
               "name": "4파트",
-              "assignmentCount": 12,
-              "uniquePeopleCount": 11,
+              "assignmentCount": 13,
+              "uniquePeopleCount": 12,
               "teams": [
                 {
-                  "id": "unit-28",
+                  "id": "unit_86f14394cf5f",
                   "section": "투자+펀딩",
                   "group": "투자1그룹",
                   "part": "4파트",
                   "team": "4파트",
                   "displayName": "4파트",
                   "path": "투자+펀딩 > 투자1그룹 > 4파트 > 4파트",
+                  "assignmentCount": 13,
+                  "uniquePeopleCount": 12,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "윤관식",
                       "name": "윤관식",
-                      "tags": []
+                      "email": "gwansik.yoon@igisam.com",
+                      "tags": [
+                        "겸직"
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
                       "role": "파트장/센터장",
-                      "rawName": "윤관식(겸)",
+                      "roleLabel": "파트장",
+                      "rawName": "윤관식",
                       "name": "윤관식",
+                      "email": "gwansik.yoon@igisam.com",
                       "tags": [
                         "겸직"
-                      ]
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "윤재진",
                       "name": "윤재진",
-                      "tags": []
+                      "email": "double0507@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "조청원",
                       "name": "조청원",
-                      "tags": []
+                      "email": "cwcho@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "하승훈",
                       "name": "하승훈",
-                      "tags": []
+                      "email": "hshpixy@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "이하영",
-                      "name": "이하영",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "최정택",
-                      "name": "최정택",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "한상후",
-                      "name": "한상후",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "김찬솔",
                       "name": "김찬솔",
-                      "tags": []
+                      "email": "cskim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "유민종",
-                      "name": "유민종",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "이주영",
-                      "name": "이주영",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "박수민",
                       "name": "박수민",
-                      "tags": []
+                      "email": "suminp@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "유민종",
+                      "name": "유민종",
+                      "email": "minz@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이주영",
+                      "name": "이주영",
+                      "email": "jy3142@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이하영",
+                      "name": "이하영",
+                      "email": "hayoung.lee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "최정택",
+                      "name": "최정택",
+                      "email": "choijt@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "한상후",
+                      "name": "한상후",
+                      "email": "sh.han@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "한주현",
+                      "name": "한주현",
+                      "email": "juhyeon.han@igisam.com",
+                      "tags": [
+                        "인턴"
+                      ],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 12,
-                  "uniquePeopleCount": 11
+                  ]
                 }
               ]
             }
@@ -343,77 +497,107 @@ window.ORG_DASHBOARD_DATA = {
               "uniquePeopleCount": 10,
               "teams": [
                 {
-                  "id": "unit-40",
+                  "id": "unit_5f05a671c475",
                   "section": "투자+펀딩",
                   "group": "투자2그룹",
                   "part": "1파트",
                   "team": "1파트",
                   "displayName": "1파트",
                   "path": "투자+펀딩 > 투자2그룹 > 1파트 > 1파트",
+                  "assignmentCount": 10,
+                  "uniquePeopleCount": 10,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "윤우섭",
                       "name": "윤우섭",
-                      "tags": []
+                      "email": "wsyoon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "파트장",
                       "rawName": "양준모",
                       "name": "양준모",
-                      "tags": []
+                      "email": "brian.yang@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
+                      "rawName": "김민석A",
+                      "name": "김민석A",
+                      "email": "minseok.kim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "최성지",
                       "name": "최성지",
-                      "tags": []
-                    },
-                    {
-                      "role": "시니어매니저",
-                      "rawName": "김민석",
-                      "name": "김민석",
-                      "tags": []
+                      "email": "lauren.choi@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "원세훈",
-                      "name": "원세훈",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "윤현식",
-                      "name": "윤현식",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "이정은",
-                      "name": "이정은",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "이승철",
-                      "name": "이승철",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "이경형",
-                      "name": "이경형",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "김민기",
                       "name": "김민기",
-                      "tags": []
+                      "email": "mgkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "원세훈",
+                      "name": "원세훈",
+                      "email": "sweon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "윤현식",
+                      "name": "윤현식",
+                      "email": "hyunsik.yoon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이경형",
+                      "name": "이경형",
+                      "email": "kh.lee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이승철",
+                      "name": "이승철",
+                      "email": "sc.lee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이정은",
+                      "name": "이정은",
+                      "email": "jelee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 10,
-                  "uniquePeopleCount": 10
+                  ]
                 }
               ]
             }
@@ -421,112 +605,176 @@ window.ORG_DASHBOARD_DATA = {
         },
         {
           "name": "투자3그룹",
-          "assignmentCount": 14,
-          "uniquePeopleCount": 13,
+          "assignmentCount": 16,
+          "uniquePeopleCount": 15,
           "parts": [
             {
               "name": "1파트",
-              "assignmentCount": 14,
-              "uniquePeopleCount": 13,
+              "assignmentCount": 16,
+              "uniquePeopleCount": 15,
               "teams": [
                 {
-                  "id": "unit-50",
+                  "id": "unit_2fd85c405606",
                   "section": "투자+펀딩",
                   "group": "투자3그룹",
                   "part": "1파트",
                   "team": "1파트",
                   "displayName": "1파트",
                   "path": "투자+펀딩 > 투자3그룹 > 1파트 > 1파트",
+                  "assignmentCount": 16,
+                  "uniquePeopleCount": 15,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "임상훈",
                       "name": "임상훈",
-                      "tags": []
+                      "email": "shlim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
-                      "rawName": "임상훈(겸)",
+                      "roleLabel": "파트장",
+                      "rawName": "임상훈",
                       "name": "임상훈",
+                      "email": "shlim@igisam.com",
                       "tags": [
                         "겸직"
-                      ]
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "김호진",
                       "name": "김호진",
-                      "tags": []
+                      "email": "khj179@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "시니어매니저",
-                      "rawName": "유선준",
-                      "name": "유선준",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "이상기",
-                      "name": "이상기",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "문성흠",
-                      "name": "문성흠",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "강수원",
-                      "name": "강수원",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "김진희",
-                      "name": "김진희",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "정지웅",
-                      "name": "정지웅",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "이예진(휴직)",
-                      "name": "이예진(휴직)",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "심동민",
-                      "name": "심동민",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "곽호용",
-                      "name": "곽호용",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "유한나",
-                      "name": "유한나",
-                      "tags": []
-                    },
-                    {
-                      "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "송상민",
                       "name": "송상민",
-                      "tags": []
+                      "email": "sgtsongsm@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
+                      "rawName": "유선준",
+                      "name": "유선준",
+                      "email": "sunjoon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "강수원",
+                      "name": "강수원",
+                      "email": "soowon.kang@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "곽호용",
+                      "name": "곽호용",
+                      "email": "kwak@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "김진희",
+                      "name": "김진희",
+                      "email": "jinny@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "문성흠",
+                      "name": "문성흠",
+                      "email": "akuma9404@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "심동민",
+                      "name": "심동민",
+                      "email": "dm.shim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "유한나",
+                      "name": "유한나",
+                      "email": "hanna.yoo@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이상기",
+                      "name": "이상기",
+                      "email": "leesangki@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이예진",
+                      "name": "이예진",
+                      "email": "yj.lee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이준수A",
+                      "name": "이준수A",
+                      "email": "junsu.lee@igisam.com",
+                      "tags": [
+                        "인턴"
+                      ],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "정나엘",
+                      "name": "정나엘",
+                      "email": "nael.jeong@igisam.com",
+                      "tags": [
+                        "인턴"
+                      ],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "정지웅",
+                      "name": "정지웅",
+                      "email": "jaychung@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 14,
-                  "uniquePeopleCount": 13
+                  ]
                 }
               ]
             }
@@ -534,80 +782,116 @@ window.ORG_DASHBOARD_DATA = {
         },
         {
           "name": "글로벌투자그룹",
-          "assignmentCount": 15,
-          "uniquePeopleCount": 14,
+          "assignmentCount": 16,
+          "uniquePeopleCount": 15,
           "parts": [
             {
               "name": "1파트",
-              "assignmentCount": 9,
-              "uniquePeopleCount": 9,
+              "assignmentCount": 10,
+              "uniquePeopleCount": 10,
               "teams": [
                 {
-                  "id": "unit-64",
+                  "id": "unit_b9b0f4fc7f08",
                   "section": "투자+펀딩",
                   "group": "글로벌투자그룹",
                   "part": "1파트",
                   "team": "1파트",
                   "displayName": "1파트",
                   "path": "투자+펀딩 > 글로벌투자그룹 > 1파트 > 1파트",
+                  "assignmentCount": 10,
+                  "uniquePeopleCount": 10,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "윤정규",
                       "name": "윤정규",
-                      "tags": []
+                      "email": "robert.yoon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "파트장",
                       "rawName": "남형록",
                       "name": "남형록",
-                      "tags": []
+                      "email": "hrnam@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "오명균",
                       "name": "오명균",
-                      "tags": []
+                      "email": "david.oh@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "김동진",
                       "name": "김동진",
-                      "tags": []
+                      "email": "dongjin.kim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "김명준",
                       "name": "김명준",
-                      "tags": []
+                      "email": "myungjun.kim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "김회창",
                       "name": "김회창",
-                      "tags": []
+                      "email": "luckyhc@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "안재욱",
                       "name": "안재욱",
-                      "tags": []
+                      "email": "james.ann@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "이나우",
                       "name": "이나우",
-                      "tags": []
+                      "email": "nawoo.lee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이영택",
+                      "name": "이영택",
+                      "email": "youngtaiklee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "조진욱",
                       "name": "조진욱",
-                      "tags": []
+                      "email": "jin.cho@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 9,
-                  "uniquePeopleCount": 9
+                  ]
                 }
               ]
             },
@@ -617,53 +901,71 @@ window.ORG_DASHBOARD_DATA = {
               "uniquePeopleCount": 6,
               "teams": [
                 {
-                  "id": "unit-73",
+                  "id": "unit_ab1932f2a942",
                   "section": "투자+펀딩",
                   "group": "글로벌투자그룹",
                   "part": "2파트",
                   "team": "2파트",
                   "displayName": "2파트",
                   "path": "투자+펀딩 > 글로벌투자그룹 > 2파트 > 2파트",
+                  "assignmentCount": 6,
+                  "uniquePeopleCount": 6,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "윤정규",
                       "name": "윤정규",
-                      "tags": []
+                      "email": "robert.yoon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "파트장",
                       "rawName": "김주일",
                       "name": "김주일",
-                      "tags": []
+                      "email": "jooil.kim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "안성기",
                       "name": "안성기",
-                      "tags": []
+                      "email": "askpride@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "이승국",
                       "name": "이승국",
-                      "tags": []
+                      "email": "seungkook.lee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "이승훈",
-                      "name": "이승훈",
-                      "tags": []
+                      "roleLabel": "매니저",
+                      "rawName": "이승훈B",
+                      "name": "이승훈B",
+                      "email": "hoon.lee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "주현도",
                       "name": "주현도",
-                      "tags": []
+                      "email": "joohyundo@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 6,
-                  "uniquePeopleCount": 6
+                  ]
                 }
               ]
             }
@@ -671,8 +973,8 @@ window.ORG_DASHBOARD_DATA = {
         },
         {
           "name": "스페셜시츄에이션그룹",
-          "assignmentCount": 21,
-          "uniquePeopleCount": 17,
+          "assignmentCount": 23,
+          "uniquePeopleCount": 18,
           "parts": [
             {
               "name": "1파트",
@@ -680,79 +982,109 @@ window.ORG_DASHBOARD_DATA = {
               "uniquePeopleCount": 9,
               "teams": [
                 {
-                  "id": "unit-79",
+                  "id": "unit_37986657af7c",
                   "section": "투자+펀딩",
                   "group": "스페셜시츄에이션그룹",
                   "part": "1파트",
                   "team": "1파트",
                   "displayName": "1파트",
                   "path": "투자+펀딩 > 스페셜시츄에이션그룹 > 1파트 > 1파트",
+                  "assignmentCount": 10,
+                  "uniquePeopleCount": 9,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "오윤석",
                       "name": "오윤석",
-                      "tags": []
+                      "email": "ysoh@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
-                      "rawName": "오윤석(겸)",
+                      "roleLabel": "파트장",
+                      "rawName": "오윤석",
                       "name": "오윤석",
+                      "email": "ysoh@igisam.com",
                       "tags": [
                         "겸직"
-                      ]
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "이승준",
                       "name": "이승준",
-                      "tags": []
+                      "email": "sjoon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "한창형",
                       "name": "한창형",
-                      "tags": []
+                      "email": "chhan@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "이민호",
-                      "name": "이민호",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "하승균",
-                      "name": "하승균",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "김대선",
                       "name": "김대선",
-                      "tags": []
+                      "email": "dskim29@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "류지훈",
                       "name": "류지훈",
-                      "tags": []
+                      "email": "jh.ryu@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "양우영",
                       "name": "양우영",
-                      "tags": []
+                      "email": "uyeong.yang@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이민호",
+                      "name": "이민호",
+                      "email": "mhlee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "전서진",
                       "name": "전서진",
-                      "tags": []
+                      "email": "seojin.jeon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "하승균",
+                      "name": "하승균",
+                      "email": "sg.ha@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 10,
-                  "uniquePeopleCount": 9
+                  ]
                 }
               ]
             },
@@ -762,47 +1094,100 @@ window.ORG_DASHBOARD_DATA = {
               "uniquePeopleCount": 5,
               "teams": [
                 {
-                  "id": "unit-89",
+                  "id": "unit_d2158c5ca46d",
                   "section": "투자+펀딩",
                   "group": "스페셜시츄에이션그룹",
                   "part": "2파트",
                   "team": "2파트",
                   "displayName": "2파트",
                   "path": "투자+펀딩 > 스페셜시츄에이션그룹 > 2파트 > 2파트",
+                  "assignmentCount": 5,
+                  "uniquePeopleCount": 5,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "오윤석",
                       "name": "오윤석",
-                      "tags": []
+                      "email": "ysoh@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "파트장",
                       "rawName": "황재현",
                       "name": "황재현",
-                      "tags": []
+                      "email": "jhhwang@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "오상윤",
-                      "name": "오상윤",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "구본혁",
                       "name": "구본혁",
-                      "tags": []
+                      "email": "bhkoo@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "오상윤",
+                      "name": "오상윤",
+                      "email": "syoh@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "최승봉",
                       "name": "최승봉",
-                      "tags": []
+                      "email": "bong.jour@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 5,
-                  "uniquePeopleCount": 5
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "미지정",
+              "assignmentCount": 2,
+              "uniquePeopleCount": 2,
+              "teams": [
+                {
+                  "id": "unit_97b387aa8241",
+                  "section": "투자+펀딩",
+                  "group": "스페셜시츄에이션그룹",
+                  "part": "미지정",
+                  "team": "스페셜시츄에이션그룹",
+                  "displayName": "스페셜시츄에이션그룹",
+                  "path": "투자+펀딩 > 스페셜시츄에이션그룹 > 미지정 > 스페셜시츄에이션그룹",
+                  "assignmentCount": 2,
+                  "uniquePeopleCount": 2,
+                  "members": [
+                    {
+                      "role": "그룹장",
+                      "roleLabel": "그룹장",
+                      "rawName": "오윤석",
+                      "name": "오윤석",
+                      "email": "ysoh@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "김동진A",
+                      "name": "김동진A",
+                      "email": "djkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    }
+                  ]
                 }
               ]
             },
@@ -812,35 +1197,44 @@ window.ORG_DASHBOARD_DATA = {
               "uniquePeopleCount": 3,
               "teams": [
                 {
-                  "id": "unit-94",
+                  "id": "unit_257a6958efe7",
                   "section": "투자+펀딩",
                   "group": "스페셜시츄에이션그룹",
                   "part": "자산관리",
                   "team": "자산관리",
                   "displayName": "자산관리",
                   "path": "투자+펀딩 > 스페셜시츄에이션그룹 > 자산관리 > 자산관리",
+                  "assignmentCount": 3,
+                  "uniquePeopleCount": 3,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "오윤석",
                       "name": "오윤석",
-                      "tags": []
+                      "email": "ysoh@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "조광현",
                       "name": "조광현",
-                      "tags": []
+                      "email": "khcho@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "김재동",
                       "name": "김재동",
-                      "tags": []
+                      "email": "kimjd@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 3,
-                  "uniquePeopleCount": 3
+                  ]
                 }
               ]
             },
@@ -850,35 +1244,80 @@ window.ORG_DASHBOARD_DATA = {
               "uniquePeopleCount": 3,
               "teams": [
                 {
-                  "id": "unit-97",
+                  "id": "unit_940ae842f666",
                   "section": "투자+펀딩",
                   "group": "스페셜시츄에이션그룹",
                   "part": "포트폴리오 / 관리",
                   "team": "포트폴리오 / 관리",
                   "displayName": "포트폴리오 / 관리",
                   "path": "투자+펀딩 > 스페셜시츄에이션그룹 > 포트폴리오 / 관리 > 포트폴리오 / 관리",
+                  "assignmentCount": 3,
+                  "uniquePeopleCount": 3,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "오윤석",
                       "name": "오윤석",
-                      "tags": []
+                      "email": "ysoh@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "리더",
                       "rawName": "한수진",
                       "name": "한수진",
-                      "tags": []
+                      "email": "sujin.han@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "박유진",
                       "name": "박유진",
-                      "tags": []
+                      "email": "yujin@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 3,
-                  "uniquePeopleCount": 3
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "투자&펀딩",
+          "assignmentCount": 1,
+          "uniquePeopleCount": 1,
+          "parts": [
+            {
+              "name": "미지정",
+              "assignmentCount": 1,
+              "uniquePeopleCount": 1,
+              "teams": [
+                {
+                  "id": "unit_b1f296b06894",
+                  "section": "투자+펀딩",
+                  "group": "투자&펀딩",
+                  "part": "미지정",
+                  "team": "투자&펀딩",
+                  "displayName": "투자&펀딩",
+                  "path": "투자+펀딩 > 투자&펀딩 > 미지정 > 투자&펀딩",
+                  "assignmentCount": 1,
+                  "uniquePeopleCount": 1,
+                  "members": [
+                    {
+                      "role": "담당디렉터",
+                      "roleLabel": "부대표",
+                      "rawName": "윤관식",
+                      "name": "윤관식",
+                      "email": "gwansik.yoon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    }
+                  ]
                 }
               ]
             }
@@ -888,161 +1327,213 @@ window.ORG_DASHBOARD_DATA = {
     },
     {
       "name": "사업+개발",
-      "assignmentCount": 66,
-      "uniquePeopleCount": 60,
+      "assignmentCount": 65,
+      "uniquePeopleCount": 59,
       "groups": [
         {
           "name": "사업그룹",
-          "assignmentCount": 43,
-          "uniquePeopleCount": 39,
+          "assignmentCount": 42,
+          "uniquePeopleCount": 38,
           "parts": [
             {
               "name": "1파트",
-              "assignmentCount": 9,
-              "uniquePeopleCount": 9,
+              "assignmentCount": 10,
+              "uniquePeopleCount": 10,
               "teams": [
                 {
-                  "id": "unit-100",
+                  "id": "unit_2f3c61256b4d",
                   "section": "사업+개발",
                   "group": "사업그룹",
                   "part": "1파트",
                   "team": "1파트",
                   "displayName": "1파트",
                   "path": "사업+개발 > 사업그룹 > 1파트 > 1파트",
+                  "assignmentCount": 10,
+                  "uniquePeopleCount": 10,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "우형석",
                       "name": "우형석",
-                      "tags": []
+                      "email": "hyungsuk.woo@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
-                      "rawName": "권순일(겸)",
+                      "roleLabel": "파트장",
+                      "rawName": "권순일",
                       "name": "권순일",
-                      "tags": [
-                        "겸직"
-                      ]
+                      "email": "ksoonil@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "윤주형",
                       "name": "윤주형",
-                      "tags": []
+                      "email": "jh.yoon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "김제익",
                       "name": "김제익",
-                      "tags": []
+                      "email": "jake.kim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "박일훈",
-                      "name": "박일훈",
-                      "tags": []
+                      "roleLabel": "매니저",
+                      "rawName": "김주희",
+                      "name": "김주희",
+                      "email": "juheekim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "전무경",
-                      "name": "전무경",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "류홍",
                       "name": "류홍",
-                      "tags": []
+                      "email": "ryuhong0526@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "박만진",
                       "name": "박만진",
-                      "tags": []
+                      "email": "jacob.park@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "김주희(휴직)",
-                      "name": "김주희(휴직)",
-                      "tags": []
+                      "roleLabel": "매니저",
+                      "rawName": "박일훈",
+                      "name": "박일훈",
+                      "email": "ilhoon.park@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이정원",
+                      "name": "이정원",
+                      "email": "garden.lee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "전무경",
+                      "name": "전무경",
+                      "email": "mooj@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 9,
-                  "uniquePeopleCount": 9
+                  ]
                 }
               ]
             },
             {
               "name": "2파트",
-              "assignmentCount": 9,
-              "uniquePeopleCount": 9,
+              "assignmentCount": 8,
+              "uniquePeopleCount": 8,
               "teams": [
                 {
-                  "id": "unit-109",
+                  "id": "unit_2a92a01478c0",
                   "section": "사업+개발",
                   "group": "사업그룹",
                   "part": "2파트",
                   "team": "2파트",
                   "displayName": "2파트",
                   "path": "사업+개발 > 사업그룹 > 2파트 > 2파트",
+                  "assignmentCount": 8,
+                  "uniquePeopleCount": 8,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "우형석",
                       "name": "우형석",
-                      "tags": []
+                      "email": "hyungsuk.woo@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "파트장",
                       "rawName": "강순용",
                       "name": "강순용",
-                      "tags": []
+                      "email": "sykang@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "한찬호",
                       "name": "한찬호",
-                      "tags": []
+                      "email": "chanho.han@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "소현준",
-                      "name": "소현준",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "이수정",
-                      "name": "이수정",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "박석제",
-                      "name": "박석제",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "한수정",
-                      "name": "한수정",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "조영비",
-                      "name": "조영비",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "박채현",
                       "name": "박채현",
-                      "tags": []
+                      "email": "p.chhyn@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "소현준",
+                      "name": "소현준",
+                      "email": "hyunjoon.so@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이수정",
+                      "name": "이수정",
+                      "email": "sjl1747@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "조영비",
+                      "name": "조영비",
+                      "email": "youngbi@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "한수정",
+                      "name": "한수정",
+                      "email": "soojeong.han@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 9,
-                  "uniquePeopleCount": 9
+                  ]
                 }
               ]
             },
@@ -1052,191 +1543,255 @@ window.ORG_DASHBOARD_DATA = {
               "uniquePeopleCount": 13,
               "teams": [
                 {
-                  "id": "unit-118",
+                  "id": "unit_b5e3d6ea3b37",
                   "section": "사업+개발",
                   "group": "사업그룹",
                   "part": "3파트",
                   "team": "3파트",
                   "displayName": "3파트",
                   "path": "사업+개발 > 사업그룹 > 3파트 > 3파트",
+                  "assignmentCount": 14,
+                  "uniquePeopleCount": 13,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "우형석",
                       "name": "우형석",
-                      "tags": []
+                      "email": "hyungsuk.woo@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
-                      "rawName": "우형석(겸)",
+                      "roleLabel": "파트장",
+                      "rawName": "우형석",
                       "name": "우형석",
+                      "email": "hyungsuk.woo@igisam.com",
                       "tags": [
                         "겸직"
-                      ]
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
                       "role": "시니어매니저",
-                      "rawName": "윤용택(겸)",
-                      "name": "윤용택",
-                      "tags": [
-                        "겸직"
-                      ]
-                    },
-                    {
-                      "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "김성욱",
                       "name": "김성욱",
-                      "tags": []
+                      "email": "swkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
+                      "rawName": "윤용택",
+                      "name": "윤용택",
+                      "email": "yongtek.yoon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "최종인",
-                      "name": "최종인",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "손서형",
-                      "name": "손서형",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "이창준",
-                      "name": "이창준",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "최성현",
-                      "name": "최성현",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "박세진",
-                      "name": "박세진",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "황정호",
-                      "name": "황정호",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "박세민",
                       "name": "박세민",
-                      "tags": []
+                      "email": "psm0521@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "최광석",
-                      "name": "최광석",
-                      "tags": []
+                      "roleLabel": "매니저",
+                      "rawName": "박세진",
+                      "name": "박세진",
+                      "email": "sjpark@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "백종우",
                       "name": "백종우",
-                      "tags": []
+                      "email": "jwp@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "손서형",
+                      "name": "손서형",
+                      "email": "sh.son@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이창준",
+                      "name": "이창준",
+                      "email": "cjlee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "임한솔",
                       "name": "임한솔",
-                      "tags": []
+                      "email": "hslim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "최광석",
+                      "name": "최광석",
+                      "email": "kschoi@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "최성현",
+                      "name": "최성현",
+                      "email": "shyung.choi@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "최종인",
+                      "name": "최종인",
+                      "email": "claire.choi@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "황정호",
+                      "name": "황정호",
+                      "email": "jeongho.hwang@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 14,
-                  "uniquePeopleCount": 13
+                  ]
                 }
               ]
             },
             {
               "name": "4파트",
-              "assignmentCount": 11,
-              "uniquePeopleCount": 11,
+              "assignmentCount": 10,
+              "uniquePeopleCount": 10,
               "teams": [
                 {
-                  "id": "unit-132",
+                  "id": "unit_c0a7bd520d94",
                   "section": "사업+개발",
                   "group": "사업그룹",
                   "part": "4파트",
                   "team": "4파트",
                   "displayName": "4파트",
                   "path": "사업+개발 > 사업그룹 > 4파트 > 4파트",
+                  "assignmentCount": 10,
+                  "uniquePeopleCount": 10,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "우형석",
                       "name": "우형석",
-                      "tags": []
+                      "email": "hyungsuk.woo@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
-                      "rawName": "이승훈",
-                      "name": "이승훈",
-                      "tags": []
+                      "roleLabel": "파트장",
+                      "rawName": "이승훈C",
+                      "name": "이승훈C",
+                      "email": "seunghoon.lee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "담당디렉터",
+                      "roleLabel": "담당",
                       "rawName": "이현호",
                       "name": "이현호",
-                      "tags": []
+                      "email": "hyunho.lee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "김연수",
                       "name": "김연수",
-                      "tags": []
+                      "email": "kim17826@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "김민수",
-                      "name": "김민수",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "한원석",
-                      "name": "한원석",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "강성호",
                       "name": "강성호",
-                      "tags": []
+                      "email": "shkang@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "안지원",
-                      "name": "안지원",
-                      "tags": []
+                      "roleLabel": "매니저",
+                      "rawName": "김민수",
+                      "name": "김민수",
+                      "email": "minsukim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "이구",
-                      "name": "이구",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "유미현",
                       "name": "유미현",
-                      "tags": []
+                      "email": "mihyunu@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이구",
+                      "name": "이구",
+                      "email": "gulee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "이준수",
                       "name": "이준수",
-                      "tags": []
+                      "email": "jslee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "한원석",
+                      "name": "한원석",
+                      "email": "whan@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 11,
-                  "uniquePeopleCount": 11
+                  ]
                 }
               ]
             }
@@ -1244,92 +1799,116 @@ window.ORG_DASHBOARD_DATA = {
         },
         {
           "name": "디지털사업그룹",
-          "assignmentCount": 15,
-          "uniquePeopleCount": 13,
+          "assignmentCount": 14,
+          "uniquePeopleCount": 12,
           "parts": [
             {
               "name": "사업파트",
-              "assignmentCount": 11,
-              "uniquePeopleCount": 11,
+              "assignmentCount": 10,
+              "uniquePeopleCount": 10,
               "teams": [
                 {
-                  "id": "unit-143",
+                  "id": "unit_cc06e7c145e9",
                   "section": "사업+개발",
                   "group": "디지털사업그룹",
                   "part": "사업파트",
                   "team": "사업파트",
                   "displayName": "사업파트",
                   "path": "사업+개발 > 디지털사업그룹 > 사업파트 > 사업파트",
+                  "assignmentCount": 10,
+                  "uniquePeopleCount": 10,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "현철호",
                       "name": "현철호",
-                      "tags": []
+                      "email": "chyun@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "파트장",
                       "rawName": "홍창의",
                       "name": "홍창의",
-                      "tags": []
+                      "email": "cu.hong@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "양유미",
                       "name": "양유미",
-                      "tags": []
+                      "email": "ymyang@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "이영환",
                       "name": "이영환",
-                      "tags": []
+                      "email": "yhlee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "강준구",
-                      "name": "강준구",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "양진수",
-                      "name": "양진수",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "김태영",
-                      "name": "김태영",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "주현식",
-                      "name": "주현식",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "김창록",
-                      "name": "김창록",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "강동균",
                       "name": "강동균",
-                      "tags": []
+                      "email": "dkkang@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "강창원",
                       "name": "강창원",
-                      "tags": []
+                      "email": "changwon.kang@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "김창록",
+                      "name": "김창록",
+                      "email": "changrok.kim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "김태영",
+                      "name": "김태영",
+                      "email": "tyoung.kim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "양진수",
+                      "name": "양진수",
+                      "email": "yang.jinsu@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "주현식",
+                      "name": "주현식",
+                      "email": "sik@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 11,
-                  "uniquePeopleCount": 11
+                  ]
                 }
               ]
             },
@@ -1339,41 +1918,55 @@ window.ORG_DASHBOARD_DATA = {
               "uniquePeopleCount": 3,
               "teams": [
                 {
-                  "id": "unit-154",
+                  "id": "unit_2ee4a2388180",
                   "section": "사업+개발",
                   "group": "디지털사업그룹",
                   "part": "솔루션파트",
                   "team": "솔루션파트",
                   "displayName": "솔루션파트",
                   "path": "사업+개발 > 디지털사업그룹 > 솔루션파트 > 솔루션파트",
+                  "assignmentCount": 4,
+                  "uniquePeopleCount": 3,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "현철호",
                       "name": "현철호",
-                      "tags": []
+                      "email": "chyun@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "파트장",
                       "rawName": "현철호",
                       "name": "현철호",
-                      "tags": []
+                      "email": "chyun@igisam.com",
+                      "tags": [
+                        "겸직"
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "신민호",
                       "name": "신민호",
-                      "tags": []
+                      "email": "rossshin@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "이인기",
                       "name": "이인기",
-                      "tags": []
+                      "email": "leeinkee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 4,
-                  "uniquePeopleCount": 3
+                  ]
                 }
               ]
             }
@@ -1381,74 +1974,111 @@ window.ORG_DASHBOARD_DATA = {
         },
         {
           "name": "개발솔루션센터",
-          "assignmentCount": 8,
-          "uniquePeopleCount": 8,
+          "assignmentCount": 9,
+          "uniquePeopleCount": 9,
           "parts": [
             {
               "name": "미지정",
-              "assignmentCount": 8,
-              "uniquePeopleCount": 8,
+              "assignmentCount": 9,
+              "uniquePeopleCount": 9,
               "teams": [
                 {
-                  "id": "unit-158",
+                  "id": "unit_74f848c3d1d8",
                   "section": "사업+개발",
                   "group": "개발솔루션센터",
                   "part": "미지정",
                   "team": "개발솔루션센터",
                   "displayName": "개발솔루션센터",
                   "path": "사업+개발 > 개발솔루션센터 > 미지정 > 개발솔루션센터",
+                  "assignmentCount": 9,
+                  "uniquePeopleCount": 9,
                   "members": [
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "센터장",
                       "rawName": "홍장군",
                       "name": "홍장군",
-                      "tags": []
+                      "email": "jghong@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "담당디렉터",
-                      "rawName": "채원",
-                      "name": "채원",
-                      "tags": []
-                    },
-                    {
-                      "role": "담당디렉터",
+                      "roleLabel": "담당",
                       "rawName": "박봉서",
                       "name": "박봉서",
-                      "tags": []
+                      "email": "okbong21@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "담당디렉터",
-                      "rawName": "이정훈",
-                      "name": "이정훈",
-                      "tags": []
+                      "roleLabel": "담당",
+                      "rawName": "채원",
+                      "name": "채원",
+                      "email": "won.chae@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
-                      "role": "매니저",
-                      "rawName": "김보성",
-                      "name": "김보성",
-                      "tags": []
+                      "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
+                      "rawName": "김형주",
+                      "name": "김형주",
+                      "email": "hj.kim@igisam.com",
+                      "tags": [
+                        "겸직"
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
-                      "role": "매니저",
-                      "rawName": "김대익",
-                      "name": "김대익",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "장성진",
-                      "name": "장성진",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "전승희",
                       "name": "전승희",
-                      "tags": []
+                      "email": "shjeon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "김대익",
+                      "name": "김대익",
+                      "email": "dikim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "김보성",
+                      "name": "김보성",
+                      "email": "kbs1208@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "장성진",
+                      "name": "장성진",
+                      "email": "jang.sj@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "황재민",
+                      "name": "황재민",
+                      "email": "jaemin.hwang@igisam.com",
+                      "tags": [
+                        "인턴"
+                      ],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 8,
-                  "uniquePeopleCount": 8
+                  ]
                 }
               ]
             }
@@ -1459,479 +2089,630 @@ window.ORG_DASHBOARD_DATA = {
     {
       "name": "관리+운영",
       "assignmentCount": 102,
-      "uniquePeopleCount": 73,
+      "uniquePeopleCount": 75,
       "groups": [
         {
           "name": "국내자산관리그룹",
-          "assignmentCount": 68,
+          "assignmentCount": 67,
           "uniquePeopleCount": 48,
           "parts": [
             {
               "name": "1파트",
-              "assignmentCount": 25,
-              "uniquePeopleCount": 20,
+              "assignmentCount": 23,
+              "uniquePeopleCount": 19,
               "teams": [
                 {
-                  "id": "unit-166",
+                  "id": "unit_e60050a8d115",
                   "section": "관리+운영",
                   "group": "국내자산관리그룹",
                   "part": "1파트",
                   "team": "1파트1",
                   "displayName": "1파트1",
                   "path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트1",
+                  "assignmentCount": 10,
+                  "uniquePeopleCount": 10,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "김행단",
                       "name": "김행단",
-                      "tags": []
+                      "email": "hkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "파트장",
                       "rawName": "김지현",
                       "name": "김지현",
-                      "tags": []
+                      "email": "jihkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "최지선",
                       "name": "최지선",
-                      "tags": []
+                      "email": "jiseon.choi@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "김수현",
-                      "name": "김수현",
-                      "tags": []
+                      "roleLabel": "매니저",
+                      "rawName": "김수현B",
+                      "name": "김수현B",
+                      "email": "suhyeon.kim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "신채영",
                       "name": "신채영",
-                      "tags": []
+                      "email": "shincy@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "이병관",
                       "name": "이병관",
-                      "tags": []
+                      "email": "leebk@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "이연주",
                       "name": "이연주",
-                      "tags": []
+                      "email": "yeunju.lee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "이정원",
-                      "name": "이정원",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "이현민",
                       "name": "이현민",
-                      "tags": []
+                      "email": "hmlee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "정하윤",
-                      "name": "정하윤",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "장서영",
                       "name": "장서영",
-                      "tags": []
+                      "email": "seoyoung@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "정하윤",
+                      "name": "정하윤",
+                      "email": "hayun.jeong@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 11,
-                  "uniquePeopleCount": 11
+                  ]
                 },
                 {
-                  "id": "unit-177",
+                  "id": "unit_03f18f7ad4eb",
                   "section": "관리+운영",
                   "group": "국내자산관리그룹",
                   "part": "1파트",
                   "team": "1파트2",
                   "displayName": "1파트2",
                   "path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트2",
+                  "assignmentCount": 8,
+                  "uniquePeopleCount": 8,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "김행단",
                       "name": "김행단",
-                      "tags": []
+                      "email": "hkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "파트장",
                       "rawName": "김지현",
                       "name": "김지현",
-                      "tags": []
+                      "email": "jihkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "김지윤",
                       "name": "김지윤",
-                      "tags": []
+                      "email": "jiyunkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "박규란",
                       "name": "박규란",
-                      "tags": []
+                      "email": "kyuran@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "박용범",
                       "name": "박용범",
-                      "tags": []
+                      "email": "altol123@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "이상렬",
                       "name": "이상렬",
-                      "tags": []
+                      "email": "sy.lee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "이연정",
                       "name": "이연정",
-                      "tags": []
+                      "email": "yjlee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "이정연",
                       "name": "이정연",
-                      "tags": []
+                      "email": "dlwjddus1029@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 8,
-                  "uniquePeopleCount": 8
+                  ]
                 },
                 {
-                  "id": "unit-185",
+                  "id": "unit_fb9eea15edd3",
                   "section": "관리+운영",
                   "group": "국내자산관리그룹",
                   "part": "1파트",
                   "team": "로지스틱스 / 매니지먼트",
                   "displayName": "로지스틱스 / 매니지먼트",
                   "path": "관리+운영 > 국내자산관리그룹 > 1파트 > 로지스틱스 / 매니지먼트",
+                  "assignmentCount": 5,
+                  "uniquePeopleCount": 5,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "김행단",
                       "name": "김행단",
-                      "tags": []
+                      "email": "hkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "파트장",
                       "rawName": "김지현",
                       "name": "김지현",
-                      "tags": []
+                      "email": "jihkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "이진우",
-                      "name": "이진우",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "이정훈B",
-                      "name": "이정훈B",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "오채은",
                       "name": "오채은",
-                      "tags": []
+                      "email": "oce@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "이정원",
-                      "name": "이정원",
-                      "tags": []
+                      "roleLabel": "매니저",
+                      "rawName": "이정훈B",
+                      "name": "이정훈B",
+                      "email": "jhlee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이진우",
+                      "name": "이진우",
+                      "email": "davidlee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 6,
-                  "uniquePeopleCount": 6
+                  ]
                 }
               ]
             },
             {
               "name": "2파트",
-              "assignmentCount": 29,
-              "uniquePeopleCount": 18,
+              "assignmentCount": 30,
+              "uniquePeopleCount": 19,
               "teams": [
                 {
-                  "id": "unit-191",
+                  "id": "unit_7da396810b8e",
                   "section": "관리+운영",
                   "group": "국내자산관리그룹",
                   "part": "2파트",
                   "team": "2파트1",
                   "displayName": "2파트1",
                   "path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트1",
+                  "assignmentCount": 4,
+                  "uniquePeopleCount": 3,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "김행단",
                       "name": "김행단",
-                      "tags": []
+                      "email": "hkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
-                      "rawName": "김행단(겸)",
+                      "roleLabel": "파트장",
+                      "rawName": "김행단",
                       "name": "김행단",
+                      "email": "hkim@igisam.com",
                       "tags": [
                         "겸직"
-                      ]
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "김지희",
                       "name": "김지희",
-                      "tags": []
+                      "email": "jh.kim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "이경훈",
                       "name": "이경훈",
-                      "tags": []
+                      "email": "daniel.lee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 4,
-                  "uniquePeopleCount": 3
+                  ]
                 },
                 {
-                  "id": "unit-195",
+                  "id": "unit_8829cf987c9e",
                   "section": "관리+운영",
                   "group": "국내자산관리그룹",
                   "part": "2파트",
                   "team": "2파트2",
                   "displayName": "2파트2",
                   "path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트2",
+                  "assignmentCount": 4,
+                  "uniquePeopleCount": 3,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "김행단",
                       "name": "김행단",
-                      "tags": []
+                      "email": "hkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
-                      "rawName": "김행단(겸)",
+                      "roleLabel": "파트장",
+                      "rawName": "김행단",
                       "name": "김행단",
+                      "email": "hkim@igisam.com",
                       "tags": [
                         "겸직"
-                      ]
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "모승상",
                       "name": "모승상",
-                      "tags": []
+                      "email": "moss@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "이단비",
                       "name": "이단비",
-                      "tags": []
+                      "email": "dblee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 4,
-                  "uniquePeopleCount": 3
+                  ]
                 },
                 {
-                  "id": "unit-199",
+                  "id": "unit_2b7e7e0d69a5",
                   "section": "관리+운영",
                   "group": "국내자산관리그룹",
                   "part": "2파트",
                   "team": "2파트3",
                   "displayName": "2파트3",
                   "path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트3",
+                  "assignmentCount": 6,
+                  "uniquePeopleCount": 5,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "김행단",
                       "name": "김행단",
-                      "tags": []
+                      "email": "hkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
-                      "rawName": "김행단(겸)",
+                      "roleLabel": "파트장",
+                      "rawName": "김행단",
                       "name": "김행단",
+                      "email": "hkim@igisam.com",
                       "tags": [
                         "겸직"
-                      ]
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "이우석",
                       "name": "이우석",
-                      "tags": []
+                      "email": "wslee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "이효근",
                       "name": "이효근",
-                      "tags": []
+                      "email": "hglee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "고석준",
                       "name": "고석준",
-                      "tags": []
+                      "email": "sukjunkoh@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "김나현",
                       "name": "김나현",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "남윤수",
-                      "name": "남윤수",
-                      "tags": []
+                      "email": "nhkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 7,
-                  "uniquePeopleCount": 6
+                  ]
                 },
                 {
-                  "id": "unit-206",
+                  "id": "unit_3eab22393eba",
                   "section": "관리+운영",
                   "group": "국내자산관리그룹",
                   "part": "2파트",
                   "team": "2파트4",
                   "displayName": "2파트4",
                   "path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트4",
+                  "assignmentCount": 7,
+                  "uniquePeopleCount": 6,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "김행단",
                       "name": "김행단",
-                      "tags": []
+                      "email": "hkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
-                      "rawName": "김행단(겸)",
+                      "roleLabel": "파트장",
+                      "rawName": "김행단",
                       "name": "김행단",
+                      "email": "hkim@igisam.com",
                       "tags": [
                         "겸직"
-                      ]
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "이운구",
                       "name": "이운구",
-                      "tags": []
+                      "email": "wglee84@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "김유리",
                       "name": "김유리",
-                      "tags": []
+                      "email": "ykim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "김회인",
                       "name": "김회인",
-                      "tags": []
+                      "email": "kimhoein@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "이형철",
                       "name": "이형철",
-                      "tags": []
+                      "email": "hclee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "임지영",
                       "name": "임지영",
-                      "tags": []
+                      "email": "jylim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 7,
-                  "uniquePeopleCount": 6
+                  ]
                 },
                 {
-                  "id": "unit-213",
-                  "section": "관리+운영",
-                  "group": "국내자산관리그룹",
-                  "part": "2파트",
-                  "team": "펀드지원",
-                  "displayName": "펀드지원",
-                  "path": "관리+운영 > 국내자산관리그룹 > 2파트 > 펀드지원",
-                  "members": [
-                    {
-                      "role": "그룹장",
-                      "rawName": "김행단",
-                      "name": "김행단",
-                      "tags": []
-                    },
-                    {
-                      "role": "파트장/센터장",
-                      "rawName": "김행단(겸)",
-                      "name": "김행단",
-                      "tags": [
-                        "겸직"
-                      ]
-                    },
-                    {
-                      "role": "시니어매니저",
-                      "rawName": "박은영",
-                      "name": "박은영",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "최민정",
-                      "name": "최민정",
-                      "tags": []
-                    }
-                  ],
-                  "assignmentCount": 4,
-                  "uniquePeopleCount": 3
-                },
-                {
-                  "id": "unit-217",
+                  "id": "unit_c92727d5d27a",
                   "section": "관리+운영",
                   "group": "국내자산관리그룹",
                   "part": "2파트",
                   "team": "리빙 / 매니지먼트",
                   "displayName": "리빙 / 매니지먼트",
                   "path": "관리+운영 > 국내자산관리그룹 > 2파트 > 리빙 / 매니지먼트",
+                  "assignmentCount": 5,
+                  "uniquePeopleCount": 4,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "김행단",
                       "name": "김행단",
-                      "tags": []
+                      "email": "hkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
-                      "rawName": "김행단(겸)",
+                      "roleLabel": "파트장",
+                      "rawName": "김행단",
                       "name": "김행단",
+                      "email": "hkim@igisam.com",
                       "tags": [
                         "겸직"
-                      ]
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "홍지훈(겸)",
+                      "roleLabel": "매니저",
+                      "rawName": "남윤수",
+                      "name": "남윤수",
+                      "email": "yunsu.nam@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "장정윤",
+                      "name": "장정윤",
+                      "email": "tiffany.chang@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "홍지훈",
                       "name": "홍지훈",
+                      "email": "hongjh0738@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    }
+                  ]
+                },
+                {
+                  "id": "unit_5290cb8ef370",
+                  "section": "관리+운영",
+                  "group": "국내자산관리그룹",
+                  "part": "2파트",
+                  "team": "펀드지원",
+                  "displayName": "펀드지원",
+                  "path": "관리+운영 > 국내자산관리그룹 > 2파트 > 펀드지원",
+                  "assignmentCount": 4,
+                  "uniquePeopleCount": 3,
+                  "members": [
+                    {
+                      "role": "그룹장",
+                      "roleLabel": "그룹장",
+                      "rawName": "김행단",
+                      "name": "김행단",
+                      "email": "hkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
+                    },
+                    {
+                      "role": "파트장/센터장",
+                      "roleLabel": "파트장",
+                      "rawName": "김행단",
+                      "name": "김행단",
+                      "email": "hkim@igisam.com",
                       "tags": [
                         "겸직"
-                      ]
+                      ],
+                      "assignmentKind": "concurrent"
+                    },
+                    {
+                      "role": "시니어매니저",
+                      "roleLabel": "리더",
+                      "rawName": "박은영",
+                      "name": "박은영",
+                      "email": "eunyoung.park@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "최민정",
+                      "name": "최민정",
+                      "email": "minjung.ch@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 3,
-                  "uniquePeopleCount": 2
+                  ]
                 }
               ]
             },
@@ -1941,114 +2722,156 @@ window.ORG_DASHBOARD_DATA = {
               "uniquePeopleCount": 12,
               "teams": [
                 {
-                  "id": "unit-220",
+                  "id": "unit_e13d5c4283d1",
                   "section": "관리+운영",
                   "group": "국내자산관리그룹",
                   "part": "3파트",
                   "team": "3파트1",
                   "displayName": "3파트1",
                   "path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트1",
+                  "assignmentCount": 7,
+                  "uniquePeopleCount": 7,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "김행단",
                       "name": "김행단",
-                      "tags": []
+                      "email": "hkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "파트장",
                       "rawName": "권도엽",
                       "name": "권도엽",
-                      "tags": []
+                      "email": "dy.kwon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "김형주",
                       "name": "김형주",
-                      "tags": []
+                      "email": "hj.kim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "황준하",
                       "name": "황준하",
-                      "tags": []
+                      "email": "junha.hwang@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "문승현",
                       "name": "문승현",
-                      "tags": []
+                      "email": "sh.moon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "정준우",
-                      "name": "정준우",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "박준규",
                       "name": "박준규",
-                      "tags": []
+                      "email": "junkyu.park@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "정준우",
+                      "name": "정준우",
+                      "email": "junwoo.jeong@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 7,
-                  "uniquePeopleCount": 7
+                  ]
                 },
                 {
-                  "id": "unit-227",
+                  "id": "unit_9bf6f7902613",
                   "section": "관리+운영",
                   "group": "국내자산관리그룹",
                   "part": "3파트",
                   "team": "3파트2",
                   "displayName": "3파트2",
                   "path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트2",
+                  "assignmentCount": 7,
+                  "uniquePeopleCount": 7,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "김행단",
                       "name": "김행단",
-                      "tags": []
+                      "email": "hkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "파트장",
                       "rawName": "권도엽",
                       "name": "권도엽",
-                      "tags": []
+                      "email": "dy.kwon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "임주우",
                       "name": "임주우",
-                      "tags": []
+                      "email": "jwlim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "박동민",
                       "name": "박동민",
-                      "tags": []
+                      "email": "dmpark@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "박채연",
                       "name": "박채연",
-                      "tags": []
+                      "email": "hayley.park@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "안정훈",
                       "name": "안정훈",
-                      "tags": []
+                      "email": "jhahn@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "정승우",
                       "name": "정승우",
-                      "tags": []
+                      "email": "sw.jeoung@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 7,
-                  "uniquePeopleCount": 7
+                  ]
                 }
               ]
             }
@@ -2056,216 +2879,298 @@ window.ORG_DASHBOARD_DATA = {
         },
         {
           "name": "글로벌자산관리그룹",
-          "assignmentCount": 23,
-          "uniquePeopleCount": 17,
+          "assignmentCount": 24,
+          "uniquePeopleCount": 20,
           "parts": [
             {
               "name": "1파트",
-              "assignmentCount": 15,
-              "uniquePeopleCount": 10,
+              "assignmentCount": 11,
+              "uniquePeopleCount": 9,
               "teams": [
                 {
-                  "id": "unit-234",
+                  "id": "unit_e8334ef54d40",
                   "section": "관리+운영",
                   "group": "글로벌자산관리그룹",
                   "part": "1파트",
-                  "team": "운용1",
-                  "displayName": "운용1",
-                  "path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용1",
+                  "team": "1파트1",
+                  "displayName": "1파트1",
+                  "path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 1파트1",
+                  "assignmentCount": 4,
+                  "uniquePeopleCount": 4,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "신민재",
                       "name": "신민재",
-                      "tags": []
+                      "email": "minjae.sheen@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
-                      "rawName": "신민재(겸)",
-                      "name": "신민재",
+                      "roleLabel": "파트장",
+                      "rawName": "신소현",
+                      "name": "신소현",
+                      "email": "kathryn.shin@igisam.com",
                       "tags": [
                         "겸직"
-                      ]
-                    },
-                    {
-                      "role": "시니어매니저",
-                      "rawName": "김형근",
-                      "name": "김형근",
-                      "tags": []
+                      ],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "김민건",
-                      "name": "김민건",
-                      "tags": []
+                      "roleLabel": "매니저",
+                      "rawName": "김종수",
+                      "name": "김종수",
+                      "email": "jsoonz@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "박종덕",
-                      "name": "박종덕",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "이수현",
-                      "name": "이수현",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "이진희",
-                      "name": "이진희",
-                      "tags": []
+                      "roleLabel": "매니저",
+                      "rawName": "나혜윤",
+                      "name": "나혜윤",
+                      "email": "hyeyun.na@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
+                  ]
+                },
+                {
+                  "id": "unit_acf9bee46313",
+                  "section": "관리+운영",
+                  "group": "글로벌자산관리그룹",
+                  "part": "1파트",
+                  "team": "1파트2",
+                  "displayName": "1파트2",
+                  "path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 1파트2",
                   "assignmentCount": 7,
-                  "uniquePeopleCount": 6
-                },
-                {
-                  "id": "unit-241",
-                  "section": "관리+운영",
-                  "group": "글로벌자산관리그룹",
-                  "part": "1파트",
-                  "team": "운용2",
-                  "displayName": "운용2",
-                  "path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용2",
+                  "uniquePeopleCount": 7,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "신민재",
                       "name": "신민재",
-                      "tags": []
+                      "email": "minjae.sheen@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "파트장/센터장",
-                      "rawName": "신민재(겸)",
-                      "name": "신민재",
+                      "roleLabel": "파트장",
+                      "rawName": "신소현",
+                      "name": "신소현",
+                      "email": "kathryn.shin@igisam.com",
                       "tags": [
                         "겸직"
-                      ]
-                    }
-                  ],
-                  "assignmentCount": 2,
-                  "uniquePeopleCount": 1
-                },
-                {
-                  "id": "unit-243",
-                  "section": "관리+운영",
-                  "group": "글로벌자산관리그룹",
-                  "part": "1파트",
-                  "team": "운용3",
-                  "displayName": "운용3",
-                  "path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 운용3",
-                  "members": [
-                    {
-                      "role": "그룹장",
-                      "rawName": "신민재",
-                      "name": "신민재",
-                      "tags": []
-                    },
-                    {
-                      "role": "파트장/센터장",
-                      "rawName": "신민재(겸)",
-                      "name": "신민재",
-                      "tags": [
-                        "겸직"
-                      ]
+                      ],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
-                      "rawName": "노선호",
-                      "name": "노선호",
-                      "tags": []
+                      "roleLabel": "Sr.매니저",
+                      "rawName": "김선미",
+                      "name": "김선미",
+                      "email": "sunmi.kim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "김규식",
-                      "name": "김규식",
-                      "tags": []
+                      "roleLabel": "매니저",
+                      "rawName": "신윤아",
+                      "name": "신윤아",
+                      "email": "yoonah.shin@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "석동주",
-                      "name": "석동주",
-                      "tags": []
+                      "roleLabel": "매니저",
+                      "rawName": "유진선",
+                      "name": "유진선",
+                      "email": "jasonjinsunyoo@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "오지원",
-                      "name": "오지원",
-                      "tags": []
+                      "roleLabel": "매니저",
+                      "rawName": "윤주성",
+                      "name": "윤주성",
+                      "email": "joosung.yoon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "정서윤",
+                      "name": "정서윤",
+                      "email": "seoyun.jung@igisam.com",
+                      "tags": [
+                        "인턴"
+                      ],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 6,
-                  "uniquePeopleCount": 5
+                  ]
                 }
               ]
             },
             {
               "name": "2파트",
-              "assignmentCount": 8,
-              "uniquePeopleCount": 8,
+              "assignmentCount": 13,
+              "uniquePeopleCount": 12,
               "teams": [
                 {
-                  "id": "unit-249",
+                  "id": "unit_6dc866c99eec",
                   "section": "관리+운영",
                   "group": "글로벌자산관리그룹",
                   "part": "2파트",
-                  "team": "2파트",
-                  "displayName": "2파트",
-                  "path": "관리+운영 > 글로벌자산관리그룹 > 2파트 > 2파트",
+                  "team": "2파트1",
+                  "displayName": "2파트1",
+                  "path": "관리+운영 > 글로벌자산관리그룹 > 2파트 > 2파트1",
+                  "assignmentCount": 7,
+                  "uniquePeopleCount": 7,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "신민재",
                       "name": "신민재",
-                      "tags": []
-                    },
-                    {
-                      "role": "파트장/센터장",
-                      "rawName": "신소현",
-                      "name": "신소현",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "김종수",
-                      "name": "김종수",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "나혜윤",
-                      "name": "나혜윤",
-                      "tags": []
+                      "email": "minjae.sheen@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
-                      "rawName": "김선미",
-                      "name": "김선미",
-                      "tags": []
+                      "roleLabel": "Sr.매니저",
+                      "rawName": "김형근",
+                      "name": "김형근",
+                      "email": "shawn.kim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "신윤아",
-                      "name": "신윤아",
-                      "tags": []
+                      "roleLabel": "매니저",
+                      "rawName": "김민건",
+                      "name": "김민건",
+                      "email": "kimmg@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "유진선",
-                      "name": "유진선",
-                      "tags": []
+                      "roleLabel": "매니저",
+                      "rawName": "박종덕",
+                      "name": "박종덕",
+                      "email": "john.bak@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "윤주성",
-                      "name": "윤주성",
-                      "tags": []
+                      "roleLabel": "매니저",
+                      "rawName": "이수현",
+                      "name": "이수현",
+                      "email": "soohyun.lee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이진희",
+                      "name": "이진희",
+                      "email": "jinh94@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "최우석",
+                      "name": "최우석",
+                      "email": "wooseok.choi@igisam.com",
+                      "tags": [
+                        "인턴"
+                      ],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 8,
-                  "uniquePeopleCount": 8
+                  ]
+                },
+                {
+                  "id": "unit_e0603df610a3",
+                  "section": "관리+운영",
+                  "group": "글로벌자산관리그룹",
+                  "part": "2파트",
+                  "team": "2파트2",
+                  "displayName": "2파트2",
+                  "path": "관리+운영 > 글로벌자산관리그룹 > 2파트 > 2파트2",
+                  "assignmentCount": 6,
+                  "uniquePeopleCount": 6,
+                  "members": [
+                    {
+                      "role": "그룹장",
+                      "roleLabel": "그룹장",
+                      "rawName": "신민재",
+                      "name": "신민재",
+                      "email": "minjae.sheen@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
+                    },
+                    {
+                      "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
+                      "rawName": "노선호",
+                      "name": "노선호",
+                      "email": "sunho.roh@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "김규식",
+                      "name": "김규식",
+                      "email": "kyusikkim405@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "석동주",
+                      "name": "석동주",
+                      "email": "dj.seok@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "오지원",
+                      "name": "오지원",
+                      "email": "jwoh@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이도영",
+                      "name": "이도영",
+                      "email": "dooyoung.lee@igisam.com",
+                      "tags": [
+                        "인턴"
+                      ],
+                      "assignmentKind": "primary"
+                    }
+                  ]
                 }
               ]
             }
@@ -2273,54 +3178,57 @@ window.ORG_DASHBOARD_DATA = {
         },
         {
           "name": "리빙그룹",
-          "assignmentCount": 10,
-          "uniquePeopleCount": 9,
+          "assignmentCount": 9,
+          "uniquePeopleCount": 8,
           "parts": [
             {
               "name": "1파트",
-              "assignmentCount": 4,
-              "uniquePeopleCount": 4,
+              "assignmentCount": 3,
+              "uniquePeopleCount": 3,
               "teams": [
                 {
-                  "id": "unit-257",
+                  "id": "unit_eb4875a4f93b",
                   "section": "관리+운영",
                   "group": "리빙그룹",
                   "part": "1파트",
                   "team": "1파트",
                   "displayName": "1파트",
                   "path": "관리+운영 > 리빙그룹 > 1파트 > 1파트",
+                  "assignmentCount": 3,
+                  "uniquePeopleCount": 3,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "정조민",
                       "name": "정조민",
-                      "tags": []
-                    },
-                    {
-                      "role": "파트장/센터장",
-                      "rawName": "권진명(대)",
-                      "name": "권진명",
+                      "email": "jmjung@igisam.com",
                       "tags": [
-                        "대행"
-                      ]
+                        "겸직"
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "모영준",
                       "name": "모영준",
-                      "tags": []
+                      "email": "sean.mho@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "홍지훈(겸)",
+                      "roleLabel": "매니저",
+                      "rawName": "홍지훈",
                       "name": "홍지훈",
+                      "email": "hongjh0738@igisam.com",
                       "tags": [
                         "겸직"
-                      ]
+                      ],
+                      "assignmentKind": "concurrent"
                     }
-                  ],
-                  "assignmentCount": 4,
-                  "uniquePeopleCount": 4
+                  ]
                 }
               ]
             },
@@ -2330,55 +3238,75 @@ window.ORG_DASHBOARD_DATA = {
               "uniquePeopleCount": 6,
               "teams": [
                 {
-                  "id": "unit-261",
+                  "id": "unit_434fa6e44319",
                   "section": "관리+운영",
                   "group": "리빙그룹",
                   "part": "2파트",
                   "team": "2파트",
                   "displayName": "2파트",
                   "path": "관리+운영 > 리빙그룹 > 2파트 > 2파트",
+                  "assignmentCount": 6,
+                  "uniquePeopleCount": 6,
                   "members": [
                     {
                       "role": "그룹장",
+                      "roleLabel": "그룹장",
                       "rawName": "정조민",
                       "name": "정조민",
-                      "tags": []
+                      "email": "jmjung@igisam.com",
+                      "tags": [
+                        "겸직"
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
                       "role": "파트장/센터장",
-                      "rawName": "임성훈(대)",
+                      "roleLabel": "파트장",
+                      "rawName": "임성훈",
                       "name": "임성훈",
+                      "email": "shrim@igisam.com",
                       "tags": [
                         "대행"
-                      ]
+                      ],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "윤은진",
-                      "name": "윤은진",
-                      "tags": []
+                      "roleLabel": "매니저",
+                      "rawName": "김민석B",
+                      "name": "김민석B",
+                      "email": "mskim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "김완혁",
                       "name": "김완혁",
-                      "tags": []
+                      "email": "whkim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "윤은진",
+                      "name": "윤은진",
+                      "email": "ejyoon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "이종훈",
                       "name": "이종훈",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "김민석",
-                      "name": "김민석",
-                      "tags": []
+                      "email": "daz@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 6,
-                  "uniquePeopleCount": 6
+                  ]
                 }
               ]
             }
@@ -2395,23 +3323,64 @@ window.ORG_DASHBOARD_DATA = {
               "uniquePeopleCount": 1,
               "teams": [
                 {
-                  "id": "unit-267",
+                  "id": "unit_b6d0eb7c1f28",
                   "section": "관리+운영",
                   "group": "리테일솔루션센터",
                   "part": "미지정",
                   "team": "리테일솔루션센터",
                   "displayName": "리테일솔루션센터",
                   "path": "관리+운영 > 리테일솔루션센터 > 미지정 > 리테일솔루션센터",
+                  "assignmentCount": 1,
+                  "uniquePeopleCount": 1,
                   "members": [
                     {
-                      "role": "그룹장",
+                      "role": "파트장/센터장",
+                      "roleLabel": "센터장",
                       "rawName": "정조민",
                       "name": "정조민",
-                      "tags": []
+                      "email": "jmjung@igisam.com",
+                      "tags": [
+                        "겸직"
+                      ],
+                      "assignmentKind": "concurrent"
                     }
-                  ],
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "관리&운영",
+          "assignmentCount": 1,
+          "uniquePeopleCount": 1,
+          "parts": [
+            {
+              "name": "미지정",
+              "assignmentCount": 1,
+              "uniquePeopleCount": 1,
+              "teams": [
+                {
+                  "id": "unit_77bc649eb1f0",
+                  "section": "관리+운영",
+                  "group": "관리&운영",
+                  "part": "미지정",
+                  "team": "관리&운영",
+                  "displayName": "관리&운영",
+                  "path": "관리+운영 > 관리&운영 > 미지정 > 관리&운영",
                   "assignmentCount": 1,
-                  "uniquePeopleCount": 1
+                  "uniquePeopleCount": 1,
+                  "members": [
+                    {
+                      "role": "담당디렉터",
+                      "roleLabel": "부대표",
+                      "rawName": "정조민",
+                      "name": "정조민",
+                      "email": "jmjung@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    }
+                  ]
                 }
               ]
             }
@@ -2421,9 +3390,85 @@ window.ORG_DASHBOARD_DATA = {
     },
     {
       "name": "부문직속",
-      "assignmentCount": 18,
-      "uniquePeopleCount": 18,
+      "assignmentCount": 26,
+      "uniquePeopleCount": 25,
       "groups": [
+        {
+          "name": "리얼에셋부문",
+          "assignmentCount": 4,
+          "uniquePeopleCount": 4,
+          "parts": [
+            {
+              "name": "미지정",
+              "assignmentCount": 4,
+              "uniquePeopleCount": 4,
+              "teams": [
+                {
+                  "id": "unit_a4381d7be255",
+                  "section": "부문직속",
+                  "group": "리얼에셋부문",
+                  "part": "미지정",
+                  "team": "리얼에셋부문",
+                  "displayName": "리얼에셋부문",
+                  "path": "부문직속 > 리얼에셋부문 > 미지정 > 리얼에셋부문",
+                  "assignmentCount": 3,
+                  "uniquePeopleCount": 3,
+                  "members": [
+                    {
+                      "role": "담당디렉터",
+                      "roleLabel": "담당",
+                      "rawName": "송선호",
+                      "name": "송선호",
+                      "email": "sunhosong@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "담당디렉터",
+                      "roleLabel": "담당",
+                      "rawName": "이정훈",
+                      "name": "이정훈",
+                      "email": "2019jhlee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "담당디렉터",
+                      "roleLabel": "부문대표",
+                      "rawName": "이철승",
+                      "name": "이철승",
+                      "email": "ethan.lee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    }
+                  ]
+                },
+                {
+                  "id": "unit_fedf43b58576",
+                  "section": "부문직속",
+                  "group": "리얼에셋부문",
+                  "part": "미지정",
+                  "team": "투자발굴",
+                  "displayName": "투자발굴",
+                  "path": "부문직속 > 리얼에셋부문 > 미지정 > 투자발굴",
+                  "assignmentCount": 1,
+                  "uniquePeopleCount": 1,
+                  "members": [
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "김효직",
+                      "name": "김효직",
+                      "email": "hyojik@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
         {
           "name": "론파이낸스센터",
           "assignmentCount": 8,
@@ -2435,67 +3480,89 @@ window.ORG_DASHBOARD_DATA = {
               "uniquePeopleCount": 8,
               "teams": [
                 {
-                  "id": "unit-268",
+                  "id": "unit_0fb48ec59d76",
                   "section": "부문직속",
                   "group": "론파이낸스센터",
                   "part": "미지정",
                   "team": "론파이낸스센터",
                   "displayName": "론파이낸스센터",
                   "path": "부문직속 > 론파이낸스센터 > 미지정 > 론파이낸스센터",
+                  "assignmentCount": 8,
+                  "uniquePeopleCount": 8,
                   "members": [
                     {
                       "role": "파트장/센터장",
-                      "rawName": "박준호(겸)",
+                      "roleLabel": "센터장",
+                      "rawName": "박준호",
                       "name": "박준호",
-                      "tags": [
-                        "겸직"
-                      ]
+                      "email": "junhopark@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "강석민",
                       "name": "강석민",
-                      "tags": []
+                      "email": "sm.kang@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "정리훈",
                       "name": "정리훈",
-                      "tags": []
+                      "email": "jlh@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "손유정",
-                      "name": "손유정",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "이성민A",
-                      "name": "이성민",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "김지우",
                       "name": "김지우",
-                      "tags": []
+                      "email": "jiwoo@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "한승환",
-                      "name": "한승환",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "박현승",
                       "name": "박현승",
-                      "tags": []
+                      "email": "hyunpark@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "손유정",
+                      "name": "손유정",
+                      "email": "yujung.son@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이성민A",
+                      "name": "이성민A",
+                      "email": "stealth@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "한승환",
+                      "name": "한승환",
+                      "email": "seunghwanhan@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 8,
-                  "uniquePeopleCount": 8
+                  ]
                 }
               ]
             }
@@ -2503,46 +3570,66 @@ window.ORG_DASHBOARD_DATA = {
         },
         {
           "name": "기업마케팅센터",
-          "assignmentCount": 3,
-          "uniquePeopleCount": 3,
+          "assignmentCount": 4,
+          "uniquePeopleCount": 4,
           "parts": [
             {
               "name": "미지정",
-              "assignmentCount": 3,
-              "uniquePeopleCount": 3,
+              "assignmentCount": 4,
+              "uniquePeopleCount": 4,
               "teams": [
                 {
-                  "id": "unit-276",
+                  "id": "unit_9b0038df1f92",
                   "section": "부문직속",
                   "group": "기업마케팅센터",
                   "part": "미지정",
                   "team": "기업마케팅센터",
                   "displayName": "기업마케팅센터",
                   "path": "부문직속 > 기업마케팅센터 > 미지정 > 기업마케팅센터",
+                  "assignmentCount": 4,
+                  "uniquePeopleCount": 4,
                   "members": [
                     {
                       "role": "파트장/센터장",
-                      "rawName": "이철승(겸)",
+                      "roleLabel": "센터장",
+                      "rawName": "이철승",
                       "name": "이철승",
+                      "email": "ethan.lee@igisam.com",
                       "tags": [
                         "겸직"
-                      ]
+                      ],
+                      "assignmentKind": "concurrent"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "Sr.매니저",
                       "rawName": "김민지",
                       "name": "김민지",
-                      "tags": []
+                      "email": "minjik@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "고아라",
                       "name": "고아라",
-                      "tags": []
+                      "email": "argoh@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이혜리",
+                      "name": "이혜리",
+                      "email": "hyeri.lee2@igisam.com",
+                      "tags": [
+                        "인턴"
+                      ],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 3,
-                  "uniquePeopleCount": 3
+                  ]
                 }
               ]
             }
@@ -2550,44 +3637,84 @@ window.ORG_DASHBOARD_DATA = {
         },
         {
           "name": "공간솔루션센터",
-          "assignmentCount": 3,
-          "uniquePeopleCount": 3,
+          "assignmentCount": 6,
+          "uniquePeopleCount": 6,
           "parts": [
             {
               "name": "미지정",
-              "assignmentCount": 3,
-              "uniquePeopleCount": 3,
+              "assignmentCount": 6,
+              "uniquePeopleCount": 6,
               "teams": [
                 {
-                  "id": "unit-279",
+                  "id": "unit_dc195fcf1bd8",
                   "section": "부문직속",
                   "group": "공간솔루션센터",
                   "part": "미지정",
                   "team": "공간솔루션센터",
                   "displayName": "공간솔루션센터",
                   "path": "부문직속 > 공간솔루션센터 > 미지정 > 공간솔루션센터",
+                  "assignmentCount": 6,
+                  "uniquePeopleCount": 6,
                   "members": [
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "센터장",
                       "rawName": "김현수",
                       "name": "김현수",
-                      "tags": []
+                      "email": "hyunsoo.kim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "시니어매니저",
+                      "roleLabel": "리더",
                       "rawName": "이가현",
                       "name": "이가현",
-                      "tags": []
+                      "email": "ghlee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     },
                     {
                       "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "방채미",
+                      "name": "방채미",
+                      "email": "chaemi.bang@igisam.com",
+                      "tags": [
+                        "인턴"
+                      ],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이지원",
+                      "name": "이지원",
+                      "email": "jiwon.lee@igisam.com",
+                      "tags": [
+                        "인턴"
+                      ],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "임수빈",
+                      "name": "임수빈",
+                      "email": "subin.yim@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "정수명",
                       "name": "정수명",
-                      "tags": []
+                      "email": "smchung@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 3,
-                  "uniquePeopleCount": 3
+                  ]
                 }
               ]
             }
@@ -2604,41 +3731,53 @@ window.ORG_DASHBOARD_DATA = {
               "uniquePeopleCount": 4,
               "teams": [
                 {
-                  "id": "unit-282",
+                  "id": "unit_d89bcc6fe8a9",
                   "section": "부문직속",
                   "group": "기획추진센터",
                   "part": "미지정",
                   "team": "기획추진센터",
                   "displayName": "기획추진센터",
                   "path": "부문직속 > 기획추진센터 > 미지정 > 기획추진센터",
+                  "assignmentCount": 4,
+                  "uniquePeopleCount": 4,
                   "members": [
                     {
                       "role": "파트장/센터장",
+                      "roleLabel": "센터장",
                       "rawName": "이시정",
                       "name": "이시정",
-                      "tags": []
+                      "email": "sjlee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary-leader"
                     },
                     {
                       "role": "매니저",
-                      "rawName": "전기영",
-                      "name": "전기영",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
-                      "rawName": "이관용",
-                      "name": "이관용",
-                      "tags": []
-                    },
-                    {
-                      "role": "매니저",
+                      "roleLabel": "매니저",
                       "rawName": "박신웅",
                       "name": "박신웅",
-                      "tags": []
+                      "email": "shinwoong.park@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "이관용",
+                      "name": "이관용",
+                      "email": "kylee@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
+                    },
+                    {
+                      "role": "매니저",
+                      "roleLabel": "매니저",
+                      "rawName": "전기영",
+                      "name": "전기영",
+                      "email": "jk.jeon@igisam.com",
+                      "tags": [],
+                      "assignmentKind": "primary"
                     }
-                  ],
-                  "assignmentCount": 4,
-                  "uniquePeopleCount": 4
+                  ]
                 }
               ]
             }
@@ -2895,5457 +4034,3372 @@ window.ORG_DASHBOARD_DATA = {
       ]
     }
   ],
-  "seatLayout": {
-    "sheetName": "seat_layout_latest,ccmm_layout_latest",
-    "updatedAt": "2026-05-18 12:59:50",
-    "rows": [
-      {
-        "seat_code": "2F-A1",
-        "floor_code": "2F",
-        "seat_label": "A1",
-        "person_name": "변희란",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A1",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A2",
-        "floor_code": "2F",
-        "seat_label": "A2",
-        "person_name": "최자령",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A2",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A3",
-        "floor_code": "2F",
-        "seat_label": "A3",
-        "person_name": "이배근",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A3",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A4",
-        "floor_code": "2F",
-        "seat_label": "A4",
-        "person_name": "이정훈",
-        "team_org_id_seat": "section-02-group-03-part-01-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A4",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A5",
-        "floor_code": "2F",
-        "seat_label": "A5",
-        "person_name": "김효직",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A5",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A6",
-        "floor_code": "2F",
-        "seat_label": "A6",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A7",
-        "floor_code": "2F",
-        "seat_label": "A7",
-        "person_name": "김훈",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A7",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A8",
-        "floor_code": "2F",
-        "seat_label": "A8",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A9",
-        "floor_code": "2F",
-        "seat_label": "A9",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A10",
-        "floor_code": "2F",
-        "seat_label": "A10",
-        "person_name": "고한수",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A10",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A11",
-        "floor_code": "2F",
-        "seat_label": "A11",
-        "person_name": "이재상",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A11",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A12",
-        "floor_code": "2F",
-        "seat_label": "A12",
-        "person_name": "양지혜",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A12",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A13",
-        "floor_code": "2F",
-        "seat_label": "A13",
-        "person_name": "공용PC",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A13",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A14",
-        "floor_code": "2F",
-        "seat_label": "A14",
-        "person_name": "이현정",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A14",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A15",
-        "floor_code": "2F",
-        "seat_label": "A15",
-        "person_name": "이지선",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A15",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A16",
-        "floor_code": "2F",
-        "seat_label": "A16",
-        "person_name": "최혜윤",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A16",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A17",
-        "floor_code": "2F",
-        "seat_label": "A17",
-        "person_name": "김주원",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A17",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A18",
-        "floor_code": "2F",
-        "seat_label": "A18",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A19",
-        "floor_code": "2F",
-        "seat_label": "A19",
-        "person_name": "황민호",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A19",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A20",
-        "floor_code": "2F",
-        "seat_label": "A20",
-        "person_name": "정윤선",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A20",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A21",
-        "floor_code": "2F",
-        "seat_label": "A21",
-        "person_name": "최민영",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A21",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A22",
-        "floor_code": "2F",
-        "seat_label": "A22",
-        "person_name": "오민국",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A22",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A23",
-        "floor_code": "2F",
-        "seat_label": "A23",
-        "person_name": "조영지",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A23",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A24",
-        "floor_code": "2F",
-        "seat_label": "A24",
-        "person_name": "정유정",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A24",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A25",
-        "floor_code": "2F",
-        "seat_label": "A25",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A26",
-        "floor_code": "2F",
-        "seat_label": "A26",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A27",
-        "floor_code": "2F",
-        "seat_label": "A27",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A28",
-        "floor_code": "2F",
-        "seat_label": "A28",
-        "person_name": "모션 데스크",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B61",
-        "is_moved": "Y",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A29",
-        "floor_code": "2F",
-        "seat_label": "A29",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A30",
-        "floor_code": "2F",
-        "seat_label": "A30",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A31",
-        "floor_code": "2F",
-        "seat_label": "A31",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A32",
-        "floor_code": "2F",
-        "seat_label": "A32",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A33",
-        "floor_code": "2F",
-        "seat_label": "A33",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A34",
-        "floor_code": "2F",
-        "seat_label": "A34",
-        "person_name": "이정율",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A34",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A35",
-        "floor_code": "2F",
-        "seat_label": "A35",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A36",
-        "floor_code": "2F",
-        "seat_label": "A36",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A37",
-        "floor_code": "2F",
-        "seat_label": "A37",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A38",
-        "floor_code": "2F",
-        "seat_label": "A38",
-        "person_name": "백유빈",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A38",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A39",
-        "floor_code": "2F",
-        "seat_label": "A39",
-        "person_name": "이유현",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A39",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A40",
-        "floor_code": "2F",
-        "seat_label": "A40",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A41",
-        "floor_code": "2F",
-        "seat_label": "A41",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A42",
-        "floor_code": "2F",
-        "seat_label": "A42",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A43",
-        "floor_code": "2F",
-        "seat_label": "A43",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A44",
-        "floor_code": "2F",
-        "seat_label": "A44",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A45",
-        "floor_code": "2F",
-        "seat_label": "A45",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A46",
-        "floor_code": "2F",
-        "seat_label": "A46",
-        "person_name": "최원석",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A46",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A47",
-        "floor_code": "2F",
-        "seat_label": "A47",
-        "person_name": "정규진",
-        "team_org_id_seat": "",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-A47",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-A48",
-        "floor_code": "2F",
-        "seat_label": "A48",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B1",
-        "floor_code": "2F",
-        "seat_label": "B1",
-        "person_name": "정조민",
-        "team_org_id_seat": "section-03-group-03-part-01-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B1",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B2",
-        "floor_code": "2F",
-        "seat_label": "B2",
-        "person_name": "김지현",
-        "team_org_id_seat": "section-03-group-01-part-01-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B2",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B3",
-        "floor_code": "2F",
-        "seat_label": "B3",
-        "person_name": "김행단",
-        "team_org_id_seat": "section-03-group-01-part-01-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B3",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B4",
-        "floor_code": "2F",
-        "seat_label": "B4",
-        "person_name": "권도엽",
-        "team_org_id_seat": "section-03-group-01-part-03-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B4",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B5",
-        "floor_code": "2F",
-        "seat_label": "B5",
-        "person_name": "박규란",
-        "team_org_id_seat": "section-03-group-01-part-01-team-02",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B5",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B6",
-        "floor_code": "2F",
-        "seat_label": "B6",
-        "person_name": "이정연",
-        "team_org_id_seat": "section-03-group-01-part-01-team-02",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B6",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B7",
-        "floor_code": "2F",
-        "seat_label": "B7",
-        "person_name": "박용범",
-        "team_org_id_seat": "section-03-group-01-part-01-team-02",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B7",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B8",
-        "floor_code": "2F",
-        "seat_label": "B8",
-        "person_name": "김지윤",
-        "team_org_id_seat": "section-03-group-01-part-01-team-02",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B8",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B9",
-        "floor_code": "2F",
-        "seat_label": "B9",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-01-part-01-team-02",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B10",
-        "floor_code": "2F",
-        "seat_label": "B10",
-        "person_name": "이연정",
-        "team_org_id_seat": "section-03-group-01-part-01-team-02",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B10",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B11",
-        "floor_code": "2F",
-        "seat_label": "B11",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-01-part-01-team-02",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B12",
-        "floor_code": "2F",
-        "seat_label": "B12",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-01-part-01-team-02",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B13",
-        "floor_code": "2F",
-        "seat_label": "B13",
-        "person_name": "장서영",
-        "team_org_id_seat": "section-03-group-01-part-01-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B13",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B14",
-        "floor_code": "2F",
-        "seat_label": "B14",
-        "person_name": "김수현",
-        "team_org_id_seat": "section-03-group-01-part-01-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B14",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B15",
-        "floor_code": "2F",
-        "seat_label": "B15",
-        "person_name": "이병관",
-        "team_org_id_seat": "section-03-group-01-part-01-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B15",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B16",
-        "floor_code": "2F",
-        "seat_label": "B16",
-        "person_name": "최지선",
-        "team_org_id_seat": "section-03-group-01-part-01-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B16",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B17",
-        "floor_code": "2F",
-        "seat_label": "B17",
-        "person_name": "이현민",
-        "team_org_id_seat": "section-03-group-01-part-01-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B17",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B18",
-        "floor_code": "2F",
-        "seat_label": "B18",
-        "person_name": "오채은",
-        "team_org_id_seat": "section-03-group-01-part-01-team-03",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B18",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B19",
-        "floor_code": "2F",
-        "seat_label": "B19",
-        "person_name": "이정훈",
-        "team_org_id_seat": "section-03-group-01-part-01-team-03",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "동명이인 예외: 이동 표시 제외",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B20",
-        "floor_code": "2F",
-        "seat_label": "B20",
-        "person_name": "이진우",
-        "team_org_id_seat": "section-03-group-01-part-01-team-03",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B20",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B21",
-        "floor_code": "2F",
-        "seat_label": "B21",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-01-part-01-team-02",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B22",
-        "floor_code": "2F",
-        "seat_label": "B22",
-        "person_name": "이연주",
-        "team_org_id_seat": "section-03-group-01-part-01-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B22",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B23",
-        "floor_code": "2F",
-        "seat_label": "B23",
-        "person_name": "신채영",
-        "team_org_id_seat": "section-03-group-01-part-01-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B23",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B24",
-        "floor_code": "2F",
-        "seat_label": "B24",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-01-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B25",
-        "floor_code": "2F",
-        "seat_label": "B25",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-01-part-02-team-03",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B26",
-        "floor_code": "2F",
-        "seat_label": "B26",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-01-part-02-team-03",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B27",
-        "floor_code": "2F",
-        "seat_label": "B27",
-        "person_name": "정하윤",
-        "team_org_id_seat": "section-03-group-01-part-02-team-03",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B27",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B28",
-        "floor_code": "2F",
-        "seat_label": "B28",
-        "person_name": "이효근",
-        "team_org_id_seat": "section-03-group-01-part-02-team-03",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B28",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B29",
-        "floor_code": "2F",
-        "seat_label": "B29",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-01-part-02-team-03",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B30",
-        "floor_code": "2F",
-        "seat_label": "B30",
-        "person_name": "고석준",
-        "team_org_id_seat": "section-03-group-01-part-02-team-03",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B30",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B31",
-        "floor_code": "2F",
-        "seat_label": "B31",
-        "person_name": "김나현",
-        "team_org_id_seat": "section-03-group-01-part-02-team-03",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B31",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B32",
-        "floor_code": "2F",
-        "seat_label": "B32",
-        "person_name": "이우석",
-        "team_org_id_seat": "section-03-group-01-part-02-team-03",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B32",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B33",
-        "floor_code": "2F",
-        "seat_label": "B33",
-        "person_name": "남윤수",
-        "team_org_id_seat": "section-03-group-01-part-02-team-03",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B33",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B34",
-        "floor_code": "2F",
-        "seat_label": "B34",
-        "person_name": "홍지훈",
-        "team_org_id_seat": "section-03-group-01-part-02-team-06",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B34",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B35",
-        "floor_code": "2F",
-        "seat_label": "B35",
-        "person_name": "최민정",
-        "team_org_id_seat": "section-03-group-01-part-02-team-05",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B35",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B36",
-        "floor_code": "2F",
-        "seat_label": "B36",
-        "person_name": "박은영",
-        "team_org_id_seat": "section-03-group-01-part-02-team-05",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B36",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B37",
-        "floor_code": "2F",
-        "seat_label": "B37",
-        "person_name": "김유리",
-        "team_org_id_seat": "section-03-group-01-part-02-team-04",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B37",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B38",
-        "floor_code": "2F",
-        "seat_label": "B38",
-        "person_name": "이형철",
-        "team_org_id_seat": "section-03-group-01-part-02-team-04",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B38",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B39",
-        "floor_code": "2F",
-        "seat_label": "B39",
-        "person_name": "임지영",
-        "team_org_id_seat": "section-03-group-01-part-02-team-04",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B39",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B40",
-        "floor_code": "2F",
-        "seat_label": "B40",
-        "person_name": "이운구",
-        "team_org_id_seat": "section-03-group-01-part-02-team-04",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B40",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B41",
-        "floor_code": "2F",
-        "seat_label": "B41",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-01-part-02-team-03",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B42",
-        "floor_code": "2F",
-        "seat_label": "B42",
-        "person_name": "김회인",
-        "team_org_id_seat": "section-03-group-01-part-02-team-04",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B42",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B43",
-        "floor_code": "2F",
-        "seat_label": "B43",
-        "person_name": "이단비",
-        "team_org_id_seat": "section-03-group-01-part-02-team-02",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B43",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B44",
-        "floor_code": "2F",
-        "seat_label": "B44",
-        "person_name": "모승상",
-        "team_org_id_seat": "section-03-group-01-part-02-team-02",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B44",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B45",
-        "floor_code": "2F",
-        "seat_label": "B45",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-01-part-02-team-03",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B46",
-        "floor_code": "2F",
-        "seat_label": "B46",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-01-part-02-team-03",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B47",
-        "floor_code": "2F",
-        "seat_label": "B47",
-        "person_name": "이경훈",
-        "team_org_id_seat": "section-03-group-01-part-02-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B47",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B48",
-        "floor_code": "2F",
-        "seat_label": "B48",
-        "person_name": "김지희",
-        "team_org_id_seat": "section-03-group-01-part-02-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B48",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B49",
-        "floor_code": "2F",
-        "seat_label": "B49",
-        "person_name": "박동민",
-        "team_org_id_seat": "section-03-group-01-part-03-team-02",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B49",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B50",
-        "floor_code": "2F",
-        "seat_label": "B50",
-        "person_name": "안정훈",
-        "team_org_id_seat": "section-03-group-01-part-03-team-02",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B50",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B51",
-        "floor_code": "2F",
-        "seat_label": "B51",
-        "person_name": "정승우",
-        "team_org_id_seat": "section-03-group-01-part-03-team-02",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B51",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B52",
-        "floor_code": "2F",
-        "seat_label": "B52",
-        "person_name": "임주우",
-        "team_org_id_seat": "section-03-group-01-part-03-team-02",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B52",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B53",
-        "floor_code": "2F",
-        "seat_label": "B53",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-01-part-03-team-02",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B54",
-        "floor_code": "2F",
-        "seat_label": "B54",
-        "person_name": "정준우",
-        "team_org_id_seat": "section-03-group-01-part-03-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B54",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B55",
-        "floor_code": "2F",
-        "seat_label": "B55",
-        "person_name": "박준규",
-        "team_org_id_seat": "section-03-group-01-part-03-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B55",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B56",
-        "floor_code": "2F",
-        "seat_label": "B56",
-        "person_name": "황준하",
-        "team_org_id_seat": "section-03-group-01-part-03-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B56",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B57",
-        "floor_code": "2F",
-        "seat_label": "B57",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-01-part-03-team-02",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B58",
-        "floor_code": "2F",
-        "seat_label": "B58",
-        "person_name": "박채연",
-        "team_org_id_seat": "section-03-group-01-part-03-team-02",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B58",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B59",
-        "floor_code": "2F",
-        "seat_label": "B59",
-        "person_name": "문승현",
-        "team_org_id_seat": "section-03-group-01-part-03-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B59",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B60",
-        "floor_code": "2F",
-        "seat_label": "B60",
-        "person_name": "김형주",
-        "team_org_id_seat": "section-03-group-01-part-03-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B60",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B61",
-        "floor_code": "2F",
-        "seat_label": "B61",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B62",
-        "floor_code": "2F",
-        "seat_label": "B62",
-        "person_name": "김완혁",
-        "team_org_id_seat": "section-03-group-03-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D42",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B63",
-        "floor_code": "2F",
-        "seat_label": "B63",
-        "person_name": "모영준",
-        "team_org_id_seat": "section-03-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B10",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B64",
-        "floor_code": "2F",
-        "seat_label": "B64",
-        "person_name": "권진명",
-        "team_org_id_seat": "section-03-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B5",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B65",
-        "floor_code": "2F",
-        "seat_label": "B65",
-        "person_name": "김민석",
-        "team_org_id_seat": "section-03-group-03-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "동명이인 예외: 원래 12층으로만 표시",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B66",
-        "floor_code": "2F",
-        "seat_label": "B66",
-        "person_name": "이종훈",
-        "team_org_id_seat": "section-03-group-03-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D38",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B67",
-        "floor_code": "2F",
-        "seat_label": "B67",
-        "person_name": "윤은진",
-        "team_org_id_seat": "section-03-group-03-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D44",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "2F-B68",
-        "floor_code": "2F",
-        "seat_label": "B68",
-        "person_name": "임성훈",
-        "team_org_id_seat": "section-03-group-03-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D45",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A1",
-        "floor_code": "12F",
-        "seat_label": "A1",
-        "person_name": "우형석",
-        "team_org_id_seat": "section-02-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A1",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A2",
-        "floor_code": "12F",
-        "seat_label": "A2",
-        "person_name": "김현수",
-        "team_org_id_seat": "section-04-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A2",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A3",
-        "floor_code": "12F",
-        "seat_label": "A3",
-        "person_name": "채원",
-        "team_org_id_seat": "section-02-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A4",
-        "floor_code": "12F",
-        "seat_label": "A4",
-        "person_name": "이승훈",
-        "team_org_id_seat": "section-02-group-01-part-04-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A4",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A5",
-        "floor_code": "12F",
-        "seat_label": "A5",
-        "person_name": "권순일",
-        "team_org_id_seat": "section-02-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A5",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A6",
-        "floor_code": "12F",
-        "seat_label": "A6",
-        "person_name": "현철호",
-        "team_org_id_seat": "section-02-group-02-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A6",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A7",
-        "floor_code": "12F",
-        "seat_label": "A7",
-        "person_name": "최종인",
-        "team_org_id_seat": "section-02-group-01-part-03-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A24",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A8",
-        "floor_code": "12F",
-        "seat_label": "A8",
-        "person_name": "박세민",
-        "team_org_id_seat": "section-02-group-01-part-03-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A25",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A9",
-        "floor_code": "12F",
-        "seat_label": "A9",
-        "person_name": "최광석",
-        "team_org_id_seat": "section-02-group-01-part-03-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A30",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A10",
-        "floor_code": "12F",
-        "seat_label": "A10",
-        "person_name": "백종우",
-        "team_org_id_seat": "section-02-group-01-part-03-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A31",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A11",
-        "floor_code": "12F",
-        "seat_label": "A11",
-        "person_name": "김성욱",
-        "team_org_id_seat": "section-02-group-01-part-03-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A11",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A12",
-        "floor_code": "12F",
-        "seat_label": "A12",
-        "person_name": "박세진",
-        "team_org_id_seat": "section-02-group-01-part-03-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A27",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A13",
-        "floor_code": "12F",
-        "seat_label": "A13",
-        "person_name": "임한솔",
-        "team_org_id_seat": "section-02-group-01-part-03-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A13",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A14",
-        "floor_code": "12F",
-        "seat_label": "A14",
-        "person_name": "손서형",
-        "team_org_id_seat": "section-02-group-01-part-03-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A14",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A15",
-        "floor_code": "12F",
-        "seat_label": "A15",
-        "person_name": "윤용택",
-        "team_org_id_seat": "section-02-group-01-part-03-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A15",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A16",
-        "floor_code": "12F",
-        "seat_label": "A16",
-        "person_name": "최성현",
-        "team_org_id_seat": "section-02-group-01-part-03-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A22",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A17",
-        "floor_code": "12F",
-        "seat_label": "A17",
-        "person_name": "이창준",
-        "team_org_id_seat": "section-02-group-01-part-03-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A17",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A18",
-        "floor_code": "12F",
-        "seat_label": "A18",
-        "person_name": "황정호",
-        "team_org_id_seat": "section-02-group-01-part-03-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A18",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A19",
-        "floor_code": "12F",
-        "seat_label": "A19",
-        "person_name": "김보성",
-        "team_org_id_seat": "section-02-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A16",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A20",
-        "floor_code": "12F",
-        "seat_label": "A20",
-        "person_name": "전승희",
-        "team_org_id_seat": "section-02-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A12",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A21",
-        "floor_code": "12F",
-        "seat_label": "A21",
-        "person_name": "",
-        "team_org_id_seat": "section-02-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A22",
-        "floor_code": "12F",
-        "seat_label": "A22",
-        "person_name": "",
-        "team_org_id_seat": "section-02-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A23",
-        "floor_code": "12F",
-        "seat_label": "A23",
-        "person_name": "홍장군",
-        "team_org_id_seat": "section-02-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A24",
-        "floor_code": "12F",
-        "seat_label": "A24",
-        "person_name": "김대익",
-        "team_org_id_seat": "section-02-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A66",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A25",
-        "floor_code": "12F",
-        "seat_label": "A25",
-        "person_name": "장성진",
-        "team_org_id_seat": "section-02-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A45",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A26",
-        "floor_code": "12F",
-        "seat_label": "A26",
-        "person_name": "",
-        "team_org_id_seat": "section-02-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A27",
-        "floor_code": "12F",
-        "seat_label": "A27",
-        "person_name": "이가현",
-        "team_org_id_seat": "section-04-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A37",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A28",
-        "floor_code": "12F",
-        "seat_label": "A28",
-        "person_name": "정수명",
-        "team_org_id_seat": "section-04-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A33",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A29",
-        "floor_code": "12F",
-        "seat_label": "A29",
-        "person_name": "",
-        "team_org_id_seat": "section-04-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A30",
-        "floor_code": "12F",
-        "seat_label": "A30",
-        "person_name": "",
-        "team_org_id_seat": "section-04-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A31",
-        "floor_code": "12F",
-        "seat_label": "A31",
-        "person_name": "",
-        "team_org_id_seat": "section-04-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A32",
-        "floor_code": "12F",
-        "seat_label": "A32",
-        "person_name": "이현호",
-        "team_org_id_seat": "section-02-group-01-part-04-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A7",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A33",
-        "floor_code": "12F",
-        "seat_label": "A33",
-        "person_name": "김민수",
-        "team_org_id_seat": "section-02-group-01-part-04-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A29",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A34",
-        "floor_code": "12F",
-        "seat_label": "A34",
-        "person_name": "유미현",
-        "team_org_id_seat": "section-02-group-01-part-04-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A8",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A35",
-        "floor_code": "12F",
-        "seat_label": "A35",
-        "person_name": "이구",
-        "team_org_id_seat": "section-02-group-01-part-04-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A9",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A36",
-        "floor_code": "12F",
-        "seat_label": "A36",
-        "person_name": "이준수",
-        "team_org_id_seat": "section-02-group-01-part-04-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A10",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A37",
-        "floor_code": "12F",
-        "seat_label": "A37",
-        "person_name": "김연수",
-        "team_org_id_seat": "section-02-group-01-part-04-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A50",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A38",
-        "floor_code": "12F",
-        "seat_label": "A38",
-        "person_name": "강성호",
-        "team_org_id_seat": "section-02-group-01-part-04-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A51",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A39",
-        "floor_code": "12F",
-        "seat_label": "A39",
-        "person_name": "한원석",
-        "team_org_id_seat": "section-02-group-01-part-04-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A52",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A40",
-        "floor_code": "12F",
-        "seat_label": "A40",
-        "person_name": "안지원",
-        "team_org_id_seat": "section-02-group-01-part-04-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A53",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A41",
-        "floor_code": "12F",
-        "seat_label": "A41",
-        "person_name": "윤주형",
-        "team_org_id_seat": "section-02-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A41",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A42",
-        "floor_code": "12F",
-        "seat_label": "A42",
-        "person_name": "김제익",
-        "team_org_id_seat": "section-02-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A42",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A43",
-        "floor_code": "12F",
-        "seat_label": "A43",
-        "person_name": "전무경",
-        "team_org_id_seat": "section-02-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A43",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A44",
-        "floor_code": "12F",
-        "seat_label": "A44",
-        "person_name": "",
-        "team_org_id_seat": "section-02-group-01-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A45",
-        "floor_code": "12F",
-        "seat_label": "A45",
-        "person_name": "이정원",
-        "team_org_id_seat": "section-02-group-01-part-01-team-01",
-        "origin_floor_code": "2F",
-        "origin_seat_code": "2F-B24",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A46",
-        "floor_code": "12F",
-        "seat_label": "A46",
-        "person_name": "박만진",
-        "team_org_id_seat": "section-02-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A46",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A47",
-        "floor_code": "12F",
-        "seat_label": "A47",
-        "person_name": "박일훈",
-        "team_org_id_seat": "section-02-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A47",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A48",
-        "floor_code": "12F",
-        "seat_label": "A48",
-        "person_name": "류홍",
-        "team_org_id_seat": "section-02-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A48",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A49",
-        "floor_code": "12F",
-        "seat_label": "A49",
-        "person_name": "",
-        "team_org_id_seat": "section-02-group-01-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A50",
-        "floor_code": "12F",
-        "seat_label": "A50",
-        "person_name": "양유미",
-        "team_org_id_seat": "section-02-group-02-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A55",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A51",
-        "floor_code": "12F",
-        "seat_label": "A51",
-        "person_name": "김태영",
-        "team_org_id_seat": "section-02-group-02-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A56",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A52",
-        "floor_code": "12F",
-        "seat_label": "A52",
-        "person_name": "주현식",
-        "team_org_id_seat": "section-02-group-02-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A57",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A53",
-        "floor_code": "12F",
-        "seat_label": "A53",
-        "person_name": "김창록",
-        "team_org_id_seat": "section-02-group-02-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A54",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A54",
-        "floor_code": "12F",
-        "seat_label": "A54",
-        "person_name": "",
-        "team_org_id_seat": "section-02-group-02-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A55",
-        "floor_code": "12F",
-        "seat_label": "A55",
-        "person_name": "이영환",
-        "team_org_id_seat": "section-02-group-02-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A19",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A56",
-        "floor_code": "12F",
-        "seat_label": "A56",
-        "person_name": "강동균",
-        "team_org_id_seat": "section-02-group-02-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A28",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A57",
-        "floor_code": "12F",
-        "seat_label": "A57",
-        "person_name": "강창원",
-        "team_org_id_seat": "section-02-group-02-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A20",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A58",
-        "floor_code": "12F",
-        "seat_label": "A58",
-        "person_name": "홍창의",
-        "team_org_id_seat": "section-02-group-02-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A58",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A59",
-        "floor_code": "12F",
-        "seat_label": "A59",
-        "person_name": "강준구",
-        "team_org_id_seat": "section-02-group-02-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A59",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A60",
-        "floor_code": "12F",
-        "seat_label": "A60",
-        "person_name": "양진수",
-        "team_org_id_seat": "section-02-group-02-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A60",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A61",
-        "floor_code": "12F",
-        "seat_label": "A61",
-        "person_name": "고아라",
-        "team_org_id_seat": "section-04-group-02-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A34",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A62",
-        "floor_code": "12F",
-        "seat_label": "A62",
-        "person_name": "김민지",
-        "team_org_id_seat": "section-04-group-02-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A62",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A63",
-        "floor_code": "12F",
-        "seat_label": "A63",
-        "person_name": "소현준",
-        "team_org_id_seat": "section-02-group-01-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A64",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A64",
-        "floor_code": "12F",
-        "seat_label": "A64",
-        "person_name": "조영비",
-        "team_org_id_seat": "section-02-group-01-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A63",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A65",
-        "floor_code": "12F",
-        "seat_label": "A65",
-        "person_name": "강순용",
-        "team_org_id_seat": "section-02-group-01-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A65",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A66",
-        "floor_code": "12F",
-        "seat_label": "A66",
-        "person_name": "박석제",
-        "team_org_id_seat": "section-02-group-01-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A74",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A67",
-        "floor_code": "12F",
-        "seat_label": "A67",
-        "person_name": "이수정",
-        "team_org_id_seat": "section-02-group-01-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A67",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A68",
-        "floor_code": "12F",
-        "seat_label": "A68",
-        "person_name": "한수정",
-        "team_org_id_seat": "section-02-group-01-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A68",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A69",
-        "floor_code": "12F",
-        "seat_label": "A69",
-        "person_name": "한찬호",
-        "team_org_id_seat": "section-02-group-01-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A70",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A70",
-        "floor_code": "12F",
-        "seat_label": "A70",
-        "person_name": "박채현",
-        "team_org_id_seat": "section-02-group-01-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A69",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A71",
-        "floor_code": "12F",
-        "seat_label": "A71",
-        "person_name": "신민호",
-        "team_org_id_seat": "section-02-group-02-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A71",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A72",
-        "floor_code": "12F",
-        "seat_label": "A72",
-        "person_name": "이인기",
-        "team_org_id_seat": "section-02-group-02-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A61",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A73",
-        "floor_code": "12F",
-        "seat_label": "A73",
-        "person_name": "박신웅",
-        "team_org_id_seat": "section-04-group-04-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A73",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A74",
-        "floor_code": "12F",
-        "seat_label": "A74",
-        "person_name": "전기영",
-        "team_org_id_seat": "section-04-group-04-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A72",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A75",
-        "floor_code": "12F",
-        "seat_label": "A75",
-        "person_name": "이관용",
-        "team_org_id_seat": "section-04-group-04-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A75",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A76",
-        "floor_code": "12F",
-        "seat_label": "A76",
-        "person_name": "이시정",
-        "team_org_id_seat": "section-04-group-04-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-A76",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A77",
-        "floor_code": "12F",
-        "seat_label": "A77",
-        "person_name": "",
-        "team_org_id_seat": "section-04-group-04-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-A78",
-        "floor_code": "12F",
-        "seat_label": "A78",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B1",
-        "floor_code": "12F",
-        "seat_label": "B1",
-        "person_name": "신동열",
-        "team_org_id_seat": "section-05-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B1",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B2",
-        "floor_code": "12F",
-        "seat_label": "B2",
-        "person_name": "강현일",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B2",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B3",
-        "floor_code": "12F",
-        "seat_label": "B3",
-        "person_name": "인턴",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B4",
-        "floor_code": "12F",
-        "seat_label": "B4",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B5",
-        "floor_code": "12F",
-        "seat_label": "B5",
-        "person_name": "권진명",
-        "team_org_id_seat": "section-03-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B5",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B6",
-        "floor_code": "12F",
-        "seat_label": "B6",
-        "person_name": "인턴",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B7",
-        "floor_code": "12F",
-        "seat_label": "B7",
-        "person_name": "권종엽",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B7",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B8",
-        "floor_code": "12F",
-        "seat_label": "B8",
-        "person_name": "류종필",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B8",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B9",
-        "floor_code": "12F",
-        "seat_label": "B9",
-        "person_name": "송낙범",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B10",
-        "floor_code": "12F",
-        "seat_label": "B10",
-        "person_name": "모영준",
-        "team_org_id_seat": "section-03-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B10",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B11",
-        "floor_code": "12F",
-        "seat_label": "B11",
-        "person_name": "이대희",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B11",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B12",
-        "floor_code": "12F",
-        "seat_label": "B12",
-        "person_name": "김지오",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B12",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B13",
-        "floor_code": "12F",
-        "seat_label": "B13",
-        "person_name": "채지수",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B13",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B14",
-        "floor_code": "12F",
-        "seat_label": "B14",
-        "person_name": "최성룡",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B14",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B15",
-        "floor_code": "12F",
-        "seat_label": "B15",
-        "person_name": "이재현",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B15",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B16",
-        "floor_code": "12F",
-        "seat_label": "B16",
-        "person_name": "박현우",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B16",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B17",
-        "floor_code": "12F",
-        "seat_label": "B17",
-        "person_name": "이정한",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B18",
-        "floor_code": "12F",
-        "seat_label": "B18",
-        "person_name": "신호선",
-        "team_org_id_seat": "section-05-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B18",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B19",
-        "floor_code": "12F",
-        "seat_label": "B19",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B20",
-        "floor_code": "12F",
-        "seat_label": "B20",
-        "person_name": "김정현",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B20",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B21",
-        "floor_code": "12F",
-        "seat_label": "B21",
-        "person_name": "정은비",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B21",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B22",
-        "floor_code": "12F",
-        "seat_label": "B22",
-        "person_name": "도한영",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B22",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B23",
-        "floor_code": "12F",
-        "seat_label": "B23",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B24",
-        "floor_code": "12F",
-        "seat_label": "B24",
-        "person_name": "정혜령",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B25",
-        "floor_code": "12F",
-        "seat_label": "B25",
-        "person_name": "김민엽",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B25",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B26",
-        "floor_code": "12F",
-        "seat_label": "B26",
-        "person_name": "임민혁",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B26",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B27",
-        "floor_code": "12F",
-        "seat_label": "B27",
-        "person_name": "장정윤",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B27",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B28",
-        "floor_code": "12F",
-        "seat_label": "B28",
-        "person_name": "황보경",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B28",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B29",
-        "floor_code": "12F",
-        "seat_label": "B29",
-        "person_name": "김유진",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B29",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-B30",
-        "floor_code": "12F",
-        "seat_label": "B30",
-        "person_name": "권영규",
-        "team_org_id_seat": "",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-B30",
-        "is_moved": "N",
-        "is_external_division": "Y",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D1",
-        "floor_code": "12F",
-        "seat_label": "D1",
-        "person_name": "박준호",
-        "team_org_id_seat": "section-04-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D1",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D3",
-        "floor_code": "12F",
-        "seat_label": "D3",
-        "person_name": "임상훈",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D3",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D4",
-        "floor_code": "12F",
-        "seat_label": "D4",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D5",
-        "floor_code": "12F",
-        "seat_label": "D5",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D6",
-        "floor_code": "12F",
-        "seat_label": "D6",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D7",
-        "floor_code": "12F",
-        "seat_label": "D7",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D8",
-        "floor_code": "12F",
-        "seat_label": "D8",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D9",
-        "floor_code": "12F",
-        "seat_label": "D9",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D10",
-        "floor_code": "12F",
-        "seat_label": "D10",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D11",
-        "floor_code": "12F",
-        "seat_label": "D11",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D12",
-        "floor_code": "12F",
-        "seat_label": "D12",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D13",
-        "floor_code": "12F",
-        "seat_label": "D13",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D14",
-        "floor_code": "12F",
-        "seat_label": "D14",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D15",
-        "floor_code": "12F",
-        "seat_label": "D15",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D16",
-        "floor_code": "12F",
-        "seat_label": "D16",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D17",
-        "floor_code": "12F",
-        "seat_label": "D17",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D18",
-        "floor_code": "12F",
-        "seat_label": "D18",
-        "person_name": "",
-        "team_org_id_seat": "",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D19",
-        "floor_code": "12F",
-        "seat_label": "D19",
-        "person_name": "한승환",
-        "team_org_id_seat": "section-04-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D19",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D20",
-        "floor_code": "12F",
-        "seat_label": "D20",
-        "person_name": "박현승",
-        "team_org_id_seat": "section-04-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D20",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D21",
-        "floor_code": "12F",
-        "seat_label": "D21",
-        "person_name": "강석민",
-        "team_org_id_seat": "section-04-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D21",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D22",
-        "floor_code": "12F",
-        "seat_label": "D22",
-        "person_name": "김지우",
-        "team_org_id_seat": "section-04-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D22",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D23",
-        "floor_code": "12F",
-        "seat_label": "D23",
-        "person_name": "이성민",
-        "team_org_id_seat": "section-04-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D23",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D24",
-        "floor_code": "12F",
-        "seat_label": "D24",
-        "person_name": "손유정",
-        "team_org_id_seat": "section-04-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D24",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D25",
-        "floor_code": "12F",
-        "seat_label": "D25",
-        "person_name": "정리훈",
-        "team_org_id_seat": "section-04-group-01-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D25",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D26",
-        "floor_code": "12F",
-        "seat_label": "D26",
-        "person_name": "윤탐",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D27",
-        "floor_code": "12F",
-        "seat_label": "D27",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D28",
-        "floor_code": "12F",
-        "seat_label": "D28",
-        "person_name": "문성흠",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D29",
-        "floor_code": "12F",
-        "seat_label": "D29",
-        "person_name": "김호진",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D30",
-        "floor_code": "12F",
-        "seat_label": "D30",
-        "person_name": "인턴",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D31",
-        "floor_code": "12F",
-        "seat_label": "D31",
-        "person_name": "강수원",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D31",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D32",
-        "floor_code": "12F",
-        "seat_label": "D32",
-        "person_name": "김진희",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D32",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D33",
-        "floor_code": "12F",
-        "seat_label": "D33",
-        "person_name": "이상기",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D33",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D34",
-        "floor_code": "12F",
-        "seat_label": "D34",
-        "person_name": "인턴",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D35",
-        "floor_code": "12F",
-        "seat_label": "D35",
-        "person_name": "유한나",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D35",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D36",
-        "floor_code": "12F",
-        "seat_label": "D36",
-        "person_name": "심동민",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D36",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D37",
-        "floor_code": "12F",
-        "seat_label": "D37",
-        "person_name": "유선준",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D37",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D38",
-        "floor_code": "12F",
-        "seat_label": "D38",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D39",
-        "floor_code": "12F",
-        "seat_label": "D39",
-        "person_name": "곽호용",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D39",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D40",
-        "floor_code": "12F",
-        "seat_label": "D40",
-        "person_name": "정지웅",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D40",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D41",
-        "floor_code": "12F",
-        "seat_label": "D41",
-        "person_name": "송상민",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-D41",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D42",
-        "floor_code": "12F",
-        "seat_label": "D42",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D43",
-        "floor_code": "12F",
-        "seat_label": "D43",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D44",
-        "floor_code": "12F",
-        "seat_label": "D44",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-D45",
-        "floor_code": "12F",
-        "seat_label": "D45",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-03-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E1",
-        "floor_code": "12F",
-        "seat_label": "E1",
-        "person_name": "오윤석",
-        "team_org_id_seat": "section-01-group-05-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E1",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E2",
-        "floor_code": "12F",
-        "seat_label": "E2",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-05-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E3",
-        "floor_code": "12F",
-        "seat_label": "E3",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-05-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E4",
-        "floor_code": "12F",
-        "seat_label": "E4",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-05-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E5",
-        "floor_code": "12F",
-        "seat_label": "E5",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-05-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E6",
-        "floor_code": "12F",
-        "seat_label": "E6",
-        "person_name": "김재동",
-        "team_org_id_seat": "section-01-group-05-part-03-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E6",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E7",
-        "floor_code": "12F",
-        "seat_label": "E7",
-        "person_name": "조광현",
-        "team_org_id_seat": "section-01-group-05-part-03-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E7",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E8",
-        "floor_code": "12F",
-        "seat_label": "E8",
-        "person_name": "인감날인",
-        "team_org_id_seat": "section-01-group-05-part-03-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E8",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E9",
-        "floor_code": "12F",
-        "seat_label": "E9",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-05-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E10",
-        "floor_code": "12F",
-        "seat_label": "E10",
-        "person_name": "전서진",
-        "team_org_id_seat": "section-01-group-05-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E10",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E11",
-        "floor_code": "12F",
-        "seat_label": "E11",
-        "person_name": "류지훈",
-        "team_org_id_seat": "section-01-group-05-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E11",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E12",
-        "floor_code": "12F",
-        "seat_label": "E12",
-        "person_name": "이민호",
-        "team_org_id_seat": "section-01-group-05-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E12",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E13",
-        "floor_code": "12F",
-        "seat_label": "E13",
-        "person_name": "한창형",
-        "team_org_id_seat": "section-01-group-05-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E13",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E14",
-        "floor_code": "12F",
-        "seat_label": "E14",
-        "person_name": "이가을",
-        "team_org_id_seat": "section-01-group-05-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E14",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E15",
-        "floor_code": "12F",
-        "seat_label": "E15",
-        "person_name": "이예은",
-        "team_org_id_seat": "section-01-group-05-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E15",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E16",
-        "floor_code": "12F",
-        "seat_label": "E16",
-        "person_name": "양우영",
-        "team_org_id_seat": "section-01-group-05-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E16",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E17",
-        "floor_code": "12F",
-        "seat_label": "E17",
-        "person_name": "김대선",
-        "team_org_id_seat": "section-01-group-05-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E17",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E18",
-        "floor_code": "12F",
-        "seat_label": "E18",
-        "person_name": "하승균",
-        "team_org_id_seat": "section-01-group-05-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E18",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E19",
-        "floor_code": "12F",
-        "seat_label": "E19",
-        "person_name": "이승준",
-        "team_org_id_seat": "section-01-group-05-part-01-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E19",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E20",
-        "floor_code": "12F",
-        "seat_label": "E20",
-        "person_name": "한수진",
-        "team_org_id_seat": "section-01-group-05-part-04-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E20",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E21",
-        "floor_code": "12F",
-        "seat_label": "E21",
-        "person_name": "박유진",
-        "team_org_id_seat": "section-01-group-05-part-04-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E21",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E22",
-        "floor_code": "12F",
-        "seat_label": "E22",
-        "person_name": "최승봉",
-        "team_org_id_seat": "section-01-group-05-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E22",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E23",
-        "floor_code": "12F",
-        "seat_label": "E23",
-        "person_name": "구본혁",
-        "team_org_id_seat": "section-01-group-05-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E23",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E24",
-        "floor_code": "12F",
-        "seat_label": "E24",
-        "person_name": "오상윤",
-        "team_org_id_seat": "section-01-group-05-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E24",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "12F-E25",
-        "floor_code": "12F",
-        "seat_label": "E25",
-        "person_name": "황재현",
-        "team_org_id_seat": "section-01-group-05-part-02-team-01",
-        "origin_floor_code": "12F",
-        "origin_seat_code": "12F-E25",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A1",
-        "floor_code": "13F",
-        "seat_label": "A1",
-        "person_name": "윤우섭",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A1",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A2",
-        "floor_code": "13F",
-        "seat_label": "A2",
-        "person_name": "양준모",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A3",
-        "floor_code": "13F",
-        "seat_label": "A3",
-        "person_name": "문준식",
-        "team_org_id_seat": "section-01-group-01-part-02-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A3",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A4",
-        "floor_code": "13F",
-        "seat_label": "A4",
-        "person_name": "홍봉석",
-        "team_org_id_seat": "section-01-group-01-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A4",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A5",
-        "floor_code": "13F",
-        "seat_label": "A5",
-        "person_name": "이승철",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A10",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A6",
-        "floor_code": "13F",
-        "seat_label": "A6",
-        "person_name": "이경형",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A6",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A7",
-        "floor_code": "13F",
-        "seat_label": "A7",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A8",
-        "floor_code": "13F",
-        "seat_label": "A8",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A9",
-        "floor_code": "13F",
-        "seat_label": "A9",
-        "person_name": "김민석",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A9",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A10",
-        "floor_code": "13F",
-        "seat_label": "A10",
-        "person_name": "김민기",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A11",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A11",
-        "floor_code": "13F",
-        "seat_label": "A11",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A12",
-        "floor_code": "13F",
-        "seat_label": "A12",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A13",
-        "floor_code": "13F",
-        "seat_label": "A13",
-        "person_name": "최성지",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A13",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A14",
-        "floor_code": "13F",
-        "seat_label": "A14",
-        "person_name": "원세훈",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A14",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A15",
-        "floor_code": "13F",
-        "seat_label": "A15",
-        "person_name": "윤현식",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A15",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A16",
-        "floor_code": "13F",
-        "seat_label": "A16",
-        "person_name": "이정은",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A16",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A17",
-        "floor_code": "13F",
-        "seat_label": "A17",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A18",
-        "floor_code": "13F",
-        "seat_label": "A18",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A19",
-        "floor_code": "13F",
-        "seat_label": "A19",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A20",
-        "floor_code": "13F",
-        "seat_label": "A20",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-02-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A21",
-        "floor_code": "13F",
-        "seat_label": "A21",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-01-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A22",
-        "floor_code": "13F",
-        "seat_label": "A22",
-        "person_name": "김용준",
-        "team_org_id_seat": "section-01-group-01-part-02-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A22",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A23",
-        "floor_code": "13F",
-        "seat_label": "A23",
-        "person_name": "김휘수",
-        "team_org_id_seat": "section-01-group-01-part-02-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A23",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A24",
-        "floor_code": "13F",
-        "seat_label": "A24",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-01-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A25",
-        "floor_code": "13F",
-        "seat_label": "A25",
-        "person_name": "장민호",
-        "team_org_id_seat": "section-01-group-01-part-02-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A25",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A26",
-        "floor_code": "13F",
-        "seat_label": "A26",
-        "person_name": "전형진",
-        "team_org_id_seat": "section-01-group-01-part-02-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A33",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A27",
-        "floor_code": "13F",
-        "seat_label": "A27",
-        "person_name": "박정수",
-        "team_org_id_seat": "section-01-group-01-part-02-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A27",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A28",
-        "floor_code": "13F",
-        "seat_label": "A28",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-01-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A29",
-        "floor_code": "13F",
-        "seat_label": "A29",
-        "person_name": "정재각",
-        "team_org_id_seat": "section-01-group-01-part-02-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A29",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A30",
-        "floor_code": "13F",
-        "seat_label": "A30",
-        "person_name": "이춘호",
-        "team_org_id_seat": "section-01-group-01-part-02-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A30",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A31",
-        "floor_code": "13F",
-        "seat_label": "A31",
-        "person_name": "김연우",
-        "team_org_id_seat": "section-01-group-01-part-02-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A31",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A32",
-        "floor_code": "13F",
-        "seat_label": "A32",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-01-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A33",
-        "floor_code": "13F",
-        "seat_label": "A33",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-01-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A34",
-        "floor_code": "13F",
-        "seat_label": "A34",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-01-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A35",
-        "floor_code": "13F",
-        "seat_label": "A35",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-01-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A36",
-        "floor_code": "13F",
-        "seat_label": "A36",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-01-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A37",
-        "floor_code": "13F",
-        "seat_label": "A37",
-        "person_name": "송기석",
-        "team_org_id_seat": "section-01-group-01-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A37",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A38",
-        "floor_code": "13F",
-        "seat_label": "A38",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-01-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A39",
-        "floor_code": "13F",
-        "seat_label": "A39",
-        "person_name": "이강일",
-        "team_org_id_seat": "section-01-group-01-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A39",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A40",
-        "floor_code": "13F",
-        "seat_label": "A40",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-01-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A41",
-        "floor_code": "13F",
-        "seat_label": "A41",
-        "person_name": "황선필",
-        "team_org_id_seat": "section-01-group-01-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A41",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A42",
-        "floor_code": "13F",
-        "seat_label": "A42",
-        "person_name": "신용우",
-        "team_org_id_seat": "section-01-group-01-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A42",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A43",
-        "floor_code": "13F",
-        "seat_label": "A43",
-        "person_name": "진정용",
-        "team_org_id_seat": "section-01-group-01-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A43",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A44",
-        "floor_code": "13F",
-        "seat_label": "A44",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-01-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A45",
-        "floor_code": "13F",
-        "seat_label": "A45",
-        "person_name": "공석현",
-        "team_org_id_seat": "section-01-group-01-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A45",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A46",
-        "floor_code": "13F",
-        "seat_label": "A46",
-        "person_name": "강병옥",
-        "team_org_id_seat": "section-01-group-01-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-A47",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A47",
-        "floor_code": "13F",
-        "seat_label": "A47",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-01-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-A48",
-        "floor_code": "13F",
-        "seat_label": "A48",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-01-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B1",
-        "floor_code": "13F",
-        "seat_label": "B1",
-        "person_name": "윤관식",
-        "team_org_id_seat": "section-01-group-01-part-01-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B1",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B2",
-        "floor_code": "13F",
-        "seat_label": "B2",
-        "person_name": "안지하",
-        "team_org_id_seat": "section-01-group-01-part-03-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B2",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B3",
-        "floor_code": "13F",
-        "seat_label": "B3",
-        "person_name": "최광석 (임시)",
-        "team_org_id_seat": "section-01-group-01-part-03-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B3",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B4",
-        "floor_code": "13F",
-        "seat_label": "B4",
-        "person_name": "백종우 (임시)",
-        "team_org_id_seat": "section-01-group-01-part-03-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B4",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B5",
-        "floor_code": "13F",
-        "seat_label": "B5",
-        "person_name": "한상후 (임시)",
-        "team_org_id_seat": "section-01-group-01-part-03-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B5",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B6",
-        "floor_code": "13F",
-        "seat_label": "B6",
-        "person_name": "윤재진",
-        "team_org_id_seat": "section-01-group-01-part-04-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B6",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B7",
-        "floor_code": "13F",
-        "seat_label": "B7",
-        "person_name": "이하영",
-        "team_org_id_seat": "section-01-group-01-part-04-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B7",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B8",
-        "floor_code": "13F",
-        "seat_label": "B8",
-        "person_name": "최정택",
-        "team_org_id_seat": "section-01-group-01-part-04-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B8",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B9",
-        "floor_code": "13F",
-        "seat_label": "B9",
-        "person_name": "김태헌",
-        "team_org_id_seat": "section-01-group-01-part-03-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B9",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B10",
-        "floor_code": "13F",
-        "seat_label": "B10",
-        "person_name": "정현민",
-        "team_org_id_seat": "section-01-group-01-part-03-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B10",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B11",
-        "floor_code": "13F",
-        "seat_label": "B11",
-        "person_name": "김동준",
-        "team_org_id_seat": "section-01-group-01-part-03-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B11",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B12",
-        "floor_code": "13F",
-        "seat_label": "B12",
-        "person_name": "황준식",
-        "team_org_id_seat": "section-01-group-01-part-03-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B12",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B13",
-        "floor_code": "13F",
-        "seat_label": "B13",
-        "person_name": "이준기",
-        "team_org_id_seat": "section-01-group-01-part-03-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B13",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B14",
-        "floor_code": "13F",
-        "seat_label": "B14",
-        "person_name": "경규명",
-        "team_org_id_seat": "section-01-group-01-part-03-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B14",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B15",
-        "floor_code": "13F",
-        "seat_label": "B15",
-        "person_name": "조청원",
-        "team_org_id_seat": "section-01-group-01-part-04-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B15",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B16",
-        "floor_code": "13F",
-        "seat_label": "B16",
-        "person_name": "이주영",
-        "team_org_id_seat": "section-01-group-01-part-04-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B16",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B17",
-        "floor_code": "13F",
-        "seat_label": "B17",
-        "person_name": "김찬솔",
-        "team_org_id_seat": "section-01-group-01-part-04-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B17",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B18",
-        "floor_code": "13F",
-        "seat_label": "B18",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-01-part-04-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B19",
-        "floor_code": "13F",
-        "seat_label": "B19",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-01-part-04-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B20",
-        "floor_code": "13F",
-        "seat_label": "B20",
-        "person_name": "유민종",
-        "team_org_id_seat": "section-01-group-01-part-04-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B20",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B21",
-        "floor_code": "13F",
-        "seat_label": "B21",
-        "person_name": "하승훈",
-        "team_org_id_seat": "section-01-group-01-part-04-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B21",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B22",
-        "floor_code": "13F",
-        "seat_label": "B22",
-        "person_name": "박수민",
-        "team_org_id_seat": "section-01-group-01-part-04-team-01",
-        "origin_floor_code": "13F",
-        "origin_seat_code": "13F-B22",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "13F-B23",
-        "floor_code": "13F",
-        "seat_label": "B23",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-01-part-04-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C1",
-        "floor_code": "CCMM11F",
-        "seat_label": "C1",
-        "person_name": "김규식",
-        "team_org_id_seat": "section-03-group-02-part-01-team-03",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C1",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C2",
-        "floor_code": "CCMM11F",
-        "seat_label": "C2",
-        "person_name": "석동주",
-        "team_org_id_seat": "section-03-group-02-part-01-team-03",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C2",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C3",
-        "floor_code": "CCMM11F",
-        "seat_label": "C3",
-        "person_name": "노선호",
-        "team_org_id_seat": "section-03-group-02-part-01-team-03",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C3",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C4",
-        "floor_code": "CCMM11F",
-        "seat_label": "C4",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-02-part-01-team-03",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C5",
-        "floor_code": "CCMM11F",
-        "seat_label": "C5",
-        "person_name": "오지원",
-        "team_org_id_seat": "section-03-group-02-part-01-team-03",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C5",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C6",
-        "floor_code": "CCMM11F",
-        "seat_label": "C6",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-02-part-01-team-03",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C7",
-        "floor_code": "CCMM11F",
-        "seat_label": "C7",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-02-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C8",
-        "floor_code": "CCMM11F",
-        "seat_label": "C8",
-        "person_name": "김민건",
-        "team_org_id_seat": "section-03-group-02-part-01-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C18",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C9",
-        "floor_code": "CCMM11F",
-        "seat_label": "C9",
-        "person_name": "이진희",
-        "team_org_id_seat": "section-03-group-02-part-01-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C23",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C10",
-        "floor_code": "CCMM11F",
-        "seat_label": "C10",
-        "person_name": "이수현",
-        "team_org_id_seat": "section-03-group-02-part-01-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C19",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C11",
-        "floor_code": "CCMM11F",
-        "seat_label": "C11",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-02-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C12",
-        "floor_code": "CCMM11F",
-        "seat_label": "C12",
-        "person_name": "우석",
-        "team_org_id_seat": "section-03-group-02-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C13",
-        "floor_code": "CCMM11F",
-        "seat_label": "C13",
-        "person_name": "박종덕",
-        "team_org_id_seat": "section-03-group-02-part-01-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C24",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C14",
-        "floor_code": "CCMM11F",
-        "seat_label": "C14",
-        "person_name": "김형근",
-        "team_org_id_seat": "section-03-group-02-part-01-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C25",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C15",
-        "floor_code": "CCMM11F",
-        "seat_label": "C15",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-02-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C16",
-        "floor_code": "CCMM11F",
-        "seat_label": "C16",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-02-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C17",
-        "floor_code": "CCMM11F",
-        "seat_label": "C17",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-02-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C18",
-        "floor_code": "CCMM11F",
-        "seat_label": "C18",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-02-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C19",
-        "floor_code": "CCMM11F",
-        "seat_label": "C19",
-        "person_name": "유진선",
-        "team_org_id_seat": "section-03-group-02-part-02-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C8",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C20",
-        "floor_code": "CCMM11F",
-        "seat_label": "C20",
-        "person_name": "신윤아",
-        "team_org_id_seat": "section-03-group-02-part-02-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C10",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C21",
-        "floor_code": "CCMM11F",
-        "seat_label": "C21",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-02-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C22",
-        "floor_code": "CCMM11F",
-        "seat_label": "C22",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-02-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C23",
-        "floor_code": "CCMM11F",
-        "seat_label": "C23",
-        "person_name": "정서윤",
-        "team_org_id_seat": "section-03-group-02-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C24",
-        "floor_code": "CCMM11F",
-        "seat_label": "C24",
-        "person_name": "윤주성",
-        "team_org_id_seat": "section-03-group-02-part-02-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C13",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C25",
-        "floor_code": "CCMM11F",
-        "seat_label": "C25",
-        "person_name": "김선미",
-        "team_org_id_seat": "section-03-group-02-part-02-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C9",
-        "is_moved": "Y",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C26",
-        "floor_code": "CCMM11F",
-        "seat_label": "C26",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-02-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C27",
-        "floor_code": "CCMM11F",
-        "seat_label": "C27",
-        "person_name": "",
-        "team_org_id_seat": "section-03-group-02-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C28",
-        "floor_code": "CCMM11F",
-        "seat_label": "C28",
-        "person_name": "나혜윤",
-        "team_org_id_seat": "section-03-group-02-part-02-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C28",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C29",
-        "floor_code": "CCMM11F",
-        "seat_label": "C29",
-        "person_name": "신소현",
-        "team_org_id_seat": "section-03-group-02-part-02-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C29",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C30",
-        "floor_code": "CCMM11F",
-        "seat_label": "C30",
-        "person_name": "김종수",
-        "team_org_id_seat": "section-03-group-02-part-02-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C30",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C31",
-        "floor_code": "CCMM11F",
-        "seat_label": "C31",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-04-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C32",
-        "floor_code": "CCMM11F",
-        "seat_label": "C32",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-04-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C33",
-        "floor_code": "CCMM11F",
-        "seat_label": "C33",
-        "person_name": "김회창",
-        "team_org_id_seat": "section-01-group-04-part-01-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C33",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C34",
-        "floor_code": "CCMM11F",
-        "seat_label": "C34",
-        "person_name": "조진욱",
-        "team_org_id_seat": "section-01-group-04-part-01-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C34",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C35",
-        "floor_code": "CCMM11F",
-        "seat_label": "C35",
-        "person_name": "이나우",
-        "team_org_id_seat": "section-01-group-04-part-01-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C35",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C36",
-        "floor_code": "CCMM11F",
-        "seat_label": "C36",
-        "person_name": "모션데스크",
-        "team_org_id_seat": "section-01-group-04-part-01-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C36",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C37",
-        "floor_code": "CCMM11F",
-        "seat_label": "C37",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-04-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C38",
-        "floor_code": "CCMM11F",
-        "seat_label": "C38",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-04-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C39",
-        "floor_code": "CCMM11F",
-        "seat_label": "C39",
-        "person_name": "김동진",
-        "team_org_id_seat": "section-01-group-04-part-01-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C39",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C40",
-        "floor_code": "CCMM11F",
-        "seat_label": "C40",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-04-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C41",
-        "floor_code": "CCMM11F",
-        "seat_label": "C41",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-04-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C42",
-        "floor_code": "CCMM11F",
-        "seat_label": "C42",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-04-part-01-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C43",
-        "floor_code": "CCMM11F",
-        "seat_label": "C43",
-        "person_name": "안재욱",
-        "team_org_id_seat": "section-01-group-04-part-01-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C43",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C44",
-        "floor_code": "CCMM11F",
-        "seat_label": "C44",
-        "person_name": "김명준",
-        "team_org_id_seat": "section-01-group-04-part-01-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C44",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C45",
-        "floor_code": "CCMM11F",
-        "seat_label": "C45",
-        "person_name": "오명균",
-        "team_org_id_seat": "section-01-group-04-part-01-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C45",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C46",
-        "floor_code": "CCMM11F",
-        "seat_label": "C46",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-04-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C47",
-        "floor_code": "CCMM11F",
-        "seat_label": "C47",
-        "person_name": "주현도",
-        "team_org_id_seat": "section-01-group-04-part-02-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C47",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C48",
-        "floor_code": "CCMM11F",
-        "seat_label": "C48",
-        "person_name": "이승훈",
-        "team_org_id_seat": "section-01-group-04-part-02-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C48",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C49",
-        "floor_code": "CCMM11F",
-        "seat_label": "C49",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-04-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C50",
-        "floor_code": "CCMM11F",
-        "seat_label": "C50",
-        "person_name": "이승국",
-        "team_org_id_seat": "section-01-group-04-part-02-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C50",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C51",
-        "floor_code": "CCMM11F",
-        "seat_label": "C51",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-04-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C52",
-        "floor_code": "CCMM11F",
-        "seat_label": "C52",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-04-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C53",
-        "floor_code": "CCMM11F",
-        "seat_label": "C53",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-04-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C54",
-        "floor_code": "CCMM11F",
-        "seat_label": "C54",
-        "person_name": "안성기",
-        "team_org_id_seat": "section-01-group-04-part-02-team-01",
-        "origin_floor_code": "CCMM11F",
-        "origin_seat_code": "CCMM11F-C54",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      },
-      {
-        "seat_code": "CCMM11F-C55",
-        "floor_code": "CCMM11F",
-        "seat_label": "C55",
-        "person_name": "",
-        "team_org_id_seat": "section-01-group-04-part-02-team-01",
-        "origin_floor_code": "",
-        "origin_seat_code": "",
-        "is_moved": "N",
-        "is_external_division": "N",
-        "note": "",
-        "sheet_name": "seat_layout_latest"
-      }
-    ]
-  }
+  "units": [
+    {
+      "id": "unit_51812c0046eb",
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "displayName": "1파트",
+      "path": "투자+펀딩 > 투자1그룹 > 1파트 > 1파트",
+      "assignmentCount": 9,
+      "uniquePeopleCount": 9,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "윤관식",
+          "name": "윤관식",
+          "email": "gwansik.yoon@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "홍봉석",
+          "name": "홍봉석",
+          "email": "bs.hong@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "공석현",
+          "name": "공석현",
+          "email": "ksh0727@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "송기석",
+          "name": "송기석",
+          "email": "ksong@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "이강일",
+          "name": "이강일",
+          "email": "ki.lee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "강병옥",
+          "name": "강병옥",
+          "email": "jason.kang@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "신용우",
+          "name": "신용우",
+          "email": "yongwoo.shin@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "진정용",
+          "name": "진정용",
+          "email": "jyjin@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "황선필",
+          "name": "황선필",
+          "email": "wspil@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_86626436c986",
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "displayName": "2파트",
+      "path": "투자+펀딩 > 투자1그룹 > 2파트 > 2파트",
+      "assignmentCount": 11,
+      "uniquePeopleCount": 11,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "윤관식",
+          "name": "윤관식",
+          "email": "gwansik.yoon@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "문준식",
+          "name": "문준식",
+          "email": "jun.moon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "장민호",
+          "name": "장민호",
+          "email": "mhjang@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "전형진B",
+          "name": "전형진B",
+          "email": "hjjeon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "정재각",
+          "name": "정재각",
+          "email": "jkjeong@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김연우",
+          "name": "김연우",
+          "email": "kyw240@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김용준",
+          "name": "김용준",
+          "email": "yjoonkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김휘수",
+          "name": "김휘수",
+          "email": "hskim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "박정수",
+          "name": "박정수",
+          "email": "jspark@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "안지원",
+          "name": "안지원",
+          "email": "jw.ahn@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이춘호",
+          "name": "이춘호",
+          "email": "choonholee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_c7db31c6a65b",
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "displayName": "3파트",
+      "path": "투자+펀딩 > 투자1그룹 > 3파트 > 3파트",
+      "assignmentCount": 8,
+      "uniquePeopleCount": 8,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "윤관식",
+          "name": "윤관식",
+          "email": "gwansik.yoon@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "안지하",
+          "name": "안지하",
+          "email": "jiha.ahn@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "김태헌",
+          "name": "김태헌",
+          "email": "tkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "경규명",
+          "name": "경규명",
+          "email": "gm.gyeong@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김동준",
+          "name": "김동준",
+          "email": "kdj5784@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이준기",
+          "name": "이준기",
+          "email": "jungi.lee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "정현민",
+          "name": "정현민",
+          "email": "hyunmin.jung@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "황준식",
+          "name": "황준식",
+          "email": "junsik.hwang@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_86f14394cf5f",
+      "section": "투자+펀딩",
+      "group": "투자1그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "displayName": "4파트",
+      "path": "투자+펀딩 > 투자1그룹 > 4파트 > 4파트",
+      "assignmentCount": 13,
+      "uniquePeopleCount": 12,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "윤관식",
+          "name": "윤관식",
+          "email": "gwansik.yoon@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "윤관식",
+          "name": "윤관식",
+          "email": "gwansik.yoon@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "윤재진",
+          "name": "윤재진",
+          "email": "double0507@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "조청원",
+          "name": "조청원",
+          "email": "cwcho@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "하승훈",
+          "name": "하승훈",
+          "email": "hshpixy@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김찬솔",
+          "name": "김찬솔",
+          "email": "cskim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "박수민",
+          "name": "박수민",
+          "email": "suminp@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "유민종",
+          "name": "유민종",
+          "email": "minz@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이주영",
+          "name": "이주영",
+          "email": "jy3142@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이하영",
+          "name": "이하영",
+          "email": "hayoung.lee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "최정택",
+          "name": "최정택",
+          "email": "choijt@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "한상후",
+          "name": "한상후",
+          "email": "sh.han@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "한주현",
+          "name": "한주현",
+          "email": "juhyeon.han@igisam.com",
+          "tags": [
+            "인턴"
+          ],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_5f05a671c475",
+      "section": "투자+펀딩",
+      "group": "투자2그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "displayName": "1파트",
+      "path": "투자+펀딩 > 투자2그룹 > 1파트 > 1파트",
+      "assignmentCount": 10,
+      "uniquePeopleCount": 10,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "윤우섭",
+          "name": "윤우섭",
+          "email": "wsyoon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "양준모",
+          "name": "양준모",
+          "email": "brian.yang@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "김민석A",
+          "name": "김민석A",
+          "email": "minseok.kim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "최성지",
+          "name": "최성지",
+          "email": "lauren.choi@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김민기",
+          "name": "김민기",
+          "email": "mgkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "원세훈",
+          "name": "원세훈",
+          "email": "sweon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "윤현식",
+          "name": "윤현식",
+          "email": "hyunsik.yoon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이경형",
+          "name": "이경형",
+          "email": "kh.lee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이승철",
+          "name": "이승철",
+          "email": "sc.lee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이정은",
+          "name": "이정은",
+          "email": "jelee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_2fd85c405606",
+      "section": "투자+펀딩",
+      "group": "투자3그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "displayName": "1파트",
+      "path": "투자+펀딩 > 투자3그룹 > 1파트 > 1파트",
+      "assignmentCount": 16,
+      "uniquePeopleCount": 15,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "임상훈",
+          "name": "임상훈",
+          "email": "shlim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "임상훈",
+          "name": "임상훈",
+          "email": "shlim@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "김호진",
+          "name": "김호진",
+          "email": "khj179@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "송상민",
+          "name": "송상민",
+          "email": "sgtsongsm@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "유선준",
+          "name": "유선준",
+          "email": "sunjoon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "강수원",
+          "name": "강수원",
+          "email": "soowon.kang@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "곽호용",
+          "name": "곽호용",
+          "email": "kwak@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김진희",
+          "name": "김진희",
+          "email": "jinny@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "문성흠",
+          "name": "문성흠",
+          "email": "akuma9404@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "심동민",
+          "name": "심동민",
+          "email": "dm.shim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "유한나",
+          "name": "유한나",
+          "email": "hanna.yoo@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이상기",
+          "name": "이상기",
+          "email": "leesangki@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이예진",
+          "name": "이예진",
+          "email": "yj.lee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이준수A",
+          "name": "이준수A",
+          "email": "junsu.lee@igisam.com",
+          "tags": [
+            "인턴"
+          ],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "정나엘",
+          "name": "정나엘",
+          "email": "nael.jeong@igisam.com",
+          "tags": [
+            "인턴"
+          ],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "정지웅",
+          "name": "정지웅",
+          "email": "jaychung@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_b9b0f4fc7f08",
+      "section": "투자+펀딩",
+      "group": "글로벌투자그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "displayName": "1파트",
+      "path": "투자+펀딩 > 글로벌투자그룹 > 1파트 > 1파트",
+      "assignmentCount": 10,
+      "uniquePeopleCount": 10,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "윤정규",
+          "name": "윤정규",
+          "email": "robert.yoon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "남형록",
+          "name": "남형록",
+          "email": "hrnam@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "오명균",
+          "name": "오명균",
+          "email": "david.oh@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김동진",
+          "name": "김동진",
+          "email": "dongjin.kim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김명준",
+          "name": "김명준",
+          "email": "myungjun.kim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김회창",
+          "name": "김회창",
+          "email": "luckyhc@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "안재욱",
+          "name": "안재욱",
+          "email": "james.ann@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이나우",
+          "name": "이나우",
+          "email": "nawoo.lee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이영택",
+          "name": "이영택",
+          "email": "youngtaiklee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "조진욱",
+          "name": "조진욱",
+          "email": "jin.cho@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_ab1932f2a942",
+      "section": "투자+펀딩",
+      "group": "글로벌투자그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "displayName": "2파트",
+      "path": "투자+펀딩 > 글로벌투자그룹 > 2파트 > 2파트",
+      "assignmentCount": 6,
+      "uniquePeopleCount": 6,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "윤정규",
+          "name": "윤정규",
+          "email": "robert.yoon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "김주일",
+          "name": "김주일",
+          "email": "jooil.kim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "안성기",
+          "name": "안성기",
+          "email": "askpride@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "이승국",
+          "name": "이승국",
+          "email": "seungkook.lee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이승훈B",
+          "name": "이승훈B",
+          "email": "hoon.lee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "주현도",
+          "name": "주현도",
+          "email": "joohyundo@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_37986657af7c",
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "displayName": "1파트",
+      "path": "투자+펀딩 > 스페셜시츄에이션그룹 > 1파트 > 1파트",
+      "assignmentCount": 10,
+      "uniquePeopleCount": 9,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "오윤석",
+          "name": "오윤석",
+          "email": "ysoh@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "오윤석",
+          "name": "오윤석",
+          "email": "ysoh@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "이승준",
+          "name": "이승준",
+          "email": "sjoon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "한창형",
+          "name": "한창형",
+          "email": "chhan@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김대선",
+          "name": "김대선",
+          "email": "dskim29@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "류지훈",
+          "name": "류지훈",
+          "email": "jh.ryu@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "양우영",
+          "name": "양우영",
+          "email": "uyeong.yang@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이민호",
+          "name": "이민호",
+          "email": "mhlee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "전서진",
+          "name": "전서진",
+          "email": "seojin.jeon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "하승균",
+          "name": "하승균",
+          "email": "sg.ha@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_d2158c5ca46d",
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "displayName": "2파트",
+      "path": "투자+펀딩 > 스페셜시츄에이션그룹 > 2파트 > 2파트",
+      "assignmentCount": 5,
+      "uniquePeopleCount": 5,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "오윤석",
+          "name": "오윤석",
+          "email": "ysoh@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "황재현",
+          "name": "황재현",
+          "email": "jhhwang@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "구본혁",
+          "name": "구본혁",
+          "email": "bhkoo@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "오상윤",
+          "name": "오상윤",
+          "email": "syoh@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "최승봉",
+          "name": "최승봉",
+          "email": "bong.jour@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_97b387aa8241",
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "미지정",
+      "team": "스페셜시츄에이션그룹",
+      "displayName": "스페셜시츄에이션그룹",
+      "path": "투자+펀딩 > 스페셜시츄에이션그룹 > 미지정 > 스페셜시츄에이션그룹",
+      "assignmentCount": 2,
+      "uniquePeopleCount": 2,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "오윤석",
+          "name": "오윤석",
+          "email": "ysoh@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김동진A",
+          "name": "김동진A",
+          "email": "djkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_257a6958efe7",
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "자산관리",
+      "team": "자산관리",
+      "displayName": "자산관리",
+      "path": "투자+펀딩 > 스페셜시츄에이션그룹 > 자산관리 > 자산관리",
+      "assignmentCount": 3,
+      "uniquePeopleCount": 3,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "오윤석",
+          "name": "오윤석",
+          "email": "ysoh@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "조광현",
+          "name": "조광현",
+          "email": "khcho@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김재동",
+          "name": "김재동",
+          "email": "kimjd@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_940ae842f666",
+      "section": "투자+펀딩",
+      "group": "스페셜시츄에이션그룹",
+      "part": "포트폴리오 / 관리",
+      "team": "포트폴리오 / 관리",
+      "displayName": "포트폴리오 / 관리",
+      "path": "투자+펀딩 > 스페셜시츄에이션그룹 > 포트폴리오 / 관리 > 포트폴리오 / 관리",
+      "assignmentCount": 3,
+      "uniquePeopleCount": 3,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "오윤석",
+          "name": "오윤석",
+          "email": "ysoh@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "리더",
+          "rawName": "한수진",
+          "name": "한수진",
+          "email": "sujin.han@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "박유진",
+          "name": "박유진",
+          "email": "yujin@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_b1f296b06894",
+      "section": "투자+펀딩",
+      "group": "투자&펀딩",
+      "part": "미지정",
+      "team": "투자&펀딩",
+      "displayName": "투자&펀딩",
+      "path": "투자+펀딩 > 투자&펀딩 > 미지정 > 투자&펀딩",
+      "assignmentCount": 1,
+      "uniquePeopleCount": 1,
+      "members": [
+        {
+          "role": "담당디렉터",
+          "roleLabel": "부대표",
+          "rawName": "윤관식",
+          "name": "윤관식",
+          "email": "gwansik.yoon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_2f3c61256b4d",
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "displayName": "1파트",
+      "path": "사업+개발 > 사업그룹 > 1파트 > 1파트",
+      "assignmentCount": 10,
+      "uniquePeopleCount": 10,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "우형석",
+          "name": "우형석",
+          "email": "hyungsuk.woo@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "권순일",
+          "name": "권순일",
+          "email": "ksoonil@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "윤주형",
+          "name": "윤주형",
+          "email": "jh.yoon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김제익",
+          "name": "김제익",
+          "email": "jake.kim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김주희",
+          "name": "김주희",
+          "email": "juheekim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "류홍",
+          "name": "류홍",
+          "email": "ryuhong0526@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "박만진",
+          "name": "박만진",
+          "email": "jacob.park@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "박일훈",
+          "name": "박일훈",
+          "email": "ilhoon.park@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이정원",
+          "name": "이정원",
+          "email": "garden.lee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "전무경",
+          "name": "전무경",
+          "email": "mooj@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_2a92a01478c0",
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "displayName": "2파트",
+      "path": "사업+개발 > 사업그룹 > 2파트 > 2파트",
+      "assignmentCount": 8,
+      "uniquePeopleCount": 8,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "우형석",
+          "name": "우형석",
+          "email": "hyungsuk.woo@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "강순용",
+          "name": "강순용",
+          "email": "sykang@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "한찬호",
+          "name": "한찬호",
+          "email": "chanho.han@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "박채현",
+          "name": "박채현",
+          "email": "p.chhyn@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "소현준",
+          "name": "소현준",
+          "email": "hyunjoon.so@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이수정",
+          "name": "이수정",
+          "email": "sjl1747@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "조영비",
+          "name": "조영비",
+          "email": "youngbi@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "한수정",
+          "name": "한수정",
+          "email": "soojeong.han@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_b5e3d6ea3b37",
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "3파트",
+      "team": "3파트",
+      "displayName": "3파트",
+      "path": "사업+개발 > 사업그룹 > 3파트 > 3파트",
+      "assignmentCount": 14,
+      "uniquePeopleCount": 13,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "우형석",
+          "name": "우형석",
+          "email": "hyungsuk.woo@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "우형석",
+          "name": "우형석",
+          "email": "hyungsuk.woo@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "김성욱",
+          "name": "김성욱",
+          "email": "swkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "윤용택",
+          "name": "윤용택",
+          "email": "yongtek.yoon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "박세민",
+          "name": "박세민",
+          "email": "psm0521@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "박세진",
+          "name": "박세진",
+          "email": "sjpark@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "백종우",
+          "name": "백종우",
+          "email": "jwp@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "손서형",
+          "name": "손서형",
+          "email": "sh.son@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이창준",
+          "name": "이창준",
+          "email": "cjlee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "임한솔",
+          "name": "임한솔",
+          "email": "hslim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "최광석",
+          "name": "최광석",
+          "email": "kschoi@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "최성현",
+          "name": "최성현",
+          "email": "shyung.choi@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "최종인",
+          "name": "최종인",
+          "email": "claire.choi@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "황정호",
+          "name": "황정호",
+          "email": "jeongho.hwang@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_c0a7bd520d94",
+      "section": "사업+개발",
+      "group": "사업그룹",
+      "part": "4파트",
+      "team": "4파트",
+      "displayName": "4파트",
+      "path": "사업+개발 > 사업그룹 > 4파트 > 4파트",
+      "assignmentCount": 10,
+      "uniquePeopleCount": 10,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "우형석",
+          "name": "우형석",
+          "email": "hyungsuk.woo@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "이승훈C",
+          "name": "이승훈C",
+          "email": "seunghoon.lee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "담당디렉터",
+          "roleLabel": "담당",
+          "rawName": "이현호",
+          "name": "이현호",
+          "email": "hyunho.lee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "김연수",
+          "name": "김연수",
+          "email": "kim17826@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "강성호",
+          "name": "강성호",
+          "email": "shkang@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김민수",
+          "name": "김민수",
+          "email": "minsukim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "유미현",
+          "name": "유미현",
+          "email": "mihyunu@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이구",
+          "name": "이구",
+          "email": "gulee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이준수",
+          "name": "이준수",
+          "email": "jslee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "한원석",
+          "name": "한원석",
+          "email": "whan@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_cc06e7c145e9",
+      "section": "사업+개발",
+      "group": "디지털사업그룹",
+      "part": "사업파트",
+      "team": "사업파트",
+      "displayName": "사업파트",
+      "path": "사업+개발 > 디지털사업그룹 > 사업파트 > 사업파트",
+      "assignmentCount": 10,
+      "uniquePeopleCount": 10,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "현철호",
+          "name": "현철호",
+          "email": "chyun@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "홍창의",
+          "name": "홍창의",
+          "email": "cu.hong@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "양유미",
+          "name": "양유미",
+          "email": "ymyang@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "이영환",
+          "name": "이영환",
+          "email": "yhlee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "강동균",
+          "name": "강동균",
+          "email": "dkkang@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "강창원",
+          "name": "강창원",
+          "email": "changwon.kang@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김창록",
+          "name": "김창록",
+          "email": "changrok.kim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김태영",
+          "name": "김태영",
+          "email": "tyoung.kim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "양진수",
+          "name": "양진수",
+          "email": "yang.jinsu@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "주현식",
+          "name": "주현식",
+          "email": "sik@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_2ee4a2388180",
+      "section": "사업+개발",
+      "group": "디지털사업그룹",
+      "part": "솔루션파트",
+      "team": "솔루션파트",
+      "displayName": "솔루션파트",
+      "path": "사업+개발 > 디지털사업그룹 > 솔루션파트 > 솔루션파트",
+      "assignmentCount": 4,
+      "uniquePeopleCount": 3,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "현철호",
+          "name": "현철호",
+          "email": "chyun@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "현철호",
+          "name": "현철호",
+          "email": "chyun@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "신민호",
+          "name": "신민호",
+          "email": "rossshin@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이인기",
+          "name": "이인기",
+          "email": "leeinkee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_74f848c3d1d8",
+      "section": "사업+개발",
+      "group": "개발솔루션센터",
+      "part": "미지정",
+      "team": "개발솔루션센터",
+      "displayName": "개발솔루션센터",
+      "path": "사업+개발 > 개발솔루션센터 > 미지정 > 개발솔루션센터",
+      "assignmentCount": 9,
+      "uniquePeopleCount": 9,
+      "members": [
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "센터장",
+          "rawName": "홍장군",
+          "name": "홍장군",
+          "email": "jghong@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "담당디렉터",
+          "roleLabel": "담당",
+          "rawName": "박봉서",
+          "name": "박봉서",
+          "email": "okbong21@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "담당디렉터",
+          "roleLabel": "담당",
+          "rawName": "채원",
+          "name": "채원",
+          "email": "won.chae@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "김형주",
+          "name": "김형주",
+          "email": "hj.kim@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "전승희",
+          "name": "전승희",
+          "email": "shjeon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김대익",
+          "name": "김대익",
+          "email": "dikim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김보성",
+          "name": "김보성",
+          "email": "kbs1208@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "장성진",
+          "name": "장성진",
+          "email": "jang.sj@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "황재민",
+          "name": "황재민",
+          "email": "jaemin.hwang@igisam.com",
+          "tags": [
+            "인턴"
+          ],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_e60050a8d115",
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트1",
+      "displayName": "1파트1",
+      "path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트1",
+      "assignmentCount": 10,
+      "uniquePeopleCount": 10,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "김행단",
+          "name": "김행단",
+          "email": "hkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "김지현",
+          "name": "김지현",
+          "email": "jihkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "최지선",
+          "name": "최지선",
+          "email": "jiseon.choi@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김수현B",
+          "name": "김수현B",
+          "email": "suhyeon.kim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "신채영",
+          "name": "신채영",
+          "email": "shincy@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이병관",
+          "name": "이병관",
+          "email": "leebk@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이연주",
+          "name": "이연주",
+          "email": "yeunju.lee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이현민",
+          "name": "이현민",
+          "email": "hmlee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "장서영",
+          "name": "장서영",
+          "email": "seoyoung@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "정하윤",
+          "name": "정하윤",
+          "email": "hayun.jeong@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_03f18f7ad4eb",
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "1파트2",
+      "displayName": "1파트2",
+      "path": "관리+운영 > 국내자산관리그룹 > 1파트 > 1파트2",
+      "assignmentCount": 8,
+      "uniquePeopleCount": 8,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "김행단",
+          "name": "김행단",
+          "email": "hkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "김지현",
+          "name": "김지현",
+          "email": "jihkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "김지윤",
+          "name": "김지윤",
+          "email": "jiyunkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "박규란",
+          "name": "박규란",
+          "email": "kyuran@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "박용범",
+          "name": "박용범",
+          "email": "altol123@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이상렬",
+          "name": "이상렬",
+          "email": "sy.lee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이연정",
+          "name": "이연정",
+          "email": "yjlee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이정연",
+          "name": "이정연",
+          "email": "dlwjddus1029@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_fb9eea15edd3",
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "1파트",
+      "team": "로지스틱스 / 매니지먼트",
+      "displayName": "로지스틱스 / 매니지먼트",
+      "path": "관리+운영 > 국내자산관리그룹 > 1파트 > 로지스틱스 / 매니지먼트",
+      "assignmentCount": 5,
+      "uniquePeopleCount": 5,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "김행단",
+          "name": "김행단",
+          "email": "hkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "김지현",
+          "name": "김지현",
+          "email": "jihkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "오채은",
+          "name": "오채은",
+          "email": "oce@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이정훈B",
+          "name": "이정훈B",
+          "email": "jhlee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이진우",
+          "name": "이진우",
+          "email": "davidlee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_7da396810b8e",
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트1",
+      "displayName": "2파트1",
+      "path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트1",
+      "assignmentCount": 4,
+      "uniquePeopleCount": 3,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "김행단",
+          "name": "김행단",
+          "email": "hkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "김행단",
+          "name": "김행단",
+          "email": "hkim@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "김지희",
+          "name": "김지희",
+          "email": "jh.kim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이경훈",
+          "name": "이경훈",
+          "email": "daniel.lee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_8829cf987c9e",
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트2",
+      "displayName": "2파트2",
+      "path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트2",
+      "assignmentCount": 4,
+      "uniquePeopleCount": 3,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "김행단",
+          "name": "김행단",
+          "email": "hkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "김행단",
+          "name": "김행단",
+          "email": "hkim@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "모승상",
+          "name": "모승상",
+          "email": "moss@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이단비",
+          "name": "이단비",
+          "email": "dblee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_2b7e7e0d69a5",
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트3",
+      "displayName": "2파트3",
+      "path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트3",
+      "assignmentCount": 6,
+      "uniquePeopleCount": 5,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "김행단",
+          "name": "김행단",
+          "email": "hkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "김행단",
+          "name": "김행단",
+          "email": "hkim@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "이우석",
+          "name": "이우석",
+          "email": "wslee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "이효근",
+          "name": "이효근",
+          "email": "hglee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "고석준",
+          "name": "고석준",
+          "email": "sukjunkoh@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김나현",
+          "name": "김나현",
+          "email": "nhkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_3eab22393eba",
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "2파트4",
+      "displayName": "2파트4",
+      "path": "관리+운영 > 국내자산관리그룹 > 2파트 > 2파트4",
+      "assignmentCount": 7,
+      "uniquePeopleCount": 6,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "김행단",
+          "name": "김행단",
+          "email": "hkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "김행단",
+          "name": "김행단",
+          "email": "hkim@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "이운구",
+          "name": "이운구",
+          "email": "wglee84@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김유리",
+          "name": "김유리",
+          "email": "ykim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김회인",
+          "name": "김회인",
+          "email": "kimhoein@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이형철",
+          "name": "이형철",
+          "email": "hclee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "임지영",
+          "name": "임지영",
+          "email": "jylim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_c92727d5d27a",
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "리빙 / 매니지먼트",
+      "displayName": "리빙 / 매니지먼트",
+      "path": "관리+운영 > 국내자산관리그룹 > 2파트 > 리빙 / 매니지먼트",
+      "assignmentCount": 5,
+      "uniquePeopleCount": 4,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "김행단",
+          "name": "김행단",
+          "email": "hkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "김행단",
+          "name": "김행단",
+          "email": "hkim@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "남윤수",
+          "name": "남윤수",
+          "email": "yunsu.nam@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "장정윤",
+          "name": "장정윤",
+          "email": "tiffany.chang@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "홍지훈",
+          "name": "홍지훈",
+          "email": "hongjh0738@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_5290cb8ef370",
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "2파트",
+      "team": "펀드지원",
+      "displayName": "펀드지원",
+      "path": "관리+운영 > 국내자산관리그룹 > 2파트 > 펀드지원",
+      "assignmentCount": 4,
+      "uniquePeopleCount": 3,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "김행단",
+          "name": "김행단",
+          "email": "hkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "김행단",
+          "name": "김행단",
+          "email": "hkim@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "리더",
+          "rawName": "박은영",
+          "name": "박은영",
+          "email": "eunyoung.park@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "최민정",
+          "name": "최민정",
+          "email": "minjung.ch@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_e13d5c4283d1",
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "3파트",
+      "team": "3파트1",
+      "displayName": "3파트1",
+      "path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트1",
+      "assignmentCount": 7,
+      "uniquePeopleCount": 7,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "김행단",
+          "name": "김행단",
+          "email": "hkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "권도엽",
+          "name": "권도엽",
+          "email": "dy.kwon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "김형주",
+          "name": "김형주",
+          "email": "hj.kim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "황준하",
+          "name": "황준하",
+          "email": "junha.hwang@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "문승현",
+          "name": "문승현",
+          "email": "sh.moon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "박준규",
+          "name": "박준규",
+          "email": "junkyu.park@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "정준우",
+          "name": "정준우",
+          "email": "junwoo.jeong@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_9bf6f7902613",
+      "section": "관리+운영",
+      "group": "국내자산관리그룹",
+      "part": "3파트",
+      "team": "3파트2",
+      "displayName": "3파트2",
+      "path": "관리+운영 > 국내자산관리그룹 > 3파트 > 3파트2",
+      "assignmentCount": 7,
+      "uniquePeopleCount": 7,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "김행단",
+          "name": "김행단",
+          "email": "hkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "권도엽",
+          "name": "권도엽",
+          "email": "dy.kwon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "임주우",
+          "name": "임주우",
+          "email": "jwlim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "박동민",
+          "name": "박동민",
+          "email": "dmpark@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "박채연",
+          "name": "박채연",
+          "email": "hayley.park@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "안정훈",
+          "name": "안정훈",
+          "email": "jhahn@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "정승우",
+          "name": "정승우",
+          "email": "sw.jeoung@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_e8334ef54d40",
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "1파트",
+      "team": "1파트1",
+      "displayName": "1파트1",
+      "path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 1파트1",
+      "assignmentCount": 4,
+      "uniquePeopleCount": 4,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "신민재",
+          "name": "신민재",
+          "email": "minjae.sheen@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "신소현",
+          "name": "신소현",
+          "email": "kathryn.shin@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김종수",
+          "name": "김종수",
+          "email": "jsoonz@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "나혜윤",
+          "name": "나혜윤",
+          "email": "hyeyun.na@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_acf9bee46313",
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "1파트",
+      "team": "1파트2",
+      "displayName": "1파트2",
+      "path": "관리+운영 > 글로벌자산관리그룹 > 1파트 > 1파트2",
+      "assignmentCount": 7,
+      "uniquePeopleCount": 7,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "신민재",
+          "name": "신민재",
+          "email": "minjae.sheen@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "신소현",
+          "name": "신소현",
+          "email": "kathryn.shin@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "김선미",
+          "name": "김선미",
+          "email": "sunmi.kim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "신윤아",
+          "name": "신윤아",
+          "email": "yoonah.shin@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "유진선",
+          "name": "유진선",
+          "email": "jasonjinsunyoo@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "윤주성",
+          "name": "윤주성",
+          "email": "joosung.yoon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "정서윤",
+          "name": "정서윤",
+          "email": "seoyun.jung@igisam.com",
+          "tags": [
+            "인턴"
+          ],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_6dc866c99eec",
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "2파트",
+      "team": "2파트1",
+      "displayName": "2파트1",
+      "path": "관리+운영 > 글로벌자산관리그룹 > 2파트 > 2파트1",
+      "assignmentCount": 7,
+      "uniquePeopleCount": 7,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "신민재",
+          "name": "신민재",
+          "email": "minjae.sheen@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "김형근",
+          "name": "김형근",
+          "email": "shawn.kim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김민건",
+          "name": "김민건",
+          "email": "kimmg@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "박종덕",
+          "name": "박종덕",
+          "email": "john.bak@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이수현",
+          "name": "이수현",
+          "email": "soohyun.lee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이진희",
+          "name": "이진희",
+          "email": "jinh94@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "최우석",
+          "name": "최우석",
+          "email": "wooseok.choi@igisam.com",
+          "tags": [
+            "인턴"
+          ],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_e0603df610a3",
+      "section": "관리+운영",
+      "group": "글로벌자산관리그룹",
+      "part": "2파트",
+      "team": "2파트2",
+      "displayName": "2파트2",
+      "path": "관리+운영 > 글로벌자산관리그룹 > 2파트 > 2파트2",
+      "assignmentCount": 6,
+      "uniquePeopleCount": 6,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "신민재",
+          "name": "신민재",
+          "email": "minjae.sheen@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "노선호",
+          "name": "노선호",
+          "email": "sunho.roh@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김규식",
+          "name": "김규식",
+          "email": "kyusikkim405@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "석동주",
+          "name": "석동주",
+          "email": "dj.seok@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "오지원",
+          "name": "오지원",
+          "email": "jwoh@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이도영",
+          "name": "이도영",
+          "email": "dooyoung.lee@igisam.com",
+          "tags": [
+            "인턴"
+          ],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_eb4875a4f93b",
+      "section": "관리+운영",
+      "group": "리빙그룹",
+      "part": "1파트",
+      "team": "1파트",
+      "displayName": "1파트",
+      "path": "관리+운영 > 리빙그룹 > 1파트 > 1파트",
+      "assignmentCount": 3,
+      "uniquePeopleCount": 3,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "정조민",
+          "name": "정조민",
+          "email": "jmjung@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "모영준",
+          "name": "모영준",
+          "email": "sean.mho@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "홍지훈",
+          "name": "홍지훈",
+          "email": "hongjh0738@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        }
+      ]
+    },
+    {
+      "id": "unit_434fa6e44319",
+      "section": "관리+운영",
+      "group": "리빙그룹",
+      "part": "2파트",
+      "team": "2파트",
+      "displayName": "2파트",
+      "path": "관리+운영 > 리빙그룹 > 2파트 > 2파트",
+      "assignmentCount": 6,
+      "uniquePeopleCount": 6,
+      "members": [
+        {
+          "role": "그룹장",
+          "roleLabel": "그룹장",
+          "rawName": "정조민",
+          "name": "정조민",
+          "email": "jmjung@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "파트장",
+          "rawName": "임성훈",
+          "name": "임성훈",
+          "email": "shrim@igisam.com",
+          "tags": [
+            "대행"
+          ],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김민석B",
+          "name": "김민석B",
+          "email": "mskim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김완혁",
+          "name": "김완혁",
+          "email": "whkim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "윤은진",
+          "name": "윤은진",
+          "email": "ejyoon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이종훈",
+          "name": "이종훈",
+          "email": "daz@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_b6d0eb7c1f28",
+      "section": "관리+운영",
+      "group": "리테일솔루션센터",
+      "part": "미지정",
+      "team": "리테일솔루션센터",
+      "displayName": "리테일솔루션센터",
+      "path": "관리+운영 > 리테일솔루션센터 > 미지정 > 리테일솔루션센터",
+      "assignmentCount": 1,
+      "uniquePeopleCount": 1,
+      "members": [
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "센터장",
+          "rawName": "정조민",
+          "name": "정조민",
+          "email": "jmjung@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        }
+      ]
+    },
+    {
+      "id": "unit_77bc649eb1f0",
+      "section": "관리+운영",
+      "group": "관리&운영",
+      "part": "미지정",
+      "team": "관리&운영",
+      "displayName": "관리&운영",
+      "path": "관리+운영 > 관리&운영 > 미지정 > 관리&운영",
+      "assignmentCount": 1,
+      "uniquePeopleCount": 1,
+      "members": [
+        {
+          "role": "담당디렉터",
+          "roleLabel": "부대표",
+          "rawName": "정조민",
+          "name": "정조민",
+          "email": "jmjung@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_a4381d7be255",
+      "section": "부문직속",
+      "group": "리얼에셋부문",
+      "part": "미지정",
+      "team": "리얼에셋부문",
+      "displayName": "리얼에셋부문",
+      "path": "부문직속 > 리얼에셋부문 > 미지정 > 리얼에셋부문",
+      "assignmentCount": 3,
+      "uniquePeopleCount": 3,
+      "members": [
+        {
+          "role": "담당디렉터",
+          "roleLabel": "담당",
+          "rawName": "송선호",
+          "name": "송선호",
+          "email": "sunhosong@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "담당디렉터",
+          "roleLabel": "담당",
+          "rawName": "이정훈",
+          "name": "이정훈",
+          "email": "2019jhlee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "담당디렉터",
+          "roleLabel": "부문대표",
+          "rawName": "이철승",
+          "name": "이철승",
+          "email": "ethan.lee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_fedf43b58576",
+      "section": "부문직속",
+      "group": "리얼에셋부문",
+      "part": "미지정",
+      "team": "투자발굴",
+      "displayName": "투자발굴",
+      "path": "부문직속 > 리얼에셋부문 > 미지정 > 투자발굴",
+      "assignmentCount": 1,
+      "uniquePeopleCount": 1,
+      "members": [
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김효직",
+          "name": "김효직",
+          "email": "hyojik@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_0fb48ec59d76",
+      "section": "부문직속",
+      "group": "론파이낸스센터",
+      "part": "미지정",
+      "team": "론파이낸스센터",
+      "displayName": "론파이낸스센터",
+      "path": "부문직속 > 론파이낸스센터 > 미지정 > 론파이낸스센터",
+      "assignmentCount": 8,
+      "uniquePeopleCount": 8,
+      "members": [
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "센터장",
+          "rawName": "박준호",
+          "name": "박준호",
+          "email": "junhopark@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "강석민",
+          "name": "강석민",
+          "email": "sm.kang@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "정리훈",
+          "name": "정리훈",
+          "email": "jlh@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "김지우",
+          "name": "김지우",
+          "email": "jiwoo@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "박현승",
+          "name": "박현승",
+          "email": "hyunpark@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "손유정",
+          "name": "손유정",
+          "email": "yujung.son@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이성민A",
+          "name": "이성민A",
+          "email": "stealth@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "한승환",
+          "name": "한승환",
+          "email": "seunghwanhan@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_9b0038df1f92",
+      "section": "부문직속",
+      "group": "기업마케팅센터",
+      "part": "미지정",
+      "team": "기업마케팅센터",
+      "displayName": "기업마케팅센터",
+      "path": "부문직속 > 기업마케팅센터 > 미지정 > 기업마케팅센터",
+      "assignmentCount": 4,
+      "uniquePeopleCount": 4,
+      "members": [
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "센터장",
+          "rawName": "이철승",
+          "name": "이철승",
+          "email": "ethan.lee@igisam.com",
+          "tags": [
+            "겸직"
+          ],
+          "assignmentKind": "concurrent"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "Sr.매니저",
+          "rawName": "김민지",
+          "name": "김민지",
+          "email": "minjik@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "고아라",
+          "name": "고아라",
+          "email": "argoh@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이혜리",
+          "name": "이혜리",
+          "email": "hyeri.lee2@igisam.com",
+          "tags": [
+            "인턴"
+          ],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_dc195fcf1bd8",
+      "section": "부문직속",
+      "group": "공간솔루션센터",
+      "part": "미지정",
+      "team": "공간솔루션센터",
+      "displayName": "공간솔루션센터",
+      "path": "부문직속 > 공간솔루션센터 > 미지정 > 공간솔루션센터",
+      "assignmentCount": 6,
+      "uniquePeopleCount": 6,
+      "members": [
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "센터장",
+          "rawName": "김현수",
+          "name": "김현수",
+          "email": "hyunsoo.kim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "시니어매니저",
+          "roleLabel": "리더",
+          "rawName": "이가현",
+          "name": "이가현",
+          "email": "ghlee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "방채미",
+          "name": "방채미",
+          "email": "chaemi.bang@igisam.com",
+          "tags": [
+            "인턴"
+          ],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이지원",
+          "name": "이지원",
+          "email": "jiwon.lee@igisam.com",
+          "tags": [
+            "인턴"
+          ],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "임수빈",
+          "name": "임수빈",
+          "email": "subin.yim@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "정수명",
+          "name": "정수명",
+          "email": "smchung@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "unit_d89bcc6fe8a9",
+      "section": "부문직속",
+      "group": "기획추진센터",
+      "part": "미지정",
+      "team": "기획추진센터",
+      "displayName": "기획추진센터",
+      "path": "부문직속 > 기획추진센터 > 미지정 > 기획추진센터",
+      "assignmentCount": 4,
+      "uniquePeopleCount": 4,
+      "members": [
+        {
+          "role": "파트장/센터장",
+          "roleLabel": "센터장",
+          "rawName": "이시정",
+          "name": "이시정",
+          "email": "sjlee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary-leader"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "박신웅",
+          "name": "박신웅",
+          "email": "shinwoong.park@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "이관용",
+          "name": "이관용",
+          "email": "kylee@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        },
+        {
+          "role": "매니저",
+          "roleLabel": "매니저",
+          "rawName": "전기영",
+          "name": "전기영",
+          "email": "jk.jeon@igisam.com",
+          "tags": [],
+          "assignmentKind": "primary"
+        }
+      ]
+    }
+  ]
 };
