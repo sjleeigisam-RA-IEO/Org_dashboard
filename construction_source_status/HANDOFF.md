@@ -80,9 +80,11 @@ OpenDART 전략공시의 내부 카테고리 값은 필터링과 중복 제거 �
 
 ### 3.4 온라인 업데이트 표시
 
-회사명 옆의 `(update)` 카드는 `outputs/construction_online_update_marks.json`에 기록된 회사에만 표시한다. 이 파일은 갱신 전 캐시 백업과 갱신 후 `outputs/` 캐시를 비교해 만든다.
+회사명 옆의 `UPDATE` 카드는 `outputs/construction_online_update_marks.json`에 기록된 회사에만 표시한다. 이 파일은 갱신 전 캐시 백업과 갱신 후 `outputs/` 캐시를 비교해 만든다.
 
-판정 대상은 Google News 기사, 나라장터 계약, OpenDART 수주공시, OpenDART 전략공시다. 단순히 캐시 생성 시각이 바뀐 회사가 아니라, 이전 캐시에 없던 기사 제목, 공시 접수번호, 또는 계약/프로젝트 키가 추가된 회사만 표시한다. 신용등급은 표의 등급 pill 자체가 변경 상태를 보여주므로 `(update)` 판정에는 넣지 않는다.
+판정 대상은 Google News 기사, 나라장터 계약, OpenDART 수주공시, OpenDART 전략공시다. 단순히 캐시 생성 시각이 바뀐 회사가 아니라, 이전 캐시에 없던 기사 제목, 공시 접수번호, 또는 계약/프로젝트 키가 추가된 회사만 표시한다. 신용등급은 표의 등급 pill 자체가 변경 상태를 보여주므로 `UPDATE` 판정에는 넣지 않는다.
+
+갱신 마크 파일은 회사 단위 `added_count`와 함께 개별 항목 `item_keys`도 저장한다. 회사명 옆 `UPDATE` 카드는 회사 단위 알림이고, 펼친 상세 카드 안에서는 이번 갱신으로 새로 추가된 개별 수주/기사 카드의 최상단 메타 텍스트만 노란색으로 표시한다. 기존 항목의 메타 텍스트는 파란색이다. 다음 갱신 때 `mark_construction_online_updates.py`를 다시 실행하면 이전 노란색 항목은 새 diff 대상에서 빠져 파란색으로 돌아가고, 새로 추가된 항목만 노란색이 된다.
 
 ### 3.5 신용등급
 
@@ -128,6 +130,7 @@ UI에는 출처 구분 라벨을 두지 않고 `Comment`로만 담백하게 표�
 - 세부 정보 본문은 데스크톱에서 좌우 2열이다.
   - 왼쪽: 최근 수주/계약 5건
   - 오른쪽: 기사/전략 정보 5건
+- 상세 수주/기사 카드의 상단 날짜/출처 메타는 기존 항목은 파란색, 이번 온라인 갱신에서 새로 추가된 항목은 노란색으로 표시한다. 제목과 본문 색은 바꾸지 않는다.
 - 모바일에서는 세부 정보가 1열로 내려온다.
 - 하단에는 코멘트 입력/목록이 있다.
 - 코멘트 영역은 수주/기사 카드보다 더 잘 보이도록 앰버 계열 테두리, 헤더, 본문 강조색을 사용한다.
@@ -140,7 +143,7 @@ UI에는 출처 구분 라벨을 두지 않고 `Comment`로만 담백하게 표�
 루트에서 실행하는 것을 기준으로 한다.
 
 ```powershell
-# 갱신 전 캐시 백업. 이후 (update) 카드 판정의 비교 기준으로 사용한다.
+# 갱신 전 캐시 백업. 이후 UPDATE 카드 판정의 비교 기준으로 사용한다.
 $stamp = Get-Date -Format 'yyyyMMdd_HHmmss'
 $backup = Join-Path .\outputs "construction_refresh_before_$stamp"
 New-Item -ItemType Directory -Path $backup -Force | Out-Null
@@ -284,7 +287,7 @@ python -m py_compile .\construction_source_status\scripts\mark_construction_onli
 HTML 확인 포인트:
 
 - `<title>`과 `<h1>`이 `Construction Information`인지 확인.
-- 새 기사/계약/공시가 추가된 회사명 옆에만 `(update)` 카드가 붙는지 확인.
+- 새 기사/계약/공시가 추가된 회사명 옆에만 `UPDATE` 카드가 붙는지 확인.
 - `Comment (0)`인 행에는 `N`이 붙지 않는지 확인.
 - PDF 파일명이나 내부 출처 라벨이 화면 코멘트에 노출되지 않는지 확인.
 - 인터뷰 메타는 사람 이름 없이 부서/직책만 보이는지 확인.

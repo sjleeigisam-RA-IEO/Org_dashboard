@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15 14:45:14 KST",
+  "generated_at": "2026-07-15 14:55:25 KST",
   "cak": {
     "ok": true,
     "data": {
@@ -157,14 +157,24 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 2,
+                "item_keys": [
+                  "한국관광공사삼성물산하티스트와무장애관광활성화위해맞손",
+                  "엑사이엔씨삼성물산과890억원규모수장공사계약체결"
+                ],
                 "samples": [
                   "2025.08.31 · 한국관광공사, 삼성물산 하티스트와 무장애 관광 활성화 위해 맞손",
                   "2026.07.07 · 엑사이엔씨, 삼성물산과 890억원 규모 수장공사 계약 체결"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "엑사이엔씨삼성물산과890억원규모수장공사계약체결",
+            "한국관광공사삼성물산하티스트와무장애관광활성화위해맞손"
+          ]
         },
         {
           "rank": 2,
@@ -422,7 +432,13 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 3,
+                "item_keys": [
+                  "주요주주국민연금공단현대건설지분율993로감소",
+                  "한수원포천양수12호기토건공사현대건설공동수급체낙찰",
+                  "속보단군이래최대압구정3구역재건축현대건설단독참여로1차유찰"
+                ],
                 "samples": [
                   "2026.04.28 · 주요주주 국민연금공단, 현대건설 지분율 9.93%로 감소",
                   "2026.03.17 · 한수원 포천양수 1,2호기 토건 공사, 현대건설 공동수급체 낙찰",
@@ -430,7 +446,13 @@
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "속보단군이래최대압구정3구역재건축현대건설단독참여로1차유찰",
+            "주요주주국민연금공단현대건설지분율993로감소",
+            "한수원포천양수12호기토건공사현대건설공동수급체낙찰"
+          ]
         },
         {
           "rank": 3,
@@ -661,7 +683,15 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 5,
+                "item_keys": [
+                  "정원주대우건설회장인니서smrlngai데이터센터융복합모델제안",
+                  "대우건설회장인도네시아에올인원융복합개발제안",
+                  "정원주대우건설회장인도네시아서정관계만남ai데이터센터구축논의",
+                  "정원주대우건설회장인도네시아서ai인프라협력제안",
+                  "정원주대우건설회장인도네시아서smrai데이터센터협력확대"
+                ],
                 "samples": [
                   "2026.07.13 · 정원주 대우건설 회장, 인니서 'SMR·LNG·AI 데이터센터' 융복합 모델 제안",
                   "2026.07.13 · 대우건설 회장, 인도네시아에 '올인원 융복합 개발' 제안",
@@ -669,7 +699,15 @@
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "대우건설회장인도네시아에올인원융복합개발제안",
+            "정원주대우건설회장인니서smrlngai데이터센터융복합모델제안",
+            "정원주대우건설회장인도네시아서ai인프라협력제안",
+            "정원주대우건설회장인도네시아서smrai데이터센터협력확대",
+            "정원주대우건설회장인도네시아서정관계만남ai데이터센터구축논의"
+          ]
         },
         {
           "rank": 4,
@@ -917,7 +955,14 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 4,
+                "item_keys": [
+                  "2026상반기건설시장결산9032억dl이앤씨상반기수주킹",
+                  "dl이앤씨플랜트수주돌파구열어박상신미국이란종전뒤중동에서수주총력전",
+                  "클릭e종목종전후건설수혜주는삼성ea와dl이앤씨",
+                  "2년수주부진dl이앤씨새일감10조회복할까"
+                ],
                 "samples": [
                   "2026.06.30 · [2026 상반기 건설시장 결산]① ‘9032억’ DL이앤씨, 상반기 公共 ‘수주킹’",
                   "2026.06.15 · DL이앤씨 플랜트 수주 돌파구 열어, 박상신 미국 이란 종전 뒤 중동에서 수주 총력전",
@@ -925,7 +970,14 @@
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "2026상반기건설시장결산9032억dl이앤씨상반기수주킹",
+            "2년수주부진dl이앤씨새일감10조회복할까",
+            "dl이앤씨플랜트수주돌파구열어박상신미국이란종전뒤중동에서수주총력전",
+            "클릭e종목종전후건설수혜주는삼성ea와dl이앤씨"
+          ]
         },
         {
           "rank": 5,
@@ -1115,7 +1167,14 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 4,
+                "item_keys": [
+                  "gs건설동해데이터센터24gw수주기대목표가",
+                  "whois허윤홍gs건설대표이사사장",
+                  "8조수주향하는gs건설사업다각화속도낸다",
+                  "lg전자gs건설손잡고차세대ai홈공동개발나선다"
+                ],
                 "samples": [
                   "2026.07.01 · “GS건설, 동해 데이터센터 2.4GW 수주 기대”…목표가↑",
                   "2026.06.26 · [Who Is ?] 허윤홍 GS건설 대표이사 사장",
@@ -1123,7 +1182,14 @@
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "8조수주향하는gs건설사업다각화속도낸다",
+            "gs건설동해데이터센터24gw수주기대목표가",
+            "lg전자gs건설손잡고차세대ai홈공동개발나선다",
+            "whois허윤홍gs건설대표이사사장"
+          ]
         },
         {
           "rank": 6,
@@ -1257,14 +1323,24 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 2,
+                "item_keys": [
+                  "본립도생현대엔지니어링주우정대표의안전수주해법",
+                  "현대엔지니어링주우정미래기술해외사업성장토대닦는다"
+                ],
                 "samples": [
                   "2026.01.08 · ‘본립도생’ 현대엔지니어링… 주우정 대표의 안전·수주 해법",
                   "2026.06.23 · 현대엔지니어링 주우정號, 미래 기술·해외사업 성장 토대 닦는다"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "본립도생현대엔지니어링주우정대표의안전수주해법",
+            "현대엔지니어링주우정미래기술해외사업성장토대닦는다"
+          ]
         },
         {
           "rank": 7,
@@ -1340,7 +1416,9 @@
             "NICE: no matching public company-search row"
           ],
           "credit_rating_updated_at": "2026-07-15 13:13:37 KST",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 8,
@@ -1505,7 +1583,9 @@
             "NICE: no matching public company-search row"
           ],
           "credit_rating_updated_at": "2026-07-15 13:13:37 KST",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 9,
@@ -1690,7 +1770,14 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 4,
+                "item_keys": [
+                  "속보우진아이엔에스152억규모sk에코플랜트hvac소방공사수주",
+                  "까뮤이앤씨sk에코플랜트와664억원대청주신축공사수주수주기반강화",
+                  "까뮤이앤씨수주공시skhynix청주pt7신축project중pc공사2공구664억원매출액대비223",
+                  "아이에스동서수주공시용인cluster1기ph1iblfabpc공사2서측공동구23135억원매출액대비254"
+                ],
                 "samples": [
                   "2026.06.22 · [속보] 우진아이엔에스, 152억 규모 SK에코플랜트 HVAC·소방공사 수주",
                   "2026.07.07 · 까뮤이앤씨, SK에코플랜트와 664억 원대 청주 신축공사 수주→수주 기반 강화",
@@ -1698,7 +1785,14 @@
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "까뮤이앤씨sk에코플랜트와664억원대청주신축공사수주수주기반강화",
+            "까뮤이앤씨수주공시skhynix청주pt7신축project중pc공사2공구664억원매출액대비223",
+            "속보우진아이엔에스152억규모sk에코플랜트hvac소방공사수주",
+            "아이에스동서수주공시용인cluster1기ph1iblfabpc공사2서측공동구23135억원매출액대비254"
+          ]
         },
         {
           "rank": 10,
@@ -1764,7 +1858,9 @@
             "NICE: no matching public company-search row"
           ],
           "credit_rating_updated_at": "2026-07-15 13:13:37 KST",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 11,
@@ -1993,7 +2089,14 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 4,
+                "item_keys": [
+                  "공정위한화그룹정조준상표권사용료관련현장조사",
+                  "한화그룹4개사대표이사인사",
+                  "한화유통기계사업분리한다3남독립경영신호탄",
+                  "공정위한화그룹현장조사착수상표권부당지원의혹"
+                ],
                 "samples": [
                   "2026.06.25 · 공정위, 한화그룹 정조준…‘상표권 사용료’ 관련 현장조사",
                   "2025.09.01 · 한화그룹, 4개사 대표이사 인사",
@@ -2001,7 +2104,14 @@
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "공정위한화그룹정조준상표권사용료관련현장조사",
+            "공정위한화그룹현장조사착수상표권부당지원의혹",
+            "한화그룹4개사대표이사인사",
+            "한화유통기계사업분리한다3남독립경영신호탄"
+          ]
         },
         {
           "rank": 12,
@@ -2181,13 +2291,21 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 1,
+                "item_keys": [
+                  "한진칼주요주주호반건설한진칼주식등의수113만2900주증가총지분율2015"
+                ],
                 "samples": [
                   "2026.07.10 · 한진칼 주요주주 호반건설, 한진칼 주식등의 수 113만2900주 증가…총 지분율 20.15%"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "한진칼주요주주호반건설한진칼주식등의수113만2900주증가총지분율2015"
+          ]
         },
         {
           "rank": 13,
@@ -2395,7 +2513,9 @@
             "NICE: no matching public company-search row"
           ],
           "credit_rating_updated_at": "2026-07-15 13:13:37 KST",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 14,
@@ -2624,14 +2744,24 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 2,
+                "item_keys": [
+                  "전남도두산에너빌리티해상풍력산업육성업무협약체결",
+                  "속보삼미금속두산에너빌리티와108억규모터빈블레이드공급계약체결공시"
+                ],
                 "samples": [
                   "2026.03.04 · 전남도-두산에너빌리티, 해상풍력 산업 육성 업무협약 체결",
                   "2026.03.31 · [속보] 삼미금속, 두산에너빌리티와 108억 규모 터빈블레이드 공급계약 체결 공시"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "속보삼미금속두산에너빌리티와108억규모터빈블레이드공급계약체결공시",
+            "전남도두산에너빌리티해상풍력산업육성업무협약체결"
+          ]
         },
         {
           "rank": 15,
@@ -2865,7 +2995,13 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 3,
+                "item_keys": [
+                  "김해시한국도로공사gs건설계룡건설산업과업무협약",
+                  "이병호전무계룡건설산업주식1000주보유",
+                  "여주시신청사건립본격착수실시설계적격자시공사로계룡건설산업컨소시엄확정"
+                ],
                 "samples": [
                   "2025.12.15 · 김해시, 한국도로공사·GS건설·계룡건설산업과 업무협약",
                   "2025.12.29 · 이병호 전무, 계룡건설산업 주식 1000주 보유",
@@ -2873,7 +3009,13 @@
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "김해시한국도로공사gs건설계룡건설산업과업무협약",
+            "여주시신청사건립본격착수실시설계적격자시공사로계룡건설산업컨소시엄확정",
+            "이병호전무계룡건설산업주식1000주보유"
+          ]
         },
         {
           "rank": 16,
@@ -3046,7 +3188,9 @@
             "NICE: no matching public company-search row"
           ],
           "credit_rating_updated_at": "2026-07-15 13:13:37 KST",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 17,
@@ -3182,7 +3326,13 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 3,
+                "item_keys": [
+                  "평택주택시장거래량증가제일건설지제역반도체밸리풍경채어바니티입주",
+                  "조경실적1위는다르네제일건설지제역반도체밸리풍경채어바니티공원형조경구현",
+                  "국토부올해상반기공동주택하자판정상위20개건설사공개"
+                ],
                 "samples": [
                   "2026.04.30 · 평택 주택시장 거래량 증가, 제일건설(주) '지제역 반도체밸리 풍경채 어바니티' 입주",
                   "2026.03.10 · 조경 실적 1위는 다르네~ 제일건설(주) ‘지제역 반도체밸리 풍경채 어바니티’ 공원형 조경 구현",
@@ -3190,7 +3340,13 @@
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "국토부올해상반기공동주택하자판정상위20개건설사공개",
+            "조경실적1위는다르네제일건설지제역반도체밸리풍경채어바니티공원형조경구현",
+            "평택주택시장거래량증가제일건설지제역반도체밸리풍경채어바니티입주"
+          ]
         },
         {
           "rank": 18,
@@ -3421,14 +3577,24 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 2,
+                "item_keys": [
+                  "동아지질수주공시시흥인천지역전기공급시설전력구공사신시흥신송도2차수직구및쉴드tbm공사2차구간616억원매출액대비157",
+                  "동아지질수주공시용인화성지역전기공급시설전력구공사신기흥분기2차토공및구조물쉴드tbm6759억원매출액대비145"
+                ],
                 "samples": [
                   "2025.08.29 · 동아지질 수주공시 - 시흥-인천지역 전기공급시설 전력구공사(신시흥-신송도 2차)수직구 및 쉴드TBM공사(2차구간) 616억원 (매출액대비 15.7 %)",
                   "2026.04.09 · 동아지질 수주공시 - 용인·화성지역 전기공급시설 전력구공사(신기흥분기 2차)토공 및 구조물(쉴드TBM) 675.9억원 (매출액대비 14.5 %)"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "동아지질수주공시시흥인천지역전기공급시설전력구공사신시흥신송도2차수직구및쉴드tbm공사2차구간616억원매출액대비157",
+            "동아지질수주공시용인화성지역전기공급시설전력구공사신기흥분기2차토공및구조물쉴드tbm6759억원매출액대비145"
+          ]
         },
         {
           "rank": 19,
@@ -3636,7 +3802,9 @@
             "NICE: no matching public company-search row"
           ],
           "credit_rating_updated_at": "2026-07-15 13:13:37 KST",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 20,
@@ -3722,7 +3890,9 @@
             "NICE: no matching public company-search row"
           ],
           "credit_rating_updated_at": "2026-07-15 13:13:37 KST",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 21,
@@ -3785,7 +3955,9 @@
             "NICE: no matching public company-search row"
           ],
           "credit_rating_updated_at": "2026-07-15 13:13:37 KST",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 22,
@@ -3926,13 +4098,21 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 1,
+                "item_keys": [
+                  "대방건설대방산업개발에532억운영자금대여"
+                ],
                 "samples": [
                   "2026.07.10 · 대방건설, 대방산업개발에 532억 운영자금 대여"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "대방건설대방산업개발에532억운영자금대여"
+          ]
         },
         {
           "rank": 23,
@@ -4073,13 +4253,21 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 1,
+                "item_keys": [
+                  "과천막계동특별계획구역개발사업계획접수최종마감아주대병원및차병원등2개컨소시엄참여"
+                ],
                 "samples": [
                   "2025.08.19 · 과천 막계동 특별계획구역 개발사업 계획 접수 최종 마감...아주대병원 및 차병원 등 2개 컨소시엄 참여"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "과천막계동특별계획구역개발사업계획접수최종마감아주대병원및차병원등2개컨소시엄참여"
+          ]
         },
         {
           "rank": 24,
@@ -4310,7 +4498,13 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 3,
+                "item_keys": [
+                  "여주시신청사건립본격착수실시설계적격자시공사로계룡건설산업컨소시엄확정",
+                  "고중길상무금호건설주식보유증가",
+                  "문왕현전무금호건설주식보유현황공시"
+                ],
                 "samples": [
                   "2026.03.04 · 여주시 신청사 건립 본격 착수...실시설계 적격자(시공사)로 ‘계룡건설산업(주) 컨소시엄’ 확정",
                   "2026.04.17 · 고중길 상무, 금호건설 주식 보유 증가",
@@ -4318,7 +4512,13 @@
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "고중길상무금호건설주식보유증가",
+            "문왕현전무금호건설주식보유현황공시",
+            "여주시신청사건립본격착수실시설계적격자시공사로계룡건설산업컨소시엄확정"
+          ]
         },
         {
           "rank": 25,
@@ -4365,7 +4565,9 @@
             "NICE: no matching public company-search row"
           ],
           "credit_rating_updated_at": "2026-07-15 13:13:37 KST",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 26,
@@ -4581,13 +4783,21 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 1,
+                "item_keys": [
+                  "의왕우성4차가로정비주택정비사업본궤도"
+                ],
                 "samples": [
                   "2025.11.11 · 의왕 우성4차 가로정비주택정비사업 본궤도"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "의왕우성4차가로정비주택정비사업본궤도"
+          ]
         },
         {
           "rank": 27,
@@ -4837,14 +5047,24 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 2,
+                "item_keys": [
+                  "효성중공업네오시티와1727억규모공사수주계약체결",
+                  "효성중공업호주tangkambess공급계약체결"
+                ],
                 "samples": [
                   "2026.02.12 · 효성중공업, 네오시티와 1727억 규모 공사수주 계약 체결",
                   "2026.03.11 · 효성중공업, 호주 Tangkam BESS 공급 계약 체결"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "효성중공업네오시티와1727억규모공사수주계약체결",
+            "효성중공업호주tangkambess공급계약체결"
+          ]
         },
         {
           "rank": 28,
@@ -5078,13 +5298,21 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 1,
+                "item_keys": [
+                  "삼일기업공사수주잔고3배급증불황속곳간채우며실적반등기반마련"
+                ],
                 "samples": [
                   "2026.03.24 · 삼일기업공사, 수주잔고 3배 급증…불황 속 곳간 채우며 실적 반등 기반 마련"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "삼일기업공사수주잔고3배급증불황속곳간채우며실적반등기반마련"
+          ]
         },
         {
           "rank": 29,
@@ -5129,7 +5357,9 @@
             "NICE: no matching public company-search row"
           ],
           "credit_rating_updated_at": "2026-07-15 13:13:37 KST",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 30,
@@ -5272,14 +5502,24 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 2,
+                "item_keys": [
+                  "반도건설계열사반도종합건설에1억원운전자금대여",
+                  "반도건설계열사반도종합건설에4억원운전자금대여"
+                ],
                 "samples": [
                   "2026.07.13 · 반도건설, 계열사 반도종합건설에 1억원 운전자금 대여",
                   "2026.07.08 · 반도건설, 계열사 반도종합건설에 4억원 운전자금 대여"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "반도건설계열사반도종합건설에1억원운전자금대여",
+            "반도건설계열사반도종합건설에4억원운전자금대여"
+          ]
         }
       ]
     },
@@ -5439,14 +5679,24 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 2,
+                "item_keys": [
+                  "2025대한경제스마트건설대상건설ai대상삼우씨엠건축사사무소",
+                  "삼우씨엠한남5재정비촉진구역cm사선정국내최대정비사업연이은수주쾌거"
+                ],
                 "samples": [
                   "2025.07.17 · [2025 대한경제 스마트건설대상] 건설AI대상-삼우씨엠건축사사무소",
                   "2025.09.25 · 삼우씨엠, 한남5재정비촉진구역 CM사 선정… 국내 최대 정비사업 연이은 수주 ‘쾌거’"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "2025대한경제스마트건설대상건설ai대상삼우씨엠건축사사무소",
+            "삼우씨엠한남5재정비촉진구역cm사선정국내최대정비사업연이은수주쾌거"
+          ]
         },
         {
           "rank": 2,
@@ -5466,7 +5716,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 3,
@@ -5486,7 +5738,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 4,
@@ -5525,7 +5779,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 5,
@@ -5712,14 +5968,24 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 2,
+                "item_keys": [
+                  "건설터뷰노진형희림글로벌전략사업본부장해외서한국설계력입증할것",
+                  "희림유럽조지아트빌리시럭셔리호텔설계수주"
+                ],
                 "samples": [
                   "2026.05.05 · [건설人터뷰] 노진형 희림 글로벌전략사업본부장 \"해외서 한국 설계력 입증할 것\"",
                   "2025.09.22 · 희림, 유럽 조지아 트빌리시 ‘럭셔리 호텔’ 설계 수주"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "건설터뷰노진형희림글로벌전략사업본부장해외서한국설계력입증할것",
+            "희림유럽조지아트빌리시럭셔리호텔설계수주"
+          ]
         },
         {
           "rank": 6,
@@ -5739,7 +6005,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 7,
@@ -5759,7 +6027,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 8,
@@ -5779,7 +6049,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 9,
@@ -5817,7 +6089,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 10,
@@ -5837,7 +6111,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 11,
@@ -5857,7 +6133,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 12,
@@ -5877,7 +6155,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 13,
@@ -5897,7 +6177,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 14,
@@ -5917,7 +6199,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 15,
@@ -5937,7 +6221,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 16,
@@ -5957,7 +6243,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 17,
@@ -5977,7 +6265,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 18,
@@ -5997,7 +6287,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 19,
@@ -6017,7 +6309,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 20,
@@ -6037,7 +6331,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 21,
@@ -6057,7 +6353,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 22,
@@ -6077,7 +6375,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 23,
@@ -6097,7 +6397,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 24,
@@ -6296,7 +6598,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 25,
@@ -6316,7 +6620,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 26,
@@ -6336,7 +6642,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 27,
@@ -6356,7 +6664,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 28,
@@ -6376,7 +6686,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 29,
@@ -6396,7 +6708,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 30,
@@ -6416,7 +6730,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         }
       ]
     },
@@ -6516,14 +6832,24 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 2,
+                "item_keys": [
+                  "2025winkorea연차대회및정기총회개최12월12일한국전력기술국제세미나실",
+                  "공공주도해상풍력신호탄한림해상풍력준공"
+                ],
                 "samples": [
                   "2025.12.02 · 2025 Win Korea 연차대회 및 정기총회 개최 - 12월 12일 한국전력기술 국제세미나실",
                   "2025.12.15 · 공공주도 해상풍력 신호탄…한림해상풍력 준공"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "2025winkorea연차대회및정기총회개최12월12일한국전력기술국제세미나실",
+            "공공주도해상풍력신호탄한림해상풍력준공"
+          ]
         },
         {
           "rank": 2,
@@ -6644,7 +6970,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 3,
@@ -6821,14 +7149,24 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 2,
+                "item_keys": [
+                  "제20회2025대한민국건설환경기술대상유신",
+                  "2025엔지니어링수주실적과상위엔지니어링업체100개사리스트"
+                ],
                 "samples": [
                   "2025.07.18 · [제20회 2025 대한민국 건설환경기술대상](주)유신",
                   "2026.04.28 · 2025 엔지니어링 수주실적과 상위 엔지니어링 업체 100개사 리스트"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "2025엔지니어링수주실적과상위엔지니어링업체100개사리스트",
+            "제20회2025대한민국건설환경기술대상유신"
+          ]
         },
         {
           "rank": 4,
@@ -6847,7 +7185,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 5,
@@ -6990,7 +7330,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 6,
@@ -7027,7 +7369,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 7,
@@ -7064,7 +7408,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 8,
@@ -7083,7 +7429,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 9,
@@ -7175,7 +7523,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 10,
@@ -7212,7 +7562,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 11,
@@ -7266,7 +7618,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 12,
@@ -7303,7 +7657,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 13,
@@ -7340,7 +7696,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 14,
@@ -7377,7 +7735,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 15,
@@ -7414,7 +7774,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 16,
@@ -7449,7 +7811,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 17,
@@ -7486,7 +7850,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 18,
@@ -7523,7 +7889,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 19,
@@ -7575,7 +7943,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 20,
@@ -7620,13 +7990,21 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 1,
+                "item_keys": [
+                  "2025엔지니어링수주실적과상위엔지니어링업체100개사리스트"
+                ],
                 "samples": [
                   "2026.04.28 · 2025 엔지니어링 수주실적과 상위 엔지니어링 업체 100개사 리스트"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "2025엔지니어링수주실적과상위엔지니어링업체100개사리스트"
+          ]
         },
         {
           "rank": 21,
@@ -7663,7 +8041,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 22,
@@ -7700,7 +8080,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 23,
@@ -7737,7 +8119,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 24,
@@ -7774,7 +8158,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 25,
@@ -7811,7 +8197,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 26,
@@ -7848,7 +8236,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 27,
@@ -7885,7 +8275,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 28,
@@ -7940,7 +8332,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 29,
@@ -7959,7 +8353,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 30,
@@ -7996,7 +8392,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         }
       ],
       "construction_rows": [
@@ -8119,7 +8517,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 2,
@@ -8296,14 +8696,24 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 2,
+                "item_keys": [
+                  "제20회2025대한민국건설환경기술대상유신",
+                  "2025엔지니어링수주실적과상위엔지니어링업체100개사리스트"
+                ],
                 "samples": [
                   "2025.07.18 · [제20회 2025 대한민국 건설환경기술대상](주)유신",
                   "2026.04.28 · 2025 엔지니어링 수주실적과 상위 엔지니어링 업체 100개사 리스트"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "2025엔지니어링수주실적과상위엔지니어링업체100개사리스트",
+            "제20회2025대한민국건설환경기술대상유신"
+          ]
         },
         {
           "rank": 3,
@@ -8322,7 +8732,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 4,
@@ -8359,7 +8771,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 5,
@@ -8502,7 +8916,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 6,
@@ -8539,7 +8955,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 7,
@@ -8576,7 +8994,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 8,
@@ -8595,7 +9015,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 9,
@@ -8632,7 +9054,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 10,
@@ -8667,7 +9091,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 11,
@@ -8704,7 +9130,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 12,
@@ -8741,7 +9169,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 13,
@@ -8778,7 +9208,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 14,
@@ -8815,7 +9247,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 15,
@@ -8867,7 +9301,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 16,
@@ -8921,7 +9357,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 17,
@@ -8966,13 +9404,21 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 1,
+                "item_keys": [
+                  "2025엔지니어링수주실적과상위엔지니어링업체100개사리스트"
+                ],
                 "samples": [
                   "2026.04.28 · 2025 엔지니어링 수주실적과 상위 엔지니어링 업체 100개사 리스트"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "2025엔지니어링수주실적과상위엔지니어링업체100개사리스트"
+          ]
         },
         {
           "rank": 18,
@@ -9009,7 +9455,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 19,
@@ -9101,7 +9549,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 20,
@@ -9138,7 +9588,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 21,
@@ -9175,7 +9627,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 22,
@@ -9212,7 +9666,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 23,
@@ -9231,7 +9687,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 24,
@@ -9250,7 +9708,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 25,
@@ -9287,7 +9747,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 26,
@@ -9324,7 +9786,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 27,
@@ -9379,7 +9843,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 28,
@@ -9416,7 +9882,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 29,
@@ -9453,7 +9921,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 30,
@@ -9490,7 +9960,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         }
       ]
     },
@@ -9657,7 +10129,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 2,
@@ -9809,7 +10283,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 3,
@@ -9855,7 +10331,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 4,
@@ -9883,7 +10361,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 5,
@@ -10069,14 +10549,24 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 2,
+                "item_keys": [
+                  "제20회2025대한민국건설환경기술대상유신",
+                  "2025엔지니어링수주실적과상위엔지니어링업체100개사리스트"
+                ],
                 "samples": [
                   "2025.07.18 · [제20회 2025 대한민국 건설환경기술대상](주)유신",
                   "2026.04.28 · 2025 엔지니어링 수주실적과 상위 엔지니어링 업체 100개사 리스트"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "2025엔지니어링수주실적과상위엔지니어링업체100개사리스트",
+            "제20회2025대한민국건설환경기술대상유신"
+          ]
         },
         {
           "rank": 6,
@@ -10104,7 +10594,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 7,
@@ -10150,7 +10642,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 8,
@@ -10178,7 +10672,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 9,
@@ -10224,7 +10720,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 10,
@@ -10270,7 +10768,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 11,
@@ -10316,7 +10816,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 12,
@@ -10362,7 +10864,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 13,
@@ -10408,7 +10912,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 14,
@@ -10454,7 +10960,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 15,
@@ -10604,14 +11112,24 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 2,
+                "item_keys": [
+                  "2025대한경제스마트건설대상건설ai대상삼우씨엠건축사사무소",
+                  "삼우씨엠한남5재정비촉진구역cm사선정국내최대정비사업연이은수주쾌거"
+                ],
                 "samples": [
                   "2025.07.17 · [2025 대한경제 스마트건설대상] 건설AI대상-삼우씨엠건축사사무소",
                   "2025.09.25 · 삼우씨엠, 한남5재정비촉진구역 CM사 선정… 국내 최대 정비사업 연이은 수주 ‘쾌거’"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "2025대한경제스마트건설대상건설ai대상삼우씨엠건축사사무소",
+            "삼우씨엠한남5재정비촉진구역cm사선정국내최대정비사업연이은수주쾌거"
+          ]
         },
         {
           "rank": 16,
@@ -10639,7 +11157,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 17,
@@ -10667,7 +11187,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 18,
@@ -10695,7 +11217,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 19,
@@ -10758,7 +11282,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 20,
@@ -10812,13 +11338,21 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 1,
+                "item_keys": [
+                  "2025엔지니어링수주실적과상위엔지니어링업체100개사리스트"
+                ],
                 "samples": [
                   "2026.04.28 · 2025 엔지니어링 수주실적과 상위 엔지니어링 업체 100개사 리스트"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "2025엔지니어링수주실적과상위엔지니어링업체100개사리스트"
+          ]
         },
         {
           "rank": 21,
@@ -11013,14 +11547,24 @@
               {
                 "id": "news",
                 "label": "Google News",
+                "item_type": "article",
                 "added_count": 2,
+                "item_keys": [
+                  "건설터뷰노진형희림글로벌전략사업본부장해외서한국설계력입증할것",
+                  "희림유럽조지아트빌리시럭셔리호텔설계수주"
+                ],
                 "samples": [
                   "2026.05.05 · [건설人터뷰] 노진형 희림 글로벌전략사업본부장 \"해외서 한국 설계력 입증할 것\"",
                   "2025.09.22 · 희림, 유럽 조지아 트빌리시 ‘럭셔리 호텔’ 설계 수주"
                 ]
               }
             ]
-          }
+          },
+          "online_update_award_keys": [],
+          "online_update_article_keys": [
+            "건설터뷰노진형희림글로벌전략사업본부장해외서한국설계력입증할것",
+            "희림유럽조지아트빌리시럭셔리호텔설계수주"
+          ]
         },
         {
           "rank": 22,
@@ -11048,7 +11592,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 23,
@@ -11094,7 +11640,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 24,
@@ -11122,7 +11670,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 25,
@@ -11150,7 +11700,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 26,
@@ -11196,7 +11748,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 27,
@@ -11224,7 +11778,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 28,
@@ -11270,7 +11826,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 29,
@@ -11317,7 +11875,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         },
         {
           "rank": 30,
@@ -11345,7 +11905,9 @@
             "updated_at": "2026-07-15 13:08:03 KST"
           },
           "related_articles_status": "empty",
-          "online_update_mark": {}
+          "online_update_mark": {},
+          "online_update_award_keys": [],
+          "online_update_article_keys": []
         }
       ]
     },

@@ -133,7 +133,9 @@ def build_marks(before_dir: Path, after_dir: Path) -> dict[str, Any]:
             source_entry = {
                 "id": source["id"],
                 "label": source["label"],
+                "item_type": source["kind"],
                 "added_count": len(added_keys),
+                "item_keys": added_keys,
                 "samples": [sample for sample in samples if sample],
             }
             packed["sources"].append(source_entry)

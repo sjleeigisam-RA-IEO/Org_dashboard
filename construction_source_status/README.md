@@ -18,7 +18,7 @@ Current refresh snapshot:
 - Google News RSS: refreshed 2026-07-15, 365-day window, max 5 per company.
 - Nara/G2B contracts: refreshed 2026-07-15 with a narrow July 2026 query window because longer API windows can time out or exceed input limits.
 - Credit ratings: refreshed 2026-07-15 for CAK top-30 companies, KIS/NICE public company search, OpenDART fallback disabled for this run.
-- Online update marks: `data/construction_online_update_marks.json` records companies where the latest refresh added new Google News, Nara/G2B, or OpenDART items compared with the pre-refresh cache. These rows render a `(update)` card next to the company name.
+- Online update marks: `data/construction_online_update_marks.json` records companies and item keys where the latest refresh added new Google News, Nara/G2B, or OpenDART items compared with the pre-refresh cache. These rows render an `UPDATE` card next to the company name, and newly added item meta lines inside the expanded award/news cards render yellow while existing item meta lines remain blue.
 - Dashboard rows render top-30 ranking tables and expandable company detail panels.
 - Comments can mark a company as a partner/collaboration company and record the related project. Until the Supabase table is migrated to dedicated fields, those values are stored in the existing comment `body` as readable metadata lines and rendered as tags in the dashboard.
 - Dashboard viewing and comment writing are gated by the construction-specific login UI. New comment author fields are prefilled as `name (email)` from the RA auth session, while existing stored author names are left unchanged. This is a browser-level gate; DB-level enforcement requires moving comment writes behind a session-verifying Edge Function.

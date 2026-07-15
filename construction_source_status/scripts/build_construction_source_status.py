@@ -686,10 +686,41 @@ def load_online_update_marks() -> dict[str, dict[str, Any]]:
     return marks
 
 
+def online_update_award_identity(award: dict[str, Any]) -> str:
+    return normalize_award_company(award.get("receipt_no")) or "|".join(
+        normalize_award_company(award.get(field))
+        for field in ("project", "client", "date", "amount")
+    )
+
+
+def online_update_article_identity(article: dict[str, Any]) -> str:
+    return (
+        normalize_award_company(article.get("receipt_no"))
+        or normalize_award_company(article.get("title"))
+        or normalize_award_company(article.get("url"))
+    )
+
+
+def online_update_item_key_sets(mark: dict[str, Any]) -> dict[str, list[str]]:
+    keys = {"award": set(), "article": set()}
+    for source in mark.get("sources") or []:
+        item_type = compact_text(source.get("item_type"))
+        if item_type not in keys:
+            continue
+        for item_key in source.get("item_keys") or []:
+            key = compact_text(item_key)
+            if key:
+                keys[item_type].add(key)
+    return {item_type: sorted(values) for item_type, values in keys.items()}
+
+
 def attach_online_update_marks_to_rows(rows: list[dict[str, Any]], marks: dict[str, dict[str, Any]]) -> None:
     for row in rows:
         mark = next((marks[key] for key in row_online_update_keys(row) if key in marks), None)
         row["online_update_mark"] = mark or {}
+        item_keys = online_update_item_key_sets(mark or {})
+        row["online_update_award_keys"] = item_keys["award"]
+        row["online_update_article_keys"] = item_keys["article"]
 
 
 def attach_online_update_marks(results: dict[str, Any]) -> None:
@@ -1142,6 +1173,18 @@ def render_company_update_card(row: dict[str, Any]) -> str:
     return f'<span class="company-update-card" title="{title}" aria-label="{title}">UPDATE</span>'
 
 
+def online_update_meta_class(row: dict[str, Any], item_type: str, item: dict[str, Any], base_class: str) -> str:
+    key = (
+        online_update_award_identity(item)
+        if item_type == "award"
+        else online_update_article_identity(item)
+    )
+    lookup_key = "online_update_award_keys" if item_type == "award" else "online_update_article_keys"
+    if key and key in set(row.get(lookup_key) or []):
+        return f"{base_class} is-online-update"
+    return base_class
+
+
 def change_class(value: Any) -> str:
     text = str(value or "")
     if text.startswith("▲"):
@@ -1262,12 +1305,13 @@ def render_recent_awards(row: dict[str, Any]) -> str:
                 f'<a href="{html.escape(award_url)}" target="_blank" rel="noreferrer">{source_badge}</a>'
             )
         meta = " · ".join(part for part in [date, category] if part)
+        meta_class = online_update_meta_class(row, "award", award, "item-meta")
         metrics = render_award_metrics(award)
         items.append(
             f"""
             <li>
               <div class="award-main">
-                {f'<span class="item-meta">{html.escape(meta)}</span>' if meta else ''}
+                {f'<span class="{meta_class}">{html.escape(meta)}</span>' if meta else ''}
                 <strong>{project}</strong>
                 <span class="item-subtitle">{client}</span>
               </div>
@@ -1314,10 +1358,11 @@ def render_related_articles(row: dict[str, Any]) -> str:
         published = html.escape(compact_text(article.get("published")) or "")
         summary = html.escape(compact_text(article.get("summary")) or "")
         meta = " · ".join(part for part in [published, source_label] if part)
+        meta_class = online_update_meta_class(row, "article", article, "news-meta")
         items.append(
             f"""
             <li>
-              {f'<span class="news-meta">{html.escape(meta)}</span>' if meta else ''}
+              {f'<span class="{meta_class}">{html.escape(meta)}</span>' if meta else ''}
               <a href="{html.escape(link)}" target="_blank" rel="noreferrer">{title}</a>
               {f'<p>{summary}</p>' if summary else ''}
             </li>
@@ -2517,6 +2562,12 @@ def render_html(data: dict[str, Any]) -> str:
       line-height: 1.3;
       white-space: normal;
       overflow-wrap: anywhere;
+    }
+    .item-meta.is-online-update,
+    .news-meta.is-online-update {
+      color: #facc15;
+      font-weight: 900;
+      text-shadow: 0 0 10px rgba(250, 204, 21, 0.18);
     }
     .recent-awards strong {
       display: -webkit-box;
