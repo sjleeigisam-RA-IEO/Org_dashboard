@@ -3784,6 +3784,49 @@ body {
   font-size: 11px;
 }
 
+.semantic-analysis-summary .semantic-basis-panel {
+  grid-template-columns: minmax(130px, 0.35fr) minmax(260px, 1fr);
+  margin-bottom: 16px;
+  background: var(--item);
+}
+
+.semantic-analysis-summary .semantic-basis-panel > div:first-child {
+  display: flex;
+  align-items: center;
+}
+
+.semantic-analysis-summary .semantic-basis-options {
+  align-self: center;
+}
+
+.semantic-analysis-summary .semantic-basis-definition {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(180px, 0.55fr) minmax(0, 1.45fr);
+  grid-template-rows: auto 1fr;
+  gap: 4px 18px;
+  align-self: stretch;
+  min-width: 0;
+}
+
+.semantic-analysis-summary .semantic-basis-definition > strong {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.semantic-analysis-summary .semantic-basis-definition > p {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.semantic-analysis-summary .semantic-basis-definition > dl {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  min-width: 0;
+  margin: 0;
+}
+
 .semantic-kpi-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -4442,6 +4485,22 @@ body {
 
   .semantic-basis-btn {
     flex: 1;
+  }
+
+  .semantic-analysis-summary .semantic-basis-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .semantic-analysis-summary .semantic-basis-panel > div:first-child {
+    display: block;
+  }
+
+  .semantic-analysis-summary .semantic-basis-definition {
+    display: block;
+  }
+
+  .semantic-analysis-summary .semantic-basis-definition > dl {
+    margin-top: 9px;
   }
 
   .semantic-composition-grid {

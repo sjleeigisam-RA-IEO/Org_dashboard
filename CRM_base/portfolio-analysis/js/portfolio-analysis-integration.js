@@ -368,8 +368,7 @@
       return;
     }
     var groups = Array.from(new Set(Engine.FILTER_DEFINITIONS.map(function (definition) { return definition.group; })));
-    grid.innerHTML = renderBasisControl()
-      + '<div id="semanticActiveFilters" class="semantic-active-filters"></div>'
+    grid.innerHTML = '<div id="semanticActiveFilters" class="semantic-active-filters"></div>'
       + groups.map(function (group) {
         var definitions = Engine.FILTER_DEFINITIONS.filter(function (definition) { return definition.group === group; });
         return `
@@ -392,12 +391,6 @@
         analysisFilters = window.analysisFilters;
         updateFilterSummary(key);
         rerenderAnalysis(viewportState);
-      });
-    });
-
-    grid.querySelectorAll('[data-analysis-basis]').forEach(function (button) {
-      button.addEventListener('click', function () {
-        setAnalysisCountBasis(button.dataset.analysisBasis);
       });
     });
 
@@ -585,6 +578,7 @@
           </div>
           <p>${escapeHtml(basis.label)} 기준 · 필터 ${filterCount}개 · 규칙 ${escapeHtml(result.ruleVersion)}</p>
         </div>
+        ${renderBasisControl()}
         <div class="semantic-kpi-grid">
           <article>
             <span>대상 투자기구</span>
@@ -619,6 +613,11 @@
 
   function bindSummaryActions(root) {
     if (!root) return;
+    root.querySelectorAll('[data-analysis-basis]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        setAnalysisCountBasis(button.dataset.analysisBasis);
+      });
+    });
     root.querySelectorAll('[data-semantic-preset-key]').forEach(function (button) {
       button.addEventListener('click', function () {
         applyAnalysisPreset(button.dataset.semanticPresetKey, button.dataset.semanticPresetValue);
