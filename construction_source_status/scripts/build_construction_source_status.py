@@ -33,6 +33,7 @@ NARA_CONTRACTS_CACHE_OUT = OUTPUT_DIR / "construction_nara_contracts_cache.json"
 NEWS_CACHE_OUT = OUTPUT_DIR / "construction_company_news_cache.json"
 DART_STRATEGY_CACHE_OUT = OUTPUT_DIR / "construction_dart_strategy_cache.json"
 CREDIT_RATINGS_CACHE_OUT = OUTPUT_DIR / "construction_credit_ratings_cache.json"
+ONLINE_UPDATE_MARKS_OUT = OUTPUT_DIR / "construction_online_update_marks.json"
 DEFAULT_COMMENT_AUTHOR = "개발솔루션센터 센터장"
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -649,6 +650,70 @@ def attach_credit_ratings(results: dict[str, Any]) -> None:
         attach_credit_ratings_to_rows(cak.data.get("rows", []), rating_lookup)
 
 
+GENERIC_COMPANY_MARK_KEYS = {
+    "주",
+    "건설",
+    "엔지니어링",
+    "건축사사무소",
+    "종합건축사사무소",
+    "씨엠",
+    "cm",
+}
+
+
+def row_online_update_keys(row: dict[str, Any]) -> list[str]:
+    names = [row.get("company"), *(row.get("aliases") or [])]
+    keys: list[str] = []
+    for name in names:
+        key = normalize_award_company(name)
+        if not key or key in GENERIC_COMPANY_MARK_KEYS:
+            continue
+        if len(key) < 2:
+            continue
+        if key not in keys:
+            keys.append(key)
+    return keys
+
+
+def load_online_update_marks() -> dict[str, dict[str, Any]]:
+    cache = read_json_file(ONLINE_UPDATE_MARKS_OUT)
+    marks: dict[str, dict[str, Any]] = {}
+    for entry in cache.get("companies") or []:
+        key = normalize_award_company(entry.get("company_key") or entry.get("company"))
+        if not key or key in GENERIC_COMPANY_MARK_KEYS:
+            continue
+        marks[key] = entry
+    return marks
+
+
+def attach_online_update_marks_to_rows(rows: list[dict[str, Any]], marks: dict[str, dict[str, Any]]) -> None:
+    for row in rows:
+        mark = next((marks[key] for key in row_online_update_keys(row) if key in marks), None)
+        row["online_update_mark"] = mark or {}
+
+
+def attach_online_update_marks(results: dict[str, Any]) -> None:
+    marks = load_online_update_marks()
+    results["online_update_marks"] = {
+        "ok": bool(marks),
+        "companies_with_updates": len(marks),
+    }
+    sections = [
+        ("cak", "rows"),
+        ("cm", "rows"),
+        ("kacem", "rows"),
+    ]
+    for source_key, row_key in sections:
+        result = results.get(source_key)
+        if isinstance(result, FetchResult) and result.ok and result.data:
+            attach_online_update_marks_to_rows(result.data.get(row_key, []), marks)
+
+    etis = results.get("etis")
+    if isinstance(etis, FetchResult) and etis.ok and etis.data:
+        attach_online_update_marks_to_rows(etis.data.get("overall_rows", []), marks)
+        attach_online_update_marks_to_rows(etis.data.get("construction_rows", []), marks)
+
+
 def fetch_cak_top30() -> dict[str, Any]:
     landing_url = "https://www.cak.or.kr/lay1/S1T54C56/sublink.do"
     ajax_url = "https://www.cak.or.kr/biz/ajax/srchBizList.do"
@@ -1060,6 +1125,23 @@ def render_recent_update(row: dict[str, Any]) -> str:
     )
 
 
+def render_company_update_card(row: dict[str, Any]) -> str:
+    mark = row.get("online_update_mark") or {}
+    if not mark or not parse_int(mark.get("added_count")):
+        return ""
+    source_labels = []
+    for source in mark.get("sources") or []:
+        label = compact_text(source.get("label"))
+        count = parse_int(source.get("added_count"))
+        if label and count:
+            source_labels.append(f"{label} {count}건")
+    title_text = "이번 온라인 갱신 추가"
+    if source_labels:
+        title_text = f"{title_text}: {', '.join(source_labels)}"
+    title = html.escape(title_text, quote=True)
+    return f'<span class="company-update-card" title="{title}" aria-label="{title}">(update)</span>'
+
+
 def change_class(value: Any) -> str:
     text = str(value or "")
     if text.startswith("▲"):
@@ -1466,7 +1548,8 @@ def render_rank_table(
                     f'<button class="row-toggle" type="button" aria-expanded="false" '
                     f'aria-controls="{html.escape(detail_id)}">'
                     f'<span class="toggle-symbol" aria-hidden="true"></span>'
-                    f'<span>{content}</span>'
+                    f'<span class="company-name">{content}</span>'
+                    f"{render_company_update_card(row)}"
                     f"</button>"
                 )
             cell_class = f'col-{css_token(key)} cell-{css_token(kind)}'
@@ -2120,12 +2203,29 @@ def render_html(data: dict[str, Any]) -> str:
       padding: 0;
       text-align: left;
     }
-    .row-toggle span:last-child {
+    .row-toggle .company-name {
       display: block;
       max-width: min(360px, 32vw);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+    .company-update-card {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 20px;
+      padding: 2px 7px;
+      border: 1px solid rgba(255, 216, 77, 0.72);
+      border-radius: 999px;
+      background: rgba(255, 216, 77, 0.94);
+      color: #111820;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0;
+      line-height: 1;
+      white-space: nowrap;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.16);
     }
     .toggle-symbol {
       width: 0;
@@ -3369,6 +3469,7 @@ def main() -> None:
     }
     attach_recent_awards(results)
     attach_credit_ratings(results)
+    attach_online_update_marks(results)
     HTML_OUT.write_text(strip_trailing_whitespace(render_html(results)), encoding="utf-8")
     JSON_OUT.write_text(json.dumps(serializable_results(results), ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Wrote {HTML_OUT}")

@@ -1,0 +1,432 @@
+{
+  "generated_at": "2026-07-15 13:17:25 KST",
+  "before_dir": "outputs\\construction_refresh_before_20260715_130649",
+  "after_dir": "outputs",
+  "sources": [
+    {
+      "id": "news",
+      "label": "Google News",
+      "file": "construction_company_news_cache.json"
+    },
+    {
+      "id": "nara",
+      "label": "나라장터",
+      "file": "construction_nara_contracts_cache.json"
+    },
+    {
+      "id": "dart_awards",
+      "label": "OpenDART 수주",
+      "file": "construction_dart_awards_cache.json"
+    },
+    {
+      "id": "dart_strategy",
+      "label": "OpenDART 전략공시",
+      "file": "construction_dart_strategy_cache.json"
+    }
+  ],
+  "companies": [
+    {
+      "company_key": "대우건설",
+      "company": "(주)대우건설",
+      "added_count": 5,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 5,
+          "samples": [
+            "2026.07.13 · 정원주 대우건설 회장, 인니서 'SMR·LNG·AI 데이터센터' 융복합 모델 제안",
+            "2026.07.13 · 대우건설 회장, 인도네시아에 '올인원 융복합 개발' 제안",
+            "2026.07.14 · 정원주 대우건설 회장, 인도네시아서 정·관계 만남...AI데이터센터 구축 논의"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "한화",
+      "company": "(주)한화",
+      "added_count": 4,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 4,
+          "samples": [
+            "2026.06.25 · 공정위, 한화그룹 정조준…‘상표권 사용료’ 관련 현장조사",
+            "2025.09.01 · 한화그룹, 4개사 대표이사 인사",
+            "2026.01.14 · ㈜한화, ‘유통·기계’ 사업 분리한다…3남 독립 경영 신호탄"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "디엘이앤씨",
+      "company": "디엘이앤씨(주)",
+      "added_count": 4,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 4,
+          "samples": [
+            "2026.06.30 · [2026 상반기 건설시장 결산]① ‘9032억’ DL이앤씨, 상반기 公共 ‘수주킹’",
+            "2026.06.15 · DL이앤씨 플랜트 수주 돌파구 열어, 박상신 미국 이란 종전 뒤 중동에서 수주 총력전",
+            "2026.06.16 · [클릭 e종목]\"종전 후 건설 수혜주는 삼성E&A와 DL이앤씨\""
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "에스케이에코플랜트",
+      "company": "에스케이에코플랜트(주)",
+      "added_count": 4,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 4,
+          "samples": [
+            "2026.06.22 · [속보] 우진아이엔에스, 152억 규모 SK에코플랜트 HVAC·소방공사 수주",
+            "2026.07.07 · 까뮤이앤씨, SK에코플랜트와 664억 원대 청주 신축공사 수주→수주 기반 강화",
+            "2026.07.07 · 까뮤이앤씨 수주공시 - SK Hynix 청주 P&T7 신축 Project 중 PC공사 2공구 664억원 (매출액대비 22.3 %)"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "지에스건설",
+      "company": "지에스건설(주)",
+      "added_count": 4,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 4,
+          "samples": [
+            "2026.07.01 · “GS건설, 동해 데이터센터 2.4GW 수주 기대”…목표가↑",
+            "2026.06.26 · [Who Is ?] 허윤홍 GS건설 대표이사 사장",
+            "2026.06.05 · 8조 수주 향하는 GS건설, 사업 다각화 속도 낸다"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "계룡건설산업",
+      "company": "계룡건설산업(주)",
+      "added_count": 3,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 3,
+          "samples": [
+            "2025.12.15 · 김해시, 한국도로공사·GS건설·계룡건설산업과 업무협약",
+            "2025.12.29 · 이병호 전무, 계룡건설산업 주식 1000주 보유",
+            "2026.03.04 · 여주시 신청사 건립 본격 착수...실시설계 적격자(시공사)로 ‘계룡건설산업(주) 컨소시엄’ 확정"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "금호건설",
+      "company": "금호건설(주)",
+      "added_count": 3,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 3,
+          "samples": [
+            "2026.03.04 · 여주시 신청사 건립 본격 착수...실시설계 적격자(시공사)로 ‘계룡건설산업(주) 컨소시엄’ 확정",
+            "2026.04.17 · 고중길 상무, 금호건설 주식 보유 증가",
+            "2026.04.17 · 문왕현 전무, 금호건설 주식 보유 현황 공시"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "제일건설",
+      "company": "제일건설(주)",
+      "added_count": 3,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 3,
+          "samples": [
+            "2026.04.30 · 평택 주택시장 거래량 증가, 제일건설(주) '지제역 반도체밸리 풍경채 어바니티' 입주",
+            "2026.03.10 · 조경 실적 1위는 다르네~ 제일건설(주) ‘지제역 반도체밸리 풍경채 어바니티’ 공원형 조경 구현",
+            "2026.03.30 · 국토부, 올해 상반기 공동주택 하자 판정 상위 20개 건설사 공개"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "현대건설",
+      "company": "현대건설(주)",
+      "added_count": 3,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 3,
+          "samples": [
+            "2026.04.28 · 주요주주 국민연금공단, 현대건설 지분율 9.93%로 감소",
+            "2026.03.17 · 한수원 포천양수 1,2호기 토건 공사, 현대건설 공동수급체 낙찰",
+            "2026.04.10 · [속보]‘단군 이래 최대’ 압구정 3구역 재건축...현대건설 단독참여로 1차 유찰"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "반도건설",
+      "company": "(주)반도건설",
+      "added_count": 2,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 2,
+          "samples": [
+            "2026.07.13 · 반도건설, 계열사 반도종합건설에 1억원 운전자금 대여",
+            "2026.07.08 · 반도건설, 계열사 반도종합건설에 4억원 운전자금 대여"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "삼우씨엠건축사사무소",
+      "company": "(주)삼우씨엠건축사사무소",
+      "added_count": 2,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 2,
+          "samples": [
+            "2025.07.17 · [2025 대한경제 스마트건설대상] 건설AI대상-삼우씨엠건축사사무소",
+            "2025.09.25 · 삼우씨엠, 한남5재정비촉진구역 CM사 선정… 국내 최대 정비사업 연이은 수주 ‘쾌거’"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "유신",
+      "company": "(주)유신",
+      "added_count": 2,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 2,
+          "samples": [
+            "2025.07.18 · [제20회 2025 대한민국 건설환경기술대상](주)유신",
+            "2026.04.28 · 2025 엔지니어링 수주실적과 상위 엔지니어링 업체 100개사 리스트"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "희림종합건축사사무소",
+      "company": "(주)희림종합건축사사무소",
+      "added_count": 2,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 2,
+          "samples": [
+            "2026.05.05 · [건설人터뷰] 노진형 희림 글로벌전략사업본부장 \"해외서 한국 설계력 입증할 것\"",
+            "2025.09.22 · 희림, 유럽 조지아 트빌리시 ‘럭셔리 호텔’ 설계 수주"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "두산에너빌리티",
+      "company": "두산에너빌리티(주)",
+      "added_count": 2,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 2,
+          "samples": [
+            "2026.03.04 · 전남도-두산에너빌리티, 해상풍력 산업 육성 업무협약 체결",
+            "2026.03.31 · [속보] 삼미금속, 두산에너빌리티와 108억 규모 터빈블레이드 공급계약 체결 공시"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "삼성물산",
+      "company": "삼성물산 주식회사",
+      "added_count": 2,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 2,
+          "samples": [
+            "2025.08.31 · 한국관광공사, 삼성물산 하티스트와 무장애 관광 활성화 위해 맞손",
+            "2026.07.07 · 엑사이엔씨, 삼성물산과 890억원 규모 수장공사 계약 체결"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "코오롱글로벌",
+      "company": "코오롱글로벌(주)",
+      "added_count": 2,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 2,
+          "samples": [
+            "2025.08.29 · 동아지질 수주공시 - 시흥-인천지역 전기공급시설 전력구공사(신시흥-신송도 2차)수직구 및 쉴드TBM공사(2차구간) 616억원 (매출액대비 15.7 %)",
+            "2026.04.09 · 동아지질 수주공시 - 용인·화성지역 전기공급시설 전력구공사(신기흥분기 2차)토공 및 구조물(쉴드TBM) 675.9억원 (매출액대비 14.5 %)"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "한국전력기술",
+      "company": "한국전력기술(주)",
+      "added_count": 2,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 2,
+          "samples": [
+            "2025.12.02 · 2025 Win Korea 연차대회 및 정기총회 개최 - 12월 12일 한국전력기술 국제세미나실",
+            "2025.12.15 · 공공주도 해상풍력 신호탄…한림해상풍력 준공"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "현대엔지니어링",
+      "company": "현대엔지니어링(주)",
+      "added_count": 2,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 2,
+          "samples": [
+            "2026.01.08 · ‘본립도생’ 현대엔지니어링… 주우정 대표의 안전·수주 해법",
+            "2026.06.23 · 현대엔지니어링 주우정號, 미래 기술·해외사업 성장 토대 닦는다"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "효성중공업",
+      "company": "효성중공업(주)",
+      "added_count": 2,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 2,
+          "samples": [
+            "2026.02.12 · 효성중공업, 네오시티와 1727억 규모 공사수주 계약 체결",
+            "2026.03.11 · 효성중공업, 호주 Tangkam BESS 공급 계약 체결"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "다산컨설턴트",
+      "company": "(주)다산컨설턴트",
+      "added_count": 1,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 1,
+          "samples": [
+            "2026.04.28 · 2025 엔지니어링 수주실적과 상위 엔지니어링 업체 100개사 리스트"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "호반건설",
+      "company": "(주)호반건설",
+      "added_count": 1,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 1,
+          "samples": [
+            "2026.07.10 · 한진칼 주요주주 호반건설, 한진칼 주식등의 수 113만2900주 증가…총 지분율 20.15%"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "대방건설",
+      "company": "대방건설(주)",
+      "added_count": 1,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 1,
+          "samples": [
+            "2026.07.10 · 대방건설, 대방산업개발에 532억 운영자금 대여"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "동부건설",
+      "company": "동부건설(주)",
+      "added_count": 1,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 1,
+          "samples": [
+            "2026.03.24 · 삼일기업공사, 수주잔고 3배 급증…불황 속 곳간 채우며 실적 반등 기반 마련"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "쌍용건설",
+      "company": "쌍용건설(주)",
+      "added_count": 1,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 1,
+          "samples": [
+            "2025.08.19 · 과천 막계동 특별계획구역 개발사업 계획 접수 최종 마감...아주대병원 및 차병원 등 2개 컨소시엄 참여"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "한신공영",
+      "company": "한신공영(주)",
+      "added_count": 1,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "added_count": 1,
+          "samples": [
+            "2025.11.11 · 의왕 우성4차 가로정비주택정비사업 본궤도"
+          ]
+        }
+      ]
+    }
+  ]
+}

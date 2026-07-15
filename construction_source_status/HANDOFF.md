@@ -6,7 +6,7 @@
 
 현재 공개 URL: `https://sjleeigisam-ra-ieo.github.io/Org_dashboard/construction_source_status/`
 
-포탈 진입점: 루트 로그인 화면 `index.html`과 로그인 후 포탈 `portal.html`에는 이 공개 URL을 새 탭으로 여는 `시공사 정보` 외부 링크 버튼을 둔다. 이 대시보드는 포탈 로그인 없이 직접 열람할 수 있는 공개 페이지로 운영한다.
+포탈 진입점: 루트 로그인 화면 `index.html`과 로그인 후 포탈 `portal.html`에는 이 공개 URL을 새 탭으로 여는 `시공사 정보` 외부 링크 버튼을 둔다. 이 대시보드는 시공사 정보 전용 로그인 화면을 거친 사용자만 열람하도록 운영한다.
 
 ## 1. 목적
 
@@ -34,6 +34,7 @@
 - `data/construction_company_news_cache.json`: Google News RSS 기사 캐시.
 - `data/construction_dart_strategy_cache.json`: OpenDART 투자/출자/시설투자/M&A/자금조달/계열거래성 공시 캐시.
 - `data/construction_credit_ratings_cache.json`: KIS/NICE 공개 검색 + OpenDART 채무증권 보조 신용등급 캐시.
+- `data/construction_online_update_marks.json`: 직전 캐시 대비 새 기사/계약/공시 항목이 추가된 회사 표시용 스냅샷.
 - `data/construction_pdf_comments.json`: `시공사_동향_20260703.pdf`에서 추린 초기 코멘트.
 - `scripts/`: 위 데이터를 다시 수집하고 HTML을 재생성하는 Python 스크립트 복사본.
 - `시공사_동향_20260703.pdf`: 초기 코멘트 작성에 사용한 사내 참고 PDF.
@@ -77,7 +78,13 @@
 
 OpenDART 전략공시의 내부 카테고리 값은 필터링과 중복 제거 보조용으로만 사용한다. 화면과 렌더링 데이터의 기사 제목에는 `투자판단:`, `자금조달:` 같은 분류 접두어를 붙이지 않는다.
 
-### 3.4 신용등급
+### 3.4 온라인 업데이트 표시
+
+회사명 옆의 `(update)` 카드는 `outputs/construction_online_update_marks.json`에 기록된 회사에만 표시한다. 이 파일은 갱신 전 캐시 백업과 갱신 후 `outputs/` 캐시를 비교해 만든다.
+
+판정 대상은 Google News 기사, 나라장터 계약, OpenDART 수주공시, OpenDART 전략공시다. 단순히 캐시 생성 시각이 바뀐 회사가 아니라, 이전 캐시에 없던 기사 제목, 공시 접수번호, 또는 계약/프로젝트 키가 추가된 회사만 표시한다. 신용등급은 표의 등급 pill 자체가 변경 상태를 보여주므로 `(update)` 판정에는 넣지 않는다.
+
+### 3.5 신용등급
 
 신용등급은 별도 큰 카드로 공간을 쓰지 않고, 회사 기본 정보와 표의 `신용등급` 컬럼에 함께 표시한다.
 
@@ -89,7 +96,7 @@ OpenDART 전략공시의 내부 카테고리 값은 필터링과 중복 제거 �
 
 한국기업평가 유효등급 List와 NICE 유효등급 리스트처럼 로그인/유료/제한 영역에 가까운 데이터는 자동 수집 대상에서 제외했다. 따라서 공개 검색에 잡히지 않는 회사는 `미확인`으로 남을 수 있다.
 
-### 3.5 코멘트
+### 3.6 코멘트
 
 코멘트는 두 종류를 화면에서는 하나로 합쳐 표시한다.
 
@@ -133,20 +140,34 @@ UI에는 출처 구분 라벨을 두지 않고 `Comment`로만 담백하게 표�
 루트에서 실행하는 것을 기준으로 한다.
 
 ```powershell
+# 갱신 전 캐시 백업. 이후 (update) 카드 판정의 비교 기준으로 사용한다.
+$stamp = Get-Date -Format 'yyyyMMdd_HHmmss'
+$backup = Join-Path .\outputs "construction_refresh_before_$stamp"
+New-Item -ItemType Directory -Path $backup -Force | Out-Null
+Get-ChildItem .\outputs -Filter 'construction_*cache.json' | ForEach-Object {
+  Copy-Item -LiteralPath $_.FullName -Destination (Join-Path $backup $_.Name) -Force
+}
+
 # OpenDART 단일판매ㆍ공급계약체결 수주 캐시
 python .\construction_source_status\scripts\update_construction_dart_awards.py --lookback-years 5 --per-company 5
 
 # 나라장터 공사 계약정보 캐시
-python .\construction_source_status\scripts\update_construction_nara_contracts.py --start-date 20210101 --per-company 5
+$today = Get-Date
+$naraStart = $today.AddDays(-14).ToString('yyyyMMdd')
+$naraEnd = $today.ToString('yyyyMMdd')
+python .\construction_source_status\scripts\update_construction_nara_contracts.py --start-date $naraStart --end-date $naraEnd --per-company 5 --max-pages 5 --rows-per-page 50
 
 # Google News RSS 기사 캐시
-python .\construction_source_status\scripts\update_construction_company_news.py --days 730 --per-company 5
+python .\construction_source_status\scripts\update_construction_company_news.py --days 365 --per-company 5
 
 # OpenDART 투자/전략 공시 캐시
 python .\construction_source_status\scripts\update_construction_dart_strategy.py --lookback-years 5 --per-company 5
 
 # KIS/NICE + OpenDART 보조 신용등급 캐시
-python .\construction_source_status\scripts\update_construction_credit_ratings.py --scope cak --lookback-years 5
+python .\construction_source_status\scripts\update_construction_credit_ratings.py --scope cak --dart-mode off
+
+# 이번 갱신에서 새 온라인 항목이 추가된 회사 표시 파일 생성
+python .\construction_source_status\scripts\mark_construction_online_updates.py --before-dir $backup --after-dir .\outputs
 
 # 순위 원천 수집 + 캐시 결합 + HTML/JSON 생성
 python .\construction_source_status\scripts\build_construction_source_status.py
@@ -162,6 +183,7 @@ Copy-Item .\outputs\construction_credit_ratings_cache.json .\construction_source
 Copy-Item .\outputs\construction_dart_awards_cache.json .\construction_source_status\data\construction_dart_awards_cache.json -Force
 Copy-Item .\outputs\construction_dart_strategy_cache.json .\construction_source_status\data\construction_dart_strategy_cache.json -Force
 Copy-Item .\outputs\construction_nara_contracts_cache.json .\construction_source_status\data\construction_nara_contracts_cache.json -Force
+Copy-Item .\outputs\construction_online_update_marks.json .\construction_source_status\data\construction_online_update_marks.json -Force
 ```
 
 필요한 키:
@@ -256,11 +278,13 @@ python -m py_compile .\construction_source_status\scripts\update_construction_cr
 python -m py_compile .\construction_source_status\scripts\update_construction_dart_awards.py
 python -m py_compile .\construction_source_status\scripts\update_construction_dart_strategy.py
 python -m py_compile .\construction_source_status\scripts\update_construction_nara_contracts.py
+python -m py_compile .\construction_source_status\scripts\mark_construction_online_updates.py
 ```
 
 HTML 확인 포인트:
 
 - `<title>`과 `<h1>`이 `Construction Information`인지 확인.
+- 새 기사/계약/공시가 추가된 회사명 옆에만 `(update)` 카드가 붙는지 확인.
 - `Comment (0)`인 행에는 `N`이 붙지 않는지 확인.
 - PDF 파일명이나 내부 출처 라벨이 화면 코멘트에 노출되지 않는지 확인.
 - 인터뷰 메타는 사람 이름 없이 부서/직책만 보이는지 확인.

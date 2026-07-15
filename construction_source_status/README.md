@@ -14,8 +14,11 @@ Current refresh snapshot:
 
 - OpenDART awards: 2021-07-03 to 2026-07-03, max 5 per company.
 - OpenDART strategy disclosures: investment, equity/capex, M&A/restructuring, financing, and related-party signals, max 5 per company. Category labels are retained only for filtering/dedupe metadata, not as visible article-title prefixes.
-- Google News RSS: 730-day window, max 5 per company.
-- Credit ratings: CAK top-30 companies, KIS/NICE public company search first, OpenDART bond/debt securities rating fields as fallback, 2021-07-06 to 2026-07-06.
+- 2026-07-15 OpenDART refresh attempt was blocked at API-key validation, so the previous OpenDART award/strategy caches were retained.
+- Google News RSS: refreshed 2026-07-15, 365-day window, max 5 per company.
+- Nara/G2B contracts: refreshed 2026-07-15 with a narrow July 2026 query window because longer API windows can time out or exceed input limits.
+- Credit ratings: refreshed 2026-07-15 for CAK top-30 companies, KIS/NICE public company search, OpenDART fallback disabled for this run.
+- Online update marks: `data/construction_online_update_marks.json` records companies where the latest refresh added new Google News, Nara/G2B, or OpenDART items compared with the pre-refresh cache. These rows render a `(update)` card next to the company name.
 - Dashboard rows render top-30 ranking tables and expandable company detail panels.
 - Comments can mark a company as a partner/collaboration company and record the related project. Until the Supabase table is migrated to dedicated fields, those values are stored in the existing comment `body` as readable metadata lines and rendered as tags in the dashboard.
 - Dashboard viewing and comment writing are gated by the construction-specific login UI. New comment author fields are prefilled as `name (email)` from the RA auth session, while existing stored author names are left unchanged. This is a browser-level gate; DB-level enforcement requires moving comment writes behind a session-verifying Edge Function.
