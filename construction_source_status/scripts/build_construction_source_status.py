@@ -1139,7 +1139,7 @@ def render_company_update_card(row: dict[str, Any]) -> str:
     if source_labels:
         title_text = f"{title_text}: {', '.join(source_labels)}"
     title = html.escape(title_text, quote=True)
-    return f'<span class="company-update-card" title="{title}" aria-label="{title}">(update)</span>'
+    return f'<span class="company-update-card" title="{title}" aria-label="{title}">UPDATE</span>'
 
 
 def change_class(value: Any) -> str:
@@ -2214,18 +2214,30 @@ def render_html(data: dict[str, Any]) -> str:
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 20px;
-      padding: 2px 7px;
-      border: 1px solid rgba(255, 216, 77, 0.72);
-      border-radius: 999px;
-      background: rgba(255, 216, 77, 0.94);
-      color: #111820;
-      font-size: 10px;
-      font-weight: 900;
+      gap: 5px;
+      min-height: 22px;
+      padding: 3px 8px 3px 7px;
+      border: 1px solid rgba(255, 216, 77, 0.92);
+      border-radius: 6px;
+      background: linear-gradient(180deg, #ffe066 0%, #facc15 100%);
+      color: #101318;
+      font-size: 11px;
+      font-weight: 950;
       letter-spacing: 0;
       line-height: 1;
       white-space: nowrap;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.16);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.42),
+        0 2px 8px rgba(250, 204, 21, 0.16);
+    }
+    .company-update-card::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: #101318;
+      opacity: 0.86;
+      flex: 0 0 auto;
     }
     .toggle-symbol {
       width: 0;
