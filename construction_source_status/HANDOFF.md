@@ -254,7 +254,7 @@ CAK, CM, ETIS, KACEM 원천 순위는 연간/분기 공시 성격이 강하다. 
 - 월요일: `monday-main` 갱신 실행
 - 화요일: 월요일 로그 확인 후 `tuesday-fallback-check` 또는 `tuesday-fallback-rerun`
 
-자동화가 실행할 때는 기존 무관 dirty 파일을 건드리지 않고, `construction_source_status/` 관련 파일만 stage/commit/push한다. 원격 배포 확인은 항상 포함한다.
+자동화가 실행할 때는 기존 무관 dirty 파일을 건드리지 않고, `construction_source_status/` 관련 파일만 stage/commit/push한다. 원격 배포 확인은 항상 포함한다. Pages 확인 뒤에는 같은 run log entry에 `commit`, `pushed`, `pages_verified`, `pages_verified_at`, `pages_url`을 최종 반영하고, 이 로그 변경만 log-only commit/push로 한 번 더 올릴 수 있다.
 
 향후 GitHub Actions로 이전할 수는 있지만, 그 경우에도 현재 run log 계약과 화요일 fallback 조건을 유지해야 한다. Actions secrets에는 `OPENDART_KEY`, `DATA_GO_KR_KEY`만 넣고, 관리자성 Supabase key는 정적 HTML이나 공개 로그에 노출하지 않는다.
 
