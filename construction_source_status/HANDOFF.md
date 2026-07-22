@@ -187,6 +187,7 @@ Copy-Item .\outputs\construction_dart_awards_cache.json .\construction_source_st
 Copy-Item .\outputs\construction_dart_strategy_cache.json .\construction_source_status\data\construction_dart_strategy_cache.json -Force
 Copy-Item .\outputs\construction_nara_contracts_cache.json .\construction_source_status\data\construction_nara_contracts_cache.json -Force
 Copy-Item .\outputs\construction_online_update_marks.json .\construction_source_status\data\construction_online_update_marks.json -Force
+Copy-Item .\outputs\construction_refresh_run_log.json .\construction_source_status\data\construction_refresh_run_log.json -Force
 ```
 
 필요한 키:
@@ -201,28 +202,22 @@ Copy-Item .\outputs\construction_online_update_marks.json .\construction_source_
 
 이 대시보드 개선 작업은 로컬 커밋에서 멈추지 않고 `origin/main` 푸시와 GitHub Pages 반영 확인까지 한 세트로 처리한다.
 
-### 매일 또는 주 2~3회
+### 매주 월요일 06:00 KST
 
-기사/전략 정보와 DART 수주 캐시는 변화가 잦다. 의사결정 회의용으로 쓰려면 주 2~3회 이상 갱신하는 편이 좋다.
-
-실행 대상:
-
-- `update_construction_company_news.py`
-- `update_construction_dart_strategy.py`
-- `update_construction_dart_awards.py`
-- `build_construction_source_status.py`
-
-### 매주 1회
-
-나라장터와 전체 HTML 번들을 함께 갱신한다. 월요일 오전 갱신을 기본값으로 두면 주간 회의 전에 보기 좋다.
+현재 운영 기준은 Codex 이 스레드의 heartbeat 자동화가 월요일 오전 6시에 실행되는 것이다. OpenDART 공시, Google News 기사, 나라장터 공사 계약정보를 함께 갱신하고, 변경 여부와 무관하게 `data/construction_refresh_run_log.json`에 실행 로그를 남긴다. 실행 로그가 주간 보완 루틴의 기준이므로 화면 변경이 없어도 log-only commit/push를 허용한다.
 
 실행 대상:
 
 - 모든 수집 스크립트
 - `build_construction_source_status.py`
 - 번들 복사
+- `construction_refresh_run_log.json` 작성
 - 커밋/푸시
 - GitHub Pages 완료 확인
+
+### 매주 화요일 06:00 KST
+
+같은 heartbeat 자동화가 화요일 오전 6시에 다시 깨어 직전 월요일 실행 로그를 검사한다. 월요일 `monday-main` 로그가 있고 `success` 또는 `partial`이며 Pages 확인 기록이 있으면 재실행하지 않고 `tuesday-fallback-check` 로그만 남긴다. 로그가 없거나 실패/미확인 상태라면 즉시 동일한 갱신 절차를 `tuesday-fallback-rerun`으로 실행한다.
 
 ### 매월 1회
 
@@ -248,27 +243,20 @@ CAK, CM, ETIS, KACEM 원천 순위는 연간/분기 공시 성격이 강하다. 
 
 `New` 배지는 코멘트 날짜 기준으로 붙으므로, 코멘트 날짜도 실제 작성/확인일로 넣어야 한다.
 
-## 7. 자동화 제안
+## 7. 현재 자동화
 
-현재는 수동 실행 후 커밋/푸시하는 흐름이다. 안정화 후에는 GitHub Actions 또는 Windows 작업 스케줄러로 넘기는 것이 좋다.
+현재 자동화는 Codex 이 스레드에 붙은 단일 heartbeat로 운영한다. 앱 제약상 한 스레드에 활성 heartbeat는 하나만 붙일 수 있으므로, 하나의 자동화가 월요일 정기 갱신과 화요일 보완 검사를 요일별로 분기한다.
 
-권장 형태:
+- 자동화 ID: `construction-information-monthly-refresh`
+- 이름: `Construction Information weekly refresh and retry check`
+- 실행 위치: 현재 시공사 정보 대시보드 스레드
+- 실행 시각: 매주 월요일 06:00 KST, 매주 화요일 06:00 KST
+- 월요일: `monday-main` 갱신 실행
+- 화요일: 월요일 로그 확인 후 `tuesday-fallback-check` 또는 `tuesday-fallback-rerun`
 
-- GitHub Actions `schedule`: 매주 월요일 08:00 KST.
-- Actions secrets:
-  - `OPENDART_KEY`
-  - `DATA_GO_KR_KEY`
-  - Supabase는 댓글 읽기/쓰기 RLS가 안정적이면 현재처럼 publishable key를 정적 HTML에 사용 가능. 관리자성 키는 절대 정적 HTML에 넣지 않는다.
-- 워크플로 단계:
-  1. checkout
-  2. Python 의존성 설치: `pandas`, `pdfplumber`, 필요 시 PDF/Excel 파서
-  3. 수집 스크립트 실행
-  4. 빌더 실행
-  5. `outputs/` 결과를 `construction_source_status/` 번들로 복사
-  6. 변경이 있으면 자동 커밋
-  7. Pages 배포 완료 확인
+자동화가 실행할 때는 기존 무관 dirty 파일을 건드리지 않고, `construction_source_status/` 관련 파일만 stage/commit/push한다. 원격 배포 확인은 항상 포함한다.
 
-GitHub Actions로 바로 넘기기 전에는 로컬에서 한 달 정도 수동 갱신하면서 소스 차단, API 쿼터, 회사명 매칭 오류를 관찰하는 것을 권장한다.
+향후 GitHub Actions로 이전할 수는 있지만, 그 경우에도 현재 run log 계약과 화요일 fallback 조건을 유지해야 한다. Actions secrets에는 `OPENDART_KEY`, `DATA_GO_KR_KEY`만 넣고, 관리자성 Supabase key는 정적 HTML이나 공개 로그에 노출하지 않는다.
 
 ## 8. 검증 체크리스트
 

@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-15 13:09:16 KST",
+  "generated_at": "2026-07-22 16:50:36 KST",
   "source_note": "조달청_나라장터 계약정보서비스의 공사 계약현황 조회 결과를 회사명 기준으로 필터링해 생성하는 자동 캐시입니다.",
   "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
   "query": {
-    "start_date": "20260701",
-    "end_date": "20260715",
+    "start_date": "20260708",
+    "end_date": "20260722",
     "per_company": 5,
     "max_pages": 5,
     "rows_per_page": 50
@@ -12,46 +12,64 @@
   "status": "ok",
   "companies": [
     {
-      "company": "(주)유신",
+      "company": "(주)이산",
       "aliases": [
-        "(주)유신",
-        "유신",
+        "(주)이산",
+        "이산",
         "주"
       ],
       "source_name": "나라장터 계약정보",
       "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
       "awards": [
         {
-          "project": "광석리 34-4번지 외 4개소 배수 시설 개선 공사",
-          "client": "경기도 양주시",
-          "amount": "0.20억원",
+          "project": "귀산소하천 외 1개소 재해예방사업",
+          "client": "경상남도 창원시 성산구",
+          "amount": "0.19억원",
           "category": "수의계약",
-          "date": "2026-07-01",
+          "date": "2026-07-08",
           "source_name": "나라장터 계약정보",
           "source_url": "http://www.g2b.go.kr",
-          "amount_krw": "20460000"
+          "amount_krw": "19368000"
+        },
+        {
+          "project": "2026년 조림지풀베기사업(춘양지구)",
+          "client": "화순군산림조합",
+          "amount": "0.73억원",
+          "category": "수의계약",
+          "date": "2026-07-08",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "73413830"
+        },
+        {
+          "project": "2026년 조림지풀베기사업(사평장전지구)",
+          "client": "화순군산림조합",
+          "amount": "0.64억원",
+          "category": "수의계약",
+          "date": "2026-07-08",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "63923470"
         }
       ]
     },
     {
-      "company": "제일건설(주)",
+      "company": "주식회사 서현",
       "aliases": [
-        "제일건설(주)",
-        "제일건설",
-        "주"
+        "주식회사 서현"
       ],
       "source_name": "나라장터 계약정보",
       "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
       "awards": [
         {
-          "project": "장천면 묵어리 농로 정비 및 세천 보수 공사",
-          "client": "경상북도 구미시 장천면",
-          "amount": "0.08억원",
+          "project": "공유재산 내 환경개선공사",
+          "client": "경상남도 창원시",
+          "amount": "0.06억원",
           "category": "수의계약",
-          "date": "2026-06-30",
+          "date": "2026-07-08",
           "source_name": "나라장터 계약정보",
           "source_url": "http://www.g2b.go.kr",
-          "amount_krw": "7780000"
+          "amount_krw": "5560000"
         }
       ]
     }

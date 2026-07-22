@@ -1,0 +1,55 @@
+{
+  "runs": [
+    {
+      "scheduled_for": "2026-07-22",
+      "run_type": "manual-now",
+      "started_at": "2026-07-22 16:49:44 KST",
+      "completed_at": "2026-07-22 16:55:27 KST",
+      "status": "partial",
+      "sources": {
+        "google_news": {
+          "status": "success",
+          "note": "365-day window, max 5 per company"
+        },
+        "nara_g2b_contracts": {
+          "status": "success",
+          "note": "14-day window, 250 rows fetched, 2 companies matched"
+        },
+        "opendart_awards": {
+          "status": "blocked",
+          "note": "OpenDART API key validation failed; retained previous cache"
+        },
+        "opendart_strategy": {
+          "status": "blocked",
+          "note": "OpenDART API key validation failed; retained previous cache"
+        },
+        "credit_ratings": {
+          "status": "not_run",
+          "note": "Monthly cache retained from previous refresh"
+        }
+      },
+      "backup_dir": "outputs/construction_refresh_before_20260722_164944",
+      "changed_files": [
+        "construction_source_status/HANDOFF.md",
+        "construction_source_status/README.md",
+        "construction_source_status/data/construction_company_news_cache.json",
+        "construction_source_status/data/construction_nara_contracts_cache.json",
+        "construction_source_status/data/construction_online_update_marks.json",
+        "construction_source_status/data/construction_source_status_data.json",
+        "construction_source_status/index.html"
+      ],
+      "commit": null,
+      "pushed": false,
+      "pages_verified": false,
+      "update_marks": {
+        "companies_with_updates": 32,
+        "new_item_marks": 54
+      },
+      "notes": [
+        "Manual refresh was requested in the current thread before the next scheduled Monday run.",
+        "OpenDART cache was not overwritten after API-key validation failure."
+      ]
+    }
+  ],
+  "generated_at": "2026-07-22 16:55:27 KST"
+}
