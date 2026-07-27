@@ -117,14 +117,17 @@
       "monday_status": "partial",
       "monday_commit_short": "b984a7d",
       "rerun_performed": false,
-      "commit": null,
-      "pushed": false,
-      "pages_verified": false,
+      "commit": "0b73d9d4ef0885e95a4a6305b996c20a2de063a8",
+      "pushed": true,
+      "pages_verified": true,
       "pages_url": "https://sjleeigisam-ra-ieo.github.io/Org_dashboard/construction_source_status/",
       "notes": [
-        "Tuesday fallback check found a verified Monday run log, so no data refresh was executed."
-      ]
+        "Tuesday fallback check found a verified Monday run log, so no data refresh was executed.",
+        "GitHub Pages run-log JSON was verified with a cache-busting request."
+      ],
+      "commit_short": "0b73d9d",
+      "pages_verified_at": "2026-07-28 06:12:36 KST"
     }
   ],
-  "generated_at": "2026-07-28 06:11:19 KST"
+  "generated_at": "2026-07-28 06:12:36 KST"
 }
