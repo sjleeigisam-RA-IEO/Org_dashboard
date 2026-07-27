@@ -91,18 +91,22 @@
         "construction_source_status/data/construction_source_status_data.json",
         "construction_source_status/index.html"
       ],
-      "commit": null,
-      "pushed": false,
-      "pages_verified": false,
+      "commit": "b984a7dc246e98ab51874b41fe5346da0db9c731",
+      "pushed": true,
+      "pages_verified": true,
       "update_marks": {
         "companies_with_updates": 23,
         "new_item_marks": 39
       },
       "notes": [
         "Scheduled heartbeat did not produce a Monday log, so this run was executed manually in the same thread on 2026-07-27.",
-        "OpenDART cache was not overwritten after API-key validation failure."
-      ]
+        "OpenDART cache was not overwritten after API-key validation failure.",
+        "GitHub Pages index and run-log JSON were verified with cache-busting requests."
+      ],
+      "commit_short": "b984a7d",
+      "pages_verified_at": "2026-07-27 09:53:42 KST",
+      "pages_url": "https://sjleeigisam-ra-ieo.github.io/Org_dashboard/construction_source_status/"
     }
   ],
-  "generated_at": "2026-07-27 09:52:02 KST"
+  "generated_at": "2026-07-27 09:53:42 KST"
 }
