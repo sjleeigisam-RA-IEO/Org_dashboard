@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-22 16:50:36 KST",
+  "generated_at": "2026-07-27 09:49:43 KST",
   "source_note": "조달청_나라장터 계약정보서비스의 공사 계약현황 조회 결과를 회사명 기준으로 필터링해 생성하는 자동 캐시입니다.",
   "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
   "query": {
-    "start_date": "20260708",
-    "end_date": "20260722",
+    "start_date": "20260713",
+    "end_date": "20260727",
     "per_company": 5,
     "max_pages": 5,
     "rows_per_page": 50
@@ -12,44 +12,56 @@
   "status": "ok",
   "companies": [
     {
-      "company": "(주)이산",
+      "company": "(주)건영",
       "aliases": [
-        "(주)이산",
-        "이산",
+        "(주)건영",
+        "건영",
         "주"
       ],
       "source_name": "나라장터 계약정보",
       "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
       "awards": [
         {
-          "project": "귀산소하천 외 1개소 재해예방사업",
-          "client": "경상남도 창원시 성산구",
-          "amount": "0.19억원",
+          "project": "2026 농촌주거환경개선 빈집정비 공사(정낙ㅇ)",
+          "client": "충청남도 예산군 광시면",
+          "amount": "0.06억원",
           "category": "수의계약",
-          "date": "2026-07-08",
+          "date": "2026-07-10",
           "source_name": "나라장터 계약정보",
           "source_url": "http://www.g2b.go.kr",
-          "amount_krw": "19368000"
+          "amount_krw": "6000000"
+        }
+      ]
+    },
+    {
+      "company": "(주)대우건설",
+      "aliases": [
+        "(주)대우건설",
+        "대우건설",
+        "주"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "문경타워 보행교 건립사업(2차)",
+          "client": "경상북도 문경시",
+          "amount": "47억원",
+          "category": "제한경쟁",
+          "date": "2026-07-09",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "4705700000"
         },
         {
-          "project": "2026년 조림지풀베기사업(춘양지구)",
-          "client": "화순군산림조합",
-          "amount": "0.73억원",
-          "category": "수의계약",
-          "date": "2026-07-08",
+          "project": "문경타워 보행교 건립사업(총괄 및 1차)",
+          "client": "경상북도 문경시",
+          "amount": "47억원",
+          "category": "제한경쟁",
+          "date": "2026-07-09",
           "source_name": "나라장터 계약정보",
           "source_url": "http://www.g2b.go.kr",
-          "amount_krw": "73413830"
-        },
-        {
-          "project": "2026년 조림지풀베기사업(사평장전지구)",
-          "client": "화순군산림조합",
-          "amount": "0.64억원",
-          "category": "수의계약",
-          "date": "2026-07-08",
-          "source_name": "나라장터 계약정보",
-          "source_url": "http://www.g2b.go.kr",
-          "amount_krw": "63923470"
+          "amount_krw": "4705700000"
         }
       ]
     },
@@ -62,14 +74,14 @@
       "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
       "awards": [
         {
-          "project": "공유재산 내 환경개선공사",
-          "client": "경상남도 창원시",
-          "amount": "0.06억원",
+          "project": "동호배수펌프장 전기설비 이전설치 공사",
+          "client": "경상남도 통영시",
+          "amount": "0.58억원",
           "category": "수의계약",
-          "date": "2026-07-08",
+          "date": "2026-07-10",
           "source_name": "나라장터 계약정보",
           "source_url": "http://www.g2b.go.kr",
-          "amount_krw": "5560000"
+          "amount_krw": "57534900"
         }
       ]
     }
@@ -77,5 +89,5 @@
   "errors": [],
   "rows_fetched": 250,
   "companies_collected": 99,
-  "companies_with_awards": 2
+  "companies_with_awards": 3
 }
