@@ -127,7 +127,58 @@
       ],
       "commit_short": "0b73d9d",
       "pages_verified_at": "2026-07-28 06:12:36 KST"
+    },
+    {
+      "scheduled_for": "2026-08-04",
+      "run_type": "tuesday-fallback-rerun",
+      "checked_monday_for": "2026-08-03",
+      "rerun_performed": true,
+      "started_at": "2026-08-04 06:01:15 +09:00ST",
+      "completed_at": "2026-08-04 06:02:53 +09:00ST",
+      "status": "partial",
+      "sources": {
+        "google_news": {
+          "status": "success",
+          "note": "365-day window, max 5 per company"
+        },
+        "nara_g2b_contracts": {
+          "status": "success",
+          "note": "14-day window, 250 rows fetched, 3 companies matched"
+        },
+        "opendart_awards": {
+          "status": "blocked",
+          "note": "OpenDART API key validation failed; retained previous cache"
+        },
+        "opendart_strategy": {
+          "status": "blocked",
+          "note": "OpenDART API key validation failed; retained previous cache"
+        },
+        "credit_ratings": {
+          "status": "not_run",
+          "note": "Monthly cache retained from previous refresh"
+        }
+      },
+      "backup_dir": "outputs\\construction_refresh_before_20260804_060115",
+      "changed_files": [
+        "construction_source_status/README.md",
+        "construction_source_status/data/construction_company_news_cache.json",
+        "construction_source_status/data/construction_nara_contracts_cache.json",
+        "construction_source_status/data/construction_online_update_marks.json",
+        "construction_source_status/data/construction_source_status_data.json",
+        "construction_source_status/index.html"
+      ],
+      "commit": null,
+      "pushed": false,
+      "pages_verified": false,
+      "update_marks": {
+        "companies_with_updates": 28,
+        "new_item_marks": 49
+      },
+      "notes": [
+        "Tuesday fallback did not find a verified 2026-08-03 monday-main log, so the refresh was rerun in this thread.",
+        "OpenDART cache was not overwritten after API-key validation failure."
+      ]
     }
   ],
-  "generated_at": "2026-07-28 06:12:36 KST"
+  "generated_at": "2026-08-04 06:03:58 KST"
 }
