@@ -167,18 +167,22 @@
         "construction_source_status/data/construction_source_status_data.json",
         "construction_source_status/index.html"
       ],
-      "commit": null,
-      "pushed": false,
-      "pages_verified": false,
+      "commit": "2abb1d4e93e874f84c4eeb4614c1086ffa2e86a8",
+      "pushed": true,
+      "pages_verified": true,
       "update_marks": {
         "companies_with_updates": 28,
         "new_item_marks": 49
       },
       "notes": [
         "Tuesday fallback did not find a verified 2026-08-03 monday-main log, so the refresh was rerun in this thread.",
-        "OpenDART cache was not overwritten after API-key validation failure."
-      ]
+        "OpenDART cache was not overwritten after API-key validation failure.",
+        "GitHub Pages index and run-log JSON were verified with cache-busting requests."
+      ],
+      "commit_short": "2abb1d4",
+      "pages_verified_at": "2026-08-04 06:06:42 KST",
+      "pages_url": "https://sjleeigisam-ra-ieo.github.io/Org_dashboard/construction_source_status/"
     }
   ],
-  "generated_at": "2026-08-04 06:03:58 KST"
+  "generated_at": "2026-08-04 06:06:42 KST"
 }
