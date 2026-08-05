@@ -184,12 +184,12 @@
     .tenantReviewGrid label { display: grid; gap: 3px; color: var(--muted); font-size: 10px; font-weight: 800; }
     .tenantReviewGrid input, .tenantReviewGrid select { width: 100%; height: 30px; border: 1px solid #dbe3ed; border-radius: 6px; padding: 0 7px; font-size: 11px; background: #fff; color: var(--ink); }
     .stackingPlan { display: grid; gap: 5px; margin-top: 8px; }
-    .stackingPlanColumns { display: grid; grid-template-columns: 54px minmax(0, 1fr) minmax(220px, 0.78fr); gap: 6px; align-items: center; margin: 6px 0 2px; }
+    .stackingPlanColumns { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 6px; align-items: center; margin: 6px 0 2px; }
     .stackingPlanColumns span { color: var(--muted); font-size: 10.5px; font-weight: 900; }
     .stackingHeader { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 2px; }
     .stackingHeader strong { font-size: 13px; color: var(--ink); }
     .stackingHeader span { font-size: 10.5px; color: var(--muted); font-weight: 800; }
-    .stackFloor { display: grid; grid-template-columns: 54px minmax(0, 1fr) minmax(220px, 0.78fr); gap: 6px; align-items: stretch; min-height: 34px; }
+    .stackFloor { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 6px; align-items: stretch; min-height: 34px; }
     .stackFloorLabel { border: 1px solid #dbe3ed; border-radius: 6px; background: #f8fafc; color: #334155; font-size: 11px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
     .stackFloorBody { display: grid; gap: 4px; min-width: 0; }
     .stackFloorSurvey { display: grid; min-width: 0; align-content: start; }
@@ -198,6 +198,10 @@
     .stackTenant.is-active { border-color: #86efac; background: #f0fdf4; }
     .stackTenant.is-expired { border-color: #cbd5e1; background: #f1f5f9; color: #475569; }
     .stackTenant.is-unknown { border-color: #fde68a; background: #fffbeb; }
+    .stackSurveyTenant { min-height: 34px; border: 1px solid #bfdbfe; border-radius: 6px; background: #eff6ff; color: #0f172a; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 6px 9px; }
+    .stackSurveyTenant.is-vacancy { border-color: #cbd5e1; background: #f1f5f9; color: #475569; }
+    .stackSurveyTenantName { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; line-height: 1.25; font-weight: 900; }
+    .stackSurveyTenantMeta { color: #64748b; font-size: 10.5px; font-weight: 800; white-space: nowrap; }
     .stackTenant summary { min-height: 34px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center; cursor: pointer; list-style: none; padding: 6px 9px; }
     .stackTenant summary::-webkit-details-marker { display: none; }
     .stackTenantName { min-width: 0; font-size: 12px; line-height: 1.25; font-weight: 900; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -506,15 +510,17 @@
       .stackingPlan {
         min-height: 0; overflow: auto; flex: 1 1 auto; margin-top: 0; padding-right: 1px;
       }
-      .stackFloor { grid-template-columns: 44px minmax(0, 1fr); grid-template-rows: auto auto; gap: 4px 5px; min-height: 0; height: max-content; align-items: stretch; }
-      .stackFloorLabel { grid-row: 1 / span 2; font-size: 10.5px; border-radius: 5px; }
+      .stackFloor { grid-template-columns: 44px minmax(0, 1fr); grid-template-rows: auto; gap: 4px 5px; min-height: 0; height: max-content; align-items: stretch; }
+      .stackFloorLabel { grid-row: 1; font-size: 10.5px; border-radius: 5px; }
       .stackFloorBody { grid-column: 2; grid-row: 1; gap: 3px; }
-      .stackFloorSurvey { grid-column: 2; grid-row: 2; }
       .stackEmpty { min-height: 28px; padding: 0 7px; font-size: 10.5px; }
       .stackTenant summary { min-height: 30px; grid-template-columns: minmax(0, 1fr); padding: 5px 7px; }
       .stackTenantName { font-size: 11.5px; }
       .stackTenantMeta { display: none; }
       .stackTenantDetails { display: none; }
+      .stackSurveyTenant { min-height: 30px; grid-template-columns: minmax(0, 1fr); padding: 5px 7px; }
+      .stackSurveyTenantName { font-size: 11.5px; }
+      .stackSurveyTenantMeta { display: none; }
       .floorSurvey { padding: 4px; gap: 4px; }
       .floorSurveyImportedRow { grid-template-columns: minmax(0, 1fr); align-items: start; gap: 2px; min-height: 32px; }
       .floorSurveyImportedName { font-size: 11.5px; }
@@ -599,7 +605,7 @@
   <div class="loading" id="loading">Rent map loading</div>
   <nav class="appTabs" role="tablist" aria-label="Rent dashboard pages">
     <button class="pageTab is-active" type="button" data-page="map">렌트맵</button>
-    <button class="pageTab" type="button" data-page="status">렌트현황조사</button>
+    <button class="pageTab" type="button" data-page="status">임차기업현황</button>
   </nav>
   <div class="authUserBar" id="authUserBar" hidden>
     <span class="authUserName" id="authUserName"></span>
@@ -672,7 +678,7 @@
       <div class="caseRows" id="caseRows"></div>
     </section>
   </div>
-  <section class="panel rentStatusPage appPage" id="page-status" role="tabpanel" aria-label="렌트현황조사">
+  <section class="panel rentStatusPage appPage" id="page-status" role="tabpanel" aria-label="임차기업현황">
     <section class="tenantLab tenantLabPage" id="tenantLab"></section>
   </section>
   <div class="attribution">Map tiles by CARTO, data by OpenStreetMap contributors</div>
@@ -3769,6 +3775,22 @@
       return Number.isFinite(sqm) && sqm > 0 ? sqmText(sqm) : "-";
     }
 
+    function targetAssetTypicalFloorAreaValue(asset) {
+      const overview = buildingOverviewForAsset(asset);
+      const variantFloors = (asset?.fieldSurvey?.variants || [])
+        .map(variant => Number(variant.groundFloorCount))
+        .filter(value => Number.isFinite(value) && value > 0);
+      const ground = Number(overview?.groundFloorCount) || Math.max(0, ...variantFloors);
+      const pyeong = Number(asset?.officeAreaPy || asset?.grossFloorAreaPy);
+      if (!Number.isFinite(ground) || ground <= 0 || !Number.isFinite(pyeong) || pyeong <= 0) return null;
+      return pyeong / ground;
+    }
+
+    function targetAssetTypicalFloorAreaText(asset) {
+      const value = targetAssetTypicalFloorAreaValue(asset);
+      return Number.isFinite(value) && value > 0 ? areaPyText(value) : "-";
+    }
+
     function targetAssetCompletionYearText(asset) {
       const direct = Number(asset?.completionYear);
       if (Number.isFinite(direct) && direct > 0) return `${Math.round(direct)}년`;
@@ -3790,6 +3812,7 @@
       const address = asset.assetAddress || asset.legalAddress || "주소 없음";
       const floorText = floorSummaryForAsset(asset);
       const areaText = targetAssetGrossAreaText(asset);
+      const typicalFloorAreaText = targetAssetTypicalFloorAreaText(asset);
       const completionText = targetAssetCompletionYearText(asset);
       const nocText = targetAssetNocText(asset);
       return `
@@ -3797,12 +3820,13 @@
           <div class="selectedAssetFact is-address"><span>주소</span><strong>${escapeHtml(address)}</strong></div>
           <div class="selectedAssetFact"><span>층수</span><strong>${escapeHtml(floorText)}</strong></div>
           <div class="selectedAssetFact"><span>연면적</span><strong>${areaText}</strong></div>
+          <div class="selectedAssetFact"><span>기준층 임대면적</span><strong>${typicalFloorAreaText}</strong></div>
           <div class="selectedAssetFact"><span>준공</span><strong>${completionText}</strong></div>
           <div class="selectedAssetFact"><span>현재 NOC</span><strong>${nocText}</strong></div>
         </div>
         <div class="selectedAssetMobileSummary">
           <span>${escapeHtml(address)}</span>
-          <span>${escapeHtml(floorText)} · ${areaText} · 준공 ${completionText}</span>
+          <span>${escapeHtml(floorText)} · 기준층 ${typicalFloorAreaText} · 준공 ${completionText}</span>
           <strong>현재 NOC ${nocText}</strong>
         </div>
       `;
@@ -3946,7 +3970,7 @@
 
     function floorSurveyRows(assetInput, floor) {
       const key = surveyFloorKey(floor);
-      return assetInput.floorSurvey?.[key] || [];
+      return assetInput?.floorSurvey?.[key] || [];
     }
 
     function fieldSurveyRows(asset, floor) {
@@ -3976,6 +4000,93 @@
 
     function fieldSurveyEntryCount(asset) {
       return Number(asset?.fieldSurvey?.entryCount || asset?.fieldSurvey?.tenantEntryCount || 0);
+    }
+
+    function floorSurveyInputFloorNumbers(assetInput) {
+      const floors = [];
+      for (const key of Object.keys(assetInput?.floorSurvey || {})) {
+        const floor = Number(key);
+        if (Number.isFinite(floor)) floors.push(floor);
+      }
+      return [...new Set(floors)].sort((a, b) => b - a);
+    }
+
+    function compactSurveyRows(rows) {
+      const cleaned = [];
+      const seen = new Set();
+      for (const row of rows || []) {
+        const tenantName = String(row?.tenantName || "").trim();
+        if (!tenantName) continue;
+        const entryType = row.entryType || "tenant";
+        const key = `${entryType}:${normalizeMatchText(tenantName)}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        cleaned.push({
+          ...row,
+          tenantName,
+          entryType,
+        });
+      }
+      return cleaned;
+    }
+
+    function currentSurveyRowsForFloor(asset, assetInput, floor) {
+      const importedRows = fieldSurveyRows(asset, floor).map(row => ({ ...row, sourceKind: "field" }));
+      const webRows = floorSurveyRows(assetInput, floor).map(row => ({
+        ...row,
+        sourceKind: "web",
+        sourceLabel: row.sourceLabel || "웹 입력",
+      }));
+      return compactSurveyRows([...importedRows, ...webRows]);
+    }
+
+    function stackTenantCompareNames(tenants) {
+      return [...new Set((tenants || [])
+        .map(tenant => normalizeMatchText(tenant?.tenant || ""))
+        .filter(Boolean))]
+        .sort();
+    }
+
+    function surveyCompareNames(rows) {
+      return [...new Set((rows || [])
+        .filter(row => row.entryType !== "vacancy")
+        .map(row => normalizeMatchText(row?.tenantName || ""))
+        .filter(Boolean))]
+        .sort();
+    }
+
+    function sameTenantNameSet(left, right) {
+      if (!left.length || !right.length || left.length !== right.length) return false;
+      return left.every((value, index) => value === right[index]);
+    }
+
+    function shouldUseContractFloorRows(tenants, surveyRows) {
+      return sameTenantNameSet(stackTenantCompareNames(tenants), surveyCompareNames(surveyRows));
+    }
+
+    function renderSurveyStackRow(row) {
+      const isVacancy = row.entryType === "vacancy";
+      const sourceLabel = row.sourceLabel || "조사본";
+      const variantText = row.variantName ? `${row.variantName} · ` : "";
+      return `
+        <div class="stackSurveyTenant ${isVacancy ? "is-vacancy" : ""}" title="${escapeHtml(row.sourceWorkbook || "")} / ${escapeHtml(row.sheetName || "")}">
+          <span class="stackSurveyTenantName">${escapeHtml(row.tenantName || "")}</span>
+          <span class="stackSurveyTenantMeta">${escapeHtml(variantText)}${escapeHtml(sourceLabel)}</span>
+        </div>
+      `;
+    }
+
+    function renderCurrentFloorOccupants(tenants, surveyRows, assetInput) {
+      if (surveyRows.length && !shouldUseContractFloorRows(tenants, surveyRows)) {
+        return surveyRows.map(row => renderSurveyStackRow(row)).join("");
+      }
+      if (tenants.length) return tenants.map(tenant => renderStackTenant(tenant, assetInput)).join("");
+      if (surveyRows.length) return surveyRows.map(row => renderSurveyStackRow(row)).join("");
+      return `<div class="stackEmpty">데이터 없음</div>`;
+    }
+
+    function surveyAppliedFloorCount(asset, assetInput, floors) {
+      return (floors || []).filter(floor => currentSurveyRowsForFloor(asset, assetInput, floor).length).length;
     }
 
     function renderFieldSurveyRows(asset, floor) {
@@ -4216,7 +4327,7 @@
       return rows;
     }
 
-    function floorStackForAsset(asset, tenantRows = null) {
+    function floorStackForAsset(asset, tenantRows = null, assetInput = null) {
       const overview = buildingOverviewForAsset(asset);
       const groundCount = Math.max(0, Math.round(Number(overview?.groundFloorCount || 0)));
       const basementCount = Math.max(0, Math.round(Number(overview?.basementFloorCount || 0)));
@@ -4224,6 +4335,7 @@
       const observedFloors = [
         ...tenants.flatMap(tenant => tenant.stackFloors || []),
         ...fieldSurveyFloorNumbers(asset),
+        ...floorSurveyInputFloorNumbers(assetInput),
       ];
       const floors = [];
       if (groundCount > 0) for (let floor = groundCount; floor >= 1; floor -= 1) floors.push(floor);
@@ -4290,8 +4402,9 @@
       const visibleStackTenants = selectedWing === "all"
         ? allStackTenants
         : allStackTenants.filter(tenant => tenantWingKeys(tenant).includes(selectedWing));
-      const stack = floorStackForAsset(asset, visibleStackTenants);
+      const stack = floorStackForAsset(asset, visibleStackTenants, assetInput);
       const surveyEntryCount = fieldSurveyEntryCount(asset);
+      const surveyFloorCount = surveyAppliedFloorCount(asset, assetInput, stack.floors);
       if (!stack.floors.length && !stack.tenants.length && !asset.marketLeaseCaseCount && !surveyEntryCount) return `<div class="tenantEmpty">건축물대장 층수와 연결 임차인 객체가 아직 없습니다.</div>`;
       const floorCountText = stack.overview
         ? `지상 ${fmt.format(Number(stack.overview.groundFloorCount || 0))} / 지하 ${fmt.format(Number(stack.overview.basementFloorCount || 0))}`
@@ -4302,29 +4415,22 @@
           <span class="tenantSummaryItem"><span class="statusPill is-recent-expired">최근만료</span>${fmt.format(recentExpired.length)}건</span>
           <span class="tenantSummaryItem"><span class="statusPill is-unknown">종료일 없음</span>${fmt.format(unknown.length)}건</span>
           ${asset.marketLeaseCaseCount ? `<span class="marketStackChip">렌트맵 계약사례 ${fmt.format(asset.marketLeaseCaseCount)}건</span>` : ""}
-          ${surveyEntryCount ? `<span class="marketStackChip">조사항목 ${fmt.format(surveyEntryCount)}건</span>` : ""}
+          ${surveyEntryCount ? `<span class="marketStackChip">조사반영 ${fmt.format(surveyEntryCount)}건 · ${fmt.format(surveyFloorCount)}층</span>` : ""}
         </div>
         ${renderTenantWingSelector(asset, wingOptions, selectedWing, visibleStackTenants.length, allStackTenants.length)}
         <div class="stackingHeader">
-          <strong>층별 스태킹</strong>
-          <span>${floorCountText} · 클릭하면 세부조건 표시</span>
-        </div>
-        <div class="stackingPlanColumns">
-          <span></span>
-          <span>연결 데이터</span>
-          <span>현장조사 입력</span>
+          <strong>현재 임차기업 스태킹</strong>
+          <span>${floorCountText} · 조사 내용이 다르면 조사 결과를 우선 표시</span>
         </div>
         <div class="stackingPlan">
           ${stack.floors.map(floor => {
             const tenants = stack.byFloor.get(floor) || [];
+            const surveyRows = currentSurveyRowsForFloor(asset, assetInput, floor);
             return `
               <div class="stackFloor">
                 <div class="stackFloorLabel">${floorLabel(floor)}</div>
                 <div class="stackFloorBody">
-                  ${tenants.length ? tenants.map(tenant => renderStackTenant(tenant, assetInput)).join("") : `<div class="stackEmpty">데이터 없음</div>`}
-                </div>
-                <div class="stackFloorSurvey">
-                  ${renderFloorSurvey(assetInput, floor, asset)}
+                  ${renderCurrentFloorOccupants(tenants, surveyRows, assetInput)}
                 </div>
               </div>
             `;
@@ -4336,7 +4442,6 @@
             <div class="stackFloor">
               <div class="stackFloorLabel">미상</div>
               <div class="stackFloorBody">${stack.noFloor.map(tenant => renderStackTenant(tenant, assetInput)).join("")}</div>
-              <div class="stackFloorSurvey">${renderFloorSurvey(assetInput, null, asset)}</div>
             </div>
           </div>
         ` : ""}
@@ -4476,12 +4581,8 @@
       tenantLab.innerHTML = `
         <div class="tenantLabHeader">
           <div class="tenantLabHeaderText">
-            <strong>리서치 조사대상 워크리스트</strong>
-            <span>엑셀 조사대상 ${fmt.format(lab.assetCount || 0)}개를 순서대로 표시합니다. 연결 임차인 ${fmt.format(lab.bidPrefillTenantCount || 0)}건 · 조사항목 ${fmt.format(lab.fieldSurveySummary?.matchedTenantEntryCount || 0)}건.</span>
-          </div>
-          <div class="tenantLabHeaderActions">
-            <a class="floorStackToolButton" href="https://floorstack.vercel.app/" target="_blank" rel="noopener noreferrer">층별 입력 도구 열기</a>
-            <button class="surveyCsvDownloadButton" type="button" data-tenant-action="downloadSurveyCsv">조사 CSV 다운로드</button>
+            <strong>임차기업 현황</strong>
+            <span>조사대상 ${fmt.format(lab.assetCount || 0)}개 자산의 연결 데이터와 현황조사 결과를 통합해 표시합니다. 연결 임차인 ${fmt.format(lab.bidPrefillTenantCount || 0)}건 · 조사 반영 ${fmt.format(lab.fieldSurveySummary?.matchedTenantEntryCount || 0)}건.</span>
           </div>
         </div>
         ${renderTenantInputMode(lab, targets, selected)}
