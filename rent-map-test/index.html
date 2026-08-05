@@ -1599,9 +1599,11 @@
             try {
               const localExtras = await loadLocalSurfaceData();
               marketData.tenantTargetLab = localExtras.tenantTargetLab || { available: false, targetAssets: [], tenantObjects: [] };
+              marketData.tenantCompanyProfiles = localExtras.tenantCompanyProfiles || { available: false, profiles: [], aliases: {} };
             } catch (localError) {
               console.warn("Local tenant target lab load failed", localError);
               marketData.tenantTargetLab = { available: false, targetAssets: [], tenantObjects: [] };
+              marketData.tenantCompanyProfiles = { available: false, profiles: [], aliases: {} };
             }
             marketData.meta.sourceMode = "supabase_market_data";
             marketData.meta.marketDataSource = MAP_CONFIG.marketDataSource;
@@ -4085,6 +4087,111 @@
       return sameTenantNameSet(stackTenantCompareNames(tenants), surveyCompareNames(surveyRows));
     }
 
+    function normalizeCompanyName(value) {
+      let text = String(value || "").toLowerCase().trim();
+      ["주식회사", "(주)", "㈜", "유한회사", "법무법인", "사무소"].forEach(token => {
+        text = text.replaceAll(token, "");
+      });
+      return text.replace(/[^0-9a-z가-힣]+/g, "");
+    }
+
+    function stripCompanySuffix(value) {
+      return String(value || "")
+        .replace(/(incorporated|inc|corp(?:oration)?|company|co|ltd|limited|llc|gmbh|ag|plc|pte|korea|korean)/gi, " ");
+    }
+
+    function companyNameVariants(value) {
+      const raw = String(value || "");
+      const stopwords = new Set([
+        "branch", "cafeteria", "company", "companycafeteria", "convenience", "conveniencestore",
+        "convinience", "conviniencestore",
+        "east", "korea", "korean", "mdf", "mdfroom", "north", "office", "retail", "room",
+        "seoul", "south", "storage", "store", "west", "구내식당", "기사대기실", "남쪽",
+        "데이터없음", "동쪽", "리테일", "북쪽", "서쪽", "오피스", "창고", "편의점",
+      ]);
+      const pieces = new Set([
+        raw,
+        raw.replace(/[\(\[][^\)\]]*[\)\]]/g, ""),
+      ]);
+      for (const match of raw.matchAll(/[\(\[]([^\)\]]+)[\)\]]/g)) pieces.add(match[1]);
+      [...pieces].forEach(piece => {
+        String(piece || "").split(/[|/,;·]/).forEach(part => {
+          if (part.trim()) pieces.add(part.trim());
+        });
+      });
+      const variants = new Set();
+      for (const piece of pieces) {
+        const stripped = stripCompanySuffix(piece);
+        variants.add(normalizeCompanyName(piece));
+        variants.add(normalizeCompanyName(stripped));
+        variants.add(normalizeCompanyName(stripped.replaceAll("&", "and")));
+        variants.add(normalizeCompanyName(stripped.replace(/bros/gi, "brothers")));
+        variants.add(normalizeCompanyName(stripped.replace(/brothers/gi, "bros")));
+      }
+      return [...variants].filter(item => item.length >= 2 && !/^\d+$/.test(item) && !stopwords.has(item));
+    }
+
+    function tenantCompanyProfileForName(name) {
+      const companyData = data?.tenantCompanyProfiles || {};
+      const aliases = companyData.aliases || {};
+      const profiles = companyData.profiles || [];
+      const byId = new Map(profiles.map(profile => [profile.profileId, profile]));
+      for (const key of companyNameVariants(name)) {
+        const profileId = aliases[key];
+        if (profileId && byId.has(profileId)) return byId.get(profileId);
+      }
+      const fallbackMatches = new Map();
+      for (const key of companyNameVariants(name)) {
+        if (key.length < 5) continue;
+        for (const [alias, profileId] of Object.entries(aliases)) {
+          if (alias.length < 5) continue;
+          if ((alias.includes(key) || key.includes(alias)) && byId.has(profileId)) {
+            fallbackMatches.set(profileId, byId.get(profileId));
+          }
+          if (fallbackMatches.size > 1) break;
+        }
+        if (fallbackMatches.size > 1) break;
+      }
+      if (fallbackMatches.size === 1) return [...fallbackMatches.values()][0];
+      return null;
+    }
+
+    function profileMatchText(profile) {
+      if (!profile) return "-";
+      const parts = [];
+      if (profile.dartMatchStatus) parts.push(`DART ${profile.dartMatchStatus}${profile.dartMatchConfidence ? " " + profile.dartMatchConfidence : ""}`);
+      if (profile.financeLookupStatus) parts.push(`금융위 ${profile.financeLookupStatus}`);
+      if (profile.taxLookupStatus) parts.push(`국세청 ${profile.taxLookupStatus}`);
+      return parts.join(" · ") || profile.profileScope || "-";
+    }
+
+    function profileStockText(profile) {
+      const stock = [profile.stockName, profile.stockCode ? `(${profile.stockCode})` : ""].filter(Boolean).join(" ");
+      return [profile.corpClass, stock].filter(Boolean).join(" · ") || "-";
+    }
+
+    function profileEmployeeText(profile) {
+      if (!profile?.employeeTotal && !profile?.employeeYear) return "-";
+      const count = profile.employeeTotal ? `${fmt.format(Number(profile.employeeTotal))}명` : "-";
+      const yoy = profile.employeeYoyPct !== null && profile.employeeYoyPct !== undefined && profile.employeeYoyPct !== "" ? ` · YoY ${percentText(profile.employeeYoyPct)}` : "";
+      return `${profile.employeeYear || ""} ${count}${yoy}`.trim();
+    }
+
+    function companyFact(label, value, wide = false) {
+      return `
+        <div class="tenantInfoFact ${wide ? "is-wide" : ""}">
+          <span>${escapeHtml(label)}</span>
+          <strong>${escapeHtml(compactInfoText(value))}</strong>
+        </div>
+      `;
+    }
+
+    function companyNoteBlock(title, value) {
+      const text = compactInfoText(value);
+      if (text === "-") return "";
+      return `<div class="tenantInfoNote"><b>${escapeHtml(title)}</b><br>${escapeHtml(text)}</div>`;
+    }
+
     function compactInfoText(value) {
       const text = (value ?? "").toString().trim();
       return text || "-";
@@ -4101,7 +4208,7 @@
           <span>선택 대기</span>
         </div>
         <div class="tenantInfoEmpty">
-          왼쪽 스태킹에서 임차기업 또는 조사 행을 선택하면 이 영역에 면적, 기간, 단가, 출처 정보를 표시합니다.
+          왼쪽 스태킹에서 임차기업을 선택하면 DART/금융위/공공API 기반 기업정보를 표시합니다.
         </div>
       `;
     }
@@ -4109,19 +4216,8 @@
     function contractTenantInfo(asset, floor, tenant, statusText, periodText, flagText) {
       return {
         type: "계약 데이터",
-        assetName: asset?.assetName || "",
         tenantName: tenant.tenant || "임차인 미상",
-        floor: floor === null || floor === undefined ? (tenant.floorUnit || "층 미상") : floorLabel(floor),
-        status: statusText || "-",
-        area: areaPyText(tenant.leasedAreaPy),
-        useType: tenant.useType || tenant.floorUnit || "-",
-        noc: moneyText(tenant.nocPerPy, "원/평"),
-        rent: moneyText(tenant.monthlyRentPerPy, "원/평"),
-        cam: moneyText(tenant.monthlyCamPerPy, "원/평"),
-        deposit: krwWonText(tenant.depositTotal),
-        leasePeriod: periodText || "-",
-        source: tenant.prefillSource || tenant.sourceFile || "BID/FIP",
-        sourceDetail: flagText || "정상"
+        source: tenant.prefillSource || tenant.sourceFile || "BID/FIP"
       };
     }
 
@@ -4130,17 +4226,7 @@
       const sourceDetail = [row.sourceWorkbook, row.sheetName].filter(Boolean).join(" / ");
       return {
         type: row.entryType === "vacancy" ? "조사 결과 · 데이터 없음" : "현황조사 결과",
-        assetName: asset?.assetName || "",
         tenantName: row.tenantName || (row.entryType === "vacancy" ? "데이터 없음" : "회사명 미상"),
-        floor: floor === null || floor === undefined ? "층 미상" : floorLabel(floor),
-        status: row.entryType === "vacancy" ? "데이터 없음" : "조사 반영",
-        area: "-",
-        useType: "-",
-        noc: "-",
-        rent: "-",
-        cam: "-",
-        deposit: "-",
-        leasePeriod: "-",
         source: sourceLabel,
         sourceDetail: sourceDetail || row.variantName || "-"
       };
@@ -4148,34 +4234,54 @@
 
     function renderTenantInfoPanel(info) {
       if (!info) return tenantInfoPanelDefaultHtml();
+      const profile = tenantCompanyProfileForName(info.tenantName);
+      if (!profile) {
+        const profileCount = data?.tenantCompanyProfiles?.profileCount || 0;
+        return `
+          <div class="tenantInfoPaneTitle">
+            <strong>${escapeHtml(info.tenantName || "임차인 미상")}</strong>
+            <span>기업정보 없음</span>
+          </div>
+          <div class="tenantInfoEmpty">
+            이 임차인명과 연결된 DART/공공API 프로필을 찾지 못했습니다.<br>
+            현재 프로필 ${fmt.format(profileCount)}개 기준으로 이름 alias 매칭을 수행했습니다.
+          </div>
+        `;
+      }
       const facts = [
-        ["자산", info.assetName],
-        ["층", info.floor],
-        ["상태", info.status],
-        ["용도", info.useType],
-        ["임차면적", info.area],
-        ["NOC", info.noc],
-        ["임대료", info.rent],
-        ["관리비", info.cam],
-        ["보증금", info.deposit],
-        ["임대기간", info.leasePeriod],
-        ["출처", info.source]
+        ["법인명", profile.corpName || profile.displayName, true],
+        ["영문명", profile.corpNameEng, true],
+        ["매칭", profileMatchText(profile), true],
+        ["업종", profile.industry, true],
+        ["대표자", profile.ceoName],
+        ["설립일", profile.establishmentDate],
+        ["상장/법인구분", profileStockText(profile), true],
+        ["임직원", profileEmployeeText(profile), true],
+        ["매출", krwWonText(profile.revenueKrw)],
+        ["영업이익", krwWonText(profile.operatingIncomeKrw)],
+        ["당기순이익", krwWonText(profile.netIncomeKrw)],
+        ["자산총계", krwWonText(profile.assetsKrw)],
+        ["부채비율", percentText(profile.debtRatioPct)],
+        ["사업자상태", [profile.businessStatus, profile.taxType].filter(Boolean).join(" · ")],
+        ["금융위 업종", profile.financeIndustryName],
+        ["서울형강소기업", profile.seoulStrongStatus],
+        ["홈페이지", profile.homepage, true],
+        ["등록주소", profile.registeredAddress, true],
       ];
-      const note = compactInfoText(info.sourceDetail);
+      const notes = [
+        companyNoteBlock("마케팅 포인트", profile.marketingPoint),
+        companyNoteBlock("IGIS 협력기회", profile.igisOpportunity),
+        companyNoteBlock("허들 / 주의사항", profile.hurdle || profile.financialCaveat || profile.dataCoverageNote),
+      ].join("");
       return `
         <div class="tenantInfoPaneTitle">
-          <strong>${escapeHtml(info.tenantName || "임차인 미상")}</strong>
-          <span>${escapeHtml(info.type || "")}</span>
+          <strong>${escapeHtml(profile.displayName || info.tenantName || "임차인 미상")}</strong>
+          <span>기업정보</span>
         </div>
         <div class="tenantInfoGrid">
-          ${facts.map(([label, value]) => `
-            <div class="tenantInfoFact ${label === "자산" || label === "임대기간" || label === "출처" ? "is-wide" : ""}">
-              <span>${escapeHtml(label)}</span>
-              <strong>${escapeHtml(compactInfoText(value))}</strong>
-            </div>
-          `).join("")}
+          ${facts.map(([label, value, wide]) => companyFact(label, value, Boolean(wide))).join("")}
         </div>
-        <div class="tenantInfoNote">${escapeHtml(note)}</div>
+        ${notes}
       `;
     }
 
@@ -5281,9 +5387,10 @@
           }
         });
       });
-      tenantLab.querySelectorAll("[data-tenant-info]").forEach(row => {
-        row.addEventListener("click", () => applyTenantInfoSelection(row));
-      });
+      tenantLab.onclick = (event) => {
+        const infoRow = event.target?.closest?.("[data-tenant-info]");
+        if (infoRow && tenantLab.contains(infoRow)) applyTenantInfoSelection(infoRow);
+      };
     }
 
     function activatePage(name) {
