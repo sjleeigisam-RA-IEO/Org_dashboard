@@ -186,6 +186,23 @@
     .stackingPlan { display: grid; gap: 5px; margin-top: 8px; }
     .stackingPlanColumns { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 6px; align-items: center; margin: 6px 0 2px; }
     .stackingPlanColumns span { color: var(--muted); font-size: 10.5px; font-weight: 900; }
+    .tenantStackWorkspace { display: grid; grid-template-columns: minmax(330px, 0.95fr) minmax(360px, 1.05fr); gap: 10px; align-items: start; }
+    .tenantStackColumn { min-width: 0; display: grid; gap: 6px; }
+    .tenantInfoPane {
+      position: sticky; top: 72px; min-width: 0; min-height: 360px;
+      border: 1px solid #dbe3ed; border-radius: 7px; background: linear-gradient(180deg, #f8fbff, #ffffff);
+      padding: 12px; box-shadow: 0 8px 20px rgba(15,23,42,0.05);
+    }
+    .tenantInfoPaneTitle { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; border-bottom: 1px solid #e5edf7; padding-bottom: 9px; margin-bottom: 10px; }
+    .tenantInfoPaneTitle strong { min-width: 0; color: var(--ink); font-size: 14px; line-height: 1.25; overflow-wrap: anywhere; }
+    .tenantInfoPaneTitle span { color: var(--muted); font-size: 10.5px; font-weight: 900; white-space: nowrap; }
+    .tenantInfoEmpty { min-height: 260px; border: 1px dashed #cbd5e1; border-radius: 7px; background: rgba(248,250,252,0.72); color: #64748b; display: flex; align-items: center; justify-content: center; text-align: center; padding: 14px; font-size: 12px; line-height: 1.45; font-weight: 800; }
+    .tenantInfoGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+    .tenantInfoFact { border: 1px solid #edf1f6; border-radius: 6px; background: #fff; padding: 8px; min-height: 50px; }
+    .tenantInfoFact span { display: block; color: var(--muted); font-size: 10px; font-weight: 900; }
+    .tenantInfoFact strong { display: block; margin-top: 4px; color: var(--ink); font-size: 12px; line-height: 1.25; overflow-wrap: anywhere; }
+    .tenantInfoFact.is-wide { grid-column: 1 / -1; }
+    .tenantInfoNote { margin-top: 10px; border-top: 1px dashed #dbe3ed; padding-top: 9px; color: #475569; font-size: 11px; line-height: 1.45; }
     .stackingHeader { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 2px; }
     .stackingHeader strong { font-size: 13px; color: var(--ink); }
     .stackingHeader span { font-size: 10.5px; color: var(--muted); font-weight: 800; }
@@ -194,11 +211,12 @@
     .stackFloorBody { display: grid; gap: 4px; min-width: 0; }
     .stackFloorSurvey { display: grid; min-width: 0; align-content: start; }
     .stackEmpty { border: 1px dashed #d8e0ea; border-radius: 6px; background: #fbfdff; color: #94a3b8; min-height: 34px; display: flex; align-items: center; padding: 0 9px; font-size: 11px; font-weight: 800; }
-    .stackTenant { border: 1px solid #cbd5e1; border-radius: 6px; background: #fff; overflow: hidden; }
+    .stackTenant { border: 1px solid #cbd5e1; border-radius: 6px; background: #fff; overflow: hidden; cursor: pointer; }
     .stackTenant.is-active { border-color: #86efac; background: #f0fdf4; }
     .stackTenant.is-expired { border-color: #cbd5e1; background: #f1f5f9; color: #475569; }
     .stackTenant.is-unknown { border-color: #fde68a; background: #fffbeb; }
-    .stackSurveyTenant { min-height: 34px; border: 1px solid #bfdbfe; border-radius: 6px; background: #eff6ff; color: #0f172a; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 6px 9px; }
+    .stackTenant.is-selectedTenant, .stackSurveyTenant.is-selectedTenant { border-color: #2563eb; box-shadow: 0 0 0 2px rgba(37,99,235,0.16); }
+    .stackSurveyTenant { min-height: 34px; border: 1px solid #bfdbfe; border-radius: 6px; background: #eff6ff; color: #0f172a; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 6px 9px; cursor: pointer; }
     .stackSurveyTenant.is-vacancy { border-color: #cbd5e1; background: #f1f5f9; color: #475569; }
     .stackSurveyTenantName { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; line-height: 1.25; font-weight: 900; }
     .stackSurveyTenantMeta { color: #64748b; font-size: 10.5px; font-weight: 800; white-space: nowrap; }
@@ -503,6 +521,9 @@
       }
       .tenantSummaryItem { padding: 3px 7px; font-size: 10.5px; white-space: nowrap; }
       .statusPill { min-width: auto; height: 21px; padding: 0 7px; font-size: 10px; }
+      .tenantStackWorkspace { display: flex; flex-direction: column; min-height: 0; flex: 1 1 auto; }
+      .tenantStackColumn { min-height: 0; display: flex; flex-direction: column; }
+      .tenantInfoPane { display: none; }
       .stackingHeader { flex: 0 0 auto; margin-bottom: 4px; }
       .stackingHeader strong { font-size: 12px; }
       .stackingHeader span { display: none; }
@@ -4064,24 +4085,134 @@
       return sameTenantNameSet(stackTenantCompareNames(tenants), surveyCompareNames(surveyRows));
     }
 
-    function renderSurveyStackRow(row) {
+    function compactInfoText(value) {
+      const text = (value ?? "").toString().trim();
+      return text || "-";
+    }
+
+    function tenantInfoAttribute(info) {
+      return `data-tenant-info="${escapeHtml(encodeURIComponent(JSON.stringify(info)))}"`;
+    }
+
+    function tenantInfoPanelDefaultHtml() {
+      return `
+        <div class="tenantInfoPaneTitle">
+          <strong>임차기업 정보</strong>
+          <span>선택 대기</span>
+        </div>
+        <div class="tenantInfoEmpty">
+          왼쪽 스태킹에서 임차기업 또는 조사 행을 선택하면 이 영역에 면적, 기간, 단가, 출처 정보를 표시합니다.
+        </div>
+      `;
+    }
+
+    function contractTenantInfo(asset, floor, tenant, statusText, periodText, flagText) {
+      return {
+        type: "계약 데이터",
+        assetName: asset?.assetName || "",
+        tenantName: tenant.tenant || "임차인 미상",
+        floor: floor === null || floor === undefined ? (tenant.floorUnit || "층 미상") : floorLabel(floor),
+        status: statusText || "-",
+        area: areaPyText(tenant.leasedAreaPy),
+        useType: tenant.useType || tenant.floorUnit || "-",
+        noc: moneyText(tenant.nocPerPy, "원/평"),
+        rent: moneyText(tenant.monthlyRentPerPy, "원/평"),
+        cam: moneyText(tenant.monthlyCamPerPy, "원/평"),
+        deposit: krwWonText(tenant.depositTotal),
+        leasePeriod: periodText || "-",
+        source: tenant.prefillSource || tenant.sourceFile || "BID/FIP",
+        sourceDetail: flagText || "정상"
+      };
+    }
+
+    function surveyTenantInfo(asset, floor, row) {
+      const sourceLabel = row.sourceLabel || "조사본";
+      const sourceDetail = [row.sourceWorkbook, row.sheetName].filter(Boolean).join(" / ");
+      return {
+        type: row.entryType === "vacancy" ? "조사 결과 · 데이터 없음" : "현황조사 결과",
+        assetName: asset?.assetName || "",
+        tenantName: row.tenantName || (row.entryType === "vacancy" ? "데이터 없음" : "회사명 미상"),
+        floor: floor === null || floor === undefined ? "층 미상" : floorLabel(floor),
+        status: row.entryType === "vacancy" ? "데이터 없음" : "조사 반영",
+        area: "-",
+        useType: "-",
+        noc: "-",
+        rent: "-",
+        cam: "-",
+        deposit: "-",
+        leasePeriod: "-",
+        source: sourceLabel,
+        sourceDetail: sourceDetail || row.variantName || "-"
+      };
+    }
+
+    function renderTenantInfoPanel(info) {
+      if (!info) return tenantInfoPanelDefaultHtml();
+      const facts = [
+        ["자산", info.assetName],
+        ["층", info.floor],
+        ["상태", info.status],
+        ["용도", info.useType],
+        ["임차면적", info.area],
+        ["NOC", info.noc],
+        ["임대료", info.rent],
+        ["관리비", info.cam],
+        ["보증금", info.deposit],
+        ["임대기간", info.leasePeriod],
+        ["출처", info.source]
+      ];
+      const note = compactInfoText(info.sourceDetail);
+      return `
+        <div class="tenantInfoPaneTitle">
+          <strong>${escapeHtml(info.tenantName || "임차인 미상")}</strong>
+          <span>${escapeHtml(info.type || "")}</span>
+        </div>
+        <div class="tenantInfoGrid">
+          ${facts.map(([label, value]) => `
+            <div class="tenantInfoFact ${label === "자산" || label === "임대기간" || label === "출처" ? "is-wide" : ""}">
+              <span>${escapeHtml(label)}</span>
+              <strong>${escapeHtml(compactInfoText(value))}</strong>
+            </div>
+          `).join("")}
+        </div>
+        <div class="tenantInfoNote">${escapeHtml(note)}</div>
+      `;
+    }
+
+    function applyTenantInfoSelection(element) {
+      const panel = tenantLab?.querySelector("[data-tenant-info-panel]");
+      if (!panel) return;
+      let info = null;
+      try {
+        info = JSON.parse(decodeURIComponent(element.dataset.tenantInfo || ""));
+      } catch (error) {
+        info = null;
+      }
+      if (!info) return;
+      tenantLab.querySelectorAll(".is-selectedTenant").forEach(item => item.classList.remove("is-selectedTenant"));
+      element.classList.add("is-selectedTenant");
+      panel.innerHTML = renderTenantInfoPanel(info);
+    }
+
+    function renderSurveyStackRow(row, asset = null, floor = null) {
       const isVacancy = row.entryType === "vacancy";
       const sourceLabel = row.sourceLabel || "조사본";
       const variantText = row.variantName ? `${row.variantName} · ` : "";
+      const info = surveyTenantInfo(asset, floor, row);
       return `
-        <div class="stackSurveyTenant ${isVacancy ? "is-vacancy" : ""}" title="${escapeHtml(row.sourceWorkbook || "")} / ${escapeHtml(row.sheetName || "")}">
+        <div class="stackSurveyTenant ${isVacancy ? "is-vacancy" : ""}" ${tenantInfoAttribute(info)} title="${escapeHtml(row.sourceWorkbook || "")} / ${escapeHtml(row.sheetName || "")}">
           <span class="stackSurveyTenantName">${escapeHtml(row.tenantName || "")}</span>
           <span class="stackSurveyTenantMeta">${escapeHtml(variantText)}${escapeHtml(sourceLabel)}</span>
         </div>
       `;
     }
 
-    function renderCurrentFloorOccupants(tenants, surveyRows, assetInput) {
+    function renderCurrentFloorOccupants(tenants, surveyRows, assetInput, asset = null, floor = null) {
       if (surveyRows.length && !shouldUseContractFloorRows(tenants, surveyRows)) {
-        return surveyRows.map(row => renderSurveyStackRow(row)).join("");
+        return surveyRows.map(row => renderSurveyStackRow(row, asset, floor)).join("");
       }
-      if (tenants.length) return tenants.map(tenant => renderStackTenant(tenant, assetInput)).join("");
-      if (surveyRows.length) return surveyRows.map(row => renderSurveyStackRow(row)).join("");
+      if (tenants.length) return tenants.map(tenant => renderStackTenant(tenant, assetInput, asset, floor)).join("");
+      if (surveyRows.length) return surveyRows.map(row => renderSurveyStackRow(row, asset, floor)).join("");
       return `<div class="stackEmpty">데이터 없음</div>`;
     }
 
@@ -4769,14 +4900,15 @@
       return { floors: floors.length ? floors : [...byFloor.keys()].sort((a, b) => b - a), byFloor, noFloor, overview, tenants };
     }
 
-    function renderStackTenant(tenant, assetInput) {
+    function renderStackTenant(tenant, assetInput, asset = null, floor = null) {
       const status = tenant.stackStatus || tenant.contractStatus || "unknown";
       const statusClass = status === "active" ? "is-active" : (status === "expired" ? "is-expired" : "is-unknown");
       const statusText = status === "active" ? "활성" : (status === "expired" ? "최근만료" : "데이터 없음");
       const periodText = `${tenant.leaseStartDate || "-"} ~ ${tenant.leaseEndDate || "데이터 없음"}`;
       const flagText = qualityLabel(tenant.qualityFlag);
+      const info = contractTenantInfo(asset, floor, tenant, statusText, periodText, flagText);
       return `
-        <details class="stackTenant ${statusClass}">
+        <details class="stackTenant ${statusClass}" ${tenantInfoAttribute(info)}>
           <summary>
             <span class="stackTenantName">${escapeHtml(tenant.tenant || "임차인 미상")}</span>
             <span class="stackTenantMeta">${statusText} · ${areaPyText(tenant.leasedAreaPy)} · ${escapeHtml(tenant.useType || tenant.floorUnit || "-")}</span>
@@ -4825,35 +4957,42 @@
           ${asset.marketLeaseCaseCount ? `<span class="marketStackChip">렌트맵 계약사례 ${fmt.format(asset.marketLeaseCaseCount)}건</span>` : ""}
           ${surveyEntryCount ? `<span class="marketStackChip">조사반영 ${fmt.format(surveyEntryCount)}건 · ${fmt.format(surveyFloorCount)}층</span>` : ""}
         </div>
-        ${renderTenantWingSelector(asset, wingOptions, selectedWing, visibleStackTenants.length, allStackTenants.length)}
-        <div class="stackingHeader">
-          <strong>현재 임차기업 스태킹</strong>
-          <span>${floorCountText} · 조사 내용이 다르면 조사 결과를 우선 표시</span>
-        </div>
-        <div class="stackingPlan">
-          ${stack.floors.map(floor => {
-            const tenants = stack.byFloor.get(floor) || [];
-            const surveyRows = currentSurveyRowsForFloor(asset, assetInput, floor);
-            return `
-              <div class="stackFloor">
-                <div class="stackFloorLabel">${floorLabel(floor)}</div>
-                <div class="stackFloorBody">
-                  ${renderCurrentFloorOccupants(tenants, surveyRows, assetInput)}
+        <div class="tenantStackWorkspace">
+          <div class="tenantStackColumn">
+            ${renderTenantWingSelector(asset, wingOptions, selectedWing, visibleStackTenants.length, allStackTenants.length)}
+            <div class="stackingHeader">
+              <strong>현재 임차기업 스태킹</strong>
+              <span>${floorCountText} · 조사 내용이 다르면 조사 결과를 우선 표시</span>
+            </div>
+            <div class="stackingPlan">
+              ${stack.floors.map(floor => {
+                const tenants = stack.byFloor.get(floor) || [];
+                const surveyRows = currentSurveyRowsForFloor(asset, assetInput, floor);
+                return `
+                  <div class="stackFloor">
+                    <div class="stackFloorLabel">${floorLabel(floor)}</div>
+                    <div class="stackFloorBody">
+                      ${renderCurrentFloorOccupants(tenants, surveyRows, assetInput, asset, floor)}
+                    </div>
+                  </div>
+                `;
+              }).join("")}
+            </div>
+            ${stack.noFloor.length ? `
+              <div class="stackNoFloor">
+                <div class="stackingHeader"><strong>층 미상 데이터</strong><span>${fmt.format(stack.noFloor.length)}건</span></div>
+                <div class="stackFloor">
+                  <div class="stackFloorLabel">미상</div>
+                  <div class="stackFloorBody">${stack.noFloor.map(tenant => renderStackTenant(tenant, assetInput, asset, null)).join("")}</div>
                 </div>
               </div>
-            `;
-          }).join("")}
-        </div>
-        ${stack.noFloor.length ? `
-          <div class="stackNoFloor">
-            <div class="stackingHeader"><strong>층 미상 데이터</strong><span>${fmt.format(stack.noFloor.length)}건</span></div>
-            <div class="stackFloor">
-              <div class="stackFloorLabel">미상</div>
-              <div class="stackFloorBody">${stack.noFloor.map(tenant => renderStackTenant(tenant, assetInput)).join("")}</div>
-            </div>
+            ` : ""}
+            ${renderUnassignedMarketLeaseCases(asset)}
           </div>
-        ` : ""}
-        ${renderUnassignedMarketLeaseCases(asset)}
+          <aside class="tenantInfoPane" data-tenant-info-panel>
+            ${tenantInfoPanelDefaultHtml()}
+          </aside>
+        </div>
       `;
     }
 
@@ -5133,6 +5272,9 @@
             renderTenantLab();
           }
         });
+      });
+      tenantLab.querySelectorAll("[data-tenant-info]").forEach(row => {
+        row.addEventListener("click", () => applyTenantInfoSelection(row));
       });
     }
 
