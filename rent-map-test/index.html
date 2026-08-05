@@ -422,7 +422,7 @@
       .tenantLabHeaderText { display: none; }
       .tenantLabHeader strong { font-size: 12px; }
       .tenantLabHeader span { font-size: 10.5px; }
-      .tenantLabHeaderActions { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+      .tenantLabHeaderActions { width: 100%; display: grid; grid-template-columns: 1fr; gap: 6px; }
       .floorStackToolButton, .surveyCsvDownloadButton { width: 100%; height: 34px; font-size: 11.5px; padding: 0 8px; }
       .tenantLabPage .tenantSplit {
         height: 100%; min-height: 0; overflow: hidden; display: grid;
@@ -4151,6 +4151,10 @@
 
     function downloadTextFile(filename, content, mimeType = "text/csv;charset=utf-8") {
       const blob = new Blob([content], { type: mimeType });
+      downloadBlobFile(filename, blob);
+    }
+
+    function downloadBlobFile(filename, blob) {
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
@@ -4159,6 +4163,196 @@
       link.click();
       link.remove();
       URL.revokeObjectURL(url);
+    }
+
+    function xmlText(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function xlsxColumnName(index) {
+      let number = index;
+      let name = "";
+      while (number > 0) {
+        const remainder = (number - 1) % 26;
+        name = String.fromCharCode(65 + remainder) + name;
+        number = Math.floor((number - 1) / 26);
+      }
+      return name;
+    }
+
+    function xlsxCellXml(value, columnIndex, rowIndex) {
+      const ref = xlsxColumnName(columnIndex) + rowIndex;
+      if (value === null || value === undefined || value === "") return `<c r="${ref}"/>`;
+      if (typeof value === "number" && Number.isFinite(value)) return `<c r="${ref}"><v>${value}</v></c>`;
+      return `<c r="${ref}" t="inlineStr"><is><t xml:space="preserve">${xmlText(value)}</t></is></c>`;
+    }
+
+    function xlsxSheetXml(rows) {
+      const rowXml = rows.map((row, rowIndex) => {
+        const excelRow = rowIndex + 1;
+        return `<row r="${excelRow}">${row.map((value, colIndex) => xlsxCellXml(value, colIndex + 1, excelRow)).join("")}</row>`;
+      }).join("");
+      return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>${rowXml}</sheetData></worksheet>`;
+    }
+
+    function uniqueSheetName(name, usedNames) {
+      const base = String(name || "Sheet")
+        .replace(/[\\/?*\[\]:]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim()
+        .slice(0, 31) || "Sheet";
+      let candidate = base;
+      let index = 2;
+      while (usedNames.has(candidate)) {
+        const suffix = `_${index}`;
+        candidate = base.slice(0, 31 - suffix.length) + suffix;
+        index += 1;
+      }
+      usedNames.add(candidate);
+      return candidate;
+    }
+
+    const crc32Table = (() => {
+      const table = new Uint32Array(256);
+      for (let n = 0; n < 256; n += 1) {
+        let c = n;
+        for (let k = 0; k < 8; k += 1) c = (c & 1) ? (0xedb88320 ^ (c >>> 1)) : (c >>> 1);
+        table[n] = c >>> 0;
+      }
+      return table;
+    })();
+
+    function crc32(bytes) {
+      let crc = 0xffffffff;
+      for (const byte of bytes) crc = crc32Table[(crc ^ byte) & 0xff] ^ (crc >>> 8);
+      return (crc ^ 0xffffffff) >>> 0;
+    }
+
+    function pushUint16(target, value) {
+      target.push(value & 0xff, (value >>> 8) & 0xff);
+    }
+
+    function pushUint32(target, value) {
+      target.push(value & 0xff, (value >>> 8) & 0xff, (value >>> 16) & 0xff, (value >>> 24) & 0xff);
+    }
+
+    function concatUint8(parts) {
+      const total = parts.reduce((sum, part) => sum + part.length, 0);
+      const output = new Uint8Array(total);
+      let offset = 0;
+      for (const part of parts) {
+        output.set(part, offset);
+        offset += part.length;
+      }
+      return output;
+    }
+
+    function zipBlob(entries) {
+      const encoder = new TextEncoder();
+      const localParts = [];
+      const centralParts = [];
+      let offset = 0;
+      for (const entry of entries) {
+        const nameBytes = encoder.encode(entry.name);
+        const dataBytes = entry.bytes || encoder.encode(entry.content || "");
+        const crc = crc32(dataBytes);
+        const local = [];
+        pushUint32(local, 0x04034b50);
+        pushUint16(local, 20);
+        pushUint16(local, 0x0800);
+        pushUint16(local, 0);
+        pushUint16(local, 0);
+        pushUint16(local, 0);
+        pushUint32(local, crc);
+        pushUint32(local, dataBytes.length);
+        pushUint32(local, dataBytes.length);
+        pushUint16(local, nameBytes.length);
+        pushUint16(local, 0);
+        const localBytes = new Uint8Array([...local, ...nameBytes]);
+        localParts.push(localBytes, dataBytes);
+
+        const central = [];
+        pushUint32(central, 0x02014b50);
+        pushUint16(central, 20);
+        pushUint16(central, 20);
+        pushUint16(central, 0x0800);
+        pushUint16(central, 0);
+        pushUint16(central, 0);
+        pushUint16(central, 0);
+        pushUint32(central, crc);
+        pushUint32(central, dataBytes.length);
+        pushUint32(central, dataBytes.length);
+        pushUint16(central, nameBytes.length);
+        pushUint16(central, 0);
+        pushUint16(central, 0);
+        pushUint16(central, 0);
+        pushUint16(central, 0);
+        pushUint32(central, 0);
+        pushUint32(central, offset);
+        centralParts.push(new Uint8Array([...central, ...nameBytes]));
+        offset += localBytes.length + dataBytes.length;
+      }
+      const centralDirectory = concatUint8(centralParts);
+      const end = [];
+      pushUint32(end, 0x06054b50);
+      pushUint16(end, 0);
+      pushUint16(end, 0);
+      pushUint16(end, entries.length);
+      pushUint16(end, entries.length);
+      pushUint32(end, centralDirectory.length);
+      pushUint32(end, offset);
+      pushUint16(end, 0);
+      const bytes = concatUint8([...localParts, centralDirectory, new Uint8Array(end)]);
+      return new Blob([bytes], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+    }
+
+    function buildXlsxWorkbook(sheets) {
+      const usedNames = new Set();
+      const normalizedSheets = sheets.map((sheet, index) => ({
+        name: uniqueSheetName(sheet.name, usedNames),
+        rows: sheet.rows || [],
+        index: index + 1,
+      }));
+      const workbookSheets = normalizedSheets
+        .map(sheet => `<sheet name="${xmlText(sheet.name)}" sheetId="${sheet.index}" r:id="rId${sheet.index}"/>`)
+        .join("");
+      const workbookRels = normalizedSheets
+        .map(sheet => `<Relationship Id="rId${sheet.index}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet${sheet.index}.xml"/>`)
+        .join("") + `<Relationship Id="rId${normalizedSheets.length + 1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>`;
+      const sheetOverrides = normalizedSheets
+        .map(sheet => `<Override PartName="/xl/worksheets/sheet${sheet.index}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`)
+        .join("");
+      const entries = [
+        {
+          name: "[Content_Types].xml",
+          content: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>${sheetOverrides}</Types>`,
+        },
+        {
+          name: "_rels/.rels",
+          content: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`,
+        },
+        {
+          name: "xl/workbook.xml",
+          content: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets>${workbookSheets}</sheets></workbook>`,
+        },
+        {
+          name: "xl/_rels/workbook.xml.rels",
+          content: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${workbookRels}</Relationships>`,
+        },
+        {
+          name: "xl/styles.xml",
+          content: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><fonts count="1"><font><sz val="11"/><name val="Calibri"/></font></fonts><fills count="1"><fill><patternFill patternType="none"/></fill></fills><borders count="1"><border/></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>`,
+        },
+        ...normalizedSheets.map(sheet => ({
+          name: `xl/worksheets/sheet${sheet.index}.xml`,
+          content: xlsxSheetXml(sheet.rows),
+        })),
+      ];
+      return zipBlob(entries);
     }
 
     function sortedFloorSurveyEntries(floorSurvey) {
@@ -4247,6 +4441,220 @@
       const stamp = surveyTimestampText(nowIsoString()).replace(/[-: ]/g, "").slice(0, 14);
       const csv = "\uFEFF" + csvRows.map(row => row.map(csvCell).join(",")).join("\r\n");
       downloadTextFile(`rent_map_floor_survey_${tenantInputDatasetVersion}_${stamp}.csv`, csv);
+    }
+
+    function numberOrBlank(value) {
+      const number = Number(value);
+      return Number.isFinite(number) ? number : "";
+    }
+
+    function exportSqmFromPy(value) {
+      const number = Number(value);
+      return Number.isFinite(number) ? number * SQM_PER_PYEONG : "";
+    }
+
+    function contractStatusExportText(tenant) {
+      const status = tenant?.stackStatus || tenant?.contractStatus || "";
+      if (status === "active") return "활성";
+      if (status === "expired") return tenant?.recentExpired ? "최근만료" : "만료";
+      return "종료일 없음";
+    }
+
+    function portfolioStatusExportText(asset) {
+      if (asset?.portfolioOperationStatus === "liquidated") return "포트폴리오 청산";
+      if (asset?.hasPortfolioFlag || positiveAssetFlag(asset?.igisFlag)) return "포트폴리오 운용중";
+      return "";
+    }
+
+    function targetAssetListSheetRows(targets) {
+      const columns = [
+        "순번",
+        "자산명",
+        "주소",
+        "권역",
+        "구",
+        "동",
+        "PNU",
+        "지상층",
+        "지하층",
+        "연면적(평)",
+        "연면적(㎡)",
+        "기준층 임대면적(평)",
+        "기준층 임대면적(㎡)",
+        "준공연도",
+        "현재 NOC(원/평)",
+        "활성 계약(건)",
+        "최근만료(건)",
+        "종료일 없음(건)",
+        "조사반영(건)",
+        "렌트맵 계약사례(건)",
+        "포트폴리오 구분",
+      ];
+      const rows = [columns];
+      for (const asset of targets || []) {
+        const overview = buildingOverviewForAsset(asset) || {};
+        const grossPy = numberOrBlank(asset?.grossFloorAreaPy);
+        const grossSqm = numberOrBlank(overview.totalFloorAreaSqm) || exportSqmFromPy(grossPy);
+        const typicalPy = numberOrBlank(targetAssetTypicalFloorAreaValue(asset));
+        const active = asset.tenants?.active || [];
+        const expired = asset.tenants?.expired || [];
+        const recentExpired = expired.filter(tenant => tenant.recentExpired);
+        const unknown = asset.tenants?.unknownEnd || [];
+        rows.push([
+          numberOrBlank(asset.targetRank),
+          asset.assetName || "",
+          asset.assetAddress || asset.legalAddress || "",
+          asset.regionEdit || asset.region || "",
+          asset.gu || "",
+          asset.dong || "",
+          asset.pnu || "",
+          numberOrBlank(overview.groundFloorCount),
+          numberOrBlank(overview.basementFloorCount),
+          grossPy,
+          grossSqm,
+          typicalPy,
+          exportSqmFromPy(typicalPy),
+          targetAssetCompletionYearText(asset).replace("년", ""),
+          numberOrBlank(targetAssetCurrentNocValue(asset)),
+          active.length,
+          recentExpired.length,
+          unknown.length,
+          fieldSurveyEntryCount(asset),
+          numberOrBlank(asset.marketLeaseCaseCount),
+          portfolioStatusExportText(asset),
+        ]);
+      }
+      return rows;
+    }
+
+    function contractTenantExportRow(asset, floor, tenant) {
+      return [
+        floorLabel(floor),
+        "연결 데이터",
+        tenant.tenant || "",
+        contractStatusExportText(tenant),
+        numberOrBlank(tenant.leasedAreaPy),
+        exportSqmFromPy(tenant.leasedAreaPy),
+        tenant.useType || "",
+        numberOrBlank(tenant.nocPerPy),
+        numberOrBlank(tenant.monthlyRentPerPy),
+        numberOrBlank(tenant.monthlyCamPerPy),
+        numberOrBlank(tenant.depositTotal),
+        tenant.leaseStartDate || "",
+        tenant.leaseEndDate || "",
+        tenant.floorUnit || "",
+        tenant.prefillSource || tenant.sourceFile || "BID/FIP",
+        qualityLabel(tenant.qualityFlag) || "",
+      ];
+    }
+
+    function surveyTenantExportRow(asset, floor, row) {
+      const isVacancy = row.entryType === "vacancy";
+      return [
+        floorLabel(floor),
+        row.sourceKind === "web" ? "웹 입력" : "조사 결과",
+        row.tenantName || "",
+        isVacancy ? "공실/데이터 없음" : "조사확인",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        row.sourceLabel || "조사본",
+        row.variantName || row.sheetName || "",
+      ];
+    }
+
+    function assetStackSheetRows(asset) {
+      const assetInput = ensureTenantAssetInput(asset.assetEvent);
+      const allStackTenants = stackTenantsForAsset(asset);
+      const stack = floorStackForAsset(asset, allStackTenants, assetInput);
+      const overview = buildingOverviewForAsset(asset) || {};
+      const typicalPy = numberOrBlank(targetAssetTypicalFloorAreaValue(asset));
+      const rows = [
+        ["자산명", asset.assetName || ""],
+        ["주소", asset.assetAddress || asset.legalAddress || ""],
+        ["PNU", asset.pnu || ""],
+        ["층수", floorSummaryForAsset(asset)],
+        ["연면적(평)", numberOrBlank(asset.grossFloorAreaPy)],
+        ["연면적(㎡)", numberOrBlank(overview.totalFloorAreaSqm) || exportSqmFromPy(asset.grossFloorAreaPy)],
+        ["기준층 임대면적(평)", typicalPy],
+        ["기준층 임대면적(㎡)", exportSqmFromPy(typicalPy)],
+        ["준공연도", targetAssetCompletionYearText(asset).replace("년", "")],
+        ["현재 NOC(원/평)", numberOrBlank(targetAssetCurrentNocValue(asset))],
+        [],
+        [
+          "층",
+          "표시기준",
+          "임차기업/상호",
+          "상태",
+          "임차면적(평)",
+          "임차면적(㎡)",
+          "용도",
+          "NOC(원/평)",
+          "월임대료(원/평)",
+          "관리비(원/평)",
+          "보증금",
+          "임대시작",
+          "임대종료",
+          "층/구간",
+          "출처",
+          "비고",
+        ],
+      ];
+      for (const floor of stack.floors) {
+        const tenants = stack.byFloor.get(floor) || [];
+        const surveyRows = currentSurveyRowsForFloor(asset, assetInput, floor);
+        if (surveyRows.length && !shouldUseContractFloorRows(tenants, surveyRows)) {
+          for (const row of surveyRows) rows.push(surveyTenantExportRow(asset, floor, row));
+        } else if (tenants.length) {
+          for (const tenant of tenants) rows.push(contractTenantExportRow(asset, floor, tenant));
+        } else if (surveyRows.length) {
+          for (const row of surveyRows) rows.push(surveyTenantExportRow(asset, floor, row));
+        } else {
+          rows.push([floorLabel(floor), "데이터 없음", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]);
+        }
+      }
+      if (stack.noFloor.length) {
+        rows.push([]);
+        rows.push(["층 미상", "연결 데이터", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]);
+        for (const tenant of stack.noFloor) rows.push(contractTenantExportRow(asset, null, tenant));
+      }
+      return rows;
+    }
+
+    async function downloadTenantStatusWorkbook() {
+      if (tenantInputDbConfigured()) {
+        try {
+          tenantInputStore = await fetchTenantInputStoreFromSupabase();
+          document.body.dataset.tenantInputStorage = "supabase";
+          document.body.dataset.tenantInputCount = String(Object.keys(tenantInputStore).length);
+        } catch (error) {
+          console.warn("Supabase survey input refresh failed before status workbook download", error);
+          document.body.dataset.tenantInputStorage = "supabase_error";
+        }
+      }
+      const lab = tenantLabData();
+      const targets = lab.targetAssets || [];
+      if (!targets.length) {
+        window.alert("내보낼 임차기업 현황 데이터가 없습니다.");
+        return;
+      }
+      const sheets = [
+        { name: "자산 리스트", rows: targetAssetListSheetRows(targets) },
+        ...targets.map(asset => ({
+          name: `${String(asset.targetRank || "").padStart(3, "0")} ${asset.assetName || "자산"}`,
+          rows: assetStackSheetRows(asset),
+        })),
+      ];
+      const blob = buildXlsxWorkbook(sheets);
+      const stamp = surveyTimestampText(nowIsoString()).replace(/[-: ]/g, "").slice(0, 14);
+      downloadBlobFile(`rent_map_tenant_company_status_${stamp}.xlsx`, blob);
     }
 
     function renderTargetAssetList(targets, selected) {
@@ -4584,6 +4992,9 @@
             <strong>임차기업 현황</strong>
             <span>조사대상 ${fmt.format(lab.assetCount || 0)}개 자산의 연결 데이터와 현황조사 결과를 통합해 표시합니다. 연결 임차인 ${fmt.format(lab.bidPrefillTenantCount || 0)}건 · 조사 반영 ${fmt.format(lab.fieldSurveySummary?.matchedTenantEntryCount || 0)}건.</span>
           </div>
+          <div class="tenantLabHeaderActions">
+            <button class="surveyCsvDownloadButton statusWorkbookDownloadButton" type="button" data-tenant-action="downloadStatusWorkbook">자산/스태킹 XLSX 다운로드</button>
+          </div>
         </div>
         ${renderTenantInputMode(lab, targets, selected)}
       `;
@@ -4714,6 +5125,7 @@
           const action = button.dataset.tenantAction;
           const asset = selectedTargetAsset();
           if (action === "downloadSurveyCsv") downloadSurveyCsv();
+          if (action === "downloadStatusWorkbook") downloadTenantStatusWorkbook();
           if (action === "locate" && asset) focusTargetAsset(asset);
           if (action === "clearAsset" && asset && window.confirm(`${asset.assetName} 입력값을 초기화할까요?`)) {
             delete tenantInputStore[asset.assetEvent];
