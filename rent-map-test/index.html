@@ -5147,6 +5147,14 @@
       tenantLabScrollTop = tenantLab.scrollTop;
     }
 
+    function confirmTenantDownloadCode() {
+      const code = window.prompt("다운로드 코드를 입력하세요.");
+      if (code === null) return false;
+      if (code === "rent2026#") return true;
+      window.alert("다운로드 코드가 일치하지 않습니다.");
+      return false;
+    }
+
     function bindTenantLabControls() {
       tenantLab.onscroll = () => {
         tenantLabScrollTop = tenantLab.scrollTop;
@@ -5263,8 +5271,8 @@
         button.addEventListener("click", () => {
           const action = button.dataset.tenantAction;
           const asset = selectedTargetAsset();
-          if (action === "downloadSurveyCsv") downloadSurveyCsv();
-          if (action === "downloadStatusWorkbook") downloadTenantStatusWorkbook();
+          if (action === "downloadSurveyCsv" && confirmTenantDownloadCode()) downloadSurveyCsv();
+          if (action === "downloadStatusWorkbook" && confirmTenantDownloadCode()) downloadTenantStatusWorkbook();
           if (action === "locate" && asset) focusTargetAsset(asset);
           if (action === "clearAsset" && asset && window.confirm(`${asset.assetName} 입력값을 초기화할까요?`)) {
             delete tenantInputStore[asset.assetEvent];
