@@ -4109,6 +4109,40 @@
         "seoul", "south", "storage", "store", "west", "구내식당", "기사대기실", "남쪽",
         "데이터없음", "동쪽", "리테일", "북쪽", "서쪽", "오피스", "창고", "편의점",
       ]);
+      const synonyms = {
+        "구글": ["google"],
+        "구글코리아": ["google", "googlekorea"],
+        "네이버": ["naver"],
+        "네이버클라우드": ["navercloud"],
+        "다이슨": ["dyson"],
+        "다이슨코리아": ["dyson"],
+        "롯데캐피탈": ["lottecapital"],
+        "마벨": ["marvell", "marvellous"],
+        "마벨러스": ["marvell", "marvellous"],
+        "비바리퍼블리카": ["vivarepublica", "toss"],
+        "스타벅스": ["starbucks"],
+        "스타벅스커피코리아": ["starbucks"],
+        "에스씨케이컴퍼니": ["starbucks", "sck"],
+        "워너": ["warner", "warnerbros"],
+        "워너브라더스": ["warnerbros", "warnerbrothers"],
+        "워너브라더스코리아": ["warnerbros", "warnerbrothers"],
+        "위워크": ["wework"],
+        "위워크코리아": ["wework", "weworkkorea"],
+        "주니퍼": ["juniper", "junipernetworks"],
+        "한국주니퍼네트웍스": ["juniper", "junipernetworks"],
+        "지에스리테일": ["gsretail"],
+        "gs리테일": ["gsretail"],
+        "케이비부동산신탁": ["kbrealestatetrust", "kbret"],
+        "kb부동산신탁": ["kbrealestatetrust", "kbret"],
+        "현대모비스": ["hyundaimobis"],
+        "현대자동차": ["hyundaimotor"],
+        "블루보틀": ["bluebottle"],
+        "블루보틀커피코리아": ["bluebottle"],
+        "투썸플레이스": ["twosomeplace", "atwosomeplace"],
+        "유니티테크놀로지스코리아": ["unity", "unitytechnologies"],
+        "웍데이코리아": ["workday"],
+        "워크데이코리아": ["workday"],
+      };
       const pieces = new Set([
         raw,
         raw.replace(/[\(\[][^\)\]]*[\)\]]/g, ""),
@@ -4128,7 +4162,34 @@
         variants.add(normalizeCompanyName(stripped.replace(/bros/gi, "brothers")));
         variants.add(normalizeCompanyName(stripped.replace(/brothers/gi, "bros")));
       }
+      [...variants].forEach(item => {
+        (synonyms[item] || []).forEach(alias => variants.add(normalizeCompanyName(alias)));
+      });
       return [...variants].filter(item => item.length >= 2 && !/^\d+$/.test(item) && !stopwords.has(item));
+    }
+
+    function companyAliasSimilarity(left, right) {
+      if (!left || !right) return 0;
+      if (left === right) return 1;
+      const shorter = Math.min(left.length, right.length);
+      const longer = Math.max(left.length, right.length);
+      if (shorter < 5 || longer === 0) return 0;
+      if (left.includes(right) || right.includes(left)) {
+        return 0.88 + Math.min(0.11, (shorter / longer) * 0.11);
+      }
+      if (left[0] !== right[0] || shorter / longer < 0.62) return 0;
+      const previous = Array.from({ length: right.length + 1 }, (_, idx) => idx);
+      for (let i = 1; i <= left.length; i++) {
+        let prevDiagonal = previous[0];
+        previous[0] = i;
+        for (let j = 1; j <= right.length; j++) {
+          const temp = previous[j];
+          const cost = left[i - 1] === right[j - 1] ? 0 : 1;
+          previous[j] = Math.min(previous[j] + 1, previous[j - 1] + 1, prevDiagonal + cost);
+          prevDiagonal = temp;
+        }
+      }
+      return 1 - previous[right.length] / longer;
     }
 
     function tenantCompanyProfileForName(name) {
@@ -4138,21 +4199,26 @@
       const byId = new Map(profiles.map(profile => [profile.profileId, profile]));
       for (const key of companyNameVariants(name)) {
         const profileId = aliases[key];
-        if (profileId && byId.has(profileId)) return byId.get(profileId);
+          if (profileId && byId.has(profileId)) return byId.get(profileId);
       }
-      const fallbackMatches = new Map();
+      const scored = new Map();
       for (const key of companyNameVariants(name)) {
         if (key.length < 5) continue;
         for (const [alias, profileId] of Object.entries(aliases)) {
           if (alias.length < 5) continue;
-          if ((alias.includes(key) || key.includes(alias)) && byId.has(profileId)) {
-            fallbackMatches.set(profileId, byId.get(profileId));
+          if (!byId.has(profileId)) continue;
+          const score = companyAliasSimilarity(key, alias);
+          if (score >= 0.88 && score > (scored.get(profileId)?.score || 0)) {
+            scored.set(profileId, { score, profile: byId.get(profileId), key, alias });
           }
-          if (fallbackMatches.size > 1) break;
         }
-        if (fallbackMatches.size > 1) break;
       }
-      if (fallbackMatches.size === 1) return [...fallbackMatches.values()][0];
+      const ranked = [...scored.values()].sort((a, b) => b.score - a.score);
+      if (ranked.length) {
+        const best = ranked[0];
+        const second = ranked[1]?.score || 0;
+        if (best.score >= 0.91 && best.score - second >= 0.035) return best.profile;
+      }
       return null;
     }
 
