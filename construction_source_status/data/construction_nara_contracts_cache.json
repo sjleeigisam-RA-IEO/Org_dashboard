@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-04 06:02:10 KST",
+  "generated_at": "2026-08-11 08:17:48 KST",
   "source_note": "조달청_나라장터 계약정보서비스의 공사 계약현황 조회 결과를 회사명 기준으로 필터링해 생성하는 자동 캐시입니다.",
   "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
   "query": {
-    "start_date": "20260721",
-    "end_date": "20260804",
+    "start_date": "20260728",
+    "end_date": "20260811",
     "per_company": 5,
     "max_pages": 5,
     "rows_per_page": 50
@@ -12,66 +12,66 @@
   "status": "ok",
   "companies": [
     {
-      "company": "(주)유신",
+      "company": "(주)건영",
       "aliases": [
-        "(주)유신",
-        "유신",
+        "(주)건영",
+        "건영",
         "주"
       ],
       "source_name": "나라장터 계약정보",
       "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
       "awards": [
         {
-          "project": "강릉 모학당 고택 안채 해체 보수공사",
-          "client": "강원특별자치도 강릉시",
-          "amount": "2.23억원",
+          "project": "수정5동 새뜰마을사업 빈집 철거공사(수정동 463-47 일원)",
+          "client": "부산광역시 동구",
+          "amount": "0.43억원",
+          "category": "수의계약",
+          "date": "2026-07-27",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "43114000"
+        },
+        {
+          "project": "오산초 포장 복구공사",
+          "client": "경기도교육청 경기도화성오산교육지원청",
+          "amount": "0.12억원",
+          "category": "수의계약",
+          "date": "2026-07-29",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "12000000"
+        },
+        {
+          "project": "웅산초등학교 숙직실 철거공사",
+          "client": "충청남도교육청 충청남도예산교육지원청",
+          "amount": "0.13억원",
+          "category": "수의계약",
+          "date": "2026-07-28",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "12987000"
+        }
+      ]
+    },
+    {
+      "company": "(주)삼안",
+      "aliases": [
+        "(주)삼안",
+        "삼안",
+        "주"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "진서면 청사 건립사업 건축공사(1차분)",
+          "client": "전북특별자치도 부안군",
+          "amount": "38억원",
           "category": "제한경쟁",
-          "date": "2026-07-20",
+          "date": "2026-07-28",
           "source_name": "나라장터 계약정보",
           "source_url": "http://www.g2b.go.kr",
-          "amount_krw": "222657000"
-        }
-      ]
-    },
-    {
-      "company": "(주)이산",
-      "aliases": [
-        "(주)이산",
-        "이산",
-        "주"
-      ],
-      "source_name": "나라장터 계약정보",
-      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
-      "awards": [
-        {
-          "project": "지능형 과학(화학실)구축공사",
-          "client": "전남대학교 부설학교 사범대학부설고등학교",
-          "amount": "0.19억원",
-          "category": "수의계약",
-          "date": "2026-07-20",
-          "source_name": "나라장터 계약정보",
-          "source_url": "http://www.g2b.go.kr",
-          "amount_krw": "18990000"
-        }
-      ]
-    },
-    {
-      "company": "주식회사 서현",
-      "aliases": [
-        "주식회사 서현"
-      ],
-      "source_name": "나라장터 계약정보",
-      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
-      "awards": [
-        {
-          "project": "창원중 복도 신발장 개선공사",
-          "client": "경상남도창원교육청 창원중학교",
-          "amount": "0.34억원",
-          "category": "수의계약",
-          "date": "2026-07-20",
-          "source_name": "나라장터 계약정보",
-          "source_url": "http://www.g2b.go.kr",
-          "amount_krw": "33670000"
+          "amount_krw": "3839275000"
         }
       ]
     }
@@ -79,5 +79,5 @@
   "errors": [],
   "rows_fetched": 250,
   "companies_collected": 99,
-  "companies_with_awards": 3
+  "companies_with_awards": 2
 }

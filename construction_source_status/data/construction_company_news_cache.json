@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04 06:02:10 KST",
+  "generated_at": "2026-08-11 08:17:47 KST",
   "source_note": "회사명과 수주/계약/실적/경영 및 투자/계열사/신사업/확장/M&A/설비투자/데이터센터/에너지/인프라 관련 키워드로 Google News RSS를 조회해 생성한 기사 캐시입니다. 주가성 단신은 가능한 제외했습니다.",
   "query": {
     "days": 365,
@@ -104,7 +104,7 @@
     ]
   },
   "companies_collected": 99,
-  "companies_with_articles": 63,
+  "companies_with_articles": 65,
   "errors": [],
   "companies": [
     {
@@ -138,25 +138,7 @@
       ],
       "source_name": "Google News",
       "source_url": "https://news.google.com/",
-      "articles": [
-        {
-          "title": "2025 엔지니어링 수주실적과 상위 엔지니어링 업체 100개사 리스트",
-          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOai1ZRVB0bVNBOHlld0kyMTVSU0FjclVFNms5dkUtYU1yVjZCNUhOeW93TjBEWWhXUUxIY1NGMk9jT2h2SXBBdFhaUW5Xa25sRGtLbnBQc3Rxd2RqNjdZcDcxQ2ZKMl9hVTIzS3NmMjR2MVZwcjd0dWNfVlRSZ2ZEdTNfX1AwUlk4YldBN1JuU0RwXzJNcHc?oc=5",
-          "source": "캐드앤그래픽스",
-          "published": "2026.04.28",
-          "summary": "2025 엔지니어링 수주실적과 상위 엔지니어링 업체 100개사 리스트 캐드앤그래픽스",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract",
-            "performance_management"
-          ],
-          "matched_terms": [
-            "수주",
-            "실적"
-          ],
-          "direction_signal": false
-        }
-      ]
+      "articles": []
     },
     {
       "company": "(주)경동엔지니어링",
@@ -324,11 +306,11 @@
           "direction_signal": true
         },
         {
-          "title": "대우건설 회장, 인도네시아에 '올인원 융복합 개발' 제안",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1qOF85TVV2T0pULWxKbGNSVGI5NU1wdGtOVnJDbDgzaUtRSkUybEJYYV91ZGdGNlZkUTVLLXlLM19PTXdXTFhNcG1IM1hxcDNRVl8wek9EMEVJc1XSAWBBVV95cUxNVmdjcUg3dFNYRVB3dS1pZHVXdnBCSEZjSDV5TmdSbFBCMXRRLTBSdDlETWxGOVlFWjc4ODB1eXNPNDJ2RTl4RWJuVGduaUNyME1DUW40MEZycV9nUC1vM2I?oc=5",
-          "source": "연합뉴스",
-          "published": "2026.07.13",
-          "summary": "대우건설 회장, 인도네시아에 '올인원 융복합 개발' 제안 연합뉴스",
+          "title": "(주)대우건설 주식선물 2단계 가격제한폭 확대요건 도달(하락)",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5TMU5kUEhrQ2xhZHQxQnUyeU5Bem0ySzBrMUVfUlh4VUt6ZndIeDRnTzdiYTN0YW83eVkwNGd6TEw5MXhNVHhoTGtYLThoc0F3WEs5OGhXVTJtQQ?oc=5",
+          "source": "매일경제 마켓",
+          "published": "2026.03.10",
+          "summary": "(주)대우건설 주식선물 2단계 가격제한폭 확대요건 도달(하락) 매일경제 마켓",
           "primary_category": "award_contract",
           "categories": [
             "award_contract"
@@ -356,11 +338,11 @@
           "direction_signal": true
         },
         {
-          "title": "정원주 대우건설 회장, ‘한-아프리카 기여상’ 수상 - 조선비즈",
-          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNTDZ5YzBYcXF2SzZmcXNWdVU4cHV4RU9TMlV2YjZRbklhUWpjajRsbWZpYnlHT0FEY3hjamM5ZGxKQmhBeWZGQktxYW9PaEpZVUJPRWlNbExZZWFIVGxnWE1URWpXSWZlay1jMVA2dVhUOVpOWnVENlBqMTZUd2pHb0N4d01nNVd4bTdNUzA2ZHR2V0xaNzBaLdIBrAFBVV95cUxOeFlDaUZkclZBTEhmUWdBWk1ZdS1pcG9KbTJCWUNqcU5UcjBvcVpZMUxzQVlRVDZheFZuR1BFa3FuY3lVX3lZR0FadXdfWVg4QzdOYjhYWm5HOXBCU0FYMF9nNFlMMTRGVk1LeGN4aWxQQmF4dnlmbTQzbHFWTE9YcG0xMEhBYUVDeDlORzEtUFhrOXRybUpqeHJqcGJkcWpybXdZWXp3ZHRVb0xm?oc=5",
-          "source": "biz.chosun.com",
-          "published": "2026.05.22",
-          "summary": "정원주 대우건설 회장, ‘한-아프리카 기여상’ 수상 - 조선비즈 biz.chosun.com",
+          "title": "국토장관, 대우건설 회장 면담…가덕도신공항 성공 노력 당부",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBURzg2ZGRfMGVmVFh4a3czQndLSDQxaWhTc0VCYkdjaHJOcmhXVzlZT2pyakl2bVJjcXJ5RlAzYXcyVk5LRGFQZnQwTFRlUHJJRTZ5cUpPV2VVcknSAWBBVV95cUxNakpnR1dHYXBMdzVHVXY0ZEtDeU5jd2VoanBxS2pNRkhHNWlCdzJLbWVnWFpGVlcwbGZEVnJEbkpNdkV0a011b204eEJWYWZ3TVFIbDl3Vm80WS1iLTM2N2U?oc=5",
+          "source": "연합뉴스",
+          "published": "2026.04.16",
+          "summary": "국토장관, 대우건설 회장 면담…가덕도신공항 성공 노력 당부 연합뉴스",
           "primary_category": "award_contract",
           "categories": [
             "award_contract"
@@ -371,17 +353,16 @@
           "direction_signal": false
         },
         {
-          "title": "대우건설 다시 커지는 해외 대형원전 수주 기대감, 정원주에 베트남은 기회의 땅",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBCbDMtTUljcnFldTJZd0JsclRsdncweDc2SThmcnlPWkM5NzhyakpWMXlla2g3OHEtYjBfa3EzdjB1MXJpdEQ4cjg0ZHR3azE5YzJpMUVvTWhzMFFYVEp3LUZuVk84TG91RDUtUjlWd0hXRG8?oc=5",
-          "source": "비즈니스포스트",
-          "published": "2026.04.20",
-          "summary": "대우건설 다시 커지는 해외 대형원전 수주 기대감, 정원주에 베트남은 기회의 땅 비즈니스포스트",
+          "title": "정원주 대우건설 회장, ‘한-아프리카 기여상’ 수상 - 조선비즈",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNTDZ5YzBYcXF2SzZmcXNWdVU4cHV4RU9TMlV2YjZRbklhUWpjajRsbWZpYnlHT0FEY3hjamM5ZGxKQmhBeWZGQktxYW9PaEpZVUJPRWlNbExZZWFIVGxnWE1URWpXSWZlay1jMVA2dVhUOVpOWnVENlBqMTZUd2pHb0N4d01nNVd4bTdNUzA2ZHR2V0xaNzBaLdIBrAFBVV95cUxOeFlDaUZkclZBTEhmUWdBWk1ZdS1pcG9KbTJCWUNqcU5UcjBvcVpZMUxzQVlRVDZheFZuR1BFa3FuY3lVX3lZR0FadXdfWVg4QzdOYjhYWm5HOXBCU0FYMF9nNFlMMTRGVk1LeGN4aWxQQmF4dnlmbTQzbHFWTE9YcG0xMEhBYUVDeDlORzEtUFhrOXRybUpqeHJqcGJkcWpybXdZWXp3ZHRVb0xm?oc=5",
+          "source": "Chosunbiz",
+          "published": "2026.05.22",
+          "summary": "정원주 대우건설 회장, ‘한-아프리카 기여상’ 수상 - 조선비즈 Chosunbiz",
           "primary_category": "award_contract",
           "categories": [
             "award_contract"
           ],
           "matched_terms": [
-            "수주",
             "건설"
           ],
           "direction_signal": false
@@ -438,23 +419,7 @@
       ],
       "source_name": "Google News",
       "source_url": "https://news.google.com/",
-      "articles": [
-        {
-          "title": "도화엔지니어링, 몽골 경제사절단 참여…메트로 등 협력 기반 강화",
-          "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE9oN0xiZFY0NTNKaTN4blZRRGdGeVU0YVFVV0hzTFVWNG5oWGxfc2V1MDY4V0dDX18yZ0lUTThvbzVQR2s?oc=5",
-          "source": "매일건설신문",
-          "published": "2026.07.21",
-          "summary": "도화엔지니어링, 몽골 경제사절단 참여…메트로 등 협력 기반 강화 매일건설신문",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract"
-          ],
-          "matched_terms": [
-            "건설"
-          ],
-          "direction_signal": false
-        }
-      ]
+      "articles": []
     },
     {
       "company": "(주)동명기술공단종합건축사사무소",
@@ -647,21 +612,6 @@
             "건설"
           ],
           "direction_signal": false
-        },
-        {
-          "title": "무영씨엠, 잠실주공5단지 CM업체로 선정",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPY0txQ18tYk5IMzN3RHp3MTR0cVMwX3RqcGZ5d3ZpLUY5MTlocmU5N2JnanhoSHE5dWxqbkpDY0R0bVEzNUZuTjFLRUlBUXA1cW1yZUMtR2h2T1lhT1U0OGx1X0pDV1ZEbUpYcjhTZGlDclZ5ajJKci1ESXhKeHVpMEJOTkFKUVVXY05EVUExcUdaRmRjWVR4Zm1ZQTJ6UEJWU3dsMkNuMkhxeGF2cmdISy1PWk9GNlJnZEhaRlVUZ1NkU2ZmZjBZYWt3?oc=5",
-          "source": "매일건설신문",
-          "published": "2026.04.08",
-          "summary": "무영씨엠, 잠실주공5단지 CM업체로 선정 매일건설신문",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract"
-          ],
-          "matched_terms": [
-            "건설"
-          ],
-          "direction_signal": false
         }
       ]
     },
@@ -725,7 +675,25 @@
       ],
       "source_name": "Google News",
       "source_url": "https://news.google.com/",
-      "articles": []
+      "articles": [
+        {
+          "title": "2025 엔지니어링 수주실적과 상위 엔지니어링 업체 100개사 리스트",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOai1ZRVB0bVNBOHlld0kyMTVSU0FjclVFNms5dkUtYU1yVjZCNUhOeW93TjBEWWhXUUxIY1NGMk9jT2h2SXBBdFhaUW5Xa25sRGtLbnBQc3Rxd2RqNjdZcDcxQ2ZKMl9hVTIzS3NmMjR2MVZwcjd0dWNfVlRSZ2ZEdTNfX1AwUlk4YldBN1JuU0RwXzJNcHc?oc=5",
+          "source": "캐드앤그래픽스",
+          "published": "2026.04.28",
+          "summary": "2025 엔지니어링 수주실적과 상위 엔지니어링 업체 100개사 리스트 캐드앤그래픽스",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract",
+            "performance_management"
+          ],
+          "matched_terms": [
+            "수주",
+            "실적"
+          ],
+          "direction_signal": false
+        }
+      ]
     },
     {
       "company": "(주)삼우씨엠건축사사무소",
@@ -985,6 +953,21 @@
           "matched_terms": [
             "수주",
             "실적"
+          ],
+          "direction_signal": false
+        },
+        {
+          "title": "[창립 32주년] 한국건설엔지니어링협회, ‘건설엔지니어링의 날’ 성료… 대가현실화·불공정 제도 개선 및 건설기술 발전 힘모은다",
+          "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE11bUQ2dWhHcENHUmxueFpGMWtweGhTaGpyN2FrNjNSUUx4c3BtSFNUcE9mcmFGSm1lZnhEOENMb0ZxQUpuSGxYSDJibFVUUlRuUzIwTWxia2VVdTZQSmJSZHZIVmo?oc=5",
+          "source": "국토일보",
+          "published": "2025.11.05",
+          "summary": "[창립 32주년] 한국건설엔지니어링협회, ‘건설엔지니어링의 날’ 성료… 대가현실화·불공정 제도 개선 및 건설기술 발전 힘모은다 국토일보",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract"
+          ],
+          "matched_terms": [
+            "건설"
           ],
           "direction_signal": false
         },
@@ -1296,7 +1279,7 @@
           "title": "거제~마산 해저터널 건설공사 전략환경영향평가 초안 주민설명회 가져",
           "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFA4dmI2M2dVS25wV0ZNYzJwWDZ2ZnM4ZENKU0psR3h6S3BZc0hXNVBOWnVXQkpYZnFkWURNeWNKbkZiZDFIMHBGNjlzVVcyOFpPZVhGbE13elpPTUk0Z2w3cEdR0gFmQVVfeXFMTmdiM1dlX0lYQ1R1VVVPX3FsNWFIOGJZaEN3NDhZaHFGN0pQZXRkODF0VkVma3BTVkZaQ2l4d0V6LVVOM3hSTFFPa08tbkZlYVlsVWFaX2NtN2pzcVhoRWl4aC1KZVJ3?oc=5",
           "source": "거제인터넷신문",
-          "published": "2026.04.29",
+          "published": "2026.08.07",
           "summary": "거제~마산 해저터널 건설공사 전략환경영향평가 초안 주민설명회 가져 거제인터넷신문",
           "primary_category": "award_contract",
           "categories": [
@@ -1369,25 +1352,6 @@
       "source_url": "https://news.google.com/",
       "articles": [
         {
-          "title": "티와이홀딩스 자회사 태영건설, 포천양수발전소 건설공사 계약 체결",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBwTHVRSzRyWDhEbXJiZmlLcF9sOU56aHBRQmk1YUVfRWs2enhlS1JINjZkb3ViOWEydXNNcnloWVZaOC05YXVNOVFYMzh2eVJjem1tV2xLYlo3YzFuTnNjcGJSaEZrNC1fZUM0V3kyTk0wSVU?oc=5",
-          "source": "디지털투데이",
-          "published": "2026.03.31",
-          "summary": "티와이홀딩스 자회사 태영건설, 포천양수발전소 건설공사 계약 체결 디지털투데이",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract",
-            "group_investment"
-          ],
-          "matched_terms": [
-            "계약",
-            "공사",
-            "건설",
-            "자회사"
-          ],
-          "direction_signal": true
-        },
-        {
           "title": "티와이홀딩스, 674억 9천만 원대 공급계약→공사수주 확대",
           "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5SZGp1clNlczhUZjU3b1F2bmxrYnhFbURRWEJPM2JQVElhc1lWUWNZaWs4dS0zNzZoSFBiVmxMTWQ1cmx2YlZlUjVOS01GYS1YRnQtWWlwcDhHTWFvYWtzX0xId3ZseU84MjY0c3FlMFk3Zw?oc=5",
           "source": "톱스타뉴스",
@@ -1400,6 +1364,36 @@
           "matched_terms": [
             "수주",
             "계약",
+            "공사"
+          ],
+          "direction_signal": false
+        },
+        {
+          "title": "전북개발공사, 고창 덕산 민간참여 공동주택 건립사업 추진 본격",
+          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1BaVA2YjVBNG1Gak8xVVFzOG9qTU82cDVnWl9FRWlCZ2M4aWc1b0NqQ0tOa1QyemRqVE9oMlpNUWtxMS1SQnBUWThvLTAyS2VRZmtINWtRLVpLMEZRcDNZTS0zTzE3Z3dfakVsM9IBcEFVX3lxTE1oS3ZYRzhEak04VnZHdXNqVVB3NjZiTlZrYk9PemloMnR1S3liMkpCdTY4MHZTaTZnVXZHVkhMU1hWV1g5bHpTdTRtRjRWZ2kwWkhlVUJrbGpiVDZiX1hmWVNHVXhhaWVfNjN1eFM0ZTE?oc=5",
+          "source": "전라일보",
+          "published": "2026.04.03",
+          "summary": "전북개발공사, 고창 덕산 민간참여 공동주택 건립사업 추진 본격 전라일보",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract"
+          ],
+          "matched_terms": [
+            "공사"
+          ],
+          "direction_signal": false
+        },
+        {
+          "title": "전북개발공사, 고창 덕산 민간참여 공동주택(분양) 건립사업 추진 본격화",
+          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBOR2FiY2I2cUJweWFYS3VJQ0FhLUZrNWh2TnJiYlRMM0tNVW03a1NpWUh2b1ZuQV9GS3hpOHBXOWZwM28yd01qMmxyUmpnMkZVV3c?oc=5",
+          "source": "전라매일",
+          "published": "2026.04.03",
+          "summary": "전북개발공사, 고창 덕산 민간참여 공동주택(분양) 건립사업 추진 본격화 전라매일",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract"
+          ],
+          "matched_terms": [
             "공사"
           ],
           "direction_signal": false
@@ -1502,7 +1496,7 @@
       "articles": [
         {
           "title": "한국종합건축사사무소, 경북 농업자원관리원 건설사업관리용역 수주",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBhX09HZm5SRTZGNVpHV2VnQjJDdGt3WXpIRmRneHY5UUFHdllrRWFsMi1qWVBBMHAtendxTlAtazZCb1VyMXd0LWJ0YlY1X1dYMU1lVzE2VTFwdkUxVXFnZ3BhT1d5azZjVWc?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1Kc3M0SlU1czJGcmxjM3k2T2NvQVV1M3U0NEE2djJNZkJPTTFNT1Q3YnlqdkdaTTZnME82ZFBMaV9Cc2Q5ZExqYzhWbjlVdG8yRzdOVEs3dmpvbjZyU1V5Sk1HZ2l6eFk?oc=5",
           "source": "환경법률신문",
           "published": "2026.08.03",
           "summary": "한국종합건축사사무소, 경북 농업자원관리원 건설사업관리용역 수주 환경법률신문",
@@ -1575,9 +1569,9 @@
         {
           "title": "한화그룹, 3개사 대표이사 인사",
           "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1BSWRLS3lMZ3V1SVZJRDUwZEM1VXlFY2xJSWNmREtVY1JBcDNLUVFrd3VxSndtVDJPOHNxaFduZ0g5Wl9PMU5vdGJsSU9HQlZJQV94TXJsd1NWelQyQVVQTzlxZ2FzQVl6dzBHa1R5VDVxaVJQNGpPZ19NaUVCU3c?oc=5",
-          "source": "한화그룹",
+          "source": "hanwha.co.kr",
           "published": "2025.10.28",
-          "summary": "한화그룹, 3개사 대표이사 인사 한화그룹",
+          "summary": "한화그룹, 3개사 대표이사 인사 hanwha.co.kr",
           "primary_category": "group_investment",
           "categories": [
             "group_investment"
@@ -1603,38 +1597,6 @@
           "direction_signal": true
         },
         {
-          "title": "(주)한화 인적분할 확정…'한화·한화머시너리' 분리 상장",
-          "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFB6NzNZMlVaVDYtcWxqSWNxRklHVjFfVmN2b2lJMkk4Ykd2aV90bVh6Z0VnTHd6WGR0enF3aTBsR2pmRW10dUNCLWF1WXgxQ0R4MTg3RWRkdEVjZkFiOHUwZE1zZE1NUQ?oc=5",
-          "source": "디일렉",
-          "published": "2026.07.15",
-          "summary": "(주)한화 인적분할 확정…'한화·한화머시너리' 분리 상장 디일렉",
-          "primary_category": "ma_restructuring",
-          "categories": [
-            "ma_restructuring"
-          ],
-          "matched_terms": [
-            "분할"
-          ],
-          "direction_signal": true
-        },
-        {
-          "title": "한화그룹, 홍콩서 고려아연 지분 매각 추진 중... 한화솔루션 유증 자금 마련하나 - 조선비즈",
-          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOeTFPc1pFQlYxZjVjejlLM1A4QTlRWW40aDlXMF84NlNDczBELUNTcUlTX0VlemZOSGRnM1ZpVWpXNUt6bE1LS1RRTTZqUWxZR0lyY244cXd2Vmx3Zlk4UXRsbk5FUXhaZ3F6SkphN2szN19fbjltaE15Q0ZZLWRVSXhVd21yRk3SAZsBQVVfeXFMTnN2V0pLWmpLSmZMajA1dVprWXJHQlJteVB0Z0p5LXlSQXRSQVhoODRDaGw2Ty1TS1dMV1Bnakg4NWFJMWZJUHJIb3IyYS1zaGEyNGNXYmhrWlAyQk5LMVV2WjdJa0ItLXFDMHN2NHMwUmFPWU0tVWExSE1NbFJtdjB1NHZiZGIwZVVsV3NQVWpVV1NheWpLa2NsaGs?oc=5",
-          "source": "biz.chosun.com",
-          "published": "2026.03.30",
-          "summary": "한화그룹, 홍콩서 고려아연 지분 매각 추진 중... 한화솔루션 유증 자금 마련하나 - 조선비즈 biz.chosun.com",
-          "primary_category": "group_investment",
-          "categories": [
-            "group_investment",
-            "ma_restructuring"
-          ],
-          "matched_terms": [
-            "그룹",
-            "매각"
-          ],
-          "direction_signal": true
-        },
-        {
           "title": "한화그룹, 74년 만에 재계 ‘빅5’ 입성…’방산·조선·에너지’로 판 흔들었다",
           "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFA5MWhHV3g4WTlmWFBCQVJXd2hvTEVOYldxOW03UEdVVFJ3Y3BrTGJGWkZiZHJaVGRfQUR5VjZ3dURNemdQeG84SE5VVFlINWpqVE40MQ?oc=5",
           "source": "더밸류뉴스",
@@ -1648,6 +1610,37 @@
           "matched_terms": [
             "그룹",
             "에너지"
+          ],
+          "direction_signal": true
+        },
+        {
+          "title": "㈜한화, ‘유통·기계’ 사업 분리한다…3남 독립 경영 신호탄",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPaG5WWjlwckdVd2N1eDExSC1NVFVFNTVhMlF0cDgycEtRUTJZblVuSEFGMmVQX05ZVUpNN3c2R0d0M3dUQWFuUjhKVlBxUlVIbEs5LVdKM296SlQ2NnFPdXNwVnVDT2tSVHdwSDliOXlEaHZXVEdtakhIaEIxYWRmb2VuS3pBd1M4TUN2WW8tRQ?oc=5",
+          "source": "조선일보",
+          "published": "2026.01.14",
+          "summary": "㈜한화, ‘유통·기계’ 사업 분리한다…3남 독립 경영 신호탄 조선일보",
+          "primary_category": "performance_management",
+          "categories": [
+            "performance_management"
+          ],
+          "matched_terms": [
+            "경영"
+          ],
+          "direction_signal": false
+        },
+        {
+          "title": "한화그룹, 계열사 4곳 대표이사 5명 내정",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBQTHNuaE1wX3JKMVdnd1ZOWFNrZWgzRXd6YnBDTG5nZ0NjQ3EyaEpaQVNoNng5MTB1Wng5OHRRM3JHd3IyLXh5VVlNNmZTX2FPUHVZdmxvOGhtd9IBX0FVX3lxTE9XcDZEWHg1N3RhQzdYR0lLOEx0cWoxTDBSa1g5UDZYTncwdGctTmFtcnFRSW9DbUJjd1NzT3gzdkQxY0xjajhLeW1XYlFrZm1jR0ktZWo5TklBbnhTckZz?oc=5",
+          "source": "경향신문",
+          "published": "2025.08.31",
+          "summary": "한화그룹, 계열사 4곳 대표이사 5명 내정 경향신문",
+          "primary_category": "group_investment",
+          "categories": [
+            "group_investment"
+          ],
+          "matched_terms": [
+            "그룹",
+            "계열사"
           ],
           "direction_signal": true
         }
@@ -1673,7 +1666,23 @@
       ],
       "source_name": "Google News",
       "source_url": "https://news.google.com/",
-      "articles": []
+      "articles": [
+        {
+          "title": "강남대학교 부동산건설학부 건축공학전공 전공 개설 31주년 기념 제28회 강남건축전 ‘비움과 채움’ 개최",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNOUc0ZVBqcTFSZ3QyWGFDWmk3Rk40UWk2Mllpa1c4ME5EOHZDb2N6VXZORi02VlVwS3pZd0dPTU1WY0ZjQXNxcl9vWk94d2MwX1c2RzZZSXVzNGJWeVRaOWZYUno5M1g4eUppQnBqbW9Sb3pId3JwNldTYWlDS25Gc0hHbXNMYkowZXV2czdB?oc=5",
+          "source": "lifenlearning.chosun.com",
+          "published": "2025.12.05",
+          "summary": "강남대학교 부동산건설학부 건축공학전공 전공 개설 31주년 기념 제28회 강남건축전 ‘비움과 채움’ 개최 lifenlearning.chosun.com",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract"
+          ],
+          "matched_terms": [
+            "건설"
+          ],
+          "direction_signal": false
+        }
+      ]
     },
     {
       "company": "(주)호반건설",
@@ -1686,11 +1695,103 @@
       "source_url": "https://news.google.com/",
       "articles": [
         {
+          "title": "한진칼 주요주주 호반건설, 한진칼 주식등의 수 113만2900주 증가…총 지분율 20.15%",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1zUzBaQTA3dnc5LUp6U3RnQ2lDNDdEVy1KUkFxN195WGhMWTR6dXRHQ1drUWtzMk1PU1IzakRmcGNUQVRLczJyZEs5NTlXYWdJVkN5akR1cTJzekJKWDhkNmxFSkJZcWVDYnIwRk11eU1lTjA?oc=5",
+          "source": "디지털투데이",
+          "published": "2026.07.10",
+          "summary": "한진칼 주요주주 호반건설, 한진칼 주식등의 수 113만2900주 증가…총 지분율 20.15% 디지털투데이",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract"
+          ],
+          "matched_terms": [
+            "건설"
+          ],
+          "direction_signal": false
+        },
+        {
           "title": "호반산업, 호반건설에 800억원 단기운영자금 대여",
           "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5ETlkxSTBMb3E2LVVEMWxTSGw5c2pKTm9vUVdpbnM3V0hERUtPNGI2UE9MSG1KTVdyd3BudjBYV0J2M2g2RFhkNTAzb0tnU0VrM2pkS29mSUU1MGRCWFExcGwtMFlEWW1MTF9NSVpYYnRvVG8?oc=5",
           "source": "디지털투데이",
           "published": "2026.06.30",
           "summary": "호반산업, 호반건설에 800억원 단기운영자금 대여 디지털투데이",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract"
+          ],
+          "matched_terms": [
+            "건설"
+          ],
+          "direction_signal": false
+        }
+      ]
+    },
+    {
+      "company": "(주)호반산업",
+      "aliases": [
+        "(주)호반산업",
+        "호반산업",
+        "주"
+      ],
+      "source_name": "Google News",
+      "source_url": "https://news.google.com/",
+      "articles": [
+        {
+          "title": "호반건설, ‘광명 구름산지구 A3’ 논란…지주택 조합원들 ‘생존권 위협’ 반발",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5tMVVWX3pUVGFaaGlCQXU3SzN2M3M5d1IteFljaFZwVVJBS0lRWVJFTTRzNTFlOWlLWS1CUmY2ZmJfeUhWQVJSTW56eFlxSHo0eUpDOVN3czFDNzB0OHpHdHY3WkhwaEZBMEE?oc=5",
+          "source": "포인트경제",
+          "published": "2025.12.18",
+          "summary": "호반건설, ‘광명 구름산지구 A3’ 논란…지주택 조합원들 ‘생존권 위협’ 반발 포인트경제",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract",
+            "group_investment"
+          ],
+          "matched_terms": [
+            "건설",
+            "지주"
+          ],
+          "direction_signal": true
+        },
+        {
+          "title": "호반건설, '한진그룹 지주사' 지분율 20% 돌파…\"조원태 회장과 0.4%P差\"",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1yVThwUUthSXFZanpLbkFMbTlHRl9tMHh6SzZJajBNaTd0V1J2Wm5sME5RZ2NmTTBua2xDUEJ5b2NDOHBsTnRsYlFjZnEzNURxTVFzZ0pxVGxOUktNenlOQtIBeEFVX3lxTE9WUTM0N3VYWnQ4ZTJsLTlTbkZDWEpZRlNyYnFkei02b0N6QUhobWJjVXFWLTItUWdjTlFqeHhpV3NxRTNlcnJJaXhSZEd1eVpGVWxTeHJEZmQ1QmVPNjhuRHpURVFMeUpLbmp6YldXWmhVaExfOGlyag?oc=5",
+          "source": "뉴시스",
+          "published": "2026.07.10",
+          "summary": "호반건설, '한진그룹 지주사' 지분율 20% 돌파…\"조원태 회장과 0.4%P差\" 뉴시스",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract",
+            "group_investment"
+          ],
+          "matched_terms": [
+            "건설",
+            "그룹",
+            "지주"
+          ],
+          "direction_signal": true
+        },
+        {
+          "title": "호반산업, 호반건설에 800억원 단기운영자금 대여",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5ETlkxSTBMb3E2LVVEMWxTSGw5c2pKTm9vUVdpbnM3V0hERUtPNGI2UE9MSG1KTVdyd3BudjBYV0J2M2g2RFhkNTAzb0tnU0VrM2pkS29mSUU1MGRCWFExcGwtMFlEWW1MTF9NSVpYYnRvVG8?oc=5",
+          "source": "디지털투데이",
+          "published": "2026.06.30",
+          "summary": "호반산업, 호반건설에 800억원 단기운영자금 대여 디지털투데이",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract"
+          ],
+          "matched_terms": [
+            "건설"
+          ],
+          "direction_signal": false
+        },
+        {
+          "title": "한진칼 주요주주 호반건설, 한진칼 주식등의 수 113만2900주 증가…총 지분율 20.15%",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1zUzBaQTA3dnc5LUp6U3RnQ2lDNDdEVy1KUkFxN195WGhMWTR6dXRHQ1drUWtzMk1PU1IzakRmcGNUQVRLczJyZEs5NTlXYWdJVkN5akR1cTJzekJKWDhkNmxFSkJZcWVDYnIwRk11eU1lTjA?oc=5",
+          "source": "디지털투데이",
+          "published": "2026.07.10",
+          "summary": "한진칼 주요주주 호반건설, 한진칼 주식등의 수 113만2900주 증가…총 지분율 20.15% 디지털투데이",
           "primary_category": "award_contract",
           "categories": [
             "award_contract"
@@ -1760,9 +1861,9 @@
         {
           "title": "[단독] 세운4구역 고층 빌딩 설계, 희림 등과 520억 원 수의계약",
           "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5sbDdfbkNyUVZlZ3NBbDdid3Y4UkRyN2hpcWotalBOd1IzekJ1dktmVV9ZbkJpMEpOaTJRT1pmRG0yWHRxSUgtanI1WmNEV3N3VTJZZEVQSHRYbmZ0NnFWcFN6bndwbUFFaC1ucG9MakFkUQ?oc=5",
-          "source": "hani.co.kr",
+          "source": "한겨레",
           "published": "2026.01.21",
-          "summary": "[단독] 세운4구역 고층 빌딩 설계, 희림 등과 520억 원 수의계약 hani.co.kr",
+          "summary": "[단독] 세운4구역 고층 빌딩 설계, 희림 등과 520억 원 수의계약 한겨레",
           "primary_category": "award_contract",
           "categories": [
             "award_contract"
@@ -1775,30 +1876,15 @@
         {
           "title": "[해명자료] 「[단독] ‘김건희 후원’ 희림건축, 종묘 앞 재개발 520억 수의계약 팀에 포함」 보도 관련",
           "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE00UWkxeDdFcXp0T1pxTm1uQm9yOGlRTmJUaElSNHhaQkFtUHNxVDA1UEYtczdRUjRSdEdxYTM4eFpDdUhrLWlxYmJpZUpxRklxWFd2Y1BOUUo?oc=5",
-          "source": "서울특별시",
+          "source": "mediahub.seoul.go.kr",
           "published": "2025.12.08",
-          "summary": "[해명자료] 「[단독] ‘김건희 후원’ 희림건축, 종묘 앞 재개발 520억 수의계약 팀에 포함」 보도 관련 서울특별시",
+          "summary": "[해명자료] 「[단독] ‘김건희 후원’ 희림건축, 종묘 앞 재개발 520억 수의계약 팀에 포함」 보도 관련 mediahub.seoul.go.kr",
           "primary_category": "award_contract",
           "categories": [
             "award_contract"
           ],
           "matched_terms": [
             "계약"
-          ],
-          "direction_signal": false
-        },
-        {
-          "title": "승승장구하던 희림, 정권 교체 후 영업이익 반토막",
-          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE8ySzZrcmM0SjJhTWVwVWVwYk5DbVl1ZnBrTTJ1Mmh5U2FIRlUzNl9PZW1GejNVRFNmTkEyM21UNmVZSW45cHFDYXZwMWRHaWJLZWtNY0xtdWgyLU9kZVBVTWxIV2VCd0tyRjlqUzEzVmZQRHk0MXhMQ2JmZDhoR2fSAXNBVV95cUxPNkdjaDMwLTlPd0JwcWhuV0NIb2VaN280U1RETHpBWVN1Y3gxNzVwSHdBYmN3OU0zZ093UU5ITGdYaFc4aU5UWll0dUVOUlpXSzc4anVHU3NublNFUzEtOGFmTmYzUS1ZNXkxNTBoSkluckhF?oc=5",
-          "source": "땅집고",
-          "published": "2026.01.28",
-          "summary": "승승장구하던 희림, 정권 교체 후 영업이익 반토막 땅집고",
-          "primary_category": "performance_management",
-          "categories": [
-            "performance_management"
-          ],
-          "matched_terms": [
-            "영업이익"
           ],
           "direction_signal": false
         },
@@ -1818,17 +1904,32 @@
           "direction_signal": false
         },
         {
-          "title": "희림, 유럽 조지아 트빌리시 ‘럭셔리 호텔’ 설계 수주",
-          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9zcUxYT0VtTGl0LUpyNTlFQnBENDhQNDNlSEI1QTVjcVpEOHczTTduMGFNeXU1Z3ZCazBfNVdOenhyQnQycl8tcUlUcXEtUjJfZ0pnSk56X0tuSGhubi1uTENQV3A3SEFf?oc=5",
-          "source": "한국주택경제신문",
-          "published": "2025.09.22",
-          "summary": "희림, 유럽 조지아 트빌리시 ‘럭셔리 호텔’ 설계 수주 한국주택경제신문",
+          "title": "승승장구하던 희림, 정권 교체 후 영업이익 반토막",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE8ySzZrcmM0SjJhTWVwVWVwYk5DbVl1ZnBrTTJ1Mmh5U2FIRlUzNl9PZW1GejNVRFNmTkEyM21UNmVZSW45cHFDYXZwMWRHaWJLZWtNY0xtdWgyLU9kZVBVTWxIV2VCd0tyRjlqUzEzVmZQRHk0MXhMQ2JmZDhoR2fSAXNBVV95cUxPNkdjaDMwLTlPd0JwcWhuV0NIb2VaN280U1RETHpBWVN1Y3gxNzVwSHdBYmN3OU0zZ093UU5ITGdYaFc4aU5UWll0dUVOUlpXSzc4anVHU3NublNFUzEtOGFmTmYzUS1ZNXkxNTBoSkluckhF?oc=5",
+          "source": "땅집고",
+          "published": "2026.01.28",
+          "summary": "승승장구하던 희림, 정권 교체 후 영업이익 반토막 땅집고",
+          "primary_category": "performance_management",
+          "categories": [
+            "performance_management"
+          ],
+          "matched_terms": [
+            "영업이익"
+          ],
+          "direction_signal": false
+        },
+        {
+          "title": "한겨레 \"김건희 후원사 희림 등, 세운4구역 520억 수의계약\"",
+          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1nTjVycXdjS0gxaThyZC16TWpmc2NfUE9NUEJIMGR0N01QYWlJNExvMWQ5NHR2Mm9CcTAxelRiMTVrN1A4RFdlUVF1eEJzeGZ1NW5GbA?oc=5",
+          "source": "JTBC",
+          "published": "2025.12.08",
+          "summary": "한겨레 \"김건희 후원사 희림 등, 세운4구역 520억 수의계약\" JTBC",
           "primary_category": "award_contract",
           "categories": [
             "award_contract"
           ],
           "matched_terms": [
-            "수주"
+            "계약"
           ],
           "direction_signal": false
         }
@@ -1854,22 +1955,6 @@
       "source_url": "https://news.google.com/",
       "articles": [
         {
-          "title": "계룡건설산업(주) (정정)단일판매ㆍ공급계약체결",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBnaTRMRXFNUU1TamhzVnBSZG9WeV9JRXdxZ3V3OTlaMnJRcTk3U2d4Q0ljMlh0MzYxTktIU2pJcDdrNkFXd3BfOFhZU2xCd3QtOWlXanl2RXBQTEE?oc=5",
-          "source": "매일경제 마켓",
-          "published": "2026.06.02",
-          "summary": "계룡건설산업(주) (정정)단일판매ㆍ공급계약체결 매일경제 마켓",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract"
-          ],
-          "matched_terms": [
-            "계약",
-            "건설"
-          ],
-          "direction_signal": false
-        },
-        {
           "title": "김해시, 한국도로공사·GS건설·계룡건설산업과 업무협약",
           "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5LYzE4ZmNsN2pGbWc0OVZkQnhyaVJhTlp5eElOV0JZVjAwRjVQN3BYNDFReFl4VGhRbTlXbGtZTnlYNWJxdUJOUDg5LWtsT0xZcVJ3WHI2Q3VTanVHNUl1MGJMOUFtZEdSbFdB?oc=5",
           "source": "경남일보",
@@ -1886,11 +1971,11 @@
           "direction_signal": false
         },
         {
-          "title": "이은완 전무, 자사주 상여금으로 계룡건설산업 주식 750주 취득",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE0xNFV1NU81RXlWVy1sSmhDZ3dLWDcxeTNYS3Ruc1JJcS04emVvbE9fR3EwQlZBcktuMHB3ck1VTTJfaDZRMVhHbHVDdWp5TXRTVlZUcXY5TmE5b2xkZ1Nma1VpM3lhSmQtTXVUbGU5cmZFU0U?oc=5",
+          "title": "김택중 부사장, 계룡건설산업 주식 1100주 증가",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE93OU5HSmVqaXFzY1V0Q1Y2T3cwb0lOOHoxakx3RGpMRkdvSU51SUNDTXNrck5WTzVUUUYxSUVMaVB6QzhjM05pU2g1ejNIeUNqS182UVRXRkhmQ0YyNDVEQ1RJM00xSW9uMTllTkZCampxQmc?oc=5",
           "source": "디지털투데이",
           "published": "2025.12.26",
-          "summary": "이은완 전무, 자사주 상여금으로 계룡건설산업 주식 750주 취득 디지털투데이",
+          "summary": "김택중 부사장, 계룡건설산업 주식 1100주 증가 디지털투데이",
           "primary_category": "award_contract",
           "categories": [
             "award_contract"
@@ -1912,6 +1997,21 @@
           ],
           "matched_terms": [
             "공사"
+          ],
+          "direction_signal": false
+        },
+        {
+          "title": "이은완 전무, 자사주 상여금으로 계룡건설산업 주식 750주 취득",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE0xNFV1NU81RXlWVy1sSmhDZ3dLWDcxeTNYS3Ruc1JJcS04emVvbE9fR3EwQlZBcktuMHB3ck1VTTJfaDZRMVhHbHVDdWp5TXRTVlZUcXY5TmE5b2xkZ1Nma1VpM3lhSmQtTXVUbGU5cmZFU0U?oc=5",
+          "source": "디지털투데이",
+          "published": "2025.12.26",
+          "summary": "이은완 전무, 자사주 상여금으로 계룡건설산업 주식 750주 취득 디지털투데이",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract"
+          ],
+          "matched_terms": [
+            "건설"
           ],
           "direction_signal": false
         },
@@ -1943,6 +2043,21 @@
       "source_url": "https://news.google.com/",
       "articles": [
         {
+          "title": "금호건설(주) 현금ㆍ현물 배당 결정",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9DZkVNZ0d3bkFKV0tnQU5UbWlicVJxQnZDT3QtMm92akxUTUZkRm9HT2FLZmdELTlmbW05VWw0YUpwZ2ZVU0R1U09FaTRBcUlhNnJsMEM4Sldkdw?oc=5",
+          "source": "매일경제 마켓",
+          "published": "2026.03.05",
+          "summary": "금호건설(주) 현금ㆍ현물 배당 결정 매일경제 마켓",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract"
+          ],
+          "matched_terms": [
+            "건설"
+          ],
+          "direction_signal": false
+        },
+        {
           "title": "유기옥 전무, 금호건설 주식 4761주 보유 보고",
           "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE41ekxuSHgzU2JtMnp0OHpvcHMwRVRSY1lRLXpMVjAzTThPSU5vTEN4alNWSGFzZmVvX3lRcC02MkFRT1ViVFJPa1dmcW1QaVVJUTV1bTZYUWk4TU5CeVRiS1JxeHVwRVhDZXVvQkdHbi1xVUk?oc=5",
           "source": "디지털투데이",
@@ -1958,17 +2073,17 @@
           "direction_signal": false
         },
         {
-          "title": "경북개발공사 경북도청신도시 B-1BL 공공임대주택 추진",
-          "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFBXMkg3d2MzdUc1RXVZNjBuZWMwdnlQWnQ4SG43alhLNHFtYlFxd2FTTG5hTGR6Zk84NnhtcTdPNm1Zc3gzVHc?oc=5",
-          "source": "v.daum.net",
-          "published": "2026.07.12",
-          "summary": "경북개발공사 경북도청신도시 B-1BL 공공임대주택 추진 v.daum.net",
+          "title": "금호건설 최대주주 금호고속, 금호건설 주식등의 수 2만8798주 증가…총 지분율 47.86%",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5Ja1ZmaVh6eV83ZC1rNGswXzA4VVJBRnExZFhVQWdHLVdnS0o0T3M5SUhrTHpsOFIyenRuRUVUWVl4UXgtaE1FVU1fUHFjSTV5Mk9uQVdMR1docGliMU5HVUFSa1BRR3JEU05NQS1aLW9sQzA?oc=5",
+          "source": "디지털투데이",
+          "published": "2026.04.17",
+          "summary": "금호건설 최대주주 금호고속, 금호건설 주식등의 수 2만8798주 증가…총 지분율 47.86% 디지털투데이",
           "primary_category": "award_contract",
           "categories": [
             "award_contract"
           ],
           "matched_terms": [
-            "공사"
+            "건설"
           ],
           "direction_signal": false
         }
@@ -1984,6 +2099,58 @@
       "source_name": "Google News",
       "source_url": "https://news.google.com/",
       "articles": [
+        {
+          "title": "[단독] 대방건설 양주 옥정5·6차 주상복합 공사현장, 각종 법률 위반 의혹 논란…환경오염·안전불감증 도마 위",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9LVVZkU3d0Rk04ZmxDbGV3NzQtUWw4bmJFTDFGNVN5aVZGSFJaV0NOaklzMWlDRjBqM2x6NnYybVB3Nnhyc3c4YzNLWjRmMlBqWUV5SzloN1pwZjhHalFTdXNXWVAySEpzZnc?oc=5",
+          "source": "뉴스티앤티",
+          "published": "2026.05.17",
+          "summary": "[단독] 대방건설 양주 옥정5·6차 주상복합 공사현장, 각종 법률 위반 의혹 논란…환경오염·안전불감증 도마 위 뉴스티앤티",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract",
+            "risk_safety"
+          ],
+          "matched_terms": [
+            "공사",
+            "건설",
+            "안전"
+          ],
+          "direction_signal": false
+        },
+        {
+          "title": "대방건설, 계열사 대방산업개발에 170억 운영자금 대여",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5XSGw2Y1pzRFZVZDlJOXQzaHpzWlZRUFZIRTBiRHpJRG1oVEZJaUxPRDdEUmV3NjlLMFBFbmU1dWtCUHlzYmtMZWJMOVFOZzRCcE9la04wR3l4UzFpMmNYbzFyaU9WQnNieUxpN2JHSUlxMnc?oc=5",
+          "source": "디지털투데이",
+          "published": "2026.06.25",
+          "summary": "대방건설, 계열사 대방산업개발에 170억 운영자금 대여 디지털투데이",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract",
+            "group_investment"
+          ],
+          "matched_terms": [
+            "건설",
+            "계열사"
+          ],
+          "direction_signal": true
+        },
+        {
+          "title": "대방건설, 계열사 노블랜드에 240억원 운영자금 대여",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFAwX05kTHhfYU1GUk5RcFBqSmlmQ1ZUYnY5LXJsdTM0TFB0bTVRWFotdkxpOVZ3LWdMRVQ0RGxheURuR2kxWUlzLVlEZkR5T1JxanNOTTZ6SlBwQzRMU0FrYWYwMnRrcE14UDNEMkNrdnZ0N1k?oc=5",
+          "source": "디지털투데이",
+          "published": "2026.08.10",
+          "summary": "대방건설, 계열사 노블랜드에 240억원 운영자금 대여 디지털투데이",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract",
+            "group_investment"
+          ],
+          "matched_terms": [
+            "건설",
+            "계열사"
+          ],
+          "direction_signal": true
+        },
         {
           "title": "대방건설, 계열사 대방산업개발에 386억5000만원 운영자금 대여",
           "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1ZWFVIaVRXVHRzWEFLWmZlOEVYcVVDM3R3STRxaXZyYnRqdTBnTTBfNEFoZHM1bFZ6WVY2RThLUWpnWGVDTXlPbXF1MS1FRzFoOW1jTzNmbWxqT3pUbXpMbG1TZjI0aXBxN0Q2a3EySFVmRGc?oc=5",
@@ -2002,21 +2169,19 @@
           "direction_signal": true
         },
         {
-          "title": "대방건설, 계열사 대방건설동탄에 155억원 자금 대여",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1Sb0tsQUNlNy1uUVBDT1JBanZsYy1Jbkh3ODdWcjYxUGMzSWFkSTFpSUtON0JLUDBXOUl0M2U2VE9HbTc4NS1FaGtVZ09mNWkyM3lTanBjVTlMX1dMaUtsaG5CT1ROd0NWQlVhOC1rLXlDZkE?oc=5",
+          "title": "대방건설, 디비종합개발에 운영자금 대여",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1xU3N6TXE3Y3I2MG9oRml0cjF2d0h5bi1QUDE2TDUyT3lrRkZGbVlkc2JQY1h6ZDMtNmNoRU5La1ZiZDBXS25GSHhWWGpLLVJRTkNOSTVCNThWOTllWTdfelFoOHI5OXY2NkxBUzc2OWRhT28?oc=5",
           "source": "디지털투데이",
-          "published": "2026.07.29",
-          "summary": "대방건설, 계열사 대방건설동탄에 155억원 자금 대여 디지털투데이",
+          "published": "2026.04.10",
+          "summary": "대방건설, 디비종합개발에 운영자금 대여 디지털투데이",
           "primary_category": "award_contract",
           "categories": [
-            "award_contract",
-            "group_investment"
+            "award_contract"
           ],
           "matched_terms": [
-            "건설",
-            "계열사"
+            "건설"
           ],
-          "direction_signal": true
+          "direction_signal": false
         }
       ]
     },
@@ -2131,56 +2296,11 @@
       "source_url": "https://news.google.com/",
       "articles": [
         {
-          "title": "두산건설(주), 거창군 신원면 신바람누리센터에 160만원 상당 체육용품 기부",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1UZE1ONEMxUkRRY2lTNThTMkJudGlSVEpid0hHN3dYeFE1c3F5Y1hjT1JwdXhRNlZCY1FPSEE3dHZWZHRON19YQmFOSFgtR2tUSE1MZmwtdDRuQQ?oc=5",
-          "source": "브릿지경제",
-          "published": "2026.08.02",
-          "summary": "두산건설(주), 거창군 신원면 신바람누리센터에 160만원 상당 체육용품 기부 브릿지경제",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract"
-          ],
-          "matched_terms": [
-            "건설"
-          ],
-          "direction_signal": false
-        },
-        {
-          "title": "두산건설, 거창군 신원면 신바람누리센터에 따뜻한 나눔 이어가 > 뉴스",
-          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA0MlFxSTlKazRVckJUcnBnLW1mZEczV2FxSV8wQk4weVd0QmRuZEMxSVVkakx5N1pUX1FDZUxqMDlwZ0NyMTYwbWw2WlhYY3VUS2xOZXh6czF6TkNyN3hvYW1sVHV0VjJ5WlFUSElOZXM?oc=5",
-          "source": "더코리아",
-          "published": "2026.08.01",
-          "summary": "두산건설, 거창군 신원면 신바람누리센터에 따뜻한 나눔 이어가 > 뉴스 더코리아",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract"
-          ],
-          "matched_terms": [
-            "건설"
-          ],
-          "direction_signal": false
-        },
-        {
-          "title": "두산건설(주), 신원면 신바람누리센터에 따뜻한 나눔 이어가",
-          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5ZaEhGajVLV2ZPTEV6M0R4SGNUZVBKcU44MW1JOGR3QzNqZXFobVp4YzFCeS1CSXZwMnNVek1ZNTZVeWU0cnd3YXdwaXB6eHZYV3c?oc=5",
-          "source": "거창한뉴스",
-          "published": "2026.08.01",
-          "summary": "두산건설(주), 신원면 신바람누리센터에 따뜻한 나눔 이어가 거창한뉴스",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract"
-          ],
-          "matched_terms": [
-            "건설"
-          ],
-          "direction_signal": false
-        },
-        {
-          "title": "두산건설, 거창 신원면 신바람누리센터에 160만원 상당 체육용품 기부",
-          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBfQ3RWb1pNMVRrM0NjcGxZODdrSF91UExJZEw3YkJYT01rZWFvMTdaelU1LVhLRGZqYWZaRFhCTERQRnlxbzdUcGhjVkZ3eU4wMVhEN0JFVmZmMHVGM285bHRrbmxybzE3dmQ0?oc=5",
-          "source": "한국사회복지저널",
-          "published": "2026.08.02",
-          "summary": "두산건설, 거창 신원면 신바람누리센터에 160만원 상당 체육용품 기부 한국사회복지저널",
+          "title": "두산건설, 최대주주 더제니스홀딩스에 450억원 규모 전환사채 발행 결정",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFB4cjJMQkVVVTZ4ZVQ3OFd5WUR5WDJrOU13OTZrVlhvOFg5TEZlOEo2SjV6SG5XNE5Cc1V6TzZYVXhZeTl1MXV2d255a2YwZnVUSGpQT0ZKTUxBV3lpSjdGbjhLZjRLek9RRkl4eElxZ1BYTmM?oc=5",
+          "source": "디지털투데이",
+          "published": "2026.07.21",
+          "summary": "두산건설, 최대주주 더제니스홀딩스에 450억원 규모 전환사채 발행 결정 디지털투데이",
           "primary_category": "award_contract",
           "categories": [
             "award_contract"
@@ -2235,41 +2355,24 @@
         {
           "title": "가스안전公, 두산에너빌리티(주) 가스시설 현장 안전점검",
           "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBlQnBXY3ZpeFgtSlV4ZkpCOEZZbXpNWjFhNXBBSzB4QlhhT3RTTUhxeFJYWC1MWWJ4alJjcE9hWDE0MnE3R2dwNzRYSTdFYUx6eVg0T3FpX1RxWEhwSmJwZlVoWDVwNHJ1XzR5WXBB?oc=5",
-          "source": "투데이에너지",
+          "source": "todayenergy.kr",
           "published": "2025.10.29",
-          "summary": "가스안전公, 두산에너빌리티(주) 가스시설 현장 안전점검 투데이에너지",
-          "primary_category": "capex_energy",
+          "summary": "가스안전公, 두산에너빌리티(주) 가스시설 현장 안전점검 todayenergy.kr",
+          "primary_category": "risk_safety",
           "categories": [
-            "capex_energy",
             "risk_safety"
           ],
           "matched_terms": [
-            "에너지",
             "안전"
-          ],
-          "direction_signal": true
-        },
-        {
-          "title": "\"아직 닫히지 않은 천장\" SK하이닉스, 목표가 210만원…두산에너빌리티, 가스터빈·원전 수주에 목표가↑ [株토피아]",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1HOHVUMTdIaW5TSFNLcFVIX3paRFBTZzlYTU1qd3hxRXZxdkJDS2pJTTEtTFlMNWVWTFVJZUF4RTE1ZHlQUGs0a1FpZExEVE1jZG0ya09FRTdGdw?oc=5",
-          "source": "파이낸셜뉴스",
-          "published": "2026.04.24",
-          "summary": "\"아직 닫히지 않은 천장\" SK하이닉스, 목표가 210만원…두산에너빌리티, 가스터빈·원전 수주에 목표가↑ [株토피아] 파이낸셜뉴스",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract"
-          ],
-          "matched_terms": [
-            "수주"
           ],
           "direction_signal": false
         },
         {
-          "title": "전남도-두산에너빌리티, 해상풍력 전주기 산업화 '가속 페달'",
-          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1rQjZFNlZYQTdBSWM3Q1FBbDcwM1lNWThRT3YzOHM1QTdHcUxybGp4NThmal9ta0pSYWt1eS10NG9VYW5yeGlUVUxSWFhrQkw4Mjlxb1ZrejdNdnlibE9WZ2tFUXJDV1NwQXFWcmp3?oc=5",
-          "source": "뉴스후플러스",
-          "published": "2026.03.03",
-          "summary": "전남도-두산에너빌리티, 해상풍력 전주기 산업화 '가속 페달' 뉴스후플러스",
+          "title": "전남도-두산에너빌리티, 해상풍력 산업 육성 업무협약 체결",
+          "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE0tSERrWWM1UXpiZkJVZkpXUzZpam82WXYyMnhxRkxqdTgzZEpTWjN5SGVvMHpBNTQ1Z0NUSVlUR0I4TzIwVjVlUg?oc=5",
+          "source": "브레이크뉴스",
+          "published": "2026.03.04",
+          "summary": "전남도-두산에너빌리티, 해상풍력 산업 육성 업무협약 체결 브레이크뉴스",
           "primary_category": "capex_energy",
           "categories": [
             "capex_energy"
@@ -2280,11 +2383,26 @@
           "direction_signal": true
         },
         {
-          "title": "전남도, 두산에너빌리티와 해상풍력 산업 육성 협약",
-          "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1DMHp1RV9nUU9zbGVsNjcyNnFHLWJJRmt5OUE0MHdMaTFibUVRTTF1WkQ3MTlyVkR5M0hXRzVXYVp6R2RLbnowWEJWa1RNYTE1elRZZEx3M29rejVBRm05a1pxSmI?oc=5",
-          "source": "매일일보",
-          "published": "2026.03.04",
-          "summary": "전남도, 두산에너빌리티와 해상풍력 산업 육성 협약 매일일보",
+          "title": "전라남도와 두산에너빌리티, 해상풍력 산업 육성을 위한 업무협약 체결 > 뉴스",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBjdVc3OUdvbDFLelVBTWZKUEs2Skh1QjJLcFRoc0J1em9HaU1ja0xPWFRnM2NMR3lyOUEydEgwMlhQRUJnWmgzdUZTN3k1U2x4YTVhTEZUeGQ5RVctckxvUzVtdEZqZ2hnaWhiNUpMOGE?oc=5",
+          "source": "thekorea.kr",
+          "published": "2026.03.03",
+          "summary": "전라남도와 두산에너빌리티, 해상풍력 산업 육성을 위한 업무협약 체결 > 뉴스 thekorea.kr",
+          "primary_category": "capex_energy",
+          "categories": [
+            "capex_energy"
+          ],
+          "matched_terms": [
+            "풍력"
+          ],
+          "direction_signal": true
+        },
+        {
+          "title": "전남도-두산에너빌리티, 해상풍력 전주기 산업화 '가속 페달'",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1rQjZFNlZYQTdBSWM3Q1FBbDcwM1lNWThRT3YzOHM1QTdHcUxybGp4NThmal9ta0pSYWt1eS10NG9VYW5yeGlUVUxSWFhrQkw4Mjlxb1ZrejdNdnlibE9WZ2tFUXJDV1NwQXFWcmp3?oc=5",
+          "source": "newswhoplus.com",
+          "published": "2026.03.03",
+          "summary": "전남도-두산에너빌리티, 해상풍력 전주기 산업화 '가속 페달' newswhoplus.com",
           "primary_category": "capex_energy",
           "categories": [
             "capex_energy"
@@ -2335,18 +2453,17 @@
       "source_url": "https://news.google.com/",
       "articles": [
         {
-          "title": "[2026 상반기 건설시장 결산]① ‘9032억’ DL이앤씨, 상반기 公共 ‘수주킹’",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1adUxUYlA0elJrTnVKNUxreTNXbTVDNi1QWExQU2xSMzNIX0E3WHFZUkZmbG5ZQ202dlpmeHYzcTFKVHRaVnMyTDhGa3hlRjZDZkoyaFh3NDh5UXZsVlFkREd5UW5BOEdYN0E2VXRHMHFJaFU?oc=5",
-          "source": "대한경제",
-          "published": "2026.06.30",
-          "summary": "[2026 상반기 건설시장 결산]① ‘9032억’ DL이앤씨, 상반기 公共 ‘수주킹’ 대한경제",
+          "title": "2년 수주 부진 DL이앤씨 '새 일감 10조' 회복할까?",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA4emRYUnhsWlVlNFpBMVpvUGpzdU9nNFBlc2VKZHR3a2JnUmdxdnVhT042QzJzNXdMUTJDNUtEV2lIeEY2OGhOTTlFc2s0ZE5OcDhYZzhvSkh6bF9wMW5hQVpwYk9vd3AzMGJQWk1JNG4?oc=5",
+          "source": "news.bizwatch.co.kr",
+          "published": "2026.07.08",
+          "summary": "2년 수주 부진 DL이앤씨 '새 일감 10조' 회복할까? news.bizwatch.co.kr",
           "primary_category": "award_contract",
           "categories": [
             "award_contract"
           ],
           "matched_terms": [
-            "수주",
-            "건설"
+            "수주"
           ],
           "direction_signal": false
         },
@@ -2369,38 +2486,20 @@
           "direction_signal": true
         },
         {
-          "title": "2년 수주 부진 DL이앤씨 '새 일감 10조' 회복할까?",
-          "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE04Sk9kdDBIS1dUOEVFeGo1eXVTVGhfc0g3RHUtWklGYllSX3pqeFFTT3lNVUhEcmR3bDM4Y2J0aHBpV0VoLU94LVJUUHJIWms?oc=5",
-          "source": "v.daum.net",
-          "published": "2026.07.08",
-          "summary": "2년 수주 부진 DL이앤씨 '새 일감 10조' 회복할까? v.daum.net",
+          "title": "[2026 상반기 건설시장 결산]① ‘9032억’ DL이앤씨, 상반기 公共 ‘수주킹’",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1adUxUYlA0elJrTnVKNUxreTNXbTVDNi1QWExQU2xSMzNIX0E3WHFZUkZmbG5ZQ202dlpmeHYzcTFKVHRaVnMyTDhGa3hlRjZDZkoyaFh3NDh5UXZsVlFkREd5UW5BOEdYN0E2VXRHMHFJaFU?oc=5",
+          "source": "대한경제",
+          "published": "2026.06.30",
+          "summary": "[2026 상반기 건설시장 결산]① ‘9032억’ DL이앤씨, 상반기 公共 ‘수주킹’ 대한경제",
           "primary_category": "award_contract",
           "categories": [
             "award_contract"
           ],
           "matched_terms": [
-            "수주"
+            "수주",
+            "건설"
           ],
           "direction_signal": false
-        },
-        {
-          "title": "DL이앤씨, 상반기 플랜트 수주 1조원 돌파…플랜트·에너지 성장축",
-          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9VN3ZjbkxwYWJ2a0QxUlBOUS1iSkl4SERidWNpaXNXUGN4WXlodE0xWDRzR0Z1cEkwQnFOdkIzYVNvNDdOZkIzc0JVQUprbjRTNlJxMWVwWVMxSFBUYjhHbjR2ZkhfXy1x?oc=5",
-          "source": "녹색경제신문",
-          "published": "2026.06.09",
-          "summary": "DL이앤씨, 상반기 플랜트 수주 1조원 돌파…플랜트·에너지 성장축 녹색경제신문",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract",
-            "new_business_expansion",
-            "capex_energy"
-          ],
-          "matched_terms": [
-            "수주",
-            "플랜트",
-            "에너지"
-          ],
-          "direction_signal": true
         },
         {
           "title": "“종전 수혜 기대 커지는데”…DL이앤씨, 해외 에너지 ‘수주 공백’ 채우기 관건",
@@ -2415,6 +2514,23 @@
           ],
           "matched_terms": [
             "수주",
+            "에너지"
+          ],
+          "direction_signal": true
+        },
+        {
+          "title": "DL이앤씨, 美 엑스에너지와 ’SMR 표준화 설계’ 계약",
+          "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE16U1JyUVNacnE4Ri1hbHVfdEk4am84OGJkNjlsZHFLOUdDOWxkUjJVS3RaWnd5S09JekxBZzRJZ0s0ZXNzWEtvRE52eGhwNWdBRXVPVW1jU0Y0Wlc2ZDlJOTBOXzBKaUk?oc=5",
+          "source": "연합뉴스TV",
+          "published": "2026.03.25",
+          "summary": "DL이앤씨, 美 엑스에너지와 ’SMR 표준화 설계’ 계약 연합뉴스TV",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract",
+            "capex_energy"
+          ],
+          "matched_terms": [
+            "계약",
             "에너지"
           ],
           "direction_signal": true
@@ -2467,6 +2583,21 @@
           "source": "국제신문",
           "published": "2026.07.24",
           "summary": "롯데건설(주) 샤롯데봉사단 양삼사랑나눔팀, 부전1동에 선풍기 기탁 국제신문",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract"
+          ],
+          "matched_terms": [
+            "건설"
+          ],
+          "direction_signal": false
+        },
+        {
+          "title": "롯데건설, 오일근 신임 대표이사 선임… “부동산 개발 실무형 CEO”",
+          "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5pd3hNeFFIQWRyZHJUZzFNeFJyaEljN2doWkFtLW42VlNQc0FHNkdYbWp4QzQ4YUJSa2liUjhyRms5X3pRbTlObVVIUThBQkFJQmFBWW0wbi1qemx5REE?oc=5",
+          "source": "스마트투데이",
+          "published": "2025.11.26",
+          "summary": "롯데건설, 오일근 신임 대표이사 선임… “부동산 개발 실무형 CEO” 스마트투데이",
           "primary_category": "award_contract",
           "categories": [
             "award_contract"
@@ -2617,7 +2748,7 @@
       "articles": [
         {
           "title": "화성남양지주택조합, 쌍용건설과 MOU 체결, ‘사업 정상화’",
-          "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTFBldlY0a0dPUlVuM0NyZFV2MHhKUC1MZDhsS1BCTUROSlgteDRBaXNLbEJ2Q1ExcjVCV0tDSnhvT2laZw?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTFBhTFVTc29FUXRRQ2N3Vm8yTVQzWVM3SFJqYU5vczBnS2YtWXNUZW1LMDd2NlNBb1FkVVBxYVAzRE1ON0U?oc=5",
           "source": "화성인터넷신문",
           "published": "2026.06.06",
           "summary": "화성남양지주택조합, 쌍용건설과 MOU 체결, ‘사업 정상화’ 화성인터넷신문",
@@ -2631,21 +2762,6 @@
             "지주"
           ],
           "direction_signal": true
-        },
-        {
-          "title": "과천 막계동 특별계획구역 개발사업 계획 접수 최종 마감...아주대병원 및 차병원 등 2개 컨소시엄 참여",
-          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5LVENXSWs4ZXFSV3FrV2wwbzVkaDFZa2Zjb3ZvOGp0b0xhdGhDMXRHQTY0WTNYbk9Rdzg1djNjUHl3WVloMll1SV9YYm1PM2ZLU1JyOFVPcW9YTmxfWDlyU2hSbzBQcUFTWkdxOEdoUQ?oc=5",
-          "source": "중부일보",
-          "published": "2025.08.19",
-          "summary": "과천 막계동 특별계획구역 개발사업 계획 접수 최종 마감...아주대병원 및 차병원 등 2개 컨소시엄 참여 중부일보",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract"
-          ],
-          "matched_terms": [
-            "개발사업"
-          ],
-          "direction_signal": false
         },
         {
           "title": "'과천 막계동 특별계획구역 개발사업' 아주대병원 컨소시엄 선정",
@@ -2673,7 +2789,23 @@
       ],
       "source_name": "Google News",
       "source_url": "https://news.google.com/",
-      "articles": []
+      "articles": [
+        {
+          "title": "[0811개장체크] 美 증시, 반도체주 자금 조달 부담 및 차익실현 매물 출회",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5pQmtNLTlkalhVbnhyU3BpeVQ0VkJ0ZnNaMmN0eWt0bjEwSE82MWdSSWhiZDVVNE9fZUZ4ODVIMDFxYWJ2bFF5Q1JxLVZVcVppblN1MjBXdUt5UjRlZ055ZFNVRjNVbUx1TmtLN1dFYTJzSS1JTGc?oc=5",
+          "source": "인포스탁데일리",
+          "published": "2026.08.11",
+          "summary": "[0811개장체크] 美 증시, 반도체주 자금 조달 부담 및 차익실현 매물 출회 인포스탁데일리",
+          "primary_category": "new_business_expansion",
+          "categories": [
+            "new_business_expansion"
+          ],
+          "matched_terms": [
+            "반도체"
+          ],
+          "direction_signal": true
+        }
+      ]
     },
     {
       "company": "에스케이에코플랜트(주)",
@@ -2685,6 +2817,60 @@
       "source_name": "Google News",
       "source_url": "https://news.google.com/",
       "articles": [
+        {
+          "title": "까뮤이앤씨, SK에코플랜트와 664억 원대 청주 신축공사 수주→수주 기반 강화",
+          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1fclFnaWVUZlI5al9kdWhIMEtsVTFsTWVkSDdLel9TTUxKMkp2Y28tTVFxV3Vlc3FPRlVGVzRhSmZNYldHa0ZEZmdZcTM2ZTRfd0lTV2pFZHVBQk1paGVDb1FCcF9UYWE5cWxjNGVEZ2ZxQQ?oc=5",
+          "source": "톱스타뉴스",
+          "published": "2026.07.07",
+          "summary": "까뮤이앤씨, SK에코플랜트와 664억 원대 청주 신축공사 수주→수주 기반 강화 톱스타뉴스",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract",
+            "new_business_expansion"
+          ],
+          "matched_terms": [
+            "수주",
+            "공사",
+            "플랜트"
+          ],
+          "direction_signal": true
+        },
+        {
+          "title": "윈하이텍, 에스케이에코플랜트와 105억원 규모 용인 IBL FAB 신축공사 계약 체결",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE0tZHZZNWZNUmlyUGFIQjJPVS1SVmVjT3I3bmZUU0JyUW05bi0tWFRMTERwcGhtZjk1Q00tU3BNV05hVU5MVUc2UEFHamtOMl9TdkptOE1XcWdXdF8zbEUySWZma3IwN1ZOZ0g3WW1XT3VDd00?oc=5",
+          "source": "디지털투데이",
+          "published": "2026.07.27",
+          "summary": "윈하이텍, 에스케이에코플랜트와 105억원 규모 용인 IBL FAB 신축공사 계약 체결 디지털투데이",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract",
+            "new_business_expansion"
+          ],
+          "matched_terms": [
+            "계약",
+            "공사",
+            "플랜트"
+          ],
+          "direction_signal": true
+        },
+        {
+          "title": "우진아이엔에스 수주공시 - 용인 Cluster 1기 Ph-2 OBL Ph-2 HVAC&소방공사- 1 152.5억원 (매출액대비 9.27 %)",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9hb1NRd3AyOWtyTGFHNjJmWjRnMWlLMEQ5NVg0b2pITXZ6MmtBRGhPdVlmLUdyUGhrQ3JSN05uNF9BVV9JWk1kQnNpMVlJSTByRjNXMnlKM1dJUQ?oc=5",
+          "source": "한국경제",
+          "published": "2026.06.22",
+          "summary": "우진아이엔에스 수주공시 - 용인 Cluster 1기 Ph-2 OBL Ph-2 HVAC&소방공사- 1 152.5억원 (매출액대비 9.27 %) 한국경제",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract",
+            "performance_management"
+          ],
+          "matched_terms": [
+            "수주",
+            "공사",
+            "매출"
+          ],
+          "direction_signal": false
+        },
         {
           "title": "SK오션플랜트 최대주주 에스케이에코플랜트, 보유 주식등의 비율 1.98%p 감소…총 지분율 35.62%",
           "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9ZRGFLaGRpSE5weHRzZHNFN0FPdHZ3cFd1c0dYWXBaTVRjVFNQdWxpNm1xMlFPOThRSVVEZlBxd2FkbjRnM0NLMTVUWExoX3o2eVU5UFd3NEl4Rkk3cHNMUUhHa1RyZzFYQ25sLVBTSmMzYms?oc=5",
@@ -2715,60 +2901,6 @@
             "계약"
           ],
           "direction_signal": false
-        },
-        {
-          "title": "까뮤이앤씨 수주공시 - SK Hynix 청주 P&T7 신축 Project 중 PC공사 2공구 664억원 (매출액대비 22.3 %)",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE45Zm12Ym03YjRkX3RlM3N3ei1KcGJseUJRQUpHWHFOTGcwYlA1bTJqZlo0bEFfZmlJSjFMZV82bFFZZGJuYzViSHllcHJDMmJHMXJITGxsSjhBUQ?oc=5",
-          "source": "한국경제",
-          "published": "2026.07.07",
-          "summary": "까뮤이앤씨 수주공시 - SK Hynix 청주 P&T7 신축 Project 중 PC공사 2공구 664억원 (매출액대비 22.3 %) 한국경제",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract",
-            "performance_management"
-          ],
-          "matched_terms": [
-            "수주",
-            "공사",
-            "매출"
-          ],
-          "direction_signal": false
-        },
-        {
-          "title": "윈하이텍, 에스케이에코플랜트와 105억원 규모 용인 IBL FAB 신축공사 계약 체결",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE0tZHZZNWZNUmlyUGFIQjJPVS1SVmVjT3I3bmZUU0JyUW05bi0tWFRMTERwcGhtZjk1Q00tU3BNV05hVU5MVUc2UEFHamtOMl9TdkptOE1XcWdXdF8zbEUySWZma3IwN1ZOZ0g3WW1XT3VDd00?oc=5",
-          "source": "디지털투데이",
-          "published": "2026.07.27",
-          "summary": "윈하이텍, 에스케이에코플랜트와 105억원 규모 용인 IBL FAB 신축공사 계약 체결 디지털투데이",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract",
-            "new_business_expansion"
-          ],
-          "matched_terms": [
-            "계약",
-            "공사",
-            "플랜트"
-          ],
-          "direction_signal": true
-        },
-        {
-          "title": "우진아이엔에스, 에스케이에코플랜트와 152억5100만원 규모 공사 계약 체결",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE53ekI5WXFwMnRHNldGU0FONUNoQ1gzLV9mTkxsY2pCVG85N3BhTWp2WE9rb2VfbVhPQ3M2N3JhRFFHclA2NXQ2MDdrREVXY25PeHAyZDdRbFZmTnBiRTc5RGFLV0J5N2VxcmViQUNxQkZKZkU?oc=5",
-          "source": "디지털투데이",
-          "published": "2026.06.22",
-          "summary": "우진아이엔에스, 에스케이에코플랜트와 152억5100만원 규모 공사 계약 체결 디지털투데이",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract",
-            "new_business_expansion"
-          ],
-          "matched_terms": [
-            "계약",
-            "공사",
-            "플랜트"
-          ],
-          "direction_signal": true
         }
       ]
     },
@@ -2792,7 +2924,25 @@
       ],
       "source_name": "Google News",
       "source_url": "https://news.google.com/",
-      "articles": []
+      "articles": [
+        {
+          "title": "자연과환경, 평택고덕지구 공동주택 수주→매출 기반 확대 기대",
+          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5SVHhxSW8xNnI3akpobGN5UDJsWmVtQ3c3RERwTUdRNXZRZjFBRXdibDdfZ0FFN0NHSUJmdVg4RFNxQ3FLQTJxS2k0bHUtSzJyYXhsbmNuVTE4SDRUZXM5MVV3bmppMHh2QWtWVnhVOE1QQQ?oc=5",
+          "source": "톱스타뉴스",
+          "published": "2026.07.23",
+          "summary": "자연과환경, 평택고덕지구 공동주택 수주→매출 기반 확대 기대 톱스타뉴스",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract",
+            "performance_management"
+          ],
+          "matched_terms": [
+            "수주",
+            "매출"
+          ],
+          "direction_signal": false
+        }
+      ]
     },
     {
       "company": "제일건설(주)",
@@ -2820,6 +2970,23 @@
           "direction_signal": false
         },
         {
+          "title": "평택 주택시장 거래량 증가, 제일건설(주) '지제역 반도체밸리 풍경채 어바니티' 입주",
+          "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFB1WFlFSFAteWNYME1nLU9oOTB4X1JycmR2TndBUHZsWlZfdWgtcXNBRzA1Yjd4TVRxQVFINC05ZDZWWXFHT3c?oc=5",
+          "source": "v.daum.net",
+          "published": "2026.04.30",
+          "summary": "평택 주택시장 거래량 증가, 제일건설(주) '지제역 반도체밸리 풍경채 어바니티' 입주 v.daum.net",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract",
+            "new_business_expansion"
+          ],
+          "matched_terms": [
+            "건설",
+            "반도체"
+          ],
+          "direction_signal": true
+        },
+        {
           "title": "조경 실적 1위는 다르네~ 제일건설(주) ‘지제역 반도체밸리 풍경채 어바니티’ 공원형 조경 구현",
           "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9YQjBpN2tOUEFETVQ5Nlk2bkFWamdUWGcyUnlqYml6QmxCWjZhYnBKamk3cndid09yOWdtQlI4b3cyLXlWZXVpVDlQZFRjc2ZlZmMtRkdXRDFhY3RmR1p3RkQ4VUlwT3Fk0gFsQVVfeXFMTmItSUxIaV9VVFNWemwwMUl2YWRwRTJBbTZId25yVEZJWk1JVkE0WVB1ZFM1M1BCMWRILWFWUmkzZ2ZlZTVabUdnSzF2WDFyNVJmZk5WRjJxd2JPek1QUG1qQ2NBeXBPd3Z1YVBh?oc=5",
           "source": "리얼캐스트",
@@ -2834,23 +3001,6 @@
           "matched_terms": [
             "건설",
             "실적",
-            "반도체"
-          ],
-          "direction_signal": true
-        },
-        {
-          "title": "제일건설(주) ‘지제역 반도체밸리 풍경채 어바니티’ 입주 개시..커뮤니티 시설 본격 운영",
-          "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE12bUl6LUFLSENwd1lBY3lrQmUwUkMtS0xZTmZJOGpzZGVWRzhLNHdkMjM3VmpzOUFkWGJhUHZKak9VbE9OM25mVmlZRW5vYXc?oc=5",
-          "source": "v.daum.net",
-          "published": "2026.04.01",
-          "summary": "제일건설(주) ‘지제역 반도체밸리 풍경채 어바니티’ 입주 개시..커뮤니티 시설 본격 운영 v.daum.net",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract",
-            "new_business_expansion"
-          ],
-          "matched_terms": [
-            "건설",
             "반도체"
           ],
           "direction_signal": true
@@ -2917,93 +3067,6 @@
       "articles": []
     },
     {
-      "company": "중흥토건(주)",
-      "aliases": [
-        "중흥토건(주)",
-        "중흥토건",
-        "주"
-      ],
-      "source_name": "Google News",
-      "source_url": "https://news.google.com/",
-      "articles": [
-        {
-          "title": "중흥건설·중흥토건, 상호협력평가 동반 하락…상생 성적표 '흔들'",
-          "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9hZFVZVEtzTEtpY1BrS1l6QjhBQXNnZXdXbXhkc0xDUno4al84bHp2MTludkY4dV9pZzdyamZrdEZQLWhBOVFSQ3M1WjU3cThFeUNTTXVfc2F3NDYxZ2c?oc=5",
-          "source": "asiatime.co.kr",
-          "published": "2026.07.02",
-          "summary": "중흥건설·중흥토건, 상호협력평가 동반 하락…상생 성적표 '흔들' asiatime.co.kr",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract"
-          ],
-          "matched_terms": [
-            "건설"
-          ],
-          "direction_signal": false
-        },
-        {
-          "title": "중흥토건, 중흥건설에 704억1300만원 운영자금 대여",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE13bUkzM21DeG54TmNIbDV0US1VT3FjVE5fXzlDUlVZMVgwOXV6VE9vNnNUb1dGOFBwLTNRdHdqME1qUm9sbUVpbmFvQVNhV0Q2anE5Tmt5ZHVZbl9OZ2VvdXpFXzhWdHdBTGlTYVdUck0yMm8?oc=5",
-          "source": "디지털투데이",
-          "published": "2026.06.26",
-          "summary": "중흥토건, 중흥건설에 704억1300만원 운영자금 대여 디지털투데이",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract"
-          ],
-          "matched_terms": [
-            "건설"
-          ],
-          "direction_signal": false
-        },
-        {
-          "title": "중흥토건, 계열사 새빛개발에 260억원 운영자금 대여",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE14d3lXU2xUMWw3dkZSUEF0cTJ5Ynoxb3VEYXdET0Z4bmdtaF83MkkzcWdQb3JId0d5VHYxNmZmTEljT2dPSXB3NDUzbC1xUnFHS1VEUEpXTENfckZNZXJmcldmV3VwaW9HTE92aVEtNjlic2M?oc=5",
-          "source": "디지털투데이",
-          "published": "2026.08.03",
-          "summary": "중흥토건, 계열사 새빛개발에 260억원 운영자금 대여 디지털투데이",
-          "primary_category": "group_investment",
-          "categories": [
-            "group_investment"
-          ],
-          "matched_terms": [
-            "계열사"
-          ],
-          "direction_signal": true
-        },
-        {
-          "title": "중흥건설산업, 중흥토건에 운영자금 1000억 대여 만기 연장",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1RZTdDZjFMMUN2SzlGY2s2d0JPTmg3anBDWWx4WEVvR1YwWDZMSkJDN0hvRmJEcDgya3F3Nzg1ZlJtLXpGeUloV01FZnlMcUY4V0hUYVFXOS1hOVpKVjZXcFNac3pjMkM2bFh6OF90QXF6Uk0?oc=5",
-          "source": "디지털투데이",
-          "published": "2026.05.26",
-          "summary": "중흥건설산업, 중흥토건에 운영자금 1000억 대여 만기 연장 디지털투데이",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract"
-          ],
-          "matched_terms": [
-            "건설"
-          ],
-          "direction_signal": false
-        },
-        {
-          "title": "브레인시티프로젝트금융투자, 중흥토건으로부터 80억원 담보 수취",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBUR2ZOZnRSUXFNV2Z3cHA3VG5pTk5BQTQ1ZERISkd6UzBpdEFtTXhzQ0Npemsyb3RiTENvLWFwMngwUGNQaVo3cmJYMERFNkRvNWcyb1ZwblJFWklGLXRIbFlnZVdKSjRrZmZYdmliSnZhb1E?oc=5",
-          "source": "디지털투데이",
-          "published": "2026.07.21",
-          "summary": "브레인시티프로젝트금융투자, 중흥토건으로부터 80억원 담보 수취 디지털투데이",
-          "primary_category": "group_investment",
-          "categories": [
-            "group_investment"
-          ],
-          "matched_terms": [
-            "투자"
-          ],
-          "direction_signal": true
-        }
-      ]
-    },
-    {
       "company": "지에스건설(주)",
       "aliases": [
         "지에스건설(주)",
@@ -3033,18 +3096,38 @@
           "direction_signal": true
         },
         {
-          "title": "GS건설, 수도권 도시정비 2건 수주…올해 누적 5조원 돌파(종합)",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE56NndQMFB1eGVzVDdwWHJFbS1DQ1BrU2NBemJLX25rZFNia1NabWRoR1h5NV9HNzFNSFVHVGd1NmYwOXVXdTVEbjk3Q2VZemxCaHVMQXprSXd4N03SAWBBVV95cUxNNU5fbDk4ajE4LV9ZbW8xZnhra0RiNUVGUkZhcE9nNVNIYXhVVnBmSGZhb1VOcEN5ZXFvSElYbUdQdmtneTB1bXBNZ3E5UDlMUVVNLVVyY1VaZXBzaWNaRUc?oc=5",
-          "source": "연합뉴스",
-          "published": "2026.05.30",
-          "summary": "GS건설, 수도권 도시정비 2건 수주…올해 누적 5조원 돌파(종합) 연합뉴스",
+          "title": "10조 AI 데이터센터 뜬다…GS건설, 그룹 특수 '수혜'",
+          "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9pakZQeF9wNUJTVVhhNU90UzRVa2NXTXF1Y3RsYW1uQjNBa2VDdnBOcGE1RVVXSmZOOEQwTXVuRlRVZG1BZmwxQ29Gbm9NNkNGMFFr?oc=5",
+          "source": "경제타임스",
+          "published": "2026.07.10",
+          "summary": "10조 AI 데이터센터 뜬다…GS건설, 그룹 특수 '수혜' 경제타임스",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract",
+            "group_investment",
+            "new_business_expansion"
+          ],
+          "matched_terms": [
+            "건설",
+            "그룹",
+            "데이터센터"
+          ],
+          "direction_signal": true
+        },
+        {
+          "title": "10대 건설사 정비사업 30조 수주 코앞...현대건설·GS건설 '7조 클럽' 초박빙",
+          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE4tNUxubEQ1N1E1T25CUl9WNVQtYVBpdEtxY3lIQ21YSy1LZXpBWTFMRTBkRjNTc2tIYXhPSHd5TTZ6TndRNUV6OXAxRklUaDZtQjRmZURzamF4T2tqdmk0REdyUQ?oc=5",
+          "source": "더구루",
+          "published": "2026.07.24",
+          "summary": "10대 건설사 정비사업 30조 수주 코앞...현대건설·GS건설 '7조 클럽' 초박빙 더구루",
           "primary_category": "award_contract",
           "categories": [
             "award_contract"
           ],
           "matched_terms": [
             "수주",
-            "건설"
+            "건설",
+            "정비사업"
           ],
           "direction_signal": false
         },
@@ -3067,28 +3150,11 @@
           "direction_signal": true
         },
         {
-          "title": "GS건설, 3조원 규모 신재생에너지 사업 추진",
-          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPRkZ2ODdPTDhZR1cxbWdVRUlpZVJlNDVaajdTc2pkYnhVLTZaYlFMNE1JT0Q5ZDdOUkhVUTNmNjhXLUJmQ3VubnVqbEVJeW5FWXQzbTk0TUY3NGJ0N2Mxak9GTkZDUUh1cWQwX2hsb0UycjNYUThEdWRLaENJVmpiZGE0TXpyRllf?oc=5",
-          "source": "조선일보",
-          "published": "2026.06.30",
-          "summary": "GS건설, 3조원 규모 신재생에너지 사업 추진 조선일보",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract",
-            "capex_energy"
-          ],
-          "matched_terms": [
-            "건설",
-            "에너지"
-          ],
-          "direction_signal": true
-        },
-        {
-          "title": "8조 수주 향하는 GS건설, 사업 다각화 속도 낸다",
-          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5xMXhKdEIxRXJoSjZ4d1JSMnprWkg2c08tNlo4R1JKSDlqWTVxZEdtMWdOS0NPTmZ3cE16QnpLd2lpdUt6V21PWnd3SXBxbGRIeVdoRlpUQTZjRHE1OEd2eDEwWdIBZ0FVX3lxTFA2WnBlck1JV2FxdGZKcHRPdHBUeDdVdXZJcUNtaGxSRGhiR192bkRTN29EMXA3b09NVFRkSU4yMDBIWDlKeDdDMVlVOW1MRGR2UzJMbjFDbXd3bzZnYkxIdXFIa1gzWFE?oc=5",
-          "source": "리버티코리아포스트",
-          "published": "2026.06.05",
-          "summary": "8조 수주 향하는 GS건설, 사업 다각화 속도 낸다 리버티코리아포스트",
+          "title": "GS건설, 정부 3대 메가프로젝트 '최대 수혜'…\"10조원 이상의 초대형 데이터센터 수주 임박\"",
+          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1fajdaNzVTN2tHeGVLMjhERHMwQ2dUSDZEazBhb1ZKRWNGcGYxRTJ2N1YwNG91N2VMRVlWeEtBREc1Q1JYc0dncjVkUi1XVVNXV0RDdTNtemU3TnVkWDA5dVllOA?oc=5",
+          "source": "프라임경제",
+          "published": "2026.07.01",
+          "summary": "GS건설, 정부 3대 메가프로젝트 '최대 수혜'…\"10조원 이상의 초대형 데이터센터 수주 임박\" 프라임경제",
           "primary_category": "award_contract",
           "categories": [
             "award_contract",
@@ -3097,7 +3163,7 @@
           "matched_terms": [
             "수주",
             "건설",
-            "사업 다각화"
+            "데이터센터"
           ],
           "direction_signal": true
         }
@@ -3115,7 +3181,7 @@
           "title": "안정호 케이워터기술 신임 대표이사 \"100년 경영 토대 마련할 것\"",
           "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBsX0UxbC1LSktieVpfb2tDUUdDWmJqX1ZaNm55aXJURWdyNkFhM2UxeVgwdHFpbVZFVHlfSGtIRFdIMVhWcm0tSzg1NmRPMWhHYk9icTc2TVpqZnJQZE5vbGlsZW5PcTN3czZhT0Vn?oc=5",
           "source": "cctoday.co.kr",
-          "published": "2026.03.12",
+          "published": "2026.03.13",
           "summary": "안정호 케이워터기술 신임 대표이사 \"100년 경영 토대 마련할 것\" cctoday.co.kr",
           "primary_category": "performance_management",
           "categories": [
@@ -3154,11 +3220,26 @@
       "source_url": "https://news.google.com/",
       "articles": [
         {
-          "title": "동아지질 수주공시 - 시흥-인천지역 전기공급시설 전력구공사(신시흥-신송도 2차)수직구 및 쉴드TBM공사(2차구간) 616억원 (매출액대비 15.7 %)",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1jV3UtS19FWkJnSlgwZDB1WVdxZ0tfdDV4YkhaeGdHZWNBeWZvZFduVEhKR0tCNHB4R2tIdUQtZFo3d3k4LTJKMV96T042dHJJSE50UGlDTktFUQ?oc=5",
+          "title": "코오롱글로벌(주) 단일판매ㆍ공급계약체결",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE15OWxvM1NOSzFqQi1pNmd2bzh5UkVYSUtpcElVdTNBR3RFcVdOZ2YwaW5sVW1RSGtYMjlxZlAwUmpvc2hlZ1ZucEZNVHJyTGJvdXJPSkJRMWgzdw?oc=5",
+          "source": "매일경제 마켓",
+          "published": "2025.12.18",
+          "summary": "코오롱글로벌(주) 단일판매ㆍ공급계약체결 매일경제 마켓",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract"
+          ],
+          "matched_terms": [
+            "계약"
+          ],
+          "direction_signal": false
+        },
+        {
+          "title": "동아지질 수주공시 - 용인·화성지역 전기공급시설 전력구공사(신기흥분기 2차)토공 및 구조물(쉴드TBM) 675.9억원 (매출액대비 14.5 %)",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE11V1VESFJpam0yTno5aF85YlBoVE40MjlPOTNILWtwNTBLU0kwS1VWRVpCRHZxUFJNODRwRWtkai1Ib0tVVTlWQXNpT1NYaGtYSVhJLU5fMzZ2dw?oc=5",
           "source": "한국경제",
-          "published": "2025.08.29",
-          "summary": "동아지질 수주공시 - 시흥-인천지역 전기공급시설 전력구공사(신시흥-신송도 2차)수직구 및 쉴드TBM공사(2차구간) 616억원 (매출액대비 15.7 %) 한국경제",
+          "published": "2026.04.09",
+          "summary": "동아지질 수주공시 - 용인·화성지역 전기공급시설 전력구공사(신기흥분기 2차)토공 및 구조물(쉴드TBM) 675.9억원 (매출액대비 14.5 %) 한국경제",
           "primary_category": "award_contract",
           "categories": [
             "award_contract",
@@ -3189,26 +3270,11 @@
           "direction_signal": true
         },
         {
-          "title": "코오롱 자회사 코오롱글로벌, 퍼스트원홀딩스 채무보증 결정…2330억 규모",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBJbGlzNThZQ3hLeEc4ZGx5SWQzYXJYdTYyWFpaVHAyLVU1OG45SUpvTDg4cGM0MHRmQ2h0Vmx0ZjNHd0FrT1M0REh3WWNGMWZlbHM0N2lHZDNlZkNDc1hKU3AxNENhSURLa1V3SjFSZjlDREE?oc=5",
-          "source": "디지털투데이",
-          "published": "2026.02.27",
-          "summary": "코오롱 자회사 코오롱글로벌, 퍼스트원홀딩스 채무보증 결정…2330억 규모 디지털투데이",
-          "primary_category": "group_investment",
-          "categories": [
-            "group_investment"
-          ],
-          "matched_terms": [
-            "자회사"
-          ],
-          "direction_signal": true
-        },
-        {
-          "title": "동아지질 수주공시 - 용인·화성지역 전기공급시설 전력구공사(신기흥분기 2차)토공 및 구조물(쉴드TBM) 675.9억원 (매출액대비 14.5 %)",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE11V1VESFJpam0yTno5aF85YlBoVE40MjlPOTNILWtwNTBLU0kwS1VWRVpCRHZxUFJNODRwRWtkai1Ib0tVVTlWQXNpT1NYaGtYSVhJLU5fMzZ2dw?oc=5",
+          "title": "동아지질 수주공시 - 시흥-인천지역 전기공급시설 전력구공사(신시흥-신송도 2차)수직구 및 쉴드TBM공사(2차구간) 616억원 (매출액대비 15.7 %)",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1jV3UtS19FWkJnSlgwZDB1WVdxZ0tfdDV4YkhaeGdHZWNBeWZvZFduVEhKR0tCNHB4R2tIdUQtZFo3d3k4LTJKMV96T042dHJJSE50UGlDTktFUQ?oc=5",
           "source": "한국경제",
-          "published": "2026.04.09",
-          "summary": "동아지질 수주공시 - 용인·화성지역 전기공급시설 전력구공사(신기흥분기 2차)토공 및 구조물(쉴드TBM) 675.9억원 (매출액대비 14.5 %) 한국경제",
+          "published": "2025.08.29",
+          "summary": "동아지질 수주공시 - 시흥-인천지역 전기공급시설 전력구공사(신시흥-신송도 2차)수직구 및 쉴드TBM공사(2차구간) 616억원 (매출액대비 15.7 %) 한국경제",
           "primary_category": "award_contract",
           "categories": [
             "award_contract",
@@ -3301,6 +3367,21 @@
             "실적"
           ],
           "direction_signal": false
+        },
+        {
+          "title": "[창립 32주년] 한국건설엔지니어링협회, ‘건설엔지니어링의 날’ 성료… 대가현실화·불공정 제도 개선 및 건설기술 발전 힘모은다",
+          "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE11bUQ2dWhHcENHUmxueFpGMWtweGhTaGpyN2FrNjNSUUx4c3BtSFNUcE9mcmFGSm1lZnhEOENMb0ZxQUpuSGxYSDJibFVUUlRuUzIwTWxia2VVdTZQSmJSZHZIVmo?oc=5",
+          "source": "국토일보",
+          "published": "2025.11.05",
+          "summary": "[창립 32주년] 한국건설엔지니어링협회, ‘건설엔지니어링의 날’ 성료… 대가현실화·불공정 제도 개선 및 건설기술 발전 힘모은다 국토일보",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract"
+          ],
+          "matched_terms": [
+            "건설"
+          ],
+          "direction_signal": false
         }
       ]
     },
@@ -3315,49 +3396,17 @@
       "source_url": "https://news.google.com/",
       "articles": [
         {
-          "title": "한신공영, 폭염·장마 대응 강화…전재식 대표 현장 안전점검",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBsSTlnVlVxUHQ1WVBzcFlwZ2FvbzdoVkhaeFI3LWFFRGtYVHRGWEZBVVh2cmstSEF6bGdsaHhlaGdUV1NWa2x5cHpkVUwydFZSTGxRendOcHdPQQ?oc=5",
-          "source": "브릿지경제",
-          "published": "2026.07.16",
-          "summary": "한신공영, 폭염·장마 대응 강화…전재식 대표 현장 안전점검 브릿지경제",
-          "primary_category": "risk_safety",
-          "categories": [
-            "risk_safety"
-          ],
-          "matched_terms": [
-            "안전"
-          ],
-          "direction_signal": false
-        },
-        {
           "title": "의왕 우성4차 가로정비주택정비사업 본궤도",
           "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9LUDhNWVZESlNBVVgyV3ltT01xMVFmU1dOb0VvUkFoRFBheVpRclhjTUJGUGJHRVdaOTh5X3VoQ1ZnRjZ6ZDl0anlBakRJRzk5M1NiamJCMGlUUXZNMG9vd2JLbXBZUUFCbTU3VTJSWEg?oc=5",
-          "source": "incheonilbo.com",
+          "source": "인천일보",
           "published": "2025.11.11",
-          "summary": "의왕 우성4차 가로정비주택정비사업 본궤도 incheonilbo.com",
+          "summary": "의왕 우성4차 가로정비주택정비사업 본궤도 인천일보",
           "primary_category": "award_contract",
           "categories": [
             "award_contract"
           ],
           "matched_terms": [
             "정비사업"
-          ],
-          "direction_signal": false
-        },
-        {
-          "title": "한신공영, 폭염·호우 대비 안전관리 점검…전재식 대표 현장 안전경영 강화 |",
-          "url": "https://news.google.com/rss/articles/CBMixAJBVV95cUxOd0wzemxBNWh5UEV6Ui1oQ3NEZDQ0NWNhRnBvc01pNng5dFlnRmhBZzktSmhYVENLUkRKcHFjYUM2QzZtTWt5cUR6Zk1hSHU4c3FwU0ZBbmFPMlN6emtsZzA1OVYtSFNmbEJQdnpZOVpSZ3hWelpoT2FBZUVCdWVNOXRKRi1UckRJX2VGUVcwYl9yZE1pTW1ackRPQVp2VEFGQ2RxQnJGcUQxWWlrMTBiMGZjOVphcXN6OVhwTFlQUGNVVGRTMFRHaVczLU1uenUyZWVTczhScmVkSlpEX1FkRlplYjJ4SHZrS0xTMmlrU1BYOUkyVjVvSEl3Zi1FOTFpUlg2eDdrTWNYbVd1NEdsUGhNMHdRRzRrRmRHM2JiWmkwbENzY2twQXZILUMxMkVIaFNPeW5fcS10aV9iM2FwUEVNZmQ?oc=5",
-          "source": "헤럴드경제 미주판",
-          "published": "2026.07.16",
-          "summary": "한신공영, 폭염·호우 대비 안전관리 점검…전재식 대표 현장 안전경영 강화 | 헤럴드경제 미주판",
-          "primary_category": "performance_management",
-          "categories": [
-            "performance_management",
-            "risk_safety"
-          ],
-          "matched_terms": [
-            "경영",
-            "안전"
           ],
           "direction_signal": false
         }
@@ -3403,6 +3452,36 @@
       "source_url": "https://news.google.com/",
       "articles": [
         {
+          "title": "현대건설(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBrWXYyT1NTbmRJcGpMTXoyLVlFMkJmYmZicDlJaGJnNVp1NTlRUVBrU2Q1aXM2ekFhS0ZnbWl4RmctaU1mZ3VseG40MHVLbkhRZVRlXzdseExTQQ?oc=5",
+          "source": "매일경제 마켓",
+          "published": "2026.02.20",
+          "summary": "현대건설(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승) 매일경제 마켓",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract"
+          ],
+          "matched_terms": [
+            "건설"
+          ],
+          "direction_signal": false
+        },
+        {
+          "title": "[단독] 현대건설, (주)한화와 컨소로 '압구정5구역' 재건축한다",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9IVHk3SkJNYlZHMkhpM3dhdWw5OHJGWlo1UU9MZWJZdFhwb0lvUklsalpGT2NQNktmNHJOUWphVnpJZHBxTC1PZDA2aHZ6ZktlWkpKRnZweTFoMklTWDVMQVlyaVViT3oyWUd4Mmw4dHE?oc=5",
+          "source": "시장경제신문",
+          "published": "2026.04.24",
+          "summary": "[단독] 현대건설, (주)한화와 컨소로 '압구정5구역' 재건축한다 시장경제신문",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract"
+          ],
+          "matched_terms": [
+            "건설"
+          ],
+          "direction_signal": false
+        },
+        {
           "title": "5,277억 원 포천 양수발전 공사, 현대건설 품에",
           "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9OdjdHS00zLUl5OENnTWpYMk9oYXhSYU13SXUwZmV6V21DWDBxNTZDdkQ3Vm1nZXllRi1zcHNSc0JPd1pJSG5rSENMZERjVi1POElBcGUtNXFZd25yVnVCS3oyTTFZWFE?oc=5",
           "source": "교수신문",
@@ -3419,24 +3498,6 @@
           "direction_signal": false
         },
         {
-          "title": "한수원 포천양수 1,2호기 토건 공사, 현대건설 공동수급체 낙찰",
-          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE45RWxwN1hsU0lucXRFeXhrcTJaMTZ1d1FlOU96Rk9zaHNEMGxlZ3gzd045b1g4U3hDdHAxemFDR2F0VjBSZ09HY0hUTHkyODQ2U2xERUJWR1ltYThBd05oNEVzRTdidFZEbm0yb9IBcEFVX3lxTFB1b1RMakF2aTJodmJDNXFPSU9FZllCbFdIcXA4SVc1b3hmaDBBcWIzYjJYd0pfQ09UeS1PYzloYjJyUUphc1VNeEhCM19ueGdrdlFyY1Myd3VhYjdoWGwwV2I1ZThjR21fWEZERTJNWEI?oc=5",
-          "source": "에너지플랫폼뉴스",
-          "published": "2026.03.17",
-          "summary": "한수원 포천양수 1,2호기 토건 공사, 현대건설 공동수급체 낙찰 에너지플랫폼뉴스",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract",
-            "capex_energy"
-          ],
-          "matched_terms": [
-            "공사",
-            "건설",
-            "에너지"
-          ],
-          "direction_signal": true
-        },
-        {
           "title": "[속보]‘단군 이래 최대’ 압구정 3구역 재건축...현대건설 단독참여로 1차 유찰",
           "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE93aWd1ZktidlAtbi1WMC1Jc2l5V2J4VF9VM0dtd3JUelR6ai1ENlpLaXFyUWE0YlJ2LXFRNnhWZmtMdm90WlBaa3pab1M3QlhLVWZKOUlSZXRRU0E5UTBTMjhjQTJwTG9oM1VVU1Ftc0s?oc=5",
           "source": "하우징타임즈",
@@ -3447,22 +3508,6 @@
             "award_contract"
           ],
           "matched_terms": [
-            "건설"
-          ],
-          "direction_signal": false
-        },
-        {
-          "title": "현대건설, '찬성 59%'로 압구정5구역 수주",
-          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE12NzRPZ0dqaVZETmt0Vm9yUzBHWDhqVWYyOENIOWpwdHVoY2RUYlVTNFd2RWdLbG5uT2hxTFh0VjRtUlNrbTV0M2NzR0toUmxCVTlSaFFzMS1UMWtkV3lLZlZxVGZIS0ZkUV9Wd0lHSUI?oc=5",
-          "source": "시장경제신문",
-          "published": "2026.05.30",
-          "summary": "현대건설, '찬성 59%'로 압구정5구역 수주 시장경제신문",
-          "primary_category": "award_contract",
-          "categories": [
-            "award_contract"
-          ],
-          "matched_terms": [
-            "수주",
             "건설"
           ],
           "direction_signal": false
@@ -3495,20 +3540,22 @@
       "source_url": "https://news.google.com/",
       "articles": [
         {
-          "title": "현대엔지니어링, 안전·품질 우수 협력업체 시상 및 교육 진행",
+          "title": "현대엔지니어링, 안전·품질 우수 협력업체 시상 및 교육 진행 | 뉴스 | 현대자동차그룹",
           "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOOF9oaVh4eEJYVlBGRERlUGpGODM4dmxBWnB4dDFWY0hwQ19WUVdYY2oyelNqZlNuckJIQjdkZF9IYm83WDJMMUpSaVd6SEI1ellJLUpacTlYNlZfd0N5alNxZjdxRnFORUZ6OHQ2SHVDZXNRTEphSzE1M2UwUnhhNXUzVGtydmJNdi1YbWRGVGx2eVlRdlFzU3RXR0poRHRxVHc?oc=5",
           "source": "Hyundai Motor Group",
           "published": "2026.04.30",
-          "summary": "현대엔지니어링, 안전·품질 우수 협력업체 시상 및 교육 진행 Hyundai Motor Group",
-          "primary_category": "risk_safety",
+          "summary": "현대엔지니어링, 안전·품질 우수 협력업체 시상 및 교육 진행 | 뉴스 | 현대자동차그룹 Hyundai Motor Group",
+          "primary_category": "group_investment",
           "categories": [
+            "group_investment",
             "risk_safety"
           ],
           "matched_terms": [
+            "그룹",
             "안전",
             "품질"
           ],
-          "direction_signal": false
+          "direction_signal": true
         },
         {
           "title": "현대엔지니어링, 주우정式 내실경영 첫 성적표···흑자전환 속 미회수액 부담↑",
@@ -3541,21 +3588,6 @@
           "direction_signal": false
         },
         {
-          "title": "현대엔지니어링, ‘공간·에너지 통합’ 새 가치체계 선포",
-          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5QZEVIejBJQ3dpTmdjYm5wQm5xakFURV80WThMZlBJaHI5VVpNVGlaZ1VMS19oQWd5Q0tEcFRHSGFvY1BGRHAzR29wdUhqa2dNeEo1bGlCaHpFQzZiQmVTdUdSUFRnMUZRbnlzRHhHNznSAXRBVV95cUxQd0FhUXpsSXRNWWhvMHMyODBDY1Ryb2w0TFFKc3FmcU9uOWRiRzI0Ui1fTV9QRGxxQVU4MUVaTS1WX3RLbHIzcWlNblQteEVnOUJMb1NuRTJhZHlCRWNyT2YwR01KZWZ4Tm9aZ2tnS0I4Q3A2cg?oc=5",
-          "source": "포인트데일리",
-          "published": "2026.07.31",
-          "summary": "현대엔지니어링, ‘공간·에너지 통합’ 새 가치체계 선포 포인트데일리",
-          "primary_category": "capex_energy",
-          "categories": [
-            "capex_energy"
-          ],
-          "matched_terms": [
-            "에너지"
-          ],
-          "direction_signal": true
-        },
-        {
           "title": "현대엔지니어링 주우정은 잇단 '중대재해' 흔적 지워낼까, '수주 중단' 근신 중 이사회서 플랜트 출신 빠지고 안전책임자 등장",
           "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE43QVJpYzFNQzJNY0xYSW1NcUpXdS0yc0Z5eGxFY0djRTE2RTFNbUVGUUcxaUhaTnU0cWRvckc3T2tqeWlaSUV5MmlwWm9MQm8yQ05iNUtvbw?oc=5",
           "source": "허프포스트코리아",
@@ -3574,6 +3606,21 @@
             "중대재해"
           ],
           "direction_signal": true
+        },
+        {
+          "title": "[산재 제로 시대⑥] ‘산안법’ 뛰어넘은 현대엔지니어링, ‘안전’에 진심",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE11SFBEWW9SMHlGeFRSZEFTclJUYUY3dFFfWFItX1pBQl94U0pFRkdMUzhydWNUTHZJblhBSk9XUGxGODE2N3BZZk1yNXN5djUtUGJqLWNIMFctVWNQYVdkOTJQcWo5eER2N3dv0gFvQVVfeXFMUHhmc1dYMkQ3MkxmajNsRkQ4MkNQUUlNN2poaWsxcFJnalV2UlU1TzhBX2M1OEJJRU5RZ1VyNElGRlpJblBpZExGZnotQjkyYVV5Ul9xckxmUTh2V0s0NGhjU3pIQ1lHM0E4RzBPczZv?oc=5",
+          "source": "투데이신문",
+          "published": "2025.10.19",
+          "summary": "[산재 제로 시대⑥] ‘산안법’ 뛰어넘은 현대엔지니어링, ‘안전’에 진심 투데이신문",
+          "primary_category": "risk_safety",
+          "categories": [
+            "risk_safety"
+          ],
+          "matched_terms": [
+            "안전"
+          ],
+          "direction_signal": false
         }
       ]
     },
@@ -3603,6 +3650,21 @@
           "direction_signal": true
         },
         {
+          "title": "진흥기업, 효성중공업과 초고압변압기 공장 건축 계약 체결",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9nc0ZzUEpFdEN2Z0ptSzhZQkdMZkRNSTI5Zko1V2x5NDJhMFlkdU1yZGlzNzFFcS1zb0p4b1QxR0JDV3BmRDh0dnowb01qLWk0SFZMdktCaWtXZHZULW5UYllTOWtld2RUdmVfT1NqYjE5Nk0?oc=5",
+          "source": "디지털투데이",
+          "published": "2026.02.03",
+          "summary": "진흥기업, 효성중공업과 초고압변압기 공장 건축 계약 체결 디지털투데이",
+          "primary_category": "award_contract",
+          "categories": [
+            "award_contract"
+          ],
+          "matched_terms": [
+            "계약"
+          ],
+          "direction_signal": false
+        },
+        {
           "title": "APEC 참석 에너지 전문가들 효성중공업 창원공장 견학",
           "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE04a21oSnBIS3RpcHY5NW51RDdiVENRY3RSN3AyRVc5anNOaWpYbDhNV29hNnR1dXNpRUNiSEx2dGRWRDUzUXJJd0htRHpxSG1hS0VEOS1CNVpkZ1RqMC1vei1kWUcxOERU?oc=5",
           "source": "경남도민일보",
@@ -3616,21 +3678,6 @@
             "에너지"
           ],
           "direction_signal": true
-        },
-        {
-          "title": "효성중공업, 1분기 영업이익1523억2200만원… 전년 대비48.77% 증가",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFA3Qk9ldUN5TnMtU1kxeFQyazhQbU42NWJoZjlKT0NXc2hLZ1o0ME5pU2EtRi02Ykd1WmV6YjJydTM5TkpOZUhvUTlya21zZGxfT2dSMTJqRHVXNEhSWjJwSXZJbW1IYnlfSFRmUEpwUkFMS1E?oc=5",
-          "source": "디지털투데이",
-          "published": "2026.04.24",
-          "summary": "효성중공업, 1분기 영업이익1523억2200만원… 전년 대비48.77% 증가 디지털투데이",
-          "primary_category": "performance_management",
-          "categories": [
-            "performance_management"
-          ],
-          "matched_terms": [
-            "영업이익"
-          ],
-          "direction_signal": false
         },
         {
           "title": "효성중공업 주총서 '이사수 축소' 부결…경영권 방어막 약화하나",
@@ -3648,21 +3695,19 @@
           "direction_signal": false
         },
         {
-          "title": "효성 자회사 효성중공업, 미국 HICO와 765kV 변압기 공급 계약 체결",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5RMWtsdmo2bUtrdWZxZkJYQ09PQjdXbF84Zmxib0x4emw1MXBrT09QN2hSUlZZS0VKYldBQWloZkM2NDFnTkRsMVQ0RURadC1BaDRNdE5sVkxMalFhUVBfcHc4SldCdnBlYkZYMGFhTnp0Ums?oc=5",
-          "source": "디지털투데이",
-          "published": "2026.02.10",
-          "summary": "효성 자회사 효성중공업, 미국 HICO와 765kV 변압기 공급 계약 체결 디지털투데이",
-          "primary_category": "award_contract",
+          "title": "효성중공업, 1분기 영업이익1523억2200만원…전년 대비48.77% 증가",
+          "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFB1TWh0d0QtcExXUGtLOHYwYU1Xc2YzU1dFcW9KZU14MmZUTmZzeHhzeE1yVktVX2pjMW5FYndjWGUwY09HLXZWUzJyaklsYzFPTDFJ?oc=5",
+          "source": "네이트",
+          "published": "2026.04.24",
+          "summary": "효성중공업, 1분기 영업이익1523억2200만원…전년 대비48.77% 증가 네이트",
+          "primary_category": "performance_management",
           "categories": [
-            "award_contract",
-            "group_investment"
+            "performance_management"
           ],
           "matched_terms": [
-            "계약",
-            "자회사"
+            "영업이익"
           ],
-          "direction_signal": true
+          "direction_signal": false
         }
       ]
     }
