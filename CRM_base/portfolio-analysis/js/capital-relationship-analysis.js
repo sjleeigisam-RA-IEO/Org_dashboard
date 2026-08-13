@@ -28,7 +28,8 @@
 
   var FILTER_CONFIG = {
     search: { label: '검색어', property: 'searchText', type: 'search' },
-    partyClass: { label: '기관 대분류', property: 'partyClass', type: 'scalar' },
+    partyClass: { label: '유형', property: 'partyClass', type: 'scalar' },
+    partyOrigin: { label: '권역', property: 'partyOrigin', type: 'scalar' },
     baseAssetClass: { label: '기초자산', property: 'baseAssetClasses', type: 'array' },
     region: { label: '지역', property: 'regions', type: 'array' },
     vehicleType: { label: '투자기구', property: 'vehicleTypes', type: 'array' },
@@ -38,6 +39,7 @@
 
   var FILTER_ELEMENT_IDS = {
     partyClass: 'capitalPartyClassFilter',
+    partyOrigin: 'capitalPartyOriginFilter',
     baseAssetClass: 'capitalBaseAssetFilter',
     region: 'capitalRegionFilter',
     vehicleType: 'capitalVehicleTypeFilter',
@@ -49,6 +51,9 @@
     party_class: 'partyClass',
     beneficiary_class: 'partyClass',
     lender_class: 'partyClass',
+    party_origin: 'partyOrigin',
+    investor_origin: 'partyOrigin',
+    lp_scope: 'partyOrigin',
     base_asset_class: 'baseAssetClass',
     base_asset_classes: 'baseAssetClass',
     asset_type: 'baseAssetClass',
@@ -91,6 +96,7 @@
     return {
       search: '',
       partyClass: '',
+      partyOrigin: '',
       baseAssetClass: '',
       region: '',
       vehicleType: '',
@@ -194,6 +200,33 @@
     return text;
   }
 
+  function inferPartyOrigin(partyName, partyCategory) {
+    var name = normalizeText(partyName);
+    var category = normalizeText(partyCategory);
+    if (!name || /^(비공개|미정|투자자\d*|기관투자자|우리|I\.?O\.?IV|미확인 투자자)$/i.test(name)) return '확인 필요';
+    if (category === '해외기관') return '해외';
+    if (/(^|[^A-Z])(GIC|BLACKSTONE|MORGAN\s+STANLEY|INVESCO|ACTIS|NUVEEN|HSBC|M&G)([^A-Z]|$)/i.test(name)) return '해외';
+    if (/(PTE\.?\s*LTD|PRIVATE\s+LIMITED|S\.?\s*A\.?\s*R\.?\s*L|B\.?\s*V\.?|C\.?\s*V\.?|SICAV|BERMUDA|\sLIMITED\.?$)/i.test(name)) return '해외';
+    if (/^개인\([A-Z]/i.test(name)) return '해외';
+    if (/[가-힣]/.test(name)) return '국내';
+    return '확인 필요';
+  }
+
+  function normalizedPartyOrigin(value, partyName, partyCategory) {
+    var raw = searchToken(value);
+    if (['국내', '국내lp', 'domestic', 'korea', 'kr'].includes(raw)) return '국내';
+    if (['해외', '글로벌lp', 'global', 'foreign', 'overseas'].includes(raw)) return '해외';
+    if (['확인필요', '미확인', 'unknown', 'review'].includes(raw)) return '확인 필요';
+    return inferPartyOrigin(partyName, partyCategory);
+  }
+
+  function partyOriginDisplay(value, role) {
+    var origin = normalizedPartyOrigin(value, '', '');
+    if (origin === '국내') return role === 'lender' ? '국내 대주' : '국내 LP';
+    if (origin === '해외') return role === 'lender' ? '글로벌 대주' : '글로벌 LP';
+    return '확인 필요';
+  }
+
   function normalizePartyRow(row, index, sourceKind) {
     var role = normalizeRole(row);
     var partyName = normalizeText(pick(row, [
@@ -222,18 +255,24 @@
     ]).map(normalizedReviewStatus);
     if (reviewStatuses.length === 0) reviewStatuses = ['확정'];
 
+    var partyClass = normalizeText(pick(row, [
+      'party_class', 'broad_class', 'institution_class',
+      role === 'lender' ? 'lender_class' : 'beneficiary_class'
+    ], '미분류')) || '미분류';
+    var partyCategory = normalizeText(pick(row, [
+      'party_category', 'party_subcategory', 'institution_category', 'detailed_category',
+      role === 'lender' ? 'lender_cat' : 'beneficiary_cat'
+    ], '미분류')) || '미분류';
     var normalized = {
       role: role,
       partyId: partyId,
       partyName: partyName,
-      partyClass: normalizeText(pick(row, [
-        'party_class', 'broad_class', 'institution_class',
-        role === 'lender' ? 'lender_class' : 'beneficiary_class'
-      ], '미분류')) || '미분류',
-      partyCategory: normalizeText(pick(row, [
-        'party_category', 'party_subcategory', 'institution_category', 'detailed_category',
-        role === 'lender' ? 'lender_cat' : 'beneficiary_cat'
-      ], '미분류')) || '미분류',
+      partyClass: partyClass,
+      partyCategory: partyCategory,
+      partyOrigin: normalizedPartyOrigin(pick(row, [
+        'party_origin', 'investor_origin', 'lp_scope', 'domicile_scope'
+      ], ''), partyName, partyCategory),
+      domicileCountryCode: normalizeText(pick(row, ['domicile_country_code', 'party_country_code'], '')),
       committedAmount: committed,
       currentAmount: current,
       remainingAmount: remaining,
@@ -270,7 +309,9 @@
       normalized.partyName,
       normalized.partyId,
       normalized.partyClass,
-      normalized.partyCategory
+      normalized.partyCategory,
+      normalized.partyOrigin,
+      partyOriginDisplay(normalized.partyOrigin, normalized.role)
     ].concat(
       normalized.aliasNames,
       normalized.fundIds,
@@ -340,6 +381,8 @@
           partyName: row.partyName,
           partyClass: row.partyClass || '미분류',
           partyCategory: row.partyCategory || '미분류',
+          partyOrigin: row.partyOrigin || '확인 필요',
+          domicileCountryCode: row.domicileCountryCode || '',
           committedAmount: 0,
           currentAmount: 0,
           remainingAmount: 0,
@@ -363,7 +406,9 @@
           factCount: 0,
           snapshotDate: '',
           classValues: new Set(),
-          categoryValues: new Set()
+          categoryValues: new Set(),
+          originValues: new Set(),
+          countryCodeValues: new Set()
         });
       }
       var group = groups.get(key);
@@ -375,6 +420,8 @@
       group.snapshotDate = group.snapshotDate > row.snapshotDate ? group.snapshotDate : row.snapshotDate;
       group.classValues.add(row.partyClass || '미분류');
       group.categoryValues.add(row.partyCategory || '미분류');
+      group.originValues.add(row.partyOrigin || '확인 필요');
+      if (row.domicileCountryCode) group.countryCodeValues.add(row.domicileCountryCode);
       [
         'assetTypes', 'baseAssetClasses', 'regions', 'strategies', 'businessStages', 'vehicleTypes',
         'operationalStatuses', 'reviewStatuses', 'fundIds', 'fundNames', 'assetIds', 'assetNames',
@@ -387,15 +434,22 @@
     return Array.from(groups.values()).map(function (group) {
       var classValues = Array.from(group.classValues);
       var categoryValues = Array.from(group.categoryValues);
+      var originValues = Array.from(group.originValues);
+      var countryCodeValues = Array.from(group.countryCodeValues);
       if (classValues.length > 1) group.qualityFlags.push('classification_conflict');
       if (categoryValues.length > 1) group.qualityFlags.push('category_conflict');
+      if (originValues.length > 1) group.qualityFlags.push('origin_conflict');
       group.partyClass = classValues[0] || '미분류';
       group.partyCategory = categoryValues[0] || '미분류';
+      group.partyOrigin = originValues.length === 1 ? originValues[0] : '확인 필요';
+      group.domicileCountryCode = countryCodeValues.length === 1 ? countryCodeValues[0] : '';
       group.qualityFlags = unique(group.qualityFlags);
       group.searchText = unique([
         group.partyName,
         group.partyClass,
-        group.partyCategory
+        group.partyCategory,
+        group.partyOrigin,
+        partyOriginDisplay(group.partyOrigin, group.role)
       ].concat(
         group.partyIds,
         group.aliasNames,
@@ -410,6 +464,8 @@
       )).join(' ');
       delete group.classValues;
       delete group.categoryValues;
+      delete group.originValues;
+      delete group.countryCodeValues;
       return group;
     });
   }
@@ -439,6 +495,21 @@
     }
   }
 
+  async function safeFetchFirst(viewNames) {
+    var lastError = null;
+    for (var i = 0; i < viewNames.length; i += 1) {
+      try {
+        var rows = await fetchAllRows(viewNames[i]);
+        if (rows.length > 0 || i === viewNames.length - 1) {
+          return { view: viewNames[i], rows: rows, error: null };
+        }
+      } catch (error) {
+        lastError = error;
+      }
+    }
+    return { view: viewNames[viewNames.length - 1], rows: [], error: lastError };
+  }
+
   function maxSnapshotDate(rows) {
     return rows.reduce(function (latest, row) {
       return row.snapshotDate && row.snapshotDate > latest ? row.snapshotDate : latest;
@@ -451,9 +522,9 @@
     state.loading = true;
     state.loadErrors = [];
     state.loadPromise = Promise.all([
-      safeFetch('party_exposure_analysis_fact_v1'),
-      safeFetch('party_exposure_rankings_v1'),
-      safeFetch('party_exposure_facets_v1')
+      safeFetchFirst(['party_exposure_analysis_fact_v2', 'party_exposure_analysis_fact_v1']),
+      safeFetchFirst(['party_exposure_rankings_v2', 'party_exposure_rankings_v1']),
+      safeFetchFirst(['party_exposure_facets_v2', 'party_exposure_facets_v1'])
     ]).then(function (responses) {
       var factResponse = responses[0];
       var rankingResponse = responses[1];
@@ -473,7 +544,7 @@
         var dedupedFacts = dedupeFactRows(state.facts);
         state.results = aggregatePartyRows(dedupedFacts);
         state.source = 'fact';
-        state.sourceLabel = '현재 Fact';
+        state.sourceLabel = factResponse.view.endsWith('_v2') ? '현재 Fact · 권역분류' : '현재 Fact';
         state.snapshotDate = maxSnapshotDate(dedupedFacts);
       } else if (state.rankings.length > 0) {
         state.results = aggregatePartyRows(state.rankings);
@@ -603,6 +674,9 @@
 
   function populateFilterOptions() {
     populateSelect(FILTER_ELEMENT_IDS.partyClass, facetValuesFor('partyClass'), state.filters.partyClass);
+    populateSelect(FILTER_ELEMENT_IDS.partyOrigin, facetValuesFor('partyOrigin'), state.filters.partyOrigin, function (value) {
+      return partyOriginDisplay(value, state.role);
+    });
     populateSelect(FILTER_ELEMENT_IDS.baseAssetClass, facetValuesFor('baseAssetClass'), state.filters.baseAssetClass);
     populateSelect(FILTER_ELEMENT_IDS.region, facetValuesFor('region'), state.filters.region);
     populateSelect(FILTER_ELEMENT_IDS.vehicleType, facetValuesFor('vehicleType'), state.filters.vehicleType);
@@ -644,6 +718,7 @@
       if (!terms.every(function (term) { return haystack.includes(term); })) return false;
     }
     if (filters.partyClass && row.partyClass !== filters.partyClass) return false;
+    if (filters.partyOrigin && row.partyOrigin !== filters.partyOrigin) return false;
     if (filters.baseAssetClass && !containsValue(row.baseAssetClasses, filters.baseAssetClass)) return false;
     if (filters.region && !containsValue(row.regions, filters.region)) return false;
     if (filters.vehicleType && !containsValue(row.vehicleTypes, filters.vehicleType)) return false;
@@ -741,8 +816,10 @@
       var value = state.filters[key];
       return {
         key: key,
-        label: FILTER_CONFIG[key].label,
-        value: key === 'minimumAmount' ? formatInteger(value) + '백만원 이상' : value
+        label: key === 'partyOrigin' ? (state.role === 'lender' ? '대주 권역' : 'LP 권역') : FILTER_CONFIG[key].label,
+        value: key === 'minimumAmount'
+          ? formatInteger(value) + '백만원 이상'
+          : (key === 'partyOrigin' ? partyOriginDisplay(value, state.role) : value)
       };
     });
   }
@@ -788,7 +865,7 @@
         '<tr>',
         '<td class="capital-compare-cell"><input type="checkbox" data-capital-compare-id="' + escapeHtml(row.resultId) + '" aria-label="' + escapeHtml(row.partyName) + ' 비교 선택" ' + (selected ? 'checked' : '') + (disableCompare ? ' disabled' : '') + '></td>',
         '<td class="capital-rank-cell">' + formatInteger(start + index + 1) + '</td>',
-        '<td class="capital-name-cell"><button type="button" class="capital-party-drill" data-capital-party-id="' + escapeHtml(row.resultId) + '" aria-label="' + escapeHtml(row.partyName) + ' 연결 자산 목록 보기"><strong>' + escapeHtml(row.partyName) + '</strong><span>' + escapeHtml(row.partyCategory || '미분류') + '</span><b aria-hidden="true">›</b></button></td>',
+        '<td class="capital-name-cell"><button type="button" class="capital-party-drill" data-capital-party-id="' + escapeHtml(row.resultId) + '" aria-label="' + escapeHtml(row.partyName) + ' 연결 자산 목록 보기"><strong>' + escapeHtml(row.partyName) + '</strong><span>' + escapeHtml(row.partyCategory || '미분류') + ' · ' + escapeHtml(partyOriginDisplay(row.partyOrigin, row.role)) + '</span><b aria-hidden="true">›</b></button></td>',
         '<td><span class="capital-class-label">' + escapeHtml(row.partyClass || '미분류') + '</span></td>',
         '<td class="capital-amount-cell">' + escapeHtml(formatMillion(row.committedAmount)) + '</td>',
         '<td class="capital-amount-cell capital-current-amount">' + escapeHtml(formatMillion(row.currentAmount)) + '</td>',
@@ -830,7 +907,7 @@
       '<th scope="col"><span class="sr-only">비교</span></th>',
       '<th scope="col">순위</th>',
       '<th scope="col">' + escapeHtml(role.countLabel) + '명</th>',
-      '<th scope="col">대분류</th>',
+      '<th scope="col">' + escapeHtml(state.role === 'lender' ? '대주 유형' : '투자자 유형') + '</th>',
       '<th scope="col">' + escapeHtml(role.committedLabel) + '</th>',
       '<th scope="col">' + escapeHtml(role.currentLabel) + '</th>',
       '<th scope="col">' + escapeHtml(role.remainingLabel) + '</th>',
@@ -868,7 +945,7 @@
       '</div>',
       '<div class="capital-subtotal-table-wrap">',
       '<table class="capital-subtotal-table">',
-      '<thead><tr><th scope="col">기관 대분류</th><th scope="col">금액</th><th scope="col">비중</th></tr></thead>',
+      '<thead><tr><th scope="col">' + escapeHtml(state.role === 'lender' ? '대주 유형' : '투자자 유형') + '</th><th scope="col">금액</th><th scope="col">비중</th></tr></thead>',
       '<tbody>' + rows + '</tbody>',
       '<tfoot><tr><th scope="row">전체</th><td>' + escapeHtml(formatMillion(reconciliation.total.current)) + '</td><td>100%</td></tr></tfoot>',
       '</table>',
@@ -1018,7 +1095,8 @@
       '<div><span>자산</span><strong>' + formatInteger(assets.length) + '개</strong></div>',
       '<div><span>연결 펀드</span><strong>' + formatInteger(row.fundCount) + '개</strong></div>',
       '<div><span>' + escapeHtml(role.currentLabel) + '</span><strong>' + escapeHtml(formatMillion(row.currentAmount)) + '백만원</strong></div>',
-      '<div><span>분류</span><strong>' + escapeHtml(row.partyClass || '미분류') + ' · ' + escapeHtml(row.partyCategory || '미분류') + '</strong></div>'
+      '<div><span>분류</span><strong>' + escapeHtml(row.partyClass || '미분류') + ' · ' + escapeHtml(row.partyCategory || '미분류') + '</strong></div>',
+      '<div><span>' + (row.role === 'lender' ? '대주 권역' : 'LP 권역') + '</span><strong>' + escapeHtml(partyOriginDisplay(row.partyOrigin, row.role)) + (row.domicileCountryCode ? ' · ' + escapeHtml(row.domicileCountryCode) : '') + '</strong></div>'
     ].join('');
     document.getElementById('capitalBreakdownList').innerHTML = assets.length
       ? assets.map(renderPartyAssetRow).join('')
@@ -1180,6 +1258,11 @@
     state.page = 1;
     state.selectedIds.clear();
     state.filters.partyClass = '';
+    state.filters.partyOrigin = '';
+    var classLabel = document.getElementById('capitalPartyClassLabel');
+    var originLabel = document.getElementById('capitalPartyOriginLabel');
+    if (classLabel) classLabel.textContent = role === 'lender' ? '대주 유형' : '투자자 유형';
+    if (originLabel) originLabel.textContent = role === 'lender' ? '대주 권역' : '투자자 권역';
     syncRoleButtons();
     populateFilterOptions();
     writeFilters();
@@ -1244,7 +1327,7 @@
       return;
     }
     var headers = [
-      '순위', '역할', '기관명', '기관 대분류', '상세분류',
+      '순위', '역할', state.role === 'lender' ? '대주명' : '투자자명', '대분류', '세부분류', state.role === 'lender' ? '대주 권역' : 'LP 권역', '국가코드',
       role.committedLabel + '(백만원)', role.currentLabel + '(백만원)', role.remainingLabel + '(백만원)',
       '연결 펀드 수', '연결 자산 수', '기초자산', '지역', '전략', '개발/운영', '투자기구', '운용상태', '검토상태'
     ];
@@ -1256,6 +1339,8 @@
         row.partyName,
         row.partyClass,
         row.partyCategory,
+        partyOriginDisplay(row.partyOrigin, row.role),
+        row.domicileCountryCode,
         numberValue(row.committedAmount) / MILLION,
         numberValue(row.currentAmount) / MILLION,
         numberValue(row.remainingAmount) / MILLION,
@@ -1292,7 +1377,8 @@
       '<li><strong>에쿼티 투자자</strong> 약정액·투입액·미투입액을 사용합니다.</li>',
       '<li><strong>대주</strong> 약정액·실행액·미실행액을 사용합니다.</li>',
       '<li><strong>자산 속성</strong> 연결 자산이 조건에 해당하는 exposure를 선별하며, 다중 자산에 금액을 임의 배분하지 않습니다.</li>',
-      '<li><strong>부분합 검증</strong> 기관 대분류별 약정·현재·잔여 금액의 합이 전체와 같은지 매 조회마다 확인합니다.</li>',
+      '<li><strong>부분합 검증</strong> 투자자 또는 대주 유형별 약정·현재·잔여 금액의 합이 전체와 같은지 매 조회마다 확인합니다.</li>',
+      '<li><strong>투자자 권역</strong> 원천분류와 분리된 해석 축입니다. 에쿼티 투자자는 국내 LP·글로벌 LP, 대주는 국내 대주·글로벌 대주로 표시합니다.</li>',
       '</ul>'
     ].join('');
     overlay.classList.add('active');
