@@ -61,7 +61,7 @@
     region: { label: '지역', property: 'regions', type: 'array' },
     vehicleType: { label: '투자기구', property: 'vehicleTypes', type: 'array' },
     operationalStatus: { label: '운용상태', property: 'operationalStatuses', type: 'array' },
-    minimumAmount: { label: '최소금액', property: 'currentAmount', type: 'amount' }
+    minimumAmount: { label: '최소 약정액', property: 'committedAmount', type: 'amount' }
   };
 
   var FILTER_ELEMENT_IDS = {
@@ -113,7 +113,7 @@
     loadErrors: [],
     duplicateFactsSuppressed: 0,
     invalidContractRows: 0,
-    historyMetric: 'current',
+    historyMetric: 'committed',
     notice: null,
     hostKind: '',
     searchTimer: null,
@@ -306,6 +306,11 @@
       assetCount: numberValue(pick(row, ['asset_count', 'related_asset_count'], 0)),
       factCount: numberValue(pick(row, ['fact_count', 'exposure_count', 'row_count'], sourceKind === 'fact' ? 1 : 0)),
       snapshotDate: normalizeText(pick(row, ['base_date', 'snapshot_date', 'as_of_date', 'source_snapshot_date', 'latest_base_date'], '')),
+      commitmentYear: normalizeText(pick(row, ['commitment_cohort_year', 'commitment_year'], '')),
+      commitmentYearLabel: normalizeText(pick(row, ['commitment_cohort_year_label', 'commitment_year_label'], '')) || '미상',
+      commitmentDate: normalizeText(pick(row, ['commitment_cohort_date', 'commitment_date'], '')),
+      commitmentDateBasis: normalizeText(pick(row, ['commitment_date_basis'], '')),
+      commitmentDateQuality: normalizeText(pick(row, ['commitment_date_quality'], '')) || 'unresolved',
       exposureId: sourceKind === 'fact'
         ? normalizeText(pick(row, ['exposure_id', 'source_exposure_id', 'beneficiary_exposure_id', 'lender_exposure_id', 'id'], ''))
         : '',
@@ -521,11 +526,9 @@
     state.loading = true;
     state.loadErrors = [];
     state.loadPromise = Promise.all([
-      safeFetch('party_exposure_current'),
-      safeFetch('party_exposure_fact')
+      safeFetch('party_exposure_commitment_current')
     ]).then(function (responses) {
       var currentResponse = responses[0];
-      var historyResponse = responses[1];
       state.loadErrors = responses.filter(function (response) { return response.error; }).map(function (response) {
         return response.error.message;
       });
@@ -534,14 +537,11 @@
       var normalizedCurrent = (currentResponse.rows || []).map(function (row, index) {
         return normalizePartyRow(row, index, 'fact');
       });
-      var normalizedHistory = (historyResponse.rows || []).map(function (row, index) {
-        return normalizePartyRow(row, index, 'fact');
-      });
-      state.invalidContractRows = normalizedCurrent.concat(normalizedHistory).filter(function (row) {
+      state.invalidContractRows = normalizedCurrent.filter(function (row) {
         return !row.partyId;
       }).length;
       state.facts = normalizedCurrent.filter(function (row) { return Boolean(row.partyId); });
-      state.historicalFacts = dedupeFactRows(normalizedHistory.filter(function (row) {
+      state.historicalFacts = dedupeFactRows(normalizedCurrent.filter(function (row) {
         return Boolean(row.partyId);
       }), false);
       state.rankings = [];
@@ -549,7 +549,7 @@
       var dedupedFacts = dedupeFactRows(state.facts, true);
       state.results = aggregatePartyRows(dedupedFacts);
       state.source = currentResponse.view;
-      state.sourceLabel = 'Clean contract · 현재 스냅샷';
+      state.sourceLabel = 'Clean contract · 약정연도 기준';
       state.snapshotDate = maxSnapshotDate(dedupedFacts);
       state.loaded = true;
       state.loading = false;
@@ -729,7 +729,7 @@
     if (filters.region && !containsValue(row.regions, filters.region)) return false;
     if (filters.vehicleType && !containsValue(row.vehicleTypes, filters.vehicleType)) return false;
     if (filters.operationalStatus && !containsValue(row.operationalStatuses, filters.operationalStatus)) return false;
-    if (!opts.ignoreMinimum && filters.minimumAmount && row.currentAmount < numberValue(filters.minimumAmount) * MILLION) return false;
+    if (!opts.ignoreMinimum && filters.minimumAmount && row.committedAmount < numberValue(filters.minimumAmount) * MILLION) return false;
     return true;
   }
 
@@ -737,7 +737,7 @@
     var opts = options || {};
     if (opts.read !== false) readFilters();
     state.filtered = state.results.filter(matchesFilters).sort(function (a, b) {
-      return b.currentAmount - a.currentAmount || b.committedAmount - a.committedAmount || a.partyName.localeCompare(b.partyName, 'ko');
+      return b.committedAmount - a.committedAmount || b.currentAmount - a.currentAmount || a.partyName.localeCompare(b.partyName, 'ko');
     });
     if (opts.keepPage !== true) state.page = 1;
     var maxPage = Math.max(1, Math.ceil(state.filtered.length / state.pageSize));
@@ -765,7 +765,7 @@
       group.current += row.currentAmount;
       group.remaining += row.remainingAmount;
     });
-    return Array.from(groups.values()).sort(function (a, b) { return b.current - a.current; });
+    return Array.from(groups.values()).sort(function (a, b) { return b.committed - a.committed; });
   }
 
   function reconcileSubtotals(rows, subtotals) {
@@ -818,12 +818,12 @@
   function historicalPartyBuckets() {
     var groups = new Map();
     state.historicalFacts.filter(function (row) {
-      return row.snapshotDate && matchesFilters(row, { ignoreMinimum: true });
+      return row.commitmentYearLabel && matchesFilters(row, { ignoreMinimum: true });
     }).forEach(function (row) {
-      var key = row.snapshotDate + '|' + row.role + '|' + row.partyId;
+      var key = row.commitmentYearLabel + '|' + row.role + '|' + row.partyId;
       if (!groups.has(key)) {
         groups.set(key, {
-          snapshotDate: row.snapshotDate,
+          commitmentYearLabel: row.commitmentYearLabel,
           role: row.role,
           partyId: row.partyId,
           roleClass: row.roleClass,
@@ -842,7 +842,7 @@
 
     var minimum = numberValue(state.filters.minimumAmount) * MILLION;
     return Array.from(groups.values()).filter(function (bucket) {
-      return !minimum || bucket.currentAmount >= minimum;
+      return !minimum || bucket.committedAmount >= minimum;
     }).map(function (bucket) {
       var classes = Array.from(bucket.roleClassValues);
       bucket.roleClass = classes.length === 1
@@ -857,12 +857,16 @@
     var metricProperty = historyMetricProperty(state.historyMetric);
     var dateGroups = new Map();
     historicalPartyBuckets().forEach(function (bucket) {
-      if (!dateGroups.has(bucket.snapshotDate)) dateGroups.set(bucket.snapshotDate, new Map());
-      var classGroups = dateGroups.get(bucket.snapshotDate);
+      if (!dateGroups.has(bucket.commitmentYearLabel)) dateGroups.set(bucket.commitmentYearLabel, new Map());
+      var classGroups = dateGroups.get(bucket.commitmentYearLabel);
       classGroups.set(bucket.roleClass, (classGroups.get(bucket.roleClass) || 0) + bucket[metricProperty]);
     });
 
-    var dates = Array.from(dateGroups.keys()).sort();
+    var dates = Array.from(dateGroups.keys()).sort(function (a, b) {
+      if (a === '미상') return 1;
+      if (b === '미상') return -1;
+      return numberValue(a) - numberValue(b);
+    });
     var presentClasses = new Set();
     dates.forEach(function (date) {
       dateGroups.get(date).forEach(function (amount, roleClass) {
@@ -888,8 +892,7 @@
   }
 
   function formatHistoryDate(value) {
-    var parts = normalizeText(value).slice(0, 10).split('-');
-    return parts.length === 3 ? parts[0] + '.' + parts[1] + '.' + parts[2] : value;
+    return normalizeText(value) || '미상';
   }
 
   function roleClassColor(roleClass, index) {
@@ -916,7 +919,7 @@
 
     var svg = [
       '<svg class="capital-history-svg" viewBox="0 0 ' + width + ' ' + height + '" role="img" aria-labelledby="capitalHistoryTitle capitalHistoryDescription" style="min-width:' + width + 'px">',
-      '<title id="capitalHistoryTitle">기준일자별 ' + escapeHtml(data.metricLabel) + ' 시계열</title>',
+      '<title id="capitalHistoryTitle">관계 발생연도별 ' + escapeHtml(data.metricLabel) + ' 시계열</title>',
       '<desc id="capitalHistoryDescription">역할분류별 금액을 누적 막대로 표시합니다.</desc>'
     ];
 
@@ -957,7 +960,17 @@
   function renderHistoryChart() {
     var data = historyChartData();
     var svg = renderHistorySvg(data);
-    var metricButtons = ['current', 'committed', 'remaining'].map(function (metric) {
+    var coverage = state.historicalFacts.filter(function (row) {
+      return row.role === state.role && matchesFilters(row, { ignoreMinimum: true });
+    }).reduce(function (counts, row) {
+      if (row.commitmentDateQuality === 'source_date') counts.source += 1;
+      else if (row.commitmentDateQuality === 'proxy') counts.proxy += 1;
+      else counts.unresolved += 1;
+      return counts;
+    }, { source: 0, proxy: 0, unresolved: 0 });
+    var coverageText = '직접일자 ' + formatInteger(coverage.source) + '건 · 설정일 보정 ' + formatInteger(coverage.proxy) + '건';
+    if (coverage.unresolved) coverageText += ' · 미상 ' + formatInteger(coverage.unresolved) + '건';
+    var metricButtons = ['committed', 'current', 'remaining'].map(function (metric) {
       var active = state.historyMetric === metric;
       return '<button type="button" data-capital-history-metric="' + metric + '" aria-pressed="' + (active ? 'true' : 'false') + '" class="' + (active ? 'active' : '') + '">' + escapeHtml(historyMetricLabel(metric)) + '</button>';
     }).join('');
@@ -965,9 +978,9 @@
       return '<span><i style="--history-color:' + roleClassColor(roleClass, index) + '"></i>' + escapeHtml(roleClass) + '</span>';
     }).join('');
     return [
-      '<section class="capital-history-section" aria-label="역할분류별 자금 시계열">',
+      '<section class="capital-history-section" aria-label="관계 발생연도별 자금 시계열">',
       '<div class="capital-history-heading">',
-      '<div><h3>분류별 금액 시계열</h3><p>기준일자별 · 현재 필터 반영 · 금액 단위 백만원</p></div>',
+      '<div><h3>' + (state.role === 'lender' ? '대출 실행연도별 금액' : '최초약정연도별 금액') + '</h3><p>' + (state.role === 'lender' ? '대출인출일 기준' : '최초약정일 기준') + ' · ' + escapeHtml(coverageText) + ' · 금액 단위 백만원</p></div>',
       '<div class="capital-history-metrics" role="group" aria-label="시계열 금액 기준">' + metricButtons + '</div>',
       '</div>',
       svg ? '<div class="capital-history-scroll" tabindex="0">' + svg + '</div>' : '<div class="capital-history-empty">현재 조건에 표시할 시계열 금액이 없습니다.</div>',
@@ -1019,8 +1032,8 @@
     return [
       '<section class="capital-kpi-strip" aria-label="자금관계 핵심 지표">',
       '<div><span>' + escapeHtml(role.countLabel) + '</span><strong>' + formatInteger(state.filtered.length) + '</strong><small>개</small></div>',
-      '<div><span>' + escapeHtml(role.committedLabel) + '</span><strong>' + escapeHtml(formatCompactWon(totals.committed)) + '</strong><small>' + escapeHtml(formatMillion(totals.committed)) + '백만원</small></div>',
-      '<div class="is-primary"><span>' + escapeHtml(role.currentLabel) + '</span><strong>' + escapeHtml(formatCompactWon(totals.current)) + '</strong><small>' + escapeHtml(formatMillion(totals.current)) + '백만원</small></div>',
+      '<div class="is-primary"><span>' + escapeHtml(role.committedLabel) + '</span><strong>' + escapeHtml(formatCompactWon(totals.committed)) + '</strong><small>' + escapeHtml(formatMillion(totals.committed)) + '백만원</small></div>',
+      '<div><span>' + escapeHtml(role.currentLabel) + '</span><strong>' + escapeHtml(formatCompactWon(totals.current)) + '</strong><small>' + escapeHtml(formatMillion(totals.current)) + '백만원</small></div>',
       '<div><span>' + escapeHtml(role.remainingLabel) + '</span><strong>' + escapeHtml(formatCompactWon(totals.remaining)) + '</strong><small>' + escapeHtml(formatMillion(totals.remaining)) + '백만원</small></div>',
       '</section>'
     ].join('');
@@ -1049,8 +1062,8 @@
         '<td class="capital-rank-cell">' + formatInteger(start + index + 1) + '</td>',
         '<td class="capital-name-cell"><button type="button" class="capital-party-drill" data-capital-party-id="' + escapeHtml(row.resultId) + '" aria-label="' + escapeHtml(row.partyName) + ' 연결 자산 목록 보기"><strong>' + escapeHtml(row.partyName) + '</strong><span>' + escapeHtml(row.roleSubtype || row.partyGroupNames.join(', ') || '세부유형 없음') + ' · ' + escapeHtml(partyOriginDisplay(row.partyOrigin, row.role)) + '</span><b aria-hidden="true">›</b></button></td>',
         '<td><span class="capital-class-label">' + escapeHtml(row.roleClass) + '</span></td>',
-        '<td class="capital-amount-cell">' + escapeHtml(formatMillion(row.committedAmount)) + '</td>',
-        '<td class="capital-amount-cell capital-current-amount">' + escapeHtml(formatMillion(row.currentAmount)) + '</td>',
+        '<td class="capital-amount-cell capital-current-amount">' + escapeHtml(formatMillion(row.committedAmount)) + '</td>',
+        '<td class="capital-amount-cell">' + escapeHtml(formatMillion(row.currentAmount)) + '</td>',
         '<td class="capital-amount-cell">' + escapeHtml(formatMillion(row.remainingAmount)) + '</td>',
         '<td class="capital-relation-cell">' + escapeHtml(relationText) + '</td>',
         '<td><span class="capital-review-status ' + statusClass(statuses) + '">' + escapeHtml(unique(statuses).join(', ')) + '</span></td>',
@@ -1080,7 +1093,7 @@
     return [
       '<section class="capital-ranking-section">',
       '<div class="capital-section-heading">',
-      '<div><h3>금액순 결과</h3><p>' + escapeHtml(role.currentLabel) + ' 기준 · 금액 단위 백만원</p></div>',
+      '<div><h3>약정액 순위</h3><p>' + escapeHtml(role.committedLabel) + ' 기준 내림차순 · 금액 단위 백만원</p></div>',
       '<span>' + formatInteger(state.filtered.length) + '개 ' + escapeHtml(role.countLabel) + '</span>',
       '</div>',
       '<div class="capital-table-wrap">',
@@ -1109,27 +1122,27 @@
     var validationText = reconciliation.valid ? '부분합 = 전체' : '합계 불일치';
     var validationClass = reconciliation.valid ? 'is-valid' : 'is-invalid';
     var rows = subtotals.length ? subtotals.map(function (row) {
-      var share = reconciliation.total.current ? row.current / reconciliation.total.current * 100 : 0;
+      var share = reconciliation.total.committed ? row.committed / reconciliation.total.committed * 100 : 0;
       return [
         '<tr>',
         '<td><strong>' + escapeHtml(row.label) + '</strong><span>' + formatInteger(row.parties) + '개</span></td>',
-        '<td>' + escapeHtml(formatMillion(row.current)) + '</td>',
+        '<td>' + escapeHtml(formatMillion(row.committed)) + '</td>',
         '<td>' + share.toLocaleString('ko-KR', { maximumFractionDigits: 1 }) + '%</td>',
         '</tr>'
       ].join('');
     }).join('') : '<tr><td colspan="3" class="capital-table-empty">부분합이 없습니다.</td></tr>';
-    var difference = Math.abs(reconciliation.differences.current);
+    var difference = Math.abs(reconciliation.differences.committed);
     return [
       '<aside class="capital-subtotal-section">',
       '<div class="capital-section-heading">',
-      '<div><h3>분류별 부분합</h3><p>' + escapeHtml(role.currentLabel) + ' 기준</p></div>',
+      '<div><h3>분류별 부분합</h3><p>' + escapeHtml(role.committedLabel) + ' 기준</p></div>',
       '<span class="capital-reconciliation ' + validationClass + '" title="약정·현재·잔여 금액을 각각 검증">' + escapeHtml(validationText) + '</span>',
       '</div>',
       '<div class="capital-subtotal-table-wrap">',
       '<table class="capital-subtotal-table">',
       '<thead><tr><th scope="col">' + escapeHtml(state.role === 'lender' ? '대주 유형' : '투자자 분류') + '</th><th scope="col">금액</th><th scope="col">비중</th></tr></thead>',
       '<tbody>' + rows + '</tbody>',
-      '<tfoot><tr><th scope="row">전체</th><td>' + escapeHtml(formatMillion(reconciliation.total.current)) + '</td><td>100%</td></tr></tfoot>',
+      '<tfoot><tr><th scope="row">전체</th><td>' + escapeHtml(formatMillion(reconciliation.total.committed)) + '</td><td>100%</td></tr></tfoot>',
       '</table>',
       '</div>',
       (!reconciliation.valid ? '<p class="capital-reconciliation-error">차이 ' + escapeHtml(formatMillion(difference)) + '백만원</p>' : ''),
@@ -1562,7 +1575,7 @@
       '<li><strong>에쿼티 투자자</strong> 약정액·투입액·미투입액을 사용합니다.</li>',
       '<li><strong>대주</strong> 약정액·실행액·미실행액을 사용합니다.</li>',
       '<li><strong>역할분류</strong> 투자자는 국내LP·해외LP 등 투자자 분류, 대주는 은행·보험 등 대주 유형을 사용합니다.</li>',
-      '<li><strong>분류별 시계열</strong> 전체 스냅샷을 기준일자와 canonical party ID로 집계하며 현재 적용된 필터를 함께 반영합니다.</li>',
+      '<li><strong>분류별 시계열</strong> 투자자는 최초약정일, 대주는 대출인출일의 연도를 사용합니다. 원천일자가 없거나 이상하면 펀드설정일을 보정 근거로 명시해 사용합니다.</li>',
       '<li><strong>자산 속성</strong> 연결 자산이 조건에 해당하는 exposure를 선별하며, 다중 자산에 금액을 임의 배분하지 않습니다.</li>',
       '<li><strong>부분합 검증</strong> 투자자 또는 대주 유형별 약정·현재·잔여 금액의 합이 전체와 같은지 매 조회마다 확인합니다.</li>',
       '<li><strong>투자자 권역</strong> 원천분류와 분리된 해석 축입니다. 에쿼티 투자자는 국내 LP·글로벌 LP, 대주는 국내 대주·글로벌 대주로 표시합니다.</li>',

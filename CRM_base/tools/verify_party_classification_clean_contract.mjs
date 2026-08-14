@@ -10,6 +10,9 @@ const defaultOutputDir = path.join(repoRoot, "outputs", "party_classification_cl
 const REQUIRED_RELATIONS = [
   "party_exposure_fact",
   "party_exposure_current",
+  "party_exposure_commitment_current",
+  "party_exposure_commitment_timeseries",
+  "party_exposure_commitment_contract_audit",
   "party_identity_map",
   "party_role_classifications",
   "party_master",
@@ -57,6 +60,7 @@ const LEGACY_RELATIONS = [
   "party_exposure_facets_v2",
   "party_exposure_rankings_v1",
   "party_exposure_rankings_v2",
+  "party_exposure_timeseries",
 ];
 
 const LEGACY_FUNCTIONS = [
@@ -684,6 +688,14 @@ function gicSql(contract) {
   `;
 }
 
+function commitmentCohortAuditSql() {
+  return `
+    select *
+    from public.party_exposure_commitment_contract_audit
+    order by role_type
+  `;
+}
+
 function relationPreflightSql() {
   return `
     select c.relname::text as relation_name,
@@ -995,6 +1007,7 @@ async function runVerification(options) {
       roleClassificationRows,
       invalidRoleClasses,
       gicRows,
+      commitmentCohortAudit,
     ] = await Promise.all([
       query(factTotalsSql(contract.fact), "party_exposure_fact role/date totals"),
       query(latestClassSubtotalsSql(contract.fact), "latest role_class subtotals"),
@@ -1005,6 +1018,7 @@ async function runVerification(options) {
       query(classificationCoverageSql(contract), "role classification coverage"),
       query(allowedRoleClassSql(contract), "allowed role_class check"),
       query(gicSql(contract), "GIC classification check"),
+      query(commitmentCohortAuditSql(), "commitment cohort audit"),
     ]);
 
     result.checks.factTotalsByRoleAndDate = factTotals;
@@ -1016,6 +1030,7 @@ async function runVerification(options) {
     result.checks.roleClassification = roleClassificationRows[0] ?? {};
     result.checks.invalidRoleClasses = invalidRoleClasses;
     result.checks.gic = gicRows;
+    result.checks.commitmentCohortAudit = commitmentCohortAudit;
 
     const observedRoles = new Set(factTotals.map((row) => row.role_type));
     const missingFactRoles = EXPECTED_ROLES.filter((role) => !observedRoles.has(role));
@@ -1101,6 +1116,32 @@ async function runVerification(options) {
       gicValid,
       { canonicalPartyCount: gicPartyIds.size, rows: gicRows },
     );
+
+    const commitmentAuditByRole = new Map(
+      commitmentCohortAudit.map((row) => [row.role_type, row]),
+    );
+    for (const role of EXPECTED_ROLES) {
+      const audit = commitmentAuditByRole.get(role);
+      addAssertion(
+        result,
+        `commitment_cohort_basis_complete_${role}`,
+        `${role} 관계 발생연도 직접일자/보정일자/미상 행이 전체와 일치`,
+        Boolean(
+          audit &&
+          audit.date_basis_rows_match === true &&
+          asInteger(audit.unresolved_date_rows) === 0 &&
+          asInteger(audit.source_date_rows) > 0
+        ),
+        audit ?? { missing: true },
+      );
+      addAssertion(
+        result,
+        `commitment_cohort_amounts_reconcile_${role}`,
+        `${role} 약정연도 시계열의 약정/현재/잔여 부분합이 전체와 정확히 일치`,
+        Boolean(audit && audit.timeseries_totals_match === true),
+        audit ?? { missing: true },
+      );
+    }
   } catch (error) {
     result.fatalError = errorMessage(error);
     addAssertion(
