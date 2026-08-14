@@ -102,7 +102,7 @@
 
   async function bootDashboard() {
     await loadScript("./app.js");
-    await loadScript("./seat-layout.js");
+    await loadScript("./seat-layout.js?v=admin_access_guard_20260814a");
   }
 
   async function usePayload(payload, mode, reason) {

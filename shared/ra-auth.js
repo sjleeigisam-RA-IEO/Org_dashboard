@@ -2,6 +2,7 @@
   const AUTH_TOKEN_KEY = "ra_auth_token";
   const USER_KEY = "ra_user";
   const LAST_ACTIVE_KEY = "last_active";
+  const ADMIN_EMAIL = "sjlee@igisam.com";
 
   function endpoint() {
     if (window.RA_AUTH_ENDPOINT) return window.RA_AUTH_ENDPOINT;
@@ -28,6 +29,10 @@
     } catch {
       return null;
     }
+  }
+
+  function isAdminUser(user = getSessionUser()) {
+    return String(user?.email || "").trim().toLowerCase() === ADMIN_EMAIL;
   }
 
   function setSessionUser(user) {
@@ -84,8 +89,10 @@
     AUTH_TOKEN_KEY,
     USER_KEY,
     LAST_ACTIVE_KEY,
+    ADMIN_EMAIL,
     request,
     getSessionUser,
+    isAdminUser,
     setSessionUser,
     saveRememberToken,
     getRememberToken,

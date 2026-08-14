@@ -32,6 +32,10 @@
   const ADMIN_PASSWORD = "seat2604";
   const HIDDEN_SEAT_CODES = new Set(["2F-A45"]);
 
+  function isAuthorizedAdmin() {
+    return window.RAAuth?.isAdminUser?.() === true;
+  }
+
   // Other-department seat prefixes / zones per floor (grayed out with hatch overlay)
   const OTHER_DEPT = {
     "2F": {
@@ -643,6 +647,7 @@
   }
 
   function markAdminDirty(seatCode) {
+    if (!isAuthorizedAdmin()) return;
     if (!seatCode) return;
     if (!state.adminPendingSeatCodes.includes(seatCode)) {
       state.adminPendingSeatCodes = [...state.adminPendingSeatCodes, seatCode];
@@ -654,6 +659,10 @@
   }
 
   function applyAdminSeatChange() {
+    if (!isAuthorizedAdmin()) {
+      state.adminMode = false;
+      return;
+    }
     if (!remoteSeatLayout) {
       window.alert("구글시트 기반 자리배치 데이터가 연결되지 않았습니다.");
       return;
@@ -735,6 +744,10 @@
   }
 
   async function saveAdminChanges() {
+    if (!isAuthorizedAdmin()) {
+      state.adminMode = false;
+      return;
+    }
     if (!remoteSeatLayout) {
       window.alert("구글시트 기반 자리배치 데이터가 연결되지 않았습니다.");
       return;
@@ -806,7 +819,7 @@
   }
 
   function renderAdminPanel(floor) {
-    if (!state.adminMode) return "";
+    if (!isAuthorizedAdmin() || !state.adminMode) return "";
     const summary = getAdminSelectionSummary(floor);
     return `
       <div class="seat-admin-panel">
@@ -1250,6 +1263,12 @@
   }
 
   function renderSeatView() {
+    const authorizedAdmin = isAuthorizedAdmin();
+    if (!authorizedAdmin && state.adminMode) {
+      state.adminMode = false;
+      state.adminSelection = { sourceSeatCode: "", targetSeatCode: "", moveFlag: "Y" };
+      state.adminPendingSeatCodes = [];
+    }
     const floor=getFloor(state.floorCode), stats=buildSeatStats(floor);
     const viewportOptions = getViewportOptionsForFloor(floor.floorCode);
     seatView.innerHTML=`
@@ -1276,9 +1295,9 @@
                   <button class="seat-layer-toggle ${state.orgOverlayVisible ? "active" : ""}" type="button" id="seatOrgOverlayToggle">
                     ${state.orgOverlayVisible ? "조직 레이어 ON" : "조직 레이어 OFF"}
                   </button>` : ``}
-                  <button class="seat-admin-btn ${state.adminMode ? "active" : ""}" type="button" id="seatAdminToggle">
+                  ${authorizedAdmin ? `<button class="seat-admin-btn ${state.adminMode ? "active" : ""}" type="button" id="seatAdminToggle">
                     ${state.adminMode ? "관리자모드 ON" : "관리자모드"}
-                  </button>
+                  </button>` : ``}
                   <div class="seat-zoom-controls">
                     <button class="seat-zoom-btn" type="button" data-zoom-action="out">-</button>
                     <span class="seat-zoom-value">${Math.round(state.zoom * 100)}%</span>
@@ -1320,6 +1339,10 @@
     });
     if (adminToggle) {
       adminToggle.addEventListener("click", () => {
+        if (!isAuthorizedAdmin()) {
+          state.adminMode = false;
+          return;
+        }
         if (state.adminMode) {
           state.adminMode = false;
           state.adminSelection = { sourceSeatCode: "", targetSeatCode: "", moveFlag: "Y" };

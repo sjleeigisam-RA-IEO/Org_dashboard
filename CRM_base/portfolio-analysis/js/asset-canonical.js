@@ -2,6 +2,10 @@
   const STORAGE_KEY = 'ra_asset_canonical_admin_v1';
   const ADMIN_KEY = 'ra_asset_canonical_admin_enabled';
 
+  function isAuthorizedAdmin() {
+    return window.RAAuth?.isAdminUser?.() === true;
+  }
+
   function loadState() {
     try {
       return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
@@ -15,6 +19,10 @@
   }
 
   function isAdmin() {
+    if (!isAuthorizedAdmin()) {
+      sessionStorage.removeItem(ADMIN_KEY);
+      return false;
+    }
     return sessionStorage.getItem(ADMIN_KEY) === '1';
   }
 
@@ -198,6 +206,10 @@
   }
 
   function adminLogin() {
+    if (!isAuthorizedAdmin()) {
+      sessionStorage.removeItem(ADMIN_KEY);
+      return;
+    }
     if (isAdmin()) {
       sessionStorage.removeItem(ADMIN_KEY);
       renderResults();
@@ -213,12 +225,14 @@
   }
 
   function clearOverrides() {
+    if (!isAdmin()) return;
     if (!window.confirm('로컬 관리자 판단을 초기화할까요?')) return;
     localStorage.removeItem(STORAGE_KEY);
     if (typeof performSearch === 'function') performSearch(window.currentSearchQuery || '');
   }
 
   function renameGroup(assetId) {
+    if (!isAdmin()) return;
     const title = window.prompt('대표 자산명', '');
     if (!title) return;
     const state = loadState();
@@ -229,6 +243,7 @@
   }
 
   function renderAdminBar(container) {
+    if (!isAuthorizedAdmin()) return;
     const bar = document.createElement('div');
     bar.className = 'asset-admin-bar';
     bar.innerHTML = `
