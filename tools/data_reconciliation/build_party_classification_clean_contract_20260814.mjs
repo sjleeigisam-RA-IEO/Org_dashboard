@@ -82,6 +82,37 @@ function booleanValue(value) {
   return null;
 }
 
+function isBeneficiaryInvestmentVehicleName(value) {
+  const name = clean(value);
+  if (!name || /^개인투자자\s*포함/i.test(name)) return false;
+  if (/(자산운용|투자운용|투자신탁운용)\s*$/i.test(name)) return false;
+  if (/^메리츠\s*$/i.test(name)) return false;
+  return /리츠\s*$/i.test(name)
+    || /위탁관리부동산투자회사\s*$/i.test(name)
+    || /투자신탁/i.test(name)
+    || /사모.*투자(유한)?회사/i.test(name)
+    || /\(?PFV\)?\s*$/i.test(name)
+    || /([0-9]+호\s*)?펀드\s*$/i.test(name);
+}
+
+function beneficiaryVehicleSubtype(value) {
+  const name = clean(value);
+  if (/\(?PFV\)?\s*$/i.test(name)) return 'PFV';
+  if (/(리츠|위탁관리부동산투자회사)\s*$/i.test(name)) return '리츠';
+  return '펀드';
+}
+
+function beneficiaryIdentityRole(value) {
+  const name = clean(value);
+  if (/^개인(?:\s|\(|$)/i.test(name)) {
+    return { roleClass: '개인', roleSubtype: '개인', basis: 'canonical_party_name_person_identity' };
+  }
+  if (/(자산운용|투자운용|투자신탁운용)\s*$/i.test(name)) {
+    return { roleClass: '금융기관', roleSubtype: '자산운용사', basis: 'canonical_party_name_asset_manager_identity' };
+  }
+  return null;
+}
+
 function parseCsv(text) {
   const rows = [];
   let row = [];
@@ -238,6 +269,25 @@ for (const row of roleRows) {
       candidate.review_status = 'confirmed';
       candidate.classification_basis = '싱가포르투자청 사용자 확인 및 외부검증 통합본';
     }
+    if (roleType === 'beneficiary'
+      && candidate.role_class !== '개인'
+      && isBeneficiaryInvestmentVehicleName(row.source_standard_name)) {
+      candidate.role_class = '펀드·리츠·SPC';
+      candidate.role_subtype = beneficiaryVehicleSubtype(row.source_standard_name);
+      candidate.confidence = 1;
+      candidate.review_status = 'confirmed';
+      candidate.classification_basis = '법적 투자기구 명칭과 외부검증 원천을 결합한 역할분류';
+    }
+    const identityRole = roleType === 'beneficiary'
+      ? beneficiaryIdentityRole(row.source_standard_name)
+      : null;
+    if (identityRole) {
+      candidate.role_class = identityRole.roleClass;
+      candidate.role_subtype = identityRole.roleSubtype;
+      candidate.confidence = 1;
+      candidate.review_status = 'confirmed';
+      candidate.classification_basis = identityRole.basis;
+    }
     const existing = roleClassifications.get(mapKey);
     if (!existing || candidate.confidence >= existing.confidence) roleClassifications.set(mapKey, candidate);
   }
@@ -263,6 +313,10 @@ function fallbackRoleClass(roleType, party) {
   const oldClass = clean(party?.party_class);
   const oldCategory = clean(party?.party_category);
   if (roleType === 'beneficiary') {
+    const identityRole = beneficiaryIdentityRole(party?.display_name);
+    if (identityRole) return identityRole.roleClass;
+    if (['펀드', '상장공모리츠', '사모리츠', 'SPC'].includes(oldCategory)
+      || isBeneficiaryInvestmentVehicleName(party?.display_name)) return '펀드·리츠·SPC';
     if (clean(party?.party_origin) === '해외') return '해외LP';
     if (oldClass === '금융기관') return '금융기관';
     if (oldClass === '일반기업') return '일반기업';
@@ -587,7 +641,7 @@ create table if not exists public.party_role_classifications (
     check (valid_to is null or valid_to > valid_from),
   constraint party_role_classifications_class_check check (
     (role_type = 'beneficiary' and role_class in
-      ('국내LP', '해외LP', '금융기관', '일반기업', '공기업', '개인', '기타'))
+      ('국내LP', '해외LP', '펀드·리츠·SPC', '금융기관', '일반기업', '공기업', '개인', '기타'))
     or
     (role_type = 'lender' and role_class in
       ('은행', '보험', '증권', '저축은행', '캐피탈·여전', '신용협동조합',

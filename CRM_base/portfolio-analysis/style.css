@@ -5350,6 +5350,10 @@ body.list-view .capital-relationship-controls {
   pointer-events: none;
 }
 
+.capital-history-tooltip.is-wide {
+  width: min(540px, calc(100% - 16px));
+}
+
 .capital-history-tooltip[hidden] {
   display: none;
 }
@@ -5403,6 +5407,21 @@ body.list-view .capital-relationship-controls {
   gap: 5px;
 }
 
+.capital-history-tooltip.is-wide .capital-history-tooltip-rows {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px 18px;
+}
+
+.capital-history-tooltip.is-wide .capital-history-tooltip-row {
+  min-width: 0;
+}
+
+.capital-history-tooltip.is-wide .capital-history-tooltip-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .capital-history-tooltip-row {
   gap: 12px;
   min-height: 20px;
@@ -5434,6 +5453,21 @@ body.list-view .capital-relationship-controls {
   color: #ffffff;
   font-size: 10px;
   text-align: right;
+}
+
+@media (max-width: 760px) {
+  .capital-history-tooltip.is-wide {
+    width: min(360px, calc(100% - 16px));
+  }
+
+  .capital-history-tooltip.is-wide .capital-history-tooltip-rows {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+
+  .capital-history-tooltip.is-wide .capital-history-tooltip-row {
+    min-height: 17px;
+  }
 }
 
 .capital-history-legend {

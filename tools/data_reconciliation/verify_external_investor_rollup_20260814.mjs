@@ -91,7 +91,11 @@ const integrity = await query(`
     ) duplicated) as duplicate_exposure_uids,
     (select count(*) from public.party_exposure_external_current_v1
       where not include_in_external_investor_rollup
-        and (role_type <> 'beneficiary' or cardinality(investor_managed_fund_ids) = 0)
+        and (
+          role_type <> 'beneficiary'
+          or capital_scope <> 'internal_managed_fund'
+          or not is_managed_fund_party
+        )
     ) as invalid_exclusions,
     (select count(*) from public.party_exposure_external_current_v1
       where role_type = 'beneficiary'

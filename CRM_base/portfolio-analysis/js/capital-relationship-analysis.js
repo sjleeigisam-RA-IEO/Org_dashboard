@@ -8,13 +8,14 @@
   var MOBILE_BREAKPOINT = 760;
 
   var ROLE_CLASS_VALUES = {
-    beneficiary: ['국내LP', '해외LP', '금융기관', '일반기업', '공기업', '개인', '기타'],
+    beneficiary: ['국내LP', '해외LP', '펀드·리츠·SPC', '금융기관', '일반기업', '공기업', '개인', '기타'],
     lender: ['은행', '보험', '증권', '저축은행', '캐피탈·여전', '신용협동조합', '새마을금고', '유동화SPV', '펀드·투자기구', '자산운용', '대주단', '일반기업', '개인', '기타', '미확인']
   };
 
   var ROLE_CLASS_COLORS = {
     '국내LP': '#4ea8de',
     '해외LP': '#72c7c1',
+    '펀드·리츠·SPC': '#bb9cf2',
     '금융기관': '#f2cc5c',
     '일반기업': '#8d9ef0',
     '공기업': '#69c48d',
@@ -261,8 +262,8 @@
 
   function partyOriginDisplay(value, role) {
     var origin = normalizedPartyOrigin(value, '', '');
-    if (origin === '국내') return role === 'lender' ? '국내 대주' : '국내 LP';
-    if (origin === '해외') return role === 'lender' ? '글로벌 대주' : '글로벌 LP';
+    if (origin === '국내') return role === 'lender' ? '국내 대주' : '국내 투자자';
+    if (origin === '해외') return role === 'lender' ? '글로벌 대주' : '해외 투자자';
     return '확인 필요';
   }
 
@@ -609,7 +610,7 @@
       var dedupedFacts = dedupeFactRows(state.facts, true);
       state.results = aggregatePartyRows(dedupedFacts);
       state.source = currentResponse.view;
-      state.sourceLabel = '외부 투자자 기준 · 내부 운용펀드 ' + state.internalFundPartiesExcluded + '개 제외';
+      state.sourceLabel = '외부 투자자 기준 · 내부 투자기구 ' + state.internalFundPartiesExcluded + '개 제외';
       state.snapshotDate = maxSnapshotDate(dedupedFacts);
       state.loaded = true;
       state.loading = false;
@@ -899,13 +900,12 @@
 
   function historyBreakdownConfig() {
     var detailed = Boolean(state.filters.roleClass);
-    var partyBreakdown = state.role === 'beneficiary'
-      && ['국내LP', '해외LP'].includes(state.filters.roleClass);
+    var partyBreakdown = detailed;
     return {
       detailed: detailed,
       partyBreakdown: partyBreakdown,
       label: partyBreakdown
-        ? '개별 투자자'
+        ? (state.role === 'lender' ? '개별 대주' : '개별 투자자')
         : detailed
         ? '원천 세부분류'
         : (state.role === 'lender' ? '대주 유형' : '투자자 분류'),
@@ -1189,6 +1189,10 @@
       activeColumn.classList.add('is-active');
       svg.classList.add('has-active');
       tooltip.innerHTML = historyTooltipHtml(data, dateIndex);
+      tooltip.classList.toggle(
+        'is-wide',
+        tooltip.querySelectorAll('.capital-history-tooltip-row').length > 12
+      );
       tooltip.hidden = false;
       var anchorBounds = column.getBoundingClientRect();
       var clientX = event && Number.isFinite(event.clientX) ? event.clientX : anchorBounds.left + anchorBounds.width / 2;
@@ -1246,7 +1250,8 @@
     }).join('');
     var legendHtml = '';
     if (legend && data.partyBreakdown) {
-      legendHtml = '<details class="capital-history-legend-panel"><summary>금액 표시 투자자 ' + data.classes.length + '명 범례</summary><div class="capital-history-legend" aria-label="개별 투자자 범례">' + legend + '</div></details>';
+      var partyLabel = state.role === 'lender' ? '대주' : '투자자';
+      legendHtml = '<details class="capital-history-legend-panel"><summary>금액 표시 ' + partyLabel + ' ' + data.classes.length + '곳 범례</summary><div class="capital-history-legend" aria-label="개별 ' + partyLabel + ' 범례">' + legend + '</div></details>';
     } else if (legend) {
       legendHtml = '<div class="capital-history-legend" aria-label="' + escapeHtml(data.breakdownLabel) + ' 범례">' + legend + '</div>';
     }
@@ -1287,7 +1292,7 @@
       return {
         key: key,
         label: key === 'partyOrigin'
-          ? (state.role === 'lender' ? '대주 권역' : 'LP 권역')
+          ? (state.role === 'lender' ? '대주 권역' : '투자자 권역')
           : (key === 'roleClass' ? (state.role === 'lender' ? '대주 유형' : '투자자 분류') : FILTER_CONFIG[key].label),
         value: key === 'minimumAmount'
           ? formatInteger(value) + '백만원 이상'
@@ -1378,11 +1383,11 @@
     var directCommitted = externalTotals.committed + coverage.committed;
     return [
       '<section class="capital-rollup-coverage" aria-label="외부 투자자 집계 대사">',
-      '<div class="capital-rollup-equation"><span>집계 대사</span><strong>직접 출자관계 ' + escapeHtml(formatCompactWon(directCommitted)) + ' = 식별 외부 투자자 ' + escapeHtml(formatCompactWon(externalTotals.committed)) + ' + 내부 운용펀드 경유 ' + escapeHtml(formatCompactWon(coverage.committed)) + '</strong></div>',
+      '<div class="capital-rollup-equation"><span>집계 대사</span><strong>직접 출자관계 ' + escapeHtml(formatCompactWon(directCommitted)) + ' = 식별 외부 투자자 ' + escapeHtml(formatCompactWon(externalTotals.committed)) + ' + 내부 투자기구 경유 ' + escapeHtml(formatCompactWon(coverage.committed)) + '</strong></div>',
       '<div class="capital-rollup-coverage-meta">',
       '<span>상위 출자관계 확인 ' + formatInteger(coverage.covered) + '개 · ' + escapeHtml(formatCompactWon(coverage.coveredCommitted)) + '</span>',
       '<span class="' + (coverage.missing ? 'needs-review' : '') + '">상위 출자관계 미연결 ' + formatInteger(coverage.missing) + '개 · ' + escapeHtml(formatCompactWon(coverage.missingCommitted)) + '</span>',
-      coverage.parties ? '<button type="button" data-capital-action="show-internal-funds">내부 펀드 ' + formatInteger(coverage.parties) + '개 관계 보기</button>' : '',
+      coverage.parties ? '<button type="button" data-capital-action="show-internal-funds">내부 투자기구 ' + formatInteger(coverage.parties) + '개 관계 보기</button>' : '',
       '</div>',
       '</section>'
     ].join('');
@@ -1530,7 +1535,7 @@
       '<div class="capital-breakdown-party"><strong>' + escapeHtml(row.partyName) + '</strong><span>' + escapeHtml(coverageLabel) + '</span></div>',
       '<div class="capital-asset-relation-count"><strong>' + formatInteger(row.exposureCount) + '</strong><span>직접 관계</span></div>',
       '<dl class="capital-breakdown-relations">',
-      '<div><dt>내부 운용펀드</dt><dd>' + escapeHtml(relationList(row.managedFundNames, [row.partyName])) + '</dd></div>',
+      '<div><dt>내부 투자기구</dt><dd>' + escapeHtml(relationList(row.managedFundNames, [row.partyName])) + '</dd></div>',
       '<div><dt>투자 대상 펀드</dt><dd>' + escapeHtml(relationList(row.targetFundNames, [])) + '</dd></div>',
       '</dl>',
       '<div class="capital-breakdown-amount-grid">',
@@ -1546,10 +1551,10 @@
     var coverage = currentInternalFundCoverage();
     var overlay = ensureBreakdownDialog();
     state.breakdownTrigger = trigger || document.activeElement;
-    document.getElementById('capitalBreakdownTitle').textContent = '내부 운용펀드 경유 관계';
-    document.getElementById('capitalBreakdownDescription').textContent = '외부 투자자 합계에서는 제외했지만 DB에 직접 출자관계로 보존된 내부 펀드 행입니다.';
+    document.getElementById('capitalBreakdownTitle').textContent = '내부 투자기구 경유 관계';
+    document.getElementById('capitalBreakdownDescription').textContent = '외부 투자자 합계에서는 제외했지만 DB에 직접 출자관계로 보존된 내부 펀드·리츠·SPC 행입니다.';
     document.getElementById('capitalBreakdownSummary').innerHTML = [
-      '<div><span>내부 운용펀드</span><strong>' + formatInteger(coverage.parties) + '개</strong></div>',
+      '<div><span>내부 투자기구</span><strong>' + formatInteger(coverage.parties) + '개</strong></div>',
       '<div><span>직접 약정액</span><strong>' + escapeHtml(formatMillion(coverage.committed)) + '백만원</strong></div>',
       '<div><span>상위 출자관계 확인</span><strong>' + formatInteger(coverage.covered) + '개 · ' + escapeHtml(formatCompactWon(coverage.coveredCommitted)) + '</strong></div>',
       '<div><span>상위 출자관계 미연결</span><strong>' + formatInteger(coverage.missing) + '개 · ' + escapeHtml(formatCompactWon(coverage.missingCommitted)) + '</strong></div>',
@@ -1558,7 +1563,7 @@
     document.getElementById('capitalBreakdownList').innerHTML = [
       '<section class="capital-breakdown-group">',
       '<header><h3>직접 출자관계 보존 목록</h3><span>' + formatInteger(coverage.rows.length) + '개</span></header>',
-      coverage.rows.length ? coverage.rows.map(renderInternalFundCoverageRow).join('') : '<div class="capital-table-empty">현재 조건에서 제외된 내부 펀드 관계가 없습니다.</div>',
+      coverage.rows.length ? coverage.rows.map(renderInternalFundCoverageRow).join('') : '<div class="capital-table-empty">현재 조건에서 제외된 내부 투자기구 관계가 없습니다.</div>',
       '</section>'
     ].join('');
     overlay.hidden = false;
@@ -1794,7 +1799,7 @@
       '<div><span>' + escapeHtml(role.currentLabel) + '</span><strong>' + escapeHtml(formatMillion(row.currentAmount)) + '백만원</strong></div>',
       '<div><span>' + escapeHtml(role.remainingLabel) + '</span><strong>' + escapeHtml(formatMillion(row.remainingAmount)) + '백만원</strong></div>',
       '<div><span>분류</span><strong>' + escapeHtml(row.roleClass) + (row.roleSubtype ? ' · ' + escapeHtml(row.roleSubtype) : '') + '</strong></div>',
-      '<div><span>' + (row.role === 'lender' ? '대주 권역' : 'LP 권역') + '</span><strong>' + escapeHtml(partyOriginDisplay(row.partyOrigin, row.role)) + (row.domicileCountryCode ? ' · ' + escapeHtml(row.domicileCountryCode) : '') + '</strong></div>'
+      '<div><span>' + (row.role === 'lender' ? '대주 권역' : '투자자 권역') + '</span><strong>' + escapeHtml(partyOriginDisplay(row.partyOrigin, row.role)) + (row.domicileCountryCode ? ' · ' + escapeHtml(row.domicileCountryCode) : '') + '</strong></div>'
     ].join('');
     document.getElementById('capitalBreakdownList').innerHTML = [
       '<section class="capital-breakdown-group">',
@@ -2038,7 +2043,7 @@
       return;
     }
     var headers = [
-      '순위', '역할', state.role === 'lender' ? '대주명' : '투자자명', 'Canonical Party ID', state.role === 'lender' ? '대주 유형' : '투자자 분류', '역할 세부유형', '그룹', state.role === 'lender' ? '대주 권역' : 'LP 권역', '국가코드',
+      '순위', '역할', state.role === 'lender' ? '대주명' : '투자자명', 'Canonical Party ID', state.role === 'lender' ? '대주 유형' : '투자자 분류', '역할 세부유형', '그룹', state.role === 'lender' ? '대주 권역' : '투자자 권역', '국가코드',
       role.committedLabel + '(백만원)', role.currentLabel + '(백만원)', role.remainingLabel + '(백만원)',
       '연결 펀드 수', '연결 자산 수', '기초자산', '지역', '전략', '개발/운영', '투자기구', '운용상태', '검토상태'
     ];
@@ -2088,13 +2093,13 @@
       '<h2>자금관계 분석 기준</h2>',
       '<ul>',
       '<li><strong>에쿼티 투자자</strong> 약정액·투입액·미투입액을 사용합니다.</li>',
-      '<li><strong>외부 투자자 합계</strong> IGIS 운용펀드가 다른 운용펀드에 출자한 내부 자금이동 행은 제외하며, 직접 법률관계는 DB에 보존합니다.</li>',
+      '<li><strong>외부 투자자 합계</strong> IGIS가 운용하는 펀드·리츠·SPC의 내부 자금이동 행은 제외하며, 직접 법률관계는 DB에 보존합니다.</li>',
       '<li><strong>대주</strong> 약정액·실행액·미실행액을 사용합니다.</li>',
-      '<li><strong>역할분류</strong> 투자자는 국내LP·해외LP 등 투자자 분류, 대주는 은행·보험 등 대주 유형을 사용합니다.</li>',
+      '<li><strong>역할분류</strong> 실제 주체의 역할을 먼저 봅니다. LP와 펀드·리츠·SPC를 구분하고, 국내·해외는 별도 권역 속성으로 사용합니다.</li>',
       '<li><strong>분류별 시계열</strong> 투자자는 최초약정일, 대주는 대출인출일의 연도를 사용합니다. 원천일자가 없거나 이상하면 펀드설정일을 보정 근거로 명시해 사용합니다.</li>',
       '<li><strong>자산 속성</strong> 연결 자산이 조건에 해당하는 exposure를 선별하며, 다중 자산에 금액을 임의 배분하지 않습니다.</li>',
       '<li><strong>부분합 검증</strong> 투자자 또는 대주 유형별 약정·현재·잔여 금액의 합이 전체와 같은지 매 조회마다 확인합니다.</li>',
-      '<li><strong>투자자 권역</strong> 원천분류와 분리된 해석 축입니다. 에쿼티 투자자는 국내 LP·글로벌 LP, 대주는 국내 대주·글로벌 대주로 표시합니다.</li>',
+      '<li><strong>투자자 권역</strong> 역할분류와 분리된 소재지 축입니다. 에쿼티 투자자는 국내·해외 투자자, 대주는 국내·글로벌 대주로 표시합니다.</li>',
       '</ul>'
     ].join('');
     overlay.classList.add('active');
