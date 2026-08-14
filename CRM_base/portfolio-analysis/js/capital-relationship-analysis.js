@@ -138,6 +138,7 @@
     internalFundMissingCommitted: 0,
     historyMetric: 'committed',
     historyAggregation: 'annual',
+    selectedHistoryDate: '',
     notice: null,
     hostKind: '',
     searchTimer: null,
@@ -1070,10 +1071,11 @@
     var maxTotal = Math.max.apply(null, totals.concat([0]));
     if (maxTotal <= 0) return '';
 
+    var hasSelection = data.dates.indexOf(state.selectedHistoryDate) !== -1;
     var svg = [
-      '<svg class="capital-history-svg" viewBox="0 0 ' + width + ' ' + height + '" role="img" aria-labelledby="capitalHistoryTitle capitalHistoryDescription" style="max-width:' + width + 'px">',
+      '<svg class="capital-history-svg' + (hasSelection ? ' has-selection' : '') + '" viewBox="0 0 ' + width + ' ' + height + '" role="img" aria-labelledby="capitalHistoryTitle capitalHistoryDescription" style="max-width:' + width + 'px">',
       '<title id="capitalHistoryTitle">관계 발생연도별 ' + (data.aggregation === 'cumulative' ? '누적 ' : '') + escapeHtml(data.metricLabel) + ' 시계열</title>',
-      '<desc id="capitalHistoryDescription">연도별 합계와 ' + escapeHtml(data.breakdownLabel) + '별 금액을 누적 막대로 표시합니다. 각 연도에 마우스를 올리거나 키보드로 초점을 이동하면 전체 구성을 확인할 수 있습니다.</desc>'
+      '<desc id="capitalHistoryDescription">연도별 합계와 ' + escapeHtml(data.breakdownLabel) + '별 금액을 누적 막대로 표시합니다. 각 연도에 마우스를 올리면 구성을 미리 보고, 막대를 선택하면 차트 아래에서 전체 구성을 확인할 수 있습니다.</desc>'
     ];
 
     for (var tick = 0; tick <= 4; tick += 1) {
@@ -1092,7 +1094,7 @@
       var center = left + slot * dateIndex + slot / 2;
       var cursorY = top + plotHeight;
       var ariaParts = [];
-      svg.push('<g class="capital-history-column" data-capital-history-index="' + dateIndex + '" data-capital-history-total="' + totals[dateIndex] + '" tabindex="0" focusable="true" role="img">');
+      var segmentSvg = [];
       data.classes.forEach(function (roleClass, classIndex) {
         var amount = data.groups.get(date).get(roleClass) || 0;
         if (amount <= 0) return;
@@ -1100,26 +1102,30 @@
         var segmentHeight = Math.max(1, plotHeight * amount / maxTotal);
         cursorY -= segmentHeight;
         var color = roleClassColor(roleClass, classIndex, data);
-        svg.push([
+        segmentSvg.push([
           '<rect class="capital-history-segment" x="', center - barWidth / 2, '" y="', cursorY,
           '" width="', barWidth, '" height="', segmentHeight, '" rx="2" fill="', color, '"></rect>'
         ].join(''));
       });
+      var selected = state.selectedHistoryDate === date;
+      var columnLabel = formatHistoryDate(date) + ' ' + data.metricLabel + ' 합계 ' + formatCompactWon(totals[dateIndex]) + '. ' + ariaParts.join(', ');
+      svg.push('<g class="capital-history-column' + (selected ? ' is-selected' : '') + '" data-capital-history-index="' + dateIndex + '" data-capital-history-total="' + totals[dateIndex] + '" tabindex="0" focusable="true" role="button" aria-pressed="' + (selected ? 'true' : 'false') + '" aria-label="' + escapeHtml(columnLabel) + '">');
+      svg.push(segmentSvg.join(''));
       var totalY = Math.max(16, cursorY - 8);
       if (showTotals) {
         svg.push('<text class="capital-history-total" x="' + center + '" y="' + totalY + '" text-anchor="middle">' + escapeHtml(formatCompactWon(totals[dateIndex])) + '</text>');
       }
       svg.push('<text class="capital-history-date' + (compactAxis ? ' is-compact' : '') + '" x="' + center + '" y="' + (height - 19) + '" text-anchor="middle">' + escapeHtml(historyAxisLabel(date, compactAxis)) + '</text>');
-      svg.push('<rect class="capital-history-hit" x="' + (center - slot / 2 + 1) + '" y="' + top + '" width="' + Math.max(8, slot - 2) + '" height="' + plotHeight + '" aria-label="' + escapeHtml(formatHistoryDate(date) + ' ' + data.metricLabel + ' 합계 ' + formatCompactWon(totals[dateIndex]) + '. ' + ariaParts.join(', ')) + '"></rect>');
+      svg.push('<rect class="capital-history-hit" x="' + (center - slot / 2 + 1) + '" y="' + top + '" width="' + Math.max(8, slot - 2) + '" height="' + plotHeight + '"></rect>');
       svg.push('</g>');
     });
     svg.push('</svg>');
     return svg.join('');
   }
 
-  function historyTooltipHtml(data, dateIndex) {
+  function historyStackRows(data, dateIndex) {
     var date = data.dates[dateIndex];
-    var rows = data.classes.map(function (roleClass, classIndex) {
+    return data.classes.map(function (roleClass, classIndex) {
       return {
         label: roleClass,
         amount: data.groups.get(date).get(roleClass) || 0,
@@ -1130,6 +1136,11 @@
     }).sort(function (a, b) {
       return b.amount - a.amount;
     });
+  }
+
+  function historyTooltipHtml(data, dateIndex) {
+    var date = data.dates[dateIndex];
+    var rows = historyStackRows(data, dateIndex);
     var total = rows.reduce(function (sum, row) { return sum + row.amount; }, 0);
     var yearLabel = formatHistoryDate(date);
     if (/^\d{4}$/.test(yearLabel)) yearLabel += '년';
@@ -1149,11 +1160,47 @@
     ].join('');
   }
 
+  function historySelectionHtml(data) {
+    var dateIndex = data.dates.indexOf(state.selectedHistoryDate);
+    if (dateIndex < 0) return '';
+    var rows = historyStackRows(data, dateIndex);
+    var total = rows.reduce(function (sum, row) { return sum + row.amount; }, 0);
+    var yearLabel = formatHistoryDate(data.dates[dateIndex]);
+    if (/^\d{4}$/.test(yearLabel)) yearLabel += '년';
+    var context = data.breakdownContext ? data.breakdownContext + ' 내부 ' : '';
+    var rowHtml = rows.map(function (row, index) {
+      var share = total > 0 ? row.amount / total * 100 : 0;
+      return [
+        '<tr>',
+        '<td><span class="capital-history-selection-label"><span class="capital-history-selection-rank">' + (index + 1) + '</span><i style="--history-color:' + row.color + '"></i><strong>' + escapeHtml(row.label) + '</strong></span></td>',
+        '<td class="capital-history-selection-amount"><strong>' + escapeHtml(formatCompactWon(row.amount)) + '</strong><small>' + escapeHtml(formatInteger(row.amount / MILLION)) + '백만원</small></td>',
+        '<td class="capital-history-selection-share">' + share.toLocaleString('ko-KR', { maximumFractionDigits: 1 }) + '%</td>',
+        '</tr>'
+      ].join('');
+    }).join('');
+    return [
+      '<section class="capital-history-selection" aria-label="' + escapeHtml(yearLabel) + ' 스택 상세">',
+      '<header class="capital-history-selection-heading">',
+      '<div><span>선택 연도</span><h4>' + escapeHtml(yearLabel) + ' ' + (data.aggregation === 'cumulative' ? '누적 ' : '') + escapeHtml(data.metricLabel) + ' 구성</h4><p>' + rows.length + '개 항목 · ' + escapeHtml(context + data.breakdownLabel) + '</p></div>',
+      '<div class="capital-history-selection-total"><span>합계</span><strong>' + escapeHtml(formatCompactWon(total)) + '</strong></div>',
+      '<button type="button" class="capital-history-selection-close" data-capital-history-clear aria-label="선택 연도 상세 닫기" title="선택 해제">×</button>',
+      '</header>',
+      '<div class="capital-history-selection-table-wrap">',
+      '<table class="capital-history-selection-table">',
+      '<thead><tr><th scope="col">구성 항목</th><th scope="col">금액</th><th scope="col">비중</th></tr></thead>',
+      '<tbody>' + rowHtml + '</tbody>',
+      '</table>',
+      '</div>',
+      '</section>'
+    ].join('');
+  }
+
   function bindHistoryTooltip(host) {
     var container = host && host.querySelector('.capital-history-scroll');
     if (!container) return;
     var tooltip = container.querySelector('.capital-history-tooltip');
     var svg = container.querySelector('.capital-history-svg');
+    var selectionHost = host.querySelector('.capital-history-selection-host');
     if (!tooltip || !svg) return;
     var data = historyChartData();
     var activeColumn = null;
@@ -1200,6 +1247,27 @@
       positionTooltip(clientX, clientY);
     }
 
+    function syncSelection() {
+      var hasSelection = false;
+      svg.querySelectorAll('[data-capital-history-index]').forEach(function (column) {
+        var date = data.dates[Number(column.dataset.capitalHistoryIndex)];
+        var selected = Boolean(date) && date === state.selectedHistoryDate;
+        column.classList.toggle('is-selected', selected);
+        column.setAttribute('aria-pressed', selected ? 'true' : 'false');
+        if (selected) hasSelection = true;
+      });
+      svg.classList.toggle('has-selection', hasSelection);
+      if (selectionHost) selectionHost.innerHTML = historySelectionHtml(data);
+    }
+
+    function toggleSelection(column) {
+      var dateIndex = Number(column.dataset.capitalHistoryIndex);
+      var date = data.dates[dateIndex];
+      if (!Number.isInteger(dateIndex) || !date) return;
+      state.selectedHistoryDate = state.selectedHistoryDate === date ? '' : date;
+      syncSelection();
+    }
+
     container.addEventListener('pointermove', function (event) {
       var column = event.target.closest('[data-capital-history-index]');
       if (!column) {
@@ -1209,6 +1277,21 @@
       showTooltip(column, event);
     });
     container.addEventListener('pointerleave', hideTooltip);
+    container.addEventListener('click', function (event) {
+      var column = event.target.closest('[data-capital-history-index]');
+      if (column) {
+        toggleSelection(column);
+        hideTooltip();
+      }
+    });
+    container.addEventListener('keydown', function (event) {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      var column = event.target.closest('[data-capital-history-index]');
+      if (!column) return;
+      event.preventDefault();
+      toggleSelection(column);
+      hideTooltip();
+    });
     container.addEventListener('focusin', function (event) {
       var column = event.target.closest('[data-capital-history-index]');
       if (column) showTooltip(column);
@@ -1216,10 +1299,20 @@
     container.addEventListener('focusout', function (event) {
       if (!container.contains(event.relatedTarget)) hideTooltip();
     });
+    if (selectionHost) {
+      selectionHost.addEventListener('click', function (event) {
+        if (!event.target.closest('[data-capital-history-clear]')) return;
+        state.selectedHistoryDate = '';
+        syncSelection();
+      });
+    }
   }
 
   function renderHistoryChart() {
     var data = historyChartData();
+    if (state.selectedHistoryDate && data.dates.indexOf(state.selectedHistoryDate) === -1) {
+      state.selectedHistoryDate = '';
+    }
     var svg = renderHistorySvg(data);
     var eligiblePartyIds = new Set(state.filtered.map(function (row) { return row.partyId; }));
     var coverage = state.historicalFacts.filter(function (row) {
@@ -1266,6 +1359,7 @@
       '</div>',
       '</div>',
       svg ? '<div class="capital-history-scroll" tabindex="0">' + svg + '<div class="capital-history-tooltip" role="tooltip" hidden></div></div>' : '<div class="capital-history-empty">현재 조건에 표시할 시계열 금액이 없습니다.</div>',
+      '<div class="capital-history-selection-host" aria-live="polite">' + (svg ? historySelectionHtml(data) : '') + '</div>',
       legendHtml,
       '</section>'
     ].join('');
@@ -1973,6 +2067,7 @@
     state.role = role;
     state.page = 1;
     state.selectedIds.clear();
+    state.selectedHistoryDate = '';
     state.filters.roleClass = '';
     state.filters.partyOrigin = '';
     var classLabel = document.getElementById('capitalRoleClassLabel');
