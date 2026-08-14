@@ -61,6 +61,21 @@ assert.equal(activeFunds.metrics.fundCount, 4);
 assert.equal(activeFunds.metrics.propertyCount, 3);
 assert.equal(activeFunds.metrics.nonPropertyCount, 1);
 
+const activeVehicles = Engine.query(dataset, {
+  filters: { operational_status: ['운용'] },
+  countBasis: 'fund_code'
+});
+assert.equal(activeVehicles.metrics.fundCount, 5);
+assert.equal(activeVehicles.metrics.fundVehicleCount, 4);
+assert.equal(activeVehicles.metrics.pfvVehicleCount, 1);
+assert.equal(activeVehicles.metrics.otherVehicleCount, 0);
+assert.equal(
+  activeVehicles.metrics.fundVehicleCount
+    + activeVehicles.metrics.pfvVehicleCount
+    + activeVehicles.metrics.otherVehicleCount,
+  activeVehicles.metrics.fundCount
+);
+
 const representative = Engine.query(dataset, {
   filters: { operational_status: ['운용'], vehicle_type: ['Fund'] },
   countBasis: 'representative'

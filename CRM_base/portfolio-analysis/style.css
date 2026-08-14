@@ -3879,6 +3879,28 @@ body {
   font-size: 11px;
 }
 
+.semantic-kpi-grid article > .semantic-vehicle-split {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px 7px;
+}
+
+.semantic-vehicle-split span {
+  white-space: nowrap;
+}
+
+.semantic-kpi-definition {
+  margin: 10px 2px 0;
+  color: var(--soft);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.semantic-kpi-definition strong {
+  margin-right: 5px;
+  color: var(--text);
+}
+
 .semantic-breakdown-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

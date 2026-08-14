@@ -599,7 +599,7 @@
           <article>
             <span>대상 투자기구</span>
             <strong>${formatInteger(metrics.fundCount)}<small>개</small></strong>
-            <p>Fund ${formatInteger(metrics.fundVehicleCount)}개</p>
+            <p class="semantic-vehicle-split"><span>Fund ${formatInteger(metrics.fundVehicleCount)}</span><span>PFV ${formatInteger(metrics.pfvVehicleCount)}</span><span>기타 ${formatInteger(metrics.otherVehicleCount)}</span></p>
           </article>
           <article>
             <span>고유 실물 부동산</span>
@@ -608,15 +608,16 @@
           </article>
           <article>
             <span>부동산형 Fund</span>
-            <strong>${formatRatio(metrics.propertyRatio)}</strong>
-            <p>${formatInteger(metrics.propertyCount)} / ${formatInteger(metrics.fundVehicleCount)}개</p>
+            <strong>${formatInteger(metrics.propertyCount)}<small>개</small></strong>
+            <p>Fund ${formatInteger(metrics.fundVehicleCount)}개 중 ${formatRatio(metrics.propertyRatio)}</p>
           </article>
           <article>
-            <span>개발 Fund + PFV</span>
-            <strong>${formatRatio(metrics.developmentRatio)}</strong>
-            <p>${formatInteger(metrics.developmentCount)} / ${formatInteger(metrics.developmentBaseCount)}개</p>
+            <span>개발단계 Fund·PFV</span>
+            <strong>${formatInteger(metrics.developmentCount)}<small>개</small></strong>
+            <p>Fund·PFV ${formatInteger(metrics.developmentBaseCount)}개 중 ${formatRatio(metrics.developmentRatio)}</p>
           </article>
         </div>
+        <p class="semantic-kpi-definition"><strong>비율 해석</strong> 부동산 여부와 개발 단계는 서로 다른 분류 축입니다. 개발 Fund는 부동산형 Fund에 포함될 수 있으므로 두 비율을 합산하지 않습니다.</p>
         <div class="semantic-breakdown-grid">
           ${breakdownButtons('국내/해외', 'domestic_overseas', result.distributions.domestic_overseas, 3)}
           ${breakdownButtons('기초자산', 'base_asset_class', result.distributions.base_asset_class, 6)}

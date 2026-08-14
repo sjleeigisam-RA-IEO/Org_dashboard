@@ -539,6 +539,8 @@
     });
 
     var fundOnly = facts.filter(function (fact) { return fact.values.vehicle_type === 'Fund'; });
+    var pfvOnly = facts.filter(function (fact) { return fact.values.vehicle_type === 'PFV'; });
+    var otherVehicleCount = Math.max(0, facts.length - fundOnly.length - pfvOnly.length);
     var propertyCount = fundOnly.filter(function (fact) { return fact.values.property_domain === '부동산'; }).length;
     var nonPropertyCount = fundOnly.filter(function (fact) { return fact.values.property_domain === '비부동산'; }).length;
     var propertyUnknownCount = fundOnly.length - propertyCount - nonPropertyCount;
@@ -569,6 +571,8 @@
       metrics: {
         fundCount: facts.length,
         fundVehicleCount: fundOnly.length,
+        pfvVehicleCount: pfvOnly.length,
+        otherVehicleCount: otherVehicleCount,
         uniquePhysicalAssetCount: uniqueAssets.size,
         linkedFundCount: linkedFunds.size,
         propertyCount: propertyCount,
