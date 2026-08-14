@@ -9,6 +9,11 @@ const PASSWORD_ITERATIONS = 210000;
 const SESSION_TTL_DAYS = 30;
 const SESSION_IDLE_DAYS = 3;
 const COMPANY_DOMAIN = "igisam.com";
+const DIRECT_LOGIN_EMAILS = new Set([
+  "kabjoo.cho@igisam.com",
+  "ethan.lee@igisam.com",
+  "hshin@igisam.com",
+]);
 
 type Mode = "setup-check" | "set-password" | "login" | "resume-session" | "logout";
 
@@ -83,7 +88,7 @@ async function handleSetPassword(payload: AuthPayload) {
 
 async function handleLogin(payload: AuthPayload) {
   const email = normalizeEmail(payload.email);
-  const password = requirePassword(payload.password);
+  const password = requireLoginPassword(payload.password, email);
   assertCompanyEmail(email);
   const staff = await findActiveStaff(email);
   const credential = await selectOne("ra_user_credentials", `staff_id=eq.${encodeURIComponent(staff.staff_id)}&select=*`);
@@ -279,6 +284,18 @@ function requireText(value: unknown, message: string) {
   const text = String(value || "").trim();
   if (!text) throw new Error(`VALIDATION: ${message}`);
   return text;
+}
+
+function requireLoginPassword(value: unknown, email: string) {
+  const password = String(value || "");
+  const minimumLength = DIRECT_LOGIN_EMAILS.has(normalizeEmail(email)) ? 4 : 8;
+  if (password.length < minimumLength) {
+    const message = minimumLength === 8
+      ? "비밀번호는 8자 이상이어야 합니다."
+      : "비밀번호를 확인하세요.";
+    throw new Error(`VALIDATION: ${message}`);
+  }
+  return password;
 }
 
 function requirePassword(value: unknown) {
