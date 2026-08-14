@@ -305,10 +305,36 @@
     return Object.values(byId);
   }
 
+  async function enrichBeneficiarySourceMetadata(rows) {
+    const exposureIds = Array.from(new Set(
+      (rows || []).map(function (row) { return row.id; }).filter(function (id) { return id !== null && id !== undefined; })
+    ));
+    if (!exposureIds.length) return rows || [];
+
+    const metadataByExposureId = {};
+    for (let start = 0; start < exposureIds.length; start += 250) {
+      const response = await _supabase
+        .from('beneficiary_exposure_source_metadata')
+        .select('*')
+        .in('exposure_id', exposureIds.slice(start, start + 250));
+      if (response.error) throw response.error;
+      (response.data || []).forEach(function (metadata) {
+        metadataByExposureId[String(metadata.exposure_id)] = metadata;
+      });
+    }
+
+    return (rows || []).map(function (row) {
+      return { ...row, ...(metadataByExposureId[String(row.id)] || {}) };
+    });
+  }
+
   function isFundVehicleBeneficiary(row) {
     const name = String(row?.beneficiary_clean || row?.beneficiary_raw || '');
-    const category = String(row?.beneficiary_cat || '');
-    if (category === '펀드') return true;
+    const sourceClassification = [
+      row?.source_beneficiary_category,
+      row?.source_beneficiary_type
+    ].filter(Boolean).join(' ');
+    if (/(펀드|리츠|SPC|집합투자|재간접|투자신탁)/i.test(sourceClassification)) return true;
     return /이지스.*(투자신탁|투자회사|리츠|펀드)/.test(name);
   }
 
@@ -669,6 +695,8 @@
           console.warn('Could not fetch fund-derived exposure rows:', e);
         }
       }
+
+      beneficiaries = await enrichBeneficiarySourceMetadata(beneficiaries);
 
       const projects = rawProjects.map(p => {
         const enriched = enrichedProjects.find(ed => ed.project_id === p.project_id);

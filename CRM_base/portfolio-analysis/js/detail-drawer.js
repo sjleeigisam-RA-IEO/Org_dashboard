@@ -223,7 +223,7 @@
 
   function formatExposureAmount(row, keys) {
     for (const key of keys) {
-      if (row && row[key]) return formatNumber(row[key]);
+      if (row && row[key] !== null && row[key] !== undefined) return formatNumber(row[key]);
     }
     return '-';
   }
@@ -236,12 +236,12 @@
           <thead><tr><th>수익자</th><th>구분</th><th>약정금액</th><th>납입금액</th><th>잔여금액</th><th>일자</th></tr></thead>
           <tbody>${beneficiaries.map(function (row) {
             return `<tr>
-              <td style="font-weight:700">${row.beneficiary_clean || row.beneficiary_raw || '-'}</td>
-              <td>${row.beneficiary_cat || row.category || '-'}</td>
+              <td style="font-weight:700">${row.party_name || row.beneficiary_clean || row.beneficiary_raw || '-'}</td>
+              <td>${row.role_class || row.source_party_category || '-'}</td>
               <td>${formatExposureAmount(row, ['committed_amt'])}</td>
               <td>${formatExposureAmount(row, ['invested_amt'])}</td>
               <td>${formatExposureAmount(row, ['remaining_amt'])}</td>
-              <td>${row.invested_date || row.start_date || row.drawdown_date || '-'}</td>
+              <td>${row.activity_date || row.invested_date || row.start_date || row.drawdown_date || '-'}</td>
             </tr>`;
           }).join('') || '<tr><td colspan="6">수익자 정보가 없습니다.</td></tr>'}</tbody>
         </table>
@@ -252,12 +252,12 @@
           <thead><tr><th>대주</th><th>약정금액</th><th>실행금액</th><th>잔여금액</th><th>인출일</th><th>만기일</th></tr></thead>
           <tbody>${lenders.map(function (row) {
             return `<tr>
-              <td style="font-weight:700">${row.lender_clean || row.lender_raw || '-'}</td>
+              <td style="font-weight:700">${row.party_name || row.lender_clean || row.lender_raw || '-'}</td>
               <td>${formatExposureAmount(row, ['committed_amt'])}</td>
               <td>${formatExposureAmount(row, ['drawn_amt', 'invested_amt'])}</td>
               <td>${formatExposureAmount(row, ['remaining_amt'])}</td>
-              <td>${row.drawdown_date || row.start_date || '-'}</td>
-              <td>${row.loan_maturity_date || row.end_date || '-'}</td>
+              <td>${row.activity_date || row.drawdown_date || row.start_date || '-'}</td>
+              <td>${row.maturity_date || row.loan_maturity_date || row.end_date || '-'}</td>
             </tr>`;
           }).join('') || '<tr><td colspan="6">대주 정보가 없습니다.</td></tr>'}</tbody>
         </table>
@@ -583,8 +583,8 @@
       const [fundRes, assetRelRes, lenderRes, benRes] = await Promise.all([
         _supabase.from('v_funds_enriched').select('*').eq('fund_id', fundId).maybeSingle(),
         _supabase.from('fund_asset_relationships').select('*').eq('fund_id', fundId).limit(300),
-        _supabase.from('lender_exposures').select('*').eq('fund_id', fundId).limit(300),
-        _supabase.from('beneficiary_exposures').select('*').eq('fund_id', fundId).limit(300)
+        _supabase.from('party_exposure_current').select('*').eq('role_type', 'lender').eq('fund_id', fundId).limit(300),
+        _supabase.from('party_exposure_current').select('*').eq('role_type', 'beneficiary').eq('fund_id', fundId).limit(300)
       ]);
       [fundRes, assetRelRes, lenderRes, benRes].forEach(function (res) {
         if (res.error) throw res.error;
@@ -722,8 +722,8 @@
       const [fundRes, assetRes, lenderRes, benRes] = await Promise.all([
         _supabase.from('v_funds_enriched').select('*').in('fund_id', fundIds),
         _supabase.from('fund_assets').select('*').in('fund_id', fundIds),
-        _supabase.from('lender_exposures').select('*').in('fund_id', fundIds),
-        _supabase.from('beneficiary_exposures').select('*').in('fund_id', fundIds)
+        _supabase.from('party_exposure_current').select('*').eq('role_type', 'lender').in('fund_id', fundIds),
+        _supabase.from('party_exposure_current').select('*').eq('role_type', 'beneficiary').in('fund_id', fundIds)
       ]);
 
       const f = fundRes.data?.[0] || items[0];

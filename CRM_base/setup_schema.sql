@@ -20,6 +20,8 @@ CREATE TABLE lender_exposures (
     fund_id VARCHAR REFERENCES funds(fund_id),
     lender_raw VARCHAR,                -- 원본 대주명
     lender_clean VARCHAR,              -- 정제된 대주명
+    party_id VARCHAR,                  -- canonical party identity
+    asset_id VARCHAR,                  -- direct/derived asset convenience key
     committed_amt BIGINT,              -- 대출약정금액
     drawn_amt BIGINT,                  -- 대출인출금액
     remaining_amt BIGINT,              -- 대출잔여금액
@@ -40,8 +42,8 @@ CREATE TABLE beneficiary_exposures (
     fund_id VARCHAR REFERENCES funds(fund_id),
     beneficiary_raw VARCHAR,           -- 원본 수익자명
     beneficiary_clean VARCHAR,         -- 정제된 수익자명
-    beneficiary_type VARCHAR,          -- 수익자구분
-    beneficiary_cat VARCHAR,           -- 수익자분류
+    party_id VARCHAR,                  -- canonical party identity
+    asset_id VARCHAR,                  -- direct/derived asset convenience key
     committed_amt BIGINT,              -- 총약정금액
     invested_amt BIGINT,               -- 투입금액
     remaining_amt BIGINT,              -- 잔여약정금액
@@ -51,3 +53,7 @@ CREATE TABLE beneficiary_exposures (
     remarks TEXT,                      -- 비고
     base_date DATE                     -- 기준일자
 );
+
+-- Canonical identity, role classification, source metadata and dashboard views are
+-- installed by 2026-08-14_party_classification_clean_contract.sql. Classification
+-- does not live on the exposure rows.
