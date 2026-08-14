@@ -108,6 +108,7 @@
   var state = {
     mode: 'portfolio',
     role: 'beneficiary',
+    directFacts: [],
     facts: [],
     historicalFacts: [],
     rankings: [],
@@ -127,6 +128,13 @@
     loadErrors: [],
     duplicateFactsSuppressed: 0,
     invalidContractRows: 0,
+    internalFundRowsExcluded: 0,
+    internalFundPartiesExcluded: 0,
+    internalFundCommittedExcluded: 0,
+    internalFundCoveredParties: 0,
+    internalFundCoveredCommitted: 0,
+    internalFundMissingParties: 0,
+    internalFundMissingCommitted: 0,
     historyMetric: 'committed',
     historyAggregation: 'annual',
     notice: null,
@@ -299,6 +307,15 @@
       roleSubtype: roleSubtype,
       sourcePartyTypes: combinedArray(row, ['source_party_types'], ['source_party_type']),
       sourcePartyCategories: combinedArray(row, ['source_party_categories'], ['source_party_category']),
+      investorManagedFundIds: combinedArray(row, ['investor_managed_fund_ids'], []),
+      investorManagedFundNames: combinedArray(row, ['investor_managed_fund_names'], []),
+      capitalScope: normalizeText(row.capital_scope) || 'external_party',
+      includeInExternalInvestorRollup: row.include_in_external_investor_rollup !== false,
+      isManagedFundParty: row.is_managed_fund_party === true,
+      lookthroughCoverageStatus: normalizeText(row.lookthrough_coverage_status) || 'not_applicable',
+      upstreamBeneficiaryRows: numberValue(row.upstream_beneficiary_rows),
+      upstreamBeneficiaryParties: numberValue(row.upstream_beneficiary_parties),
+      upstreamCommittedAmount: numberValue(row.upstream_committed_amt),
       partyOrigin: normalizedPartyOrigin(row.party_origin),
       domicileCountryCode: normalizeText(pick(row, ['domicile_country_code', 'party_country_code'], '')),
       committedAmount: committed,
@@ -548,13 +565,8 @@
     if (state.loadPromise && !force) return state.loadPromise;
     state.loading = true;
     state.loadErrors = [];
-    state.loadPromise = Promise.all([
-      safeFetch('party_exposure_commitment_current')
-    ]).then(function (responses) {
-      var currentResponse = responses[0];
-      state.loadErrors = responses.filter(function (response) { return response.error; }).map(function (response) {
-        return response.error.message;
-      });
+    state.loadPromise = safeFetch('party_exposure_external_current_v1').then(function (currentResponse) {
+      state.loadErrors = currentResponse.error ? [currentResponse.error.message] : [];
       if (state.loadErrors.length) throw new Error(state.loadErrors.join(' / '));
       state.facets = [];
       var normalizedCurrent = (currentResponse.rows || []).map(function (row, index) {
@@ -563,8 +575,33 @@
       state.invalidContractRows = normalizedCurrent.filter(function (row) {
         return !row.partyId;
       }).length;
-      state.facts = normalizedCurrent.filter(function (row) { return Boolean(row.partyId); });
-      state.historicalFacts = dedupeFactRows(normalizedCurrent.filter(function (row) {
+      state.directFacts = normalizedCurrent.filter(function (row) { return Boolean(row.partyId); });
+      var excludedInternal = state.directFacts.filter(function (row) {
+        return row.role === 'beneficiary' && !row.includeInExternalInvestorRollup;
+      });
+      state.internalFundRowsExcluded = excludedInternal.length;
+      state.internalFundPartiesExcluded = unique(excludedInternal.map(function (row) { return row.partyId; })).length;
+      state.internalFundCommittedExcluded = excludedInternal.reduce(function (sum, row) {
+        return sum + row.committedAmount;
+      }, 0);
+      var coveredInternal = excludedInternal.filter(function (row) {
+        return row.lookthroughCoverageStatus === 'direct_upstream_available';
+      });
+      var missingInternal = excludedInternal.filter(function (row) {
+        return row.lookthroughCoverageStatus === 'direct_upstream_missing';
+      });
+      state.internalFundCoveredParties = unique(coveredInternal.map(function (row) { return row.partyId; })).length;
+      state.internalFundCoveredCommitted = coveredInternal.reduce(function (sum, row) {
+        return sum + row.committedAmount;
+      }, 0);
+      state.internalFundMissingParties = unique(missingInternal.map(function (row) { return row.partyId; })).length;
+      state.internalFundMissingCommitted = missingInternal.reduce(function (sum, row) {
+        return sum + row.committedAmount;
+      }, 0);
+      state.facts = state.directFacts.filter(function (row) {
+        return row.role !== 'beneficiary' || row.includeInExternalInvestorRollup;
+      });
+      state.historicalFacts = dedupeFactRows(state.facts.filter(function (row) {
         return Boolean(row.partyId);
       }), false);
       state.rankings = [];
@@ -572,7 +609,7 @@
       var dedupedFacts = dedupeFactRows(state.facts, true);
       state.results = aggregatePartyRows(dedupedFacts);
       state.source = currentResponse.view;
-      state.sourceLabel = 'Clean contract · 약정연도 기준';
+      state.sourceLabel = '외부 투자자 기준 · 내부 운용펀드 ' + state.internalFundPartiesExcluded + '개 제외';
       state.snapshotDate = maxSnapshotDate(dedupedFacts);
       state.loaded = true;
       state.loading = false;
@@ -756,10 +793,20 @@
     return true;
   }
 
+  function aggregateFactsForActiveFilters(rows) {
+    var matchingFacts = dedupeFactRows((rows || []).filter(function (row) {
+      return matchesFilters(row, { ignoreMinimum: true });
+    }), false);
+    var minimum = numberValue(state.filters.minimumAmount) * MILLION;
+    return aggregatePartyRows(matchingFacts).filter(function (row) {
+      return !minimum || row.committedAmount >= minimum;
+    });
+  }
+
   function applyCapitalFilters(options) {
     var opts = options || {};
     if (opts.read !== false) readFilters();
-    state.filtered = state.results.filter(matchesFilters).sort(function (a, b) {
+    state.filtered = aggregateFactsForActiveFilters(state.facts).sort(function (a, b) {
       return b.committedAmount - a.committedAmount || b.currentAmount - a.currentAmount || a.partyName.localeCompare(b.partyName, 'ko');
     });
     if (opts.keepPage !== true) state.page = 1;
@@ -852,13 +899,20 @@
 
   function historyBreakdownConfig() {
     var detailed = Boolean(state.filters.roleClass);
+    var partyBreakdown = state.role === 'beneficiary'
+      && ['국내LP', '해외LP'].includes(state.filters.roleClass);
     return {
       detailed: detailed,
-      label: detailed
+      partyBreakdown: partyBreakdown,
+      label: partyBreakdown
+        ? '개별 투자자'
+        : detailed
         ? '원천 세부분류'
         : (state.role === 'lender' ? '대주 유형' : '투자자 분류'),
       context: detailed ? state.filters.roleClass : '',
-      value: detailed
+      value: partyBreakdown
+        ? function (row) { return row.partyName || '투자자명 미상'; }
+        : detailed
         ? historyDetailValue
         : function (row) { return row.roleClass || (row.role === 'lender' ? '미확인' : '기타'); }
     };
@@ -867,8 +921,11 @@
   function historicalPartyBuckets() {
     var groups = new Map();
     var breakdown = historyBreakdownConfig();
+    var eligiblePartyIds = new Set(state.filtered.map(function (row) { return row.partyId; }));
     state.historicalFacts.filter(function (row) {
-      return row.commitmentYearLabel && matchesFilters(row, { ignoreMinimum: true });
+      return row.commitmentYearLabel
+        && eligiblePartyIds.has(row.partyId)
+        && matchesFilters(row, { ignoreMinimum: true });
     }).forEach(function (row) {
       var key = row.commitmentYearLabel + '|' + row.role + '|' + row.partyId;
       if (!groups.has(key)) {
@@ -890,10 +947,7 @@
       bucket.roleClassValues.add(breakdown.value(row));
     });
 
-    var minimum = numberValue(state.filters.minimumAmount) * MILLION;
-    return Array.from(groups.values()).filter(function (bucket) {
-      return !minimum || bucket.committedAmount >= minimum;
-    }).map(function (bucket) {
+    return Array.from(groups.values()).map(function (bucket) {
       var classes = Array.from(bucket.roleClassValues);
       bucket.roleClass = classes.length === 1
         ? classes[0]
@@ -962,7 +1016,8 @@
       aggregation: state.historyAggregation,
       breakdownLabel: breakdown.label,
       breakdownContext: breakdown.context,
-      detailedBreakdown: breakdown.detailed
+      detailedBreakdown: breakdown.detailed,
+      partyBreakdown: breakdown.partyBreakdown
     };
   }
 
@@ -970,8 +1025,18 @@
     return normalizeText(value) || '미상';
   }
 
-  function roleClassColor(roleClass, index) {
+  function stringColor(value) {
+    var hash = 0;
+    String(value || '').split('').forEach(function (character) {
+      hash = ((hash << 5) - hash + character.charCodeAt(0)) | 0;
+    });
+    var hue = Math.abs(hash * 137.508) % 360;
+    return 'hsl(' + hue.toFixed(1) + ' 62% 60%)';
+  }
+
+  function roleClassColor(roleClass, index, data) {
     var fallback = ['#4ea8de', '#72c7c1', '#f2cc5c', '#8d9ef0', '#69c48d', '#f29b76', '#a7adb8'];
+    if (data && data.partyBreakdown) return stringColor(roleClass);
     return ROLE_CLASS_COLORS[roleClass] || ROLE_DETAIL_COLORS[roleClass] || fallback[index % fallback.length];
   }
 
@@ -1027,14 +1092,14 @@
       var center = left + slot * dateIndex + slot / 2;
       var cursorY = top + plotHeight;
       var ariaParts = [];
-      svg.push('<g class="capital-history-column" data-capital-history-index="' + dateIndex + '" tabindex="0" focusable="true" role="img">');
+      svg.push('<g class="capital-history-column" data-capital-history-index="' + dateIndex + '" data-capital-history-total="' + totals[dateIndex] + '" tabindex="0" focusable="true" role="img">');
       data.classes.forEach(function (roleClass, classIndex) {
         var amount = data.groups.get(date).get(roleClass) || 0;
         if (amount <= 0) return;
         ariaParts.push(roleClass + ' ' + formatCompactWon(amount));
         var segmentHeight = Math.max(1, plotHeight * amount / maxTotal);
         cursorY -= segmentHeight;
-        var color = roleClassColor(roleClass, classIndex);
+        var color = roleClassColor(roleClass, classIndex, data);
         svg.push([
           '<rect class="capital-history-segment" x="', center - barWidth / 2, '" y="', cursorY,
           '" width="', barWidth, '" height="', segmentHeight, '" rx="2" fill="', color, '"></rect>'
@@ -1058,7 +1123,7 @@
       return {
         label: roleClass,
         amount: data.groups.get(date).get(roleClass) || 0,
-        color: roleClassColor(roleClass, classIndex)
+        color: roleClassColor(roleClass, classIndex, data)
       };
     }).filter(function (row) {
       return row.amount > 0;
@@ -1152,8 +1217,11 @@
   function renderHistoryChart() {
     var data = historyChartData();
     var svg = renderHistorySvg(data);
+    var eligiblePartyIds = new Set(state.filtered.map(function (row) { return row.partyId; }));
     var coverage = state.historicalFacts.filter(function (row) {
-      return row.role === state.role && matchesFilters(row, { ignoreMinimum: true });
+      return row.role === state.role
+        && eligiblePartyIds.has(row.partyId)
+        && matchesFilters(row, { ignoreMinimum: true });
     }).reduce(function (counts, row) {
       if (row.commitmentDateQuality === 'source_date') counts.source += 1;
       else if (row.commitmentDateQuality === 'proxy') counts.proxy += 1;
@@ -1174,8 +1242,14 @@
       return '<button type="button" data-capital-history-aggregation="' + item.value + '" aria-pressed="' + (active ? 'true' : 'false') + '" class="' + (active ? 'active' : '') + '">' + item.label + '</button>';
     }).join('');
     var legend = data.classes.map(function (roleClass, index) {
-      return '<span><i style="--history-color:' + roleClassColor(roleClass, index) + '"></i>' + escapeHtml(roleClass) + '</span>';
+      return '<span><i style="--history-color:' + roleClassColor(roleClass, index, data) + '"></i>' + escapeHtml(roleClass) + '</span>';
     }).join('');
+    var legendHtml = '';
+    if (legend && data.partyBreakdown) {
+      legendHtml = '<details class="capital-history-legend-panel"><summary>금액 표시 투자자 ' + data.classes.length + '명 범례</summary><div class="capital-history-legend" aria-label="개별 투자자 범례">' + legend + '</div></details>';
+    } else if (legend) {
+      legendHtml = '<div class="capital-history-legend" aria-label="' + escapeHtml(data.breakdownLabel) + ' 범례">' + legend + '</div>';
+    }
     var stackContext = data.breakdownContext ? data.breakdownContext + ' 내부 ' : '';
     return [
       '<section class="capital-history-section" aria-label="관계 발생연도별 자금 시계열">',
@@ -1187,7 +1261,7 @@
       '</div>',
       '</div>',
       svg ? '<div class="capital-history-scroll" tabindex="0">' + svg + '<div class="capital-history-tooltip" role="tooltip" hidden></div></div>' : '<div class="capital-history-empty">현재 조건에 표시할 시계열 금액이 없습니다.</div>',
-      legend ? '<div class="capital-history-legend" aria-label="' + escapeHtml(data.breakdownLabel) + ' 범례">' + legend + '</div>' : '',
+      legendHtml,
       '</section>'
     ].join('');
   }
@@ -1233,11 +1307,83 @@
   function renderKpis(totals) {
     var role = currentRoleConfig();
     return [
-      '<section class="capital-kpi-strip" aria-label="자금관계 핵심 지표">',
+      '<section class="capital-kpi-strip" aria-label="자금관계 핵심 지표" data-capital-committed="' + totals.committed + '" data-capital-current="' + totals.current + '" data-capital-remaining="' + totals.remaining + '">',
       '<div><span>' + escapeHtml(role.countLabel) + '</span><strong>' + formatInteger(state.filtered.length) + '</strong><small>개</small></div>',
       '<div class="is-primary"><span>' + escapeHtml(role.committedLabel) + '</span><strong>' + escapeHtml(formatCompactWon(totals.committed)) + '</strong><small>' + escapeHtml(formatMillion(totals.committed)) + '백만원</small></div>',
       '<div><span>' + escapeHtml(role.currentLabel) + '</span><strong>' + escapeHtml(formatCompactWon(totals.current)) + '</strong><small>' + escapeHtml(formatMillion(totals.current)) + '백만원</small></div>',
       '<div><span>' + escapeHtml(role.remainingLabel) + '</span><strong>' + escapeHtml(formatCompactWon(totals.remaining)) + '</strong><small>' + escapeHtml(formatMillion(totals.remaining)) + '백만원</small></div>',
+      '</section>'
+    ].join('');
+  }
+
+  function currentInternalFundCoverage() {
+    if (state.role !== 'beneficiary') {
+      return { rows: [], parties: 0, committed: 0, current: 0, remaining: 0, covered: 0, coveredCommitted: 0, missing: 0, missingCommitted: 0 };
+    }
+    var matchingFacts = dedupeFactRows(state.directFacts.filter(function (row) {
+      return row.role === 'beneficiary'
+        && !row.includeInExternalInvestorRollup
+        && matchesFilters(row, { ignoreMinimum: true });
+    }), false);
+    var groups = new Map();
+    matchingFacts.forEach(function (row) {
+      if (!groups.has(row.partyId)) {
+        groups.set(row.partyId, {
+          partyId: row.partyId,
+          partyName: row.partyName,
+          lookthroughCoverageStatus: row.lookthroughCoverageStatus,
+          managedFundNames: [],
+          targetFundNames: [],
+          committedAmount: 0,
+          currentAmount: 0,
+          remainingAmount: 0,
+          exposureCount: 0
+        });
+      }
+      var group = groups.get(row.partyId);
+      group.managedFundNames = unique(group.managedFundNames.concat(row.investorManagedFundNames || []));
+      group.targetFundNames = unique(group.targetFundNames.concat(row.fundNames || []));
+      group.committedAmount += row.committedAmount;
+      group.currentAmount += row.currentAmount;
+      group.remainingAmount += row.remainingAmount;
+      group.exposureCount += 1;
+    });
+    var minimum = numberValue(state.filters.minimumAmount) * MILLION;
+    var rows = Array.from(groups.values()).filter(function (row) {
+      return !minimum || row.committedAmount >= minimum;
+    }).sort(function (a, b) {
+      return b.committedAmount - a.committedAmount || a.partyName.localeCompare(b.partyName, 'ko');
+    });
+    return rows.reduce(function (coverage, row) {
+      coverage.rows.push(row);
+      coverage.parties += 1;
+      coverage.committed += row.committedAmount;
+      coverage.current += row.currentAmount;
+      coverage.remaining += row.remainingAmount;
+      if (row.lookthroughCoverageStatus === 'direct_upstream_available') {
+        coverage.covered += 1;
+        coverage.coveredCommitted += row.committedAmount;
+      } else {
+        coverage.missing += 1;
+        coverage.missingCommitted += row.committedAmount;
+      }
+      return coverage;
+    }, { rows: [], parties: 0, committed: 0, current: 0, remaining: 0, covered: 0, coveredCommitted: 0, missing: 0, missingCommitted: 0 });
+  }
+
+  function renderExternalInvestorCoverage(externalTotals) {
+    if (state.role !== 'beneficiary') return '';
+    var coverage = currentInternalFundCoverage();
+    if (coverage.parties === 0) return '';
+    var directCommitted = externalTotals.committed + coverage.committed;
+    return [
+      '<section class="capital-rollup-coverage" aria-label="외부 투자자 집계 대사">',
+      '<div class="capital-rollup-equation"><span>집계 대사</span><strong>직접 출자관계 ' + escapeHtml(formatCompactWon(directCommitted)) + ' = 식별 외부 투자자 ' + escapeHtml(formatCompactWon(externalTotals.committed)) + ' + 내부 운용펀드 경유 ' + escapeHtml(formatCompactWon(coverage.committed)) + '</strong></div>',
+      '<div class="capital-rollup-coverage-meta">',
+      '<span>상위 출자관계 확인 ' + formatInteger(coverage.covered) + '개 · ' + escapeHtml(formatCompactWon(coverage.coveredCommitted)) + '</span>',
+      '<span class="' + (coverage.missing ? 'needs-review' : '') + '">상위 출자관계 미연결 ' + formatInteger(coverage.missing) + '개 · ' + escapeHtml(formatCompactWon(coverage.missingCommitted)) + '</span>',
+      coverage.parties ? '<button type="button" data-capital-action="show-internal-funds">내부 펀드 ' + formatInteger(coverage.parties) + '개 관계 보기</button>' : '',
+      '</div>',
       '</section>'
     ].join('');
   }
@@ -1372,6 +1518,56 @@
     ].join('');
     document.body.appendChild(overlay);
     return overlay;
+  }
+
+  function renderInternalFundCoverageRow(row, index) {
+    var coverageLabel = row.lookthroughCoverageStatus === 'direct_upstream_available'
+      ? '상위 출자관계 확인'
+      : '상위 출자관계 미연결';
+    return [
+      '<article class="capital-breakdown-row capital-internal-fund-row">',
+      '<div class="capital-breakdown-rank">' + formatInteger(index + 1) + '</div>',
+      '<div class="capital-breakdown-party"><strong>' + escapeHtml(row.partyName) + '</strong><span>' + escapeHtml(coverageLabel) + '</span></div>',
+      '<div class="capital-asset-relation-count"><strong>' + formatInteger(row.exposureCount) + '</strong><span>직접 관계</span></div>',
+      '<dl class="capital-breakdown-relations">',
+      '<div><dt>내부 운용펀드</dt><dd>' + escapeHtml(relationList(row.managedFundNames, [row.partyName])) + '</dd></div>',
+      '<div><dt>투자 대상 펀드</dt><dd>' + escapeHtml(relationList(row.targetFundNames, [])) + '</dd></div>',
+      '</dl>',
+      '<div class="capital-breakdown-amount-grid">',
+      '<div><span>약정액</span><strong>' + escapeHtml(formatMillion(row.committedAmount)) + '</strong><small>백만원</small></div>',
+      '<div><span>투입액</span><strong>' + escapeHtml(formatMillion(row.currentAmount)) + '</strong><small>백만원</small></div>',
+      '<div><span>미투입액</span><strong>' + escapeHtml(formatMillion(row.remainingAmount)) + '</strong><small>백만원</small></div>',
+      '</div>',
+      '</article>'
+    ].join('');
+  }
+
+  function openInternalFundCoverageDialog(trigger) {
+    var coverage = currentInternalFundCoverage();
+    var overlay = ensureBreakdownDialog();
+    state.breakdownTrigger = trigger || document.activeElement;
+    document.getElementById('capitalBreakdownTitle').textContent = '내부 운용펀드 경유 관계';
+    document.getElementById('capitalBreakdownDescription').textContent = '외부 투자자 합계에서는 제외했지만 DB에 직접 출자관계로 보존된 내부 펀드 행입니다.';
+    document.getElementById('capitalBreakdownSummary').innerHTML = [
+      '<div><span>내부 운용펀드</span><strong>' + formatInteger(coverage.parties) + '개</strong></div>',
+      '<div><span>직접 약정액</span><strong>' + escapeHtml(formatMillion(coverage.committed)) + '백만원</strong></div>',
+      '<div><span>상위 출자관계 확인</span><strong>' + formatInteger(coverage.covered) + '개 · ' + escapeHtml(formatCompactWon(coverage.coveredCommitted)) + '</strong></div>',
+      '<div><span>상위 출자관계 미연결</span><strong>' + formatInteger(coverage.missing) + '개 · ' + escapeHtml(formatCompactWon(coverage.missingCommitted)) + '</strong></div>',
+      '</div>'
+    ].join('');
+    document.getElementById('capitalBreakdownList').innerHTML = [
+      '<section class="capital-breakdown-group">',
+      '<header><h3>직접 출자관계 보존 목록</h3><span>' + formatInteger(coverage.rows.length) + '개</span></header>',
+      coverage.rows.length ? coverage.rows.map(renderInternalFundCoverageRow).join('') : '<div class="capital-table-empty">현재 조건에서 제외된 내부 펀드 관계가 없습니다.</div>',
+      '</section>'
+    ].join('');
+    overlay.hidden = false;
+    document.body.classList.add('capital-dialog-open');
+    window.requestAnimationFrame(function () {
+      overlay.classList.add('active');
+      var closeButton = overlay.querySelector('[data-capital-breakdown-close]');
+      if (closeButton) closeButton.focus();
+    });
   }
 
   function factsForParty(row) {
@@ -1675,11 +1871,14 @@
     var contractNote = state.invalidContractRows > 0
       ? '<span class="capital-source-warning">party_id 누락 ' + formatInteger(state.invalidContractRows) + '행 제외</span>'
       : '';
+    var activeSourceLabel = state.role === 'lender'
+      ? '직접 대출관계 기준'
+      : state.sourceLabel;
     host.innerHTML = [
       '<div class="analytics-container capital-analysis-root">',
       '<header class="capital-analysis-header">',
       '<div><p class="capital-eyebrow">CAPITAL RELATIONSHIPS</p><h2>' + escapeHtml(role.label) + ' 자금관계</h2>',
-      '<div class="capital-source-line"><span>' + escapeHtml(state.sourceLabel) + '</span>',
+      '<div class="capital-source-line"><span>' + escapeHtml(activeSourceLabel) + '</span>',
       state.snapshotDate ? '<span>기준일 ' + escapeHtml(state.snapshotDate) + '</span>' : '',
       duplicateNote,
       contractNote,
@@ -1692,6 +1891,7 @@
       renderNotice(),
       renderActiveFilters(),
       renderKpis(totals),
+      renderExternalInvestorCoverage(totals),
       renderHistoryChart(),
       '<div class="capital-work-surface">',
       renderComparison(),
@@ -1888,6 +2088,7 @@
       '<h2>자금관계 분석 기준</h2>',
       '<ul>',
       '<li><strong>에쿼티 투자자</strong> 약정액·투입액·미투입액을 사용합니다.</li>',
+      '<li><strong>외부 투자자 합계</strong> IGIS 운용펀드가 다른 운용펀드에 출자한 내부 자금이동 행은 제외하며, 직접 법률관계는 DB에 보존합니다.</li>',
       '<li><strong>대주</strong> 약정액·실행액·미실행액을 사용합니다.</li>',
       '<li><strong>역할분류</strong> 투자자는 국내LP·해외LP 등 투자자 분류, 대주는 은행·보험 등 대주 유형을 사용합니다.</li>',
       '<li><strong>분류별 시계열</strong> 투자자는 최초약정일, 대주는 대출인출일의 연도를 사용합니다. 원천일자가 없거나 이상하면 펀드설정일을 보정 근거로 명시해 사용합니다.</li>',
@@ -1903,10 +2104,18 @@
     state.loaded = false;
     state.loadPromise = null;
     state.results = [];
+    state.directFacts = [];
     state.facts = [];
     state.historicalFacts = [];
     state.rankings = [];
     state.facets = [];
+    state.internalFundRowsExcluded = 0;
+    state.internalFundPartiesExcluded = 0;
+    state.internalFundCommittedExcluded = 0;
+    state.internalFundCoveredParties = 0;
+    state.internalFundCoveredCommitted = 0;
+    state.internalFundMissingParties = 0;
+    state.internalFundMissingCommitted = 0;
     state.selectedIds.clear();
     renderLoading();
     try {
@@ -1979,6 +2188,7 @@
     if (action === 'reset') resetFilters();
     else if (action === 'export') exportCsv();
     else if (action === 'refresh' || action === 'retry') refreshData();
+    else if (action === 'show-internal-funds') openInternalFundCoverageDialog(actionButton);
     else if (action === 'clear-comparison') {
       state.selectedIds.clear();
       renderCapitalResults();
