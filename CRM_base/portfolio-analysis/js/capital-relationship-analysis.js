@@ -114,6 +114,7 @@
     duplicateFactsSuppressed: 0,
     invalidContractRows: 0,
     historyMetric: 'committed',
+    historyAggregation: 'annual',
     notice: null,
     hostKind: '',
     searchTimer: null,
@@ -867,9 +868,20 @@
       if (b === '미상') return -1;
       return numberValue(a) - numberValue(b);
     });
+    var chartGroups = dateGroups;
+    if (state.historyAggregation === 'cumulative') {
+      chartGroups = new Map();
+      var running = new Map();
+      dates.forEach(function (date) {
+        dateGroups.get(date).forEach(function (amount, roleClass) {
+          running.set(roleClass, (running.get(roleClass) || 0) + amount);
+        });
+        chartGroups.set(date, new Map(running));
+      });
+    }
     var presentClasses = new Set();
     dates.forEach(function (date) {
-      dateGroups.get(date).forEach(function (amount, roleClass) {
+      chartGroups.get(date).forEach(function (amount, roleClass) {
         if (amount !== 0) presentClasses.add(roleClass);
       });
     });
@@ -885,9 +897,10 @@
     return {
       dates: dates,
       classes: classes,
-      groups: dateGroups,
+      groups: chartGroups,
       metricProperty: metricProperty,
-      metricLabel: historyMetricLabel(state.historyMetric)
+      metricLabel: historyMetricLabel(state.historyMetric),
+      aggregation: state.historyAggregation
     };
   }
 
@@ -900,13 +913,26 @@
     return ROLE_CLASS_COLORS[roleClass] || fallback[index % fallback.length];
   }
 
+  function historyChartWidth() {
+    var host = currentHost();
+    var horizontalInset = isMobile() ? 56 : 96;
+    var available = host && host.clientWidth ? host.clientWidth - horizontalInset : 960;
+    return Math.round(Math.max(360, Math.min(1040, available)));
+  }
+
+  function historyAxisLabel(value, compact) {
+    var label = formatHistoryDate(value);
+    if (compact && /^\d{4}$/.test(label)) return label.slice(2);
+    return label;
+  }
+
   function renderHistorySvg(data) {
-    var width = Math.max(640, 128 + data.dates.length * 104);
-    var height = 270;
-    var left = 74;
-    var right = 24;
-    var top = 30;
-    var bottom = 48;
+    var width = historyChartWidth();
+    var height = 360;
+    var left = width < 520 ? 50 : 68;
+    var right = 16;
+    var top = 42;
+    var bottom = 52;
     var plotWidth = width - left - right;
     var plotHeight = height - top - bottom;
     var totals = data.dates.map(function (date) {
@@ -918,9 +944,9 @@
     if (maxTotal <= 0) return '';
 
     var svg = [
-      '<svg class="capital-history-svg" viewBox="0 0 ' + width + ' ' + height + '" role="img" aria-labelledby="capitalHistoryTitle capitalHistoryDescription" style="min-width:' + width + 'px">',
-      '<title id="capitalHistoryTitle">관계 발생연도별 ' + escapeHtml(data.metricLabel) + ' 시계열</title>',
-      '<desc id="capitalHistoryDescription">역할분류별 금액을 누적 막대로 표시합니다.</desc>'
+      '<svg class="capital-history-svg" viewBox="0 0 ' + width + ' ' + height + '" role="img" aria-labelledby="capitalHistoryTitle capitalHistoryDescription" style="max-width:' + width + 'px">',
+      '<title id="capitalHistoryTitle">관계 발생연도별 ' + (data.aggregation === 'cumulative' ? '누적 ' : '') + escapeHtml(data.metricLabel) + ' 시계열</title>',
+      '<desc id="capitalHistoryDescription">연도별 합계와 역할분류별 금액을 누적 막대로 표시합니다. 각 연도에 마우스를 올리거나 키보드로 초점을 이동하면 전체 구성을 확인할 수 있습니다.</desc>'
     ];
 
     for (var tick = 0; tick <= 4; tick += 1) {
@@ -932,29 +958,133 @@
     }
 
     var slot = plotWidth / data.dates.length;
-    var barWidth = Math.min(78, Math.max(24, slot * 0.56));
+    var barWidth = Math.min(34, Math.max(10, slot * 0.44));
+    var compactAxis = slot < 32;
+    var showTotals = slot >= 40;
     data.dates.forEach(function (date, dateIndex) {
       var center = left + slot * dateIndex + slot / 2;
       var cursorY = top + plotHeight;
+      var ariaParts = [];
+      svg.push('<g class="capital-history-column" data-capital-history-index="' + dateIndex + '" tabindex="0" focusable="true" role="img">');
       data.classes.forEach(function (roleClass, classIndex) {
         var amount = data.groups.get(date).get(roleClass) || 0;
         if (amount <= 0) return;
+        ariaParts.push(roleClass + ' ' + formatCompactWon(amount));
         var segmentHeight = Math.max(1, plotHeight * amount / maxTotal);
         cursorY -= segmentHeight;
         var color = roleClassColor(roleClass, classIndex);
         svg.push([
           '<rect class="capital-history-segment" x="', center - barWidth / 2, '" y="', cursorY,
-          '" width="', barWidth, '" height="', segmentHeight, '" rx="2" fill="', color, '">',
-          '<title>', escapeHtml(formatHistoryDate(date) + ' · ' + roleClass + ' · ' + data.metricLabel + ' ' + formatMillion(amount) + '백만원'), '</title>',
-          '</rect>'
+          '" width="', barWidth, '" height="', segmentHeight, '" rx="2" fill="', color, '"></rect>'
         ].join(''));
       });
       var totalY = Math.max(16, cursorY - 8);
-      svg.push('<text class="capital-history-total" x="' + center + '" y="' + totalY + '" text-anchor="middle">' + escapeHtml(formatCompactWon(totals[dateIndex])) + '</text>');
-      svg.push('<text class="capital-history-date" x="' + center + '" y="' + (height - 19) + '" text-anchor="middle">' + escapeHtml(formatHistoryDate(date)) + '</text>');
+      if (showTotals) {
+        svg.push('<text class="capital-history-total" x="' + center + '" y="' + totalY + '" text-anchor="middle">' + escapeHtml(formatCompactWon(totals[dateIndex])) + '</text>');
+      }
+      svg.push('<text class="capital-history-date' + (compactAxis ? ' is-compact' : '') + '" x="' + center + '" y="' + (height - 19) + '" text-anchor="middle">' + escapeHtml(historyAxisLabel(date, compactAxis)) + '</text>');
+      svg.push('<rect class="capital-history-hit" x="' + (center - slot / 2 + 1) + '" y="' + top + '" width="' + Math.max(8, slot - 2) + '" height="' + plotHeight + '" aria-label="' + escapeHtml(formatHistoryDate(date) + ' ' + data.metricLabel + ' 합계 ' + formatCompactWon(totals[dateIndex]) + '. ' + ariaParts.join(', ')) + '"></rect>');
+      svg.push('</g>');
     });
     svg.push('</svg>');
     return svg.join('');
+  }
+
+  function historyTooltipHtml(data, dateIndex) {
+    var date = data.dates[dateIndex];
+    var rows = data.classes.map(function (roleClass, classIndex) {
+      return {
+        label: roleClass,
+        amount: data.groups.get(date).get(roleClass) || 0,
+        color: roleClassColor(roleClass, classIndex)
+      };
+    }).filter(function (row) {
+      return row.amount > 0;
+    }).sort(function (a, b) {
+      return b.amount - a.amount;
+    });
+    var total = rows.reduce(function (sum, row) { return sum + row.amount; }, 0);
+    var yearLabel = formatHistoryDate(date);
+    if (/^\d{4}$/.test(yearLabel)) yearLabel += '년';
+    var rowHtml = rows.map(function (row) {
+      var share = total > 0 ? row.amount / total * 100 : 0;
+      return [
+        '<div class="capital-history-tooltip-row">',
+        '<span class="capital-history-tooltip-label"><i style="--history-color:' + row.color + '"></i>' + escapeHtml(row.label) + '</span>',
+        '<span class="capital-history-tooltip-value"><strong>' + escapeHtml(formatCompactWon(row.amount)) + '</strong><small>' + share.toLocaleString('ko-KR', { maximumFractionDigits: 1 }) + '%</small></span>',
+        '</div>'
+      ].join('');
+    }).join('');
+    return [
+      '<div class="capital-history-tooltip-heading"><span>' + escapeHtml(yearLabel) + '</span><small>' + (data.aggregation === 'cumulative' ? '누적 · ' : '') + escapeHtml(data.metricLabel) + '</small></div>',
+      '<div class="capital-history-tooltip-total"><span>합계</span><strong>' + escapeHtml(formatCompactWon(total)) + '</strong></div>',
+      '<div class="capital-history-tooltip-rows">' + rowHtml + '</div>'
+    ].join('');
+  }
+
+  function bindHistoryTooltip(host) {
+    var container = host && host.querySelector('.capital-history-scroll');
+    if (!container) return;
+    var tooltip = container.querySelector('.capital-history-tooltip');
+    var svg = container.querySelector('.capital-history-svg');
+    if (!tooltip || !svg) return;
+    var data = historyChartData();
+    var activeColumn = null;
+
+    function hideTooltip() {
+      if (activeColumn) activeColumn.classList.remove('is-active');
+      activeColumn = null;
+      svg.classList.remove('has-active');
+      tooltip.hidden = true;
+    }
+
+    function positionTooltip(clientX, clientY) {
+      var bounds = container.getBoundingClientRect();
+      var x = clientX - bounds.left;
+      var y = clientY - bounds.top;
+      var tooltipWidth = tooltip.offsetWidth;
+      var tooltipHeight = tooltip.offsetHeight;
+      var left = x + 14;
+      var top = y - tooltipHeight - 14;
+      if (left + tooltipWidth > container.clientWidth - 8) left = x - tooltipWidth - 14;
+      if (top < 8) top = y + 14;
+      left = Math.max(8, Math.min(left, container.clientWidth - tooltipWidth - 8));
+      top = Math.max(8, Math.min(top, container.clientHeight - tooltipHeight - 8));
+      tooltip.style.left = left + 'px';
+      tooltip.style.top = top + 'px';
+    }
+
+    function showTooltip(column, event) {
+      var dateIndex = Number(column.dataset.capitalHistoryIndex);
+      if (!Number.isInteger(dateIndex) || !data.dates[dateIndex]) return;
+      if (activeColumn && activeColumn !== column) activeColumn.classList.remove('is-active');
+      activeColumn = column;
+      activeColumn.classList.add('is-active');
+      svg.classList.add('has-active');
+      tooltip.innerHTML = historyTooltipHtml(data, dateIndex);
+      tooltip.hidden = false;
+      var anchorBounds = column.getBoundingClientRect();
+      var clientX = event && Number.isFinite(event.clientX) ? event.clientX : anchorBounds.left + anchorBounds.width / 2;
+      var clientY = event && Number.isFinite(event.clientY) ? event.clientY : anchorBounds.top + Math.min(80, anchorBounds.height / 2);
+      positionTooltip(clientX, clientY);
+    }
+
+    container.addEventListener('pointermove', function (event) {
+      var column = event.target.closest('[data-capital-history-index]');
+      if (!column) {
+        hideTooltip();
+        return;
+      }
+      showTooltip(column, event);
+    });
+    container.addEventListener('pointerleave', hideTooltip);
+    container.addEventListener('focusin', function (event) {
+      var column = event.target.closest('[data-capital-history-index]');
+      if (column) showTooltip(column);
+    });
+    container.addEventListener('focusout', function (event) {
+      if (!container.contains(event.relatedTarget)) hideTooltip();
+    });
   }
 
   function renderHistoryChart() {
@@ -974,16 +1104,26 @@
       var active = state.historyMetric === metric;
       return '<button type="button" data-capital-history-metric="' + metric + '" aria-pressed="' + (active ? 'true' : 'false') + '" class="' + (active ? 'active' : '') + '">' + escapeHtml(historyMetricLabel(metric)) + '</button>';
     }).join('');
+    var aggregationButtons = [
+      { value: 'annual', label: '연도별' },
+      { value: 'cumulative', label: '누적' }
+    ].map(function (item) {
+      var active = state.historyAggregation === item.value;
+      return '<button type="button" data-capital-history-aggregation="' + item.value + '" aria-pressed="' + (active ? 'true' : 'false') + '" class="' + (active ? 'active' : '') + '">' + item.label + '</button>';
+    }).join('');
     var legend = data.classes.map(function (roleClass, index) {
       return '<span><i style="--history-color:' + roleClassColor(roleClass, index) + '"></i>' + escapeHtml(roleClass) + '</span>';
     }).join('');
     return [
       '<section class="capital-history-section" aria-label="관계 발생연도별 자금 시계열">',
       '<div class="capital-history-heading">',
-      '<div><h3>' + (state.role === 'lender' ? '대출 실행연도별 금액' : '최초약정연도별 금액') + '</h3><p>' + (state.role === 'lender' ? '대출인출일 기준' : '최초약정일 기준') + ' · ' + escapeHtml(coverageText) + ' · 금액 단위 백만원</p></div>',
+      '<div><h3>' + (state.role === 'lender' ? '대출 실행연도' : '최초약정연도') + (state.historyAggregation === 'cumulative' ? ' 누적 금액' : '별 금액') + '</h3><p>' + (state.role === 'lender' ? '대출인출일 기준' : '최초약정일 기준') + ' · ' + escapeHtml(coverageText) + ' · 금액 단위 백만원</p></div>',
+      '<div class="capital-history-controls">',
+      '<div class="capital-history-aggregation" role="group" aria-label="시계열 집계 방식">' + aggregationButtons + '</div>',
       '<div class="capital-history-metrics" role="group" aria-label="시계열 금액 기준">' + metricButtons + '</div>',
       '</div>',
-      svg ? '<div class="capital-history-scroll" tabindex="0">' + svg + '</div>' : '<div class="capital-history-empty">현재 조건에 표시할 시계열 금액이 없습니다.</div>',
+      '</div>',
+      svg ? '<div class="capital-history-scroll" tabindex="0">' + svg + '<div class="capital-history-tooltip" role="tooltip" hidden></div></div>' : '<div class="capital-history-empty">현재 조건에 표시할 시계열 금액이 없습니다.</div>',
       legend ? '<div class="capital-history-legend" aria-label="역할분류 범례">' + legend + '</div>' : '',
       '</section>'
     ].join('');
@@ -1160,7 +1300,7 @@
     overlay.innerHTML = [
       '<section class="capital-breakdown-dialog" role="dialog" aria-modal="true" aria-labelledby="capitalBreakdownTitle" aria-describedby="capitalBreakdownDescription">',
       '<header class="capital-breakdown-header">',
-      '<div><p class="capital-eyebrow">RELATED ASSETS</p><h2 id="capitalBreakdownTitle"></h2><p id="capitalBreakdownDescription"></p></div>',
+      '<div><p class="capital-eyebrow">CAPITAL RELATIONSHIPS</p><h2 id="capitalBreakdownTitle"></h2><p id="capitalBreakdownDescription"></p></div>',
       '<button type="button" class="capital-breakdown-close" data-capital-breakdown-close aria-label="팝업 닫기" title="닫기">×</button>',
       '</header>',
       '<div class="capital-breakdown-summary" id="capitalBreakdownSummary"></div>',
@@ -1193,6 +1333,68 @@
     });
   }
 
+  function fundEntriesForFact(fact) {
+    var names = unique(fact.fundNames || []);
+    var ids = unique(fact.fundIds || []);
+    if (ids.length === 1) {
+      return [{ id: ids[0], name: names[0] || ids[0] }];
+    }
+    if (ids.length > 1) {
+      return ids.map(function (id, index) {
+        return { id: id, name: names[index] || id };
+      });
+    }
+    return names.map(function (name) { return { id: '', name: name }; });
+  }
+
+  function partyFundRows(row) {
+    var facts = factsForParty(row);
+    if (facts.length === 0) facts = [row];
+    var groups = new Map();
+    facts.forEach(function (fact) {
+      var funds = fundEntriesForFact(fact);
+      funds.forEach(function (fund) {
+        var key = searchToken(fund.id || fund.name);
+        if (!key) return;
+        if (!groups.has(key)) {
+          groups.set(key, {
+            name: fund.name,
+            fundId: fund.id,
+            assetNames: [],
+            assetIds: [],
+            projectNames: [],
+            committedAmount: 0,
+            currentAmount: 0,
+            remainingAmount: 0,
+            unallocatedCommittedAmount: 0,
+            unallocatedCurrentAmount: 0,
+            unallocatedRemainingAmount: 0,
+            exposureCount: 0,
+            hasUnallocatedAmount: false
+          });
+        }
+        var group = groups.get(key);
+        group.assetNames = unique(group.assetNames.concat(fact.assetNames || []));
+        group.assetIds = unique(group.assetIds.concat(fact.assetIds || []));
+        group.projectNames = unique(group.projectNames.concat(fact.projectNames || []));
+        group.exposureCount += 1;
+        if (funds.length === 1) {
+          group.committedAmount += numberValue(fact.committedAmount);
+          group.currentAmount += numberValue(fact.currentAmount);
+          group.remainingAmount += numberValue(fact.remainingAmount);
+        } else {
+          group.hasUnallocatedAmount = true;
+          group.unallocatedCommittedAmount += numberValue(fact.committedAmount);
+          group.unallocatedCurrentAmount += numberValue(fact.currentAmount);
+          group.unallocatedRemainingAmount += numberValue(fact.remainingAmount);
+        }
+      });
+    });
+    return Array.from(groups.values()).sort(function (a, b) {
+      return b.committedAmount - a.committedAmount || a.name.localeCompare(b.name, 'ko');
+    });
+  }
+
   function partyAssetRows(row) {
     var facts = factsForParty(row);
     if (facts.length === 0) facts = [row];
@@ -1212,6 +1414,9 @@
             committedAmount: 0,
             currentAmount: 0,
             remainingAmount: 0,
+            unallocatedCommittedAmount: 0,
+            unallocatedCurrentAmount: 0,
+            unallocatedRemainingAmount: 0,
             exposureCount: 0,
             hasUnallocatedAmount: false
           });
@@ -1228,6 +1433,9 @@
           group.remainingAmount += numberValue(fact.remainingAmount);
         } else {
           group.hasUnallocatedAmount = true;
+          group.unallocatedCommittedAmount += numberValue(fact.committedAmount);
+          group.unallocatedCurrentAmount += numberValue(fact.currentAmount);
+          group.unallocatedRemainingAmount += numberValue(fact.remainingAmount);
         }
       });
     });
@@ -1243,13 +1451,18 @@
           committedAmount: 0,
           currentAmount: 0,
           remainingAmount: 0,
+          unallocatedCommittedAmount: numberValue(row.committedAmount),
+          unallocatedCurrentAmount: numberValue(row.currentAmount),
+          unallocatedRemainingAmount: numberValue(row.remainingAmount),
           exposureCount: row.factCount || 0,
           hasUnallocatedAmount: true
         });
       });
     }
     return Array.from(groups.values()).sort(function (a, b) {
-      return b.currentAmount - a.currentAmount || a.name.localeCompare(b.name, 'ko');
+      var aTotal = a.committedAmount + a.unallocatedCommittedAmount;
+      var bTotal = b.committedAmount + b.unallocatedCommittedAmount;
+      return bTotal - aTotal || a.name.localeCompare(b.name, 'ko');
     });
   }
 
@@ -1258,11 +1471,39 @@
     return rows.length ? rows.join(', ') : '연결 정보 없음';
   }
 
-  function renderPartyAssetRow(asset, index) {
+  function renderBreakdownAmounts(item) {
     var role = currentRoleConfig();
-    var amountText = asset.hasUnallocatedAmount
-      ? '펀드 단위 금액 · 자산별 미배분'
-      : role.currentLabel + ' ' + formatMillion(asset.currentAmount) + '백만원';
+    var hasDirectAmount = item.committedAmount !== 0 || item.currentAmount !== 0 || item.remainingAmount !== 0 || !item.hasUnallocatedAmount;
+    var direct = hasDirectAmount ? [
+      '<div><span>' + escapeHtml(role.committedLabel) + '</span><strong>' + escapeHtml(formatMillion(item.committedAmount)) + '</strong><small>백만원</small></div>',
+      '<div><span>' + escapeHtml(role.currentLabel) + '</span><strong>' + escapeHtml(formatMillion(item.currentAmount)) + '</strong><small>백만원</small></div>',
+      '<div><span>' + escapeHtml(role.remainingLabel) + '</span><strong>' + escapeHtml(formatMillion(item.remainingAmount)) + '</strong><small>백만원</small></div>'
+    ].join('') : '';
+    var unallocated = item.hasUnallocatedAmount ? [
+      '<div class="capital-breakdown-unallocated">',
+      '<span>자산별 미배분 펀드 금액</span>',
+      '<strong>' + escapeHtml(role.committedLabel) + ' ' + escapeHtml(formatMillion(item.unallocatedCommittedAmount)) + ' · ' + escapeHtml(role.currentLabel) + ' ' + escapeHtml(formatMillion(item.unallocatedCurrentAmount)) + ' · ' + escapeHtml(role.remainingLabel) + ' ' + escapeHtml(formatMillion(item.unallocatedRemainingAmount)) + '백만원</strong>',
+      '</div>'
+    ].join('') : '';
+    return '<div class="capital-breakdown-amount-grid">' + direct + unallocated + '</div>';
+  }
+
+  function renderPartyFundRow(fund, index) {
+    return [
+      '<article class="capital-breakdown-row capital-party-fund-row">',
+      '<div class="capital-breakdown-rank">' + formatInteger(index + 1) + '</div>',
+      '<div class="capital-breakdown-party"><strong>' + escapeHtml(fund.name) + '</strong><span>' + escapeHtml(fund.fundId || '펀드 ID 미등록') + '</span></div>',
+      '<div class="capital-asset-relation-count"><strong>' + formatInteger(fund.exposureCount) + '</strong><span>관계</span></div>',
+      '<dl class="capital-breakdown-relations">',
+      '<div><dt>자산</dt><dd>' + escapeHtml(relationList(fund.assetNames, fund.assetIds)) + '</dd></div>',
+      fund.projectNames.length ? '<div><dt>프로젝트</dt><dd>' + escapeHtml(fund.projectNames.join(', ')) + '</dd></div>' : '',
+      '</dl>',
+      renderBreakdownAmounts(fund),
+      '</article>'
+    ].join('');
+  }
+
+  function renderPartyAssetRow(asset, index) {
     return [
       '<article class="capital-breakdown-row capital-party-asset-row">',
       '<div class="capital-breakdown-rank">' + formatInteger(index + 1) + '</div>',
@@ -1272,7 +1513,7 @@
       '<div><dt>펀드</dt><dd>' + escapeHtml(relationList(asset.fundNames, asset.fundIds)) + '</dd></div>',
       asset.projectNames.length ? '<div><dt>프로젝트</dt><dd>' + escapeHtml(asset.projectNames.join(', ')) + '</dd></div>' : '',
       '</dl>',
-      '<div class="capital-breakdown-secondary"><span>' + escapeHtml(amountText) + '</span></div>',
+      renderBreakdownAmounts(asset),
       '</article>'
     ].join('');
   }
@@ -1281,21 +1522,31 @@
     var role = currentRoleConfig();
     var row = state.results.find(function (candidate) { return candidate.resultId === resultId; });
     if (!row) return;
+    var funds = partyFundRows(row);
     var assets = partyAssetRows(row);
     var overlay = ensureBreakdownDialog();
     state.breakdownTrigger = trigger || document.activeElement;
-    document.getElementById('capitalBreakdownTitle').textContent = row.partyName + ' 연결 자산';
-    document.getElementById('capitalBreakdownDescription').textContent = row.partyName + '의 ' + (row.role === 'lender' ? '대출' : '에쿼티 투자') + ' 관계를 고유 자산별로 정리했습니다.';
+    document.getElementById('capitalBreakdownTitle').textContent = row.partyName + ' 자금관계';
+    document.getElementById('capitalBreakdownDescription').textContent = row.partyName + '의 ' + (row.role === 'lender' ? '대출' : '에쿼티 투자') + ' 금액을 펀드와 자산 관계별로 정리했습니다.';
     document.getElementById('capitalBreakdownSummary').innerHTML = [
       '<div><span>자산</span><strong>' + formatInteger(assets.length) + '개</strong></div>',
-      '<div><span>연결 펀드</span><strong>' + formatInteger(row.fundCount) + '개</strong></div>',
+      '<div><span>연결 펀드</span><strong>' + formatInteger(funds.length || row.fundCount) + '개</strong></div>',
+      '<div><span>' + escapeHtml(role.committedLabel) + '</span><strong>' + escapeHtml(formatMillion(row.committedAmount)) + '백만원</strong></div>',
       '<div><span>' + escapeHtml(role.currentLabel) + '</span><strong>' + escapeHtml(formatMillion(row.currentAmount)) + '백만원</strong></div>',
+      '<div><span>' + escapeHtml(role.remainingLabel) + '</span><strong>' + escapeHtml(formatMillion(row.remainingAmount)) + '백만원</strong></div>',
       '<div><span>분류</span><strong>' + escapeHtml(row.roleClass) + (row.roleSubtype ? ' · ' + escapeHtml(row.roleSubtype) : '') + '</strong></div>',
       '<div><span>' + (row.role === 'lender' ? '대주 권역' : 'LP 권역') + '</span><strong>' + escapeHtml(partyOriginDisplay(row.partyOrigin, row.role)) + (row.domicileCountryCode ? ' · ' + escapeHtml(row.domicileCountryCode) : '') + '</strong></div>'
     ].join('');
-    document.getElementById('capitalBreakdownList').innerHTML = assets.length
-      ? assets.map(renderPartyAssetRow).join('')
-      : '<div class="capital-table-empty">연결된 자산 정보가 없습니다.</div>';
+    document.getElementById('capitalBreakdownList').innerHTML = [
+      '<section class="capital-breakdown-group">',
+      '<header><h3>연결 펀드/비히클</h3><span>' + formatInteger(funds.length) + '개</span></header>',
+      funds.length ? funds.map(renderPartyFundRow).join('') : '<div class="capital-table-empty">연결된 펀드 정보가 없습니다.</div>',
+      '</section>',
+      '<section class="capital-breakdown-group">',
+      '<header><h3>연결 자산</h3><span>' + formatInteger(assets.length) + '개</span></header>',
+      assets.length ? assets.map(renderPartyAssetRow).join('') : '<div class="capital-table-empty">연결된 자산 정보가 없습니다.</div>',
+      '</section>'
+    ].join('');
     overlay.hidden = false;
     document.body.classList.add('capital-dialog-open');
     window.requestAnimationFrame(function () {
@@ -1388,6 +1639,7 @@
       '</div>',
       '</div>'
     ].join('');
+    bindHistoryTooltip(host);
   }
 
   async function renderCapitalAnalysis() {
@@ -1617,6 +1869,12 @@
     var partyButton = event.target.closest('[data-capital-party-id]');
     if (partyButton) {
       openPartyAssetDialog(partyButton.dataset.capitalPartyId, partyButton);
+      return;
+    }
+    var historyAggregationButton = event.target.closest('[data-capital-history-aggregation]');
+    if (historyAggregationButton) {
+      state.historyAggregation = historyAggregationButton.dataset.capitalHistoryAggregation;
+      renderCapitalResults();
       return;
     }
     var historyMetricButton = event.target.closest('[data-capital-history-metric]');
