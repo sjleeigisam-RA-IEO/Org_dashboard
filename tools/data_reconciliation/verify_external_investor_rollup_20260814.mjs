@@ -52,7 +52,9 @@ const relations = await query(`
     to_regclass('public.party_exposure_commitment_current') is not null as has_direct_view,
     to_regclass('public.party_managed_fund_resolution_v1') is not null as has_resolution_view,
     to_regclass('public.party_exposure_external_current_v1') is not null as has_external_view,
-    to_regclass('public.party_external_investor_rollup_audit') is not null as has_audit_view
+    to_regclass('public.party_external_investor_rollup_audit') is not null as has_audit_view,
+    to_regclass('public.party_internal_manager_capital_resolution_v1') is not null as has_manager_scope_view,
+    to_regclass('public.party_external_investor_scope_reconciliation_v1') is not null as has_scope_reconciliation_view
 `);
 
 const reconciliation = await query(`
@@ -93,27 +95,40 @@ const integrity = await query(`
       where not include_in_external_investor_rollup
         and (
           role_type <> 'beneficiary'
-          or capital_scope <> 'internal_managed_fund'
-          or not is_managed_fund_party
+          or capital_scope not in ('internal_managed_fund', 'internal_manager_capital')
+          or not (is_managed_fund_party or is_internal_manager_capital)
         )
     ) as invalid_exclusions,
     (select count(*) from public.party_exposure_external_current_v1
       where role_type = 'beneficiary'
         and include_in_external_investor_rollup
-        and capital_scope = 'internal_managed_fund'
+        and capital_scope in ('internal_managed_fund', 'internal_manager_capital')
     ) as internal_rows_in_external_rollup,
     (select count(distinct party_id) from public.party_exposure_external_current_v1
       where role_type = 'beneficiary' and not include_in_external_investor_rollup
+        and is_managed_fund_party
         and lookthrough_coverage_status = 'direct_upstream_available'
     ) as internal_parties_with_upstream,
     (select count(distinct party_id) from public.party_exposure_external_current_v1
       where role_type = 'beneficiary' and not include_in_external_investor_rollup
+        and is_managed_fund_party
         and lookthrough_coverage_status = 'direct_upstream_missing'
     ) as internal_parties_without_upstream,
     (select coalesce(sum(committed_amt), 0)::bigint from public.party_exposure_external_current_v1
       where role_type = 'beneficiary' and not include_in_external_investor_rollup
+        and is_managed_fund_party
         and lookthrough_coverage_status = 'direct_upstream_missing'
     ) as internal_committed_without_upstream,
+    (select count(distinct party_id) from public.party_exposure_external_current_v1
+      where role_type = 'beneficiary'
+        and not include_in_external_investor_rollup
+        and is_managed_fund_party
+    ) as internal_managed_fund_parties,
+    (select count(distinct party_id) from public.party_exposure_external_current_v1
+      where role_type = 'beneficiary'
+        and not include_in_external_investor_rollup
+        and is_internal_manager_capital
+    ) as internal_manager_parties,
     (select count(*) from public.party_exposure_external_current_v1
       where role_type = 'lender' and is_managed_fund_party
         and not include_in_external_investor_rollup
@@ -155,14 +170,15 @@ assert("lender_rollup_unchanged", lender && Number(lender.internal_rows) === 0, 
 const integrityRow = integrity[0] ?? {};
 assert("source_grain_preserved", integrityRow.source_rows === integrityRow.external_view_rows, integrityRow);
 assert("exposure_uid_unique", Number(integrityRow.duplicate_exposure_uids) === 0, integrityRow);
-assert("exclusions_are_managed_fund_beneficiaries", Number(integrityRow.invalid_exclusions) === 0, integrityRow);
+assert("exclusions_are_supported_internal_beneficiaries", Number(integrityRow.invalid_exclusions) === 0, integrityRow);
 assert("external_rollup_has_no_internal_rows", Number(integrityRow.internal_rows_in_external_rollup) === 0, integrityRow);
 assert(
   "lookthrough_coverage_partitions_internal_parties",
   Number(integrityRow.internal_parties_with_upstream) + Number(integrityRow.internal_parties_without_upstream)
-    === Number(reconciliation.find((row) => row.role_type === "beneficiary")?.internal_parties ?? 0),
+    === Number(integrityRow.internal_managed_fund_parties),
   integrityRow,
 );
+assert("internal_manager_scope_present", Number(integrityRow.internal_manager_parties) > 0, integrityRow);
 assert("managed_fund_lenders_remain_included", Number(integrityRow.managed_fund_lender_rows_excluded) === 0, integrityRow);
 assert(
   "lp_individual_series_available",

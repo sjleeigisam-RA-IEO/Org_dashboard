@@ -5107,6 +5107,7 @@ body.list-view .capital-relationship-controls {
 
 .capital-rollup-coverage {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 12px 18px;
@@ -5118,6 +5119,7 @@ body.list-view .capital-relationship-controls {
 }
 
 .capital-rollup-equation {
+  flex: 1 1 430px;
   min-width: 0;
 }
 
@@ -5141,6 +5143,7 @@ body.list-view .capital-relationship-controls {
 
 .capital-rollup-coverage-meta {
   display: flex;
+  flex: 1 1 360px;
   align-items: center;
   justify-content: flex-end;
   flex-wrap: wrap;
