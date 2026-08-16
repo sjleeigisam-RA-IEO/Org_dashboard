@@ -237,7 +237,56 @@
       "commit_short": "0e96bd9",
       "pages_verified_at": "2026-08-11 08:23:54 KST",
       "pages_url": "https://sjleeigisam-ra-ieo.github.io/Org_dashboard/construction_source_status/"
+    },
+    {
+      "scheduled_for": "2026-08-17",
+      "run_type": "monday-main",
+      "started_at": "2026-08-17 06:01:27 +09:00ST",
+      "completed_at": "2026-08-17 06:03:15 +09:00ST",
+      "status": "partial",
+      "sources": {
+        "google_news": {
+          "status": "success",
+          "note": "365-day window, max 5 per company"
+        },
+        "nara_g2b_contracts": {
+          "status": "success",
+          "note": "14-day window, 250 rows fetched, 2 companies matched"
+        },
+        "opendart_awards": {
+          "status": "blocked",
+          "note": "OpenDART API key not found in project env files; retained previous cache"
+        },
+        "opendart_strategy": {
+          "status": "blocked",
+          "note": "OpenDART API key not found in project env files; retained previous cache"
+        },
+        "credit_ratings": {
+          "status": "not_run",
+          "note": "Monthly cache retained from previous refresh"
+        }
+      },
+      "backup_dir": "outputs\\construction_refresh_before_20260817_060127",
+      "changed_files": [
+        "construction_source_status/README.md",
+        "construction_source_status/data/construction_company_news_cache.json",
+        "construction_source_status/data/construction_nara_contracts_cache.json",
+        "construction_source_status/data/construction_online_update_marks.json",
+        "construction_source_status/data/construction_source_status_data.json",
+        "construction_source_status/index.html"
+      ],
+      "commit": null,
+      "pushed": false,
+      "pages_verified": false,
+      "update_marks": {
+        "companies_with_updates": 27,
+        "new_item_marks": 42
+      },
+      "notes": [
+        "Monday scheduled refresh was executed in this thread.",
+        "OpenDART cache was not overwritten after missing API-key failure."
+      ]
     }
   ],
-  "generated_at": "2026-08-11 08:23:54 KST"
+  "generated_at": "2026-08-17 06:04:19 KST"
 }
