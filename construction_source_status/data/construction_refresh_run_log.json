@@ -290,7 +290,25 @@
       "commit_short": "dd0a695",
       "pages_verified_at": "2026-08-17 06:05:37 KST",
       "pages_url": "https://sjleeigisam-ra-ieo.github.io/Org_dashboard/construction_source_status/"
+    },
+    {
+      "scheduled_for": "2026-08-18",
+      "run_type": "tuesday-fallback-check",
+      "started_at": "2026-08-18 06:02:01 KST",
+      "completed_at": "2026-08-18 06:02:01 KST",
+      "status": "success",
+      "checked_monday_for": "2026-08-17",
+      "monday_status": "partial",
+      "monday_commit_short": "dd0a695",
+      "rerun_performed": false,
+      "commit": null,
+      "pushed": false,
+      "pages_verified": false,
+      "pages_url": "https://sjleeigisam-ra-ieo.github.io/Org_dashboard/construction_source_status/",
+      "notes": [
+        "Tuesday fallback check found a verified Monday run log, so no data refresh was executed."
+      ]
     }
   ],
-  "generated_at": "2026-08-17 06:05:37 KST"
+  "generated_at": "2026-08-18 06:02:01 KST"
 }
