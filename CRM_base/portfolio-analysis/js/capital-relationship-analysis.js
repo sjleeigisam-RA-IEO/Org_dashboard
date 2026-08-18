@@ -136,9 +136,9 @@
     internalFundCoveredCommitted: 0,
     internalFundMissingParties: 0,
     internalFundMissingCommitted: 0,
-    internalManagerRowsExcluded: 0,
-    internalManagerPartiesExcluded: 0,
-    internalManagerCommittedExcluded: 0,
+    internalShellRowsExcluded: 0,
+    internalShellPartiesExcluded: 0,
+    internalShellCommittedExcluded: 0,
     historyMetric: 'committed',
     historyAggregation: 'annual',
     selectedHistoryDate: '',
@@ -317,8 +317,8 @@
       capitalScope: normalizeText(row.capital_scope) || 'external_party',
       includeInExternalInvestorRollup: row.include_in_external_investor_rollup !== false,
       isManagedFundParty: row.is_managed_fund_party === true,
-      isInternalManagerCapital: row.is_internal_manager_capital === true
-        || normalizeText(row.capital_scope) === 'internal_manager_capital',
+      isInternalFundLookthroughShell: row.is_internal_fund_lookthrough_shell === true
+        || normalizeText(row.capital_scope) === 'internal_fund_lookthrough_shell',
       lookthroughCoverageStatus: normalizeText(row.lookthrough_coverage_status) || 'not_applicable',
       upstreamBeneficiaryRows: numberValue(row.upstream_beneficiary_rows),
       upstreamBeneficiaryParties: numberValue(row.upstream_beneficiary_parties),
@@ -589,17 +589,17 @@
       var excludedManagedFunds = excludedInternal.filter(function (row) {
         return row.isManagedFundParty;
       });
-      var excludedManagers = excludedInternal.filter(function (row) {
-        return row.isInternalManagerCapital;
+      var excludedShells = excludedInternal.filter(function (row) {
+        return row.isInternalFundLookthroughShell;
       });
       state.internalFundRowsExcluded = excludedManagedFunds.length;
       state.internalFundPartiesExcluded = unique(excludedManagedFunds.map(function (row) { return row.partyId; })).length;
       state.internalFundCommittedExcluded = excludedManagedFunds.reduce(function (sum, row) {
         return sum + row.committedAmount;
       }, 0);
-      state.internalManagerRowsExcluded = excludedManagers.length;
-      state.internalManagerPartiesExcluded = unique(excludedManagers.map(function (row) { return row.partyId; })).length;
-      state.internalManagerCommittedExcluded = excludedManagers.reduce(function (sum, row) {
+      state.internalShellRowsExcluded = excludedShells.length;
+      state.internalShellPartiesExcluded = unique(excludedShells.map(function (row) { return row.partyId; })).length;
+      state.internalShellCommittedExcluded = excludedShells.reduce(function (sum, row) {
         return sum + row.committedAmount;
       }, 0);
       var coveredInternal = excludedManagedFunds.filter(function (row) {
@@ -627,8 +627,8 @@
       var dedupedFacts = dedupeFactRows(state.facts, true);
       state.results = aggregatePartyRows(dedupedFacts);
       state.source = currentResponse.view;
-      state.sourceLabel = '외부 투자자 기준 · 내부 투자기구 ' + state.internalFundPartiesExcluded
-        + '개·운용사 내부자금 ' + state.internalManagerPartiesExcluded + '개 제외';
+      state.sourceLabel = '외부 투자자 기준 · 재간접 중간기구 '
+        + (state.internalFundPartiesExcluded + state.internalShellPartiesExcluded) + '개 제외';
       state.snapshotDate = maxSnapshotDate(dedupedFacts);
       state.loaded = true;
       state.loading = false;
@@ -1436,9 +1436,10 @@
     if (state.role !== 'beneficiary') {
       return {
         rows: [], parties: 0, committed: 0, current: 0, remaining: 0,
-        managedFundParties: 0, managedFundCommitted: 0,
-        managerParties: 0, managerCommitted: 0,
-        covered: 0, coveredCommitted: 0, missing: 0, missingCommitted: 0
+        managedFundParties: 0, managedFundRows: 0, managedFundCommitted: 0,
+        shellParties: 0, shellRows: 0, shellCommitted: 0,
+        covered: 0, coveredCommitted: 0, missing: 0, missingCommitted: 0,
+        shellSameFundRows: 0, shellFamilyRows: 0, shellIntermediateRows: 0, shellUnresolvedRows: 0
       };
     }
     var matchingFacts = dedupeFactRows(state.directFacts.filter(function (row) {
@@ -1452,8 +1453,9 @@
         groups.set(row.partyId, {
           partyId: row.partyId,
           partyName: row.partyName,
-          internalType: row.isInternalManagerCapital ? 'internal_manager_capital' : 'internal_managed_fund',
-          lookthroughCoverageStatus: row.lookthroughCoverageStatus,
+          internalType: row.isInternalFundLookthroughShell ? 'internal_fund_lookthrough_shell' : 'internal_managed_fund',
+          lookthroughCoverageStatuses: [],
+          lookthroughCoverageCounts: {},
           managedFundNames: [],
           targetFundNames: [],
           committedAmount: 0,
@@ -1463,6 +1465,8 @@
         });
       }
       var group = groups.get(row.partyId);
+      group.lookthroughCoverageStatuses = unique(group.lookthroughCoverageStatuses.concat([row.lookthroughCoverageStatus]));
+      group.lookthroughCoverageCounts[row.lookthroughCoverageStatus] = (group.lookthroughCoverageCounts[row.lookthroughCoverageStatus] || 0) + 1;
       group.managedFundNames = unique(group.managedFundNames.concat(row.investorManagedFundNames || []));
       group.targetFundNames = unique(group.targetFundNames.concat(row.fundNames || []));
       group.committedAmount += row.committedAmount;
@@ -1482,27 +1486,33 @@
       coverage.committed += row.committedAmount;
       coverage.current += row.currentAmount;
       coverage.remaining += row.remainingAmount;
-      if (row.internalType === 'internal_manager_capital') {
-        coverage.managerParties += 1;
-        coverage.managerCommitted += row.committedAmount;
+      if (row.internalType === 'internal_fund_lookthrough_shell') {
+        coverage.shellParties += 1;
+        coverage.shellRows += row.exposureCount;
+        coverage.shellCommitted += row.committedAmount;
+        coverage.shellSameFundRows += row.lookthroughCoverageCounts.same_fund_lp_candidates || 0;
+        coverage.shellFamilyRows += row.lookthroughCoverageCounts.share_class_family_lp_candidates || 0;
+        coverage.shellIntermediateRows += row.lookthroughCoverageCounts.intermediate_fund_lp_candidates || 0;
+        coverage.shellUnresolvedRows += row.lookthroughCoverageCounts.lookthrough_unresolved || 0;
       } else {
         coverage.managedFundParties += 1;
+        coverage.managedFundRows += row.exposureCount;
         coverage.managedFundCommitted += row.committedAmount;
-      }
-      if (row.internalType !== 'internal_manager_capital'
-        && row.lookthroughCoverageStatus === 'direct_upstream_available') {
-        coverage.covered += 1;
-        coverage.coveredCommitted += row.committedAmount;
-      } else if (row.internalType !== 'internal_manager_capital') {
-        coverage.missing += 1;
-        coverage.missingCommitted += row.committedAmount;
+        if (row.lookthroughCoverageStatuses.includes('direct_upstream_available')) {
+          coverage.covered += 1;
+          coverage.coveredCommitted += row.committedAmount;
+        } else {
+          coverage.missing += 1;
+          coverage.missingCommitted += row.committedAmount;
+        }
       }
       return coverage;
     }, {
       rows: [], parties: 0, committed: 0, current: 0, remaining: 0,
-      managedFundParties: 0, managedFundCommitted: 0,
-      managerParties: 0, managerCommitted: 0,
-      covered: 0, coveredCommitted: 0, missing: 0, missingCommitted: 0
+      managedFundParties: 0, managedFundRows: 0, managedFundCommitted: 0,
+      shellParties: 0, shellRows: 0, shellCommitted: 0,
+      covered: 0, coveredCommitted: 0, missing: 0, missingCommitted: 0,
+      shellSameFundRows: 0, shellFamilyRows: 0, shellIntermediateRows: 0, shellUnresolvedRows: 0
     });
   }
 
@@ -1511,21 +1521,14 @@
     var coverage = currentInternalFundCoverage();
     if (coverage.parties === 0) return '';
     var directCommitted = externalTotals.committed + coverage.committed;
-    var equationParts = ['식별 외부 투자자 ' + formatCompactWon(externalTotals.committed)];
-    if (coverage.managedFundParties) {
-      equationParts.push('내부 투자기구 경유 ' + formatCompactWon(coverage.managedFundCommitted));
-    }
-    if (coverage.managerParties) {
-      equationParts.push('운용사 내부자금 ' + formatCompactWon(coverage.managerCommitted));
-    }
     return [
       '<section class="capital-rollup-coverage" aria-label="외부 투자자 집계 대사">',
-      '<div class="capital-rollup-equation"><span>집계 대사</span><strong>직접 출자관계 ' + escapeHtml(formatCompactWon(directCommitted)) + ' = ' + escapeHtml(equationParts.join(' + ')) + '</strong></div>',
+      '<div class="capital-rollup-equation"><span>중복 제거 대사</span><strong>원천 출자행 합계(중복 포함) ' + escapeHtml(formatCompactWon(directCommitted)) + ' = 실제 투자자 ' + escapeHtml(formatCompactWon(externalTotals.committed)) + ' + 재간접 중간기구 명의행 ' + escapeHtml(formatCompactWon(coverage.committed)) + '</strong></div>',
       '<div class="capital-rollup-coverage-meta">',
-      coverage.managedFundParties ? '<span>내부 투자기구 상위관계 확인 ' + formatInteger(coverage.covered) + '개 · ' + escapeHtml(formatCompactWon(coverage.coveredCommitted)) + '</span>' : '',
-      coverage.missing ? '<span class="needs-review">상위 출자관계 미연결 ' + formatInteger(coverage.missing) + '개 · ' + escapeHtml(formatCompactWon(coverage.missingCommitted)) + '</span>' : '',
-      coverage.managerParties ? '<span>운용사 내부자금 ' + formatInteger(coverage.managerParties) + '개 · ' + escapeHtml(formatCompactWon(coverage.managerCommitted)) + '</span>' : '',
-      coverage.parties ? '<button type="button" data-capital-action="show-internal-funds">외부 집계 제외 내역 ' + formatInteger(coverage.parties) + '개 보기</button>' : '',
+      coverage.managedFundParties ? '<span>펀드·리츠·SPC 명의행 ' + formatInteger(coverage.managedFundParties) + '개 주체 · ' + escapeHtml(formatCompactWon(coverage.managedFundCommitted)) + '</span>' : '',
+      coverage.shellParties ? '<span>운용사 명의 대체행 ' + formatInteger(coverage.shellParties) + '개 주체 · ' + escapeHtml(formatCompactWon(coverage.shellCommitted)) + '</span>' : '',
+      coverage.missing || coverage.shellUnresolvedRows ? '<span class="needs-review">실제 LP 연결 검토 필요 ' + formatInteger(coverage.missing + coverage.shellUnresolvedRows) + '건</span>' : '',
+      coverage.parties ? '<button type="button" data-capital-action="show-internal-funds">중복 제외 근거 ' + formatInteger(coverage.parties) + '개 보기</button>' : '',
       '</div>',
       '</section>'
     ].join('');
@@ -1664,15 +1667,26 @@
   }
 
   function renderInternalFundCoverageRow(row, index) {
-    var isManagerCapital = row.internalType === 'internal_manager_capital';
-    var coverageLabel = isManagerCapital
-      ? '운용사 내부자금'
-      : (row.lookthroughCoverageStatus === 'direct_upstream_available'
+    var isLookthroughShell = row.internalType === 'internal_fund_lookthrough_shell';
+    var shellFamilyCount = row.lookthroughCoverageCounts.share_class_family_lp_candidates || 0;
+    var shellIntermediateCount = row.lookthroughCoverageCounts.intermediate_fund_lp_candidates || 0;
+    var shellUnresolvedCount = row.lookthroughCoverageCounts.lookthrough_unresolved || 0;
+    var shellCandidateCount = (row.lookthroughCoverageCounts.same_fund_lp_candidates || 0)
+      + shellFamilyCount + shellIntermediateCount;
+    var coverageLabel = isLookthroughShell
+      ? (shellUnresolvedCount && shellCandidateCount
+        ? 'LP 후보 ' + formatInteger(shellCandidateCount) + '행 · 검토 ' + formatInteger(shellUnresolvedCount) + '행'
+        : (shellUnresolvedCount
+          ? 'LP 후보 연결 검토 필요'
+        : (shellIntermediateCount
+          ? '중간기구 상위 LP 후보'
+          : (shellFamilyCount ? '동일 펀드·종류 LP 후보' : '동일 펀드 LP 후보'))))
+      : (row.lookthroughCoverageStatuses.includes('direct_upstream_available')
         ? '상위 출자관계 확인'
         : '상위 출자관계 미연결');
-    var scopeRelation = isManagerCapital
-      ? '<div><dt>제외 구분</dt><dd>운용사 내부자금</dd></div>'
-      : '<div><dt>내부 투자기구</dt><dd>' + escapeHtml(relationList(row.managedFundNames, [row.partyName])) + '</dd></div>';
+    var scopeRelation = isLookthroughShell
+      ? '<div><dt>관계 해석</dt><dd>운용사 명의 대체행 · LP 후보 경로는 관계 근거로만 표시</dd></div>'
+      : '<div><dt>재간접 중간기구</dt><dd>' + escapeHtml(relationList(row.managedFundNames, [row.partyName])) + '</dd></div>';
     return [
       '<article class="capital-breakdown-row capital-internal-fund-row">',
       '<div class="capital-breakdown-rank">' + formatInteger(index + 1) + '</div>',
@@ -1680,7 +1694,7 @@
       '<div class="capital-asset-relation-count"><strong>' + formatInteger(row.exposureCount) + '</strong><span>직접 관계</span></div>',
       '<dl class="capital-breakdown-relations">',
       scopeRelation,
-      '<div><dt>투자 대상 펀드</dt><dd>' + escapeHtml(relationList(row.targetFundNames, [])) + '</dd></div>',
+      '<div><dt>투자 대상 펀드 ' + formatInteger(row.targetFundNames.length) + '개</dt><dd>' + escapeHtml(relationList(row.targetFundNames, [], 8)) + '</dd></div>',
       '</dl>',
       '<div class="capital-breakdown-amount-grid">',
       '<div><span>약정액</span><strong>' + escapeHtml(formatMillion(row.committedAmount)) + '</strong><small>백만원</small></div>',
@@ -1695,18 +1709,18 @@
     var coverage = currentInternalFundCoverage();
     var overlay = ensureBreakdownDialog();
     state.breakdownTrigger = trigger || document.activeElement;
-    document.getElementById('capitalBreakdownTitle').textContent = '외부 투자자 집계 제외 내역';
-    document.getElementById('capitalBreakdownDescription').textContent = 'DB의 직접 출자관계는 보존하면서 외부 투자자 순위와 통계에서 제외한 내부 투자기구 및 운용사 내부자금입니다.';
+    document.getElementById('capitalBreakdownTitle').textContent = '재간접 중간기구 제외 내역';
+    document.getElementById('capitalBreakdownDescription').textContent = '실제 투자자와 중간기구 명의행을 동시에 더하지 않도록 중간기구는 금액 집계에서 제외합니다. LP 경로는 명시적 귀속이 없는 경우 후보 관계로만 표시합니다.';
     document.getElementById('capitalBreakdownSummary').innerHTML = [
       '<div><span>제외 주체</span><strong>' + formatInteger(coverage.parties) + '개</strong></div>',
-      '<div><span>직접 약정액</span><strong>' + escapeHtml(formatMillion(coverage.committed)) + '백만원</strong></div>',
-      '<div><span>내부 투자기구</span><strong>' + formatInteger(coverage.managedFundParties) + '개 · ' + escapeHtml(formatCompactWon(coverage.managedFundCommitted)) + '</strong></div>',
-      '<div><span>운용사 내부자금</span><strong>' + formatInteger(coverage.managerParties) + '개 · ' + escapeHtml(formatCompactWon(coverage.managerCommitted)) + '</strong></div>',
+      '<div><span>원천 명의행 약정액</span><strong>' + escapeHtml(formatMillion(coverage.committed)) + '백만원</strong></div>',
+      '<div><span>펀드·리츠·SPC 명의행</span><strong>' + formatInteger(coverage.managedFundParties) + '개 · ' + escapeHtml(formatCompactWon(coverage.managedFundCommitted)) + '</strong></div>',
+      '<div><span>운용사 명의 대체행</span><strong>' + formatInteger(coverage.shellParties) + '개 · ' + escapeHtml(formatCompactWon(coverage.shellCommitted)) + '</strong></div>',
       '</div>'
     ].join('');
     document.getElementById('capitalBreakdownList').innerHTML = [
       '<section class="capital-breakdown-group">',
-      '<header><h3>직접 출자관계 보존 목록</h3><span>' + formatInteger(coverage.rows.length) + '개</span></header>',
+      '<header><h3>관계 근거 보존 목록</h3><span>' + formatInteger(coverage.rows.length) + '개</span></header>',
       coverage.rows.length ? coverage.rows.map(renderInternalFundCoverageRow).join('') : '<div class="capital-table-empty">현재 조건에서 외부 집계 제외 관계가 없습니다.</div>',
       '</section>'
     ].join('');
@@ -1874,9 +1888,13 @@
     });
   }
 
-  function relationList(values, fallbackValues) {
+  function relationList(values, fallbackValues, limit) {
     var rows = unique((values || []).length ? values : (fallbackValues || []));
-    return rows.length ? rows.join(', ') : '연결 정보 없음';
+    if (!rows.length) return '연결 정보 없음';
+    if (limit && rows.length > limit) {
+      return rows.slice(0, limit).join(', ') + ' 외 ' + formatInteger(rows.length - limit) + '개';
+    }
+    return rows.join(', ');
   }
 
   function renderBreakdownAmounts(item) {

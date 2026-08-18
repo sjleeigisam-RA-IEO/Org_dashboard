@@ -8,7 +8,7 @@ const migrationPath = path.join(
   repoRoot,
   "CRM_base",
   "migrations",
-  "2026-08-14_internal_manager_capital_contract.sql",
+  "2026-08-18_internal_fund_lookthrough_shell_contract.sql",
 );
 
 function parseEnv(text) {
@@ -48,23 +48,32 @@ async function query(sql) {
   return response.json();
 }
 
+const verificationSql = `
+  select *
+  from public.party_internal_fund_lookthrough_shell_resolution_v1;
+
+  select
+    lookthrough_coverage_status,
+    count(*)::int as target_funds,
+    coalesce(sum(shell_rows), 0)::int as shell_rows,
+    coalesce(sum(shell_committed_amt), 0)::bigint as shell_committed_amt
+  from public.party_internal_fund_lookthrough_shell_target_v1
+  group by lookthrough_coverage_status
+  order by lookthrough_coverage_status;
+
+  select *
+  from public.party_external_investor_scope_reconciliation_v1
+  order by role_type;
+`;
+
 const apply = process.argv.includes("--apply");
 const migrationSql = (await fs.readFile(migrationPath, "utf8")).replace(/^\uFEFF/, "");
 const sql = apply
   ? migrationSql
-  : migrationSql.replace(/commit;\s*$/i, `
-      select * from public.party_internal_manager_capital_resolution_v1;
-      select * from public.party_external_investor_scope_reconciliation_v1 order by role_type;
-      rollback;
-    `);
+  : migrationSql.replace(/commit;\s*$/i, `${verificationSql}\nrollback;`);
 
 const execution = await query(sql);
-const verification = apply
-  ? await query(`
-      select * from public.party_internal_manager_capital_resolution_v1;
-      select * from public.party_external_investor_scope_reconciliation_v1 order by role_type;
-    `)
-  : execution;
+const verification = apply ? await query(verificationSql) : execution;
 
 console.log(JSON.stringify({
   mode: apply ? "apply" : "rollback-dry-run",

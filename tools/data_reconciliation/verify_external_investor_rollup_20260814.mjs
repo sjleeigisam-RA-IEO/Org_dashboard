@@ -53,7 +53,8 @@ const relations = await query(`
     to_regclass('public.party_managed_fund_resolution_v1') is not null as has_resolution_view,
     to_regclass('public.party_exposure_external_current_v1') is not null as has_external_view,
     to_regclass('public.party_external_investor_rollup_audit') is not null as has_audit_view,
-    to_regclass('public.party_internal_manager_capital_resolution_v1') is not null as has_manager_scope_view,
+    to_regclass('public.party_internal_fund_lookthrough_shell_target_v1') is not null as has_shell_target_view,
+    to_regclass('public.party_internal_fund_lookthrough_shell_resolution_v1') is not null as has_shell_scope_view,
     to_regclass('public.party_external_investor_scope_reconciliation_v1') is not null as has_scope_reconciliation_view
 `);
 
@@ -75,7 +76,10 @@ const reconciliation = await query(`
     coalesce(sum(drawn_amt) filter (where not include_in_external_investor_rollup), 0)::bigint as internal_drawn,
     coalesce(sum(remaining_amt), 0)::bigint as direct_remaining,
     coalesce(sum(remaining_amt) filter (where include_in_external_investor_rollup), 0)::bigint as external_remaining,
-    coalesce(sum(remaining_amt) filter (where not include_in_external_investor_rollup), 0)::bigint as internal_remaining
+    coalesce(sum(remaining_amt) filter (where not include_in_external_investor_rollup), 0)::bigint as internal_remaining,
+    coalesce(sum(primary_amount), 0)::bigint as direct_primary,
+    coalesce(sum(primary_amount) filter (where include_in_external_investor_rollup), 0)::bigint as external_primary,
+    coalesce(sum(primary_amount) filter (where not include_in_external_investor_rollup), 0)::bigint as internal_primary
   from public.party_exposure_external_current_v1
   group by role_type
   order by role_type
@@ -95,14 +99,14 @@ const integrity = await query(`
       where not include_in_external_investor_rollup
         and (
           role_type <> 'beneficiary'
-          or capital_scope not in ('internal_managed_fund', 'internal_manager_capital')
-          or not (is_managed_fund_party or is_internal_manager_capital)
+          or capital_scope not in ('internal_managed_fund', 'internal_fund_lookthrough_shell')
+          or not (is_managed_fund_party or is_internal_fund_lookthrough_shell)
         )
     ) as invalid_exclusions,
     (select count(*) from public.party_exposure_external_current_v1
       where role_type = 'beneficiary'
         and include_in_external_investor_rollup
-        and capital_scope in ('internal_managed_fund', 'internal_manager_capital')
+        and capital_scope in ('internal_managed_fund', 'internal_fund_lookthrough_shell')
     ) as internal_rows_in_external_rollup,
     (select count(distinct party_id) from public.party_exposure_external_current_v1
       where role_type = 'beneficiary' and not include_in_external_investor_rollup
@@ -127,8 +131,8 @@ const integrity = await query(`
     (select count(distinct party_id) from public.party_exposure_external_current_v1
       where role_type = 'beneficiary'
         and not include_in_external_investor_rollup
-        and is_internal_manager_capital
-    ) as internal_manager_parties,
+        and is_internal_fund_lookthrough_shell
+    ) as internal_fund_shell_parties,
     (select count(*) from public.party_exposure_external_current_v1
       where role_type = 'lender' and is_managed_fund_party
         and not include_in_external_investor_rollup
@@ -152,7 +156,7 @@ const relationRow = relations[0] ?? {};
 assert("required_views_present", Object.values(relationRow).every(Boolean), relationRow);
 
 for (const row of reconciliation) {
-  for (const metric of ["committed", "invested", "drawn", "remaining"]) {
+  for (const metric of ["committed", "invested", "drawn", "remaining", "primary"]) {
     const direct = amount(row[`direct_${metric}`]);
     const external = amount(row[`external_${metric}`]);
     const internal = amount(row[`internal_${metric}`]);
@@ -178,7 +182,7 @@ assert(
     === Number(integrityRow.internal_managed_fund_parties),
   integrityRow,
 );
-assert("internal_manager_scope_present", Number(integrityRow.internal_manager_parties) > 0, integrityRow);
+assert("internal_fund_shell_scope_present", Number(integrityRow.internal_fund_shell_parties) > 0, integrityRow);
 assert("managed_fund_lenders_remain_included", Number(integrityRow.managed_fund_lender_rows_excluded) === 0, integrityRow);
 assert(
   "lp_individual_series_available",
