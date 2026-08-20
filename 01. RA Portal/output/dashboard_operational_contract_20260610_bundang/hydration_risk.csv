@@ -1,0 +1,7 @@
+﻿query,target,rows_returned,rows_total,cap,status,fund_rows,asset_rows,project_rows,lender_rows,beneficiary_rows,error
+분당,search_index,45,45,300,ok,7,9,2,22,5,
+분당,fund_ids,8,8,500,ok,,,,,,
+분당,asset_ids,9,9,500,ok,,,,,,
+분당,project_ids,2,2,500,ok,,,,,,
+분당,lender_ids,0,0,500,ok,,,,,,
+분당,beneficiary_ids,0,0,500,ok,,,,,,

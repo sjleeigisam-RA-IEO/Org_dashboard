@@ -1,0 +1,194 @@
+﻿status,fund_code,short_name,fund_name,asset_name,vehicle_type,legal_form,fund_type,strategy,sector,operation_status,setup_date,maturity_date,candidate_reason,match_type,matched_existing,source_file,source_line
+candidate_not_in_34,112016,18-1호,이지스일반사모부동산모투자신탁18-1호,남산그린빌딩,Fund,투자신탁,개발(펀드)형,Value-added,오피스,운용,,2030-12-31,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,17
+candidate_not_in_34,112047,48호,이지스사모부동산투자신탁48호,남악신도시 복합쇼핑몰,Fund,투자신탁,개발(펀드)형,Opportunistic,리테일,청산,,2022-05-26,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,47
+existing_or_likely_existing,112114,120호,이지스일반사모부동산투자신탁120호,PFV_Lotus (지분증권),Fund,투자신탁,개발(펀드)형,Opportunistic,지분증권,운용,,2027-03-14,펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,114
+candidate_not_in_34,112127,116호,이지스일반사모부동산모투자신탁116호,아레나스양지물류센터,Fund,투자신탁,개발(펀드)형,Core,물류,운용,,2027-05-25,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,127
+candidate_not_in_34,112129,116-2호,이지스일반사모부동산자투자신탁116-2호,아레나스양지물류센터,Fund,투자신탁,개발(펀드)형,Core,물류,운용,,2027-05-25,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,129
+candidate_not_in_34,112130,116-3호,이지스일반사모부동산자투자신탁116-3호,아레나스양지물류센터,Fund,투자신탁,개발(펀드)형,Core,물류,운용,,2027-05-25,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,130
+candidate_not_in_34,112148,133호,이지스전문투자형사모부동산투자신탁133호,판교 알파돔시티 비즈니스호텔,Fund,투자신탁,개발(펀드)형,Opportunistic,호텔,청산,,2021-07-30,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,148
+candidate_not_in_34,112149,151호(3종),이지스제151호전문투자형사모부동산투자유한회사(3종),부평 더샵센트럴시티 공공지원민간임대주택,Fund,투자유한회사,개발(펀드)형,Opportunistic,주거,운용,,2032-08-14,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,149
+candidate_not_in_34,112152,153호,이지스제153호전문투자형사모부동산투자유한회사,판교 창조경제밸리 특별계획구역(I-Square),Fund,투자유한회사,개발(펀드)형,Opportunistic,주거,청산,,2021-04-22,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,152
+candidate_not_in_34,112159,SP청주,에스피청주일반사모부동산투자회사,에스피청주 복합상업시설,Fund,투자회사,개발(펀드)형,Opportunistic,리테일,운용,,2047-10-11,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,159
+candidate_not_in_34,112165,135호,이지스일반사모부동산투자신탁135호,명동청휘빌딩,Fund,투자신탁,개발(펀드)형,Value-added,복합(호텔),운용,,2027-11-30,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,165
+candidate_not_in_34,112166,162호(운용),이지스전문투자형사모투자신탁162호(운용),한남동 외국인아파트부지 재개발사업 PF대출,Fund,투자신탁,대출형,Debt,주거,청산,,2018-05-03,명칭키워드=재개발,,,DB sources\펀드 관리_20260608.xlsx,166
+candidate_not_in_34,112169,151호(1종),이지스제151호전문투자형사모부동산투자유한회사(1종),부평 더샵센트럴시티 공공지원민간임대주택,Fund,투자유한회사,개발(펀드)형,Opportunistic,주거,운용,,2032-08-14,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,169
+candidate_not_in_34,112172,151호,이지스제151호전문투자형사모부동산투자유한회사(운용),부평 더샵센트럴시티 공공지원민간임대주택,Fund,투자유한회사,개발(펀드)형,Opportunistic,주거,운용,,2032-08-14,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,172
+candidate_not_in_34,112181,151호(2종),이지스제151호전문투자형사모부동산투자유한회사(2종),부평 더샵센트럴시티 공공지원민간임대주택,Fund,투자유한회사,개발(펀드)형,Opportunistic,주거,운용,,2032-08-14,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,181
+candidate_not_in_34,112214,200호,이지스제200호일반사모부동산투자유한회사,디어스판교,Fund,투자유한회사,개발(펀드)형,Opportunistic,주거,운용,,2038-06-19,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,214
+candidate_not_in_34,112235,스카이로지스,스카이로지스사모부동산투자회사(운용),아레나스영종,Fund,투자회사,개발(펀드)형,Opportunistic,물류,운용,,2028-08-23,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,235
+candidate_not_in_34,112245,230호,이지스전문투자형230호사모부동산투자유한회사(운용),도지물류센터,Fund,투자유한회사,개발(펀드)형,Opportunistic,물류,청산,,2021-03-09,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,245
+candidate_not_in_34,112264,244호,이지스전문투자형사모부동산투자신탁244호,"익선동 상업시설 개발, 익선동 상업시설 개발",Fund,투자신탁,개발(펀드)형,Opportunistic,리테일,청산,,2021-12-08,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,264
+candidate_not_in_34,112275,256호,이지스제256호전문투자형사모부동산투자유한회사,도농역 오피스텔,Fund,투자유한회사,개발(펀드)형,Opportunistic,주거,청산,,2022-06-07,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,275
+candidate_not_in_34,112320,아레나스 1호(자),이지스아레나스케이엘아이피1사모부동산자투자회사,"아레나스영종, 아레나스안성",Fund,투자회사,개발(펀드)형,Opportunistic,물류,운용,,2028-05-15,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,320
+candidate_not_in_34,112372,318호,이지스일반사모부동산투자신탁318호,역삼동 개발사업,Fund,투자신탁,개발(펀드)형,Opportunistic,오피스,청산,,2022-11-14,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,372
+candidate_not_in_34,112380,기회추구 2호,이지스기회추구일반사모부동산자투자신탁제2호(운용),"이지스기회추구2-1호 (330호, OPUS407/舊뉴욕제과빌딩), 이지스기회추구2-2호(353호,OPUS459/舊백암빌딩)",Fund,투자신탁,개발(펀드)형,Opportunistic,지분증권,운용,,2026-11-27,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,380
+candidate_not_in_34,112381,기회추구 2호(1종),이지스기회추구일반사모부동산자투자신탁제2호(1종),,Fund,투자신탁,개발(펀드)형,Opportunistic,지분증권,운용,,2026-11-27,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,381
+candidate_not_in_34,112382,기회추구 2호(2종),이지스기회추구일반사모부동산자투자신탁제2호(2종),,Fund,투자신탁,개발(펀드)형,Opportunistic,지분증권,운용,,2026-11-27,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,382
+candidate_not_in_34,112399,331호(3종),이지스전문투자형사모부동산투자신탁제331호(3종),,Fund,투자신탁,개발(펀드)형,Opportunistic,복합(주거),청산,,2020-01-17,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,394
+candidate_not_in_34,112421,353호,이지스일반사모부동산투자신탁제353호(운용),OPUS459(구. 백암빌딩),Fund,투자신탁,개발(펀드)형,Opportunistic,복합(오피스),운용,,2026-07-29,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,416
+candidate_not_in_34,112422,353호(1종),이지스일반사모부동산투자신탁제353호(1종),OPUS459(구. 백암빌딩),Fund,투자신탁,개발(펀드)형,Opportunistic,복합(오피스),운용,,2026-07-29,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,417
+candidate_not_in_34,112423,353호(2-A종),이지스일반사모부동산투자신탁제353호(2-A종),OPUS459(구. 백암빌딩),Fund,투자신탁,개발(펀드)형,Opportunistic,복합(오피스),운용,,2026-07-29,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,418
+candidate_not_in_34,112424,353호(2-B종),이지스일반사모부동산투자신탁제353호(2-B종),OPUS459(구. 백암빌딩),Fund,투자신탁,개발(펀드)형,Opportunistic,복합(오피스),운용,,2026-07-29,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,419
+candidate_not_in_34,112442,354호,이지스전문투자형사모부동산투자신탁제354호(운용),하남데이터센터,Fund,투자신탁,개발(펀드)형,Opportunistic,데이터센터,청산,,2026-05-22,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,437
+candidate_not_in_34,112443,354호(1종),이지스전문투자형사모부동산투자신탁제354호(1종),하남데이터센터,Fund,투자신탁,개발(펀드)형,Opportunistic,데이터센터,청산,,2021-09-28,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,438
+candidate_not_in_34,112444,354호(2종),이지스전문투자형사모부동산투자신탁제354호(2종),하남데이터센터,Fund,투자신탁,개발(펀드)형,Opportunistic,데이터센터,청산,,2021-09-28,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,439
+candidate_not_in_34,112445,리빙플랫폼 1호,이지스리빙플랫폼일반사모부동산자투자신탁제1호(운용),"맹그로브 신촌, 맹그로브 신설, 맹그로브 동대문",Fund,투자신탁,개발(펀드)형,Opportunistic,지분증권,운용,,2040-04-13,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,440
+candidate_not_in_34,112446,리빙플랫폼1호(1종),이지스리빙플랫폼일반사모부동산자투자신탁제1호(1종),리빙플랫폼 1호,Fund,투자신탁,개발(펀드)형,Opportunistic,지분증권,운용,,2040-04-13,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,441
+candidate_not_in_34,112447,리빙플랫폼1호(2종),이지스리빙플랫폼일반사모부동산자투자신탁제1호(2종),리빙플랫폼 1호,Fund,투자신탁,개발(펀드)형,Opportunistic,지분증권,운용,,2040-04-13,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,442
+needs_manual_review,112451,362호,이지스전문투자형사모부동산투자신탁362호,부천소사PFV(P00008),Fund,투자신탁,개발(펀드)형,Opportunistic,주거,운용,,2030-06-04,펀드유형=개발,partial_name,부천 소사 공동주택 개발사업,DB sources\펀드 관리_20260608.xlsx,446
+candidate_not_in_34,112456,370호,이지스전문투자형사모투자신탁370호(운용),원효로3가 공공지원민간임대주택,Fund,투자신탁,개발(펀드)형,Opportunistic,주거,청산,,2020-09-24,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,451
+candidate_not_in_34,112461,371호,이지스제371호전문투자형사모부동산투자회사(운용),삼성월드타워아파트,Fund,투자회사,개발(펀드)형,Opportunistic,주거,청산,,2021-12-29,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,455
+candidate_not_in_34,112471,기회추구2-2-1호,이지스기회추구전문투자형사모부동산자투자신탁제2-2-1호(운용),"이지스기회추구2-2호(353호,OPUS459/舊백암빌딩) 공동투자",Fund,투자신탁,개발(펀드)형,Opportunistic,지분증권,운용,,2026-11-04,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,465
+candidate_not_in_34,112472,기회추구2-2-1호(C1),이지스기회추구전문투자형사모부동산자투자신탁제2-2-1호(C1),,Fund,투자신탁,개발(펀드)형,Opportunistic,지분증권,운용,,2026-11-04,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,466
+candidate_not_in_34,112473,기회추구2-2-1호(C2),이지스기회추구전문투자형사모부동산자투자신탁제2-2-1호(C2),,Fund,투자신탁,개발(펀드)형,Opportunistic,지분증권,운용,,2026-11-04,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,467
+candidate_not_in_34,112474,384호,이지스일반사모부동산투자신탁384호,효제아트PFV(주식 및 주주대여),Fund,투자신탁,개발(펀드)형,Opportunistic,오피스,청산,,2026-05-28,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,468
+candidate_not_in_34,112487,388호,이지스전문투자형사모부동산투자신탁제388호(운용),부산 메디컬빌딩,Fund,투자신탁,개발(펀드)형,Opportunistic,특별자산,청산,,2021-12-28,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,481
+candidate_not_in_34,112502,지엘아이피1-1호,이지스지엘아이피일반사모투자신탁1-1호(운용),뉴멕시코주 아마존 물류센터,Fund,투자신탁,개발(펀드)형,Opportunistic,물류,청산,,2026-02-25,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,496
+candidate_not_in_34,112503,지엘아이피1-2호,이지스지엘아이피일반사모투자신탁1-2호(운용),뉴멕시코주 아마존 물류센터,Fund,투자신탁,개발(펀드)형,Opportunistic,물류,청산,,2026-02-25,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,497
+candidate_not_in_34,112505,아레나스1-2호(모),이지스아레나스케이엘아이피1의2사모부동산모투자회사,아레나스안성,Fund,투자회사,개발(펀드)형,Opportunistic,물류,운용,,2028-05-10,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,499
+candidate_not_in_34,112506,지엘아이피1-1호(1종),이지스지엘아이피일반사모투자신탁1-1호(1종),,Fund,투자신탁,개발(펀드)형,Opportunistic,물류,청산,,2026-02-25,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,500
+candidate_not_in_34,112507,지엘아이피1-1호(2종),이지스지엘아이피일반사모투자신탁1-1호(2종),,Fund,투자신탁,개발(펀드)형,Opportunistic,물류,청산,,2026-02-25,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,501
+candidate_not_in_34,112508,지엘아이피1-2호(1종),이지스지엘아이피일반사모투자신탁1-2호(1종),,Fund,투자신탁,개발(펀드)형,Opportunistic,물류,청산,,2026-02-25,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,502
+candidate_not_in_34,112509,지엘아이피1-2호(2종),이지스지엘아이피일반사모투자신탁1-2호(2종),,Fund,투자신탁,개발(펀드)형,Opportunistic,물류,청산,,2026-02-25,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,503
+existing_or_likely_existing,112514,395호,이지스제395호전문투자형사모부동산투자유한회사(운용),"신동해빌딩, NICE2사옥",Fund,투자유한회사,개발(펀드)형,Opportunistic,주거,운용,,2034-02-27,펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,508
+existing_or_likely_existing,112515,395호(1종),이지스제395호전문투자형사모부동산투자유한회사(1종),"신동해빌딩, NICE2사옥",Fund,투자유한회사,개발(펀드)형,Opportunistic,주거,운용,,2034-02-27,펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,509
+existing_or_likely_existing,112516,395호(2종),이지스제395호전문투자형사모부동산투자유한회사(2종),"신동해빌딩, NICE2사옥",Fund,투자유한회사,개발(펀드)형,Opportunistic,주거,운용,,2034-02-27,펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,510
+candidate_not_in_34,112519,이익참여형메자닌 1-1호,이지스이익참여형메자닌일반사모부동산모투자신탁제1-1호,오산세교 주거시설,Fund,투자신탁,개발(펀드)형,Opportunistic,주거,운용,,2028-12-23,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,513
+candidate_not_in_34,112520,이익참여형메자닌 1호,이지스이익참여형메자닌일반사모부동산자투자신탁제1호,,Fund,투자신탁,개발(펀드)형,Opportunistic,주거,운용,,2028-12-23,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,514
+candidate_not_in_34,112522,이익참여형메자닌1-2호,이지스이익참여형메자닌전문투자형사모부동산모투자신탁제1-2호,안성 당목리 물류 개발사업,Fund,투자신탁,개발(펀드)형,Opportunistic,물류,청산,,2022-11-21,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,516
+needs_manual_review,112528,이익참여형메자닌 1-3호,이지스이익참여형메자닌일반사모부동산모투자신탁제1-3호,청라 오피스텔,Fund,투자신탁,개발(펀드)형,Opportunistic,주거,운용,,2026-08-15,펀드유형=개발,partial_name,청라 오피스텔 개발사업,DB sources\펀드 관리_20260608.xlsx,522
+candidate_not_in_34,112547,403호,이지스제403호전문투자형사모부동산투자유한회사(운용),완장리 물류센터,Fund,투자유한회사,개발(펀드)형,Opportunistic,물류,운용,,2028-05-07,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,541
+candidate_not_in_34,112548,403호(1종),이지스제403호전문투자형사모부동산투자유한회사(1종),,Fund,투자유한회사,개발(펀드)형,Opportunistic,물류,미설정,,2021-05-27,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,542
+candidate_not_in_34,112549,403호(2종),이지스제403호전문투자형사모부동산투자유한회사(2종),,Fund,투자유한회사,개발(펀드)형,Opportunistic,물류,운용,,2028-05-07,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,543
+candidate_not_in_34,112550,403호(3종),이지스제403호전문투자형사모부동산투자유한회사(3종),,Fund,투자유한회사,개발(펀드)형,Opportunistic,물류,운용,,2028-05-07,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,544
+candidate_not_in_34,112551,412호,이지스일반사모부동산투자신탁제412호,티마크호텔명동,Fund,투자신탁,개발(펀드)형,Opportunistic,오피스,청산,,2025-02-28,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,545
+candidate_not_in_34,112552,412호(1종),이지스일반사모부동산투자신탁제412호(1종),티마크호텔명동,Fund,투자신탁,개발(펀드)형,Opportunistic,오피스,청산,,2025-02-28,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,546
+candidate_not_in_34,112553,412호(2종),이지스일반사모부동산투자신탁제412호(2종),티마크호텔명동,Fund,투자신탁,개발(펀드)형,Opportunistic,오피스,청산,,2025-02-28,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,547
+candidate_not_in_34,112554,412호(3종),이지스일반사모부동산투자신탁제412호(3종),티마크호텔명동,Fund,투자신탁,개발(펀드)형,Opportunistic,오피스,청산,,2025-02-28,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,548
+candidate_not_in_34,112573,426호,이지스일반사모부동산투자신탁제426호(운용),이천 마장면 물류센터,Fund,투자신탁,개발(펀드)형,Opportunistic,물류,운용,,2028-01-22,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,567
+candidate_not_in_34,112574,426호(1종),이지스일반사모부동산투자신탁제426호(1종),,Fund,투자신탁,개발(펀드)형,Opportunistic,물류,운용,,2028-01-22,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,568
+candidate_not_in_34,112575,426호(2종),이지스일반사모부동산투자신탁제426호(2종),,Fund,투자신탁,개발(펀드)형,Opportunistic,물류,운용,,2028-01-22,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,569
+existing_or_likely_existing,112579,420호,이지스제420호전문투자형사모부동산투자회사(운용),마곡 명소화부지 개발사업,Fund,투자회사,개발(펀드)형,Opportunistic,복합(오피스),운용,,2037-07-29,펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,573
+existing_or_likely_existing,112580,420호(보통주),이지스제420호전문투자형사모부동산투자회사(보통주),마곡 명소화부지 개발사업,Fund,투자회사,개발(펀드)형,Opportunistic,복합(오피스),운용,,2037-07-29,펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,574
+existing_or_likely_existing,112581,420호(1종),이지스제420호전문투자형사모부동산투자회사(1종),마곡 명소화부지 개발사업,Fund,투자회사,개발(펀드)형,Opportunistic,복합(오피스),청산,,2023-08-11,펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,575
+candidate_not_in_34,112589,416호,이지스일반사모부동산투자신탁제416호(운용),원그로브(마곡CP4 복합개발사업),Fund,투자신탁,개발(펀드)형,Core+,복합(오피스),운용,,2028-08-25,명칭키워드=복합개발 | 펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,583
+candidate_not_in_34,112590,416호(1종),이지스일반사모부동산투자신탁제416호(1종),원그로브(마곡CP4 복합개발사업),Fund,투자신탁,개발(펀드)형,Core+,복합(오피스),운용,,2028-08-25,명칭키워드=복합개발 | 펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,584
+candidate_not_in_34,112591,416호(2종),이지스일반사모부동산투자신탁제416호(2종),원그로브(마곡CP4 복합개발사업),Fund,투자신탁,개발(펀드)형,Core+,복합(오피스),운용,,2028-08-25,명칭키워드=복합개발 | 펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,585
+candidate_not_in_34,112593,303호,이지스제303호일반사모부동산투자회사,"영보빌딩1, 영보빌딩2",Fund,투자회사,개발(펀드)형,Opportunistic,오피스,청산,,2022-09-01,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,587
+candidate_not_in_34,112594,354호(A종),이지스전문투자형사모부동산투자신탁제354호(A종),하남데이터센터,Fund,투자신탁,개발(펀드)형,Opportunistic,데이터센터,청산,,2026-05-22,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,588
+candidate_not_in_34,112595,354호(B종),이지스전문투자형사모부동산투자신탁제354호(B종),하남데이터센터,Fund,투자신탁,개발(펀드)형,Opportunistic,데이터센터,청산,,2026-05-22,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,589
+candidate_not_in_34,112606,440호,이지스제440호부동산일반사모투자회사,여주 본두리 물류센터,Fund,투자회사,개발(펀드)형,Opportunistic,물류,운용,,2028-10-05,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,599
+candidate_not_in_34,112608,439호,이지스일반사모부동산투자신탁제439호(운용),고양삼송데이터센터,Fund,투자신탁,개발(펀드)형,Opportunistic,데이터센터,운용,,2029-06-28,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,601
+candidate_not_in_34,112609,439호(1종),이지스일반사모부동산투자신탁제439호(1종),고양삼송데이터센터,Fund,투자신탁,개발(펀드)형,Opportunistic,데이터센터,청산,,2023-06-23,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,602
+candidate_not_in_34,112610,439호(2종),이지스일반사모부동산투자신탁제439호(2종),고양삼송데이터센터,Fund,투자신탁,개발(펀드)형,Opportunistic,데이터센터,청산,,2023-06-23,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,603
+candidate_not_in_34,112611,하우징플랫폼 1호,이지스하우징플랫폼일반사모부동산투자신탁제1호(운용),"효제동 오피스텔 사업부지, 구리 수택동 오피스텔 사업부지, 울산KTX역 오피스텔 사업부지",Fund,투자신탁,개발(펀드)형,Opportunistic,지분증권,운용,,2028-11-24,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,604
+candidate_not_in_34,112612,하우징플랫폼1호(1종),이지스하우징플랫폼일반사모부동산투자신탁제1호(1종),,Fund,투자신탁,개발(펀드)형,Opportunistic,지분증권,운용,,2028-11-24,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,605
+candidate_not_in_34,112613,하우징플랫폼1호(2종),이지스하우징플랫폼일반사모부동산투자신탁제1호(2종),,Fund,투자신탁,개발(펀드)형,Opportunistic,지분증권,운용,,2028-11-24,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,606
+existing_or_likely_existing,112614,421호,이지스일반사모부동산투자신탁421호(운용),와이디427피에프브이 주식회사,Fund,투자신탁,국내재간접,재간접,지분증권,운용,,2031-11-22,명칭키워드=피에프브이,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,607
+candidate_not_in_34,112640,452호,이지스제452호일반사모부동산투자회사,인천가좌동데이터센터,Fund,투자회사,개발(펀드)형,Opportunistic,데이터센터,청산,,2022-06-20,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,628
+existing_or_likely_existing,112641,454호,이지스일반사모부동산투자신탁제454호,세운5구역PFV(주) 지분,Fund,투자신탁,개발(펀드)형,Opportunistic,지분증권,운용,,2030-01-28,펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,629
+candidate_not_in_34,112642,451호(운용),이지스일반사모부동산투자신탁제451호(운용),화성 석포리 물류센터,Fund,투자신탁,개발(펀드)형,Value-added,물류,운용,,2028-03-14,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,630
+candidate_not_in_34,112643,451호(1종),이지스일반사모부동산투자신탁제451호(1종),화성 석포리 물류센터,Fund,투자신탁,개발(펀드)형,Value-added,물류,운용,,2028-03-14,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,631
+candidate_not_in_34,112644,451호(2종),이지스일반사모부동산투자신탁제451호(2종),화성 석포리 물류센터,Fund,투자신탁,개발(펀드)형,Value-added,물류,운용,,2028-03-14,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,632
+candidate_not_in_34,112653,460호,이지스일반사모부동산투자신탁460호(운용),디에스PFV 2종 종류주 및 주주대여,Fund,투자신탁,개발(펀드)형,Opportunistic,주거,운용,,2027-03-30,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,641
+candidate_not_in_34,112654,460호(1종),이지스일반사모부동산투자신탁460호(1종),디에스PFV 2종 종류주 및 주주대여,Fund,투자신탁,개발(펀드)형,Opportunistic,주거,운용,,2027-03-30,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,642
+candidate_not_in_34,112655,460호(2종),이지스일반사모부동산투자신탁460호(2종),디에스PFV 2종 종류주 및 주주대여,Fund,투자신탁,개발(펀드)형,Opportunistic,주거,운용,,2027-03-30,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,643
+existing_or_likely_existing,112661,462호,이지스일반사모부동산투자신탁제462호,세운5구역PFV(주) 지분,Fund,투자신탁,개발(펀드)형,Opportunistic,지분증권,운용,,2030-07-14,펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,649
+candidate_not_in_34,112669,472호,이지스제472호일반사모부동산투자회사(운용),김포DC 개발사업,Fund,투자회사,개발(펀드)형,Opportunistic,데이터센터,운용,,2029-11-30,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,657
+candidate_not_in_34,112670,472호(1종),이지스제472호일반사모부동산투자회사(1종),김포DC 개발사업,Fund,투자회사,개발(펀드)형,Opportunistic,데이터센터,운용,,2029-11-30,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,658
+candidate_not_in_34,112671,472호(보통주),이지스제472호일반사모부동산투자회사(보통주),김포DC 개발사업,Fund,투자회사,개발(펀드)형,Opportunistic,데이터센터,운용,,2029-11-30,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,659
+existing_or_likely_existing,112706,421호(A종),이지스일반사모부동산투자신탁421호(A종),와이디427피에프브이 주식회사,Fund,투자신탁,국내재간접,재간접,지분증권,운용,,2031-11-22,명칭키워드=피에프브이,exact_name,이오타서울 427,DB sources\펀드 관리_20260608.xlsx,693
+existing_or_likely_existing,112707,421호(B종),이지스일반사모부동산투자신탁421호(B종),와이디427피에프브이 주식회사,Fund,투자신탁,국내재간접,재간접,지분증권,운용,,2031-11-22,명칭키워드=피에프브이,exact_name,이오타서울 427,DB sources\펀드 관리_20260608.xlsx,694
+candidate_not_in_34,112715,장기안정형주거플랫폼 1호,이지스장기안정형주거플랫폼일반사모부동산투자신탁제1호,,Fund,투자신탁,개발(펀드)형,Opportunistic,주거,운용,,2037-09-23,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,702
+needs_manual_review,112719,해운대1호,이지스해운대일반사모부동산투자신탁제1호,공동주택,Fund,투자신탁,개발(펀드)형,Opportunistic,주거,운용,,2028-01-21,펀드유형=개발,partial_name,부천 소사 공동주택 개발사업,DB sources\펀드 관리_20260608.xlsx,706
+candidate_not_in_34,112745,501호,이지스일반사모부동산자투자신탁제501호(운용),안산 초지동 데이터센터,Fund,투자신탁,개발(펀드)형,Opportunistic,데이터센터,운용,,2030-06-16,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,732
+candidate_not_in_34,112746,501호(1종),이지스일반사모부동산자투자신탁제501호(1종),,Fund,투자신탁,개발(펀드)형,Opportunistic,데이터센터,청산,,2025-02-19,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,733
+candidate_not_in_34,112747,501호(2종),이지스일반사모부동산자투자신탁제501호(2종),,Fund,투자신탁,개발(펀드)형,Opportunistic,데이터센터,청산,,2025-02-19,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,734
+candidate_not_in_34,112748,안산,이지스안산부동산일반사모모투자회사,안산 초지동 데이터센터,Fund,투자회사,개발(펀드)형,Opportunistic,데이터센터,운용,,2030-06-16,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,735
+candidate_not_in_34,112764,리빙플랫폼2호,이지스리빙플랫폼일반사모부동산자투자신탁제2호,,기타,,개발(펀드)형,Opportunistic,주거,설정예정,,,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,751
+candidate_not_in_34,112791,리빙플랫폼1호(3종),이지스리빙플랫폼일반사모부동산자투자신탁제1호(3종),리빙플랫폼 1호,Fund,투자신탁,개발(펀드)형,Opportunistic,지분증권,운용,,2040-04-13,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,777
+candidate_not_in_34,112804,439호(A종),이지스일반사모부동산투자신탁제439호(A종),고양삼송데이터센터,Fund,투자신탁,개발(펀드)형,Opportunistic,데이터센터,운용,,2029-06-28,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,790
+candidate_not_in_34,112805,439호(B종),이지스일반사모부동산투자신탁제439호(B종),고양삼송데이터센터,Fund,투자신탁,개발(펀드)형,Opportunistic,데이터센터,운용,,2029-06-28,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,791
+candidate_not_in_34,120001,517-1호,이지스일반사모부동산자투자신탁제517의1호,은평 시니어리빙 복합시설 개발,Fund,투자신탁,개발(펀드)형,Opportunistic,복합(주거),운용,,2043-06-27,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,792
+candidate_not_in_34,120003,517-1호(1종),이지스일반사모부동산자투자신탁제517의1호(1의1종),,Fund,투자신탁,개발(펀드)형,Opportunistic,복합(주거),운용,,2043-06-27,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,794
+candidate_not_in_34,120004,517-1호(2종),이지스일반사모부동산자투자신탁제517의1호(1의2종),,Fund,투자신탁,개발(펀드)형,Opportunistic,복합(주거),운용,,2043-06-27,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,795
+candidate_not_in_34,120005,517-1호(3종),이지스일반사모부동산자투자신탁제517의1호(1의3종),,Fund,투자신탁,개발(펀드)형,Opportunistic,복합(주거),운용,,2043-06-27,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,796
+candidate_not_in_34,120006,517-1호(4종),이지스일반사모부동산자투자신탁제517의1호(1의4종),,Fund,투자신탁,개발(펀드)형,Opportunistic,복합(주거),운용,,2043-06-27,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,797
+candidate_not_in_34,120007,517-1호(5종),이지스일반사모부동산자투자신탁제517의1호(1의5종),,Fund,투자신탁,개발(펀드)형,Opportunistic,복합(주거),운용,,2043-06-27,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,798
+candidate_not_in_34,120015,도심포트폴리오,이지스도심포트폴리오일반사모투자신탁,,Fund,투자신탁,개발(펀드)형,기타,리테일,운용,,2028-12-09,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,806
+existing_or_likely_existing,120016,421호(C종),이지스일반사모부동산투자신탁421호(C종),와이디427피에프브이 주식회사,Fund,투자신탁,국내재간접,재간접,지분증권,운용,,2031-11-22,명칭키워드=피에프브이,exact_name,이오타서울 427,DB sources\펀드 관리_20260608.xlsx,807
+candidate_not_in_34,120019,472호(A종),이지스제472호일반사모부동산투자회사(A종),김포DC 개발사업,Fund,투자회사,개발(펀드)형,Opportunistic,데이터센터,운용,,2029-11-30,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,810
+candidate_not_in_34,120027,451호(3종),이지스일반사모부동산투자신탁제451호(3종),화성 석포리 물류센터,Fund,투자신탁,개발(펀드)형,Value-added,물류,운용,,2028-03-14,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,817
+candidate_not_in_34,120042,200호(1종),이지스제200호일반사모부동산투자유한회사(1종),디어스판교,Fund,투자유한회사,개발(펀드)형,Opportunistic,주거,운용,,2038-06-19,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,831
+candidate_not_in_34,120043,200호(2종),이지스제200호일반사모부동산투자유한회사(2종),디어스판교,Fund,투자유한회사,개발(펀드)형,Opportunistic,주거,운용,,2038-06-19,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,832
+candidate_not_in_34,120061,501호(3종),이지스일반사모부동산자투자신탁제501호(3종),,Fund,투자신탁,개발(펀드)형,Opportunistic,데이터센터,운용,,2030-06-16,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,850
+candidate_not_in_34,120062,562호,이지스일반사모부동산모투자회사제562호,위례Senior Living 개발사업,Fund,투자회사,개발(펀드)형,Opportunistic,복합(주거),운용,,2045-02-14,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,851
+candidate_not_in_34,120063,562의1호,이지스일반사모부동산자투자신탁제562의1호,위례Senior Living 개발사업,Fund,투자신탁,개발(펀드)형,Opportunistic,복합(주거),운용,,2045-02-14,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,852
+candidate_not_in_34,120064,562의1호(1종),이지스일반사모부동산자투자신탁제562의1호(1종),위례Senior Living 개발사업,Fund,투자신탁,개발(펀드)형,Opportunistic,복합(주거),운용,,2045-02-14,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,853
+candidate_not_in_34,120065,562의1호(2종),이지스일반사모부동산자투자신탁제562의1호(2종),위례Senior Living 개발사업,Fund,투자신탁,개발(펀드)형,Opportunistic,복합(주거),운용,,2045-02-14,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,854
+candidate_not_in_34,120066,562의1호(3종),이지스일반사모부동산자투자신탁제562의1호(3종),위례Senior Living 개발사업,Fund,투자신탁,개발(펀드)형,Opportunistic,복합(주거),운용,,2045-02-14,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,855
+candidate_not_in_34,120067,562의1호(4종),이지스일반사모부동산자투자신탁제562의1호(4종),위례Senior Living 개발사업,Fund,투자신탁,개발(펀드)형,Opportunistic,복합(주거),운용,,2045-02-14,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,856
+candidate_not_in_34,120068,562의1호(5종),이지스일반사모부동산자투자신탁제562의1호(5종),위례Senior Living 개발사업,Fund,투자신탁,개발(펀드)형,Opportunistic,복합(주거),운용,,2045-02-14,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,857
+candidate_not_in_34,120069,562의1호(6종),이지스일반사모부동산자투자신탁제562의1호(6종),위례Senior Living 개발사업,Fund,투자신탁,개발(펀드)형,Opportunistic,복합(주거),설정예정,,,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,858
+existing_or_likely_existing,120074,567호,이지스일반사모부동산투자신탁567호,용산라이프PFV(보통주),Fund,투자신탁,개발(펀드)형,Opportunistic,오피스,운용,,2035-05-14,펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,863
+needs_manual_review,120089,395호(1-1종),이지스제395호전문투자형사모부동산투자유한회사(1-1종),,Fund,투자유한회사,개발(펀드)형,Opportunistic,주거,운용,,2034-02-27,펀드유형=개발,partial_name,서여의도 임대주택 개발사업,DB sources\펀드 관리_20260608.xlsx,875
+needs_manual_review,120090,395호(2-1종),이지스제395호전문투자형사모부동산투자유한회사(2-1종),,Fund,투자유한회사,개발(펀드)형,Opportunistic,주거,운용,,2034-02-27,펀드유형=개발,partial_name,서여의도 임대주택 개발사업,DB sources\펀드 관리_20260608.xlsx,876
+candidate_not_in_34,120103,501호(4종),이지스일반사모부동산자투자신탁제501호(4종),,Fund,투자신탁,개발(펀드)형,Opportunistic,데이터센터,운용,,2030-06-16,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,889
+candidate_not_in_34,120114,스카이로지스(보통주),스카이로지스사모부동산투자회사(보통주),,Fund,투자회사,개발(펀드)형,Opportunistic,물류,운용,,2028-08-23,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,900
+candidate_not_in_34,120115,스카이로지스(1종),스카이로지스사모부동산투자회사(1종),,Fund,투자회사,개발(펀드)형,Opportunistic,물류,운용,,2028-08-23,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,901
+candidate_not_in_34,120116,스카이로지스(2종),스카이로지스사모부동산투자회사(2종),,Fund,투자회사,개발(펀드)형,Opportunistic,물류,운용,,2028-08-23,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,902
+candidate_not_in_34,120117,스카이로지스(3종),스카이로지스사모부동산투자회사(3종),,Fund,투자회사,개발(펀드)형,Opportunistic,물류,운용,,2028-08-23,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,903
+candidate_not_in_34,120118,451호(최우선),이지스일반사모부동산투자신탁제451호(최우선),,Fund,투자신탁,개발(펀드)형,Value-added,물류,운용,,2028-03-14,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,904
+candidate_not_in_34,120119,국내PF재구조화1-4호(모),이지스국내PF재구조화일반사모부동산모투자신탁제1-4호,안성산하3지구물류센터개발사업,Fund,투자신탁,개발(펀드)형,Opportunistic,물류,운용,,2031-09-17,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,905
+candidate_not_in_34,190001,517호,이지스일반사모부동산모투자회사제517호,은평 시니어리빙 복합시설 개발,Fund,투자회사,개발(펀드)형,Opportunistic,복합(주거),운용,,2043-06-27,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,913
+existing_or_likely_existing,190005,542호,이지스제542호부동산일반사모투자회사,가산 임대형기숙사개발사업,Fund,투자회사,개발(펀드)형,Opportunistic,주거,운용,,2037-06-19,펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,917
+existing_or_likely_existing,190006,542호(1종),이지스제542호부동산일반사모투자회사(제1종),가산 임대형기숙사개발사업,Fund,투자회사,개발(펀드)형,Opportunistic,주거,운용,,2037-06-19,펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,918
+existing_or_likely_existing,190007,542호(보통주식),이지스제542호부동산일반사모투자회사(보통주식),가산 임대형기숙사개발사업,Fund,투자회사,개발(펀드)형,Opportunistic,주거,운용,,2037-06-19,펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,919
+candidate_not_in_34,190008,550호,이지스부동산일반사모투자회사제550호,이태원동 133-17 외 2필지,Fund,투자회사,개발(펀드)형,Opportunistic,복합(리테일),운용,,2031-11-24,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,920
+existing_or_likely_existing,190009,랜드마크부동산,이지스랜드마크부동산일반사모투자회사,The-K호텔서울 부지 재개발사업,Fund,투자회사,개발(펀드)형,Opportunistic,복합(오피스),운용,,2028-10-31,명칭키워드=재개발 | 펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,921
+existing_or_likely_existing,190013,560호,이지스제560호부동산일반사모투자회사,포천정교리물류센터,Fund,투자회사,개발(펀드)형,Opportunistic,물류,운용,,2030-02-07,펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,925
+existing_or_likely_existing,190014,572호,이지스제572호부동산일반사모투자회사(운용),명지녹산데이터센터개발사업,Fund,투자회사,개발(펀드)형,Opportunistic,데이터센터,운용,,2035-06-13,펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,926
+existing_or_likely_existing,190015,572호(보통주),이지스제572호부동산일반사모투자회사(보통주),,Fund,투자회사,개발(펀드)형,Opportunistic,데이터센터,운용,,2035-06-13,펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,927
+existing_or_likely_existing,190016,572호(1종),이지스제572호부동산일반사모투자회사(1종),,Fund,투자회사,개발(펀드)형,Opportunistic,데이터센터,운용,,2035-06-13,펀드유형=개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,928
+candidate_not_in_34,190017,574호,이지스제574호부동산일반사모투자회사(운용),하남시풍산동9MW 데이터센터,Fund,투자회사,개발(펀드)형,Opportunistic,데이터센터,운용,,2032-06-30,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,929
+candidate_not_in_34,190018,574호(보통주),이지스제574호부동산일반사모투자회사(보통주),,Fund,투자회사,개발(펀드)형,Opportunistic,데이터센터,운용,,2032-06-30,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,930
+candidate_not_in_34,190019,574호(1종),이지스제574호부동산일반사모투자회사(1종),,Fund,투자회사,개발(펀드)형,Opportunistic,데이터센터,운용,,2032-06-30,펀드유형=개발,,,DB sources\펀드 관리_20260608.xlsx,931
+existing_or_likely_existing,P00001,P아이스퀘어,이지스아이스퀘어 PFV,판교 제2테크노밸리 C1 C2블록 I-Square 개발,PFV,,,Opportunistic,복합(주거),운용,,2032-02-27,Vehicle=PFV,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1058
+existing_or_likely_existing,P00002,P오시리아테마파크,오시리아테마파크PFV,동부산 테마파크 개발사업,PFV,,,Opportunistic,기타,운용,,2068-11-28,Vehicle=PFV,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1059
+existing_or_likely_existing,P00003,P오시생숙,오시리아타워레지던스PFV,오시리아타워레지던스,PFV,,,Opportunistic,주거,청산,,2023-03-30,Vehicle=PFV,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1060
+candidate_not_in_34,P00004,P해운대626,해운대626피에프브이 주식회사,해운대 L7,PFV,,,Opportunistic,호텔,청산,,2024-03-08,Vehicle=PFV | 명칭키워드=피에프브이,,,DB sources\펀드 관리_20260608.xlsx,1061
+existing_or_likely_existing,P00005,P에스비씨,에스비씨PFV,서리풀개발사업,PFV,,,Opportunistic,복합(오피스),운용,,2029-07-29,Vehicle=PFV,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1062
+existing_or_likely_existing,P00006,P세운5구역,세운5구역PFV,세운5구역 개발사업,PFV,,,Opportunistic,오피스,운용,,2029-06-20,Vehicle=PFV,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1063
+existing_or_likely_existing,P00007,P로터스,로터스피에프브이,안녕인사동,PFV,,,Opportunistic,복합(호텔),운용,,2027-03-13,Vehicle=PFV | 명칭키워드=피에프브이,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1064
+existing_or_likely_existing,P00008,P부천소사,부천소사PFV,부천소사 공동주택,PFV,,,Opportunistic,주거,운용,,2030-06-09,Vehicle=PFV,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1065
+existing_or_likely_existing,P00009,P효제아트,효제아트PFV,효제동 오피스텔 개발사업,PFV,,,Opportunistic,주거,운용,,,Vehicle=PFV,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1066
+existing_or_likely_existing,P00010,P성수PFV1,성수PFV1,성수동 복합시설 개발사업,PFV,,,Opportunistic,오피스,청산,,2026-04-03,Vehicle=PFV,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1067
+candidate_not_in_34,P00011,P디오션259,디오션259피에프브이 주식회사,신라모노그램 강릉 복합숙박시설,PFV,,,Opportunistic,복합(호텔),청산,,2025-03-28,Vehicle=PFV | 명칭키워드=피에프브이,,,DB sources\펀드 관리_20260608.xlsx,1068
+existing_or_likely_existing,P00012,P오산세교아트,오산세교아트피에프브이 주식회사,오산세교2지구 M-1BL 주상복합,PFV,,,Opportunistic,복합(주거),운용,,2030-12-03,Vehicle=PFV | 명칭키워드=피에프브이,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1069
+candidate_not_in_34,P00013,P스페이스포안성,스페이스포안성피에프브이 주식회사,안성 당목리 995번지 외 44개필지 물류센터 개발사업,PFV,,,Opportunistic,물류,청산,,2022-10-20,Vehicle=PFV | 명칭키워드=피에프브이,,,DB sources\펀드 관리_20260608.xlsx,1070
+existing_or_likely_existing,P00014,P안성성은물류,안성성은물류피에프브이 주식회사,안성 성은지구 물류센터,PFV,,,Opportunistic,물류,운용,,2024-12-31,Vehicle=PFV | 명칭키워드=피에프브이,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1071
+existing_or_likely_existing,P00015,P청라아트,청라아트프로젝트금융투자 주식회사,청라동 오피스텔 분양사업,PFV,,,Opportunistic,주거,운용,,2025-07-31,Vehicle=PFV,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1072
+candidate_not_in_34,P00016,P남대문칠일,남대문칠일피에프브이주식회사,삼부빌딩 개발사업,PFV,,,Opportunistic,복합(오피스),청산,,2024-08-29,Vehicle=PFV | 명칭키워드=피에프브이,,,DB sources\펀드 관리_20260608.xlsx,1073
+existing_or_likely_existing,P00017,P천안성성동,천안성성동피에프브이주식회사,천안성성7지구공동주택,PFV,,,Opportunistic,주거,운용,,2027-04-18,Vehicle=PFV | 명칭키워드=피에프브이,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1074
+candidate_not_in_34,P00018,P마곡CP4,마곡CP4피에프브이 주식회사,마곡CP4 복합시설 개발,PFV,,,Opportunistic,복합(오피스),청산,,2024-08-09,Vehicle=PFV | 명칭키워드=피에프브이,,,DB sources\펀드 관리_20260608.xlsx,1075
+existing_or_likely_existing,P00019,P상봉IRD,상봉IRD피에프브이 주식회사,상봉 청년주택 개발,PFV,,,Opportunistic,주거,운용,,2033-05-22,Vehicle=PFV | 명칭키워드=피에프브이,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1076
+candidate_not_in_34,P00020,P검단아트,검단아트에스피씨 주식회사,검단 오피스텔 개발,PFV,,,Opportunistic,주거,청산,,2023-01-25,Vehicle=PFV,,,DB sources\펀드 관리_20260608.xlsx,1077
+candidate_not_in_34,P00021,P청담PH129,청담펜트하우스 PFV,청담펜트하우스,PFV,,,Opportunistic,주거,청산,,2025-01-21,Vehicle=PFV,,,DB sources\펀드 관리_20260608.xlsx,1078
+existing_or_likely_existing,P00022,P효제센트럴,효제센트럴PFV,효제동 주거용 오피스텔,PFV,,,Opportunistic,주거,운용,,2031-11-24,Vehicle=PFV,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1079
+candidate_not_in_34,P00024,P안산센트럴,안산센트럴피에프브이 주식회사,안산시 고잔동 오피스텔 및 근린생활시설,PFV,,,Opportunistic,주거,운용,,2031-08-18,Vehicle=PFV | 명칭키워드=피에프브이,,,DB sources\펀드 관리_20260608.xlsx,1080
+existing_or_likely_existing,P00025,P트리니티공주,주식회사 트리니티공주,공주시 웅진동 공동주택,PFV,,,Opportunistic,주거,운용,,2028-12-15,Vehicle=PFV,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1081
+candidate_not_in_34,P00026,P성수티에스,성수티에스피에프브이 주식회사,성수동2가오피스,PFV,,,Opportunistic,오피스,운용,,2025-07-21,Vehicle=PFV | 명칭키워드=피에프브이,,,DB sources\펀드 관리_20260608.xlsx,1082
+existing_or_likely_existing,P00027,P수서역환승센터,주식회사 수서역환승센터복합개발,수서역환승센터복합개발사업,PFV,,,Opportunistic,복합(오피스),운용,,2058-02-10,Vehicle=PFV | 명칭키워드=복합개발,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1083
+existing_or_likely_existing,P00028,P디에스,디에스피에프브이 주식회사,제주화북상업지역 주상복합용지 C1블럭 주상복합시설,PFV,,,Opportunistic,주거,운용,,2026-12-31,Vehicle=PFV | 명칭키워드=피에프브이,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1084
+existing_or_likely_existing,P00029,P을지로95,을지로95피에프브이 주식회사,을지로3가 도시환경정비구역 제10지구 신축 오피스,PFV,,,Opportunistic,오피스,운용,,2032-03-04,Vehicle=PFV | 명칭키워드=피에프브이,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1085
+existing_or_likely_existing,P00030,P와이디427,와이디427피에프브이 주식회사,밀레니엄힐튼호텔,PFV,,,Opportunistic,복합(오피스),운용,,2031-11-23,Vehicle=PFV | 명칭키워드=피에프브이,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1086
+existing_or_likely_existing,P00031,P수택센트럴,수택센트럴 PFV,구리시 수택동 주거용 오피스텔,PFV,,,Opportunistic,주거,운용,,2027-01-31,Vehicle=PFV,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1087
+existing_or_likely_existing,P00032,P이든센트럴,이든센트럴PFV,부림빌딩,PFV,,,Opportunistic,오피스,운용,,2030-07-10,Vehicle=PFV,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1088
+existing_or_likely_existing,P00033,P은평진관동,은평진관동피에프브이 주식회사,은평 시니어레지던스,PFV,,,Opportunistic,복합(주거),운용,,2026-04-30,Vehicle=PFV | 명칭키워드=피에프브이,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1089
+existing_or_likely_existing,P00034,P울산KTX,울산케이티엑스센트럴포레 주식회사,KTX울산역 오피스텔 개발사업,PFV,,,Opportunistic,주거,운용,,2026-08-31,Vehicle=PFV,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1090
+existing_or_likely_existing,P00035,P해운대센트럴,해운대센트럴PFV,해운대중동공동주택,PFV,,,Opportunistic,주거,운용,,2028-01-21,Vehicle=PFV,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1091
+candidate_not_in_34,P00036,P성수티에스2차,성수티에스2차피에프브이 주식회사,성수동2가오피스,PFV,,,Opportunistic,오피스,청산,,2026-04-14,Vehicle=PFV | 명칭키워드=피에프브이,,,DB sources\펀드 관리_20260608.xlsx,1092
+existing_or_likely_existing,P00037,P와이디816,와이디816피에프브이 주식회사,"메트로타워, 서울로타워",PFV,,,Opportunistic,오피스,운용,,2032-12-28,Vehicle=PFV | 명칭키워드=피에프브이,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1093
+existing_or_likely_existing,P00038,애월PFV,애월포레스트PFV,애월 복합관광단지 개발,PFV,,,Opportunistic,기타,운용,,2036-07-30,Vehicle=PFV,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1094
+existing_or_likely_existing,P00039,P용산라이프,용산라이프시티피에프브이(주),용산전자상가 특별계획구역8 개발사업,PFV,,,Opportunistic,,운용,,2027-02-20,Vehicle=PFV | 명칭키워드=피에프브이,existing_fund_code,기존 34개 fund_ids,DB sources\펀드 관리_20260608.xlsx,1095
+candidate_not_in_34,P00040,P산하아이에스피,산하아이에스피피에프브이 주식회사,안성 산하3지구 물류센터 개발사업,PFV,,,Opportunistic,물류,운용,,2031-09-20,Vehicle=PFV | 명칭키워드=피에프브이,,,DB sources\펀드 관리_20260608.xlsx,1096

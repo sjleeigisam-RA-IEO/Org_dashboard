@@ -1,0 +1,47 @@
+{
+  "seed": 20260815,
+  "population": 30523,
+  "sample_size": 100,
+  "sample_design": {
+    "simple_random": 60,
+    "general_1000_3300_boost": 20,
+    "collective_1000_3300_boost": 20
+  },
+  "population_by_building_type": {
+    "일반": 6283,
+    "집합": 24240
+  },
+  "population_by_area_bin": {
+    "B_100_500": 6793,
+    "A_0_100": 21504,
+    "D_1000_2000": 676,
+    "C_500_1000": 1346,
+    "E_2000_3300": 204
+  },
+  "population_cross": {
+    "일반|A_0_100": 1253,
+    "일반|B_100_500": 3274,
+    "일반|C_500_1000": 1056,
+    "일반|D_1000_2000": 533,
+    "일반|E_2000_3300": 167,
+    "집합|A_0_100": 20251,
+    "집합|B_100_500": 3519,
+    "집합|C_500_1000": 290,
+    "집합|D_1000_2000": 143,
+    "집합|E_2000_3300": 37
+  },
+  "population_rule_classification": {
+    "REMOVE_CLEAR": 28297,
+    "REVIEW_EDGE": 880,
+    "REMOVE_REASONABLE": 1346
+  },
+  "sample_rule_classification": {
+    "REMOVE_CLEAR": 55,
+    "REVIEW_EDGE": 44,
+    "REMOVE_REASONABLE": 1
+  },
+  "limitations": [
+    "국토부 API에 호수 필드가 없어 집합건물 개별 호실 여부는 buildingType=집합, floor, 면적으로 추정",
+    "buildingAr는 거래된 건물면적이며 일반건물은 건물 전체 거래일 가능성 존재"
+  ]
+}

@@ -1,0 +1,663 @@
+{
+  "source_date": "20260713",
+  "source_files": {
+    "fund": "펀드 관리_20260713.xlsx",
+    "aum": "펀드 AUM 관리_20260713.xlsx",
+    "asset_manage": "투자 자산 관리_20260713.xlsx",
+    "fund_asset": "투자 자산 조회_20260713.xlsx",
+    "lender": "대주 정보 조회_20260713.xlsx",
+    "beneficiary": "수익자 정보 조회_20260713.xlsx"
+  },
+  "source_rows": {
+    "fund": 1124,
+    "aum": 895,
+    "asset_manage": 797,
+    "fund_asset": 978,
+    "lender_raw": 624,
+    "lender_collapsed": 524,
+    "beneficiary_raw": 1155,
+    "beneficiary_collapsed": 1120
+  },
+  "before_counts": {
+    "funds": 1125,
+    "fund_assets": 1032,
+    "asset_master": 1311,
+    "asset_fund_links": 1564,
+    "lender_exposures": 695,
+    "beneficiary_exposures": 1224,
+    "aum_snapshots": 1790,
+    "fund_lifecycle": 894
+  },
+  "plan": {
+    "funds": {
+      "insert": 0,
+      "update": 0,
+      "unchanged": 1124,
+      "skipped": 0,
+      "retained_not_in_source": 1,
+      "server_collision_groups": 0,
+      "changed_field_counts": {}
+    },
+    "asset_master": {
+      "insert": 0,
+      "update": 0,
+      "unchanged": 797,
+      "skipped": 0,
+      "retained_not_in_source": 514,
+      "server_collision_groups": 0,
+      "changed_field_counts": {}
+    },
+    "fund_assets": {
+      "insert": 0,
+      "update": 0,
+      "unchanged": 978,
+      "skipped": 0,
+      "retained_not_in_source": 54,
+      "server_collision_groups": 0,
+      "changed_field_counts": {}
+    },
+    "lender_exposures": {
+      "insert": 0,
+      "update": 0,
+      "unchanged": 524,
+      "skipped": 0,
+      "retained_not_in_source": 171,
+      "server_collision_groups": 0,
+      "changed_field_counts": {}
+    },
+    "beneficiary_exposures": {
+      "insert": 0,
+      "update": 0,
+      "unchanged": 1120,
+      "skipped": 0,
+      "retained_not_in_source": 104,
+      "server_collision_groups": 0,
+      "changed_field_counts": {}
+    },
+    "aum_snapshots": {
+      "insert": 0,
+      "update": 0,
+      "unchanged": 894,
+      "skipped": 0,
+      "retained_not_in_source": 896,
+      "server_collision_groups": 0,
+      "changed_field_counts": {}
+    },
+    "fund_lifecycle": {
+      "insert": 0,
+      "update": 0,
+      "unchanged": 894,
+      "skipped": 0,
+      "retained_not_in_source": 0,
+      "server_collision_groups": 0,
+      "changed_field_counts": {}
+    }
+  },
+  "conflicts": {
+    "funds": [],
+    "asset_master": [],
+    "fund_assets": [],
+    "fund_asset_server": {},
+    "fund_asset_collapsed_duplicates": [
+      {
+        "key": [
+          "112264",
+          "익선동 상업시설 개발"
+        ],
+        "rows": 2
+      }
+    ],
+    "exposures": {
+      "lender_source": [],
+      "lender_db": {},
+      "beneficiary_source": [],
+      "beneficiary_db": {}
+    }
+  },
+  "matching_policy": {
+    "funds": "exact fund_id; exact-name/code conflicts are not fuzzy-merged",
+    "asset_master": "exact asset_code, then exact name+address/name/address only when unique",
+    "fund_assets": "exact fund_id+asset_name, then exact fund_id+address only when unique",
+    "exposures": "exact fund_id+party name; base_date is updated as snapshot data",
+    "normalization": "outer whitespace and Excel scalar/date conversion only; no fuzzy matching",
+    "deletes": 0
+  },
+  "applied": true,
+  "after_counts": {
+    "funds": 1125,
+    "fund_assets": 1032,
+    "asset_master": 1311,
+    "asset_fund_links": 1564,
+    "lender_exposures": 695,
+    "beneficiary_exposures": 1224,
+    "aum_snapshots": 1790,
+    "fund_lifecycle": 894
+  },
+  "links": {
+    "prepared": 911,
+    "plan": {
+      "insert": 0,
+      "update": 0,
+      "unchanged": 911,
+      "skipped": 0,
+      "retained_not_in_source": 653,
+      "server_collision_groups": 0,
+      "changed_field_counts": {}
+    },
+    "unresolved": [
+      {
+        "key": [
+          "112050",
+          "Prologis Targeted European Logistics Fund"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112125",
+          "Prologis Targeted European Logistics Fund"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112128",
+          "시그니쳐타워"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112139",
+          "시그니쳐타워"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112140",
+          "시그니쳐타워"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112141",
+          "시그니쳐타워"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112174",
+          "Balbec InSolve Global Credit Fund III"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112201",
+          "Balbec InSolve Global Credit Fund III"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112260",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112261",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112262",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112263",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112334",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112335",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112411",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112413",
+          "Brookfield Super-Core Infrastructure Partners"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112425",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112426",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112427",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112429",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112430",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112432",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112434",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112435",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112436",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112437",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112438",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112439",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112440",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112441",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112495",
+          "국내 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112495",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112500",
+          "인천석남물류센터"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112521",
+          "Brookfield Super-Core Infrastructure Partners"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112523",
+          "LA Wilshire Grand Center Senior Loan"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112543",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112564",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112578",
+          "Goldman Sachs West Street Infrastructure Partner IV"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112587",
+          "국내 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112607",
+          "Brookfield Super-Core Infrastructure Partners"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112619",
+          "Goldman Sachs West Street Infrastructure Partner IV"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112626",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112629",
+          "국내 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112664",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112667",
+          "HSBC Senior UK Direct Lending Fund 2020 RAIF SICAV-S.A."
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112668",
+          "HSBC Senior UK Direct Lending Fund 2020 RAIF SICAV-S.A."
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112684",
+          "Brookfield Super-Core Infrastructure Partners"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112710",
+          "AA- 이상 채권, 국내 상장 리츠, 공모주, 스팩"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112718",
+          "LA Wilshire Grand Center Senior Loan"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112721",
+          "인천석남물류센터"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112740",
+          "AA- 이상 채권, 국내 상장 리츠, 공모주, 스팩"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112744",
+          "공모주, 스팩"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112751",
+          "인천석남물류센터"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "112781",
+          "채권"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "120028",
+          "인천석남물류센터"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "120046",
+          "이지스 코어에너지인프라 1호 수익증권"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "120047",
+          "이지스 코어에너지인프라 1호 수익증권"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "200016",
+          "ARDIAN Infrastructure Fund VI S.C.S., SICAV-RAIF"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "200024",
+          "ARDIAN Infrastructure Fund VI S.C.S., SICAV-RAIF"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "300001",
+          "채권"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "300015",
+          "국내 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "300017",
+          "공모주, 스팩"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "300018",
+          "메자닌, 공모주, 이벤트 드리븐"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "300038",
+          "국내 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "300038",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "300053",
+          "글로벌 리츠"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      },
+      {
+        "key": [
+          "300074",
+          "메자닌, 공모주, 이벤트 드리븐"
+        ],
+        "reason": "missing exact asset or fund_asset row"
+      }
+    ],
+    "source_collision_groups": {}
+  },
+  "verification": {
+    "funds": {
+      "expected": 1124,
+      "mismatches": [],
+      "collision_groups": {}
+    },
+    "asset_master": {
+      "expected": 797,
+      "mismatches": [],
+      "collision_groups": {}
+    },
+    "fund_assets": {
+      "expected": 978,
+      "mismatches": [],
+      "collision_groups": {}
+    },
+    "lender_exposures": {
+      "expected": 524,
+      "mismatches": [],
+      "collision_groups": {}
+    },
+    "beneficiary_exposures": {
+      "expected": 1120,
+      "mismatches": [],
+      "collision_groups": {}
+    },
+    "aum_snapshots": {
+      "expected": 894,
+      "mismatches": [],
+      "collision_groups": {}
+    },
+    "fund_lifecycle": {
+      "expected": 894,
+      "mismatches": [],
+      "collision_groups": {}
+    },
+    "asset_fund_links": {
+      "expected": 911,
+      "mismatches": [],
+      "collision_groups": {}
+    }
+  },
+  "verification_mismatch_count": 0
+}

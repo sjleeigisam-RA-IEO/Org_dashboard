@@ -1,0 +1,7 @@
+﻿source_key,source_file,snapshot_date,header_row,data_rows,column_count,contract_key,nonblank_contract_keys,unique_contract_keys,duplicate_contract_keys
+fund_master,펀드 관리_20260608.xlsx,2026-05-31,1,1111,59,펀드코드,1111,1111,0
+asset_master,투자 자산 관리_20260608.xlsx,2026-05-31,1,788,56,자산코드,788,788,0
+fund_asset_link,투자 자산 조회_20260608.xlsx,2026-05-31,1,693,42,펀드코드 + 순번,693,693,0
+fund_aum_snapshot,펀드 AUM 관리_20260608.xlsx,2026-05-31,2,368,33,펀드코드,368,368,0
+beneficiary_exposure,수익자 정보 조회_20260608.xlsx,2026-05-31,1,1140,24,펀드코드 + 수익자 + 약정콜일자 + 총약정금액 + 투입금액,1139,1130,9
+lender_exposure,대주 정보 조회_20260608.xlsx,2026-05-31,1,688,28,펀드코드 + 대주 + 트렌치 + 대출인출일 + 대출만기일 + 대출약정금액(원),687,665,22

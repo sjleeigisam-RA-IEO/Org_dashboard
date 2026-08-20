@@ -1,0 +1,17 @@
+completed_at=2026-08-19T11:24:17.116901+09:00
+exit_code=0
+{"category": "SALE", "date": "2026-08-18", "run_id": "e5827cd510775540b7e2472cba9bb330", "discovered": 22, "inserted": 22, "updated": 0, "skipped": true}
+{"category": "LEASE", "date": "2026-08-18", "run_id": "70de4617fb3e56efa27866d5cb8a68d2", "discovered": 5, "inserted": 5, "updated": 0, "skipped": true}
+{"category": "NEW_SUPPLY", "date": "2026-08-18", "run_id": "25c437646a6f5945b5c053f825b9ce46", "discovered": 15, "inserted": 15, "updated": 0, "skipped": true}
+{"category": "PERMIT", "date": "2026-08-18", "run_id": "444a886478b75976b5e7a67eb98c44e2", "discovered": 9, "inserted": 9, "updated": 0, "skipped": true}
+{"category": "PF", "date": "2026-08-18", "run_id": "a99fcb8113d25d619cb5fb42e05133d0", "discovered": 9, "inserted": 9, "updated": 0, "skipped": true}
+{"category": "LOAN", "date": "2026-08-18", "run_id": "92c4a1e437fd5139bcf2da20e5b9098b", "discovered": 27, "inserted": 26, "updated": 0, "skipped": true}
+{"category": "INVESTMENT", "date": "2026-08-18", "run_id": "cbdc4348f701577ca27d3f9edfec2607", "discovered": 22, "inserted": 21, "updated": 0, "skipped": true}
+{"category": "SALE", "date": "2026-08-19", "run_id": "35a7f9ec3ab65a1ab06662cc4b31d421", "discovered": 20, "inserted": 20, "updated": 0, "skipped": true}
+{"category": "LEASE", "date": "2026-08-19", "run_id": "4a7c23fed3ce5aa09dd80fdd481445ad", "discovered": 1, "inserted": 1, "updated": 0, "skipped": true}
+{"category": "NEW_SUPPLY", "date": "2026-08-19", "run_id": "a7d297e9c8fa56b9bef48f547f936fef", "discovered": 37, "inserted": 37, "updated": 0, "skipped": true}
+{"category": "PERMIT", "date": "2026-08-19", "run_id": "1983edf3ae025e6a8ff9a99a53776e49", "discovered": 9, "inserted": 6, "updated": 0, "skipped": true}
+{"category": "PF", "date": "2026-08-19", "run_id": "52cec8cdd5d65a08b9d8f6c001a56123", "discovered": 1, "inserted": 1, "updated": 0, "skipped": true}
+{"category": "LOAN", "date": "2026-08-19", "run_id": "7316d81aa596510fad2834adbadeaf4c", "discovered": 14, "inserted": 13, "updated": 0, "skipped": true}
+{"category": "INVESTMENT", "date": "2026-08-19", "run_id": "dbec2d3c55a255a48178d7dcf332e670", "discovered": 11, "inserted": 10, "updated": 0, "skipped": true}
+{"status": "completed", "runner": "daily-google-news-rss-postgres-v1", "target_date": "2026-08-19", "lookback_days": 2, "partitions": 14, "skipped_partitions": 14, "discovered": 0, "inserted": 0, "updated": 0}

@@ -1,0 +1,87 @@
+[
+  {
+    "field": "funds.benchmark_aum",
+    "filled": 52,
+    "total": 55
+  },
+  {
+    "field": "funds.dept/resolved",
+    "filled": 55,
+    "total": 55
+  },
+  {
+    "field": "funds.fund_name",
+    "filled": 55,
+    "total": 55
+  },
+  {
+    "field": "funds.fund_type",
+    "filled": 27,
+    "total": 55
+  },
+  {
+    "field": "funds.invested_aum",
+    "filled": 52,
+    "total": 55
+  },
+  {
+    "field": "funds.is_development",
+    "filled": 55,
+    "total": 55
+  },
+  {
+    "field": "funds.legal_form",
+    "filled": 27,
+    "total": 55
+  },
+  {
+    "field": "funds.location",
+    "filled": 55,
+    "total": 55
+  },
+  {
+    "field": "funds.manager/resolved",
+    "filled": 55,
+    "total": 55
+  },
+  {
+    "field": "funds.maturity_date",
+    "filled": 53,
+    "total": 55
+  },
+  {
+    "field": "funds.metadata",
+    "filled": 0,
+    "total": 55
+  },
+  {
+    "field": "funds.notion_business_stage_class",
+    "filled": 55,
+    "total": 55
+  },
+  {
+    "field": "funds.notion_holding_type_class",
+    "filled": 27,
+    "total": 55
+  },
+  {
+    "field": "funds.notion_vehicle_class",
+    "filled": 55,
+    "total": 55
+  },
+  {
+    "field": "funds.setup_date",
+    "filled": 54,
+    "total": 55
+  },
+  {
+    "field": "funds.short_name",
+    "filled": 55,
+    "total": 55
+  },
+  {
+    "field": "funds.status",
+    "filled": 55,
+    "total": 55
+  }
+]

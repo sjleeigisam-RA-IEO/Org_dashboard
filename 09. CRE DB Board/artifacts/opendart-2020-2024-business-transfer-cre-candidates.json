@@ -1,0 +1,2108 @@
+{
+  "pipelineVersion": "DART_BUSINESS_TRANSFER_CRE_REVIEW_V1",
+  "scannedFullText": 307,
+  "candidateCount": 66,
+  "insertedRuns": 66,
+  "insertedEventMentions": 66,
+  "insertedReviewTasks": 66,
+  "canonicalAutoCreated": 0,
+  "candidates": [
+    {
+      "eventMentionId": "3a0693001396f4885e721ab96441a538",
+      "title": "영업양수결정",
+      "publishedAt": "2020-01-13T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200113000316",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 27,
+          "end": 30
+        },
+        {
+          "raw": "부동산",
+          "start": 117,
+          "end": 120
+        },
+        {
+          "raw": "부동산",
+          "start": 199,
+          "end": 202
+        },
+        {
+          "raw": "부동산",
+          "start": 343,
+          "end": 346
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "45596adf06e53bff32083e149d4e60fc",
+      "title": "영업양수결정",
+      "publishedAt": "2020-01-22T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200122000349",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 29,
+          "end": 32
+        },
+        {
+          "raw": "부동산",
+          "start": 118,
+          "end": 121
+        },
+        {
+          "raw": "부동산",
+          "start": 204,
+          "end": 207
+        },
+        {
+          "raw": "부동산",
+          "start": 350,
+          "end": 353
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "ec6fae2ab8d54f2e21a9f4f624595f1b",
+      "title": "주요사항보고서(영업양도결정)",
+      "publishedAt": "2020-03-04T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200304000430",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 526,
+          "end": 529
+        },
+        {
+          "raw": "부동산",
+          "start": 567,
+          "end": 570
+        },
+        {
+          "raw": "부동산",
+          "start": 614,
+          "end": 617
+        },
+        {
+          "raw": "부동산",
+          "start": 1039,
+          "end": 1042
+        },
+        {
+          "raw": "부동산",
+          "start": 1134,
+          "end": 1137
+        },
+        {
+          "raw": "부동산",
+          "start": 1144,
+          "end": 1147
+        },
+        {
+          "raw": "부동산",
+          "start": 1367,
+          "end": 1370
+        },
+        {
+          "raw": "부동산",
+          "start": 1636,
+          "end": 1639
+        },
+        {
+          "raw": "부동산",
+          "start": 4962,
+          "end": 4965
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "33f4034a4a679525696ec09b7fb1d0f0",
+      "title": "영업양수결정",
+      "publishedAt": "2020-04-24T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200424000346",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 31,
+          "end": 34
+        },
+        {
+          "raw": "부동산",
+          "start": 121,
+          "end": 124
+        },
+        {
+          "raw": "건축물",
+          "start": 241,
+          "end": 244
+        },
+        {
+          "raw": "부동산",
+          "start": 269,
+          "end": 272
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "eefa995f3a6eeebdc746ab984883b1b3",
+      "title": "[기재정정]주요사항보고서(영업양도결정)",
+      "publishedAt": "2020-05-28T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200528000001",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 275,
+          "end": 278
+        },
+        {
+          "raw": "부동산",
+          "start": 312,
+          "end": 315
+        },
+        {
+          "raw": "부동산",
+          "start": 356,
+          "end": 359
+        },
+        {
+          "raw": "부동산",
+          "start": 460,
+          "end": 463
+        },
+        {
+          "raw": "부동산",
+          "start": 503,
+          "end": 506
+        },
+        {
+          "raw": "부동산",
+          "start": 547,
+          "end": 550
+        },
+        {
+          "raw": "필지",
+          "start": 633,
+          "end": 635
+        },
+        {
+          "raw": "부동산",
+          "start": 722,
+          "end": 725
+        },
+        {
+          "raw": "부동산",
+          "start": 763,
+          "end": 766
+        },
+        {
+          "raw": "부동산",
+          "start": 854,
+          "end": 857
+        },
+        {
+          "raw": "부동산",
+          "start": 1057,
+          "end": 1060
+        },
+        {
+          "raw": "부동산",
+          "start": 1153,
+          "end": 1156
+        },
+        {
+          "raw": "부동산",
+          "start": 1417,
+          "end": 1420
+        },
+        {
+          "raw": "부동산",
+          "start": 1699,
+          "end": 1702
+        },
+        {
+          "raw": "부동산",
+          "start": 2004,
+          "end": 2007
+        },
+        {
+          "raw": "부동산",
+          "start": 2485,
+          "end": 2488
+        },
+        {
+          "raw": "부동산",
+          "start": 2699,
+          "end": 2702
+        },
+        {
+          "raw": "건물",
+          "start": 2855,
+          "end": 2857
+        },
+        {
+          "raw": "부동산",
+          "start": 2974,
+          "end": 2977
+        },
+        {
+          "raw": "부동산",
+          "start": 3092,
+          "end": 3095
+        },
+        {
+          "raw": "부동산",
+          "start": 3106,
+          "end": 3109
+        },
+        {
+          "raw": "부동산",
+          "start": 3119,
+          "end": 3122
+        },
+        {
+          "raw": "부동산",
+          "start": 3236,
+          "end": 3239
+        },
+        {
+          "raw": "부동산",
+          "start": 3250,
+          "end": 3253
+        },
+        {
+          "raw": "부동산",
+          "start": 3263,
+          "end": 3266
+        },
+        {
+          "raw": "부동산",
+          "start": 3379,
+          "end": 3382
+        },
+        {
+          "raw": "부동산",
+          "start": 3393,
+          "end": 3396
+        },
+        {
+          "raw": "부동산",
+          "start": 3406,
+          "end": 3409
+        },
+        {
+          "raw": "부동산",
+          "start": 3522,
+          "end": 3525
+        },
+        {
+          "raw": "부동산",
+          "start": 3536,
+          "end": 3539
+        },
+        {
+          "raw": "부동산",
+          "start": 3549,
+          "end": 3552
+        },
+        {
+          "raw": "부동산",
+          "start": 3638,
+          "end": 3641
+        },
+        {
+          "raw": "부동산",
+          "start": 3696,
+          "end": 3699
+        },
+        {
+          "raw": "부동산",
+          "start": 4320,
+          "end": 4323
+        },
+        {
+          "raw": "부동산",
+          "start": 4363,
+          "end": 4366
+        },
+        {
+          "raw": "부동산",
+          "start": 4407,
+          "end": 4410
+        },
+        {
+          "raw": "부동산",
+          "start": 4878,
+          "end": 4881
+        },
+        {
+          "raw": "부동산",
+          "start": 4974,
+          "end": 4977
+        },
+        {
+          "raw": "부동산",
+          "start": 5371,
+          "end": 5374
+        },
+        {
+          "raw": "부동산",
+          "start": 5852,
+          "end": 5855
+        },
+        {
+          "raw": "건물",
+          "start": 8705,
+          "end": 8707
+        },
+        {
+          "raw": "부동산",
+          "start": 8824,
+          "end": 8827
+        },
+        {
+          "raw": "부동산",
+          "start": 8942,
+          "end": 8945
+        },
+        {
+          "raw": "부동산",
+          "start": 8956,
+          "end": 8959
+        },
+        {
+          "raw": "부동산",
+          "start": 8969,
+          "end": 8972
+        },
+        {
+          "raw": "부동산",
+          "start": 9086,
+          "end": 9089
+        },
+        {
+          "raw": "부동산",
+          "start": 9100,
+          "end": 9103
+        },
+        {
+          "raw": "부동산",
+          "start": 9113,
+          "end": 9116
+        },
+        {
+          "raw": "부동산",
+          "start": 9229,
+          "end": 9232
+        },
+        {
+          "raw": "부동산",
+          "start": 9243,
+          "end": 9246
+        },
+        {
+          "raw": "부동산",
+          "start": 9256,
+          "end": 9259
+        },
+        {
+          "raw": "부동산",
+          "start": 9372,
+          "end": 9375
+        },
+        {
+          "raw": "부동산",
+          "start": 9386,
+          "end": 9389
+        },
+        {
+          "raw": "부동산",
+          "start": 9399,
+          "end": 9402
+        },
+        {
+          "raw": "부동산",
+          "start": 9488,
+          "end": 9491
+        },
+        {
+          "raw": "부동산",
+          "start": 9546,
+          "end": 9549
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "1164573caf2588e2ddd71e7223dd45de",
+      "title": "주요사항보고서(영업양수결정)",
+      "publishedAt": "2020-06-01T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200529002285",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 406,
+          "end": 409
+        },
+        {
+          "raw": "부동산",
+          "start": 452,
+          "end": 455
+        },
+        {
+          "raw": "부동산",
+          "start": 885,
+          "end": 888
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "c4b36102f6753896d1a6d9f4ca296b99",
+      "title": "[기재정정]주요사항보고서(영업양수결정)",
+      "publishedAt": "2020-06-02T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200602000331",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 1073,
+          "end": 1076
+        },
+        {
+          "raw": "부동산",
+          "start": 1119,
+          "end": 1122
+        },
+        {
+          "raw": "부동산",
+          "start": 1552,
+          "end": 1555
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "8a9be28f40fcbcfa53284dc475c39046",
+      "title": "[기재정정]주요사항보고서(영업양수결정)",
+      "publishedAt": "2020-06-08T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200608000306",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 707,
+          "end": 710
+        },
+        {
+          "raw": "부동산",
+          "start": 753,
+          "end": 756
+        },
+        {
+          "raw": "부동산",
+          "start": 1186,
+          "end": 1189
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "ad4d3a19ab5f6affd0ed903da10c492e",
+      "title": "[기재정정]주요사항보고서(영업양수결정)",
+      "publishedAt": "2020-06-22T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200622000235",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 201,
+          "end": 204
+        },
+        {
+          "raw": "부동산",
+          "start": 600,
+          "end": 603
+        },
+        {
+          "raw": "부동산",
+          "start": 646,
+          "end": 649
+        },
+        {
+          "raw": "부동산",
+          "start": 1079,
+          "end": 1082
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "da20275aa4bda430702e77f55cfa53b5",
+      "title": "[기재정정]주요사항보고서(영업양수결정)",
+      "publishedAt": "2020-06-25T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200624000487",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 201,
+          "end": 204
+        },
+        {
+          "raw": "부동산",
+          "start": 600,
+          "end": 603
+        },
+        {
+          "raw": "부동산",
+          "start": 646,
+          "end": 649
+        },
+        {
+          "raw": "부동산",
+          "start": 1079,
+          "end": 1082
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "3f3253fa061c52a824db64edf0964fe4",
+      "title": "[기재정정]주요사항보고서(영업양수결정)",
+      "publishedAt": "2020-06-29T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200629000508",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 201,
+          "end": 204
+        },
+        {
+          "raw": "부동산",
+          "start": 600,
+          "end": 603
+        },
+        {
+          "raw": "부동산",
+          "start": 646,
+          "end": 649
+        },
+        {
+          "raw": "부동산",
+          "start": 1079,
+          "end": 1082
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "446400be966c74ba77a1a395da5a12cd",
+      "title": "영업양도결정",
+      "publishedAt": "2020-08-21T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200821000458",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "토지",
+          "start": 143,
+          "end": 145
+        },
+        {
+          "raw": "건물",
+          "start": 147,
+          "end": 149
+        },
+        {
+          "raw": "필지",
+          "start": 204,
+          "end": 206
+        },
+        {
+          "raw": "토지",
+          "start": 214,
+          "end": 216
+        },
+        {
+          "raw": "건물",
+          "start": 219,
+          "end": 221
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "c3b870828ec202c228b327f3ca43348a",
+      "title": "영업양수결정",
+      "publishedAt": "2020-08-21T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200821000456",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "토지",
+          "start": 143,
+          "end": 145
+        },
+        {
+          "raw": "건물",
+          "start": 147,
+          "end": 149
+        },
+        {
+          "raw": "필지",
+          "start": 196,
+          "end": 198
+        },
+        {
+          "raw": "토지",
+          "start": 205,
+          "end": 207
+        },
+        {
+          "raw": "건물",
+          "start": 210,
+          "end": 212
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "e1698a0a356a15be0c11b6a2fc7e43a9",
+      "title": "[기재정정]주요사항보고서(영업양수결정)",
+      "publishedAt": "2020-08-24T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20200824000179",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "건물",
+          "start": 1766,
+          "end": 1768
+        },
+        {
+          "raw": "건물",
+          "start": 1968,
+          "end": 1970
+        },
+        {
+          "raw": "부동산",
+          "start": 2318,
+          "end": 2321
+        },
+        {
+          "raw": "부동산",
+          "start": 2721,
+          "end": 2724
+        },
+        {
+          "raw": "부동산",
+          "start": 2767,
+          "end": 2770
+        },
+        {
+          "raw": "부동산",
+          "start": 3185,
+          "end": 3188
+        },
+        {
+          "raw": "건물",
+          "start": 7470,
+          "end": 7472
+        },
+        {
+          "raw": "건물",
+          "start": 7543,
+          "end": 7545
+        },
+        {
+          "raw": "필지",
+          "start": 7571,
+          "end": 7573
+        },
+        {
+          "raw": "필지",
+          "start": 7653,
+          "end": 7655
+        },
+        {
+          "raw": "건물",
+          "start": 7871,
+          "end": 7873
+        },
+        {
+          "raw": "부동산",
+          "start": 8225,
+          "end": 8228
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "a1ac250a394214960bb6e2333428676b",
+      "title": "영업양도결정",
+      "publishedAt": "2020-10-20T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20201020000292",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 133,
+          "end": 136
+        },
+        {
+          "raw": "부동산",
+          "start": 155,
+          "end": 158
+        },
+        {
+          "raw": "건물",
+          "start": 206,
+          "end": 208
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "9c1bbe968876cdbc4dbbf39c8a69682e",
+      "title": "영업양수결정",
+      "publishedAt": "2021-01-11T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210111000358",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 27,
+          "end": 30
+        },
+        {
+          "raw": "부동산",
+          "start": 112,
+          "end": 115
+        },
+        {
+          "raw": "토지",
+          "start": 162,
+          "end": 164
+        },
+        {
+          "raw": "건물",
+          "start": 166,
+          "end": 168
+        },
+        {
+          "raw": "토지",
+          "start": 195,
+          "end": 197
+        },
+        {
+          "raw": "건물",
+          "start": 199,
+          "end": 201
+        },
+        {
+          "raw": "부동산",
+          "start": 244,
+          "end": 247
+        },
+        {
+          "raw": "부동산",
+          "start": 333,
+          "end": 336
+        },
+        {
+          "raw": "부동산",
+          "start": 739,
+          "end": 742
+        },
+        {
+          "raw": "부동산",
+          "start": 868,
+          "end": 871
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "730e3941f233a2cd84d8fb33eb95303b",
+      "title": "영업양도결정",
+      "publishedAt": "2021-01-11T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210111000325",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "토지",
+          "start": 179,
+          "end": 181
+        },
+        {
+          "raw": "건물",
+          "start": 183,
+          "end": 185
+        },
+        {
+          "raw": "부동산",
+          "start": 302,
+          "end": 305
+        },
+        {
+          "raw": "부동산",
+          "start": 629,
+          "end": 632
+        },
+        {
+          "raw": "부동산",
+          "start": 759,
+          "end": 762
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "e2bf4e65831dbeb21d3d34a99fb58593",
+      "title": "영업양수결정",
+      "publishedAt": "2021-02-25T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210225000073",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 28,
+          "end": 31
+        },
+        {
+          "raw": "부동산",
+          "start": 115,
+          "end": 118
+        },
+        {
+          "raw": "부동산",
+          "start": 212,
+          "end": 215
+        },
+        {
+          "raw": "부동산",
+          "start": 371,
+          "end": 374
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "d3d99890782e5a2eedb303c08492f8f3",
+      "title": "영업양도결정",
+      "publishedAt": "2021-04-09T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210409001364",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 163,
+          "end": 166
+        },
+        {
+          "raw": "호텔",
+          "start": 271,
+          "end": 273
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "a89194403cd875e0fc5bb80a0fabb9bb",
+      "title": "[기재정정]영업양도결정",
+      "publishedAt": "2021-04-09T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210409002768",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "호텔",
+          "start": 208,
+          "end": 210
+        },
+        {
+          "raw": "호텔",
+          "start": 219,
+          "end": 221
+        },
+        {
+          "raw": "부동산",
+          "start": 326,
+          "end": 329
+        },
+        {
+          "raw": "호텔",
+          "start": 437,
+          "end": 439
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "3d5b7815008582163012c1c9c19a0d66",
+      "title": "영업양도결정",
+      "publishedAt": "2021-04-16T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210416000289",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 147,
+          "end": 150
+        },
+        {
+          "raw": "토지",
+          "start": 180,
+          "end": 182
+        },
+        {
+          "raw": "건물",
+          "start": 188,
+          "end": 190
+        },
+        {
+          "raw": "건물",
+          "start": 249,
+          "end": 251
+        },
+        {
+          "raw": "부동산",
+          "start": 330,
+          "end": 333
+        },
+        {
+          "raw": "건물",
+          "start": 1053,
+          "end": 1055
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "aaa3e985f1122cf7f6677491ab733fcd",
+      "title": "영업양수결정",
+      "publishedAt": "2021-05-28T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210528001101",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "리조트",
+          "start": 140,
+          "end": 143
+        },
+        {
+          "raw": "부동산",
+          "start": 175,
+          "end": 178
+        },
+        {
+          "raw": "리조트",
+          "start": 183,
+          "end": 186
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "b44b93813f114a4cafdb98ec40cd69a3",
+      "title": "영업양도결정",
+      "publishedAt": "2021-06-25T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210625000158",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "호텔",
+          "start": 15,
+          "end": 17
+        },
+        {
+          "raw": "리조트",
+          "start": 18,
+          "end": 21
+        },
+        {
+          "raw": "호텔",
+          "start": 90,
+          "end": 92
+        },
+        {
+          "raw": "리조트",
+          "start": 93,
+          "end": 96
+        },
+        {
+          "raw": "호텔",
+          "start": 138,
+          "end": 140
+        },
+        {
+          "raw": "호텔",
+          "start": 262,
+          "end": 264
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "fd50bd323329264ac835a537a2e6e1c1",
+      "title": "영업양도결정",
+      "publishedAt": "2021-07-13T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210713000345",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 286,
+          "end": 289
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "36ce24cd15f661800da1f3d49d02d91f",
+      "title": "[기재정정]영업양도결정",
+      "publishedAt": "2021-07-13T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210713000405",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 535,
+          "end": 538
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "f53eceb3784b9481042f242408e45cf5",
+      "title": "영업양도결정",
+      "publishedAt": "2021-08-12T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210811000439",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 31,
+          "end": 34
+        },
+        {
+          "raw": "부동산",
+          "start": 123,
+          "end": 126
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "576792af326bfefa3e6f45f7c7e99bf8",
+      "title": "영업양수결정",
+      "publishedAt": "2021-08-20T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210820000381",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 319,
+          "end": 322
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "1159c10b67ebf7a468d8f523d2bc0fcf",
+      "title": "[기재정정]영업양도결정",
+      "publishedAt": "2021-09-08T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20210907000306",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 31,
+          "end": 34
+        },
+        {
+          "raw": "부동산",
+          "start": 252,
+          "end": 255
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "8fb00c4909aa50c889e49a78980b4462",
+      "title": "[기재정정]영업양도결정",
+      "publishedAt": "2021-11-01T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20211101000120",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 31,
+          "end": 34
+        },
+        {
+          "raw": "부동산",
+          "start": 240,
+          "end": 243
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "b20a2871c92cfec6d548a3834eb499c0",
+      "title": "영업양도결정",
+      "publishedAt": "2021-11-01T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20211101000273",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 158,
+          "end": 161
+        },
+        {
+          "raw": "토지",
+          "start": 191,
+          "end": 193
+        },
+        {
+          "raw": "건물",
+          "start": 199,
+          "end": 201
+        },
+        {
+          "raw": "건물",
+          "start": 271,
+          "end": 273
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "98ed36dda04e89cedf859bf17a0701cd",
+      "title": "[기재정정]영업양도결정",
+      "publishedAt": "2021-11-10T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20211110000494",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 31,
+          "end": 34
+        },
+        {
+          "raw": "부동산",
+          "start": 187,
+          "end": 190
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "66a48397bfd404a052bc251e8c533f41",
+      "title": "영업양수결정",
+      "publishedAt": "2022-01-28T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220128000023",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 31,
+          "end": 34
+        },
+        {
+          "raw": "부동산",
+          "start": 81,
+          "end": 84
+        },
+        {
+          "raw": "부동산",
+          "start": 179,
+          "end": 182
+        },
+        {
+          "raw": "부동산",
+          "start": 342,
+          "end": 345
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "ded5b419cc40d26c6408654ff22f5473",
+      "title": "주요사항보고서(영업양도결정)",
+      "publishedAt": "2022-02-18T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220217001507",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "호텔",
+          "start": 14,
+          "end": 16
+        },
+        {
+          "raw": "리조트",
+          "start": 18,
+          "end": 21
+        },
+        {
+          "raw": "호텔",
+          "start": 85,
+          "end": 87
+        },
+        {
+          "raw": "리조트",
+          "start": 89,
+          "end": 92
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "b0f0daacd7fc026312ed0cdd16ae6c2b",
+      "title": "영업양수결정",
+      "publishedAt": "2022-04-26T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220426000547",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "토지",
+          "start": 142,
+          "end": 144
+        },
+        {
+          "raw": "부동산",
+          "start": 284,
+          "end": 287
+        },
+        {
+          "raw": "토지",
+          "start": 636,
+          "end": 638
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "22b35643b5799ce37d13c0943f395a02",
+      "title": "영업양도결정",
+      "publishedAt": "2022-05-31T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220531001958",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "호텔",
+          "start": 15,
+          "end": 17
+        },
+        {
+          "raw": "호텔",
+          "start": 44,
+          "end": 46
+        },
+        {
+          "raw": "호텔",
+          "start": 167,
+          "end": 169
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "0edd5ecb64911973f72170eda93378bf",
+      "title": "영업양수결정",
+      "publishedAt": "2022-06-16T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220616000115",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "건물",
+          "start": 335,
+          "end": 337
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "11fd867e45ec6df02e59b2071491812f",
+      "title": "영업양수결정",
+      "publishedAt": "2022-07-22T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220722000452",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 419,
+          "end": 422
+        },
+        {
+          "raw": "오피스",
+          "start": 475,
+          "end": 478
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "6414879180f8448581ada6cab8a6f0cd",
+      "title": "영업양수결정",
+      "publishedAt": "2022-07-29T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220729000306",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 217,
+          "end": 220
+        },
+        {
+          "raw": "건물",
+          "start": 310,
+          "end": 312
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "4425f836ee21f435624bc0251103cb04",
+      "title": "영업양도결정",
+      "publishedAt": "2022-09-08T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220908000608",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "물류센터",
+          "start": 105,
+          "end": 109
+        },
+        {
+          "raw": "물류센터",
+          "start": 468,
+          "end": 472
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "cabbc494144273a8a477fda249eaaab4",
+      "title": "영업양수결정",
+      "publishedAt": "2022-09-23T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20220923000335",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 300,
+          "end": 303
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "dbe05346b204af341402d7a7b47b5c9a",
+      "title": "영업양수결정",
+      "publishedAt": "2022-10-25T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20221025000497",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "호텔",
+          "start": 95,
+          "end": 97
+        },
+        {
+          "raw": "호텔",
+          "start": 104,
+          "end": 106
+        },
+        {
+          "raw": "호텔",
+          "start": 129,
+          "end": 131
+        },
+        {
+          "raw": "호텔",
+          "start": 173,
+          "end": 175
+        },
+        {
+          "raw": "호텔",
+          "start": 241,
+          "end": 243
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "e6a1acae431cded9bd7de0a603ace03d",
+      "title": "영업양수결정",
+      "publishedAt": "2022-10-28T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20221028000462",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "건물",
+          "start": 277,
+          "end": 279
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "11104f74bbd14631616ee385023838c9",
+      "title": "주요사항보고서(영업양도결정)",
+      "publishedAt": "2023-03-07T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20230307000541",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "리조트",
+          "start": 296,
+          "end": 299
+        },
+        {
+          "raw": "리조트",
+          "start": 576,
+          "end": 579
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "f720c9ce40ebf2f6f11ca2fa8dddf971",
+      "title": "영업양수결정",
+      "publishedAt": "2023-11-07T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20231107000017",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "호텔",
+          "start": 110,
+          "end": 112
+        },
+        {
+          "raw": "호텔",
+          "start": 142,
+          "end": 144
+        },
+        {
+          "raw": "호텔",
+          "start": 350,
+          "end": 352
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "dd5eb898583f3cdacf63ea6f11c5e73d",
+      "title": "[기재정정]영업양수결정",
+      "publishedAt": "2023-12-08T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20231208000159",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 583,
+          "end": 586
+        },
+        {
+          "raw": "오피스",
+          "start": 640,
+          "end": 643
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "b2d97946a7ae6830ccba71d4122b0627",
+      "title": "영업양수결정",
+      "publishedAt": "2024-01-29T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240129000417",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 103,
+          "end": 106
+        },
+        {
+          "raw": "부동산",
+          "start": 139,
+          "end": 142
+        },
+        {
+          "raw": "부동산",
+          "start": 288,
+          "end": 291
+        },
+        {
+          "raw": "건축물",
+          "start": 296,
+          "end": 299
+        },
+        {
+          "raw": "건물",
+          "start": 313,
+          "end": 315
+        },
+        {
+          "raw": "건물",
+          "start": 322,
+          "end": 324
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "42086342be4dcaf029bd56c4ea39cfd6",
+      "title": "주요사항보고서(영업양도결정)",
+      "publishedAt": "2024-02-14T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240214002223",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "호텔",
+          "start": 700,
+          "end": 702
+        },
+        {
+          "raw": "리조트",
+          "start": 703,
+          "end": 706
+        },
+        {
+          "raw": "호텔",
+          "start": 737,
+          "end": 739
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "1b0b856ff66b68ca027c7ca521a3a664",
+      "title": "영업양도결정",
+      "publishedAt": "2024-02-28T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240228007249",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "건물",
+          "start": 154,
+          "end": 156
+        },
+        {
+          "raw": "부동산",
+          "start": 205,
+          "end": 208
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "b25cdbb647353b125fd121cf48b144a1",
+      "title": "주요사항보고서(영업양수결정)",
+      "publishedAt": "2024-02-28T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240228007092",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 335,
+          "end": 338
+        },
+        {
+          "raw": "부동산",
+          "start": 895,
+          "end": 898
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "695ff13fac240a75525aee15b9d741a9",
+      "title": "[기재정정]주요사항보고서(영업양도결정)",
+      "publishedAt": "2024-02-29T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240229001832",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "호텔",
+          "start": 6168,
+          "end": 6170
+        },
+        {
+          "raw": "리조트",
+          "start": 6171,
+          "end": 6174
+        },
+        {
+          "raw": "호텔",
+          "start": 6205,
+          "end": 6207
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "1612e888ae607a7511de8b9a1e82ec18",
+      "title": "주요사항보고서(영업양도결정)",
+      "publishedAt": "2024-03-12T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240312000841",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "IDC",
+          "start": 131,
+          "end": 134
+        },
+        {
+          "raw": "IDC",
+          "start": 2653,
+          "end": 2656
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "162a564ca8cd3eb23af3f5c92ab41966",
+      "title": "[기재정정]주요사항보고서(영업양도결정)",
+      "publishedAt": "2024-04-26T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240426000694",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "호텔",
+          "start": 1028,
+          "end": 1030
+        },
+        {
+          "raw": "리조트",
+          "start": 1031,
+          "end": 1034
+        },
+        {
+          "raw": "호텔",
+          "start": 1065,
+          "end": 1067
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "7a25649a640bbaab5a0c3d55a2cb02b6",
+      "title": "영업양도결정",
+      "publishedAt": "2024-05-27T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240527000360",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "리조트",
+          "start": 137,
+          "end": 140
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "07f3ae579af4bc8abee6733be2a41a2c",
+      "title": "[기재정정]영업양도결정",
+      "publishedAt": "2024-06-03T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240603000342",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "리조트",
+          "start": 375,
+          "end": 378
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "d352d68279893a173de45ab7575a78e9",
+      "title": "주요사항보고서(영업양수결정)",
+      "publishedAt": "2024-06-03T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240603000338",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "리조트",
+          "start": 332,
+          "end": 335
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "4cf37399fd967dde9cd621a3078bedbd",
+      "title": "[기재정정]주요사항보고서(영업양수결정)",
+      "publishedAt": "2024-06-04T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240604000358",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "리조트",
+          "start": 779,
+          "end": 782
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "3c402d76dfdaed778bc64ecbdc90bdfa",
+      "title": "[기재정정]주요사항보고서(영업양도결정)",
+      "publishedAt": "2024-06-28T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240628000433",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "호텔",
+          "start": 1049,
+          "end": 1051
+        },
+        {
+          "raw": "리조트",
+          "start": 1052,
+          "end": 1055
+        },
+        {
+          "raw": "호텔",
+          "start": 1086,
+          "end": 1088
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "5f2d0e72a3400520b749de9786fd0d8b",
+      "title": "[기재정정]주요사항보고서(영업양수결정)",
+      "publishedAt": "2024-07-04T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240704000467",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "리조트",
+          "start": 556,
+          "end": 559
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "ca2e1be136f5df6452cbc1a65fbaff5c",
+      "title": "[기재정정]영업양도결정",
+      "publishedAt": "2024-07-05T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240705000192",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "리조트",
+          "start": 326,
+          "end": 329
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "0ff6e85017efb1c6c4135793861b3ac1",
+      "title": "영업양도결정",
+      "publishedAt": "2024-07-23T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240723000309",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "토지",
+          "start": 181,
+          "end": 183
+        },
+        {
+          "raw": "건물",
+          "start": 196,
+          "end": 198
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "fc0411682d4cb0a7e546b06efdddd2b7",
+      "title": "영업양수결정",
+      "publishedAt": "2024-07-23T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240723000351",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "토지",
+          "start": 185,
+          "end": 187
+        },
+        {
+          "raw": "건물",
+          "start": 200,
+          "end": 202
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "cb0c2b8d1851c9af884b2615fb72cdb0",
+      "title": "영업양수결정",
+      "publishedAt": "2024-08-12T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240812000323",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "리조트",
+          "start": 17,
+          "end": 20
+        },
+        {
+          "raw": "리조트",
+          "start": 54,
+          "end": 57
+        },
+        {
+          "raw": "건물",
+          "start": 282,
+          "end": 284
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "baa21bfd5520de621f4a939b73fe264a",
+      "title": "[기재정정]영업양수결정",
+      "publishedAt": "2024-08-22T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240822000282",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "리조트",
+          "start": 17,
+          "end": 20
+        },
+        {
+          "raw": "리조트",
+          "start": 509,
+          "end": 512
+        },
+        {
+          "raw": "건물",
+          "start": 737,
+          "end": 739
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "7b69ad5c7a74c6c98fadbd10dab8974d",
+      "title": "[기재정정]주요사항보고서(영업양도결정)",
+      "publishedAt": "2024-08-29T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240829000861",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "호텔",
+          "start": 1154,
+          "end": 1156
+        },
+        {
+          "raw": "리조트",
+          "start": 1157,
+          "end": 1160
+        },
+        {
+          "raw": "호텔",
+          "start": 1191,
+          "end": 1193
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "f90ff864353828c06edc913eaa208730",
+      "title": "[기재정정]영업양수결정",
+      "publishedAt": "2024-10-07T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20241007000468",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "리조트",
+          "start": 17,
+          "end": 20
+        },
+        {
+          "raw": "건물",
+          "start": 340,
+          "end": 342
+        },
+        {
+          "raw": "리조트",
+          "start": 2209,
+          "end": 2212
+        },
+        {
+          "raw": "건물",
+          "start": 2437,
+          "end": 2439
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    },
+    {
+      "eventMentionId": "e8e5659b5eb7137f15b37a37a3a13734",
+      "title": "주요사항보고서(영업양도결정)",
+      "publishedAt": "2024-12-30T00:00:00Z",
+      "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20241230000240",
+      "candidateVersion": "1.0.0",
+      "keywordSpans": [
+        {
+          "raw": "부동산",
+          "start": 672,
+          "end": 675
+        }
+      ],
+      "requiresReview": true,
+      "classificationPolicy": "BUSINESS_TRANSFER_IS_NOT_AUTOMATICALLY_AN_ASSET_SALE",
+      "canonicalAutoCreate": false
+    }
+  ]
+}

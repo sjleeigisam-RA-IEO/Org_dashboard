@@ -1,0 +1,62 @@
+[
+  {
+    "list_no": 12,
+    "dev_project_id": "dp_012",
+    "project_name": "서리풀 개발사업",
+    "source_category": "PFV",
+    "linked_project_count": 1,
+    "linked_fund_count": 3,
+    "linked_asset_count": 3,
+    "review_flags": [
+      "avoid_hsbc_false_positive"
+    ]
+  },
+  {
+    "list_no": 14,
+    "dev_project_id": "dp_014",
+    "project_name": "을지로3가 10지구",
+    "source_category": "PFV",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "review_flags": [
+      "avoid_numeric_vehicle_false_positive"
+    ]
+  },
+  {
+    "list_no": 19,
+    "dev_project_id": "dp_019",
+    "project_name": "부림빌딩",
+    "source_category": "PFV",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "review_flags": [
+      "manual_asset_candidate_needs_review"
+    ]
+  },
+  {
+    "list_no": 22,
+    "dev_project_id": "dp_022",
+    "project_name": "이오타서울 816",
+    "source_category": "PFV",
+    "linked_project_count": 2,
+    "linked_fund_count": 1,
+    "linked_asset_count": 2,
+    "review_flags": [
+      "manual_asset_candidates_need_review"
+    ]
+  },
+  {
+    "list_no": 23,
+    "dev_project_id": "dp_023",
+    "project_name": "이오타서울 427",
+    "source_category": "PFV",
+    "linked_project_count": 2,
+    "linked_fund_count": 2,
+    "linked_asset_count": 1,
+    "review_flags": [
+      "avoid_427ho_false_positive"
+    ]
+  }
+]

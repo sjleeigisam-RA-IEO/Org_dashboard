@@ -4,5 +4,6 @@
 *.html text working-tree-encoding=UTF-8
 *.sql text working-tree-encoding=UTF-8
 *.md text working-tree-encoding=UTF-8
-*.csv text working-tree-encoding=UTF-8-BOM
-CRM_base/output/*.csv -text -working-tree-encoding
+*.csv -text -diff -working-tree-encoding
+*.pdf -text -diff
+"01. RA Portal/output/*.csv" -text -working-tree-encoding

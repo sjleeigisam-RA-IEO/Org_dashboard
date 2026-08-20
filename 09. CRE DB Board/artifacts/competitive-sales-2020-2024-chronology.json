@@ -1,0 +1,1604 @@
+{
+  "schema_version": "competitive-sale-chronology-v1.0",
+  "research_date": "2026-08-16",
+  "scope": {
+    "event_window": [
+      "2020-01-01",
+      "2024-12-31"
+    ],
+    "boundary_followup": [
+      "2019-10-01",
+      "2026-08-16"
+    ],
+    "geography": "서울·경기·인천",
+    "included_asset_types": [
+      "OFFICE",
+      "DATA_CENTER",
+      "DATA_CENTER_CONVERSION_OFFICE"
+    ],
+    "exclusions": [
+      "개발 MOU",
+      "운영권 입찰",
+      "개발부지/개발권만의 거래",
+      "회사 M&A만 있고 자산 소유권 불명"
+    ]
+  },
+  "interpretation_rules": [
+    "예정일은 milestone이 아니다",
+    "우협≠MOU≠SPA≠종결",
+    "가격 basis와 보도시점을 분리",
+    "bidder/운용사/fund·REIT/SPC/LP/lender 분리",
+    "미공개는 추정하지 않음",
+    "403·동적 빈본문·paywall은 부재증거로 쓰지 않음"
+  ],
+  "processes": [
+    {
+      "id": "OFF-2019-TWINCITY-NAMSAN-A",
+      "asset_name": "트윈시티 남산 오피스",
+      "asset_type": "OFFICE",
+      "region": "서울 용산구 동자동/서울역",
+      "process_origin_year": 2019,
+      "attempt_no": 1,
+      "qualification": "QUALIFIED_COMPETITIVE_SALE_2019_TO_2020_BOUNDARY",
+      "final_status": "CLOSED_2020_AFTER_PREFERRED_SWITCH",
+      "seller": {
+        "headline": "코람코자산신탁 보유자산으로 보도",
+        "legal_vehicle": "미공개/미확인",
+        "manager": "코람코자산신탁"
+      },
+      "sell_side_advisers": [
+        "미공개/미확인"
+      ],
+      "buyer": {
+        "bidder_lead": "신한리츠운용",
+        "consortium_members": [],
+        "fund_reit_spc": "신한남산리츠(신한알파리츠 자리츠)",
+        "lp_equity": "신한알파리츠 계열 자금; 세부 LP 미공개",
+        "lender": "미공개/미확인"
+      },
+      "participants": [
+        {
+          "name": "이지스자산운용",
+          "role": "FIRST_PREFERRED_REVOKED",
+          "reported_rank": "2019 입찰경쟁 우협; 2357억원 제안, 자금조달 실패로 MOU 만료"
+        },
+        {
+          "name": "신한리츠운용",
+          "role": "SUCCESSOR_NEGOTIATOR_AND_BUYER",
+          "reported_rank": "후속 협상·최종매수인; 원 입찰 순위/차순위 지정 여부 미확인"
+        },
+        {
+          "name": "기타 입찰자",
+          "role": "UNDISCLOSED",
+          "reported_rank": "미공개"
+        }
+      ],
+      "prices": [
+        {
+          "amount_krw": 235700000000,
+          "basis": "FIRST_PREFERRED_BID",
+          "comparator": "EXACT",
+          "as_of": "2019-09",
+          "source_ids": [
+            "S39"
+          ],
+          "note": "이지스 제안가; 최종가 아님"
+        },
+        {
+          "amount_krw": 238600000000,
+          "basis": "FINAL_CLOSING_GROSS_ASSET_PRICE",
+          "comparator": "EXACT",
+          "as_of": "2020-08",
+          "source_ids": [
+            "S41"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_date": "2019-04-23",
+          "date_precision": "DAY",
+          "stage": "MARKETING",
+          "fact": "트윈시티 남산 오피스 공개 매물 출시 보도.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S37"
+          ]
+        },
+        {
+          "event_date": "2019-09-18",
+          "date_precision": "DAY",
+          "stage": "PREFERRED_1",
+          "fact": "입찰 경쟁 뒤 이지스자산운용 우협 확정; 연내 종결은 계획일 뿐이었다.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S38",
+            "S39"
+          ]
+        },
+        {
+          "event_date": "2019-11",
+          "date_precision": "MONTH",
+          "stage": "MOU_1",
+          "fact": "이지스와 우협 MOU 체결이 후속기사로 확인됨.",
+          "evidence_status": "FOLLOW_UP_CONFIRMED",
+          "source_ids": [
+            "S40"
+          ]
+        },
+        {
+          "event_date": "2020-06",
+          "date_precision": "MONTH",
+          "stage": "PREFERRED_REVOKED",
+          "fact": "MOU 만료 및 코로나19 국면 자금조달 실패로 이지스 우협 지위 상실.",
+          "evidence_status": "FOLLOW_UP_CONFIRMED",
+          "source_ids": [
+            "S40"
+          ]
+        },
+        {
+          "event_date": "2020-07",
+          "date_precision": "MONTH",
+          "stage": "SUCCESSOR_NEGOTIATION",
+          "fact": "신한리츠운용과 재협상. 신한이 공식 차순위였는지는 공개 근거 미확인.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S40"
+          ]
+        },
+        {
+          "event_date": "2020-08",
+          "date_precision": "MONTH",
+          "stage": "CLOSE",
+          "fact": "신한남산리츠가 2386억원에 매수한 거래로 연말 리그테이블에서 확인. 정확한 잔금일 미공개.",
+          "evidence_status": "FOLLOW_UP_CONFIRMED",
+          "source_ids": [
+            "S41"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OFF-2020-CJ-CENTER-A",
+      "asset_name": "CJ제일제당센터",
+      "asset_type": "OFFICE",
+      "region": "서울 중구 쌍림동",
+      "process_origin_year": 2020,
+      "attempt_no": 1,
+      "qualification": "QUALIFIED_COMPETITIVE_SALE",
+      "final_status": "CLOSED",
+      "seller": {
+        "headline": "국민연금 투자자산",
+        "legal_vehicle": "미공개/미확인",
+        "manager": "미공개/미확인"
+      },
+      "sell_side_advisers": [
+        "CBRE코리아",
+        "신영에셋"
+      ],
+      "buyer": {
+        "bidder_lead": "이지스자산운용",
+        "consortium_members": [
+          "한국투자증권"
+        ],
+        "fund_reit_spc": "미공개/미확인",
+        "lp_equity": "미공개/미확인",
+        "lender": "미공개/미확인"
+      },
+      "participants": [
+        {
+          "name": "이지스자산운용-한국투자증권",
+          "role": "PREFERRED_AND_BUYER",
+          "reported_rank": "가격·종결확실성 종합평가 우승; 가격순위는 미공개"
+        },
+        {
+          "name": "KB자산운용",
+          "role": "SHORTLISTED",
+          "reported_rank": "미공개"
+        },
+        {
+          "name": "KTB자산운용-KTB투자증권",
+          "role": "SHORTLISTED",
+          "reported_rank": "미공개"
+        },
+        {
+          "name": "교보자산신탁",
+          "role": "SHORTLISTED",
+          "reported_rank": "미공개"
+        },
+        {
+          "name": "신한리츠운용",
+          "role": "SHORTLISTED",
+          "reported_rank": "미공개"
+        },
+        {
+          "name": "코람코자산신탁",
+          "role": "SHORTLISTED",
+          "reported_rank": "미공개"
+        }
+      ],
+      "prices": [
+        {
+          "amount_krw": 584000000000,
+          "basis": "FINAL_CLOSING_GROSS_ASSET_PRICE",
+          "comparator": "ABOUT",
+          "as_of": "2020-09",
+          "source_ids": [
+            "S04"
+          ],
+          "note": "3.3㎡당 약 2400만원"
+        }
+      ],
+      "events": [
+        {
+          "event_date": "2020-03-16",
+          "date_precision": "DAY",
+          "stage": "MANDATE",
+          "fact": "CBRE코리아·신영에셋 컨소시엄 매각주관 선정 보도.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S01"
+          ]
+        },
+        {
+          "event_date": "2020-05-27",
+          "date_precision": "DAY",
+          "stage": "BID",
+          "fact": "복수 입찰·최고 제안 5000억원 초과 보도. 개별 제출가격은 미공개.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S02"
+          ]
+        },
+        {
+          "event_date": "2020-06-02",
+          "date_precision": "DAY",
+          "stage": "PREFERRED",
+          "fact": "이지스자산운용-한국투자증권 컨소시엄 우협 선정.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S03"
+          ]
+        },
+        {
+          "event_date": "2020-09",
+          "date_precision": "MONTH",
+          "stage": "SPA_AND_CLOSE",
+          "fact": "본계약 체결 직후 잔금 납입, 약 5840억원에 거래 종결.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S04"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OFF-2020-PINE-B-A",
+      "asset_name": "파인에비뉴 B동",
+      "asset_type": "OFFICE",
+      "region": "서울 중구 을지로",
+      "process_origin_year": 2020,
+      "attempt_no": 1,
+      "qualification": "QUALIFIED_COMPETITIVE_SALE_BOUNDARY",
+      "final_status": "CLOSED_2021",
+      "seller": {
+        "headline": "코람코자산신탁",
+        "legal_vehicle": "미공개/미확인",
+        "manager": "코람코자산신탁"
+      },
+      "sell_side_advisers": [
+        "미공개/미확인"
+      ],
+      "buyer": {
+        "bidder_lead": "삼성SRA자산운용",
+        "consortium_members": [],
+        "fund_reit_spc": "미공개/미확인",
+        "lp_equity": "미공개/미확인",
+        "lender": "미공개/미확인"
+      },
+      "participants": [
+        {
+          "name": "삼성SRA자산운용",
+          "role": "PREFERRED_AND_BUYER",
+          "reported_rank": "우협/최종매수인"
+        },
+        {
+          "name": "미래에셋자산운용",
+          "role": "BIDDER",
+          "reported_rank": "탈락, 순위 미공개"
+        },
+        {
+          "name": "신한리츠운용",
+          "role": "BIDDER",
+          "reported_rank": "탈락, 순위 미공개"
+        },
+        {
+          "name": "마스턴투자운용",
+          "role": "BIDDER",
+          "reported_rank": "탈락, 순위 미공개"
+        },
+        {
+          "name": "NH아문디자산운용",
+          "role": "BIDDER",
+          "reported_rank": "탈락, 순위 미공개"
+        }
+      ],
+      "prices": [
+        {
+          "amount_krw": 620000000000,
+          "basis": "FINAL_CLOSING_GROSS_ASSET_PRICE",
+          "comparator": "EXACT",
+          "as_of": "2021-Q1",
+          "source_ids": [
+            "S05",
+            "S06"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_date": "2020-H2",
+          "date_precision": "HALF_YEAR",
+          "stage": "BID",
+          "fact": "공개입찰에서 삼성SRA 등 5개 운용사 참여가 후속 기사로 확인됨.",
+          "evidence_status": "FOLLOW_UP_CONFIRMED",
+          "source_ids": [
+            "S05"
+          ]
+        },
+        {
+          "event_date": "2020-H2",
+          "date_precision": "HALF_YEAR",
+          "stage": "PREFERRED",
+          "fact": "삼성SRA 우협 선정. 정확한 선정일 미공개.",
+          "evidence_status": "FOLLOW_UP_CONFIRMED",
+          "source_ids": [
+            "S05"
+          ]
+        },
+        {
+          "event_date": "2021-Q1",
+          "date_precision": "QUARTER",
+          "stage": "CLOSE",
+          "fact": "코람코가 삼성SRA에 6200억원에 매각; 2021년 1분기 거래로 집계.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S05",
+            "S06"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OFF-2021-IFC-SEOUL-A",
+      "asset_name": "IFC 서울 패키지",
+      "asset_type": "OFFICE_MIXED_USE_PACKAGE",
+      "region": "서울 영등포구 여의도",
+      "process_origin_year": 2021,
+      "attempt_no": 1,
+      "qualification": "QUALIFIED_COMPETITIVE_SALE_FAILED",
+      "final_status": "FAILED_2022",
+      "seller": {
+        "headline": "브룩필드자산운용",
+        "legal_vehicle": "미공개/미확인",
+        "manager": "브룩필드자산운용"
+      },
+      "sell_side_advisers": [
+        "Eastdil Secured"
+      ],
+      "buyer": {
+        "bidder_lead": "미래에셋자산운용",
+        "consortium_members": [],
+        "fund_reit_spc": "미공개/미확인",
+        "lp_equity": "미공개/미확인",
+        "lender": "미공개/미확인"
+      },
+      "participants": [
+        {
+          "name": "미래에셋자산운용",
+          "role": "PREFERRED_BUT_FAILED",
+          "reported_rank": "우협; 이행보증금 2000억원"
+        },
+        {
+          "name": "마스턴투자운용",
+          "role": "FINAL_BIDDER",
+          "reported_rank": "2차 본입찰 보도상 최고 제안 4조원 중반대"
+        },
+        {
+          "name": "ARA코리아자산운용",
+          "role": "FINAL_BIDDER",
+          "reported_rank": "미공개"
+        },
+        {
+          "name": "미래에셋맵스리츠",
+          "role": "FINAL_BIDDER_OR_VEHICLE_REPORTED",
+          "reported_rank": "미공개"
+        },
+        {
+          "name": "신세계-이지스 컨소시엄",
+          "role": "FINAL_BIDDER",
+          "reported_rank": "미공개"
+        },
+        {
+          "name": "기타 숏리스트",
+          "role": "FINAL_BIDDER",
+          "reported_rank": "미공개"
+        }
+      ],
+      "prices": [
+        {
+          "amount_krw": 4500000000000,
+          "basis": "NON_BINDING_BID_REPORTED",
+          "comparator": "ABOUT",
+          "as_of": "2022-02",
+          "source_ids": [
+            "S08"
+          ],
+          "note": "마스턴 제안, 정확값·조건 미공개"
+        },
+        {
+          "amount_krw": 4100000000000,
+          "basis": "NEGOTIATED_TRANSACTION_VALUE_REPORTED",
+          "comparator": "ABOUT",
+          "as_of": "2022-05",
+          "source_ids": [
+            "S10",
+            "S11"
+          ],
+          "note": "미래에셋 협상 거래가로 보도; 종결가 아님"
+        },
+        {
+          "amount_krw": 200000000000,
+          "basis": "PERFORMANCE_DEPOSIT",
+          "comparator": "EXACT",
+          "as_of": "2022-05",
+          "source_ids": [
+            "S11"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_date": "2021-11-10",
+          "date_precision": "DAY",
+          "stage": "MARKETING",
+          "fact": "브룩필드가 Eastdil Secured를 통해 IFC 서울 패키지 매각 착수.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S07"
+          ]
+        },
+        {
+          "event_date": "2022-02-14",
+          "date_precision": "DAY",
+          "stage": "FINAL_BID_2",
+          "fact": "1차 숏리스트 6곳이 모두 2차 본입찰 제안서 제출.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S08"
+          ]
+        },
+        {
+          "event_date": "2022-03-21",
+          "date_precision": "DAY",
+          "stage": "PROGRESSIVE_BID",
+          "fact": "3차 입찰을 앞둔 프로그레시브 딜 구조 보도.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S09"
+          ]
+        },
+        {
+          "event_date": "2022-05-11",
+          "date_precision": "DAY",
+          "stage": "PREFERRED",
+          "fact": "미래에셋자산운용 우협 선정 통보.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S10"
+          ]
+        },
+        {
+          "event_date": "2022-09-28",
+          "date_precision": "DAY",
+          "stage": "FAILED",
+          "fact": "인수협상 결렬 및 2000억원 보증금 분쟁 보도. SPA·종결로 승격하지 않음.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S11"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OFF-2022-SDS-TOWER-A",
+      "asset_name": "잠실 삼성SDS타워",
+      "asset_type": "OFFICE",
+      "region": "서울 송파구 잠실",
+      "process_origin_year": 2022,
+      "attempt_no": 1,
+      "qualification": "QUALIFIED_COMPETITIVE_SALE_BOUNDARY",
+      "final_status": "CLOSED_2023",
+      "seller": {
+        "headline": "유경PSG자산운용",
+        "legal_vehicle": "유경 전문투자형 사모부동산투자신탁 GMK 제11호",
+        "manager": "유경PSG자산운용"
+      },
+      "sell_side_advisers": [
+        "CBRE코리아(국내)",
+        "컬리어스코리아(국내)",
+        "해외 자문사 미확인"
+      ],
+      "buyer": {
+        "bidder_lead": "KB자산운용",
+        "consortium_members": [],
+        "fund_reit_spc": "미공개/미확인",
+        "lp_equity": "KB증권 우선주 투자자로 보도",
+        "lender": "미공개/미확인"
+      },
+      "participants": [
+        {
+          "name": "KB자산운용",
+          "role": "PREFERRED_AND_BUYER",
+          "reported_rank": "평당 2800만원; 최고가 여부 미확인, 자금모집 능력 평가로 우협"
+        },
+        {
+          "name": "이지스자산운용",
+          "role": "FINAL_BIDDER",
+          "reported_rank": "미공개"
+        },
+        {
+          "name": "FL자산운용",
+          "role": "FINAL_BIDDER",
+          "reported_rank": "미공개"
+        },
+        {
+          "name": "기타 2곳 이상",
+          "role": "FINAL_BIDDER",
+          "reported_rank": "미공개"
+        }
+      ],
+      "prices": [
+        {
+          "amount_krw": 850000000000,
+          "basis": "FINAL_CLOSING_GROSS_ASSET_PRICE",
+          "comparator": "EXACT",
+          "as_of": "2023-10-27",
+          "source_ids": [
+            "S14"
+          ]
+        },
+        {
+          "amount_krw": 28000000,
+          "basis": "UNIT_PRICE_PER_3_3SQM_BID",
+          "comparator": "EXACT",
+          "as_of": "2023-06",
+          "source_ids": [
+            "S13"
+          ],
+          "note": "KB 제안 단가 보도"
+        }
+      ],
+      "events": [
+        {
+          "event_date": "2022-H2",
+          "date_precision": "HALF_YEAR",
+          "stage": "MARKETING",
+          "fact": "유경PSG가 자문사를 선정해 매각 본격 추진; 이후 시장침체로 일정 지연.",
+          "evidence_status": "FOLLOW_UP_CONFIRMED",
+          "source_ids": [
+            "S12",
+            "S14"
+          ]
+        },
+        {
+          "event_date": "2023-06-15",
+          "date_precision": "DAY",
+          "stage": "FINAL_BID",
+          "fact": "국내외 5곳 이상 본입찰; KB·이지스·FL 공개 확인.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S12",
+            "S13"
+          ]
+        },
+        {
+          "event_date": "2023-06-28",
+          "date_precision": "DAY",
+          "stage": "PREFERRED",
+          "fact": "KB자산운용 우협 선정.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S13"
+          ]
+        },
+        {
+          "event_date": "2023-10-27",
+          "date_precision": "DAY",
+          "stage": "CLOSE",
+          "fact": "컬리어스 발표 기준 8500억원 거래 완료.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S14"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OFF-2023-ARC-PLACE-A",
+      "asset_name": "아크플레이스",
+      "asset_type": "OFFICE_SHARE_DEAL",
+      "region": "서울 강남구 역삼동",
+      "process_origin_year": 2023,
+      "attempt_no": 1,
+      "qualification": "QUALIFIED_COMPETITIVE_SALE_BOUNDARY",
+      "final_status": "CLOSED_2024",
+      "seller": {
+        "headline": "블랙스톤",
+        "legal_vehicle": "자산보유 법인/펀드 미공개",
+        "manager": "블랙스톤"
+      },
+      "sell_side_advisers": [
+        "JLL"
+      ],
+      "buyer": {
+        "bidder_lead": "코람코자산신탁",
+        "consortium_members": [],
+        "fund_reit_spc": "코람코가치투자 계열 리츠로 후속 확인",
+        "lp_equity": "NH프라임리츠 우선주 투자 후속 확인",
+        "lender": "미공개/미확인"
+      },
+      "participants": [
+        {
+          "name": "코람코자산신탁",
+          "role": "PREFERRED_AND_BUYER",
+          "reported_rank": "우협/최종매수인"
+        },
+        {
+          "name": "미래에셋자산운용",
+          "role": "FINAL_BIDDER",
+          "reported_rank": "미공개"
+        },
+        {
+          "name": "디앤디인베스트먼트",
+          "role": "FINAL_BIDDER",
+          "reported_rank": "미공개"
+        }
+      ],
+      "prices": [
+        {
+          "amount_krw": 850000000000,
+          "basis": "HIGHEST_NON_BINDING_BID_REPORTED",
+          "comparator": "ABOUT",
+          "as_of": "2023-09",
+          "source_ids": [
+            "S15",
+            "S16"
+          ],
+          "note": "입찰 최고가; 최종가 아님"
+        },
+        {
+          "amount_krw": 792000000000,
+          "basis": "FINAL_TRANSACTION_VALUE_REPORTED",
+          "comparator": "ABOUT",
+          "as_of": "2024-Q1",
+          "source_ids": [
+            "S17",
+            "S36"
+          ],
+          "note": "후속 리그테이블 7920억원; 일부 기사 7917억원"
+        }
+      ],
+      "events": [
+        {
+          "event_date": "2023-09",
+          "date_precision": "MONTH",
+          "stage": "FINAL_BID",
+          "fact": "미래에셋·코람코·디앤디 3파전; 최고 제안 약 8500억원 보도.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S15",
+            "S16"
+          ]
+        },
+        {
+          "event_date": "2023-Q4",
+          "date_precision": "QUARTER",
+          "stage": "PREFERRED",
+          "fact": "코람코 우협 선정; 정확일 미확인.",
+          "evidence_status": "FOLLOW_UP_CONFIRMED",
+          "source_ids": [
+            "S17"
+          ]
+        },
+        {
+          "event_date": "2023-Q4_to_2024-Q1",
+          "date_precision": "RANGE",
+          "stage": "NEGOTIATION",
+          "fact": "우협 기간 두 차례 연장 보도.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S17"
+          ]
+        },
+        {
+          "event_date": "2024-Q1",
+          "date_precision": "QUARTER",
+          "stage": "CLOSE",
+          "fact": "셰어딜 약 7920억원 종결로 후속 집계. 정확한 잔금일 미공개.",
+          "evidence_status": "FOLLOW_UP_CONFIRMED",
+          "source_ids": [
+            "S17",
+            "S36"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DC-2023-HANAM-A",
+      "asset_name": "하남 데이터센터(카카오 임차)",
+      "asset_type": "DATA_CENTER_BENEFICIARY_INTEREST_SHARE_DEAL",
+      "region": "경기 하남시 풍산동",
+      "process_origin_year": 2023,
+      "attempt_no": 1,
+      "qualification": "QUALIFIED_COMPETITIVE_SALE_BOUNDARY",
+      "final_status": "ACQUIRED_2024",
+      "seller": {
+        "headline": "이지스자산운용",
+        "legal_vehicle": "이지스 운용 펀드 수익증권 거래",
+        "manager": "이지스자산운용"
+      },
+      "sell_side_advisers": [
+        "JLL"
+      ],
+      "buyer": {
+        "bidder_lead": "맥쿼리인프라",
+        "consortium_members": [],
+        "fund_reit_spc": "맥쿼리한국인프라투융자회사",
+        "lp_equity": "4931억원 유상증자 자금 중 일부 활용 보도",
+        "lender": "미공개/미확인"
+      },
+      "participants": [
+        {
+          "name": "맥쿼리인프라",
+          "role": "PREFERRED_AND_ACQUIRER",
+          "reported_rank": "우협/인수자; 가격순위 미공개"
+        },
+        {
+          "name": "기타 원매자",
+          "role": "UNDISCLOSED",
+          "reported_rank": "미공개"
+        }
+      ],
+      "prices": [
+        {
+          "amount_krw": 1000000000000,
+          "basis": "EARLY_REPORTED_TRANSACTION_VALUE",
+          "comparator": "ABOUT",
+          "as_of": "2024-06-19",
+          "source_ids": [
+            "S19"
+          ],
+          "note": "초기 보도값; 최종 공표 인수가와 다름"
+        },
+        {
+          "amount_krw": 734000000000,
+          "basis": "ANNOUNCED_ACQUISITION_PRICE",
+          "comparator": "EXACT",
+          "as_of": "2024-07-30",
+          "source_ids": [
+            "S20",
+            "S36"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_date": "2023-12-01",
+          "date_precision": "DAY",
+          "stage": "MARKETING",
+          "fact": "이지스 펀드 수익증권 셰어딜 방식 매각 보도.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S18"
+          ]
+        },
+        {
+          "event_date": "2024-06-19",
+          "date_precision": "DAY",
+          "stage": "PREFERRED",
+          "fact": "JLL 주관 경쟁절차에서 맥쿼리인프라 우협 선정 보도. 다른 입찰자는 미공개.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S19"
+          ]
+        },
+        {
+          "event_date": "2024-07-30",
+          "date_precision": "DAY",
+          "stage": "ACQUISITION_ANNOUNCED",
+          "fact": "맥쿼리인프라가 총 7340억원 인수 발표로 후속 보도.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S20"
+          ]
+        },
+        {
+          "event_date": "2024",
+          "date_precision": "YEAR",
+          "stage": "TERMINAL_FOLLOWUP",
+          "fact": "2024년 완료 거래로 연말 리그테이블에 반영. 정확한 수익증권 이전일은 미공개.",
+          "evidence_status": "FOLLOW_UP_CONFIRMED",
+          "source_ids": [
+            "S36"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OFF-2024-THE-ASSET-A",
+      "asset_name": "더에셋(삼성화재 서초사옥)",
+      "asset_type": "OFFICE",
+      "region": "서울 서초구 서초동",
+      "process_origin_year": 2024,
+      "attempt_no": 1,
+      "qualification": "QUALIFIED_COMPETITIVE_SALE",
+      "final_status": "CLOSED",
+      "seller": {
+        "headline": "코람코자산신탁",
+        "legal_vehicle": "미공개/미확인",
+        "manager": "코람코자산신탁"
+      },
+      "sell_side_advisers": [
+        "쿠시먼앤드웨이크필드코리아",
+        "세빌스코리아"
+      ],
+      "buyer": {
+        "bidder_lead": "삼성SRA자산운용",
+        "consortium_members": [
+          "삼성화재(임차·그룹 수요)"
+        ],
+        "fund_reit_spc": "미공개/미확인",
+        "lp_equity": "미공개/미확인",
+        "lender": "미공개/미확인"
+      },
+      "participants": [
+        {
+          "name": "삼성SRA자산운용",
+          "role": "PREFERRED_AND_BUYER",
+          "reported_rank": "우협/최종매수인"
+        },
+        {
+          "name": "현대자동차그룹 측",
+          "role": "FINAL_3_REPORTED",
+          "reported_rank": "미공개"
+        },
+        {
+          "name": "제3 최종후보",
+          "role": "FINAL_3_UNDISCLOSED",
+          "reported_rank": "미공개"
+        }
+      ],
+      "prices": [
+        {
+          "amount_krw": 1104200000000,
+          "basis": "FINAL_CLOSING_GROSS_ASSET_PRICE",
+          "comparator": "EXACT",
+          "as_of": "2024-09-30",
+          "source_ids": [
+            "S23",
+            "S36"
+          ]
+        },
+        {
+          "amount_krw": 45000000,
+          "basis": "UNIT_PRICE_PER_3_3SQM_REPORTED",
+          "comparator": "ABOUT",
+          "as_of": "2024-07",
+          "source_ids": [
+            "S21"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_date": "2024-07-01",
+          "date_precision": "DAY",
+          "stage": "FINAL_BID_1",
+          "fact": "1차 본입찰 실시. 참여자 전체 명단은 미공개.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S21"
+          ]
+        },
+        {
+          "event_date": "2024-07-09",
+          "date_precision": "DAY",
+          "stage": "FINAL_BID_2",
+          "fact": "최종후보 3곳 대상 2차 입찰; 삼성SRA와 현대차그룹 측 경쟁 보도.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S22"
+          ]
+        },
+        {
+          "event_date": "2024-07-16",
+          "date_precision": "DAY",
+          "stage": "PREFERRED_MOU_SENT",
+          "fact": "삼성SRA에 우협선정 MOU 발송 보도. 체결일과 구분.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S21"
+          ]
+        },
+        {
+          "event_date": "2024-07-29",
+          "date_precision": "DAY",
+          "stage": "PREFERRED_TERMS",
+          "fact": "이행보증금 200억원, 9월말 클로징 목표 보도. 목표일은 종결로 보지 않음.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S21"
+          ]
+        },
+        {
+          "event_date": "2024-09-30",
+          "date_precision": "DAY",
+          "stage": "CLOSE",
+          "fact": "코람코가 삼성SRA로부터 잔금 수령, 1조1042억원 거래 마무리.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S23",
+            "S36"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OFF-2024-DTOWER-DONUMUN-A",
+      "asset_name": "디타워 돈의문",
+      "asset_type": "OFFICE",
+      "region": "서울 종로구 평동/서대문역",
+      "process_origin_year": 2024,
+      "attempt_no": 1,
+      "qualification": "QUALIFIED_COMPETITIVE_SALE",
+      "final_status": "CLOSED",
+      "seller": {
+        "headline": "마스턴투자운용",
+        "legal_vehicle": "마스턴일반사모부동산투자신탁 제79호",
+        "manager": "마스턴투자운용"
+      },
+      "sell_side_advisers": [
+        "미공개/미확인"
+      ],
+      "buyer": {
+        "bidder_lead": "NH농협리츠운용/NH농협금융 컨소시엄",
+        "consortium_members": [
+          "NH농협금융 계열사"
+        ],
+        "fund_reit_spc": "NH오피스일반사모부동산투자신탁2호(후속 리그테이블)",
+        "lp_equity": "미공개/미확인",
+        "lender": "미공개/미확인"
+      },
+      "participants": [
+        {
+          "name": "NH농협금융 컨소시엄",
+          "role": "PREFERRED_AND_BUYER",
+          "reported_rank": "우협/최종매수인"
+        },
+        {
+          "name": "행정공제회-이지스자산운용 컨소시엄",
+          "role": "FINAL_BIDDER",
+          "reported_rank": "미공개"
+        },
+        {
+          "name": "기타 4곳",
+          "role": "FINAL_BIDDER_UNDISCLOSED",
+          "reported_rank": "미공개"
+        }
+      ],
+      "prices": [
+        {
+          "amount_krw": 930000000000,
+          "basis": "LATE_STAGE_EXPECTED_PRICE",
+          "comparator": "ABOUT",
+          "as_of": "2024-07-26",
+          "source_ids": [
+            "S24"
+          ],
+          "note": "종결가가 아닌 막바지 예상/협상가"
+        },
+        {
+          "amount_krw": 895300000000,
+          "basis": "FINAL_CLOSING_GROSS_ASSET_PRICE",
+          "comparator": "EXACT",
+          "as_of": "2024-11-15",
+          "source_ids": [
+            "S25"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_date": "2024-07",
+          "date_precision": "MONTH",
+          "stage": "FINAL_BID",
+          "fact": "본입찰 6곳; NH농협금융과 행정공제회-이지스 컨소시엄 공개 확인.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S24"
+          ]
+        },
+        {
+          "event_date": "2024-07-29",
+          "date_precision": "DAY",
+          "stage": "PREFERRED",
+          "fact": "NH농협금융 컨소시엄 우협 선정.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S24"
+          ]
+        },
+        {
+          "event_date": "2024-11-15",
+          "date_precision": "DAY",
+          "stage": "CLOSE",
+          "fact": "DL 공식 발표 인용: 8953억원 매각 작업 마무리.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OFF-2024-CRESCENDO-A",
+      "asset_name": "광화문 크레센도빌딩",
+      "asset_type": "OFFICE",
+      "region": "서울 종로구 새문안로",
+      "process_origin_year": 2024,
+      "attempt_no": 1,
+      "qualification": "QUALIFIED_COMPETITIVE_SALE_BOUNDARY",
+      "final_status": "CLOSED_2025_AFTER_REBID",
+      "seller": {
+        "headline": "DWS자산운용",
+        "legal_vehicle": "미공개/미확인",
+        "manager": "DWS자산운용"
+      },
+      "sell_side_advisers": [
+        "딜로이트안진"
+      ],
+      "buyer": {
+        "bidder_lead": "코람코자산신탁",
+        "consortium_members": [],
+        "fund_reit_spc": "블라인드펀드 활용 보도, 명칭 미공개",
+        "lp_equity": "미공개/미확인",
+        "lender": "미공개/미확인"
+      },
+      "participants": [
+        {
+          "name": "마스턴투자운용",
+          "role": "FIRST_PREFERRED_REVOKED",
+          "reported_rank": "1차 최고가·우협; 조달 실패로 해지"
+        },
+        {
+          "name": "신한리츠운용",
+          "role": "FIRST_RESERVE_REPORTED_AND_REBID",
+          "reported_rank": "1차 차순위로 보도, 공식 차순위 지정 여부 미확인"
+        },
+        {
+          "name": "코람코자산신탁",
+          "role": "REBID_PREFERRED_AND_BUYER",
+          "reported_rank": "재입찰 우협/최종매수인"
+        },
+        {
+          "name": "삼성SRA자산운용",
+          "role": "REBIDDER",
+          "reported_rank": "미공개"
+        },
+        {
+          "name": "한강에셋자산운용",
+          "role": "FIRST_BIDDER",
+          "reported_rank": "미공개"
+        },
+        {
+          "name": "흥국자산운용",
+          "role": "FIRST_BIDDER",
+          "reported_rank": "미공개"
+        }
+      ],
+      "prices": [
+        {
+          "amount_krw": 560000000000,
+          "basis": "FIRST_ROUND_PREFERRED_BID",
+          "comparator": "EXACT",
+          "as_of": "2024-12",
+          "source_ids": [
+            "S28"
+          ],
+          "note": "마스턴 3.3㎡당 3380만원"
+        },
+        {
+          "amount_krw": 556700000000,
+          "basis": "FINAL_OWNERSHIP_TRANSFER_VALUE_REPORTED",
+          "comparator": "EXACT",
+          "as_of": "2025-04",
+          "source_ids": [
+            "S30"
+          ]
+        }
+      ],
+      "events": [
+        {
+          "event_date": "2024-10-04",
+          "date_precision": "DAY",
+          "stage": "MANDATE",
+          "fact": "딜로이트안진 주관 확정 보도.",
+          "evidence_status": "BACKGROUND_FROM_BID_ARTICLE",
+          "source_ids": [
+            "S26"
+          ]
+        },
+        {
+          "event_date": "2024-12-09",
+          "date_precision": "DAY",
+          "stage": "FINAL_BID",
+          "fact": "6곳 입찰. 코람코·마스턴·신한리츠·한강·흥국 등 공개 확인.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S26"
+          ]
+        },
+        {
+          "event_date": "2024-12-16",
+          "date_precision": "DAY",
+          "stage": "PREFERRED_1",
+          "fact": "마스턴 우협 선정.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S27"
+          ]
+        },
+        {
+          "event_date": "2025-01-22",
+          "date_precision": "DAY",
+          "stage": "PREFERRED_REVOKED",
+          "fact": "한화생명 수익자 블라인드펀드 1250억원 계획이 투심 부결; 우협 취소.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S28"
+          ]
+        },
+        {
+          "event_date": "2025-01-24",
+          "date_precision": "DAY",
+          "stage": "REBID_PREFERRED",
+          "fact": "코람코·신한리츠·삼성SRA 재입찰 뒤 코람코 우협.",
+          "evidence_status": "CONFIRMED",
+          "source_ids": [
+            "S29"
+          ]
+        },
+        {
+          "event_date": "2025-04",
+          "date_precision": "MONTH",
+          "stage": "CLOSE",
+          "fact": "코람코로 소유권 이전 완료, 총 5567억원 후속 확인.",
+          "evidence_status": "FOLLOW_UP_CONFIRMED",
+          "source_ids": [
+            "S30"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded_or_unresolved": [
+    {
+      "id": "REVIEW-2024-TCC-A",
+      "asset": "TCC동양타워",
+      "classification": "PLANNED_MILESTONE_ONLY_FOR_2024_ATTEMPT",
+      "reason": "2024-02-01 원문은 삼정KPMG 선정과 다음 주 경쟁입찰 예정, 희망가 2000억원만 확인한다. 실제 입찰 실시·제출자·우협·종결은 확인되지 않았다. 2025-07-29에는 JLL 주관, 전기사용계약·건축허가·개발사업권을 묶은 통매각으로 재출시되어 구조와 자문사가 달라 별도 attempt로 연결했다.",
+      "source_ids": [
+        "S31",
+        "S32"
+      ],
+      "adjacent_process_id": "OUT_OF_PERIOD-2025-TCC-B"
+    },
+    {
+      "id": "EXCL-2023-GURO-DC-DEV",
+      "asset": "구로 개봉동 데이터센터 개발사업",
+      "classification": "DEVELOPMENT_SITE_OR_RIGHTS_NOT_OPERATING_ASSET",
+      "reason": "2023 입찰과 PDG 상대 매각 협의 단서는 있으나 기존 예식장 부지의 선매입/개발사업권 거래다. 2024 후속은 본PF 전환을 보도한다. 운영 데이터센터 실물 경쟁매각에서 제외.",
+      "source_ids": [
+        "S33",
+        "S34"
+      ]
+    },
+    {
+      "id": "EXCL-2023-KSQUARE-GASAN-PFV",
+      "asset": "케이스퀘어 데이터센터 가산 PFV 지분",
+      "classification": "DEVELOPMENT_PFV_SHARE_SALE",
+      "reason": "PFV 보통주·종류주 지분 입찰로, 당시 개발 중인 자산의 사업회사 지분 거래다. 운영 실물자산 매각이 아니므로 본 통계 제외.",
+      "source_ids": [
+        "S35"
+      ]
+    },
+    {
+      "id": "REVIEW-2021-O2",
+      "asset": "여의도 오투타워",
+      "classification": "CLOSED_BUT_COMPETITIVE_SUBMISSION_NOT_FULLY_VERIFIED",
+      "reason": "2021-01-18 입찰 예정과 3360억원 삼성SRA 인수 후속은 확인되나, 이번 접근 범위에서 실제 제출자/입찰 실시를 직접 확인하는 본문 근거가 부족해 핵심 경쟁매각 집계에서 제외.",
+      "source_ids": [
+        "S05"
+      ]
+    },
+    {
+      "id": "REVIEW-2021-BUNDANG-DOOSAN",
+      "asset": "분당두산타워",
+      "classification": "SALE_AND_REIT_SECURITIZATION_COMPETITION_UNVERIFIED",
+      "reason": "2021년 약 6174억원 유동화·리츠 매각은 확인되나 공개 경쟁입찰 및 참가자 제출 근거를 확인하지 못해 제외.",
+      "source_ids": [
+        "S06"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "S01",
+      "publisher": "더벨",
+      "publication_date": "2020-03-16",
+      "title": "CJ제일제당센터 매각 주관사에 CBRE·신영에셋 컨소",
+      "url": "http://www.thebell.co.kr/front/free/contents/news/article_view.asp?key=202003131435011640102318",
+      "access_status": "SEARCH_SNIPPET_ONLY_DYNAMIC_EMPTY_BODY"
+    },
+    {
+      "source_id": "S02",
+      "publisher": "더벨",
+      "publication_date": "2020-05-27",
+      "title": "국민연금 매각 CJ제일제당센터, 최고가 5000억 상회",
+      "url": "http://www.thebell.co.kr/front/free/contents/news/article_view.asp?key=202005251751116800105249",
+      "access_status": "SEARCH_SNIPPET_ONLY_DYNAMIC_EMPTY_BODY"
+    },
+    {
+      "source_id": "S03",
+      "publisher": "파이낸셜뉴스",
+      "publication_date": "2020-06-06",
+      "title": "CJ제일제당센터, 5800억대에 이지스 품에",
+      "url": "http://www.fnnews.com/news/202006050703244566",
+      "access_status": "SEARCH_RESULT_SNIPPET_VERIFIED"
+    },
+    {
+      "source_id": "S04",
+      "publisher": "더벨",
+      "publication_date": "2020-09-04",
+      "title": "국민연금, 10년만에 CJ제일제당센터 투자금 회수",
+      "url": "http://www.thebell.co.kr/front/free/contents/news/article_view.asp?key=202009021450006000107935",
+      "access_status": "SEARCH_SNIPPET_ONLY_DYNAMIC_EMPTY_BODY"
+    },
+    {
+      "source_id": "S05",
+      "publisher": "더벨",
+      "publication_date": "2021-08-13",
+      "title": "국내 최대 빅딜 파인에비뉴B동",
+      "url": "http://www.thebell.co.kr/front/free/contents/news/article_view.asp?key=202108111350292280109516",
+      "access_status": "SEARCH_SNIPPET_ONLY_DYNAMIC_EMPTY_BODY"
+    },
+    {
+      "source_id": "S06",
+      "publisher": "JLL 인용 파이낸셜뉴스",
+      "publication_date": "2022-02-03",
+      "title": "JLL, 2021년 서울 오피스 투자 규모 사상 최고 기록",
+      "url": "http://www.fnnews.com/news/202202031049586999",
+      "access_status": "SEARCH_RESULT_SNIPPET_VERIFIED"
+    },
+    {
+      "source_id": "S07",
+      "publisher": "더벨",
+      "publication_date": "2021-11-10",
+      "title": "브룩필드, 3조대 매물 여의도 IFC 매각 시동",
+      "url": "http://www.thebell.co.kr/front/free/contents/news/article_view.asp?key=202111090914043560108343",
+      "access_status": "SEARCH_SNIPPET_ONLY_DYNAMIC_EMPTY_BODY"
+    },
+    {
+      "source_id": "S08",
+      "publisher": "인베스트조선",
+      "publication_date": "2022-02-18",
+      "title": "IFC 인수 추진 손잡은 신세계-이지스",
+      "url": "http://www.investchosun.com/site/data/html_dir/2022/02/17/2022021780200.html",
+      "access_status": "SEARCH_RESULT_SNIPPET_VERIFIED"
+    },
+    {
+      "source_id": "S09",
+      "publisher": "인베스트조선",
+      "publication_date": "2022-03-21",
+      "title": "프로그레시브 딜로 진행되는 IFC 매각전",
+      "url": "http://www.investchosun.com/site/data/html_dir/2022/03/18/2022031880194.html",
+      "access_status": "SEARCH_RESULT_SNIPPET_VERIFIED"
+    },
+    {
+      "source_id": "S10",
+      "publisher": "비즈니스포스트",
+      "publication_date": "2022-07-08",
+      "title": "Who Is 박현주 미래에셋그룹 회장",
+      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=286302",
+      "access_status": "BODY_READ"
+    },
+    {
+      "source_id": "S11",
+      "publisher": "파이낸셜뉴스",
+      "publication_date": "2022-09-28",
+      "title": "IFC 인수 보증금 2000억에 향하는 눈",
+      "url": "http://www.fnnews.com/news/202209281557062831",
+      "access_status": "SEARCH_RESULT_SNIPPET_VERIFIED"
+    },
+    {
+      "source_id": "S12",
+      "publisher": "더벨",
+      "publication_date": "2023-06-19",
+      "title": "유경PSG, 삼성SDS타워 매각 추진 1년만에 본입찰",
+      "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202306160910012900104257",
+      "access_status": "SEARCH_SNIPPET_ONLY_DYNAMIC_EMPTY_BODY"
+    },
+    {
+      "source_id": "S13",
+      "publisher": "이코노미스트",
+      "publication_date": "2023-07-01",
+      "title": "삼성SDS타워, 8500억원에 매각 전망",
+      "url": "https://economist.co.kr/article/view/ecn202306300038",
+      "access_status": "BODY_READ"
+    },
+    {
+      "source_id": "S14",
+      "publisher": "포인트데일리/컬리어스",
+      "publication_date": "2023-11-03",
+      "title": "컬리어스, 삼성SDS타워 8500억원 매각 완료",
+      "url": "https://www.thekpm.com/news/articleView.html?idxno=179336",
+      "access_status": "BODY_READ"
+    },
+    {
+      "source_id": "S15",
+      "publisher": "서울경제",
+      "publication_date": "2023-10-06",
+      "title": "블랙스톤, 아크플레이스 빅딜 눈앞",
+      "url": "https://www.sedaily.com/NewsView/29VURWNESU",
+      "access_status": "BODY_READ"
+    },
+    {
+      "source_id": "S16",
+      "publisher": "더벨",
+      "publication_date": "2023-10-04",
+      "title": "우협 임박 아크플레이스 매각, 셰어딜 구조로 추진",
+      "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202309251119180000106987",
+      "access_status": "SEARCH_SNIPPET_ONLY_DYNAMIC_EMPTY_BODY"
+    },
+    {
+      "source_id": "S17",
+      "publisher": "이투데이",
+      "publication_date": "2024-05-02",
+      "title": "오피스빌딩 매매거래 최근 6분기중 최고치",
+      "url": "https://www.etoday.co.kr/news/view/2356421",
+      "access_status": "BODY_READ"
+    },
+    {
+      "source_id": "S18",
+      "publisher": "딜사이트",
+      "publication_date": "2023-12-01",
+      "title": "하남 카카오 데이터센터 매각 셰어딜",
+      "url": "https://dealsite.co.kr/articles/113898",
+      "access_status": "BODY_READ_PARTIAL_PAYWALL_NOTICE"
+    },
+    {
+      "source_id": "S19",
+      "publisher": "서울경제",
+      "publication_date": "2024-06-20",
+      "title": "맥쿼리, 하남 데이터센터 1조에 산다",
+      "url": "https://www.sedaily.com/NewsView/2DAIYDBGL1",
+      "access_status": "BODY_READ"
+    },
+    {
+      "source_id": "S20",
+      "publisher": "더벨",
+      "publication_date": "2024-10-08",
+      "title": "맥쿼리인프라 유증에도 주가 방어",
+      "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202410021329311760101572",
+      "access_status": "SEARCH_SNIPPET_ONLY_DYNAMIC_EMPTY_BODY"
+    },
+    {
+      "source_id": "S21",
+      "publisher": "딜사이트",
+      "publication_date": "2024-07-29",
+      "title": "서초동 더에셋 삼성SRA 품으로, 매각가 1.1조",
+      "url": "https://dealsite.co.kr/articles/125990",
+      "access_status": "BODY_READ_PARTIAL_PAYWALL_NOTICE"
+    },
+    {
+      "source_id": "S22",
+      "publisher": "인베스트조선",
+      "publication_date": "2024-07-10",
+      "title": "더에셋 2차 입찰 진행",
+      "url": "https://www.investchosun.com/site/data/html_dir/2024/07/09/2024070980218.html",
+      "access_status": "SEARCH_RESULT_SNIPPET_VERIFIED"
+    },
+    {
+      "source_id": "S23",
+      "publisher": "아시아타임즈",
+      "publication_date": "2024-10-01",
+      "title": "증권소식: 코람코, 더에셋 매각 잔금 입금",
+      "url": "https://www.asiatime.co.kr/article/20241001500064",
+      "access_status": "SEARCH_RESULT_SNIPPET_VERIFIED"
+    },
+    {
+      "source_id": "S24",
+      "publisher": "이데일리",
+      "publication_date": "2024-07-29",
+      "title": "돈의문 디타워 인수전 승자는 NH농협금융",
+      "url": "http://www.edaily.co.kr/news/newspath.asp?newsid=02883126638959440",
+      "access_status": "BODY_READ"
+    },
+    {
+      "source_id": "S25",
+      "publisher": "뉴스핌/DL",
+      "publication_date": "2024-11-15",
+      "title": "DL 디타워 돈의문 9천억에 매각",
+      "url": "https://www.newspim.com/news/view/20241115000526",
+      "access_status": "BODY_READ"
+    },
+    {
+      "source_id": "S26",
+      "publisher": "서울경제",
+      "publication_date": "2024-12-09",
+      "title": "광화문 크레센도빌딩 매각 입찰 흥행 성공",
+      "url": "https://www.sedaily.com/NewsView/2DI1Z8N07K",
+      "access_status": "BODY_READ"
+    },
+    {
+      "source_id": "S27",
+      "publisher": "더벨",
+      "publication_date": "2024-12-17",
+      "title": "마스턴운용 크레센도빌딩 인수한다",
+      "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202412161744218080105416",
+      "access_status": "SEARCH_SNIPPET_ONLY_DYNAMIC_EMPTY_BODY"
+    },
+    {
+      "source_id": "S28",
+      "publisher": "한국경제",
+      "publication_date": "2025-01-22",
+      "title": "광화문 김앤장 빌딩 매각 무산",
+      "url": "https://www.hankyung.com/article/202501222520r",
+      "access_status": "BODY_READ"
+    },
+    {
+      "source_id": "S29",
+      "publisher": "이데일리",
+      "publication_date": "2025-01-24",
+      "title": "크레센도빌딩 코람코 우협",
+      "url": "http://www.edaily.co.kr/news/newspath.asp?newsid=04122966642041000",
+      "access_status": "BODY_READ"
+    },
+    {
+      "source_id": "S30",
+      "publisher": "한국경제",
+      "publication_date": "2025-06-10",
+      "title": "크레센도빌딩 4월 소유권 이전 완료 후속",
+      "url": "https://www.hankyung.com/article/202506105330r",
+      "access_status": "BODY_READ"
+    },
+    {
+      "source_id": "S31",
+      "publisher": "서울경제",
+      "publication_date": "2024-02-01",
+      "title": "당산동 TCC동양타워 매물로, 매각가 2000억",
+      "url": "https://www.sedaily.com/NewsView/2D56VQKM67",
+      "access_status": "BODY_READ"
+    },
+    {
+      "source_id": "S32",
+      "publisher": "조선비즈",
+      "publication_date": "2025-07-29",
+      "title": "LB자산운용, TCC동양타워·데이터센터 개발권 통매각 추진",
+      "url": "https://biz.chosun.com/stock/stock_general/2025/07/29/44X4LYLYORAVTIZQK26LYR7TJA/",
+      "access_status": "BODY_READ"
+    },
+    {
+      "source_id": "S33",
+      "publisher": "파이낸셜뉴스",
+      "publication_date": "2023-02-27",
+      "title": "구로 개봉동 데이터센터 개발사업 매물로",
+      "url": "http://www.fnnews.com/news/202302270530247201",
+      "access_status": "SEARCH_RESULT_SNIPPET_VERIFIED"
+    },
+    {
+      "source_id": "S34",
+      "publisher": "오늘경제",
+      "publication_date": "2024-11-12",
+      "title": "롯데건설 구로 데이터센터 본PF 전환 임박",
+      "url": "https://www.startuptoday.co.kr/news/articleView.html?idxno=366967",
+      "access_status": "SEARCH_RESULT_SNIPPET_VERIFIED"
+    },
+    {
+      "source_id": "S35",
+      "publisher": "파이낸셜뉴스",
+      "publication_date": "2023-03-30",
+      "title": "코람코 개발 데이터센터 매각 눈앞",
+      "url": "http://www.fnnews.com/news/202303300712218841",
+      "access_status": "SEARCH_RESULT_SNIPPET_VERIFIED"
+    },
+    {
+      "source_id": "S36",
+      "publisher": "딜사이트",
+      "publication_date": "2025-01-03",
+      "title": "2024 부동산 리그테이블",
+      "url": "https://dealsite.co.kr/articles/134198",
+      "access_status": "BODY_READ_PARTIAL_PAYWALL_NOTICE"
+    },
+    {
+      "source_id": "S37",
+      "publisher": "더벨",
+      "publication_date": "2019-04-23",
+      "title": "서울역 트윈시티 남산 오피스 매물로",
+      "url": "http://www.thebell.co.kr/front/free/contents/news/article_view.asp?key=201904220100041060002549",
+      "access_status": "SEARCH_SNIPPET_ONLY_DYNAMIC_EMPTY_BODY"
+    },
+    {
+      "source_id": "S38",
+      "publisher": "서울경제",
+      "publication_date": "2019-09-18",
+      "title": "이지스운용, 트윈시티남산 품나",
+      "url": "https://www.sedaily.com/NewsView/1VOALYO1G9",
+      "access_status": "BODY_READ"
+    },
+    {
+      "source_id": "S39",
+      "publisher": "더벨",
+      "publication_date": "2020-02-20",
+      "title": "리츠 경쟁력 점검: 이지스 트윈시티남산 입찰 경쟁",
+      "url": "http://www.thebell.co.kr/front/free/contents/news/article_view.asp?key=202002110837453560109359",
+      "access_status": "SEARCH_SNIPPET_ONLY_DYNAMIC_EMPTY_BODY"
+    },
+    {
+      "source_id": "S40",
+      "publisher": "더벨",
+      "publication_date": "2020-07-08",
+      "title": "이지스 손 떠난 트윈시티 남산, 신한리츠와 재협상",
+      "url": "http://www.thebell.co.kr/front/free/contents/news/article_view.asp?key=202007060951409920108077",
+      "access_status": "SEARCH_SNIPPET_ONLY_DYNAMIC_EMPTY_BODY"
+    },
+    {
+      "source_id": "S41",
+      "publisher": "리걸타임즈",
+      "publication_date": "2020-12-14",
+      "title": "2020 건설·부동산 분야 리그테이블",
+      "url": "http://www.legaltimes.co.kr/news/articleView.html?idxno=57176",
+      "access_status": "SEARCH_RESULT_SNIPPET_VERIFIED"
+    }
+  ],
+  "access_failures": [
+    {
+      "provider": "Google News RSS",
+      "observed_status": "HTTP 503",
+      "impact": "보조 검색경로 실패; Naver 검색결과와 직접 원문으로 대체. 거래 부재 근거로 사용하지 않음"
+    },
+    {
+      "provider": "더벨 free article pages",
+      "observed_status": "HTTP 200 but 980-byte dynamic/empty shell in direct fetch",
+      "impact": "해당 항목은 검색결과 snippet 범위만 claim하고 BODY_READ로 표시하지 않음"
+    },
+    {
+      "provider": "403 responses",
+      "observed_status": "이번 선별 URL probe에서 명시적 403 없음",
+      "impact": "403 부재는 source completeness를 의미하지 않음"
+    }
+  ],
+  "statistics": {
+    "qualified_processes": 10,
+    "office_processes": 9,
+    "data_center_processes": 1,
+    "closed_or_acquired": 9,
+    "failed": 1,
+    "boundary_processes": 6,
+    "excluded_or_unresolved": 5,
+    "source_records": 41,
+    "body_read_sources": 18,
+    "limited_access_sources": 26
+  }
+}

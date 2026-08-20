@@ -1,0 +1,56 @@
+[
+  {
+    "link_source": "asset_fund_links",
+    "match_method": "derived_from_asset_fund_links",
+    "link_rows": 50,
+    "dev_projects": 33,
+    "assets": 41,
+    "min_confidence": "0.94",
+    "max_confidence": "0.98"
+  },
+  {
+    "link_source": "asset_project_links",
+    "match_method": "derived_from_asset_project_links",
+    "link_rows": 30,
+    "dev_projects": 29,
+    "assets": 30,
+    "min_confidence": "0.82",
+    "max_confidence": "0.95"
+  },
+  {
+    "link_source": "funds.primary_asset_id",
+    "match_method": "derived_from_fund_primary_asset_id",
+    "link_rows": 47,
+    "dev_projects": 31,
+    "assets": 38,
+    "min_confidence": "0.95",
+    "max_confidence": "0.95"
+  },
+  {
+    "link_source": "manual_burim_asset_candidate",
+    "match_method": "manual_name_search",
+    "link_rows": 1,
+    "dev_projects": 1,
+    "assets": 1,
+    "min_confidence": "0.75",
+    "max_confidence": "0.75"
+  },
+  {
+    "link_source": "manual_iota816_asset_candidate",
+    "match_method": "manual_name_search",
+    "link_rows": 2,
+    "dev_projects": 1,
+    "assets": 2,
+    "min_confidence": "0.75",
+    "max_confidence": "0.75"
+  },
+  {
+    "link_source": "projects.primary_asset_id",
+    "match_method": "derived_from_project_primary_asset_id",
+    "link_rows": 30,
+    "dev_projects": 29,
+    "assets": 30,
+    "min_confidence": "0.95",
+    "max_confidence": "0.95"
+  }
+]

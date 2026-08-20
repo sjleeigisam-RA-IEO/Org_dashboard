@@ -1,0 +1,13 @@
+{
+  "total_assets": 1302,
+  "action_counts": {
+    "keep_physical_name": 944,
+    "review_financial_name_with_physical_evidence": 29,
+    "strip_instrument_terms": 44,
+    "suppress_non_physical_name": 13,
+    "suppress_fund_like_name": 90,
+    "review_unknown_name": 70,
+    "suppress_financial_name": 112
+  },
+  "output_dir": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\output\\asset_name_cleanup_20260609"
+}

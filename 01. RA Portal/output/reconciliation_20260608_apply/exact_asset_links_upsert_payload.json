@@ -1,0 +1,1058 @@
+[
+  {
+    "asset_id": "ast_fe9e7fc006fb",
+    "fund_id": "112006",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112006:눈스퀘어",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "눈스퀘어",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "눈스퀘어",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_122d47e0ef63",
+    "fund_id": "112008",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112008:홈플러스금천점",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "홈플러스금천점",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "홈플러스금천점",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_55647389ae80",
+    "fund_id": "112008",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112008:홈플러스영등포점",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "홈플러스영등포점",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "홈플러스영등포점",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_a87124d2b233",
+    "fund_id": "112016",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112016:남산그린빌딩",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "남산그린빌딩",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "남산그린빌딩",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_21ccb7c9f7bd",
+    "fund_id": "112017",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112017:G밸리비즈플라자",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "G밸리비즈플라자",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "G밸리비즈플라자",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_b79d97794e21",
+    "fund_id": "112024",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112024:트윈트리타워",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "트윈트리타워",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "트윈트리타워",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_99bb7e6dd0fa",
+    "fund_id": "112029",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112029:노스게이트빌딩",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "노스게이트빌딩",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "노스게이트빌딩",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_3e4a7ba7841a",
+    "fund_id": "112038",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112038:오토웨이타워",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "오토웨이타워",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "오토웨이타워",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_a60a75cb3e01",
+    "fund_id": "112039",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112039:정동빌딩",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "정동빌딩",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "정동빌딩",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_2b8d6d15574a",
+    "fund_id": "112104",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112104:태평로빌딩",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "태평로빌딩",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "태평로빌딩",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_97eee497ab45",
+    "fund_id": "112114",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112114:PFV_Lotus (지분증권)",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "PFV_Lotus (지분증권)",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "PFV_Lotus (지분증권)",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_f40e9a6c4433",
+    "fund_id": "112115",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112115:PFV_Lotus (사채)",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "PFV_Lotus (사채)",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "PFV_Lotus (사채)",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_7e9acc299d06",
+    "fund_id": "112128",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112128:V플렉스",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "V플렉스",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "V플렉스",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_74aec6939fcf",
+    "fund_id": "112128",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112128:포포인츠바이쉐라톤조선서울명동",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "포포인츠바이쉐라톤조선서울명동",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "포포인츠바이쉐라톤조선서울명동",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_7e9acc299d06",
+    "fund_id": "112144",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112144:V플렉스",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "V플렉스",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "V플렉스",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_7e9acc299d06",
+    "fund_id": "112146",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112146:V플렉스",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "V플렉스",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "V플렉스",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_9855c32af978",
+    "fund_id": "112160",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112160:지엘가산메트로 주식회사",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "지엘가산메트로 주식회사",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "지엘가산메트로 주식회사",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_86b73cdb75eb",
+    "fund_id": "112205",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112205:건대몰오브K",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "건대몰오브K",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "건대몰오브K",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_b3db1f189553",
+    "fund_id": "112209",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112209:센터필드",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "센터필드",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "센터필드",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_b3db1f189553",
+    "fund_id": "112210",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112210:센터필드",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "센터필드",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "센터필드",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_b3db1f189553",
+    "fund_id": "112211",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112211:센터필드",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "센터필드",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "센터필드",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_b3db1f189553",
+    "fund_id": "112212",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112212:센터필드",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "센터필드",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "센터필드",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_8645e842633c",
+    "fund_id": "112237",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112237:오투타워",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "오투타워",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "오투타워",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_7cfadd3adb65",
+    "fund_id": "112237",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112237:타임워크명동",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "타임워크명동",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "타임워크명동",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_47cfb7af7038",
+    "fund_id": "112237",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112237:서울로타워",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "서울로타워",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "서울로타워",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_fcd940175c17",
+    "fund_id": "112305",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112305:금강타워3",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "금강타워3",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "금강타워3",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_7cfadd3adb65",
+    "fund_id": "112350",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112350:타임워크명동",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "타임워크명동",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "타임워크명동",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_7cfadd3adb65",
+    "fund_id": "112351",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112351:타임워크명동",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "타임워크명동",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "타임워크명동",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_56ba3af5aedc",
+    "fund_id": "112362",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112362:GRAN PASEO 칸다에키마에",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "GRAN PASEO 칸다에키마에",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "GRAN PASEO 칸다에키마에",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_b5a8681c1621",
+    "fund_id": "112362",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112362:LEGALAND 와세다미나미",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "LEGALAND 와세다미나미",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "LEGALAND 와세다미나미",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_683e8481561e",
+    "fund_id": "112362",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112362:PASEO 토부네리마",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "PASEO 토부네리마",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "PASEO 토부네리마",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_656236266bd0",
+    "fund_id": "112362",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112362:아버하이츠 오우기오하시",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "아버하이츠 오우기오하시",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "아버하이츠 오우기오하시",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_31da440b4288",
+    "fund_id": "112365",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112365:CGV대학로",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "CGV대학로",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "CGV대학로",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_31da440b4288",
+    "fund_id": "112366",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112366:CGV대학로",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "CGV대학로",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "CGV대학로",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_84125d66e5f0",
+    "fund_id": "112368",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112368:KORNER 136",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "KORNER 136",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "KORNER 136",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_84125d66e5f0",
+    "fund_id": "112369",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112369:KORNER 136",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "KORNER 136",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "KORNER 136",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_84125d66e5f0",
+    "fund_id": "112370",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112370:KORNER 136",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "KORNER 136",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "KORNER 136",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_ea8e897db9a1",
+    "fund_id": "112375",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112375:OPUS407",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "OPUS407",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "OPUS407",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_ea8e897db9a1",
+    "fund_id": "112376",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112376:OPUS407",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "OPUS407",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "OPUS407",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_ea8e897db9a1",
+    "fund_id": "112377",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112377:OPUS407",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "OPUS407",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "OPUS407",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_ea8e897db9a1",
+    "fund_id": "112378",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112378:OPUS407",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "OPUS407",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "OPUS407",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_57891a43269b",
+    "fund_id": "112380",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112380:이지스기회추구2-1호 (330호, OPUS407/舊뉴욕제과빌딩)",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "이지스기회추구2-1호 (330호, OPUS407/舊뉴욕제과빌딩)",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "이지스기회추구2-1호 (330호, OPUS407/舊뉴욕제과빌딩)",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_2b8d6d15574a",
+    "fund_id": "112400",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112400:태평로빌딩",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "태평로빌딩",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "태평로빌딩",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_8e5fda3d061a",
+    "fund_id": "112421",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112421:OPUS459(구. 백암빌딩)",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "OPUS459(구. 백암빌딩)",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "OPUS459(구. 백암빌딩)",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_8e5fda3d061a",
+    "fund_id": "112422",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112422:OPUS459(구. 백암빌딩)",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "OPUS459(구. 백암빌딩)",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "OPUS459(구. 백암빌딩)",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_8e5fda3d061a",
+    "fund_id": "112423",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112423:OPUS459(구. 백암빌딩)",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "OPUS459(구. 백암빌딩)",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "OPUS459(구. 백암빌딩)",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_8e5fda3d061a",
+    "fund_id": "112424",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112424:OPUS459(구. 백암빌딩)",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "OPUS459(구. 백암빌딩)",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "OPUS459(구. 백암빌딩)",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_eb73897d66c4",
+    "fund_id": "112445",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112445:맹그로브 신설",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "맹그로브 신설",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "맹그로브 신설",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_878300cda6ad",
+    "fund_id": "112445",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112445:맹그로브 동대문",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "맹그로브 동대문",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "맹그로브 동대문",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_1a20ea59c075",
+    "fund_id": "112450",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112450:더강남832PFV의 지분증권 및 대출채권",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "더강남832PFV의 지분증권 및 대출채권",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "더강남832PFV의 지분증권 및 대출채권",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_a8f90f516d21",
+    "fund_id": "112475",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112475:CJ제일제당센터",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "CJ제일제당센터",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "CJ제일제당센터",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_3d2e2d559411",
+    "fund_id": "112493",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112493:두산타워(재간접)",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "두산타워(재간접)",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "두산타워(재간접)",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_5827261360b4",
+    "fund_id": "112499",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112499:선릉위워크타워",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "선릉위워크타워",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "선릉위워크타워",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_5827261360b4",
+    "fund_id": "112500",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112500:선릉위워크타워",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "선릉위워크타워",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "선릉위워크타워",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_b79d97794e21",
+    "fund_id": "112531",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112531:트윈트리타워",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "트윈트리타워",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "트윈트리타워",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_74c55ca84e27",
+    "fund_id": "112589",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112589:원그로브(마곡CP4 복합개발사업)",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "원그로브(마곡CP4 복합개발사업)",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "원그로브(마곡CP4 복합개발사업)",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_74c55ca84e27",
+    "fund_id": "112590",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112590:원그로브(마곡CP4 복합개발사업)",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "원그로브(마곡CP4 복합개발사업)",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "원그로브(마곡CP4 복합개발사업)",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_74c55ca84e27",
+    "fund_id": "112591",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112591:원그로브(마곡CP4 복합개발사업)",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "원그로브(마곡CP4 복합개발사업)",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "원그로브(마곡CP4 복합개발사업)",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_586b7ab8eae7",
+    "fund_id": "112666",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112666:웨스트게이트타워 선순위 담보대출",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "웨스트게이트타워 선순위 담보대출",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "웨스트게이트타워 선순위 담보대출",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_7f15dadaebbf",
+    "fund_id": "112666",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112666:카이트타워 선순위 담보대출",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "카이트타워 선순위 담보대출",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "카이트타워 선순위 담보대출",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_55647389ae80",
+    "fund_id": "112702",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112702:홈플러스영등포점",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "홈플러스영등포점",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "홈플러스영등포점",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_122d47e0ef63",
+    "fund_id": "112702",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112702:홈플러스금천점",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "홈플러스금천점",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "홈플러스금천점",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_a87124d2b233",
+    "fund_id": "112794",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:112794:남산그린빌딩",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "남산그린빌딩",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "남산그린빌딩",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_2b8d6d15574a",
+    "fund_id": "120026",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:120026:태평로빌딩",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "태평로빌딩",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "태평로빌딩",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_47cfb7af7038",
+    "fund_id": "P00037",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:P00037:서울로타워",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "서울로타워",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "서울로타워",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  },
+  {
+    "asset_id": "ast_2b8d6d15574a",
+    "fund_id": "R00011",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source",
+    "source_id": "투자 자산 조회_20260608.xlsx:R00011:태평로빌딩",
+    "confidence": 0.97,
+    "metadata": {
+      "source_file": "투자 자산 조회_20260608.xlsx",
+      "source_asset_name": "태평로빌딩",
+      "match_source": "asset_master.canonical_name",
+      "match_name": "태평로빌딩",
+      "load_date": "2026-06-08",
+      "insert_reason": "exact unique source asset name match for search relationship"
+    }
+  }
+]

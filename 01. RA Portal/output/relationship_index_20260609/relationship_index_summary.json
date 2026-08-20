@@ -1,0 +1,43 @@
+{
+  "source_counts": {
+    "funds": 1112,
+    "assets": 1302,
+    "asset_aliases": 4215,
+    "asset_fund_links": 1217,
+    "projects": 425,
+    "asset_project_links": 879,
+    "lender_exposures": 670,
+    "beneficiary_exposures": 1118
+  },
+  "entity_counts": {
+    "asset": 1302,
+    "beneficiary": 436,
+    "fund": 1112,
+    "lender": 285,
+    "project": 425
+  },
+  "edge_counts": {
+    "beneficiary_asset": 1143,
+    "beneficiary_fund": 1118,
+    "fund_asset": 1217,
+    "asset_project": 879,
+    "lender_asset": 709,
+    "lender_fund": 670,
+    "project_parent_child": 3
+  },
+  "edge_status_counts": {
+    "confirmed": 5002,
+    "review_required": 98,
+    "compatibility": 639
+  },
+  "token_counts": {
+    "asset": 16551,
+    "beneficiary": 1118,
+    "fund": 11529,
+    "lender": 670,
+    "project": 2046
+  },
+  "audit_counts": {
+    "beneficiary_without_asset_derivation": 9
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "campaign": "BACKFILL_2026_H2",
+  "partitions": [
+    {
+      "start": "2026-07-01",
+      "end_exclusive": "2026-08-01",
+      "api_records": 797,
+      "filtered_documents": 20,
+      "inserted": 20,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "29f76be04ffe52f596e860454956d63c"
+    }
+  ]
+}

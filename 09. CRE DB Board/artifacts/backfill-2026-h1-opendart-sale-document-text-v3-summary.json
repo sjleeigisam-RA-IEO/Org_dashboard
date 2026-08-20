@@ -1,0 +1,78 @@
+{
+  "attempted": 28,
+  "downloaded": 20,
+  "failed": 8,
+  "textBytes": 180606,
+  "ingestedByMonth": [
+    {
+      "month": "2026-01",
+      "documents": 4,
+      "inserted": 0,
+      "updated": 4
+    },
+    {
+      "month": "2026-02",
+      "documents": 5,
+      "inserted": 0,
+      "updated": 5
+    },
+    {
+      "month": "2026-03",
+      "documents": 2,
+      "inserted": 0,
+      "updated": 2
+    },
+    {
+      "month": "2026-04",
+      "documents": 1,
+      "inserted": 0,
+      "updated": 1
+    },
+    {
+      "month": "2026-05",
+      "documents": 3,
+      "inserted": 0,
+      "updated": 3
+    },
+    {
+      "month": "2026-06",
+      "documents": 5,
+      "inserted": 0,
+      "updated": 5
+    }
+  ],
+  "failures": [
+    {
+      "receipt_no": "20260106000306",
+      "error_class": "RuntimeError"
+    },
+    {
+      "receipt_no": "20260119000011",
+      "error_class": "RuntimeError"
+    },
+    {
+      "receipt_no": "20260130000741",
+      "error_class": "RuntimeError"
+    },
+    {
+      "receipt_no": "20260513000166",
+      "error_class": "RuntimeError"
+    },
+    {
+      "receipt_no": "20260605000640",
+      "error_class": "RuntimeError"
+    },
+    {
+      "receipt_no": "20260609000067",
+      "error_class": "RuntimeError"
+    },
+    {
+      "receipt_no": "20260630000277",
+      "error_class": "RuntimeError"
+    },
+    {
+      "receipt_no": "20260630001008",
+      "error_class": "RuntimeError"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "checked_at": "2026-08-18T02:07:16.781565+00:00",
+  "schema": "market_intelligence",
+  "source_snapshot": "C:\\10137_WorkSpace\\real-estate-market-intelligence\\backups\\market-pre-supabase-migration-20260818-015409.db",
+  "tables_compared": 97,
+  "row_count_mismatches": [],
+  "sample_hash_mismatches": [],
+  "postgres_objects": {
+    "tables": 98,
+    "views": 19,
+    "triggers": 12,
+    "indexes": 216
+  },
+  "postgres_constraints": {
+    "f": 249,
+    "c": 420,
+    "p": 98
+  },
+  "postgres_invalid_constraints": 0,
+  "transactional_write_readback": 1,
+  "migration_meta_present": true,
+  "source_integrity": "ok",
+  "source_fk_violations": 0,
+  "passed": true
+}

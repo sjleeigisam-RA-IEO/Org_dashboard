@@ -1,0 +1,72 @@
+[
+  {
+    "field": "asset_building_ledger.row",
+    "filled": 12,
+    "total": 43
+  },
+  {
+    "field": "asset_master.address_text",
+    "filled": 37,
+    "total": 43
+  },
+  {
+    "field": "asset_master.completion_date",
+    "filled": 27,
+    "total": 43
+  },
+  {
+    "field": "asset_master.far",
+    "filled": 12,
+    "total": 43
+  },
+  {
+    "field": "asset_master.gross_floor_area",
+    "filled": 33,
+    "total": 43
+  },
+  {
+    "field": "asset_master.latitude/longitude",
+    "filled": 30,
+    "total": 43
+  },
+  {
+    "field": "asset_master.pnu",
+    "filled": 27,
+    "total": 43
+  },
+  {
+    "field": "asset_master.scr",
+    "filled": 12,
+    "total": 43
+  },
+  {
+    "field": "asset_master.site_area",
+    "filled": 14,
+    "total": 43
+  },
+  {
+    "field": "funds.notion_business_stage_class",
+    "filled": 55,
+    "total": 55
+  },
+  {
+    "field": "funds.primary_asset_id",
+    "filled": 47,
+    "total": 55
+  },
+  {
+    "field": "funds.primary_asset_ids",
+    "filled": 0,
+    "total": 55
+  },
+  {
+    "field": "projects.primary_asset_id",
+    "filled": 30,
+    "total": 38
+  },
+  {
+    "field": "projects.primary_asset_ids",
+    "filled": 0,
+    "total": 38
+  }
+]

@@ -1,0 +1,81 @@
+﻿address_text,asset_confidence,asset_id,asset_role,canonical_name,dev_project_id,fund_confidence,fund_id,has_ledger,has_pnu,link_source,list_no,notion_business_stage_class,short_name,vehicle_role
+울산광역시 울주군 삼남읍 교동리 1682-1번지,0.95,ast_eb6dfd75233b,primary_vehicle_asset,KTX울산역 오피스텔 개발사업,dp_001,0.99,P00034,False,True,funds.primary_asset_id,1,부실,P울산KTX,primary_pfv_vehicle
+울산광역시 울주군 삼남읍 교동리 1682-1번지,0.95,ast_eb6dfd75233b,primary_project_asset,KTX울산역 오피스텔 개발사업,dp_001,0.99,P00034,False,True,projects.primary_asset_id,1,부실,P울산KTX,primary_pfv_vehicle
+울산광역시 울주군 삼남읍 교동리 1682-1번지,0.94,ast_eb6dfd75233b,vehicle_linked_asset,KTX울산역 오피스텔 개발사업,dp_001,0.99,P00034,False,True,asset_fund_links,1,부실,P울산KTX,primary_pfv_vehicle
+울산광역시 울주군 삼남읍 교동리 1682-1번지,0.95,ast_eb6dfd75233b,project_linked_asset,KTX울산역 오피스텔 개발사업,dp_001,0.99,P00034,False,True,asset_project_links,1,부실,P울산KTX,primary_pfv_vehicle
+서울특별시 종로구 관훈동 155-2 외 4필지,0.97,ast_97eee497ab45,supporting_vehicle_linked_asset,PFV_Lotus (지분증권),dp_002,0.99,P00007,True,True,asset_fund_links,2,운영/실물,P로터스,primary_pfv_vehicle
+서울특별시 종로구 관훈동 155-2 외 4필지,0.97,ast_f40e9a6c4433,supporting_vehicle_linked_asset,PFV_Lotus (사채),dp_002,0.99,P00007,True,True,asset_fund_links,2,운영/실물,P로터스,primary_pfv_vehicle
+서울특별시 종로구 관훈동 155-2 외 4필지,0.97,ast_97eee497ab45,supporting_vehicle_linked_asset,PFV_Lotus (지분증권),dp_002,0.98,112114,True,True,asset_fund_links,2,운영/실물,120호,supporting_fund_vehicle
+서울특별시 종로구 관훈동 155-2 외 4필지,0.97,ast_f40e9a6c4433,supporting_vehicle_linked_asset,PFV_Lotus (사채),dp_002,0.98,112114,True,True,asset_fund_links,2,운영/실물,120호,supporting_fund_vehicle
+서울특별시 종로구 관훈동 155-2 외 4필지,0.97,ast_97eee497ab45,supporting_vehicle_linked_asset,PFV_Lotus (지분증권),dp_002,0.98,112115,True,True,asset_fund_links,2,운영/실물,121호,supporting_fund_vehicle
+서울특별시 종로구 관훈동 155-2 외 4필지,0.97,ast_f40e9a6c4433,supporting_vehicle_linked_asset,PFV_Lotus (사채),dp_002,0.98,112115,True,True,asset_fund_links,2,운영/실물,121호,supporting_fund_vehicle
+"서울특별시 성동구 성수동2가 314-10, 314-11, 314-27번지",0.95,ast_fa825d8bd449,primary_vehicle_asset,성수동 복합시설 개발사업,dp_003,0.99,P00010,False,False,funds.primary_asset_id,3,운영/실물,P성수PFV1,primary_pfv_vehicle
+"서울특별시 성동구 성수동2가 314-10, 314-11, 314-27번지",0.95,ast_fa825d8bd449,primary_project_asset,성수동 복합시설 개발사업,dp_003,0.99,P00010,False,False,projects.primary_asset_id,3,운영/실물,P성수PFV1,primary_pfv_vehicle
+"서울특별시 성동구 성수동2가 314-10, 314-11, 314-27번지",0.94,ast_fa825d8bd449,vehicle_linked_asset,성수동 복합시설 개발사업,dp_003,0.99,P00010,False,False,asset_fund_links,3,운영/실물,P성수PFV1,primary_pfv_vehicle
+"서울특별시 성동구 성수동2가 314-10, 314-11, 314-27번지",0.95,ast_fa825d8bd449,project_linked_asset,성수동 복합시설 개발사업,dp_003,0.99,P00010,False,False,asset_project_links,3,운영/실물,P성수PFV1,primary_pfv_vehicle
+경기도 안성시 원곡면 성은리 319-1,0.95,ast_d9f820e5df21,primary_project_asset,안성 성은지구 물류센터,dp_004,0.99,P00014,False,False,projects.primary_asset_id,4,운영/실물,P안성성은물류,primary_pfv_vehicle
+경기도 안성시 원곡면 성은리 319-1,0.95,ast_d9f820e5df21,primary_vehicle_asset,안성 성은지구 물류센터,dp_004,0.99,P00014,False,False,funds.primary_asset_id,4,운영/실물,P안성성은물류,primary_pfv_vehicle
+경기도 안성시 원곡면 성은리 319-1,0.95,ast_d9f820e5df21,project_linked_asset,안성 성은지구 물류센터,dp_004,0.99,P00014,False,False,asset_project_links,4,운영/실물,P안성성은물류,primary_pfv_vehicle
+경기도 안성시 원곡면 성은리 319-1,0.94,ast_d9f820e5df21,vehicle_linked_asset,안성 성은지구 물류센터,dp_004,0.99,P00014,False,False,asset_fund_links,4,운영/실물,P안성성은물류,primary_pfv_vehicle
+,0.95,ast_f5307db6bfad,primary_vehicle_asset,제주화북상업지역 주상복합용지 C1블럭 주상복합시설,dp_005,0.99,P00028,False,False,funds.primary_asset_id,5,부실,P디에스,primary_pfv_vehicle
+,0.95,ast_f5307db6bfad,primary_project_asset,제주화북상업지역 주상복합용지 C1블럭 주상복합시설,dp_005,0.99,P00028,False,False,projects.primary_asset_id,5,부실,P디에스,primary_pfv_vehicle
+,0.94,ast_f5307db6bfad,vehicle_linked_asset,제주화북상업지역 주상복합용지 C1블럭 주상복합시설,dp_005,0.99,P00028,False,False,asset_fund_links,5,부실,P디에스,primary_pfv_vehicle
+,0.95,ast_f5307db6bfad,project_linked_asset,제주화북상업지역 주상복합용지 C1블럭 주상복합시설,dp_005,0.99,P00028,False,False,asset_project_links,5,부실,P디에스,primary_pfv_vehicle
+은평구 진관동 208-10 일원,0.95,ast_7dc6f67bfd0a,primary_project_asset,은평 시니어레지던스,dp_006,0.99,P00033,False,True,projects.primary_asset_id,6,개발,P은평진관동,primary_pfv_vehicle
+은평구 진관동 208-10 일원,0.95,ast_7dc6f67bfd0a,primary_vehicle_asset,은평 시니어레지던스,dp_006,0.99,P00033,False,True,funds.primary_asset_id,6,개발,P은평진관동,primary_pfv_vehicle
+은평구 진관동 208-10 일원,0.94,ast_7dc6f67bfd0a,vehicle_linked_asset,은평 시니어레지던스,dp_006,0.99,P00033,False,True,asset_fund_links,6,개발,P은평진관동,primary_pfv_vehicle
+은평구 진관동 208-10 일원,0.95,ast_7dc6f67bfd0a,project_linked_asset,은평 시니어레지던스,dp_006,0.99,P00033,False,True,asset_project_links,6,개발,P은평진관동,primary_pfv_vehicle
+충청남도 공주시 웅진동 1-1,0.95,ast_acf1169ec73d,primary_vehicle_asset,공주시 웅진동 공동주택,dp_007,0.99,P00025,True,True,funds.primary_asset_id,7,부실,P트리니티공주,primary_pfv_vehicle
+충청남도 공주시 웅진동 1-1,0.95,ast_acf1169ec73d,primary_project_asset,공주시 웅진동 공동주택,dp_007,0.99,P00025,True,True,projects.primary_asset_id,7,부실,P트리니티공주,primary_pfv_vehicle
+충청남도 공주시 웅진동 1-1,0.98,ast_acf1169ec73d,vehicle_linked_asset,공주시 웅진동 공동주택,dp_007,0.99,P00025,True,True,asset_fund_links,7,부실,P트리니티공주,primary_pfv_vehicle
+충청남도 공주시 웅진동 1-1,0.95,ast_acf1169ec73d,project_linked_asset,공주시 웅진동 공동주택,dp_007,0.99,P00025,True,True,asset_project_links,7,부실,P트리니티공주,primary_pfv_vehicle
+중랑구 상봉동 109-28 외,0.95,ast_5e78208b8107,primary_project_asset,상봉 청년주택 개발,dp_008,0.99,P00019,False,False,projects.primary_asset_id,8,운영/실물,P상봉IRD,primary_pfv_vehicle
+중랑구 상봉동 109-28 외,0.95,ast_5e78208b8107,primary_vehicle_asset,상봉 청년주택 개발,dp_008,0.99,P00019,False,False,funds.primary_asset_id,8,운영/실물,P상봉IRD,primary_pfv_vehicle
+중랑구 상봉동 109-28 외,0.94,ast_5e78208b8107,vehicle_linked_asset,상봉 청년주택 개발,dp_008,0.99,P00019,False,False,asset_fund_links,8,운영/실물,P상봉IRD,primary_pfv_vehicle
+중랑구 상봉동 109-28 외,0.95,ast_5e78208b8107,project_linked_asset,상봉 청년주택 개발,dp_008,0.99,P00019,False,False,asset_project_links,8,운영/실물,P상봉IRD,primary_pfv_vehicle
+경기도 오산시 오산세교2지구 M1BL,0.95,ast_04ce3ef6593c,primary_vehicle_asset,오산세교2지구 M-1BL 주상복합,dp_009,0.99,P00012,False,False,funds.primary_asset_id,9,개발,P오산세교아트,primary_pfv_vehicle
+경기도 오산시 오산세교2지구 M1BL,0.95,ast_04ce3ef6593c,primary_project_asset,오산세교2지구 M-1BL 주상복합,dp_009,0.99,P00012,False,False,projects.primary_asset_id,9,개발,P오산세교아트,primary_pfv_vehicle
+경기도 오산시 오산세교2지구 M1BL,0.94,ast_04ce3ef6593c,vehicle_linked_asset,오산세교2지구 M-1BL 주상복합,dp_009,0.99,P00012,False,False,asset_fund_links,9,개발,P오산세교아트,primary_pfv_vehicle
+경기도 오산시 오산세교2지구 M1BL,0.95,ast_04ce3ef6593c,project_linked_asset,오산세교2지구 M-1BL 주상복합,dp_009,0.99,P00012,False,False,asset_project_links,9,개발,P오산세교아트,primary_pfv_vehicle
+서울시 강남구 수서동 197번지 일원,0.95,ast_cd2c32700ef7,primary_vehicle_asset,수서역환승센터복합개발사업,dp_010,0.99,P00027,False,True,funds.primary_asset_id,10,개발,P수서역환승센터,primary_pfv_vehicle
+서울시 강남구 수서동 197번지 일원,0.95,ast_cd2c32700ef7,primary_project_asset,수서역환승센터복합개발사업,dp_010,0.99,P00027,False,True,projects.primary_asset_id,10,개발,P수서역환승센터,primary_pfv_vehicle
+서울시 강남구 수서동 197번지 일원,0.94,ast_cd2c32700ef7,vehicle_linked_asset,수서역환승센터복합개발사업,dp_010,0.99,P00027,False,True,asset_fund_links,10,개발,P수서역환승센터,primary_pfv_vehicle
+서울시 강남구 수서동 197번지 일원,0.95,ast_cd2c32700ef7,project_linked_asset,수서역환승센터복합개발사업,dp_010,0.99,P00027,False,True,asset_project_links,10,개발,P수서역환승센터,primary_pfv_vehicle
+"서울특별시 종로구 효제동 315-1, 315-6",0.95,ast_dfa1348ddd15,primary_project_asset,효제동 오피스텔 개발사업,dp_011,0.99,P00009,False,True,projects.primary_asset_id,11,부실,P효제아트,primary_pfv_vehicle
+"서울특별시 종로구 효제동 315-1, 315-6",0.95,ast_dfa1348ddd15,primary_vehicle_asset,효제동 오피스텔 개발사업,dp_011,0.99,P00009,False,True,funds.primary_asset_id,11,부실,P효제아트,primary_pfv_vehicle
+"서울특별시 종로구 효제동 315-1, 315-6",0.94,ast_dfa1348ddd15,vehicle_linked_asset,효제동 오피스텔 개발사업,dp_011,0.99,P00009,False,True,asset_fund_links,11,부실,P효제아트,primary_pfv_vehicle
+"서울특별시 종로구 효제동 315-1, 315-6",0.95,ast_dfa1348ddd15,project_linked_asset,효제동 오피스텔 개발사업,dp_011,0.99,P00009,False,True,asset_project_links,11,부실,P효제아트,primary_pfv_vehicle
+서울시 서초구 서초동 1005-1 외,0.95,ast_a5ca6d81dcd9,primary_project_asset,서리풀개발사업,dp_012,0.99,P00005,False,False,projects.primary_asset_id,12,개발,P에스비씨,primary_pfv_vehicle
+서울시 서초구 서초동 1005-1 외,0.95,ast_a5ca6d81dcd9,primary_vehicle_asset,서리풀개발사업,dp_012,0.99,P00005,False,False,funds.primary_asset_id,12,개발,P에스비씨,primary_pfv_vehicle
+사동 1422-15,0.95,ast_30c376cd6730,supporting_vehicle_asset,이지스312호 수익증권,dp_012,0.99,P00005,True,True,funds.primary_asset_id,12,개발,P에스비씨,primary_pfv_vehicle
+사동 1422-15,0.98,ast_30c376cd6730,supporting_vehicle_linked_asset,이지스312호 수익증권,dp_012,0.99,P00005,True,True,asset_fund_links,12,개발,P에스비씨,primary_pfv_vehicle
+서울시 서초구 서초동 1005-1 외,0.94,ast_a5ca6d81dcd9,vehicle_linked_asset,서리풀개발사업,dp_012,0.99,P00005,False,False,asset_fund_links,12,개발,P에스비씨,primary_pfv_vehicle
+서울시 서초구 서초동 1005-1 외,0.95,ast_a5ca6d81dcd9,project_linked_asset,서리풀개발사업,dp_012,0.99,P00005,False,False,asset_project_links,12,개발,P에스비씨,primary_pfv_vehicle
+서울시 서초구 서초동 1005-1외,0.95,ast_da9f73969f26,supporting_vehicle_asset,에스비씨PFV(P00005),dp_012,0.99,P00005,False,False,funds.primary_asset_id,12,개발,P에스비씨,primary_pfv_vehicle
+서울시 서초구 서초동 1005-1외,0.94,ast_da9f73969f26,supporting_vehicle_linked_asset,에스비씨PFV(P00005),dp_012,0.99,P00005,False,False,asset_fund_links,12,개발,P에스비씨,primary_pfv_vehicle
+서울시 서초구 서초동 1005-1 외,0.95,ast_a5ca6d81dcd9,primary_project_asset,서리풀개발사업,dp_012,0.92,112341,False,False,projects.primary_asset_id,12,개발,312호,supporting_fund_vehicle
+서울시 서초구 서초동 1005-1 외,0.95,ast_a5ca6d81dcd9,primary_vehicle_asset,서리풀개발사업,dp_012,0.92,112341,False,False,funds.primary_asset_id,12,개발,312호,supporting_fund_vehicle
+사동 1422-15,0.98,ast_30c376cd6730,supporting_vehicle_linked_asset,이지스312호 수익증권,dp_012,0.92,112341,True,True,asset_fund_links,12,개발,312호,supporting_fund_vehicle
+사동 1422-15,0.95,ast_30c376cd6730,supporting_vehicle_asset,이지스312호 수익증권,dp_012,0.92,112341,True,True,funds.primary_asset_id,12,개발,312호,supporting_fund_vehicle
+서울시 서초구 서초동 1005-1 외,0.94,ast_a5ca6d81dcd9,vehicle_linked_asset,서리풀개발사업,dp_012,0.92,112341,False,False,asset_fund_links,12,개발,312호,supporting_fund_vehicle
+서울시 서초구 서초동 1005-1 외,0.95,ast_a5ca6d81dcd9,project_linked_asset,서리풀개발사업,dp_012,0.92,112341,False,False,asset_project_links,12,개발,312호,supporting_fund_vehicle
+서울시 서초구 서초동 1005-1외,0.95,ast_da9f73969f26,supporting_vehicle_asset,에스비씨PFV(P00005),dp_012,0.92,112341,False,False,funds.primary_asset_id,12,개발,312호,supporting_fund_vehicle
+서울시 서초구 서초동 1005-1외,0.94,ast_da9f73969f26,supporting_vehicle_linked_asset,에스비씨PFV(P00005),dp_012,0.92,112341,False,False,asset_fund_links,12,개발,312호,supporting_fund_vehicle
+서울시 서초구 서초동 1005-1 외,0.95,ast_a5ca6d81dcd9,primary_project_asset,서리풀개발사업,dp_012,0.90,112532,False,False,projects.primary_asset_id,12,개발,409호,supporting_fund_vehicle
+서울시 서초구 서초동 1005-1 외,0.95,ast_a5ca6d81dcd9,primary_vehicle_asset,서리풀개발사업,dp_012,0.90,112532,False,False,funds.primary_asset_id,12,개발,409호,supporting_fund_vehicle
+사동 1422-15,0.98,ast_30c376cd6730,supporting_vehicle_linked_asset,이지스312호 수익증권,dp_012,0.90,112532,True,True,asset_fund_links,12,개발,409호,supporting_fund_vehicle
+사동 1422-15,0.95,ast_30c376cd6730,supporting_vehicle_asset,이지스312호 수익증권,dp_012,0.90,112532,True,True,funds.primary_asset_id,12,개발,409호,supporting_fund_vehicle
+서울시 서초구 서초동 1005-1 외,0.95,ast_a5ca6d81dcd9,project_linked_asset,서리풀개발사업,dp_012,0.90,112532,False,False,asset_project_links,12,개발,409호,supporting_fund_vehicle
+서울시 서초구 서초동 1005-1 외,0.94,ast_a5ca6d81dcd9,vehicle_linked_asset,서리풀개발사업,dp_012,0.90,112532,False,False,asset_fund_links,12,개발,409호,supporting_fund_vehicle
+서울시 서초구 서초동 1005-1외,0.94,ast_da9f73969f26,supporting_vehicle_linked_asset,에스비씨PFV(P00005),dp_012,0.90,112532,False,False,asset_fund_links,12,개발,409호,supporting_fund_vehicle
+서울시 서초구 서초동 1005-1외,0.95,ast_da9f73969f26,supporting_vehicle_asset,에스비씨PFV(P00005),dp_012,0.90,112532,False,False,funds.primary_asset_id,12,개발,409호,supporting_fund_vehicle
+,0.95,ast_508cc8fee1ee,primary_project_asset,세운5구역PFV(주) 지분,dp_013,0.99,P00006,False,False,projects.primary_asset_id,13,개발,P세운5구역,primary_pfv_vehicle
+"서울시 중구 산림동 190-3번지 일원 (세운지구 5-1, 5-3구역)",0.95,ast_b04e9cb1a044,primary_vehicle_asset,세운5구역 개발사업,dp_013,0.99,P00006,False,True,funds.primary_asset_id,13,개발,P세운5구역,primary_pfv_vehicle
+,0.94,ast_508cc8fee1ee,supporting_vehicle_linked_asset,세운5구역PFV(주) 지분,dp_013,0.99,P00006,False,False,asset_fund_links,13,개발,P세운5구역,primary_pfv_vehicle
+,0.95,ast_508cc8fee1ee,supporting_vehicle_asset,세운5구역PFV(주) 지분,dp_013,0.99,P00006,False,False,funds.primary_asset_id,13,개발,P세운5구역,primary_pfv_vehicle
+,0.94,ast_508cc8fee1ee,supporting_vehicle_linked_asset,세운5구역PFV(주) 지분,dp_013,0.99,P00006,False,False,asset_fund_links,13,개발,P세운5구역,primary_pfv_vehicle
+,0.95,ast_508cc8fee1ee,project_linked_asset,세운5구역PFV(주) 지분,dp_013,0.99,P00006,False,False,asset_project_links,13,개발,P세운5구역,primary_pfv_vehicle
+,0.95,ast_508cc8fee1ee,supporting_vehicle_asset,세운5구역PFV(주) 지분,dp_013,0.99,P00006,False,False,funds.primary_asset_id,13,개발,P세운5구역,primary_pfv_vehicle
+"서울시 중구 산림동 190-3번지 일원 (세운지구 5-1, 5-3구역)",0.94,ast_b04e9cb1a044,vehicle_linked_asset,세운5구역 개발사업,dp_013,0.99,P00006,False,True,asset_fund_links,13,개발,P세운5구역,primary_pfv_vehicle
+,0.95,ast_508cc8fee1ee,primary_project_asset,세운5구역PFV(주) 지분,dp_013,0.98,112641,False,False,projects.primary_asset_id,13,개발,454호,supporting_fund_vehicle
+"서울시 중구 산림동 190-3번지 일원 (세운지구 5-1, 5-3구역)",0.95,ast_b04e9cb1a044,primary_vehicle_asset,세운5구역 개발사업,dp_013,0.98,112641,False,True,funds.primary_asset_id,13,개발,454호,supporting_fund_vehicle

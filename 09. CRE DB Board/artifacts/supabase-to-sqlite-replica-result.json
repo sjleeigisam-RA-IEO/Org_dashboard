@@ -1,0 +1,19 @@
+{
+  "status": "activated_sub_replica",
+  "direction": "supabase_to_sqlite",
+  "schema": "market_intelligence",
+  "created_at": "2026-08-19T05:05:16.936547+00:00",
+  "candidate": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\09. CRE DB Board\\data\\market.sub.candidate.db",
+  "tables": 98,
+  "rows": 317162,
+  "integrity": "ok",
+  "foreign_key_violations": 0,
+  "row_count_mismatches": [],
+  "sha256": "3dd796c2fc792dcf4cf00150a6b3f53bb55c82cef289ee578577cae5ef5f20ca",
+  "activation": {
+    "activated": true,
+    "live": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\09. CRE DB Board\\data\\market.db",
+    "backup": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\09. CRE DB Board\\backups\\market-pre-sub-activation-20260819-050517.db",
+    "local_sub_read_only": true
+  }
+}

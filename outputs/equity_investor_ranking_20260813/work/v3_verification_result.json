@@ -1,0 +1,29 @@
+{
+  "ok": true,
+  "version": "v3",
+  "displayUnit": "백만원",
+  "investorCount": 446,
+  "totals": {
+    "count": 446,
+    "committed": 35746269688752,
+    "invested": 29293112462911,
+    "remaining": 6453157225846
+  },
+  "classCounts": {
+    "기관": 42,
+    "금융기관": 144,
+    "일반기업": 131,
+    "개인": 37,
+    "펀드·리츠·SPC": 87,
+    "미분류": 5
+  },
+  "unclassifiedNames": [
+    "미정",
+    "비공개",
+    "우리",
+    "투자자1",
+    "I.O.IV"
+  ],
+  "workbookPath": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\outputs\\equity_investor_ranking_20260813\\RA_에쿼티_투자자_금액순위_20260813_v3.xlsx",
+  "dashboardPath": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\outputs\\equity_investor_ranking_20260813\\dashboard\\index.html"
+}

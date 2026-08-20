@@ -1,0 +1,49 @@
+{
+  "overall": {
+    "transactions": 876,
+    "amountKrw": 24165193410000,
+    "amountTrillionKrw": 24.165,
+    "areaM2": 3493266.22,
+    "medianAmountKrw": 7500000000,
+    "medianAreaM2": 1654.41
+  },
+  "reconciliations": {
+    "byScope": {
+      "transactions": true,
+      "amountKrw": true,
+      "areaM2": true
+    },
+    "byRegion": {
+      "transactions": true,
+      "amountKrw": true,
+      "areaM2": true
+    },
+    "byQuarter": {
+      "transactions": true,
+      "amountKrw": true,
+      "areaM2": true
+    },
+    "byUseBucket": {
+      "transactions": true,
+      "amountKrw": true,
+      "areaM2": true
+    }
+  },
+  "macroCompleteness": {
+    "baseRateMonths": 12,
+    "corporateLoanRateMonths": 12,
+    "cpiYoyMonths": 12
+  },
+  "reportSha256": "0c755e495145924b5c52276a11702d6c4dca8f6e745d16faadb0684bc982aef5",
+  "warnings": [
+    "Transaction groups are candidates, not canonical events",
+    "Price per m2 includes land value",
+    "12-month macro correlations are exploratory"
+  ],
+  "versionLineage": {
+    "allDocumentVersionRows": 30708,
+    "latestAuthoritativeRows": 30681,
+    "supersededRowsExcluded": 27,
+    "independentAnalysisDifference": "877 groups included superseded versions; authoritative latest-only result is 876 groups"
+  }
+}

@@ -1,0 +1,128 @@
+[
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\t5t-dashboard\\data\\project_mission.json",
+    "rows": 421,
+    "source": "notion_snapshot"
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\[new]개발자산_용도_보완_대상.xlsx",
+    "status": "read_error",
+    "error": "Pandas requires version '3.1.5' or newer of 'openpyxl' (version '3.1.2' currently installed)."
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\[new]미지정_자산_전수_리스트.xlsx",
+    "status": "read_error",
+    "error": "Pandas requires version '3.1.5' or newer of 'openpyxl' (version '3.1.2' currently installed)."
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\[new]주소_보완_대상_리스트.xlsx",
+    "status": "read_error",
+    "error": "Pandas requires version '3.1.5' or newer of 'openpyxl' (version '3.1.2' currently installed)."
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\DB_전용_펀드_리스트.csv",
+    "sheet": "csv",
+    "rows": 660,
+    "columns": [
+      "펀드코드",
+      "약칭",
+      "펀드명",
+      "섹터"
+    ]
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\누락_펀드_리스트_분석.csv",
+    "sheet": "csv",
+    "rows": 55,
+    "columns": [
+      "펀드코드",
+      "펀드명",
+      "약정_에쿼티",
+      "약정_대출액",
+      "AUM_합계"
+    ]
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\보완_필요_데이터_리스트.csv",
+    "sheet": "csv",
+    "rows": 494,
+    "columns": [
+      "펀드코드",
+      "펀드명",
+      "AUM(약정)",
+      "대주정보",
+      "수익자정보",
+      "자산정보"
+    ]
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\DB sources\\2025년 인원.xlsx",
+    "status": "read_error",
+    "error": "Pandas requires version '3.1.5' or newer of 'openpyxl' (version '3.1.2' currently installed)."
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\DB sources\\2026.05 인원.xlsx",
+    "status": "read_error",
+    "error": "Pandas requires version '3.1.5' or newer of 'openpyxl' (version '3.1.2' currently installed)."
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\DB sources\\2605\\투자 자산 관리_20260515.xlsx",
+    "status": "read_error",
+    "error": "Pandas requires version '3.1.5' or newer of 'openpyxl' (version '3.1.2' currently installed)."
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\DB sources\\2605\\펀드 AUM 관리_20260515.xlsx",
+    "status": "read_error",
+    "error": "Pandas requires version '3.1.5' or newer of 'openpyxl' (version '3.1.2' currently installed)."
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\DB sources\\2605\\펀드 관리_20260515.xlsx",
+    "status": "read_error",
+    "error": "Pandas requires version '3.1.5' or newer of 'openpyxl' (version '3.1.2' currently installed)."
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\DB sources\\2605\\펀드별 대주 정보 조회_20260515.xlsx",
+    "status": "read_error",
+    "error": "Pandas requires version '3.1.5' or newer of 'openpyxl' (version '3.1.2' currently installed)."
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\DB sources\\2605\\펀드별 수익자 정보 조회_20260515.xlsx",
+    "status": "read_error",
+    "error": "Pandas requires version '3.1.5' or newer of 'openpyxl' (version '3.1.2' currently installed)."
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\DB sources\\2605\\펀드별 투자 자산 조회_20260515.xlsx",
+    "status": "read_error",
+    "error": "Pandas requires version '3.1.5' or newer of 'openpyxl' (version '3.1.2' currently installed)."
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\DB sources\\대주 정보 조회_20260608.xlsx",
+    "status": "read_error",
+    "error": "Pandas requires version '3.1.5' or newer of 'openpyxl' (version '3.1.2' currently installed)."
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\DB sources\\수익자 정보 조회_20260608.xlsx",
+    "status": "read_error",
+    "error": "Pandas requires version '3.1.5' or newer of 'openpyxl' (version '3.1.2' currently installed)."
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\DB sources\\투자 자산 관리_20260608.xlsx",
+    "status": "read_error",
+    "error": "Pandas requires version '3.1.5' or newer of 'openpyxl' (version '3.1.2' currently installed)."
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\DB sources\\투자 자산 조회_20260608.xlsx",
+    "status": "read_error",
+    "error": "Pandas requires version '3.1.5' or newer of 'openpyxl' (version '3.1.2' currently installed)."
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\DB sources\\펀드 AUM 관리_20260608.xlsx",
+    "status": "read_error",
+    "error": "Pandas requires version '3.1.5' or newer of 'openpyxl' (version '3.1.2' currently installed)."
+  },
+  {
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\DB sources\\펀드 관리_20260608.xlsx",
+    "status": "read_error",
+    "error": "Pandas requires version '3.1.5' or newer of 'openpyxl' (version '3.1.2' currently installed)."
+  }
+]

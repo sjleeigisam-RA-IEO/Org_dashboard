@@ -1,0 +1,230 @@
+{
+  "source_date": "20260713",
+  "source_files": {
+    "fund": "펀드 관리_20260713.xlsx",
+    "aum": "펀드 AUM 관리_20260713.xlsx",
+    "asset_manage": "투자 자산 관리_20260713.xlsx",
+    "fund_asset": "투자 자산 조회_20260713.xlsx",
+    "lender": "대주 정보 조회_20260713.xlsx",
+    "beneficiary": "수익자 정보 조회_20260713.xlsx"
+  },
+  "source_rows": {
+    "fund": 1124,
+    "aum": 895,
+    "asset_manage": 797,
+    "fund_asset": 978,
+    "lender_raw": 624,
+    "lender_collapsed": 524,
+    "beneficiary_raw": 1155,
+    "beneficiary_collapsed": 1120
+  },
+  "before_counts": {
+    "funds": 1112,
+    "fund_assets": 903,
+    "asset_master": 1302,
+    "asset_fund_links": 1217,
+    "lender_exposures": 670,
+    "beneficiary_exposures": 1118,
+    "aum_snapshots": 1162,
+    "fund_lifecycle": 778
+  },
+  "plan": {
+    "funds": {
+      "insert": 13,
+      "update": 1111,
+      "unchanged": 0,
+      "skipped": 0,
+      "retained_not_in_source": 1,
+      "server_collision_groups": 0,
+      "changed_field_counts": {
+        "notion_asset_nature_class": 626,
+        "notion_business_stage_class": 578,
+        "aum_base_date": 835,
+        "aum_source": 886,
+        "base_price": 519,
+        "net_asset_value": 526,
+        "aum_input_date": 566,
+        "deposit_won": 28,
+        "benchmark_aum": 182,
+        "invested_deposit_won": 29,
+        "invested_aum": 135,
+        "equity_won": 146,
+        "invested_equity_won": 90,
+        "dept": 119,
+        "division": 73,
+        "notion_base_asset_class": 81,
+        "loan_won": 35,
+        "invested_loan_won": 47,
+        "maturity_date": 90,
+        "termination_date": 31,
+        "fund_name": 7,
+        "notion_holding_type_class": 9,
+        "status": 25,
+        "aum_status": 27,
+        "recruitment_type": 7,
+        "manager": 16,
+        "setup_date": 16,
+        "asset_name": 3,
+        "location": 2,
+        "project_mission_name": 3,
+        "fund_class": 1,
+        "primary_region": 21,
+        "is_development": 10,
+        "is_delegated": 9,
+        "sector": 17,
+        "notion_investment_strategy_class": 3
+      }
+    },
+    "asset_master": {
+      "insert": 9,
+      "update": 776,
+      "unchanged": 12,
+      "skipped": 0,
+      "retained_not_in_source": 514,
+      "server_collision_groups": 0,
+      "changed_field_counts": {
+        "business_stage": 508,
+        "site_area": 216,
+        "floors_down": 214,
+        "floors_up": 246,
+        "parking": 233,
+        "portfolio_region": 772,
+        "gross_floor_area": 51,
+        "city": 60,
+        "completion_date": 72,
+        "canonical_name": 2,
+        "address_text": 1
+      }
+    },
+    "fund_assets": {
+      "insert": 119,
+      "update": 859,
+      "unchanged": 0,
+      "skipped": 0,
+      "retained_not_in_source": 53,
+      "server_collision_groups": 0,
+      "changed_field_counts": {
+        "asset_type": 307,
+        "address": 340,
+        "gross_floor_area": 280,
+        "gfa": 169,
+        "metadata": 859,
+        "asset_id": 408,
+        "main_usage": 427,
+        "asset_name": 13,
+        "completion_date": 16,
+        "location_category": 7
+      }
+    },
+    "lender_exposures": {
+      "insert": 25,
+      "update": 499,
+      "unchanged": 0,
+      "skipped": 0,
+      "retained_not_in_source": 171,
+      "server_collision_groups": 0,
+      "changed_field_counts": {
+        "base_rate": 94,
+        "spread_rate": 70,
+        "interest_rate": 499,
+        "all_in_rate": 393,
+        "drawdown_date": 499,
+        "loan_maturity_date": 499,
+        "trench": 499,
+        "interest_type": 499,
+        "remarks": 499,
+        "base_date": 499,
+        "drawn_amt": 53,
+        "remaining_amt": 50,
+        "committed_amt": 5
+      }
+    },
+    "beneficiary_exposures": {
+      "insert": 106,
+      "update": 1014,
+      "unchanged": 0,
+      "skipped": 0,
+      "retained_not_in_source": 104,
+      "server_collision_groups": 0,
+      "changed_field_counts": {
+        "setup_units": 535,
+        "setup_amt": 535,
+        "share_ratio": 535,
+        "invested_date": 951,
+        "base_date": 1014,
+        "beneficiary_type": 859,
+        "beneficiary_cat": 899,
+        "committed_amt": 189,
+        "remaining_amt": 185,
+        "invested_amt": 104,
+        "remarks": 7,
+        "asset_id": 13
+      }
+    },
+    "aum_snapshots": {
+      "insert": 628,
+      "update": 266,
+      "unchanged": 0,
+      "skipped": 0,
+      "retained_not_in_source": 896,
+      "server_collision_groups": 0,
+      "changed_field_counts": {
+        "metadata": 266,
+        "loan": 30,
+        "equity": 26,
+        "deposit": 26,
+        "is_liquidated": 6
+      }
+    },
+    "fund_lifecycle": {
+      "insert": 116,
+      "update": 778,
+      "unchanged": 0,
+      "skipped": 0,
+      "retained_not_in_source": 0,
+      "server_collision_groups": 0,
+      "changed_field_counts": {
+        "liquidation_date": 289,
+        "asset_name": 37,
+        "is_aum_target": 284,
+        "metadata": 778,
+        "aum_base": 168,
+        "aum_base_date": 512,
+        "maturity_date": 35,
+        "op_status": 25,
+        "fund_name": 4,
+        "sector": 14
+      }
+    }
+  },
+  "conflicts": {
+    "funds": [],
+    "asset_master": [],
+    "fund_assets": [],
+    "fund_asset_server": {},
+    "fund_asset_collapsed_duplicates": [
+      {
+        "key": [
+          "112264",
+          "익선동 상업시설 개발"
+        ],
+        "rows": 2
+      }
+    ],
+    "exposures": {
+      "lender_source": [],
+      "lender_db": {},
+      "beneficiary_source": [],
+      "beneficiary_db": {}
+    }
+  },
+  "matching_policy": {
+    "funds": "exact fund_id; exact-name/code conflicts are not fuzzy-merged",
+    "asset_master": "exact asset_code, then exact name+address/name/address only when unique",
+    "fund_assets": "exact fund_id+asset_name, then exact fund_id+address only when unique",
+    "exposures": "exact fund_id+party name; base_date is updated as snapshot data",
+    "normalization": "outer whitespace and Excel scalar/date conversion only; no fuzzy matching",
+    "deletes": 0
+  },
+  "applied": false
+}

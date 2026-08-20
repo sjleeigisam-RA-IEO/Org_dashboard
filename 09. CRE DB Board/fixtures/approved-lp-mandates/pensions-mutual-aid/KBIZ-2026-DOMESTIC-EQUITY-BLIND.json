@@ -1,0 +1,137 @@
+{
+  "manifest_version": "1.0",
+  "manifest_id": "approved-lpmandate-kbiz-2026-domestic-equity-blind",
+  "status": "APPROVED",
+  "review": {
+    "reviewed_by": "hermes-official-primary-source-review",
+    "reviewed_at": "2026-08-20T12:10:00Z",
+    "approved_by": "hermes-parent-user-authorized-official-source-promotion",
+    "approved_at": "2026-08-20T12:11:00Z"
+  },
+  "sources": [
+    {
+      "id": "src-kbiz-162235",
+      "url": "https://www.kbiz.or.kr/ko/contents/bbs/view.do?seq=162235&topFixYn=N&mnSeq=211&befNextYn=Y",
+      "title": "2026년 국내 부동산 지분 블라인드 펀드 위탁운용사 선정 공고",
+      "publisher": "중소기업중앙회",
+      "document_type": "BID_NOTICE",
+      "published_at": "2026-02-09",
+      "accessed_at": "2026-08-20",
+      "rights_status": "EXCERPT_ALLOWED",
+      "exact_text": "2026년 국내 부동산 지분 블라인드 펀드 위탁운용사 선정 공고\n총 5,000억원 이내(1개) 예정\n블라인드 형태의 국내 부동산 펀드(REF)\n국내 핵심 권역 소재 Core 오피스 및 일부 기타 자산(물류, 호텔 등) 매입 지분 투자\n보통주, 지배지분에 한함. 우선주 및 소수지분, 재간접 투자 제외\n개발중인 자산 또는 개발 예정인 자산에는 투자 불가\n제안서 접수 마감 2026년 2월 27일 오후 4시\n2026년 3월 중 최종 선정"
+    }
+  ],
+  "organizations": [
+    {
+      "id": "org-kbiz",
+      "organization_type": "ASSOCIATION",
+      "canonical_name": "중소기업중앙회"
+    }
+  ],
+  "event": {
+    "id": "evt-kbiz-2026-domestic-equity-rfp",
+    "canonical_title": "2026년 노란우산 국내 부동산 지분 블라인드 펀드 위탁운용사 선정",
+    "current_stage_code": "MANAGER_RFP_OPEN",
+    "event_date_start": "2026-02-09",
+    "event_date_end": "2026-02-09",
+    "date_precision": "DAY",
+    "lifecycle_status": "ACTIVE",
+    "verification_level": "V2",
+    "overall_confidence": 1.0,
+    "evidence": {
+      "source_ids": [
+        "src-kbiz-162235"
+      ]
+    }
+  },
+  "mandate": {
+    "id": "mandate-kbiz-2026-domestic-equity-blind",
+    "lp_organization_id": "org-kbiz",
+    "mandate_code": "KBIZ-2026-DOMESTIC-EQUITY-BLIND",
+    "mandate_name": "2026년 노란우산 국내 부동산 지분 블라인드 펀드",
+    "vintage_year": 2026,
+    "announced_at": "2026-02-09",
+    "application_deadline": "2026-02-27T16:00:00+09:00",
+    "mandate_status": "UNKNOWN",
+    "mandate_scope": "DOMESTIC",
+    "metadata": {
+      "planned_final_selection": "2026-03",
+      "media_reported_manager": "미래에셋자산운용",
+      "selection_result_status": "MEDIA_ONLY_REQUIRES_PRIMARY_CONFIRMATION"
+    },
+    "evidence": {
+      "source_ids": [
+        "src-kbiz-162235"
+      ]
+    }
+  },
+  "tracks": [
+    {
+      "id": "track-kbiz-2026-domestic-equity-blind",
+      "track_code": "KBIZ-2026-DOMESTIC-EQUITY-BLIND",
+      "track_name": "국내 Core 부동산 지분 블라인드",
+      "strategy_code": "REAL_ESTATE",
+      "geography_code": "DOMESTIC",
+      "target_manager_count": 1,
+      "evidence": {
+        "source_ids": [
+          "src-kbiz-162235"
+        ]
+      }
+    }
+  ],
+  "guidelines": [
+    {
+      "id": "guideline-kbiz-2026-equity-strategy",
+      "track_id": "track-kbiz-2026-domestic-equity-blind",
+      "term_type": "STRATEGY",
+      "requirement_level": "REQUIRED",
+      "raw_text": "국내 핵심 권역 소재 Core 오피스 및 일부 기타 자산(물류, 호텔 등) 매입 지분 투자",
+      "value_kind": "TEXT",
+      "text_value": "Core 오피스 및 물류·호텔 지배지분",
+      "evidence": {
+        "source_ids": [
+          "src-kbiz-162235"
+        ]
+      }
+    },
+    {
+      "id": "guideline-kbiz-2026-equity-exclusion",
+      "track_id": "track-kbiz-2026-domestic-equity-blind",
+      "term_type": "EXCLUSION",
+      "requirement_level": "PROHIBITED",
+      "raw_text": "개발중인 자산 또는 개발 예정인 자산에는 투자 불가",
+      "value_kind": "TEXT",
+      "text_value": "개발자산 투자 불가",
+      "evidence": {
+        "source_ids": [
+          "src-kbiz-162235"
+        ]
+      }
+    }
+  ],
+  "selections": [],
+  "selection_members": [],
+  "selection_vehicles": [],
+  "amounts": [
+    {
+      "id": "amount-kbiz-2026-equity-total",
+      "scope_type": "TRACK",
+      "scope_id": "track-kbiz-2026-domestic-equity-blind",
+      "amount_basis": "TRACK_LP_COMMITMENT",
+      "amount": {
+        "kind": "AT_MOST",
+        "decimal": "500000000000",
+        "currency": "KRW",
+        "raw_value": "총 5,000억원 이내(1개) 예정"
+      },
+      "amount_status": "ANNOUNCED",
+      "evidence": {
+        "source_ids": [
+          "src-kbiz-162235"
+        ]
+      }
+    }
+  ],
+  "deployments": []
+}

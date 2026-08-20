@@ -1,0 +1,686 @@
+{
+  "field_summary": [
+    {
+      "field": "project_statuses",
+      "label": "프로젝트 상태",
+      "missing_count": 0,
+      "zero_check_count": 0,
+      "missing_projects": [],
+      "zero_check_projects": []
+    },
+    {
+      "field": "fund_short_names",
+      "label": "펀드 약칭",
+      "missing_count": 0,
+      "zero_check_count": 0,
+      "missing_projects": [],
+      "zero_check_projects": []
+    },
+    {
+      "field": "fund_names",
+      "label": "펀드명",
+      "missing_count": 0,
+      "zero_check_count": 0,
+      "missing_projects": [],
+      "zero_check_projects": []
+    },
+    {
+      "field": "fund_statuses",
+      "label": "펀드 상태",
+      "missing_count": 0,
+      "zero_check_count": 0,
+      "missing_projects": [],
+      "zero_check_projects": []
+    },
+    {
+      "field": "setup_dates",
+      "label": "설정일",
+      "missing_count": 0,
+      "zero_check_count": 0,
+      "missing_projects": [],
+      "zero_check_projects": []
+    },
+    {
+      "field": "legal_forms",
+      "label": "법적 형태",
+      "missing_count": 21,
+      "zero_check_count": 0,
+      "missing_projects": [
+        "동부산 테마파크 개발사업",
+        "상봉동 청년주택",
+        "부천 소사 공동주택 개발사업",
+        "부림빌딩",
+        "효제동 주거복합 개발사업",
+        "팩토리얼 성수",
+        "오산세교 주상복합 개발사업",
+        "안성 성은 물류센터",
+        "청라 오피스텔 개발사업",
+        "천안 성성7지구 공동주택 개발사업",
+        "효제동 주거용 오피스텔",
+        "공주시 공동주택 개발사업",
+        "수서역 환승센터 복합개발사업",
+        "을지로3가 10지구",
+        "제주 화북 프로젝트",
+        "구리시 수택동 주거용 오피스텔 개발사업",
+        "울산역 KTX S3블럭 오피스텔 개발사업",
+        "은평 시니어리빙 1호",
+        "부산 해운대구 중동 공동주택 개발",
+        "이오타서울 816",
+        "애월 복합관광단지 개발사업"
+      ],
+      "zero_check_projects": []
+    },
+    {
+      "field": "notion_vehicle_classes",
+      "label": "비히클 분류",
+      "missing_count": 0,
+      "zero_check_count": 0,
+      "missing_projects": [],
+      "zero_check_projects": []
+    },
+    {
+      "field": "notion_business_stage_classes",
+      "label": "사업단계",
+      "missing_count": 0,
+      "zero_check_count": 0,
+      "missing_projects": [],
+      "zero_check_projects": []
+    },
+    {
+      "field": "notion_holding_type_classes",
+      "label": "보유형태",
+      "missing_count": 21,
+      "zero_check_count": 0,
+      "missing_projects": [
+        "동부산 테마파크 개발사업",
+        "상봉동 청년주택",
+        "부천 소사 공동주택 개발사업",
+        "부림빌딩",
+        "효제동 주거복합 개발사업",
+        "팩토리얼 성수",
+        "오산세교 주상복합 개발사업",
+        "안성 성은 물류센터",
+        "청라 오피스텔 개발사업",
+        "천안 성성7지구 공동주택 개발사업",
+        "효제동 주거용 오피스텔",
+        "공주시 공동주택 개발사업",
+        "수서역 환승센터 복합개발사업",
+        "을지로3가 10지구",
+        "제주 화북 프로젝트",
+        "구리시 수택동 주거용 오피스텔 개발사업",
+        "울산역 KTX S3블럭 오피스텔 개발사업",
+        "은평 시니어리빙 1호",
+        "부산 해운대구 중동 공동주택 개발",
+        "이오타서울 816",
+        "애월 복합관광단지 개발사업"
+      ],
+      "zero_check_projects": []
+    },
+    {
+      "field": "fund_depts",
+      "label": "담당부서",
+      "missing_count": 0,
+      "zero_check_count": 0,
+      "missing_projects": [],
+      "zero_check_projects": []
+    },
+    {
+      "field": "fund_managers",
+      "label": "담당자",
+      "missing_count": 0,
+      "zero_check_count": 0,
+      "missing_projects": [],
+      "zero_check_projects": []
+    },
+    {
+      "field": "benchmark_aum_total",
+      "label": "기준 AUM",
+      "missing_count": 0,
+      "zero_check_count": 1,
+      "missing_projects": [],
+      "zero_check_projects": [
+        "팩토리얼 성수"
+      ]
+    },
+    {
+      "field": "invested_aum_total",
+      "label": "투자 AUM",
+      "missing_count": 0,
+      "zero_check_count": 1,
+      "missing_projects": [],
+      "zero_check_projects": [
+        "팩토리얼 성수"
+      ]
+    },
+    {
+      "field": "asset_names",
+      "label": "자산명",
+      "missing_count": 0,
+      "zero_check_count": 0,
+      "missing_projects": [],
+      "zero_check_projects": []
+    },
+    {
+      "field": "asset_types",
+      "label": "자산유형",
+      "missing_count": 0,
+      "zero_check_count": 0,
+      "missing_projects": [],
+      "zero_check_projects": []
+    },
+    {
+      "field": "address_texts",
+      "label": "주소",
+      "missing_count": 3,
+      "zero_check_count": 0,
+      "missing_projects": [
+        "이오타서울 427",
+        "제주 화북 프로젝트",
+        "더케이호텔 재개발"
+      ],
+      "zero_check_projects": []
+    },
+    {
+      "field": "main_usages",
+      "label": "주용도",
+      "missing_count": 0,
+      "zero_check_count": 0,
+      "missing_projects": [],
+      "zero_check_projects": []
+    },
+    {
+      "field": "site_areas",
+      "label": "대지면적",
+      "missing_count": 22,
+      "zero_check_count": 6,
+      "missing_projects": [
+        "동부산 테마파크 개발사업",
+        "세운5구역 개발사업",
+        "상봉동 청년주택",
+        "부천 소사 공동주택 개발사업",
+        "부림빌딩",
+        "효제동 주거복합 개발사업",
+        "팩토리얼 성수",
+        "오산세교 주상복합 개발사업",
+        "서여의도 임대주택 개발사업",
+        "안성 성은 물류센터",
+        "청라 오피스텔 개발사업",
+        "마곡 명소화 부지 개발사업",
+        "효제동 주거용 오피스텔",
+        "이오타서울 427",
+        "수서역 환승센터 복합개발사업",
+        "을지로3가 10지구",
+        "제주 화북 프로젝트",
+        "울산역 KTX S3블럭 오피스텔 개발사업",
+        "은평 시니어리빙 1호",
+        "부산 해운대구 중동 공동주택 개발",
+        "가산동 임대형 기숙사 개발사업",
+        "더케이호텔 재개발"
+      ],
+      "zero_check_projects": [
+        "부산 송정 물류센터",
+        "판교 제2테크노밸리 C1, C2블록 아이스퀘어 개발사업",
+        "천안 성성7지구 공동주택 개발사업",
+        "공주시 공동주택 개발사업",
+        "이오타서울 816",
+        "애월 복합관광단지 개발사업"
+      ]
+    },
+    {
+      "field": "gross_floor_areas",
+      "label": "연면적",
+      "missing_count": 5,
+      "zero_check_count": 0,
+      "missing_projects": [
+        "부천 소사 공동주택 개발사업",
+        "마곡 명소화 부지 개발사업",
+        "이오타서울 427",
+        "을지로3가 10지구",
+        "더케이호텔 재개발"
+      ],
+      "zero_check_projects": []
+    },
+    {
+      "field": "scrs",
+      "label": "건폐율",
+      "missing_count": 24,
+      "zero_check_count": 6,
+      "missing_projects": [
+        "동부산 테마파크 개발사업",
+        "세운5구역 개발사업",
+        "상봉동 청년주택",
+        "부천 소사 공동주택 개발사업",
+        "부림빌딩",
+        "효제동 주거복합 개발사업",
+        "팩토리얼 성수",
+        "오산세교 주상복합 개발사업",
+        "서여의도 임대주택 개발사업",
+        "안성 성은 물류센터",
+        "청라 오피스텔 개발사업",
+        "마곡 명소화 부지 개발사업",
+        "효제동 주거용 오피스텔",
+        "이오타서울 427",
+        "수서역 환승센터 복합개발사업",
+        "을지로3가 10지구",
+        "제주 화북 프로젝트",
+        "울산역 KTX S3블럭 오피스텔 개발사업",
+        "은평 시니어리빙 1호",
+        "부산 해운대구 중동 공동주택 개발",
+        "가산동 임대형 기숙사 개발사업",
+        "더케이호텔 재개발",
+        "포천 정교리 물류",
+        "부산 육양국 DC"
+      ],
+      "zero_check_projects": [
+        "부산 송정 물류센터",
+        "판교 제2테크노밸리 C1, C2블록 아이스퀘어 개발사업",
+        "천안 성성7지구 공동주택 개발사업",
+        "공주시 공동주택 개발사업",
+        "이오타서울 816",
+        "애월 복합관광단지 개발사업"
+      ]
+    },
+    {
+      "field": "fars",
+      "label": "용적률",
+      "missing_count": 24,
+      "zero_check_count": 6,
+      "missing_projects": [
+        "동부산 테마파크 개발사업",
+        "세운5구역 개발사업",
+        "상봉동 청년주택",
+        "부천 소사 공동주택 개발사업",
+        "부림빌딩",
+        "효제동 주거복합 개발사업",
+        "팩토리얼 성수",
+        "오산세교 주상복합 개발사업",
+        "서여의도 임대주택 개발사업",
+        "안성 성은 물류센터",
+        "청라 오피스텔 개발사업",
+        "마곡 명소화 부지 개발사업",
+        "효제동 주거용 오피스텔",
+        "이오타서울 427",
+        "수서역 환승센터 복합개발사업",
+        "을지로3가 10지구",
+        "제주 화북 프로젝트",
+        "울산역 KTX S3블럭 오피스텔 개발사업",
+        "은평 시니어리빙 1호",
+        "부산 해운대구 중동 공동주택 개발",
+        "가산동 임대형 기숙사 개발사업",
+        "더케이호텔 재개발",
+        "포천 정교리 물류",
+        "부산 육양국 DC"
+      ],
+      "zero_check_projects": [
+        "부산 송정 물류센터",
+        "판교 제2테크노밸리 C1, C2블록 아이스퀘어 개발사업",
+        "천안 성성7지구 공동주택 개발사업",
+        "공주시 공동주택 개발사업",
+        "이오타서울 816",
+        "애월 복합관광단지 개발사업"
+      ]
+    },
+    {
+      "field": "completion_dates",
+      "label": "준공일",
+      "missing_count": 11,
+      "zero_check_count": 0,
+      "missing_projects": [
+        "세운5구역 개발사업",
+        "부천 소사 공동주택 개발사업",
+        "팩토리얼 성수",
+        "서여의도 임대주택 개발사업",
+        "안성 성은 물류센터",
+        "이오타서울 427",
+        "수서역 환승센터 복합개발사업",
+        "을지로3가 10지구",
+        "은평 시니어리빙 1호",
+        "가산동 임대형 기숙사 개발사업",
+        "더케이호텔 재개발"
+      ],
+      "zero_check_projects": []
+    }
+  ],
+  "project_audit": [
+    {
+      "list_no": 24,
+      "project_name": "동부산 테마파크 개발사업",
+      "source_category": "PFV",
+      "vehicle_text": "P오시리아테마파크",
+      "sort_setup_date": "2016-11-28",
+      "missing_count": 5,
+      "missing_fields": "법적 형태, 보유형태, 대지면적, 건폐율, 용적률",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 31,
+      "project_name": "부산 송정 물류센터",
+      "source_category": "Fund",
+      "vehicle_text": "114호",
+      "sort_setup_date": "2017-02-09",
+      "missing_count": 0,
+      "missing_fields": "",
+      "zero_check_fields": "대지면적, 건폐율, 용적률"
+    },
+    {
+      "list_no": 15,
+      "project_name": "판교 제2테크노밸리 C1, C2블록 아이스퀘어 개발사업",
+      "source_category": "PFV",
+      "vehicle_text": "P아이스퀘어",
+      "sort_setup_date": "2017-02-27",
+      "missing_count": 0,
+      "missing_fields": "",
+      "zero_check_fields": "대지면적, 건폐율, 용적률"
+    },
+    {
+      "list_no": 2,
+      "project_name": "안녕인사동",
+      "source_category": "PFV",
+      "vehicle_text": "P로터스, 120호, 121호",
+      "sort_setup_date": "2017-03-14",
+      "missing_count": 0,
+      "missing_fields": "",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 13,
+      "project_name": "세운5구역 개발사업",
+      "source_category": "PFV",
+      "vehicle_text": "P세운5구역, 454호, 462호",
+      "sort_setup_date": "2019-06-20",
+      "missing_count": 4,
+      "missing_fields": "대지면적, 건폐율, 용적률, 준공일",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 12,
+      "project_name": "서리풀 개발사업",
+      "source_category": "PFV",
+      "vehicle_text": "P에스비씨",
+      "sort_setup_date": "2019-07-25",
+      "missing_count": 0,
+      "missing_fields": "",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 8,
+      "project_name": "상봉동 청년주택",
+      "source_category": "PFV",
+      "vehicle_text": "P상봉IRD",
+      "sort_setup_date": "2020-05-22",
+      "missing_count": 5,
+      "missing_fields": "법적 형태, 보유형태, 대지면적, 건폐율, 용적률",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 18,
+      "project_name": "부천 소사 공동주택 개발사업",
+      "source_category": "PFV",
+      "vehicle_text": "P부천소사",
+      "sort_setup_date": "2020-06-10",
+      "missing_count": 7,
+      "missing_fields": "법적 형태, 보유형태, 대지면적, 연면적, 건폐율, 용적률, 준공일",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 19,
+      "project_name": "부림빌딩",
+      "source_category": "PFV",
+      "vehicle_text": "P이든센트럴",
+      "sort_setup_date": "2020-07-10",
+      "missing_count": 5,
+      "missing_fields": "법적 형태, 보유형태, 대지면적, 건폐율, 용적률",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 11,
+      "project_name": "효제동 주거복합 개발사업",
+      "source_category": "PFV",
+      "vehicle_text": "P효제아트",
+      "sort_setup_date": "2020-08-10",
+      "missing_count": 5,
+      "missing_fields": "법적 형태, 보유형태, 대지면적, 건폐율, 용적률",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 3,
+      "project_name": "팩토리얼 성수",
+      "source_category": "PFV",
+      "vehicle_text": "P성수PFV1",
+      "sort_setup_date": "2020-08-20",
+      "missing_count": 6,
+      "missing_fields": "법적 형태, 보유형태, 대지면적, 건폐율, 용적률, 준공일",
+      "zero_check_fields": "기준 AUM, 투자 AUM"
+    },
+    {
+      "list_no": 9,
+      "project_name": "오산세교 주상복합 개발사업",
+      "source_category": "PFV",
+      "vehicle_text": "P오산세교아트",
+      "sort_setup_date": "2020-12-23",
+      "missing_count": 5,
+      "missing_fields": "법적 형태, 보유형태, 대지면적, 건폐율, 용적률",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 28,
+      "project_name": "서여의도 임대주택 개발사업",
+      "source_category": "Fund",
+      "vehicle_text": "395호",
+      "sort_setup_date": "2020-12-24",
+      "missing_count": 4,
+      "missing_fields": "대지면적, 건폐율, 용적률, 준공일",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 4,
+      "project_name": "안성 성은 물류센터",
+      "source_category": "PFV",
+      "vehicle_text": "P안성성은물류",
+      "sort_setup_date": "2021-03-04",
+      "missing_count": 6,
+      "missing_fields": "법적 형태, 보유형태, 대지면적, 건폐율, 용적률, 준공일",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 20,
+      "project_name": "청라 오피스텔 개발사업",
+      "source_category": "PFV",
+      "vehicle_text": "P청라아트",
+      "sort_setup_date": "2021-03-15",
+      "missing_count": 5,
+      "missing_fields": "법적 형태, 보유형태, 대지면적, 건폐율, 용적률",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 32,
+      "project_name": "마곡 명소화 부지 개발사업",
+      "source_category": "Fund",
+      "vehicle_text": "420호",
+      "sort_setup_date": "2021-08-11",
+      "missing_count": 4,
+      "missing_fields": "대지면적, 연면적, 건폐율, 용적률",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 21,
+      "project_name": "천안 성성7지구 공동주택 개발사업",
+      "source_category": "PFV",
+      "vehicle_text": "P천안성성동",
+      "sort_setup_date": "2021-10-19",
+      "missing_count": 2,
+      "missing_fields": "법적 형태, 보유형태",
+      "zero_check_fields": "대지면적, 건폐율, 용적률"
+    },
+    {
+      "list_no": 16,
+      "project_name": "효제동 주거용 오피스텔",
+      "source_category": "PFV",
+      "vehicle_text": "P효제센트럴",
+      "sort_setup_date": "2021-11-24",
+      "missing_count": 5,
+      "missing_fields": "법적 형태, 보유형태, 대지면적, 건폐율, 용적률",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 23,
+      "project_name": "이오타서울 427",
+      "source_category": "PFV",
+      "vehicle_text": "P와이디427",
+      "sort_setup_date": "2021-11-24",
+      "missing_count": 6,
+      "missing_fields": "주소, 대지면적, 연면적, 건폐율, 용적률, 준공일",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 7,
+      "project_name": "공주시 공동주택 개발사업",
+      "source_category": "PFV",
+      "vehicle_text": "P트리니티공주",
+      "sort_setup_date": "2021-12-10",
+      "missing_count": 2,
+      "missing_fields": "법적 형태, 보유형태",
+      "zero_check_fields": "대지면적, 건폐율, 용적률"
+    },
+    {
+      "list_no": 10,
+      "project_name": "수서역 환승센터 복합개발사업",
+      "source_category": "PFV",
+      "vehicle_text": "P수서역환승센터",
+      "sort_setup_date": "2022-02-10",
+      "missing_count": 6,
+      "missing_fields": "법적 형태, 보유형태, 대지면적, 건폐율, 용적률, 준공일",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 14,
+      "project_name": "을지로3가 10지구",
+      "source_category": "PFV",
+      "vehicle_text": "P을지로95",
+      "sort_setup_date": "2022-03-04",
+      "missing_count": 7,
+      "missing_fields": "법적 형태, 보유형태, 대지면적, 연면적, 건폐율, 용적률, 준공일",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 5,
+      "project_name": "제주 화북 프로젝트",
+      "source_category": "PFV",
+      "vehicle_text": "P디에스",
+      "sort_setup_date": "2022-03-29",
+      "missing_count": 6,
+      "missing_fields": "법적 형태, 보유형태, 주소, 대지면적, 건폐율, 용적률",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 26,
+      "project_name": "구리시 수택동 주거용 오피스텔 개발사업",
+      "source_category": "PFV",
+      "vehicle_text": "P수택센트럴",
+      "sort_setup_date": "2022-04-20",
+      "missing_count": 2,
+      "missing_fields": "법적 형태, 보유형태",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 1,
+      "project_name": "울산역 KTX S3블럭 오피스텔 개발사업",
+      "source_category": "PFV",
+      "vehicle_text": "P울산KTX",
+      "sort_setup_date": "2022-04-29",
+      "missing_count": 5,
+      "missing_fields": "법적 형태, 보유형태, 대지면적, 건폐율, 용적률",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 6,
+      "project_name": "은평 시니어리빙 1호",
+      "source_category": "PFV",
+      "vehicle_text": "P은평진관동",
+      "sort_setup_date": "2022-07-06",
+      "missing_count": 6,
+      "missing_fields": "법적 형태, 보유형태, 대지면적, 건폐율, 용적률, 준공일",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 17,
+      "project_name": "부산 해운대구 중동 공동주택 개발",
+      "source_category": "PFV",
+      "vehicle_text": "P해운대센트럴",
+      "sort_setup_date": "2022-11-22",
+      "missing_count": 5,
+      "missing_fields": "법적 형태, 보유형태, 대지면적, 건폐율, 용적률",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 22,
+      "project_name": "이오타서울 816",
+      "source_category": "PFV",
+      "vehicle_text": "P와이디816",
+      "sort_setup_date": "2022-12-29",
+      "missing_count": 2,
+      "missing_fields": "법적 형태, 보유형태",
+      "zero_check_fields": "대지면적, 건폐율, 용적률"
+    },
+    {
+      "list_no": 25,
+      "project_name": "애월 복합관광단지 개발사업",
+      "source_category": "PFV",
+      "vehicle_text": "애월PFV",
+      "sort_setup_date": "2024-01-31",
+      "missing_count": 2,
+      "missing_fields": "법적 형태, 보유형태",
+      "zero_check_fields": "대지면적, 건폐율, 용적률"
+    },
+    {
+      "list_no": 29,
+      "project_name": "가산동 임대형 기숙사 개발사업",
+      "source_category": "Fund",
+      "vehicle_text": "542호",
+      "sort_setup_date": "2024-07-18",
+      "missing_count": 4,
+      "missing_fields": "대지면적, 건폐율, 용적률, 준공일",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 30,
+      "project_name": "더케이호텔 재개발",
+      "source_category": "Fund",
+      "vehicle_text": "랜드마크부동산",
+      "sort_setup_date": "2024-11-07",
+      "missing_count": 6,
+      "missing_fields": "주소, 대지면적, 연면적, 건폐율, 용적률, 준공일",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 33,
+      "project_name": "포천 정교리 물류",
+      "source_category": "Fund",
+      "vehicle_text": "560호",
+      "sort_setup_date": "2025-02-27",
+      "missing_count": 2,
+      "missing_fields": "건폐율, 용적률",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 27,
+      "project_name": "팩토리얼 용산(용산 나진상가 재개발)",
+      "source_category": "PFV",
+      "vehicle_text": "567호 / 용산라이프시티PFV",
+      "sort_setup_date": "2025-05-14",
+      "missing_count": 0,
+      "missing_fields": "",
+      "zero_check_fields": ""
+    },
+    {
+      "list_no": 34,
+      "project_name": "부산 육양국 DC",
+      "source_category": "Fund",
+      "vehicle_text": "572호",
+      "sort_setup_date": "2025-06-24",
+      "missing_count": 2,
+      "missing_fields": "건폐율, 용적률",
+      "zero_check_fields": ""
+    }
+  ]
+}

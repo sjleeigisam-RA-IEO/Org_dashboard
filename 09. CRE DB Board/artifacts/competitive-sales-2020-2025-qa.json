@@ -1,0 +1,166 @@
+{
+  "schemaVersion": "2.3.0",
+  "integrityCheck": "ok",
+  "foreignKeyViolations": 0,
+  "opendartList": [
+    {
+      "year": "2020",
+      "report_kind": "BUSINESS_TRANSFER",
+      "documents": 56
+    },
+    {
+      "year": "2020",
+      "report_kind": "TYPE_ASSET",
+      "documents": 288
+    },
+    {
+      "year": "2021",
+      "report_kind": "BUSINESS_TRANSFER",
+      "documents": 70
+    },
+    {
+      "year": "2021",
+      "report_kind": "TYPE_ASSET",
+      "documents": 334
+    },
+    {
+      "year": "2022",
+      "report_kind": "BUSINESS_TRANSFER",
+      "documents": 57
+    },
+    {
+      "year": "2022",
+      "report_kind": "TYPE_ASSET",
+      "documents": 226
+    },
+    {
+      "year": "2023",
+      "report_kind": "BUSINESS_TRANSFER",
+      "documents": 40
+    },
+    {
+      "year": "2023",
+      "report_kind": "TYPE_ASSET",
+      "documents": 209
+    },
+    {
+      "year": "2024",
+      "report_kind": "BUSINESS_TRANSFER",
+      "documents": 95
+    },
+    {
+      "year": "2024",
+      "report_kind": "TYPE_ASSET",
+      "documents": 308
+    },
+    {
+      "year": "2025",
+      "report_kind": "BUSINESS_TRANSFER",
+      "documents": 66
+    },
+    {
+      "year": "2025",
+      "report_kind": "TYPE_ASSET",
+      "documents": 237
+    }
+  ],
+  "opendartFullText": [
+    {
+      "year": "2020",
+      "documents": 271,
+      "text_bytes": 1189650
+    },
+    {
+      "year": "2021",
+      "documents": 320,
+      "text_bytes": 1394539
+    },
+    {
+      "year": "2022",
+      "documents": 215,
+      "text_bytes": 908169
+    },
+    {
+      "year": "2023",
+      "documents": 202,
+      "text_bytes": 891635
+    },
+    {
+      "year": "2024",
+      "documents": 295,
+      "text_bytes": 1349066
+    },
+    {
+      "year": "2025",
+      "documents": 228,
+      "text_bytes": 999643
+    }
+  ],
+  "dartReviewCandidates": [
+    {
+      "year": "2020",
+      "candidates": 185
+    },
+    {
+      "year": "2021",
+      "candidates": 226
+    },
+    {
+      "year": "2022",
+      "candidates": 150
+    },
+    {
+      "year": "2023",
+      "candidates": 143
+    },
+    {
+      "year": "2024",
+      "candidates": 203
+    },
+    {
+      "year": "2025",
+      "candidates": 159
+    }
+  ],
+  "newsRuns": [
+    {
+      "year": "2020",
+      "status_code": "COMPLETED",
+      "partitions": 111,
+      "discovered": 125,
+      "inserted": 103,
+      "updated": 0
+    }
+  ],
+  "newsReviewCandidates": [],
+  "canonical": {
+    "saleProcesses": 2,
+    "rounds": 2,
+    "participations": 3,
+    "participationMembers": 5,
+    "submissions": 2,
+    "fundingComponents": 6,
+    "decisions": 2,
+    "milestones": 2,
+    "processesByStatus": [
+      {
+        "process_status": "CLOSED",
+        "count": 2
+      }
+    ]
+  },
+  "pendingReviewTasks": [
+    {
+      "review_type": "MOLIT_TRANSACTION_SCOPE",
+      "count": 988
+    },
+    {
+      "review_type": "OFFICIAL_SALE_DISCLOSURE_REVIEW",
+      "count": 1066
+    },
+    {
+      "review_type": "SALE_PROCESS_EVIDENCE_REVIEW",
+      "count": 51
+    }
+  ]
+}

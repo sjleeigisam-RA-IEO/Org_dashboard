@@ -1,0 +1,62 @@
+[
+  {
+    "field": "projects.health",
+    "filled": 0,
+    "total": 38
+  },
+  {
+    "field": "projects.lead_org_text",
+    "filled": 36,
+    "total": 38
+  },
+  {
+    "field": "projects.lead_staff_id",
+    "filled": 0,
+    "total": 38
+  },
+  {
+    "field": "projects.metadata",
+    "filled": 38,
+    "total": 38
+  },
+  {
+    "field": "projects.next_check_date",
+    "filled": 0,
+    "total": 38
+  },
+  {
+    "field": "projects.priority",
+    "filled": 34,
+    "total": 38
+  },
+  {
+    "field": "projects.project_code",
+    "filled": 32,
+    "total": 38
+  },
+  {
+    "field": "projects.project_type",
+    "filled": 37,
+    "total": 38
+  },
+  {
+    "field": "projects.source_system",
+    "filled": 38,
+    "total": 38
+  },
+  {
+    "field": "projects.start_date",
+    "filled": 34,
+    "total": 38
+  },
+  {
+    "field": "projects.status",
+    "filled": 37,
+    "total": 38
+  },
+  {
+    "field": "projects.target_date",
+    "filled": 33,
+    "total": 38
+  }
+]

@@ -1,0 +1,947 @@
+{
+  "search_probe": {
+    "이오타서울": {
+      "counts": {
+        "funds": 0,
+        "projects": 3,
+        "assets": 0,
+        "lenders": 0,
+        "beneficiaries": 0
+      },
+      "samples": {
+        "funds": [],
+        "projects": [
+          {
+            "project_id": "iota-seoul",
+            "project_name": "이오타서울 (IOTA Seoul)",
+            "project_code": null,
+            "parent_project_id": null,
+            "primary_asset_id": null,
+            "project_type": "Parent Project",
+            "status": "active"
+          },
+          {
+            "project_id": "project_notion_3258ced4-3c47-818d-9da5-c27149a74a92",
+            "project_name": "이오타서울 427",
+            "project_code": "PRJ-160",
+            "parent_project_id": null,
+            "primary_asset_id": null,
+            "project_type": "Project",
+            "status": "설정 후"
+          },
+          {
+            "project_id": "project_notion_3258ced4-3c47-81cb-a4ff-e9df05eb2777",
+            "project_name": "이오타서울 816",
+            "project_code": "PRJ-161",
+            "parent_project_id": null,
+            "primary_asset_id": null,
+            "project_type": "Project",
+            "status": "설정 후"
+          }
+        ],
+        "assets": [],
+        "lenders": [],
+        "beneficiaries": []
+      }
+    },
+    "멀티플러스": {
+      "counts": {
+        "funds": 9,
+        "projects": 0,
+        "assets": 0,
+        "lenders": 0,
+        "beneficiaries": 0
+      },
+      "samples": {
+        "funds": [
+          {
+            "fund_id": "300086",
+            "fund_name": "이지스 멀티플러스 일반사모투자신탁 제3호",
+            "short_name": "멀티플러스3호",
+            "project_mission_name": null,
+            "asset_name": null,
+            "status": "운용",
+            "sector": "기타",
+            "primary_asset_id": null
+          },
+          {
+            "fund_id": "300087",
+            "fund_name": "이지스 멀티플러스 일반사모투자신탁 제3호(Class A)",
+            "short_name": "멀티플러스3호(A)",
+            "project_mission_name": null,
+            "asset_name": null,
+            "status": "운용",
+            "sector": "기타",
+            "primary_asset_id": null
+          },
+          {
+            "fund_id": "300088",
+            "fund_name": "이지스 멀티플러스 일반사모투자신탁 제3호(Class C)",
+            "short_name": "멀티플러스3호(C)",
+            "project_mission_name": null,
+            "asset_name": null,
+            "status": "미설정",
+            "sector": "기타",
+            "primary_asset_id": null
+          },
+          {
+            "fund_id": "300089",
+            "fund_name": "이지스 멀티플러스 일반사모투자신탁 제3호(Class C-S)",
+            "short_name": "멀티플러스3호(C-S)",
+            "project_mission_name": null,
+            "asset_name": null,
+            "status": "운용",
+            "sector": "기타",
+            "primary_asset_id": null
+          },
+          {
+            "fund_id": "300057",
+            "fund_name": "이지스 멀티플러스 일반사모투자신탁 제2호(운용)",
+            "short_name": "멀티플러스2호",
+            "project_mission_name": "메자닌, 공모주, 이벤트 드리븐, 스팩, ETF",
+            "asset_name": "메자닌, 공모주, 이벤트 드리븐, 스팩, ETF",
+            "status": "운용",
+            "sector": "기타",
+            "primary_asset_id": "ast_4d1430b5f175"
+          }
+        ],
+        "projects": [],
+        "assets": [],
+        "lenders": [],
+        "beneficiaries": []
+      }
+    },
+    "그린ON": {
+      "counts": {
+        "funds": 14,
+        "projects": 0,
+        "assets": 0,
+        "lenders": 0,
+        "beneficiaries": 0
+      },
+      "samples": {
+        "funds": [
+          {
+            "fund_id": "300090",
+            "fund_name": "이지스그린ON 일반사모투자신탁제5호",
+            "short_name": "그린ON5호",
+            "project_mission_name": null,
+            "asset_name": null,
+            "status": "운용",
+            "sector": "기타",
+            "primary_asset_id": null
+          },
+          {
+            "fund_id": "300054",
+            "fund_name": "이지스그린ON일반사모투자신탁제3호",
+            "short_name": "그린ON3호",
+            "project_mission_name": "국내 상장 리츠, 주식, ETF, 공모주, 이벤트 드리븐",
+            "asset_name": "국내 상장 리츠, 주식, ETF, 공모주, 이벤트 드리븐",
+            "status": "청산",
+            "sector": "기타",
+            "primary_asset_id": "ast_4d1430b5f175"
+          },
+          {
+            "fund_id": "300055",
+            "fund_name": "이지스그린ON일반사모투자신탁제3호(Class A)",
+            "short_name": "그린ON3호(A)",
+            "project_mission_name": null,
+            "asset_name": null,
+            "status": "청산",
+            "sector": "기타",
+            "primary_asset_id": null
+          },
+          {
+            "fund_id": "300056",
+            "fund_name": "이지스그린ON일반사모투자신탁제3호(Class C-i)",
+            "short_name": "그린ON3호(C-i)",
+            "project_mission_name": null,
+            "asset_name": null,
+            "status": "청산",
+            "sector": "기타",
+            "primary_asset_id": null
+          },
+          {
+            "fund_id": "300077",
+            "fund_name": "이지스그린ON일반사모투자신탁제4호(Class A)",
+            "short_name": "그린ON4호(A)",
+            "project_mission_name": null,
+            "asset_name": null,
+            "status": "운용",
+            "sector": "기타",
+            "primary_asset_id": null
+          }
+        ],
+        "projects": [],
+        "assets": [],
+        "lenders": [],
+        "beneficiaries": []
+      }
+    },
+    "NPL": {
+      "counts": {
+        "funds": 10,
+        "projects": 4,
+        "assets": 0,
+        "lenders": 1,
+        "beneficiaries": 1
+      },
+      "samples": {
+        "funds": [
+          {
+            "fund_id": "120126",
+            "fund_name": "이지스 NPL 리스트럭처링일반사모부동산투자신탁",
+            "short_name": "NPL리스트럭처링",
+            "project_mission_name": null,
+            "asset_name": null,
+            "status": "운용",
+            "sector": "NPL",
+            "primary_asset_id": null
+          },
+          {
+            "fund_id": "112603",
+            "fund_name": "이지스NPL일반사모부동산투자신탁제3-1호",
+            "short_name": "NPL3-1호",
+            "project_mission_name": "부실채권을 기초자산으로 하는 SPC의 사채",
+            "asset_name": "부실채권을 기초자산으로 하는 SPC의 사채",
+            "status": "청산",
+            "sector": "NPL",
+            "primary_asset_id": "ast_0bed91ccb4ec"
+          },
+          {
+            "fund_id": "112082",
+            "fund_name": "이지스NPL일반사모부동산투자신탁1호",
+            "short_name": "NPL1호",
+            "project_mission_name": "부실채권을 기초자산으로 하는 SPC의 출자지분 및 사채",
+            "asset_name": "부실채권을 기초자산으로 하는 SPC의 출자지분 및 사채",
+            "status": "청산",
+            "sector": "NPL",
+            "primary_asset_id": "ast_17db161a53b5"
+          },
+          {
+            "fund_id": "112124",
+            "fund_name": "이지스NPL전문투자형사모부동산투자신탁1-1호",
+            "short_name": "NPL1-1호",
+            "project_mission_name": "부실채권을 기초자산으로 하는 SPC 사채",
+            "asset_name": "부실채권을 기초자산으로 하는 SPC 사채",
+            "status": "청산",
+            "sector": "NPL",
+            "primary_asset_id": "ast_30937d64ae67"
+          },
+          {
+            "fund_id": "112412",
+            "fund_name": "이지스NPL전문투자형사모부동산투자신탁제2-2호",
+            "short_name": "NPL2-2호",
+            "project_mission_name": "부실채권을 기초자산으로 하는 SPC의 사채",
+            "asset_name": "부실채권을 기초자산으로 하는 SPC의 사채",
+            "status": "청산",
+            "sector": "NPL",
+            "primary_asset_id": "ast_0bed91ccb4ec"
+          }
+        ],
+        "projects": [
+          {
+            "project_id": "project_notion_3258ced4-3c47-8120-bf18-edd508d827a6",
+            "project_name": "NPL 4호",
+            "project_code": "PRJ-78",
+            "parent_project_id": null,
+            "primary_asset_id": "ast_fa4bc636d98d",
+            "project_type": "Project",
+            "status": "설정 후"
+          },
+          {
+            "project_id": "project_notion_3258ced4-3c47-815d-a7f7-dbdc6a9cb545",
+            "project_name": "카스퀘어 NPL",
+            "project_code": "PRJ-36",
+            "parent_project_id": null,
+            "primary_asset_id": "ast_6526b194cc13",
+            "project_type": "Project",
+            "status": "설정 후"
+          },
+          {
+            "project_id": "project_notion_3258ced4-3c47-8182-8ab9-dd2b43a692ec",
+            "project_name": "NPL 5호",
+            "project_code": "PRJ-79",
+            "parent_project_id": null,
+            "primary_asset_id": "ast_58e37903d5ef",
+            "project_type": "Project",
+            "status": "신규 검토 (입찰/심의 전)"
+          },
+          {
+            "project_id": "project_notion_3258ced4-3c47-8178-917e-c3f68c562c3e",
+            "project_name": "NPL 3호",
+            "project_code": "PRJ-77",
+            "parent_project_id": null,
+            "primary_asset_id": "ast_0bed91ccb4ec",
+            "project_type": "Project",
+            "status": "설정 후"
+          }
+        ],
+        "assets": [],
+        "lenders": [
+          {
+            "id": 56767,
+            "asset_id": "ast_0bed91ccb4ec",
+            "fund_id": "112602",
+            "lender_clean": "멀티에셋캠코NPL메자닌활성화전문투자형사모투자신탁",
+            "lender_raw": "멀티에셋캠코NPL메자닌활성화전문투자형사모투자신탁",
+            "committed_amt": 25000000000,
+            "drawn_amt": 25000000000
+          }
+        ],
+        "beneficiaries": [
+          {
+            "id": 105921,
+            "asset_id": "ast_30efc1e2c218",
+            "fund_id": "120076",
+            "beneficiary_clean": "이지스NPL4호",
+            "beneficiary_raw": "이지스NPL4호",
+            "committed_amt": 31100000000,
+            "invested_amt": 31100000000
+          }
+        ]
+      }
+    },
+    "눈스퀘어": {
+      "counts": {
+        "funds": 1,
+        "projects": 1,
+        "assets": 1,
+        "lenders": 0,
+        "beneficiaries": 0
+      },
+      "samples": {
+        "funds": [
+          {
+            "fund_id": "112006",
+            "fund_name": "이지스일반사모부동산투자신탁7호",
+            "short_name": "7호",
+            "project_mission_name": "눈스퀘어",
+            "asset_name": "눈스퀘어",
+            "status": "운용",
+            "sector": "리테일",
+            "primary_asset_id": null
+          }
+        ],
+        "projects": [
+          {
+            "project_id": "project_notion_3258ced4-3c47-818f-8658-c0aeb026bc8c",
+            "project_name": "눈스퀘어",
+            "project_code": "PRJ-142",
+            "parent_project_id": null,
+            "primary_asset_id": null,
+            "project_type": "Project",
+            "status": "설정 후"
+          }
+        ],
+        "assets": [
+          {
+            "asset_id": "ast_fe9e7fc006fb",
+            "canonical_name": "눈스퀘어",
+            "asset_type": "리테일",
+            "asset_kind": "physical_asset",
+            "address_text": "서울특별시 중구 명동2가 83-5",
+            "pnu": "1114012700100830005",
+            "asset_code": "A112006001",
+            "review_status": "verified"
+          }
+        ],
+        "lenders": [],
+        "beneficiaries": []
+      }
+    },
+    "국민연금": {
+      "counts": {
+        "funds": 0,
+        "projects": 4,
+        "assets": 0,
+        "lenders": 0,
+        "beneficiaries": 8
+      },
+      "samples": {
+        "funds": [],
+        "projects": [
+          {
+            "project_id": "project_notion_3258ced4-3c47-8134-8ac1-f04dffd1571b",
+            "project_name": "위탁운용펀드 제안서 작성 지원(국민연금, 우본 w/CM)",
+            "project_code": null,
+            "parent_project_id": null,
+            "primary_asset_id": null,
+            "project_type": "Project",
+            "status": null
+          },
+          {
+            "project_id": "project_notion_3258ced4-3c47-813e-9d30-c99e117bb207",
+            "project_name": "국민연금 자산 통합 보고 취합(IRIS등)",
+            "project_code": null,
+            "parent_project_id": null,
+            "primary_asset_id": null,
+            "project_type": "Project",
+            "status": "설정 후"
+          },
+          {
+            "project_id": "project_notion_3258ced4-3c47-816d-b6ff-d9f8fd64b4df",
+            "project_name": "국민연금 공정가치평가",
+            "project_code": null,
+            "parent_project_id": null,
+            "primary_asset_id": null,
+            "project_type": "Project",
+            "status": "설정 후"
+          },
+          {
+            "project_id": "project_notion_3258ced4-3c47-81a2-ad38-fbb0b12bde3e",
+            "project_name": "국민연금 외 공정가치평가",
+            "project_code": null,
+            "parent_project_id": null,
+            "primary_asset_id": null,
+            "project_type": "Project",
+            "status": "설정 후"
+          }
+        ],
+        "assets": [],
+        "lenders": [],
+        "beneficiaries": [
+          {
+            "id": 105168,
+            "asset_id": "ast_fe9e7fc006fb",
+            "fund_id": "112006",
+            "beneficiary_clean": "국민연금공단",
+            "beneficiary_raw": "국민연금공단",
+            "committed_amt": 111100000000,
+            "invested_amt": 111100000000
+          },
+          {
+            "id": 105214,
+            "asset_id": "ast_e0a9abed71bf",
+            "fund_id": "112037",
+            "beneficiary_clean": "국민연금공단",
+            "beneficiary_raw": "국민연금공단",
+            "committed_amt": 110000000000,
+            "invested_amt": 110000000000
+          },
+          {
+            "id": 105267,
+            "asset_id": "ast_cd4e754af9e0",
+            "fund_id": "112085",
+            "beneficiary_clean": "국민연금공단",
+            "beneficiary_raw": "국민연금공단",
+            "committed_amt": 155250000000,
+            "invested_amt": 155250000000
+          },
+          {
+            "id": 105281,
+            "asset_id": "ast_a81bf18a93d4",
+            "fund_id": "112100",
+            "beneficiary_clean": "국민연금공단",
+            "beneficiary_raw": "국민연금공단",
+            "committed_amt": 372100000000,
+            "invested_amt": 363240000000
+          },
+          {
+            "id": 105308,
+            "asset_id": null,
+            "fund_id": "112128",
+            "beneficiary_clean": "국민연금공단",
+            "beneficiary_raw": "국민연금공단",
+            "committed_amt": 140000000000,
+            "invested_amt": 139521576980
+          }
+        ]
+      }
+    },
+    "홈플러스": {
+      "counts": {
+        "funds": 9,
+        "projects": 4,
+        "assets": 25,
+        "lenders": 1,
+        "beneficiaries": 0
+      },
+      "samples": {
+        "funds": [
+          {
+            "fund_id": "112018",
+            "fund_name": "이지스KORIF사모부동산투자신탁19호",
+            "short_name": "19호",
+            "project_mission_name": "홈플러스삼천포점, 홈플러스진주점, 홈플러스죽도점",
+            "asset_name": "홈플러스삼천포점, 홈플러스진주점, 홈플러스죽도점",
+            "status": "운용",
+            "sector": "리테일",
+            "primary_asset_id": "ast_1f446ce9025d"
+          },
+          {
+            "fund_id": "112702",
+            "fund_name": "이지스일반사모부동산투자신탁13호(2종)",
+            "short_name": "13호(2종)",
+            "project_mission_name": "홈플러스영등포점, 홈플러스금천점, 홈플러스동수원점, 홈플러스센텀시티점",
+            "asset_name": "홈플러스영등포점, 홈플러스금천점, 홈플러스동수원점, 홈플러스센텀시티점",
+            "status": "운용",
+            "sector": "리테일",
+            "primary_asset_id": null
+          },
+          {
+            "fund_id": "112133",
+            "fund_name": "이지스코어리테일부동산투자신탁126호(Class A)",
+            "short_name": "126호(A)",
+            "project_mission_name": "홈플러스전주효자점",
+            "asset_name": "홈플러스전주효자점",
+            "status": "운용",
+            "sector": "리테일",
+            "primary_asset_id": "ast_db8fd17c8890"
+          },
+          {
+            "fund_id": "112132",
+            "fund_name": "이지스코어리테일부동산투자신탁126호",
+            "short_name": "126호",
+            "project_mission_name": "홈플러스전주효자점",
+            "asset_name": "홈플러스전주효자점",
+            "status": "운용",
+            "sector": "리테일",
+            "primary_asset_id": "ast_db8fd17c8890"
+          },
+          {
+            "fund_id": "112008",
+            "fund_name": "이지스일반사모부동산투자신탁13호(운용)",
+            "short_name": "13호",
+            "project_mission_name": "홈플러스금천점, 홈플러스동수원점, 홈플러스센텀시티점, 홈플러스영등포점",
+            "asset_name": "홈플러스금천점, 홈플러스동수원점, 홈플러스센텀시티점, 홈플러스영등포점",
+            "status": "운용",
+            "sector": "리테일",
+            "primary_asset_id": null
+          }
+        ],
+        "projects": [
+          {
+            "project_id": "project_notion_3258ced4-3c47-8104-93cb-e17d0756539b",
+            "project_name": "홈플러스 3개소",
+            "project_code": "PRJ-139",
+            "parent_project_id": null,
+            "primary_asset_id": "ast_1f446ce9025d",
+            "project_type": "Project",
+            "status": "설정 후"
+          },
+          {
+            "project_id": "project_notion_3258ced4-3c47-8113-95b7-e748647ad9be",
+            "project_name": "홈플러스 4개점 (영등포, 금천, 동수원, 센텀시티)",
+            "project_code": "PRJ-140",
+            "parent_project_id": null,
+            "primary_asset_id": null,
+            "project_type": "Project",
+            "status": "설정 후"
+          },
+          {
+            "project_id": "project_notion_3258ced4-3c47-819a-a6ab-d0752c7e7cd0",
+            "project_name": "홈플러스 전주효자",
+            "project_code": "PRJ-141",
+            "parent_project_id": null,
+            "primary_asset_id": "ast_1f446ce9025d",
+            "project_type": "Project",
+            "status": "설정 후"
+          },
+          {
+            "project_id": "project_notion_3258ced4-3c47-81e0-81b0-fe1420d49b02",
+            "project_name": "안성 홈플러스 물류센터",
+            "project_code": "PRJ-147",
+            "parent_project_id": null,
+            "primary_asset_id": "ast_52adbb346181",
+            "project_type": "Project",
+            "status": "설정 후"
+          }
+        ],
+        "assets": [
+          {
+            "asset_id": "ast_ba2f0f5d53f3",
+            "canonical_name": "홈플러스 인천인하점",
+            "asset_type": "리테일",
+            "asset_kind": "physical_asset",
+            "address_text": "인천광역시 미추홀구 용현동 648",
+            "pnu": "2817710200106480000",
+            "asset_code": null,
+            "review_status": "auto_created"
+          },
+          {
+            "asset_id": "ast_288a4f9c263b",
+            "canonical_name": "홈플러스 전주완산점",
+            "asset_type": "리테일",
+            "asset_kind": "physical_asset",
+            "address_text": "전라북도 전주시 완산구 중노송동 495-6",
+            "pnu": "4511112000104950006",
+            "asset_code": null,
+            "review_status": "auto_created"
+          },
+          {
+            "asset_id": "ast_6bfb26e9f2e6",
+            "canonical_name": "홈플러스동수원점",
+            "asset_type": "리테일",
+            "asset_kind": "physical_asset",
+            "address_text": "경기도 수원시 팔달구 인계동 1045",
+            "pnu": "4111514100110450000",
+            "asset_code": "A112008002",
+            "review_status": "verified"
+          },
+          {
+            "asset_id": "ast_0d034e04e91f",
+            "canonical_name": "홈플러스 대전문화점 (투자)",
+            "asset_type": null,
+            "asset_kind": "physical_asset",
+            "address_text": "대전광역시 중구 문화동 1-17",
+            "pnu": "3014011600100010017",
+            "asset_code": "A112344002",
+            "review_status": "auto_created"
+          },
+          {
+            "asset_id": "ast_612cef5b7905",
+            "canonical_name": "홈플러스진주점",
+            "asset_type": "리테일",
+            "asset_kind": "physical_asset",
+            "address_text": "경상남도 진주시 상대동 181-1",
+            "pnu": "4817011900101810001",
+            "asset_code": "A112018002",
+            "review_status": "verified"
+          }
+        ],
+        "lenders": [
+          {
+            "id": 56460,
+            "asset_id": null,
+            "fund_id": "112008",
+            "lender_clean": "GIB홈플러스",
+            "lender_raw": "GIB홈플러스",
+            "committed_amt": 44000000000,
+            "drawn_amt": 44000000000
+          }
+        ],
+        "beneficiaries": []
+      }
+    },
+    "1120": {
+      "counts": {
+        "funds": 98,
+        "projects": 1,
+        "assets": 159,
+        "lenders": 70,
+        "beneficiaries": 117
+      },
+      "samples": {
+        "funds": [
+          {
+            "fund_id": "112004",
+            "fund_name": "피에스KORIF사모부동산투자신탁5호",
+            "short_name": "5호",
+            "project_mission_name": "원주AK",
+            "asset_name": "원주AK",
+            "status": "청산",
+            "sector": "리테일",
+            "primary_asset_id": "ast_58e37903d5ef"
+          },
+          {
+            "fund_id": "112015",
+            "fund_name": "이지스일반사모부동산자투자신탁18A호(운용)",
+            "short_name": "18A호",
+            "project_mission_name": "남산그린빌딩",
+            "asset_name": "남산그린빌딩",
+            "status": "운용",
+            "sector": "지분증권",
+            "primary_asset_id": null
+          },
+          {
+            "fund_id": "112053",
+            "fund_name": "이지스사모부동산투자신탁54호",
+            "short_name": "54호",
+            "project_mission_name": "영등포역 오피스텔 개발사업",
+            "asset_name": "영등포역 오피스텔 개발사업",
+            "status": "청산",
+            "sector": "주거",
+            "primary_asset_id": null
+          },
+          {
+            "fund_id": "112036",
+            "fund_name": "이지스글로벌사모부동산투자신탁37-2호",
+            "short_name": "37-2호",
+            "project_mission_name": "Sanofi 본사(파리) 대출, Bell 본사(몬트리올) 대출, OJP사옥(워싱턴) 대출",
+            "asset_name": "Sanofi 본사(파리) 대출, Bell 본사(몬트리올) 대출, OJP사옥(워싱턴) 대출",
+            "status": "운용",
+            "sector": "오피스",
+            "primary_asset_id": "ast_39ccf4397829"
+          },
+          {
+            "fund_id": "112047",
+            "fund_name": "이지스사모부동산투자신탁48호",
+            "short_name": "48호",
+            "project_mission_name": "남악신도시 복합쇼핑몰",
+            "asset_name": "남악신도시 복합쇼핑몰",
+            "status": "청산",
+            "sector": "리테일",
+            "primary_asset_id": "ast_e2fd03212beb"
+          }
+        ],
+        "projects": [
+          {
+            "project_id": "project_notion_3258ced4-3c47-81f1-8acf-fa0dcf911205",
+            "project_name": "공주시 공동주택 개발사업",
+            "project_code": "PRJ-128",
+            "parent_project_id": null,
+            "primary_asset_id": "ast_acf1169ec73d",
+            "project_type": "Project",
+            "status": "설정 후"
+          }
+        ],
+        "assets": [
+          {
+            "asset_id": "ast_7f66d2a674c4",
+            "canonical_name": "동일타워",
+            "asset_type": "오피스",
+            "asset_kind": "physical_asset",
+            "address_text": "서울특별시 강남구 대치동 1004",
+            "pnu": "1168010600110040000",
+            "asset_code": "A112012001",
+            "review_status": "verified"
+          },
+          {
+            "asset_id": "ast_d052165ba593",
+            "canonical_name": "NC백화점(강서)",
+            "asset_type": "리테일",
+            "asset_kind": "physical_asset",
+            "address_text": "서울특별시 강서구 등촌동 689번지 외 2필지",
+            "pnu": "1150010200106890000",
+            "asset_code": "A112001001",
+            "review_status": "verified"
+          },
+          {
+            "asset_id": "ast_790533b0da44",
+            "canonical_name": "NH농협생명빌딩 서관(구, 임광빌딩 본관)",
+            "asset_type": "오피스",
+            "asset_kind": "physical_asset",
+            "address_text": "서울특별시 서대문구 미근동 267",
+            "pnu": "1141010400102670000",
+            "asset_code": "A112003001",
+            "review_status": "verified"
+          },
+          {
+            "asset_id": "ast_2c3a67886c92",
+            "canonical_name": "롯데팩토리아울렛(인천)",
+            "asset_type": "리테일",
+            "asset_kind": "physical_asset",
+            "address_text": "인천시 중구 항동7가 76-2",
+            "pnu": "2811011800100760002",
+            "asset_code": "A112054003",
+            "review_status": "verified"
+          },
+          {
+            "asset_id": "ast_6bfb26e9f2e6",
+            "canonical_name": "홈플러스동수원점",
+            "asset_type": "리테일",
+            "asset_kind": "physical_asset",
+            "address_text": "경기도 수원시 팔달구 인계동 1045",
+            "pnu": "4111514100110450000",
+            "asset_code": "A112008002",
+            "review_status": "verified"
+          }
+        ],
+        "lenders": [
+          {
+            "id": 56455,
+            "asset_id": "ast_863c34bc88b1",
+            "fund_id": "112005",
+            "lender_clean": "DBS Bank",
+            "lender_raw": "DBS Bank",
+            "committed_amt": 100700000000,
+            "drawn_amt": 100000000000
+          },
+          {
+            "id": 56456,
+            "asset_id": "ast_863c34bc88b1",
+            "fund_id": "112005",
+            "lender_clean": "MUFG Bank",
+            "lender_raw": "MUFG Bank",
+            "committed_amt": 50400000000,
+            "drawn_amt": 50000000000
+          },
+          {
+            "id": 56457,
+            "asset_id": "ast_863c34bc88b1",
+            "fund_id": "112005",
+            "lender_clean": "홍콩상하이은행",
+            "lender_raw": "홍콩상하이은행",
+            "committed_amt": 117900000000,
+            "drawn_amt": 117000000000
+          },
+          {
+            "id": 56458,
+            "asset_id": "ast_fe9e7fc006fb",
+            "fund_id": "112006",
+            "lender_clean": "DB손해보험",
+            "lender_raw": "DB손해보험",
+            "committed_amt": 102600000000,
+            "drawn_amt": 92900000000
+          },
+          {
+            "id": 56459,
+            "asset_id": "ast_fe9e7fc006fb",
+            "fund_id": "112006",
+            "lender_clean": "하나은행",
+            "lender_raw": "하나은행",
+            "committed_amt": 45000000000,
+            "drawn_amt": 45000000000
+          }
+        ],
+        "beneficiaries": [
+          {
+            "id": 105164,
+            "asset_id": "ast_863c34bc88b1",
+            "fund_id": "112005",
+            "beneficiary_clean": "Gangnam Asset PTE.LTD",
+            "beneficiary_raw": "Gangnam Asset PTE.LTD",
+            "committed_amt": 92650000000,
+            "invested_amt": 65000000000
+          },
+          {
+            "id": 105165,
+            "asset_id": "ast_863c34bc88b1",
+            "fund_id": "112005",
+            "beneficiary_clean": "Pinnacle KR Asset PTE.LTD",
+            "beneficiary_raw": "Pinnacle KR Asset PTE.LTD",
+            "committed_amt": 92557350000,
+            "invested_amt": 64935000000
+          },
+          {
+            "id": 105166,
+            "asset_id": "ast_863c34bc88b1",
+            "fund_id": "112005",
+            "beneficiary_clean": "개인(Tow Heng Tan)",
+            "beneficiary_raw": "개인(Tow Heng Tan)",
+            "committed_amt": 92650000,
+            "invested_amt": 65000000
+          },
+          {
+            "id": 105167,
+            "asset_id": "ast_fe9e7fc006fb",
+            "fund_id": "112006",
+            "beneficiary_clean": "경찰공제회",
+            "beneficiary_raw": "경찰공제회",
+            "committed_amt": 15000000000,
+            "invested_amt": 15000000000
+          },
+          {
+            "id": 105168,
+            "asset_id": "ast_fe9e7fc006fb",
+            "fund_id": "112006",
+            "beneficiary_clean": "국민연금공단",
+            "beneficiary_raw": "국민연금공단",
+            "committed_amt": 111100000000,
+            "invested_amt": 111100000000
+          }
+        ]
+      }
+    }
+  },
+  "iota_projects": [
+    {
+      "project_id": "iota-seoul",
+      "project_name": "이오타서울 (IOTA Seoul)",
+      "project_code": null,
+      "parent_project_id": null,
+      "primary_asset_id": null,
+      "project_type": "Parent Project",
+      "status": "active"
+    },
+    {
+      "project_id": "iota-427",
+      "project_name": "와이디427",
+      "project_code": null,
+      "parent_project_id": "iota-seoul",
+      "primary_asset_id": "ast_cd9937cc8678",
+      "project_type": "Child Project",
+      "status": "active"
+    },
+    {
+      "project_id": "iota-421f",
+      "project_name": "421호펀드",
+      "project_code": null,
+      "parent_project_id": "iota-seoul",
+      "primary_asset_id": "ast_aefd81e93778",
+      "project_type": "Child Project",
+      "status": "active"
+    },
+    {
+      "project_id": "iota-816",
+      "project_name": "와이디816",
+      "project_code": null,
+      "parent_project_id": "iota-seoul",
+      "primary_asset_id": null,
+      "project_type": "Child Project",
+      "status": "active"
+    },
+    {
+      "project_id": "project_notion_3258ced4-3c47-8114-a5b8-fb58a5dee9cf",
+      "project_name": "수익자 및 투자자 보고자료 작성 및 지원(위탁운용 보고서 작성 이외 (For 전략투자그룹, 자산관리그룹,\n  스페셜시츄에이션, 사업그룹, 라이프리빙, 글로벌 전략그룹, 공모펀드 대응 TF, 공간개발파트 ,CM그룹, IOTA TF,해외법인)",
+      "project_code": null,
+      "parent_project_id": null,
+      "primary_asset_id": null,
+      "project_type": "Project",
+      "status": null
+    },
+    {
+      "project_id": "project_notion_3258ced4-3c47-8124-9197-e1caaf5c421b",
+      "project_name": "수익자 및 투자자 보고자료 및  IM작성 장표 및 데이터 지원(For 전략투자그룹, 자산관리그룹, 스페셯시츄에이션, 사업그룹, 라이프리빙, 글로벌 전략그룹, 공모펀드 대응 TF, 공간개발파트 ,CM그룹, IOTA TF,해외법인, PR팀, 성장지원, 기획추진)",
+      "project_code": null,
+      "parent_project_id": null,
+      "primary_asset_id": null,
+      "project_type": "Project",
+      "status": null
+    },
+    {
+      "project_id": "project_notion_3258ced4-3c47-818d-9da5-c27149a74a92",
+      "project_name": "이오타서울 427",
+      "project_code": "PRJ-160",
+      "parent_project_id": null,
+      "primary_asset_id": null,
+      "project_type": "Project",
+      "status": "설정 후"
+    },
+    {
+      "project_id": "project_notion_3258ced4-3c47-81cb-a4ff-e9df05eb2777",
+      "project_name": "이오타서울 816",
+      "project_code": "PRJ-161",
+      "parent_project_id": null,
+      "primary_asset_id": null,
+      "project_type": "Project",
+      "status": "설정 후"
+    },
+    {
+      "project_id": "project_notion_3258ced4-3c47-81fe-ae83-d8cbc1f3bf07",
+      "project_name": "IM작성 장표 및 데이터 지원(신규 펀드제안./PJT 신규투자 건 대응, For 전략투자, CM, 라이프리빙, 공간개발파트,\n  IOTA TF)",
+      "project_code": null,
+      "parent_project_id": null,
+      "primary_asset_id": null,
+      "project_type": "Project",
+      "status": null
+    }
+  ],
+  "iota_trace": [
+    {
+      "target_project_id": "iota-427",
+      "project_name": "와이디427",
+      "asset_id": "ast_cd9937cc8678",
+      "asset_name": "와이디427피에프브이 주식회사",
+      "related_fund_ids": [
+        "112706",
+        "112707",
+        "120016",
+        "112614",
+        "120113"
+      ]
+    },
+    {
+      "target_project_id": "iota-421f",
+      "project_name": "421호펀드",
+      "asset_id": "ast_aefd81e93778",
+      "asset_name": "Colony Distressed Credit Fund IV",
+      "related_fund_ids": [
+        "112057",
+        "112472",
+        "112473"
+      ]
+    }
+  ]
+}

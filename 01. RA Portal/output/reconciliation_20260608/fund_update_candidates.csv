@@ -1,0 +1,163 @@
+﻿domain,severity,issue_type,fund_id,field,source_column,db_column,source_value,db_value,difference,recommendation
+fund_master,review,field_change_candidate,112051,maturity_date,만기일,maturity_date,2028-06-26,2026-12-26,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112065,termination_date,해지일,termination_date,2026-04-30,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112174,termination_date,해지일,termination_date,2026-04-30,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112201,termination_date,해지일,termination_date,2026-04-30,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112242,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112243,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112244,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112254,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112260,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112261,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112262,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112263,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112349,maturity_date,만기일,maturity_date,9999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112425,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112426,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112427,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112429,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112430,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112432,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112434,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112435,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112436,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112437,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112438,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112439,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112440,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112441,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112442,status,운용상태,status,청산,운용,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112442,termination_date,해지일,termination_date,2026-05-22,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112474,status,운용상태,status,청산,운용,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112474,maturity_date,만기일,maturity_date,2026-05-28,2028-12-10,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112474,termination_date,해지일,termination_date,2026-05-28,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112535,fund_name,펀드명,fund_name,이지스일반사모부동산투자신탁제407호,이지스제407호전문투자형사모부동산투자신탁,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112535,maturity_date,만기일,maturity_date,2029-06-09,2026-06-09,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112536,maturity_date,만기일,maturity_date,2026-07-09,2026-06-09,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112537,maturity_date,만기일,maturity_date,2026-07-09,2026-06-09,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112538,maturity_date,만기일,maturity_date,2026-07-09,2026-06-09,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112557,status,운용상태,status,청산,운용,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112557,maturity_date,만기일,maturity_date,2026-05-28,2031-06-01,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112557,termination_date,해지일,termination_date,2026-05-28,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112587,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112594,status,운용상태,status,청산,운용,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112594,termination_date,해지일,termination_date,2026-05-22,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112595,status,운용상태,status,청산,운용,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112595,termination_date,해지일,termination_date,2026-05-22,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112626,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112629,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112630,status,운용상태,status,청산,운용,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112630,maturity_date,만기일,maturity_date,2026-05-28,2031-12-23,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112630,termination_date,해지일,termination_date,2026-05-28,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112632,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112634,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112664,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112699,status,운용상태,status,청산,운용,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112699,maturity_date,만기일,maturity_date,2026-05-29,2030-07-15,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112699,termination_date,해지일,termination_date,2026-05-29,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112744,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112756,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112759,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112760,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112778,manager,담당자(운용),manager,박채연,박동민,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112779,manager,담당자(운용),manager,박채연,박동민,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,112780,manager,담당자(운용),manager,박채연,박동민,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,120123,status,운용상태,status,운용,설정예정,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,120123,location,국내/해외,location,국내,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,120123,setup_date,최초 설정일,setup_date,2026-06-01,2026-05-29,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,120123,maturity_date,만기일,maturity_date,2033-06-01,,,Review before update. Do not apply automatically.
+fund_master,update_candidate,new_source_fund_not_in_supabase,120124,,,,이지스부동산대출일반사모부동산투자신탁제2호(1종),,,New fund candidate. Verify whether it should be inserted.
+fund_master,update_candidate,new_source_fund_not_in_supabase,120125,,,,이지스부동산대출일반사모부동산투자신탁제2호(2종),,,New fund candidate. Verify whether it should be inserted.
+fund_master,update_candidate,new_source_fund_not_in_supabase,120126,,,,이지스 NPL 리스트럭처링일반사모부동산투자신탁,,,New fund candidate. Verify whether it should be inserted.
+fund_master,review,field_change_candidate,190017,manager,담당자(운용),manager,강창원,양진수,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,190018,manager,담당자(운용),manager,강창원,양진수,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,190019,manager,담당자(운용),manager,강창원,양진수,,Review before update. Do not apply automatically.
+fund_master,update_candidate,new_source_fund_not_in_supabase,200046,,,,이지스글로벌인프라일반사모투자신탁제7호,,,New fund candidate. Verify whether it should be inserted.
+fund_master,review,field_change_candidate,300011,termination_date,해지일,termination_date,2026-04-28,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300016,status,운용상태,status,청산,운용,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300016,maturity_date,만기일,maturity_date,2026-05-26,2027-02-28,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300016,termination_date,해지일,termination_date,2026-05-26,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300017,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300038,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300046,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300051,status,운용상태,status,청산,운용,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300051,termination_date,해지일,termination_date,2026-05-14,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300063,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300064,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300065,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300067,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300068,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300070,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300071,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300073,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300076,status,운용상태,status,청산,운용,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300076,maturity_date,만기일,maturity_date,2026-05-22,2027-07-28,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300076,termination_date,해지일,termination_date,2026-05-22,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300077,status,운용상태,status,청산,운용,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300077,maturity_date,만기일,maturity_date,2026-05-22,2027-07-28,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300077,termination_date,해지일,termination_date,2026-05-22,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300078,status,운용상태,status,청산,운용,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300078,maturity_date,만기일,maturity_date,2026-05-22,2027-07-28,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300078,termination_date,해지일,termination_date,2026-05-22,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300080,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300083,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,300084,maturity_date,만기일,maturity_date,2999-12-31,,,Review before update. Do not apply automatically.
+fund_master,update_candidate,new_source_fund_not_in_supabase,300086,,,,이지스 멀티플러스 일반사모투자신탁 제3호,,,New fund candidate. Verify whether it should be inserted.
+fund_master,update_candidate,new_source_fund_not_in_supabase,300087,,,,이지스 멀티플러스 일반사모투자신탁 제3호(Class A),,,New fund candidate. Verify whether it should be inserted.
+fund_master,update_candidate,new_source_fund_not_in_supabase,300088,,,,이지스 멀티플러스 일반사모투자신탁 제3호(Class C),,,New fund candidate. Verify whether it should be inserted.
+fund_master,update_candidate,new_source_fund_not_in_supabase,300089,,,,이지스 멀티플러스 일반사모투자신탁 제3호(Class C-S),,,New fund candidate. Verify whether it should be inserted.
+fund_master,update_candidate,new_source_fund_not_in_supabase,300090,,,,이지스그린ON 일반사모투자신탁제5호,,,New fund candidate. Verify whether it should be inserted.
+fund_master,review,field_change_candidate,P00003,primary_region,주요투자지역,primary_region,대한민국,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,P00004,primary_region,주요투자지역,primary_region,대한민국,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,P00013,primary_region,주요투자지역,primary_region,대한민국,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,P00020,primary_region,주요투자지역,primary_region,대한민국,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,P00036,termination_date,해지일,termination_date,2026-04-14,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,P00039,fund_name,펀드명,fund_name,용산라이프시티피에프브이(주),용산라이프시티PFV,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,P00039,primary_region,주요투자지역,primary_region,대한민국,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,P00039,setup_date,최초 설정일,setup_date,2026-05-14,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,P00039,maturity_date,만기일,maturity_date,2027-02-20,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00001,recruitment_type,모집형태,recruitment_type,,일반사모(전문투자자),,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00001,primary_region,주요투자지역,primary_region,대한민국,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00001,setup_date,최초 설정일,setup_date,2019-10-19,2019-08-26,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00001,maturity_date,만기일,maturity_date,9999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00002,location,국내/해외,location,국내,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00002,primary_region,주요투자지역,primary_region,대한민국,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00004,recruitment_type,모집형태,recruitment_type,,일반사모(일반투자자),,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00004,primary_region,주요투자지역,primary_region,대한민국,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00004,setup_date,최초 설정일,setup_date,2020-09-24,2020-07-17,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00004,maturity_date,만기일,maturity_date,9999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00005,primary_region,주요투자지역,primary_region,글로벌,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00006,primary_region,주요투자지역,primary_region,글로벌,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00006,setup_date,최초 설정일,setup_date,2021-11-25,2020-11-25,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00006,maturity_date,만기일,maturity_date,9999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00007,primary_region,주요투자지역,primary_region,대한민국,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00007,setup_date,최초 설정일,setup_date,2021-07-09,2021-01-14,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00007,maturity_date,만기일,maturity_date,2022-10-22,2022-11-29,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00007,termination_date,해지일,termination_date,2022-10-22,2022-11-29,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00008,primary_region,주요투자지역,primary_region,대한민국,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00008,manager,담당자(운용),manager,강민수,임수빈,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00008,setup_date,최초 설정일,setup_date,2020-06-03,2020-02-03,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00008,maturity_date,만기일,maturity_date,9999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00010,recruitment_type,모집형태,recruitment_type,,일반사모(전문투자자),,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00010,primary_region,주요투자지역,primary_region,글로벌,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00010,manager,담당자(운용),manager,강민수,임수빈,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00010,setup_date,최초 설정일,setup_date,2022-06-30,2021-12-14,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00010,maturity_date,만기일,maturity_date,9999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00011,primary_region,주요투자지역,primary_region,대한민국,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00011,setup_date,최초 설정일,setup_date,2020-06-20,2019-07-16,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00011,maturity_date,만기일,maturity_date,9999-12-31,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00012,primary_region,주요투자지역,primary_region,대한민국,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00012,setup_date,최초 설정일,setup_date,2019-05-25,2019-01-29,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00012,maturity_date,만기일,maturity_date,9999-12-31,2031-05-31,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00013,recruitment_type,모집형태,recruitment_type,,일반사모(전문투자자),,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00013,primary_region,주요투자지역,primary_region,대한민국,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00013,setup_date,최초 설정일,setup_date,2024-12-28,2024-12-30,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00014,sector,투자섹터,sector,리테일,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00014,primary_region,주요투자지역,primary_region,대한민국,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00014,setup_date,최초 설정일,setup_date,2025-02-17,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00014,maturity_date,만기일,maturity_date,2044-10-15,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00016,sector,투자섹터,sector,주거,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00016,primary_region,주요투자지역,primary_region,대한민국,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00016,setup_date,최초 설정일,setup_date,2025-11-22,,,Review before update. Do not apply automatically.
+fund_master,review,field_change_candidate,R00016,maturity_date,만기일,maturity_date,9999-12-31,,,Review before update. Do not apply automatically.
+fund_master,info,supabase_fund_not_in_today_source,R00003,,,,,이지스레지던스위탁관리부동산투자회사,,Likely inactive/old/out-of-scope for today's workbook; do not delete without lifecycle review.

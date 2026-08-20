@@ -1,0 +1,650 @@
+[
+  {
+    "asset_id": "ast_fe9e7fc006fb",
+    "canonical_name": "눈스퀘어",
+    "fund_id": "112006",
+    "fund_name": "이지스일반사모부동산투자신탁7호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_122d47e0ef63",
+    "canonical_name": "홈플러스금천점",
+    "fund_id": "112008",
+    "fund_name": "이지스일반사모부동산투자신탁13호(운용)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_55647389ae80",
+    "canonical_name": "홈플러스영등포점",
+    "fund_id": "112008",
+    "fund_name": "이지스일반사모부동산투자신탁13호(운용)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_ecd738fc0c31",
+    "canonical_name": "홈플러스센텀시티점",
+    "fund_id": "112008",
+    "fund_name": "이지스일반사모부동산투자신탁13호(운용)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_assets"
+  },
+  {
+    "asset_id": "ast_f0700d6e9655",
+    "canonical_name": "홈플러스동수원점",
+    "fund_id": "112008",
+    "fund_name": "이지스일반사모부동산투자신탁13호(운용)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_assets"
+  },
+  {
+    "asset_id": "ast_a87124d2b233",
+    "canonical_name": "남산그린빌딩",
+    "fund_id": "112016",
+    "fund_name": "이지스일반사모부동산모투자신탁18-1호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_21ccb7c9f7bd",
+    "canonical_name": "G밸리비즈플라자",
+    "fund_id": "112017",
+    "fund_name": "이지스KORIF일반사모부동산투자신탁10호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_b79d97794e21",
+    "canonical_name": "트윈트리타워",
+    "fund_id": "112024",
+    "fund_name": "이지스일반사모부동산투자신탁25호(운용)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_99bb7e6dd0fa",
+    "canonical_name": "노스게이트빌딩",
+    "fund_id": "112029",
+    "fund_name": "이지스엔지제28호사모부동산투자유한회사",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_3e4a7ba7841a",
+    "canonical_name": "오토웨이타워",
+    "fund_id": "112038",
+    "fund_name": "이지스사모부동산투자신탁35호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_a60a75cb3e01",
+    "canonical_name": "정동빌딩",
+    "fund_id": "112039",
+    "fund_name": "이지스일반사모부동산투자신탁42호(운용)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_2b8d6d15574a",
+    "canonical_name": "태평로빌딩",
+    "fund_id": "112104",
+    "fund_name": "이지스일반사모부동산투자신탁97호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_97eee497ab45",
+    "canonical_name": "PFV_Lotus (지분증권)",
+    "fund_id": "112114",
+    "fund_name": "이지스일반사모부동산투자신탁120호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_f40e9a6c4433",
+    "canonical_name": "PFV_Lotus (사채)",
+    "fund_id": "112115",
+    "fund_name": "이지스일반사모부동산투자신탁121호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_7e9acc299d06",
+    "canonical_name": "V플렉스",
+    "fund_id": "112128",
+    "fund_name": "이지스코어플랫폼일반사모부동산자투자신탁제1호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_74aec6939fcf",
+    "canonical_name": "포포인츠바이쉐라톤조선서울명동",
+    "fund_id": "112128",
+    "fund_name": "이지스코어플랫폼일반사모부동산자투자신탁제1호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_3aee5443a745",
+    "canonical_name": "아레나스양지물류센터",
+    "fund_id": "112128",
+    "fund_name": "이지스코어플랫폼일반사모부동산자투자신탁제1호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_assets"
+  },
+  {
+    "asset_id": "ast_7e9acc299d06",
+    "canonical_name": "V플렉스",
+    "fund_id": "112144",
+    "fund_name": "이지스일반사모부동산모투자신탁125호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_7e9acc299d06",
+    "canonical_name": "V플렉스",
+    "fund_id": "112146",
+    "fund_name": "이지스일반사모부동산자투자신탁제125-2호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_9855c32af978",
+    "canonical_name": "지엘가산메트로 주식회사",
+    "fund_id": "112160",
+    "fund_name": "이지스일반사모부동산투자신탁156호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_86b73cdb75eb",
+    "canonical_name": "건대몰오브K",
+    "fund_id": "112205",
+    "fund_name": "이지스리테일부동산투자신탁194호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_b3db1f189553",
+    "canonical_name": "센터필드",
+    "fund_id": "112209",
+    "fund_name": "이지스제210호전문투자형사모부동산투자회사(운용)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_b3db1f189553",
+    "canonical_name": "센터필드",
+    "fund_id": "112210",
+    "fund_name": "이지스제210호전문투자형사모부동산투자회사(1종)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_b3db1f189553",
+    "canonical_name": "센터필드",
+    "fund_id": "112211",
+    "fund_name": "이지스제210호전문투자형사모부동산투자회사(2종)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_b3db1f189553",
+    "canonical_name": "센터필드",
+    "fund_id": "112212",
+    "fund_name": "이지스제210호전문투자형사모부동산투자회사(보통)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_8645e842633c",
+    "canonical_name": "오투타워",
+    "fund_id": "112237",
+    "fund_name": "이지스스트래티직일반사모부동산자투자신탁제1호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_7cfadd3adb65",
+    "canonical_name": "타임워크명동",
+    "fund_id": "112237",
+    "fund_name": "이지스스트래티직일반사모부동산자투자신탁제1호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_47cfb7af7038",
+    "canonical_name": "서울로타워",
+    "fund_id": "112237",
+    "fund_name": "이지스스트래티직일반사모부동산자투자신탁제1호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_75c6cda594b3",
+    "canonical_name": "타임테라스동탄",
+    "fund_id": "112237",
+    "fund_name": "이지스스트래티직일반사모부동산자투자신탁제1호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_assets"
+  },
+  {
+    "asset_id": "ast_fcd940175c17",
+    "canonical_name": "금강타워3",
+    "fund_id": "112305",
+    "fund_name": "이지스일반사모부동산투자신탁279호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_7cfadd3adb65",
+    "canonical_name": "타임워크명동",
+    "fund_id": "112350",
+    "fund_name": "이지스스트래티직일반사모부동산모투자신탁제1-2호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_7cfadd3adb65",
+    "canonical_name": "타임워크명동",
+    "fund_id": "112351",
+    "fund_name": "이지스스트래티직일반사모부동산자투자신탁제1-2-3호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_56ba3af5aedc",
+    "canonical_name": "GRAN PASEO 칸다에키마에",
+    "fund_id": "112362",
+    "fund_name": "이지스글로벌일반사모부동산모투자신탁316호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_b5a8681c1621",
+    "canonical_name": "LEGALAND 와세다미나미",
+    "fund_id": "112362",
+    "fund_name": "이지스글로벌일반사모부동산모투자신탁316호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_683e8481561e",
+    "canonical_name": "PASEO 토부네리마",
+    "fund_id": "112362",
+    "fund_name": "이지스글로벌일반사모부동산모투자신탁316호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_656236266bd0",
+    "canonical_name": "아버하이츠 오우기오하시",
+    "fund_id": "112362",
+    "fund_name": "이지스글로벌일반사모부동산모투자신탁316호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_329735309847",
+    "canonical_name": "Tokyo District 23 Residential Portfolio",
+    "fund_id": "112362",
+    "fund_name": "이지스글로벌일반사모부동산모투자신탁316호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_assets"
+  },
+  {
+    "asset_id": "ast_31da440b4288",
+    "canonical_name": "CGV대학로",
+    "fund_id": "112365",
+    "fund_name": "이지스리테일부동산투자신탁299호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_31da440b4288",
+    "canonical_name": "CGV대학로",
+    "fund_id": "112366",
+    "fund_name": "이지스리테일부동산투자신탁299호 (Class-A)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_84125d66e5f0",
+    "canonical_name": "KORNER 136",
+    "fund_id": "112368",
+    "fund_name": "에이치밸류전문투자형사모부동산투자유한회사(운용)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_84125d66e5f0",
+    "canonical_name": "KORNER 136",
+    "fund_id": "112369",
+    "fund_name": "에이치밸류전문투자형사모부동산투자유한회사(1종)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_84125d66e5f0",
+    "canonical_name": "KORNER 136",
+    "fund_id": "112370",
+    "fund_name": "에이치밸류전문투자형사모부동산투자유한회사(2종)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_ea8e897db9a1",
+    "canonical_name": "OPUS407",
+    "fund_id": "112375",
+    "fund_name": "이지스일반사모부동산투자신탁제330호(운용)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_ea8e897db9a1",
+    "canonical_name": "OPUS407",
+    "fund_id": "112376",
+    "fund_name": "이지스일반사모부동산투자신탁제330호(1종)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_ea8e897db9a1",
+    "canonical_name": "OPUS407",
+    "fund_id": "112377",
+    "fund_name": "이지스일반사모부동산투자신탁제330호(2-A종)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_ea8e897db9a1",
+    "canonical_name": "OPUS407",
+    "fund_id": "112378",
+    "fund_name": "이지스일반사모부동산투자신탁제330호(2-B종)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_57891a43269b",
+    "canonical_name": "이지스기회추구2-1호 (330호, OPUS407/舊뉴욕제과빌딩)",
+    "fund_id": "112380",
+    "fund_name": "이지스기회추구일반사모부동산자투자신탁제2호(운용)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_1b09ced3f5a7",
+    "canonical_name": "호수빌딩",
+    "fund_id": "112380",
+    "fund_name": "이지스기회추구일반사모부동산자투자신탁제2호(운용)",
+    "relation_type": "inferred_underlying_asset",
+    "source_table": "funds"
+  },
+  {
+    "asset_id": "ast_2b8d6d15574a",
+    "canonical_name": "태평로빌딩",
+    "fund_id": "112400",
+    "fund_name": "이지스일반사모부동산투자신탁97호(Class C2)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_8e5fda3d061a",
+    "canonical_name": "OPUS459(구. 백암빌딩)",
+    "fund_id": "112421",
+    "fund_name": "이지스일반사모부동산투자신탁제353호(운용)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_8e5fda3d061a",
+    "canonical_name": "OPUS459(구. 백암빌딩)",
+    "fund_id": "112422",
+    "fund_name": "이지스일반사모부동산투자신탁제353호(1종)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_8e5fda3d061a",
+    "canonical_name": "OPUS459(구. 백암빌딩)",
+    "fund_id": "112423",
+    "fund_name": "이지스일반사모부동산투자신탁제353호(2-A종)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_8e5fda3d061a",
+    "canonical_name": "OPUS459(구. 백암빌딩)",
+    "fund_id": "112424",
+    "fund_name": "이지스일반사모부동산투자신탁제353호(2-B종)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_eb73897d66c4",
+    "canonical_name": "맹그로브 신설",
+    "fund_id": "112445",
+    "fund_name": "이지스리빙플랫폼일반사모부동산자투자신탁제1호(운용)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_878300cda6ad",
+    "canonical_name": "맹그로브 동대문",
+    "fund_id": "112445",
+    "fund_name": "이지스리빙플랫폼일반사모부동산자투자신탁제1호(운용)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_64855a473d9f",
+    "canonical_name": "맹그로브 신촌",
+    "fund_id": "112445",
+    "fund_name": "이지스리빙플랫폼일반사모부동산자투자신탁제1호(운용)",
+    "relation_type": "inferred_underlying_asset",
+    "source_table": "funds"
+  },
+  {
+    "asset_id": "ast_1a20ea59c075",
+    "canonical_name": "더강남832PFV의 지분증권 및 대출채권",
+    "fund_id": "112450",
+    "fund_name": "이지스전문투자형사모부동산투자신탁365호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_a8f90f516d21",
+    "canonical_name": "CJ제일제당센터",
+    "fund_id": "112475",
+    "fund_name": "이지스국내오피스일반사모부동산투자신탁제372호(운용)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_3d2e2d559411",
+    "canonical_name": "두산타워(재간접)",
+    "fund_id": "112493",
+    "fund_name": "이지스일반사모부동산투자신탁제390호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_5827261360b4",
+    "canonical_name": "선릉위워크타워",
+    "fund_id": "112499",
+    "fund_name": "이지스인컴앤그로스일반사모부동산모투자신탁제2-1호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_5827261360b4",
+    "canonical_name": "선릉위워크타워",
+    "fund_id": "112500",
+    "fund_name": "이지스인컴앤그로스일반사모부동산자투자신탁제2호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_0920c9043185",
+    "canonical_name": "인천석남물류센터",
+    "fund_id": "112500",
+    "fund_name": "이지스인컴앤그로스일반사모부동산자투자신탁제2호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_assets"
+  },
+  {
+    "asset_id": "ast_2652e06dfeaa",
+    "canonical_name": "평택아디다스물류센터",
+    "fund_id": "112500",
+    "fund_name": "이지스인컴앤그로스일반사모부동산자투자신탁제2호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_assets"
+  },
+  {
+    "asset_id": "ast_52adbb346181",
+    "canonical_name": "안성홈플러스물류센터",
+    "fund_id": "112500",
+    "fund_name": "이지스인컴앤그로스일반사모부동산자투자신탁제2호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_assets"
+  },
+  {
+    "asset_id": "ast_b79d97794e21",
+    "canonical_name": "트윈트리타워",
+    "fund_id": "112531",
+    "fund_name": "이지스일반사모부동산투자신탁25호(2종)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_74c55ca84e27",
+    "canonical_name": "원그로브(마곡CP4 복합개발사업)",
+    "fund_id": "112589",
+    "fund_name": "이지스일반사모부동산투자신탁제416호(운용)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_74c55ca84e27",
+    "canonical_name": "원그로브(마곡CP4 복합개발사업)",
+    "fund_id": "112590",
+    "fund_name": "이지스일반사모부동산투자신탁제416호(1종)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_74c55ca84e27",
+    "canonical_name": "원그로브(마곡CP4 복합개발사업)",
+    "fund_id": "112591",
+    "fund_name": "이지스일반사모부동산투자신탁제416호(2종)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_55e5920ab1cd",
+    "canonical_name": "당산 지식산업센터 개발사업 PF대출",
+    "fund_id": "112666",
+    "fund_name": "이지스부동산론일반사모부동산투자신탁제1호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_assets"
+  },
+  {
+    "asset_id": "ast_05fbe6b353fb",
+    "canonical_name": "여의도 유수홀딩스부지 오피스텔 개발사업 PF대출",
+    "fund_id": "112666",
+    "fund_name": "이지스부동산론일반사모부동산투자신탁제1호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_assets"
+  },
+  {
+    "asset_id": "ast_0d7b28ca87e1",
+    "canonical_name": "성수동 오피스 개발사업 선순위 브릿지론",
+    "fund_id": "112666",
+    "fund_name": "이지스부동산론일반사모부동산투자신탁제1호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_assets"
+  },
+  {
+    "asset_id": "ast_586b7ab8eae7",
+    "canonical_name": "웨스트게이트타워 선순위 담보대출",
+    "fund_id": "112666",
+    "fund_name": "이지스부동산론일반사모부동산투자신탁제1호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_7f15dadaebbf",
+    "canonical_name": "카이트타워 선순위 담보대출",
+    "fund_id": "112666",
+    "fund_name": "이지스부동산론일반사모부동산투자신탁제1호",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_55647389ae80",
+    "canonical_name": "홈플러스영등포점",
+    "fund_id": "112702",
+    "fund_name": "이지스일반사모부동산투자신탁13호(2종)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_122d47e0ef63",
+    "canonical_name": "홈플러스금천점",
+    "fund_id": "112702",
+    "fund_name": "이지스일반사모부동산투자신탁13호(2종)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_ecd738fc0c31",
+    "canonical_name": "홈플러스센텀시티점",
+    "fund_id": "112702",
+    "fund_name": "이지스일반사모부동산투자신탁13호(2종)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_assets"
+  },
+  {
+    "asset_id": "ast_f0700d6e9655",
+    "canonical_name": "홈플러스동수원점",
+    "fund_id": "112702",
+    "fund_name": "이지스일반사모부동산투자신탁13호(2종)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_assets"
+  },
+  {
+    "asset_id": "ast_a87124d2b233",
+    "canonical_name": "남산그린빌딩",
+    "fund_id": "112794",
+    "fund_name": "이지스제510호부동산일반사모투자회사",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_2b8d6d15574a",
+    "canonical_name": "태평로빌딩",
+    "fund_id": "120026",
+    "fund_name": "이지스일반사모부동산투자신탁97호(Class F2)",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_47cfb7af7038",
+    "canonical_name": "서울로타워",
+    "fund_id": "P00037",
+    "fund_name": "와이디816피에프브이 주식회사",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  },
+  {
+    "asset_id": "ast_2b8d6d15574a",
+    "canonical_name": "태평로빌딩",
+    "fund_id": "R00011",
+    "fund_name": "주식회사 이지스밸류플러스위탁관리부동산투자회사",
+    "relation_type": "underlying_asset",
+    "source_table": "fund_asset_source"
+  }
+]

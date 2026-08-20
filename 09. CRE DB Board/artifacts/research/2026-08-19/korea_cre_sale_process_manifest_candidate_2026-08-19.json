@@ -1,0 +1,139 @@
+{
+  "manifest_type": "sale_process_candidate_manifest",
+  "schema_version": "0.2-research-candidate",
+  "jurisdiction": "KR",
+  "cutoff_date": "2026-08-19",
+  "review_status": "research_staged_for_promotion",
+  "evidence_grades": {"A": "primary filing/party source", "B": "body-level professional media/follow-up", "C": "single article or search-result evidence"},
+  "processes": [
+    {
+      "process_code": "KR-CRE-2026-G1-SEOUL",
+      "asset": "G1서울", "asset_type": "OFFICE", "method": "COMPETITIVE",
+      "roles": {"legal_owner_or_vehicle": "공평십오십육PFV", "amc_or_manager": "랜스퍼트AMC", "buyer_or_preferred": "미래에셋자산운용", "sell_side_adviser": null},
+      "rounds": [{"round_type": "FINAL_BID", "date": "2026-01-23", "bidders": ["미래에셋자산운용", "퍼시픽자산운용"], "count_claim_note": "다른 초기 기사 3개사 claim과 충돌"}],
+      "milestones": [{"type": "PREFERRED_BIDDER", "date": "2026-02-03"}, {"type": "CLOSED", "date": "2026-06", "date_precision": "month"}],
+      "amounts": [{"value_krw": "1523000000000", "basis": "closing_asset_value"}],
+      "financing": [{"provider": "우정사업본부", "type": "blind_core_real_estate_mandate", "amount_krw": null, "status": "EXECUTED_FOR_DEAL_BUT_ALLOCATION_UNDISCLOSED"}],
+      "current_status": "CLOSED", "evidence_grade": "B",
+      "source_refs": [
+        {"date": "2026-01-23", "url": "http://www.edaily.co.kr/news/newspath.asp?newsid=04244326645320672", "span": "본입찰; 미래에셋·퍼시픽 2곳"},
+        {"date": "2026-02-03", "url": "https://www.sedaily.com/article/20004084", "span": "랜스퍼트AMC가 미래에셋을 우협 선정"},
+        {"date": "2026-08-03", "url": "https://view.asiae.co.kr/article/2026080309273926323", "span": "6월 거래; 우본 자금; 1조5230억원 인수"}
+      ]
+    },
+    {
+      "process_code": "KR-CRE-2026-HANA-YEOUIDO",
+      "asset": "하나증권 여의도 사옥", "asset_type": "OFFICE", "method": "COMPETITIVE_WITH_PREEMPTION",
+      "roles": {"legal_owner_or_vehicle": "코람코더원위탁관리부동산투자회사", "amc_or_manager": "코람코자산신탁", "sell_side_adviser": "세빌스코리아", "initial_preferred": "페블스톤자산운용", "preempting_buyer": "하나증권/하나대체투자자산운용"},
+      "rounds": [{"round_type": "FINAL_BID", "date": "2026-03-09", "bidder_count": 4, "bidders_partial": ["코람코자산운용"]}],
+      "milestones": [{"type": "PREFERRED_BIDDER", "date": "2026-03-12", "party": "페블스톤자산운용"}, {"type": "PREEMPTION_EXERCISED", "date": "2026-04-10", "party": "하나증권"}, {"type": "CLOSED", "date": "2026-06", "date_precision": "month"}],
+      "amounts": [{"value_krw": "811200000000", "basis": "closing_asset_value"}], "financing": [], "current_status": "CLOSED", "evidence_grade": "A-",
+      "source_refs": [
+        {"date": "2026-03-10", "url": "https://www.investchosun.com/site/data/html_dir/2026/03/10/2026031080013.html", "span": "전날 14시 본입찰 마감"},
+        {"date": "2026-03-12", "url": "https://www.investchosun.com/site/data/html_dir/2026/03/12/2026031280185.html", "span": "페블스톤 우협; 가격 비공개"},
+        {"date": "2026-04-10", "url": "https://www.investchosun.com/site/data/html_dir/2026/04/10/2026041080141.html", "span": "하나증권 우선매수권 행사 통지"},
+        {"date": "2026-08-06", "url": "https://www.ddaily.co.kr/page/view/2026080609565592878", "span": "8112억원에 다시 사들였다"},
+        {"date": "2026-08-13", "url": "https://kind.krx.co.kr/external/2026/08/13/000418/20260813001039/11011.htm", "span": "코람코더원리츠 사업보고서; 8,112 거래수치"}
+      ]
+    },
+    {
+      "process_code": "KR-CRE-2025-EMART-TOWER-REBID-2026",
+      "asset": "이마트타워(오렌지센터)", "asset_type": "OFFICE", "method": "COMPETITIVE_REBID",
+      "roles": {"legal_owner_or_vehicle": null, "amc_or_manager": "NH아문디자산운용", "sell_side_adviser": null, "buyer": "한화리츠/한화자산운용"},
+      "rounds": [{"round_type": "FAILED_2025_PATH", "date": "2025-12-30", "party": "BNK 계열"}, {"round_type": "REBID", "date": "2026-03-04", "bidders": ["한투리얼에셋운용", "한화리츠", "신한알파리츠"]}],
+      "milestones": [{"type": "PREFERRED_BIDDER", "date": "2026-03-11"}, {"type": "CLOSED", "date": "2026-06", "date_precision": "month"}],
+      "amounts": [{"value_krw": "350000000000", "basis": "closing_asset_value"}, {"raw": "3.3㎡당 3385만원", "basis": "preferred_bid_unit_price"}],
+      "financing": [{"recipient_vehicle": "한화리츠", "type": "REIT", "status": "EXECUTED"}], "current_status": "CLOSED", "evidence_grade": "A-/B",
+      "source_refs": [
+        {"date": "2026-03-04", "url": "https://www.sedaily.com/article/20015200", "span": "재입찰 참여 3개 이상"},
+        {"date": "2026-03-11", "url": "https://www.sedaily.com/article/20017997", "span": "한화리츠 우협; 전년 실패"},
+        {"date": "2026-08-02", "url": "https://dealsite.co.kr/articles/164601", "span": "지난 6월 3500억원 인수"}
+      ]
+    },
+    {
+      "process_code": "KR-CRE-2026-PINE-AVENUE-A", "asset": "파인애비뉴 A동(신한카드 사옥)", "asset_type": "OFFICE", "method": "COMPETITIVE",
+      "roles": {"headline_seller": "신한카드", "sell_side_adviser": null, "preferred_bidder": "MDM자산운용"},
+      "rounds": [{"round_type": "PRELIMINARY_BID", "date": "2026-06-04", "bidders": ["삼성 계열 운용사", "MDM자산운용", "KKR"]}],
+      "milestones": [{"type": "PREFERRED_BIDDER", "date": "2026-06-11"}], "amounts": [{"value_krw": "800000000000", "basis": "preferred_bid_reported_price"}], "financing": [], "current_status": "PREFERRED_BIDDER", "evidence_grade": "B",
+      "source_refs": [{"date": "2026-06-04", "url": "https://www.investchosun.com/site/data/html_dir/2026/06/04/2026060480071.html", "span": "삼성·MDM·KKR 등 예비입찰"}, {"date": "2026-06-12", "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202606111406175000109686", "span": "11일 MDM 우협; 8000억원"}]
+    },
+    {
+      "process_code": "KR-CRE-2026-K-TWIN", "asset": "더케이트윈타워", "asset_type": "OFFICE", "method": "COMPETITIVE",
+      "roles": {"amc_or_manager": "삼성SRA자산운용", "sell_side_advisers": ["쿠시먼앤드웨이크필드", "CBRE"], "preferred_bidder": "이지스자산운용"},
+      "rounds": [{"round_type": "FINAL_BID", "date": "2026-06-23", "bidders": ["현대해상", "이지스자산운용", "마스턴투자운용", "코람코자산운용"]}],
+      "milestones": [{"type": "PREFERRED_BIDDER", "date": "2026-07-early", "date_precision": "period"}], "amounts": [{"raw": "1조원 이상", "basis": "expected_value"}], "financing": [], "current_status": "PREFERRED_BIDDER", "evidence_grade": "B",
+      "source_refs": [{"date": "2026-06-24", "url": "https://www.sedaily.com/article/20059750", "span": "전날 입찰; 4개사 명시"}, {"date": "2026-07-31", "url": "https://www.asiatime.co.kr/article/20260731500191", "span": "이지스가 이달 초 우협"}]
+    },
+    {
+      "process_code": "KR-CRE-2026-TIMES-SQUARE-OFFICE", "asset": "영등포 타임스퀘어 오피스 A·B동", "asset_type": "OFFICE_IN_RETAIL_COMPLEX", "method": "COMPETITIVE_UNKNOWN_ROUND",
+      "roles": {"headline_seller_or_manager": "코람코자산신탁", "preferred_bidder": "제이알투자운용"}, "rounds": [],
+      "milestones": [{"type": "PREFERRED_BIDDER", "date": "2026-06-10"}, {"type": "FINANCING_DELAY", "date": "2026-08-07"}], "amounts": [{"raw": "약 3000억원대", "basis": "reported_expected_or_bid_value", "review_required": true}],
+      "financing": [{"recipient_vehicle": "제이알투자운용 인수구조", "status": "DELAYED", "amount_krw": null}], "current_status": "PREFERRED_NEGOTIATION_FINANCING_DELAY", "evidence_grade": "B-",
+      "source_refs": [{"date": "2026-06-10", "url": "https://biz.chosun.com/stock/market_trend/2026/06/10/6TED332OEBE5XDJLWXDY4UI5XE/", "span": "A·B동 우협 JR; 6월 MOU 예정"}, {"date": "2026-08-07", "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202608051109392960108827", "span": "인수자금 조달 지연; 협상 지속"}]
+    },
+    {
+      "process_code": "KR-CRE-2026-GANGNAM-358", "asset": "강남358타워", "asset_type": "OFFICE", "method": "COMPETITIVE",
+      "roles": {"amc_or_manager": "삼성SRA자산운용", "economic_sponsor": "국민연금 출자 1호 코어 플랫폼 펀드", "preferred_bidder": "코람코자산신탁"},
+      "rounds": [{"round_type": "FINAL_BID", "date": "2026-03-24", "bidder_count_claim": "10여곳", "bidders_partial": ["이지스자산운용", "마스턴투자운용", "코람코자산운용"]}],
+      "milestones": [{"type": "PREFERRED_BIDDER", "date": "2026-04-03"}, {"type": "CLOSED_MEDIA_FOLLOWUP", "date": "2026-07", "date_precision": "month", "review_required": true}],
+      "amounts": [{"raw": "3.3㎡당 4500만원대", "basis": "preferred_bid_unit_price"}], "financing": [], "current_status": "CLOSED_MEDIA_FOLLOWUP", "evidence_grade": "B-/C+",
+      "source_refs": [{"date": "2026-03-25", "url": "https://www.sedaily.com/article/20024064", "span": "전날 입찰; 10여개사"}, {"date": "2026-04-03", "url": "https://www.sedaily.com/article/20027933", "span": "코람코 우협; 평당 4500만원대"}, {"date": "2026-08-03", "url": "https://view.asiae.co.kr/article/2026080309273926323", "span": "7월 거래 자산으로 언급"}]
+    },
+    {
+      "process_code": "KR-CRE-2023-SHILLA-STAY-SEODAEMUN-CLOSE-2026", "asset": "신라스테이 서대문", "asset_type": "HOTEL", "method": "MARKETED_COMPETITIVE_DETAILS_UNDISCLOSED",
+      "roles": {"amc_or_manager": "이지스자산운용", "economic_sponsor": "한국투자공사(KIC) 고유자산", "buyer": "NH농협리츠운용"}, "rounds": [],
+      "milestones": [{"type": "BALANCE_PAID", "date": "2026-02-11"}, {"type": "CLOSED", "date": "2026-02-11"}], "amounts": [{"value_krw": "146000000000", "basis": "closing_asset_value"}], "financing": [], "current_status": "CLOSED", "evidence_grade": "B",
+      "source_refs": [{"date": "2026-02-05", "url": "http://www.edaily.co.kr/news/newspath.asp?newsid=05330006645347568", "span": "가격협상; 1460억원선"}, {"date": "2026-03-11", "url": "http://www.edaily.co.kr/news/newspath.asp?newsid=05139766645382336", "span": "지난달 11일 잔금 납부; 2023년부터 매각"}]
+    },
+    {
+      "process_code": "KR-CRE-2026-NINE-TREE-DONGDAEMUN", "asset": "나인트리 바이 파르나스 서울 동대문", "asset_type": "HOTEL", "method": "COMPETITIVE_REBID",
+      "roles": {"legal_owner_or_vehicle": "신한서부티엔디위탁관리부동산투자회사", "amc_or_manager": "신한리츠운용", "buyer": "개인투자자(법인 미공개)"},
+      "rounds": [{"round_type": "REBID", "date": "2026-02-25", "bidder_count": 8, "bid_range_raw": "800억~900억원 초반"}],
+      "milestones": [{"type": "CLOSED", "date": "2026-Q2", "date_precision": "quarter"}], "amounts": [{"value_krw": "81000000000", "basis": "closing_asset_value"}], "financing": [], "current_status": "CLOSED", "evidence_grade": "A-/B",
+      "source_refs": [{"date": "2026-02-25", "url": "http://www.edaily.co.kr/news/newspath.asp?newsid=05549766645354128", "span": "재입찰; 8곳; 800억~900억원 초반"}, {"date": "2026-05-12", "url": "http://www.edaily.co.kr/news/newspath.asp?newsid=04680566645381680", "span": "810억원 매각; 특별배당"}]
+    },
+    {
+      "process_code": "KR-CRE-2026-ORAKAI-DAEHAKRO", "asset": "오라카이 대학로 호텔", "asset_type": "HOTEL", "method": "COMPETITIVE_DETAILS_UNDISCLOSED",
+      "roles": {"headline_seller": "넵스(Nefs)", "preferred_bidder": "신세계프라퍼티·조선호텔앤리조트 컨소시엄"}, "rounds": [],
+      "milestones": [{"type": "PREFERRED_BIDDER", "date": "2026-05-05"}], "amounts": [{"value_krw": "155000000000", "basis": "preferred_bid_reported_price"}], "financing": [], "current_status": "PREFERRED_BIDDER", "evidence_grade": "C+/B-",
+      "source_refs": [{"date": "2026-05-05", "url": "https://www.sedaily.com/article/20040306", "span": "컨소시엄 우협; 인수가 1550억원"}]
+    },
+    {
+      "process_code": "KR-CRE-2026-FOUR-POINTS-GURO", "asset": "포포인츠 바이 쉐라톤 서울 구로", "asset_type": "HOTEL", "method": "COMPETITIVE_METHOD_UNCONFIRMED",
+      "roles": {"seller_vehicle_or_manager": "멀티에셋자산운용 설정 기존 펀드", "buyer_vehicle": "마스턴일반사모부동산투자신탁제196호", "buyer_amc": "마스턴투자운용", "continuing_operator": "와이씨앤티"}, "rounds": [],
+      "milestones": [{"type": "FUND_CONTRACT_STARTED", "date": "2026-06-10"}, {"type": "CLOSED", "date": "2026-06", "date_precision": "month"}], "amounts": [{"value_krw": "85900000000", "basis": "closing_asset_value"}], "financing": [{"recipient_vehicle": "마스턴일반사모부동산투자신탁제196호", "type": "PROJECT_FUND", "status": "EXECUTED"}], "current_status": "CLOSED", "evidence_grade": "B",
+      "source_refs": [{"date": "2026-06-22", "url": "https://dealsite.co.kr/articles/163610", "span": "196호 통해 매입; 6/10 신탁개시; 859억원; 운영사 잔류"}]
+    },
+    {
+      "process_code": "KR-CRE-2026-ARENAS-YANGJI", "asset": "아레나스 양지 물류센터", "asset_type": "LOGISTICS", "method": "COMPETITIVE",
+      "roles": {"amc_or_manager": "이지스자산운용(기존 GP)", "economic_sponsor": "국민연금(LP)", "preferred_bidder": "코람코자산신탁", "reserve_bidder": "KKR·크리에이트자산운용 컨소시엄"},
+      "rounds": [{"round_type": "SHORTLIST", "date": "2026-07-16", "shortlist_count": 4, "named_partial": ["코람코자산신탁", "KKR·크리에이트자산운용 컨소시엄"]}],
+      "milestones": [{"type": "PREFERRED_BIDDER", "date": "2026-07-16"}], "amounts": [], "financing": [], "current_status": "PREFERRED_BIDDER", "evidence_grade": "B-",
+      "source_refs": [{"date": "2026-07-16", "url": "https://biz.chosun.com/stock/market_trend/2026/07/16/EJTMXZUKNZFVVACGRR7ENGON2A/", "span": "숏리스트 4곳; 기존 GP·LP 맥락"}, {"date": "2026-07-16", "url": "https://biz.chosun.com/stock/stock_general/2026/07/16/X4E5URQS3ZHKTBQJ332GDVRUSY/", "span": "코람코 우협; KKR·크리에이트 차순위"}]
+    },
+    {
+      "process_code": "KR-CRE-2026-SK-ULSAN-AI-DC-49", "asset": "SK 울산 AI 데이터센터 사업법인 지분 49%", "asset_type": "DATA_CENTER_PROJECT_COMPANY_STAKE", "method": "COMPETITIVE_MINORITY_STAKE_SALE",
+      "roles": {"headline_seller_or_sponsor": "SK텔레콤/SK그룹", "preferred_buyers": ["KKR", "IMM인베스트먼트", "스톤브릿지캐피탈"]},
+      "rounds": [{"round_type": "PRELIMINARY_BID", "date": "2026-01-late", "date_precision": "period", "bidders_partial": ["KKR", "IMM인베스트먼트"]}, {"round_type": "RESTRUCTURED_JOINT_ACQUISITION", "date": "2026-03", "bidders": ["KKR", "IMM인베스트먼트·스톤브릿지캐피탈 컨소시엄"]}],
+      "milestones": [{"type": "PREFERRED_BIDDER_OFFICIALLY_REPORTED", "date": "2026-05-06"}, {"type": "SPA_PLANNED", "date": "2026-06-late", "achieved": false}],
+      "amounts": [{"raw": "약 2조원 중반~3조원", "basis": "49_percent_equity_stake_consideration_reported_range"}],
+      "financing": [{"provider": "KKR", "stake_pct": "29", "status": "PLANNED"}, {"provider": "IMM인베스트먼트·스톤브릿지캐피탈", "stake_pct": "20", "status": "PLANNED"}],
+      "current_status": "PREFERRED_SPA_NOT_PROVED", "evidence_grade": "B",
+      "source_refs": [{"date": "2026-02-26", "url": "https://biz.chosun.com/stock/stock_general/2026/02/26/CAES52KUMNGEPAOM7SOSYK5HQA/", "span": "49% 매각; 스톤브릿지 합류"}, {"date": "2026-05-06", "url": "https://www.investchosun.com/site/data/html_dir/2026/05/06/2026050680116.html", "span": "KKR 및 IMM·스톤브릿지 우협 공식 확정"}, {"date": "2026-08-19", "url": "https://www.sedaily.com/article/20080883", "span": "49% 약 3조원에 매각할 예정이다(미래형)"}]
+    },
+    {
+      "process_code": "KR-CRE-2026-LOTTE-MIA", "asset": "롯데백화점 미아점", "asset_type": "RETAIL", "method": "COMPETITIVE",
+      "roles": {"headline_seller": "롯데쇼핑", "preferred_bidder": null},
+      "rounds": [{"round_type": "BID", "date": "2026-06-before-24", "date_precision": "range", "bidder_count_claim": "약 6곳"}],
+      "milestones": [{"type": "PREFERRED_BIDDER_MEDIA_HEADLINE_ONLY", "date": "2026-08-19", "review_required": true}], "amounts": [], "financing": [], "current_status": "PREFERRED_BIDDER_MEDIA_ONLY", "evidence_grade": "C",
+      "source_refs": [{"date": "2026-06-24", "url": "https://www.investchosun.com/site/data/html_dir/2026/06/24/2026062480119.html", "span": "입찰; 6곳 안팎 원매자"}, {"date": "2026-08-19", "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE81NFQtM3hVUUZuempFSGxlZlFscmduaWlfYjFCWTBLYUtyU1FydmV3THFYekNQNXhnOWZvZGtzNDlfcm1tb2Mzem9ydFplZWMza0lRWE5mMkdwcnFhNlZrYTkzSFBhLVhqTkFSZUR1RQ?oc=5", "span": "머니투데이 제목: 매각 우선협상대상자 선정"}]
+    }
+  ],
+  "exclusions": [
+    {"name": "울진 하얏트호텔 조성사업", "reason_code": "DEVELOPMENT_CONCESSION_NOT_ASSET_SALE"},
+    {"name": "홈플러스 익스프레스", "reason_code": "OPERATING_BUSINESS_MA_NOT_PROVED_REAL_ESTATE_TRANSFER"},
+    {"name": "순화빌딩-한화갤러리아 MOU", "reason_code": "NEGOTIATED_ACQUISITION_MOU_COMPETITIVE_PROCESS_UNPROVED"},
+    {"name": "포포인츠 조선 명동", "reason_code": "CLOSED_2025_NOT_2026_BOUNDARY"},
+    {"name": "케이조선 및 일반 산업회사 M&A", "reason_code": "CORPORATE_MA_NOT_INDUSTRIAL_REAL_ESTATE_SALE"}
+  ]
+}

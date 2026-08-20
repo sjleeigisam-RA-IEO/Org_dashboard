@@ -1,0 +1,332 @@
+[
+  {
+    "rel": "asset_master",
+    "key": "source",
+    "n": 130
+  },
+  {
+    "rel": "asset_master",
+    "key": "stage",
+    "n": 130
+  },
+  {
+    "rel": "asset_master",
+    "key": "built_at",
+    "n": 30
+  },
+  {
+    "rel": "asset_master",
+    "key": "fund_ids",
+    "n": 30
+  },
+  {
+    "rel": "asset_master",
+    "key": "match_reason",
+    "n": 30
+  },
+  {
+    "rel": "asset_master",
+    "key": "source_group_key",
+    "n": 30
+  },
+  {
+    "rel": "asset_master",
+    "key": "source_row_count",
+    "n": 30
+  },
+  {
+    "rel": "asset_master",
+    "key": "pre_asset_name_cleanup_canonical_name",
+    "n": 1
+  },
+  {
+    "rel": "dev_project_asset_links",
+    "key": "source_fund_id",
+    "n": 100
+  },
+  {
+    "rel": "dev_project_asset_links",
+    "key": "relation_type",
+    "n": 80
+  },
+  {
+    "rel": "dev_project_asset_links",
+    "key": "source_project_id",
+    "n": 60
+  },
+  {
+    "rel": "dev_project_asset_links",
+    "key": "allocation_status",
+    "n": 50
+  },
+  {
+    "rel": "dev_project_asset_links",
+    "key": "exposure_role",
+    "n": 50
+  },
+  {
+    "rel": "dev_project_asset_links",
+    "key": "resolution_status",
+    "n": 30
+  },
+  {
+    "rel": "dev_project_asset_links",
+    "key": "expected_name",
+    "n": 3
+  },
+  {
+    "rel": "projects",
+    "key": "_id",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "[분류] 기초자산_작업중",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "[분류] 보유형태_작업중",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "[분류] 비히클_작업중",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "[분류] 사업단계_작업중",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "[분류] 자산성격_작업중",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "[분류] 투자전략_작업중",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "AUM(원)",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "AURUM 연결_251231",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "Blind(필요시)",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "Director",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "e-TF",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "Equity 총액(원)",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "IPPM Project 연결",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "IRMS 위험관리계수",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "Loan 총액(원)",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "Manager",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "Owner_Line",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "Place",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "Project & Mission 이름",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "sorting",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "Sr. Manager",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "Vehicle(약칭)",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "Vehicle(약칭)(롤업)",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "개발/실물",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "구분",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "국내/해외(자산)",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "기준일자 임대보증금(원)",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "날짜",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "대주정보",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "만기일",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "매각여부",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "보고 시 제외(미션, 매각, 미설정, 일상업무)",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "보고용 우선순위",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "설정일",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "수익자정보",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "연면적(평)",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "운용상태",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "일부 기간 참여 인원",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "자산명",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "전체주소",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "중복제외",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "진행 현황",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "투자자산유형",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "투자지역",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "펀드명",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "펀드코드",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "프로젝트 회의주기",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "확인 필요",
+    "n": 36
+  },
+  {
+    "rel": "projects",
+    "key": "master_project",
+    "n": 32
+  },
+  {
+    "rel": "projects",
+    "key": "aliases",
+    "n": 2
+  }
+]

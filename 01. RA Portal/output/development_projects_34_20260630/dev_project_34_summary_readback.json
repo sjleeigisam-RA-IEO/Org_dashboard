@@ -1,0 +1,916 @@
+[
+  {
+    "list_no": 1,
+    "dev_project_id": "dp_001",
+    "source_category": "PFV",
+    "project_name": "울산역 KTX S3블럭 오피스텔 개발사업",
+    "vehicle_text": "P울산KTX",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-81a1-ae94-e9ff46be5503"
+    ],
+    "fund_ids": [
+      "P00034"
+    ],
+    "short_names": [
+      "P울산KTX"
+    ],
+    "asset_ids": [
+      "ast_eb6dfd75233b"
+    ],
+    "asset_names": [
+      "KTX울산역 오피스텔 개발사업"
+    ]
+  },
+  {
+    "list_no": 2,
+    "dev_project_id": "dp_002",
+    "source_category": "PFV",
+    "project_name": "안녕인사동",
+    "vehicle_text": "P로터스, 120호, 121호",
+    "linked_project_count": 1,
+    "linked_fund_count": 3,
+    "linked_asset_count": 2,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-8154-b8d1-c4008b2d83ec"
+    ],
+    "fund_ids": [
+      "P00007",
+      "112114",
+      "112115"
+    ],
+    "short_names": [
+      "P로터스",
+      "120호",
+      "121호"
+    ],
+    "asset_ids": [
+      "ast_97eee497ab45",
+      "ast_f40e9a6c4433"
+    ],
+    "asset_names": [
+      "PFV_Lotus (사채)",
+      "PFV_Lotus (지분증권)"
+    ]
+  },
+  {
+    "list_no": 3,
+    "dev_project_id": "dp_003",
+    "source_category": "PFV",
+    "project_name": "팩토리얼 성수",
+    "vehicle_text": "P성수PFV1",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-814b-bf36-ec234ae43b2d"
+    ],
+    "fund_ids": [
+      "P00010"
+    ],
+    "short_names": [
+      "P성수PFV1"
+    ],
+    "asset_ids": [
+      "ast_fa825d8bd449"
+    ],
+    "asset_names": [
+      "성수동 복합시설 개발사업"
+    ]
+  },
+  {
+    "list_no": 4,
+    "dev_project_id": "dp_004",
+    "source_category": "PFV",
+    "project_name": "안성 성은 물류센터",
+    "vehicle_text": "P안성성은물류",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-8146-b3a1-e78b9a3806b0"
+    ],
+    "fund_ids": [
+      "P00014"
+    ],
+    "short_names": [
+      "P안성성은물류"
+    ],
+    "asset_ids": [
+      "ast_d9f820e5df21"
+    ],
+    "asset_names": [
+      "안성 성은지구 물류센터"
+    ]
+  },
+  {
+    "list_no": 5,
+    "dev_project_id": "dp_005",
+    "source_category": "PFV",
+    "project_name": "제주 화북 프로젝트",
+    "vehicle_text": "P디에스",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-8119-9a2d-caecb456ac92"
+    ],
+    "fund_ids": [
+      "P00028"
+    ],
+    "short_names": [
+      "P디에스"
+    ],
+    "asset_ids": [
+      "ast_f5307db6bfad"
+    ],
+    "asset_names": [
+      "제주화북상업지역 주상복합용지 C1블럭 주상복합시설"
+    ]
+  },
+  {
+    "list_no": 6,
+    "dev_project_id": "dp_006",
+    "source_category": "PFV",
+    "project_name": "은평 시니어리빙 1호",
+    "vehicle_text": "P은평진관동",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-817a-977f-f625bb42318f"
+    ],
+    "fund_ids": [
+      "P00033"
+    ],
+    "short_names": [
+      "P은평진관동"
+    ],
+    "asset_ids": [
+      "ast_7dc6f67bfd0a"
+    ],
+    "asset_names": [
+      "은평 시니어레지던스"
+    ]
+  },
+  {
+    "list_no": 7,
+    "dev_project_id": "dp_007",
+    "source_category": "PFV",
+    "project_name": "공주시 공동주택 개발사업",
+    "vehicle_text": "P트리니티공주",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-81f1-8acf-fa0dcf911205"
+    ],
+    "fund_ids": [
+      "P00025"
+    ],
+    "short_names": [
+      "P트리니티공주"
+    ],
+    "asset_ids": [
+      "ast_acf1169ec73d"
+    ],
+    "asset_names": [
+      "공주시 웅진동 공동주택"
+    ]
+  },
+  {
+    "list_no": 8,
+    "dev_project_id": "dp_008",
+    "source_category": "PFV",
+    "project_name": "상봉동 청년주택",
+    "vehicle_text": "P상봉IRD",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-819d-90a9-ff29cc1de1d2"
+    ],
+    "fund_ids": [
+      "P00019"
+    ],
+    "short_names": [
+      "P상봉IRD"
+    ],
+    "asset_ids": [
+      "ast_5e78208b8107"
+    ],
+    "asset_names": [
+      "상봉 청년주택 개발"
+    ]
+  },
+  {
+    "list_no": 9,
+    "dev_project_id": "dp_009",
+    "source_category": "PFV",
+    "project_name": "오산세교 주상복합 개발사업",
+    "vehicle_text": "P오산세교아트",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-81dc-9709-fa150a62a94b"
+    ],
+    "fund_ids": [
+      "P00012"
+    ],
+    "short_names": [
+      "P오산세교아트"
+    ],
+    "asset_ids": [
+      "ast_04ce3ef6593c"
+    ],
+    "asset_names": [
+      "오산세교2지구 M-1BL 주상복합"
+    ]
+  },
+  {
+    "list_no": 10,
+    "dev_project_id": "dp_010",
+    "source_category": "PFV",
+    "project_name": "수서역 환승센터 복합개발사업",
+    "vehicle_text": "P수서역환승센터",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-811e-8425-ec7178f406ba"
+    ],
+    "fund_ids": [
+      "P00027"
+    ],
+    "short_names": [
+      "P수서역환승센터"
+    ],
+    "asset_ids": [
+      "ast_cd2c32700ef7"
+    ],
+    "asset_names": [
+      "수서역환승센터복합개발사업"
+    ]
+  },
+  {
+    "list_no": 11,
+    "dev_project_id": "dp_011",
+    "source_category": "PFV",
+    "project_name": "효제동 주거복합 개발사업",
+    "vehicle_text": "P효제아트",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-8144-a246-e143a4860886"
+    ],
+    "fund_ids": [
+      "P00009"
+    ],
+    "short_names": [
+      "P효제아트"
+    ],
+    "asset_ids": [
+      "ast_dfa1348ddd15"
+    ],
+    "asset_names": [
+      "효제동 오피스텔 개발사업"
+    ]
+  },
+  {
+    "list_no": 12,
+    "dev_project_id": "dp_012",
+    "source_category": "PFV",
+    "project_name": "서리풀 개발사업",
+    "vehicle_text": "P에스비씨",
+    "linked_project_count": 1,
+    "linked_fund_count": 3,
+    "linked_asset_count": 3,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-81aa-adde-cf3478b10198"
+    ],
+    "fund_ids": [
+      "P00005",
+      "112341",
+      "112532"
+    ],
+    "short_names": [
+      "P에스비씨",
+      "312호",
+      "409호"
+    ],
+    "asset_ids": [
+      "ast_30c376cd6730",
+      "ast_a5ca6d81dcd9",
+      "ast_da9f73969f26"
+    ],
+    "asset_names": [
+      "서리풀개발사업",
+      "에스비씨PFV(P00005)",
+      "이지스312호 수익증권"
+    ]
+  },
+  {
+    "list_no": 13,
+    "dev_project_id": "dp_013",
+    "source_category": "PFV",
+    "project_name": "세운5구역 개발사업",
+    "vehicle_text": "P세운5구역, 454호, 462호",
+    "linked_project_count": 1,
+    "linked_fund_count": 3,
+    "linked_asset_count": 2,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-81fe-863b-d520374af4eb"
+    ],
+    "fund_ids": [
+      "P00006",
+      "112641",
+      "112661"
+    ],
+    "short_names": [
+      "P세운5구역",
+      "454호",
+      "462호"
+    ],
+    "asset_ids": [
+      "ast_508cc8fee1ee",
+      "ast_b04e9cb1a044"
+    ],
+    "asset_names": [
+      "세운5구역 개발사업",
+      "세운5구역PFV(주) 지분"
+    ]
+  },
+  {
+    "list_no": 14,
+    "dev_project_id": "dp_014",
+    "source_category": "PFV",
+    "project_name": "을지로3가 10지구",
+    "vehicle_text": "P을지로95",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-81f5-be7c-d44bb26eea52"
+    ],
+    "fund_ids": [
+      "P00029"
+    ],
+    "short_names": [
+      "P을지로95"
+    ],
+    "asset_ids": [
+      "ast_5d4460265c4e"
+    ],
+    "asset_names": [
+      "을지로3가 도시환경정비구역 제10지구 신축 오피스"
+    ]
+  },
+  {
+    "list_no": 15,
+    "dev_project_id": "dp_015",
+    "source_category": "PFV",
+    "project_name": "판교 제2테크노밸리 C1, C2블록 아이스퀘어 개발사업",
+    "vehicle_text": "P아이스퀘어",
+    "linked_project_count": 2,
+    "linked_fund_count": 3,
+    "linked_asset_count": 2,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-8157-b1ac-f58d211a8fef",
+      "project_notion_3258ced4-3c47-8190-9c2c-d9cdea369e36"
+    ],
+    "fund_ids": [
+      "P00001",
+      "112535",
+      "112536"
+    ],
+    "short_names": [
+      "P아이스퀘어",
+      "407호",
+      "408호"
+    ],
+    "asset_ids": [
+      "ast_578a66328a1e",
+      "ast_cbf922113fc6"
+    ],
+    "asset_names": [
+      "판교 제2테크노밸리 C1 C2블록 I-Square 개발",
+      "판교아이스퀘어E동"
+    ]
+  },
+  {
+    "list_no": 16,
+    "dev_project_id": "dp_016",
+    "source_category": "PFV",
+    "project_name": "효제동 주거용 오피스텔",
+    "vehicle_text": "P효제센트럴",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-817a-8987-ca5881e5effb"
+    ],
+    "fund_ids": [
+      "P00022"
+    ],
+    "short_names": [
+      "P효제센트럴"
+    ],
+    "asset_ids": [
+      "ast_473b1c633c1b"
+    ],
+    "asset_names": [
+      "효제동 주거용 오피스텔"
+    ]
+  },
+  {
+    "list_no": 17,
+    "dev_project_id": "dp_017",
+    "source_category": "PFV",
+    "project_name": "부산 해운대구 중동 공동주택 개발",
+    "vehicle_text": "P해운대센트럴",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-81a2-8889-e0127ab86d9c"
+    ],
+    "fund_ids": [
+      "P00035"
+    ],
+    "short_names": [
+      "P해운대센트럴"
+    ],
+    "asset_ids": [
+      "ast_d4da0b74e017"
+    ],
+    "asset_names": [
+      "해운대중동공동주택"
+    ]
+  },
+  {
+    "list_no": 18,
+    "dev_project_id": "dp_018",
+    "source_category": "PFV",
+    "project_name": "부천 소사 공동주택 개발사업",
+    "vehicle_text": "P부천소사",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-814d-8058-c37ab0260495"
+    ],
+    "fund_ids": [
+      "P00008"
+    ],
+    "short_names": [
+      "P부천소사"
+    ],
+    "asset_ids": [
+      "ast_a6bdd852cbf7"
+    ],
+    "asset_names": [
+      "부천소사 공동주택"
+    ]
+  },
+  {
+    "list_no": 19,
+    "dev_project_id": "dp_019",
+    "source_category": "PFV",
+    "project_name": "부림빌딩",
+    "vehicle_text": "P이든센트럴",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-81af-974e-eb74e82227b7"
+    ],
+    "fund_ids": [
+      "P00032"
+    ],
+    "short_names": [
+      "P이든센트럴"
+    ],
+    "asset_ids": [
+      "ast_f58dae267b1b"
+    ],
+    "asset_names": [
+      "을지로부림빌딩"
+    ]
+  },
+  {
+    "list_no": 20,
+    "dev_project_id": "dp_020",
+    "source_category": "PFV",
+    "project_name": "청라 오피스텔 개발사업",
+    "vehicle_text": "P청라아트",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-8174-9ccc-e400e5a2f47d"
+    ],
+    "fund_ids": [
+      "P00015"
+    ],
+    "short_names": [
+      "P청라아트"
+    ],
+    "asset_ids": [
+      "ast_4f18f7d89d7d"
+    ],
+    "asset_names": [
+      "청라동 오피스텔 분양사업"
+    ]
+  },
+  {
+    "list_no": 21,
+    "dev_project_id": "dp_021",
+    "source_category": "PFV",
+    "project_name": "천안 성성7지구 공동주택 개발사업",
+    "vehicle_text": "P천안성성동",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-8168-b61b-f37e347025ae"
+    ],
+    "fund_ids": [
+      "P00017"
+    ],
+    "short_names": [
+      "P천안성성동"
+    ],
+    "asset_ids": [
+      "ast_8bd8d91c9bb8"
+    ],
+    "asset_names": [
+      "천안성성7지구공동주택"
+    ]
+  },
+  {
+    "list_no": 22,
+    "dev_project_id": "dp_022",
+    "source_category": "PFV",
+    "project_name": "이오타서울 816",
+    "vehicle_text": "P와이디816",
+    "linked_project_count": 2,
+    "linked_fund_count": 1,
+    "linked_asset_count": 2,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-81cb-a4ff-e9df05eb2777",
+      "iota-816"
+    ],
+    "fund_ids": [
+      "P00037"
+    ],
+    "short_names": [
+      "P와이디816"
+    ],
+    "asset_ids": [
+      "ast_47cfb7af7038",
+      "ast_cd18ba041afc"
+    ],
+    "asset_names": [
+      "메트로타워",
+      "서울로타워"
+    ]
+  },
+  {
+    "list_no": 23,
+    "dev_project_id": "dp_023",
+    "source_category": "PFV",
+    "project_name": "이오타서울 427",
+    "vehicle_text": "P와이디427",
+    "linked_project_count": 2,
+    "linked_fund_count": 2,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-818d-9da5-c27149a74a92",
+      "iota-427"
+    ],
+    "fund_ids": [
+      "P00030",
+      "112614"
+    ],
+    "short_names": [
+      "P와이디427",
+      "421호"
+    ],
+    "asset_ids": [
+      "ast_cd9937cc8678"
+    ],
+    "asset_names": [
+      "와이디427피에프브이 주식회사"
+    ]
+  },
+  {
+    "list_no": 24,
+    "dev_project_id": "dp_024",
+    "source_category": "PFV",
+    "project_name": "동부산 테마파크 개발사업",
+    "vehicle_text": "P오시리아테마파크",
+    "linked_project_count": 2,
+    "linked_fund_count": 2,
+    "linked_asset_count": 2,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-815c-b58b-f8dc2879e1ba",
+      "project_notion_3258ced4-3c47-8178-a538-d3245bf6d565"
+    ],
+    "fund_ids": [
+      "P00002",
+      "P00003"
+    ],
+    "short_names": [
+      "P오시리아테마파크",
+      "P오시생숙"
+    ],
+    "asset_ids": [
+      "ast_0766c7718345",
+      "ast_808ae65372f4"
+    ],
+    "asset_names": [
+      "동부산 테마파크 개발사업",
+      "오시리아타워레지던스"
+    ]
+  },
+  {
+    "list_no": 25,
+    "dev_project_id": "dp_025",
+    "source_category": "PFV",
+    "project_name": "애월 복합관광단지 개발사업",
+    "vehicle_text": "애월PFV",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-81d0-aae6-fed0986cadd7"
+    ],
+    "fund_ids": [
+      "P00038"
+    ],
+    "short_names": [
+      "애월PFV"
+    ],
+    "asset_ids": [
+      "ast_8870b9567bcd"
+    ],
+    "asset_names": [
+      "애월 복합관광단지 개발"
+    ]
+  },
+  {
+    "list_no": 26,
+    "dev_project_id": "dp_026",
+    "source_category": "PFV",
+    "project_name": "구리시 수택동 주거용 오피스텔 개발사업",
+    "vehicle_text": "P수택센트럴",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-81cd-b5e6-d5dbcfd4bc13"
+    ],
+    "fund_ids": [
+      "P00031"
+    ],
+    "short_names": [
+      "P수택센트럴"
+    ],
+    "asset_ids": [
+      "ast_ee5b4d0511ec"
+    ],
+    "asset_names": [
+      "구리시 수택동 주거용 오피스텔 (투자)"
+    ]
+  },
+  {
+    "list_no": 27,
+    "dev_project_id": "dp_027",
+    "source_category": "PFV",
+    "project_name": "팩토리얼 용산(용산 나진상가 재개발)",
+    "vehicle_text": "567호 / 용산라이프시티PFV",
+    "linked_project_count": 1,
+    "linked_fund_count": 3,
+    "linked_asset_count": 2,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-8112-b036-c2173374bb23"
+    ],
+    "fund_ids": [
+      "P00039",
+      "120074",
+      "120099"
+    ],
+    "short_names": [
+      "P용산라이프",
+      "567호",
+      "용산PF재구조화1호"
+    ],
+    "asset_ids": [
+      "ast_5804290d6389",
+      "ast_b2fa1e20d812"
+    ],
+    "asset_names": [
+      "용산라이프PFV 대여금",
+      "용산전자상가 특별계획구역8 개발사업"
+    ]
+  },
+  {
+    "list_no": 28,
+    "dev_project_id": "dp_028",
+    "source_category": "Fund",
+    "project_name": "서여의도 임대주택 개발사업",
+    "vehicle_text": "395호",
+    "linked_project_count": 1,
+    "linked_fund_count": 3,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-814e-8248-f4ca04db3fd1"
+    ],
+    "fund_ids": [
+      "112514",
+      "112515",
+      "112516"
+    ],
+    "short_names": [
+      "395호",
+      "395호(1종)",
+      "395호(2종)"
+    ],
+    "asset_ids": [
+      "ast_146d3e80165b"
+    ],
+    "asset_names": [
+      "신동해빌딩, NICE2사옥"
+    ]
+  },
+  {
+    "list_no": 29,
+    "dev_project_id": "dp_029",
+    "source_category": "Fund",
+    "project_name": "가산동 임대형 기숙사 개발사업",
+    "vehicle_text": "542호",
+    "linked_project_count": 1,
+    "linked_fund_count": 3,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-8136-96d3-f99474d7d46d"
+    ],
+    "fund_ids": [
+      "190005",
+      "190006",
+      "190007"
+    ],
+    "short_names": [
+      "542호",
+      "542호(1종)",
+      "542호(보통주식)"
+    ],
+    "asset_ids": [
+      "ast_37df20b9e30d"
+    ],
+    "asset_names": [
+      "가산 임대형기숙사개발사업"
+    ]
+  },
+  {
+    "list_no": 30,
+    "dev_project_id": "dp_030",
+    "source_category": "Fund",
+    "project_name": "더케이호텔 재개발",
+    "vehicle_text": "랜드마크부동산",
+    "linked_project_count": 1,
+    "linked_fund_count": 2,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-81a5-a7f1-c3d4a6b8c43b"
+    ],
+    "fund_ids": [
+      "190009",
+      "112143"
+    ],
+    "short_names": [
+      "랜드마크부동산",
+      "106호"
+    ],
+    "asset_ids": [
+      "ast_4409771035d2"
+    ],
+    "asset_names": [
+      "Ares Landmark Real Estate Partners VIII"
+    ]
+  },
+  {
+    "list_no": 31,
+    "dev_project_id": "dp_031",
+    "source_category": "Fund",
+    "project_name": "부산 송정 물류센터",
+    "vehicle_text": "114호",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-8199-8f47-e575a5da4632"
+    ],
+    "fund_ids": [
+      "112109"
+    ],
+    "short_names": [
+      "114호"
+    ],
+    "asset_ids": [
+      "ast_afb26eedbbe3"
+    ],
+    "asset_names": [
+      "부산송정물류센터 (투자)"
+    ]
+  },
+  {
+    "list_no": 32,
+    "dev_project_id": "dp_032",
+    "source_category": "Fund",
+    "project_name": "마곡 명소화 부지 개발사업",
+    "vehicle_text": "420호",
+    "linked_project_count": 1,
+    "linked_fund_count": 3,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-81ed-a229-f6953c68328a"
+    ],
+    "fund_ids": [
+      "112579",
+      "112580",
+      "112581"
+    ],
+    "short_names": [
+      "420호",
+      "420호(보통주)",
+      "420호(1종)"
+    ],
+    "asset_ids": [
+      "ast_bfb1c5d3da5c"
+    ],
+    "asset_names": [
+      "마곡 명소화부지 개발사업"
+    ]
+  },
+  {
+    "list_no": 33,
+    "dev_project_id": "dp_033",
+    "source_category": "Fund",
+    "project_name": "포천 정교리 물류",
+    "vehicle_text": "560호",
+    "linked_project_count": 1,
+    "linked_fund_count": 1,
+    "linked_asset_count": 1,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-8115-9bac-f9515d912ba0"
+    ],
+    "fund_ids": [
+      "190013"
+    ],
+    "short_names": [
+      "560호"
+    ],
+    "asset_ids": [
+      "ast_deef81e70ae6"
+    ],
+    "asset_names": [
+      "포천정교리물류센터"
+    ]
+  },
+  {
+    "list_no": 34,
+    "dev_project_id": "dp_034",
+    "source_category": "Fund",
+    "project_name": "부산 육양국 DC",
+    "vehicle_text": "572호",
+    "linked_project_count": 1,
+    "linked_fund_count": 3,
+    "linked_asset_count": 2,
+    "project_ids": [
+      "project_notion_3258ced4-3c47-8146-a972-deb45e2e5bb9"
+    ],
+    "fund_ids": [
+      "190014",
+      "190015",
+      "190016"
+    ],
+    "short_names": [
+      "572호",
+      "572호(보통주)",
+      "572호(1종)"
+    ],
+    "asset_ids": [
+      "ast_0555a6694264",
+      "ast_7b9ae18fb951"
+    ],
+    "asset_names": [
+      "명지녹산데이터센터개발사업",
+      "이지스제572호부동산일반사모투자회사(1종)"
+    ]
+  }
+]

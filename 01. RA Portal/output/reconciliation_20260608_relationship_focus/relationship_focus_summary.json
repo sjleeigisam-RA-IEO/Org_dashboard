@@ -1,0 +1,15 @@
+{
+  "focused_update_candidates": 3850,
+  "new_fund_candidates": 0,
+  "relationship_checks": 20,
+  "source_direct_asset_field_candidates": 1414,
+  "api_sensitive_asset_field_candidates": 587,
+  "files": {
+    "fund_master": "펀드 관리_20260608.xlsx",
+    "fund_aum": "펀드 AUM 관리_20260608.xlsx",
+    "asset_master_source": "투자 자산 관리_20260608.xlsx",
+    "fund_asset_source": "투자 자산 조회_20260608.xlsx",
+    "lender_source": "대주 정보 조회_20260608.xlsx",
+    "beneficiary_source": "수익자 정보 조회_20260608.xlsx"
+  }
+}

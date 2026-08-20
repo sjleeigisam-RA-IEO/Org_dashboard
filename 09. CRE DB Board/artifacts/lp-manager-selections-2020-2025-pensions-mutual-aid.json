@@ -1,0 +1,730 @@
+{
+  "artifact_version": "1.0",
+  "title": "2020~2025 1차 연기금·공제회 CRE 관련 공개 위탁운용 절차",
+  "period": {
+    "start": "2020-01-01",
+    "end": "2025-12-31"
+  },
+  "scope_note": "행정공제회·공무원연금공단·한국교직원공제회의 공식 기관 게시물 또는 금융투자협회가 기관 명의로 재배포한 공식 공고/RFP만 구조화했다. 검색 snippet은 근거로 사용하지 않았다. 공고만 확인된 경우 manager는 UNKNOWN이다.",
+  "source_policy": {
+    "search_snippet": "REVIEW_ONLY_DISCOVERY_NOT_INCLUDED_AS_EVIDENCE",
+    "manager_rule": "OFFICIAL_SELECTION_RESULT_REQUIRED",
+    "amount_basis_rule": [
+      "PROGRAM_TOTAL",
+      "ALLOCATION_PER_MANAGER",
+      "SELECTION_LP_COMMITMENT",
+      "TARGET_FUND_SIZE"
+    ]
+  },
+  "counts": {
+    "records": 12,
+    "lp_organizations": 3,
+    "official_result_confirmed": 3,
+    "unknown_manager": 9
+  },
+  "records": [
+    {
+      "selection_round": "FINAL",
+      "applicants": "UNKNOWN",
+      "shortlist": "UNKNOWN",
+      "selected_managers": [
+        "UNKNOWN"
+      ],
+      "result_status": "NO_OFFICIAL_RESULT_FOUND",
+      "amounts": [],
+      "return_terms": [],
+      "process": [
+        "ANNOUNCEMENT",
+        "PROPOSAL_DEADLINE",
+        "DOCUMENT_REVIEW"
+      ],
+      "sources": [
+        {
+          "id": "src-poba-52995",
+          "url": "https://www.poba.or.kr/bbs/selectNttDetail?sechBbsSeq=10&sechBbstSeq=52995",
+          "title": "2020년도 행정공제회 해외 상장인프라 SMA 위탁운용사 선정공고",
+          "date": "2020-04-22",
+          "publisher": "대한지방행정공제회",
+          "source_kind": "LP_OFFICIAL_NOTICE",
+          "access_status": "FULL_TEXT_VERIFIED",
+          "exact_text": "2020년도 행정공제회의 <글로벌 상장인프라 포트폴리오 SMA> 운용사 선정계획을 공고하오니 많은 관심과 참여바랍니다. 1. 선정 운용사 수 : 1개사 2. 선정기준 및 세부사항 : 첨부파일(제안요청서) 참조 3. 자료제출 마감일 : 2020년 4월 28일(화), 15:00"
+        }
+      ],
+      "review_notes": [
+        "첨부 HWP의 투자개요 표가 추출되지 않아 약정액은 UNKNOWN.",
+        "상장주식 섹터전략으로 excludedStrategies의 PURE_LISTED_EQUITY 적용 여부를 상위 검토자가 판단해야 함."
+      ],
+      "id": "POBA-2020-LISTED-INFRA-SMA-A",
+      "lp": "대한지방행정공제회",
+      "lp_type": "MUTUAL_AID_OR_BENEFIT_ASSOCIATION",
+      "title": "2020년도 행정공제회 해외 상장인프라 SMA 위탁운용사 선정공고",
+      "announcement_date": "2020-04-22",
+      "deadline": "2020-04-28T15:00:00+09:00",
+      "status": "ANNOUNCED",
+      "track": "글로벌 상장인프라 포트폴리오 SMA",
+      "strategy": "INFRASTRUCTURE",
+      "geography": "GLOBAL"
+    },
+    {
+      "selection_round": "FINAL",
+      "applicants": "UNKNOWN",
+      "shortlist": "UNKNOWN",
+      "selected_managers": [
+        "UNKNOWN"
+      ],
+      "result_status": "NO_OFFICIAL_RESULT_FOUND",
+      "amounts": [
+        {
+          "amount_basis": "PROGRAM_TOTAL",
+          "raw_value": "위탁금액 : 3천억원 이내",
+          "currency": "KRW",
+          "comparator": "AT_MOST",
+          "scope": "MANDATE",
+          "amount_status": "ANNOUNCED",
+          "decimal": "300000000000"
+        }
+      ],
+      "return_terms": [],
+      "process": [
+        "ANNOUNCEMENT",
+        "PROPOSAL_DEADLINE",
+        "DOCUMENT_REVIEW",
+        "PRESENTATION_OR_ORAL_REVIEW"
+      ],
+      "sources": [
+        {
+          "id": "src-poba-73498",
+          "url": "https://www.poba.or.kr/bbs/selectNttDetail?sechBbsSeq=10&sechBbstSeq=73498",
+          "title": "국내 오피스 블라인드 펀드 위탁운용사 선정 공고",
+          "date": "2020-11-26",
+          "publisher": "대한지방행정공제회",
+          "source_kind": "LP_OFFICIAL_NOTICE",
+          "access_status": "FULL_TEXT_VERIFIED",
+          "exact_text": "1. 선정개요\n〇 선정기관 : 1개 기관(공동운용사 제안 금지)\n〇 위탁금액 : 3천억원 이내\n2. 운용사 선정방식\n〇 공개모집에 의한 제안서 평가 방식\n3. 제안서 제출\n〇 제출기한 : 2020.12.11.(금) 15:00\n4. 선정절차 및 일정\n〇 제안서 평가 : 2020.12월 중순\n- 1차 정량평가 : 국내부동산팀에서 실시, 3배수 이내 선정(선정 운용사 개별 통보)\n- 2차 정성평가 : 운용사별 PT 진행, 평가단 평가"
+        }
+      ],
+      "review_notes": [],
+      "id": "POBA-2020-DOMESTIC-OFFICE-BLIND",
+      "lp": "대한지방행정공제회",
+      "lp_type": "MUTUAL_AID_OR_BENEFIT_ASSOCIATION",
+      "title": "국내 오피스 블라인드 펀드 위탁운용사 선정 공고",
+      "announcement_date": "2020-11-26",
+      "deadline": "2020-12-11T15:00:00+09:00",
+      "status": "ANNOUNCED",
+      "track": "국내 오피스 블라인드 펀드",
+      "strategy": "REAL_ESTATE",
+      "geography": "DOMESTIC"
+    },
+    {
+      "selection_round": "FINAL",
+      "applicants": "UNKNOWN",
+      "shortlist": "UNKNOWN",
+      "selected_managers": [
+        "AEW"
+      ],
+      "result_status": "CONFIRMED_OFFICIAL",
+      "amounts": [
+        {
+          "amount_basis": "ALLOCATION_PER_MANAGER",
+          "raw_value": "약정 금액1)・USD 100Mil",
+          "currency": "USD",
+          "comparator": "EXACT",
+          "scope": "TRACK",
+          "amount_status": "ANNOUNCED",
+          "decimal": "100000000"
+        }
+      ],
+      "return_terms": [
+        {
+          "raw_text": "성과 보수・8% 초과 수익의 15%",
+          "basis": "PERFORMANCE_FEE_HURDLE",
+          "requirement_level": "REFERENCE"
+        }
+      ],
+      "process": [
+        "ANNOUNCEMENT",
+        "PROPOSAL_DEADLINE",
+        "DOCUMENT_REVIEW",
+        "PRESENTATION_OR_ORAL_REVIEW",
+        "FINAL_SELECTION"
+      ],
+      "sources": [
+        {
+          "id": "src-poba-73578",
+          "url": "https://www.poba.or.kr/bbs/selectNttDetail?sechBbsSeq=10&sechBbstSeq=73578",
+          "title": "대한지방행정공제회 글로벌 REITs 위탁운용사 Pool 선정 공고",
+          "date": "2020-12-07",
+          "publisher": "대한지방행정공제회",
+          "source_kind": "LP_OFFICIAL_NOTICE",
+          "access_status": "FULL_TEXT_VERIFIED",
+          "exact_text": "글로벌 REITs SMA 펀드 위탁운용사 Pool 선정 공고\n선정 기관수・1개 기관(해외운용사, 제한경쟁)\n약정 금액1)・USD 100Mil\n투자 대상・해외 상장 REITs (부동산회사 관련 주식 포함)\n투자 기간・10년(본회 결정에 따라 환매 및 연장 가능)\n성과 보수・8% 초과 수익의 15%\n제안서 접수▪ '20. 12. 7.(월) ~ '20. 12. 23.(수) 16:00 까지"
+        },
+        {
+          "id": "src-poba-74087",
+          "url": "https://www.poba.or.kr/bbs/selectNttDetail?sechBbsSeq=10&sechBbstSeq=74087",
+          "title": "대한지방행정공제회 글로벌 REITs 위탁운용사 선정결과",
+          "date": "2021-01-28",
+          "publisher": "대한지방행정공제회",
+          "source_kind": "LP_OFFICIAL_SELECTION_RESULT",
+          "access_status": "FULL_TEXT_VERIFIED",
+          "exact_text": "대한지방행정공제회 글로벌 REITs 위탁운용사 선정에 관심을 가지고 지원해 주신 관계자 여러분께 깊은 감사를 드리며, 최종 결과를 다음과 같이 안내드립니다. - 다 음 - ○ 선정 : AEW. 끝."
+        }
+      ],
+      "review_notes": [
+        "상장 REITs 전략이 PURE_LISTED_EQUITY 제외규칙에 해당하는지 상위 검토 필요."
+      ],
+      "id": "POBA-2020-GLOBAL-REITS-SMA",
+      "lp": "대한지방행정공제회",
+      "lp_type": "MUTUAL_AID_OR_BENEFIT_ASSOCIATION",
+      "title": "대한지방행정공제회 글로벌 REITs 위탁운용사 Pool 선정 공고",
+      "announcement_date": "2020-12-07",
+      "deadline": "2020-12-23T16:00:00+09:00",
+      "selected_date": "2021-01-28",
+      "status": "SELECTED",
+      "track": "글로벌 REITs SMA",
+      "strategy": "REAL_ESTATE",
+      "geography": "GLOBAL"
+    },
+    {
+      "selection_round": "FINAL",
+      "applicants": "UNKNOWN",
+      "shortlist": "UNKNOWN",
+      "selected_managers": [
+        "DWS",
+        "First Sentier"
+      ],
+      "result_status": "CONFIRMED_OFFICIAL",
+      "amounts": [],
+      "return_terms": [],
+      "process": [
+        "ANNOUNCEMENT",
+        "PROPOSAL_DEADLINE",
+        "DOCUMENT_REVIEW",
+        "PRESENTATION_OR_ORAL_REVIEW",
+        "FINAL_SELECTION"
+      ],
+      "sources": [
+        {
+          "id": "src-poba-73683",
+          "url": "https://www.poba.or.kr/bbs/selectNttDetail?sechBbsSeq=10&sechBbstSeq=73683",
+          "title": "행정공제회 글로벌 상장인프라 SMA 위탁운용사 Pool 선정공고",
+          "date": "2020-12-18",
+          "publisher": "대한지방행정공제회",
+          "source_kind": "LP_OFFICIAL_NOTICE",
+          "access_status": "FULL_TEXT_VERIFIED",
+          "exact_text": "본회 글로벌 상장인프라 SMA 위탁운용사 Pool 선정계획을 아래와 같이 공고하오니, 많은 관심과 참여바랍니다. ○ 선정 운용사 수 : 2개사 ○ 제안서 제출 마감일시 : 2021년 1월 8일(금), 15:00"
+        },
+        {
+          "id": "src-poba-74149",
+          "url": "https://www.poba.or.kr/bbs/selectNttDetail?sechBbsSeq=10&sechBbstSeq=74149",
+          "title": "행정공제회 글로벌 상장인프라 SMA 위탁운용사 Pool 선정결과",
+          "date": "2021-02-05",
+          "publisher": "대한지방행정공제회",
+          "source_kind": "LP_OFFICIAL_SELECTION_RESULT",
+          "access_status": "FULL_TEXT_VERIFIED",
+          "exact_text": "본회 글로벌 상장인프라 SMA 위탁운용사 Pool 선정결과를 아래와 같이 공고합니다. ○ 선정 운용사 : DWS, First Sentier (2개사)"
+        }
+      ],
+      "review_notes": [
+        "첨부 HWP 투자개요 표의 약정액은 추출되지 않아 UNKNOWN.",
+        "상장주식 섹터전략으로 PURE_LISTED_EQUITY 적용 여부 검토 필요."
+      ],
+      "id": "POBA-2020-GLOBAL-LISTED-INFRA-SMA-B",
+      "lp": "대한지방행정공제회",
+      "lp_type": "MUTUAL_AID_OR_BENEFIT_ASSOCIATION",
+      "title": "행정공제회 글로벌 상장인프라 SMA 위탁운용사 Pool 선정공고",
+      "announcement_date": "2020-12-18",
+      "deadline": "2021-01-08T15:00:00+09:00",
+      "selected_date": "2021-02-05",
+      "status": "SELECTED",
+      "track": "글로벌 상장인프라 SMA",
+      "strategy": "INFRASTRUCTURE",
+      "geography": "GLOBAL"
+    },
+    {
+      "selection_round": "FINAL",
+      "applicants": "UNKNOWN",
+      "shortlist": "UNKNOWN",
+      "selected_managers": [
+        "GCM Grosvenor"
+      ],
+      "result_status": "CONFIRMED_OFFICIAL",
+      "amounts": [],
+      "return_terms": [],
+      "process": [
+        "ANNOUNCEMENT",
+        "PROPOSAL_DEADLINE",
+        "DOCUMENT_REVIEW",
+        "PRESENTATION_OR_ORAL_REVIEW",
+        "FINAL_SELECTION"
+      ],
+      "sources": [
+        {
+          "id": "src-poba-74913",
+          "url": "https://www.poba.or.kr/bbs/selectNttDetail?sechBbsSeq=10&sechBbstSeq=74913",
+          "title": "글로벌 사모인프라 SMA 위탁운용사 선정공고",
+          "date": "2021-05-10",
+          "publisher": "대한지방행정공제회",
+          "source_kind": "LP_OFFICIAL_NOTICE",
+          "access_status": "FULL_TEXT_VERIFIED",
+          "exact_text": "본회 글로벌 사모인프라 SMA 위탁운용사 선정계획을 아래와 같이 공고하오니, 많은 관심과 참여바랍니다. - 아 래 - ○ 선정 운용사 수 : 1개사 ○ 선정기준 및 세부사항 : 제안요청서(첨부) 참조 ○ 제안서 제출 마감일시 : 2021년 5월 21일(금), 15:00"
+        },
+        {
+          "id": "src-poba-75327",
+          "url": "https://www.poba.or.kr/bbs/selectNttDetail?sechBbsSeq=10&sechBbstSeq=75327",
+          "title": "글로벌 사모인프라 SMA 위탁운용사 선정결과",
+          "date": "2021-07-07",
+          "publisher": "대한지방행정공제회",
+          "source_kind": "LP_OFFICIAL_SELECTION_RESULT",
+          "access_status": "FULL_TEXT_VERIFIED",
+          "exact_text": "금번 위탁운용사 선정에 관심을 가지고 지원해 주신 관계자 여러분께 깊이 감사드리며, 선정결과를 다음과 같이 안내합니다. - 다 음 - ○ 선정 운용사 : GCM Grosvenor. 끝."
+        }
+      ],
+      "review_notes": [
+        "공식 공고와 공식 선정결과가 모두 확인됨. 공개 원문에서 금액은 확인되지 않아 UNKNOWN."
+      ],
+      "id": "POBA-2021-GLOBAL-PRIVATE-INFRA-SMA",
+      "lp": "대한지방행정공제회",
+      "lp_type": "MUTUAL_AID_OR_BENEFIT_ASSOCIATION",
+      "title": "글로벌 사모인프라 SMA 위탁운용사 선정공고",
+      "announcement_date": "2021-05-10",
+      "deadline": "2021-05-21T15:00:00+09:00",
+      "selected_date": "2021-07-07",
+      "status": "SELECTED",
+      "track": "글로벌 사모인프라 SMA",
+      "strategy": "INFRASTRUCTURE",
+      "geography": "GLOBAL"
+    },
+    {
+      "selection_round": "FINAL",
+      "applicants": "UNKNOWN",
+      "shortlist": "UNKNOWN",
+      "selected_managers": [
+        "UNKNOWN"
+      ],
+      "result_status": "NO_OFFICIAL_RESULT_FOUND",
+      "amounts": [
+        {
+          "amount_basis": "ALLOCATION_PER_MANAGER",
+          "raw_value": "해외 USD 150Mil",
+          "currency": "USD",
+          "comparator": "EXACT",
+          "scope": "TRACK",
+          "amount_status": "ANNOUNCED",
+          "decimal": "150000000"
+        },
+        {
+          "amount_basis": "ALLOCATION_PER_MANAGER",
+          "raw_value": "국내 USD 100Mil",
+          "currency": "USD",
+          "comparator": "EXACT",
+          "scope": "TRACK",
+          "amount_status": "ANNOUNCED",
+          "decimal": "100000000"
+        }
+      ],
+      "return_terms": [],
+      "process": [
+        "ANNOUNCEMENT",
+        "PROPOSAL_DEADLINE",
+        "DOCUMENT_REVIEW",
+        "PRESENTATION_OR_ORAL_REVIEW"
+      ],
+      "sources": [
+        {
+          "id": "src-poba-91828",
+          "url": "https://www.poba.or.kr/bbs/selectNttDetail?sechBbsSeq=10&sechBbstSeq=91828",
+          "title": "2025년 행정공제회 글로벌리츠(상장REITs) 운용사 선정계획 공고",
+          "date": "2025-03-17",
+          "publisher": "대한지방행정공제회",
+          "source_kind": "LP_OFFICIAL_NOTICE",
+          "access_status": "FULL_TEXT_VERIFIED",
+          "exact_text": "글로벌 REITs SMA 펀드 위탁운용사 선정 공고\n선정 기관수・ 2개 기관(해외운용사 1개사, 국내운용사 1개사)\n투자 대상・해외 상장 REITs (부동산회사 관련 주식 포함)\n약정 금액1)・해외 USD 150Mil / 국내 USD 100Mil\n투자 기간・10년(본회 결정에 따라 환매 및 연장 가능)\n제안서 접수▪ '25. 3. 25.(화) ~ '25. 4. 2.(수) 16:00 까지"
+        }
+      ],
+      "review_notes": [
+        "해외/국내 각 1개사이므로 공고액은 ALLOCATION_PER_MANAGER로 분리.",
+        "상장 REITs 전략의 PURE_LISTED_EQUITY 제외규칙 적용 여부 검토 필요."
+      ],
+      "id": "POBA-2025-GLOBAL-REITS-SMA",
+      "lp": "대한지방행정공제회",
+      "lp_type": "MUTUAL_AID_OR_BENEFIT_ASSOCIATION",
+      "title": "2025년 행정공제회 글로벌리츠(상장REITs) 운용사 선정계획 공고",
+      "announcement_date": "2025-03-17",
+      "deadline": "2025-04-02T16:00:00+09:00",
+      "status": "ANNOUNCED",
+      "track": "글로벌 REITs SMA(해외/국내)",
+      "strategy": "REAL_ESTATE",
+      "geography": "GLOBAL"
+    },
+    {
+      "selection_round": "FINAL",
+      "applicants": "UNKNOWN",
+      "shortlist": "UNKNOWN",
+      "selected_managers": [
+        "UNKNOWN"
+      ],
+      "result_status": "NO_OFFICIAL_RESULT_FOUND",
+      "amounts": [
+        {
+          "amount_basis": "PROGRAM_TOTAL",
+          "raw_value": "총 USD 300m",
+          "currency": "USD",
+          "comparator": "EXACT",
+          "scope": "MANDATE",
+          "amount_status": "ANNOUNCED",
+          "decimal": "300000000"
+        },
+        {
+          "amount_basis": "ALLOCATION_PER_MANAGER",
+          "raw_value": "3개사 각 USD 100m",
+          "currency": "USD",
+          "comparator": "EXACT",
+          "scope": "TRACK",
+          "amount_status": "ANNOUNCED",
+          "decimal": "100000000"
+        }
+      ],
+      "return_terms": [],
+      "process": [
+        "ANNOUNCEMENT",
+        "PROPOSAL_DEADLINE",
+        "DOCUMENT_REVIEW",
+        "PRESENTATION_OR_ORAL_REVIEW"
+      ],
+      "sources": [
+        {
+          "id": "src-poba-92359",
+          "url": "https://www.poba.or.kr/bbs/selectNttDetail?sechBbsSeq=10&sechBbstSeq=92359",
+          "title": "2025년 행정공제회 글로벌 상장인프라 운용사 선정계획 공고",
+          "date": "2025-05-12",
+          "publisher": "대한지방행정공제회",
+          "source_kind": "LP_OFFICIAL_NOTICE",
+          "access_status": "FULL_TEXT_VERIFIED",
+          "exact_text": "『글로벌 상장인프라 SMA』위탁운용사 Pool 선정 공고\n◦ 선정 운용사 수∙ 3개사 선정(제한경쟁)\n◦ 약정 금액∙ 총 USD 300m(3개사 각 USD 100m)\n◦ 투자 대상∙ 해외 상장 인프라 종목(주요 자산군 : 유틸리티, 교통, 에너지, 통신, 신재생 등)\n◦ 투자 기간∙ 10년(본회 결정에 따라 환매 및 연장 가능)\n제안서 접수’25. 5. 20(화) ~ ’25. 6. 4(수) 16:00까지"
+        }
+      ],
+      "review_notes": [
+        "프로그램 총액과 운용사별 배정액을 각각 PROGRAM_TOTAL/ALLOCATION_PER_MANAGER로 분리.",
+        "상장주식 섹터전략으로 PURE_LISTED_EQUITY 적용 여부 검토 필요."
+      ],
+      "id": "POBA-2025-GLOBAL-LISTED-INFRA-SMA",
+      "lp": "대한지방행정공제회",
+      "lp_type": "MUTUAL_AID_OR_BENEFIT_ASSOCIATION",
+      "title": "2025년 행정공제회 글로벌 상장인프라 운용사 선정계획 공고",
+      "announcement_date": "2025-05-12",
+      "deadline": "2025-06-04T16:00:00+09:00",
+      "status": "ANNOUNCED",
+      "track": "글로벌 상장인프라 SMA",
+      "strategy": "INFRASTRUCTURE",
+      "geography": "GLOBAL"
+    },
+    {
+      "selection_round": "FINAL",
+      "applicants": "UNKNOWN",
+      "shortlist": "UNKNOWN",
+      "selected_managers": [
+        "UNKNOWN"
+      ],
+      "result_status": "NO_OFFICIAL_RESULT_FOUND",
+      "amounts": [
+        {
+          "amount_basis": "ALLOCATION_PER_MANAGER",
+          "raw_value": "운용사당35mn이내(USD또는EUR)",
+          "currency": "USD_OR_EUR",
+          "comparator": "AT_MOST",
+          "scope": "TRACK",
+          "amount_status": "ANNOUNCED",
+          "decimal": "35000000"
+        },
+        {
+          "amount_basis": "TARGET_FUND_SIZE",
+          "raw_value": "최종 모집금액 기준 USD500mn이상",
+          "currency": "USD",
+          "comparator": "AT_LEAST",
+          "scope": "TRACK",
+          "amount_status": "ANNOUNCED",
+          "decimal": "500000000"
+        }
+      ],
+      "return_terms": [
+        {
+          "raw_text": "IRR7∼12%(비용및수수료차감후내부수익률기준)",
+          "basis": "NET_IRR",
+          "comparator": "RANGE",
+          "lower_decimal": "7",
+          "upper_decimal": "12"
+        }
+      ],
+      "process": [
+        "ANNOUNCEMENT",
+        "PROPOSAL_DEADLINE",
+        "DOCUMENT_REVIEW",
+        "PRESENTATION_OR_ORAL_REVIEW",
+        "ON_SITE_DUE_DILIGENCE"
+      ],
+      "sources": [
+        {
+          "id": "src-kofia-2065",
+          "url": "https://www.kofia.or.kr/brd/m_17/view.do?seq=2065",
+          "title": "[공무원연금공단] 위탁운용사 선정계획 공고",
+          "date": "2023-06-29",
+          "publisher": "금융투자협회(공무원연금공단 공고 재배포)",
+          "source_kind": "OFFICIAL_INDUSTRY_REDISTRIBUTION",
+          "access_status": "FULL_TEXT_VERIFIED",
+          "exact_text": "2023년도 공무원연금공단 글로벌 부동산 대출펀드 해외 위탁운용사 선정 계획을 아래와 같이 공고합니다.\n선정방식공개모집을통한일괄심사(정량․정성평가)방식으로선정\n위탁운용금액운용사당35mn이내(USD또는EUR)\n선정운용사2개사\n투자대상글로벌부동산대출펀드(FundofFunds는제외)\n목표수익률IRR7∼12%(비용및수수료차감후내부수익률기준)\n최종 모집금액 기준 USD500mn이상\n2023.07.12. 제안서접수마감 오후15시마감,한국시간"
+        }
+      ],
+      "review_notes": [
+        "공식 업계 공지 재배포와 공무원연금공단 명의 RFP를 확인했으나 공식 선정결과는 미확인."
+      ],
+      "id": "GEPS-2023-GLOBAL-RE-DEBT",
+      "lp": "공무원연금공단",
+      "lp_type": "PENSION_OR_SOVEREIGN",
+      "title": "[공무원연금공단] 위탁운용사 선정계획 공고",
+      "announcement_date": "2023-06-29",
+      "deadline": "2023-07-12T15:00:00+09:00",
+      "status": "ANNOUNCED",
+      "track": "글로벌 부동산 대출펀드",
+      "strategy": "PRIVATE_DEBT",
+      "geography": "GLOBAL"
+    },
+    {
+      "selection_round": "FINAL",
+      "applicants": "UNKNOWN",
+      "shortlist": "UNKNOWN",
+      "selected_managers": [
+        "UNKNOWN"
+      ],
+      "result_status": "NO_OFFICIAL_RESULT_FOUND",
+      "amounts": [
+        {
+          "amount_basis": "ALLOCATION_PER_MANAGER",
+          "raw_value": "운용사당35mn이내(USD또는EUR)",
+          "currency": "USD_OR_EUR",
+          "comparator": "AT_MOST",
+          "scope": "TRACK",
+          "amount_status": "ANNOUNCED",
+          "decimal": "35000000"
+        },
+        {
+          "amount_basis": "TARGET_FUND_SIZE",
+          "raw_value": "최종 모집금액 기준 USD500mn이상",
+          "currency": "USD",
+          "comparator": "AT_LEAST",
+          "scope": "TRACK",
+          "amount_status": "ANNOUNCED",
+          "decimal": "500000000"
+        }
+      ],
+      "return_terms": [
+        {
+          "raw_text": "IRR10%이상(비용및수수료차감후내부수익률기준)",
+          "basis": "NET_IRR",
+          "comparator": "AT_LEAST",
+          "decimal": "10"
+        }
+      ],
+      "process": [
+        "ANNOUNCEMENT",
+        "PROPOSAL_DEADLINE",
+        "DOCUMENT_REVIEW",
+        "PRESENTATION_OR_ORAL_REVIEW",
+        "ON_SITE_DUE_DILIGENCE"
+      ],
+      "sources": [
+        {
+          "id": "src-kofia-m212-14",
+          "url": "https://www.kofia.or.kr/brd/m_212/view.do?seq=14",
+          "title": "[공무원연금공단] 2024년도 글로벌 부동산 펀드 해외 위탁운용사 선정",
+          "date": "2024-07-12",
+          "publisher": "금융투자협회(공무원연금공단 공고 재배포)",
+          "source_kind": "OFFICIAL_INDUSTRY_REDISTRIBUTION",
+          "access_status": "FULL_TEXT_VERIFIED",
+          "exact_text": "2024년도 공무원연금공단 글로벌 부동산 펀드 해외 위탁운용사 선정 계획을 아래와 같이 공고합니다.\n위탁운용금액운용사당35mn이내(USD또는EUR)\n선정운용사2개사\n대상전략Value-added및Opportunistic전략\n목표수익률IRR10%이상(비용및수수료차감후내부수익률기준)\n펀드레버리지비중75%미만\n최종 모집금액 기준 USD500mn이상\n2024.07.25. 제안서접수마감 오후15시마감,한국시간"
+        }
+      ],
+      "review_notes": [],
+      "id": "GEPS-2024-GLOBAL-REAL-ESTATE",
+      "lp": "공무원연금공단",
+      "lp_type": "PENSION_OR_SOVEREIGN",
+      "title": "[공무원연금공단] 2024년도 글로벌 부동산 펀드 해외 위탁운용사 선정",
+      "announcement_date": "2024-07-12",
+      "deadline": "2024-07-25T15:00:00+09:00",
+      "status": "ANNOUNCED",
+      "track": "글로벌 부동산 펀드",
+      "strategy": "REAL_ESTATE",
+      "geography": "GLOBAL"
+    },
+    {
+      "selection_round": "FINAL",
+      "applicants": "UNKNOWN",
+      "shortlist": "UNKNOWN",
+      "selected_managers": [
+        "UNKNOWN"
+      ],
+      "result_status": "NO_OFFICIAL_RESULT_FOUND",
+      "amounts": [],
+      "return_terms": [],
+      "process": [
+        "ANNOUNCEMENT",
+        "PROPOSAL_DEADLINE",
+        "DOCUMENT_REVIEW",
+        "PRESENTATION_OR_ORAL_REVIEW",
+        "PREFERRED_MANAGER"
+      ],
+      "sources": [
+        {
+          "id": "src-kofia-m212-10",
+          "url": "https://www.kofia.or.kr/brd/m_212/view.do?seq=10",
+          "title": "[한국교직원공제회] The-K호텔서울 부지 재개발 사업 위탁 운용사 선정 공고",
+          "date": "2024-07-08",
+          "publisher": "금융투자협회(한국교직원공제회 공고 재배포)",
+          "source_kind": "OFFICIAL_INDUSTRY_REDISTRIBUTION",
+          "access_status": "FULL_TEXT_VERIFIED",
+          "exact_text": "[한국교직원공제회] The-K호텔서울 부지 재개발 사업 위탁 운용사 선정 공고 접수 마감일시(2024.08.19. 18:00)까지 제출\n본 공고문은 1단계 사업 위탁 운용사 선정에 대한 공고로서, 2단계 사업 위탁 운용사는 1단계 사업 종료시점에 별도 절차를 통해 선정 예정\nThe-K호텔서울 부지 재개발 사업은 과업 내용에 따라 3단계(설계 및 인허가→공사→운영)로 구분하여 순차적 진행 예정임"
+        }
+      ],
+      "review_notes": [
+        "HWP 표 추출이 불완전해 출자/목표규모와 구체 일정은 UNKNOWN.",
+        "공고문은 우선협상대상자 단계를 언급하지만 실제 선정결과는 확인되지 않음."
+      ],
+      "id": "KTCU-2024-THE-K-HOTEL-REDEVELOPMENT",
+      "lp": "한국교직원공제회",
+      "lp_type": "MUTUAL_AID_OR_BENEFIT_ASSOCIATION",
+      "title": "[한국교직원공제회] The-K호텔서울 부지 재개발 사업 위탁 운용사 선정 공고",
+      "announcement_date": "2024-07-08",
+      "deadline": "2024-08-19T18:00:00+09:00",
+      "status": "ANNOUNCED",
+      "track": "The-K호텔서울 부지 재개발 1단계",
+      "strategy": "REAL_ESTATE",
+      "geography": "DOMESTIC"
+    },
+    {
+      "selection_round": "FINAL",
+      "applicants": "UNKNOWN",
+      "shortlist": "UNKNOWN",
+      "selected_managers": [
+        "UNKNOWN"
+      ],
+      "result_status": "NO_OFFICIAL_RESULT_FOUND",
+      "amounts": [
+        {
+          "amount_basis": "PROGRAM_TOTAL",
+          "raw_value": "출자규모 : 5,000억원 내외",
+          "currency": "KRW",
+          "comparator": "APPROX",
+          "scope": "MANDATE",
+          "amount_status": "ANNOUNCED",
+          "decimal": "500000000000"
+        }
+      ],
+      "return_terms": [],
+      "process": [
+        "ANNOUNCEMENT",
+        "PROPOSAL_DEADLINE",
+        "DOCUMENT_REVIEW",
+        "PRESENTATION_OR_ORAL_REVIEW",
+        "PREFERRED_MANAGER"
+      ],
+      "sources": [
+        {
+          "id": "src-kofia-m212-150",
+          "url": "https://www.kofia.or.kr/brd/m_212/view.do?seq=150",
+          "title": "[한국교직원공제회] 권역별 골프장 투자 사업 위탁운용사 선정 공고",
+          "date": "2025-07-07",
+          "publisher": "금융투자협회(한국교직원공제회 공고 재배포)",
+          "source_kind": "OFFICIAL_INDUSTRY_REDISTRIBUTION",
+          "access_status": "FULL_TEXT_VERIFIED",
+          "exact_text": "ㅇ 선정방식 : 공개모집을 통한 경쟁방식\nㅇ 출자규모 : 5,000억원 내외\nㅇ 운용조건 : 권역별 골프장 분산 투자(수도권, 강원권, 충청권, 영남권, 호남권(제주 제외))\nㅇ 제출방법 : 접수 마감일시(2025.08.04. 18:00)까지 제출"
+        }
+      ],
+      "review_notes": [
+        "출자규모는 프로그램 전체로 보고 PROGRAM_TOTAL로 분류. 운용사별 배정/선정 LP commitment는 UNKNOWN."
+      ],
+      "id": "KTCU-2025-REGIONAL-GOLF-COURSE",
+      "lp": "한국교직원공제회",
+      "lp_type": "MUTUAL_AID_OR_BENEFIT_ASSOCIATION",
+      "title": "[한국교직원공제회] 권역별 골프장 투자 사업 위탁운용사 선정 공고",
+      "announcement_date": "2025-07-07",
+      "deadline": "2025-08-04T18:00:00+09:00",
+      "status": "ANNOUNCED",
+      "track": "권역별 골프장 투자 사업",
+      "strategy": "REAL_ESTATE",
+      "geography": "DOMESTIC"
+    },
+    {
+      "selection_round": "FINAL",
+      "applicants": "UNKNOWN",
+      "shortlist": "UNKNOWN",
+      "selected_managers": [
+        "UNKNOWN"
+      ],
+      "result_status": "NO_OFFICIAL_RESULT_FOUND",
+      "amounts": [
+        {
+          "amount_basis": "ALLOCATION_PER_MANAGER",
+          "raw_value": "운용사당 50mn 이내(EUR 통화 한정)",
+          "currency": "EUR",
+          "comparator": "AT_MOST",
+          "scope": "TRACK",
+          "amount_status": "ANNOUNCED",
+          "decimal": "50000000"
+        },
+        {
+          "amount_basis": "TARGET_FUND_SIZE",
+          "raw_value": "최종 모집금액 기준 EUR 1bn 이상",
+          "currency": "EUR",
+          "comparator": "AT_LEAST",
+          "scope": "TRACK",
+          "amount_status": "ANNOUNCED",
+          "decimal": "1000000000"
+        }
+      ],
+      "return_terms": [
+        {
+          "raw_text": "Gross IRR 10% 이상",
+          "basis": "GROSS_IRR",
+          "comparator": "AT_LEAST",
+          "decimal": "10"
+        }
+      ],
+      "process": [
+        "ANNOUNCEMENT",
+        "PROPOSAL_DEADLINE",
+        "DOCUMENT_REVIEW",
+        "PRESENTATION_OR_ORAL_REVIEW",
+        "ON_SITE_DUE_DILIGENCE"
+      ],
+      "sources": [
+        {
+          "id": "src-kofia-m212-180",
+          "url": "https://www.kofia.or.kr/brd/m_212/view.do?seq=180",
+          "title": "[공무원연금공단] 글로벌 인프라 펀드 해외 위탁운용사 선정 공고",
+          "date": "2025-09-09",
+          "publisher": "금융투자협회(공무원연금공단 공고 재배포)",
+          "source_kind": "OFFICIAL_INDUSTRY_REDISTRIBUTION",
+          "access_status": "FULL_TEXT_VERIFIED",
+          "exact_text": "2025년도 공무원연금공단 글로벌 인프라 펀드 해외 위탁운용사 선정 계획을 다음과 같이 공고합니다.\n위탁 운용금액· 운용사당 50mn 이내(EUR 통화 한정)\n선정 운용사· 2개사(예정)\n투자 대상· 글로벌 인프라 펀드(Equity) *FundofFunds제외\n투자 지역· 글로벌(유럽 80% 이상 투자)\n목표 수익률· Gross IRR 10% 이상\n최종 모집금액 기준 EUR 1bn 이상\n2025.9.22. 제안서 접수 마감· 한국시간 15시"
+        }
+      ],
+      "review_notes": [],
+      "id": "GEPS-2025-GLOBAL-INFRA",
+      "lp": "공무원연금공단",
+      "lp_type": "PENSION_OR_SOVEREIGN",
+      "title": "[공무원연금공단] 글로벌 인프라 펀드 해외 위탁운용사 선정 공고",
+      "announcement_date": "2025-09-09",
+      "deadline": "2025-09-22T15:00:00+09:00",
+      "status": "ANNOUNCED",
+      "track": "글로벌 인프라 펀드",
+      "strategy": "INFRASTRUCTURE",
+      "geography": "EUROPE"
+    }
+  ],
+  "excluded_from_structured_records": [
+    {
+      "title": "2025 해외 대체투자 국내 위탁관리운용사 선정",
+      "reason": "공고문이 부동산펀드를 명시적으로 제외하여 CRE 범위 밖"
+    }
+  ]
+}

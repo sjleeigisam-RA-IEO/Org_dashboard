@@ -1,0 +1,43 @@
+{
+  "desktop": {
+    "marketCategoryRail": true,
+    "filterRegion": true,
+    "documentTypes": 7,
+    "documentDetail": true,
+    "transactionTemplate": true,
+    "defaultTransactions1000EokPlus": 81,
+    "transactionsIncludingUnder1000Eok": 47264,
+    "eventDetail": true,
+    "assetDetail": true,
+    "companyRows": 50,
+    "companyDrawer": true,
+    "capitalCards": 12,
+    "saleCards": 16
+  },
+  "mobile": {
+    "viewport": "390x844",
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "horizontalFit": true,
+    "drawerFit": true
+  },
+  "elapsedSeconds": 64.56,
+  "screenshots": [
+    "01-market-desktop.png",
+    "02-asset-detail-desktop.png",
+    "02-document-detail-desktop.png",
+    "02-documents-desktop.png",
+    "02-event-detail-desktop.png",
+    "02-transaction-detail-desktop.png",
+    "02-transactions-desktop.png",
+    "03-company-360-desktop.png",
+    "04-capital-desktop.png",
+    "05-sale-desktop.png",
+    "06-company-mobile.png",
+    "06-document-detail-mobile.png",
+    "06-event-detail-mobile.png",
+    "06-market-mobile.png",
+    "06-transaction-detail-mobile.png",
+    "07-company-drawer-mobile.png"
+  ]
+}

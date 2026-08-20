@@ -1,0 +1,171 @@
+{
+  "campaign": {
+    "code": "BACKFILL_2026_H1",
+    "start": "2026-01-01",
+    "endExclusive": "2026-07-01"
+  },
+  "collectionRuns": [
+    {
+      "source_code": "GOOGLE_NEWS_RSS",
+      "runs": 100,
+      "discovered": 3898,
+      "inserted": 2723,
+      "updated": 122,
+      "completed": 100,
+      "failed": 0
+    },
+    {
+      "source_code": "MOLIT_REAL_TRANSACTION",
+      "runs": 498,
+      "discovered": 14713,
+      "inserted": 14713,
+      "updated": 0,
+      "completed": 498,
+      "failed": 0
+    },
+    {
+      "source_code": "OPENDART",
+      "runs": 18,
+      "discovered": 290,
+      "inserted": 149,
+      "updated": 141,
+      "completed": 18,
+      "failed": 0
+    }
+  ],
+  "sources": [
+    {
+      "source_code": "GOOGLE_NEWS_RSS",
+      "documents": 2723,
+      "versions": 2845
+    },
+    {
+      "source_code": "MOLIT_REAL_TRANSACTION",
+      "documents": 14713,
+      "versions": 14713
+    },
+    {
+      "source_code": "OPENDART",
+      "documents": 149,
+      "versions": 290
+    }
+  ],
+  "rssByCategory": [
+    {
+      "category": "INVESTMENT",
+      "documents": 266
+    },
+    {
+      "category": "LEASE",
+      "documents": 239
+    },
+    {
+      "category": "LOAN",
+      "documents": 256
+    },
+    {
+      "category": "NEW_SUPPLY",
+      "documents": 805
+    },
+    {
+      "category": "PERMIT",
+      "documents": 226
+    },
+    {
+      "category": "PF",
+      "documents": 251
+    },
+    {
+      "category": "SALE",
+      "documents": 751
+    }
+  ],
+  "rssRecovery": {
+    "baseDistinctDocuments": 2327,
+    "recoveryDistinctDocuments": 1502,
+    "recoveryOnlyDocuments": 396,
+    "weeklyPartitions": 58,
+    "weeklySaturatedPartitions": 0
+  },
+  "molit": {
+    "partitions": 498,
+    "districtJobs": 83,
+    "months": 6,
+    "zeroPartitions": 1,
+    "regions": [
+      {
+        "region": "11",
+        "documents": 5738
+      },
+      {
+        "region": "28",
+        "documents": 1465
+      },
+      {
+        "region": "41",
+        "documents": 7510
+      }
+    ],
+    "mentionStatus": [
+      {
+        "status_code": "EXTRACTED",
+        "rejection_code": "",
+        "count": 78
+      },
+      {
+        "status_code": "REJECTED",
+        "rejection_code": "OUT_OF_SCOPE_AREA_LE_1000_M2",
+        "count": 13739
+      },
+      {
+        "status_code": "REVIEW_READY",
+        "rejection_code": "",
+        "count": 896
+      }
+    ]
+  },
+  "dart": {
+    "documents": 149,
+    "latestFullText": 141,
+    "latestMissingText": 8
+  },
+  "extraction": {
+    "latestEligibleVersions": 17585,
+    "latestExtracted": 17585,
+    "bidProcessCandidates": 90
+  },
+  "macro": {
+    "releases2026H1": 6,
+    "observations2026H1": 18
+  },
+  "continuity": [
+    {
+      "month": "2025-12",
+      "source_code": "GOOGLE_NEWS_RSS",
+      "documents": 432
+    },
+    {
+      "month": "2025-12",
+      "source_code": "OPENDART",
+      "documents": 43
+    },
+    {
+      "month": "2026-01",
+      "source_code": "GOOGLE_NEWS_RSS",
+      "documents": 448
+    },
+    {
+      "month": "2026-01",
+      "source_code": "OPENDART",
+      "documents": 23
+    }
+  ],
+  "qa": {
+    "integrity": "ok",
+    "foreignKeyViolations": 0,
+    "documentsWithoutVersions": 0,
+    "duplicateSourceCanonicalUrls": 0,
+    "failed2026CampaignRuns": 0,
+    "badCampaignMetadata": 0
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "fund_name_multiplus": [
+    {
+      "fund_id": "300086",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제3호",
+      "short_name": "멀티플러스3호",
+      "status": "운용"
+    },
+    {
+      "fund_id": "300087",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제3호(Class A)",
+      "short_name": "멀티플러스3호(A)",
+      "status": "운용"
+    },
+    {
+      "fund_id": "300088",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제3호(Class C)",
+      "short_name": "멀티플러스3호(C)",
+      "status": "미설정"
+    },
+    {
+      "fund_id": "300089",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제3호(Class C-S)",
+      "short_name": "멀티플러스3호(C-S)",
+      "status": "운용"
+    },
+    {
+      "fund_id": "300057",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제2호(운용)",
+      "short_name": "멀티플러스2호",
+      "status": "운용"
+    },
+    {
+      "fund_id": "300059",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제2호(Class C1)",
+      "short_name": "멀티플러스2호(C1)",
+      "status": "미설정"
+    },
+    {
+      "fund_id": "112782",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제1호",
+      "short_name": "멀티플러스1호",
+      "status": "청산"
+    },
+    {
+      "fund_id": "300058",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제2호(Class A)",
+      "short_name": "멀티플러스2호(A)",
+      "status": "미설정"
+    },
+    {
+      "fund_id": "300060",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제2호(Class C2)",
+      "short_name": "멀티플러스2호(C2)",
+      "status": "운용"
+    }
+  ],
+  "short_name_multiplus": [
+    {
+      "fund_id": "300086",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제3호",
+      "short_name": "멀티플러스3호",
+      "status": "운용"
+    },
+    {
+      "fund_id": "300087",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제3호(Class A)",
+      "short_name": "멀티플러스3호(A)",
+      "status": "운용"
+    },
+    {
+      "fund_id": "300088",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제3호(Class C)",
+      "short_name": "멀티플러스3호(C)",
+      "status": "미설정"
+    },
+    {
+      "fund_id": "300089",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제3호(Class C-S)",
+      "short_name": "멀티플러스3호(C-S)",
+      "status": "운용"
+    },
+    {
+      "fund_id": "300057",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제2호(운용)",
+      "short_name": "멀티플러스2호",
+      "status": "운용"
+    },
+    {
+      "fund_id": "300059",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제2호(Class C1)",
+      "short_name": "멀티플러스2호(C1)",
+      "status": "미설정"
+    },
+    {
+      "fund_id": "112782",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제1호",
+      "short_name": "멀티플러스1호",
+      "status": "청산"
+    },
+    {
+      "fund_id": "300058",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제2호(Class A)",
+      "short_name": "멀티플러스2호(A)",
+      "status": "미설정"
+    },
+    {
+      "fund_id": "300060",
+      "fund_name": "이지스 멀티플러스 일반사모투자신탁 제2호(Class C2)",
+      "short_name": "멀티플러스2호(C2)",
+      "status": "운용"
+    }
+  ],
+  "fund_name_greenon": [
+    {
+      "fund_id": "300090",
+      "fund_name": "이지스그린ON 일반사모투자신탁제5호",
+      "short_name": "그린ON5호",
+      "status": "운용"
+    },
+    {
+      "fund_id": "300054",
+      "fund_name": "이지스그린ON일반사모투자신탁제3호",
+      "short_name": "그린ON3호",
+      "status": "청산"
+    },
+    {
+      "fund_id": "300055",
+      "fund_name": "이지스그린ON일반사모투자신탁제3호(Class A)",
+      "short_name": "그린ON3호(A)",
+      "status": "청산"
+    },
+    {
+      "fund_id": "300056",
+      "fund_name": "이지스그린ON일반사모투자신탁제3호(Class C-i)",
+      "short_name": "그린ON3호(C-i)",
+      "status": "청산"
+    },
+    {
+      "fund_id": "300077",
+      "fund_name": "이지스그린ON일반사모투자신탁제4호(Class A)",
+      "short_name": "그린ON4호(A)",
+      "status": "운용"
+    },
+    {
+      "fund_id": "300076",
+      "fund_name": "이지스그린ON 일반사모투자신탁제4호(운용)",
+      "short_name": "그린ON4호",
+      "status": "운용"
+    },
+    {
+      "fund_id": "300043",
+      "fund_name": "이지스그린ON일반사모투자신탁제1호(Class C-i)",
+      "short_name": "그린ON1호(C-i)",
+      "status": "미설정"
+    },
+    {
+      "fund_id": "300048",
+      "fund_name": "이지스그린ON일반사모투자신탁제2호(Class A)",
+      "short_name": "그린ON2호(A)",
+      "status": "청산"
+    },
+    {
+      "fund_id": "300042",
+      "fund_name": "이지스그린ON일반사모투자신탁제1호(Class C)",
+      "short_name": "그린ON1호(C)",
+      "status": "미설정"
+    },
+    {
+      "fund_id": "300040",
+      "fund_name": "이지스그린ON일반사모투자신탁제1호",
+      "short_name": "그린ON1호",
+      "status": "청산"
+    },
+    {
+      "fund_id": "300041",
+      "fund_name": "이지스그린ON일반사모투자신탁제1호(Class A)",
+      "short_name": "그린ON1호(A)",
+      "status": "청산"
+    },
+    {
+      "fund_id": "300047",
+      "fund_name": "이지스그린ON일반사모투자신탁제2호",
+      "short_name": "그린ON2호",
+      "status": "청산"
+    },
+    {
+      "fund_id": "300049",
+      "fund_name": "이지스그린ON일반사모투자신탁제2호(Class I)",
+      "short_name": "그린ON2호(I)",
+      "status": "청산"
+    },
+    {
+      "fund_id": "300078",
+      "fund_name": "이지스그린ON일반사모투자신탁제4호(Class C-I)",
+      "short_name": "그린ON4호(C-I)",
+      "status": "운용"
+    }
+  ]
+}

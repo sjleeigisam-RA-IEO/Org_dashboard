@@ -1,0 +1,808 @@
+{
+  "applied": false,
+  "candidate_rows": 2636,
+  "changed_rows": 100,
+  "generated_at": "20260629T064747Z",
+  "updates": [
+    {
+      "form_item_id": "lbzXp0W-1",
+      "work_date": "2025-10-13",
+      "raw_text_before": "[YD816PFV Bridge Loan 연장]\nㅇ PF 모집 지연에 따른 추가 연장 추진 : 2개월(12.17) 또는 3개월('26.01.17)\nㅇ 이자 후취조건 수용 불가 대주 대응방안 검토\nㅇ 일부 연장 불가 입장 대주 대응방안 검토 : KB국민은행, 한투리얼에셋, 과기공 외 ",
+      "raw_text_after": "[YD816PFV Bridge Loan 연장]\nㅇ PF 모집 지연에 따른 추가 연장 추진 : 2개월(12.17) 또는 3개월('26.01.17)\nㅇ 이자 후취조건 수용 불가 대주 대응방안 검토\nㅇ 일부 연장 불가 입장 대주 대응방안 검토 : KB국민은행, 한투리얼에셋, 과기공 외",
+      "classification_summary_before": "[국민은행] 이자, PF, 검토 관련",
+      "classification_summary_after": "[국민은행] 이자, PF, 검토 관련"
+    },
+    {
+      "form_item_id": "lbzXp0W-2",
+      "work_date": "2025-10-13",
+      "raw_text_before": "[Credit Business Launching]\nㅇ 제안서 발표 완료 \nㅇ 제안서 후속 검토(전략 외)\nㅇ 조직 개편안 검토 요청 외\n",
+      "raw_text_after": "[Credit Business Launching]\nㅇ 제안서 발표 완료\nㅇ 제안서 후속 검토(전략 외)\nㅇ 조직 개편안 검토 요청 외",
+      "classification_summary_before": "검토 관련 업무",
+      "classification_summary_after": "검토 관련 업무"
+    },
+    {
+      "form_item_id": "44ELZ7Y-5",
+      "work_date": "2025-10-27",
+      "raw_text_before": "[담보대출 Refinancing 가능성 검토] : 티맥스 수내타워, 논현동 두산빌딩\nㅇ 매각 지연에 따른 담보대출 Refinancing / 연장 가능성 검토 요청(개발관리실, 자산관리3파트)\n",
+      "raw_text_after": "[담보대출 Refinancing 가능성 검토] : 티맥스 수내타워, 논현동 두산빌딩\nㅇ 매각 지연에 따른 담보대출 Refinancing / 연장 가능성 검토 요청(개발관리실, 자산관리3파트)",
+      "classification_summary_before": "대출, 담보, 매각, 관리, 검토 관련 업무",
+      "classification_summary_after": "대출, 담보, 매각, 관리, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "68V0WeB-1",
+      "work_date": "2025-10-27",
+      "raw_text_before": "[YD816PFV B/L 만기 연장]\nㅇ 만기 연장 조건 협의\nㅇ 기존 대주 연장 협의\n",
+      "raw_text_after": "[YD816PFV B/L 만기 연장]\nㅇ 만기 연장 조건 협의\nㅇ 기존 대주 연장 협의",
+      "classification_summary_before": "PF, 협의 관련 업무",
+      "classification_summary_after": "PF, 협의 관련 업무"
+    },
+    {
+      "form_item_id": "vGpD8NQ-5",
+      "work_date": "2025-11-03",
+      "raw_text_before": "[우리은행 임원진 내방 관련 준비]\n\nㅇ 내방 관련 우리은행 임원진 이동 동선 및 세부 사항 조율 외",
+      "raw_text_after": "[우리은행 임원진 내방 관련 준비]\n\nㅇ 내방 관련 우리은행 임원진 이동 동선 및 세부 사항 조율 외",
+      "classification_summary_before": "[우리은행, 우리]  관련",
+      "classification_summary_after": "[우리은행, 우리] 관련"
+    },
+    {
+      "form_item_id": "notion-2c28ced4-3c47-815c-8ff8-f3f3beb13069-2",
+      "work_date": "2025-12-07",
+      "raw_text_before": "[YD816PFV PF 모집] ㅇ 주요 시중은행 Re-Tapping ㅇ 주관사 잔액 인수 가능 구도 검토 IOTA Seoul II 국민은행, 신한은행, 하나은행 외",
+      "raw_text_after": "[YD816PFV PF 모집]\nㅇ 주요 시중은행 Re-Tapping\nㅇ 주관사 잔액 인수 가능 구도 검토 IOTA Seoul II 국민은행, 신한은행, 하나은행 외",
+      "classification_summary_before": "[국민은행, 신한은행, 하나은행] PF, 검토 관련",
+      "classification_summary_after": "[국민은행, 신한은행, 하나은행] PF, 검토 관련"
+    },
+    {
+      "form_item_id": "notion-2c28ced4-3c47-815c-8ff8-f3f3beb13069-3",
+      "work_date": "2025-12-07",
+      "raw_text_before": "[389호 롯데백화점 분당점] ㅇ 후순위 대주 연장 협의 불발\n- 대체 대주 모집 가능성 검토 롯데백화점 분당점 KB증권, 한국투자캐피탈, BNK캐피탈 외",
+      "raw_text_after": "[389호 롯데백화점 분당점]\nㅇ 후순위 대주 연장 협의 불발\n- 대체 대주 모집 가능성 검토 롯데백화점 분당점 KB증권, 한국투자캐피탈, BNK캐피탈 외",
+      "classification_summary_before": "[한국투자캐피탈, BNK캐피탈] 협의, 검토 관련",
+      "classification_summary_after": "[한국투자캐피탈, BNK캐피탈] 협의, 검토 관련"
+    },
+    {
+      "form_item_id": "notion-2c28ced4-3c47-815c-8ff8-f3f3beb13069-4",
+      "work_date": "2025-12-07",
+      "raw_text_before": "[아레나스 안성 담보대출 Ref.] ㅇ 수익자 신용공여 완료 ㅇ Ref. 가능 복수 대안 중 최종 진행안 검토 중 KLP1-2호 아레나스 안성 메리츠증권, KB자산운용, AG, GS, BS, OCBC, DBS, UOB 외",
+      "raw_text_after": "[아레나스 안성 담보대출 Ref.]\nㅇ 수익자 신용공여 완료\nㅇ Ref. 가능 복수 대안 중 최종 진행안 검토 중 KLP1-2호 아레나스 안성 메리츠증권, KB자산운용, AG, GS, BS, OCBC, DBS, UOB 외",
+      "classification_summary_before": "[메리츠증권] 대출, 담보, 리츠, 운용, 검토 관련",
+      "classification_summary_after": "[메리츠증권] 대출, 담보, 리츠, 운용, 검토 관련"
+    },
+    {
+      "form_item_id": "notion-2c28ced4-3c47-815c-8ff8-f3f3beb13069-5",
+      "work_date": "2025-12-07",
+      "raw_text_before": "[논현 두산빌딩 담보대출 Ref.] ㅇ 외국계 기관 우선 Tapping ㅇ 국내 대출기관 Tapping List-up 372호 논현 두산빌딩 OCBC, MIZUHO, DBS, HSBC, SC 외",
+      "raw_text_after": "[논현 두산빌딩 담보대출 Ref.]\nㅇ 외국계 기관 우선 Tapping\nㅇ 국내 대출기관 Tapping List-up 372호 논현 두산빌딩 OCBC, MIZUHO, DBS, HSBC, SC 외",
+      "classification_summary_before": "대출, 담보 관련 업무",
+      "classification_summary_after": "대출, 담보 관련 업무"
+    },
+    {
+      "form_item_id": "notion-2c28ced4-3c47-815c-8ff8-f3f3beb13069-6",
+      "work_date": "2025-12-07",
+      "raw_text_before": "[신도림 디큐브시티 PF] ㅇ 시공사 선정 관련 책준 이슈 논의 : S&I코퍼레이션 TWW Reits -",
+      "raw_text_after": "[신도림 디큐브시티 PF]\nㅇ 시공사 선정 관련 책준 이슈 논의 : S&I코퍼레이션 TWW Reits -",
+      "classification_summary_before": "PF, 시공 관련 업무",
+      "classification_summary_after": "PF, 시공 관련 업무"
+    },
+    {
+      "form_item_id": "WOXpave-1",
+      "work_date": "2025-12-08",
+      "raw_text_before": "[YD816PFV PF 모집]\n\nㅇ 주요 시중은행 Re-Tapping\nㅇ 주관사 잔액 인수 가능 구도 검토 ",
+      "raw_text_after": "[YD816PFV PF 모집]\n\nㅇ 주요 시중은행 Re-Tapping\nㅇ 주관사 잔액 인수 가능 구도 검토",
+      "classification_summary_before": "PF, 검토 관련 업무",
+      "classification_summary_after": "PF, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "WOXpave-4",
+      "work_date": "2025-12-08",
+      "raw_text_before": "[논현 두산빌딩 담보대출 Ref.]\n\nㅇ 외국계 기관 우선 Tapping \nㅇ 국내 대출기관 Tapping List-up",
+      "raw_text_after": "[논현 두산빌딩 담보대출 Ref.]\n\nㅇ 외국계 기관 우선 Tapping\nㅇ 국내 대출기관 Tapping List-up",
+      "classification_summary_before": "대출, 담보 관련 업무",
+      "classification_summary_after": "대출, 담보 관련 업무"
+    },
+    {
+      "form_item_id": "notion-2e78ced4-3c47-8122-8e5a-c8392d3ad72d-2",
+      "work_date": "2026-01-13",
+      "raw_text_before": "[YD186PFV BL 연장 및 PF] ㅇ BL 연장 대주 협의 ㅇ PF 조달 재구조화 검토 외 IOTA Seoul II -",
+      "raw_text_after": "[YD186PFV BL 연장 및 PF]\nㅇ BL 연장 대주 협의\nㅇ PF 조달 재구조화 검토 외 IOTA Seoul II -",
+      "classification_summary_before": "PF, 협의, 검토 관련 업무",
+      "classification_summary_after": "PF, 협의, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "notion-2e78ced4-3c47-8122-8e5a-c8392d3ad72d-3",
+      "work_date": "2026-01-13",
+      "raw_text_before": "[389호 롯데백화점 분당점 담보대출 Ref.] ㅇ 기존 대출 치유를 위한 후순위 Tr. 대체 대주 확보 추진 중 ㅇ 후순위 Tr. 신용보강 관련 수익자 협의 타임워크 분당 우미, 한국자산캐피탈",
+      "raw_text_after": "[389호 롯데백화점 분당점 담보대출 Ref.]\nㅇ 기존 대출 치유를 위한 후순위 Tr. 대체 대주 확보 추진 중\nㅇ 후순위 Tr. 신용보강 관련 수익자 협의 타임워크 분당 우미, 한국자산캐피탈",
+      "classification_summary_before": "대출, 담보, 협의 관련 업무",
+      "classification_summary_after": "대출, 담보, 협의 관련 업무"
+    },
+    {
+      "form_item_id": "notion-2e78ced4-3c47-8122-8e5a-c8392d3ad72d-4",
+      "work_date": "2026-01-13",
+      "raw_text_before": "[397호 논현 두산빌딩 담보대출 Ref.] ㅇ 추가 대주(380억) 모집 추진 중 ㅇ 주요 검토 대주 조건 추가 협의 진행 중 논현 두산빌딩 경남은행, 수협은행, 농협은행, 광주은행, 저축은행",
+      "raw_text_after": "[397호 논현 두산빌딩 담보대출 Ref.]\nㅇ 추가 대주(380억) 모집 추진 중\nㅇ 주요 검토 대주 조건 추가 협의 진행 중 논현 두산빌딩 경남은행, 수협은행, 농협은행, 광주은행, 저축은행",
+      "classification_summary_before": "[경남은행, 광주은행, 농협은행, 수협은행] 대출, 담보, 협의, 검토 관련",
+      "classification_summary_after": "[경남은행, 광주은행, 농협은행, 수협은행] 대출, 담보, 협의, 검토 관련"
+    },
+    {
+      "form_item_id": "notion-2e78ced4-3c47-8122-8e5a-c8392d3ad72d-5",
+      "work_date": "2026-01-13",
+      "raw_text_before": "[451호 화성 석포리 물류센터 담보대출 Ref.] ㅇ 담보대출 Ref. 추진 : 잠재 대주 Pool List-up ㅇ 기존 대주 재참여를 위한 수탁기관 변경 여부 검토 외 ㅇ 매각 우협 선정 진행상황 모니터링 화성 석포리 물류센터 -",
+      "raw_text_after": "[451호 화성 석포리 물류센터 담보대출 Ref.]\nㅇ 담보대출 Ref. 추진 : 잠재 대주 Pool List-up\nㅇ 기존 대주 재참여를 위한 수탁기관 변경 여부 검토 외\nㅇ 매각 우협 선정 진행상황 모니터링 화성 석포리 물류센터 -",
+      "classification_summary_before": "대출, 담보, 매각, 검토 관련 업무",
+      "classification_summary_after": "대출, 담보, 매각, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "notion-2e78ced4-3c47-8122-8e5a-c8392d3ad72d-6",
+      "work_date": "2026-01-13",
+      "raw_text_before": "[국민성장펀드 투자 유지 추진] ㅇ 산업은행 국민성장펀드부문 투자운용국 Meeting ㅇ 유관 그룹/파트 협업 부산 송정 DC 외 산업은행",
+      "raw_text_after": "[국민성장펀드 투자 유지 추진]\nㅇ 산업은행 국민성장펀드부문 투자운용국 Meeting\nㅇ 유관 그룹/파트 협업 부산 송정 DC 외 산업은행",
+      "classification_summary_before": "운용 관련 업무",
+      "classification_summary_after": "운용 관련 업무"
+    },
+    {
+      "form_item_id": "WOVdBdR-1",
+      "work_date": "2026-01-19",
+      "raw_text_before": "[YD186PFV BL 연장 및 PF] \n\nㅇ BL 연장 대주 협의\nㅇ PF 조달 재구조화 검토 외",
+      "raw_text_after": "[YD186PFV BL 연장 및 PF]\n\nㅇ BL 연장 대주 협의\nㅇ PF 조달 재구조화 검토 외",
+      "classification_summary_before": "PF, 협의, 검토 관련 업무",
+      "classification_summary_after": "PF, 협의, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "WOVdBdR-3",
+      "work_date": "2026-01-19",
+      "raw_text_before": "[397호 논현 두산빌딩 담보대출 Ref.]\n\nㅇ 추가 대주(380억) 모집 추진 중\nㅇ 주요 검토 대주 조건 추가 협의 진행 중\n",
+      "raw_text_after": "[397호 논현 두산빌딩 담보대출 Ref.]\n\nㅇ 추가 대주(380억) 모집 추진 중\nㅇ 주요 검토 대주 조건 추가 협의 진행 중",
+      "classification_summary_before": "대출, 담보, 협의, 검토 관련 업무",
+      "classification_summary_after": "대출, 담보, 협의, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "WOVdBdR-5",
+      "work_date": "2026-01-19",
+      "raw_text_before": "[국민성장펀드 투자 유지 추진]\n\nㅇ 산업은행 국민성장펀드부문 투자운용국 Meeting\nㅇ 유관 그룹/파트 협업 ",
+      "raw_text_after": "[국민성장펀드 투자 유지 추진]\n\nㅇ 산업은행 국민성장펀드부문 투자운용국 Meeting\nㅇ 유관 그룹/파트 협업",
+      "classification_summary_before": "운용 관련 업무",
+      "classification_summary_after": "운용 관련 업무"
+    },
+    {
+      "form_item_id": "notion-2fa8ced4-3c47-81b7-9f1e-e69a63237c5a-2",
+      "work_date": "2026-02-01",
+      "raw_text_before": "[YD816PFV BL 정상화] ㅇ BL 7,170억원 정상화 방안 검토 및 계획 수립 IOTA Seoul II\n- 메트로,서울로타워 개발사업 -",
+      "raw_text_after": "[YD816PFV BL 정상화]\nㅇ BL 7,170억원 정상화 방안 검토 및 계획 수립 IOTA Seoul II\n- 메트로,서울로타워 개발사업 -",
+      "classification_summary_before": "PF, 검토 관련 업무",
+      "classification_summary_after": "PF, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "notion-2fa8ced4-3c47-81b7-9f1e-e69a63237c5a-3",
+      "work_date": "2026-02-01",
+      "raw_text_before": "[389호 롯데백화점 분당점] ㅇ 담보대출 1,893억 EOD 치유 추진 지속 ㅇ 금융주간사(총액인수) 선정 및 조건 협의 지속 ㅇ 우선주 모집 협업 타임워크분당 KB증권, 대신증권, 신한투자증권, NH투자증권, Gaw Capital",
+      "raw_text_after": "[389호 롯데백화점 분당점]\nㅇ 담보대출 1,893억 EOD 치유 추진 지속\nㅇ 금융주간사(총액인수) 선정 및 조건 협의 지속\nㅇ 우선주 모집 협업 타임워크분당 KB증권, 대신증권, 신한투자증권, NH투자증권, Gaw Capital",
+      "classification_summary_before": "[신한투자증권] 대출, 담보, 협의 관련",
+      "classification_summary_after": "[신한투자증권] 대출, 담보, 협의 관련"
+    },
+    {
+      "form_item_id": "notion-2fa8ced4-3c47-81b7-9f1e-e69a63237c5a-4",
+      "work_date": "2026-02-01",
+      "raw_text_before": "[397호] 논현 두산빌딩 담보대출 Refinancing ㅇ 담보대출 1,380억 Refinancing 대주 모집(지속) ㅇ 차주 대주 모집(승인) 완료 및 약정 체결 예정\n- 수협은행, 경남은행, 미래에셋캐피탈, 전북은행, IBK캐피탈",
+      "raw_text_after": "[397호] 논현 두산빌딩 담보대출 Refinancing\nㅇ 담보대출 1,380억 Refinancing 대주 모집(지속)\nㅇ 차주 대주 모집(승인) 완료 및 약정 체결 예정\n- 수협은행, 경남은행, 미래에셋캐피탈, 전북은행, IBK캐피탈",
+      "classification_summary_before": "[미래에셋캐피탈, 경남은행, 수협은행, 전북은행] 대출, 담보, 약정, 승인 관련",
+      "classification_summary_after": "[미래에셋캐피탈, 경남은행, 수협은행, 전북은행] 대출, 담보, 약정, 승인 관련"
+    },
+    {
+      "form_item_id": "notion-2fa8ced4-3c47-81b7-9f1e-e69a63237c5a-5",
+      "work_date": "2026-02-01",
+      "raw_text_before": "[451호 화성 석포리 물류센터 담보대출 Refinancing] ㅇ 담보대출 1,820억(증액) Refinancing 추진 중 ㅇ 대주 모집 진행 중, 주요 앵커대주 확보 완료 ㅇ 후순위 대주 추가 모집 진행 중\n- 삼성SRA자산운용, 농협중앙회, DB손보 외",
+      "raw_text_after": "[451호 화성 석포리 물류센터 담보대출 Refinancing]\nㅇ 담보대출 1,820억(증액) Refinancing 추진 중\nㅇ 대주 모집 진행 중, 주요 앵커대주 확보 완료\nㅇ 후순위 대주 추가 모집 진행 중\n- 삼성SRA자산운용, 농협중앙회, DB손보 외",
+      "classification_summary_before": "[농협중앙회] 대출, 담보, 운용 관련",
+      "classification_summary_after": "[농협중앙회] 대출, 담보, 운용 관련"
+    },
+    {
+      "form_item_id": "notion-2fa8ced4-3c47-81b7-9f1e-e69a63237c5a-6",
+      "work_date": "2026-02-01",
+      "raw_text_before": "[Loan 총괄현황 보고, '25년 하반기 대출 Exposure 등 현황 보고] ㅇ 보고 완료",
+      "raw_text_after": "[Loan 총괄현황 보고, '25년 하반기 대출 Exposure 등 현황 보고]\nㅇ 보고 완료",
+      "classification_summary_before": "대출, 보고 관련 업무",
+      "classification_summary_after": "대출, 보고 관련 업무"
+    },
+    {
+      "form_item_id": "1ALGLNM-1",
+      "work_date": "2026-02-02",
+      "raw_text_before": "[YD816PFV BL 정상화]\n\nㅇ BL 7,170억원 정상화 방안 검토 및 계획 수립\n",
+      "raw_text_after": "[YD816PFV BL 정상화]\n\nㅇ BL 7,170억원 정상화 방안 검토 및 계획 수립",
+      "classification_summary_before": "PF, 검토 관련 업무",
+      "classification_summary_after": "PF, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "KYXWyDg-4",
+      "work_date": "2026-02-09",
+      "raw_text_before": "[451호 화성 석포리 물류센터 담보대출 Refinancing]\n\nㅇ 담보대출 Refinancing 추진 중\nㅇ 선순위 모집 완료(삼성SRA 외)\nㅇ 후순위 모집 난항에 따른 대주 추가 Tapping 지속 : 총액 또는 잔액인수 기관 확보 추진 ",
+      "raw_text_after": "[451호 화성 석포리 물류센터 담보대출 Refinancing]\n\nㅇ 담보대출 Refinancing 추진 중\nㅇ 선순위 모집 완료(삼성SRA 외)\nㅇ 후순위 모집 난항에 따른 대주 추가 Tapping 지속 : 총액 또는 잔액인수 기관 확보 추진",
+      "classification_summary_before": "대출, 담보 관련 업무",
+      "classification_summary_after": "대출, 담보 관련 업무"
+    },
+    {
+      "form_item_id": "KYXWyDg-5",
+      "work_date": "2026-02-09",
+      "raw_text_before": "[400호 원센터널 담보대출 Refinancing]\n\nㅇ 담보대출 Refinancing \nㅇ TM 및 RFP 작성 완료\nㅇ RFP 배포 예정 외",
+      "raw_text_after": "[400호 원센터널 담보대출 Refinancing]\n\nㅇ 담보대출 Refinancing\nㅇ TM 및 RFP 작성 완료\nㅇ RFP 배포 예정 외",
+      "classification_summary_before": "대출, 담보 관련 업무",
+      "classification_summary_after": "대출, 담보 관련 업무"
+    },
+    {
+      "form_item_id": "notion-3018ced4-3c47-8135-8b11-c4214863c507-2",
+      "work_date": "2026-02-09",
+      "raw_text_before": "[YD816PFV BL] ㅇ 정상화 방안 검토 및 추진 외 IOTA Seoul II -",
+      "raw_text_after": "[YD816PFV BL]\nㅇ 정상화 방안 검토 및 추진 외 IOTA Seoul II -",
+      "classification_summary_before": "PF, 검토 관련 업무",
+      "classification_summary_after": "PF, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "notion-3018ced4-3c47-8135-8b11-c4214863c507-3",
+      "work_date": "2026-02-09",
+      "raw_text_before": "[389호 롯데백화점 분당점 담보대출 Refinancing] ㅇ 정상화 방안 추진 ㅇ 주관사 선정관련 수익자 협의 및 추가 조건 확인 외 타임워크 분당 KB증권, 대신증권, NH투자증권, 신한투자증권, 우미글로벌",
+      "raw_text_after": "[389호 롯데백화점 분당점 담보대출 Refinancing]\nㅇ 정상화 방안 추진\nㅇ 주관사 선정관련 수익자 협의 및 추가 조건 확인 외 타임워크 분당 KB증권, 대신증권, NH투자증권, 신한투자증권, 우미글로벌",
+      "classification_summary_before": "[신한투자증권, 우미글로벌] 대출, 담보, 협의 관련",
+      "classification_summary_after": "[신한투자증권, 우미글로벌] 대출, 담보, 협의 관련"
+    },
+    {
+      "form_item_id": "notion-3018ced4-3c47-8135-8b11-c4214863c507-4",
+      "work_date": "2026-02-09",
+      "raw_text_before": "[397호 논현 두산빌딩 담보대출 Refinancing] ㅇ 약정 완료 ㅇ '26.02.09 Closing 예정 논현 두산빌딩 수협B, 경남B, 미래에셋C, 전북B, IBKC",
+      "raw_text_after": "[397호 논현 두산빌딩 담보대출 Refinancing]\nㅇ 약정 완료\nㅇ '26.02.09 Closing 예정 논현 두산빌딩 수협B, 경남B, 미래에셋C, 전북B, IBKC",
+      "classification_summary_before": "대출, 담보, 약정 관련 업무",
+      "classification_summary_after": "대출, 담보, 약정 관련 업무"
+    },
+    {
+      "form_item_id": "notion-3018ced4-3c47-8135-8b11-c4214863c507-5",
+      "work_date": "2026-02-09",
+      "raw_text_before": "[451호 화성 석포리 물류센터 담보대출 Refinancing] ㅇ 담보대출 Refinancing 추진 중 ㅇ 선순위 모집 완료(삼성SRA 외) ㅇ 후순위 모집 난항에 따른 대주 추가 Tapping 지속 : 총액 또는 잔액인수 기관 확보 추진 화성 석포리 물류센터 삼성SRA, KB자산운용, 한국투자SB, 웰컴SB, 키움C, NHC, KB증권 외",
+      "raw_text_after": "[451호 화성 석포리 물류센터 담보대출 Refinancing]\nㅇ 담보대출 Refinancing 추진 중\nㅇ 선순위 모집 완료(삼성SRA 외)\nㅇ 후순위 모집 난항에 따른 대주 추가 Tapping 지속 : 총액 또는 잔액인수 기관 확보 추진 화성 석포리 물류센터 삼성SRA, KB자산운용, 한국투자SB, 웰컴SB, 키움C, NHC, KB증권 외",
+      "classification_summary_before": "대출, 담보, 운용 관련 업무",
+      "classification_summary_after": "대출, 담보, 운용 관련 업무"
+    },
+    {
+      "form_item_id": "notion-3018ced4-3c47-8135-8b11-c4214863c507-6",
+      "work_date": "2026-02-09",
+      "raw_text_before": "[400호 원센터널 담보대출 Refinancing] ㅇ 담보대출 Refinancing ㅇ TM 및 RFP 작성 완료 ㅇ RFP 배포 예정 외 400호 원센티널(여의도 신한투자증권 빌딩) -",
+      "raw_text_after": "[400호 원센터널 담보대출 Refinancing]\nㅇ 담보대출 Refinancing\nㅇ TM 및 RFP 작성 완료\nㅇ RFP 배포 예정 외 400호 원센티널(여의도 신한투자증권 빌딩) -",
+      "classification_summary_before": "[신한투자증권] 대출, 담보 관련",
+      "classification_summary_after": "[신한투자증권] 대출, 담보 관련"
+    },
+    {
+      "form_item_id": "notion-3168ced4-3c47-810e-ac5d-f6253dfbaaef-2",
+      "work_date": "2026-03-01",
+      "raw_text_before": "[eTF 대응] ㅇ YD816PFV 서울로-메트로타워 개발사업 BL 정상화\n- 기존 대주 대응(공매 절차 협의 상황 모니터링), 신규 투자자 유치 조건, Ref. 조검 검토 외 ㅇ 389호 롯데백화점 분당점\n- 주관사 현장실사 등 대응, 기존 대주 대응(Ref. 일정 연기) 등 ㅇ I&G2-2호 평택 아디다스 물류센터\n- 대주 대응(임차인 계약해지 통보) IOTA Seoul II, 타임워크분당 -",
+      "raw_text_after": "[eTF 대응]\nㅇ YD816PFV 서울로-메트로타워 개발사업 BL 정상화\n- 기존 대주 대응(공매 절차 협의 상황 모니터링), 신규 투자자 유치 조건, Ref. 조검 검토 외\nㅇ 389호 롯데백화점 분당점\n- 주관사 현장실사 등 대응, 기존 대주 대응(Ref. 일정 연기) 등\nㅇ I&G2-2호 평택 아디다스 물류센터\n- 대주 대응(임차인 계약해지 통보) IOTA Seoul II, 타임워크분당 -",
+      "classification_summary_before": "PF, 실사, 해지, 계약, 협의, 검토 관련 업무",
+      "classification_summary_after": "PF, 실사, 해지, 계약, 협의, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "notion-3168ced4-3c47-810e-ac5d-f6253dfbaaef-3",
+      "work_date": "2026-03-01",
+      "raw_text_before": "[451호 화성 CDC 물류센터 담보대출 Ref.] ㅇ 후순위 모집 난항에 따른 대주 Pool 추가 확보\n- 저축은행, 자산운용사, 증권사 등 약 50여개사 Tapping ㅇ KB증권 협의 지속 451호 화성 석포리 물류센터 KB증권 외",
+      "raw_text_after": "[451호 화성 CDC 물류센터 담보대출 Ref.]\nㅇ 후순위 모집 난항에 따른 대주 Pool 추가 확보\n- 저축은행, 자산운용사, 증권사 등 약 50여개사 Tapping\nㅇ KB증권 협의 지속 451호 화성 석포리 물류센터 KB증권 외",
+      "classification_summary_before": "대출, 담보, 운용, 협의 관련 업무",
+      "classification_summary_after": "대출, 담보, 운용, 협의 관련 업무"
+    },
+    {
+      "form_item_id": "notion-3168ced4-3c47-810e-ac5d-f6253dfbaaef-4",
+      "work_date": "2026-03-01",
+      "raw_text_before": "[502호 대전 둔산파이낸스센터 담보대출 Ref.] ㅇ 신규 대주 Tapping ㅇ 기존 대주 연장(Ref.) 조건 협의\n- 하나은행, 전북은행\n- 조건 협의 완료 502호 대전 둔산파이낸스센터 하나은행, 전북은행, 단위농협, 전북은행 외",
+      "raw_text_after": "[502호 대전 둔산파이낸스센터 담보대출 Ref.]\nㅇ 신규 대주 Tapping\nㅇ 기존 대주 연장(Ref.) 조건 협의\n- 하나은행, 전북은행\n- 조건 협의 완료 502호 대전 둔산파이낸스센터 하나은행, 전북은행, 단위농협, 전북은행 외",
+      "classification_summary_before": "[전북은행, 하나은행] 대출, 담보, 협의 관련",
+      "classification_summary_after": "[전북은행, 하나은행] 대출, 담보, 협의 관련"
+    },
+    {
+      "form_item_id": "notion-3168ced4-3c47-810e-ac5d-f6253dfbaaef-5",
+      "work_date": "2026-03-01",
+      "raw_text_before": "[400호 원센티널 담보대출 Ref.] ㅇ 34개사 RFP 배포 및 제안서 수령 완료 ㅇ 제안서 조건 검토 및 잠재 대주 Pool, 조건 검토 완료\n- 1차 List-up 완료 400호 원센티널 담보대출 -",
+      "raw_text_after": "[400호 원센티널 담보대출 Ref.]\nㅇ 34개사 RFP 배포 및 제안서 수령 완료\nㅇ 제안서 조건 검토 및 잠재 대주 Pool, 조건 검토 완료\n- 1차 List-up 완료 400호 원센티널 담보대출 -",
+      "classification_summary_before": "대출, 담보, 검토 관련 업무",
+      "classification_summary_after": "대출, 담보, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "notion-3168ced4-3c47-810e-ac5d-f6253dfbaaef-6",
+      "work_date": "2026-03-01",
+      "raw_text_before": "[IGIS Loan 총괄현황 보고 등] ㅇ IGIS Loan 총괄현황('26.01) 보고 ㅇ 주요 대출기관 조직개편 및 인사이동 현황 파악 Loan 총괄현황 보고 등 -",
+      "raw_text_after": "[IGIS Loan 총괄현황 보고 등]\nㅇ IGIS Loan 총괄현황('26.01) 보고\nㅇ 주요 대출기관 조직개편 및 인사이동 현황 파악 Loan 총괄현황 보고 등 -",
+      "classification_summary_before": "대출, 보고 관련 업무",
+      "classification_summary_after": "대출, 보고 관련 업무"
+    },
+    {
+      "form_item_id": "notion-31e8ced4-3c47-818b-ad65-fd7c6432bf3e-2",
+      "work_date": "2026-03-09",
+      "raw_text_before": "[eTF 대응] ㅇ YD816PFV 서울로-메트로타워 개발사업 BL 정상화 : 주요 대주 문의 대응, 정상화 방안 검토 외 ㅇ 389호 롯데백화점 분당점 : 신한투자증권 현장실사 대응 외 IOTA Seoul II, 롯데백화점 분당점 DB저축은행, KB증권, 신한투자증권 외",
+      "raw_text_after": "[eTF 대응]\nㅇ YD816PFV 서울로-메트로타워 개발사업 BL 정상화 : 주요 대주 문의 대응, 정상화 방안 검토 외\nㅇ 389호 롯데백화점 분당점 : 신한투자증권 현장실사 대응 외 IOTA Seoul II, 롯데백화점 분당점 DB저축은행, KB증권, 신한투자증권 외",
+      "classification_summary_before": "[DB저축은행, 신한투자증권] PF, 실사, 검토 관련",
+      "classification_summary_after": "[DB저축은행, 신한투자증권] PF, 실사, 검토 관련"
+    },
+    {
+      "form_item_id": "notion-31e8ced4-3c47-818b-ad65-fd7c6432bf3e-3",
+      "work_date": "2026-03-09",
+      "raw_text_before": "[451호 화성 석포리 물류센터 담보대출 Ref.] ㅇ DB저축은행, KB증권 Drop 에 따른 대응 방안 수립 ㅇ 대체 대주 확보 ㅇ 고유 투자 관련 협의 및 리스크심의위원회 준비 등 화성 석포리 물류센터 삼성SRA자산운용, KB증권, DB저축은행, 한국캐피탈 외",
+      "raw_text_after": "[451호 화성 석포리 물류센터 담보대출 Ref.]\nㅇ DB저축은행, KB증권 Drop 에 따른 대응 방안 수립\nㅇ 대체 대주 확보\nㅇ 고유 투자 관련 협의 및 리스크심의위원회 준비 등 화성 석포리 물류센터 삼성SRA자산운용, KB증권, DB저축은행, 한국캐피탈 외",
+      "classification_summary_before": "[DB저축은행, 한국캐피탈] 대출, 담보, 운용, 협의 관련",
+      "classification_summary_after": "[DB저축은행, 한국캐피탈] 대출, 담보, 운용, 협의 관련"
+    },
+    {
+      "form_item_id": "notion-31e8ced4-3c47-818b-ad65-fd7c6432bf3e-4",
+      "work_date": "2026-03-09",
+      "raw_text_before": "[502호 대전 둔산 파이낸스 빌딩 담보대출 Ref.] ㅇ 대주 협의 및 Pool 구성 잠정 확정 : 하나은행, 전북은행(기존 대주와 Ref. 및 연장) ㅇ 주요 대주 하나은행 협의 완료 대전 둔산 파이낸스 빌딩 하나은행, 전북은행",
+      "raw_text_after": "[502호 대전 둔산 파이낸스 빌딩 담보대출 Ref.]\nㅇ 대주 협의 및 Pool 구성 잠정 확정 : 하나은행, 전북은행(기존 대주와 Ref. 및 연장)\nㅇ 주요 대주 하나은행 협의 완료 대전 둔산 파이낸스 빌딩 하나은행, 전북은행",
+      "classification_summary_before": "[전북은행, 하나은행] 대출, 담보, 협의 관련",
+      "classification_summary_after": "[전북은행, 하나은행] 대출, 담보, 협의 관련"
+    },
+    {
+      "form_item_id": "notion-31e8ced4-3c47-818b-ad65-fd7c6432bf3e-5",
+      "work_date": "2026-03-09",
+      "raw_text_before": "[400호 여의도 원센티널 담보대출 Ref.] ㅇ 제안서 수령 및 조건 검토 : 대주 Pool 1차 구성 완료 ㅇ 미선정 대주 앞 통지 완료 ㅇ TM 작성 및 자료 PKG 준비 ㅇ CA-CIB 현장투어 응대 등 여의도 신한투자증권 빌딩 농협중앙회, CA-CIB, 중국건설은행, 농협은행 등",
+      "raw_text_after": "[400호 여의도 원센티널 담보대출 Ref.]\nㅇ 제안서 수령 및 조건 검토 : 대주 Pool 1차 구성 완료\nㅇ 미선정 대주 앞 통지 완료\nㅇ TM 작성 및 자료 PKG 준비\nㅇ CA-CIB 현장투어 응대 등 여의도 신한투자증권 빌딩 농협중앙회, CA-CIB, 중국건설은행, 농협은행 등",
+      "classification_summary_before": "[신한투자증권, 중국건설은행, 농협중앙회, 농협은행] 대출, 담보, 검토 관련",
+      "classification_summary_after": "[신한투자증권, 중국건설은행, 농협중앙회, 농협은행] 대출, 담보, 검토 관련"
+    },
+    {
+      "form_item_id": "notion-31e8ced4-3c47-818b-ad65-fd7c6432bf3e-6",
+      "work_date": "2026-03-09",
+      "raw_text_before": "[542호 가산동 임대형 기숙사 개발사업 PF] ㅇ 대주 Pool 확정 완료 : 미래에셋증권, 삼성증권, 하나은행 ㅇ 조건 재협의 완료 ㅇ 현장실사 예정 가산동 임대형 기숙사 개발사업 PF 미래에셋증권, 삼성증권, 하나은행",
+      "raw_text_after": "[542호 가산동 임대형 기숙사 개발사업 PF]\nㅇ 대주 Pool 확정 완료 : 미래에셋증권, 삼성증권, 하나은행\nㅇ 조건 재협의 완료\nㅇ 현장실사 예정 가산동 임대형 기숙사 개발사업 PF 미래에셋증권, 삼성증권, 하나은행",
+      "classification_summary_before": "[미래에셋증권, 삼성증권, 하나은행] PF, 임대, 실사, 협의 관련",
+      "classification_summary_after": "[미래에셋증권, 삼성증권, 하나은행] PF, 임대, 실사, 협의 관련"
+    },
+    {
+      "form_item_id": "notion-32b8ced4-3c47-815f-8248-de0e5af04da1-3",
+      "work_date": "2026-03-23",
+      "raw_text_before": "[502호 대전 둔산파이낸스 빌딩 담보대출 Ref.] ㅇ Ref. 대주 승인 완료 : 하나은행, 전북은행 ㅇ 대출약정 및 기표 준비 등 대전 둔산파이낸스 빌딩 하나은행, 전북은행",
+      "raw_text_after": "[502호 대전 둔산파이낸스 빌딩 담보대출 Ref.]\nㅇ Ref. 대주 승인 완료 : 하나은행, 전북은행\nㅇ 대출약정 및 기표 준비 등 대전 둔산파이낸스 빌딩 하나은행, 전북은행",
+      "classification_summary_before": "[전북은행, 하나은행] 대출, 담보, 약정, 승인 관련",
+      "classification_summary_after": "[전북은행, 하나은행] 대출, 담보, 약정, 승인 관련"
+    },
+    {
+      "form_item_id": "notion-32b8ced4-3c47-815f-8248-de0e5af04da1-4",
+      "work_date": "2026-03-23",
+      "raw_text_before": "[400호 여의도 원센티널 담보대출 Ref.] ㅇ 대주 Pool 재구성 검토 : 전쟁 등의 여파에 따른 금리 인상, 일부 기관 투자 중단 등 ㅇ 일부 대주 앞 자료 PKG 송부 및 심의 준비 F/U ㅇ 변동금리 Tr. 비율 등 신디케이션 방안 검토 400호 여의도 원센티널 -",
+      "raw_text_after": "[400호 여의도 원센티널 담보대출 Ref.]\nㅇ 대주 Pool 재구성 검토 : 전쟁 등의 여파에 따른 금리 인상, 일부 기관 투자 중단 등\nㅇ 일부 대주 앞 자료 PKG 송부 및 심의 준비 F/U\nㅇ 변동금리 Tr. 비율 등 신디케이션 방안 검토 400호 여의도 원센티널 -",
+      "classification_summary_before": "대출, 금리, 담보, 검토 관련 업무",
+      "classification_summary_after": "대출, 금리, 담보, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "notion-32b8ced4-3c47-815f-8248-de0e5af04da1-5",
+      "work_date": "2026-03-23",
+      "raw_text_before": "[542호 가산동 임대형 기숙사 개발사업 PF] ㅇ 대주 심의 진행 F/U : 하나은행, 삼성증권, 미래에셋증권, 미래에셋캐피탈 등 ㅇ 3.24 하나은행 1차 심의 완료 등 ㅇ 3.26 삼성증권, 미래에셋증권, 시공사 CJ대한통운 심의 예정 ㅇ 3.27 미래에셋캐피탈 심의 예정 542호 가산동 임대형 기숙사 개발사업 -",
+      "raw_text_after": "[542호 가산동 임대형 기숙사 개발사업 PF]\nㅇ 대주 심의 진행 F/U : 하나은행, 삼성증권, 미래에셋증권, 미래에셋캐피탈 등\nㅇ 3.24 하나은행 1차 심의 완료 등\nㅇ 3.26 삼성증권, 미래에셋증권, 시공사 CJ대한통운 심의 예정\nㅇ 3.27 미래에셋캐피탈 심의 예정 542호 가산동 임대형 기숙사 개발사업 -",
+      "classification_summary_before": "[미래에셋캐피탈, CJ대한통운, 미래에셋증권, 삼성증권, 하나은행] PF, 시공, 임대 관련",
+      "classification_summary_after": "[미래에셋캐피탈, CJ대한통운, 미래에셋증권, 삼성증권, 하나은행] PF, 시공, 임대 관련"
+    },
+    {
+      "form_item_id": "notion-32b8ced4-3c47-815f-8248-de0e5af04da1-6",
+      "work_date": "2026-03-23",
+      "raw_text_before": "[407호 판교 아이스퀘어 D동, 28호 노스케이트빌딩 담보대출 Ref.] ㅇ 추가 대주 Tapping 완료 ㅇ 대주 Pool 구성 방안 검토 ㅇ 수익자 보고 진행 예정 판교 아이스퀘어 D동, 노스케이트 빌딩 -",
+      "raw_text_after": "[407호 판교 아이스퀘어 D동, 28호 노스케이트빌딩 담보대출 Ref.]\nㅇ 추가 대주 Tapping 완료\nㅇ 대주 Pool 구성 방안 검토\nㅇ 수익자 보고 진행 예정 판교 아이스퀘어 D동, 노스케이트 빌딩 -",
+      "classification_summary_before": "대출, 담보, 보고, 검토 관련 업무",
+      "classification_summary_after": "대출, 담보, 보고, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "xVxqkxJ-3",
+      "work_date": "2026-03-23",
+      "raw_text_before": "[400호 여의도 원센티널 담보대출 Ref.]\n\nㅇ 대주 Pool 재구성 검토 : 전쟁 등의 여파에 따른 금리 인상, 일부 기관 투자 중단 등\nㅇ 일부 대주 앞 자료 PKG 송부 및 심의 준비 F/U\nㅇ 변동금리 Tr. 비율 등 신디케이션 방안 검토\n",
+      "raw_text_after": "[400호 여의도 원센티널 담보대출 Ref.]\n\nㅇ 대주 Pool 재구성 검토 : 전쟁 등의 여파에 따른 금리 인상, 일부 기관 투자 중단 등\nㅇ 일부 대주 앞 자료 PKG 송부 및 심의 준비 F/U\nㅇ 변동금리 Tr. 비율 등 신디케이션 방안 검토",
+      "classification_summary_before": "대출, 금리, 담보, 검토 관련 업무",
+      "classification_summary_after": "대출, 금리, 담보, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "xVxqkxJ-4",
+      "work_date": "2026-03-23",
+      "raw_text_before": "[542호 가산동 임대형 기숙사 개발사업 PF]\n\nㅇ 대주 심의 진행 F/U : 하나은행, 삼성증권, 미래에셋증권, 미래에셋캐피탈 등\nㅇ 3.24 하나은행 1차 심의 완료 등 \nㅇ 3.26 삼성증권, 미래에셋증권, 시공사 CJ대한통운 심의 예정\nㅇ 3.27 미래에셋캐피탈 심의 예정",
+      "raw_text_after": "[542호 가산동 임대형 기숙사 개발사업 PF]\n\nㅇ 대주 심의 진행 F/U : 하나은행, 삼성증권, 미래에셋증권, 미래에셋캐피탈 등\nㅇ 3.24 하나은행 1차 심의 완료 등\nㅇ 3.26 삼성증권, 미래에셋증권, 시공사 CJ대한통운 심의 예정\nㅇ 3.27 미래에셋캐피탈 심의 예정",
+      "classification_summary_before": "[미래에셋캐피탈, CJ대한통운, 미래에셋증권, 삼성증권, 하나은행] PF, 시공, 임대 관련",
+      "classification_summary_after": "[미래에셋캐피탈, CJ대한통운, 미래에셋증권, 삼성증권, 하나은행] PF, 시공, 임대 관련"
+    },
+    {
+      "form_item_id": "bZ51MGo-1",
+      "work_date": "2026-03-30",
+      "raw_text_before": "[YD816PFV BL Ref.]\n\nㅇ 선순위 대주 KB증권 Drop 통지에 따른 대안 검토\nㅇ 메리츠증권, NH투자증권\nㅇ 기존 선순위 대주 담보권 실행 일정 연기관련 추가 협의(Meeting)\nㅇ Tr. B 대주 재참여 협의 \n\n",
+      "raw_text_after": "[YD816PFV BL Ref.]\n\nㅇ 선순위 대주 KB증권 Drop 통지에 따른 대안 검토\nㅇ 메리츠증권, NH투자증권\nㅇ 기존 선순위 대주 담보권 실행 일정 연기관련 추가 협의(Meeting)\nㅇ Tr. B 대주 재참여 협의",
+      "classification_summary_before": "[메리츠증권] 담보, PF, 리츠, 협의, 검토 관련",
+      "classification_summary_after": "[메리츠증권] 담보, PF, 리츠, 협의, 검토 관련"
+    },
+    {
+      "form_item_id": "notion-3338ced4-3c47-81fd-8976-ee91d1184df2-2",
+      "work_date": "2026-03-30",
+      "raw_text_before": "[YD816PFV BL Ref.] ㅇ 선순위 대주 KB증권 Drop 통지에 따른 대안 검토 ㅇ 메리츠증권, NH투자증권 ㅇ 기존 선순위 대주 담보권 실행 일정 연기관련 추가 협의(Meeting) ㅇ Tr. B 대주 재참여 협의 IOTA Seoul II KB은행, KB캐피탈, KB증권, 미래에셋캐피탈, 캡스톤자산운용, 메리츠증권, NH투자증권 외",
+      "raw_text_after": "[YD816PFV BL Ref.]\nㅇ 선순위 대주 KB증권 Drop 통지에 따른 대안 검토\nㅇ 메리츠증권, NH투자증권\nㅇ 기존 선순위 대주 담보권 실행 일정 연기관련 추가 협의(Meeting)\nㅇ Tr. B 대주 재참여 협의 IOTA Seoul II KB은행, KB캐피탈, KB증권, 미래에셋캐피탈, 캡스톤자산운용, 메리츠증권, NH투자증권 외",
+      "classification_summary_before": "[미래에셋캐피탈, 메리츠증권] 담보, PF, 리츠, 운용, 협의, 검토 관련",
+      "classification_summary_after": "[미래에셋캐피탈, 메리츠증권] 담보, PF, 리츠, 운용, 협의, 검토 관련"
+    },
+    {
+      "form_item_id": "notion-3338ced4-3c47-81fd-8976-ee91d1184df2-3",
+      "work_date": "2026-03-30",
+      "raw_text_before": "[451호 화성 석포리 물류센터 담보대출 Ref.] ㅇ 후순위 대주 Exit 관련 대안 검토 ㅇ 한국캐피탈 Drop 에 따른 대체 대주 확보 추진 중 화성 CDC KB증권, 한국투자저축은행, DB캐피탈, 켄달스퀘어, 안젤로고든 외",
+      "raw_text_after": "[451호 화성 석포리 물류센터 담보대출 Ref.]\nㅇ 후순위 대주 Exit 관련 대안 검토\nㅇ 한국캐피탈 Drop 에 따른 대체 대주 확보 추진 중 화성 CDC KB증권, 한국투자저축은행, DB캐피탈, 켄달스퀘어, 안젤로고든 외",
+      "classification_summary_before": "[한국투자저축은행, DB캐피탈, 한국캐피탈] 대출, 담보, 검토 관련",
+      "classification_summary_after": "[한국투자저축은행, DB캐피탈, 한국캐피탈] 대출, 담보, 검토 관련"
+    },
+    {
+      "form_item_id": "notion-3338ced4-3c47-81fd-8976-ee91d1184df2-4",
+      "work_date": "2026-03-30",
+      "raw_text_before": "[400호 원센터널 담보대출 Ref.] ㅇ 대출기관 요구수익률 제시 변동에 따른 대체안 추가 검토 ㅇ 고정금리 Tr. 추가 확보 가능성 검토(금리 상향 외) 여의도 원센티널 KB손보, 중국건설은행, 중국공상은행, 농협은행, 농협중앙회, KB은행, 수협은행 외",
+      "raw_text_after": "[400호 원센터널 담보대출 Ref.]\nㅇ 대출기관 요구수익률 제시 변동에 따른 대체안 추가 검토\nㅇ 고정금리 Tr. 추가 확보 가능성 검토(금리 상향 외) 여의도 원센티널 KB손보, 중국건설은행, 중국공상은행, 농협은행, 농협중앙회, KB은행, 수협은행 외",
+      "classification_summary_before": "[중국건설은행, 농협중앙회, 농협은행, 수협은행] 대출, 금리, 담보, 검토 관련",
+      "classification_summary_after": "[중국건설은행, 농협중앙회, 농협은행, 수협은행] 대출, 금리, 담보, 검토 관련"
+    },
+    {
+      "form_item_id": "notion-3338ced4-3c47-81fd-8976-ee91d1184df2-5",
+      "work_date": "2026-03-30",
+      "raw_text_before": "[542호 가산동 임대형 기숙사 개발사업 PF] ㅇ 주요 대출기관 승인 완료 ㅇ 시공사 수주심의 진행 중 ㅇ 4월 초 약정, 중순 Closing 예정 가산동 임대형 기숙사 개발사업 삼성증권, 하나은행, 미래에셋증권 외",
+      "raw_text_after": "[542호 가산동 임대형 기숙사 개발사업 PF]\nㅇ 주요 대출기관 승인 완료\nㅇ 시공사 수주심의 진행 중\nㅇ 4월 초 약정, 중순 Closing 예정 가산동 임대형 기숙사 개발사업 삼성증권, 하나은행, 미래에셋증권 외",
+      "classification_summary_before": "[미래에셋증권, 삼성증권, 하나은행] 대출, 약정, PF, 시공, 임대, 수주, 승인 관련",
+      "classification_summary_after": "[미래에셋증권, 삼성증권, 하나은행] 대출, 약정, PF, 시공, 임대, 수주, 승인 관련"
+    },
+    {
+      "form_item_id": "notion-3338ced4-3c47-81fd-8976-ee91d1184df2-6",
+      "work_date": "2026-03-30",
+      "raw_text_before": "[IGIS Loan 총괄현황 및 Issue Report 준비] ㅇ '26년 2월말 기준 Loan 총괄현황 작성 및 검토 ㅇ Issue Report 게시 준비 등",
+      "raw_text_after": "[IGIS Loan 총괄현황 및 Issue Report 준비]\nㅇ '26년 2월말 기준 Loan 총괄현황 작성 및 검토\nㅇ Issue Report 게시 준비 등",
+      "classification_summary_before": "검토 관련 업무",
+      "classification_summary_after": "검토 관련 업무"
+    },
+    {
+      "form_item_id": "notion-3408ced4-3c47-8174-9ff0-d5e849f6bdc1-2",
+      "work_date": "2026-04-12",
+      "raw_text_before": "[YD816PFV BL Refinancing] ㅇ 선순위 대주 모집 완료 : 메리츠증권, NH투자증권 ㅇ 중순위 대주 재참여 협의 지속 : BC카드, 대신저축은행, 흥국저축은행, 한화저축은행 외 ㅇ 중순위 대주 신한캐피탈 대출채권 양도 관련 모니터링 ㅇ 중순위 대주 한투리얼에셋 재참여 설득 지속 IOTA Seoul II -",
+      "raw_text_after": "[YD816PFV BL Refinancing]\nㅇ 선순위 대주 모집 완료 : 메리츠증권, NH투자증권\nㅇ 중순위 대주 재참여 협의 지속 : BC카드, 대신저축은행, 흥국저축은행, 한화저축은행 외\nㅇ 중순위 대주 신한캐피탈 대출채권 양도 관련 모니터링\nㅇ 중순위 대주 한투리얼에셋 재참여 설득 지속 IOTA Seoul II -",
+      "classification_summary_before": "[대신저축은행, 한화저축은행, 흥국저축은행, 메리츠증권, 신한캐피탈, 한화] 대출, PF, 리츠, 협의 관련",
+      "classification_summary_after": "[대신저축은행, 한화저축은행, 흥국저축은행, 메리츠증권, 신한캐피탈, 한화] 대출, PF, 리츠, 협의 관련"
+    },
+    {
+      "form_item_id": "notion-3408ced4-3c47-8174-9ff0-d5e849f6bdc1-3",
+      "work_date": "2026-04-12",
+      "raw_text_before": "[451호 화성 석포리 물류센터 담보대출 후순위 Sell-Down] ㅇ 후순위 대출 Sell-Down 추진 지속 ㅇ 신규 Tapping : 켄달스퀘어자산운용, 삼성증권, 포스트자산운용 ㅇ 기존 Tapping 기관 F/U 지속 : 한국투자저축은행, DB캐피탈 ㅇ 켄달스퀘어자산운용 현장실사 동행 외 화성 CDC -",
+      "raw_text_after": "[451호 화성 석포리 물류센터 담보대출 후순위 Sell-Down]\nㅇ 후순위 대출 Sell-Down 추진 지속\nㅇ 신규 Tapping : 켄달스퀘어자산운용, 삼성증권, 포스트자산운용\nㅇ 기존 Tapping 기관 F/U 지속 : 한국투자저축은행, DB캐피탈\nㅇ 켄달스퀘어자산운용 현장실사 동행 외 화성 CDC -",
+      "classification_summary_before": "[켄달스퀘어자산운용, 한국투자저축은행, DB캐피탈, 삼성증권] 대출, 담보, 실사, 운용 관련",
+      "classification_summary_after": "[켄달스퀘어자산운용, 한국투자저축은행, DB캐피탈, 삼성증권] 대출, 담보, 실사, 운용 관련"
+    },
+    {
+      "form_item_id": "notion-3408ced4-3c47-8174-9ff0-d5e849f6bdc1-4",
+      "work_date": "2026-04-12",
+      "raw_text_before": "[400호 여의도 원센티널 담보대출 Refinancing] ㅇ 대주 Pool 구성 완료 ㅇ 변동 Tr. 비중 증가에 따른 고정 Tr. 금액 확대 방안 검토 및 협의\n- 고정 Tr. 증액시 Cost 증가 : 30BP(4.2% -> 4.5%) ㅇ 고정 Tr. KB손보 1,000억 승인 완료 ㅇ 변동 Tr. 승인 진행 중 : 신한은행, CA-CIB, NH농협은행, ICBC 외 ㅇ ICBC PT 진행 완료 여의도 원센티널 -",
+      "raw_text_after": "[400호 여의도 원센티널 담보대출 Refinancing]\nㅇ 대주 Pool 구성 완료\nㅇ 변동 Tr. 비중 증가에 따른 고정 Tr. 금액 확대 방안 검토 및 협의\n- 고정 Tr. 증액시 Cost 증가 : 30BP(4.2% -> 4.5%)\nㅇ 고정 Tr. KB손보 1,000억 승인 완료\nㅇ 변동 Tr. 승인 진행 중 : 신한은행, CA-CIB, NH농협은행, ICBC 외\nㅇ ICBC PT 진행 완료 여의도 원센티널 -",
+      "classification_summary_before": "[농협은행, 신한은행] 대출, 담보, 협의, 검토, 승인 관련",
+      "classification_summary_after": "[농협은행, 신한은행] 대출, 담보, 협의, 검토, 승인 관련"
+    },
+    {
+      "form_item_id": "notion-3408ced4-3c47-8174-9ff0-d5e849f6bdc1-5",
+      "work_date": "2026-04-12",
+      "raw_text_before": "[542호 가산동 임대형 기숙사 개발사업 PF] ㅇ 대주 승인 완료 : 삼성증권, 미래에셋증권, 하나은행 ㅇ 시공사 수주심의 완료 : CJ대한통운\n- 그룹사 최종 보고 진행 중 ㅇ 4.14 약정 체결, 4.17 Closing 예정 ㅇ 삼성증권 Sell-down 대주 PT : 현대커머셜 542호 가산동 임대형 기숙사 개발사업 -",
+      "raw_text_after": "[542호 가산동 임대형 기숙사 개발사업 PF]\nㅇ 대주 승인 완료 : 삼성증권, 미래에셋증권, 하나은행\nㅇ 시공사 수주심의 완료 : CJ대한통운\n- 그룹사 최종 보고 진행 중\nㅇ 4.14 약정 체결, 4.17 Closing 예정\nㅇ 삼성증권 Sell-down 대주 PT : 현대커머셜 542호 가산동 임대형 기숙사 개발사업 -",
+      "classification_summary_before": "[CJ대한통운, 미래에셋증권, 현대커머셜, 삼성증권, 하나은행] 약정, PF, 시공, 임대, 수주, 보고, 승인 관련",
+      "classification_summary_after": "[CJ대한통운, 미래에셋증권, 현대커머셜, 삼성증권, 하나은행] 약정, PF, 시공, 임대, 수주, 보고, 승인 관련"
+    },
+    {
+      "form_item_id": "notion-3408ced4-3c47-8174-9ff0-d5e849f6bdc1-6",
+      "work_date": "2026-04-12",
+      "raw_text_before": "[439호 고양 삼송 DC 담보대출] ㅇ Kick-off Meeting 완료 ㅇ 잠재 대주 Pool 구성 완료 ㅇ RFP 배포용 TM 작성 완료 고양 삼송 DC -",
+      "raw_text_after": "[439호 고양 삼송 DC 담보대출]\nㅇ Kick-off Meeting 완료\nㅇ 잠재 대주 Pool 구성 완료\nㅇ RFP 배포용 TM 작성 완료 고양 삼송 DC -",
+      "classification_summary_before": "대출, 담보 관련 업무",
+      "classification_summary_after": "대출, 담보 관련 업무"
+    },
+    {
+      "form_item_id": "notion-3478ced4-3c47-8177-8da5-ee76c288ad2c-2",
+      "work_date": "2026-04-19",
+      "raw_text_before": "[YD816PFV BL Refinancing] ㅇ 중순위 대주 '한투리얼에셋자산운용' 재참여 설득 ㅇ 그 외 중순위 대주 재참여 협의 및 승인 완료 ㅇ 약정서 및 Closing 일정 안내, 협조 요청 등 ㅇ 통합 PF안 금융구조 세부 검토 개시 IOTA Seoul II 한투리얼에셋자산운용, 메리츠증권, NH투자증권, BC카드, 하나대체자산운용 등",
+      "raw_text_after": "[YD816PFV BL Refinancing]\nㅇ 중순위 대주 '한투리얼에셋자산운용' 재참여 설득\nㅇ 그 외 중순위 대주 재참여 협의 및 승인 완료\nㅇ 약정서 및 Closing 일정 안내, 협조 요청 등\nㅇ 통합 PF안 금융구조 세부 검토 개시 IOTA Seoul II 한투리얼에셋자산운용, 메리츠증권, NH투자증권, BC카드, 하나대체자산운용 등",
+      "classification_summary_before": "[메리츠증권] 약정, PF, 리츠, 운용, 협의, 검토, 승인 관련",
+      "classification_summary_after": "[메리츠증권] 약정, PF, 리츠, 운용, 협의, 검토, 승인 관련"
+    },
+    {
+      "form_item_id": "notion-3478ced4-3c47-8177-8da5-ee76c288ad2c-3",
+      "work_date": "2026-04-19",
+      "raw_text_before": "[화성 석포리 물류센터 물류센터 담보대출 후순위 Sell-Down] ㅇ 후순위 Tr. Sell-Down 추진 중(지속) ㅇ 켄달스퀘어자산운용, 삼성증권 현장 실사 및 협의 진행 중 ㅇ 목표 일정 : 4월 말 → 5월 중순 451호 화성 석포리 물류센터 켄달스퀘어자산운용, 삼성증권",
+      "raw_text_after": "[화성 석포리 물류센터 물류센터 담보대출 후순위 Sell-Down]\nㅇ 후순위 Tr. Sell-Down 추진 중(지속)\nㅇ 켄달스퀘어자산운용, 삼성증권 현장 실사 및 협의 진행 중\nㅇ 목표 일정 : 4월 말 → 5월 중순 451호 화성 석포리 물류센터 켄달스퀘어자산운용, 삼성증권",
+      "classification_summary_before": "[켄달스퀘어자산운용, 삼성증권] 대출, 담보, 실사, 운용, 협의 관련",
+      "classification_summary_after": "[켄달스퀘어자산운용, 삼성증권] 대출, 담보, 실사, 운용, 협의 관련"
+    },
+    {
+      "form_item_id": "notion-3478ced4-3c47-8177-8da5-ee76c288ad2c-4",
+      "work_date": "2026-04-19",
+      "raw_text_before": "[400호 여의도 원센티널 담보대출 Refinancing] ㅇ 담보대출 4,600억 Refinancing(단일 Tr.) ㅇ 참여 대주 : KB손보(1,000억 승인완료), 농협은행, 신한은행, 크레딧아크리콜, ICBC, 국민은행 ㅇ 4월 말 약정, 5월 초 Closing 목표 400호 여의도 원센티널 -",
+      "raw_text_after": "[400호 여의도 원센티널 담보대출 Refinancing]\nㅇ 담보대출 4,600억 Refinancing(단일 Tr.)\nㅇ 참여 대주 : KB손보(1,000억 승인완료), 농협은행, 신한은행, 크레딧아크리콜, ICBC, 국민은행\nㅇ 4월 말 약정, 5월 초 Closing 목표 400호 여의도 원센티널 -",
+      "classification_summary_before": "[국민은행, 농협은행, 신한은행] 대출, 담보, 약정, 승인 관련",
+      "classification_summary_after": "[국민은행, 농협은행, 신한은행] 대출, 담보, 약정, 승인 관련"
+    },
+    {
+      "form_item_id": "notion-3478ced4-3c47-8177-8da5-ee76c288ad2c-5",
+      "work_date": "2026-04-19",
+      "raw_text_before": "[542호 가산동 임대형 기숙사 개발사업 PF] ㅇ 4월 14일 약정 완료, 4월 17일 Closing ㅇ 참여 대주 : 삼성증권, 미래에셋증권, 하나은행, 현대커머셜, 우리금융캐피탈, 신한캐피탈 외 ㅇ All-in 6.07%, 단일 Tr., 1,230억 542호 가산동 임대형 기숙사",
+      "raw_text_after": "[542호 가산동 임대형 기숙사 개발사업 PF]\nㅇ 4월 14일 약정 완료, 4월 17일 Closing\nㅇ 참여 대주 : 삼성증권, 미래에셋증권, 하나은행, 현대커머셜, 우리금융캐피탈, 신한캐피탈 외\nㅇ All-in 6.07%, 단일 Tr., 1,230억 542호 가산동 임대형 기숙사",
+      "classification_summary_before": "[우리금융캐피탈, 미래에셋증권, 신한캐피탈, 현대커머셜, 삼성증권, 하나은행, 우리] 약정, PF, 임대 관련",
+      "classification_summary_after": "[우리금융캐피탈, 미래에셋증권, 신한캐피탈, 현대커머셜, 삼성증권, 하나은행, 우리] 약정, PF, 임대 관련"
+    },
+    {
+      "form_item_id": "pedYKeE-1",
+      "work_date": "2026-04-20",
+      "raw_text_before": "[YD816PFV BL Refinancing]\n\nㅇ 중순위 대주 '한투리얼에셋자산운용' 재참여 설득\nㅇ 그 외 중순위 대주 재참여 협의 및 승인 완료\nㅇ 약정서 및 Closing 일정 안내, 협조 요청 등 \nㅇ 통합 PF안 금융구조 세부 검토 개시",
+      "raw_text_after": "[YD816PFV BL Refinancing]\n\nㅇ 중순위 대주 '한투리얼에셋자산운용' 재참여 설득\nㅇ 그 외 중순위 대주 재참여 협의 및 승인 완료\nㅇ 약정서 및 Closing 일정 안내, 협조 요청 등\nㅇ 통합 PF안 금융구조 세부 검토 개시",
+      "classification_summary_before": "약정, PF, 운용, 협의, 검토, 승인 관련 업무",
+      "classification_summary_after": "약정, PF, 운용, 협의, 검토, 승인 관련 업무"
+    },
+    {
+      "form_item_id": "notion-34e8ced4-3c47-81a1-b3b5-f0b036f7c0aa-2",
+      "work_date": "2026-04-26",
+      "raw_text_before": "[YD816PFV BL Refinacing] ㅇ Refinancing 완료(4.24) IOTA Seoul II -",
+      "raw_text_after": "[YD816PFV BL Refinacing]\nㅇ Refinancing 완료(4.24) IOTA Seoul II -",
+      "classification_summary_before": "PF 관련 업무",
+      "classification_summary_after": "PF 관련 업무"
+    },
+    {
+      "form_item_id": "notion-34e8ced4-3c47-81a1-b3b5-f0b036f7c0aa-3",
+      "work_date": "2026-04-26",
+      "raw_text_before": "[400호 여의도 원센티널 담보대출 Refinancing] ㅇ Refinancing 대주 승인 완료 ㅇ 대출기관 : 신한은행, 국민은행, KB손보, 농협은행, ICBC, CA-CIB ㅇ 가중평균 All-in 4.0% (고정 2 : 변동 8 비율) ㅇ 4월 말 약정, 5월 초 Closing 예정 여의도 원센티널 -",
+      "raw_text_after": "[400호 여의도 원센티널 담보대출 Refinancing]\nㅇ Refinancing 대주 승인 완료\nㅇ 대출기관 : 신한은행, 국민은행, KB손보, 농협은행, ICBC, CA-CIB\nㅇ 가중평균 All-in 4.0% (고정 2 : 변동 8 비율)\nㅇ 4월 말 약정, 5월 초 Closing 예정 여의도 원센티널 -",
+      "classification_summary_before": "[국민은행, 농협은행, 신한은행] 대출, 담보, 약정, 승인 관련",
+      "classification_summary_after": "[국민은행, 농협은행, 신한은행] 대출, 담보, 약정, 승인 관련"
+    },
+    {
+      "form_item_id": "notion-34e8ced4-3c47-81a1-b3b5-f0b036f7c0aa-4",
+      "work_date": "2026-04-26",
+      "raw_text_before": "[90호 핀포인트 담보대출 Refinancing] ㅇ 기존 대주 재참여 가능여부 타진 ㅇ 신규 잠재대주 사전 마케팅 진행 완료\n- 조달 가능 조건 사전 검토 ㅇ 자료 PKG 작성 준비 중\n- 마케팅 개시 예정 신도림 핀포인트 -",
+      "raw_text_after": "[90호 핀포인트 담보대출 Refinancing]\nㅇ 기존 대주 재참여 가능여부 타진\nㅇ 신규 잠재대주 사전 마케팅 진행 완료\n- 조달 가능 조건 사전 검토\nㅇ 자료 PKG 작성 준비 중\n- 마케팅 개시 예정 신도림 핀포인트 -",
+      "classification_summary_before": "[핀포인트] 대출, 담보, 검토 관련",
+      "classification_summary_after": "[핀포인트] 대출, 담보, 검토 관련"
+    },
+    {
+      "form_item_id": "notion-34e8ced4-3c47-81a1-b3b5-f0b036f7c0aa-5",
+      "work_date": "2026-04-26",
+      "raw_text_before": "[비즈성장 1호 PKG] ㅇ 1-1호 티맥스 수내타워(6월), 1-2호 후너스빌딩(8월), 1-3호 탑빌딩(12월) ㅇ 1-1호 공실 이슈 헷징 조달 구조 제안 완료 : PKG 조달 ㅇ 우리은행 앞 1-1호 & 1-2호 PKG 제안(사업그룹)\n- 검토 불가 통보 ㅇ 1-1호 & 1-2호 PKG 구조 재검토 개시 티맥스 수내타워, 후너스 빌딩, 탑빌딩 -",
+      "raw_text_after": "[비즈성장 1호 PKG]\nㅇ 1-1호 티맥스 수내타워(6월), 1-2호 후너스빌딩(8월), 1-3호 탑빌딩(12월)\nㅇ 1-1호 공실 이슈 헷징 조달 구조 제안 완료 : PKG 조달\nㅇ 우리은행 앞 1-1호 & 1-2호 PKG 제안(사업그룹)\n- 검토 불가 통보\nㅇ 1-1호 & 1-2호 PKG 구조 재검토 개시 티맥스 수내타워, 후너스 빌딩, 탑빌딩 -",
+      "classification_summary_before": "[우리은행, 우리] 검토 관련",
+      "classification_summary_after": "[우리은행, 우리] 검토 관련"
+    },
+    {
+      "form_item_id": "notion-34e8ced4-3c47-81a1-b3b5-f0b036f7c0aa-6",
+      "work_date": "2026-04-26",
+      "raw_text_before": "[518호 용산 더프라임 담보대출 Refinancing] ㅇ 중순위 Tr. 사전 마케팅(TM) 개시\n- 조달 가능성 및 조건 사전 검토용 ㅇ 기존 대주 재참여 가능여부 확인 요청 용산 더프라임 -",
+      "raw_text_after": "[518호 용산 더프라임 담보대출 Refinancing]\nㅇ 중순위 Tr. 사전 마케팅(TM) 개시\n- 조달 가능성 및 조건 사전 검토용\nㅇ 기존 대주 재참여 가능여부 확인 요청 용산 더프라임 -",
+      "classification_summary_before": "대출, 담보, 검토 관련 업무",
+      "classification_summary_after": "대출, 담보, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "db0Kq4D-2",
+      "work_date": "2026-04-27",
+      "raw_text_before": "[400호 여의도 원센티널 담보대출 Refinancing]\n\nㅇ Refinancing 대주 승인 완료\nㅇ 대출기관 : 신한은행, 국민은행, KB손보, 농협은행, ICBC, CA-CIB\nㅇ 가중평균 All-in 4.0% (고정 2 : 변동 8 비율) \nㅇ 4월 말 약정, 5월 초 Closing 예정",
+      "raw_text_after": "[400호 여의도 원센티널 담보대출 Refinancing]\n\nㅇ Refinancing 대주 승인 완료\nㅇ 대출기관 : 신한은행, 국민은행, KB손보, 농협은행, ICBC, CA-CIB\nㅇ 가중평균 All-in 4.0% (고정 2 : 변동 8 비율)\nㅇ 4월 말 약정, 5월 초 Closing 예정",
+      "classification_summary_before": "[국민은행, 농협은행, 신한은행] 대출, 담보, 약정, 승인 관련",
+      "classification_summary_after": "[국민은행, 농협은행, 신한은행] 대출, 담보, 약정, 승인 관련"
+    },
+    {
+      "form_item_id": "notion-35a8ced4-3c47-812d-8e37-e59bcc882d2e-2",
+      "work_date": "2026-05-08",
+      "raw_text_before": "[400호 여의도 원센티널 담보대출 Ref.] ㅇ 5월 6일 Closing 완료 ㅇ 총 Ref. 모집액 4,600억, All-in 4.0% ㅇ 대주 현황 : KB손보, 농협은행, 신한은행, 중국공상은행, 크레딧아그리콜 여의도 원센터티널 -",
+      "raw_text_after": "[400호 여의도 원센티널 담보대출 Ref.]\nㅇ 5월 6일 Closing 완료\nㅇ 총 Ref. 모집액 4,600억, All-in 4.0%\nㅇ 대주 현황 : KB손보, 농협은행, 신한은행, 중국공상은행, 크레딧아그리콜 여의도 원센터티널 -",
+      "classification_summary_before": "[농협은행, 신한은행] 대출, 담보 관련",
+      "classification_summary_after": "[농협은행, 신한은행] 대출, 담보 관련"
+    },
+    {
+      "form_item_id": "notion-35a8ced4-3c47-812d-8e37-e59bcc882d2e-3",
+      "work_date": "2026-05-08",
+      "raw_text_before": "[90호 핀포인트 담보대출 Ref.] ㅇ Ref. 모집액 460억, 기존대출 만기일 6월 29일 ㅇ 기존 대주 재참여 협의\n- 신한은행, 우리은행, 전북은행 재참여 불가 ㅇ Ref. 잠재 대주 Tapping\n- 여전사 및 저축은행 약 20여개 기관 ㅇ 요구수익률 이슈에 따라 금융비용(수수료) 확보 목적 Ref. 증액 검토(460억 → 465억) ㅇ 검토기관 의향기관 4개사, 250억 내외 : Target All-in 상향 및 추가 Tapping 예정 신도림 핀포인트 -",
+      "raw_text_after": "[90호 핀포인트 담보대출 Ref.]\nㅇ Ref. 모집액 460억, 기존대출 만기일 6월 29일\nㅇ 기존 대주 재참여 협의\n- 신한은행, 우리은행, 전북은행 재참여 불가\nㅇ Ref. 잠재 대주 Tapping\n- 여전사 및 저축은행 약 20여개 기관\nㅇ 요구수익률 이슈에 따라 금융비용(수수료) 확보 목적 Ref. 증액 검토(460억 → 465억)\nㅇ 검토기관 의향기관 4개사, 250억 내외 : Target All-in 상향 및 추가 Tapping 예정 신도림 핀포인트 -",
+      "classification_summary_before": "[신한은행, 우리은행, 전북은행, 핀포인트, 우리] 대출, 담보, 협의, 검토 관련",
+      "classification_summary_after": "[신한은행, 우리은행, 전북은행, 핀포인트, 우리] 대출, 담보, 협의, 검토 관련"
+    },
+    {
+      "form_item_id": "notion-35a8ced4-3c47-812d-8e37-e59bcc882d2e-4",
+      "work_date": "2026-05-08",
+      "raw_text_before": "[47호 신라스테이 해운대 담보대출 Ref.] ㅇ 매각 불발 가능성에 대비한 Ref. 추진 ㅇ Ref. 모집액 1,200억, 기존 대출 만기일 6월 28일 ㅇ 가망대주 5개 기관 Tapping 완료, 피드백 회신 예정(차주 중) 신라스테이 해운대 -",
+      "raw_text_after": "[47호 신라스테이 해운대 담보대출 Ref.]\nㅇ 매각 불발 가능성에 대비한 Ref. 추진\nㅇ Ref. 모집액 1,200억, 기존 대출 만기일 6월 28일\nㅇ 가망대주 5개 기관 Tapping 완료, 피드백 회신 예정(차주 중) 신라스테이 해운대 -",
+      "classification_summary_before": "대출, 담보, 매각 관련 업무",
+      "classification_summary_after": "대출, 담보, 매각 관련 업무"
+    },
+    {
+      "form_item_id": "notion-35a8ced4-3c47-812d-8e37-e59bcc882d2e-5",
+      "work_date": "2026-05-08",
+      "raw_text_before": "[518호 용산 더프라임 담보대출 Ref.] ㅇ Ref. 모집액 2,190억(증액), 기존 대출 만기일 8월 11일 ㅇ 중순위 Tr. 잠재 대주 우선 Tapping, 선순위 Tr. mix-up 검토 요청 : 약 400억 수준 ㅇ 선순위 Tr. 잔여액 모집 난항 예상에 따른 구조 및 조건 재검토 중, 추가 기관 Tapping 진행 중 용산 더프라임 -",
+      "raw_text_after": "[518호 용산 더프라임 담보대출 Ref.]\nㅇ Ref. 모집액 2,190억(증액), 기존 대출 만기일 8월 11일\nㅇ 중순위 Tr. 잠재 대주 우선 Tapping, 선순위 Tr. mix-up 검토 요청 : 약 400억 수준\nㅇ 선순위 Tr. 잔여액 모집 난항 예상에 따른 구조 및 조건 재검토 중, 추가 기관 Tapping 진행 중 용산 더프라임 -",
+      "classification_summary_before": "대출, 담보, 검토 관련 업무",
+      "classification_summary_after": "대출, 담보, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "notion-35a8ced4-3c47-812d-8e37-e59bcc882d2e-6",
+      "work_date": "2026-05-08",
+      "raw_text_before": "[439호 고양삼송 DC 담보대출] ㅇ 모집액 1.2조원 내외 ㅇ RFP 발송 및 회신 완료, 기관별 제안 조건 비교 중 ㅇ 대출기관 Short-list 선정 및 추가 제안 조건 Guideline 검토 중 고양 삼송 DC -",
+      "raw_text_after": "[439호 고양삼송 DC 담보대출]\nㅇ 모집액 1.2조원 내외\nㅇ RFP 발송 및 회신 완료, 기관별 제안 조건 비교 중\nㅇ 대출기관 Short-list 선정 및 추가 제안 조건 Guideline 검토 중 고양 삼송 DC -",
+      "classification_summary_before": "대출, 담보, 검토 관련 업무",
+      "classification_summary_after": "대출, 담보, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "notion-3618ced4-3c47-812a-b1b1-de37df14bbd4-2",
+      "work_date": "2026-05-15",
+      "raw_text_before": "[90호 신도림 핀포인트 담보대출 Ref.] ㅇ 담보대출 만기도래에 따른 465억 Ref. 추진 중 : LTV 60% 초반 ㅇ 약 30여개 기관 Tapping 완료 ㅇ 모집 난항에 따라 제시 All-in 상향 재검토 ㅇ Anchor 대주 확보, 모집액의 80% 이상 모집 가능 여부에 따라 외부 인수기관 활용여부 검토 중 90호 신도림 핀포인트 기존 대주(광주은행, 신협), 신규 대주(저축은행 및 여전사 등)",
+      "raw_text_after": "[90호 신도림 핀포인트 담보대출 Ref.]\nㅇ 담보대출 만기도래에 따른 465억 Ref. 추진 중 : LTV 60% 초반\nㅇ 약 30여개 기관 Tapping 완료\nㅇ 모집 난항에 따라 제시 All-in 상향 재검토\nㅇ Anchor 대주 확보, 모집액의 80% 이상 모집 가능 여부에 따라 외부 인수기관 활용여부 검토 중 90호 신도림 핀포인트 기존 대주(광주은행, 신협), 신규 대주(저축은행 및 여전사 등)",
+      "classification_summary_before": "[광주은행, 핀포인트] 대출, 담보, 검토 관련",
+      "classification_summary_after": "[광주은행, 핀포인트] 대출, 담보, 검토 관련"
+    },
+    {
+      "form_item_id": "notion-3618ced4-3c47-812a-b1b1-de37df14bbd4-3",
+      "work_date": "2026-05-15",
+      "raw_text_before": "[47호 신라스테이 해운대 담보대출 Ref.] ㅇ 담보대출 1,200억 만기도래에 따른 Ref. 추진 중 ㅇ 잠재대주 Pool 확보 완료 : 변동/고정 Tr. Mix 추진 중 ㅇ 5월 21일 이후 순차적 현장실사 예정 47호 신라스테이 해운대 동양생명, 수협은행, 부산은행, 하나은행",
+      "raw_text_after": "[47호 신라스테이 해운대 담보대출 Ref.]\nㅇ 담보대출 1,200억 만기도래에 따른 Ref. 추진 중\nㅇ 잠재대주 Pool 확보 완료 : 변동/고정 Tr. Mix 추진 중\nㅇ 5월 21일 이후 순차적 현장실사 예정 47호 신라스테이 해운대 동양생명, 수협은행, 부산은행, 하나은행",
+      "classification_summary_before": "[부산은행, 수협은행, 하나은행] 대출, 담보, 실사 관련",
+      "classification_summary_after": "[부산은행, 수협은행, 하나은행] 대출, 담보, 실사 관련"
+    },
+    {
+      "form_item_id": "notion-3618ced4-3c47-812a-b1b1-de37df14bbd4-4",
+      "work_date": "2026-05-15",
+      "raw_text_before": "[439호 고양 삼송 DC 담보대출] ㅇ 담보대출 전환 1.15조원 모집 추진 중 ㅇ 금융기관 RFP 회신 완료 ㅇ 대주 구성 및 All-in Cost 기준안 검토 중 ㅇ 외국계 대주 추가 Tapping 진행 ㅇ 대주 Pool 확정 및 최종안 제시 예정 439호 고양 삼송 DC 국민은행, 신한은행, 산업은행, 기업은행, 농협은행, 한화생명, KB손보 및 외국계 은행",
+      "raw_text_after": "[439호 고양 삼송 DC 담보대출]\nㅇ 담보대출 전환 1.15조원 모집 추진 중\nㅇ 금융기관 RFP 회신 완료\nㅇ 대주 구성 및 All-in Cost 기준안 검토 중\nㅇ 외국계 대주 추가 Tapping 진행\nㅇ 대주 Pool 확정 및 최종안 제시 예정 439호 고양 삼송 DC 국민은행, 신한은행, 산업은행, 기업은행, 농협은행, 한화생명, KB손보 및 외국계 은행",
+      "classification_summary_before": "[국민은행, 농협은행, 신한은행, 한화] 대출, 담보, 검토 관련",
+      "classification_summary_after": "[국민은행, 농협은행, 신한은행, 한화] 대출, 담보, 검토 관련"
+    },
+    {
+      "form_item_id": "notion-3618ced4-3c47-812a-b1b1-de37df14bbd4-5",
+      "work_date": "2026-05-15",
+      "raw_text_before": "[518호 용산더프라임 담보대출 Ref.] ㅇ 담보대출 만기(8.11) 도래에 따른 증액 Ref. 추진 중 ㅇ 선순위 Tr. 인수기관 확보를 위해 주요 증권사 앞 검토 요청 완료 : 6개사 ㅇ 제시 조건 검토 후 선순위 Tr. 인수 + 중순위 Tr. 대주 최종 확정 예정 518호 용산 더프라임 우리투자증권, 신한투자증권, NH투자증권, 한국투자증권, 삼성증권, 미래에셋증권, KB증권",
+      "raw_text_after": "[518호 용산더프라임 담보대출 Ref.]\nㅇ 담보대출 만기(8.11) 도래에 따른 증액 Ref. 추진 중\nㅇ 선순위 Tr. 인수기관 확보를 위해 주요 증권사 앞 검토 요청 완료 : 6개사\nㅇ 제시 조건 검토 후 선순위 Tr. 인수 + 중순위 Tr. 대주 최종 확정 예정 518호 용산 더프라임 우리투자증권, 신한투자증권, NH투자증권, 한국투자증권, 삼성증권, 미래에셋증권, KB증권",
+      "classification_summary_before": "[미래에셋증권, 신한투자증권, 우리투자증권, 한국투자증권, 삼성증권, 우리] 대출, 담보, 검토 관련",
+      "classification_summary_after": "[미래에셋증권, 신한투자증권, 우리투자증권, 한국투자증권, 삼성증권, 우리] 대출, 담보, 검토 관련"
+    },
+    {
+      "form_item_id": "notion-3618ced4-3c47-812a-b1b1-de37df14bbd4-6",
+      "work_date": "2026-05-15",
+      "raw_text_before": "[용산라이프시티PFV PF] ㅇ PF 모집관련 금융구조 및 조건 검토 개시 용산 특계8구역 -",
+      "raw_text_after": "[용산라이프시티PFV PF]\nㅇ PF 모집관련 금융구조 및 조건 검토 개시 용산 특계8구역 -",
+      "classification_summary_before": "PF, 검토 관련 업무",
+      "classification_summary_after": "PF, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "notion-3688ced4-3c47-81ea-ab51-fae2ed56be3e-2",
+      "work_date": "2026-05-22",
+      "raw_text_before": "[90호 핀포인트 담보대출 Refinancing] ㅇ 기존 대출 만기 : 6월 29일, 총 대출금액 465억원, 대출기간 36개월 Ref. 추진 ㅇ 모집 가능성 제고를 위한 대출 재구조화 검토 : 1안) 단일 Tr. 2안) 임대Tr. & 공실Tr. (약정 및 담보 분리) 3안) 선순위 & 후순위 Tr. 4안) 증권사 총액인수 ㅇ 각 안별로 잠재대주 추가 Tapping (증권사 포함)\n- 검토기관 Q&A F/U, 현장실사 대응 중 ㅇ 5월말 기한 모집 가능성 여부 확인 후 기존 대주 연장 협의 개시 예정 90호 핀포인트 담보대출 -",
+      "raw_text_after": "[90호 핀포인트 담보대출 Refinancing]\nㅇ 기존 대출 만기 : 6월 29일, 총 대출금액 465억원, 대출기간 36개월 Ref. 추진\nㅇ 모집 가능성 제고를 위한 대출 재구조화 검토 : 1안) 단일 Tr. 2안) 임대Tr. & 공실Tr. (약정 및 담보 분리) 3안) 선순위 & 후순위 Tr. 4안) 증권사 총액인수\nㅇ 각 안별로 잠재대주 추가 Tapping (증권사 포함)\n- 검토기관 Q&A F/U, 현장실사 대응 중\nㅇ 5월말 기한 모집 가능성 여부 확인 후 기존 대주 연장 협의 개시 예정 90호 핀포인트 담보대출 -",
+      "classification_summary_before": "[핀포인트] 대출, 담보, 약정, 임대, 실사, 협의, 검토 관련",
+      "classification_summary_after": "[핀포인트] 대출, 담보, 약정, 임대, 실사, 협의, 검토 관련"
+    },
+    {
+      "form_item_id": "notion-3688ced4-3c47-81ea-ab51-fae2ed56be3e-3",
+      "work_date": "2026-05-22",
+      "raw_text_before": "[47호 신라스테이 해운대 담보대출 Ref.] ㅇ 기존 대출 만기 : 6월 28일, 총 대출금액 1,200억, 대출기간 24개월 Ref. 추진 ㅇ 변동 Tr. (1년 변동 4.55%) 및 고정 Tr. (4.7%) 혼합 조달 추진 중 ㅇ 부산은행 현장실사 및 승인 완료(500억, 변동 Tr.) ㅇ 하나은행, 수협은행, 동양생명 현장 실사 및 심의 진행 중 47호 신라스테이 해운대 -",
+      "raw_text_after": "[47호 신라스테이 해운대 담보대출 Ref.]\nㅇ 기존 대출 만기 : 6월 28일, 총 대출금액 1,200억, 대출기간 24개월 Ref. 추진\nㅇ 변동 Tr. (1년 변동 4.55%) 및 고정 Tr. (4.7%) 혼합 조달 추진 중\nㅇ 부산은행 현장실사 및 승인 완료(500억, 변동 Tr.)\nㅇ 하나은행, 수협은행, 동양생명 현장 실사 및 심의 진행 중 47호 신라스테이 해운대 -",
+      "classification_summary_before": "[부산은행, 수협은행, 하나은행] 대출, 담보, 실사, 승인 관련",
+      "classification_summary_after": "[부산은행, 수협은행, 하나은행] 대출, 담보, 실사, 승인 관련"
+    },
+    {
+      "form_item_id": "notion-3688ced4-3c47-81ea-ab51-fae2ed56be3e-4",
+      "work_date": "2026-05-22",
+      "raw_text_before": "[439호 고양 삼송 DC 담보대출] ㅇ 기존 대출(PF) 만기일 9월 23일, 준공 후 담보대출 1.15조원, 대출기간 36개월 조달 추진 ㅇ 잠재 Short list 확정, 시장금리 변동성 심화에 따른 대상기관 앞 금리 Quote 재실시 ㅇ 변동 Tr. & 고정 Tr. 비율 검토 ㅇ 차주 초 대주 Pool 확정 통지 후 심의 진행 예정 ㅇ 6월 말 약정, 7월 초 Closing 목표 439호 고양 삼송 DC -",
+      "raw_text_after": "[439호 고양 삼송 DC 담보대출]\nㅇ 기존 대출(PF) 만기일 9월 23일, 준공 후 담보대출 1.15조원, 대출기간 36개월 조달 추진\nㅇ 잠재 Short list 확정, 시장금리 변동성 심화에 따른 대상기관 앞 금리 Quote 재실시\nㅇ 변동 Tr. & 고정 Tr. 비율 검토\nㅇ 차주 초 대주 Pool 확정 통지 후 심의 진행 예정\nㅇ 6월 말 약정, 7월 초 Closing 목표 439호 고양 삼송 DC -",
+      "classification_summary_before": "대출, 금리, 담보, 약정, PF, 준공, 검토 관련 업무",
+      "classification_summary_after": "대출, 금리, 담보, 약정, PF, 준공, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "notion-3688ced4-3c47-81ea-ab51-fae2ed56be3e-5",
+      "work_date": "2026-05-22",
+      "raw_text_before": "[518호 용산 더 프라임 담보대출 Ref.] ㅇ 기존 대출 만기 : 8월 11일, 총 대출금액 2,190억(150억 증액), 대출기간 24개월 Ref. 추진 ㅇ 선순위 모집 난항 예상에 따른 복수의 증권사 Tapping(8개사) ㅇ 증권사 피드백 취합 후 인수기관 선정 예정 ㅇ 후순위 Tr. 250억 잠재 대주 모집 완료, 대주 Pool 확정 예정 518호 용산 더 프라임 -",
+      "raw_text_after": "[518호 용산 더 프라임 담보대출 Ref.]\nㅇ 기존 대출 만기 : 8월 11일, 총 대출금액 2,190억(150억 증액), 대출기간 24개월 Ref. 추진\nㅇ 선순위 모집 난항 예상에 따른 복수의 증권사 Tapping(8개사)\nㅇ 증권사 피드백 취합 후 인수기관 선정 예정\nㅇ 후순위 Tr. 250억 잠재 대주 모집 완료, 대주 Pool 확정 예정 518호 용산 더 프라임 -",
+      "classification_summary_before": "대출, 담보 관련 업무",
+      "classification_summary_after": "대출, 담보 관련 업무"
+    },
+    {
+      "form_item_id": "notion-3688ced4-3c47-81ea-ab51-fae2ed56be3e-6",
+      "work_date": "2026-05-22",
+      "raw_text_before": "[IOTA Seoul 통합 PF 추진] ㅇ YD427PFV & YD816PFV 통합 PF 추진 검토 IOTA Seoul -",
+      "raw_text_after": "[IOTA Seoul 통합 PF 추진]\nㅇ YD427PFV & YD816PFV 통합 PF 추진 검토 IOTA Seoul -",
+      "classification_summary_before": "PF, 검토 관련 업무",
+      "classification_summary_after": "PF, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "notion-3718ced4-3c47-8149-9513-d4cb2b4b7482-2",
+      "work_date": "2026-05-31",
+      "raw_text_before": "[90호 신도림 핀포인트] ㅇ 담보대출 만기 6.29, 465억 증액 Ref. 추진 ㅇ 공실에 따른 DSCR 미달, 구분상가 이슈 등에 따라 Ref. 추진 가능성 저하\n- 40여개 기관 Tapping ㅇ 총액인수 가능 증권사 추진하였으나 가능성 저하 ㅇ 기존 대주와 연장 협의 개시 : 우리은행 Meeting 완료 ㅇ 6개월 연장 협의 개시, 공실 해소를 통한 DSCR 이슈 극복 후 Ref. 재추진 예정 90호 신도림 핀포인트 -",
+      "raw_text_after": "[90호 신도림 핀포인트]\nㅇ 담보대출 만기 6.29, 465억 증액 Ref. 추진\nㅇ 공실에 따른 DSCR 미달, 구분상가 이슈 등에 따라 Ref. 추진 가능성 저하\n- 40여개 기관 Tapping\nㅇ 총액인수 가능 증권사 추진하였으나 가능성 저하\nㅇ 기존 대주와 연장 협의 개시 : 우리은행 Meeting 완료\nㅇ 6개월 연장 협의 개시, 공실 해소를 통한 DSCR 이슈 극복 후 Ref. 재추진 예정 90호 신도림 핀포인트 -",
+      "classification_summary_before": "[우리은행, 핀포인트, 우리] 대출, 담보, 협의 관련",
+      "classification_summary_after": "[우리은행, 핀포인트, 우리] 대출, 담보, 협의 관련"
+    },
+    {
+      "form_item_id": "notion-3718ced4-3c47-8149-9513-d4cb2b4b7482-3",
+      "work_date": "2026-05-31",
+      "raw_text_before": "[47호 신라스테이 해운대 담보대출 Ref.] ㅇ 대출 만기 6.28, 담보대출 1,200억 Ref. 추진 ㅇ 대주 Pool 확정 및 승인 진행 중 : 부산은행 500억 승인 완료\n- 하나은행, 동양생명, 수협은행 현장실사 완료(5.27), 현장실사 동행\n- 6월 초-중순 기관 승인 완료 예정 ㅇ 대주별 금액 배분안 검토 중 : 고정 Tr. 최대화 47호 신라스테이 해운대 -",
+      "raw_text_after": "[47호 신라스테이 해운대 담보대출 Ref.]\nㅇ 대출 만기 6.28, 담보대출 1,200억 Ref. 추진\nㅇ 대주 Pool 확정 및 승인 진행 중 : 부산은행 500억 승인 완료\n- 하나은행, 동양생명, 수협은행 현장실사 완료(5.27), 현장실사 동행\n- 6월 초-중순 기관 승인 완료 예정\nㅇ 대주별 금액 배분안 검토 중 : 고정 Tr. 최대화 47호 신라스테이 해운대 -",
+      "classification_summary_before": "[부산은행, 수협은행, 하나은행] 대출, 담보, 실사, 검토, 승인 관련",
+      "classification_summary_after": "[부산은행, 수협은행, 하나은행] 대출, 담보, 실사, 검토, 승인 관련"
+    },
+    {
+      "form_item_id": "notion-3718ced4-3c47-8149-9513-d4cb2b4b7482-4",
+      "work_date": "2026-05-31",
+      "raw_text_before": "[439호 고양 삼송 DC] ㅇ 대출 만기 9.23, 담보대출 1.15조원 전환 추진 중 ㅇ 대출기관 RFP 회신안 수령 완료, 대주 Short list 확정 ㅇ 변동 Tr. / 고정 Tr. 5:5 구성 예정 : 예상 All-in 4.55% ㅇ 6월 초-중순 대출기관 내부 보고 및 심의 진행 예정, 7월 초 Closing 목표 439호 고양 삼송 DC -",
+      "raw_text_after": "[439호 고양 삼송 DC]\nㅇ 대출 만기 9.23, 담보대출 1.15조원 전환 추진 중\nㅇ 대출기관 RFP 회신안 수령 완료, 대주 Short list 확정\nㅇ 변동 Tr. / 고정 Tr. 5:5 구성 예정 : 예상 All-in 4.55%\nㅇ 6월 초-중순 대출기관 내부 보고 및 심의 진행 예정, 7월 초 Closing 목표 439호 고양 삼송 DC -",
+      "classification_summary_before": "대출, 담보, 보고 관련 업무",
+      "classification_summary_after": "대출, 담보, 보고 관련 업무"
+    },
+    {
+      "form_item_id": "notion-3718ced4-3c47-8149-9513-d4cb2b4b7482-5",
+      "work_date": "2026-05-31",
+      "raw_text_before": "[518호 용산 더프라임] ㅇ 대출 만기 8.11, 담보대출 2,190억 증액 Ref. 추진 ㅇ 선순위 인수 가능 증권사 섭외(7개사), 2개사 인터뷰 진행 완료\n- 하나증권, NH투자증권, 2개사 제안 조건 및 승인 가능성 검토 ㅇ 후순위 모집 기관 심의 개시 요청 ㅇ 7월 중순 Closing 목표 518호 용산더프라임 -",
+      "raw_text_after": "[518호 용산 더프라임]\nㅇ 대출 만기 8.11, 담보대출 2,190억 증액 Ref. 추진\nㅇ 선순위 인수 가능 증권사 섭외(7개사), 2개사 인터뷰 진행 완료\n- 하나증권, NH투자증권, 2개사 제안 조건 및 승인 가능성 검토\nㅇ 후순위 모집 기관 심의 개시 요청\nㅇ 7월 중순 Closing 목표 518호 용산더프라임 -",
+      "classification_summary_before": "[하나증권] 대출, 담보, 검토, 승인 관련",
+      "classification_summary_after": "[하나증권] 대출, 담보, 검토, 승인 관련"
+    },
+    {
+      "form_item_id": "notion-3718ced4-3c47-8149-9513-d4cb2b4b7482-6",
+      "work_date": "2026-05-31",
+      "raw_text_before": "[I&G2-4호 인천 석남물류센터 담보대출 Ref.] ㅇ 대출 만기 '27년 4월, 담보대출 3,426억 조기 Ref. 검토 ㅇ 유관부서 협의 개시 I&G2-4호 인천 석남물류센터 -",
+      "raw_text_after": "[I&G2-4호 인천 석남물류센터 담보대출 Ref.]\nㅇ 대출 만기 '27년 4월, 담보대출 3,426억 조기 Ref. 검토\nㅇ 유관부서 협의 개시 I&G2-4호 인천 석남물류센터 -",
+      "classification_summary_before": "대출, 담보, 협의, 검토 관련 업무",
+      "classification_summary_after": "대출, 담보, 협의, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "notion-3788ced4-3c47-81d4-a512-f1035ef3491d-2",
+      "work_date": "2026-06-07",
+      "raw_text_before": "[90호 신도림 핀포인트 담보대출 연장] ㅇ Ref. 추진 난항에 따른 기존 담보대출 기한 연장 추진(구분소유, DSCR 이슈 등) ㅇ 대주 현황 : 신한은행, 우리은행, 전북은행, 광주은행, 신협 ㅇ 우리은행 대출 연장기간 이견(심사부 6개월 요청안 수용 거부)\n- 6개월 연장안 지속 협의 중 ㅇ 신한은행, 전북은행, 광주은행, 신협 6개월 연장안 협조 중\n- 우리은행 제외 타 기관 '6개월안' 연장 심의 진행 요청 중(ASAP) 90호 신도림 핀포인트 신한은행, 우리은행, 전북은행, 광주은행, 신협",
+      "raw_text_after": "[90호 신도림 핀포인트 담보대출 연장]\nㅇ Ref. 추진 난항에 따른 기존 담보대출 기한 연장 추진(구분소유, DSCR 이슈 등)\nㅇ 대주 현황 : 신한은행, 우리은행, 전북은행, 광주은행, 신협\nㅇ 우리은행 대출 연장기간 이견(심사부 6개월 요청안 수용 거부)\n- 6개월 연장안 지속 협의 중\nㅇ 신한은행, 전북은행, 광주은행, 신협 6개월 연장안 협조 중\n- 우리은행 제외 타 기관 '6개월안' 연장 심의 진행 요청 중(ASAP) 90호 신도림 핀포인트 신한은행, 우리은행, 전북은행, 광주은행, 신협",
+      "classification_summary_before": "[광주은행, 신한은행, 우리은행, 전북은행, 핀포인트, 우리] 대출, 담보, 협의 관련",
+      "classification_summary_after": "[광주은행, 신한은행, 우리은행, 전북은행, 핀포인트, 우리] 대출, 담보, 협의 관련"
+    },
+    {
+      "form_item_id": "notion-3788ced4-3c47-81d4-a512-f1035ef3491d-3",
+      "work_date": "2026-06-07",
+      "raw_text_before": "[47호 신라스테이 해운대 담보대출 Refinancing] ㅇ 대출금액 1,200억, 대출기간 2년, 변동금리 4.55%(금융채1년물), 고정금리 4.70% ㅇ 승인 완료 : 부산은행 500억(기준금리 : 금융채1년물) ㅇ 승인 예정 : 하나은행 500억(변동), 수협은행 300억(변동), 동양생명 500억(고정) ㅇ 급격한 시장금리 인상에 따라 승인 진행 중인 기관의 금리 인상 요청(대응 중)\n- 금융채 1년물 → 금융채 6개월물, 고정금리 4.70% → 4.80% 이상\n- 수협은행 '금융채 1년물' 유지 요청 중 ㅇ 전 기관 승인 완료 후 금리 및 금액 배분 확정 예정 47호 신라스테이 해운대 부산은행, 하나은행, 수협은행, 동양생명",
+      "raw_text_after": "[47호 신라스테이 해운대 담보대출 Refinancing]\nㅇ 대출금액 1,200억, 대출기간 2년, 변동금리 4.55%(금융채1년물), 고정금리 4.70%\nㅇ 승인 완료 : 부산은행 500억(기준금리 : 금융채1년물)\nㅇ 승인 예정 : 하나은행 500억(변동), 수협은행 300억(변동), 동양생명 500억(고정)\nㅇ 급격한 시장금리 인상에 따라 승인 진행 중인 기관의 금리 인상 요청(대응 중)\n- 금융채 1년물 → 금융채 6개월물, 고정금리 4.70% → 4.80% 이상\n- 수협은행 '금융채 1년물' 유지 요청 중\nㅇ 전 기관 승인 완료 후 금리 및 금액 배분 확정 예정 47호 신라스테이 해운대 부산은행, 하나은행, 수협은행, 동양생명",
+      "classification_summary_before": "[부산은행, 수협은행, 하나은행] 대출, 금리, 담보, 승인 관련",
+      "classification_summary_after": "[부산은행, 수협은행, 하나은행] 대출, 금리, 담보, 승인 관련"
+    },
+    {
+      "form_item_id": "notion-3788ced4-3c47-81d4-a512-f1035ef3491d-4",
+      "work_date": "2026-06-07",
+      "raw_text_before": "[439호 고양 삼송 DC 담보대출] ㅇ 기관별 Q&A F/U (금융조건 및 금리 협의 포함) ㅇ 대주 Site Tour 개시 : 산업은행(6.05) ㅇ 대주별 승인 일정 및 산업은행 외 Site Tour 일정 협의 중 ㅇ 급격한 금리 인상에 따라 조달 금리 인상 협의(All-in 5 ~ 10BP 수준) 439호 고양 삼송 DC 산업은행, 국민은행, 기업은행, 농협은행, 신협중앙회, iM뱅크, 수협은행, 한화생명, 하나은행",
+      "raw_text_after": "[439호 고양 삼송 DC 담보대출]\nㅇ 기관별 Q&A F/U (금융조건 및 금리 협의 포함)\nㅇ 대주 Site Tour 개시 : 산업은행(6.05)\nㅇ 대주별 승인 일정 및 산업은행 외 Site Tour 일정 협의 중\nㅇ 급격한 금리 인상에 따라 조달 금리 인상 협의(All-in 5 ~ 10BP 수준) 439호 고양 삼송 DC 산업은행, 국민은행, 기업은행, 농협은행, 신협중앙회, iM뱅크, 수협은행, 한화생명, 하나은행",
+      "classification_summary_before": "[신협중앙회, 국민은행, 농협은행, 수협은행, 하나은행, 한화] 대출, 금리, 담보, 협의, 승인 관련",
+      "classification_summary_after": "[신협중앙회, 국민은행, 농협은행, 수협은행, 하나은행, 한화] 대출, 금리, 담보, 협의, 승인 관련"
+    },
+    {
+      "form_item_id": "notion-3788ced4-3c47-81d4-a512-f1035ef3491d-5",
+      "work_date": "2026-06-07",
+      "raw_text_before": "[518호 용산 더프라임 담보대출 Ref.] ㅇ 선순위 Tr. 1,940억 인수기관 확정 : 하나증권 ㅇ 선순위 인수기관과 승인 일정 및 기타 이슈 사항 협의 진행 중\n- 6월 말까지 승인 완료 후 LOC 제출 요청\n- 선순위 Tr. 일부 물량 배분 요청(중순위 Tr. 대주용) ㅇ 중순위 Tr. 검토 대주 앞 자료 PKG 송부 및 심의 진행 요청 완료 518호 용산 더프라임 하나증권, NH증권, 삼성증권, 미래에셋증권, 신한투자증권, KB증권, 키움캐피탈, 한투캐피탈 외",
+      "raw_text_after": "[518호 용산 더프라임 담보대출 Ref.]\nㅇ 선순위 Tr. 1,940억 인수기관 확정 : 하나증권\nㅇ 선순위 인수기관과 승인 일정 및 기타 이슈 사항 협의 진행 중\n- 6월 말까지 승인 완료 후 LOC 제출 요청\n- 선순위 Tr. 일부 물량 배분 요청(중순위 Tr. 대주용)\nㅇ 중순위 Tr. 검토 대주 앞 자료 PKG 송부 및 심의 진행 요청 완료 518호 용산 더프라임 하나증권, NH증권, 삼성증권, 미래에셋증권, 신한투자증권, KB증권, 키움캐피탈, 한투캐피탈 외",
+      "classification_summary_before": "[미래에셋증권, 신한투자증권, 키움캐피탈, 삼성증권, 하나증권] 대출, 담보, 협의, 검토, 승인 관련",
+      "classification_summary_after": "[미래에셋증권, 신한투자증권, 키움캐피탈, 삼성증권, 하나증권] 대출, 담보, 협의, 검토, 승인 관련"
+    },
+    {
+      "form_item_id": "notion-37d8ced4-3c47-811c-892f-eec9ab4406cc-2",
+      "work_date": "2026-06-12",
+      "raw_text_before": "[439호 고양 삼송 DC 담보대출] ㅇ 대주별 PT 진행, Q&A F/U ㅇ 시장금리 급등에 따른 수익성 개선 요청안 검토 중 ㅇ 변동 Tr. / 고정 Tr. 배분비율 검토 및 All-in 상향 조정 중 ㅇ 고정 Tr. 대주 Pool 추가 확보 추진 중 ㅇ 대주 심의 일정 확정 추진 중 : 7월 중순 Closing 목표 기한 439호 고양 삼송 DC",
+      "raw_text_after": "[439호 고양 삼송 DC 담보대출]\nㅇ 대주별 PT 진행, Q&A F/U\nㅇ 시장금리 급등에 따른 수익성 개선 요청안 검토 중\nㅇ 변동 Tr. / 고정 Tr. 배분비율 검토 및 All-in 상향 조정 중\nㅇ 고정 Tr. 대주 Pool 추가 확보 추진 중\nㅇ 대주 심의 일정 확정 추진 중 : 7월 중순 Closing 목표 기한 439호 고양 삼송 DC",
+      "classification_summary_before": "대출, 금리, 담보, 개선, 검토 관련 업무",
+      "classification_summary_after": "대출, 금리, 담보, 개선, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "notion-37d8ced4-3c47-811c-892f-eec9ab4406cc-3",
+      "work_date": "2026-06-12",
+      "raw_text_before": "[IG2-4호 인천 석남 물류센터 담보대출 Ref.] ㅇ 적용금리(변동) 인상에 따른 조기 Ref. 추진 검토 중 ㅇ 신규 잠재 대주 1차 Tapping 진행 완료 ㅇ 유관부서 앞 Tapping 결과 공유 및 협의 예정 IG2-4호 인천 석남물류센터 다수 외국계은행, 보험사,",
+      "raw_text_after": "[IG2-4호 인천 석남 물류센터 담보대출 Ref.]\nㅇ 적용금리(변동) 인상에 따른 조기 Ref. 추진 검토 중\nㅇ 신규 잠재 대주 1차 Tapping 진행 완료\nㅇ 유관부서 앞 Tapping 결과 공유 및 협의 예정 IG2-4호 인천 석남물류센터 다수 외국계은행, 보험사,",
+      "classification_summary_before": "대출, 금리, 담보, 보험, 협의, 검토 관련 업무",
+      "classification_summary_after": "대출, 금리, 담보, 보험, 협의, 검토 관련 업무"
+    },
+    {
+      "form_item_id": "notion-37d8ced4-3c47-811c-892f-eec9ab4406cc-4",
+      "work_date": "2026-06-12",
+      "raw_text_before": "[518호 용산 더프라임 담보대출 Ref.] ㅇ 선순위 Tr. 인수기관 하나증권 Kick-off Meeting 완료\n- 6월 말까지 승인 불발시 차순위 기관 협의 예정 ㅇ 선순위 & 중순위 Tr. 검토 기관 F/U : DB저축은행 외 저축은행 대주 Pool ㅇ 후순위 Tr. 대주 Q&A F/U : 키움캐피탈, 한투캐피탈 외 518호 용산 더프라임 -",
+      "raw_text_after": "[518호 용산 더프라임 담보대출 Ref.]\nㅇ 선순위 Tr. 인수기관 하나증권 Kick-off Meeting 완료\n- 6월 말까지 승인 불발시 차순위 기관 협의 예정\nㅇ 선순위 & 중순위 Tr. 검토 기관 F/U : DB저축은행 외 저축은행 대주 Pool\nㅇ 후순위 Tr. 대주 Q&A F/U : 키움캐피탈, 한투캐피탈 외 518호 용산 더프라임 -",
+      "classification_summary_before": "[DB저축은행, 키움캐피탈, 하나증권] 대출, 담보, 협의, 검토, 승인 관련",
+      "classification_summary_after": "[DB저축은행, 키움캐피탈, 하나증권] 대출, 담보, 협의, 검토, 승인 관련"
+    },
+    {
+      "form_item_id": "notion-37d8ced4-3c47-811c-892f-eec9ab4406cc-5",
+      "work_date": "2026-06-12",
+      "raw_text_before": "[47호 신라스테이 해운대 담보대출 Ref.] ㅇ 승인 완료 : 부산은행 500억, 하나은행 500어 ㅇ 심의 진행 중 : 수협은행, 동양생명 ㅇ 금리 급등에 따른 수익성 이슈 대응 중 (고정금리 금리 상향 이슈 등)\n- 수협은행 : 고정 Tr. 로 변경\n- 하나은행 : 금융채1년물 → 금융채6개월물(기준금리 상이) ㅇ 승인 완료 후 Allocation 예정 47호 신라스테이 해운대 -",
+      "raw_text_after": "[47호 신라스테이 해운대 담보대출 Ref.]\nㅇ 승인 완료 : 부산은행 500억, 하나은행 500어\nㅇ 심의 진행 중 : 수협은행, 동양생명\nㅇ 금리 급등에 따른 수익성 이슈 대응 중 (고정금리 금리 상향 이슈 등)\n- 수협은행 : 고정 Tr. 로 변경\n- 하나은행 : 금융채1년물 → 금융채6개월물(기준금리 상이)\nㅇ 승인 완료 후 Allocation 예정 47호 신라스테이 해운대 -",
+      "classification_summary_before": "[부산은행, 수협은행, 하나은행] 대출, 금리, 담보, 승인 관련",
+      "classification_summary_after": "[부산은행, 수협은행, 하나은행] 대출, 금리, 담보, 승인 관련"
+    },
+    {
+      "form_item_id": "notion-37d8ced4-3c47-811c-892f-eec9ab4406cc-6",
+      "work_date": "2026-06-12",
+      "raw_text_before": "[C-Level 마케팅 추진] ㅇ 국민은행, 농협은행, 신협중앙회 C-Level 마케팅 추진 -",
+      "raw_text_after": "[C-Level 마케팅 추진]\nㅇ 국민은행, 농협은행, 신협중앙회 C-Level 마케팅 추진 -",
+      "classification_summary_before": "[신협중앙회, 국민은행, 농협은행] 관련 업무",
+      "classification_summary_after": "[신협중앙회, 국민은행, 농협은행] 관련 업무"
+    }
+  ]
+}

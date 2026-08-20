@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-06-10T17:50:01+09:00",
+  "queries": [
+    "이오타서울",
+    "눈스퀘어",
+    "국민연금",
+    "홈플러스",
+    "분당",
+    "1120",
+    "멀티플러스",
+    "그린ON",
+    "NPL"
+  ],
+  "status_summary": {
+    "display_parity_status": "ok",
+    "cache_refresh_status": "prepared_runbook",
+    "hydration_limit_status": "ok",
+    "party_coverage_status": "ok",
+    "cluster_explainability_status": "ok"
+  },
+  "display_parity": {
+    "checked": 2839,
+    "mismatch": 0,
+    "missing_hydration_row": 0,
+    "errors": {}
+  },
+  "cache_refresh": {
+    "checked": 7,
+    "errors": 0,
+    "manual_refresh_required": true
+  },
+  "hydration_party_explainability": {
+    "queries": 9,
+    "index_limit_warnings": 0,
+    "hydration_limit_warnings": 0,
+    "party_limit_warnings": 0,
+    "explainability_warnings": 0
+  },
+  "output_dir": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\output\\dashboard_operational_contract_20260610"
+}

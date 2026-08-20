@@ -1,0 +1,200 @@
+{
+  "manifest_version": "1.0",
+  "manifest_id": "approved-lpmandate-nps-2026-domestic-real-estate",
+  "status": "APPROVED",
+  "review": {
+    "reviewed_by": "hermes-official-primary-source-review",
+    "reviewed_at": "2026-08-20T12:10:00Z",
+    "approved_by": "hermes-parent-user-authorized-official-source-promotion",
+    "approved_at": "2026-08-20T12:11:00Z"
+  },
+  "sources": [
+    {
+      "id": "src-nps-2026-domestic-real-estate-rfp",
+      "url": "https://www.nps.or.kr/pnsgdnc/bidgdnc/getOHAE0016M1.do?menuId=MN24000977&pstId=ZZ202600000000000322",
+      "title": "2026년 국민연금기금 국내 부동산투자 위탁운용사 선정 공고",
+      "publisher": "국민연금공단",
+      "document_type": "BID_NOTICE",
+      "published_at": "2026-03-27",
+      "accessed_at": "2026-08-20",
+      "rights_status": "EXCERPT_ALLOWED",
+      "exact_text": "2026년 국민연금기금 국내 부동산투자 위탁운용사 선정계획 공고\nOpportunistic 펀드 위탁운용금액 6,000억원 이내\nNon-Core Debt 펀드 위탁운용금액 6,000억원 이내\n선정운용사 수 2개사 이내\n펀드별 3,000억원 이내에서 자율적으로 제안\n각 펀드별 결성총액은 최소 3,530억원, 최대 6,000억원\nOpportunistic 투자전략 실행이 가능한 국내 자산\n투자 비중: 개발자산 40% 이내\n최소 목표수익률 Net IRR 12.0% (각 보수 차감 후)\n국내 상업용 부동산 Non-Core Debt (PF Loan, 브릿지론, NPL 포함)\nNPL 30% 이하\n최소 목표수익률 Net IRR 8.0% (각 보수 차감 후)\n2026년 3월 27일 국내 부동산 위탁운용사 선정 일정 동시 공고\n2026년 4월 24일 제안서 접수 마감: Opportunistic 펀드\n2026년 6월 Opportunistic 펀드 2개사 최종 선정\n2026년 7월 제안서 제출 요청 공고: Non-Core Debt 펀드\n2026년 7월 제안서 접수 마감: Non-Core Debt 펀드\n2026년 9월 Non-Core Debt 펀드 2개사 최종 선정"
+    }
+  ],
+  "organizations": [
+    {
+      "id": "org-nps",
+      "organization_type": "FINANCIAL_INSTITUTION",
+      "canonical_name": "국민연금공단"
+    }
+  ],
+  "event": {
+    "id": "evt-nps-2026-domestic-re-rfp",
+    "canonical_title": "2026년 국민연금 국내 부동산투자 위탁운용사 선정",
+    "current_stage_code": "MANAGER_RFP_OPEN",
+    "event_date_start": "2026-03-27",
+    "event_date_end": "2026-03-27",
+    "date_precision": "DAY",
+    "lifecycle_status": "ACTIVE",
+    "verification_level": "V2",
+    "overall_confidence": 1.0,
+    "evidence": {
+      "source_ids": [
+        "src-nps-2026-domestic-real-estate-rfp"
+      ]
+    }
+  },
+  "mandate": {
+    "id": "mandate-nps-2026-domestic-real-estate",
+    "lp_organization_id": "org-nps",
+    "mandate_code": "NPS-2026-DOMESTIC-REAL-ESTATE",
+    "mandate_name": "2026년 국민연금 국내 부동산투자 위탁운용사 선정",
+    "vintage_year": 2026,
+    "announced_at": "2026-03-27",
+    "application_deadline": "2026-04-24T15:00:00+09:00",
+    "mandate_status": "UNKNOWN",
+    "mandate_scope": "DOMESTIC",
+    "metadata": {
+      "opportunistic_planned_final_selection": "2026-06",
+      "non_core_debt_planned_final_selection": "2026-09",
+      "cutoff_status": "NO_PUBLIC_FINAL_RESULT_LOCATED_AS_OF_2026-08-19"
+    },
+    "evidence": {
+      "source_ids": [
+        "src-nps-2026-domestic-real-estate-rfp"
+      ]
+    }
+  },
+  "tracks": [
+    {
+      "id": "track-nps-2026-opportunistic",
+      "track_code": "NPS-2026-OPPORTUNISTIC",
+      "track_name": "국내 부동산 Opportunistic",
+      "strategy_code": "REAL_ESTATE",
+      "geography_code": "DOMESTIC",
+      "target_manager_count": 2,
+      "evidence": {
+        "source_ids": [
+          "src-nps-2026-domestic-real-estate-rfp"
+        ]
+      }
+    },
+    {
+      "id": "track-nps-2026-noncore-debt",
+      "track_code": "NPS-2026-NONCORE-DEBT",
+      "track_name": "국내 부동산 Non-Core Debt",
+      "strategy_code": "PRIVATE_DEBT",
+      "geography_code": "DOMESTIC",
+      "target_manager_count": 2,
+      "evidence": {
+        "source_ids": [
+          "src-nps-2026-domestic-real-estate-rfp"
+        ]
+      }
+    }
+  ],
+  "guidelines": [
+    {
+      "id": "guideline-nps-2026-opp-return",
+      "track_id": "track-nps-2026-opportunistic",
+      "term_type": "TARGET_RETURN",
+      "requirement_level": "MINIMUM",
+      "raw_text": "최소 목표수익률 Net IRR 12.0% (각 보수 차감 후)",
+      "value_kind": "PERCENT",
+      "value_decimal_text": "12.0",
+      "comparator_code": "AT_LEAST",
+      "return_basis": "NET_IRR",
+      "evidence": {
+        "source_ids": [
+          "src-nps-2026-domestic-real-estate-rfp"
+        ]
+      }
+    },
+    {
+      "id": "guideline-nps-2026-opp-dev",
+      "track_id": "track-nps-2026-opportunistic",
+      "term_type": "ELIGIBLE_ASSET",
+      "requirement_level": "MAXIMUM",
+      "raw_text": "투자 비중: 개발자산 40% 이내",
+      "value_kind": "TEXT",
+      "text_value": "개발자산 40% 이내",
+      "evidence": {
+        "source_ids": [
+          "src-nps-2026-domestic-real-estate-rfp"
+        ]
+      }
+    },
+    {
+      "id": "guideline-nps-2026-debt-return",
+      "track_id": "track-nps-2026-noncore-debt",
+      "term_type": "TARGET_RETURN",
+      "requirement_level": "MINIMUM",
+      "raw_text": "최소 목표수익률 Net IRR 8.0% (각 보수 차감 후)",
+      "value_kind": "PERCENT",
+      "value_decimal_text": "8.0",
+      "comparator_code": "AT_LEAST",
+      "return_basis": "NET_IRR",
+      "evidence": {
+        "source_ids": [
+          "src-nps-2026-domestic-real-estate-rfp"
+        ]
+      }
+    },
+    {
+      "id": "guideline-nps-2026-debt-strategy",
+      "track_id": "track-nps-2026-noncore-debt",
+      "term_type": "STRATEGY",
+      "requirement_level": "REQUIRED",
+      "raw_text": "국내 상업용 부동산 Non-Core Debt (PF Loan, 브릿지론, NPL 포함)",
+      "value_kind": "TEXT",
+      "text_value": "PF Loan, 브릿지론, NPL 포함",
+      "evidence": {
+        "source_ids": [
+          "src-nps-2026-domestic-real-estate-rfp"
+        ]
+      }
+    }
+  ],
+  "selections": [],
+  "selection_members": [],
+  "selection_vehicles": [],
+  "amounts": [
+    {
+      "id": "amount-nps-2026-opportunistic",
+      "scope_type": "TRACK",
+      "scope_id": "track-nps-2026-opportunistic",
+      "amount_basis": "TRACK_LP_COMMITMENT",
+      "amount": {
+        "kind": "AT_MOST",
+        "decimal": "600000000000",
+        "currency": "KRW",
+        "raw_value": "Opportunistic 펀드 위탁운용금액 6,000억원 이내"
+      },
+      "amount_status": "ANNOUNCED",
+      "evidence": {
+        "source_ids": [
+          "src-nps-2026-domestic-real-estate-rfp"
+        ]
+      }
+    },
+    {
+      "id": "amount-nps-2026-noncore-debt",
+      "scope_type": "TRACK",
+      "scope_id": "track-nps-2026-noncore-debt",
+      "amount_basis": "TRACK_LP_COMMITMENT",
+      "amount": {
+        "kind": "AT_MOST",
+        "decimal": "600000000000",
+        "currency": "KRW",
+        "raw_value": "Non-Core Debt 펀드 위탁운용금액 6,000억원 이내"
+      },
+      "amount_status": "ANNOUNCED",
+      "evidence": {
+        "source_ids": [
+          "src-nps-2026-domestic-real-estate-rfp"
+        ]
+      }
+    }
+  ],
+  "deployments": []
+}

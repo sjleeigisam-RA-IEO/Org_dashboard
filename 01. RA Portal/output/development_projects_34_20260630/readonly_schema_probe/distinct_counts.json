@@ -1,0 +1,26 @@
+[
+  {
+    "metric": "linked_asset_link_rows",
+    "value": 160
+  },
+  {
+    "metric": "linked_assets_total_for_alias_check",
+    "value": 43
+  },
+  {
+    "metric": "linked_assets_with_alias",
+    "value": 39
+  },
+  {
+    "metric": "linked_distinct_assets",
+    "value": 43
+  },
+  {
+    "metric": "linked_distinct_funds",
+    "value": 55
+  },
+  {
+    "metric": "linked_distinct_projects",
+    "value": 38
+  }
+]

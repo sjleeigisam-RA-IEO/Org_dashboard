@@ -1,0 +1,121 @@
+{
+  "manifest_version": "1.0",
+  "manifest_id": "approved-lpmandate-poba-2026-public-golf",
+  "status": "APPROVED",
+  "review": {
+    "reviewed_by": "hermes-official-primary-source-review",
+    "reviewed_at": "2026-08-20T12:10:00Z",
+    "approved_by": "hermes-parent-user-authorized-official-source-promotion",
+    "approved_at": "2026-08-20T12:11:00Z"
+  },
+  "sources": [
+    {
+      "id": "src-kofia-m212-324",
+      "url": "https://www.kofia.or.kr/brd/m_212/view.do?seq=324",
+      "title": "회원복지재원 위탁운용사 선정 공고",
+      "publisher": "금융투자협회(대한지방행정공제회 공고 재배포)",
+      "document_type": "BID_NOTICE",
+      "published_at": "2026-07-27",
+      "accessed_at": "2026-08-20",
+      "rights_status": "EXCERPT_ALLOWED",
+      "exact_text": "회원복지재원 위탁운용사 선정 공고\n운용규모 : 2천억원\n투자대상 : 국내 퍼블릭 골프장\n선정대상 : 부동산 자산운용사 1개사(공동운용사 Co-GP 지원 불가)\n접수마감 : 2026년 8월 27일 16시"
+    }
+  ],
+  "organizations": [
+    {
+      "id": "org_poba",
+      "organization_type": "FINANCIAL_INSTITUTION",
+      "canonical_name": "대한지방행정공제회"
+    }
+  ],
+  "event": {
+    "id": "evt-poba-2026-public-golf-rfp",
+    "canonical_title": "2026년 행정공제회 회원복지재원 국내 퍼블릭 골프장 위탁운용사 선정",
+    "current_stage_code": "MANAGER_RFP_OPEN",
+    "event_date_start": "2026-07-27",
+    "event_date_end": "2026-07-27",
+    "date_precision": "DAY",
+    "lifecycle_status": "ACTIVE",
+    "verification_level": "V2",
+    "overall_confidence": 1.0,
+    "evidence": {
+      "source_ids": [
+        "src-kofia-m212-324"
+      ]
+    }
+  },
+  "mandate": {
+    "id": "mandate-poba-2026-public-golf",
+    "lp_organization_id": "org_poba",
+    "mandate_code": "POBA-2026-PUBLIC-GOLF",
+    "mandate_name": "회원복지재원 국내 퍼블릭 골프장 위탁운용사 선정",
+    "vintage_year": 2026,
+    "announced_at": "2026-07-27",
+    "application_deadline": "2026-08-27T16:00:00+09:00",
+    "mandate_status": "OPEN",
+    "mandate_scope": "DOMESTIC",
+    "metadata": {
+      "as_of_2026-08-19": "OPEN; application deadline after cutoff"
+    },
+    "evidence": {
+      "source_ids": [
+        "src-kofia-m212-324"
+      ]
+    }
+  },
+  "tracks": [
+    {
+      "id": "track-poba-2026-public-golf",
+      "track_code": "POBA-2026-PUBLIC-GOLF",
+      "track_name": "국내 퍼블릭 골프장",
+      "strategy_code": "REAL_ESTATE",
+      "geography_code": "DOMESTIC",
+      "target_manager_count": 1,
+      "evidence": {
+        "source_ids": [
+          "src-kofia-m212-324"
+        ]
+      }
+    }
+  ],
+  "guidelines": [
+    {
+      "id": "guideline-poba-2026-golf-asset",
+      "track_id": "track-poba-2026-public-golf",
+      "term_type": "ELIGIBLE_ASSET",
+      "requirement_level": "REQUIRED",
+      "raw_text": "투자대상 : 국내 퍼블릭 골프장",
+      "value_kind": "TEXT",
+      "text_value": "국내 퍼블릭 골프장",
+      "evidence": {
+        "source_ids": [
+          "src-kofia-m212-324"
+        ]
+      }
+    }
+  ],
+  "selections": [],
+  "selection_members": [],
+  "selection_vehicles": [],
+  "amounts": [
+    {
+      "id": "amount-poba-2026-golf-total",
+      "scope_type": "TRACK",
+      "scope_id": "track-poba-2026-public-golf",
+      "amount_basis": "TRACK_LP_COMMITMENT",
+      "amount": {
+        "kind": "EXACT",
+        "decimal": "200000000000",
+        "currency": "KRW",
+        "raw_value": "운용규모 : 2천억원"
+      },
+      "amount_status": "ANNOUNCED",
+      "evidence": {
+        "source_ids": [
+          "src-kofia-m212-324"
+        ]
+      }
+    }
+  ],
+  "deployments": []
+}

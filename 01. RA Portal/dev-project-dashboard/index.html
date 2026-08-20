@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>개발사업 프로젝트 34</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../portfolio-analysis/config.js"></script>
+</head>
+<body>
+  <main class="dashboard-shell">
+    <header class="topbar">
+      <div>
+        <h1>개발사업 프로젝트 34</h1>
+        <p id="statusText">Supabase dev_project_34_dashboard_info 조회 대기</p>
+      </div>
+      <div class="toolbar" aria-label="표 도구">
+        <input id="searchInput" type="search" placeholder="프로젝트, 펀드, 자산 검색" autocomplete="off">
+        <div class="segmented" role="group" aria-label="구분 필터">
+          <button class="segment active" type="button" data-category="all">전체</button>
+          <button class="segment" type="button" data-category="PFV">PFV</button>
+          <button class="segment" type="button" data-category="Fund">Fund</button>
+        </div>
+        <select id="statusFilter" class="filter-select" aria-label="프로젝트 상태 필터">
+          <option value="">상태 전체</option>
+        </select>
+        <select id="stageFilter" class="filter-select" aria-label="사업단계 필터">
+          <option value="">사업단계 전체</option>
+        </select>
+        <select id="holdingFilter" class="filter-select" aria-label="보유형태 필터">
+          <option value="">보유형태 전체</option>
+        </select>
+        <select id="deptFilter" class="filter-select" aria-label="담당부서 필터">
+          <option value="">담당부서 전체</option>
+        </select>
+        <button id="exportButton" class="tool-button" type="button">CSV</button>
+      </div>
+    </header>
+
+    <section class="metrics" aria-label="요약">
+      <div class="metric">
+        <span>프로젝트</span>
+        <strong id="rowCount">0</strong>
+      </div>
+      <div class="metric">
+        <span>PFV</span>
+        <strong id="projectLinkCount">0</strong>
+      </div>
+      <div class="metric">
+        <span>Fund</span>
+        <strong id="fundLinkCount">0</strong>
+      </div>
+      <div class="metric">
+        <span>연결 자산</span>
+        <strong id="assetLinkCount">0</strong>
+      </div>
+      <div class="metric">
+        <span>연결 펀드</span>
+        <strong id="flagCount">0</strong>
+      </div>
+    </section>
+
+    <section class="table-section" aria-label="개발사업 프로젝트 연결 테이블">
+      <div id="groupControls" class="group-controls" aria-label="컬럼 그룹 표시 설정"></div>
+      <div class="table-wrap">
+        <table id="projectTable">
+          <thead id="tableHead"></thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+        <div id="emptyState" class="empty-state" hidden>조건에 맞는 행이 없습니다.</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js?v=dev_project_hide_no_fee_projects_20260706_1"></script>
+</body>
+</html>

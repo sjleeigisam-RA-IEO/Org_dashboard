@@ -1,0 +1,28 @@
+{
+  "attempted": 20,
+  "downloaded": 17,
+  "failed": 3,
+  "textBytes": 101693,
+  "ingestedByMonth": [
+    {
+      "month": "2026-07",
+      "documents": 17,
+      "inserted": 0,
+      "updated": 17
+    }
+  ],
+  "failures": [
+    {
+      "receipt_no": "20260714000464",
+      "error_class": "RuntimeError"
+    },
+    {
+      "receipt_no": "20260715000537",
+      "error_class": "RuntimeError"
+    },
+    {
+      "receipt_no": "20260731000544",
+      "error_class": "RuntimeError"
+    }
+  ]
+}

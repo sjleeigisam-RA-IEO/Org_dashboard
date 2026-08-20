@@ -1,0 +1,611 @@
+[
+  {
+    "fund_id": "112064",
+    "source_asset_name": "쌈지길",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_7cf20a80bc30 | ast_c8c2e5210765"
+  },
+  {
+    "fund_id": "112086",
+    "source_asset_name": "신도림핀포인트",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_11888bd81598 | ast_e58f637f20d9"
+  },
+  {
+    "fund_id": "112128",
+    "source_asset_name": "시그니쳐타워",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_02870a4cfd6e | ast_15f689589eb3"
+  },
+  {
+    "fund_id": "112175",
+    "source_asset_name": "151호 수익증권(재간접)",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_14eb09ddf188 | ast_b5b13984b5c2"
+  },
+  {
+    "fund_id": "112268",
+    "source_asset_name": "트레블로지명동시티홀호텔",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_50f5141fc4b8 | ast_dc0316795e8e"
+  },
+  {
+    "fund_id": "112270",
+    "source_asset_name": "반포이수화학본사사옥",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_0e748b87e46f | ast_4c0d7e5f8a03"
+  },
+  {
+    "fund_id": "112271",
+    "source_asset_name": "반포이수화학본사사옥",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_0e748b87e46f | ast_4c0d7e5f8a03"
+  },
+  {
+    "fund_id": "112272",
+    "source_asset_name": "반포이수화학본사사옥",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_0e748b87e46f | ast_4c0d7e5f8a03"
+  },
+  {
+    "fund_id": "112362",
+    "source_asset_name": "GRAN PASEO 혼코마고메",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_1413056b8256 | ast_dbcae6af9a45"
+  },
+  {
+    "fund_id": "112362",
+    "source_asset_name": "PASEO 신주쿠",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_14c10f336834 | ast_b64b7d2f05cc"
+  },
+  {
+    "fund_id": "112362",
+    "source_asset_name": "PASEO 오기쿠보",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_4f455c2dd45f | ast_53119042a240"
+  },
+  {
+    "fund_id": "112362",
+    "source_asset_name": "PASEO 사사즈카",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_10445d29926b | ast_3604f654fa0f"
+  },
+  {
+    "fund_id": "112362",
+    "source_asset_name": "GRAN PASEO 신주쿠",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_6e0f3b872714 | ast_ba62b631b6c6"
+  },
+  {
+    "fund_id": "112362",
+    "source_asset_name": "PASEO 시모키타자와",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_485346cd7578 | ast_81f9f27b2736"
+  },
+  {
+    "fund_id": "112380",
+    "source_asset_name": "이지스기회추구2-2호(353호,OPUS459/舊백암빌딩)",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_71152b54836a | ast_7652b80e18a2"
+  },
+  {
+    "fund_id": "112471",
+    "source_asset_name": "이지스기회추구2-2호(353호,OPUS459/舊백암빌딩) 공동투자",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_1b09ced3f5a7 | ast_a74111b9d3ac"
+  },
+  {
+    "fund_id": "112527",
+    "source_asset_name": "동산물류센터",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_35c0d3505765 | ast_5afa53495f87 | ast_7530c5363c92"
+  },
+  {
+    "fund_id": "112527",
+    "source_asset_name": "부국물류센터",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_349f44ccfd1f | ast_ecfb9566d436"
+  },
+  {
+    "fund_id": "112535",
+    "source_asset_name": "판교아이스퀘어D동",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_0e81972e2bec | ast_578a66328a1e | ast_880b26b6e8be"
+  },
+  {
+    "fund_id": "112569",
+    "source_asset_name": "이지스354호 수익증권",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_7a29ef0974d5 | ast_84491d5860d7"
+  },
+  {
+    "fund_id": "112584",
+    "source_asset_name": "에스와이솔라",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_6fbb0d555e87 | ast_fd6c2781e217"
+  },
+  {
+    "fund_id": "112584",
+    "source_asset_name": "에이치엠솔라1",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_7e82a79ae501 | ast_db3bfd1b4baf"
+  },
+  {
+    "fund_id": "112584",
+    "source_asset_name": "이에스에이치12",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_b4b61550017e | ast_d4d0f0ff0926"
+  },
+  {
+    "fund_id": "112584",
+    "source_asset_name": "씨에스에너텍",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_357127c88355 | ast_b63d20942515"
+  },
+  {
+    "fund_id": "112584",
+    "source_asset_name": "솔라팩토리19호",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_09cbe4380781 | ast_0bbbe8c5910d"
+  },
+  {
+    "fund_id": "112611",
+    "source_asset_name": "구리 수택동 오피스텔 사업부지",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_4ed0982904a0 | ast_ee5b4d0511ec"
+  },
+  {
+    "fund_id": "112664",
+    "source_asset_name": "글로벌 리츠",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 12,
+    "candidate_asset_ids": "ast_2c327419d5d5 | ast_3c45f673637a | ast_428853fb1dec | ast_4b619049d6d7 | ast_7447893893dc | ast_7689cf60369b | ast_9bf678a7d2ae | ast_9dae37d9ddc4 | ast_b1a13c4b0522 | ast_c010b7ae021c"
+  },
+  {
+    "fund_id": "112680",
+    "source_asset_name": "펨코제17호기업구조조정부동산투자회사의 주식",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_9ecfbd60d856 | ast_a8d37cc1f751"
+  },
+  {
+    "fund_id": "112681",
+    "source_asset_name": "펨코제17호기업구조조정부동산투자회사의 주식",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_9ecfbd60d856 | ast_a8d37cc1f751"
+  },
+  {
+    "fund_id": "112683",
+    "source_asset_name": "펨코제17호기업구조조정부동산투자회사의 주식",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_9ecfbd60d856 | ast_a8d37cc1f751"
+  },
+  {
+    "fund_id": "112690",
+    "source_asset_name": "서울시티타워",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_7dbf61112b72 | ast_a98062ccc3a8"
+  },
+  {
+    "fund_id": "112692",
+    "source_asset_name": "서울시티타워",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_7dbf61112b72 | ast_a98062ccc3a8"
+  },
+  {
+    "fund_id": "112700",
+    "source_asset_name": "여의도 신한금융투자타워",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_3b3b6275cb37 | ast_7e5918652b7b"
+  },
+  {
+    "fund_id": "112785",
+    "source_asset_name": "종로구 시니어주택 리모델링",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_0098d2fecd62 | ast_b3cbbcaf74d0"
+  },
+  {
+    "fund_id": "112789",
+    "source_asset_name": "종로구 시니어주택 리모델링",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_0098d2fecd62 | ast_b3cbbcaf74d0"
+  },
+  {
+    "fund_id": "120044",
+    "source_asset_name": "이지스제542호부동산일반사모투자회사(제1종)",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 4,
+    "candidate_asset_ids": "ast_18332a11a1f7 | ast_37df20b9e30d | ast_ac86e3c795d0 | ast_b0956b6f4029"
+  },
+  {
+    "fund_id": "120074",
+    "source_asset_name": "용산라이프PFV(보통주)",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_2fd6370e9280 | ast_ab7f584e6f30"
+  },
+  {
+    "fund_id": "120094",
+    "source_asset_name": "서울인터내셔널타워(SI타워)",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_04878d0c997e | ast_922fd1f841cc"
+  },
+  {
+    "fund_id": "120101",
+    "source_asset_name": "용산전자상가 특별계획구역8 B/L (이지스용산PF재구조화1호 2종 수익증권)",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_5804290d6389 | ast_90c2fcf7c1e0 | ast_c4abd15d239e"
+  },
+  {
+    "fund_id": "120102",
+    "source_asset_name": "이지스용산PF재구조화일반사모1호(2종)",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_b4ff0851baae | ast_ecc1f7608e99 | ast_f13b025966c9"
+  },
+  {
+    "fund_id": "120119",
+    "source_asset_name": "안성산하3지구물류센터개발사업",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 4,
+    "candidate_asset_ids": "ast_004573bcb481 | ast_31591298f257 | ast_c1bf03575e07 | ast_c560bb54059f"
+  },
+  {
+    "fund_id": "190008",
+    "source_asset_name": "이태원동 133-17 외 2필지",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_7e3205174267 | ast_e88ca660b36b"
+  },
+  {
+    "fund_id": "190009",
+    "source_asset_name": "The-K호텔서울 부지 재개발사업",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_223406583df1 | ast_475081c32f39"
+  },
+  {
+    "fund_id": "190010",
+    "source_asset_name": "이지스일반사모426호(1종)",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_73e5216b97f6 | ast_768ab56efe64 | ast_c67fa13e0d92"
+  },
+  {
+    "fund_id": "200006",
+    "source_asset_name": "PGSF VII",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_3659980079c3 | ast_c1b901dad63f | ast_dc11f9b4f515"
+  },
+  {
+    "fund_id": "200006",
+    "source_asset_name": "PSD III",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_02f2fb35a743 | ast_2bf40e9e1da4 | ast_f0b95ca0cdf6"
+  },
+  {
+    "fund_id": "200030",
+    "source_asset_name": "판교 테크원타워",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_024953888c95 | ast_e658d751f1bd"
+  },
+  {
+    "fund_id": "200030",
+    "source_asset_name": "시그니처타워",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_40c746673d87 | ast_7d6f8cc1d9cb"
+  },
+  {
+    "fund_id": "200030",
+    "source_asset_name": "여의도 파이낸스타워",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_022d4816897f | ast_30057bd3458e"
+  },
+  {
+    "fund_id": "200030",
+    "source_asset_name": "삼성동 빌딩",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_51d214497682 | ast_866314e4db59"
+  },
+  {
+    "fund_id": "200036",
+    "source_asset_name": "미국 Delaware 소재 ROCKWOOD LSF III, LP (역외펀드)의 수익증권",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_5fbc6512fe46 | ast_c0ba855ea88d | ast_edd6f6c3e3e5"
+  },
+  {
+    "fund_id": "200037",
+    "source_asset_name": "Helix Buyer, LLC에 대한 선순위 대출",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_ae8448d99472 | ast_b0958ad3f79d | ast_edd6f6c3e3e5"
+  },
+  {
+    "fund_id": "200038",
+    "source_asset_name": "Pan-European Infrastructure Fund IV SCSp",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_83cfca9b7e9b | ast_9295ffd5dc91 | ast_c77b0263f7c6"
+  },
+  {
+    "fund_id": "200039",
+    "source_asset_name": "InfraViaEuropean Infrastructure Fund VI",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_23cef84d6f3d | ast_3575c5ffffe0 | ast_da7c46d1cf41"
+  },
+  {
+    "fund_id": "200040",
+    "source_asset_name": "ARDIAN ASF IX Infrastructure SWF",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_1a6da4237f05 | ast_f544094d8ef1"
+  },
+  {
+    "fund_id": "200041",
+    "source_asset_name": "Helios Sidecar II L.P.의 수익증권",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_34f6c712284a | ast_6d46843010b7"
+  },
+  {
+    "fund_id": "200042",
+    "source_asset_name": "Booster Zabrze 물류단지",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_866984747e2a | ast_b0ab64c0c474"
+  },
+  {
+    "fund_id": "200044",
+    "source_asset_name": "괌 소재 종합병원(GRMC)에 대한 선순위 대출",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_4635019d1baf | ast_b1f5f079a694"
+  },
+  {
+    "fund_id": "200045",
+    "source_asset_name": "Chauncey Square",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_8e3a0cd2dbb4 | ast_9ab31b323659"
+  },
+  {
+    "fund_id": "300001",
+    "source_asset_name": "채권",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 4,
+    "candidate_asset_ids": "ast_1ba78b46e989 | ast_51861017a45e | ast_64e52adcf2aa | ast_c1c3fa74d17e"
+  },
+  {
+    "fund_id": "300018",
+    "source_asset_name": "메자닌, 공모주, 이벤트 드리븐",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 5,
+    "candidate_asset_ids": "ast_042b9d125ed3 | ast_0ae67887921d | ast_4d1430b5f175 | ast_b74794104f0e | ast_bdcfe83d9647"
+  },
+  {
+    "fund_id": "300019",
+    "source_asset_name": "AA- 이상 채권",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_4d1430b5f175 | ast_d0b122c1f8a8 | ast_f5638b202fba"
+  },
+  {
+    "fund_id": "300037",
+    "source_asset_name": "채권, 메자닌, 국내 주식, ETF, 상장 리츠, 공모주, 이벤트 드리븐",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_22796a68985d | ast_4d1430b5f175 | ast_f26dd6678598"
+  },
+  {
+    "fund_id": "300039",
+    "source_asset_name": "집합투자증권, 조합 출자지분, 메자닌, 이벤트 드리븐, 공모주, 스팩, ETF",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_4d1430b5f175 | ast_793a6f36a0f5 | ast_7d37fa81629c"
+  },
+  {
+    "fund_id": "300044",
+    "source_asset_name": "메자닌, 공모주, 이벤트 드리븐, 스팩",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_04fa217d3e90 | ast_4d1430b5f175 | ast_4e98244e7898"
+  },
+  {
+    "fund_id": "300046",
+    "source_asset_name": "ETF",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_ab996f8ae3c9 | ast_fe2742669ca3"
+  },
+  {
+    "fund_id": "300050",
+    "source_asset_name": "BBB+ 이하 채권, 공모주, 스팩, ETF, 이벤트 드리븐, 레포",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_3790cde01d6c | ast_4d1430b5f175 | ast_6e2b174fa83f"
+  },
+  {
+    "fund_id": "300052",
+    "source_asset_name": "메자닌, 이벤트 드리븐, 공모주, ETF, 채권",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_4d1430b5f175 | ast_96ba37c659ef | ast_de42c797815f"
+  },
+  {
+    "fund_id": "300057",
+    "source_asset_name": "메자닌, 공모주, 이벤트 드리븐, 스팩, ETF",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_4d1430b5f175 | ast_567d9ac13840 | ast_e16f5dce563a"
+  },
+  {
+    "fund_id": "300061",
+    "source_asset_name": "해외 주식, 채권, 공모주, 스팩, ETF, 선물, 단기금융상품",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_22ffb98ad420 | ast_4c95baf19598 | ast_4d1430b5f175"
+  },
+  {
+    "fund_id": "300063",
+    "source_asset_name": "국내 주식, 채권, ETF, 공모주, 스팩",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_4d1430b5f175 | ast_dc9b51df4a56 | ast_e564a0a4bfde"
+  },
+  {
+    "fund_id": "300066",
+    "source_asset_name": "글로벌 상장 인프라 증권",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_ac65d3bb465d | ast_ca8728fa5c54"
+  },
+  {
+    "fund_id": "300067",
+    "source_asset_name": "채권, 자산유동화 증권, 어음, 레포",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_ca5e36cf0326 | ast_ea7cfe2c034c"
+  },
+  {
+    "fund_id": "300073",
+    "source_asset_name": "채권, 레포, 공모주",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_29d7a94f5571 | ast_4d1430b5f175 | ast_de6ef6887dbb"
+  },
+  {
+    "fund_id": "300074",
+    "source_asset_name": "메자닌, 공모주, 이벤트 드리븐",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 5,
+    "candidate_asset_ids": "ast_042b9d125ed3 | ast_0ae67887921d | ast_4d1430b5f175 | ast_b74794104f0e | ast_bdcfe83d9647"
+  },
+  {
+    "fund_id": "300075",
+    "source_asset_name": "BBB+ 이하 채권, 공모주, 스팩, 이벤트 드리븐, CP, 레포",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_4d1430b5f175 | ast_5bc90f317060 | ast_ea90d1d50c7d"
+  },
+  {
+    "fund_id": "300079",
+    "source_asset_name": "메자닌, 이벤트 드리븐, 공모주, 스팩",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_2f76d32aed7a | ast_4d1430b5f175 | ast_f67c3be3bb61"
+  },
+  {
+    "fund_id": "300080",
+    "source_asset_name": "공모주, 국내 주식",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_4d1430b5f175 | ast_8a924c865968 | ast_dbc79cb5a626"
+  },
+  {
+    "fund_id": "300085",
+    "source_asset_name": "국내 채권형 ETF",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_344729614f8e | ast_34abd4a0e354"
+  },
+  {
+    "fund_id": "P00007",
+    "source_asset_name": "안녕인사동",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_42a97e89a9a5 | ast_e10a51769654"
+  },
+  {
+    "fund_id": "P00030",
+    "source_asset_name": "밀레니엄힐튼호텔",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_a4549cd85c41 | ast_cd00a5beb0b3"
+  },
+  {
+    "fund_id": "P00032",
+    "source_asset_name": "부림빌딩",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_992b226b8a43 | ast_ba5f85af264f"
+  },
+  {
+    "fund_id": "P00037",
+    "source_asset_name": "메트로타워",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_2c946ed0b0fa | ast_cd18ba041afc"
+  },
+  {
+    "fund_id": "P00040",
+    "source_asset_name": "안성 산하3지구 물류센터 개발사업",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 4,
+    "candidate_asset_ids": "ast_004573bcb481 | ast_31591298f257 | ast_c1bf03575e07 | ast_c560bb54059f"
+  },
+  {
+    "fund_id": "R00006",
+    "source_asset_name": "분당Hostway IDC",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 3,
+    "candidate_asset_ids": "ast_7a35fc542c9f | ast_df61856e9446 | ast_e28d1ea3fa3e"
+  },
+  {
+    "fund_id": "R00008",
+    "source_asset_name": "이지스333호(홍대 코리빙 복합시설)",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_0c50fdc60ef8 | ast_1eb3221796bb"
+  },
+  {
+    "fund_id": "R00015",
+    "source_asset_name": "서울인터내셔널타워(SI타워)",
+    "reason": "no_unique_exact_asset_match",
+    "match_count": 2,
+    "candidate_asset_ids": "ast_04878d0c997e | ast_922fd1f841cc"
+  }
+]

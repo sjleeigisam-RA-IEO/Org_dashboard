@@ -1,0 +1,70 @@
+{
+  "partitions": [
+    {
+      "job_code": "BACKFILL_2025_GOOGLE_NEWS_RSS_SALE_WEEKLY",
+      "category": "SALE",
+      "start": "2025-02-01",
+      "end_exclusive": "2025-02-08",
+      "discovered": 21,
+      "inserted": 5,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "c27923ff4a5c511896e839f10b3098d0"
+    },
+    {
+      "job_code": "BACKFILL_2025_GOOGLE_NEWS_RSS_SALE_WEEKLY",
+      "category": "SALE",
+      "start": "2025-02-08",
+      "end_exclusive": "2025-02-15",
+      "discovered": 19,
+      "inserted": 1,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "b9cd2888e19c5ada8ef2bf0ff7f63114"
+    },
+    {
+      "job_code": "BACKFILL_2025_GOOGLE_NEWS_RSS_SALE_WEEKLY",
+      "category": "SALE",
+      "start": "2025-02-15",
+      "end_exclusive": "2025-02-22",
+      "discovered": 32,
+      "inserted": 4,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "3dbd9eb72b865fbe8799d6fa63e400e6"
+    },
+    {
+      "job_code": "BACKFILL_2025_GOOGLE_NEWS_RSS_SALE_WEEKLY",
+      "category": "SALE",
+      "start": "2025-02-22",
+      "end_exclusive": "2025-03-01",
+      "discovered": 27,
+      "inserted": 2,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "d5f96e3fca9e5f1b8c226fd136635c77"
+    },
+    {
+      "job_code": "BACKFILL_2025_GOOGLE_NEWS_RSS_INVESTMENT_BUNDLE_A",
+      "category": "INVESTMENT",
+      "start": "2025-04-01",
+      "end_exclusive": "2025-05-01",
+      "discovered": 96,
+      "inserted": 86,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "d20d8ccad75f5939947db003cc609729"
+    },
+    {
+      "job_code": "BACKFILL_2025_GOOGLE_NEWS_RSS_INVESTMENT_BUNDLE_B",
+      "category": "INVESTMENT",
+      "start": "2025-04-01",
+      "end_exclusive": "2025-05-01",
+      "discovered": 43,
+      "inserted": 30,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "14ae54f1500452e6b89db09a54925bdf"
+    }
+  ]
+}

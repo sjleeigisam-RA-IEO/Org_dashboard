@@ -1,0 +1,803 @@
+{
+  "startYear": 2020,
+  "endYear": 2024,
+  "attempted": 1365,
+  "downloaded": 1303,
+  "unavailable014": 62,
+  "retryableFailures": 0,
+  "textBytes": 5733059,
+  "ingestedByMonth": [
+    {
+      "month": "2020-01",
+      "status": "COMPLETED",
+      "documents": 7,
+      "unavailable014": 6,
+      "inserted": 0,
+      "updated": 7
+    },
+    {
+      "month": "2020-02",
+      "status": "COMPLETED",
+      "documents": 17,
+      "unavailable014": 3,
+      "inserted": 0,
+      "updated": 17
+    },
+    {
+      "month": "2020-03",
+      "status": "COMPLETED",
+      "documents": 21,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 21
+    },
+    {
+      "month": "2020-04",
+      "status": "COMPLETED",
+      "documents": 16,
+      "unavailable014": 1,
+      "inserted": 0,
+      "updated": 16
+    },
+    {
+      "month": "2020-05",
+      "status": "COMPLETED",
+      "documents": 20,
+      "unavailable014": 1,
+      "inserted": 0,
+      "updated": 20
+    },
+    {
+      "month": "2020-06",
+      "status": "COMPLETED",
+      "documents": 27,
+      "unavailable014": 2,
+      "inserted": 0,
+      "updated": 27
+    },
+    {
+      "month": "2020-07",
+      "status": "COMPLETED",
+      "documents": 29,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 29
+    },
+    {
+      "month": "2020-08",
+      "status": "COMPLETED",
+      "documents": 29,
+      "unavailable014": 3,
+      "inserted": 0,
+      "updated": 29
+    },
+    {
+      "month": "2020-09",
+      "status": "COMPLETED",
+      "documents": 24,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 24
+    },
+    {
+      "month": "2020-10",
+      "status": "COMPLETED",
+      "documents": 20,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 20
+    },
+    {
+      "month": "2020-11",
+      "status": "COMPLETED",
+      "documents": 25,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 25
+    },
+    {
+      "month": "2020-12",
+      "status": "COMPLETED",
+      "documents": 36,
+      "unavailable014": 1,
+      "inserted": 0,
+      "updated": 36
+    },
+    {
+      "month": "2021-01",
+      "status": "COMPLETED",
+      "documents": 29,
+      "unavailable014": 2,
+      "inserted": 0,
+      "updated": 29
+    },
+    {
+      "month": "2021-02",
+      "status": "COMPLETED",
+      "documents": 24,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 24
+    },
+    {
+      "month": "2021-03",
+      "status": "COMPLETED",
+      "documents": 27,
+      "unavailable014": 5,
+      "inserted": 0,
+      "updated": 27
+    },
+    {
+      "month": "2021-04",
+      "status": "COMPLETED",
+      "documents": 30,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 30
+    },
+    {
+      "month": "2021-05",
+      "status": "COMPLETED",
+      "documents": 20,
+      "unavailable014": 1,
+      "inserted": 0,
+      "updated": 20
+    },
+    {
+      "month": "2021-06",
+      "status": "COMPLETED",
+      "documents": 36,
+      "unavailable014": 1,
+      "inserted": 0,
+      "updated": 36
+    },
+    {
+      "month": "2021-07",
+      "status": "COMPLETED",
+      "documents": 26,
+      "unavailable014": 2,
+      "inserted": 0,
+      "updated": 26
+    },
+    {
+      "month": "2021-08",
+      "status": "COMPLETED",
+      "documents": 23,
+      "unavailable014": 1,
+      "inserted": 0,
+      "updated": 23
+    },
+    {
+      "month": "2021-09",
+      "status": "COMPLETED",
+      "documents": 22,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 22
+    },
+    {
+      "month": "2021-10",
+      "status": "COMPLETED",
+      "documents": 25,
+      "unavailable014": 1,
+      "inserted": 0,
+      "updated": 25
+    },
+    {
+      "month": "2021-11",
+      "status": "COMPLETED",
+      "documents": 26,
+      "unavailable014": 1,
+      "inserted": 0,
+      "updated": 26
+    },
+    {
+      "month": "2021-12",
+      "status": "COMPLETED",
+      "documents": 32,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 32
+    },
+    {
+      "month": "2022-01",
+      "status": "COMPLETED",
+      "documents": 18,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 18
+    },
+    {
+      "month": "2022-02",
+      "status": "COMPLETED",
+      "documents": 21,
+      "unavailable014": 2,
+      "inserted": 0,
+      "updated": 21
+    },
+    {
+      "month": "2022-03",
+      "status": "COMPLETED",
+      "documents": 20,
+      "unavailable014": 1,
+      "inserted": 0,
+      "updated": 20
+    },
+    {
+      "month": "2022-04",
+      "status": "COMPLETED",
+      "documents": 18,
+      "unavailable014": 1,
+      "inserted": 0,
+      "updated": 18
+    },
+    {
+      "month": "2022-05",
+      "status": "COMPLETED",
+      "documents": 19,
+      "unavailable014": 1,
+      "inserted": 0,
+      "updated": 19
+    },
+    {
+      "month": "2022-06",
+      "status": "COMPLETED",
+      "documents": 15,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 15
+    },
+    {
+      "month": "2022-07",
+      "status": "COMPLETED",
+      "documents": 24,
+      "unavailable014": 2,
+      "inserted": 0,
+      "updated": 24
+    },
+    {
+      "month": "2022-08",
+      "status": "COMPLETED",
+      "documents": 11,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 11
+    },
+    {
+      "month": "2022-09",
+      "status": "COMPLETED",
+      "documents": 20,
+      "unavailable014": 1,
+      "inserted": 0,
+      "updated": 20
+    },
+    {
+      "month": "2022-10",
+      "status": "COMPLETED",
+      "documents": 11,
+      "unavailable014": 1,
+      "inserted": 0,
+      "updated": 11
+    },
+    {
+      "month": "2022-11",
+      "status": "COMPLETED",
+      "documents": 19,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 19
+    },
+    {
+      "month": "2022-12",
+      "status": "COMPLETED",
+      "documents": 19,
+      "unavailable014": 2,
+      "inserted": 0,
+      "updated": 19
+    },
+    {
+      "month": "2023-01",
+      "status": "COMPLETED",
+      "documents": 16,
+      "unavailable014": 2,
+      "inserted": 0,
+      "updated": 16
+    },
+    {
+      "month": "2023-02",
+      "status": "COMPLETED",
+      "documents": 13,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 13
+    },
+    {
+      "month": "2023-03",
+      "status": "COMPLETED",
+      "documents": 13,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 13
+    },
+    {
+      "month": "2023-04",
+      "status": "COMPLETED",
+      "documents": 19,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 19
+    },
+    {
+      "month": "2023-05",
+      "status": "COMPLETED",
+      "documents": 11,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 11
+    },
+    {
+      "month": "2023-06",
+      "status": "COMPLETED",
+      "documents": 21,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 21
+    },
+    {
+      "month": "2023-07",
+      "status": "COMPLETED",
+      "documents": 16,
+      "unavailable014": 1,
+      "inserted": 0,
+      "updated": 16
+    },
+    {
+      "month": "2023-08",
+      "status": "COMPLETED",
+      "documents": 14,
+      "unavailable014": 2,
+      "inserted": 0,
+      "updated": 14
+    },
+    {
+      "month": "2023-09",
+      "status": "COMPLETED",
+      "documents": 14,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 14
+    },
+    {
+      "month": "2023-10",
+      "status": "COMPLETED",
+      "documents": 12,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 12
+    },
+    {
+      "month": "2023-11",
+      "status": "COMPLETED",
+      "documents": 23,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 23
+    },
+    {
+      "month": "2023-12",
+      "status": "COMPLETED",
+      "documents": 30,
+      "unavailable014": 2,
+      "inserted": 0,
+      "updated": 30
+    },
+    {
+      "month": "2024-01",
+      "status": "COMPLETED",
+      "documents": 20,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 20
+    },
+    {
+      "month": "2024-02",
+      "status": "COMPLETED",
+      "documents": 18,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 18
+    },
+    {
+      "month": "2024-03",
+      "status": "COMPLETED",
+      "documents": 20,
+      "unavailable014": 1,
+      "inserted": 0,
+      "updated": 20
+    },
+    {
+      "month": "2024-04",
+      "status": "COMPLETED",
+      "documents": 29,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 29
+    },
+    {
+      "month": "2024-05",
+      "status": "COMPLETED",
+      "documents": 21,
+      "unavailable014": 2,
+      "inserted": 0,
+      "updated": 21
+    },
+    {
+      "month": "2024-06",
+      "status": "COMPLETED",
+      "documents": 26,
+      "unavailable014": 1,
+      "inserted": 0,
+      "updated": 26
+    },
+    {
+      "month": "2024-07",
+      "status": "COMPLETED",
+      "documents": 31,
+      "unavailable014": 6,
+      "inserted": 0,
+      "updated": 31
+    },
+    {
+      "month": "2024-08",
+      "status": "COMPLETED",
+      "documents": 31,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 31
+    },
+    {
+      "month": "2024-09",
+      "status": "COMPLETED",
+      "documents": 18,
+      "unavailable014": 2,
+      "inserted": 0,
+      "updated": 18
+    },
+    {
+      "month": "2024-10",
+      "status": "COMPLETED",
+      "documents": 23,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 23
+    },
+    {
+      "month": "2024-11",
+      "status": "COMPLETED",
+      "documents": 23,
+      "unavailable014": 1,
+      "inserted": 0,
+      "updated": 23
+    },
+    {
+      "month": "2024-12",
+      "status": "COMPLETED",
+      "documents": 35,
+      "unavailable014": 0,
+      "inserted": 0,
+      "updated": 35
+    }
+  ],
+  "failures": [
+    {
+      "receiptNo": "20200109000189",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20200102000270",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20200103000395",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20200122000382",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20200130000498",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20200131000415",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20200204000358",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20200205000536",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20200228005676",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20200429001305",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20200514000082",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20200602000050",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20200630000112",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20200805000032",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20200812000007",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20200820000083",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20201218000648",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20210107000582",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20210121000122",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20210310000002",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20210316000917",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20210318000554",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20210318000934",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20210330001122",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20210430001518",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20210618000101",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20210702000094",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20210726000190",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20210831001724",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20211018000279",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20211111000314",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20220208000511",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20220217001434",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20220331000185",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20220413002013",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20220504000004",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20220701000058",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20220720000370",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20220906000219",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20221004000376",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20221222000288",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20221230000542",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20230103000230",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20230112000464",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20230717000364",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20230801000052",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20230816000221",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20231212000380",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20231219000032",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20240311000473",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20240509000510",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20240531002755",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20240625000298",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20240701000536",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20240705000353",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20240712000185",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20240712000228",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20240712000252",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20240717000445",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20240923000281",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20240930000600",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    },
+    {
+      "receiptNo": "20241121000406",
+      "status": "UNAVAILABLE_014",
+      "error": "OpenDARTStatus014: 파일이 존재하지 않습니다."
+    }
+  ]
+}

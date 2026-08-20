@@ -1,0 +1,18 @@
+﻿list_no,project_name_snapshot,field_label,value_text,value_numeric,value_date,source_system,source_name,confidence,notes
+7,공주시 공동주택 개발사업,건폐율,0.0,0.0,,sql_asset_building_ledger,BldRgstHubService.getBrTitleInfo,0.95,zero value requires confirmation
+7,공주시 공동주택 개발사업,대지면적,0.0,0.0,,sql_asset_building_ledger,BldRgstHubService.getBrTitleInfo,0.95,zero value requires confirmation
+7,공주시 공동주택 개발사업,용적률,0.0,0.0,,sql_asset_building_ledger,BldRgstHubService.getBrTitleInfo,0.95,zero value requires confirmation
+15,"판교 제2테크노밸리 C1, C2블록 아이스퀘어 개발사업",Loan 총액,72000000000,72000000000.0,,notion_project_mission_snapshot,t5t-dashboard/data/project_mission.json,0.78,
+15,"판교 제2테크노밸리 C1, C2블록 아이스퀘어 개발사업",건폐율,0.0,0.0,,sql_asset_building_ledger,BldRgstHubService.getBrTitleInfo,0.95,zero value requires confirmation
+15,"판교 제2테크노밸리 C1, C2블록 아이스퀘어 개발사업",대주정보,"BNK캐피탈, NH농협생명보험, 신한캐피탈, 현대해상화재보험",,,notion_project_mission_snapshot,t5t-dashboard/data/project_mission.json,0.78,
+15,"판교 제2테크노밸리 C1, C2블록 아이스퀘어 개발사업",대지면적,0.0,0.0,,sql_asset_building_ledger,BldRgstHubService.getBrTitleInfo,0.95,zero value requires confirmation
+15,"판교 제2테크노밸리 C1, C2블록 아이스퀘어 개발사업",용적률,0.0,0.0,,sql_asset_building_ledger,BldRgstHubService.getBrTitleInfo,0.95,zero value requires confirmation
+21,천안 성성7지구 공동주택 개발사업,건폐율,0.0,0.0,,sql_asset_building_ledger,BldRgstHubService.getBrTitleInfo,0.95,zero value requires confirmation
+21,천안 성성7지구 공동주택 개발사업,대지면적,0.0,0.0,,sql_asset_building_ledger,BldRgstHubService.getBrTitleInfo,0.95,zero value requires confirmation
+21,천안 성성7지구 공동주택 개발사업,용적률,0.0,0.0,,sql_asset_building_ledger,BldRgstHubService.getBrTitleInfo,0.95,zero value requires confirmation
+25,애월 복합관광단지 개발사업,건폐율,0.0,0.0,,sql_asset_building_ledger,BldRgstHubService.getBrTitleInfo,0.95,zero value requires confirmation
+25,애월 복합관광단지 개발사업,대지면적,0.0,0.0,,sql_asset_building_ledger,BldRgstHubService.getBrTitleInfo,0.95,zero value requires confirmation
+25,애월 복합관광단지 개발사업,용적률,0.0,0.0,,sql_asset_building_ledger,BldRgstHubService.getBrTitleInfo,0.95,zero value requires confirmation
+31,부산 송정 물류센터,건폐율,0.0,0.0,,sql_asset_building_ledger,BldRgstHubService.getBrTitleInfo,0.95,zero value requires confirmation
+31,부산 송정 물류센터,대지면적,0.0,0.0,,sql_asset_building_ledger,BldRgstHubService.getBrTitleInfo,0.95,zero value requires confirmation
+31,부산 송정 물류센터,용적률,0.0,0.0,,sql_asset_building_ledger,BldRgstHubService.getBrTitleInfo,0.95,zero value requires confirmation

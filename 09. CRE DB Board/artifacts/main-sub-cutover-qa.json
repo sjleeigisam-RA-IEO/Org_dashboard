@@ -1,0 +1,74 @@
+{
+  "checked_at": "2026-08-18T02:44:17.111530+00:00",
+  "main": "supabase-postgresql",
+  "schema": "market_intelligence",
+  "sub": "C:\\10137_WorkSpace\\real-estate-market-intelligence\\data\\market.db",
+  "tables_compared": 97,
+  "row_count_mismatches": [],
+  "representative_counts": {
+    "collection_runs": {
+      "main": 2844,
+      "sub": 2844
+    },
+    "document_versions": {
+      "main": 57137,
+      "sub": 57137
+    },
+    "extraction_runs": {
+      "main": 54274,
+      "sub": 54274
+    },
+    "lp_mandate_selections": {
+      "main": 4,
+      "sub": 4
+    },
+    "lp_mandates": {
+      "main": 12,
+      "sub": 12
+    },
+    "organizations": {
+      "main": 70,
+      "sub": 70
+    },
+    "relationship_resolution_runs": {
+      "main": 679,
+      "sub": 679
+    },
+    "review_tasks": {
+      "main": 3629,
+      "sub": 3629
+    },
+    "source_documents": {
+      "main": 54985,
+      "sub": 54985
+    }
+  },
+  "representative_view_counts": {
+    "v_relationship_gaps": {
+      "main": 1449,
+      "sub": 1449
+    },
+    "v_lp_manager_best_available": {
+      "main": 10,
+      "sub": 10
+    },
+    "v_lp_mandate_source_balance": {
+      "main": 0,
+      "sub": 0
+    },
+    "v_event_feed": {
+      "main": 28,
+      "sub": 28
+    }
+  },
+  "sub_integrity": "ok",
+  "sub_foreign_key_violations": 0,
+  "sub_write_blocked": true,
+  "main_fts_rows": 57137,
+  "main_triggers": 12,
+  "sub_triggers": 12,
+  "runtime_config_active": true,
+  "runtime_config_main": "supabase-postgresql",
+  "runtime_config_sub_mode": "read-only-replica",
+  "passed": true
+}

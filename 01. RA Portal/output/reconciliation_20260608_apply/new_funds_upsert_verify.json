@@ -1,0 +1,74 @@
+[
+  {
+    "fund_id": "120124",
+    "fund_name": "이지스부동산대출일반사모부동산투자신탁제2호(1종)",
+    "short_name": "부동산대출 2호(1종)",
+    "status": "운용",
+    "benchmark_aum": null,
+    "aum_base_date": null
+  },
+  {
+    "fund_id": "120125",
+    "fund_name": "이지스부동산대출일반사모부동산투자신탁제2호(2종)",
+    "short_name": "부동산대출 2호(2종)",
+    "status": "운용",
+    "benchmark_aum": null,
+    "aum_base_date": null
+  },
+  {
+    "fund_id": "120126",
+    "fund_name": "이지스 NPL 리스트럭처링일반사모부동산투자신탁",
+    "short_name": "NPL리스트럭처링",
+    "status": "운용",
+    "benchmark_aum": null,
+    "aum_base_date": null
+  },
+  {
+    "fund_id": "200046",
+    "fund_name": "이지스글로벌인프라일반사모투자신탁제7호",
+    "short_name": "글로벌인프라7호",
+    "status": "운용",
+    "benchmark_aum": 150790000000,
+    "aum_base_date": "2026-05-31"
+  },
+  {
+    "fund_id": "300086",
+    "fund_name": "이지스 멀티플러스 일반사모투자신탁 제3호",
+    "short_name": "멀티플러스3호",
+    "status": "운용",
+    "benchmark_aum": 8896039604,
+    "aum_base_date": "2026-05-31"
+  },
+  {
+    "fund_id": "300087",
+    "fund_name": "이지스 멀티플러스 일반사모투자신탁 제3호(Class A)",
+    "short_name": "멀티플러스3호(A)",
+    "status": "운용",
+    "benchmark_aum": null,
+    "aum_base_date": null
+  },
+  {
+    "fund_id": "300088",
+    "fund_name": "이지스 멀티플러스 일반사모투자신탁 제3호(Class C)",
+    "short_name": "멀티플러스3호(C)",
+    "status": "미설정",
+    "benchmark_aum": null,
+    "aum_base_date": null
+  },
+  {
+    "fund_id": "300089",
+    "fund_name": "이지스 멀티플러스 일반사모투자신탁 제3호(Class C-S)",
+    "short_name": "멀티플러스3호(C-S)",
+    "status": "운용",
+    "benchmark_aum": null,
+    "aum_base_date": null
+  },
+  {
+    "fund_id": "300090",
+    "fund_name": "이지스그린ON 일반사모투자신탁제5호",
+    "short_name": "그린ON5호",
+    "status": "운용",
+    "benchmark_aum": 10000000000,
+    "aum_base_date": "2026-05-31"
+  }
+]

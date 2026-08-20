@@ -37,7 +37,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install Python dependencies
-        run: pip install -r CRM_base/requirements.txt
+        run: pip install -r "01. RA Portal/requirements.txt"
           
       - name: Create Notion config from secrets
         run: |
@@ -58,7 +58,7 @@ jobs:
           DATE_FROM=$(TZ=Asia/Seoul date -d '21 days ago' +%F)
           DATE_TO=$(TZ=Asia/Seoul date +%F)
           echo "Running T5T pipeline for ${DATE_FROM}..${DATE_TO}"
-          python CRM_base/run_t5t_pipeline.py --date-from "$DATE_FROM" --date-to "$DATE_TO"
+          python "01. RA Portal/run_t5t_pipeline.py" --date-from "$DATE_FROM" --date-to "$DATE_TO"
 
       - name: Verify IOTA log API source freshness
         if: ${{ always() }}
@@ -116,14 +116,14 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_KEY }}
         run: |
-          python CRM_base/generate_t5t_weekly_summary.py --out t5t-dashboard/data/weekly_summary.json
+          python "01. RA Portal/generate_t5t_weekly_summary.py" --out "02. T5T Board/data/weekly_summary.json"
 
       - name: Commit weekly T5T summary
         if: ${{ always() && steps.weekly_summary.outcome == 'success' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add t5t-dashboard/data/weekly_summary.json
+          git add "02. T5T Board/data/weekly_summary.json"
           if git diff --cached --quiet; then
             echo "No weekly summary changes to commit."
           else

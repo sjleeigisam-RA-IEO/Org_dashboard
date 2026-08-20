@@ -1,0 +1,46 @@
+{
+  "validatedAt": "2026-08-14",
+  "scope": "Stage 1 authority artifacts",
+  "summary": {
+    "jsonRulesValid": true,
+    "sqlParseValid": true,
+    "primaryUrlsReachable": "11/11",
+    "artifactCount": 7
+  },
+  "json": {
+    "schemaVersion": "1.0.0",
+    "categoryCount": 7,
+    "codes": ["SALE", "LEASE", "NEW_SUPPLY", "PERMIT", "PF", "LOAN", "INVESTMENT"],
+    "codesUnique": true,
+    "allCategoriesHaveQueries": true,
+    "allCategoriesHaveRequiredSignals": true
+  },
+  "sql": {
+    "validator": "pglast",
+    "schemaSql": "parse_ok",
+    "seedSql": "parse_ok",
+    "note": "Parser validation only; runtime PostgreSQL application is reported separately if available."
+  },
+  "urls": {
+    "opendart": 200,
+    "kind": 206,
+    "dataGoKr": 206,
+    "molitRealTransaction": 200,
+    "buildingHub": 206,
+    "commercialTransactionApi": 206,
+    "reits": 200,
+    "eum": 206,
+    "onbid": 206,
+    "naverNewsDocs": 200,
+    "ecos": 206
+  },
+  "hashes": {
+    "README.md": "ef57823cfbc970e20eeaad23ef8b4a39d4f2131883808227b2e469d3d7362b4c",
+    "docs/01-system-contract.md": "9905b0a026a1d54ed3e12a855728afab178ef90cddb874e2c77c5a7ee889bf49",
+    "docs/02-source-matrix.md": "b41d79ccab4255fcad7b134a43c32f1993416cc3132a14a8f35d424e2189c6f3",
+    "docs/03-review-policy.md": "e1920a6e9750e46695744e0b4deeedcea1863b5c79e5717304227dd0e5431519",
+    "rules/category-rules.json": "04d4114b48627d05b4ac642ed8319d6d070e7eed71e79b34e0580145bf33798e",
+    "db/schema.sql": "793e27a7b344a209a5e8291ed2e98fba28fa31e2de3508b058ac309b577583ac",
+    "db/seed.sql": "1493264491b2f1ac61c0e8d2ebd53650dac3b6a96b1250ab079e8c47c4bd831c"
+  }
+}

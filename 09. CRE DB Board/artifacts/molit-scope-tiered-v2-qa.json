@@ -1,0 +1,47 @@
+{
+  "policyCode": "MOLIT_SCOPE_TIERED_V2",
+  "rules": {
+    "residential": "REJECTED",
+    "buildingArLe1000": "REJECTED",
+    "buildingArGt1000Le3300": "REVIEW_READY",
+    "buildingArGt3300": "EXTRACTED",
+    "transactionGroupSumGt3300": "REVIEW_READY"
+  },
+  "counts": {
+    "evaluated": 30681,
+    "extracted": 158,
+    "reviewReady": 988,
+    "rejected": 29535,
+    "reviewAreaReason": 777,
+    "reviewGroupReasonRows": 211,
+    "reviewGroupCandidates": 38,
+    "reviewReadyRowsLe1000": 108,
+    "reviewReadyRowsGt1000Le3300": 880
+  },
+  "reviewTasks": {
+    "total": 988,
+    "priority2Group": 211,
+    "priority3Area": 777,
+    "secondRunInserted": 0
+  },
+  "qa": {
+    "extractedAtOrBelow3300": 0,
+    "rejectedAbove1000": 0,
+    "reviewTasksWithoutReviewReadyTarget": 0,
+    "secondRunUpdatedMentions": 0,
+    "testsPassed": 21,
+    "sqliteIntegrity": "ok",
+    "foreignKeyViolations": 0,
+    "canonicalEvents": 0
+  },
+  "artifacts": {
+    "reviewQueue": "artifacts/molit-scope-tiered-v2-review-queue.csv"
+  },
+  "backup": {
+    "path": "backups/market-capital-2025-scope-tiered-v2-20260815.db",
+    "bytes": 166072320,
+    "sha256": "c3d2603d39c463193bb48a44eea88f19d695a0a6caedcc5c06bda0b09992b5b5",
+    "quickCheck": "ok",
+    "foreignKeyViolations": 0
+  }
+}

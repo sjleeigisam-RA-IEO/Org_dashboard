@@ -1,0 +1,49 @@
+{
+  "report_version": "1.0",
+  "verified_at": "2026-08-16T00:00:00Z",
+  "scope": {
+    "fixture_root": "fixtures/approved-sale-processes",
+    "selection": "recursive JSON objects with manifest_version=1.0 and status=APPROVED",
+    "database": "OS temporary disposable SQLite initialized from db/v2/schema.sql and db/v2/seed.sql",
+    "live_or_shared_database_used": false
+  },
+  "historical_hotel": {
+    "manifest_count": 7,
+    "json_schema_errors": 0,
+    "first_pass_inserted_rows": 172,
+    "manifest_paths": [
+      "fixtures/approved-sale-processes/historical-hotel/HOTEL-ALPENSIA-2020-2022-A1.json",
+      "fixtures/approved-sale-processes/historical-hotel/HOTEL-GRAVITY-PANGYO-2024-A1.json",
+      "fixtures/approved-sale-processes/historical-hotel/HOTEL-JEONNAM-3PACK-2021-A1.json",
+      "fixtures/approved-sale-processes/historical-hotel/HOTEL-MERCURE-HONGDAE-2023-A1.json",
+      "fixtures/approved-sale-processes/historical-hotel/HOTEL-SHILLA-DONGTAN-2024-A1.json",
+      "fixtures/approved-sale-processes/historical-hotel/HOTEL-SHILLA-MAPO-2023-A1.json",
+      "fixtures/approved-sale-processes/historical-hotel/HOTEL-TAKE-GWANGMYEONG-2024-A1.json"
+    ]
+  },
+  "full_sequential_import": {
+    "approved_manifest_count": 16,
+    "first_pass_inserted_rows": 502,
+    "second_pass_inserted_rows": 0,
+    "all_first_pass_manifests_inserted_positive_rows": true,
+    "all_second_pass_manifests_inserted_zero_rows": true,
+    "foreign_key_violations": 0,
+    "integrity_check": "ok",
+    "final_table_counts": {
+      "sale_processes": 16,
+      "assets": 16,
+      "organizations": 59,
+      "source_documents": 38,
+      "bid_rounds": 18,
+      "bidder_participations": 29,
+      "bid_submissions": 22,
+      "bid_decisions": 17,
+      "transaction_milestones": 20
+    }
+  },
+  "code_changes": {
+    "importer_modified": false,
+    "schema_modified": false,
+    "live_database_modified": false
+  }
+}

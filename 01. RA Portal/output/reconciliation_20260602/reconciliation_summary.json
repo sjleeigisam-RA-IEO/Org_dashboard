@@ -1,0 +1,55 @@
+{
+  "source_files": {
+    "fund_master": "펀드 관리_20260515.xlsx",
+    "fund_aum": "펀드 AUM 관리_20260515.xlsx",
+    "asset_master_source": "투자 자산 관리_20260515.xlsx",
+    "fund_asset_source": "펀드별 투자 자산 조회_20260515.xlsx",
+    "lender_source": "펀드별 대주 정보 조회_20260515.xlsx",
+    "beneficiary_source": "펀드별 수익자 정보 조회_20260515.xlsx",
+    "staff_2025": "2025년 인원.xlsx",
+    "staff_2026": "2026.05 인원.xlsx"
+  },
+  "denorm_rows": 1151,
+  "denorm_columns": 81,
+  "fund_master": {
+    "source_funds": 1103,
+    "csv_linked_funds": 783,
+    "source_funds_absent_from_csv": 320,
+    "csv_funds_not_in_source": 0,
+    "field_mismatch_count": 0
+  },
+  "fund_aum": {
+    "source_aum_funds": 875,
+    "csv_linked_funds": 783,
+    "numeric_values_compared": 3246,
+    "numeric_mismatch_count": 0
+  },
+  "fund_asset_links": {
+    "source_fund_asset_pairs": 1031,
+    "csv_fund_asset_pairs": 1007,
+    "source_pairs_not_exact_in_csv": 276,
+    "csv_pairs_not_exact_in_source": 252
+  },
+  "asset_physical": {
+    "source_assets": 788,
+    "csv_distinct_assets": 620,
+    "csv_assets_matched_to_source": 609,
+    "asset_physical_mismatch_count": 79,
+    "csv_assets_not_matched_to_source": 11
+  },
+  "exposure_reconciliation_scope": {
+    "source_lender_rows": 798,
+    "source_beneficiary_rows": 1159,
+    "csv_columns_available": [
+      "lender_committed_amt",
+      "lender_drawn_amt",
+      "beneficiary_committed_amt",
+      "beneficiary_invested_amt",
+      "lender_exposure_count",
+      "beneficiary_exposure_count"
+    ],
+    "linked_assets_with_lender_summary": 620,
+    "linked_assets_with_beneficiary_summary": 620,
+    "limitation": "The denormalized CSV carries asset-level exposure summaries, not lender/beneficiary row-level details. Row-level reconciliation must query lender_exposures and beneficiary_exposures or create a separate exposure-grain CSV."
+  }
+}

@@ -1,0 +1,302 @@
+{
+  "generated_at": "2026-08-16T04:51:36.229031+00:00",
+  "database": "C:\\10137_WorkSpace\\real-estate-market-intelligence\\data\\market.db",
+  "schema_version": "2.6.0",
+  "research_artifacts": {
+    "pensions_mutual_aid": {
+      "path": "artifacts\\lp-manager-selections-2020-2025-pensions-mutual-aid.json",
+      "record_count": 12
+    },
+    "policy_funds": {
+      "path": "artifacts\\lp-manager-selections-2020-2025-policy-funds.json",
+      "record_count": 4
+    },
+    "financial_other_lps": {
+      "path": "artifacts\\lp-manager-selections-2020-2025-financial-other-lps.json",
+      "record_count": 8
+    }
+  },
+  "fixture_counts": {
+    "approved_manifests": 12,
+    "retained_review_candidates": 6,
+    "speculative_verification_candidates": 2
+  },
+  "live_counts": {
+    "lp_mandates": 12,
+    "lp_mandate_tracks": 12,
+    "lp_mandate_guidelines": 28,
+    "lp_mandate_selections": 4,
+    "lp_mandate_selection_members": 0,
+    "lp_mandate_selection_vehicles": 0,
+    "lp_mandate_amounts": 17,
+    "lp_mandate_deployments": 0
+  },
+  "canonical_mandates": [
+    {
+      "mandate_code": "KVIC-2020-Q4-URBAN-REGEN",
+      "vintage_year": 2020,
+      "lp": "한국벤처투자",
+      "mandate_name": "한국모태펀드 2020년 4차 정시 도시재생",
+      "mandate_status": "SELECTED"
+    },
+    {
+      "mandate_code": "POBA-2020-DOMESTIC-OFFICE-BLIND",
+      "vintage_year": 2020,
+      "lp": "대한지방행정공제회",
+      "mandate_name": "국내 오피스 블라인드 펀드 위탁운용사 선정 공고",
+      "mandate_status": "UNKNOWN"
+    },
+    {
+      "mandate_code": "KGROWTH-2021-ROLLING-INFRA",
+      "vintage_year": 2021,
+      "lp": "한국성장금융투자운용",
+      "mandate_name": "정책형 뉴딜펀드 2021년 수시 인프라투자형",
+      "mandate_status": "SELECTED"
+    },
+    {
+      "mandate_code": "KVIC-2021-SEP-URBAN-REGEN",
+      "vintage_year": 2021,
+      "lp": "한국벤처투자",
+      "mandate_name": "한국모태펀드 2021년 9월 수시 도시재생",
+      "mandate_status": "SELECTED"
+    },
+    {
+      "mandate_code": "POBA-2021-GLOBAL-PRIVATE-INFRA-SMA",
+      "vintage_year": 2021,
+      "lp": "대한지방행정공제회",
+      "mandate_name": "글로벌 사모인프라 SMA 위탁운용사 선정",
+      "mandate_status": "SELECTED"
+    },
+    {
+      "mandate_code": "CW-2022-DOMESTIC-RE-DEBT",
+      "vintage_year": 2022,
+      "lp": "건설근로자공제회",
+      "mandate_name": "2022 국내 부동산 대출형 블라인드 펀드 위탁운용사 선정",
+      "mandate_status": "UNKNOWN"
+    },
+    {
+      "mandate_code": "GEPS-2023-GLOBAL-RE-DEBT",
+      "vintage_year": 2023,
+      "lp": "공무원연금공단",
+      "mandate_name": "[공무원연금공단] 위탁운용사 선정계획 공고",
+      "mandate_status": "UNKNOWN"
+    },
+    {
+      "mandate_code": "CW-2024-DOMESTIC-SENIOR-RE-DEBT",
+      "vintage_year": 2024,
+      "lp": "건설근로자공제회",
+      "mandate_name": "2024 국내 부동산 선순위 대출펀드 위탁운용사 선정",
+      "mandate_status": "UNKNOWN"
+    },
+    {
+      "mandate_code": "GEPS-2024-GLOBAL-REAL-ESTATE",
+      "vintage_year": 2024,
+      "lp": "공무원연금공단",
+      "mandate_name": "[공무원연금공단] 2024년도 글로벌 부동산 펀드 해외 위탁운용사 선정",
+      "mandate_status": "UNKNOWN"
+    },
+    {
+      "mandate_code": "KTCU-2024-THE-K-HOTEL-REDEVELOPMENT",
+      "vintage_year": 2024,
+      "lp": "한국교직원공제회",
+      "mandate_name": "[한국교직원공제회] The-K호텔서울 부지 재개발 사업 위탁 운용사 선정 공고",
+      "mandate_status": "UNKNOWN"
+    },
+    {
+      "mandate_code": "GEPS-2025-GLOBAL-INFRA",
+      "vintage_year": 2025,
+      "lp": "공무원연금공단",
+      "mandate_name": "[공무원연금공단] 글로벌 인프라 펀드 해외 위탁운용사 선정 공고",
+      "mandate_status": "UNKNOWN"
+    },
+    {
+      "mandate_code": "KTCU-2025-REGIONAL-GOLF-COURSE",
+      "vintage_year": 2025,
+      "lp": "한국교직원공제회",
+      "mandate_name": "[한국교직원공제회] 권역별 골프장 투자 사업 위탁운용사 선정 공고",
+      "mandate_status": "UNKNOWN"
+    }
+  ],
+  "officially_supported_selections": [
+    {
+      "mandate_code": "KGROWTH-2021-ROLLING-INFRA",
+      "manager": "우리글로벌자산운용",
+      "selection_status": "SELECTED",
+      "selected_at": "2021-06-28"
+    },
+    {
+      "mandate_code": "KVIC-2020-Q4-URBAN-REGEN",
+      "manager": "쿨리지코너인베스트먼트",
+      "selection_status": "SELECTED",
+      "selected_at": "2020-11-17"
+    },
+    {
+      "mandate_code": "KVIC-2021-SEP-URBAN-REGEN",
+      "manager": "쿨리지코너인베스트먼트",
+      "selection_status": "SELECTED",
+      "selected_at": "2021-11-01"
+    },
+    {
+      "mandate_code": "POBA-2021-GLOBAL-PRIVATE-INFRA-SMA",
+      "manager": "GCM Grosvenor",
+      "selection_status": "SELECTED",
+      "selected_at": "2021-07-07"
+    }
+  ],
+  "likely_reported_selections_pending_primary": [
+    {
+      "mandate_code": "CW-2022-DOMESTIC-RE-DEBT",
+      "track_code": "DOMESTIC_REAL_ESTATE_DEBT",
+      "manager_name": "캡스톤자산운용",
+      "selected_at": "2022-12-26",
+      "value_status": "LIKELY_REPORTED_PENDING_PRIMARY",
+      "canonical_eligible": 0,
+      "confidence": 0.72,
+      "independent_family_count": 1,
+      "occurrence_count": 1,
+      "reported_allocation_decimal": "80000000000",
+      "allocation_currency_code": "KRW"
+    },
+    {
+      "mandate_code": "CW-2022-DOMESTIC-RE-DEBT",
+      "track_code": "DOMESTIC_REAL_ESTATE_DEBT",
+      "manager_name": "코람코자산운용",
+      "selected_at": "2022-12-26",
+      "value_status": "LIKELY_REPORTED_PENDING_PRIMARY",
+      "canonical_eligible": 0,
+      "confidence": 0.72,
+      "independent_family_count": 1,
+      "occurrence_count": 1,
+      "reported_allocation_decimal": "70000000000",
+      "allocation_currency_code": "KRW"
+    },
+    {
+      "mandate_code": "CW-2024-DOMESTIC-SENIOR-RE-DEBT",
+      "track_code": "DOMESTIC_SENIOR_REAL_ESTATE_DEBT",
+      "manager_name": "메테우스자산운용",
+      "selected_at": "2024-04-29",
+      "value_status": "LIKELY_REPORTED_PENDING_PRIMARY",
+      "canonical_eligible": 0,
+      "confidence": 0.72,
+      "independent_family_count": 1,
+      "occurrence_count": 1,
+      "reported_allocation_decimal": "50000000000",
+      "allocation_currency_code": "KRW"
+    },
+    {
+      "mandate_code": "CW-2024-DOMESTIC-SENIOR-RE-DEBT",
+      "track_code": "DOMESTIC_SENIOR_REAL_ESTATE_DEBT",
+      "manager_name": "삼성SRA자산운용",
+      "selected_at": "2024-04-29",
+      "value_status": "LIKELY_REPORTED_PENDING_PRIMARY",
+      "canonical_eligible": 0,
+      "confidence": 0.72,
+      "independent_family_count": 1,
+      "occurrence_count": 1,
+      "reported_allocation_decimal": "50000000000",
+      "allocation_currency_code": "KRW"
+    },
+    {
+      "mandate_code": "CW-2024-DOMESTIC-SENIOR-RE-DEBT",
+      "track_code": "DOMESTIC_SENIOR_REAL_ESTATE_DEBT",
+      "manager_name": "캡스톤자산운용",
+      "selected_at": "2024-04-29",
+      "value_status": "LIKELY_REPORTED_PENDING_PRIMARY",
+      "canonical_eligible": 0,
+      "confidence": 0.72,
+      "independent_family_count": 1,
+      "occurrence_count": 1,
+      "reported_allocation_decimal": "50000000000",
+      "allocation_currency_code": "KRW"
+    },
+    {
+      "mandate_code": "CW-2024-DOMESTIC-SENIOR-RE-DEBT",
+      "track_code": "DOMESTIC_SENIOR_REAL_ESTATE_DEBT",
+      "manager_name": "하나대체투자자산운용",
+      "selected_at": "2024-04-29",
+      "value_status": "LIKELY_REPORTED_PENDING_PRIMARY",
+      "canonical_eligible": 0,
+      "confidence": 0.72,
+      "independent_family_count": 1,
+      "occurrence_count": 1,
+      "reported_allocation_decimal": "50000000000",
+      "allocation_currency_code": "KRW"
+    }
+  ],
+  "amounts_by_basis_and_currency": [
+    {
+      "amount_basis": "ALLOCATION_PER_MANAGER",
+      "currency_code": "EUR",
+      "row_count": 1,
+      "numeric_sum": 50000000
+    },
+    {
+      "amount_basis": "ALLOCATION_PER_MANAGER",
+      "currency_code": "KRW",
+      "row_count": 2,
+      "numeric_sum": 150000000000
+    },
+    {
+      "amount_basis": "OTHER",
+      "currency_code": "KRW",
+      "row_count": 2,
+      "numeric_sum": 30000000000
+    },
+    {
+      "amount_basis": "PROGRAM_TOTAL",
+      "currency_code": "KRW",
+      "row_count": 2,
+      "numeric_sum": 800000000000
+    },
+    {
+      "amount_basis": "TARGET_FUND_SIZE",
+      "currency_code": "EUR",
+      "row_count": 1,
+      "numeric_sum": 1000000000
+    },
+    {
+      "amount_basis": "TARGET_FUND_SIZE",
+      "currency_code": "KRW",
+      "row_count": 3,
+      "numeric_sum": 127500000000
+    },
+    {
+      "amount_basis": "TARGET_FUND_SIZE",
+      "currency_code": "USD",
+      "row_count": 2,
+      "numeric_sum": 1000000000
+    },
+    {
+      "amount_basis": "TRACK_LP_COMMITMENT",
+      "currency_code": "KRW",
+      "row_count": 4,
+      "numeric_sum": 257000000000
+    }
+  ],
+  "qa_checks": {
+    "period_violations": 0,
+    "unapproved_live_rows": 0,
+    "guidelines_without_source_claim": 0,
+    "amounts_without_source_claim": 0,
+    "deployment_rows": 0,
+    "source_balance_rows": 0,
+    "likely_manager_claims": 6,
+    "likely_allocation_claims": 6,
+    "foreign_key_violations": 0,
+    "integrity_check": "ok",
+    "pass": true
+  },
+  "interpretation": {
+    "unknown_manager_policy": "Canonical manager remains absent without a primary result, while concrete reports are shown in best-available projections with a non-canonical likely status.",
+    "requested_amount_policy": "Selection request amounts remain OTHER and are not promoted to confirmed LP commitments.",
+    "balance_policy": "Target fund size and announced/requested amounts do not create deployable source balance.",
+    "deployment_policy": "No vehicle-to-deal deployment is created without official vehicle and deal evidence.",
+    "news_only_policy": "Detailed reports may enter the relational verification layer as likely claims, but remain excluded from lp_mandate_selections, commitment balances and deployments."
+  },
+  "coverage_gaps": [
+    "국민연금·우정사업본부·군인공제회·경찰공제회·과학기술인공제회는 공식 게시판 전수 역탐색이 추가로 필요함.",
+    "공무원연금·교직원공제회·건설근로자공제회·우정사업본부의 일부 선정사명은 언론 근거만 있어 REVIEW_READY 또는 research-only로 유지함.",
+    "KIC·HUG·캠코·IBK 및 도시재생 후속 연도는 공식 계획–결과 쌍을 충분히 확보하지 못함.",
+    "공식 fund·REIT·SPC와 특정 deal의 연결 증거가 아직 없어 deployment와 residual source를 의도적으로 생성하지 않음."
+  ]
+}

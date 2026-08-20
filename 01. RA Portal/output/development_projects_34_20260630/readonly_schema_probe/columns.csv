@@ -1,0 +1,407 @@
+﻿character_maximum_length,column_default,column_name,data_type,is_nullable,numeric_precision,numeric_scale,ordinal_position,table_name,table_schema,table_type,udt_name
+,nextval('asset_aliases_id_seq'::regclass),id,bigint,NO,64,0,1,asset_aliases,public,BASE TABLE,int8
+,,asset_id,text,NO,,,2,asset_aliases,public,BASE TABLE,text
+,,alias_name,text,NO,,,3,asset_aliases,public,BASE TABLE,text
+,'source_name'::text,alias_type,text,NO,,,4,asset_aliases,public,BASE TABLE,text
+,,source_table,text,YES,,,5,asset_aliases,public,BASE TABLE,text
+,,source_id,text,YES,,,6,asset_aliases,public,BASE TABLE,text
+,0,confidence,numeric,NO,,,7,asset_aliases,public,BASE TABLE,numeric
+,false,is_primary,boolean,NO,,,8,asset_aliases,public,BASE TABLE,bool
+,now(),created_at,timestamp with time zone,NO,,,9,asset_aliases,public,BASE TABLE,timestamptz
+,,asset_id,text,NO,,,1,asset_building_ledger,public,BASE TABLE,text
+,,pnu,text,YES,,,2,asset_building_ledger,public,BASE TABLE,text
+,,site_area,numeric,YES,,,3,asset_building_ledger,public,BASE TABLE,numeric
+,,gross_floor_area,numeric,YES,,,4,asset_building_ledger,public,BASE TABLE,numeric
+,,scr,numeric,YES,,,5,asset_building_ledger,public,BASE TABLE,numeric
+,,far,numeric,YES,,,6,asset_building_ledger,public,BASE TABLE,numeric
+,,main_usage,text,YES,,,7,asset_building_ledger,public,BASE TABLE,text
+,,structure,text,YES,,,8,asset_building_ledger,public,BASE TABLE,text
+,,floors_up,integer,YES,32,0,9,asset_building_ledger,public,BASE TABLE,int4
+,,floors_down,integer,YES,32,0,10,asset_building_ledger,public,BASE TABLE,int4
+,,elevators,integer,YES,32,0,11,asset_building_ledger,public,BASE TABLE,int4
+,,parking,text,YES,,,12,asset_building_ledger,public,BASE TABLE,text
+,,height,numeric,YES,,,13,asset_building_ledger,public,BASE TABLE,numeric
+,,completion_date,date,YES,,,14,asset_building_ledger,public,BASE TABLE,date
+,'{}'::jsonb,raw_ledger,jsonb,NO,,,15,asset_building_ledger,public,BASE TABLE,jsonb
+,,source_table,text,YES,,,16,asset_building_ledger,public,BASE TABLE,text
+,,source_id,text,YES,,,17,asset_building_ledger,public,BASE TABLE,text
+,0,confidence,numeric,NO,,,18,asset_building_ledger,public,BASE TABLE,numeric
+,now(),created_at,timestamp with time zone,NO,,,19,asset_building_ledger,public,BASE TABLE,timestamptz
+,now(),updated_at,timestamp with time zone,NO,,,20,asset_building_ledger,public,BASE TABLE,timestamptz
+,,asset_id,text,NO,,,1,asset_fund_links,public,BASE TABLE,text
+,,fund_id,text,NO,,,2,asset_fund_links,public,BASE TABLE,text
+,'underlying_asset'::text,relation_type,text,NO,,,3,asset_fund_links,public,BASE TABLE,text
+,,source_table,text,YES,,,4,asset_fund_links,public,BASE TABLE,text
+,,source_id,text,YES,,,5,asset_fund_links,public,BASE TABLE,text
+,0,confidence,numeric,NO,,,6,asset_fund_links,public,BASE TABLE,numeric
+,'{}'::jsonb,metadata,jsonb,NO,,,7,asset_fund_links,public,BASE TABLE,jsonb
+,now(),created_at,timestamp with time zone,NO,,,8,asset_fund_links,public,BASE TABLE,timestamptz
+,'direct_owner'::text,exposure_role,text,NO,,,9,asset_fund_links,public,BASE TABLE,text
+,'direct'::text,directness,text,NO,,,10,asset_fund_links,public,BASE TABLE,text
+,,allocation_ratio,numeric,YES,,,11,asset_fund_links,public,BASE TABLE,numeric
+,'unallocated'::text,allocation_status,text,NO,,,12,asset_fund_links,public,BASE TABLE,text
+,true,include_in_asset_aum,boolean,NO,,,13,asset_fund_links,public,BASE TABLE,bool
+,,benchmark_aum_allocated,bigint,YES,64,0,14,asset_fund_links,public,BASE TABLE,int8
+,,invested_aum_allocated,bigint,YES,64,0,15,asset_fund_links,public,BASE TABLE,int8
+,,equity_won_allocated,bigint,YES,64,0,16,asset_fund_links,public,BASE TABLE,int8
+,,loan_won_allocated,bigint,YES,64,0,17,asset_fund_links,public,BASE TABLE,int8
+,,deposit_won_allocated,bigint,YES,64,0,18,asset_fund_links,public,BASE TABLE,int8
+,,invested_equity_won_allocated,bigint,YES,64,0,19,asset_fund_links,public,BASE TABLE,int8
+,,invested_loan_won_allocated,bigint,YES,64,0,20,asset_fund_links,public,BASE TABLE,int8
+,,invested_deposit_won_allocated,bigint,YES,64,0,21,asset_fund_links,public,BASE TABLE,int8
+,,aum_basis_source,text,YES,,,22,asset_fund_links,public,BASE TABLE,text
+,false,needs_allocation_review,boolean,NO,,,23,asset_fund_links,public,BASE TABLE,bool
+,,asset_id,text,NO,,,1,asset_master,public,BASE TABLE,text
+,,canonical_name,text,NO,,,2,asset_master,public,BASE TABLE,text
+,,asset_type,text,YES,,,3,asset_master,public,BASE TABLE,text
+,,country_code,text,YES,,,4,asset_master,public,BASE TABLE,text
+,,city,text,YES,,,5,asset_master,public,BASE TABLE,text
+,,address_text,text,YES,,,6,asset_master,public,BASE TABLE,text
+,,latitude,numeric,YES,,,7,asset_master,public,BASE TABLE,numeric
+,,longitude,numeric,YES,,,8,asset_master,public,BASE TABLE,numeric
+,,pnu,text,YES,,,9,asset_master,public,BASE TABLE,text
+,,asset_code,text,YES,,,10,asset_master,public,BASE TABLE,text
+,0,source_confidence,numeric,NO,,,11,asset_master,public,BASE TABLE,numeric
+,'auto_created'::text,review_status,text,NO,,,12,asset_master,public,BASE TABLE,text
+,,representative_source,text,YES,,,13,asset_master,public,BASE TABLE,text
+,,representative_fund_id,text,YES,,,14,asset_master,public,BASE TABLE,text
+,'{}'::jsonb,metadata,jsonb,NO,,,15,asset_master,public,BASE TABLE,jsonb
+,now(),created_at,timestamp with time zone,NO,,,16,asset_master,public,BASE TABLE,timestamptz
+,now(),updated_at,timestamp with time zone,NO,,,17,asset_master,public,BASE TABLE,timestamptz
+,,site_area,numeric,YES,,,18,asset_master,public,BASE TABLE,numeric
+,,gross_floor_area,numeric,YES,,,19,asset_master,public,BASE TABLE,numeric
+,,scr,numeric,YES,,,20,asset_master,public,BASE TABLE,numeric
+,,far,numeric,YES,,,21,asset_master,public,BASE TABLE,numeric
+,,main_usage,text,YES,,,22,asset_master,public,BASE TABLE,text
+,,structure,text,YES,,,23,asset_master,public,BASE TABLE,text
+,,floors_up,integer,YES,32,0,24,asset_master,public,BASE TABLE,int4
+,,floors_down,integer,YES,32,0,25,asset_master,public,BASE TABLE,int4
+,,elevators,integer,YES,32,0,26,asset_master,public,BASE TABLE,int4
+,,parking,text,YES,,,27,asset_master,public,BASE TABLE,text
+,,height,numeric,YES,,,28,asset_master,public,BASE TABLE,numeric
+,,completion_date,date,YES,,,29,asset_master,public,BASE TABLE,date
+,,geocode_source,text,YES,,,30,asset_master,public,BASE TABLE,text
+,,building_ledger_source,text,YES,,,31,asset_master,public,BASE TABLE,text
+,'physical_asset'::text,asset_kind,text,NO,,,32,asset_master,public,BASE TABLE,text
+,true,is_physical,boolean,NO,,,33,asset_master,public,BASE TABLE,bool
+,false,is_synthetic,boolean,NO,,,34,asset_master,public,BASE TABLE,bool
+,,portfolio_theme,text,YES,,,35,asset_master,public,BASE TABLE,text
+,,portfolio_region,text,YES,,,36,asset_master,public,BASE TABLE,text
+,,business_stage,text,YES,,,37,asset_master,public,BASE TABLE,text
+,'unknown'::text,data_completeness,text,NO,,,38,asset_master,public,BASE TABLE,text
+,false,manual_input_required,boolean,NO,,,39,asset_master,public,BASE TABLE,bool
+,'not_checked'::text,api_enrichment_status,text,NO,,,40,asset_master,public,BASE TABLE,text
+,,last_api_enriched_at,timestamp with time zone,YES,,,41,asset_master,public,BASE TABLE,timestamptz
+,,physical_asset_name,text,YES,,,42,asset_master,public,BASE TABLE,text
+,,non_physical_asset_label,text,YES,,,43,asset_master,public,BASE TABLE,text
+,'undecided'::text,asset_name_cleanup_action,text,NO,,,44,asset_master,public,BASE TABLE,text
+,,asset_name_cleanup_reason,text,YES,,,45,asset_master,public,BASE TABLE,text
+,,asset_name_cleaned_at,timestamp with time zone,YES,,,46,asset_master,public,BASE TABLE,timestamptz
+,,asset_id,text,NO,,,1,asset_project_links,public,BASE TABLE,text
+,,project_id,text,NO,,,2,asset_project_links,public,BASE TABLE,text
+,'related_project'::text,relation_type,text,NO,,,3,asset_project_links,public,BASE TABLE,text
+,,source_table,text,YES,,,4,asset_project_links,public,BASE TABLE,text
+,,source_id,text,YES,,,5,asset_project_links,public,BASE TABLE,text
+,0,confidence,numeric,NO,,,6,asset_project_links,public,BASE TABLE,numeric
+,'{}'::jsonb,metadata,jsonb,NO,,,7,asset_project_links,public,BASE TABLE,jsonb
+,now(),created_at,timestamp with time zone,NO,,,8,asset_project_links,public,BASE TABLE,timestamptz
+,,target_code,text,YES,,,9,asset_project_links,public,BASE TABLE,text
+,,target_type,text,YES,,,10,asset_project_links,public,BASE TABLE,text
+,,resolved_project_id,text,YES,,,11,asset_project_links,public,BASE TABLE,text
+,,resolved_fund_id,text,YES,,,12,asset_project_links,public,BASE TABLE,text
+,'unresolved'::text,resolution_status,text,NO,,,13,asset_project_links,public,BASE TABLE,text
+,,resolution_note,text,YES,,,14,asset_project_links,public,BASE TABLE,text
+,,list_no,integer,YES,32,0,1,dev_project_34_dashboard_flat,public,VIEW,int4
+,,dev_project_id,text,YES,,,2,dev_project_34_dashboard_flat,public,VIEW,text
+,,source_category,text,YES,,,3,dev_project_34_dashboard_flat,public,VIEW,text
+,,project_name,text,YES,,,4,dev_project_34_dashboard_flat,public,VIEW,text
+,,vehicle_text,text,YES,,,5,dev_project_34_dashboard_flat,public,VIEW,text
+,,inclusion_basis,text,YES,,,6,dev_project_34_dashboard_flat,public,VIEW,text
+,,match_status,text,YES,,,7,dev_project_34_dashboard_flat,public,VIEW,text
+,,review_note,text,YES,,,8,dev_project_34_dashboard_flat,public,VIEW,text
+,,source_asof_date,date,YES,,,9,dev_project_34_dashboard_flat,public,VIEW,date
+,,linked_project_count,bigint,YES,64,0,10,dev_project_34_dashboard_flat,public,VIEW,int8
+,,linked_fund_count,bigint,YES,64,0,11,dev_project_34_dashboard_flat,public,VIEW,int8
+,,linked_asset_count,bigint,YES,64,0,12,dev_project_34_dashboard_flat,public,VIEW,int8
+,,review_flags,ARRAY,YES,,,13,dev_project_34_dashboard_flat,public,VIEW,_text
+,,project_ids,ARRAY,YES,,,14,dev_project_34_dashboard_flat,public,VIEW,_text
+,,project_names,ARRAY,YES,,,15,dev_project_34_dashboard_flat,public,VIEW,_text
+,,project_codes,ARRAY,YES,,,16,dev_project_34_dashboard_flat,public,VIEW,_text
+,,project_types,ARRAY,YES,,,17,dev_project_34_dashboard_flat,public,VIEW,_text
+,,project_statuses,ARRAY,YES,,,18,dev_project_34_dashboard_flat,public,VIEW,_text
+,,project_notion_ids,ARRAY,YES,,,19,dev_project_34_dashboard_flat,public,VIEW,_text
+,,project_primary_asset_ids,ARRAY,YES,,,20,dev_project_34_dashboard_flat,public,VIEW,_text
+,,project_relation_roles,ARRAY,YES,,,21,dev_project_34_dashboard_flat,public,VIEW,_text
+,,project_match_methods,ARRAY,YES,,,22,dev_project_34_dashboard_flat,public,VIEW,_text
+,,project_match_confidences,ARRAY,YES,,,23,dev_project_34_dashboard_flat,public,VIEW,_text
+,,project_link_notes,ARRAY,YES,,,24,dev_project_34_dashboard_flat,public,VIEW,_text
+,,fund_ids,ARRAY,YES,,,25,dev_project_34_dashboard_flat,public,VIEW,_text
+,,fund_short_names,ARRAY,YES,,,26,dev_project_34_dashboard_flat,public,VIEW,_varchar
+,,fund_names,ARRAY,YES,,,27,dev_project_34_dashboard_flat,public,VIEW,_varchar
+,,fund_statuses,ARRAY,YES,,,28,dev_project_34_dashboard_flat,public,VIEW,_varchar
+,,fund_types,ARRAY,YES,,,29,dev_project_34_dashboard_flat,public,VIEW,_text
+,,legal_forms,ARRAY,YES,,,30,dev_project_34_dashboard_flat,public,VIEW,_text
+,,is_development_values,ARRAY,YES,,,31,dev_project_34_dashboard_flat,public,VIEW,_text
+,,notion_vehicle_classes,ARRAY,YES,,,32,dev_project_34_dashboard_flat,public,VIEW,_text
+,,notion_business_stage_classes,ARRAY,YES,,,33,dev_project_34_dashboard_flat,public,VIEW,_text
+,,notion_holding_type_classes,ARRAY,YES,,,34,dev_project_34_dashboard_flat,public,VIEW,_text
+,,fund_primary_asset_ids,ARRAY,YES,,,35,dev_project_34_dashboard_flat,public,VIEW,_text
+,,fund_depts,ARRAY,YES,,,36,dev_project_34_dashboard_flat,public,VIEW,_text
+,,fund_managers,ARRAY,YES,,,37,dev_project_34_dashboard_flat,public,VIEW,_text
+,,fund_vehicle_roles,ARRAY,YES,,,38,dev_project_34_dashboard_flat,public,VIEW,_text
+,,fund_match_methods,ARRAY,YES,,,39,dev_project_34_dashboard_flat,public,VIEW,_text
+,,fund_match_confidences,ARRAY,YES,,,40,dev_project_34_dashboard_flat,public,VIEW,_text
+,,fund_link_notes,ARRAY,YES,,,41,dev_project_34_dashboard_flat,public,VIEW,_text
+,,benchmark_aum_total,numeric,YES,,,42,dev_project_34_dashboard_flat,public,VIEW,numeric
+,,invested_aum_total,numeric,YES,,,43,dev_project_34_dashboard_flat,public,VIEW,numeric
+,,asset_ids,ARRAY,YES,,,44,dev_project_34_dashboard_flat,public,VIEW,_text
+,,asset_names,ARRAY,YES,,,45,dev_project_34_dashboard_flat,public,VIEW,_text
+,,asset_types,ARRAY,YES,,,46,dev_project_34_dashboard_flat,public,VIEW,_text
+,,asset_kinds,ARRAY,YES,,,47,dev_project_34_dashboard_flat,public,VIEW,_text
+,,business_stages,ARRAY,YES,,,48,dev_project_34_dashboard_flat,public,VIEW,_text
+,,address_texts,ARRAY,YES,,,49,dev_project_34_dashboard_flat,public,VIEW,_text
+,,pnus,ARRAY,YES,,,50,dev_project_34_dashboard_flat,public,VIEW,_text
+,,latitudes,ARRAY,YES,,,51,dev_project_34_dashboard_flat,public,VIEW,_text
+,,longitudes,ARRAY,YES,,,52,dev_project_34_dashboard_flat,public,VIEW,_text
+,,main_usages,ARRAY,YES,,,53,dev_project_34_dashboard_flat,public,VIEW,_text
+,,site_areas,ARRAY,YES,,,54,dev_project_34_dashboard_flat,public,VIEW,_text
+,,gross_floor_areas,ARRAY,YES,,,55,dev_project_34_dashboard_flat,public,VIEW,_text
+,,scrs,ARRAY,YES,,,56,dev_project_34_dashboard_flat,public,VIEW,_text
+,,fars,ARRAY,YES,,,57,dev_project_34_dashboard_flat,public,VIEW,_text
+,,completion_dates,ARRAY,YES,,,58,dev_project_34_dashboard_flat,public,VIEW,_text
+,,asset_roles,ARRAY,YES,,,59,dev_project_34_dashboard_flat,public,VIEW,_text
+,,asset_link_sources,ARRAY,YES,,,60,dev_project_34_dashboard_flat,public,VIEW,_text
+,,asset_match_methods,ARRAY,YES,,,61,dev_project_34_dashboard_flat,public,VIEW,_text
+,,asset_match_confidences,ARRAY,YES,,,62,dev_project_34_dashboard_flat,public,VIEW,_text
+,,asset_link_notes,ARRAY,YES,,,63,dev_project_34_dashboard_flat,public,VIEW,_text
+,,setup_dates,ARRAY,YES,,,64,dev_project_34_dashboard_flat,public,VIEW,_text
+,,sort_setup_date,date,YES,,,65,dev_project_34_dashboard_flat,public,VIEW,date
+,,list_no,integer,YES,32,0,1,dev_project_34_dashboard_info,public,VIEW,int4
+,,project_name,text,YES,,,2,dev_project_34_dashboard_info,public,VIEW,text
+,,source_category,text,YES,,,3,dev_project_34_dashboard_info,public,VIEW,text
+,,vehicle_text,text,YES,,,4,dev_project_34_dashboard_info,public,VIEW,text
+,,project_statuses,ARRAY,YES,,,5,dev_project_34_dashboard_info,public,VIEW,_text
+,,fund_short_names,ARRAY,YES,,,6,dev_project_34_dashboard_info,public,VIEW,_varchar
+,,fund_names,ARRAY,YES,,,7,dev_project_34_dashboard_info,public,VIEW,_varchar
+,,fund_statuses,ARRAY,YES,,,8,dev_project_34_dashboard_info,public,VIEW,_varchar
+,,legal_forms,ARRAY,YES,,,9,dev_project_34_dashboard_info,public,VIEW,_text
+,,notion_vehicle_classes,ARRAY,YES,,,10,dev_project_34_dashboard_info,public,VIEW,_text
+,,notion_business_stage_classes,ARRAY,YES,,,11,dev_project_34_dashboard_info,public,VIEW,_text
+,,notion_holding_type_classes,ARRAY,YES,,,12,dev_project_34_dashboard_info,public,VIEW,_text
+,,fund_depts,ARRAY,YES,,,13,dev_project_34_dashboard_info,public,VIEW,_text
+,,fund_managers,ARRAY,YES,,,14,dev_project_34_dashboard_info,public,VIEW,_text
+,,benchmark_aum_total,numeric,YES,,,15,dev_project_34_dashboard_info,public,VIEW,numeric
+,,invested_aum_total,numeric,YES,,,16,dev_project_34_dashboard_info,public,VIEW,numeric
+,,asset_names,ARRAY,YES,,,17,dev_project_34_dashboard_info,public,VIEW,_text
+,,asset_types,ARRAY,YES,,,18,dev_project_34_dashboard_info,public,VIEW,_text
+,,address_texts,ARRAY,YES,,,19,dev_project_34_dashboard_info,public,VIEW,_text
+,,main_usages,ARRAY,YES,,,20,dev_project_34_dashboard_info,public,VIEW,_text
+,,site_areas,ARRAY,YES,,,21,dev_project_34_dashboard_info,public,VIEW,_text
+,,gross_floor_areas,ARRAY,YES,,,22,dev_project_34_dashboard_info,public,VIEW,_text
+,,scrs,ARRAY,YES,,,23,dev_project_34_dashboard_info,public,VIEW,_text
+,,fars,ARRAY,YES,,,24,dev_project_34_dashboard_info,public,VIEW,_text
+,,completion_dates,ARRAY,YES,,,25,dev_project_34_dashboard_info,public,VIEW,_text
+,,setup_dates,ARRAY,YES,,,26,dev_project_34_dashboard_info,public,VIEW,_text
+,,sort_setup_date,date,YES,,,27,dev_project_34_dashboard_info,public,VIEW,date
+,,list_no,integer,YES,32,0,1,dev_project_34_review_flags,public,VIEW,int4
+,,dev_project_id,text,YES,,,2,dev_project_34_review_flags,public,VIEW,text
+,,project_name,text,YES,,,3,dev_project_34_review_flags,public,VIEW,text
+,,source_category,text,YES,,,4,dev_project_34_review_flags,public,VIEW,text
+,,linked_project_count,bigint,YES,64,0,5,dev_project_34_review_flags,public,VIEW,int8
+,,linked_fund_count,bigint,YES,64,0,6,dev_project_34_review_flags,public,VIEW,int8
+,,linked_asset_count,bigint,YES,64,0,7,dev_project_34_review_flags,public,VIEW,int8
+,,review_flags,ARRAY,YES,,,8,dev_project_34_review_flags,public,VIEW,_text
+,,list_no,integer,YES,32,0,1,dev_project_34_summary,public,VIEW,int4
+,,dev_project_id,text,YES,,,2,dev_project_34_summary,public,VIEW,text
+,,source_category,text,YES,,,3,dev_project_34_summary,public,VIEW,text
+,,project_name,text,YES,,,4,dev_project_34_summary,public,VIEW,text
+,,vehicle_text,text,YES,,,5,dev_project_34_summary,public,VIEW,text
+,,inclusion_basis,text,YES,,,6,dev_project_34_summary,public,VIEW,text
+,,review_note,text,YES,,,7,dev_project_34_summary,public,VIEW,text
+,,linked_project_count,bigint,YES,64,0,8,dev_project_34_summary,public,VIEW,int8
+,,linked_fund_count,bigint,YES,64,0,9,dev_project_34_summary,public,VIEW,int8
+,,linked_asset_count,bigint,YES,64,0,10,dev_project_34_summary,public,VIEW,int8
+,,project_ids,ARRAY,YES,,,11,dev_project_34_summary,public,VIEW,_text
+,,project_names,ARRAY,YES,,,12,dev_project_34_summary,public,VIEW,_text
+,,fund_ids,ARRAY,YES,,,13,dev_project_34_summary,public,VIEW,_text
+,,short_names,ARRAY,YES,,,14,dev_project_34_summary,public,VIEW,_text
+,,fund_names,ARRAY,YES,,,15,dev_project_34_summary,public,VIEW,_text
+,,asset_ids,ARRAY,YES,,,16,dev_project_34_summary,public,VIEW,_text
+,,asset_names,ARRAY,YES,,,17,dev_project_34_summary,public,VIEW,_text
+,,link_id,bigint,NO,64,0,1,dev_project_asset_links,public,BASE TABLE,int8
+,,dev_project_id,text,NO,,,2,dev_project_asset_links,public,BASE TABLE,text
+,,asset_id,text,NO,,,3,dev_project_asset_links,public,BASE TABLE,text
+,,canonical_name_snapshot,text,YES,,,4,dev_project_asset_links,public,BASE TABLE,text
+,'related_asset'::text,asset_role,text,NO,,,5,dev_project_asset_links,public,BASE TABLE,text
+,false,is_primary,boolean,NO,,,6,dev_project_asset_links,public,BASE TABLE,bool
+,,link_source,text,NO,,,7,dev_project_asset_links,public,BASE TABLE,text
+,,link_source_id,text,NO,,,8,dev_project_asset_links,public,BASE TABLE,text
+,,match_method,text,NO,,,9,dev_project_asset_links,public,BASE TABLE,text
+,,match_confidence,numeric,NO,4,2,10,dev_project_asset_links,public,BASE TABLE,numeric
+,,notes,text,YES,,,11,dev_project_asset_links,public,BASE TABLE,text
+,'{}'::jsonb,metadata,jsonb,NO,,,12,dev_project_asset_links,public,BASE TABLE,jsonb
+,now(),created_at,timestamp with time zone,NO,,,13,dev_project_asset_links,public,BASE TABLE,timestamptz
+,now(),updated_at,timestamp with time zone,NO,,,14,dev_project_asset_links,public,BASE TABLE,timestamptz
+,,snapshot_id,text,NO,,,1,dev_project_extract_snapshots,public,BASE TABLE,text
+,,snapshot_date,date,NO,,,2,dev_project_extract_snapshots,public,BASE TABLE,date
+,,source_thread_id,text,YES,,,3,dev_project_extract_snapshots,public,BASE TABLE,text
+,,source_label,text,NO,,,4,dev_project_extract_snapshots,public,BASE TABLE,text
+,,source_asof_date,date,NO,,,5,dev_project_extract_snapshots,public,BASE TABLE,date
+,,list_count,integer,NO,32,0,6,dev_project_extract_snapshots,public,BASE TABLE,int4
+,'manual_sql_seed_v1'::text,extractor_version,text,NO,,,7,dev_project_extract_snapshots,public,BASE TABLE,text
+,,notes,text,YES,,,8,dev_project_extract_snapshots,public,BASE TABLE,text
+,'{}'::jsonb,metadata,jsonb,NO,,,9,dev_project_extract_snapshots,public,BASE TABLE,jsonb
+,now(),created_at,timestamp with time zone,NO,,,10,dev_project_extract_snapshots,public,BASE TABLE,timestamptz
+,now(),updated_at,timestamp with time zone,NO,,,11,dev_project_extract_snapshots,public,BASE TABLE,timestamptz
+,,dev_project_id,text,NO,,,1,dev_project_fund_links,public,BASE TABLE,text
+,,fund_id,text,NO,,,2,dev_project_fund_links,public,BASE TABLE,text
+,,short_name_snapshot,text,YES,,,3,dev_project_fund_links,public,BASE TABLE,text
+,,fund_name_snapshot,text,YES,,,4,dev_project_fund_links,public,BASE TABLE,text
+,'primary_vehicle'::text,vehicle_role,text,NO,,,5,dev_project_fund_links,public,BASE TABLE,text
+,true,is_primary,boolean,NO,,,6,dev_project_fund_links,public,BASE TABLE,bool
+,,match_method,text,NO,,,7,dev_project_fund_links,public,BASE TABLE,text
+,,match_confidence,numeric,NO,4,2,8,dev_project_fund_links,public,BASE TABLE,numeric
+,,notes,text,YES,,,9,dev_project_fund_links,public,BASE TABLE,text
+,'{}'::jsonb,metadata,jsonb,NO,,,10,dev_project_fund_links,public,BASE TABLE,jsonb
+,now(),created_at,timestamp with time zone,NO,,,11,dev_project_fund_links,public,BASE TABLE,timestamptz
+,now(),updated_at,timestamp with time zone,NO,,,12,dev_project_fund_links,public,BASE TABLE,timestamptz
+,,dev_project_id,text,NO,,,1,dev_project_list,public,BASE TABLE,text
+,,list_no,integer,NO,32,0,2,dev_project_list,public,BASE TABLE,int4
+,,source_category,text,NO,,,3,dev_project_list,public,BASE TABLE,text
+,,project_name,text,NO,,,4,dev_project_list,public,BASE TABLE,text
+,,vehicle_text,text,YES,,,5,dev_project_list,public,BASE TABLE,text
+,,inclusion_basis,text,NO,,,6,dev_project_list,public,BASE TABLE,text
+,,source_snapshot_id,text,NO,,,7,dev_project_list,public,BASE TABLE,text
+,,source_thread_id,text,NO,,,8,dev_project_list,public,BASE TABLE,text
+,,source_asof_date,date,NO,,,9,dev_project_list,public,BASE TABLE,date
+,'seeded'::text,match_status,text,NO,,,10,dev_project_list,public,BASE TABLE,text
+,,review_note,text,YES,,,11,dev_project_list,public,BASE TABLE,text
+,'{}'::jsonb,metadata,jsonb,NO,,,12,dev_project_list,public,BASE TABLE,jsonb
+,now(),created_at,timestamp with time zone,NO,,,13,dev_project_list,public,BASE TABLE,timestamptz
+,now(),updated_at,timestamp with time zone,NO,,,14,dev_project_list,public,BASE TABLE,timestamptz
+,,dev_project_id,text,NO,,,1,dev_project_project_links,public,BASE TABLE,text
+,,project_id,text,NO,,,2,dev_project_project_links,public,BASE TABLE,text
+,,project_name_snapshot,text,YES,,,3,dev_project_project_links,public,BASE TABLE,text
+,'primary_project'::text,relation_role,text,NO,,,4,dev_project_project_links,public,BASE TABLE,text
+,true,is_primary,boolean,NO,,,5,dev_project_project_links,public,BASE TABLE,bool
+,,match_method,text,NO,,,6,dev_project_project_links,public,BASE TABLE,text
+,,match_confidence,numeric,NO,4,2,7,dev_project_project_links,public,BASE TABLE,numeric
+,,notes,text,YES,,,8,dev_project_project_links,public,BASE TABLE,text
+,'{}'::jsonb,metadata,jsonb,NO,,,9,dev_project_project_links,public,BASE TABLE,jsonb
+,now(),created_at,timestamp with time zone,NO,,,10,dev_project_project_links,public,BASE TABLE,timestamptz
+,now(),updated_at,timestamp with time zone,NO,,,11,dev_project_project_links,public,BASE TABLE,timestamptz
+,,fund_id,character varying,NO,,,1,funds,public,BASE TABLE,varchar
+,,short_name,character varying,YES,,,2,funds,public,BASE TABLE,varchar
+,,fund_name,character varying,YES,,,3,funds,public,BASE TABLE,varchar
+,,sector,character varying,YES,,,4,funds,public,BASE TABLE,varchar
+,,asset_name,character varying,YES,,,5,funds,public,BASE TABLE,varchar
+,,status,character varying,YES,,,6,funds,public,BASE TABLE,varchar
+,,location,character varying,YES,,,7,funds,public,BASE TABLE,varchar
+,,setup_date,date,YES,,,8,funds,public,BASE TABLE,date
+,,maturity_date,date,YES,,,9,funds,public,BASE TABLE,date
+,,dept,character varying,YES,,,10,funds,public,BASE TABLE,varchar
+,,manager,character varying,YES,,,11,funds,public,BASE TABLE,varchar
+,,parent_fund_id,text,YES,,,12,funds,public,BASE TABLE,text
+,'{}'::jsonb,metadata,jsonb,YES,,,13,funds,public,BASE TABLE,jsonb
+,,project_mission_name,text,YES,,,14,funds,public,BASE TABLE,text
+,,notion_base_asset_class,text,YES,,,15,funds,public,BASE TABLE,text
+,,notion_asset_nature_class,text,YES,,,16,funds,public,BASE TABLE,text
+,,notion_holding_type_class,text,YES,,,17,funds,public,BASE TABLE,text
+,,notion_business_stage_class,text,YES,,,18,funds,public,BASE TABLE,text
+,,notion_investment_strategy_class,text,YES,,,19,funds,public,BASE TABLE,text
+,,notion_vehicle_class,text,YES,,,20,funds,public,BASE TABLE,text
+,,manager_staff_id,text,YES,,,21,funds,public,BASE TABLE,text
+,,dept_org_id,text,YES,,,22,funds,public,BASE TABLE,text
+,,primary_asset_id,text,YES,,,23,funds,public,BASE TABLE,text
+,,aum_base_date,date,YES,,,24,funds,public,BASE TABLE,date
+,,base_price,numeric,YES,,,25,funds,public,BASE TABLE,numeric
+,,net_asset_value,numeric,YES,,,26,funds,public,BASE TABLE,numeric
+,,aum_input_date,date,YES,,,27,funds,public,BASE TABLE,date
+,,equity_won,bigint,YES,64,0,28,funds,public,BASE TABLE,int8
+,,loan_won,bigint,YES,64,0,29,funds,public,BASE TABLE,int8
+,,deposit_won,bigint,YES,64,0,30,funds,public,BASE TABLE,int8
+,,benchmark_aum,bigint,YES,64,0,31,funds,public,BASE TABLE,int8
+,,invested_equity_won,bigint,YES,64,0,32,funds,public,BASE TABLE,int8
+,,invested_loan_won,bigint,YES,64,0,33,funds,public,BASE TABLE,int8
+,,invested_deposit_won,bigint,YES,64,0,34,funds,public,BASE TABLE,int8
+,,invested_aum,bigint,YES,64,0,35,funds,public,BASE TABLE,int8
+,,termination_date,date,YES,,,36,funds,public,BASE TABLE,date
+,,aum_status,text,YES,,,37,funds,public,BASE TABLE,text
+,,aum_source,text,YES,,,38,funds,public,BASE TABLE,text
+,,recruitment_type,text,YES,,,39,funds,public,BASE TABLE,text
+,,legal_form,text,YES,,,40,funds,public,BASE TABLE,text
+,,fund_class,text,YES,,,41,funds,public,BASE TABLE,text
+,,fund_type,text,YES,,,42,funds,public,BASE TABLE,text
+,,division,text,YES,,,43,funds,public,BASE TABLE,text
+,,primary_region,text,YES,,,44,funds,public,BASE TABLE,text
+,,is_development,text,YES,,,45,funds,public,BASE TABLE,text
+,,is_delegated,text,YES,,,46,funds,public,BASE TABLE,text
+,,primary_asset_ids,ARRAY,YES,,,47,funds,public,BASE TABLE,_text
+,,project_id,text,NO,,,1,projects,public,BASE TABLE,text
+,,notion_id,text,YES,,,2,projects,public,BASE TABLE,text
+,,project_code,text,YES,,,3,projects,public,BASE TABLE,text
+,,project_name,text,NO,,,4,projects,public,BASE TABLE,text
+,,project_type,text,YES,,,5,projects,public,BASE TABLE,text
+,,status,text,YES,,,6,projects,public,BASE TABLE,text
+,,priority,text,YES,,,7,projects,public,BASE TABLE,text
+,,health,text,YES,,,8,projects,public,BASE TABLE,text
+,,lead_org_text,text,YES,,,9,projects,public,BASE TABLE,text
+,,lead_staff_id,text,YES,,,10,projects,public,BASE TABLE,text
+,,parent_project_id,text,YES,,,11,projects,public,BASE TABLE,text
+,,start_date,date,YES,,,12,projects,public,BASE TABLE,date
+,,target_date,date,YES,,,13,projects,public,BASE TABLE,date
+,,next_check_date,date,YES,,,14,projects,public,BASE TABLE,date
+,,source_system,text,NO,,,15,projects,public,BASE TABLE,text
+,'{}'::jsonb,metadata,jsonb,NO,,,16,projects,public,BASE TABLE,jsonb
+,now(),created_at,timestamp with time zone,NO,,,17,projects,public,BASE TABLE,timestamptz
+,now(),updated_at,timestamp with time zone,NO,,,18,projects,public,BASE TABLE,timestamptz
+,,primary_asset_id,text,YES,,,19,projects,public,BASE TABLE,text
+,,primary_asset_ids,ARRAY,YES,,,20,projects,public,BASE TABLE,_text
+,,fund_id,character varying,YES,,,1,v_funds_enriched,public,VIEW,varchar
+,,short_name,character varying,YES,,,2,v_funds_enriched,public,VIEW,varchar
+,,fund_name,character varying,YES,,,3,v_funds_enriched,public,VIEW,varchar
+,,sector,character varying,YES,,,4,v_funds_enriched,public,VIEW,varchar
+,,asset_name,character varying,YES,,,5,v_funds_enriched,public,VIEW,varchar
+,,status,character varying,YES,,,6,v_funds_enriched,public,VIEW,varchar
+,,location,character varying,YES,,,7,v_funds_enriched,public,VIEW,varchar
+,,setup_date,date,YES,,,8,v_funds_enriched,public,VIEW,date
+,,maturity_date,date,YES,,,9,v_funds_enriched,public,VIEW,date
+,,dept,character varying,YES,,,10,v_funds_enriched,public,VIEW,varchar
+,,manager,character varying,YES,,,11,v_funds_enriched,public,VIEW,varchar
+,,parent_fund_id,text,YES,,,12,v_funds_enriched,public,VIEW,text
+,,metadata,jsonb,YES,,,13,v_funds_enriched,public,VIEW,jsonb
+,,project_mission_name,text,YES,,,14,v_funds_enriched,public,VIEW,text
+,,notion_base_asset_class,text,YES,,,15,v_funds_enriched,public,VIEW,text
+,,notion_asset_nature_class,text,YES,,,16,v_funds_enriched,public,VIEW,text
+,,notion_holding_type_class,text,YES,,,17,v_funds_enriched,public,VIEW,text
+,,notion_business_stage_class,text,YES,,,18,v_funds_enriched,public,VIEW,text
+,,notion_investment_strategy_class,text,YES,,,19,v_funds_enriched,public,VIEW,text
+,,notion_vehicle_class,text,YES,,,20,v_funds_enriched,public,VIEW,text
+,,manager_staff_id,text,YES,,,21,v_funds_enriched,public,VIEW,text
+,,dept_org_id,text,YES,,,22,v_funds_enriched,public,VIEW,text
+,,primary_asset_id,text,YES,,,23,v_funds_enriched,public,VIEW,text
+,,aum_base_date,date,YES,,,24,v_funds_enriched,public,VIEW,date
+,,base_price,numeric,YES,,,25,v_funds_enriched,public,VIEW,numeric
+,,net_asset_value,numeric,YES,,,26,v_funds_enriched,public,VIEW,numeric
+,,aum_input_date,date,YES,,,27,v_funds_enriched,public,VIEW,date
+,,equity_won,bigint,YES,64,0,28,v_funds_enriched,public,VIEW,int8
+,,loan_won,bigint,YES,64,0,29,v_funds_enriched,public,VIEW,int8
+,,deposit_won,bigint,YES,64,0,30,v_funds_enriched,public,VIEW,int8
+,,benchmark_aum,bigint,YES,64,0,31,v_funds_enriched,public,VIEW,int8
+,,invested_equity_won,bigint,YES,64,0,32,v_funds_enriched,public,VIEW,int8
+,,invested_loan_won,bigint,YES,64,0,33,v_funds_enriched,public,VIEW,int8
+,,invested_deposit_won,bigint,YES,64,0,34,v_funds_enriched,public,VIEW,int8
+,,invested_aum,bigint,YES,64,0,35,v_funds_enriched,public,VIEW,int8
+,,termination_date,date,YES,,,36,v_funds_enriched,public,VIEW,date
+,,aum_status,text,YES,,,37,v_funds_enriched,public,VIEW,text
+,,aum_source,text,YES,,,38,v_funds_enriched,public,VIEW,text
+,,recruitment_type,text,YES,,,39,v_funds_enriched,public,VIEW,text
+,,legal_form,text,YES,,,40,v_funds_enriched,public,VIEW,text
+,,fund_class,text,YES,,,41,v_funds_enriched,public,VIEW,text
+,,fund_type,text,YES,,,42,v_funds_enriched,public,VIEW,text
+,,division,text,YES,,,43,v_funds_enriched,public,VIEW,text
+,,primary_region,text,YES,,,44,v_funds_enriched,public,VIEW,text
+,,is_development,text,YES,,,45,v_funds_enriched,public,VIEW,text
+,,is_delegated,text,YES,,,46,v_funds_enriched,public,VIEW,text
+,,dept_resolved,text,YES,,,47,v_funds_enriched,public,VIEW,text
+,,manager_resolved,text,YES,,,48,v_funds_enriched,public,VIEW,text

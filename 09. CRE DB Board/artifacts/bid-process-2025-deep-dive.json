@@ -1,0 +1,237 @@
+{
+  "contract": "SOURCE_GROUNDED_SALE_PROCESS_RESEARCH_V1",
+  "asOf": "2026-08-16T02:01:58+09:00",
+  "rules": [
+    "preferred bidder is not SPA",
+    "SPA is not closing",
+    "unknown facts are null and labeled 미공개/미확인",
+    "asking prices and estimates are not bidder prices",
+    "article titles alone do not prove closing"
+  ],
+  "cases": [
+    {
+      "asset": "현대그룹 연지동 사옥",
+      "assetType": "OFFICE",
+      "region": "서울 종로구 율곡로 194",
+      "seller": "현대엘리베이터",
+      "sellSideAdvisor": ["삼정KPMG"],
+      "rounds": [
+        {"date": "2025-06-25", "type": "BID", "participantCountReported": "10여 곳~20여 곳(기사별 상이)"},
+        {"date": "2025-07-09", "type": "SHORTLIST_ADDITIONAL_PROPOSAL", "participantCountReported": "11곳"}
+      ],
+      "bidders": [
+        {"name": "볼트자산운용", "price": "4,000억원 이상 제시 보도; 최종 약 4,500억원", "reportedRank": "PREFERRED_AND_WINNER", "shortlisted": true, "funding": "하나증권 보통주 1,830억원(후속 1,850억원), 현대엘리베이터 보통주 100억원, 은행계 대주단 약 3,000억원; 은행명 미공개"},
+        {"name": "코람코자산신탁", "price": null, "reportedRank": null, "shortlisted": true, "funding": null},
+        {"name": "코람코자산운용", "price": null, "reportedRank": null, "shortlisted": true, "funding": null},
+        {"name": "디앤디인베스트먼트", "price": null, "reportedRank": null, "shortlisted": true, "funding": null},
+        {"name": "케펠자산운용", "price": null, "reportedRank": null, "shortlisted": true, "funding": null},
+        {"name": "캡스톤자산운용", "price": null, "reportedRank": null, "shortlisted": true, "funding": null},
+        {"name": "퍼시픽자산운용", "price": null, "reportedRank": null, "shortlisted": true, "funding": null},
+        {"name": "현대인베스트먼트자산운용", "price": null, "reportedRank": null, "shortlisted": true, "funding": null},
+        {"name": "스틱얼터너티브자산운용", "price": null, "reportedRank": null, "shortlisted": true, "funding": null},
+        {"name": "미공개 2곳", "price": null, "reportedRank": null, "shortlisted": true, "funding": null}
+      ],
+      "preferredBidder": {"name": "볼트자산운용", "date": "2025-07-14"},
+      "runnerUp": null,
+      "spa": {"status": "미확인", "date": null},
+      "finalStatus": {"status": "CLOSED", "date": "2025-10 말", "detail": "등기 완료; 정확한 일자 미공개"},
+      "sources": [
+        {"date": "2025-07-09", "url": "https://www.hankyung.com/article/202507097551r"},
+        {"date": "2025-07-14", "url": "https://biz.chosun.com/stock/stock_general/2025/07/14/H5O7EY22BBF7BLRLT7IMDGRDJI/"},
+        {"date": "2025-10-01", "url": "https://www.fnnews.com/news/202510011641364326"},
+        {"date": "2026-04-14", "url": "https://www.ddaily.co.kr/page/view/2026041413410716692"}
+      ]
+    },
+    {
+      "asset": "당산 TCC동양타워 및 데이터센터 개발사업권",
+      "assetType": "DATA_CENTER_CONVERSION",
+      "region": "서울 영등포구 당산동",
+      "seller": "법적 매도자 미확인; 7월 LB자산운용, 10월 보도 제목 액티스-GIC",
+      "sellSideAdvisor": ["JLL"],
+      "rounds": [{"date": "2025-07-29", "type": "TEASER_DISTRIBUTED"}],
+      "bidders": [
+        {"name": "하나대체투자자산운용", "price": null, "reportedRank": "PREFERRED", "shortlisted": null, "funding": "프로젝트리츠 추진; 리츠명·LP·인수금융·대주 미공개"},
+        {"name": "기타 입찰자", "price": null, "reportedRank": null, "shortlisted": null, "funding": null}
+      ],
+      "preferredBidder": {"name": "하나대체투자자산운용", "date": "2025-10-23"},
+      "runnerUp": null,
+      "spa": {"status": "미확인", "date": null},
+      "finalStatus": {"status": "PREFERRED_BIDDER_SELECTED_FOLLOWUP_UNKNOWN", "date": "2025-10-23"},
+      "sources": [
+        {"date": "2025-07-29", "url": "https://biz.chosun.com/stock/stock_general/2025/07/29/44X4LYLYORAVTIZQK26LYR7TJA/"},
+        {"date": "2025-10-23", "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5lcXRYN3hsaUk4WDc2VXp2RHlNZkNBWWJvU0FXeFlmOEFfcmhKeEZfempVY0FIWUNmZm1EaTV4SXRjam5EVHdmU2NzQ1d3U2JDYzZPU1VYdFJjY3M?oc=5"}
+      ]
+    },
+    {
+      "asset": "현대차증권빌딩",
+      "assetType": "OFFICE",
+      "region": "서울 영등포구 국제금융로2길 28",
+      "seller": "코람코자산운용 운용 부동산펀드",
+      "sellSideAdvisor": ["에비슨영코리아", "에스원", "삼정KPMG"],
+      "rounds": [{"date": "2025-02-14", "type": "BID", "participantCountReported": "8~10곳"}],
+      "bidders": [
+        {"name": "BNK자산운용", "price": "3,547억원; 3.3㎡당 2,900만원", "reportedRank": "HIGHEST_AND_PREFERRED", "shortlisted": null, "funding": "BNK디지털타워 매각대금 활용 계획 보도; 확정 약정 미공개"},
+        {"name": "KB자산운용", "price": "약 3.3㎡당 2,800만원", "reportedRank": "REPORTED_SECOND_BY_PRICE_NOT_FORMALLY_DESIGNATED", "shortlisted": null, "funding": null},
+        {"name": "JR투자운용", "price": null, "reportedRank": null, "shortlisted": null, "funding": null},
+        {"name": "기타 5~7곳", "price": null, "reportedRank": null, "shortlisted": null, "funding": null}
+      ],
+      "preferredBidder": {"name": "BNK자산운용", "date": "2025-02-21"},
+      "runnerUp": {"name": "KB자산운용", "qualification": "가격 기준 보도, 공식 차순위 지정 미확인"},
+      "spa": {"status": "외부매각 SPA 미확인", "date": null},
+      "finalStatus": {"status": "BNK_FAILED_PREEMPTION_EXERCISED_SHARE_DEAL_RESTRUCTURE", "date": "2025-04-29", "detail": "현대차증권 3/14 우선매수권 행사; 기존 코람코 펀드 유지·수익증권 재투자, 정확한 셰어딜 클로징일 미공개"},
+      "sources": [
+        {"date": "2025-02-14", "url": "https://www.sedaily.com/NewsView/2GOYUQDXZQ"},
+        {"date": "2025-03-14", "url": "https://www.hankyung.com/article/202503144415r"},
+        {"date": "2025-04-29", "url": "https://www.hankyung.com/article/202504293416r"}
+      ]
+    },
+    {
+      "asset": "광화문 크레센도빌딩",
+      "assetType": "OFFICE",
+      "region": "서울 종로구 광화문권역",
+      "seller": "DWS자산운용 운용 자산",
+      "sellSideAdvisor": ["딜로이트안진"],
+      "rounds": [
+        {"date": "2024-12-09", "type": "INITIAL_BID", "participantCountReported": "6곳"},
+        {"date": "2025-01", "type": "REBID_AFTER_PREFERRED_TERMINATION", "participantCountReported": "3곳"}
+      ],
+      "bidders": [
+        {"name": "마스턴투자운용", "price": "5,600억원; 3.3㎡당 3,380만원", "reportedRank": "INITIAL_HIGHEST_PREFERRED_THEN_TERMINATED", "shortlisted": true, "funding": "한화생명 수익자 블라인드펀드 1,250억원 계획; 한화생명 투심 부결"},
+        {"name": "신한리츠운용", "price": null, "reportedRank": "REPORTED_INITIAL_RUNNER_UP", "shortlisted": true, "funding": null},
+        {"name": "코람코자산신탁", "price": "최종 소유권 이전가 3.3㎡당 3,366만원; 총 5,567억원 보도", "reportedRank": "REBID_PREFERRED_AND_WINNER", "shortlisted": true, "funding": "사전 확보 블라인드펀드; 펀드명·LP·대주 미공개"},
+        {"name": "삼성SRA자산운용", "price": null, "reportedRank": "REBID_CANDIDATE", "shortlisted": true, "funding": null},
+        {"name": "한강에셋자산운용", "price": null, "reportedRank": null, "shortlisted": false, "funding": null},
+        {"name": "흥국자산운용", "price": null, "reportedRank": null, "shortlisted": false, "funding": null}
+      ],
+      "preferredBidder": {"name": "코람코자산신탁", "date": "2025-01-24", "prior": "마스턴투자운용 우협 해지"},
+      "runnerUp": {"name": "신한리츠운용", "qualification": "1차 보도상 차순위; 재입찰 최종 순위 미공개"},
+      "spa": {"status": "미확인", "date": null},
+      "finalStatus": {"status": "CLOSED_TITLE_TRANSFERRED", "date": "2025-04", "detail": "정확한 소유권 이전일 미공개"},
+      "sources": [
+        {"date": "2025-01-22", "url": "https://www.hankyung.com/article/202501222520r"},
+        {"date": "2025-01-24", "url": "http://www.edaily.co.kr/news/newspath.asp?newsid=04122966642041000"},
+        {"date": "2025-06-10", "url": "https://www.hankyung.com/article/202506105330r"}
+      ]
+    },
+    {
+      "asset": "강남 삼성동빌딩",
+      "assetType": "OFFICE",
+      "region": "서울 강남구 삼성로 512",
+      "seller": "생보제12호위탁관리리츠(AMC 교보자산신탁)",
+      "sellSideAdvisor": ["쿠시먼앤드웨이크필드코리아", "알스퀘어"],
+      "rounds": [
+        {"date": "2025-01 말", "type": "INITIAL_BID", "participantCountReported": "4곳"},
+        {"date": "2025-06~07", "type": "REBID", "participantCountReported": "10여 관심/참여 혼재"}
+      ],
+      "bidders": [
+        {"name": "JB자산운용", "price": "기사별 3.3㎡당 3,700만~3,800만원; 총 3,400~3,500억원 추산", "reportedRank": "INITIAL_PREFERRED_THEN_FAILED", "shortlisted": null, "funding": "투자자 모집 실패; LP·대주 미공개"},
+        {"name": "칼론인베스트먼트자산운용", "price": null, "reportedRank": null, "shortlisted": null, "funding": null},
+        {"name": "디앤디인베스트먼트", "price": null, "reportedRank": null, "shortlisted": null, "funding": null},
+        {"name": "엔지니어링공제조합", "price": null, "reportedRank": "REBID_INITIAL_HIGHEST_THEN_WITHDREW", "shortlisted": null, "funding": "미공개"},
+        {"name": "한국투자부동산신탁", "price": "3.3㎡당 3,600만원 후반; 최종 3,500억원 보도", "reportedRank": "REBID_PREFERRED_AND_WINNER", "shortlisted": null, "funding": "생보12호리츠 기존 보통주 소각·감자, 연 7% 종류주 및 신주 발행, AMC 교체; 신주 LP·대주 미공개"},
+        {"name": "삼성SRA자산운용", "price": "한투보다 소폭 높은 것으로 보도, 금액 미공개", "reportedRank": "FINAL_COMPETITOR", "shortlisted": null, "funding": null}
+      ],
+      "preferredBidder": {"name": "한국투자부동산신탁", "date": "2025-07", "prior": "JB자산운용"},
+      "runnerUp": {"name": "삼성SRA자산운용", "qualification": "최종 경합 보도"},
+      "spa": {"status": "SPA 미공개; MOU 체결", "date": "2025-07-25"},
+      "finalStatus": {"status": "CLOSED_SHARE_DEAL", "date": "2025-11-06", "detail": "리츠 정관·주주·AMC 변경"},
+      "sources": [
+        {"date": "2025-02-28", "url": "https://www.hankyung.com/article/202502286416r"},
+        {"date": "2025-07-28", "url": "https://news.mtn.co.kr/news-detail/2025072816374994015"},
+        {"date": "2025-11-13", "url": "https://dealsite.co.kr/articles/151289"}
+      ]
+    },
+    {
+      "asset": "논현 두산건설 사옥",
+      "assetType": "OFFICE_DATA_CENTER_OPTION",
+      "region": "서울 강남구 언주로 726",
+      "seller": "이지스자산운용 운용 자산; 10월 보도 제목은 이지스-GIC",
+      "sellSideAdvisor": ["CBRE코리아", "세빌스코리아"],
+      "rounds": [{"date": "2025-09-12", "type": "BID", "participantCountReported": null}],
+      "bidders": [
+        {"name": "리딩자산운용", "price": null, "reportedRank": "PREFERRED_THEN_FAILED", "shortlisted": null, "funding": null},
+        {"name": "기타 입찰자", "price": null, "reportedRank": null, "shortlisted": null, "funding": null}
+      ],
+      "preferredBidder": {"name": "리딩자산운용", "date": "2025-10-23"},
+      "runnerUp": null,
+      "spa": {"status": "미확인", "date": null},
+      "finalStatus": {"status": "FAILED_AND_REMARKETED", "date": "2025-11-26", "detail": "2026 후속기사에서 인수후보 포기·거래 미종결·재매각 확인"},
+      "sources": [
+        {"date": "2025-09-02", "url": "https://www.etoday.co.kr/news/view/2502436"},
+        {"date": "2025-10-23", "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9pS1JZWE56bW1yYXZPcXlKQ1pHQlptbTRaSDFMZS1HbFI2amRCa25tWk5UdGJWUFhvTnpSUnlna0pjaEQ4RmJTanA3MktFdEFQVjNpR3hLMTRfZk0?oc=5"},
+        {"date": "2026-05-10", "url": "https://www.etoday.co.kr/news/view/2582783"}
+      ]
+    },
+    {
+      "asset": "현대모비스 본사 SI타워",
+      "assetType": "OFFICE",
+      "region": "서울 강남구 테헤란로 203",
+      "seller": "KB와이즈스타사모부동산투자신탁 제1호(KB자산운용)",
+      "sellSideAdvisor": ["JLL코리아", "컬리어스코리아"],
+      "rounds": [
+        {"date": "2025-03-19", "type": "BID", "participantCountReported": "정식 9곳; BGO 별도 의향 포함 관심 10곳"},
+        {"date": "2025-03", "type": "INTERVIEW_AND_REVISED_PROPOSALS", "participantCountReported": "6개 운용사 각축 보도"}
+      ],
+      "bidders": [
+        {"name": "이지스자산운용", "price": "최종 계약 8,971억원", "reportedRank": "PREFERRED_CONTRACTED_NOT_HIGHEST_PRICE", "shortlisted": true, "funding": "교직원공제회 출자 블라인드펀드 + 이지스 자체 리츠; 리츠명·지분·대주 미공개"},
+        {"name": "교보자산신탁", "price": "초기 3.3㎡당 4,200만원", "reportedRank": "INITIAL_PRICE_RANK_1", "shortlisted": true, "funding": null},
+        {"name": "KKR", "price": "개별 미공개; 다수 제안 3.3㎡당 3,900만~4,100만원 범위", "reportedRank": null, "shortlisted": null, "funding": null},
+        {"name": "IMM자산운용", "price": "개별 미공개", "reportedRank": null, "shortlisted": null, "funding": null},
+        {"name": "코람코자산신탁", "price": "개별 미공개", "reportedRank": null, "shortlisted": null, "funding": null},
+        {"name": "페트라빌자산운용", "price": "개별 미공개", "reportedRank": null, "shortlisted": null, "funding": null},
+        {"name": "페블스톤자산운용", "price": "개별 미공개", "reportedRank": null, "shortlisted": null, "funding": null},
+        {"name": "한국자산신탁", "price": "개별 미공개", "reportedRank": null, "shortlisted": null, "funding": null},
+        {"name": "한국토지신탁", "price": "개별 미공개", "reportedRank": null, "shortlisted": null, "funding": null},
+        {"name": "BGO", "price": null, "reportedRank": "별도 인수의향", "shortlisted": null, "funding": null}
+      ],
+      "preferredBidder": {"name": "이지스자산운용", "date": "2025-03-25"},
+      "runnerUp": null,
+      "spa": {"status": "SIGNED", "date": "2025-06-20", "price": "8,971억원"},
+      "finalStatus": {"status": "SPA_SIGNED_CLOSING_DATE_UNCONFIRMED", "date": "2025-06-20"},
+      "sources": [
+        {"date": "2025-03-20", "url": "https://www.investchosun.com/site/data/html_dir/2025/03/20/2025032080025.html"},
+        {"date": "2025-03-27", "url": "https://www.investchosun.com/site/data/html_dir/2025/03/27/2025032780151.html"},
+        {"date": "2025-06-20", "url": "https://biz.chosun.com/stock/market_trend/2025/06/20/WE64RWHHTRAOVJRL6IT4RX6DBA/"}
+      ]
+    },
+    {
+      "asset": "AP타워 및 인접 호텔 2곳",
+      "assetType": "OFFICE_REDEVELOPMENT",
+      "region": "서울 강남구 역삼동 719-1 일대",
+      "seller": "AP타워: 이지스제424호전문투자형사모부동산투자회사; 호텔 2곳 법적 소유자 미공개",
+      "sellSideAdvisor": ["삼정KPMG", "쿠시먼앤드웨이크필드코리아", "NAI코리아"],
+      "rounds": [
+        {"date": "2025-07", "type": "BID", "participantCountReported": "7곳"},
+        {"date": "2025-07-23", "type": "SHORTLIST", "participantCountReported": "4곳"}
+      ],
+      "bidders": [
+        {"name": "스마일게이트자산운용", "price": "입찰 3,000억원 이상; 최종 3,500억원", "reportedRank": "PREFERRED_AND_WINNER", "shortlisted": true, "funding": "기존 이지스제424호 유지·수익자 변경; 보통주/우선주 1,500억원; 로제테트라제일차 SPC가 711억원 한도 ABSTB로 우선주 700억원 인수; 잔여 자금원 미공개"},
+        {"name": "코람코자산운용", "price": "3,000억원 이상", "reportedRank": null, "shortlisted": true, "funding": null},
+        {"name": "신한리츠운용", "price": "3,000억원 이상", "reportedRank": null, "shortlisted": true, "funding": null},
+        {"name": "하나대체투자자산운용", "price": "3,000억원 이상", "reportedRank": null, "shortlisted": true, "funding": null},
+        {"name": "캡스톤자산운용", "price": null, "reportedRank": "NOT_SHORTLISTED", "shortlisted": false, "funding": null},
+        {"name": "이화자산운용", "price": null, "reportedRank": "NOT_SHORTLISTED", "shortlisted": false, "funding": null},
+        {"name": "한국교통자산운용", "price": null, "reportedRank": "NOT_SHORTLISTED", "shortlisted": false, "funding": null}
+      ],
+      "preferredBidder": {"name": "스마일게이트자산운용", "date": "2025-07-24"},
+      "runnerUp": null,
+      "spa": {"status": "체결일 미공개", "date": null},
+      "finalStatus": {"status": "CLOSED_SHARE_DEAL", "date": "2025-11-20", "price": "3,500억원"},
+      "sources": [
+        {"date": "2025-07-23", "url": "https://www.hankyung.com/article/202507237482r"},
+        {"date": "2025-07-24", "url": "https://www.hankyung.com/article/202507249666r"},
+        {"date": "2025-11-21", "url": "https://news.dealsitetv.com/articles/161875"}
+      ]
+    }
+  ],
+  "excludedWatchlist": [
+    {
+      "asset": "공평동 G1 오피스",
+      "reason": "2025년에는 자문사 선정·마케팅만 확인; 본입찰은 2026-01-13",
+      "sources": [
+        {"date": "2025-02-19", "url": "https://www.hankyung.com/article/202502195545r"},
+        {"date": "2026-01-15", "url": "https://news.mtn.co.kr/news-detail/2026011509205550121"}
+      ]
+    }
+  ]
+}

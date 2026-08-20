@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RA Dashboard Visual System Map</title>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, theme: "dark", flowchart: { curve: "basis" } });
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #111315;
+      --panel: #1b1f24;
+      --panel2: #20262d;
+      --text: #f3f4f6;
+      --muted: #a4acb7;
+      --line: #343b45;
+      --blue: #36a3ff;
+      --green: #16c784;
+      --amber: #f59e0b;
+      --purple: #a78bfa;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", "Noto Sans KR", Arial, sans-serif;
+      line-height: 1.55;
+    }
+    header {
+      padding: 44px min(6vw, 72px) 24px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, #171b20 0%, #111315 100%);
+    }
+    main { padding: 28px min(6vw, 72px) 72px; }
+    h1 { margin: 0 0 8px; font-size: clamp(30px, 4vw, 52px); letter-spacing: 0; }
+    h2 { margin: 36px 0 16px; font-size: 24px; }
+    h3 { margin: 22px 0 10px; font-size: 18px; color: var(--blue); }
+    p { color: var(--muted); max-width: 980px; }
+    code, pre { font-family: Consolas, "Cascadia Mono", monospace; }
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      background: #26303a;
+      color: var(--text);
+    }
+    .chip.blue { color: var(--blue); }
+    .chip.green { color: var(--green); }
+    .chip.amber { color: var(--amber); }
+    .chip.purple { color: var(--purple); }
+    .wireframe {
+      white-space: pre;
+      overflow-x: auto;
+      background: #0d0f12;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      color: #d7dde6;
+      font-size: 13px;
+    }
+    .mermaid {
+      background: var(--panel2);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      margin: 14px 0;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--blue); background: #151a20; }
+    td { color: #d4dae3; }
+    a { color: var(--blue); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>RA Dashboard Visual System Map</h1>
+    <p>레포 전체를 공유하지 않고도 현재 대시보드의 데이터 계약, 검색 흐름, 관계 클러스터, 상세 조회 구조를 설명하기 위한 시각 요약입니다.</p>
+    <div class="chip-row">
+      <span class="chip blue">canonical DB</span>
+      <span class="chip green">relationship index</span>
+      <span class="chip purple">cluster search</span>
+      <span class="chip amber">detail drawers</span>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>1. System Overview</h2>
+      <div class="mermaid">
+flowchart LR
+    A["Supabase canonical DB<br/>master / link / fact"] --> B["Relationship interpretation<br/>entities / edges / tokens"]
+    B --> C["portfolio_search_results_canonical"]
+    C --> D["Dashboard hydration"]
+    D --> E["Relationship clusters"]
+    E --> F["Detail panel / drawers"]
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Product Shape</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Desktop</h3>
+          <div class="wireframe">┌─────────────────────────┬────────────────────────────┐
+│ Search / Tabs / Results │ Detail Panel               │
+│                         │                            │
+│ [데이터 조회][종합 분석]│ selected cluster/detail    │
+│ [검색창]                │ asset specs / map / tables │
+│ [전체][펀드][자산]...   │ fund/project/party drawer  │
+│ relation cards          │                            │
+└─────────────────────────┴────────────────────────────┘</div>
+        </div>
+        <div class="card">
+          <h3>Mobile</h3>
+          <div class="wireframe">┌────────────────────────────┐
+│ IGIS RA Insight            │
+│ [데이터 조회][종합 분석]   │
+│ 검색창                     │
+│ 가로 스크롤 탭             │
+│ 카드 리스트                │
+│ 선택 시 inline detail      │
+└────────────────────────────┘</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Main Files</h2>
+      <table>
+        <thead><tr><th>File</th><th>Role</th></tr></thead>
+        <tbody>
+          <tr><td><code>01. RA Portal/portfolio-analysis/index.html</code></td><td>대시보드 레이아웃 shell</td></tr>
+          <tr><td><code>app.js</code></td><td>조회/분석 view toggle, 검색 input, tab event</td></tr>
+          <tr><td><code>js/core.js</code></td><td>Supabase client, 검색어 helper, bulk load</td></tr>
+          <tr><td><code>js/search-results.js</code></td><td>canonical search, hydration, relationship cluster, result rendering</td></tr>
+          <tr><td><code>js/asset-canonical.js</code></td><td>canonical asset cards/detail, look-through modal</td></tr>
+          <tr><td><code>js/detail-drawer.js</code></td><td>fund/project/lender/beneficiary relationship drawer</td></tr>
+          <tr><td><code>01. RA Portal/migrations/2026-06-09_relationship_index_v1.sql</code></td><td>relationship entities/edges/tokens/search surface</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>4. Search Decision Tree</h2>
+      <div class="mermaid">
+flowchart TD
+    Q["performSearch(query)"] --> Empty{"empty?"}
+    Empty -- yes --> Stop["show start message"]
+    Empty -- no --> Terms["getSearchTerms()"]
+    Terms --> Num{"short numeric?"}
+    Num -- yes --> Code["fund/project code search"]
+    Num -- no --> Canon["portfolio_search_results_canonical"]
+    Code --> Hydrate["hydratePortfolioSearchRows()"]
+    Canon --> Hydrate
+    Hydrate --> Party{"party match?"}
+    Party -- yes --> PartyCluster["party cluster"]
+    Party -- no --> Asset{"asset title match?"}
+    Asset -- yes --> AssetCluster["asset display-root clusters"]
+    Asset -- no --> Project{"project dominance?"}
+    Project -- yes --> ProjectCluster["parent/child project cluster"]
+    Project -- no --> Fallback["fund/project fallback"]
+      </div>
+    </section>
+
+    <section>
+      <h2>5. Detail Navigation</h2>
+      <div class="mermaid">
+flowchart TD
+    Card["Relationship card"] --> Cluster["openRelationshipClusterDetail()"]
+    Cluster --> A["asset row"]
+    Cluster --> F["fund row"]
+    Cluster --> P["project row"]
+    Cluster --> I["lender/beneficiary row"]
+    A --> AD["AssetCanonical.renderCanonicalAssetDetail(asset_id)"]
+    F --> FD["openFundRelationshipDrawer(fund_id)"]
+    P --> PD["openProjectRelationshipDrawer(project_id)"]
+    I --> ID["openInstitutionRelationshipDrawer(type, name, rows)"]
+    AD --> Tables["asset specs / fund links / project links / exposure / map"]
+    FD --> FundTables["connected assets / participants"]
+    PD --> ProjectTables["child projects / project assets / related funds"]
+    ID --> PartyTables["exposure rows / related funds / related assets"]
+      </div>
+    </section>
+
+    <section>
+      <h2>6. Dedupe and Display Rules</h2>
+      <div class="grid">
+        <div class="card"><h3>Asset root</h3><p>같은 표시 자산은 <code>assetDisplayGroupKey()</code>로 접고, <code>(투자)</code> suffix는 표시명에서 제거합니다.</p></div>
+        <div class="card"><h3>Broad query</h3><p><code>분당</code>, <code>홈플러스</code>, <code>물류</code> 같은 넓은 검색어도 하나의 topic 카드가 아니라 실제 표시 대상별 card로 나눕니다.</p></div>
+        <div class="card"><h3>Same location</h3><p>같은 주소/PNU의 비직접 row는 별도 root로 띄우지 않고 visible physical asset의 relationship hint로 흡수합니다.</p></div>
+        <div class="card"><h3>Numeric</h3><p>1-4자리 숫자는 fund/project code 중심으로 제한해 asset noise를 줄입니다.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>7. Verification</h2>
+      <div class="mermaid">
+flowchart LR
+    A["verify_dashboard_search_determinism.js"] --> B["sample grouping contract"]
+    C["verify_dashboard_cluster_contract_live.js"] --> D["live Supabase cluster contract"]
+    E["audit_dashboard_operational_contract.py"] --> F["display parity / limits / explainability"]
+      </div>
+      <p>자세한 전체 문서는 <code>docs/20260610_ra_dashboard_visual_system_map.md</code>에 있습니다.</p>
+    </section>
+  </main>
+</body>
+</html>

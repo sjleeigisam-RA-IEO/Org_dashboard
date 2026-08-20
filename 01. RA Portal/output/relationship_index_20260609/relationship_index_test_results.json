@@ -1,0 +1,145 @@
+{
+  "counts": {
+    "pass": 18
+  },
+  "results": [
+    {
+      "status": "pass",
+      "message": "entity_key is unique",
+      "rows": 3560
+    },
+    {
+      "status": "pass",
+      "message": "entity_type/entity_id is unique",
+      "rows": 3560
+    },
+    {
+      "status": "pass",
+      "message": "edge_id is unique",
+      "rows": 5739
+    },
+    {
+      "status": "pass",
+      "message": "token path identity is unique",
+      "rows": 31914
+    },
+    {
+      "status": "pass",
+      "message": "all edge sources resolve",
+      "rows": 5739
+    },
+    {
+      "status": "pass",
+      "message": "all edge targets resolve",
+      "rows": 5739
+    },
+    {
+      "status": "pass",
+      "message": "no unresolved edges",
+      "counts": {
+        "confirmed": 5002,
+        "review_required": 98,
+        "compatibility": 639
+      }
+    },
+    {
+      "status": "pass",
+      "message": "compatibility edges are limited to fund_as_project interpretation",
+      "rows": 639
+    },
+    {
+      "status": "pass",
+      "message": "searchable but amount-rollup-disabled edges are explicitly separated",
+      "rows": 3985,
+      "counts": {
+        "True": 1754,
+        "False": 3985
+      }
+    },
+    {
+      "status": "pass",
+      "message": "review-required exposure edges are not amount-bearing"
+    },
+    {
+      "status": "pass",
+      "message": "query '이오타서울' covers expected entity types",
+      "found_types": [
+        "asset",
+        "fund",
+        "project"
+      ],
+      "hits": 13
+    },
+    {
+      "status": "pass",
+      "message": "query '국민연금' covers expected entity types",
+      "found_types": [
+        "beneficiary",
+        "project"
+      ],
+      "hits": 12
+    },
+    {
+      "status": "pass",
+      "message": "query '홈플러스' covers expected entity types",
+      "found_types": [
+        "asset",
+        "fund",
+        "lender",
+        "project"
+      ],
+      "hits": 111
+    },
+    {
+      "status": "pass",
+      "message": "query '1120' covers expected entity types",
+      "found_types": [
+        "asset",
+        "fund",
+        "project"
+      ],
+      "hits": 940
+    },
+    {
+      "status": "pass",
+      "message": "query '눈스퀘어' covers fund/project/asset",
+      "found_types": [
+        "asset",
+        "fund",
+        "project"
+      ],
+      "hits": 5
+    },
+    {
+      "status": "pass",
+      "message": "IOTA includes expected project path targets",
+      "found": [
+        "iota-seoul",
+        "project_notion_3258ced4-3c47-818d-9da5-c27149a74a92",
+        "project_notion_3258ced4-3c47-81cb-a4ff-e9df05eb2777"
+      ]
+    },
+    {
+      "status": "pass",
+      "message": "IOTA includes expected asset path targets",
+      "found": [
+        "ast_aefd81e93778",
+        "ast_cd9937cc8678"
+      ]
+    },
+    {
+      "status": "pass",
+      "message": "IOTA includes expected fund path targets",
+      "found": [
+        "112057",
+        "112472",
+        "112473",
+        "112614",
+        "112706",
+        "112707",
+        "120016",
+        "120113"
+      ]
+    }
+  ]
+}

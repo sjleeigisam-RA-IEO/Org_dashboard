@@ -5,6 +5,9 @@ const IOTA_TARGET_STAFF_IDS = new Set([
   "staff_ext_000111",
   "staff_ext_000037",
   "staff_ext_000027",
+  "staff_10238",
+  "staff_ext_000054",
+  "staff_10145",
 ]);
 const IOTA_TARGET_EMAILS = new Set([
   "sykang@igisam.com",
@@ -12,6 +15,9 @@ const IOTA_TARGET_EMAILS = new Set([
   "jghong@igisam.com",
   "junhopark@igisam.com",
   "hyunsoo.kim@igisam.com",
+  "hyungsuk.woo@igisam.com",
+  "gwansik.yoon@igisam.com",
+  "jmjung@igisam.com",
 ]);
 const IOTA_TARGET_NAMES = [
   "\uac15\uc21c\uc6a9",
@@ -19,6 +25,9 @@ const IOTA_TARGET_NAMES = [
   "\ud64d\uc7a5\uad70",
   "\ubc15\uc900\ud638",
   "\uae40\ud604\uc218",
+  "\uc6b0\ud615\uc11d",
+  "\uc724\uad00\uc2dd",
+  "\uc815\uc870\ubbfc",
 ];
 const IOTA_TARGET_STAFF_NAMES = new Map([
   ["staff_10268", "\uac15\uc21c\uc6a9"],
@@ -26,6 +35,9 @@ const IOTA_TARGET_STAFF_NAMES = new Map([
   ["staff_ext_000111", "\ud64d\uc7a5\uad70"],
   ["staff_ext_000037", "\ubc15\uc900\ud638"],
   ["staff_ext_000027", "\uae40\ud604\uc218"],
+  ["staff_10238", "\uc6b0\ud615\uc11d"],
+  ["staff_ext_000054", "\uc724\uad00\uc2dd"],
+  ["staff_10145", "\uc815\uc870\ubbfc"],
 ]);
 const IOTA_TARGET_EMAIL_NAMES = new Map([
   ["sykang@igisam.com", "\uac15\uc21c\uc6a9"],
@@ -33,6 +45,9 @@ const IOTA_TARGET_EMAIL_NAMES = new Map([
   ["jghong@igisam.com", "\ud64d\uc7a5\uad70"],
   ["junhopark@igisam.com", "\ubc15\uc900\ud638"],
   ["hyunsoo.kim@igisam.com", "\uae40\ud604\uc218"],
+  ["hyungsuk.woo@igisam.com", "\uc6b0\ud615\uc11d"],
+  ["gwansik.yoon@igisam.com", "\uc724\uad00\uc2dd"],
+  ["jmjung@igisam.com", "\uc815\uc870\ubbfc"],
 ]);
 
 const corsHeaders = {

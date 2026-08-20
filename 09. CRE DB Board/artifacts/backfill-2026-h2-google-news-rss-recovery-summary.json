@@ -1,0 +1,61 @@
+{
+  "campaign": "BACKFILL_2026_H2",
+  "threshold": 90,
+  "partitions": [
+    {
+      "category": "NEW_SUPPLY",
+      "start": "2026-07-01",
+      "end_exclusive": "2026-07-08",
+      "discovered": 69,
+      "inserted": 59,
+      "updated": 0,
+      "skipped": false,
+      "saturated": false,
+      "run_id": "7609bd0229de5476b6672f7e363a9878"
+    },
+    {
+      "category": "NEW_SUPPLY",
+      "start": "2026-07-08",
+      "end_exclusive": "2026-07-15",
+      "discovered": 28,
+      "inserted": 12,
+      "updated": 0,
+      "skipped": false,
+      "saturated": false,
+      "run_id": "e4f50acbd4dd532eb197656c2af00e69"
+    },
+    {
+      "category": "NEW_SUPPLY",
+      "start": "2026-07-15",
+      "end_exclusive": "2026-07-22",
+      "discovered": 63,
+      "inserted": 20,
+      "updated": 0,
+      "skipped": false,
+      "saturated": false,
+      "run_id": "b1ccf41b36b15574806f3c52aa9a789a"
+    },
+    {
+      "category": "NEW_SUPPLY",
+      "start": "2026-07-22",
+      "end_exclusive": "2026-07-29",
+      "discovered": 33,
+      "inserted": 14,
+      "updated": 0,
+      "skipped": false,
+      "saturated": false,
+      "run_id": "731d8527d59558718d632fd9fdfb6705"
+    },
+    {
+      "category": "NEW_SUPPLY",
+      "start": "2026-07-29",
+      "end_exclusive": "2026-08-01",
+      "discovered": 35,
+      "inserted": 29,
+      "updated": 0,
+      "skipped": false,
+      "saturated": false,
+      "run_id": "b15d4c9d7b545d07a394d1fb57959bb9"
+    }
+  ]
+}

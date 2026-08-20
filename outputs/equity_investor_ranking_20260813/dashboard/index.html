@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>에쿼티 투자자 현황 | IGIS RA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="report-header">
+    <div>
+      <p class="eyebrow">IGIS RA · INVESTOR REPORT</p>
+      <h1>에쿼티 투자자 현황</h1>
+      <p class="report-meta">2026-08-13 기준 · 대주 제외 · 펀드별 최신 가용 기준일 · v3</p>
+    </div>
+    <div class="header-actions">
+      <a class="button secondary" href="../RA_에쿼티_투자자_금액순위_20260813_v3.xlsx" download>Excel 보고서</a>
+      <button class="button" id="downloadCsvButton" type="button">조회 결과 CSV</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="kpi-strip" aria-label="전체 핵심 지표">
+      <article><span>투자자</span><strong id="kpiCount">-</strong></article>
+      <article><span>투입금액</span><strong id="kpiInvested">-</strong></article>
+      <article><span>총 약정금액</span><strong id="kpiCommitted">-</strong></article>
+      <article><span>잔여약정</span><strong id="kpiRemaining">-</strong></article>
+      <article><span>납입률</span><strong id="kpiPaidRatio">-</strong></article>
+      <article><span>검토필요</span><strong id="kpiReview">-</strong></article>
+    </section>
+
+    <section class="overview-band" aria-labelledby="overviewTitle">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">PORTFOLIO COMPOSITION</p>
+          <h2 id="overviewTitle">투자자 구성과 집중도</h2>
+        </div>
+        <p id="overviewNote">현재 조회 결과를 기준으로 다시 계산합니다.</p>
+      </div>
+      <div class="overview-grid">
+        <div>
+          <h3>분류별 투입금액</h3>
+          <div id="categoryBars" class="category-bars"></div>
+        </div>
+        <div>
+          <h3>상위 투자자 집중도</h3>
+          <div id="concentrationBars" class="concentration-bars"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="query-band" aria-labelledby="queryTitle">
+      <div class="section-heading compact">
+        <div>
+          <p class="section-kicker">QUERY</p>
+          <h2 id="queryTitle">투자자 조회</h2>
+        </div>
+        <button class="text-button" id="resetButton" type="button">조건 초기화</button>
+      </div>
+
+      <div class="query-primary">
+        <label class="search-field">
+          <span>통합검색</span>
+          <input id="searchInput" type="search" autocomplete="off" placeholder="투자자명, 분류, 원천분류, 검토사항 검색">
+        </label>
+        <label>
+          <span>정렬</span>
+          <select id="sortSelect">
+            <option value="invested-desc">투입금액 높은 순</option>
+            <option value="committed-desc">약정금액 높은 순</option>
+            <option value="remaining-desc">잔여약정 높은 순</option>
+            <option value="paidRatio-desc">납입률 높은 순</option>
+            <option value="fundCount-desc">연결펀드 많은 순</option>
+            <option value="displayName-asc">투자자명 가나다 순</option>
+          </select>
+        </label>
+        <label class="checkbox-field">
+          <input id="similarToggle" type="checkbox">
+          <span>유사명 포함</span>
+        </label>
+      </div>
+
+      <div class="filter-grid">
+        <fieldset>
+          <legend>대분류</legend>
+          <div id="categoryFilter" class="segmented-filter"></div>
+        </fieldset>
+        <label>
+          <span>최소 투입금액 (백만원)</span>
+          <input id="minimumInvestedInput" type="number" min="0" step="100" placeholder="예: 1000">
+        </label>
+        <label>
+          <span>납입률</span>
+          <select id="paidRatioFilter">
+            <option value="all">전체</option>
+            <option value="under50">50% 미만</option>
+            <option value="50to80">50% 이상 80% 미만</option>
+            <option value="80to100">80% 이상 100% 이하</option>
+            <option value="over100">100% 초과</option>
+          </select>
+        </label>
+        <label>
+          <span>연결 펀드</span>
+          <select id="fundCountFilter">
+            <option value="all">전체</option>
+            <option value="single">1개</option>
+            <option value="multi">2개 이상</option>
+            <option value="tenPlus">10개 이상</option>
+          </select>
+        </label>
+        <label>
+          <span>검토 상태</span>
+          <select id="reviewFilter">
+            <option value="all">전체</option>
+            <option value="review">검토필요만</option>
+            <option value="clear">검토표시 없음</option>
+            <option value="negative">음수금액 포함</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="quick-filters" aria-label="빠른 필터">
+        <span>빠른 필터</span>
+        <button type="button" data-quick="top10">상위 10</button>
+        <button type="button" data-quick="over1000">10억원 이상</button>
+        <button type="button" data-quick="multiFund">다중 펀드</button>
+        <button type="button" data-quick="negative">음수금액</button>
+        <button type="button" data-quick="unclassified">미분류</button>
+      </div>
+      <div id="activeFilterSummary" class="active-filter-summary" aria-live="polite"></div>
+    </section>
+
+    <section class="results-band" aria-labelledby="resultsTitle">
+      <div class="results-header">
+        <div>
+          <p class="section-kicker">RANKING</p>
+          <h2 id="resultsTitle">투자자 금액순위</h2>
+          <p id="resultsSummary">-</p>
+        </div>
+        <div class="unit-note">금액 단위: 백만원</div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th class="select-column"><span class="sr-only">비교 선택</span></th>
+              <th scope="col">순위</th>
+              <th scope="col">투자자명</th>
+              <th scope="col">분류</th>
+              <th scope="col" class="numeric">투입금액</th>
+              <th scope="col" class="numeric">전체 비중</th>
+              <th scope="col" class="numeric">잔여약정</th>
+              <th scope="col" class="numeric">납입률</th>
+              <th scope="col" class="numeric">펀드</th>
+              <th scope="col">검토</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </div>
+      <div id="emptyState" class="empty-state" hidden>
+        <strong>조건에 맞는 투자자가 없습니다.</strong>
+        <p>검색어를 줄이거나 분류·금액 조건을 초기화해 보세요.</p>
+      </div>
+      <button id="loadMoreButton" class="load-more" type="button" hidden>50개 더 보기</button>
+    </section>
+
+    <section id="compareSection" class="compare-band" aria-labelledby="compareTitle" hidden>
+      <div class="section-heading compact">
+        <div>
+          <p class="section-kicker">COMPARE</p>
+          <h2 id="compareTitle">선택 투자자 비교</h2>
+        </div>
+        <button class="text-button" id="clearCompareButton" type="button">선택 해제</button>
+      </div>
+      <div id="compareGrid" class="compare-grid"></div>
+    </section>
+  </main>
+
+  <aside id="detailPanel" class="detail-panel" aria-labelledby="detailTitle" aria-hidden="true">
+    <div class="detail-header">
+      <div>
+        <p class="section-kicker">INVESTOR DETAIL</p>
+        <h2 id="detailTitle">투자자 상세</h2>
+      </div>
+      <button id="closeDetailButton" class="icon-button" type="button" aria-label="상세 닫기">×</button>
+    </div>
+    <div id="detailContent"></div>
+  </aside>
+  <div id="detailBackdrop" class="detail-backdrop" hidden></div>
+
+  <div id="compareTray" class="compare-tray" hidden>
+    <span id="compareTrayText">0개 선택</span>
+    <button id="openCompareButton" type="button">비교 보기</button>
+  </div>
+
+  <script src="investors-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

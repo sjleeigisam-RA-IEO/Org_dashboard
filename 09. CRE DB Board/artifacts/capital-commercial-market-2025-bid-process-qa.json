@@ -1,0 +1,51 @@
+{
+  "generatedAt": "2026-08-15T17:19:35.158218+00:00",
+  "status": "PASS",
+  "checks": {
+    "schemaVersion23": true,
+    "requiredTables": true,
+    "requiredViews": true,
+    "integrity": true,
+    "foreignKeys": true,
+    "campaignPartitions": true,
+    "activeRssCandidates": true,
+    "supersededRssLineage": true,
+    "dartListCoverage": true,
+    "dartFullTextCoverage": true,
+    "dartUnavailableFiles": true,
+    "activeDartCandidates": true,
+    "evidenceSpanOffsets": true,
+    "noAutoCanonicalPromotion": true,
+    "officeDeepDive": true,
+    "logisticsDeepDive": true,
+    "hotelDeepDive": true,
+    "synthesisStatusDiscipline": true
+  },
+  "metrics": {
+    "schemaVersion": "2.3.0",
+    "campaignPartitions": 684,
+    "campaignCompleted": 684,
+    "campaignDiscovered": 1102,
+    "activeRssCandidates": 51,
+    "supersededRssCandidates": 106,
+    "dartLatestDocuments": 303,
+    "dartTypeAssetFilings": 237,
+    "dartFullTextDocuments": 228,
+    "dartUnavailableStatus014": 9,
+    "activeDartCandidates": 159,
+    "spanErrors": 0,
+    "canonicalSaleProcesses": 0
+  },
+  "artifactSha256": {
+    "artifacts\\bid-process-2025-candidates.json": "fe154ef20aa79488418da2a4cbb0d2c6b79f99281661b67a1c9dfc85b9bd1d93",
+    "artifacts\\opendart-2025-type-asset-sale-candidates.json": "93e2d3e714af896c73f2ea1e34470641a58b94cccaf82e89e03d67780e97101a",
+    "artifacts\\sale-process-model-v1.md": "7e3b583e5ad95a7ceb4facf2e30da4c34a55fa761360db524d60b813825ae383",
+    "artifacts\\backfill-2025-bid-process-summary.json": "04209bb99a564024968f4000ca4b172b4afb7fe1effe54e070034e90ccd0fec0",
+    "artifacts\\bid-process-2025-deep-dive.md": "eea02b56aaa3c34124204c37b0663656f7a84d1e8436e433bf8dd2cd4027f2f1",
+    "artifacts\\bid-process-2025-deep-dive.json": "a5fdc14afaa0a3199f8d0a184b80882f459a7420c61df147852de56cdfe596fc",
+    "artifacts\\hotel-competitive-sales-2025-deep-dive.md": "436b1023f7f09c4b511a0f046f44ac3a26452a1d3428368b3af25bdda544510d",
+    "artifacts\\logistics-competitive-sales-2025-deep-dive.md": "5ef5346c33d5e6040f8bd38b03004436bd7057de6080f5a010f6856bf1d31b32",
+    "artifacts\\logistics-competitive-sales-2025-structured.json": "22ae5c5a4950e909d8183ddc0590790722470d31c84d9086f44915838d9910aa",
+    "artifacts\\competitive-sales-2025-expanded-synthesis.md": "d286ed3c83aa44a90c02235298e28b909c446c7f70c6d30db11c78860ad3047c"
+  }
+}

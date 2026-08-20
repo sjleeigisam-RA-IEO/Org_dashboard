@@ -1,0 +1,47 @@
+﻿indexdef,indexname,schemaname,tablename
+CREATE UNIQUE INDEX asset_aliases_pkey ON public.asset_aliases USING btree (id),asset_aliases_pkey,public,asset_aliases
+"CREATE UNIQUE INDEX uq_asset_aliases_asset_alias_lower ON public.asset_aliases USING btree (asset_id, lower(alias_name), alias_type)",uq_asset_aliases_asset_alias_lower,public,asset_aliases
+CREATE UNIQUE INDEX asset_building_ledger_pkey ON public.asset_building_ledger USING btree (asset_id),asset_building_ledger_pkey,public,asset_building_ledger
+CREATE INDEX idx_asset_building_ledger_pnu ON public.asset_building_ledger USING btree (pnu),idx_asset_building_ledger_pnu,public,asset_building_ledger
+"CREATE UNIQUE INDEX asset_fund_links_pkey ON public.asset_fund_links USING btree (asset_id, fund_id, relation_type)",asset_fund_links_pkey,public,asset_fund_links
+CREATE INDEX idx_asset_fund_links_allocation_status ON public.asset_fund_links USING btree (allocation_status),idx_asset_fund_links_allocation_status,public,asset_fund_links
+"CREATE INDEX idx_asset_fund_links_asset_role ON public.asset_fund_links USING btree (asset_id, exposure_role)",idx_asset_fund_links_asset_role,public,asset_fund_links
+CREATE INDEX idx_asset_fund_links_fund_id ON public.asset_fund_links USING btree (fund_id),idx_asset_fund_links_fund_id,public,asset_fund_links
+CREATE INDEX idx_asset_fund_links_include_aum ON public.asset_fund_links USING btree (include_in_asset_aum),idx_asset_fund_links_include_aum,public,asset_fund_links
+CREATE UNIQUE INDEX asset_master_pkey ON public.asset_master USING btree (asset_id),asset_master_pkey,public,asset_master
+CREATE INDEX idx_asset_master_asset_code ON public.asset_master USING btree (asset_code),idx_asset_master_asset_code,public,asset_master
+CREATE INDEX idx_asset_master_asset_kind ON public.asset_master USING btree (asset_kind),idx_asset_master_asset_kind,public,asset_master
+CREATE INDEX idx_asset_master_asset_type ON public.asset_master USING btree (asset_type),idx_asset_master_asset_type,public,asset_master
+CREATE INDEX idx_asset_master_business_stage ON public.asset_master USING btree (business_stage),idx_asset_master_business_stage,public,asset_master
+CREATE INDEX idx_asset_master_canonical_name ON public.asset_master USING btree (canonical_name),idx_asset_master_canonical_name,public,asset_master
+CREATE INDEX idx_asset_master_main_usage ON public.asset_master USING btree (main_usage),idx_asset_master_main_usage,public,asset_master
+CREATE INDEX idx_asset_master_name_cleanup_action ON public.asset_master USING btree (asset_name_cleanup_action),idx_asset_master_name_cleanup_action,public,asset_master
+CREATE INDEX idx_asset_master_physical_asset_name ON public.asset_master USING btree (physical_asset_name),idx_asset_master_physical_asset_name,public,asset_master
+CREATE INDEX idx_asset_master_pnu ON public.asset_master USING btree (pnu),idx_asset_master_pnu,public,asset_master
+CREATE INDEX idx_asset_master_portfolio_theme ON public.asset_master USING btree (portfolio_theme),idx_asset_master_portfolio_theme,public,asset_master
+"CREATE UNIQUE INDEX asset_project_links_pkey ON public.asset_project_links USING btree (asset_id, project_id, relation_type)",asset_project_links_pkey,public,asset_project_links
+CREATE INDEX idx_asset_project_links_project_id ON public.asset_project_links USING btree (project_id),idx_asset_project_links_project_id,public,asset_project_links
+CREATE INDEX idx_asset_project_links_resolved_fund ON public.asset_project_links USING btree (resolved_fund_id),idx_asset_project_links_resolved_fund,public,asset_project_links
+CREATE INDEX idx_asset_project_links_resolved_project ON public.asset_project_links USING btree (resolved_project_id),idx_asset_project_links_resolved_project,public,asset_project_links
+"CREATE INDEX idx_asset_project_links_target_type ON public.asset_project_links USING btree (target_type, resolution_status)",idx_asset_project_links_target_type,public,asset_project_links
+CREATE INDEX dev_project_asset_links_asset_idx ON public.dev_project_asset_links USING btree (asset_id),dev_project_asset_links_asset_idx,public,dev_project_asset_links
+CREATE UNIQUE INDEX dev_project_asset_links_pkey ON public.dev_project_asset_links USING btree (link_id),dev_project_asset_links_pkey,public,dev_project_asset_links
+"CREATE UNIQUE INDEX dev_project_asset_links_unique_source ON public.dev_project_asset_links USING btree (dev_project_id, asset_id, link_source, link_source_id)",dev_project_asset_links_unique_source,public,dev_project_asset_links
+CREATE UNIQUE INDEX dev_project_extract_snapshots_pkey ON public.dev_project_extract_snapshots USING btree (snapshot_id),dev_project_extract_snapshots_pkey,public,dev_project_extract_snapshots
+CREATE INDEX dev_project_fund_links_fund_idx ON public.dev_project_fund_links USING btree (fund_id),dev_project_fund_links_fund_idx,public,dev_project_fund_links
+"CREATE UNIQUE INDEX dev_project_fund_links_pkey ON public.dev_project_fund_links USING btree (dev_project_id, fund_id)",dev_project_fund_links_pkey,public,dev_project_fund_links
+"CREATE INDEX dev_project_list_category_idx ON public.dev_project_list USING btree (source_category, list_no)",dev_project_list_category_idx,public,dev_project_list
+CREATE UNIQUE INDEX dev_project_list_list_no_key ON public.dev_project_list USING btree (list_no),dev_project_list_list_no_key,public,dev_project_list
+CREATE UNIQUE INDEX dev_project_list_pkey ON public.dev_project_list USING btree (dev_project_id),dev_project_list_pkey,public,dev_project_list
+"CREATE UNIQUE INDEX dev_project_project_links_pkey ON public.dev_project_project_links USING btree (dev_project_id, project_id)",dev_project_project_links_pkey,public,dev_project_project_links
+CREATE INDEX dev_project_project_links_project_idx ON public.dev_project_project_links USING btree (project_id),dev_project_project_links_project_idx,public,dev_project_project_links
+CREATE UNIQUE INDEX funds_pkey ON public.funds USING btree (fund_id),funds_pkey,public,funds
+CREATE INDEX idx_funds_aum_status ON public.funds USING btree (aum_status),idx_funds_aum_status,public,funds
+CREATE INDEX idx_funds_benchmark_aum ON public.funds USING btree (benchmark_aum),idx_funds_benchmark_aum,public,funds
+CREATE INDEX idx_funds_invested_aum ON public.funds USING btree (invested_aum),idx_funds_invested_aum,public,funds
+CREATE INDEX idx_funds_primary_asset_id ON public.funds USING btree (primary_asset_id),idx_funds_primary_asset_id,public,funds
+CREATE INDEX idx_projects_primary_asset_id ON public.projects USING btree (primary_asset_id),idx_projects_primary_asset_id,public,projects
+CREATE INDEX projects_name_idx ON public.projects USING btree (project_name),projects_name_idx,public,projects
+CREATE UNIQUE INDEX projects_notion_id_key ON public.projects USING btree (notion_id),projects_notion_id_key,public,projects
+CREATE INDEX projects_parent_idx ON public.projects USING btree (parent_project_id),projects_parent_idx,public,projects
+CREATE UNIQUE INDEX projects_pkey ON public.projects USING btree (project_id),projects_pkey,public,projects

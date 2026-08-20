@@ -1,0 +1,43 @@
+{
+  "campaign": "BACKFILL_2025_MOLIT_CAPITAL_EXPANSION",
+  "period": {"start": "2025-01-01", "endExclusive": "2026-01-01"},
+  "regionManifest": {
+    "path": "config/molit-2025-capital-region-codes.json",
+    "version": "2025.1",
+    "officialZipSha256": "7b4b544a6302d26c4f4c89d2c1355beae82e958c786bad8cc8572db0d2e2eb33",
+    "codeSemantics": "CURRENT_QUERY_GEOGRAPHY_VINTAGE_APPLIED_BY_MOLIT_TO_HISTORICAL_RECORDS"
+  },
+  "coverage": {
+    "seoul": {"districtCodes": 25, "partitions": 300, "records": 12219},
+    "incheon": {"districtCodes": 11, "partitions": 132, "records": 3385, "zeroPartitions": 1, "mismatchPartitions": 0},
+    "gyeonggi": {"districtCodes": 47, "partitions": 564, "records": 15077, "zeroPartitions": 0, "mismatchPartitions": 0},
+    "capitalTotalRecords": 30681,
+    "newExpansionRecords": 18462
+  },
+  "database": {
+    "sourceDocuments": 34845,
+    "documentVersions": 34872,
+    "completedCollectionRuns": 1100,
+    "completedExtractionRuns": 34872,
+    "activeEventMentions": 35083,
+    "rejectedSupersededMentions": 27,
+    "canonicalEvents": 0
+  },
+  "qa": {
+    "sqliteIntegrity": "ok",
+    "foreignKeyViolations": 0,
+    "duplicateSourceUrls": 0,
+    "documentsWithoutVersions": 0,
+    "versionsWithoutRuns": 0,
+    "collectorTestsPassed": 9,
+    "regionParserTestsPassed": 1,
+    "cliTestsPassed": 4
+  },
+  "backup": {
+    "path": "backups/market-capital-2025-v2.2.0-20260815.db",
+    "bytes": 163360768,
+    "sha256": "ee05917abfbd2f2186fca3e6662b818fa0aaf20a5879acb2d1880018a03e98ff",
+    "quickCheck": "ok",
+    "foreignKeyViolations": 0
+  }
+}

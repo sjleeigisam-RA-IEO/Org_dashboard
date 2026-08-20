@@ -1,0 +1,14 @@
+{
+  "asset_rows": 1302,
+  "target_assets_with_pnu_and_missing_specs": 630,
+  "unique_pnu_queried": 331,
+  "found_assets": 392,
+  "planned_assets_with_fills": 392,
+  "planned_field_fills": 3581,
+  "plan_path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\output\\asset_specs_hub_fill\\asset_specs_hub_plan_20260601T065624Z.csv",
+  "status_counts": {
+    "not_found": 237,
+    "found": 392,
+    "invalid_pnu": 1
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "attempted": 27,
+  "downloaded": 18,
+  "failed": 9,
+  "textBytes": 91801,
+  "ingestedByMonth": [
+    {
+      "month": "2025-01",
+      "documents": 18,
+      "inserted": 0,
+      "updated": 1
+    }
+  ],
+  "failures": [
+    {
+      "receipt_no": "20250219001800",
+      "error_class": "BadZipFile"
+    },
+    {
+      "receipt_no": "20250325000770",
+      "error_class": "BadZipFile"
+    },
+    {
+      "receipt_no": "20250630000260",
+      "error_class": "BadZipFile"
+    },
+    {
+      "receipt_no": "20250728000380",
+      "error_class": "BadZipFile"
+    },
+    {
+      "receipt_no": "20250804000144",
+      "error_class": "BadZipFile"
+    },
+    {
+      "receipt_no": "20250926000621",
+      "error_class": "BadZipFile"
+    },
+    {
+      "receipt_no": "20250929000436",
+      "error_class": "BadZipFile"
+    },
+    {
+      "receipt_no": "20251211000447",
+      "error_class": "BadZipFile"
+    },
+    {
+      "receipt_no": "20251219000412",
+      "error_class": "BadZipFile"
+    }
+  ]
+}

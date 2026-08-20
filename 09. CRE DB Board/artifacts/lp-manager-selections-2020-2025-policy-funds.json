@@ -1,0 +1,345 @@
+{
+  "artifact_version": "1.0",
+  "artifact_id": "lp-manager-selections-2020-2025-policy-funds",
+  "status": "RESEARCH_ONLY",
+  "scope": {
+    "period": {
+      "start": "2020-01-01",
+      "end": "2025-12-31"
+    },
+    "institutions_searched": [
+      "한국성장금융투자운용",
+      "한국벤처투자",
+      "한국산업은행",
+      "중소기업은행",
+      "주택도시보증공사",
+      "한국투자공사",
+      "한국자산관리공사"
+    ],
+    "include": [
+      "인프라",
+      "도시재생",
+      "지역활성화",
+      "실물자산과 직접 연결 가능한 정책 mandate"
+    ],
+    "exclude": [
+      "CRE 연결 투자대상·프로젝트가 명시되지 않은 일반 VC/PE",
+      "선정결과가 공식적으로 확인되지 않은 manager",
+      "서류심사 통과자·Pool만 확인된 경우의 최종선정 승격"
+    ],
+    "live_db_used": false
+  },
+  "amount_basis_policy": {
+    "PROGRAM_TOTAL": "프로그램 전체 공고 규모",
+    "LP_COMMITMENT_TOTAL": "LP 전체 출자·약정액",
+    "TRACK_LP_COMMITMENT": "전략 track별 출자·배정액",
+    "ALLOCATION_PER_MANAGER": "운용사당 예정 배정액",
+    "SELECTION_LP_COMMITMENT": "특정 선정 운용사에 귀속된 확인 배정·약정액",
+    "TARGET_FUND_SIZE": "외부자금·GP 출자를 포함할 수 있는 목표 결성규모",
+    "warning": "출자예산·출자요청액·모태출자액·정책출자 한도·목표결성액을 서로 대체하거나 합산하지 않음"
+  },
+  "sources": {
+    "kg_2021_regular_plan": {
+      "url": "https://www.kgrowth.or.kr/notice_view.asp?idx=443&str_type=1&tab=1",
+      "attachment_url": "https://www.kgrowth.or.kr/down_file.asp?idx=443&SelType=Notice3",
+      "published_at": "2020-12-29"
+    },
+    "kg_2021_regular_result": {
+      "url": "https://www.kgrowth.or.kr/notice_view.asp?idx=463&str_type=1&tab=1",
+      "attachment_url": "https://www.kgrowth.or.kr/down_file.asp?idx=463&SelType=Notice2",
+      "published_at": "2021-02-26"
+    },
+    "kg_2021_rolling_plan": {
+      "url": "https://www.kgrowth.or.kr/notice_view.asp?idx=482&str_type=1&tab=1",
+      "attachment_url": "https://www.kgrowth.or.kr/down_file.asp?idx=482&SelType=Notice3",
+      "published_at": "2021-04-23"
+    },
+    "kg_2021_rolling_result": {
+      "url": "https://www.kgrowth.or.kr/notice_view.asp?idx=509&str_type=1&tab=1",
+      "published_at": "2021-06-28"
+    },
+    "kg_2022_round1_plan": {
+      "url": "https://www.kgrowth.or.kr/notice_view.asp?idx=582&str_type=1&tab=1",
+      "attachment_url": "https://www.kgrowth.or.kr/down_file.asp?idx=582&SelType=Notice2",
+      "published_at": "2022-01-07"
+    },
+    "kg_2024_regional_plan": {
+      "url": "https://www.kgrowth.or.kr/notice_view.asp?idx=779&str_type=1&tab=1",
+      "attachment_url": "https://www.kgrowth.or.kr/down_file.asp?idx=779&SelType=Notice1",
+      "published_at": "2024-01-16"
+    },
+    "kg_2025_regional_plan": {
+      "url": "https://www.kgrowth.or.kr/notice_view.asp?idx=924&str_type=1&tab=1",
+      "attachment_url": "https://www.kgrowth.or.kr/down_file.asp?idx=924&SelType=Notice1",
+      "published_at": "2025-05-30"
+    },
+    "kg_2025_regional_reannounce": {
+      "url": "https://www.kgrowth.or.kr/notice_view.asp?idx=965&str_type=1&tab=1",
+      "attachment_url": "https://www.kgrowth.or.kr/down_file.asp?idx=965&SelType=Notice1",
+      "published_at": "2025-10-02"
+    },
+    "kvic_2020_q4_plan": {
+      "url": "https://www.kvic.or.kr/notice/kvic-notice/investment-business-notice?id=3138",
+      "attachment_url": "https://www.kvic.or.kr/fileDown?boardDataNo=3138&idx=1",
+      "published_at": "2020-09-28"
+    },
+    "kvic_2020_q4_result": {
+      "url": "https://www.kvic.or.kr/notice/kvic-notice/investment-business-notice?id=3163",
+      "attachment_url": "https://www.kvic.or.kr/fileDown?boardDataNo=3163&idx=1",
+      "published_at": "2020-11-17"
+    },
+    "kvic_2021_q3_plan": {
+      "url": "https://www.kvic.or.kr/notice/kvic-notice/investment-business-notice?id=3272",
+      "published_at": "2021-05-18"
+    },
+    "kvic_2021_sep_plan": {
+      "url": "https://www.kvic.or.kr/notice/kvic-notice/investment-business-notice?id=3356",
+      "attachment_url": "https://www.kvic.or.kr/fileDown?boardDataNo=3356&idx=1",
+      "published_at": "2021-09-03"
+    },
+    "kvic_2021_sep_result": {
+      "url": "https://www.kvic.or.kr/notice/kvic-notice/investment-business-notice?id=3390",
+      "attachment_url": "https://www.kvic.or.kr/fileDown?boardDataNo=3390&idx=1",
+      "published_at": "2021-11-01"
+    }
+  },
+  "mandates": [
+    {
+      "mandate_id": "kgrowth-2021-regular-infrastructure",
+      "institution": "한국성장금융투자운용",
+      "program": "정책형 뉴딜펀드 2021년 정시 인프라투자형",
+      "vintage_year": 2021,
+      "status": "SELECTED_OFFICIAL_RESULT",
+      "strategy": "INFRASTRUCTURE",
+      "cre_linkage": "뉴딜 인프라 블라인드·프로젝트 투자",
+      "dates": {
+        "announced_at": "2020-12-29",
+        "selected_at": "2021-02-26"
+      },
+      "amounts": [
+        {
+          "basis": "TRACK_LP_COMMITMENT",
+          "scope": "블라인드",
+          "kind": "AT_MOST",
+          "krw_decimal": "125000000000",
+          "raw": "1,250억원"
+        },
+        {
+          "basis": "TRACK_LP_COMMITMENT",
+          "scope": "프로젝트",
+          "kind": "AT_MOST",
+          "krw_decimal": "70000000000",
+          "raw": "700억원"
+        },
+        {
+          "basis": "TARGET_FUND_SIZE",
+          "scope": "블라인드/운용사당",
+          "kind": "AT_LEAST",
+          "krw_decimal": "100000000000",
+          "raw": "1,000억원 이상"
+        },
+        {
+          "basis": "ALLOCATION_PER_MANAGER",
+          "scope": "블라인드/계획상 상한",
+          "kind": "AT_MOST",
+          "krw_decimal": "62500000000",
+          "raw": "625억원"
+        }
+      ],
+      "selected_managers": [
+        "신한자산운용",
+        "케이디비인프라자산운용",
+        "케이비자산운용"
+      ],
+      "selection_amount_note": "공식 선정결과는 manager 명단을 확인하지만 운용사별 확정 배정액은 공개하지 않음. 625억원은 공고상 계획 상한이지 선정별 확정 약정액이 아님.",
+      "source_ids": [
+        "kg_2021_regular_plan",
+        "kg_2021_regular_result"
+      ],
+      "candidate_fixture": false
+    },
+    {
+      "mandate_id": "kgrowth-2021-rolling-infrastructure",
+      "institution": "한국성장금융투자운용",
+      "program": "정책형 뉴딜펀드 2021년 수시 인프라투자형",
+      "vintage_year": 2021,
+      "status": "SELECTED_OFFICIAL_RESULT",
+      "strategy": "INFRASTRUCTURE",
+      "cre_linkage": "뉴딜 인프라 사업·프로젝트",
+      "dates": {
+        "announced_at": "2021-04-23",
+        "application_deadline": "2021-05-18",
+        "selected_at": "2021-06-28"
+      },
+      "amounts": [
+        {
+          "basis": "TRACK_LP_COMMITMENT",
+          "kind": "AT_MOST",
+          "krw_decimal": "27000000000",
+          "raw": "270억원 이내"
+        },
+        {
+          "basis": "TARGET_FUND_SIZE",
+          "kind": "EXACT",
+          "krw_decimal": "90000000000",
+          "raw": "900억원"
+        }
+      ],
+      "selected_managers": [
+        "우리글로벌자산운용"
+      ],
+      "selection_amount_note": "270억원은 공고상 정책출자 한도이고 공식 결과 공지는 운용사별 확정 배정액을 기재하지 않음.",
+      "source_ids": [
+        "kg_2021_rolling_plan",
+        "kg_2021_rolling_result"
+      ],
+      "candidate_fixture": true
+    },
+    {
+      "mandate_id": "kvic-2020-q4-urban-regeneration",
+      "institution": "한국벤처투자",
+      "program": "한국모태펀드 2020년 4차 정시 도시재생",
+      "vintage_year": 2020,
+      "status": "SELECTED_OFFICIAL_RESULT",
+      "strategy": "REAL_ASSETS",
+      "cre_linkage": "도시재생활성화사업 참여 또는 활성화지역 기여 기업·사업",
+      "dates": {
+        "announced_at": "2020-09-28",
+        "application_deadline": "2020-10-15",
+        "selected_at": "2020-11-17"
+      },
+      "amounts": [
+        {
+          "basis": "TRACK_LP_COMMITMENT",
+          "kind": "EXACT",
+          "krw_decimal": "20000000000",
+          "raw": "출자예산 200억원"
+        },
+        {
+          "basis": "TARGET_FUND_SIZE",
+          "kind": "EXACT",
+          "krw_decimal": "25000000000",
+          "raw": "결성 목표액 250억원"
+        },
+        {
+          "basis": "OTHER",
+          "semantic": "선정결과상 출자요청액",
+          "kind": "EXACT",
+          "krw_decimal": "20000000000",
+          "raw": "출자요청액 200억원"
+        }
+      ],
+      "selected_managers": [
+        "쿨리지코너인베스트먼트"
+      ],
+      "selection_amount_note": "결과 문서의 200억원은 출자요청액이므로 SELECTION_LP_COMMITMENT로 승격하지 않음.",
+      "source_ids": [
+        "kvic_2020_q4_plan",
+        "kvic_2020_q4_result"
+      ],
+      "candidate_fixture": true
+    },
+    {
+      "mandate_id": "kvic-2021-september-urban-regeneration",
+      "institution": "한국벤처투자",
+      "program": "한국모태펀드 2021년 9월 수시 도시재생",
+      "vintage_year": 2021,
+      "status": "SELECTED_OFFICIAL_RESULT",
+      "strategy": "REAL_ASSETS",
+      "cre_linkage": "도시재생활성화사업 참여 또는 활성화지역 기여 기업·사업",
+      "dates": {
+        "announced_at": "2021-09-03",
+        "application_deadline": "2021-09-17",
+        "selected_at": "2021-11-01"
+      },
+      "amounts": [
+        {
+          "basis": "TRACK_LP_COMMITMENT",
+          "kind": "EXACT",
+          "krw_decimal": "10000000000",
+          "raw": "출자예산 100억원"
+        },
+        {
+          "basis": "TARGET_FUND_SIZE",
+          "kind": "EXACT",
+          "krw_decimal": "12500000000",
+          "raw": "결성목표액 125억원"
+        },
+        {
+          "basis": "OTHER",
+          "semantic": "선정결과상 출자요청액",
+          "kind": "EXACT",
+          "krw_decimal": "10000000000",
+          "raw": "출자요청액 100억원",
+          "semantic_note": "요청액은 확정 약정·paid-in·available capital로 해석 금지"
+        }
+      ],
+      "selected_managers": [
+        "쿨리지코너인베스트먼트"
+      ],
+      "source_ids": [
+        "kvic_2021_sep_plan",
+        "kvic_2021_sep_result"
+      ],
+      "candidate_fixture": true
+    }
+  ],
+  "plan_only_or_unresolved": [
+    {
+      "program": "정책형 뉴딜펀드 2022년 1차 인프라 프로젝트",
+      "status": "PLAN_ONLY_FOR_MANAGER_LEDGER",
+      "reason": "공식 인프라 선정계획은 확인했으나 조사 범위에서 공식 최종 manager 명단을 확인하지 못함",
+      "source_ids": [
+        "kg_2022_round1_plan"
+      ]
+    },
+    {
+      "program": "지역활성화 투자 펀드 2024년",
+      "status": "PLAN_ONLY",
+      "reason": "공식 선정계획·종합안내는 확인했으나 공개 최종 manager 결과 미확인",
+      "source_ids": [
+        "kg_2024_regional_plan"
+      ]
+    },
+    {
+      "program": "지역활성화 투자 펀드 2025년",
+      "status": "PLAN_ONLY_REANNOUNCED",
+      "reason": "2025-05-30 공고와 2025-10-02 재공고는 확인했으나 2025년 말까지 공식 최종 manager 결과 미확인",
+      "source_ids": [
+        "kg_2025_regional_plan",
+        "kg_2025_regional_reannounce"
+      ]
+    },
+    {
+      "program": "한국모태펀드 2021년 3차 정시 도시재생",
+      "status": "NO_OFFICIAL_SELECTED_MANAGER_IN_RESULT",
+      "reason": "계획에는 도시재생 track이 있으나 공식 선정결과 첨부에는 문화·특허 2개 조합만 기재",
+      "source_ids": [
+        "kvic_2021_q3_plan"
+      ]
+    }
+  ],
+  "excluded_general_vc": [
+    {
+      "family": "한국모태펀드 일반 창업·벤처·문화·특허·사회적기업 track",
+      "reason": "부동산·인프라·도시재생 실물자산 mandate가 아니며 CRE 연결 대상이 명시되지 않음"
+    },
+    {
+      "family": "정책형 뉴딜펀드 기업투자형",
+      "reason": "기업투자 일반 track은 인프라/실물자산 track과 분리; CRE 연결 근거가 없는 manager는 제외"
+    }
+  ],
+  "coverage": {
+    "official_detail_pages_referenced": 13,
+    "mandates_with_official_plan_and_final_manager": 4,
+    "review_ready_candidates": 3,
+    "plan_only_or_unresolved": 4,
+    "institutions_with_no_sufficient_plan_plus_result_case": [
+      "한국산업은행(독립 공고)",
+      "중소기업은행",
+      "주택도시보증공사",
+      "한국투자공사",
+      "한국자산관리공사"
+    ]
+  }
+}

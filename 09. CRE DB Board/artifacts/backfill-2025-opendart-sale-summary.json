@@ -1,0 +1,125 @@
+{
+  "campaign": "BACKFILL_2025",
+  "partitions": [
+    {
+      "start": "2025-01-01",
+      "end_exclusive": "2025-02-01",
+      "api_records": 456,
+      "filtered_documents": 14,
+      "inserted": 14,
+      "updated": 0,
+      "skipped": true,
+      "run_id": "c6accba93d275cff9ba6d6fbf4980ade"
+    },
+    {
+      "start": "2025-02-01",
+      "end_exclusive": "2025-03-01",
+      "api_records": 650,
+      "filtered_documents": 4,
+      "inserted": 4,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "6e26a9a3119d5053ac0660ea131564f9"
+    },
+    {
+      "start": "2025-03-01",
+      "end_exclusive": "2025-04-01",
+      "api_records": 723,
+      "filtered_documents": 13,
+      "inserted": 13,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "8426110a49ec57c3a2ad5ae82bedbb36"
+    },
+    {
+      "start": "2025-04-01",
+      "end_exclusive": "2025-05-01",
+      "api_records": 750,
+      "filtered_documents": 4,
+      "inserted": 4,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "db9f8d83612059abb8c8c3e2cbff68ac"
+    },
+    {
+      "start": "2025-05-01",
+      "end_exclusive": "2025-06-01",
+      "api_records": 664,
+      "filtered_documents": 2,
+      "inserted": 2,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "b407a10161f654ef811cbbe8dd524bd5"
+    },
+    {
+      "start": "2025-06-01",
+      "end_exclusive": "2025-07-01",
+      "api_records": 635,
+      "filtered_documents": 2,
+      "inserted": 2,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "6b4a5b6e30c056e083e2fea8a58f0a73"
+    },
+    {
+      "start": "2025-07-01",
+      "end_exclusive": "2025-08-01",
+      "api_records": 682,
+      "filtered_documents": 5,
+      "inserted": 5,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "d41138a29d60558cbad9e133bb07a6cb"
+    },
+    {
+      "start": "2025-08-01",
+      "end_exclusive": "2025-09-01",
+      "api_records": 562,
+      "filtered_documents": 1,
+      "inserted": 1,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "8ed948f0ac015897a0d1b0bc750b61c1"
+    },
+    {
+      "start": "2025-09-01",
+      "end_exclusive": "2025-10-01",
+      "api_records": 779,
+      "filtered_documents": 2,
+      "inserted": 2,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "d1d65eb0968f5fba82b86f3b9e02f44b"
+    },
+    {
+      "start": "2025-10-01",
+      "end_exclusive": "2025-11-01",
+      "api_records": 663,
+      "filtered_documents": 4,
+      "inserted": 4,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "c15eeb33ab64515db662c170068a60d9"
+    },
+    {
+      "start": "2025-11-01",
+      "end_exclusive": "2025-12-01",
+      "api_records": 750,
+      "filtered_documents": 9,
+      "inserted": 9,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "d68b3fba68555f5d8034a688c8c98518"
+    },
+    {
+      "start": "2025-12-01",
+      "end_exclusive": "2026-01-01",
+      "api_records": 1102,
+      "filtered_documents": 6,
+      "inserted": 6,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "06dfc60bf0245cdf9d5552024172e3a3"
+    }
+  ]
+}

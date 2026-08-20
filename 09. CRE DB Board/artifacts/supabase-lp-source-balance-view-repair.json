@@ -1,0 +1,12 @@
+{
+  "repaired_at": "2026-08-18T02:26:23.346526+00:00",
+  "schema": "market_intelligence",
+  "view": "v_lp_mandate_source_balance",
+  "row_count": 0,
+  "amount_columns": {
+    "source_amount_decimal": "text",
+    "untraced_amount_decimal": "text"
+  },
+  "numeric_internal_cast": true,
+  "passed": true
+}

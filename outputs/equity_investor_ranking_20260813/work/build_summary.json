@@ -1,0 +1,59 @@
+{
+  "extractedAt": "2026-08-13T09:36:02.023Z",
+  "sourceRows": 1224,
+  "currentFundSnapshotRows": 1154,
+  "fundCount": 398,
+  "missingNameRows": 0,
+  "latestRelationRows": 1154,
+  "investorCount": 446,
+  "totals": {
+    "committed": 35746269688752,
+    "invested": 29293112462911,
+    "remaining": 6453157225846
+  },
+  "classes": {
+    "기관": {
+      "count": 38,
+      "committed": 12244181077201,
+      "invested": 9642409444075,
+      "remaining": 2601771633126
+    },
+    "금융기관": {
+      "count": 152,
+      "committed": 13251778938222,
+      "invested": 10184818231687,
+      "remaining": 3066960706540
+    },
+    "일반기업": {
+      "count": 113,
+      "committed": 1714535340597,
+      "invested": 1612640553585,
+      "remaining": 101894787012
+    },
+    "개인": {
+      "count": 37,
+      "committed": 455342269474,
+      "invested": 454492796594,
+      "remaining": 849472881
+    },
+    "펀드·리츠·SPC": {
+      "count": 101,
+      "committed": 7331290847331,
+      "invested": 6834395981265,
+      "remaining": 496894866065
+    },
+    "미분류": {
+      "count": 5,
+      "committed": 749141215927,
+      "invested": 564355455705,
+      "remaining": 184785760222
+    }
+  },
+  "checks": {
+    "partitionCountMatches": true,
+    "partitionCommittedMatches": true,
+    "partitionInvestedMatches": true,
+    "partitionRemainingMatches": true
+  },
+  "outputPath": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\outputs\\equity_investor_ranking_20260813\\RA_에쿼티_투자자_금액순위_20260813_v2.xlsx"
+}

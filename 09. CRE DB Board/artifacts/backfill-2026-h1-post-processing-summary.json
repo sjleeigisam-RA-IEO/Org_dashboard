@@ -1,0 +1,46 @@
+{
+  "extraction": {
+    "inserted_extraction_runs": 20,
+    "inserted_event_mentions": 20
+  },
+  "molit_scope": {
+    "evaluated": 45394,
+    "in_scope": 236,
+    "review_area": 1155,
+    "review_group_count": 59,
+    "review_group_rows": 729,
+    "excluded_residential": 0,
+    "excluded_small_area": 43274,
+    "excluded_missing_area": 0,
+    "mentions_updated": 0,
+    "review_tasks_inserted": 0
+  },
+  "bid_process_monthly": {
+    "scanned_documents": 2205,
+    "matched_documents": 74,
+    "inserted_extraction_runs": 0,
+    "inserted_event_mentions": 0,
+    "inserted_review_tasks": 0
+  },
+  "bid_process_recovery": {
+    "scanned_documents": 1502,
+    "matched_documents": 71,
+    "inserted_extraction_runs": 0,
+    "inserted_event_mentions": 0,
+    "inserted_review_tasks": 0
+  },
+  "macro": {
+    "inserted_series": 0,
+    "inserted_releases": 0,
+    "inserted_observations": 0
+  },
+  "relationships": {
+    "relationship_run_id": "relationship-run_c30475bc58884f79a320abb85add8328",
+    "resolved_mentions": 0,
+    "ambiguous_mentions": 0,
+    "event_participants_created": 0,
+    "occupancies_created": 0,
+    "business_activities_created": 0,
+    "unresolved_mentions": 1367
+  }
+}

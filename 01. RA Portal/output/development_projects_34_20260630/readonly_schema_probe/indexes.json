@@ -1,0 +1,278 @@
+[
+  {
+    "schemaname": "public",
+    "tablename": "asset_aliases",
+    "indexname": "asset_aliases_pkey",
+    "indexdef": "CREATE UNIQUE INDEX asset_aliases_pkey ON public.asset_aliases USING btree (id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_aliases",
+    "indexname": "uq_asset_aliases_asset_alias_lower",
+    "indexdef": "CREATE UNIQUE INDEX uq_asset_aliases_asset_alias_lower ON public.asset_aliases USING btree (asset_id, lower(alias_name), alias_type)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_building_ledger",
+    "indexname": "asset_building_ledger_pkey",
+    "indexdef": "CREATE UNIQUE INDEX asset_building_ledger_pkey ON public.asset_building_ledger USING btree (asset_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_building_ledger",
+    "indexname": "idx_asset_building_ledger_pnu",
+    "indexdef": "CREATE INDEX idx_asset_building_ledger_pnu ON public.asset_building_ledger USING btree (pnu)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_fund_links",
+    "indexname": "asset_fund_links_pkey",
+    "indexdef": "CREATE UNIQUE INDEX asset_fund_links_pkey ON public.asset_fund_links USING btree (asset_id, fund_id, relation_type)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_fund_links",
+    "indexname": "idx_asset_fund_links_allocation_status",
+    "indexdef": "CREATE INDEX idx_asset_fund_links_allocation_status ON public.asset_fund_links USING btree (allocation_status)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_fund_links",
+    "indexname": "idx_asset_fund_links_asset_role",
+    "indexdef": "CREATE INDEX idx_asset_fund_links_asset_role ON public.asset_fund_links USING btree (asset_id, exposure_role)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_fund_links",
+    "indexname": "idx_asset_fund_links_fund_id",
+    "indexdef": "CREATE INDEX idx_asset_fund_links_fund_id ON public.asset_fund_links USING btree (fund_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_fund_links",
+    "indexname": "idx_asset_fund_links_include_aum",
+    "indexdef": "CREATE INDEX idx_asset_fund_links_include_aum ON public.asset_fund_links USING btree (include_in_asset_aum)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_master",
+    "indexname": "asset_master_pkey",
+    "indexdef": "CREATE UNIQUE INDEX asset_master_pkey ON public.asset_master USING btree (asset_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_master",
+    "indexname": "idx_asset_master_asset_code",
+    "indexdef": "CREATE INDEX idx_asset_master_asset_code ON public.asset_master USING btree (asset_code)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_master",
+    "indexname": "idx_asset_master_asset_kind",
+    "indexdef": "CREATE INDEX idx_asset_master_asset_kind ON public.asset_master USING btree (asset_kind)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_master",
+    "indexname": "idx_asset_master_asset_type",
+    "indexdef": "CREATE INDEX idx_asset_master_asset_type ON public.asset_master USING btree (asset_type)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_master",
+    "indexname": "idx_asset_master_business_stage",
+    "indexdef": "CREATE INDEX idx_asset_master_business_stage ON public.asset_master USING btree (business_stage)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_master",
+    "indexname": "idx_asset_master_canonical_name",
+    "indexdef": "CREATE INDEX idx_asset_master_canonical_name ON public.asset_master USING btree (canonical_name)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_master",
+    "indexname": "idx_asset_master_main_usage",
+    "indexdef": "CREATE INDEX idx_asset_master_main_usage ON public.asset_master USING btree (main_usage)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_master",
+    "indexname": "idx_asset_master_name_cleanup_action",
+    "indexdef": "CREATE INDEX idx_asset_master_name_cleanup_action ON public.asset_master USING btree (asset_name_cleanup_action)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_master",
+    "indexname": "idx_asset_master_physical_asset_name",
+    "indexdef": "CREATE INDEX idx_asset_master_physical_asset_name ON public.asset_master USING btree (physical_asset_name)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_master",
+    "indexname": "idx_asset_master_pnu",
+    "indexdef": "CREATE INDEX idx_asset_master_pnu ON public.asset_master USING btree (pnu)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_master",
+    "indexname": "idx_asset_master_portfolio_theme",
+    "indexdef": "CREATE INDEX idx_asset_master_portfolio_theme ON public.asset_master USING btree (portfolio_theme)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_project_links",
+    "indexname": "asset_project_links_pkey",
+    "indexdef": "CREATE UNIQUE INDEX asset_project_links_pkey ON public.asset_project_links USING btree (asset_id, project_id, relation_type)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_project_links",
+    "indexname": "idx_asset_project_links_project_id",
+    "indexdef": "CREATE INDEX idx_asset_project_links_project_id ON public.asset_project_links USING btree (project_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_project_links",
+    "indexname": "idx_asset_project_links_resolved_fund",
+    "indexdef": "CREATE INDEX idx_asset_project_links_resolved_fund ON public.asset_project_links USING btree (resolved_fund_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_project_links",
+    "indexname": "idx_asset_project_links_resolved_project",
+    "indexdef": "CREATE INDEX idx_asset_project_links_resolved_project ON public.asset_project_links USING btree (resolved_project_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "asset_project_links",
+    "indexname": "idx_asset_project_links_target_type",
+    "indexdef": "CREATE INDEX idx_asset_project_links_target_type ON public.asset_project_links USING btree (target_type, resolution_status)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "dev_project_asset_links",
+    "indexname": "dev_project_asset_links_asset_idx",
+    "indexdef": "CREATE INDEX dev_project_asset_links_asset_idx ON public.dev_project_asset_links USING btree (asset_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "dev_project_asset_links",
+    "indexname": "dev_project_asset_links_pkey",
+    "indexdef": "CREATE UNIQUE INDEX dev_project_asset_links_pkey ON public.dev_project_asset_links USING btree (link_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "dev_project_asset_links",
+    "indexname": "dev_project_asset_links_unique_source",
+    "indexdef": "CREATE UNIQUE INDEX dev_project_asset_links_unique_source ON public.dev_project_asset_links USING btree (dev_project_id, asset_id, link_source, link_source_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "dev_project_extract_snapshots",
+    "indexname": "dev_project_extract_snapshots_pkey",
+    "indexdef": "CREATE UNIQUE INDEX dev_project_extract_snapshots_pkey ON public.dev_project_extract_snapshots USING btree (snapshot_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "dev_project_fund_links",
+    "indexname": "dev_project_fund_links_fund_idx",
+    "indexdef": "CREATE INDEX dev_project_fund_links_fund_idx ON public.dev_project_fund_links USING btree (fund_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "dev_project_fund_links",
+    "indexname": "dev_project_fund_links_pkey",
+    "indexdef": "CREATE UNIQUE INDEX dev_project_fund_links_pkey ON public.dev_project_fund_links USING btree (dev_project_id, fund_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "dev_project_list",
+    "indexname": "dev_project_list_category_idx",
+    "indexdef": "CREATE INDEX dev_project_list_category_idx ON public.dev_project_list USING btree (source_category, list_no)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "dev_project_list",
+    "indexname": "dev_project_list_list_no_key",
+    "indexdef": "CREATE UNIQUE INDEX dev_project_list_list_no_key ON public.dev_project_list USING btree (list_no)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "dev_project_list",
+    "indexname": "dev_project_list_pkey",
+    "indexdef": "CREATE UNIQUE INDEX dev_project_list_pkey ON public.dev_project_list USING btree (dev_project_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "dev_project_project_links",
+    "indexname": "dev_project_project_links_pkey",
+    "indexdef": "CREATE UNIQUE INDEX dev_project_project_links_pkey ON public.dev_project_project_links USING btree (dev_project_id, project_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "dev_project_project_links",
+    "indexname": "dev_project_project_links_project_idx",
+    "indexdef": "CREATE INDEX dev_project_project_links_project_idx ON public.dev_project_project_links USING btree (project_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "funds",
+    "indexname": "funds_pkey",
+    "indexdef": "CREATE UNIQUE INDEX funds_pkey ON public.funds USING btree (fund_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "funds",
+    "indexname": "idx_funds_aum_status",
+    "indexdef": "CREATE INDEX idx_funds_aum_status ON public.funds USING btree (aum_status)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "funds",
+    "indexname": "idx_funds_benchmark_aum",
+    "indexdef": "CREATE INDEX idx_funds_benchmark_aum ON public.funds USING btree (benchmark_aum)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "funds",
+    "indexname": "idx_funds_invested_aum",
+    "indexdef": "CREATE INDEX idx_funds_invested_aum ON public.funds USING btree (invested_aum)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "funds",
+    "indexname": "idx_funds_primary_asset_id",
+    "indexdef": "CREATE INDEX idx_funds_primary_asset_id ON public.funds USING btree (primary_asset_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "projects",
+    "indexname": "idx_projects_primary_asset_id",
+    "indexdef": "CREATE INDEX idx_projects_primary_asset_id ON public.projects USING btree (primary_asset_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "projects",
+    "indexname": "projects_name_idx",
+    "indexdef": "CREATE INDEX projects_name_idx ON public.projects USING btree (project_name)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "projects",
+    "indexname": "projects_notion_id_key",
+    "indexdef": "CREATE UNIQUE INDEX projects_notion_id_key ON public.projects USING btree (notion_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "projects",
+    "indexname": "projects_parent_idx",
+    "indexdef": "CREATE INDEX projects_parent_idx ON public.projects USING btree (parent_project_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "projects",
+    "indexname": "projects_pkey",
+    "indexdef": "CREATE UNIQUE INDEX projects_pkey ON public.projects USING btree (project_id)"
+  }
+]

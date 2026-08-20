@@ -1,0 +1,126 @@
+{
+  "source_date": "20260713",
+  "source_files": {
+    "fund": "펀드 관리_20260713.xlsx",
+    "aum": "펀드 AUM 관리_20260713.xlsx",
+    "asset_manage": "투자 자산 관리_20260713.xlsx",
+    "fund_asset": "투자 자산 조회_20260713.xlsx",
+    "lender": "대주 정보 조회_20260713.xlsx",
+    "beneficiary": "수익자 정보 조회_20260713.xlsx"
+  },
+  "source_rows": {
+    "fund": 1124,
+    "aum": 895,
+    "asset_manage": 797,
+    "fund_asset": 978,
+    "lender_raw": 624,
+    "lender_collapsed": 524,
+    "beneficiary_raw": 1155,
+    "beneficiary_collapsed": 1120
+  },
+  "before_counts": {
+    "funds": 1125,
+    "fund_assets": 1032,
+    "asset_master": 1311,
+    "asset_fund_links": 1564,
+    "lender_exposures": 695,
+    "beneficiary_exposures": 1224,
+    "aum_snapshots": 1790,
+    "fund_lifecycle": 894
+  },
+  "plan": {
+    "funds": {
+      "insert": 0,
+      "update": 0,
+      "unchanged": 1124,
+      "skipped": 0,
+      "retained_not_in_source": 1,
+      "server_collision_groups": 0,
+      "changed_field_counts": {}
+    },
+    "asset_master": {
+      "insert": 0,
+      "update": 0,
+      "unchanged": 797,
+      "skipped": 0,
+      "retained_not_in_source": 514,
+      "server_collision_groups": 0,
+      "changed_field_counts": {}
+    },
+    "fund_assets": {
+      "insert": 0,
+      "update": 0,
+      "unchanged": 978,
+      "skipped": 0,
+      "retained_not_in_source": 54,
+      "server_collision_groups": 0,
+      "changed_field_counts": {}
+    },
+    "lender_exposures": {
+      "insert": 0,
+      "update": 0,
+      "unchanged": 524,
+      "skipped": 0,
+      "retained_not_in_source": 171,
+      "server_collision_groups": 0,
+      "changed_field_counts": {}
+    },
+    "beneficiary_exposures": {
+      "insert": 0,
+      "update": 0,
+      "unchanged": 1120,
+      "skipped": 0,
+      "retained_not_in_source": 104,
+      "server_collision_groups": 0,
+      "changed_field_counts": {}
+    },
+    "aum_snapshots": {
+      "insert": 0,
+      "update": 0,
+      "unchanged": 894,
+      "skipped": 0,
+      "retained_not_in_source": 896,
+      "server_collision_groups": 0,
+      "changed_field_counts": {}
+    },
+    "fund_lifecycle": {
+      "insert": 0,
+      "update": 0,
+      "unchanged": 894,
+      "skipped": 0,
+      "retained_not_in_source": 0,
+      "server_collision_groups": 0,
+      "changed_field_counts": {}
+    }
+  },
+  "conflicts": {
+    "funds": [],
+    "asset_master": [],
+    "fund_assets": [],
+    "fund_asset_server": {},
+    "fund_asset_collapsed_duplicates": [
+      {
+        "key": [
+          "112264",
+          "익선동 상업시설 개발"
+        ],
+        "rows": 2
+      }
+    ],
+    "exposures": {
+      "lender_source": [],
+      "lender_db": {},
+      "beneficiary_source": [],
+      "beneficiary_db": {}
+    }
+  },
+  "matching_policy": {
+    "funds": "exact fund_id; exact-name/code conflicts are not fuzzy-merged",
+    "asset_master": "exact asset_code, then exact name+address/name/address only when unique",
+    "fund_assets": "exact fund_id+asset_name, then exact fund_id+address only when unique",
+    "exposures": "exact fund_id+party name; base_date is updated as snapshot data",
+    "normalization": "outer whitespace and Excel scalar/date conversion only; no fuzzy matching",
+    "deletes": 0
+  },
+  "applied": false
+}

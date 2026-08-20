@@ -1,0 +1,107 @@
+{
+  "manifest_version": "1.0",
+  "manifest_id": "approved-lpmandate-khug-future-city-fund-1-result",
+  "status": "APPROVED",
+  "review": {
+    "reviewed_by": "hermes-official-primary-source-review",
+    "reviewed_at": "2026-08-20T12:10:00Z",
+    "approved_by": "hermes-parent-user-authorized-official-source-promotion",
+    "approved_at": "2026-08-20T12:11:00Z"
+  },
+  "sources": [
+    {
+      "id": "src-khug-37197",
+      "url": "https://www.khug.or.kr/hug/web/cs/no/csno000001.jsp?mode=S&articleId=37197",
+      "title": "미래도시펀드 1호 모펀드 조성 및 운용 위탁운용사 선정 결과",
+      "publisher": "주택도시보증공사",
+      "document_type": "NOTICE",
+      "published_at": "2026-01-29",
+      "accessed_at": "2026-08-20",
+      "rights_status": "EXCERPT_ALLOWED",
+      "exact_text": "미래도시펀드 1호 모펀드 조성 및 운용 위탁운용사 선정 결과\n미래도시펀드 1호 모펀드 위탁운용사 선정 결과를 아래와 같이 공고합니다.\n선정 운용사명 : 우리자산운용 주식회사\n2026. 01. 29\n주택도시보증공사"
+    }
+  ],
+  "organizations": [
+    {
+      "id": "org-khug",
+      "organization_type": "GOVERNMENT",
+      "canonical_name": "주택도시보증공사"
+    },
+    {
+      "id": "org-woori-am",
+      "organization_type": "COMPANY",
+      "canonical_name": "우리자산운용"
+    }
+  ],
+  "event": {
+    "id": "evt-khug-future-city-fund-1-selected",
+    "canonical_title": "미래도시펀드 1호 모펀드 위탁운용사 선정",
+    "current_stage_code": "MANAGER_SELECTED",
+    "event_date_start": "2026-01-29",
+    "event_date_end": "2026-01-29",
+    "date_precision": "DAY",
+    "lifecycle_status": "COMPLETED",
+    "verification_level": "V2",
+    "overall_confidence": 1.0,
+    "evidence": {
+      "source_ids": [
+        "src-khug-37197"
+      ]
+    }
+  },
+  "mandate": {
+    "id": "mandate-khug-future-city-fund-1",
+    "lp_organization_id": "org-khug",
+    "mandate_code": "KHUG-FUTURE-CITY-FUND-1",
+    "mandate_name": "미래도시펀드 1호 모펀드 조성 및 운용",
+    "vintage_year": 2026,
+    "announced_at": null,
+    "application_deadline": null,
+    "selected_at": "2026-01-29",
+    "mandate_status": "SELECTED",
+    "mandate_scope": "DOMESTIC",
+    "metadata": {
+      "amount_status": "NOT_STATED_IN_SELECTION_RESULT_SOURCE"
+    },
+    "evidence": {
+      "source_ids": [
+        "src-khug-37197"
+      ]
+    }
+  },
+  "tracks": [
+    {
+      "id": "track-khug-future-city-fund-1",
+      "track_code": "KHUG-FUTURE-CITY-FUND-1",
+      "track_name": "미래도시펀드 1호 모펀드",
+      "strategy_code": "REAL_ASSETS",
+      "geography_code": "DOMESTIC",
+      "target_manager_count": 1,
+      "evidence": {
+        "source_ids": [
+          "src-khug-37197"
+        ]
+      }
+    }
+  ],
+  "guidelines": [],
+  "selections": [
+    {
+      "id": "selection-khug-future-city-fund-1-woori",
+      "track_id": "track-khug-future-city-fund-1",
+      "manager_organization_id": "org-woori-am",
+      "selection_status": "SELECTED",
+      "selected_at": "2026-01-29",
+      "confidence": 1.0,
+      "evidence": {
+        "source_ids": [
+          "src-khug-37197"
+        ]
+      }
+    }
+  ],
+  "selection_members": [],
+  "selection_vehicles": [],
+  "amounts": [],
+  "deployments": []
+}

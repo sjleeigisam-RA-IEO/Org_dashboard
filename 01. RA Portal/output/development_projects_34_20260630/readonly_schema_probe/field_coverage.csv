@@ -1,0 +1,15 @@
+﻿field,filled,total
+asset_building_ledger.row,12,43
+asset_master.address_text,37,43
+asset_master.completion_date,27,43
+asset_master.far,12,43
+asset_master.gross_floor_area,33,43
+asset_master.latitude/longitude,30,43
+asset_master.pnu,27,43
+asset_master.scr,12,43
+asset_master.site_area,14,43
+funds.notion_business_stage_class,55,55
+funds.primary_asset_id,47,55
+funds.primary_asset_ids,0,55
+projects.primary_asset_id,30,38
+projects.primary_asset_ids,0,38

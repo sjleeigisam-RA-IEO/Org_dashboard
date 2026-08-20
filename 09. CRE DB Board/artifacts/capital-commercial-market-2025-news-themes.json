@@ -1,0 +1,1151 @@
+{
+  "rawDocuments": 4098,
+  "uniqueUrls": 4098,
+  "interpretationWarning": "Category-first RSS campaign; counts are thematic signals, not population incidence. Titles/snippets only.",
+  "themeCounts": {
+    "금리·유동성": 330,
+    "PF": 349,
+    "부실·구조조정": 134,
+    "오피스": 295,
+    "물류": 283,
+    "데이터센터": 348,
+    "호텔": 424,
+    "리테일": 166,
+    "리츠": 213,
+    "투자·매각": 957
+  },
+  "themeQuarterly": {
+    "금리·유동성": {
+      "Q1": 64,
+      "Q2": 74,
+      "Q3": 103,
+      "Q4": 89
+    },
+    "PF": {
+      "Q1": 83,
+      "Q2": 80,
+      "Q3": 82,
+      "Q4": 104
+    },
+    "부실·구조조정": {
+      "Q1": 25,
+      "Q2": 43,
+      "Q3": 27,
+      "Q4": 39
+    },
+    "오피스": {
+      "Q1": 71,
+      "Q2": 78,
+      "Q3": 88,
+      "Q4": 58
+    },
+    "물류": {
+      "Q1": 70,
+      "Q2": 86,
+      "Q3": 65,
+      "Q4": 62
+    },
+    "데이터센터": {
+      "Q1": 54,
+      "Q2": 60,
+      "Q3": 104,
+      "Q4": 130
+    },
+    "호텔": {
+      "Q1": 123,
+      "Q2": 81,
+      "Q3": 129,
+      "Q4": 91
+    },
+    "리테일": {
+      "Q1": 44,
+      "Q2": 44,
+      "Q3": 44,
+      "Q4": 34
+    },
+    "리츠": {
+      "Q1": 30,
+      "Q2": 82,
+      "Q3": 45,
+      "Q4": 56
+    },
+    "투자·매각": {
+      "Q1": 230,
+      "Q2": 259,
+      "Q3": 242,
+      "Q4": 226
+    }
+  },
+  "examples": {
+    "금리·유동성": [
+      {
+        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPTkJ1MUpJRUdDUjRZLXB5MGxmMlc2dGtZcVBlM0YwLXE0MjlMbURnd0owUWw5UGdQaktUT3U1MUVsWXRsWjJaU3ZhSWxIQlJtWnpDeVdvYzVjWExWLWdTOHdRX1NDZDloNGRBdmRxUFktQV81T0VBR0RmUXBhdjJrQkZ4RVU2WGZheXpXM2FzcFpGbzRhUnBxX21RVkVFS2NId3lHMEVQQmlwNmxC?oc=5",
+        "publishedAt": "2025-01-01T08:00:00Z",
+        "title": "대전 유성호텔 복합개발 '순항'...1000억 토지대출 리파이낸싱 조달 - 딜북뉴스",
+        "snippet": "대전 유성호텔 복합개발 '순항'...1000억 토지대출 리파이낸싱 조달 딜북뉴스",
+        "publisher": "https://www.dealbook.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5YSHQ1VEFtcU83RldBQUM1YXMtZGZsbU9SYjRFNl9odU4xY0NfNDk2Z05YYUJmam04b1pfYnpQMTFQdTg2WXp5WjBDTmNvR21JYjYtR3lFeUNpc2NCVllyb2RNQlhSci0x0gFsQVVfeXFMTXFUWEZpX2hwc2N1YVZ6MVlpdmsybjRfX0lueTZKbnJBbjRXOXVhRERGTUQ0V0FDS283TWVxZ1VQZ1E4cmRMV0x5UGFmN3VZc2VGRF9kSmZXMzE5b2drSV9JU1J2VjljUGtPMDdl?oc=5",
+        "publishedAt": "2025-01-02T08:00:00Z",
+        "title": "포스코이앤씨, ‘오티에르 반포’ 본PF 리파이낸싱...710억 4.8% 조달 - bloter.net",
+        "snippet": "포스코이앤씨, ‘오티에르 반포’ 본PF 리파이낸싱...710억 4.8% 조달 bloter.net",
+        "publisher": "https://www.bloter.net"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFAxMHRiaVhPS0tWRXlDM05NcFNSOWI2MDR2MVJmVkhVcERTVTN6bks5X3M2TjdPWU1GRkc0cGZOaW1zeW5WR1RMbWxrYlFLRG00V1k3WlhqT2VXcldCeml3?oc=5",
+        "publishedAt": "2025-01-06T08:00:00Z",
+        "title": "핀다, 사업자 대출 신청 248% 급증... 사업자들이 선택하는 이유는 - 조세일보",
+        "snippet": "핀다, 사업자 대출 신청 248% 급증... 사업자들이 선택하는 이유는 조세일보",
+        "publisher": "https://m.joseilbo.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFAzNU5RaXJ4RmoxUHdZbGc4YldfQXdnQzdCdUFPeE9uWnluTW9rM2R3TkppNE8zVlNVbHhzcVZnMWpJTlYwVlJ5bjNyOFE3emlicGc?oc=5",
+        "publishedAt": "2025-01-09T08:00:00Z",
+        "title": "캡스톤자산운용, 롯데백화점·마트 5곳 리파이낸싱 완료…매각도 계속 추진 - 매일경제",
+        "snippet": "캡스톤자산운용, 롯데백화점·마트 5곳 리파이낸싱 완료…매각도 계속 추진 매일경제",
+        "publisher": "https://www.mk.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5iVzhLOW44bGNfNkxad25rQW96cjI5dlFLQmdiamhicTd3MlNoeXUtVlZ5Q2FoWlFNOWZIWUFwSWw5Q0dLX0JXNmNMWE5SMmZ1ZFhBUmpTa0ItOGxtX0RnWDg0anhuNmlBXzlJZzc4cFJRZw?oc=5",
+        "publishedAt": "2025-01-13T08:00:00Z",
+        "title": "신한은행, 중도상환수수료율 최대 1.4%→0.4%...주담대 금리 0.1%p 인하 - 오피니언뉴스",
+        "snippet": "신한은행, 중도상환수수료율 최대 1.4%→0.4%...주담대 금리 0.1%p 인하 오피니언뉴스",
+        "publisher": "https://www.opinionnews.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBzVG1tRkNzSmRzVlh0N2o1alc2aTFmYnkwLVlrWjRGTThfa3owY3VsX0VnZVplZzdSMG5BR3VmNUctYlc5dlhJUkFja2s5MDA?oc=5",
+        "publishedAt": "2025-01-14T08:00:00Z",
+        "title": "국민연금을 믿는다...마곡 원그로브 1.9조 담보대출 금리 5% - 코어비트",
+        "snippet": "국민연금을 믿는다...마곡 원그로브 1.9조 담보대출 금리 5% 코어비트",
+        "publisher": "https://www.corebeat.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBoUF80eHNqLUpNZXlrcmJ3RlVfV3Zpb1JyVHV0bEVidXNEZGNDTVR4MDFvU3lHeW0xN2wwSW9yS0p0T21LVWRNZC11ZWs3emNrQUdob0ZYSjJBQjJtc1VsU1k4c1ptVDFNaFFNM01uUmY?oc=5",
+        "publishedAt": "2025-01-15T08:00:00Z",
+        "title": "강남 임피리얼 팰리스 호텔, 4천억 리파이낸싱…\"PF보단 담보대출\" - 연합인포맥스",
+        "snippet": "강남 임피리얼 팰리스 호텔, 4천억 리파이낸싱…\"PF보단 담보대출\" 연합인포맥스",
+        "publisher": "https://news.einfomax.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE53VjJvQ2c4TUJGYm9QZjJWLXU4dUktTmlMVzMwekhrYUxTQXVvYzFBQTd6c251RVZNb183S212NVNVTXJXdk12S1F5OWtYbXpIYUFPZ1pfS0pOejc1VVpwX01zTmRvZFZUX0E?oc=5",
+        "publishedAt": "2025-01-20T08:00:00Z",
+        "title": "(통신사 유동성전략)②KT, AI 미래에 사활…호텔 매각으로 2조원 확보 - ibtomato.com",
+        "snippet": "(통신사 유동성전략)②KT, AI 미래에 사활…호텔 매각으로 2조원 확보 ibtomato.com",
+        "publisher": "https://www.ibtomato.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5sZmFJY1NFcWRweEh3eGktamxfYzY1SWlYaUlRYkRtMHV4N1Vmdk93UUl5d1pIVFIzSEhRdHhJVDBXOWhaai1HbEhVckNDTldWbEdpNFpFSGV0ZWMxM3R2Z3lXOHdkT1hKRXVzX0tQZlbSAXRBVV95cUxQWTk3djVQUnRJN2VtZG5sU2hBRmFUbWM0dFZfY21kaUcxRElET21HTzh1WHMzQkJ5anIzd1ZraGtxZEp6NWFIU2lRMHBoam5JaEQyZGZXb0QwR3hfWEZSYkpPeUJIc0JHT25CaWVQeEVzMVlWMw?oc=5",
+        "publishedAt": "2025-01-20T08:00:00Z",
+        "title": "대출 2025년 1월 브랜드평판... 1위 농협은행, 2위 SBI저축은행, 3위 아이엠뱅크 - thefairnews.co.kr",
+        "snippet": "대출 2025년 1월 브랜드평판... 1위 농협은행, 2위 SBI저축은행, 3위 아이엠뱅크 thefairnews.co.kr",
+        "publisher": "https://www.thefairnews.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9MTlhXcnVHZVZQTmtHNWV6a29jcG1CSFR3MnZFbHI3RFlrd242czhiTkQ3d0hzLXRyUVl6MGdZWmpRSDYzTTFfNUNSa2h5LXdsYTM2YjhjdDlJU2dnVnhwZy1ZZWo3UlVj?oc=5",
+        "publishedAt": "2025-01-23T08:00:00Z",
+        "title": "[특종] LS증권, 350억 빌려주고 200억 수취 ‘고금리 폭리’①…”칼만 안든 강도였다” - 공정뉴스",
+        "snippet": "[특종] LS증권, 350억 빌려주고 200억 수취 ‘고금리 폭리’①…”칼만 안든 강도였다” 공정뉴스",
+        "publisher": "https://www.fairn.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9MV0hTbVVuMDBkMlZURjFHcVVrVVpwZlBrQ3lGbDRVdzNkeXVDdzNXamJhUi1tTDNVU0d4TmZONmNoeUtMdzFZbGh1QTMzZXFseWJHLXVja000c0FncGNlatIBeEFVX3lxTE93MnJnYVlKdzgxRlRKZGF5UEt4YzFTOUlOYzR4V1p6aUlOenZxRVVvcUp0akgwaUFNSExCNnU3aUFqM3VNNDJyUWdSSDNaWm9DdUlmOHhlTjJUV1FIOEhnaExLakNob1AyYkdwdnI3M3UyTUZoX1NLaw?oc=5",
+        "publishedAt": "2025-02-01T08:00:00Z",
+        "title": "분양가 80%까지 저금리로…'청년 주택드림 대출'[주간 부동산 키워드] - 뉴시스",
+        "snippet": "분양가 80%까지 저금리로…'청년 주택드림 대출'[주간 부동산 키워드] 뉴시스",
+        "publisher": "https://www.newsis.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBkNW9rQk9ZWXVFLXhNMFU0MHFaS3E5VkJQRkpqZ2RIYUtWenk5RHBhU2lvS0R1aVNUazVQeWl2MjhFYVdodzd1dG1yWlhxM1ZLREhOcFl5UUFlRGdVV2RMUmdoei3SAWhBVV95cUxNbjI2RXQ2U1RxYXhjdExVSmFZRVhqd3ZDWTBaU3Z5aEtxcEQ1Q04zMGlxYzgyRFBJdG5oS1BDS2NrZURJNnRPRFc2bVowY1I0R0VhRmVLak5CRy1Xb0wtV0c4MmdGVW9Odw?oc=5",
+        "publishedAt": "2025-02-03T08:00:00Z",
+        "title": "한양학원 재정위기 6천억원, 관계기업 구조적 유동성위기?, PF사업리스크인가? - usline.kr",
+        "snippet": "한양학원 재정위기 6천억원, 관계기업 구조적 유동성위기?, PF사업리스크인가? usline.kr",
+        "publisher": "http://www.usline.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE85bTNvTUNoZW1CY1U2SWtKNzVpSmlKUWdwcUlqV3htbHl1TWtLNWRmTlM5S2FqSzc3dVVhejFodVdTc3RLUTAweVFLWHliMXBDdkZWOUFnSzRaT2gyQlV0ZUd0NV92NHVYcHA1eWpvdXc3dGZQS18tVkxjR2hPUW_SAXNBVV95cUxPUVdCemozR1ZnV2FvRUhTa2lYM3VGbXIwMzExa2lXbF9lQjBKaG43ZE1qZVRRMlpHb1A0LWpQbklZQ0o2MjNlSTJpbVZyUll6WmlZNVdER0xBaXRQUDNEUG9CaERHUk1VZjlBeHVidkQ0RVFF?oc=5",
+        "publishedAt": "2025-02-04T08:00:00Z",
+        "title": "엠디엠플러스 '아크로 여의도 더원', 완판 앞두고 '1400억' 리파이낸싱 - 땅집고",
+        "snippet": "엠디엠플러스 '아크로 여의도 더원', 완판 앞두고 '1400억' 리파이낸싱 땅집고",
+        "publisher": "https://realty.chosun.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9qM3pMSWFpLWxnRjZ6RkNnOTVGb2F4TDV2UDdpQTc0VzBLZDNUNGZwR1QxSHVCVVRobDlUcndjTXdjeUNzNnZaV1NmR0dhYWY1REY3OFhR?oc=5",
+        "publishedAt": "2025-02-12T08:00:00Z",
+        "title": "부동산 경기 침체 여파…예금은행 가계대출 2개월 연속 감소 - biz.heraldcorp.com",
+        "snippet": "부동산 경기 침체 여파…예금은행 가계대출 2개월 연속 감소 biz.heraldcorp.com",
+        "publisher": "https://biz.heraldcorp.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1IV2pZaHVrRUtGMU1lX2VSdHAzQ1ZNVWFrLUt0NElKcm9BOVRpMlZFR3U3cjhvVVBPQUwwOXk1U0NMMzJpTGo4Rm9KTVpDWTJyLTZOYmJR?oc=5",
+        "publishedAt": "2025-02-14T08:00:00Z",
+        "title": "뱅크몰, 주택담보대출 비교 누적 이용자 700만명 돌파 - 지디넷코리아",
+        "snippet": "뱅크몰, 주택담보대출 비교 누적 이용자 700만명 돌파 지디넷코리아",
+        "publisher": "https://zdnet.co.kr"
+      }
+    ],
+    "PF": [
+      {
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5YSHQ1VEFtcU83RldBQUM1YXMtZGZsbU9SYjRFNl9odU4xY0NfNDk2Z05YYUJmam04b1pfYnpQMTFQdTg2WXp5WjBDTmNvR21JYjYtR3lFeUNpc2NCVllyb2RNQlhSci0x0gFsQVVfeXFMTXFUWEZpX2hwc2N1YVZ6MVlpdmsybjRfX0lueTZKbnJBbjRXOXVhRERGTUQ0V0FDS283TWVxZ1VQZ1E4cmRMV0x5UGFmN3VZc2VGRF9kSmZXMzE5b2drSV9JU1J2VjljUGtPMDdl?oc=5",
+        "publishedAt": "2025-01-02T08:00:00Z",
+        "title": "포스코이앤씨, ‘오티에르 반포’ 본PF 리파이낸싱...710억 4.8% 조달 - bloter.net",
+        "snippet": "포스코이앤씨, ‘오티에르 반포’ 본PF 리파이낸싱...710억 4.8% 조달 bloter.net",
+        "publisher": "https://www.bloter.net"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1FVUV5U1FQV1dVaERqWEVJczhPTVBXb2EzeFNzSklLcEw2NDFQMVBJMUlkZE9HcE90TlZLTHAtQkhJV2EwSXl3WVhKYkVheEtJNmozLV9mTWpWZVQ2bHYtbC13Nm8yWXlSVXZiTHQ1TTd6VEY3?oc=5",
+        "publishedAt": "2025-01-02T08:00:00Z",
+        "title": "서울 강북 포레나 미아 주상복합 개발사업 PF 1450억원 조달 - 대한경제",
+        "snippet": "서울 강북 포레나 미아 주상복합 개발사업 PF 1450억원 조달 대한경제",
+        "publisher": "https://www.dnews.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQR3RFV2llVzBvRWFleldDbHU3NTM2ZGNHT3VoM0E3MUNORlNVVHBqT2NKbno0czZLUWswaUNURldmeUp3UEd3ZV9jQ3VjR1VOYnE4akpvUGN6N0lhSXpDQ09VWTVPeHNQdVVkcmdvRmZKS0NYeEdtOFg4aUhNZUlwYjYwcm0waUdfY2dOMDR0Smw1eVB5UTY2NjNfa1pMamtaM2JPS1pZdzhuTUZV?oc=5",
+        "publishedAt": "2025-01-02T08:00:00Z",
+        "title": "3840억 본PF 모집 끝낸 캡스톤의 개봉동 데이터센터, 이달 착공 - 딜북뉴스",
+        "snippet": "3840억 본PF 모집 끝낸 캡스톤의 개봉동 데이터센터, 이달 착공 딜북뉴스",
+        "publisher": "https://www.dealbook.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE56TnVBSkE2RDFqRVNQR3FrVXlzT3RBbTlOS19ac3dOSndtWF9DTTN4Ry1oaVoxMmI5ekpXNF9TQTJxRjFlbnJONWVCZXlaek0?oc=5",
+        "publishedAt": "2025-01-06T08:00:00Z",
+        "title": "이도, 수표구역 PF 1조5000억 원 유치 추진 - 코어비트",
+        "snippet": "이도, 수표구역 PF 1조5000억 원 유치 추진 코어비트",
+        "publisher": "https://www.corebeat.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBoUF80eHNqLUpNZXlrcmJ3RlVfV3Zpb1JyVHV0bEVidXNEZGNDTVR4MDFvU3lHeW0xN2wwSW9yS0p0T21LVWRNZC11ZWs3emNrQUdob0ZYSjJBQjJtc1VsU1k4c1ptVDFNaFFNM01uUmY?oc=5",
+        "publishedAt": "2025-01-15T08:00:00Z",
+        "title": "강남 임피리얼 팰리스 호텔, 4천억 리파이낸싱…\"PF보단 담보대출\" - 연합인포맥스",
+        "snippet": "강남 임피리얼 팰리스 호텔, 4천억 리파이낸싱…\"PF보단 담보대출\" 연합인포맥스",
+        "publisher": "https://news.einfomax.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBjVjNfTjExc0MxeWdmSGtJQ0dfOU8tZHZJcnlQaGl4d2NILV94bnJaLXRTQk5fMHYtTU5DVU9ubGh6QWIxdkpoUjFabWZjOFpsVC1zZTVn?oc=5",
+        "publishedAt": "2025-01-25T08:00:00Z",
+        "title": "세운3구역 재개발 본PF 조달 본격화…사업 '청신호' - DealSite경제TV",
+        "snippet": "세운3구역 재개발 본PF 조달 본격화…사업 '청신호' DealSite경제TV",
+        "publisher": "https://news.dealsitetv.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBkNW9rQk9ZWXVFLXhNMFU0MHFaS3E5VkJQRkpqZ2RIYUtWenk5RHBhU2lvS0R1aVNUazVQeWl2MjhFYVdodzd1dG1yWlhxM1ZLREhOcFl5UUFlRGdVV2RMUmdoei3SAWhBVV95cUxNbjI2RXQ2U1RxYXhjdExVSmFZRVhqd3ZDWTBaU3Z5aEtxcEQ1Q04zMGlxYzgyRFBJdG5oS1BDS2NrZURJNnRPRFc2bVowY1I0R0VhRmVLak5CRy1Xb0wtV0c4MmdGVW9Odw?oc=5",
+        "publishedAt": "2025-02-03T08:00:00Z",
+        "title": "한양학원 재정위기 6천억원, 관계기업 구조적 유동성위기?, PF사업리스크인가? - usline.kr",
+        "snippet": "한양학원 재정위기 6천억원, 관계기업 구조적 유동성위기?, PF사업리스크인가? usline.kr",
+        "publisher": "http://www.usline.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE16bDZpdURHZFBnTHVKYVhfTVlKbHpTRm1HWFdYVm4wQmJRVE5YZWs4RjVKRkthek9JX2xWOEFQVEh4bDF2VkNfa3JpbEZQamRndDZfZ01HRUpMRXpGOU1zUDV5dzRuaFVZMFJESkRDT0gzUQ?oc=5",
+        "publishedAt": "2025-02-12T08:00:00Z",
+        "title": "을지파이낸스센터, 선매입사 없이 개발한다…2월 본PF '목표' - 마켓인",
+        "snippet": "을지파이낸스센터, 선매입사 없이 개발한다…2월 본PF '목표' 마켓인",
+        "publisher": "https://marketin.edaily.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFByMGYwaS1Kb1dXeFNlbUF3M2trV3dXRjhRTnhLeF95V1YzN1VxWkpIMC1YUUxtNDQ2endPVVM1WHIwd0g3LWtaWGQyMVphdm5ubG44ZW4xMWJ1UzZxTi1wSE91ZmlNMldHQW1EZUFOMXNuZll1?oc=5",
+        "publishedAt": "2025-02-16T08:00:00Z",
+        "title": "\"책임준공 하루 늦어도 채무인수 100% 아니다\"…부동산PF 책임준공 약정 개편 - 대한경제",
+        "snippet": "\"책임준공 하루 늦어도 채무인수 100% 아니다\"…부동산PF 책임준공 약정 개편 대한경제",
+        "publisher": "https://www.dnews.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5RNDI1RHF4LXUtcXduTEZadVRYZjZyWkNUdVRtdlBoaEpYM1hFWHM5dTBlNXQ1ZlRhcWFwQ2tLeFhMY2xDZXV1ZHJEUmN6Q090MGJFNVRHbGhNckdHZUx4WF83NWQ?oc=5",
+        "publishedAt": "2025-02-17T08:00:00Z",
+        "title": "현대건설, '등촌동 청년안심주택' 본PF 4400억 원 조달 - 지이코노미",
+        "snippet": "현대건설, '등촌동 청년안심주택' 본PF 4400억 원 조달 지이코노미",
+        "publisher": "https://www.geconomy.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9vQTZaR2pmSzg2ZVJrUjN5V2RydktKdWNzckdUVTBja29pcEhoT3JPQ09Ha0JvNXRYV2VmN1Q3SG1zc3V4VVJjamNrNzhGMXAzaEhrdXBLVUtsTWtvVi1MUlJ5ZktXVGtW0gFsQVVfeXFMTnFKeWNGZkY2T2VGSWVybzFDaVZuSFhWNU02NVMtNVNaRVZ3blhic1F1X1dEU2ZiOVBqbFdqMHRkaWkwRTU2ZmNwanNXY2diU2dwbTNBOU9IOUpLNVZLb0xwX2lJMTExQnBWTjU4?oc=5",
+        "publishedAt": "2025-02-17T08:00:00Z",
+        "title": "현대건설, 주주 참여 ‘등촌동 청년안심주택’ 본PF 4400억 조달 - bloter.net",
+        "snippet": "현대건설, 주주 참여 ‘등촌동 청년안심주택’ 본PF 4400억 조달 bloter.net",
+        "publisher": "https://www.bloter.net"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1RQm1pbFlQQ05Kd1ZDS3BZaGVKOHh4QVpScUJ0U1VqRWcwV3k5S0M5MUJLUmx3R3hURWRnQ1RvMUh6UDR4ZmoyRTZDckRMWU1BRzB3U0VaQjR4UlMyTDkxMXRickFGQjRScXBrVnBabnZ2S1Vk?oc=5",
+        "publishedAt": "2025-02-17T08:00:00Z",
+        "title": "부동산PF 수수료 개편된지 한 달, 민원 제기 '0건'…낙인효과 우려도 - 대한경제",
+        "snippet": "부동산PF 수수료 개편된지 한 달, 민원 제기 '0건'…낙인효과 우려도 대한경제",
+        "publisher": "https://www.dnews.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1ENHVhdjZEWGlXQWFLeVdXNjVIZGh4SHJub3ZtRkRyNXRFQzg1UmU0eXVQTVg5X2xQazZsYlc2UElFRkpBbThOZERoWG5SYXc?oc=5",
+        "publishedAt": "2025-02-20T08:00:00Z",
+        "title": "오산세교2지구 민간 임대주택 개발, 본PF 모집 완료 - 딜사이트",
+        "snippet": "오산세교2지구 민간 임대주택 개발, 본PF 모집 완료 딜사이트",
+        "publisher": "https://dealsite.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5XRkJrem5sUnB5SUFsUFdHdUo3eTlaQ0dNSnBSVkJoUzBsN3d1OFgtYVdMVTFxRjZxMmZ6UGptS0dCUlVSSS13eEZvbjdhdEE?oc=5",
+        "publishedAt": "2025-02-20T08:00:00Z",
+        "title": "돈의문2구역 정비사업, PF 단기차환 연명…차환 리스크↑ - 딜사이트",
+        "snippet": "돈의문2구역 정비사업, PF 단기차환 연명…차환 리스크↑ 딜사이트",
+        "publisher": "https://dealsite.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1uemNLQTlCQXlHTGI0QXJQeDVfT29qYU02RzdnUG8xYWJzci1ORDJFNTZPSWJqaEdNSFF0S2xpQ2NqSFotdlc0V1UySXhYUmdENG02d09KUi1Tc3gwMWZxRmdlMElpcWR50gFsQVVfeXFMTy1DU1NLNlZHakFwTDJhLVpIVE1DaU9zRnNkSVVrLUpEUG9WcnhhV0QxT3QyUXR3c2RLVmoxMkp4SWRzY25RbnQ1VFQ0T01zNG9GYlB5WVJrUWZLOWRFa0dyZjh3MDN0UmtsbzNY?oc=5",
+        "publishedAt": "2025-02-21T08:00:00Z",
+        "title": "현대건설, ‘은평 시니어 레지던스’ 본PF 후순위 800억 신용보강 - bloter.net",
+        "snippet": "현대건설, ‘은평 시니어 레지던스’ 본PF 후순위 800억 신용보강 bloter.net",
+        "publisher": "https://www.bloter.net"
+      }
+    ],
+    "부실·구조조정": [
+      {
+        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5ZbHNXYVVJdVNZSlVJSjRDYlNBMS1xRW9qOW5FM2R0N2pSNWoxRWJlU3J1R2o3Z0NOMlpfOTRkWkpwQ1E2VjhuRjBsZUhzeUhiNUlHVy11Z1NOVWppdHFFSk1SYjR5Tk5rckZpZGEybWNtdFV5MU1ZdHI1RG14NXfSAXNBVV95cUxNNGZGYmVITGJlbTdPU0pmdzM2TWxocEpXOXd0NTdwNEFOMzEtLUlmNTZTX21vYjNra0lJQW9OQ2JId2FGVV9pQUVrY1IyanZTNVhzWmY4QWJneGtKMGprQnNxbHpqclB2NGJjY0hWczB5V3Z3?oc=5",
+        "publishedAt": "2025-01-20T08:00:00Z",
+        "title": "800억 폭락 '시대인재' 입점 대치동 빌딩.. 공매 8회 유찰에도 안팔려 - 땅집고",
+        "snippet": "800억 폭락 '시대인재' 입점 대치동 빌딩.. 공매 8회 유찰에도 안팔려 땅집고",
+        "publisher": "https://realty.chosun.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFA4bk52V0NSRUdMT0luM1Q1YTJHRzdHZlpLbTVIX3VMb0I3dUtIdmJ2SXhvaEtpUzhvelZkNVhqX2hORU5TWXFseHE0T0lTVUh1VmV0cmF0QUc3bm9zU2RnTEgwTEtBSGJMVFlB?oc=5",
+        "publishedAt": "2025-02-17T08:00:00Z",
+        "title": "서울교통公, 지하철상가 규제 완화…임대료 연체요율 6%로 인하 - 철도경제신문",
+        "snippet": "서울교통公, 지하철상가 규제 완화…임대료 연체요율 6%로 인하 철도경제신문",
+        "publisher": "https://www.redaily.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9SdWc4cGpDc3FvTVc3OFNQRURBU2daamdSd21TSFd3SGx0WW1Qeng2Zi1WZEhxMGZCbTBIeFFUT0h0YkNCN21rcm5TWUdQenc?oc=5",
+        "publishedAt": "2025-02-18T00:28:29Z",
+        "title": "(해외 부동산 투자 부실 시리즈 3) - 코어비트",
+        "snippet": "(해외 부동산 투자 부실 시리즈 3) 코어비트",
+        "publisher": "https://www.corebeat.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE04U0x5NVB1QS1ud3cxMVdxMjBGY3Biay1TWUpOMnk0OVVEM3JDaVpxU0tLa1B6aGIxLTQxVjZzWEQwb0hZQ093UTRhcDdXS0k?oc=5",
+        "publishedAt": "2025-02-20T22:44:41Z",
+        "title": "용산 나진상가 17,18동 개발 사업 기사회생 - 코어비트",
+        "snippet": "용산 나진상가 17,18동 개발 사업 기사회생 코어비트",
+        "publisher": "https://www.corebeat.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1uN1VVbjg0cFpDenRHUmZWbHhDdGFhNmdnaHNWRkh6RjB3WkNDc2pZQWJLc1NDRldic2s0VzJYRVVLaDh1SzdqbGVQaXh6WTcwV3oyeGxmSmUwdDVUb095ZDc4bDVDWE0t0gFsQVVfeXFMUGlOaHBDTmQtTkRtQ3k3Q1JIU0NBUXk3elVFbG5yWW53LW1wa2VrMVloMDFBVHhzNGh5YVZTNXIxMVFjMkJqWW9RT0pIby05TlNiOUNNWTlQdU9MbWxxX1dnbFVLcGtOVzRZTW43?oc=5",
+        "publishedAt": "2025-02-21T08:00:00Z",
+        "title": "유진자산운용, 시장 확대 '노젓기' NPL펀드 4000억 증액 도전 - bloter.net",
+        "snippet": "유진자산운용, 시장 확대 '노젓기' NPL펀드 4000억 증액 도전 bloter.net",
+        "publisher": "https://www.bloter.net"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBSR2ZkcnZzbkFLeFlDODNlOWlUODdDRU9zd1Z6aUpHNUFNRjdNdFg5ZXc1XzNhWU5NbFgwR0I4aDN0TUwwVE05elBqQVRUTVY3VU51ZzdMdTZiY1dSVWJaRmYwMTQ2UDZoV1R4MlRqSGItdk1T?oc=5",
+        "publishedAt": "2025-03-10T07:00:00Z",
+        "title": "[단독] 부동산PF 자기자본 40% 이상, 책임준공 면제 '유력 검토'…부실 시공 줄어들까 - 대한경제",
+        "snippet": "[단독] 부동산PF 자기자본 40% 이상, 책임준공 면제 '유력 검토'…부실 시공 줄어들까 대한경제",
+        "publisher": "https://www.dnews.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE96NzQ4bWY2UDRxY1VrTmVCUEg0bnNnQ1ZFcmpHMHFwUWVUQWwyQjJ4SjVMVEQ2WXh0NmE4dUw5Vjhvcy0zeU9zV00xR3V6OUJjUTZDZHVacVdWM0FpRkkxVUVBUXN2eE5URlVuX0ZBaXk?oc=5",
+        "publishedAt": "2025-03-19T07:00:00Z",
+        "title": "부동산 PF연체율 3.42%로 하락, 부실 사업장도 3조7천억 ↓ - 매일노동뉴스",
+        "snippet": "부동산 PF연체율 3.42%로 하락, 부실 사업장도 3조7천억 ↓ 매일노동뉴스",
+        "publisher": "https://www.labortoday.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQa29HNjV6b2hic21qSktVcUctMTY4ZjlnM2NBNjRCV05nS01MaEU5djJ1eFZyZ0h4amJNUzJQendocVROcUdpT2d1VUIzVEtDTXlfX3dXM3ZwV1R6VmpSQlpfZFBHdUIxNGRUcE1JTzJtc1dnQnhVWlBmYTBvSTlGVE5hY1kyYW56RGg1OFdlMm9VTm1TSTJVbtIBrAFBVV95cUxObEd5Rm91VDY2dTNHSWRQc0NsOG5NU2FmcENBUTZzakN5SE5Lengyby1zV2hFY203eWNPRE0wb21VUUdqTDczQVprQUZoWFFJUUlRTzkxek1Uc2hYcHpsUVRlWFpyeUs4SjlsMXZnTFE5bFUwZFRFZFpWVUppU2FyV2U1T0R1YVRUbkRDbFdYbnlKLU5wVmRzcFMyVWZPS0djUHJPdlFXR3NKQWRi?oc=5",
+        "publishedAt": "2025-03-20T07:00:00Z",
+        "title": "[단독] “분양가 200억원부터” 초호화 ‘펜디 아파트’ 결국 PF 사업 공매行 - 조선비즈 - Chosunbiz",
+        "snippet": "[단독] “분양가 200억원부터” 초호화 ‘펜디 아파트’ 결국 PF 사업 공매行 - 조선비즈 Chosunbiz",
+        "publisher": "https://biz.chosun.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFA2S1o4VkYybGx5SVl2X2x5RjBfWXcwb1VSSXJHS2xRSmpYTm9kVFQwalkwVVA5YTNsTDdheE9hdkJ5Z19BOXBlY1B3Q05laVplZFAtUDdadERzc2VWZ0h4aHNZM0ZDX2pVRmoxY3RUdlVOUdIBdkFVX3lxTFBCOW9ybV9tNjBuMS1JcWpYbFdZbElvXzNxVG05T2QwNkFEWlF1M3RYRFk3dWJNc090U3FSWTJHT3JLd3VCeFRYRHFHTk9JemhndHF4YXE2dko2U3dNZk5BcmtOZ2I2NGE5RFlMTno5ZzU3aW02NXc?oc=5",
+        "publishedAt": "2025-04-08T07:00:00Z",
+        "title": "새마을금고, 7월 자산관리전문회사 출범···부실 오명 벗을까? - 시사저널e",
+        "snippet": "새마을금고, 7월 자산관리전문회사 출범···부실 오명 벗을까? 시사저널e",
+        "publisher": "https://www.sisajournal-e.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9pNmRxSm42c0pJc3NyM3dtRFlJZXlhcVhfRXItYS1wSHpRSmRraHVWWFJhZ2t2WmtlM3NFaU1MUFZqVVhoOWc?oc=5",
+        "publishedAt": "2025-04-11T07:00:00Z",
+        "title": "‘반값 수준’ 서울 경매도 34차례 유찰…위기 더 커지나 [부동산PF 출구가 없다] - v.daum.net",
+        "snippet": "‘반값 수준’ 서울 경매도 34차례 유찰…위기 더 커지나 [부동산PF 출구가 없다] v.daum.net",
+        "publisher": "https://v.daum.net"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9vdGc1Nk5BYWIwYVZfX3AwOGJBRU5Od1d6S1M3dW1tUWpNS3h1Qzd3dHYxVVFIdGtNS3AxWVpJamRubVVXQ21GSXJmWHZzQzh6UGtleFFQRkpOMnR5Mm9uTFQtSUNkcEFKWVJRQ1VaLUswSWRkYWYtNjdjTTJRbEXSAXNBVV95cUxNMDMxNW9rb0FxXzluQWZRZ2UwWkpsNmhsYUNtOEVzS19UMXRaVVdwaFJJdFd1OXJMV1JOSGc0cFVWUXpuVjh2T0FQbjBtdUZVSGhyWXBEYmVtX3BkSS1yTnprUklNeUg2QVRpRjNnaTJPLWc0?oc=5",
+        "publishedAt": "2025-04-21T07:00:00Z",
+        "title": "'최악 적자' 교보자산신탁…PF부실 직격탄, 정비사업은 실적 '단 1건' - 땅집고",
+        "snippet": "'최악 적자' 교보자산신탁…PF부실 직격탄, 정비사업은 실적 '단 1건' 땅집고",
+        "publisher": "https://realty.chosun.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9jWTRKVVYydEJOYzR5NElnUXBMOUtuYk9mTjk4LVJzdFJONDhJRk4yWDdBU0dNQ0xYQmlwYjh1ZGF2cXZXR0dndDR5Z292bWVhUkhjbU9n?oc=5",
+        "publishedAt": "2025-04-22T07:00:00Z",
+        "title": "‘미분양 해법’ CR리츠 1호 나왔다 - biz.heraldcorp.com",
+        "snippet": "‘미분양 해법’ CR리츠 1호 나왔다 biz.heraldcorp.com",
+        "publisher": "https://biz.heraldcorp.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1lVUFCc2loX0JaSTc5RDViSlJwSlktQzlYelJDMGVwVHg3WW5UckQ2RWlSUXg3RlpRTS1xbVZDczdlVGtxaTAwLUg3SkFiV0RuZU9Mbk5ZRlFLQdIBX0FVX3lxTE52dXlHcEo5eWdlS0pDT2lCbHFtYXEwMnp0Vl9ENGJ4aE15aHFOQlVvcEw0bjFaOVlCcVdIbDB4SndqM0xkR0EwZFJ3YXdjN252NFhzX0lBVTJ1cG0wUjFn?oc=5",
+        "publishedAt": "2025-04-22T07:00:00Z",
+        "title": "지방 미분양 매입 해법 ‘CR리츠’ 1호 출시··· 제도 부활 1년 만 - 경향신문",
+        "snippet": "지방 미분양 매입 해법 ‘CR리츠’ 1호 출시··· 제도 부활 1년 만 경향신문",
+        "publisher": "https://www.khan.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9Ndjdjb21VTHpSLXYydnNXMlJxN25wVFlHTHA2UmdhYWM3MV9NdlloMFp6dHlaWHNIdlpZdUpiYVdWeDdGSUhzWW42R2EtaC1vYUtqQXlUSmJ1dw?oc=5",
+        "publishedAt": "2025-04-22T07:00:00Z",
+        "title": "'미분양 해소' CR리츠 1호 출격…수성레이크우방 288가구 매입 - 한국경제",
+        "snippet": "'미분양 해소' CR리츠 1호 출격…수성레이크우방 288가구 매입 한국경제",
+        "publisher": "https://www.hankyung.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBmNUZkckdHZkdZVy1paTV5aFRwZXJGRlhHbWhiMGFXR1pfU25UZTlDV1hkTTBsaExoc3NjcDVoak5tNGhNSTFhUHVfbndxY2FGWHV1bjAwVDIwT3VwdWlSVlc1SzVIZmxERHVYQXhfMWJXWXJRNHNLZDBNSERUZUXSAXNBVV95cUxObFh4aE1qQWc1MzZTc2dkRHdlOEVSYndFMTJ6bjZ4UkR0bG1aU0wxaWgtTlR5RFNXRVp2T2dfRTJGR0h5Y3dhbEtrc2pqVzBrWk5FeTlwX1pUY3hLS283aEFTc0xDc0xTNHpWLWNnbVhLdnk4?oc=5",
+        "publishedAt": "2025-05-02T07:00:00Z",
+        "title": "'실적 꼴찌' 하나증권, '미분양' 대구서 40억 분양 강행, 이러니 실적이… - 땅집고",
+        "snippet": "'실적 꼴찌' 하나증권, '미분양' 대구서 40억 분양 강행, 이러니 실적이… 땅집고",
+        "publisher": "https://realty.chosun.com"
+      }
+    ],
+    "오피스": [
+      {
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9DYUsyNkNzcUpmMWZCQjBXVDdJTURZaEg3VVpNVlpsWDhOaDVnN0lGUU1OZm44QUF4ZHRTUFdJRGR2aVBUZXZadEhVa2dXOFhCMk1PMm05aUxBMXPSAWBBVV95cUxOZjBoVWNHN3NOZVUxX0FVX0FWOXkwTG5wMGNURFJFS1E3c3VkdmYzY0NiUVh2LS1uSkVFdUZUWG04VWcwY2sxN3Vha3hRQjJOc18wc1pOQnJBZGFXWlJ0T2I?oc=5",
+        "publishedAt": "2025-01-02T08:00:00Z",
+        "title": "SK에코플랜트, 2027년 영등포로 사옥 이전한다 - 연합뉴스",
+        "snippet": "SK에코플랜트, 2027년 영등포로 사옥 이전한다 연합뉴스",
+        "publisher": "https://www.yna.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBNU1hBT1hlZkNwZmJVcEtJVWt4dzFJTDNRaEVfS29kNzA0OVZ6V3BpX1g4V1VrOEVPakt1ZUM3aUpaQU5rem01cW00RFp4dW43MnNjSXRwQ0tlUjR5cU1lZ0R3?oc=5",
+        "publishedAt": "2025-01-14T08:00:00Z",
+        "title": "6가 오피스-호텔 전환 완공 임박…4층 건물에 52개 객실·식당 - 미주중앙일보",
+        "snippet": "6가 오피스-호텔 전환 완공 임박…4층 건물에 52개 객실·식당 미주중앙일보",
+        "publisher": "https://www.koreadaily.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOSUpFM1pDUE01SUlIMm8yWEY4VnFVcGtlMzJTMG13MWV1QVU5TVdjM3J4YWhRWDQxVFgtVkdzeW5PLVdqWU5YMGZZWHFubmZDdG8yOGVmN1lXTF8wbTZTZnVyQjJaRnNVVkROY1IySnpGOHZiWWZfS3JGdGxPaE9CaHFxejVRR3VSSG41VnVJVDRjY2hqN1VQYVpVbEg?oc=5",
+        "publishedAt": "2025-01-14T08:00:00Z",
+        "title": "첫 입찰 테이프 끊은 강남권 오피스 매각...6곳 새 주인 '대기' - 딜북뉴스",
+        "snippet": "첫 입찰 테이프 끊은 강남권 오피스 매각...6곳 새 주인 '대기' 딜북뉴스",
+        "publisher": "https://www.dealbook.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE54S1lWb2lWUkV4Mzc2eDM2SVlpQ00xX1VPeF96Z2NBV2dWcjEyemM3Smp1emFVS2FBX3A1amRVYS1IeFNlR0I1aUo1NHcxVVk?oc=5",
+        "publishedAt": "2025-01-20T08:00:00Z",
+        "title": "공평 15·16지구 오피스, 내년 준공 앞두고 3.3m²당 4300만 선매각 추진 - 코어비트",
+        "snippet": "공평 15·16지구 오피스, 내년 준공 앞두고 3.3m²당 4300만 선매각 추진 코어비트",
+        "publisher": "https://www.corebeat.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNekRvVVRXeUhxYmdJbjMyR1cySlNQamtMRkxOb1RlM3Y0LTNnQlVNcl8tZVhUYWU0LUhZSkY0MDl5MUpub2tybWJyemZmODRvSlNDSk0takE2ZFlZdHRMVzlWdWpCVHB3b3pNRF9VN2V1YnlrdnlYazdLd1BqY1BtYlltaFJyNlJybXdkeWwtV2duVjNab29Zb3VsM0lKNHNKV0lTa2xIYw?oc=5",
+        "publishedAt": "2025-01-20T08:00:00Z",
+        "title": "강남권 오피스 평당 5000만원시대 기대감 키우는 엔씨타워1 - 딜북뉴스",
+        "snippet": "강남권 오피스 평당 5000만원시대 기대감 키우는 엔씨타워1 딜북뉴스",
+        "publisher": "https://www.dealbook.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE02cWVQdmxvU1phLVZxVzROd1RncDhQZFl4TFpUMjJCZ054SXh2ZmR1TjRBUFBzdXhlNTF3WGhGUGw3cS0yT3VyNVp0WFA1ZXc?oc=5",
+        "publishedAt": "2025-01-22T08:00:00Z",
+        "title": "남대문 쪽방촌에 32층 오피스 빌딩 들어선다 - 코어비트",
+        "snippet": "남대문 쪽방촌에 32층 오피스 빌딩 들어선다 코어비트",
+        "publisher": "https://www.corebeat.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5zbGY0eEp0Ti1mSndEb0JkV283OGtBQW5adFhZU3k3SkRmNHdJaGxScllPUGJ1SXpuc2pySmUwSTBtUkVJWHNmMXptdzJVRzVDZHlZ?oc=5",
+        "publishedAt": "2025-01-23T08:00:00Z",
+        "title": "[단독] 1조 대어 금호석유화학 본사사옥 '시그니쳐타워' 매각 시동 - 네이트",
+        "snippet": "[단독] 1조 대어 금호석유화학 본사사옥 '시그니쳐타워' 매각 시동 네이트",
+        "publisher": "https://news.nate.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE0yajIwbEVFaURUZDFJVTBwQlJBZUNOYjFJVGRCRXhOdUpFY3NEOGQ5dXc1MDM4enpuV3g0OXV2MHU1c0JBRW9MUFJIVXVJaXJyVXd4M29YZnhNdw?oc=5",
+        "publishedAt": "2025-02-03T08:00:00Z",
+        "title": "25년 1회 부산시 건축전문위원회 심의결과 / 초량3구역 호반써밋, 해운대 경동리인뷰 4차, 에코델타 11블록 푸르지오 공공분양, 마린시티 오피스 - Naver Blog",
+        "snippet": "25년 1회 부산시 건축전문위원회 심의결과 / 초량3구역 호반써밋, 해운대 경동리인뷰 4차, 에코델타 11블록 푸르지오 공공분양, 마린시티 오피스 Naver Blog",
+        "publisher": "https://m.blog.naver.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1SYVJtUnljZEF3M0hHbUhJbHZ3V19EMDU3czBHWGl6NEhsTC1vcGtfT1dFUm1LOV9yS2xIbDltMzU4S1kyWTFsdGpUZTU0dTEwa0FCRGxLbzJsOExXZ2RGaFBqYWFtUDBtY0x4RUdyeUhLaGkxZVg2d2pGMjVLd2_SAXNBVV95cUxOSllVZklQeWlzMFhoVEdWMXk4aDhvaEpfZ3lVYnhyQVhZRDE0ZUtCSHE1U1BPMFdJa240RHVpX21nX2QyWUhjM3pPS0wxaDNHSEI5TXBCVUt4YXVDb2F3emh4Y01rTFZfRTZmQWhpNU5uMHQ0?oc=5",
+        "publishedAt": "2025-02-04T08:00:00Z",
+        "title": "믿었던 키움의 배신, 해외 오피스 펀드 -70%…투자금 전액 날리나 - 땅집고",
+        "snippet": "믿었던 키움의 배신, 해외 오피스 펀드 -70%…투자금 전액 날리나 땅집고",
+        "publisher": "https://realty.chosun.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQYjY2LUlBOEUxUFFkeUpOSG5NOTFReWVJNjc5ZjdDdVZDUkVSVzlJNmIyMXRDREFhQTRva3dIOXkyRVRuc3RlMmwzV1FqN1JlQWVoblBFanVJTmhZYk5DMFM3Z3JGdlA1b2szSG1EUmtnOVhOaFZmRE84czJhRTFEVjRZVQ?oc=5",
+        "publishedAt": "2025-02-05T08:00:00Z",
+        "title": "과기공-퍼시픽운용, '엔씨타워1' 4500억에 품는다…오피스 시장 양극화 심화 - 인베스트조선",
+        "snippet": "과기공-퍼시픽운용, '엔씨타워1' 4500억에 품는다…오피스 시장 양극화 심화 인베스트조선",
+        "publisher": "https://www.investchosun.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE13RVk1NXNhd2ZTT2xXU2R6Qk1TS0tYbWYyNUFsSEN3YkVfS1JpWkFRSG1QWk40WFBFQ1cxZTRhV0lwLWY5NFU5NmpIVHdEdw?oc=5",
+        "publishedAt": "2025-02-17T23:52:11Z",
+        "title": "(오피스 공급폭탄 시리즈 3) - 코어비트",
+        "snippet": "(오피스 공급폭탄 시리즈 3) 코어비트",
+        "publisher": "https://www.corebeat.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQNnp4UEdJSXhmblpzaTFiVHFRZkkwbGRFTTBfY2d0dzU4NGhZamJvSDVaQ095djFsM0xzRGs2SDJsekhmWUJLWG0tMDFoZkE3MER2WjBuRm82R1ZNWC1MbWNneHVyb3M3ZHFkaThIR21kUGstTFNGdFdkbVJzMFFWd096Tk9WUk0?oc=5",
+        "publishedAt": "2025-02-19T08:00:00Z",
+        "title": "'1.5조 대어' 공평동 G1 오피스 매각 작업 본격화 - 모바일한경",
+        "snippet": "'1.5조 대어' 공평동 G1 오피스 매각 작업 본격화 모바일한경",
+        "publisher": "https://plus.hankyung.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE05NTZTNDREVFNtMU9vWHhmeWt6Z2oyUHIyZ3VfRWpTdDNCTEJtRUVMLVZUbnF6VXRkd000S0RRV1JRd2VFclY4Ykdyemc2N1l0V1o4?oc=5",
+        "publishedAt": "2025-02-20T08:00:00Z",
+        "title": "[단독] '1.5조 대어' 공평동 G1 오피스 매각 작업 본격화 - 네이트",
+        "snippet": "[단독] '1.5조 대어' 공평동 G1 오피스 매각 작업 본격화 네이트",
+        "publisher": "https://news.nate.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5xLXlHa3JiM0lJNGpYT01DS2tTSmpMVmJobTQtRWhDbm1URTFrenNYcnI1cE9EYTdYZzMxUUI3WlZJZnZFcVA2c2treWVIWHBtNUY2U2xSdUlYUQ?oc=5",
+        "publishedAt": "2025-02-20T08:00:00Z",
+        "title": "1.5兆 메리츠 인사동 오피스 재개발 매각 '잰걸음' [fn마켓워치] - 파이낸셜뉴스",
+        "snippet": "1.5兆 메리츠 인사동 오피스 재개발 매각 '잰걸음' [fn마켓워치] 파이낸셜뉴스",
+        "publisher": "https://www.fnnews.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5XQzRhaUduSkFEemV5NnJvTzI3WDNaT1R1SmwydDZQQkJBTnBpU2l5M1RVV1dGQTFieVllRDl0Y0pZNG11ODZvUXk5eEV0VUNnQTJLdm0tS1FhZkpGcklIaHFVZWphd2s?oc=5",
+        "publishedAt": "2025-02-22T08:00:00Z",
+        "title": "25년 부산시 2회 건축위원회 심의결과 / 센텀 글로벌 퀀텀 콤플렉스 사업, 해운대 우동 1502번지 복합개발, 60층 규모 오피스텔 추가, 양자컴퓨터 - Naver Blog",
+        "snippet": "25년 부산시 2회 건축위원회 심의결과 / 센텀 글로벌 퀀텀 콤플렉스 사업, 해운대 우동 1502번지 복합개발, 60층 규모 오피스텔 추가, 양자컴퓨터 Naver Blog",
+        "publisher": "https://blog.naver.com"
+      }
+    ],
+    "물류": [
+      {
+        "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQTTdhNDI2SUxycjhqa19RRDZrNXJmRXZXMlNwRTI5d0p4MG13aUgxZ0EyajRKSThkNmdwQWk5WVZ4VWs0R2hiVk1xODB1TWlraGJ0aTAzS05UZE02Uzd2clp5VjJmbTdxYUw0dVl2S3pxNWszYTlqTDNkYnUzZVl4eUp1RkJCdHhkTnNHSDNxQzRUTUxoMTFxdtIBrAFBVV95cUxQNGpXWWJ2RGYyVTdNTnJHZEdkX0U3ZWZJaTVxUnpvZUlnV3ZkQXItbHdSWUdFdjh5WUl0QTQzWks2Nk1tWXFvckZUYlgzcUhON0E2QmRoYTVIM0lKN25SX1ZCbms1bWZMMlVReUJIazZSUnAzRWh6NWhIU1l5bno3WFMzZzdCU2p3c2taWGFOTTZ4Z2xHTGpEZzVlX1l3eHl3SHFfVHAwNFRuOUVP?oc=5",
+        "publishedAt": "2025-01-09T08:00:00Z",
+        "title": "‘물류센터 개발’ 용인 남사읍 11만㎡ 땅, 법정관리 들어갔다 - 조선비즈 - Chosunbiz",
+        "snippet": "‘물류센터 개발’ 용인 남사읍 11만㎡ 땅, 법정관리 들어갔다 - 조선비즈 Chosunbiz",
+        "publisher": "https://biz.chosun.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBQcTNtR3pycHJPUmFhUW1SWEl1SDlMaXkzdU54b1phamxJOEhPcWhkOVl4d1RXMFhaU25KdkZyUGtpbFZJVXdUYnFMYUF3dnI0R0FIZ1dB?oc=5",
+        "publishedAt": "2025-01-14T08:00:00Z",
+        "title": "인구소멸 지역에도 물류센터…쿠팡 “3년 내 5000만명 쓰는 시대 열 것” - 매일경제",
+        "snippet": "인구소멸 지역에도 물류센터…쿠팡 “3년 내 5000만명 쓰는 시대 열 것” 매일경제",
+        "publisher": "https://www.mk.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBYWk9IRHgteVFEZVNpMlR5M0YzSVYzZk9jdFdlQjA0Z2N6eko4MjNMY3BUNG1jcU43SW50U2tDeW91QzBPdU9BY2FSenh4SFk?oc=5",
+        "publishedAt": "2025-02-10T08:00:00Z",
+        "title": "엠플러스운용, '물류센터' 4곳 매각 개시 [fn마켓워치] - v.daum.net",
+        "snippet": "엠플러스운용, '물류센터' 4곳 매각 개시 [fn마켓워치] v.daum.net",
+        "publisher": "https://v.daum.net"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE54Wm9wcVVzRE1SdWwxYUQwLXlXU1RZNDMtXzh1eXdzYlRfb3ZwYklMdzR1RG83b1VaZHlZWnpaTFpVVjRuTXZaek1tOVFSUTFhQjZDQ01NZVJwZw?oc=5",
+        "publishedAt": "2025-02-10T08:00:00Z",
+        "title": "엠플러스운용, '물류센터' 4곳 매각 개시 [fn마켓워치] - 파이낸셜뉴스",
+        "snippet": "엠플러스운용, '물류센터' 4곳 매각 개시 [fn마켓워치] 파이낸셜뉴스",
+        "publisher": "https://www.fnnews.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9UUXdmTGcwTm1kNWYyQlV1OVB4RVBDUnVfN2JEaDQzVUR4ZVJwMVZBaHRtYUxwZzlFdXU3ZGN3dUFtcHZuT0Q1M2JDbmFWWEpqdmV1cGlRdWU0VG9z?oc=5",
+        "publishedAt": "2025-02-10T08:00:00Z",
+        "title": "엠플러스운용, '물류센터' 4곳 매각 개시 [fn마켓워치] - 부산파이낸셜뉴스",
+        "snippet": "엠플러스운용, '물류센터' 4곳 매각 개시 [fn마켓워치] 부산파이낸셜뉴스",
+        "publisher": "https://busan.fnnews.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5qZ2NBa09ERVFycENlaHVtM2w1Vi1ZVS1kQ0tvQTZrWXVzeFA0VXRPSWt3TGdrZG9ySElFNDlaMUlrR3lhVGhLZmlvV3ptT09ldmt5U1JkR2NWZUw3?oc=5",
+        "publishedAt": "2025-02-11T08:00:00Z",
+        "title": "요진건설, 600억 규모 화성 ′덕우리 물류센터 신축공사′ 수주 - 뉴스핌",
+        "snippet": "요진건설, 600억 규모 화성 ′덕우리 물류센터 신축공사′ 수주 뉴스핌",
+        "publisher": "https://www.newspim.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9mcEVxSVRKc21RVnltSnBnaXFCV3J5ek95RWZpa1E3QjdIbm1iR3RqcEtwblBXbnRTdDhnZTVtUUdGeGZuSHI4UnR3aC1QYVBkazhPZ0J3?oc=5",
+        "publishedAt": "2025-02-12T08:00:00Z",
+        "title": "곤지암 물류센터, 입찰 흥행…숏리스트 3곳 선정 - DealSite경제TV",
+        "snippet": "곤지암 물류센터, 입찰 흥행…숏리스트 3곳 선정 DealSite경제TV",
+        "publisher": "https://news.dealsitetv.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1XWEpDSll6OGhyU0RraHQzVWdHb284RGxuaHZKOFJid0VlWG9yb1E0eW9SZFBMd2Q4YlM3V09hZEc1MXBwQ3NUVmQ3Tm1sWFBkeFpBR2lGa0VxZnpZc2htQtIBeEFVX3lxTE9wNndZWmRQcTloQ2VMaEYzMHhtMWdOMXlpNmc4SUFnNGZNT2E2X3UxMmozTWlJSU84NGtXUXpZQ0JUMTl2ZXJTa1RIU2VUd2NxcDZOVzlJdmY4SDNxWmlqeHlhOThoUkVlUWJSZ0hUOTQ3aXd3TWdELQ?oc=5",
+        "publishedAt": "2025-02-19T08:00:00Z",
+        "title": "'개장 1년' 인천항 해상특송물류센터…화물 99% C커머스 - 뉴시스",
+        "snippet": "'개장 1년' 인천항 해상특송물류센터…화물 99% C커머스 뉴시스",
+        "publisher": "https://www.newsis.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5zSjFWSmZ3cW5Oa2ZIMUVpd0FKSFNlQmVlb0VHS3lYUFhZM0xEZ09UajZvM1BKYXBXZWF1ME9oc3JDVi1XUHZjemY4a2J3bDZLQVlYNHpkNzN4bF92d05oYklxN1k?oc=5",
+        "publishedAt": "2025-02-19T08:00:00Z",
+        "title": "인천항 해상특송물류센터 개장 1년…화물처리시간 6.3일→4.5일 - 한국세정신문",
+        "snippet": "인천항 해상특송물류센터 개장 1년…화물처리시간 6.3일→4.5일 한국세정신문",
+        "publisher": "https://www.taxtimes.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9lRzVHeHY3QUc5TkdPc3Y5cFg2LWRQZWhuX2hrcEpwMUdHUzZ3NkEwNU1vMG9ZcGg4U1EzWGw3dkxEeDJCVUpTbmlmTzdSNHlFaWZob1RuajFYZXNMc01pMmNyaUV5NEUxUld1QjFn?oc=5",
+        "publishedAt": "2025-02-19T08:00:00Z",
+        "title": "인천항 특송물류센터 53%나 물량 확대 - 카고뉴스",
+        "snippet": "인천항 특송물류센터 53%나 물량 확대 카고뉴스",
+        "publisher": "https://www.cargonews.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9rR1Fpb1FsT1FzblE1LXprX1k4ZTR0MVNHcmdyRk16THNFcE5nY043eV82T3dpOHdPaGRTR1phM0pNTkdlN2ltcjlDWGpBUkVhV3JBQW9INFpnYXR4WGZmV1JXSGN5VmlmTTV5Rm9TWXM?oc=5",
+        "publishedAt": "2025-02-19T08:00:00Z",
+        "title": "인천항 해상특송물류센터 1년…통관 빨라졌다 - 인천일보",
+        "snippet": "인천항 해상특송물류센터 1년…통관 빨라졌다 인천일보",
+        "publisher": "https://www.incheonilbo.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1NQTZGOEgxaV80TWpPeDl6LWJXWG1FelR5TUlVTk1icnRDS00yVm45cGduRU5mY3E4bnE5SEhlcTY3X2RHUE5fYTNUbTlHWk1YT1NzUzJrS3h2Yy1nSFBmNHNzZ0p3T08ySDVn?oc=5",
+        "publishedAt": "2025-02-20T08:00:00Z",
+        "title": "2024년 A급 신규물류센터 공급, 전년 대비 36% 감소 - 물류신문",
+        "snippet": "2024년 A급 신규물류센터 공급, 전년 대비 36% 감소 물류신문",
+        "publisher": "https://www.klnews.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQZ3U3UFpMVmx4Ty1fdzdVV21YNVkwdnZBaG1jcGF1ZWJiR0FvcmROSE5QTld1TzZZZ0taUlFLdHhLaXVWSkZReDhKcU9BaFc3dVFfQ0RaQW10YmRqTUZqc0xNWTFRd3FkbFRBSUZKLTBfczhtUWVRLWlBVGQybUtPS2FIbnFpZlBW?oc=5",
+        "publishedAt": "2025-02-26T08:00:00Z",
+        "title": "제일그룹, 베트남 하이퐁에 638억 원 규모 물류센터 착공 - 글로벌이코노믹",
+        "snippet": "제일그룹, 베트남 하이퐁에 638억 원 규모 물류센터 착공 글로벌이코노믹",
+        "publisher": "https://www.g-enews.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBQaThJeGxhcV92enpTQ0Z3Umd3UktsaVRGQmZnaFVjM2JuMDc5M2VsNFZVRjZ6c0ozTWcwZEo0a2dsWGdVT2c2OGtWQ3NkVUU?oc=5",
+        "publishedAt": "2025-02-27T08:00:00Z",
+        "title": "켄달스퀘어리츠, 이천4물류센터 매각…배당 안정성 '방점' - 딜사이트",
+        "snippet": "켄달스퀘어리츠, 이천4물류센터 매각…배당 안정성 '방점' 딜사이트",
+        "publisher": "https://dealsite.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE51R2NJWHl1VTM3SHZ0bk80blA3bUwtZllRSGFIZkhBTnlkNUtSV2dsMlEwVjN5bm1TRW9QRzBwZFhQZXlOTWV3RmNHX2czZWc?oc=5",
+        "publishedAt": "2025-03-06T08:00:00Z",
+        "title": "남양주 화도읍 물류센터 2월 착공…쿠팡 선임차 확보 - 딜사이트",
+        "snippet": "남양주 화도읍 물류센터 2월 착공…쿠팡 선임차 확보 딜사이트",
+        "publisher": "https://dealsite.co.kr"
+      }
+    ],
+    "데이터센터": [
+      {
+        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQR3RFV2llVzBvRWFleldDbHU3NTM2ZGNHT3VoM0E3MUNORlNVVHBqT2NKbno0czZLUWswaUNURldmeUp3UEd3ZV9jQ3VjR1VOYnE4akpvUGN6N0lhSXpDQ09VWTVPeHNQdVVkcmdvRmZKS0NYeEdtOFg4aUhNZUlwYjYwcm0waUdfY2dOMDR0Smw1eVB5UTY2NjNfa1pMamtaM2JPS1pZdzhuTUZV?oc=5",
+        "publishedAt": "2025-01-02T08:00:00Z",
+        "title": "3840억 본PF 모집 끝낸 캡스톤의 개봉동 데이터센터, 이달 착공 - 딜북뉴스",
+        "snippet": "3840억 본PF 모집 끝낸 캡스톤의 개봉동 데이터센터, 이달 착공 딜북뉴스",
+        "publisher": "https://www.dealbook.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9kczhGQXJhdk1zSlVObWtSRmR3OFpUMi1HLWhFXzJlci14c0ZldWg5SFZsaDJ5cXI3Mkk1X3ZFNl9TNm04OXJjai1teUZCMkhaOGxNaVh4dlA2eFp3WnV3VFM0Wm1HV2gzUldnak52dndLcEU?oc=5",
+        "publishedAt": "2025-01-14T08:00:00Z",
+        "title": "우리금융, 프랑스 투자은행 나틱시스 손잡고 미국 데이터센터에 2100억 투자 - businesspost.co.kr",
+        "snippet": "우리금융, 프랑스 투자은행 나틱시스 손잡고 미국 데이터센터에 2100억 투자 businesspost.co.kr",
+        "publisher": "https://www.businesspost.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9lMnQ3SHlFSXhxckF5a3dGemFBU2x3TnJoQWZYUmI0Q0p6WTlqQy1rUFdtUHp1c24zVVRYc0RSQndGVDFTMGpjSW5EX0tYYW56QUVfY1Z0dlA1dWFTLTE1TNIBW0FVX3lxTE9IYm54a2NfN1djRGx5WHlPdGtxRW1qampkZTRvb1NyaDJzaVFKak14RVhqXy14SDdCdW9kVHYyaXNWajgxck81T3pBbDZhcUZSXzVkNVZvV0hrckk?oc=5",
+        "publishedAt": "2025-01-30T08:00:00Z",
+        "title": "LG유플러스, 파주 초거대 AI 데이터센터 건설 본격화…2027년 준공 목표 - 경제일보",
+        "snippet": "LG유플러스, 파주 초거대 AI 데이터센터 건설 본격화…2027년 준공 목표 경제일보",
+        "publisher": "https://www.economidaily.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBfbXMtdURHYkQ1UTNLQjhmNXNoVlVUd1BWRlJSdlAwdkxLSExFR0lBX2ctLXBwenc1bVptZmVGZGd4WllhMkhENzlZM0FZV0NNNGZmcGJjb1V4bktWX1NhUHk5bnFLcUt3RTN2c3daYngyZw?oc=5",
+        "publishedAt": "2025-02-07T08:00:00Z",
+        "title": "'국내 최대' 용인 퍼시픽써니 데이터센터, 예정대로 9월 준공될까 - 마켓인",
+        "snippet": "'국내 최대' 용인 퍼시픽써니 데이터센터, 예정대로 9월 준공될까 마켓인",
+        "publisher": "https://marketin.edaily.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNaGFUUzlzemhXOUJxTlZ1a29nZUdoRFFMZlFiQWxVVkpuMkNqak9SS0hjVFJWWm1wWjQyMXAtcWlEYi15blFxbEhoZ2xsVVFadjVieHUtbHlIR3BiOTRIeXhpcVpyVTR0QmJFNi1tMWQ0T2F4dHRuR196NjNDR21GcVcwRmh4SjlKZ2F6aFkzNHdOWlptQVN4U0pHZE1yZw?oc=5",
+        "publishedAt": "2025-02-11T08:00:00Z",
+        "title": "캐피탈랜드-에퀴닉스, 고양 향동 SL3X 데이터센터 착공 - 딜북뉴스",
+        "snippet": "캐피탈랜드-에퀴닉스, 고양 향동 SL3X 데이터센터 착공 딜북뉴스",
+        "publisher": "https://www.dealbook.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE13TW9feGJBM01sdENlY2lUWUpScW0tX18teWZOSFE0ajdZRzBFRDhXM0NTcEFLcjFjVXU0V3Fkc2hpRVpTd0FYNTktaVBja0hCZi14MHBiMnh1dW5LMXFfZHlkMTU3SmxnQTVR?oc=5",
+        "publishedAt": "2025-02-13T08:00:00Z",
+        "title": "신한은행, 25년만에 제2데이터센터 새로 짓는다 - sisaon.co.kr",
+        "snippet": "신한은행, 25년만에 제2데이터센터 새로 짓는다 sisaon.co.kr",
+        "publisher": "https://www.sisaon.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1wSVpfYWdsNjF6TlRjV0FUSmVRMzE0MkxDblRfb1RQZHQ2TXZQcVRhWEgxejlEdlY1SXhhZmROdzZNR1ZPUlU5RnFNZlNzUQ?oc=5",
+        "publishedAt": "2025-02-19T08:00:00Z",
+        "title": "세계 최대 3GW급 AI 데이터센터, 한국에 짓는다…전남 '솔라시도' 유력 - 전자신문",
+        "snippet": "세계 최대 3GW급 AI 데이터센터, 한국에 짓는다…전남 '솔라시도' 유력 전자신문",
+        "publisher": "https://www.etnews.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5HMS1HcS1vQXdxb1VMb2Y3bk9ZQVVpU1dmRVJYaDVpUENOLUJReTZyZ2I0U1N6aXZaRzNmeEtxNDdJRHg2UzBwVFJKR0lMLUIxRHVOWFhCcGhrZzNXcFZn?oc=5",
+        "publishedAt": "2025-02-19T08:00:00Z",
+        "title": "50조원 규모 ‘세계 최대 AI 데이터센터’ 한국 유치… 올해 착공 2028년 완공 목표 - AI 매터스",
+        "snippet": "50조원 규모 ‘세계 최대 AI 데이터센터’ 한국 유치… 올해 착공 2028년 완공 목표 AI 매터스",
+        "publisher": "https://aimatters.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5KUDM1QVk1VWR1aExVR2xxWjk1elk1ajZNRG5tTWd0V1BwVER2MzZyUWZUaG5KS3YzWXZJakVQdFBSQUVLZ01FbzZkWTNMR1EwLWE4MWszRk0tLTBWY2lQd284a2tONmRkUTlCY24zZV9NQQ?oc=5",
+        "publishedAt": "2025-02-19T08:00:00Z",
+        "title": "LG창업주 손자 韓 세계최대 데이터센터 추진…2028년 완공 목표 - 오피니언뉴스",
+        "snippet": "LG창업주 손자 韓 세계최대 데이터센터 추진…2028년 완공 목표 오피니언뉴스",
+        "publisher": "https://www.opinionnews.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE05RDVqZlBQNGU0MEpwTFpWREFhSlNTdl9jaURodlNQalZzQmZOUWpnZXJWbUZqUzJJVm1CWklhU3RFX1RibXFJOTAzNHFzdUx1bEE?oc=5",
+        "publishedAt": "2025-02-24T08:00:00Z",
+        "title": "키움증권,‘케이스퀘어 데이터센터’ 3800억 PF대출 리파이낸싱 총액인수 - 매일경제",
+        "snippet": "키움증권,‘케이스퀘어 데이터센터’ 3800억 PF대출 리파이낸싱 총액인수 매일경제",
+        "publisher": "https://www.mk.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBVNlU0UmJTRjZnRjR2cjdOY2JtNERTa1ZvMnZzUjBrUHhseDZkQVd6Y0ZIeHZURVhyMVUwcEw2MWpPLUtRRDlvekZPNm9jQ3lTUGtRNFMyVGhlX3fSAWBBVV95cUxOYWlVNzN2UUhzYXo1Si1DakMtbU1hUkZObjdjT0dMRlQ1T3JhODhDSkJmdDBXSlJya1BNeTRuLWR3NDlCNnVPbklTUnRrMDVmaXotQUNxQk1ENDYwWTZEZ1Y?oc=5",
+        "publishedAt": "2025-02-24T08:00:00Z",
+        "title": "키움證, 금천구 데이터센터 4천억 PF대출 리파이낸싱 총액인수 - 연합뉴스",
+        "snippet": "키움證, 금천구 데이터센터 4천억 PF대출 리파이낸싱 총액인수 연합뉴스",
+        "publisher": "https://www.yna.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBlVUp0TVBsMGt4NGhIMU9JVWY5SWpzQllxbXVhdU95ZDFxLWZ6eENiQXlMRnpnX3VDdzU0dHdWa2FPZU5hOFpzUXRBVTBjRXhnTUxFb0VZcTg?oc=5",
+        "publishedAt": "2025-02-24T08:00:00Z",
+        "title": "“다 좋은데 우리 동네선 안 돼”…韓 데이터센터, 4년간 중지·취소만 16곳 달해 - 매일경제",
+        "snippet": "“다 좋은데 우리 동네선 안 돼”…韓 데이터센터, 4년간 중지·취소만 16곳 달해 매일경제",
+        "publisher": "https://www.mk.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE92b05zeWhOa3F1M3k1NndBbDRFN3lBb2hKaXV2aEI2SU15cW1Ubjl4dklJMWpPSWhHcXVUR1NsVW84OFBRTkF2QVVqMU5rSEFpS2hQQlBSeDIzdGFIb1ZZN2taSXhkS20zcE9J0gFvQVVfeXFMTVlFdVpsRFg2LUFMY3pUTnFBYXp2ZUk0MFlzUHY2VzFhcW9kU1FvSHJSejZTdUtmbXFkakNFRVFOOGNGbDdzdHM1SVhGdkRZc3pJV2JPbVUxSGZUV2hhRExrbl9FY2xidWVsUXpIMXBn?oc=5",
+        "publishedAt": "2025-02-24T08:00:00Z",
+        "title": "키움증권, ‘케이스퀘어데이터센터’ 3800억 PF 대출 리파이낸싱 총액인수 - 투데이신문",
+        "snippet": "키움증권, ‘케이스퀘어데이터센터’ 3800억 PF 대출 리파이낸싱 총액인수 투데이신문",
+        "publisher": "https://www.ntoday.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9pYV9rcGN3QVpyVDdPMHFqanozcVZZZjBPc1h4Z3lDcXBqczhzQ1N2QUpGelNmbFRvVDFhNzA1bHNEQXFid2tEU0ZqNUoya19Pa0VkNlBiNVdEMkVYOFFXM1ppX19EQTZPY0Vz?oc=5",
+        "publishedAt": "2025-02-24T08:00:00Z",
+        "title": "키움증권, 데이터센터 첫 PF 대출 … 3800억 리파이낸싱 - 디지털포스트(PC사랑)",
+        "snippet": "키움증권, 데이터센터 첫 PF 대출 … 3800억 리파이낸싱 디지털포스트(PC사랑)",
+        "publisher": "https://www.ilovepc.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBVN1UzZVI4S21RZ0RucjI5R2x2ZFh4QW1XWGhRU1lTLXRrc0txX1ZtaXFxN09kOUQ2SW91YWdRbXEtZHFaaGt6Q2hoRmFqR0JHZzUwSm1tdlNDOGp6MVBYcDJ2aXFVLWJteThZ0gFvQVVfeXFMTnFLYzJrNEdIeDROYmJvU1NtYlotVHNLZGdOYXh3VDhqZU5LZGtnanJkRUVLc1ZMSXZKbDVDUkJ4UExlemt1YkpOb1ZOSkN4aEpBdTlJTHU1ZG43ZXZYSzJFSlg0X2hORDFyYnhRb3hZ?oc=5",
+        "publishedAt": "2025-02-24T08:00:00Z",
+        "title": "키움증권, 데이터센터 PF에 첫 투자...3800억원 리파이낸싱 참여 - 한국아이닷컴",
+        "snippet": "키움증권, 데이터센터 PF에 첫 투자...3800억원 리파이낸싱 참여 한국아이닷컴",
+        "publisher": "https://www.hankooki.com"
+      }
+    ],
+    "호텔": [
+      {
+        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPTkJ1MUpJRUdDUjRZLXB5MGxmMlc2dGtZcVBlM0YwLXE0MjlMbURnd0owUWw5UGdQaktUT3U1MUVsWXRsWjJaU3ZhSWxIQlJtWnpDeVdvYzVjWExWLWdTOHdRX1NDZDloNGRBdmRxUFktQV81T0VBR0RmUXBhdjJrQkZ4RVU2WGZheXpXM2FzcFpGbzRhUnBxX21RVkVFS2NId3lHMEVQQmlwNmxC?oc=5",
+        "publishedAt": "2025-01-01T08:00:00Z",
+        "title": "대전 유성호텔 복합개발 '순항'...1000억 토지대출 리파이낸싱 조달 - 딜북뉴스",
+        "snippet": "대전 유성호텔 복합개발 '순항'...1000억 토지대출 리파이낸싱 조달 딜북뉴스",
+        "publisher": "https://www.dealbook.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5hUF8tWVFaRFZqajR1UWFRNzBNMElZa0NpVElmWk9fc1lNc3hFc2ZlMi1fWUN2Vk41X0hSSmVVN09Vem5CblpncEJ4dzk4Q2UyNFdkWkhXUQ?oc=5",
+        "publishedAt": "2025-01-02T08:00:00Z",
+        "title": "24년 9회 부산시 건축위원회 심의결과 / 해운대구 중동 1401-4 주상복합 아파트 신축공사, 파라다이스 호텔 맞은편, 사하구 하단동 616-2 주거복합 - Naver Blog",
+        "snippet": "24년 9회 부산시 건축위원회 심의결과 / 해운대구 중동 1401-4 주상복합 아파트 신축공사, 파라다이스 호텔 맞은편, 사하구 하단동 616-2 주거복합 Naver Blog",
+        "publisher": "https://blog.naver.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1XNmNvNkZGZVB1UUNNMXdCSV90NnR6WmpfNnNJZ0hXMkdjOTNwMGJ6UVJremFWQWlxLXhuRUl1WV9sMjFkTHFzaGEybVdjZHBSMEpERDR4VFByeUpQ?oc=5",
+        "publishedAt": "2025-01-02T08:00:00Z",
+        "title": "라마다프라자 제주호텔, 21년 만에 영업종료 ... 2026년 6월 쉐라톤 개관 - 제이누리",
+        "snippet": "라마다프라자 제주호텔, 21년 만에 영업종료 ... 2026년 6월 쉐라톤 개관 제이누리",
+        "publisher": "https://www.jnuri.net"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE01Q1U5Wk5PTlhYYjhNT1d2Um1PWFdnSFZyekRkei1rVnplY2FmRUZXWHctbFpRMGdHYWZWQi0zeDRlNC0tdWlyUFFjVjJJV1hucWxhZFgwWUNpNUtvZ1VlTkJac1hVXzdZWmVHdklZU29YUQ?oc=5",
+        "publishedAt": "2025-01-02T08:00:00Z",
+        "title": "'해운대L7호텔' 품으려던 리츠 청산됐지만…매각 전망 밝은 이유 - 마켓인",
+        "snippet": "'해운대L7호텔' 품으려던 리츠 청산됐지만…매각 전망 밝은 이유 마켓인",
+        "publisher": "https://marketin.edaily.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBkcW1RdDMzMUdKNUpqYVFCLThDWE5RclVtandaSHhpVTVoX1d4WGJOcFdxR01mWFlqT0w0ODhtLTlCQkdiNGpEdzh2STJrdzNta3dTNW9CWHF4Z0FxOWUzTkhNdldyV0pmT0dacUM4UE9EX0pxaEU3cm14ZXdiQ2vSAXNBVV95cUxPMjduUU5hOEtVa2tzcXBrZXhNWkFuMC02QkJleEVFbU93dVdjd1NlXzg4X1lVMzhYTDlmZ2F2TWlDOW02X0xWNW9KVVhjeko1SG5UWm1kYkN6S0RBS2hhX0tjSURQZmN5bFE3em5GeWtjWHFR?oc=5",
+        "publishedAt": "2025-01-02T08:00:00Z",
+        "title": "알고보니 '호텔왕' KT의 변심…2조 규모 호텔 줄줄이 매각하는 이유 - 땅집고",
+        "snippet": "알고보니 '호텔왕' KT의 변심…2조 규모 호텔 줄줄이 매각하는 이유 땅집고",
+        "publisher": "https://realty.chosun.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBHMFhORWhqNTRUSXZMZGFRNmxSMmNncDI5bFZHSEZFLUt3aF9DVTdaMXNKT01tRWQ4N2FQS1d3NnJwU29CaFVhR2tFakRqRFM3NWFnb0xqczNZSDBMaGMzZUJLdVd4M28wYXkzNHdBYjRwZw?oc=5",
+        "publishedAt": "2025-01-03T08:00:00Z",
+        "title": "강원도 양양에 5성급 호텔 '인스케이프 양양' 들어선다 - 숙박매거진",
+        "snippet": "강원도 양양에 5성급 호텔 '인스케이프 양양' 들어선다 숙박매거진",
+        "publisher": "https://www.sukbakmagazine.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBWS1BlWERod3R6R05MZGJsZDF5WDdkQlA4anZ4MFlPTTVfdnNIZ1BEZlA2NGxjOTVCVmE2Q0otSFd2cjAtNUQ1c2JXblYzclpSSklxR3prZnFZLXhjTkdZYlJJU0xPYnpfVERFQ1pSTdIBc0FVX3lxTE5CUUtDb2VnYndjYTRaYWtweGR3OEJvb1FYeDNJNHJaSmVqMm54TWk0RzV4N294WERueWtoQzZyZmtWN2hxdkF5b2Zid0JsWHd6TjA1cGxjN3BQZnpJb1R6QTRUNzJrVXpadFpaZnl6NXllQjg?oc=5",
+        "publishedAt": "2025-01-07T08:00:00Z",
+        "title": "'신라스테이 세종' 우여곡절 끝 내달 개장…행복도시 5호 호텔 - 대전일보",
+        "snippet": "'신라스테이 세종' 우여곡절 끝 내달 개장…행복도시 5호 호텔 대전일보",
+        "publisher": "https://www.daejonilbo.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBNU1hBT1hlZkNwZmJVcEtJVWt4dzFJTDNRaEVfS29kNzA0OVZ6V3BpX1g4V1VrOEVPakt1ZUM3aUpaQU5rem01cW00RFp4dW43MnNjSXRwQ0tlUjR5cU1lZ0R3?oc=5",
+        "publishedAt": "2025-01-14T08:00:00Z",
+        "title": "6가 오피스-호텔 전환 완공 임박…4층 건물에 52개 객실·식당 - 미주중앙일보",
+        "snippet": "6가 오피스-호텔 전환 완공 임박…4층 건물에 52개 객실·식당 미주중앙일보",
+        "publisher": "https://www.koreadaily.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBoUF80eHNqLUpNZXlrcmJ3RlVfV3Zpb1JyVHV0bEVidXNEZGNDTVR4MDFvU3lHeW0xN2wwSW9yS0p0T21LVWRNZC11ZWs3emNrQUdob0ZYSjJBQjJtc1VsU1k4c1ptVDFNaFFNM01uUmY?oc=5",
+        "publishedAt": "2025-01-15T08:00:00Z",
+        "title": "강남 임피리얼 팰리스 호텔, 4천억 리파이낸싱…\"PF보단 담보대출\" - 연합인포맥스",
+        "snippet": "강남 임피리얼 팰리스 호텔, 4천억 리파이낸싱…\"PF보단 담보대출\" 연합인포맥스",
+        "publisher": "https://news.einfomax.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBsNDgwczY1TFhCOUZSTFktbzh4NExwS0tZWlhxZFFySDJhWDRqSkFMbXpDTDNteWZvNkxoVHlCd011alNrV2ZxSUFndGo0T0d0TTR1TUVraEgteHM?oc=5",
+        "publishedAt": "2025-01-17T08:00:00Z",
+        "title": "캡스톤, ‘나인트리호텔 명동’ 750억원에 바이오업체에 매각 - SPI - 상업용 부동산 콘텐츠 & 데이터 애널리틱스",
+        "snippet": "캡스톤, ‘나인트리호텔 명동’ 750억원에 바이오업체에 매각 SPI - 상업용 부동산 콘텐츠 & 데이터 애널리틱스",
+        "publisher": "https://seoulpi.io"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE53VjJvQ2c4TUJGYm9QZjJWLXU4dUktTmlMVzMwekhrYUxTQXVvYzFBQTd6c251RVZNb183S212NVNVTXJXdk12S1F5OWtYbXpIYUFPZ1pfS0pOejc1VVpwX01zTmRvZFZUX0E?oc=5",
+        "publishedAt": "2025-01-20T08:00:00Z",
+        "title": "(통신사 유동성전략)②KT, AI 미래에 사활…호텔 매각으로 2조원 확보 - ibtomato.com",
+        "snippet": "(통신사 유동성전략)②KT, AI 미래에 사활…호텔 매각으로 2조원 확보 ibtomato.com",
+        "publisher": "https://www.ibtomato.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFB2ZFpmY2J0S0F5OWg4S1RieU0wWTVnT21IRTZKVW40Zzd1blZLa0loeXBrN0o0S2pSODlNYUE3SUZXLUo5dkxpRWNoS0dhVW8?oc=5",
+        "publishedAt": "2025-01-22T08:00:00Z",
+        "title": "영등포역 앞 알짜배기 호텔 3000억 대 매물로 - 코어비트",
+        "snippet": "영등포역 앞 알짜배기 호텔 3000억 대 매물로 코어비트",
+        "publisher": "https://www.corebeat.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBySjB4NDdtZEFrRHp6MW1zbjBaUHIyWXBkUFpPUEt6YnpwYVl1UjVrYVJmSUhGaTRkZFM5MFNlR2J3OUlQMWpRZThqeG04Ulk?oc=5",
+        "publishedAt": "2025-01-23T08:00:00Z",
+        "title": "영국M&G, ARA운용 콘래드 호텔 투자 수익증권 500억 인수 - 코어비트",
+        "snippet": "영국M&G, ARA운용 콘래드 호텔 투자 수익증권 500억 인수 코어비트",
+        "publisher": "https://www.corebeat.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5rNXVpaUFYMm5scjN3dlNPSWlGN0l1RU1PZE93TEdMR2lMQXhRRTkxVG9aREhhb1hSR053U3duSERHTHJaUHVXSU9QNGd2RWs?oc=5",
+        "publishedAt": "2025-01-24T08:00:00Z",
+        "title": "[인사이드] 2025년 오픈하는 국내 호텔 BEST4 - 브런치",
+        "snippet": "[인사이드] 2025년 오픈하는 국내 호텔 BEST4 브런치",
+        "publisher": "https://brunch.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFB1bnE4dF9vTkxJajM3V1N5TndILVQ4YS02RTVRUTFJcU40a1RpWGEwN2V5UTQ2a1MzNmR4aFUtNXF5anBXVmN5Z2tJSHFzVkl5OXF5NVUtNm5ZMDlTSUhOZmxYekx4SXc?oc=5",
+        "publishedAt": "2025-02-04T08:00:00Z",
+        "title": "25년 1회 부산시 건축위원회 심의결과 / 괴정3 가로주택정비사업, 괴정동 1077-2, 민락동 113-62, 협성건설 호텔, 숙박시설, 북항2단계 건축허가 제한 - Naver Blog",
+        "snippet": "25년 1회 부산시 건축위원회 심의결과 / 괴정3 가로주택정비사업, 괴정동 1077-2, 민락동 113-62, 협성건설 호텔, 숙박시설, 북항2단계 건축허가 제한 Naver Blog",
+        "publisher": "https://blog.naver.com"
+      }
+    ],
+    "리테일": [
+      {
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE11UFV2WnVwOHNFOFNvcXpsTVp2R1RFZER1Zm05Y0RzMUF6WUtsOGhmcEUweC1na2Q5dVJMVU53cXVCQkZ3WGh5N01weF9CVTRtejJnT0tEcXBGR2t2b29Bdk96VTlpOUVP0gFsQVVfeXFMUHJaUFRTUFRNVWJUYTFFeGk5LUwwYnRWaEtHSFRmakExUFh4QjlocVZ5ZE40VXkxUlhXbFVuUVpYSXNrSGNsT0J0T1VtbjUzNXpnMTVIaEpFVjhuQy1RMW5ZUEI2TmlYUWhDTHQz?oc=5",
+        "publishedAt": "2025-01-06T08:00:00Z",
+        "title": "서울시 규제철폐 1·2호···상가 의무비율 완화, 환경영향평가 면제 확대 - koscaj.com",
+        "snippet": "서울시 규제철폐 1·2호···상가 의무비율 완화, 환경영향평가 면제 확대 koscaj.com",
+        "publisher": "https://www.koscaj.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFAzNU5RaXJ4RmoxUHdZbGc4YldfQXdnQzdCdUFPeE9uWnluTW9rM2R3TkppNE8zVlNVbHhzcVZnMWpJTlYwVlJ5bjNyOFE3emlicGc?oc=5",
+        "publishedAt": "2025-01-09T08:00:00Z",
+        "title": "캡스톤자산운용, 롯데백화점·마트 5곳 리파이낸싱 완료…매각도 계속 추진 - 매일경제",
+        "snippet": "캡스톤자산운용, 롯데백화점·마트 5곳 리파이낸싱 완료…매각도 계속 추진 매일경제",
+        "publisher": "https://www.mk.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE55WVo0a2RpVU1lQ2ZaMnBWVTNmTzRKZzhFcU9YWnlUWWhrdWQ4WXlOdjdTcVlOU2JLczFGQ1RmYjRRbHZlbjhZamRCYnlUTllSVDJ1ejBXRHdNTDN3U3Y0QnVlamdUTk1fV0dESzNzb0RIdw?oc=5",
+        "publishedAt": "2025-01-13T08:00:00Z",
+        "title": "하노이 꺼우져이에 ‘이온 쑤언 투이’ 9번째 복합쇼핑몰 개장…교민 생활에도 새로운 활력 - 아세안데일리 뉴스",
+        "snippet": "하노이 꺼우져이에 ‘이온 쑤언 투이’ 9번째 복합쇼핑몰 개장…교민 생활에도 새로운 활력 아세안데일리 뉴스",
+        "publisher": "https://www.aseandaily.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1nbjEtTTBReml0NDdLeHJQQUl5WGdTQ0hzQ3Q0ZFotRWgtUE5ZeUZlM1lubWhXb2NmTWd1cEZ3UWt6UXJsaFIzZlB0aVlZdi1CcVp2dHdiSUFVX1HSAWBBVV95cUxObXhjdFZtYzhlNEpFLUdyRHBBN3pWWHFTUDFhYTFBejZCS0hoWmVXbGc2clg1QWt4TmtTQkNLSXA1OGFURUFkRjZMaU5oQThXNFNCUzU0RGFrYkZxMnNPMk4?oc=5",
+        "publishedAt": "2025-01-14T08:00:00Z",
+        "title": "상가 4곳 중 1곳 공실 부산대 앞 '자율상권구역' 지정 - 연합뉴스",
+        "snippet": "상가 4곳 중 1곳 공실 부산대 앞 '자율상권구역' 지정 연합뉴스",
+        "publisher": "https://www.yna.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5vQjZHVXNObElwNFppdW1MVjZRam0wb21vRFk4eVNUZk54SFdRanNJR3p3MEdTYnBmX0s3S1JWMy1sV0VmZ0szRDFNQWk1U29wYnVsaGZwZ3hLWDR0U2hYdjdLdFJxeWpBeGZkNUVGUXJwMTA?oc=5",
+        "publishedAt": "2025-01-23T08:00:00Z",
+        "title": "신반포4지구 메이플자이 상가 일반분양분 일괄매각업체 선정 - 하우징헤럴드",
+        "snippet": "신반포4지구 메이플자이 상가 일반분양분 일괄매각업체 선정 하우징헤럴드",
+        "publisher": "https://www.housingherald.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1fYUNEaXNSSk9ZYVhUUGxrdlJUUDhnZ1VkTHAweXlnQ0pudmRYdGpoU05ncEpQSUhiV0Z4b09pMkdoOGNJdXE2Qll0ejhsYzBId21JbkJtaHNFcUNBZjhWOW12TWNFTURjWi1j?oc=5",
+        "publishedAt": "2025-02-04T08:00:00Z",
+        "title": "종로 상가 11번 유찰 끝 매각…수도권 상가 곳곳 '텅텅' - 한국부동산뉴스",
+        "snippet": "종로 상가 11번 유찰 끝 매각…수도권 상가 곳곳 '텅텅' 한국부동산뉴스",
+        "publisher": "https://www.karnews.or.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBMRHNoN0pkbmpnQzRnUi1TcjNjNTNsNEF6TmpTcU1XSGh4SUR5aFRCbmROak44WUdjczRpeFZqb20wSzZwTFI5SFpwRkE5QjU0cnZkamJyalcybVpaY0E?oc=5",
+        "publishedAt": "2025-02-05T08:00:00Z",
+        "title": "삼천당제약, IR 자료에 무슨 내용 들었길래..기관투자자 IR에 20% 폭등 - 스마트투데이",
+        "snippet": "삼천당제약, IR 자료에 무슨 내용 들었길래..기관투자자 IR에 20% 폭등 스마트투데이",
+        "publisher": "https://www.smarttoday.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9EV1BGODY2Qi1McDJQakFMMzRHUjhwYVRmNFlUYW1YZV84SlVyWmJ5eFBHemZUWDJSYzAtMVlEY2k2S0M4VVBGWFI2bmNlTTQ?oc=5",
+        "publishedAt": "2025-02-06T08:00:00Z",
+        "title": "반포 50억 아파트 껴도, 종로 한가운데도…상가는 `NO답` - v.daum.net",
+        "snippet": "반포 50억 아파트 껴도, 종로 한가운데도…상가는 `NO답` v.daum.net",
+        "publisher": "https://v.daum.net"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1ZOWZjZUJsN2Y2Uzl2YkpCTnFXVG9iclNHOGVkdDJyTUtBbDlVaU0yb2w4TFcyUnE0cHVCM2ZqaFlHODQwaGV5cU5fQ2NESi1uNHc?oc=5",
+        "publishedAt": "2025-02-10T08:00:00Z",
+        "title": "2천억대 성남 성호시장 복합개발(상가·아파트) LH 대신 신탁·29년 완공 - 경인일보",
+        "snippet": "2천억대 성남 성호시장 복합개발(상가·아파트) LH 대신 신탁·29년 완공 경인일보",
+        "publisher": "https://www.kyeongin.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE81U2EwM1ZqZWFZUGZ6dWY0eUpTekFuMEdiTG5SbFoxeEh1TlZtTWh5Yy1iYS1MOFR2NDZ3V1h0a1NkVXYwRTJ6d3hzbDRoRzB6Y1puX291TWpjUGZsSnVKeF9SMWRCbFZmTHfSAW5BVV95cUxOVlZlalJ3TzF3Yjg0Q1NGa0paS1Y2UHk2Mzk0U1pJQjJHMWIyeWdac09xaEFqYmtmZVZfQVFYdnYzY0V0Z0tDazNZRXFrdVY0eTIxa2g3YTZqTUhsMTNLQ2VBVmVzc25odHFYOF9UUQ?oc=5",
+        "publishedAt": "2025-02-11T08:00:00Z",
+        "title": "[FT솔로몬] 10년의 상가임대차 계약, 2년 이후 임대료 인상은? - 파이낸셜투데이",
+        "snippet": "[FT솔로몬] 10년의 상가임대차 계약, 2년 이후 임대료 인상은? 파이낸셜투데이",
+        "publisher": "http://www.ftoday.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFA4bk52V0NSRUdMT0luM1Q1YTJHRzdHZlpLbTVIX3VMb0I3dUtIdmJ2SXhvaEtpUzhvelZkNVhqX2hORU5TWXFseHE0T0lTVUh1VmV0cmF0QUc3bm9zU2RnTEgwTEtBSGJMVFlB?oc=5",
+        "publishedAt": "2025-02-17T08:00:00Z",
+        "title": "서울교통公, 지하철상가 규제 완화…임대료 연체요율 6%로 인하 - 철도경제신문",
+        "snippet": "서울교통公, 지하철상가 규제 완화…임대료 연체요율 6%로 인하 철도경제신문",
+        "publisher": "https://www.redaily.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE04U0x5NVB1QS1ud3cxMVdxMjBGY3Biay1TWUpOMnk0OVVEM3JDaVpxU0tLa1B6aGIxLTQxVjZzWEQwb0hZQ093UTRhcDdXS0k?oc=5",
+        "publishedAt": "2025-02-20T22:44:41Z",
+        "title": "용산 나진상가 17,18동 개발 사업 기사회생 - 코어비트",
+        "snippet": "용산 나진상가 17,18동 개발 사업 기사회생 코어비트",
+        "publisher": "https://www.corebeat.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBEb3FvYVVVRkJ6ZXh4UzFOajA3M290VmkxRFVGdk9KTThnS2NJOWNka1ZicGlzR3Fja2Y3SEJtSVFUUV8tV1g4M1lHN0FUUVRM?oc=5",
+        "publishedAt": "2025-02-22T08:00:00Z",
+        "title": "부산 에코델타시티에 대형 쇼핑몰 건축허가…2027년 운영 - 매일경제 마켓",
+        "snippet": "부산 에코델타시티에 대형 쇼핑몰 건축허가…2027년 운영 매일경제 마켓",
+        "publisher": "https://stock.mk.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE50SUtuOU56YktIZDlQdXNkUzRIV1kyYVhrMThQR2o3bXZLdmFNamJLOWFzLWRwZ3dYaWJCSmVtcFJpSE85S0tyd3QtQ0pJM1RzLUJZNkdNVzNqNlU?oc=5",
+        "publishedAt": "2025-02-22T08:00:00Z",
+        "title": "에코델타시티에 대형 쇼핑몰 허가…2027년 개장 - KBS 뉴스",
+        "snippet": "에코델타시티에 대형 쇼핑몰 허가…2027년 개장 KBS 뉴스",
+        "publisher": "https://news.kbs.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE4yelNMdnZDdldmWU9FenpKS0ZTd2d0MDRoNURMN1hHdVFyYXZVUDdxazhuOWlEYTZTY3ZSU2ljc0xobUlCaHJKSGRmWUNKOF8taEE?oc=5",
+        "publishedAt": "2025-03-03T08:00:00Z",
+        "title": "광주시, '더 현대 광주' 복합쇼핑몰 행정절차 8개월 단축 - 노컷뉴스",
+        "snippet": "광주시, '더 현대 광주' 복합쇼핑몰 행정절차 8개월 단축 노컷뉴스",
+        "publisher": "https://www.nocutnews.co.kr"
+      }
+    ],
+    "리츠": [
+      {
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE01Q1U5Wk5PTlhYYjhNT1d2Um1PWFdnSFZyekRkei1rVnplY2FmRUZXWHctbFpRMGdHYWZWQi0zeDRlNC0tdWlyUFFjVjJJV1hucWxhZFgwWUNpNUtvZ1VlTkJac1hVXzdZWmVHdklZU29YUQ?oc=5",
+        "publishedAt": "2025-01-02T08:00:00Z",
+        "title": "'해운대L7호텔' 품으려던 리츠 청산됐지만…매각 전망 밝은 이유 - 마켓인",
+        "snippet": "'해운대L7호텔' 품으려던 리츠 청산됐지만…매각 전망 밝은 이유 마켓인",
+        "publisher": "https://marketin.edaily.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5TMTFjV2VtbS1iWDNKVXlvUzlMMTRyTmhTSnBoU1lNZ1RWd01BWjBaX3FwYW8tcUNBVHFDdk1xdnRTVV9uTi1rT0I1bUtzV1U?oc=5",
+        "publishedAt": "2025-01-09T08:00:00Z",
+        "title": "케이리츠운용, 강도 높은 3개월 신규 영업정지...매각 차질 불가피 - 코어비트",
+        "snippet": "케이리츠운용, 강도 높은 3개월 신규 영업정지...매각 차질 불가피 코어비트",
+        "publisher": "https://www.corebeat.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE56a0tBaXVtbm5aS3lILWotNHFoX1h2Qklxei1RQzJjV2NiOHdORjRLa1llSEZ2UzBiWmVuQlFOckN5OVJMLVZSWWZDMHNOU2Znem54STQ2Q3RLZDdfaE9razJ1d21Gelgt?oc=5",
+        "publishedAt": "2025-01-15T08:00:00Z",
+        "title": "수수료율 0.3%, 리츠가 AMC에 지급하는 보수 - SPI - 상업용 부동산 콘텐츠 & 데이터 애널리틱스",
+        "snippet": "수수료율 0.3%, 리츠가 AMC에 지급하는 보수 SPI - 상업용 부동산 콘텐츠 & 데이터 애널리틱스",
+        "publisher": "https://seoulpi.io"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5UMGxLUVdseC10N3VDcHRnSHFQZFdBRnFWRnAxUTZYdElFNzdMWW9FcTBGUjRTSkYxcTk4Z043NjM3LVpXanJPbTMzVFZ6ZFU4STE3Zno2RUF6aEHSAWBBVV95cUxQWWR5RmxLSVU5eGNjZ1NlLUN6MlRkRkl2a1JjWFkyVWM4amNKR1pRckNId0t6UjN4amxtbHNGanV3MHhJZWoyamYxNXRGOWY1NVRjVEt6Rks1UWJXSUtHRHI?oc=5",
+        "publishedAt": "2025-01-22T08:00:00Z",
+        "title": "한국 상장리츠 시총 GDP 0.3%·싱가포르 16.5%, 55배 차이 왜 - 뉴스1",
+        "snippet": "한국 상장리츠 시총 GDP 0.3%·싱가포르 16.5%, 55배 차이 왜 뉴스1",
+        "publisher": "https://www.news1.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5xLXlHa3JiM0lJNGpYT01DS2tTSmpMVmJobTQtRWhDbm1URTFrenNYcnI1cE9EYTdYZzMxUUI3WlZJZnZFcVA2c2treWVIWHBtNUY2U2xSdUlYUQ?oc=5",
+        "publishedAt": "2025-02-20T08:00:00Z",
+        "title": "1.5兆 메리츠 인사동 오피스 재개발 매각 '잰걸음' [fn마켓워치] - 파이낸셜뉴스",
+        "snippet": "1.5兆 메리츠 인사동 오피스 재개발 매각 '잰걸음' [fn마켓워치] 파이낸셜뉴스",
+        "publisher": "https://www.fnnews.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBQaThJeGxhcV92enpTQ0Z3Umd3UktsaVRGQmZnaFVjM2JuMDc5M2VsNFZVRjZ6c0ozTWcwZEo0a2dsWGdVT2c2OGtWQ3NkVUU?oc=5",
+        "publishedAt": "2025-02-27T08:00:00Z",
+        "title": "켄달스퀘어리츠, 이천4물류센터 매각…배당 안정성 '방점' - 딜사이트",
+        "snippet": "켄달스퀘어리츠, 이천4물류센터 매각…배당 안정성 '방점' 딜사이트",
+        "publisher": "https://dealsite.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE03RC10UlJMSWRnazVGUTFNRDhDeDJ5UnRmWERwb3JwR0ljNHJEa1RoQmVoUVVGNTFQMXRqdWR6VUtNQ0J0dVlHR053OVE4ckZySHRIUTg5b3lSR1ZDSUpkWmo5OWlkZU9UUGNBdXFrZkRRUQ?oc=5",
+        "publishedAt": "2025-03-04T08:00:00Z",
+        "title": "홈플러스 담보채권 1.2조…“메리츠그룹 신용도 영향은 제한적” - 마켓인",
+        "snippet": "홈플러스 담보채권 1.2조…“메리츠그룹 신용도 영향은 제한적” 마켓인",
+        "publisher": "https://marketin.edaily.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9qQjNZdTQyZHRaVXJNNnQza2hJTFpCSEZSWmIxal9NeC1nNmdJSmI4ejFfdllEZUhtX3RyMWw5Ykl0bUVzYVhqUnJ5UGVSUzVmb0VBdkxZQjc2MTVWQU1aMnAxQnZlMkk?oc=5",
+        "publishedAt": "2025-03-06T08:00:00Z",
+        "title": "‘홈플러스에 1.2조 담보대출’ 메리츠, 원리금 회수 착수하나 - 한겨레",
+        "snippet": "‘홈플러스에 1.2조 담보대출’ 메리츠, 원리금 회수 착수하나 한겨레",
+        "publisher": "https://www.hani.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE0wcFEyaldpSk1ia0NJaGNjY3RvM2JWcHByeHNXdVFSZDd2VXdVRnpDNFA0cHltMDVUZFk0WmZFdE9MeXVGN1BuVkp2enRhcUJ0Nk05dHRTR3owRGNBeUlqTUR4TldoV2lQTTNrRlE5UUg3QnBRSEhGX0s0ckx4OW_SAXNBVV95cUxOQ1pjdUI1d3ZuaUxtTGlVaW1oNHlnVkw2YmdTOWZuUFFxM29FMVVJLWJVenpsdWtTeV9mTXNNN2ZrTDhueWtLMTlrTlJLMkxFWWtpenZncTFONWkwRmF4a19qemhlYU9DVGV2X3lkWng4MEVN?oc=5",
+        "publishedAt": "2025-03-10T07:00:00Z",
+        "title": "배당률 14%에도 주가 반토막 제이알리츠…'청산 공포' 극복할까 - 땅집고",
+        "snippet": "배당률 14%에도 주가 반토막 제이알리츠…'청산 공포' 극복할까 땅집고",
+        "publisher": "https://realty.chosun.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE1sZVVfYVBYOFhwMWVxeURQU2tHeEJoSDJwQTdPRXhicklrcFlXLWk0amduTDd5M1ZMZkE1TmNqMzhLVDhQa05PekxhYUQ4aHN0UlZoSjF3ZDdSZFBrZlhKdEJNdl9ma3lPYU00MGJ5dTFiUQ?oc=5",
+        "publishedAt": "2025-03-17T07:00:00Z",
+        "title": "'홈플 자산 편입' 리츠 5개 괜찮을까…엇갈리는 '희비' - 마켓인",
+        "snippet": "'홈플 자산 편입' 리츠 5개 괜찮을까…엇갈리는 '희비' 마켓인",
+        "publisher": "https://marketin.edaily.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFAydkJxNmRUNlBqRE5BMGY1R2ozcVg0Rl9ZTHQzM1pmdkpzcWFhSWxnZUV2WU9qRlNidUZ4aklPa3FpN0IyaDVtTm5SandNcWJsYmNMZm1HOWhtVktqMXpvSEJqdGV6MGw0aWh3UVFySHY1UQ?oc=5",
+        "publishedAt": "2025-03-26T07:00:00Z",
+        "title": "삼성FN리츠, 프라임 오피스 브랜드 'FN 타워' 출시…'자산 1조 클럽' 정조준 - 마켓인",
+        "snippet": "삼성FN리츠, 프라임 오피스 브랜드 'FN 타워' 출시…'자산 1조 클럽' 정조준 마켓인",
+        "publisher": "https://marketin.edaily.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBkWjRYampIWGk3WnBCXzkzN1VZLXFrcnRtOFVKTWwxbEpLdUg2VmFxUFJEemdScWJ6d3JDTE5vdHozdllaX282MmZ5WkFUbEczWGRQbVN3X0ZsaHNWazFDSTRIY2VBMTM4?oc=5",
+        "publishedAt": "2025-04-02T07:00:00Z",
+        "title": "부동산 펀드 비중이 40%를 초과하는 재간접리츠 - SPI - 상업용 부동산 콘텐츠 & 데이터 애널리틱스",
+        "snippet": "부동산 펀드 비중이 40%를 초과하는 재간접리츠 SPI - 상업용 부동산 콘텐츠 & 데이터 애널리틱스",
+        "publisher": "https://seoulpi.io"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE55QkZvaTBIZEVXQXI0NjMyTXN1TkFwSnZYSGExMGVQR2ZBVktLSVo3dnF3dzhmd292T0NrZVV2aTJsa3dzV0F6SUJlX1pUZnF3V3k4SzRXaEtyaWc?oc=5",
+        "publishedAt": "2025-04-06T07:00:00Z",
+        "title": "지분 투자로 내가 살 집 마련…'한국형 뉴리츠' 도입 시동 - 뉴스1",
+        "snippet": "지분 투자로 내가 살 집 마련…'한국형 뉴리츠' 도입 시동 뉴스1",
+        "publisher": "https://www.news1.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1hWDlMb3czTTNXU2VaeXVYVEloNWt1LVJOdjZKYzdMNkZGaFRDcW0zSm9XTTdyQ1FvNWtielhwWkxZTXBfM0RfUEZIWGpMNnRqeVRRcjBoZlhZbUnSAWBBVV95cUxNQjZjVng1d2U3eFEyUzBkYWVTclk2SjlnVllza2w2ZWo1TWxmNGVDbEdPbzZkSTJLWTlIcFBfVXdhMUFwa3FIeW5yUm16cFdxZEdfZVk0bWtid2ZlVkFuZVo?oc=5",
+        "publishedAt": "2025-04-08T07:00:00Z",
+        "title": "금융권 홈플러스 점포 보유 리츠·펀드에 대출금 3조원 넘어 - 연합뉴스",
+        "snippet": "금융권 홈플러스 점포 보유 리츠·펀드에 대출금 3조원 넘어 연합뉴스",
+        "publisher": "https://www.yna.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE00V05ieUtMcndXTUo0SG5BX3BnODBYMGNJZ3ZzWTFsVXMwWXdDc0dWdkZ4NVltem55M3JEVDd5eXNMeUVGZVk3S0ZGNGxLQTdfbXJ6Wi1LWkpXX3V1REdaU2JqV1RBak1yTXlhc2JJRHlWdkdFYVZKcTl6RTNaMDTSAXNBVV95cUxQSmhrc2tZMUY0SjZJRnU1SGtvUHVXUXF3LVRWRGF5RFV0clJhY0E5X3B0elgyMkh1Q1dpbi0zSU1DNGIwdGdiemRZRks2Nm5rUTE3VDBKSXJPY3ZmTTRzLWl0UEtEcjAtRHRHeW5CNHVTdkRj?oc=5",
+        "publishedAt": "2025-04-08T07:00:00Z",
+        "title": "10년 전 팔았던 건물, 다시 산다?…'반토막' 디앤디리츠, 또 헛발질 - 땅집고",
+        "snippet": "10년 전 팔았던 건물, 다시 산다?…'반토막' 디앤디리츠, 또 헛발질 땅집고",
+        "publisher": "https://realty.chosun.com"
+      }
+    ],
+    "투자·매각": [
+      {
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE01Q1U5Wk5PTlhYYjhNT1d2Um1PWFdnSFZyekRkei1rVnplY2FmRUZXWHctbFpRMGdHYWZWQi0zeDRlNC0tdWlyUFFjVjJJV1hucWxhZFgwWUNpNUtvZ1VlTkJac1hVXzdZWmVHdklZU29YUQ?oc=5",
+        "publishedAt": "2025-01-02T08:00:00Z",
+        "title": "'해운대L7호텔' 품으려던 리츠 청산됐지만…매각 전망 밝은 이유 - 마켓인",
+        "snippet": "'해운대L7호텔' 품으려던 리츠 청산됐지만…매각 전망 밝은 이유 마켓인",
+        "publisher": "https://marketin.edaily.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBkcW1RdDMzMUdKNUpqYVFCLThDWE5RclVtandaSHhpVTVoX1d4WGJOcFdxR01mWFlqT0w0ODhtLTlCQkdiNGpEdzh2STJrdzNta3dTNW9CWHF4Z0FxOWUzTkhNdldyV0pmT0dacUM4UE9EX0pxaEU3cm14ZXdiQ2vSAXNBVV95cUxPMjduUU5hOEtVa2tzcXBrZXhNWkFuMC02QkJleEVFbU93dVdjd1NlXzg4X1lVMzhYTDlmZ2F2TWlDOW02X0xWNW9KVVhjeko1SG5UWm1kYkN6S0RBS2hhX0tjSURQZmN5bFE3em5GeWtjWHFR?oc=5",
+        "publishedAt": "2025-01-02T08:00:00Z",
+        "title": "알고보니 '호텔왕' KT의 변심…2조 규모 호텔 줄줄이 매각하는 이유 - 땅집고",
+        "snippet": "알고보니 '호텔왕' KT의 변심…2조 규모 호텔 줄줄이 매각하는 이유 땅집고",
+        "publisher": "https://realty.chosun.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE4wR1RkM3BlMm9fbkJ1WDBfR3hZTzJxMkhEaWpEaWJGaklRS0FwOTA4V09YTDNOUldXTlhVbGwyaDRTQS1oaW44TWdER1R6Q0RIUHVnY0lvSTg0dVXSAWBBVV95cUxPbnRCcnFfallIX09KanZpYjFXdzZRYUh2THBrWld3Skk5endnSmVSckVOczhyVFVVcVdXaDVFR2p0TzBocmhrUDV1empzNUJDdTFTUGxYcW1GbzdnVUtXeks?oc=5",
+        "publishedAt": "2025-01-05T08:00:00Z",
+        "title": "미래에셋운용, 에식스솔루션즈와 2천900억원 규모 투자 계약 체결 - 연합뉴스",
+        "snippet": "미래에셋운용, 에식스솔루션즈와 2천900억원 규모 투자 계약 체결 연합뉴스",
+        "publisher": "https://www.yna.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNUmZOWUJQZHFyLXR1ZGJmOXFpZE9pVU05TzlUUFlIY0UxZnU1ZGpFTjBQeWw4QW1LeTR2UlBUU3JEal8tRzZyVHk4MkhmQXFpeEMwUFBJWEpBOW51Mi1TSU1ITkdqbkZadEVKclZKeTRhNW9CSUhyeENkb0FoaGt1YTRXcw?oc=5",
+        "publishedAt": "2025-01-07T08:00:00Z",
+        "title": "한앤컴퍼니, SK스페셜티 인수금융 1조3000억 조달 추진 - 인베스트조선",
+        "snippet": "한앤컴퍼니, SK스페셜티 인수금융 1조3000억 조달 추진 인베스트조선",
+        "publisher": "https://www.investchosun.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9BT0t1dWZ3TEZEbFBsOTR1WDFyWUZ4cGtOWmNnMV90Tnl0QlUwazFudjJUVi1wZ2w3MUtKUGFwMkthaGp6SUhSbDgwVmRwOHB3eno5ZDFjcFJCWnZSQk9UM0F5WU9JOW55MDMyc1VlSQ?oc=5",
+        "publishedAt": "2025-01-08T08:00:00Z",
+        "title": "3번째 수장 맞이한 KY PE, 본격 투자 나설까 - 뉴스톱",
+        "snippet": "3번째 수장 맞이한 KY PE, 본격 투자 나설까 뉴스톱",
+        "publisher": "https://www.newstopkorea.com"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5TMTFjV2VtbS1iWDNKVXlvUzlMMTRyTmhTSnBoU1lNZ1RWd01BWjBaX3FwYW8tcUNBVHFDdk1xdnRTVV9uTi1rT0I1bUtzV1U?oc=5",
+        "publishedAt": "2025-01-09T08:00:00Z",
+        "title": "케이리츠운용, 강도 높은 3개월 신규 영업정지...매각 차질 불가피 - 코어비트",
+        "snippet": "케이리츠운용, 강도 높은 3개월 신규 영업정지...매각 차질 불가피 코어비트",
+        "publisher": "https://www.corebeat.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFAzNU5RaXJ4RmoxUHdZbGc4YldfQXdnQzdCdUFPeE9uWnluTW9rM2R3TkppNE8zVlNVbHhzcVZnMWpJTlYwVlJ5bjNyOFE3emlicGc?oc=5",
+        "publishedAt": "2025-01-09T08:00:00Z",
+        "title": "캡스톤자산운용, 롯데백화점·마트 5곳 리파이낸싱 완료…매각도 계속 추진 - 매일경제",
+        "snippet": "캡스톤자산운용, 롯데백화점·마트 5곳 리파이낸싱 완료…매각도 계속 추진 매일경제",
+        "publisher": "https://www.mk.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPMkxoYmFfaE4wT0RnLWJtQU1ocmdYWGJGMVAzOHo0azlqT1VZVW1lZDlCbll2OEwzSmpxY2xINDg4VXB4UXFLai1BZTBJc1VPaW9MaExIMzlEeGxFT2pLdVlHZWZPVjhPQTNhNmpQbGt3dUtaejlWeWVVWFVJTk0tTHB2REM1N3NTMTNBS2ZuZDMtNkF5a3J5cEU4TVRPOWs?oc=5",
+        "publishedAt": "2025-01-12T08:00:00Z",
+        "title": "하나대체투자운용, 위워크빌딩·씨티센터타워 등 2곳 매각 본격화 - 딜북뉴스",
+        "snippet": "하나대체투자운용, 위워크빌딩·씨티센터타워 등 2곳 매각 본격화 딜북뉴스",
+        "publisher": "https://www.dealbook.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQSHpITE1ULWxyX2xvNHFrWWNuOVl5MjRoM0xIZVVxQ1FWYlB3dFliaUl3bDQwLUdKN1V5aUFGWm92TjUzcG5wdkFqMHdJQ1gxYzRGMzZLVjZOcXJrZDJIRldDOUp5dGdfSUlHMVpMMm8ycTdIckV3bzRBV1RZN3FCM3VnckJMNDIzQ3pDRHl6ZGc2WUExblJLUk5ycFQ1MVg2QV9ZOHBCTnp5Zw?oc=5",
+        "publishedAt": "2025-01-12T08:00:00Z",
+        "title": "하나대체투자운용, 위워크빌딩·씨티센터타워 등 2곳 매각 본격화 - 딜북뉴스",
+        "snippet": "하나대체투자운용, 위워크빌딩·씨티센터타워 등 2곳 매각 본격화 딜북뉴스",
+        "publisher": "https://www.dealbook.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5NSWR5dlZyWTU1bTV3S1VTbUVQVDhKbWZRSDJHSGtKekRSNlNRUGV5NW5zRU95UGFsNmlkcnRMdzE4bmxHQmV2ZjVpZVA2QkZBYllUWlJ3eExOM1F4cWhLLTlMYmU?oc=5",
+        "publishedAt": "2025-01-14T08:00:00Z",
+        "title": "[단독] 엔씨타워1 매각 입찰 흥행… 111%·퍼시픽 등 8파전 - MTN 머니투데이방송",
+        "snippet": "[단독] 엔씨타워1 매각 입찰 흥행… 111%·퍼시픽 등 8파전 MTN 머니투데이방송",
+        "publisher": "https://news.mtn.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9kczhGQXJhdk1zSlVObWtSRmR3OFpUMi1HLWhFXzJlci14c0ZldWg5SFZsaDJ5cXI3Mkk1X3ZFNl9TNm04OXJjai1teUZCMkhaOGxNaVh4dlA2eFp3WnV3VFM0Wm1HV2gzUldnak52dndLcEU?oc=5",
+        "publishedAt": "2025-01-14T08:00:00Z",
+        "title": "우리금융, 프랑스 투자은행 나틱시스 손잡고 미국 데이터센터에 2100억 투자 - businesspost.co.kr",
+        "snippet": "우리금융, 프랑스 투자은행 나틱시스 손잡고 미국 데이터센터에 2100억 투자 businesspost.co.kr",
+        "publisher": "https://www.businesspost.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOSUpFM1pDUE01SUlIMm8yWEY4VnFVcGtlMzJTMG13MWV1QVU5TVdjM3J4YWhRWDQxVFgtVkdzeW5PLVdqWU5YMGZZWHFubmZDdG8yOGVmN1lXTF8wbTZTZnVyQjJaRnNVVkROY1IySnpGOHZiWWZfS3JGdGxPaE9CaHFxejVRR3VSSG41VnVJVDRjY2hqN1VQYVpVbEg?oc=5",
+        "publishedAt": "2025-01-14T08:00:00Z",
+        "title": "첫 입찰 테이프 끊은 강남권 오피스 매각...6곳 새 주인 '대기' - 딜북뉴스",
+        "snippet": "첫 입찰 테이프 끊은 강남권 오피스 매각...6곳 새 주인 '대기' 딜북뉴스",
+        "publisher": "https://www.dealbook.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9xN0hxUnBrN284c0pNeWVrVFcyYWRwcHRDcC1ESVF2c1cxTng4aHZiUU85UGZKZXVXUDNNTU1jNmk4aDRmZGtPQmw3dThRNzBuQUhmQlBwV21YYzNPc0lIR2NaZGsyVEt0S2c0SWh3Yw?oc=5",
+        "publishedAt": "2025-01-15T08:00:00Z",
+        "title": "[리걸타임즈 선정/2024 올해의 변호사] 인수금융 | 곽명철 변호사 - 리걸타임즈",
+        "snippet": "[리걸타임즈 선정/2024 올해의 변호사] 인수금융 | 곽명철 변호사 리걸타임즈",
+        "publisher": "https://www.legaltimes.co.kr"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBsNDgwczY1TFhCOUZSTFktbzh4NExwS0tZWlhxZFFySDJhWDRqSkFMbXpDTDNteWZvNkxoVHlCd011alNrV2ZxSUFndGo0T0d0TTR1TUVraEgteHM?oc=5",
+        "publishedAt": "2025-01-17T08:00:00Z",
+        "title": "캡스톤, ‘나인트리호텔 명동’ 750억원에 바이오업체에 매각 - SPI - 상업용 부동산 콘텐츠 & 데이터 애널리틱스",
+        "snippet": "캡스톤, ‘나인트리호텔 명동’ 750억원에 바이오업체에 매각 SPI - 상업용 부동산 콘텐츠 & 데이터 애널리틱스",
+        "publisher": "https://seoulpi.io"
+      },
+      {
+        "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1SX0dZa3ZpUjkwNmFCbVRMdEwxcW9XMzFpRHhmR21oeGRyQWQxMTZ4SmQ3aGdPMmRHQXpSOV9HYmF5ODc3RThLS2ZDMlh3bWZhY3fSAVNBVV95cUxNR0tHeFFXLU9OYnRWdld2TjJ3eHJoekhvWmNETGdwR25SNE9VeXhBYXNWMmp0c1FpQ0FPX3NHOEREMFgxMUlySVV1NExGUmNTZmEyMA?oc=5",
+        "publishedAt": "2025-01-19T08:00:00Z",
+        "title": "맥쿼리PE, 호주 세탁업체 LSA 3000억에 인수 계약[시그널] - 서울경제",
+        "snippet": "맥쿼리PE, 호주 세탁업체 LSA 3000억에 인수 계약[시그널] 서울경제",
+        "publisher": "https://www.sedaily.com"
+      }
+    ]
+  }
+}

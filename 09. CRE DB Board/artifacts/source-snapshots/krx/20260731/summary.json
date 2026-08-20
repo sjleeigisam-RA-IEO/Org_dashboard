@@ -1,0 +1,9 @@
+{
+  "snapshotDate": "2026-07-31",
+  "eligibleCompanies": 2756,
+  "top50Rows": 50,
+  "industryCount": 158,
+  "industryTop10Rows": 966,
+  "checksumSha256": "8e19286d92edae7fc7841eb55e82bd5a88fb4f398b9a6c1d964967ab7aa39354",
+  "artifactDir": "artifacts\\source-snapshots\\krx\\20260731"
+}

@@ -1,0 +1,32 @@
+{
+  "mode": "dry_run",
+  "requested_steps": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "candidate_rows": 309,
+  "plan_details_csv": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\output\\merge_backups\\steps_2_to_5_plan_20260521T053857Z.csv",
+  "asset_updates": 6,
+  "asset_inserts": 0,
+  "ledger_inserts": 0,
+  "fund_link_inserts": 186,
+  "fund_asset_updates": 73,
+  "hold_rows_no_db_write": 6,
+  "planned_operations": {
+    "create_or_reuse_name_only_asset": 14,
+    "hold_no_db_write": 6,
+    "create_or_reuse_pnu_asset": 242,
+    "link_existing_asset": 41,
+    "update_asset_master": 6
+  },
+  "actions": {
+    "create_or_link_underlying_asset_name_only": 14,
+    "hold_name_only_no_location": 6,
+    "create_underlying_asset_then_fetch_ledger": 242,
+    "link_existing_underlying_asset_by_pnu": 30,
+    "link_existing_underlying_asset_same_asset_pnu": 11,
+    "update_asset_master_then_fetch_ledger": 6
+  }
+}

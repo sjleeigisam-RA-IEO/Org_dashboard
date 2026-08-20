@@ -1,0 +1,138 @@
+{
+  "manifest_version": "1.0",
+  "manifest_id": "approved-lpmandate-cw-2026-domestic-senior-loan",
+  "status": "APPROVED",
+  "review": {
+    "reviewed_by": "hermes-official-primary-source-review",
+    "reviewed_at": "2026-08-20T12:10:00Z",
+    "approved_by": "hermes-parent-user-authorized-official-source-promotion",
+    "approved_at": "2026-08-20T12:11:00Z"
+  },
+  "sources": [
+    {
+      "id": "src-kofia-m212-225",
+      "url": "https://www.kofia.or.kr/brd/m_212/view.do?seq=225",
+      "title": "2026년도 대체투자(국내 부동산 선순위 대출펀드) 위탁운용사 선정 공고",
+      "publisher": "금융투자협회(건설근로자공제회 공고 재배포)",
+      "document_type": "BID_NOTICE",
+      "published_at": "2026-01-15",
+      "accessed_at": "2026-08-20",
+      "rights_status": "EXCERPT_ALLOWED",
+      "exact_text": "국내 부동산 선순위 대출펀드 위탁운용사 선정 공고\n2026년도 건설근로자공제회 국내 부동산 대출 블라인드 펀드 위탁 운용사 선정 계획\n국내 부동산 선순위 중심 순수 대출형 투자(실물 담보 대출 및 PF 대출)\nLTV(Loan To Value) 65% 이하의 선순위로만 구성된 대출 투자 비중이 70% 이상\n목표 수익률: 5.2% 이상 (보수 차감 후)\n위탁운용규모:총 1,200억원(총 2개사)\n구술심사 상위 순으로 1순위 : 700억원, 2순위 : 500억원 선정 예정\n펀드존속기간 : 8년 내외 (투자기간 3년 내)\n접수마감일 : 2026.01.30.(금) 16:00"
+    }
+  ],
+  "organizations": [
+    {
+      "id": "org_cw",
+      "organization_type": "ASSOCIATION",
+      "canonical_name": "건설근로자공제회"
+    }
+  ],
+  "event": {
+    "id": "evt-cw-2026-domestic-senior-loan-rfp",
+    "canonical_title": "2026년도 건설근로자공제회 국내 부동산 선순위 대출펀드 위탁운용사 선정",
+    "current_stage_code": "MANAGER_RFP_OPEN",
+    "event_date_start": "2026-01-15",
+    "event_date_end": "2026-01-15",
+    "date_precision": "DAY",
+    "lifecycle_status": "ACTIVE",
+    "verification_level": "V2",
+    "overall_confidence": 1.0,
+    "evidence": {
+      "source_ids": [
+        "src-kofia-m212-225"
+      ]
+    }
+  },
+  "mandate": {
+    "id": "mandate-cw-2026-domestic-senior-loan",
+    "lp_organization_id": "org_cw",
+    "mandate_code": "CW-2026-DOMESTIC-SENIOR-LOAN",
+    "mandate_name": "2026년도 국내 부동산 선순위 대출 블라인드 펀드",
+    "vintage_year": 2026,
+    "announced_at": "2026-01-15",
+    "application_deadline": "2026-01-30T16:00:00+09:00",
+    "mandate_status": "UNKNOWN",
+    "mandate_scope": "DOMESTIC",
+    "metadata": {
+      "planned_allocations": "1순위 700억원, 2순위 500억원",
+      "cutoff_status": "NO_PUBLIC_FINAL_RESULT_LOCATED_AS_OF_2026-08-19"
+    },
+    "evidence": {
+      "source_ids": [
+        "src-kofia-m212-225"
+      ]
+    }
+  },
+  "tracks": [
+    {
+      "id": "track-cw-2026-domestic-senior-loan",
+      "track_code": "CW-2026-DOMESTIC-SENIOR-LOAN",
+      "track_name": "국내 부동산 선순위 대출 블라인드",
+      "strategy_code": "PRIVATE_DEBT",
+      "geography_code": "DOMESTIC",
+      "target_manager_count": 2,
+      "evidence": {
+        "source_ids": [
+          "src-kofia-m212-225"
+        ]
+      }
+    }
+  ],
+  "guidelines": [
+    {
+      "id": "guideline-cw-2026-loan-return",
+      "track_id": "track-cw-2026-domestic-senior-loan",
+      "term_type": "TARGET_RETURN",
+      "requirement_level": "MINIMUM",
+      "raw_text": "목표 수익률: 5.2% 이상 (보수 차감 후)",
+      "value_kind": "PERCENT",
+      "value_decimal_text": "5.2",
+      "comparator_code": "AT_LEAST",
+      "return_basis": "NET_IRR",
+      "evidence": {
+        "source_ids": [
+          "src-kofia-m212-225"
+        ]
+      }
+    },
+    {
+      "id": "guideline-cw-2026-loan-ltv",
+      "track_id": "track-cw-2026-domestic-senior-loan",
+      "term_type": "LEVERAGE",
+      "requirement_level": "MAXIMUM",
+      "raw_text": "LTV(Loan To Value) 65% 이하의 선순위로만 구성된 대출 투자 비중이 70% 이상",
+      "value_kind": "TEXT",
+      "text_value": "LTV 65% 이하 선순위 대출 70% 이상",
+      "evidence": {
+        "source_ids": [
+          "src-kofia-m212-225"
+        ]
+      }
+    }
+  ],
+  "selections": [],
+  "selection_members": [],
+  "selection_vehicles": [],
+  "amounts": [
+    {
+      "id": "amount-cw-2026-senior-loan-total",
+      "scope_type": "TRACK",
+      "scope_id": "track-cw-2026-domestic-senior-loan",
+      "amount_basis": "TRACK_LP_COMMITMENT",
+      "amount": {
+        "kind": "EXACT",
+        "decimal": "120000000000",
+        "currency": "KRW",
+        "raw_value": "위탁운용규모:총 1,200억원(총 2개사)"
+      },
+      "amount_status": "ANNOUNCED",
+      "evidence": {
+        "source_ids": [
+          "src-kofia-m212-225"
+        ]
+      }
+    }
+  ],
+  "deployments": []
+}

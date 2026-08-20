@@ -1,0 +1,231 @@
+{
+  "validated_at": "2026-08-16",
+  "file": "C:\\10137_WorkSpace\\real-estate-market-intelligence\\artifacts\\logistics-competitive-sales-2020-2024-structured.json",
+  "schema_parse_ok": true,
+  "error_count": 0,
+  "errors": [],
+  "statistics": {
+    "process_count": 15,
+    "source_count": 29,
+    "milestone_count": 28,
+    "amount_claim_count": 12,
+    "funding_component_count": 21,
+    "process_status_counts": {
+      "CLOSED_YEAR_PRECISION": 1,
+      "CLOSED": 4,
+      "PREFERRED_BIDDER_TERMINAL_UNCONFIRMED": 1,
+      "FAILED": 1,
+      "CLOSED_REPORTED": 1,
+      "CLOSED_SALE_LEASEBACK": 1,
+      "MOU_SIGNED_TERMINAL_UNCONFIRMED": 1,
+      "PREFERRED_BIDDER_CLOSING_PLANNED_UNCONFIRMED": 1,
+      "FAILED_THEN_REFINANCED": 1,
+      "MARKETING_DELAYED_TERMINAL_UNCONFIRMED": 1,
+      "CLOSED_2025": 2
+    },
+    "region_counts": {
+      "수도권": 12,
+      "충청": 2,
+      "대구경북": 1
+    },
+    "competitive_evidence_counts": {
+      "CONFIRMED": 2,
+      "CONFIRMED_MULTIPLE_BIDDERS": 1,
+      "PROCESS_CONFIRMED_BIDDER_SET_UNDISCLOSED": 1,
+      "PROCESS_CONFIRMED_DETAILS_UNDISCLOSED": 1,
+      "RELAUNCH_CONFIRMED_COMPETITIVE_DETAILS_UNDISCLOSED": 1,
+      "SALE_CONFIRMED_COMPETITIVE_ROUND_UNCONFIRMED": 1,
+      "CONFIRMED_SALE_PROCESS_BID_SET_UNDISCLOSED": 1,
+      "PROCESS_CONFIRMED_BID_SET_UNDISCLOSED": 1,
+      "PREFERRED_BIDDER_CONFIRMED_BID_SET_UNDISCLOSED": 1,
+      "CLOSING_CONFIRMED_COMPETITIVE_ROUND_UNCONFIRMED": 1,
+      "MARKETING_AND_FAILURE_CONFIRMED_DETAILS_UNDISCLOSED": 1,
+      "DISTRESSED_CLOSING_CONFIRMED_COMPETITIVE_ROUND_UNCONFIRMED": 1,
+      "MANDATE_CONFIRMED_NO_BID_DISCLOSURE": 1,
+      "MANDATE_CONFIRMED_COMPETITIVE_DETAILS_UNDISCLOSED": 1
+    },
+    "http_status_counts": {
+      "200": 28,
+      "403": 1
+    },
+    "url_reachable_non5xx_count": 29,
+    "full_text_verified_source_count": 10,
+    "official_or_disclosure_citing_source_count": 2
+  },
+  "links": [
+    {
+      "source_id": "S01",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.edaily.co.kr/News/Read?newsId=01331686625799424&mediaCodeNo=257"
+    },
+    {
+      "source_id": "S02",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.thebell.co.kr/front/free/contents/news/article_view.asp?key=202005221638273880104145"
+    },
+    {
+      "source_id": "S03",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.fnnews.com/news/202407290509013999"
+    },
+    {
+      "source_id": "S04",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.thebell.co.kr/front/free/contents/news/article_view.asp?key=202009211525348680104275"
+    },
+    {
+      "source_id": "S05",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.thebell.co.kr/front/free/contents/news/article_view.asp?key=202004131333240440102586"
+    },
+    {
+      "source_id": "S06",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.thebell.co.kr/front/free/contents/news/article_view.asp?key=202004160952448480107920"
+    },
+    {
+      "source_id": "S07",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.thebell.co.kr/front/free/contents/news/article_view.asp?key=202008031318234800107350"
+    },
+    {
+      "source_id": "S08",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.fnnews.com/news/202009160956494951"
+    },
+    {
+      "source_id": "S09",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.thebell.co.kr/front/free/contents/news/article_view.asp?key=202104051403552160104462"
+    },
+    {
+      "source_id": "S10",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.thebell.co.kr/front/free/contents/news/article_view.asp?key=202112150712563140101430"
+    },
+    {
+      "source_id": "S11",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.thebell.co.kr/front/free/contents/news/article_view.asp?key=202204190935167040103785"
+    },
+    {
+      "source_id": "S12",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.thebell.co.kr/front/free/contents/news/article_view.asp?key=202208180908573940107976"
+    },
+    {
+      "source_id": "S13",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.mt.co.kr/stock/2024/04/11/2024041109472082505"
+    },
+    {
+      "source_id": "S14",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.chosun.com/economy/real_estate/2024/08/28/TKVJFNY4UVGTHF6IUSHDMBZXPM/"
+    },
+    {
+      "source_id": "S15",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.fnnews.com/news/202203290908063887"
+    },
+    {
+      "source_id": "S16",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.fnnews.com/news/202206101935445884"
+    },
+    {
+      "source_id": "S17",
+      "status": 403,
+      "ok": true,
+      "final_url": "https://www.hankyung.com/finance/article/202306124092r"
+    },
+    {
+      "source_id": "S18",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202306131555440000104785"
+    },
+    {
+      "source_id": "S19",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202403131602453840108955"
+    },
+    {
+      "source_id": "S20",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.edaily.co.kr/News/Read?newsId=02853606635638768&mediaCodeNo=257"
+    },
+    {
+      "source_id": "S21",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://dealsite.co.kr/articles/120688"
+    },
+    {
+      "source_id": "S22",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.fnnews.com/news/202412170904242392"
+    },
+    {
+      "source_id": "S23",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://news.dealsitetv.com/articles/150836"
+    },
+    {
+      "source_id": "S24",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://dealsitetv.com/articles/157015"
+    },
+    {
+      "source_id": "S25",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.fnnews.com/news/202411171830495941"
+    },
+    {
+      "source_id": "S26",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.newsis.com/view/NISX20251218_0003445685"
+    },
+    {
+      "source_id": "S27",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.corebeat.co.kr/article/1623"
+    },
+    {
+      "source_id": "S28",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.fnnews.com/news/202307040803223814"
+    },
+    {
+      "source_id": "S29",
+      "status": 200,
+      "ok": true,
+      "final_url": "https://www.edaily.co.kr/News/Read?newsId=01836886638754768&mediaCodeNo=257"
+    }
+  ]
+}

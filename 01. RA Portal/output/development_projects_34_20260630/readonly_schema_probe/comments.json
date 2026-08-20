@@ -1,0 +1,87 @@
+[
+  {
+    "schema_name": "public",
+    "table_name": "asset_aliases",
+    "table_comment": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "asset_building_ledger",
+    "table_comment": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "asset_fund_links",
+    "table_comment": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "asset_master",
+    "table_comment": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "asset_project_links",
+    "table_comment": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "dev_project_34_dashboard_flat",
+    "table_comment": "Browser-readable flat/aggregated dashboard view for the 34 development-project snapshot."
+  },
+  {
+    "schema_name": "public",
+    "table_name": "dev_project_34_dashboard_info",
+    "table_comment": "Presentation-only read view for the development-project dashboard. Excludes ids and relationship audit metadata."
+  },
+  {
+    "schema_name": "public",
+    "table_name": "dev_project_34_review_flags",
+    "table_comment": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "dev_project_34_summary",
+    "table_comment": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "dev_project_asset_links",
+    "table_comment": "Derived or manually noted links from dev_project_list rows to existing public.asset_master rows."
+  },
+  {
+    "schema_name": "public",
+    "table_name": "dev_project_extract_snapshots",
+    "table_comment": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "dev_project_fund_links",
+    "table_comment": "Thin links from dev_project_list rows to existing public.funds rows."
+  },
+  {
+    "schema_name": "public",
+    "table_name": "dev_project_list",
+    "table_comment": "2026-06-30 draft list of 34 development projects. One row is one list item, not one fund or asset."
+  },
+  {
+    "schema_name": "public",
+    "table_name": "dev_project_project_links",
+    "table_comment": "Thin links from dev_project_list rows to existing public.projects rows."
+  },
+  {
+    "schema_name": "public",
+    "table_name": "funds",
+    "table_comment": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "projects",
+    "table_comment": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "v_funds_enriched",
+    "table_comment": null
+  }
+]

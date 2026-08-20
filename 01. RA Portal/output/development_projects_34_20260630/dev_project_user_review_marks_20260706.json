@@ -1,0 +1,112 @@
+[
+  {
+    "list_type": "additional_candidate",
+    "project_or_asset_name": "김포DC 개발사업",
+    "review_status": "미준공_추가검토유지",
+    "duplicate_of": "",
+    "fund_codes": "112669 | 112670 | 112671 | 120019",
+    "short_names": "472호 | 472호(1종) | 472호(보통주) | 472호(A종)",
+    "fund_row_count": "4",
+    "operation_statuses": "운용",
+    "review_note": "사용자 확인: 추가 후보 중 아직 준공 안 된 항목"
+  },
+  {
+    "list_type": "additional_candidate",
+    "project_or_asset_name": "안산 초지동 데이터센터",
+    "review_status": "미준공_추가검토유지",
+    "duplicate_of": "",
+    "fund_codes": "112745 | 112748",
+    "short_names": "501호 | 안산",
+    "fund_row_count": "2",
+    "operation_statuses": "운용",
+    "review_note": "사용자 확인: 추가 후보 중 아직 준공 안 된 항목"
+  },
+  {
+    "list_type": "additional_candidate",
+    "project_or_asset_name": "오산세교 주거시설",
+    "review_status": "미준공_기존항목중복",
+    "duplicate_of": "오산세교 주상복합 개발사업",
+    "fund_codes": "112519",
+    "short_names": "이익참여형메자닌 1-1호",
+    "fund_row_count": "1",
+    "operation_statuses": "운용",
+    "review_note": "사용자 확인: 기존 오산세교 주상복합 개발사업과 같은 항목"
+  },
+  {
+    "list_type": "additional_candidate",
+    "project_or_asset_name": "위례Senior Living 개발사업",
+    "review_status": "미준공_추가검토유지",
+    "duplicate_of": "",
+    "fund_codes": "120062 | 120063 | 120064 | 120065 | 120066 | 120067 | 120068 | 120069",
+    "short_names": "562호 | 562의1호 | 562의1호(1종) | 562의1호(2종) | 562의1호(3종) | 562의1호(4종) | 562의1호(5종) | 562의1호(6종)",
+    "fund_row_count": "8",
+    "operation_statuses": "운용 | 설정예정",
+    "review_note": "사용자 확인: 추가 후보 중 아직 준공 안 된 항목"
+  },
+  {
+    "list_type": "additional_candidate",
+    "project_or_asset_name": "은평 시니어리빙 복합시설 개발",
+    "review_status": "미준공_추가검토유지",
+    "duplicate_of": "",
+    "fund_codes": "120001 | 190001",
+    "short_names": "517-1호 | 517호",
+    "fund_row_count": "2",
+    "operation_statuses": "운용",
+    "review_note": "사용자 확인: 추가 후보 중 아직 준공 안 된 항목"
+  },
+  {
+    "list_type": "additional_candidate",
+    "project_or_asset_name": "하남시풍산동9MW 데이터센터",
+    "review_status": "미준공_추가검토유지",
+    "duplicate_of": "",
+    "fund_codes": "190017",
+    "short_names": "574호",
+    "fund_row_count": "1",
+    "operation_statuses": "운용",
+    "review_note": "사용자 확인: 추가 후보 중 아직 준공 안 된 항목"
+  },
+  {
+    "list_type": "existing_34",
+    "project_or_asset_name": "안녕인사동",
+    "review_status": "준공완료_제외검토",
+    "duplicate_of": "",
+    "fund_codes": "P00007 | 112114 | 112115",
+    "short_names": "P로터스 | 120호 | 121호",
+    "fund_row_count": "3",
+    "operation_statuses": "",
+    "review_note": "사용자 확인: 준공된 항목. 바로 제외하지 않고 준공완료로 체크"
+  },
+  {
+    "list_type": "existing_34",
+    "project_or_asset_name": "팩토리얼 성수",
+    "review_status": "준공완료_제외검토",
+    "duplicate_of": "",
+    "fund_codes": "P00010",
+    "short_names": "P성수PFV1",
+    "fund_row_count": "1",
+    "operation_statuses": "",
+    "review_note": "사용자 확인: 준공된 항목. 바로 제외하지 않고 준공완료로 체크"
+  },
+  {
+    "list_type": "existing_34",
+    "project_or_asset_name": "안성 성은 물류센터",
+    "review_status": "준공완료_제외검토",
+    "duplicate_of": "",
+    "fund_codes": "P00014",
+    "short_names": "P안성성은물류",
+    "fund_row_count": "1",
+    "operation_statuses": "",
+    "review_note": "사용자 확인: 준공된 항목. 바로 제외하지 않고 준공완료로 체크"
+  },
+  {
+    "list_type": "existing_34",
+    "project_or_asset_name": "판교 제2테크노밸리 C1, C2블록 아이스퀘어 개발사업",
+    "review_status": "준공완료_제외검토",
+    "duplicate_of": "",
+    "fund_codes": "P00001 | 112535 | 112536",
+    "short_names": "P아이스퀘어 | 407호 | 408호",
+    "fund_row_count": "3",
+    "operation_statuses": "",
+    "review_note": "사용자 확인: 판교아이스퀘어. 준공된 항목. 바로 제외하지 않고 준공완료로 체크"
+  }
+]

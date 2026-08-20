@@ -1,0 +1,65 @@
+{
+  "candidate_version": "1.0",
+  "candidate_id": "speculative-cw-2022-domestic-re-debt",
+  "verification_layer": "VERIFICATION_CANDIDATE",
+  "resolution_status": "LIKELY_REPORTED_PENDING_PRIMARY",
+  "claim_type": "SELECTED_MANAGER",
+  "claim_subject": "CW-2022-DOMESTIC-RE-DEBT",
+  "claim_payload": {
+    "lp": "건설근로자공제회",
+    "mandate_name": "2022 국내 부동산 대출형 블라인드 펀드 위탁운용사 선정",
+    "reported_selected_managers": [
+      "캡스톤자산운용",
+      "코람코자산운용"
+    ],
+    "reported_selection_amounts": [
+      {
+        "manager": "캡스톤자산운용",
+        "decimal": "80000000000",
+        "currency": "KRW"
+      },
+      {
+        "manager": "코람코자산운용",
+        "decimal": "70000000000",
+        "currency": "KRW"
+      }
+    ],
+    "reported_selected_at": "2022-12-26",
+    "official_notice_url": "https://www.cw.or.kr/board.do?boardConfigNo=29&menuNo=46&action=view&boardNo=25415",
+    "assessment": {
+      "value_status": "LIKELY_REPORTED_PENDING_PRIMARY",
+      "confidence": "0.72",
+      "matched_factors": [
+        "MATCHING_OFFICIAL_NOTICE_OR_PLAN",
+        "FULL_TEXT_NOT_SNIPPET",
+        "CONCRETE_IDENTIFIERS_OR_NUMBERS",
+        "DATE_AND_STRATEGY_CONSISTENCY",
+        "NO_KNOWN_CONTRADICTION"
+      ],
+      "independent_family_count": 1,
+      "occurrence_count": 1,
+      "canonical_eligible": false
+    }
+  },
+  "sources": [
+    {
+      "url": "https://www.edaily.co.kr/News/Read?newsId=03073366632562784",
+      "publisher": "이데일리",
+      "document_type": "ARTICLE",
+      "published_at": "2022-12-27T18:55:59+09:00",
+      "exact_text": "건설근로자공제회가 국내 부동산 대출형 블라인드 펀드 위탁운용사에 캡스톤자산운용과 코람코자산운용을 최종 선정했다.\n건설근로자공제회는 캡스톤자산운용과 코람코자산운용을 지난 26일 국내 부동산 대출형 블라인드 펀드 위탁운용사로 최종 선정했다. 출자규모는 각각 800억원과 700억원으로 총 1500억원이다.\n이번 출자는 실물 담보 대출·프로젝트파이낸싱(PF) 대출·브릿지 대출 등 국내 부동산 선순위 중심의 순수 대출형 투자다. 또한 담보인정비율(LTV·Loan to Value) 65% 이하의 선순위로만 구성된 대출 투자 비중이 70% 이상이다. 목표 수익률은 보수 차감 후 6.0% 이상으로 펀드 존속 기간은 7년 내외다. 투자 기간은 3년 내외다.",
+      "source_family": "edaily-2022-12-27-cw-re-debt",
+      "independent_from_other_sources": true
+    }
+  ],
+  "verification_needed": [
+    "OFFICIAL_SELECTION_RESULT",
+    "OFFICIAL_DISCLOSURE",
+    "PARTY_PRIMARY_CONFIRMATION"
+  ],
+  "first_seen_at": "2022-12-27T18:55:59+09:00",
+  "last_checked_at": "2026-08-16T00:35:00Z",
+  "promoted_manifest_id": null,
+  "resolution_note": "공식 모집공고와 전략·시점이 일치하고 기사 원문에 선정사·귀속금액이 구체적으로 제시되어 유력정보로 표시. 공식 선정결과·공시·당사자 확인 전 canonical 선정사 및 약정액으로 승격하지 않음.",
+  "contradicting_source_urls": []
+}

@@ -1,0 +1,125 @@
+{
+  "campaign": "BACKFILL_2025",
+  "partitions": [
+    {
+      "start": "2025-01-01",
+      "end_exclusive": "2025-02-01",
+      "api_records": 456,
+      "filtered_documents": 33,
+      "inserted": 19,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "70338957b41f5129b37a05ffc79407e0"
+    },
+    {
+      "start": "2025-02-01",
+      "end_exclusive": "2025-03-01",
+      "api_records": 650,
+      "filtered_documents": 18,
+      "inserted": 14,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "47a02b0f0ff75e2593b0cec778cc5733"
+    },
+    {
+      "start": "2025-03-01",
+      "end_exclusive": "2025-04-01",
+      "api_records": 723,
+      "filtered_documents": 35,
+      "inserted": 22,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "63d0a3daef955b3abf1759f385362ae7"
+    },
+    {
+      "start": "2025-04-01",
+      "end_exclusive": "2025-05-01",
+      "api_records": 750,
+      "filtered_documents": 12,
+      "inserted": 8,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "24be6895e96e5fbba1defe8253cd0205"
+    },
+    {
+      "start": "2025-05-01",
+      "end_exclusive": "2025-06-01",
+      "api_records": 664,
+      "filtered_documents": 18,
+      "inserted": 16,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "47de953a8f54589e8d9fd401ff9a39ea"
+    },
+    {
+      "start": "2025-06-01",
+      "end_exclusive": "2025-07-01",
+      "api_records": 635,
+      "filtered_documents": 31,
+      "inserted": 29,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "4dc64fad73f15767b2fc251d7eb2c77a"
+    },
+    {
+      "start": "2025-07-01",
+      "end_exclusive": "2025-08-01",
+      "api_records": 682,
+      "filtered_documents": 23,
+      "inserted": 18,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "a24da56df3035a63be1afa7e5f78660d"
+    },
+    {
+      "start": "2025-08-01",
+      "end_exclusive": "2025-09-01",
+      "api_records": 562,
+      "filtered_documents": 15,
+      "inserted": 14,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "733570121102573f96a3b6de9732a978"
+    },
+    {
+      "start": "2025-09-01",
+      "end_exclusive": "2025-10-01",
+      "api_records": 779,
+      "filtered_documents": 26,
+      "inserted": 24,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "8302c40ea4595b42b924f05472128131"
+    },
+    {
+      "start": "2025-10-01",
+      "end_exclusive": "2025-11-01",
+      "api_records": 663,
+      "filtered_documents": 19,
+      "inserted": 15,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "2190b41098625da39092006d0ade3f80"
+    },
+    {
+      "start": "2025-11-01",
+      "end_exclusive": "2025-12-01",
+      "api_records": 750,
+      "filtered_documents": 30,
+      "inserted": 21,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "70596558ecb75e8d809bd850db361f94"
+    },
+    {
+      "start": "2025-12-01",
+      "end_exclusive": "2026-01-01",
+      "api_records": 1102,
+      "filtered_documents": 43,
+      "inserted": 37,
+      "updated": 0,
+      "skipped": false,
+      "run_id": "f92cbd50f2285e9e93aa5c06690b5dbb"
+    }
+  ]
+}

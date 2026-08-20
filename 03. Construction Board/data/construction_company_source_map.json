@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "description": "회사명과 최근 수주 외부 소스의 수동 매핑. API 연동 전에는 이 파일과 03. Construction Board/data/construction_awards_cache.json을 함께 사용한다.",
+  "companies": [
+    {
+      "company": "삼성물산 주식회사",
+      "aliases": ["삼성물산(주)", "삼성물산"],
+      "source_name": "산군",
+      "source_url": "https://www.sankun.com/company-info/n7o9WuKFOL8htHl_ftZolw"
+    },
+    {
+      "company": "현대건설(주)",
+      "aliases": ["현대건설"],
+      "source_name": "산군",
+      "source_url": "https://www.sankun.com/company-info/EskjAEMZ2HbswEHggXH6CA"
+    },
+    {
+      "company": "디엘이앤씨(주)",
+      "aliases": ["DL이앤씨", "디엘이앤씨"],
+      "source_name": "산군",
+      "source_url": "https://www.sankun.com/company-info/vyW6FUSYgkk65Op0UKQOCA"
+    },
+    {
+      "company": "지에스건설(주)",
+      "aliases": ["GS건설", "(주)지에스건설"],
+      "source_name": "산군",
+      "source_url": "https://www.sankun.com/company-info/C-F1_lJ2YHOFaftIIamaxw"
+    },
+    {
+      "company": "(주)삼우씨엠건축사사무소",
+      "aliases": ["삼우씨엠", "삼우씨엠건축사사무소"],
+      "source_name": "산군",
+      "source_url": "https://www.sankun.com/company-info/Mq2QyLs0P7BJXCeRY06zOg"
+    },
+    {
+      "company": "(주)도화엔지니어링",
+      "aliases": ["도화엔지니어링", "(주)도화엔지니어링(DOHWA ENGINEERING CO.,Ltd)"],
+      "source_name": "산군",
+      "source_url": "https://www.sankun.com/company-info/4Y0s_VAcEgVP3Fijuu35PQ"
+    },
+    {
+      "company": "(주)한국종합기술",
+      "aliases": ["한국종합기술"],
+      "source_name": "DART/보도",
+      "source_url": "https://www.datatooza.com/article/2024112114524216703f2b964e4c_80"
+    },
+    {
+      "company": "(주)희림종합건축사사무소",
+      "aliases": ["희림", "희림종합건축사사무소"],
+      "source_name": "산군",
+      "source_url": "https://www.sankun.com/company-info/MNIn1Pv7G73dWRMpGhLE_w"
+    }
+  ]
+}

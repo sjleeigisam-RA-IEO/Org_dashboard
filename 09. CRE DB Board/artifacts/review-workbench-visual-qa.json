@@ -1,0 +1,26 @@
+{
+  "desktop": {
+    "viewport": [
+      1536,
+      960
+    ],
+    "scrollWidth": 1536,
+    "bodyWidth": 1536,
+    "category": "PF3",
+    "gridColumns": "320px 854px 360px",
+    "actionVisible": true,
+    "decision": "승인 완료 · 로컬 목업"
+  },
+  "mobile": {
+    "viewport": [
+      390,
+      844
+    ],
+    "scrollWidth": 390,
+    "bodyWidth": 390,
+    "queueFlow": "column",
+    "actionPosition": "sticky"
+  },
+  "consoleErrors": [],
+  "pageErrors": []
+}

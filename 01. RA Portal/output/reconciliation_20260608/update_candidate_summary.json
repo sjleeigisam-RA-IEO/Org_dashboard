@@ -1,0 +1,67 @@
+{
+  "source_files": {
+    "fund_master": {
+      "file_name": "펀드 관리_20260608.xlsx",
+      "header": 0,
+      "rows": 1111,
+      "columns": 59
+    },
+    "fund_aum": {
+      "file_name": "펀드 AUM 관리_20260608.xlsx",
+      "header": 1,
+      "rows": 368,
+      "columns": 33
+    },
+    "asset_master_source": {
+      "file_name": "투자 자산 관리_20260608.xlsx",
+      "header": 0,
+      "rows": 788,
+      "columns": 56
+    },
+    "fund_asset_source": {
+      "file_name": "투자 자산 조회_20260608.xlsx",
+      "header": 0,
+      "rows": 693,
+      "columns": 42
+    },
+    "lender_source": {
+      "file_name": "대주 정보 조회_20260608.xlsx",
+      "header": 0,
+      "rows": 688,
+      "columns": 28
+    },
+    "beneficiary_source": {
+      "file_name": "수익자 정보 조회_20260608.xlsx",
+      "header": 0,
+      "rows": 1140,
+      "columns": 24
+    }
+  },
+  "supabase_counts": {
+    "funds": 1103,
+    "asset_master": 1302,
+    "asset_fund_links": 1151,
+    "lender_exposures": 670,
+    "beneficiary_exposures": 1118,
+    "asset_building_ledger": 396
+  },
+  "issue_counts": {
+    "fund_master|field_change_candidate|review": 152,
+    "fund_master|new_source_fund_not_in_supabase|update_candidate": 9,
+    "fund_master|supabase_fund_not_in_today_source|info": 1,
+    "fund_aum|field_change_candidate|review": 324,
+    "fund_aum|numeric_change_candidate|review": 480,
+    "fund_aum|aum_source_fund_not_in_supabase|update_candidate": 3,
+    "asset_master|asset_field_change_candidate|review": 2517,
+    "fund_asset_link|source_pair_not_in_supabase_exact|update_candidate": 80,
+    "fund_asset_link|source_pair_not_in_supabase_exact|review": 73,
+    "fund_asset_link|supabase_pair_not_in_today_source_exact|info": 467,
+    "lender_exposure|fund_exposure_sum_change_candidate|review": 49,
+    "lender_exposure|source_fund_exposure_not_in_supabase|update_candidate": 1,
+    "lender_exposure|supabase_exposure_not_in_today_source|info": 11,
+    "beneficiary_exposure|fund_exposure_sum_change_candidate|review": 239,
+    "beneficiary_exposure|source_fund_exposure_not_in_supabase|update_candidate": 1,
+    "beneficiary_exposure|supabase_exposure_not_in_today_source|info": 8
+  },
+  "total_issues": 4415
+}

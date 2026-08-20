@@ -1,0 +1,13 @@
+﻿check_expr,policy_command,policy_name,rls_enabled,rls_forced,schema_name,table_name,using_expr
+,,,False,False,public,asset_aliases,
+,,,False,False,public,asset_building_ledger,
+,,,False,False,public,asset_fund_links,
+,,,False,False,public,asset_master,
+,,,False,False,public,asset_project_links,
+true,all,dev_project_asset_links_service_role_all,True,False,public,dev_project_asset_links,true
+true,all,dev_project_extract_snapshots_service_role_all,True,False,public,dev_project_extract_snapshots,true
+true,all,dev_project_fund_links_service_role_all,True,False,public,dev_project_fund_links,true
+true,all,dev_project_list_service_role_all,True,False,public,dev_project_list,true
+true,all,dev_project_project_links_service_role_all,True,False,public,dev_project_project_links,true
+,,,False,False,public,funds,
+,,,False,False,public,projects,

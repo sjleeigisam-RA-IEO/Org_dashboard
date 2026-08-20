@@ -1,0 +1,120 @@
+{
+  "report_version": "1.0",
+  "source_artifact": "artifacts/hotel-competitive-sales-2020-2024-deep-dive.json",
+  "generated_at": "2026-08-16T00:00:00Z",
+  "gate": {
+    "approved_status_required": true,
+    "core_evidence_allowed": [
+      "FULL_TEXT",
+      "FULL_TEXT_*",
+      "OFFICIAL_FULL_TEXT",
+      "CROSS_ARTIFACT_VERIFIED"
+    ],
+    "excluded_classification_markers": [
+      "EXCLUDED",
+      "REVIEW_BACKLOG",
+      "COMPETITION_NOT_VERIFIED"
+    ],
+    "title_snippet_policy": "terminal 또는 경쟁 핵심 claim에 TITLE_SNIPPET_REVIEW_ONLY가 필요하면 process 전체 제외",
+    "unknown_policy": "미공개 exact vehicle/lender/price/date를 생성하지 않음"
+  },
+  "approved_process_ids": [
+    "HOTEL-ALPENSIA-2020-2022-A1",
+    "HOTEL-SHILLA-MAPO-2023-A1",
+    "HOTEL-TAKE-GWANGMYEONG-2024-A1",
+    "HOTEL-MERCURE-HONGDAE-2023-A1",
+    "HOTEL-GRAVITY-PANGYO-2024-A1",
+    "HOTEL-JEONNAM-3PACK-2021-A1",
+    "HOTEL-SHILLA-DONGTAN-2024-A1"
+  ],
+  "excluded_processes": [
+    {
+      "process_id": "HOTEL-TMARK-GRAND-2020-A1",
+      "reason_code": "TITLE_SNIPPET_CORE_ONLY",
+      "reason": "MOU 연장과 실패 terminal 모두 TITLE_SNIPPET_REVIEW_ONLY"
+    },
+    {
+      "process_id": "HOTEL-TMARK-GRAND-2022-2024-A2",
+      "reason_code": "TITLE_SNIPPET_TERMINAL_ONLY",
+      "reason": "2024 closing·최종 매수구조가 TITLE_SNIPPET_REVIEW_ONLY"
+    },
+    {
+      "process_id": "HOTEL-SHERATON-PALACE-2020-A1",
+      "reason_code": "COMPETITION_NOT_VERIFIED",
+      "reason": "classification=PROCESS_FOUND_COMPETITION_NOT_VERIFIED; 본입찰·복수 bidder 미확인"
+    },
+    {
+      "process_id": "HOTEL-LEMERIDIEN-2020-2021-A1",
+      "reason_code": "COMPETITION_NOT_VERIFIED",
+      "reason": "classification=SALE_CONFIRMED_COMPETITION_NOT_VERIFIED; 경쟁라운드 미확인"
+    },
+    {
+      "process_id": "HOTEL-KUMHO-RESORT-2020-2021-MA",
+      "reason_code": "EXCLUDED_CORPORATE_MA",
+      "reason": "classification=EXCLUDED_CORPORATE_MA_WITH_ASSET_MANIFEST; 법인 지분 M&A"
+    },
+    {
+      "process_id": "HOTEL-CONRAD-2023-2024-A2",
+      "reason_code": "COMPETITION_NOT_VERIFIED",
+      "reason": "단독 매각·종결은 full text이나 경쟁라운드·복수 bidder 근거 미확인"
+    },
+    {
+      "process_id": "HOTEL-NINETREE-DONGDAEMUN-2023-A1",
+      "reason_code": "COMPETITION_NOT_VERIFIED",
+      "reason": "classification=SALE_CONFIRMED_COMPETITION_NOT_VERIFIED"
+    },
+    {
+      "process_id": "HOTEL-L7-HAEUNDAE-2023-2024-A1",
+      "reason_code": "TITLE_SNIPPET_CORE_ONLY",
+      "reason": "marketing·우협·terminal 핵심 근거가 모두 TITLE_SNIPPET_REVIEW_ONLY"
+    },
+    {
+      "process_id": "HOTEL-MERCURE-HONGDAE-2024-A2",
+      "reason_code": "TITLE_SNIPPET_TERMINAL_ONLY",
+      "reason": "2025 종결 후보가 TITLE_SNIPPET_REVIEW_ONLY이므로 process-level terminal gate 불충족"
+    },
+    {
+      "process_id": "HOTEL-GLAD-3PACK-2024-A1",
+      "reason_code": "TITLE_SNIPPET_COMPETITION_ORIGIN",
+      "reason": "2024 marketing origin이 TITLE_SNIPPET_REVIEW_ONLY이고 공개 경쟁라운드 근거 불충분"
+    },
+    {
+      "process_id": "HOTEL-STAZ-ULSAN-2024-A1",
+      "reason_code": "COMPETITION_NOT_VERIFIED",
+      "reason": "mandate 단계만 full text; 입찰·bidder 없음"
+    },
+    {
+      "process_id": "HOTEL-CORALLO-YANGYANG-2024-A1",
+      "reason_code": "COMPETITION_NOT_VERIFIED",
+      "reason": "mandate 단계만 확인; 입찰·bidder 없음"
+    },
+    {
+      "process_id": "HOTEL-PARNAS-JEJU-2024-A1",
+      "reason_code": "TITLE_SNIPPET_CORE_ONLY",
+      "reason": "RFP와 실패 terminal 모두 TITLE_SNIPPET_REVIEW_ONLY"
+    },
+    {
+      "process_id": "HOTEL-EDENVALLEY-2024-A1",
+      "reason_code": "TITLE_SNIPPET_CORE_ONLY",
+      "reason": "실패·재출시 핵심 근거가 TITLE_SNIPPET_REVIEW_ONLY이며 자산범위도 미검증"
+    }
+  ],
+  "crosswalk_candidates": [
+    {
+      "source_process_id": "HOTEL-IFC-CONRAD-2022-PACKAGE-A1",
+      "canonical_process_id": "OFF-2021-IFC-SEOUL-A",
+      "relationship": "DUPLICATE_PACKAGE_COMPONENT_COVERAGE",
+      "action": "NO_SEPARATE_CANONICAL_MANIFEST",
+      "reason": "IFC 서울 패키지는 office/DC 산출물 canonical process와 중복",
+      "related_process_ids": [
+        "HOTEL-CONRAD-2023-2024-A2"
+      ]
+    }
+  ],
+  "counts": {
+    "source_processes": 22,
+    "approved": 7,
+    "excluded": 14,
+    "crosswalk_only": 1
+  }
+}

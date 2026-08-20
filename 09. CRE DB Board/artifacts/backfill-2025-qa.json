@@ -1,0 +1,44 @@
+{
+  "campaign": "BACKFILL_2025",
+  "period": {
+    "start": "2025-01-01",
+    "endExclusive": "2026-01-01"
+  },
+  "collection": {
+    "completedRuns": 404,
+    "failedRuns": 0,
+    "documents": 16383,
+    "documentVersions": 16410,
+    "sources": {
+      "GOOGLE_NEWS_RSS": {"documents": 4098, "versions": 4098},
+      "OPENDART": {"documents": 66, "versions": 66, "scannedApiRecords": 8416},
+      "MOLIT_REAL_TRANSACTION": {"documents": 12219, "versions": 12246, "apiTotalCount": 12219}
+    }
+  },
+  "extraction": {
+    "activeEventMentions": 16621,
+    "rejectedSupersededVersionMentions": 27,
+    "canonicalEvents": 0
+  },
+  "macro": {
+    "series": 3,
+    "releases": 12,
+    "observations": 36
+  },
+  "qa": {
+    "sqliteIntegrity": "ok",
+    "foreignKeyViolations": 0,
+    "duplicateSourceUrls": 0,
+    "documentsWithoutVersions": 0,
+    "versionsWithoutRuns": 0,
+    "collectorTestsPassed": 9,
+    "cliTestsPassed": 3
+  },
+  "limitations": [
+    "RSS metadata and snippets only; no article full text stored",
+    "OpenDART first pass limited to sale-like material disclosures",
+    "MOLIT first pass limited to Seoul non-residential transactions",
+    "Canonical event and entity resolution not yet approved",
+    "Macro coverage currently limited to three derived Seoul transaction series"
+  ]
+}

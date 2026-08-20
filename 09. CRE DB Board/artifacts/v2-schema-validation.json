@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "2.2.0",
+  "authority": "db/v2/schema.sql",
+  "database": "SQLite 3.45.1",
+  "validatedAt": "2026-08-15",
+  "results": {
+    "schemaAndSeedExecution": "passed",
+    "integrityCheck": "ok",
+    "foreignKeyViolations": 0,
+    "tableCountIncludingFtsInternals": 76,
+    "viewCount": 7,
+    "triggerCount": 12,
+    "seedAssetClasses": 17,
+    "seedPredicates": 32,
+    "seedMeasurementDefinitions": 70,
+    "seedMeasurementAliases": 40,
+    "seedMeasurementRelations": 15,
+    "seedMeasurementApplicability": 27,
+    "seedSpatialUnitTypes": 26,
+    "seedMeasurementDimensionDefinitions": 10,
+    "seedMeasurementDimensionOptions": 18,
+    "syntheticMentionCount": 6,
+    "syntheticClaimCount": 3,
+    "syntheticClaimArgumentCount": 5,
+    "syntheticClaimEvidenceCount": 5,
+    "syntheticEventFeedCount": 1,
+    "normalizedPfAmountKrw": 620000000000,
+    "measurementScenarios": {
+      "spatialUnits": 13,
+      "measurementFacts": 12,
+      "factDimensions": 9,
+      "ambiguousSurfaceAreaAliases": 2,
+      "derivedFloorInputSumM2": 48000,
+      "derivedBuildingGfaM2": 48000,
+      "normalized10000PyeongM2": 33057.85,
+      "selectedConflictingSiteAreaM2": 31000,
+      "currentMeasurementViewRows": 1,
+      "unitDimensionGuard": "passed",
+      "dimensionKindGuard": "passed",
+      "selectionTargetGuard": "passed"
+    },
+    "latestMacroRevisionValue": 112,
+    "macroReleaseCount": 2,
+    "macroSupersedesObservation": "mo_v0",
+    "appendOnlyGuard": "passed",
+    "snapshotEventCount": 1,
+    "ftsHitCount": 1,
+    "operationalDatabase": {
+      "path": "data/market.db",
+      "bytes": 1044480,
+      "sha256": "da8b9745b0999766a8496d8c8abe3b733ce59a725d77802aba06cd4669d80909",
+      "integrityCheck": "ok",
+      "foreignKeyViolations": 0,
+      "sourceDocuments": 0,
+      "events": 0,
+      "claims": 0,
+      "measurementFacts": 0
+    },
+    "backupValidation": {
+      "path": "backups/market-initial-v2.2.0.db",
+      "bytes": 1044480,
+      "sha256": "ca9d6d4d15a3e9efec17f9251deae357ecf276b621d7ec14dad7d63c57b981e6",
+      "quickCheck": "ok",
+      "foreignKeyViolations": 0
+    }
+  },
+  "measurementArchitecture": {
+    "taxonomy": [
+      "measurement_definitions",
+      "measurement_definition_aliases",
+      "measurement_definition_relations",
+      "measurement_applicability"
+    ],
+    "spatialHierarchy": [
+      "spatial_unit_types",
+      "spatial_units",
+      "spatial_unit_aliases"
+    ],
+    "typedValues": [
+      "measurement_facts",
+      "measurement_fact_dimensions",
+      "measurement_fact_selections"
+    ],
+    "lineage": [
+      "measurement_derivations",
+      "measurement_derivation_inputs"
+    ]
+  },
+  "syntheticScenario": true,
+  "notes": [
+    "All validation records are fictional.",
+    "The operational database contains taxonomy and series seeds only, not synthetic events or measurement facts.",
+    "New measurement types are added as dictionary rows and do not require ALTER TABLE.",
+    "The test distinguishes land, regulatory, floor, leasing, logistics, data-center, retail and hospitality area families.",
+    "The test exercises floor hierarchy, logistics temperature zones, data-center rooms, PYEONG-to-M2 normalization, derived GFA lineage, conflicting source selection and negative integrity guards.",
+    "The prior db/schema.sql and db/seed.sql are deprecated V1 PostgreSQL artifacts."
+  ]
+}

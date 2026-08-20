@@ -1,0 +1,808 @@
+﻿domain,severity,issue_type,fund_id,field,source_column,db_column,source_value,db_value,difference,recommendation
+fund_aum,review,field_change_candidate,112005,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112006,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112008,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112008,equity_won,Equity 총액(원),equity_won,363210387716,362228633469,981754247,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112008,benchmark_aum,AUM(원),benchmark_aum,978754387716,977772633469,981754247,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112008,invested_equity_won,Equity 총액(원).1,invested_equity_won,363210387716,362228633469,981754247,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112008,invested_aum,AUM(원).1,invested_aum,978754387716,977772633469,981754247,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112011,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112012,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112016,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112017,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112018,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112024,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112026,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112026,equity_won,Equity 총액(원),equity_won,30173079000,29680833000,492246000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112026,benchmark_aum,AUM(원),benchmark_aum,30173079000,29680833000,492246000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112029,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112030,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112030,equity_won,Equity 총액(원),equity_won,75395000000,74165000000,1230000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112030,benchmark_aum,AUM(원),benchmark_aum,75395000000,74165000000,1230000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112032,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112032,equity_won,Equity 총액(원),equity_won,22633579000,22264333000,369246000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112032,benchmark_aum,AUM(원),benchmark_aum,22633579000,22264333000,369246000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112033,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112034,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112035,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112035,loan_won,Loan 총액(원),loan_won,366908413500,362919214500,3989199000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112035,benchmark_aum,AUM(원),benchmark_aum,517247693068,513258494068,3989199000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112035,invested_loan_won,Loan 총액(원).1,invested_loan_won,366908413500,362919214500,3989199000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112035,invested_aum,AUM(원).1,invested_aum,517247693068,513258494068,3989199000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112036,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112037,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112038,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112039,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112048,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112049,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112049,equity_won,Equity 총액(원),equity_won,419251285834,412411587159,6839698675,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112049,loan_won,Loan 총액(원),loan_won,187431970000,184374190000,3057780000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112049,benchmark_aum,AUM(원),benchmark_aum,606683255834,596785777159,9897478675,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112049,invested_loan_won,Loan 총액(원).1,invested_loan_won,160707826228,158086026025,2621800203,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112049,invested_aum,AUM(원).1,invested_aum,656929067385,654307267182,2621800203,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112051,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112051,equity_won,Equity 총액(원),equity_won,43933316300,43285057100,648259200,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112051,benchmark_aum,AUM(원),benchmark_aum,43933316300,43285057100,648259200,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112057,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112057,equity_won,Equity 총액(원),equity_won,226185000000,222495000000,3690000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112057,benchmark_aum,AUM(원),benchmark_aum,226185000000,222495000000,3690000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112057,invested_equity_won,Equity 총액(원).1,invested_equity_won,84287513234,86159144031,-1871630797,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112057,invested_aum,AUM(원).1,invested_aum,84287513234,86159144031,-1871630797,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112058,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112058,loan_won,Loan 총액(원),loan_won,267091199925,263150128725,3941071200,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112058,benchmark_aum,AUM(원),benchmark_aum,425053452015,421112380815,3941071200,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112058,invested_loan_won,Loan 총액(원).1,invested_loan_won,267091199925,263150128725,3941071200,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112058,invested_aum,AUM(원).1,invested_aum,425053452015,421112380815,3941071200,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112064,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112064,deposit_won,기준일자 임대보증금(원),deposit_won,1442934000,1436934000,6000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112064,benchmark_aum,AUM(원),benchmark_aum,96442934000,96436934000,6000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112064,invested_deposit_won,기준일자 임대보증금(원).1,invested_deposit_won,1442934000,1436934000,6000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112064,invested_aum,AUM(원).1,invested_aum,96442934000,96436934000,6000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112067,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112067,equity_won,Equity 총액(원),equity_won,126423723268,124361236636,2062486632,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112067,benchmark_aum,AUM(원),benchmark_aum,197723723268,195661236636,2062486632,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112068,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112069,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112074,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112074,equity_won,Equity 총액(원),equity_won,52698900000,51921300000,777600000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112074,benchmark_aum,AUM(원),benchmark_aum,52698900000,51921300000,777600000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112077,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112080,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112080,deposit_won,기준일자 임대보증금(원),deposit_won,10763519476,11513519476,-750000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112080,benchmark_aum,AUM(원),benchmark_aum,255952047476,256702047476,-750000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112080,invested_deposit_won,기준일자 임대보증금(원).1,invested_deposit_won,10763519476,11513519476,-750000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112080,invested_aum,AUM(원).1,invested_aum,187671176486,188421176486,-750000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112085,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112085,invested_equity_won,Equity 총액(원).1,invested_equity_won,405632192000,406100141000,-467949000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112085,invested_aum,AUM(원).1,invested_aum,887920872080,888388821080,-467949000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112086,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112092,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112093,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112093,equity_won,Equity 총액(원),equity_won,737326000000,732142000000,5184000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112093,loan_won,Loan 총액(원),loan_won,271915784220,267903523740,4012260480,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112093,benchmark_aum,AUM(원),benchmark_aum,1009241784220,1000045523740,9196260480,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112093,invested_loan_won,Loan 총액(원).1,invested_loan_won,271915784220,267903523740,4012260480,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112093,invested_aum,AUM(원).1,invested_aum,826584835286,822572574806,4012260480,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112095,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112100,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112104,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112109,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112114,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112115,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112127,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112132,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112143,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112143,equity_won,Equity 총액(원),equity_won,30158000000,29666000000,492000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112143,benchmark_aum,AUM(원),benchmark_aum,30158000000,29666000000,492000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112144,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112147,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112147,equity_won,Equity 총액(원),equity_won,120632000000,118664000000,1968000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112147,benchmark_aum,AUM(원),benchmark_aum,120632000000,118664000000,1968000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112153,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112158,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112158,equity_won,Equity 총액(원),equity_won,105553000000,103831000000,1722000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112158,benchmark_aum,AUM(원),benchmark_aum,105553000000,103831000000,1722000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112159,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112160,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112162,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112162,equity_won,Equity 총액(원),equity_won,37697500000,37082500000,615000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112162,benchmark_aum,AUM(원),benchmark_aum,37697500000,37082500000,615000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112165,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112170,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112170,loan_won,Loan 총액(원),loan_won,14403822696,14168837592,234985104,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112170,benchmark_aum,AUM(원),benchmark_aum,28922965409,28687980305,234985104,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112170,invested_loan_won,Loan 총액(원).1,invested_loan_won,14403822696,14168837592,234985104,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112170,invested_aum,AUM(원).1,invested_aum,28922965409,28687980305,234985104,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112171,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112171,loan_won,Loan 총액(원),loan_won,9602548464,9445891728,156656736,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112171,benchmark_aum,AUM(원),benchmark_aum,19281979520,19125322784,156656736,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112171,invested_loan_won,Loan 총액(원).1,invested_loan_won,9602548464,9445891728,156656736,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112171,invested_aum,AUM(원).1,invested_aum,19281979520,19125322784,156656736,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112172,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112172,deposit_won,기준일자 임대보증금(원),deposit_won,441669798271,440345975151,1323823120,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112172,benchmark_aum,AUM(원),benchmark_aum,1230639798271,1229315975151,1323823120,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112172,invested_deposit_won,기준일자 임대보증금(원).1,invested_deposit_won,441669798271,440345975151,1323823120,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112172,invested_aum,AUM(원).1,invested_aum,995705666116,994381842996,1323823120,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112173,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112173,equity_won,Equity 총액(원),equity_won,216768142000,213569614000,3198528000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112173,benchmark_aum,AUM(원),benchmark_aum,216768142000,213569614000,3198528000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112173,invested_equity_won,Equity 총액(원).1,invested_equity_won,142254417283,142515404804,-260987521,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112173,invested_aum,AUM(원).1,invested_aum,142254417283,142515404804,-260987521,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112180,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112180,equity_won,Equity 총액(원),equity_won,22618500000,22249500000,369000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112180,benchmark_aum,AUM(원),benchmark_aum,22618500000,22249500000,369000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112182,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112182,equity_won,Equity 총액(원),equity_won,83091420000,81945470000,1145950000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112182,benchmark_aum,AUM(원),benchmark_aum,83091420000,81945470000,1145950000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112183,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112191,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112191,loan_won,Loan 총액(원),loan_won,77195105350,76056050950,1139054400,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112191,benchmark_aum,AUM(원),benchmark_aum,132129767860,130990713460,1139054400,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112191,invested_loan_won,Loan 총액(원).1,invested_loan_won,77195105350,76056050950,1139054400,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112191,invested_aum,AUM(원).1,invested_aum,132129767860,130990713460,1139054400,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112200,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112205,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112206,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112206,equity_won,Equity 총액(원),equity_won,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112206,benchmark_aum,AUM(원),benchmark_aum,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112206,invested_equity_won,Equity 총액(원).1,invested_equity_won,128375126145,129753138052,-1378011907,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112206,invested_aum,AUM(원).1,invested_aum,128375126145,129753138052,-1378011907,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112208,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112209,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112209,deposit_won,기준일자 임대보증금(원),deposit_won,81441701744,80100872048,1340829696,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112209,benchmark_aum,AUM(원),benchmark_aum,2201441701744,2200100872048,1340829696,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112209,invested_deposit_won,기준일자 임대보증금(원).1,invested_deposit_won,81441701744,80100872048,1340829696,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112209,invested_aum,AUM(원).1,invested_aum,1929808436744,1928467607048,1340829696,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112214,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112214,deposit_won,기준일자 임대보증금(원),deposit_won,4518751825,4492751825,26000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112214,benchmark_aum,AUM(원),benchmark_aum,158726644825,158700644825,26000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112214,invested_deposit_won,기준일자 임대보증금(원).1,invested_deposit_won,4518751825,4492751825,26000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112214,invested_aum,AUM(원).1,invested_aum,158726644825,158700644825,26000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112223,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112234,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112234,invested_equity_won,Equity 총액(원).1,invested_equity_won,40187520350,40461768041,-274247691,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112234,invested_aum,AUM(원).1,invested_aum,40187520350,40461768041,-274247691,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112235,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112242,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112242,equity_won,Equity 총액(원),equity_won,186910799003,186910807001,-7998,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112242,loan_won,Loan 총액(원),loan_won,299587275715,295166707817,4420567898,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112242,benchmark_aum,AUM(원),benchmark_aum,486498074718,482077514818,4420559900,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112242,invested_equity_won,Equity 총액(원).1,invested_equity_won,186910799003,186910807001,-7998,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112242,invested_loan_won,Loan 총액(원).1,invested_loan_won,299587275363,295166707471,4420567892,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112242,invested_aum,AUM(원).1,invested_aum,486498074366,482077514472,4420559894,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112247,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112247,equity_won,Equity 총액(원),equity_won,45146526000,44410002000,736524000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112247,benchmark_aum,AUM(원),benchmark_aum,45146526000,44410002000,736524000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112250,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112250,equity_won,Equity 총액(원),equity_won,149243284800,147041121600,2202163200,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112250,benchmark_aum,AUM(원),benchmark_aum,149243284800,147041121600,2202163200,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112254,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112254,loan_won,Loan 총액(원),loan_won,293654853387,289321821502,4333031885,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112254,benchmark_aum,AUM(원),benchmark_aum,477225314387,472892282502,4333031885,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112254,invested_loan_won,Loan 총액(원).1,invested_loan_won,293654854090,289321822195,4333031895,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112254,invested_aum,AUM(원).1,invested_aum,477225315090,472892283195,4333031895,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112256,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112260,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112260,equity_won,Equity 총액(원),equity_won,5814115748,5825106596,-10990848,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112260,benchmark_aum,AUM(원),benchmark_aum,5814115748,5825106596,-10990848,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112260,invested_equity_won,Equity 총액(원).1,invested_equity_won,5814115748,5825106596,-10990848,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112260,invested_aum,AUM(원).1,invested_aum,5814115748,5825106596,-10990848,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112267,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112267,equity_won,Equity 총액(원),equity_won,86576702000,84640674000,1936028000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112267,benchmark_aum,AUM(원),benchmark_aum,86576702000,84640674000,1936028000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112268,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112268,loan_won,Loan 총액(원),loan_won,44082808038,43234853496,847954542,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112268,benchmark_aum,AUM(원),benchmark_aum,55048825687,54200871145,847954542,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112269,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112269,equity_won,Equity 총액(원),equity_won,21503839200,21022970400,480868800,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112269,benchmark_aum,AUM(원),benchmark_aum,21503839200,21022970400,480868800,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112270,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112273,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112273,equity_won,Equity 총액(원),equity_won,88765956000,87541746000,1224210000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112273,benchmark_aum,AUM(원),benchmark_aum,88765956000,87541746000,1224210000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112278,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112278,loan_won,Loan 총액(원),loan_won,74287882700,73191725900,1096156800,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112278,benchmark_aum,AUM(원),benchmark_aum,154991448700,153895291900,1096156800,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112278,invested_loan_won,Loan 총액(원).1,invested_loan_won,74287882700,73191725900,1096156800,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112278,invested_aum,AUM(원).1,invested_aum,154991448700,153895291900,1096156800,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112287,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112290,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112290,deposit_won,기준일자 임대보증금(원),deposit_won,11553011475,11555011475,-2000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112290,benchmark_aum,AUM(원),benchmark_aum,296122833619,296124833619,-2000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112290,invested_deposit_won,기준일자 임대보증금(원).1,invested_deposit_won,11553011475,11555011475,-2000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112290,invested_aum,AUM(원).1,invested_aum,296122833619,296124833619,-2000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112299,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112303,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112303,equity_won,Equity 총액(원),equity_won,75748000000,73890400000,1857600000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112303,benchmark_aum,AUM(원),benchmark_aum,75748000000,73890400000,1857600000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112303,invested_equity_won,Equity 총액(원).1,invested_equity_won,7231767973,7195006844,36761129,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112303,invested_aum,AUM(원).1,invested_aum,7231767973,7195006844,36761129,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112305,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112310,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112324,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112324,loan_won,Loan 총액(원),loan_won,49287656516,48575479959,712176557,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112324,benchmark_aum,AUM(원),benchmark_aum,84967238516,84255061959,712176557,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112324,invested_loan_won,Loan 총액(원).1,invested_loan_won,49287656516,48575479959,712176557,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112324,invested_aum,AUM(원).1,invested_aum,84967238516,84255061959,712176557,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112325,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112325,loan_won,Loan 총액(원),loan_won,379300661014,373819997942,5480663072,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112325,benchmark_aum,AUM(원),benchmark_aum,602955955014,597475291942,5480663072,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112325,invested_loan_won,Loan 총액(원).1,invested_loan_won,379300661014,373819997942,5480663072,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112325,invested_aum,AUM(원).1,invested_aum,602955955014,597475291942,5480663072,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112333,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112333,equity_won,Equity 총액(원),equity_won,153750940277,125277366581,28473573696,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112333,loan_won,Loan 총액(원),loan_won,158631080000,156043160000,2587920000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112333,benchmark_aum,AUM(원),benchmark_aum,312382020277,281320526581,31061493696,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112333,invested_equity_won,Equity 총액(원).1,invested_equity_won,153750940277,125277366581,28473573696,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112333,invested_loan_won,Loan 총액(원).1,invested_loan_won,158631080000,156043160000,2587920000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112333,invested_aum,AUM(원).1,invested_aum,312382020277,281320526581,31061493696,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112338,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112338,loan_won,Loan 총액(원),loan_won,113622000000,110835600000,2786400000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112338,benchmark_aum,AUM(원),benchmark_aum,256882000000,254095600000,2786400000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112338,invested_loan_won,Loan 총액(원).1,invested_loan_won,113622000000,110835600000,2786400000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112338,invested_aum,AUM(원).1,invested_aum,256882000000,254095600000,2786400000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112341,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112347,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112347,equity_won,Equity 총액(원),equity_won,87831500000,86535500000,1296000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112347,benchmark_aum,AUM(원),benchmark_aum,87831500000,86535500000,1296000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112350,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112355,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112355,equity_won,Equity 총액(원),equity_won,690851840000,685239680000,5612160000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112355,benchmark_aum,AUM(원),benchmark_aum,690851840000,685239680000,5612160000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112361,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112361,loan_won,Loan 총액(원),loan_won,108736254000,106069669200,2666584800,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112361,benchmark_aum,AUM(원),benchmark_aum,165414410771,162747825971,2666584800,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112361,invested_loan_won,Loan 총액(원).1,invested_loan_won,108736254000,106069669200,2666584800,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112361,invested_aum,AUM(원).1,invested_aum,165414410771,162747825971,2666584800,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112362,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112362,loan_won,Loan 총액(원),loan_won,53430745500,52120440900,1310304600,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112362,benchmark_aum,AUM(원),benchmark_aum,85491541000,84181236400,1310304600,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112362,invested_loan_won,Loan 총액(원).1,invested_loan_won,53430745500,52120440900,1310304600,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112362,invested_aum,AUM(원).1,invested_aum,85491541000,84181236400,1310304600,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112365,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112368,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112374,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112375,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112380,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112383,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112408,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112408,equity_won,Equity 총액(원),equity_won,45237000000,44499000000,738000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112408,benchmark_aum,AUM(원),benchmark_aum,45237000000,44499000000,738000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112409,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112409,equity_won,Equity 총액(원),equity_won,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112409,benchmark_aum,AUM(원),benchmark_aum,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112410,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112411,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112411,equity_won,Equity 총액(원),equity_won,241264000000,237328000000,3936000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112411,benchmark_aum,AUM(원),benchmark_aum,241264000000,237328000000,3936000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112413,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112413,equity_won,Equity 총액(원),equity_won,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112413,benchmark_aum,AUM(원),benchmark_aum,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112421,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112425,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112425,equity_won,Equity 총액(원),equity_won,7774876440,8004787878,-229911438,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112425,benchmark_aum,AUM(원),benchmark_aum,7774876440,8004787878,-229911438,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112425,invested_equity_won,Equity 총액(원).1,invested_equity_won,7774876440,8004787878,-229911438,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112425,invested_aum,AUM(원).1,invested_aum,7774876440,8004787878,-229911438,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112445,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112448,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112450,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112451,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112466,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112471,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112475,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112478,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112482,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112482,equity_won,Equity 총액(원),equity_won,78872687000,77708879000,1163808000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112482,benchmark_aum,AUM(원),benchmark_aum,78872687000,77708879000,1163808000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112483,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112483,loan_won,Loan 총액(원),loan_won,384212920000,377944840000,6268080000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112483,benchmark_aum,AUM(원),benchmark_aum,561705307666,555437227666,6268080000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112483,invested_loan_won,Loan 총액(원).1,invested_loan_won,384212920000,377944840000,6268080000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112483,invested_aum,AUM(원).1,invested_aum,561705307666,555437227666,6268080000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112486,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112486,equity_won,Equity 총액(원),equity_won,60316000000,59332000000,984000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112486,benchmark_aum,AUM(원),benchmark_aum,60316000000,59332000000,984000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112490,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112493,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112494,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112494,equity_won,Equity 총액(원),equity_won,193229300000,190378100000,2851200000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112494,benchmark_aum,AUM(원),benchmark_aum,193229300000,190378100000,2851200000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112495,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112496,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112497,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112499,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112501,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112501,equity_won,Equity 총액(원),equity_won,152297900000,149813300000,2484600000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112501,benchmark_aum,AUM(원),benchmark_aum,152297900000,149813300000,2484600000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112504,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112505,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112514,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112518,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112518,deposit_won,기준일자 임대보증금(원),deposit_won,1633071800,1635504900,-2433100,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112518,benchmark_aum,AUM(원),benchmark_aum,74133071800,74135504900,-2433100,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112518,invested_deposit_won,기준일자 임대보증금(원).1,invested_deposit_won,1633071800,1635504900,-2433100,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112518,invested_aum,AUM(원).1,invested_aum,74133071800,74135504900,-2433100,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112519,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112521,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112521,equity_won,Equity 총액(원),equity_won,301580000000,296660000000,4920000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112521,benchmark_aum,AUM(원),benchmark_aum,301580000000,296660000000,4920000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112524,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112527,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112528,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112535,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112536,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112540,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112540,loan_won,Loan 총액(원),loan_won,170019758633,167246042828,2773715805,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112540,benchmark_aum,AUM(원),benchmark_aum,321973515553,319199799748,2773715805,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112540,invested_loan_won,Loan 총액(원).1,invested_loan_won,170019758633,167246042828,2773715805,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112540,invested_aum,AUM(원).1,invested_aum,321973515553,319199799748,2773715805,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112541,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112541,loan_won,Loan 총액(원),loan_won,217887516368,214332882173,3554634195,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112541,benchmark_aum,AUM(원),benchmark_aum,435179043839,431624409644,3554634195,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112541,invested_loan_won,Loan 총액(원).1,invested_loan_won,217887516368,214332882173,3554634195,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112541,invested_aum,AUM(원).1,invested_aum,435179043839,431624409644,3554634195,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112543,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112547,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112558,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112558,equity_won,Equity 총액(원),equity_won,175663000000,173071000000,2592000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112558,benchmark_aum,AUM(원),benchmark_aum,175663000000,173071000000,2592000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112558,invested_equity_won,Equity 총액(원).1,invested_equity_won,148706451527,147024498707,1681952820,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112558,invested_aum,AUM(원).1,invested_aum,148706451527,147024498707,1681952820,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112559,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112568,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112568,equity_won,Equity 총액(원),equity_won,60150081600,59320525600,829556000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112568,benchmark_aum,AUM(원),benchmark_aum,60150081600,59320525600,829556000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112573,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112576,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112576,equity_won,Equity 총액(원),equity_won,52776500000,51915500000,861000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112576,benchmark_aum,AUM(원),benchmark_aum,52776500000,51915500000,861000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112577,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112577,equity_won,Equity 총액(원),equity_won,52776500000,51915500000,861000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112577,benchmark_aum,AUM(원),benchmark_aum,52776500000,51915500000,861000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112578,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112578,equity_won,Equity 총액(원),equity_won,52776500000,51915500000,861000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112578,benchmark_aum,AUM(원),benchmark_aum,52776500000,51915500000,861000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112579,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112582,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112583,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112584,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112585,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112585,equity_won,Equity 총액(원),equity_won,45237000000,44499000000,738000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112585,benchmark_aum,AUM(원),benchmark_aum,45237000000,44499000000,738000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112586,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112587,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112587,equity_won,Equity 총액(원),equity_won,232263947114,218126975278,14136971836,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112587,benchmark_aum,AUM(원),benchmark_aum,232263947114,218126975278,14136971836,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112587,invested_equity_won,Equity 총액(원).1,invested_equity_won,232263947114,218126975278,14136971836,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112587,invested_aum,AUM(원).1,invested_aum,232263947114,218126975278,14136971836,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112588,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112588,equity_won,Equity 총액(원),equity_won,355264000000,352378000000,2886000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112588,benchmark_aum,AUM(원),benchmark_aum,355264000000,352378000000,2886000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112589,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112589,deposit_won,기준일자 임대보증금(원),deposit_won,45014569360,44901316240,113253120,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112589,benchmark_aum,AUM(원),benchmark_aum,2765014569360,2764901316240,113253120,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112589,invested_loan_won,Loan 총액(원).1,invested_loan_won,1850000000000,1830000000000,20000000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112589,invested_deposit_won,기준일자 임대보증금(원).1,invested_deposit_won,45014569360,44901316240,113253120,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112589,invested_aum,AUM(원).1,invested_aum,2839742519501,2819629266381,20113253120,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112596,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112597,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112597,deposit_won,기준일자 임대보증금(원),deposit_won,1769222062,1824877062,-55655000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112597,benchmark_aum,AUM(원),benchmark_aum,63469222062,63524877062,-55655000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112597,invested_deposit_won,기준일자 임대보증금(원).1,invested_deposit_won,1769222062,1824877062,-55655000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112597,invested_aum,AUM(원).1,invested_aum,63469222062,63524877062,-55655000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112598,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112598,loan_won,Loan 총액(원),loan_won,127113708150,125039965050,2073743100,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112598,benchmark_aum,AUM(원),benchmark_aum,203053385581,200979642481,2073743100,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112598,invested_loan_won,Loan 총액(원).1,invested_loan_won,127113708150,125039965050,2073743100,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112598,invested_aum,AUM(원).1,invested_aum,203053385581,200979642481,2073743100,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112599,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112599,loan_won,Loan 총액(원),loan_won,127113708150,125039965050,2073743100,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112599,benchmark_aum,AUM(원),benchmark_aum,203053385582,200979642482,2073743100,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112599,invested_loan_won,Loan 총액(원).1,invested_loan_won,127113708150,125039965050,2073743100,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112599,invested_aum,AUM(원).1,invested_aum,203053385582,200979642482,2073743100,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112600,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112600,loan_won,Loan 총액(원),loan_won,98993635000,97378645000,1614990000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112600,benchmark_aum,AUM(원),benchmark_aum,157615499612,156000509612,1614990000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112600,invested_loan_won,Loan 총액(원).1,invested_loan_won,98993635000,97378645000,1614990000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112600,invested_aum,AUM(원).1,invested_aum,157615499612,156000509612,1614990000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112601,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112601,equity_won,Equity 총액(원),equity_won,60692975000,59702825000,990150000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112601,benchmark_aum,AUM(원),benchmark_aum,60692975000,59702825000,990150000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112602,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112602,invested_equity_won,Equity 총액(원).1,invested_equity_won,59166310912,59447401920,-281091008,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112602,invested_aum,AUM(원).1,invested_aum,59166310912,59447401920,-281091008,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112604,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112606,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112607,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112607,equity_won,Equity 총액(원),equity_won,105553000000,103831000000,1722000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112607,benchmark_aum,AUM(원),benchmark_aum,105553000000,103831000000,1722000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112608,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112611,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112614,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112617,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112617,equity_won,Equity 총액(원),equity_won,75395000000,74165000000,1230000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112617,benchmark_aum,AUM(원),benchmark_aum,75395000000,74165000000,1230000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112619,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112619,equity_won,Equity 총액(원),equity_won,98013500000,96414500000,1599000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112619,benchmark_aum,AUM(원),benchmark_aum,98013500000,96414500000,1599000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112621,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112621,equity_won,Equity 총액(원),equity_won,116002747000,114110269000,1892478000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112621,benchmark_aum,AUM(원),benchmark_aum,116002747000,114110269000,1892478000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112621,invested_equity_won,Equity 총액(원).1,invested_equity_won,87541989682,88075982169,-533992487,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112621,invested_aum,AUM(원).1,invested_aum,87541989682,88075982169,-533992487,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112622,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112622,equity_won,Equity 총액(원),equity_won,49715463000,48904401000,811062000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112622,benchmark_aum,AUM(원),benchmark_aum,49715463000,48904401000,811062000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112623,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112624,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112625,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112625,equity_won,Equity 총액(원),equity_won,45237000000,44499000000,738000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112625,benchmark_aum,AUM(원),benchmark_aum,45237000000,44499000000,738000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112626,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112629,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112641,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112642,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112645,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112645,equity_won,Equity 총액(원),equity_won,45237000000,44499000000,738000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112645,benchmark_aum,AUM(원),benchmark_aum,45237000000,44499000000,738000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112646,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112648,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112648,equity_won,Equity 총액(원),equity_won,131730300000,129913550000,1816750000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112648,benchmark_aum,AUM(원),benchmark_aum,131730300000,129913550000,1816750000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112649,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112653,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112656,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112657,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112657,equity_won,Equity 총액(원),equity_won,71825726813,70653956218,1171770595,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112657,loan_won,Loan 총액(원),loan_won,107658405375,105902057625,1756347750,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112657,benchmark_aum,AUM(원),benchmark_aum,179484132188,176556013843,2928118345,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112657,invested_loan_won,Loan 총액(원).1,invested_loan_won,107658405375,105902057625,1756347750,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112657,invested_aum,AUM(원).1,invested_aum,177367718964,175611371214,1756347750,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112658,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112658,equity_won,Equity 총액(원),equity_won,74641050000,73423350000,1217700000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112658,benchmark_aum,AUM(원),benchmark_aum,74641050000,73423350000,1217700000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112659,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112659,equity_won,Equity 총액(원),equity_won,16888480000,16612960000,275520000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112659,benchmark_aum,AUM(원),benchmark_aum,16888480000,16612960000,275520000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112659,invested_equity_won,Equity 총액(원).1,invested_equity_won,15018380898,15110044656,-91663758,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112659,invested_aum,AUM(원).1,invested_aum,15018380898,15110044656,-91663758,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112660,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112660,equity_won,Equity 총액(원),equity_won,7237920000,7119840000,118080000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112660,benchmark_aum,AUM(원),benchmark_aum,7237920000,7119840000,118080000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112661,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112662,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112662,equity_won,Equity 총액(원),equity_won,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112662,benchmark_aum,AUM(원),benchmark_aum,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112663,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112663,equity_won,Equity 총액(원),equity_won,45237000000,44499000000,738000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112663,benchmark_aum,AUM(원),benchmark_aum,45237000000,44499000000,738000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112664,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112664,equity_won,Equity 총액(원),equity_won,42053012653,41218204491,834808162,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112664,benchmark_aum,AUM(원),benchmark_aum,42053012653,41218204491,834808162,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112664,invested_equity_won,Equity 총액(원).1,invested_equity_won,42053012653,41218204491,834808162,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112664,invested_aum,AUM(원).1,invested_aum,42053012653,41218204491,834808162,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112665,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112665,equity_won,Equity 총액(원),equity_won,582736338,74274518578,-73691782240,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112665,benchmark_aum,AUM(원),benchmark_aum,582736338,74274518578,-73691782240,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112665,invested_equity_won,Equity 총액(원).1,invested_equity_won,582736338,74274518578,-73691782240,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112665,invested_aum,AUM(원).1,invested_aum,582736338,74274518578,-73691782240,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112666,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112667,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112667,equity_won,Equity 총액(원),equity_won,70931700000,69953450000,978250000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112667,benchmark_aum,AUM(원),benchmark_aum,70931700000,69953450000,978250000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112668,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112668,equity_won,Equity 총액(원),equity_won,40937724000,40373134000,564590000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112668,benchmark_aum,AUM(원),benchmark_aum,40937724000,40373134000,564590000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112669,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112683,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112684,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112684,equity_won,Equity 총액(원),equity_won,75470395000,74239165000,1231230000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112684,benchmark_aum,AUM(원),benchmark_aum,75470395000,74239165000,1231230000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112685,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112685,equity_won,Equity 총액(원),equity_won,21189764750,20844073250,345691500,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112685,benchmark_aum,AUM(원),benchmark_aum,21189764750,20844073250,345691500,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112685,invested_equity_won,Equity 총액(원).1,invested_equity_won,19543454857,19675827924,-132373067,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112685,invested_aum,AUM(원).1,invested_aum,19543454857,19675827924,-132373067,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112686,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112686,equity_won,Equity 총액(원),equity_won,9081327750,8933174250,148153500,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112686,benchmark_aum,AUM(원),benchmark_aum,9081327750,8933174250,148153500,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112687,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112690,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112700,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112700,invested_loan_won,Loan 총액(원).1,invested_loan_won,441000000000,453200000000,-12200000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112700,invested_aum,AUM(원).1,invested_aum,766904224941,779104224941,-12200000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112703,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112704,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112715,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112719,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112721,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112739,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112739,equity_won,Equity 총액(원),equity_won,53050226000,52267442000,782784000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112739,benchmark_aum,AUM(원),benchmark_aum,53050226000,52267442000,782784000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112744,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112744,equity_won,Equity 총액(원),equity_won,9145675683,8957557243,188118440,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112744,benchmark_aum,AUM(원),benchmark_aum,9145675683,8957557243,188118440,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112744,invested_equity_won,Equity 총액(원).1,invested_equity_won,9145675683,8957557243,188118440,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112744,invested_aum,AUM(원).1,invested_aum,9145675683,8957557243,188118440,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112745,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112748,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112751,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112755,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112756,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112778,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112778,deposit_won,기준일자 임대보증금(원),deposit_won,1388309000,1438309000,-50000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112778,benchmark_aum,AUM(원),benchmark_aum,38588309000,38638309000,-50000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112778,invested_deposit_won,기준일자 임대보증금(원).1,invested_deposit_won,1388309000,1438309000,-50000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112778,invested_aum,AUM(원).1,invested_aum,38588309000,38638309000,-50000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112785,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,112789,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112789,deposit_won,기준일자 임대보증금(원),deposit_won,15230000000,11230000000,4000000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112789,benchmark_aum,AUM(원),benchmark_aum,70128483000,66128483000,4000000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112789,invested_deposit_won,기준일자 임대보증금(원).1,invested_deposit_won,15230000000,11230000000,4000000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112789,invested_aum,AUM(원).1,invested_aum,70128483000,66128483000,4000000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112790,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112790,equity_won,Equity 총액(원),equity_won,165869000000,163163000000,2706000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112790,benchmark_aum,AUM(원),benchmark_aum,165869000000,163163000000,2706000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112795,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112795,equity_won,Equity 총액(원),equity_won,82934500000,81581500000,1353000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112795,benchmark_aum,AUM(원),benchmark_aum,82934500000,81581500000,1353000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,112803,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,112803,equity_won,Equity 총액(원),equity_won,87831500000,86535500000,1296000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,112803,benchmark_aum,AUM(원),benchmark_aum,87831500000,86535500000,1296000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,120001,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120008,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,120008,invested_loan_won,Loan 총액(원).1,invested_loan_won,204000000000,202700000000,1300000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,120008,invested_aum,AUM(원).1,invested_aum,285452510010,284152510010,1300000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,120015,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120017,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120023,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120028,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120031,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120045,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120048,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120053,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120056,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120058,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120062,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120063,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120074,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120085,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120091,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120094,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120099,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120104,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,120119,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,120119,invested_equity_won,Equity 총액(원).1,invested_equity_won,7599264117,3000000000,4599264117,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,120119,invested_aum,AUM(원).1,invested_aum,7599264117,3000000000,4599264117,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,190001,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,190002,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,190005,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,190008,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,190009,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,190010,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,190013,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,190014,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,190017,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,200001,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200001,equity_won,Equity 총액(원),equity_won,24678894870,24314744790,364150080,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200001,benchmark_aum,AUM(원),benchmark_aum,24678894870,24314744790,364150080,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200002,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200002,equity_won,Equity 총액(원),equity_won,10576669230,10420604910,156064320,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200002,benchmark_aum,AUM(원),benchmark_aum,10576669230,10420604910,156064320,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200004,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200004,equity_won,Equity 총액(원),equity_won,75395000000,74165000000,1230000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200004,benchmark_aum,AUM(원),benchmark_aum,75395000000,74165000000,1230000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200005,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200005,equity_won,Equity 총액(원),equity_won,22618500000,22249500000,369000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200005,benchmark_aum,AUM(원),benchmark_aum,22618500000,22249500000,369000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200006,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200006,equity_won,Equity 총액(원),equity_won,151996320000,149516640000,2479680000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200006,benchmark_aum,AUM(원),benchmark_aum,151996320000,149516640000,2479680000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200006,invested_equity_won,Equity 총액(원).1,invested_equity_won,43893016746,45683658345,-1790641599,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200006,invested_aum,AUM(원).1,invested_aum,43893016746,45683658345,-1790641599,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200007,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200007,equity_won,Equity 총액(원),equity_won,45237000000,44499000000,738000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200007,benchmark_aum,AUM(원),benchmark_aum,45237000000,44499000000,738000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200007,invested_equity_won,Equity 총액(원).1,invested_equity_won,15862671967,17284232811,-1421560844,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200007,invested_aum,AUM(원).1,invested_aum,15862671967,17284232811,-1421560844,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200008,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200008,equity_won,Equity 총액(원),equity_won,948609536000,940903472000,7706064000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200008,benchmark_aum,AUM(원),benchmark_aum,948609536000,940903472000,7706064000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200008,invested_equity_won,Equity 총액(원).1,invested_equity_won,399047489303,386855746746,12191742557,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200008,invested_aum,AUM(원).1,invested_aum,399047489303,386855746746,12191742557,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200009,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200009,equity_won,Equity 총액(원),equity_won,105884738000,104157326000,1727412000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200009,benchmark_aum,AUM(원),benchmark_aum,105884738000,104157326000,1727412000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200009,invested_equity_won,Equity 총액(원).1,invested_equity_won,87097347836,81247472998,5849874838,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200009,invested_aum,AUM(원).1,invested_aum,87097347836,81247472998,5849874838,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200010,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200010,equity_won,Equity 총액(원),equity_won,52776500000,51915500000,861000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200010,benchmark_aum,AUM(원),benchmark_aum,52776500000,51915500000,861000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200011,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200011,equity_won,Equity 총액(원),equity_won,60798600000,59960100000,838500000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200011,benchmark_aum,AUM(원),benchmark_aum,60798600000,59960100000,838500000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200011,invested_equity_won,Equity 총액(원).1,invested_equity_won,27621979168,27672919005,-50939837,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200011,invested_aum,AUM(원).1,invested_aum,27621979168,27672919005,-50939837,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200012,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200012,equity_won,Equity 총액(원),equity_won,46292530000,45537310000,755220000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200012,benchmark_aum,AUM(원),benchmark_aum,46292530000,45537310000,755220000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200013,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200013,equity_won,Equity 총액(원),equity_won,30308790000,29814330000,494460000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200013,benchmark_aum,AUM(원),benchmark_aum,30308790000,29814330000,494460000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200014,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200014,equity_won,Equity 총액(원),equity_won,35132600000,34614200000,518400000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200014,benchmark_aum,AUM(원),benchmark_aum,35132600000,34614200000,518400000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200016,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200016,equity_won,Equity 총액(원),equity_won,43915750000,43267750000,648000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200016,benchmark_aum,AUM(원),benchmark_aum,43915750000,43267750000,648000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200017,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200017,equity_won,Equity 총액(원),equity_won,306627606000,302398771000,4228835000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200017,benchmark_aum,AUM(원),benchmark_aum,306627606000,302398771000,4228835000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200018,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200018,equity_won,Equity 총액(원),equity_won,30158000000,29666000000,492000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200018,benchmark_aum,AUM(원),benchmark_aum,30158000000,29666000000,492000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200019,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200019,equity_won,Equity 총액(원),equity_won,5594309000,5503043000,91266000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200019,benchmark_aum,AUM(원),benchmark_aum,5594309000,5503043000,91266000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200020,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200020,equity_won,Equity 총액(원),equity_won,70265200000,69228400000,1036800000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200020,benchmark_aum,AUM(원),benchmark_aum,70265200000,69228400000,1036800000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200021,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200021,equity_won,Equity 총액(원),equity_won,7539500000,7416500000,123000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200021,benchmark_aum,AUM(원),benchmark_aum,7539500000,7416500000,123000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200022,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,200023,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200023,equity_won,Equity 총액(원),equity_won,337121920025,332472524646,4649395379,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200023,benchmark_aum,AUM(원),benchmark_aum,337121920025,332472524646,4649395379,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200024,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200024,equity_won,Equity 총액(원),equity_won,87831500000,86535500000,1296000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200024,benchmark_aum,AUM(원),benchmark_aum,87831500000,86535500000,1296000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200025,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200025,equity_won,Equity 총액(원),equity_won,52776500000,51915500000,861000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200025,benchmark_aum,AUM(원),benchmark_aum,52776500000,51915500000,861000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200026,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200026,equity_won,Equity 총액(원),equity_won,52776500000,51915500000,861000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200026,benchmark_aum,AUM(원),benchmark_aum,52776500000,51915500000,861000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200027,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200027,equity_won,Equity 총액(원),equity_won,17917626000,17653242000,264384000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200027,benchmark_aum,AUM(원),benchmark_aum,17917626000,17653242000,264384000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200027,invested_equity_won,Equity 총액(원).1,invested_equity_won,9208392031,8171582818,1036809213,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200027,invested_aum,AUM(원).1,invested_aum,9208392031,8171582818,1036809213,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200028,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200028,equity_won,Equity 총액(원),equity_won,310175030000,305114810000,5060220000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200028,benchmark_aum,AUM(원),benchmark_aum,310175030000,305114810000,5060220000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200029,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200029,equity_won,Equity 총액(원),equity_won,15181537200,14933864400,247672800,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200029,benchmark_aum,AUM(원),benchmark_aum,15181537200,14933864400,247672800,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200030,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,200031,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200031,equity_won,Equity 총액(원),equity_won,301580000000,296660000000,4920000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200031,benchmark_aum,AUM(원),benchmark_aum,301580000000,296660000000,4920000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200033,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200033,equity_won,Equity 총액(원),equity_won,32497655000,32018135000,479520000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200033,benchmark_aum,AUM(원),benchmark_aum,32497655000,32018135000,479520000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200034,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200034,equity_won,Equity 총액(원),equity_won,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200034,benchmark_aum,AUM(원),benchmark_aum,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200035,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200035,equity_won,Equity 총액(원),equity_won,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200035,benchmark_aum,AUM(원),benchmark_aum,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200036,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200036,equity_won,Equity 총액(원),equity_won,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200036,benchmark_aum,AUM(원),benchmark_aum,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200037,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200037,equity_won,Equity 총액(원),equity_won,60316000000,59332000000,984000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200037,benchmark_aum,AUM(원),benchmark_aum,60316000000,59332000000,984000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200037,invested_equity_won,Equity 총액(원).1,invested_equity_won,59339958273,58360586500,979371773,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200037,invested_aum,AUM(원).1,invested_aum,59339958273,58360586500,979371773,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200038,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200038,equity_won,Equity 총액(원),equity_won,87831500000,86535500000,1296000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200038,benchmark_aum,AUM(원),benchmark_aum,87831500000,86535500000,1296000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200039,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200039,equity_won,Equity 총액(원),equity_won,87831500000,86535500000,1296000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200039,benchmark_aum,AUM(원),benchmark_aum,87831500000,86535500000,1296000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200040,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200040,equity_won,Equity 총액(원),equity_won,75395000000,74165000000,1230000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200040,benchmark_aum,AUM(원),benchmark_aum,75395000000,74165000000,1230000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200041,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200041,equity_won,Equity 총액(원),equity_won,105553000000,103831000000,1722000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200041,benchmark_aum,AUM(원),benchmark_aum,105553000000,103831000000,1722000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200042,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200042,equity_won,Equity 총액(원),equity_won,153880788000,151610196000,2270592000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200042,benchmark_aum,AUM(원),benchmark_aum,153880788000,151610196000,2270592000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200044,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200044,equity_won,Equity 총액(원),equity_won,135711000000,133497000000,2214000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200044,benchmark_aum,AUM(원),benchmark_aum,135711000000,133497000000,2214000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,200045,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,200045,equity_won,Equity 총액(원),equity_won,46387527700,45630757900,756769800,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200045,benchmark_aum,AUM(원),benchmark_aum,46387527700,45630757900,756769800,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200045,invested_equity_won,Equity 총액(원).1,invested_equity_won,44080909000,0,44080909000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,200045,invested_aum,AUM(원).1,invested_aum,44080909000,0,44080909000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,update_candidate,aum_source_fund_not_in_supabase,200046,,,,이지스글로벌인프라일반사모투자신탁제7호,,,AUM exists for a source fund missing in Supabase funds.
+fund_aum,review,field_change_candidate,300001,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300015,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300017,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300018,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300019,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300037,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300038,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300039,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300044,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300046,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300050,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300052,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300053,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,300053,equity_won,Equity 총액(원),equity_won,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,300053,benchmark_aum,AUM(원),benchmark_aum,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,300053,invested_equity_won,Equity 총액(원).1,invested_equity_won,84471658148,134654826713,-50183168565,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,300053,invested_aum,AUM(원).1,invested_aum,84471658148,134654826713,-50183168565,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,300057,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300061,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300063,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300066,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,300066,equity_won,Equity 총액(원),equity_won,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,300066,benchmark_aum,AUM(원),benchmark_aum,150790000000,148330000000,2460000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,300067,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,300067,equity_won,Equity 총액(원),equity_won,20274485743,21260566107,-986080364,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,300067,benchmark_aum,AUM(원),benchmark_aum,20274485743,21260566107,-986080364,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,300067,invested_equity_won,Equity 총액(원).1,invested_equity_won,20274485743,21260566107,-986080364,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,300067,invested_aum,AUM(원).1,invested_aum,20274485743,21260566107,-986080364,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,300073,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300074,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300075,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300079,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,field_change_candidate,300080,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,review,numeric_change_candidate,300080,equity_won,Equity 총액(원),equity_won,11494929023,10989697593,505231430,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,300080,benchmark_aum,AUM(원),benchmark_aum,11494929023,10989697593,505231430,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,300080,invested_equity_won,Equity 총액(원).1,invested_equity_won,11494929023,10989697593,505231430,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,300080,invested_aum,AUM(원).1,invested_aum,11494929023,10989697593,505231430,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,field_change_candidate,300085,aum_base_date,기준일자,aum_base_date,2026-05-31,2026-04-30,,Review before update. Do not apply automatically.
+fund_aum,update_candidate,aum_source_fund_not_in_supabase,300086,,,,이지스 멀티플러스 일반사모투자신탁 제3호,,,AUM exists for a source fund missing in Supabase funds.
+fund_aum,update_candidate,aum_source_fund_not_in_supabase,300090,,,,이지스그린ON 일반사모투자신탁제5호,,,AUM exists for a source fund missing in Supabase funds.
+fund_aum,review,numeric_change_candidate,P00006,invested_loan_won,Loan 총액(원).1,invested_loan_won,389000000000,372000000000,17000000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00006,invested_aum,AUM(원).1,invested_aum,394111750000,377111750000,17000000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00007,deposit_won,기준일자 임대보증금(원),deposit_won,1896275320,1586975320,309300000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00007,benchmark_aum,AUM(원),benchmark_aum,341406275320,341096975320,309300000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00007,invested_deposit_won,기준일자 임대보증금(원).1,invested_deposit_won,1896275320,1586975320,309300000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00007,invested_aum,AUM(원).1,invested_aum,341406275320,341096975320,309300000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00009,equity_won,Equity 총액(원),equity_won,0,12000000000,-12000000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00009,benchmark_aum,AUM(원),benchmark_aum,0,12000000000,-12000000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00009,invested_equity_won,Equity 총액(원).1,invested_equity_won,0,12000000000,-12000000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00009,invested_aum,AUM(원).1,invested_aum,0,12000000000,-12000000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00039,equity_won,Equity 총액(원),equity_won,0,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00039,loan_won,Loan 총액(원),loan_won,0,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00039,deposit_won,기준일자 임대보증금(원),deposit_won,0,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00039,benchmark_aum,AUM(원),benchmark_aum,0,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00039,invested_equity_won,Equity 총액(원).1,invested_equity_won,0,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00039,invested_loan_won,Loan 총액(원).1,invested_loan_won,0,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00039,invested_deposit_won,기준일자 임대보증금(원).1,invested_deposit_won,0,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00039,invested_aum,AUM(원).1,invested_aum,0,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00040,equity_won,Equity 총액(원),equity_won,103700000000,0,103700000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00040,benchmark_aum,AUM(원),benchmark_aum,103700000000,0,103700000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00040,invested_equity_won,Equity 총액(원).1,invested_equity_won,8700000000,0,8700000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,P00040,invested_aum,AUM(원).1,invested_aum,8700000000,0,8700000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00010,loan_won,Loan 총액(원),loan_won,50000000000,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00010,benchmark_aum,AUM(원),benchmark_aum,176872731464,126872731464,50000000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00010,invested_loan_won,Loan 총액(원).1,invested_loan_won,50000000000,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00010,invested_aum,AUM(원).1,invested_aum,176872731464,126872731464,50000000000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00012,deposit_won,기준일자 임대보증금(원),deposit_won,48834700000,48238200000,596500000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00012,benchmark_aum,AUM(원),benchmark_aum,214034700000,213438200000,596500000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00012,invested_deposit_won,기준일자 임대보증금(원).1,invested_deposit_won,48834700000,48238200000,596500000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00012,invested_aum,AUM(원).1,invested_aum,214034700000,213438200000,596500000,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00014,equity_won,Equity 총액(원),equity_won,137343378000,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00014,loan_won,Loan 총액(원),loan_won,490000000000,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00014,deposit_won,기준일자 임대보증금(원),deposit_won,0,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00014,benchmark_aum,AUM(원),benchmark_aum,627343378000,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00014,invested_equity_won,Equity 총액(원).1,invested_equity_won,137343378000,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00014,invested_loan_won,Loan 총액(원).1,invested_loan_won,314000000000,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00014,invested_deposit_won,기준일자 임대보증금(원).1,invested_deposit_won,0,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00014,invested_aum,AUM(원).1,invested_aum,451343378000,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00016,equity_won,Equity 총액(원),equity_won,0,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00016,loan_won,Loan 총액(원),loan_won,0,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00016,deposit_won,기준일자 임대보증금(원),deposit_won,0,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00016,benchmark_aum,AUM(원),benchmark_aum,0,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00016,invested_equity_won,Equity 총액(원).1,invested_equity_won,0,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00016,invested_loan_won,Loan 총액(원).1,invested_loan_won,0,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00016,invested_deposit_won,기준일자 임대보증금(원).1,invested_deposit_won,0,,,Likely update candidate if the new workbook is the authoritative period.
+fund_aum,review,numeric_change_candidate,R00016,invested_aum,AUM(원).1,invested_aum,0,,,Likely update candidate if the new workbook is the authoritative period.

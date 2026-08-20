@@ -1,0 +1,9 @@
+{
+  "assets_with_pnu": 630,
+  "existing_ledger_rows": 104,
+  "planned_assets": 146,
+  "planned_field_fills": 1206,
+  "same_asset_ledger": 0,
+  "same_pnu_ledger": 146,
+  "plan_path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\output\\asset_specs_fill\\asset_specs_fill_plan_20260601T041449Z.csv"
+}

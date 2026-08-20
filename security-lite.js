@@ -96,10 +96,15 @@
 
   function redirectToLogin() {
     let rootPath = "";
-    if (window.location.pathname.includes("CRM_base")) rootPath = "../../";
-    else if (window.location.pathname.includes("t5t-dashboard")) rootPath = "../";
-    else if (window.location.pathname.includes("org_dashboard")) rootPath = "../";
-    else if (window.location.pathname.includes("t5t-input")) rootPath = "../";
+    const pathname = decodeURIComponent(window.location.pathname);
+    if (pathname.includes("/02. T5T Board/input-form/")) rootPath = "../../";
+    else if (pathname.includes("01. RA Portal")) rootPath = "../../";
+    else if (
+      ["02. T5T Board", "03. Construction Board", "04. RentMap", "05. Org Board", "08. Floor Stacking OCR"]
+        .some(segment => pathname.includes(segment))
+    ) {
+      rootPath = "../";
+    }
 
     const currentUrl = window.location.href;
     window.top.location.href = (rootPath || "./") + "index.html?redirect=" + encodeURIComponent(currentUrl);

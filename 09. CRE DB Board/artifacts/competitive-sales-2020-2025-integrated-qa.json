@@ -1,0 +1,123 @@
+{
+  "generated_at": "2026-08-15T19:30:27.060150+00:00",
+  "schema_version": "2.4.0",
+  "status": "PASS",
+  "checks": {
+    "schema_is_2_4_0": true,
+    "historical_manifest_count_is_14": true,
+    "historical_live_process_count_is_14": true,
+    "total_live_process_count_is_16": true,
+    "approved_manifests_have_no_review_only_sources": true,
+    "fixture_organization_master_duplicates_absent": true,
+    "fixture_asset_master_duplicates_absent": true,
+    "live_organization_master_duplicates_absent": true,
+    "live_asset_master_duplicates_absent": true,
+    "foreign_keys_clean": true,
+    "sqlite_integrity_ok": true,
+    "final_backup_clean": true
+  },
+  "research_gate": {
+    "deep_research_processes": 47,
+    "approved_historical_manifests": 14,
+    "by_group": {
+      "hotel": 7,
+      "logistics": 1,
+      "office-dc": 6
+    },
+    "not_promoted": 33,
+    "not_promoted_breakdown": {
+      "office_dc": 4,
+      "hotel": 14,
+      "hotel_ifc_crosswalk": 1,
+      "logistics": 14
+    },
+    "approval_rule": "competitive process and terminal/milestone facts must pass direct-body or official-source evidence gate",
+    "review_only_source_claims_in_approved_manifests": 0
+  },
+  "live_relational_counts": {
+    "sale_processes": 16,
+    "historical_sale_processes": 14,
+    "rounds": 18,
+    "participations": 29,
+    "participation_members": 11,
+    "submissions": 22,
+    "funding_components": 8,
+    "decisions": 17,
+    "milestones": 20,
+    "process_relations": 0
+  },
+  "sale_processes_by_asset_class": {
+    "ac_dc": 1,
+    "ac_hotel": 5,
+    "ac_logistics": 2,
+    "ac_mixed": 2,
+    "ac_office": 6
+  },
+  "process_relation_note": "0 current edges is expected: no separately approved pair has both endpoints canonical. Crescendo preferred-party switch is represented as rounds/decisions inside one process; excluded or future attempts remain metadata/crosswalk candidates until approved.",
+  "coverage": {
+    "google_news_2020_2024": {
+      "planned_partitions": 3420,
+      "completed_partitions": 240,
+      "completion_ratio": 0.070175,
+      "upstream_throttled_gap": 3180,
+      "inserted_documents": 110,
+      "gap_status": "UPSTREAM_THROTTLED_NOT_ZERO_FILLED"
+    },
+    "opendart_2020_2024_unique_sale_documents": {
+      "attempted": 1365,
+      "downloaded": 1303,
+      "unavailable_014": 62,
+      "retryable_failures": 0,
+      "business_transfer_subset": {
+        "attempted": 318,
+        "downloaded": 307,
+        "unavailable_014": 11,
+        "retryable_failures": 0
+      }
+    }
+  },
+  "review_only_pipelines": {
+    "BID_PROCESS_TITLE_SNIPPET_V4": {
+      "pipeline_version": "BID_PROCESS_TITLE_SNIPPET_V4",
+      "runs": 59,
+      "mentions": 59,
+      "review_ready": 59,
+      "approved": 0
+    },
+    "DART_BUSINESS_TRANSFER_CRE_REVIEW_V1": {
+      "pipeline_version": "DART_BUSINESS_TRANSFER_CRE_REVIEW_V1",
+      "runs": 66,
+      "mentions": 66,
+      "review_ready": 66,
+      "approved": 0
+    }
+  },
+  "canonical_auto_creation_from_review_pipelines": 0,
+  "duplicates": {
+    "fixture_organizations": {},
+    "fixture_assets": {},
+    "live_organization_names": 0,
+    "live_asset_names": 0
+  },
+  "integrity": {
+    "foreign_key_violations": [],
+    "integrity_check": "ok"
+  },
+  "final_backup": {
+    "source": "C:\\10137_WorkSpace\\real-estate-market-intelligence\\data\\market.db",
+    "backup": "C:\\10137_WorkSpace\\real-estate-market-intelligence\\backups\\market-post-historical-sale-processes-20260816.db",
+    "createdAt": "2026-08-15T19:28:29.170100+00:00",
+    "schemaVersion": "2.4.0",
+    "bytes": 207233024,
+    "sha256": "3d9918d4f61fc869ee7e545bf316422df8ef37a52e935e00a5b8f831e293145d",
+    "quickCheck": "ok",
+    "foreignKeyViolations": 0
+  },
+  "key_artifacts": [
+    "artifacts/competitive-sales-2020-2024-chronology.json",
+    "artifacts/hotel-competitive-sales-2020-2024-deep-dive.json",
+    "artifacts/logistics-competitive-sales-2020-2024-structured.json",
+    "artifacts/bid-process-2020-2025-candidates.json",
+    "artifacts/opendart-2020-2024-business-transfer-cre-candidates.json"
+  ]
+}

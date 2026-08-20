@@ -1,0 +1,91 @@
+{
+  "manifest_version": "1.0",
+  "manifest_id": "approved-lpmandate-koreapost-insurance-2026-domestic-multistrategy",
+  "status": "APPROVED",
+  "review": {
+    "reviewed_by": "hermes-official-pdf-visual-review",
+    "reviewed_at": "2026-08-20T11:48:00Z",
+    "approved_by": "hermes-parent-user-authorized-official-source-promotion",
+    "approved_at": "2026-08-20T11:49:00Z"
+  },
+  "sources": [
+    {
+      "id": "src-kofia-m212-280",
+      "url": "https://www.kofia.or.kr/brd/m_212/view.do?seq=280",
+      "attachment_url": "https://www.kofia.or.kr/brd/m_212/down.do?brd_id=www_member_notice&seq=280&data_tp=A&file_seq=1",
+      "title": "[우정사업본부] 2026년 우체국보험 국내부동산 멀티전략(상장리츠 및 담보대출) 펀드 위탁운용사 선정 공고",
+      "publisher": "금융투자협회(우정사업본부 공고 재배포)",
+      "document_type": "BID_NOTICE",
+      "published_at": "2026-05-13",
+      "accessed_at": "2026-08-20",
+      "rights_status": "EXCERPT_ALLOWED",
+      "exact_text": "(우정사업본부 공고 2026-58호) 2026년 우체국보험 국내부동산 멀티전략(상장리츠·담보대출) 펀드 위탁운용사 선정 공고\n출자규모 1,500억원 내외(1개 운용사)\n국내상장리츠 및 국내부동산 선순위 담보대출\n국내상장리츠 및 국내부동산 대출전략펀드 운용 경험 有(공고일 기준)\n국내부동산 AUM 5천억원 이상(공고일 기준)\n목표수익률 Net IRR 6% 이상\n안정적인 이자수익 확보가 가능한 국내부동산 선순위 담보대출(LTV 65% 이하) 대상으로 운용\n펀드규모(약정액) 1,500억원 내외(우체국보험 단독)\n블라인드형 / 개방형(투자자 요청 시 환매 가능 구조)\n투자기간 2년 6개월(추후 협의로 조정 가능)\n펀드 만기 없음\n펀드 일평균 NAV 기준 40bp 이하\n상장리츠를 펀드 NAV 기준 70% 비중으로 편입하여 운용\n선순위 대출 투자를 펀드 NAV 기준 30% 비중으로 편입\n건별 LTV 65% 이내, 개발대출(PF, Bridge 등) 제외\n모집공고 → 제안서 제출 → 1차 평가(서류) → 예비실사 → 2차 평가(구술) → 운용사 실사 → 최종 선정 → 계약체결\n접수마감일 2026. 5. 28.(목) 17:00"
+    }
+  ],
+  "organizations": [
+    {"id":"org-korea-post","organization_type":"GOVERNMENT","canonical_name":"우정사업본부"}
+  ],
+  "event": {
+    "id": "evt-koreapost-insurance-2026-domestic-multistrategy-rfp",
+    "canonical_title": "2026년 우체국보험 국내부동산 멀티전략 펀드 위탁운용사 선정",
+    "current_stage_code": "MANAGER_RFP_OPEN",
+    "event_date_start": "2026-05-13",
+    "event_date_end": "2026-05-13",
+    "date_precision": "DAY",
+    "lifecycle_status": "ACTIVE",
+    "verification_level": "V2",
+    "overall_confidence": 1.0,
+    "evidence": {"source_ids":["src-kofia-m212-280"]}
+  },
+  "mandate": {
+    "id": "mandate-koreapost-insurance-2026-domestic-multistrategy",
+    "lp_organization_id": "org-korea-post",
+    "mandate_code": "KOREAPOST-INSURANCE-2026-DOMESTIC-MULTISTRATEGY",
+    "mandate_name": "2026년 우체국보험 국내부동산 멀티전략(상장리츠 및 담보대출) 펀드 위탁운용사 선정",
+    "vintage_year": 2026,
+    "announced_at": "2026-05-13",
+    "application_deadline": "2026-05-28T17:00:00+09:00",
+    "mandate_status": "UNKNOWN",
+    "mandate_scope": "DOMESTIC",
+    "metadata": {
+      "planned_final_selection": "2026-07",
+      "selection_result_status": "NO_OFFICIAL_RESULT_LOCATED_AS_OF_2026-08-19",
+      "amount_interpretation": "PLAN_STAGE_TRACK_LP_COMMITMENT_NOT_MANAGER_COMMITMENT_OR_DRY_POWDER"
+    },
+    "evidence": {"source_ids":["src-kofia-m212-280"]}
+  },
+  "tracks": [
+    {
+      "id": "track-koreapost-insurance-2026-domestic-multistrategy",
+      "track_code": "KOREAPOST-INSURANCE-2026-DOMESTIC-MULTISTRATEGY",
+      "track_name": "국내 상장리츠·선순위 담보대출 멀티전략",
+      "strategy_code": "REAL_ESTATE",
+      "geography_code": "DOMESTIC",
+      "target_manager_count": 1,
+      "evidence": {"source_ids":["src-kofia-m212-280"]}
+    }
+  ],
+  "guidelines": [
+    {"id":"guideline-koreapost-insurance-2026-multi-return","track_id":"track-koreapost-insurance-2026-domestic-multistrategy","term_type":"TARGET_RETURN","requirement_level":"MINIMUM","raw_text":"목표수익률 Net IRR 6% 이상","value_kind":"PERCENT","value_decimal_text":"6","comparator_code":"AT_LEAST","return_basis":"NET_IRR","evidence":{"source_ids":["src-kofia-m212-280"]}},
+    {"id":"guideline-koreapost-insurance-2026-multi-strategy","track_id":"track-koreapost-insurance-2026-domestic-multistrategy","term_type":"STRATEGY","requirement_level":"REQUIRED","raw_text":"국내상장리츠 및 국내부동산 선순위 담보대출","value_kind":"TEXT","text_value":"상장리츠 및 선순위 담보대출","evidence":{"source_ids":["src-kofia-m212-280"]}},
+    {"id":"guideline-koreapost-insurance-2026-multi-ltv","track_id":"track-koreapost-insurance-2026-domestic-multistrategy","term_type":"LEVERAGE","requirement_level":"MAXIMUM","raw_text":"건별 LTV 65% 이내, 개발대출(PF, Bridge 등) 제외","value_kind":"TEXT","text_value":"LTV 65% 이내; 개발대출 제외","evidence":{"source_ids":["src-kofia-m212-280"]}},
+    {"id":"guideline-koreapost-insurance-2026-multi-period","track_id":"track-koreapost-insurance-2026-domestic-multistrategy","term_type":"INVESTMENT_PERIOD","requirement_level":"REQUIRED","raw_text":"투자기간 2년 6개월(추후 협의로 조정 가능)","value_kind":"TEXT","text_value":"2년 6개월","evidence":{"source_ids":["src-kofia-m212-280"]}},
+    {"id":"guideline-koreapost-insurance-2026-multi-listed","track_id":"track-koreapost-insurance-2026-domestic-multistrategy","term_type":"ELIGIBLE_ASSET","requirement_level":"REQUIRED","raw_text":"상장리츠를 펀드 NAV 기준 70% 비중으로 편입하여 운용","value_kind":"TEXT","text_value":"상장리츠 NAV 70%","evidence":{"source_ids":["src-kofia-m212-280"]}},
+    {"id":"guideline-koreapost-insurance-2026-multi-loan","track_id":"track-koreapost-insurance-2026-domestic-multistrategy","term_type":"ELIGIBLE_ASSET","requirement_level":"REQUIRED","raw_text":"선순위 대출 투자를 펀드 NAV 기준 30% 비중으로 편입","value_kind":"TEXT","text_value":"선순위 담보대출 NAV 30%","evidence":{"source_ids":["src-kofia-m212-280"]}}
+  ],
+  "selections": [],
+  "selection_members": [],
+  "selection_vehicles": [],
+  "amounts": [
+    {
+      "id": "amount-koreapost-insurance-2026-multistrategy-total",
+      "scope_type": "TRACK",
+      "scope_id": "track-koreapost-insurance-2026-domestic-multistrategy",
+      "amount_basis": "TRACK_LP_COMMITMENT",
+      "amount": {"kind":"APPROX","decimal":"150000000000","currency":"KRW","raw_value":"출자규모 1,500억원 내외(1개 운용사)"},
+      "amount_status": "ANNOUNCED",
+      "evidence": {"source_ids":["src-kofia-m212-280"]}
+    }
+  ],
+  "deployments": []
+}

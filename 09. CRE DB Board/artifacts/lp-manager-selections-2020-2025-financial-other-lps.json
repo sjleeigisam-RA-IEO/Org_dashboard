@@ -1,0 +1,225 @@
+{
+  "artifact_version": "1.0",
+  "artifact_id": "lp-manager-selections-2020-2025-financial-other-lps",
+  "status": "RESEARCH_ONLY",
+  "scope": {
+    "period": [2020, 2025],
+    "lp_types": ["보험", "은행·금융계열", "중앙회·협회형", "기타 공제형 LP"],
+    "included_strategy_codes": ["REAL_ESTATE", "INFRASTRUCTURE", "PRIVATE_DEBT", "SECONDARIES"],
+    "rule": "CRE 자금원 추적에 직접 유효한 부동산·인프라·부동산대출·리츠 mandate만 포함한다. PE/VC 및 실물자산(부동산·인프라)을 명시적으로 제외하는 전략은 exclusion으로 보존한다."
+  },
+  "method": {
+    "schema_policy_checked": [
+      "docs/07-lp-manager-mandates.md",
+      "config/approved-lp-mandate-manifest.schema.json",
+      "collector/approved_lp_mandate_manifest.py",
+      "db/v2/migrations/2.5.0_lp_mandates.sql"
+    ],
+    "amount_basis_policy": "프로그램 총액, track 약정액, 운용사별 배정액, 특정 운용사 귀속 약정액을 서로 대체하지 않았다.",
+    "evidence_gate": "공식 공고/첨부의 원문으로 mandate·track·조건·예정금액을 확인하고, 선정 운용사와 실제 귀속금액은 결과 원문에서 별도로 확인했다. 공식 선정결과가 없는 경우 approval blocker를 명시했다.",
+    "live_db_touched": false
+  },
+  "summary": {
+    "included_mandates": 8,
+    "official_notice_or_attachment_count": 8,
+    "outcome_linked_count": 2,
+    "official_outcome_count": 0,
+    "secondary_full_text_outcome_count": 2,
+    "exclusion_count": 2,
+    "review_ready_candidate_count": 2,
+    "approval_eligible_count": 0
+  },
+  "mandates": [
+    {
+      "mandate_id": "cw-2021-domestic-re-opportunistic",
+      "lp": "건설근로자공제회",
+      "year": 2021,
+      "track": "국내 부동산 기회추구형 블라인드 펀드",
+      "strategy_code": "REAL_ESTATE",
+      "geography": "DOMESTIC",
+      "official_notice_url": "https://www.cw.or.kr/board.do?boardConfigNo=29&menuNo=46&action=view&boardNo=23314",
+      "official_attachment_url": "https://www.cw.or.kr/upload/boardAdmin/2021/06/FBD16575-E989-7FF6-2B18-4AFD0E304A95.hwp",
+      "announced_at": "2021-06-10",
+      "application_deadline": "2021-06-28T16:00:00+09:00",
+      "amounts": [{"basis": "TRACK_LP_COMMITMENT", "kind": "AT_MOST", "decimal": "30000000000", "currency": "KRW", "raw_value": "300억원 이내"}],
+      "target_manager_count": 1,
+      "guidelines": ["지분형 블라인드 펀드 (기회추구형, 일부 대출투자 포함 가능)", "국내 부동산", "펀드결성총액의 50% 이하", "7년 내외 (투자기간 3년 이내)"],
+      "selected_managers": [],
+      "outcome_status": "OFFICIAL_RESULT_NOT_FOUND",
+      "approval_blockers": ["공식 선정결과 및 선정 운용사 귀속액 미확인"]
+    },
+    {
+      "mandate_id": "cw-2021-overseas-infrastructure",
+      "lp": "건설근로자공제회",
+      "year": 2021,
+      "track": "해외 인프라 블라인드 펀드",
+      "strategy_code": "INFRASTRUCTURE",
+      "geography": "GLOBAL",
+      "official_notice_url": "https://www.cw.or.kr/board.do?boardConfigNo=29&menuNo=46&action=view&boardNo=23495",
+      "official_attachment_url": "https://www.cw.or.kr/upload/boardAdmin/2021/07/60A0A07C-0B9A-F3E9-2F36-0617DA93A53F.hwp",
+      "announced_at": "2021-07-19",
+      "application_deadline": "2021-08-09T18:00:00+09:00",
+      "amounts": [{"basis": "TRACK_LP_COMMITMENT", "kind": "AT_MOST", "decimal": "30000000000", "currency": "KRW", "raw_value": "300억원 이내"}],
+      "target_manager_count": 1,
+      "guidelines": ["해외 인프라(Equity)/코어, 코어플러스, 가치부가 전략 등 가능", "글로벌(유럽, 미국 등)", "펀드결성총액의 50% 미만", "최대 15년 내외"],
+      "selected_managers": [],
+      "outcome_status": "MISMATCHED_SECONDARY_RESULT_NOT_LINKED",
+      "approval_blockers": ["transcript의 Ardian·인프라 세컨더리·IRR 12~15% 결과는 공식 공고의 Equity/코어·코어플러스·가치부가 조건과 일치하지 않아 동일 mandate로 연결하지 않음", "공식 선정결과 미확인"]
+    },
+    {
+      "mandate_id": "cw-2022-reit-blind",
+      "lp": "건설근로자공제회",
+      "year": 2022,
+      "track": "부동산 리츠 블라인드 펀드",
+      "strategy_code": "REAL_ESTATE",
+      "geography": "DOMESTIC",
+      "official_notice_url": "https://www.cw.or.kr/board.do?boardConfigNo=29&menuNo=46&action=view&boardNo=24603",
+      "official_attachment_url": "https://www.cw.or.kr/upload/boardAdmin/2022/04/276689A0-59FB-8DAA-5FE8-9E670F47C409.hwp",
+      "announced_at": "2022-04-20",
+      "application_deadline": "2022-05-02T16:00:00+09:00",
+      "amounts": [{"basis": "ALLOCATION_PER_MANAGER", "kind": "AT_MOST", "decimal": "40000000000", "currency": "KRW", "raw_value": "각 400억원 이내"}],
+      "target_manager_count": 2,
+      "guidelines": ["상장(예정) 리츠, 공모주 리츠 및 상장리츠 등 투자", "펀드 목표 배당 수익률 4% 이상", "해외자산 비중은 펀드 약정금액의 30% 이내", "7년 내외 (투자기간 3년 이내)"],
+      "selected_managers": [],
+      "outcome_status": "OFFICIAL_RESULT_NOT_FOUND",
+      "approval_blockers": ["공식 선정결과 및 선정 운용사 귀속액 미확인"]
+    },
+    {
+      "mandate_id": "cw-2022-domestic-re-debt",
+      "lp": "건설근로자공제회",
+      "year": 2022,
+      "track": "국내 부동산 대출형 블라인드 펀드",
+      "strategy_code": "PRIVATE_DEBT",
+      "geography": "DOMESTIC",
+      "official_notice_url": "https://www.cw.or.kr/board.do?boardConfigNo=29&menuNo=46&action=view&boardNo=25415",
+      "official_attachment_url": "https://www.cw.or.kr/upload/boardAdmin/2022/10/FA065CDD-F8C0-6154-3420-A03CBEC69453.hwp",
+      "result_url": "https://www.edaily.co.kr/News/Read?newsId=03073366632562784",
+      "announced_at": "2022-10-06",
+      "selected_at": "2022-12-26",
+      "application_deadline": "2022-10-18T16:00:00+09:00",
+      "amounts": [
+        {"basis": "ALLOCATION_PER_MANAGER", "kind": "AT_MOST", "decimal": "100000000000", "currency": "KRW", "raw_value": "각 1,000억원 이내"},
+        {"basis": "SELECTION_LP_COMMITMENT", "scope": "캡스톤자산운용", "kind": "EXACT", "decimal": "80000000000", "currency": "KRW", "raw_value": "각각 800억원과 700억원"},
+        {"basis": "SELECTION_LP_COMMITMENT", "scope": "코람코자산운용", "kind": "EXACT", "decimal": "70000000000", "currency": "KRW", "raw_value": "각각 800억원과 700억원"},
+        {"basis": "LP_COMMITMENT_TOTAL", "kind": "EXACT", "decimal": "150000000000", "currency": "KRW", "raw_value": "총 1500억원"}
+      ],
+      "target_manager_count": 2,
+      "guidelines": ["국내부동산 선순위 중심 순수 대출형 투자(실물 담보 대출, PF 대출, 브릿지 대출 등)", "LTV(Loan To Value) 65% 이하의 선순위로만 구성된 대출 투자 비중이 70% 이상", "목표 수익률: 6.0% 이상 (보수 차감 후)", "7년 내외 (투자기간 3년 내외)"],
+      "selected_managers": ["캡스톤자산운용", "코람코자산운용"],
+      "outcome_status": "SECONDARY_FULL_TEXT_LINKED",
+      "approval_blockers": ["선정결과가 이데일리 기사 원문으로만 확인되어 공식 선정결과 필요"]
+    },
+    {
+      "mandate_id": "cw-2024-domestic-senior-re-debt",
+      "lp": "건설근로자공제회",
+      "year": 2024,
+      "track": "국내 부동산 선순위 대출 블라인드 펀드",
+      "strategy_code": "PRIVATE_DEBT",
+      "geography": "DOMESTIC",
+      "official_notice_url": "https://www.cw.or.kr/board.do?boardConfigNo=29&menuNo=46&action=view&boardNo=27768",
+      "official_attachment_url": "https://www.cw.or.kr/upload/boardAdmin/2024/02/688D70C7-A11C-62FA-2409-AC240F606576.hwp",
+      "result_url": "https://www.fnnews.com/news/202404290711016886",
+      "announced_at": "2024-02-13",
+      "selected_at": "2024-04-29",
+      "application_deadline": "2024-02-26T16:00:00+09:00",
+      "amounts": [
+        {"basis": "TRACK_LP_COMMITMENT", "kind": "AT_MOST", "decimal": "200000000000", "currency": "KRW", "raw_value": "총 2,000억원 이내"},
+        {"basis": "ALLOCATION_PER_MANAGER", "kind": "AT_MOST", "decimal": "50000000000", "currency": "KRW", "raw_value": "운용사당 500억원 이내"},
+        {"basis": "SELECTION_LP_COMMITMENT", "kind": "EXACT", "decimal": "50000000000", "currency": "KRW", "raw_value": "각각 500억원을 출자"}
+      ],
+      "target_manager_count": 4,
+      "guidelines": ["국내 부동산 선순위 중심 순수 대출형 투자(실물 담보 대출 및 PF 대출)", "LTV(Loan To Value) 65% 이하의 선순위로만 구성된 대출 투자 비중이 70% 이상", "목표 수익률: 6.0% 이상 (보수 차감 후)", "8년 내외 (투자기간 3년 내외)"],
+      "selected_managers": ["삼성SRA자산운용", "캡스톤자산운용", "메테우스자산운용", "하나대체투자자산운용"],
+      "outcome_status": "SECONDARY_FULL_TEXT_LINKED",
+      "approval_blockers": ["선정결과가 파이낸셜뉴스 기사 원문으로만 확인되어 공식 선정결과 필요"]
+    },
+    {
+      "mandate_id": "cw-2024-global-infrastructure",
+      "lp": "건설근로자공제회",
+      "year": 2024,
+      "track": "해외 인프라 블라인드 펀드(지분형·대출형)",
+      "strategy_code": "INFRASTRUCTURE",
+      "geography": "GLOBAL",
+      "official_notice_url": "https://www.cw.or.kr/board.do?boardConfigNo=29&menuNo=46&action=view&boardNo=28952",
+      "official_attachment_url": "https://www.cw.or.kr/upload/boardAdmin/2024/10/BA07BB3E-F9A4-42AE-AD95-9CB0F0C22B1C.hwp",
+      "announced_at": "2024-10-15",
+      "application_deadline": "2024-10-29T15:00:00+09:00",
+      "amounts": [
+        {"basis": "TRACK_LP_COMMITMENT", "scope": "지분형", "kind": "EXACT", "decimal": "22000000", "currency": "USD", "raw_value": "2,200만 달러"},
+        {"basis": "TRACK_LP_COMMITMENT", "scope": "대출형", "kind": "EXACT", "decimal": "22000000", "currency": "USD", "raw_value": "2,200만 달러"}
+      ],
+      "target_manager_count": 2,
+      "guidelines": ["해외 인프라 자산에 대한 코어(Core), 코어플러스(Core-Plus), 밸류에드(Value-added) 전략 위주의 지분 투자", "해외 인프라 자산에 선순위 위주 대출 투자(Unlevered)", "펀드결성총액의 10% 이하"],
+      "selected_managers": [],
+      "outcome_status": "OFFICIAL_RESULT_NOT_FOUND",
+      "approval_blockers": ["공식 선정결과 및 선정 운용사 귀속액 미확인"]
+    },
+    {
+      "mandate_id": "cw-2025-us-residential-debt",
+      "lp": "건설근로자공제회",
+      "year": 2025,
+      "track": "미국 부동산(레지덴셜) 대출형 블라인드 펀드",
+      "strategy_code": "PRIVATE_DEBT",
+      "geography": "NORTH_AMERICA",
+      "official_notice_url": "https://www.cw.or.kr/board.do?boardConfigNo=29&menuNo=46&action=view&boardNo=31553",
+      "official_attachment_url": "https://www.cw.or.kr/upload/boardAdmin/2025/03/94B958D8-C62E-E6B2-2661-1E9725C4C27E.hwp",
+      "announced_at": "2025-03-11",
+      "application_deadline": "2025-03-25T15:00:00+09:00",
+      "amounts": [{"basis": "TRACK_LP_COMMITMENT", "kind": "EXACT", "decimal": "21000000", "currency": "USD", "raw_value": "총 1개사 2,100만 달러"}],
+      "target_manager_count": 1,
+      "guidelines": ["미국 부동산(레지덴셜) 자산에 대한 대출형 투자", "멀티패밀리 투자 비중 50% 이상", "미국 중심 투자(100%)", "USD 500Mn 이상"],
+      "selected_managers": [],
+      "outcome_status": "OFFICIAL_RESULT_NOT_FOUND",
+      "approval_blockers": ["공식 선정결과 및 선정 운용사 귀속액 미확인"]
+    },
+    {
+      "mandate_id": "cw-2025-domestic-re-preferred-equity",
+      "lp": "건설근로자공제회",
+      "year": 2025,
+      "track": "국내 부동산 실물(우선주) 투자 블라인드 펀드",
+      "strategy_code": "REAL_ESTATE",
+      "geography": "DOMESTIC",
+      "official_notice_url": "https://www.cw.or.kr/board.do?boardConfigNo=29&menuNo=46&action=view&boardNo=32095",
+      "official_attachment_url": "https://www.cw.or.kr/upload/boardAdmin/2025/06/CE25D51A-63AB-CE43-A8DA-B62992F224F7.hwp",
+      "announced_at": "2025-06-13",
+      "application_deadline": "2025-07-04T16:00:00+09:00",
+      "amounts": [
+        {"basis": "TRACK_LP_COMMITMENT", "kind": "AT_MOST", "decimal": "100000000000", "currency": "KRW", "raw_value": "총 2개사 1,000억원"},
+        {"basis": "ALLOCATION_PER_MANAGER", "kind": "AT_MOST", "decimal": "50000000000", "currency": "KRW", "raw_value": "1개사 당 500억원 이내"},
+        {"basis": "TARGET_FUND_SIZE", "kind": "AT_LEAST", "decimal": "100000000000", "currency": "KRW", "raw_value": "최소 1,000억원 이상"}
+      ],
+      "target_manager_count": 2,
+      "guidelines": ["우선주에 투자(전체 지분투자 금액 중 보통주 비중 30% 이상)", "오피스 60% 이상", "물류 및 데이터센터 등 기타 부동산 실물 자산 40% 이하", "개발사업 불가", "Net IRR 8.0%/ CoC 5.0% 이상"],
+      "selected_managers": ["코람코자산운용", "퍼시픽자산운용"],
+      "outcome_status": "SEARCH_SNIPPET_ONLY_NOT_STRUCTURED_AS_RESULT",
+      "approval_blockers": ["선정결과는 매일경제 검색 스니펫에서만 발견되어 exact full text와 공식 결과가 모두 필요"]
+    }
+  ],
+  "exclusions": [
+    {
+      "exclusion_id": "kfcc-2024-private-credit-pe",
+      "lp": "새마을금고중앙회",
+      "official_url": "https://www.kfcc.co.kr/mgNotice/mgNoticeDetail.do?no=396",
+      "reason_code": "NON_CRE_PRIVATE_MARKETS",
+      "exact_text": "국내 Credit Mezzanine 대출채권, 전환사채, 교환사채, 신주인수권부사채, 상환전환우선주, 풋 옵션 등을 활용하여 하방을 막고 가치상승에 따른 수익률 상방을 향유 하는 전략에 80% 이상 투자 / Equity Buyouy, Growth 중소·중견기업에 대한 Buyout 50%이상 투자",
+      "reason": "기업 메자닌·바이아웃/그로스이며 CRE 부동산·인프라 mandate가 아님"
+    },
+    {
+      "exclusion_id": "kfcc-2025-pe-real-assets-prohibited",
+      "lp": "새마을금고중앙회",
+      "official_url": "https://www.kfcc.co.kr/mgNotice/mgNoticeDetail.do?no=436",
+      "reason_code": "REAL_ASSETS_EXPLICITLY_EXCLUDED",
+      "exact_text": "Special Situation 전략은 실물자산(부동산,인프라자산 등) & 해외투자 제외",
+      "reason": "PE Special Situation이고 부동산·인프라 등 실물자산을 명시적으로 제외"
+    }
+  ],
+  "candidate_files": [
+    "fixtures/lp-mandate-candidates/financial-other-lps/cw-2022-domestic-re-debt.json",
+    "fixtures/lp-mandate-candidates/financial-other-lps/cw-2024-domestic-senior-re-debt.json"
+  ],
+  "limitations": [
+    "2020~2025 보험사·은행계열의 공식 공고+공식 결과 쌍은 이번 transcript와 재검증 범위에서 확보하지 못했다.",
+    "건설근로자공제회 공식 게시물은 최종선정을 개별통보한다고 명시하며, 2021~2025 대상 게시판에서 별도 결과 공고를 찾지 못했다.",
+    "따라서 두 후보는 REVIEW_READY이지 APPROVED가 아니며, 공식 결과 원문 확보 전 importer 입력으로 승격할 수 없다."
+  ]
+}

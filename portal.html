@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Integrated Management System | IGIS RA</title>
     <link rel="stylesheet" href="./shared/ifpdp-system-theme.css?v=ifpdp_system_3">
-    <link rel="stylesheet" href="./org_dashboard/admin.css">
-    <script src="./CRM_base/portfolio-analysis/config.js"></script>
+    <link rel="stylesheet" href="./05. Org Board/admin.css">
+    <script src="./01. RA Portal/portfolio-analysis/config.js"></script>
     <script src="./shared/ra-auth.js?v=ra_auth_admin_2"></script>
     <style>
         body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #1f1f1e; font-family: var(--font); }
@@ -102,7 +102,7 @@
                 <div id="tab-insight" class="nav-link-btn active" onclick="switchTab('insight')">RA Insight</div>
                 <div id="tab-t5t" class="nav-link-btn" onclick="switchTab('t5t')">T5T 업무</div>
                 <div id="tab-org" class="nav-link-btn" onclick="switchTab('org')">조직구성</div>
-                <a id="tab-construction" class="nav-link-btn external-dashboard-link" href="https://sjleeigisam-ra-ieo.github.io/Org_dashboard/construction_source_status/" target="_blank" rel="noopener noreferrer">시공사 정보</a>
+                <a id="tab-construction" class="nav-link-btn external-dashboard-link" href="./03. Construction Board/index.html" target="_blank" rel="noopener noreferrer">시공사 정보</a>
                 <div id="tab-admin" class="nav-link-btn" style="display:none;" onclick="switchTab('admin')">어드민 (Local)</div>
             </div>
         </div>
@@ -127,16 +127,16 @@
         <button id="mobile-tab-t5t" class="mobile-dashboard-tab" type="button" onclick="switchTab('t5t')">T5T</button>
         <button id="mobile-tab-input" class="mobile-dashboard-tab" type="button" onclick="switchTab('input')">T5T작성</button>
         <button id="mobile-tab-org" class="mobile-dashboard-tab" type="button" onclick="switchTab('org')">조직</button>
-        <a id="mobile-tab-construction" class="mobile-dashboard-tab external-dashboard-link" href="https://sjleeigisam-ra-ieo.github.io/Org_dashboard/construction_source_status/" target="_blank" rel="noopener noreferrer">시공사</a>
+        <a id="mobile-tab-construction" class="mobile-dashboard-tab external-dashboard-link" href="./03. Construction Board/index.html" target="_blank" rel="noopener noreferrer">시공사</a>
     </nav>
 
     <script>
         const urls = {
-            insight: './CRM_base/portfolio-analysis/index.html',
-            t5t: './t5t-dashboard/index.html',
-            input: './t5t-input/index.html',
-            org: './org_dashboard/index.html',
-            admin: './org_dashboard/admin.html'
+            insight: './01. RA Portal/portfolio-analysis/index.html',
+            t5t: './02. T5T Board/index.html',
+            input: './02. T5T Board/input-form/index.html',
+            org: './05. Org Board/index.html',
+            admin: './05. Org Board/admin.html'
         };
         const FRAME_VERSION = 'admin_access_log_1';
         const loaded = new Set();

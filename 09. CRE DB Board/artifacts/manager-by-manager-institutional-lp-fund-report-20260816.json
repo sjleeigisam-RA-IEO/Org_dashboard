@@ -1,0 +1,649 @@
+{
+  "generated_at": "2026-08-19T05:10:18.079907+00:00",
+  "database": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\09. CRE DB Board\\data\\market.db",
+  "schema_version": "2.8.0",
+  "scope": "CURRENTLY_LOADED_2020_2025_LP_MANDATE_CORPUS",
+  "manager_count": 8,
+  "chapters": [
+    {
+      "manager_name": "우리글로벌자산운용",
+      "manager_class": "DOMESTIC_ASSET_MANAGER",
+      "evidence_layers": [
+        "CANONICAL_VERIFIED_SELECTION"
+      ],
+      "programs": [
+        {
+          "vintage_year": 2021,
+          "lp_name": "한국성장금융투자운용",
+          "mandate_code": "KGROWTH-2021-ROLLING-INFRA",
+          "track_name": "인프라투자형",
+          "strategy_code": "INFRASTRUCTURE",
+          "selection_status": "SELECTED",
+          "selected_at": "2021-06-28",
+          "evidence_layer": "CANONICAL_VERIFIED_SELECTION",
+          "capital_trace_status": "OFFICIAL_SELECTED_NO_COMMITMENT",
+          "official_track_cap_krw": "27000000000",
+          "selection_requested_or_reported_krw": null,
+          "target_fund_size_krw": "90000000000",
+          "likely_reported_allocation_krw": null,
+          "verified_commitment_krw": null,
+          "verified_paid_in_krw": null,
+          "verified_deployed_krw": null,
+          "verified_available_krw": null,
+          "dry_powder_status": "INSUFFICIENT_EVIDENCE",
+          "official_sources": [
+            {
+              "title": "정책형 뉴딜펀드 2021년 수시(인프라투자) 선정계획 공고",
+              "publisher": "한국성장금융투자운용",
+              "published_at": "2021-04-23",
+              "url": "https://www.kgrowth.or.kr/down_file.asp?idx=482&SelType=Notice3",
+              "document_type": "NOTICE"
+            },
+            {
+              "title": "정책형 뉴딜펀드 2021년 수시 위탁운용사 선정 결과",
+              "publisher": "한국성장금융투자운용",
+              "published_at": "2021-06-28",
+              "url": "https://www.kgrowth.or.kr/notice_view.asp?idx=509&str_type=1&tab=1",
+              "document_type": "NOTICE"
+            }
+          ],
+          "media_source": null,
+          "amount_rows": [
+            {
+              "amount_basis": "TARGET_FUND_SIZE",
+              "amount_decimal": "90000000000",
+              "currency_code": "KRW",
+              "comparator_code": "EXACT",
+              "amount_status": "ANNOUNCED",
+              "raw_value": "900억원",
+              "scope": "TRACK"
+            },
+            {
+              "amount_basis": "TRACK_LP_COMMITMENT",
+              "amount_decimal": "27000000000",
+              "currency_code": "KRW",
+              "comparator_code": "AT_MOST",
+              "amount_status": "ANNOUNCED",
+              "raw_value": "270억원 이내",
+              "scope": "TRACK"
+            }
+          ]
+        }
+      ],
+      "capital_trace_statuses": [
+        "OFFICIAL_SELECTED_NO_COMMITMENT"
+      ],
+      "summary": {
+        "lp_count": 1,
+        "program_count": 1,
+        "official_track_cap_krw": "27000000000",
+        "selection_requested_or_reported_krw": null,
+        "target_fund_size_krw": "90000000000",
+        "likely_reported_allocation_krw": null,
+        "verified_commitment_krw": null,
+        "verified_available_krw": null,
+        "dry_powder_status": "INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "manager_name": "캡스톤자산운용",
+      "manager_class": "DOMESTIC_ASSET_MANAGER",
+      "evidence_layers": [
+        "LIKELY_REPORTED_PENDING_PRIMARY"
+      ],
+      "programs": [
+        {
+          "vintage_year": 2022,
+          "lp_name": "건설근로자공제회",
+          "mandate_code": "CW-2022-DOMESTIC-RE-DEBT",
+          "track_name": "국내 부동산 대출형",
+          "strategy_code": "PRIVATE_DEBT",
+          "selection_status": "REPORTED_SELECTED",
+          "selected_at": "2022-12-26",
+          "evidence_layer": "LIKELY_REPORTED_PENDING_PRIMARY",
+          "capital_trace_status": "LIKELY_REPORTED_PENDING_PRIMARY",
+          "official_program_amount_context": "ALLOCATION_PER_MANAGER:100000000000:KRW:AT_MOST",
+          "official_track_cap_krw": null,
+          "selection_requested_or_reported_krw": null,
+          "target_fund_size_krw": null,
+          "likely_reported_allocation_krw": "80000000000",
+          "verified_commitment_krw": null,
+          "verified_paid_in_krw": null,
+          "verified_deployed_krw": null,
+          "verified_available_krw": null,
+          "dry_powder_status": "INSUFFICIENT_EVIDENCE",
+          "official_sources": [
+            {
+              "title": "국내부동산 대출형 블라인드 펀드 위탁운용사 선정 공고",
+              "publisher": "건설근로자공제회",
+              "published_at": "2022-10-06",
+              "url": "https://www.cw.or.kr/upload/boardAdmin/2022/10/FA065CDD-F8C0-6154-3420-A03CBEC69453.hwp",
+              "document_type": "BID_NOTICE"
+            }
+          ],
+          "media_source": {
+            "publisher": "이데일리",
+            "title": "2022 국내 부동산 대출형 블라인드 펀드 위탁운용사 선정",
+            "published_at": "2022-12-27T18:55:59+09:00",
+            "url": "https://www.edaily.co.kr/News/Read?newsId=03073366632562784"
+          },
+          "amount_rows": []
+        },
+        {
+          "vintage_year": 2024,
+          "lp_name": "건설근로자공제회",
+          "mandate_code": "CW-2024-DOMESTIC-SENIOR-RE-DEBT",
+          "track_name": "국내 부동산 선순위 대출",
+          "strategy_code": "PRIVATE_DEBT",
+          "selection_status": "REPORTED_SELECTED",
+          "selected_at": "2024-04-29",
+          "evidence_layer": "LIKELY_REPORTED_PENDING_PRIMARY",
+          "capital_trace_status": "LIKELY_REPORTED_PENDING_PRIMARY",
+          "official_program_amount_context": "TRACK_LP_COMMITMENT:200000000000:KRW:AT_MOST,ALLOCATION_PER_MANAGER:50000000000:KRW:AT_MOST",
+          "official_track_cap_krw": null,
+          "selection_requested_or_reported_krw": null,
+          "target_fund_size_krw": null,
+          "likely_reported_allocation_krw": "50000000000",
+          "verified_commitment_krw": null,
+          "verified_paid_in_krw": null,
+          "verified_deployed_krw": null,
+          "verified_available_krw": null,
+          "dry_powder_status": "INSUFFICIENT_EVIDENCE",
+          "official_sources": [
+            {
+              "title": "국내 부동산 선순위 대출펀드 위탁운용사 선정 공고",
+              "publisher": "건설근로자공제회",
+              "published_at": "2024-02-13",
+              "url": "https://www.cw.or.kr/upload/boardAdmin/2024/02/688D70C7-A11C-62FA-2409-AC240F606576.hwp",
+              "document_type": "BID_NOTICE"
+            }
+          ],
+          "media_source": {
+            "publisher": "파이낸셜뉴스",
+            "title": "2024 국내 부동산 선순위 대출펀드 위탁운용사 선정",
+            "published_at": "2024-04-29",
+            "url": "https://www.fnnews.com/news/202404290711016886"
+          },
+          "amount_rows": []
+        }
+      ],
+      "capital_trace_statuses": [
+        "LIKELY_REPORTED_PENDING_PRIMARY"
+      ],
+      "summary": {
+        "lp_count": 1,
+        "program_count": 2,
+        "official_track_cap_krw": null,
+        "selection_requested_or_reported_krw": null,
+        "target_fund_size_krw": null,
+        "likely_reported_allocation_krw": "130000000000",
+        "verified_commitment_krw": null,
+        "verified_available_krw": null,
+        "dry_powder_status": "INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "manager_name": "코람코자산운용",
+      "manager_class": "DOMESTIC_ASSET_MANAGER",
+      "evidence_layers": [
+        "LIKELY_REPORTED_PENDING_PRIMARY"
+      ],
+      "programs": [
+        {
+          "vintage_year": 2022,
+          "lp_name": "건설근로자공제회",
+          "mandate_code": "CW-2022-DOMESTIC-RE-DEBT",
+          "track_name": "국내 부동산 대출형",
+          "strategy_code": "PRIVATE_DEBT",
+          "selection_status": "REPORTED_SELECTED",
+          "selected_at": "2022-12-26",
+          "evidence_layer": "LIKELY_REPORTED_PENDING_PRIMARY",
+          "capital_trace_status": "LIKELY_REPORTED_PENDING_PRIMARY",
+          "official_program_amount_context": "ALLOCATION_PER_MANAGER:100000000000:KRW:AT_MOST",
+          "official_track_cap_krw": null,
+          "selection_requested_or_reported_krw": null,
+          "target_fund_size_krw": null,
+          "likely_reported_allocation_krw": "70000000000",
+          "verified_commitment_krw": null,
+          "verified_paid_in_krw": null,
+          "verified_deployed_krw": null,
+          "verified_available_krw": null,
+          "dry_powder_status": "INSUFFICIENT_EVIDENCE",
+          "official_sources": [
+            {
+              "title": "국내부동산 대출형 블라인드 펀드 위탁운용사 선정 공고",
+              "publisher": "건설근로자공제회",
+              "published_at": "2022-10-06",
+              "url": "https://www.cw.or.kr/upload/boardAdmin/2022/10/FA065CDD-F8C0-6154-3420-A03CBEC69453.hwp",
+              "document_type": "BID_NOTICE"
+            }
+          ],
+          "media_source": {
+            "publisher": "이데일리",
+            "title": "2022 국내 부동산 대출형 블라인드 펀드 위탁운용사 선정",
+            "published_at": "2022-12-27T18:55:59+09:00",
+            "url": "https://www.edaily.co.kr/News/Read?newsId=03073366632562784"
+          },
+          "amount_rows": []
+        }
+      ],
+      "capital_trace_statuses": [
+        "LIKELY_REPORTED_PENDING_PRIMARY"
+      ],
+      "summary": {
+        "lp_count": 1,
+        "program_count": 1,
+        "official_track_cap_krw": null,
+        "selection_requested_or_reported_krw": null,
+        "target_fund_size_krw": null,
+        "likely_reported_allocation_krw": "70000000000",
+        "verified_commitment_krw": null,
+        "verified_available_krw": null,
+        "dry_powder_status": "INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "manager_name": "삼성SRA자산운용",
+      "manager_class": "DOMESTIC_ASSET_MANAGER",
+      "evidence_layers": [
+        "LIKELY_REPORTED_PENDING_PRIMARY"
+      ],
+      "programs": [
+        {
+          "vintage_year": 2024,
+          "lp_name": "건설근로자공제회",
+          "mandate_code": "CW-2024-DOMESTIC-SENIOR-RE-DEBT",
+          "track_name": "국내 부동산 선순위 대출",
+          "strategy_code": "PRIVATE_DEBT",
+          "selection_status": "REPORTED_SELECTED",
+          "selected_at": "2024-04-29",
+          "evidence_layer": "LIKELY_REPORTED_PENDING_PRIMARY",
+          "capital_trace_status": "LIKELY_REPORTED_PENDING_PRIMARY",
+          "official_program_amount_context": "TRACK_LP_COMMITMENT:200000000000:KRW:AT_MOST,ALLOCATION_PER_MANAGER:50000000000:KRW:AT_MOST",
+          "official_track_cap_krw": null,
+          "selection_requested_or_reported_krw": null,
+          "target_fund_size_krw": null,
+          "likely_reported_allocation_krw": "50000000000",
+          "verified_commitment_krw": null,
+          "verified_paid_in_krw": null,
+          "verified_deployed_krw": null,
+          "verified_available_krw": null,
+          "dry_powder_status": "INSUFFICIENT_EVIDENCE",
+          "official_sources": [
+            {
+              "title": "국내 부동산 선순위 대출펀드 위탁운용사 선정 공고",
+              "publisher": "건설근로자공제회",
+              "published_at": "2024-02-13",
+              "url": "https://www.cw.or.kr/upload/boardAdmin/2024/02/688D70C7-A11C-62FA-2409-AC240F606576.hwp",
+              "document_type": "BID_NOTICE"
+            }
+          ],
+          "media_source": {
+            "publisher": "파이낸셜뉴스",
+            "title": "2024 국내 부동산 선순위 대출펀드 위탁운용사 선정",
+            "published_at": "2024-04-29",
+            "url": "https://www.fnnews.com/news/202404290711016886"
+          },
+          "amount_rows": []
+        }
+      ],
+      "capital_trace_statuses": [
+        "LIKELY_REPORTED_PENDING_PRIMARY"
+      ],
+      "summary": {
+        "lp_count": 1,
+        "program_count": 1,
+        "official_track_cap_krw": null,
+        "selection_requested_or_reported_krw": null,
+        "target_fund_size_krw": null,
+        "likely_reported_allocation_krw": "50000000000",
+        "verified_commitment_krw": null,
+        "verified_available_krw": null,
+        "dry_powder_status": "INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "manager_name": "메테우스자산운용",
+      "manager_class": "DOMESTIC_ASSET_MANAGER",
+      "evidence_layers": [
+        "LIKELY_REPORTED_PENDING_PRIMARY"
+      ],
+      "programs": [
+        {
+          "vintage_year": 2024,
+          "lp_name": "건설근로자공제회",
+          "mandate_code": "CW-2024-DOMESTIC-SENIOR-RE-DEBT",
+          "track_name": "국내 부동산 선순위 대출",
+          "strategy_code": "PRIVATE_DEBT",
+          "selection_status": "REPORTED_SELECTED",
+          "selected_at": "2024-04-29",
+          "evidence_layer": "LIKELY_REPORTED_PENDING_PRIMARY",
+          "capital_trace_status": "LIKELY_REPORTED_PENDING_PRIMARY",
+          "official_program_amount_context": "TRACK_LP_COMMITMENT:200000000000:KRW:AT_MOST,ALLOCATION_PER_MANAGER:50000000000:KRW:AT_MOST",
+          "official_track_cap_krw": null,
+          "selection_requested_or_reported_krw": null,
+          "target_fund_size_krw": null,
+          "likely_reported_allocation_krw": "50000000000",
+          "verified_commitment_krw": null,
+          "verified_paid_in_krw": null,
+          "verified_deployed_krw": null,
+          "verified_available_krw": null,
+          "dry_powder_status": "INSUFFICIENT_EVIDENCE",
+          "official_sources": [
+            {
+              "title": "국내 부동산 선순위 대출펀드 위탁운용사 선정 공고",
+              "publisher": "건설근로자공제회",
+              "published_at": "2024-02-13",
+              "url": "https://www.cw.or.kr/upload/boardAdmin/2024/02/688D70C7-A11C-62FA-2409-AC240F606576.hwp",
+              "document_type": "BID_NOTICE"
+            }
+          ],
+          "media_source": {
+            "publisher": "파이낸셜뉴스",
+            "title": "2024 국내 부동산 선순위 대출펀드 위탁운용사 선정",
+            "published_at": "2024-04-29",
+            "url": "https://www.fnnews.com/news/202404290711016886"
+          },
+          "amount_rows": []
+        }
+      ],
+      "capital_trace_statuses": [
+        "LIKELY_REPORTED_PENDING_PRIMARY"
+      ],
+      "summary": {
+        "lp_count": 1,
+        "program_count": 1,
+        "official_track_cap_krw": null,
+        "selection_requested_or_reported_krw": null,
+        "target_fund_size_krw": null,
+        "likely_reported_allocation_krw": "50000000000",
+        "verified_commitment_krw": null,
+        "verified_available_krw": null,
+        "dry_powder_status": "INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "manager_name": "하나대체투자자산운용",
+      "manager_class": "DOMESTIC_ASSET_MANAGER",
+      "evidence_layers": [
+        "LIKELY_REPORTED_PENDING_PRIMARY"
+      ],
+      "programs": [
+        {
+          "vintage_year": 2024,
+          "lp_name": "건설근로자공제회",
+          "mandate_code": "CW-2024-DOMESTIC-SENIOR-RE-DEBT",
+          "track_name": "국내 부동산 선순위 대출",
+          "strategy_code": "PRIVATE_DEBT",
+          "selection_status": "REPORTED_SELECTED",
+          "selected_at": "2024-04-29",
+          "evidence_layer": "LIKELY_REPORTED_PENDING_PRIMARY",
+          "capital_trace_status": "LIKELY_REPORTED_PENDING_PRIMARY",
+          "official_program_amount_context": "TRACK_LP_COMMITMENT:200000000000:KRW:AT_MOST,ALLOCATION_PER_MANAGER:50000000000:KRW:AT_MOST",
+          "official_track_cap_krw": null,
+          "selection_requested_or_reported_krw": null,
+          "target_fund_size_krw": null,
+          "likely_reported_allocation_krw": "50000000000",
+          "verified_commitment_krw": null,
+          "verified_paid_in_krw": null,
+          "verified_deployed_krw": null,
+          "verified_available_krw": null,
+          "dry_powder_status": "INSUFFICIENT_EVIDENCE",
+          "official_sources": [
+            {
+              "title": "국내 부동산 선순위 대출펀드 위탁운용사 선정 공고",
+              "publisher": "건설근로자공제회",
+              "published_at": "2024-02-13",
+              "url": "https://www.cw.or.kr/upload/boardAdmin/2024/02/688D70C7-A11C-62FA-2409-AC240F606576.hwp",
+              "document_type": "BID_NOTICE"
+            }
+          ],
+          "media_source": {
+            "publisher": "파이낸셜뉴스",
+            "title": "2024 국내 부동산 선순위 대출펀드 위탁운용사 선정",
+            "published_at": "2024-04-29",
+            "url": "https://www.fnnews.com/news/202404290711016886"
+          },
+          "amount_rows": []
+        }
+      ],
+      "capital_trace_statuses": [
+        "LIKELY_REPORTED_PENDING_PRIMARY"
+      ],
+      "summary": {
+        "lp_count": 1,
+        "program_count": 1,
+        "official_track_cap_krw": null,
+        "selection_requested_or_reported_krw": null,
+        "target_fund_size_krw": null,
+        "likely_reported_allocation_krw": "50000000000",
+        "verified_commitment_krw": null,
+        "verified_available_krw": null,
+        "dry_powder_status": "INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "manager_name": "쿨리지코너인베스트먼트",
+      "manager_class": "DOMESTIC_OTHER_GP",
+      "evidence_layers": [
+        "CANONICAL_VERIFIED_SELECTION"
+      ],
+      "programs": [
+        {
+          "vintage_year": 2020,
+          "lp_name": "한국벤처투자",
+          "mandate_code": "KVIC-2020-Q4-URBAN-REGEN",
+          "track_name": "도시재생",
+          "strategy_code": "OTHER",
+          "selection_status": "SELECTED",
+          "selected_at": "2020-11-17",
+          "evidence_layer": "CANONICAL_VERIFIED_SELECTION",
+          "capital_trace_status": "OFFICIAL_SELECTED_REQUEST_AMOUNT_ONLY",
+          "official_track_cap_krw": "20000000000",
+          "selection_requested_or_reported_krw": "20000000000",
+          "target_fund_size_krw": "25000000000",
+          "likely_reported_allocation_krw": null,
+          "verified_commitment_krw": null,
+          "verified_paid_in_krw": null,
+          "verified_deployed_krw": null,
+          "verified_available_krw": null,
+          "dry_powder_status": "INSUFFICIENT_EVIDENCE",
+          "official_sources": [
+            {
+              "title": "한국모태펀드 2020년 4차 정시 출자사업 계획 공고",
+              "publisher": "한국벤처투자",
+              "published_at": "2020-09-28",
+              "url": "https://www.kvic.or.kr/fileDown?boardDataNo=3138&idx=1",
+              "document_type": "NOTICE"
+            },
+            {
+              "title": "한국모태펀드 2020년 4차 정시 출자사업 선정 결과",
+              "publisher": "한국벤처투자",
+              "published_at": "2020-11-17",
+              "url": "https://www.kvic.or.kr/fileDown?boardDataNo=3163&idx=1",
+              "document_type": "NOTICE"
+            }
+          ],
+          "media_source": null,
+          "amount_rows": [
+            {
+              "amount_basis": "OTHER",
+              "amount_decimal": "20000000000",
+              "currency_code": "KRW",
+              "comparator_code": "EXACT",
+              "amount_status": "REPORTED",
+              "raw_value": "도시재생 | 250 | 200 | 쿨리지코너인베스트먼트",
+              "scope": "SELECTION"
+            },
+            {
+              "amount_basis": "TARGET_FUND_SIZE",
+              "amount_decimal": "25000000000",
+              "currency_code": "KRW",
+              "comparator_code": "EXACT",
+              "amount_status": "ANNOUNCED",
+              "raw_value": "도시재생 | 도시재생 | 200 | 250 | 80%",
+              "scope": "TRACK"
+            },
+            {
+              "amount_basis": "TRACK_LP_COMMITMENT",
+              "amount_decimal": "20000000000",
+              "currency_code": "KRW",
+              "comparator_code": "EXACT",
+              "amount_status": "ANNOUNCED",
+              "raw_value": "도시재생 | 도시재생 | 200 | 250 | 80%",
+              "scope": "TRACK"
+            }
+          ]
+        },
+        {
+          "vintage_year": 2021,
+          "lp_name": "한국벤처투자",
+          "mandate_code": "KVIC-2021-SEP-URBAN-REGEN",
+          "track_name": "도시재생",
+          "strategy_code": "OTHER",
+          "selection_status": "SELECTED",
+          "selected_at": "2021-11-01",
+          "evidence_layer": "CANONICAL_VERIFIED_SELECTION",
+          "capital_trace_status": "OFFICIAL_SELECTED_REQUEST_AMOUNT_ONLY",
+          "official_track_cap_krw": "10000000000",
+          "selection_requested_or_reported_krw": "10000000000",
+          "target_fund_size_krw": "12500000000",
+          "likely_reported_allocation_krw": null,
+          "verified_commitment_krw": null,
+          "verified_paid_in_krw": null,
+          "verified_deployed_krw": null,
+          "verified_available_krw": null,
+          "dry_powder_status": "INSUFFICIENT_EVIDENCE",
+          "official_sources": [
+            {
+              "title": "한국모태펀드 2021년 9월 수시 출자사업 계획 공고",
+              "publisher": "한국벤처투자",
+              "published_at": "2021-09-03",
+              "url": "https://www.kvic.or.kr/fileDown?boardDataNo=3356&idx=1",
+              "document_type": "NOTICE"
+            },
+            {
+              "title": "한국모태펀드 2021년 9월 수시 출자사업 선정 결과",
+              "publisher": "한국벤처투자",
+              "published_at": "2021-11-01",
+              "url": "https://www.kvic.or.kr/fileDown?boardDataNo=3390&idx=1",
+              "document_type": "NOTICE"
+            }
+          ],
+          "media_source": null,
+          "amount_rows": [
+            {
+              "amount_basis": "OTHER",
+              "amount_decimal": "10000000000",
+              "currency_code": "KRW",
+              "comparator_code": "EXACT",
+              "amount_status": "REPORTED",
+              "raw_value": "도시재생 | 도시재생 | 125 | 100 | 쿨리지코너인베스트먼트",
+              "scope": "SELECTION"
+            },
+            {
+              "amount_basis": "TARGET_FUND_SIZE",
+              "amount_decimal": "12500000000",
+              "currency_code": "KRW",
+              "comparator_code": "EXACT",
+              "amount_status": "ANNOUNCED",
+              "raw_value": "도시재생 | 도시재생 | 100 | 125 | 80%",
+              "scope": "TRACK"
+            },
+            {
+              "amount_basis": "TRACK_LP_COMMITMENT",
+              "amount_decimal": "10000000000",
+              "currency_code": "KRW",
+              "comparator_code": "EXACT",
+              "amount_status": "ANNOUNCED",
+              "raw_value": "도시재생 | 도시재생 | 100 | 125 | 80%",
+              "scope": "TRACK"
+            }
+          ]
+        }
+      ],
+      "capital_trace_statuses": [
+        "OFFICIAL_SELECTED_REQUEST_AMOUNT_ONLY"
+      ],
+      "summary": {
+        "lp_count": 1,
+        "program_count": 2,
+        "official_track_cap_krw": "30000000000",
+        "selection_requested_or_reported_krw": "30000000000",
+        "target_fund_size_krw": "37500000000",
+        "likely_reported_allocation_krw": null,
+        "verified_commitment_krw": null,
+        "verified_available_krw": null,
+        "dry_powder_status": "INSUFFICIENT_EVIDENCE"
+      }
+    },
+    {
+      "manager_name": "GCM Grosvenor",
+      "manager_class": "FOREIGN_MANAGER",
+      "evidence_layers": [
+        "CANONICAL_VERIFIED_SELECTION"
+      ],
+      "programs": [
+        {
+          "vintage_year": 2021,
+          "lp_name": "대한지방행정공제회",
+          "mandate_code": "POBA-2021-GLOBAL-PRIVATE-INFRA-SMA",
+          "track_name": "글로벌 사모인프라 SMA",
+          "strategy_code": "INFRASTRUCTURE",
+          "selection_status": "SELECTED",
+          "selected_at": "2021-07-07",
+          "evidence_layer": "CANONICAL_VERIFIED_SELECTION",
+          "capital_trace_status": "OFFICIAL_SELECTED_NO_AMOUNT",
+          "official_track_cap_krw": null,
+          "selection_requested_or_reported_krw": null,
+          "target_fund_size_krw": null,
+          "likely_reported_allocation_krw": null,
+          "verified_commitment_krw": null,
+          "verified_paid_in_krw": null,
+          "verified_deployed_krw": null,
+          "verified_available_krw": null,
+          "dry_powder_status": "INSUFFICIENT_EVIDENCE",
+          "official_sources": [
+            {
+              "title": "글로벌 사모인프라 SMA 위탁운용사 선정공고",
+              "publisher": "대한지방행정공제회",
+              "published_at": "2021-05-10",
+              "url": "https://www.poba.or.kr/bbs/selectNttDetail?sechBbsSeq=10&sechBbstSeq=74913",
+              "document_type": "BID_NOTICE"
+            },
+            {
+              "title": "글로벌 사모인프라 SMA 위탁운용사 선정결과",
+              "publisher": "대한지방행정공제회",
+              "published_at": "2021-07-07",
+              "url": "https://www.poba.or.kr/bbs/selectNttDetail?sechBbsSeq=10&sechBbstSeq=75327",
+              "document_type": "NOTICE"
+            }
+          ],
+          "media_source": null,
+          "amount_rows": []
+        }
+      ],
+      "capital_trace_statuses": [
+        "OFFICIAL_SELECTED_NO_AMOUNT"
+      ],
+      "summary": {
+        "lp_count": 1,
+        "program_count": 1,
+        "official_track_cap_krw": null,
+        "selection_requested_or_reported_krw": null,
+        "target_fund_size_krw": null,
+        "likely_reported_allocation_krw": null,
+        "verified_commitment_krw": null,
+        "verified_available_krw": null,
+        "dry_powder_status": "INSUFFICIENT_EVIDENCE"
+      }
+    }
+  ],
+  "global_guard": {
+    "verified_commitment_rows": 0,
+    "selection_vehicle_rows": 0,
+    "deployment_rows": 0,
+    "source_balance_rows": 0,
+    "dry_powder_rule": "No number when compatible commitment/paid-in/deployment/realization is absent"
+  }
+}

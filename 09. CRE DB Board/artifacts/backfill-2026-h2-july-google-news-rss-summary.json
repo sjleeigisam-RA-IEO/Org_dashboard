@@ -1,0 +1,82 @@
+{
+  "campaign": "BACKFILL_2026_H2",
+  "partitions": [
+    {
+      "category": "SALE",
+      "start": "2026-07-01",
+      "end_exclusive": "2026-08-01",
+      "discovered": 83,
+      "inserted": 83,
+      "updated": 0,
+      "skipped": false,
+      "saturated": false,
+      "run_id": "3294e43441565f4f930feb0d8cc1b951"
+    },
+    {
+      "category": "LEASE",
+      "start": "2026-07-01",
+      "end_exclusive": "2026-08-01",
+      "discovered": 43,
+      "inserted": 43,
+      "updated": 0,
+      "skipped": false,
+      "saturated": false,
+      "run_id": "fe2a4413cabd531d84fbf065c26e86a0"
+    },
+    {
+      "category": "NEW_SUPPLY",
+      "start": "2026-07-01",
+      "end_exclusive": "2026-08-01",
+      "discovered": 98,
+      "inserted": 96,
+      "updated": 0,
+      "skipped": false,
+      "saturated": false,
+      "run_id": "a380642209335c2d9ab7a4fbc7240dde"
+    },
+    {
+      "category": "PERMIT",
+      "start": "2026-07-01",
+      "end_exclusive": "2026-08-01",
+      "discovered": 31,
+      "inserted": 27,
+      "updated": 0,
+      "skipped": false,
+      "saturated": false,
+      "run_id": "a5aceb72c5ba5616bdd58392109d6df9"
+    },
+    {
+      "category": "PF",
+      "start": "2026-07-01",
+      "end_exclusive": "2026-08-01",
+      "discovered": 41,
+      "inserted": 40,
+      "updated": 0,
+      "skipped": false,
+      "saturated": false,
+      "run_id": "02c95f7c0d6a5845a842fa3bc9845cef"
+    },
+    {
+      "category": "LOAN",
+      "start": "2026-07-01",
+      "end_exclusive": "2026-08-01",
+      "discovered": 38,
+      "inserted": 38,
+      "updated": 0,
+      "skipped": false,
+      "saturated": false,
+      "run_id": "589d2524ac285867ba1e052cdada4704"
+    },
+    {
+      "category": "INVESTMENT",
+      "start": "2026-07-01",
+      "end_exclusive": "2026-08-01",
+      "discovered": 38,
+      "inserted": 38,
+      "updated": 0,
+      "skipped": false,
+      "saturated": false,
+      "run_id": "7199c7187a5954028d9da127edd21f94"
+    }
+  ]
+}

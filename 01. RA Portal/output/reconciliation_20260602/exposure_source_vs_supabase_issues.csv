@@ -1,0 +1,9 @@
+﻿kind,issue_type,fund_id,field,source_value,db_value,difference,source_rows,db_rows
+beneficiary,fund_exposure_sum_mismatch,112690,committed,220300000000,220000407978,-299592022,2,1
+beneficiary,fund_exposure_sum_mismatch,112690,invested,213176579000,212886674314,-289904686,2,1
+beneficiary,fund_exposure_sum_mismatch,112690,remaining,7123421000,7113733664,-9687336,2,1
+beneficiary,fund_exposure_sum_mismatch,200042,committed,151610196000,151090983000,-519213000,2,1
+beneficiary,fund_exposure_sum_mismatch,200042,invested,80884000000,80607000000,-277000000,2,1
+beneficiary,fund_exposure_sum_mismatch,200042,remaining,70726196000,70483983000,-242213000,2,1
+beneficiary,fund_exposure_sum_mismatch,300075,committed,14000150024,11500123234,-2500026790,12,8
+beneficiary,fund_exposure_sum_mismatch,300075,invested,14000150024,11500123234,-2500026790,12,8

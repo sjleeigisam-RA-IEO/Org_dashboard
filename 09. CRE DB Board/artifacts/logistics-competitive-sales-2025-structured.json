@@ -1,0 +1,184 @@
+{
+  "asOf": "2025-12-31",
+  "language": "ko",
+  "scope": "대한민국 물류센터 경쟁매각 공개정보",
+  "statusPolicy": "우협, SPA, 종결을 별도 단계로 관리하며 계획은 완료로 간주하지 않음",
+  "processes": [
+    {
+      "asset": "곤지암 물류센터",
+      "regionGroup": "수도권",
+      "location": "경기 광주시 도척면 진우리 1006·1008",
+      "classification": "운영 실물 물류센터 매각",
+      "seller": ["미래에셋자산운용/미래에셋맵스물류1호", "GIC(펀드 지분 80% 보도)"],
+      "sellSideAdvisor": ["메이트플러스"],
+      "bidders": ["DWS자산운용", "코람코자산운용", "페블스톤자산운용", "기타 다수 미공개"],
+      "shortlist": ["DWS자산운용", "코람코자산운용", "페블스톤자산운용"],
+      "bidPriceAndRank": "DWS 3.3㎡당 600만원 초반 보도; 타 후보 가격·순위 미공개",
+      "funding": "독일계 기관투자자 코어펀드 보도; 펀드명·LP·대주 미공개",
+      "preferredBidder": "DWS자산운용",
+      "spa": "체결일·조건 미공개",
+      "outcome": "2025년 7월 초 종결, 최종 1,186억원(타 보도 1,187억원 반올림)",
+      "status": "CLOSED",
+      "sources": [
+        {"date":"2025-02-12","url":"https://news.dealsitetv.com/articles/150836","facts":["입찰마감","숏리스트","자문사","매도자"]},
+        {"date":"2025-02-20","url":"https://seoulpi.io/article/00389246275697827840","facts":["DWS 우협","단가"]},
+        {"date":"2025-07-02","url":"https://seoulpi.io/article/00437110453325619200","facts":["예정 종결가","코어펀드"]},
+        {"date":"2025-07-22","url":"https://dealsitetv.com/articles/157015","facts":["종결","최종가"]}
+      ]
+    },
+    {
+      "asset": "이천4 물류센터(휠라 물류센터·매곡DC)",
+      "regionGroup": "수도권",
+      "location": "경기 이천시 호법면 매곡리",
+      "classification": "운영 실물 물류센터/펀드 수익증권 양수도",
+      "seller": ["켄달스퀘어일반사모부동산투자신탁7호", "ESR켄달스퀘어리츠(99.28%)"],
+      "sellSideAdvisor": ["미공개/미확인"],
+      "bidders": ["KKR·퍼시픽 컨소시엄(우협 보도)", "기타 미공개"],
+      "shortlist": ["미공개/미확인"],
+      "bidPriceAndRank": "입찰가·순위 미공개; 최종 자산가치 약 940억원, 수익증권 대금/순자산가치 약 508억원",
+      "funding": "법적 매수인 퍼시픽제91호; KKR 경제적 투자구조 미확인; 스캔 공시 검색노출상 신한은행 담보부채 420억원",
+      "preferredBidder": "KKR·퍼시픽(2025-03-19 보도)",
+      "spa": "2025년 7월 말 수익증권 전량 매매계약",
+      "outcome": "처분/인수 확인; 정확한 잔금·소유권 이전일 미확인",
+      "status": "CONTRACTED_OR_CLOSED_DATE_UNCONFIRMED",
+      "sources": [
+        {"date":"2025-03-19","url":"https://seoulpi.io/article/00399209149030780928","facts":["KKR·퍼시픽 우협"]},
+        {"date":"2025-07-30","url":"https://www.kendallsquarerm.com/board/download/419","facts":["처분 공시","매수인","담보부채"]},
+        {"date":"2025-08-01","url":"https://biz.chosun.com/stock/stock_general/2025/08/01/T3CR3BOXCVEZFM7C36RMM7ODJQ/","facts":["퍼시픽91호","508억원","자산·임차"]},
+        {"date":"2025-08-03","url":"https://www.dealbook.co.kr/peosipigunyong-kendalseukweeoyi-iceon-maegogdc-mulryusenteo-508eoge-maeib/","facts":["계약","940억원","508억원"]}
+      ]
+    },
+    {
+      "asset": "로지스포인트 호법A",
+      "regionGroup": "수도권",
+      "location": "경기 이천 호법 권역",
+      "classification": "운영 실물 물류센터 매각",
+      "seller": ["마스턴투자운용"],
+      "sellSideAdvisor": ["미공개/미확인"],
+      "bidders": ["이든자산운용", "기타 미공개"],
+      "shortlist": ["미공개/미확인"],
+      "bidPriceAndRank": "미공개/미확인",
+      "funding": "투자자 모집 난항 보도; LP·대주·금액 미공개",
+      "preferredBidder": "이든자산운용",
+      "spa": "미확인",
+      "outcome": "2025-06-12 당시 무산",
+      "status": "FAILED",
+      "sources": [
+        {"date":"2025-06-12","url":"https://www.corebeat.co.kr/article/899","facts":["이든 우협","투자자 모집 난항","가격협상 난항","무산"]}
+      ]
+    },
+    {
+      "asset": "청라 로지스틱스 센터",
+      "regionGroup": "수도권",
+      "location": "인천 서구 원창동 291-1",
+      "classification": "운영 실물 물류센터 매각",
+      "seller": ["브룩필드자산운용"],
+      "sellSideAdvisor": ["CBRE코리아"],
+      "bidders": ["KKR·크리에이트자산운용", "이지스자산운용"],
+      "shortlist": ["정식 명칭 미공개; 최종 2파전 확인"],
+      "bidPriceAndRank": "초기 원매자 약 8,000억원선 보도; KKR 1조원대 제시로 우협 보도; 이지스 정확한 가격·공식 순위 미공개",
+      "funding": "크리에이트 국내 펀드; 보통주 4,440억원, 담보대출 6,600억원, NH투자증권 주관, 일본계 금융기관 약 2,000억원 참여 보도",
+      "preferredBidder": "KKR·크리에이트자산운용",
+      "spa": "체결일·조건 미공개",
+      "outcome": "2025-12-30 인수 완료, 약 1조원 규모",
+      "status": "CLOSED",
+      "sources": [
+        {"date":"2025-07-30","url":"https://biz.chosun.com/stock/stock_general/2025/07/30/7P3YEIGDJRBHDPT4R4A6MRS3DU/","facts":["입찰자","CBRE","희망가"]},
+        {"date":"2025-09-08","url":"https://www.sedaily.com/NewsView/2GXTMHQDTH","facts":["우협","가격","2파전"]},
+        {"date":"2025-12-30","url":"https://www.bloter.net/news/articleView.html?idxno=650593","facts":["인수 완료","국내 펀드"]},
+        {"date":"2025-12-30","url":"https://www.etoday.co.kr/news/view/2540843","facts":["에쿼티","담보대출","금융주관"]}
+      ]
+    },
+    {
+      "asset": "죽전 물류센터",
+      "regionGroup": "수도권",
+      "location": "경기 용인시 수지구 죽전동 1351",
+      "classification": "운영 실물 물류센터 매각",
+      "seller": ["코람코라이프인프라리츠"],
+      "sellSideAdvisor": ["부동산플래닛", "오스카앤컴퍼니"],
+      "bidders": ["미공개/미확인"],
+      "shortlist": ["미공개/미확인"],
+      "bidPriceAndRank": "미공개/미확인",
+      "funding": "미공개/미확인",
+      "preferredBidder": "선정 계획만 보도, 선정 사실 미확인",
+      "spa": "2025년 3월 완료 계획만 보도",
+      "outcome": "2025년 말 공개자료상 미확인",
+      "status": "BIDDING_OUTCOME_UNCONFIRMED",
+      "sources": [
+        {"date":"2025-01-13","url":"https://www.dnews.co.kr/uhtml/view.jsp?idxno=202501131028289790829","facts":["LOI 계획","공동 자문사","매도자","계획 일정"]}
+      ]
+    },
+    {
+      "asset": "평택 신세계푸드 허브 물류센터",
+      "regionGroup": "수도권",
+      "location": "경기 평택시 진위면",
+      "classification": "운영 실물 물류센터 매각",
+      "seller": ["퍼시픽자산운용/퍼시픽제4호"],
+      "sellSideAdvisor": ["CBRE코리아"],
+      "bidders": ["FI·SI 대상 티저; 실제 참여자 미공개"],
+      "shortlist": ["미공개/미확인"],
+      "bidPriceAndRank": "시장 예상 3,000억원 초과; 입찰가 아님",
+      "funding": "미공개/미확인",
+      "preferredBidder": "미공개/미확인",
+      "spa": "미공개/미확인",
+      "outcome": "2025년 말 마케팅 단계",
+      "status": "MARKETING",
+      "sources": [
+        {"date":"2025-11-25","url":"https://biz.chosun.com/stock/market_trend/2025/11/25/ZGRS37FVENHLNJCFZFRBMC42IA/","facts":["퍼시픽제4호","CBRE","티저","시장 예상가"]}
+      ]
+    },
+    {
+      "asset": "로지스포인트 여주",
+      "regionGroup": "수도권",
+      "location": "경기 여주시 삼교동 460-8 일원",
+      "classification": "운영 실물 물류센터 매각",
+      "seller": ["포스코이앤씨"],
+      "sellSideAdvisor": ["CBRE코리아"],
+      "bidders": ["코람코자산운용", "기타 미공개"],
+      "shortlist": ["미공개/미확인"],
+      "bidPriceAndRank": "약 1,900억원; 경쟁 입찰가격·순위 미공개",
+      "funding": "코람코SC물류부동산제171호; 스타우드캐피탈 위탁 블라인드펀드 자금 활용 보도",
+      "preferredBidder": "미공개/미확인",
+      "spa": "체결일 미공개/미확인",
+      "outcome": "2025-12-18 인수 완료",
+      "status": "CLOSED",
+      "sources": [
+        {"date":"2024-11-17","url":"https://www.fnnews.com/news/202411171830495941","facts":["매도자","CBRE"]},
+        {"date":"2025-12-18","url":"https://www.newsis.com/view/NISX20251218_0003445685","facts":["인수 완료","가격","매수 펀드"]},
+        {"date":"2025-12-18","url":"https://www.corebeat.co.kr/article/1623","facts":["스타우드 블라인드펀드"]}
+      ]
+    },
+    {
+      "asset": "마장동 한전물류센터 부지",
+      "regionGroup": "수도권",
+      "location": "서울 성동구 마장동 765-1 일대",
+      "classification": "개발부지 공개입찰(운영 물류센터 거래 아님)",
+      "seller": ["한국전력공사"],
+      "sellSideAdvisor": ["미공개/미확인"],
+      "bidders": ["BS그룹 컨소시엄", "기타 미공개"],
+      "shortlist": ["미공개/미확인"],
+      "bidPriceAndRank": "낙찰가 5,054억5,740만원; 순위 미공개",
+      "funding": "미공개/미확인",
+      "preferredBidder": "보성산업개발 중심 BS그룹 컨소시엄",
+      "spa": "미공개/미확인",
+      "outcome": "개발사업 우협; 2026년 주거단지 공급 계획",
+      "status": "DEVELOPMENT_SITE_PREFERRED_BIDDER",
+      "sources": [
+        {"date":"2025-07-23","url":"https://www.viva100.com/article/20250723500553","facts":["개발사업","우협","정확한 낙찰가","개발계획"]},
+        {"date":"2025-07-23","url":"https://www.dnews.co.kr/uhtml/view.jsp?idxno=202507231301243950769","facts":["한전 부지매각","물류기능 이전","유휴부지"]}
+      ]
+    }
+  ],
+  "regionalCoverage": {
+    "수도권": "다수 확인",
+    "부산·울산·경남": "공개 검증 가능한 2025 운영 물류센터 주요 경쟁매각 미발견",
+    "호남": "공개 검증 가능한 2025 운영 물류센터 주요 경쟁매각 미발견",
+    "충청": "공개 검증 가능한 2025 운영 물류센터 주요 경쟁매각 미발견"
+  },
+  "caveats": [
+    "미발견은 거래 부재 단정이 아니라 공개정보 한계",
+    "청라의 2025-08-22 무산 우려 보도는 확정 무산이 아니며 후속 우협·종결로 갱신",
+    "마장동은 개발부지 거래로 운영 물류 실물자산 매각과 분리",
+    "이천4의 940억원과 508억원은 각각 자산가치와 수익증권/순자산가치"
+  ]
+}

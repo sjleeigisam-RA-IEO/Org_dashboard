@@ -1,0 +1,19 @@
+{
+  "verification": "OPENDART_DOCUMENT_XML_UNAVAILABLE",
+  "checked": 9,
+  "statusCounts": {
+    "014": 9
+  },
+  "meaning": "OpenDART API message: 파일이 존재하지 않습니다.",
+  "results": [
+    {"receiptNo":"20250219001800","status":"014"},
+    {"receiptNo":"20250325000770","status":"014"},
+    {"receiptNo":"20250630000260","status":"014"},
+    {"receiptNo":"20250728000380","status":"014"},
+    {"receiptNo":"20250804000144","status":"014"},
+    {"receiptNo":"20250926000621","status":"014"},
+    {"receiptNo":"20250929000436","status":"014"},
+    {"receiptNo":"20251211000447","status":"014"},
+    {"receiptNo":"20251219000412","status":"014"}
+  ]
+}

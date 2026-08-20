@@ -1,0 +1,13 @@
+﻿issue_type,severity,source_key,row_count,issue_count,note
+source_contract_key_uniqueness,ok,fund_master,1111,0,펀드코드 uniqueness check
+source_contract_key_uniqueness,ok,asset_master,788,0,자산코드 uniqueness check
+source_contract_key_uniqueness,ok,fund_asset_link,693,0,펀드코드 + 순번 uniqueness check
+source_contract_key_uniqueness,ok,fund_aum_snapshot,368,0,펀드코드 uniqueness check
+source_contract_key_uniqueness,warning,beneficiary_exposure,1140,9,펀드코드 + 수익자 + 약정콜일자 + 총약정금액 + 투입금액 uniqueness check
+source_contract_key_uniqueness,warning,lender_exposure,688,22,펀드코드 + 대주 + 트렌치 + 대출인출일 + 대출만기일 + 대출약정금액(원) uniqueness check
+asset_name_not_unique,warning,asset_master,788,22,Asset names are aliases/display values; asset_code remains the source key.
+fund_asset_link_unresolved,ok,fund_asset_link,693,0,Source asset name did not match asset master source by normalized name.
+fund_asset_link_ambiguous,warning,fund_asset_link,693,63,Source asset name matched multiple asset master rows.
+lender_event_identity_duplicates,warning,lender_exposure,687,22,Exposure fact identity must include source row hash; simple natural keys are not unique enough.
+beneficiary_event_identity_duplicates,warning,beneficiary_exposure,1139,9,Exposure fact identity must include source row hash; simple natural keys are not unique enough.
+aggregate_asset_name_contains_comma,info,fund_master,1111,123,"Comma-separated asset names are display aggregates, not relationship sources."

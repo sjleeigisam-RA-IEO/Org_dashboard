@@ -1,0 +1,9 @@
+﻿surface,count,status,error,note
+portfolio_search_results_canonical,3560,count_ok,,REST count only; refresh staleness must be controlled by runbook after DB writes.
+relationship_index_search_results,3560,count_ok,,REST count only; refresh staleness must be controlled by runbook after DB writes.
+relationship_index_search_results_cache,3560,count_ok,,REST count only; refresh staleness must be controlled by runbook after DB writes.
+relationship_index_audit,1413,count_ok,,REST count only; refresh staleness must be controlled by runbook after DB writes.
+relationship_index_audit_cache,1413,count_ok,,REST count only; refresh staleness must be controlled by runbook after DB writes.
+relationship_index_entities,3560,count_ok,,REST count only; refresh staleness must be controlled by runbook after DB writes.
+relationship_index_edges,5730,count_ok,,REST count only; refresh staleness must be controlled by runbook after DB writes.
+cache_vs_api_view,,ok,,"portfolio_search_results_canonical=3560, relationship_index_search_results_cache=3560"

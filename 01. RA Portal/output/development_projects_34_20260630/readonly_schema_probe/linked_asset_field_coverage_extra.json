@@ -1,0 +1,52 @@
+[
+  {
+    "field": "asset_aliases.any_alias",
+    "filled": 39,
+    "total": 301
+  },
+  {
+    "field": "asset_master.api_enrichment_status",
+    "filled": 43,
+    "total": 43
+  },
+  {
+    "field": "asset_master.asset_kind",
+    "filled": 43,
+    "total": 43
+  },
+  {
+    "field": "asset_master.asset_type",
+    "filled": 41,
+    "total": 43
+  },
+  {
+    "field": "asset_master.business_stage",
+    "filled": 0,
+    "total": 43
+  },
+  {
+    "field": "asset_master.canonical_name",
+    "filled": 43,
+    "total": 43
+  },
+  {
+    "field": "asset_master.data_completeness",
+    "filled": 43,
+    "total": 43
+  },
+  {
+    "field": "asset_master.metadata",
+    "filled": 43,
+    "total": 43
+  },
+  {
+    "field": "asset_master.non_physical_asset_label",
+    "filled": 1,
+    "total": 43
+  },
+  {
+    "field": "asset_master.physical_asset_name",
+    "filled": 43,
+    "total": 43
+  }
+]

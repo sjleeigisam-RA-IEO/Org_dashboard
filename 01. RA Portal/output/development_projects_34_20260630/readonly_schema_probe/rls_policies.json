@@ -1,0 +1,122 @@
+[
+  {
+    "schema_name": "public",
+    "table_name": "asset_aliases",
+    "rls_enabled": false,
+    "rls_forced": false,
+    "policy_name": null,
+    "policy_command": null,
+    "using_expr": null,
+    "check_expr": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "asset_building_ledger",
+    "rls_enabled": false,
+    "rls_forced": false,
+    "policy_name": null,
+    "policy_command": null,
+    "using_expr": null,
+    "check_expr": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "asset_fund_links",
+    "rls_enabled": false,
+    "rls_forced": false,
+    "policy_name": null,
+    "policy_command": null,
+    "using_expr": null,
+    "check_expr": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "asset_master",
+    "rls_enabled": false,
+    "rls_forced": false,
+    "policy_name": null,
+    "policy_command": null,
+    "using_expr": null,
+    "check_expr": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "asset_project_links",
+    "rls_enabled": false,
+    "rls_forced": false,
+    "policy_name": null,
+    "policy_command": null,
+    "using_expr": null,
+    "check_expr": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "dev_project_asset_links",
+    "rls_enabled": true,
+    "rls_forced": false,
+    "policy_name": "dev_project_asset_links_service_role_all",
+    "policy_command": "all",
+    "using_expr": "true",
+    "check_expr": "true"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "dev_project_extract_snapshots",
+    "rls_enabled": true,
+    "rls_forced": false,
+    "policy_name": "dev_project_extract_snapshots_service_role_all",
+    "policy_command": "all",
+    "using_expr": "true",
+    "check_expr": "true"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "dev_project_fund_links",
+    "rls_enabled": true,
+    "rls_forced": false,
+    "policy_name": "dev_project_fund_links_service_role_all",
+    "policy_command": "all",
+    "using_expr": "true",
+    "check_expr": "true"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "dev_project_list",
+    "rls_enabled": true,
+    "rls_forced": false,
+    "policy_name": "dev_project_list_service_role_all",
+    "policy_command": "all",
+    "using_expr": "true",
+    "check_expr": "true"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "dev_project_project_links",
+    "rls_enabled": true,
+    "rls_forced": false,
+    "policy_name": "dev_project_project_links_service_role_all",
+    "policy_command": "all",
+    "using_expr": "true",
+    "check_expr": "true"
+  },
+  {
+    "schema_name": "public",
+    "table_name": "funds",
+    "rls_enabled": false,
+    "rls_forced": false,
+    "policy_name": null,
+    "policy_command": null,
+    "using_expr": null,
+    "check_expr": null
+  },
+  {
+    "schema_name": "public",
+    "table_name": "projects",
+    "rls_enabled": false,
+    "rls_forced": false,
+    "policy_name": null,
+    "policy_command": null,
+    "using_expr": null,
+    "check_expr": null
+  }
+]

@@ -1,0 +1,96 @@
+{
+  "manifest_version": "1.0",
+  "manifest_id": "approved-lpmandate-koreapost-2026-domestic-reit",
+  "status": "APPROVED",
+  "review": {
+    "reviewed_by": "hermes-official-pdf-visual-review",
+    "reviewed_at": "2026-08-20T11:45:00Z",
+    "approved_by": "hermes-parent-user-authorized-official-source-promotion",
+    "approved_at": "2026-08-20T11:46:00Z"
+  },
+  "sources": [
+    {
+      "id": "src-kofia-m212-279",
+      "url": "https://www.kofia.or.kr/brd/m_212/view.do?seq=279",
+      "attachment_url": "https://www.kofia.or.kr/brd/m_212/down.do?brd_id=www_member_notice&seq=279&data_tp=A&file_seq=1",
+      "title": "[우정사업본부] 우체국금융 국내부동산 리츠 위탁운용사 모집공고",
+      "publisher": "금융투자협회(우정사업본부 공고 재배포)",
+      "document_type": "BID_NOTICE",
+      "published_at": "2026-05-08",
+      "accessed_at": "2026-08-20",
+      "rights_status": "EXCERPT_ALLOWED",
+      "exact_text": "(우정사업본부 공고 2026-57호) 2026년도 우체국금융 국내부동산 리츠 위탁운용사 모집공고\n출자규모 5,000억원 내외(1개 운용사)\n예금 3,000억원, 보험 2,000억원 투자 예정\n오피스 및 물류시설 등 상업용 부동산(Core/Core+ 자산)\n부동산 개발 투자 가능(50% 이내)\n서울(판교 등 포함) 주요 권역 위주\nNet IRR 7% 이상\n리츠규모 5천억원 내외 (모리츠 기준)\n운용사 의무출자 약정총액 대비 1% 이상 (계열사 등 포함)\n운용기간 13년 이상 (추후 협의)\n투자기간 3+2년 (추후 협의로 조정가능)\nBlind형 / 모자형 구조\n관리보수 투자잔액(리츠기준)의 0.5% 이하\n성과보수 IRR 8% 초과시 초과수익의 10% 이하\n차입한도 : 건별 55%이내, 전체 50%이내\n개발 자산은 LTC 60% 이내\n리츠 편입 자산(모리츠 기준)은 최소 2건 이상\n모집공고 → 제안서 제출 → 1차 평가(서류) → 예비실사 → 2차 평가(구술) → 운용사 실사 → 최종 선정 → 계약체결\n제안서 접수 마감 2026. 5. 22.(금) 17:00"
+    }
+  ],
+  "organizations": [
+    {
+      "id": "org-korea-post",
+      "organization_type": "GOVERNMENT",
+      "canonical_name": "우정사업본부"
+    }
+  ],
+  "event": {
+    "id": "evt-koreapost-2026-domestic-reit-rfp",
+    "canonical_title": "2026년도 우체국금융 국내부동산 리츠 위탁운용사 모집",
+    "current_stage_code": "MANAGER_RFP_OPEN",
+    "event_date_start": "2026-05-08",
+    "event_date_end": "2026-05-08",
+    "date_precision": "DAY",
+    "lifecycle_status": "ACTIVE",
+    "verification_level": "V2",
+    "overall_confidence": 1.0,
+    "evidence": {"source_ids": ["src-kofia-m212-279"]}
+  },
+  "mandate": {
+    "id": "mandate-koreapost-2026-domestic-reit",
+    "lp_organization_id": "org-korea-post",
+    "mandate_code": "KOREAPOST-2026-DOMESTIC-REIT",
+    "mandate_name": "2026년도 우체국금융 국내부동산 리츠 위탁운용사 모집",
+    "vintage_year": 2026,
+    "announced_at": "2026-05-08",
+    "application_deadline": "2026-05-22T17:00:00+09:00",
+    "mandate_status": "UNKNOWN",
+    "mandate_scope": "DOMESTIC",
+    "metadata": {
+      "planned_final_selection": "2026-06",
+      "selection_result_status": "MEDIA_ONLY_RESULT_REQUIRES_PRIMARY_CONFIRMATION",
+      "media_reported_manager": "코람코자산신탁",
+      "amount_interpretation": "PLAN_STAGE_TRACK_LP_COMMITMENT_NOT_MANAGER_COMMITMENT_OR_DRY_POWDER"
+    },
+    "evidence": {"source_ids": ["src-kofia-m212-279"]}
+  },
+  "tracks": [
+    {
+      "id": "track-koreapost-2026-domestic-reit",
+      "track_code": "KOREAPOST-2026-DOMESTIC-REIT",
+      "track_name": "국내 상업용 부동산 Core/Core+ 블라인드 리츠",
+      "strategy_code": "REAL_ESTATE",
+      "geography_code": "DOMESTIC",
+      "target_manager_count": 1,
+      "evidence": {"source_ids": ["src-kofia-m212-279"]}
+    }
+  ],
+  "guidelines": [
+    {"id":"guideline-koreapost-2026-reit-return","track_id":"track-koreapost-2026-domestic-reit","term_type":"TARGET_RETURN","requirement_level":"MINIMUM","raw_text":"Net IRR 7% 이상","value_kind":"PERCENT","value_decimal_text":"7","comparator_code":"AT_LEAST","return_basis":"NET_IRR","evidence":{"source_ids":["src-kofia-m212-279"]}},
+    {"id":"guideline-koreapost-2026-reit-strategy","track_id":"track-koreapost-2026-domestic-reit","term_type":"STRATEGY","requirement_level":"REQUIRED","raw_text":"오피스 및 물류시설 등 상업용 부동산(Core/Core+ 자산)","value_kind":"TEXT","text_value":"상업용 부동산 Core/Core+","evidence":{"source_ids":["src-kofia-m212-279"]}},
+    {"id":"guideline-koreapost-2026-reit-development","track_id":"track-koreapost-2026-domestic-reit","term_type":"ELIGIBLE_ASSET","requirement_level":"MAXIMUM","raw_text":"부동산 개발 투자 가능(50% 이내)","value_kind":"TEXT","text_value":"개발투자 50% 이내","evidence":{"source_ids":["src-kofia-m212-279"]}},
+    {"id":"guideline-koreapost-2026-reit-ltv","track_id":"track-koreapost-2026-domestic-reit","term_type":"LEVERAGE","requirement_level":"MAXIMUM","raw_text":"차입한도 : 건별 55%이내, 전체 50%이내","value_kind":"TEXT","text_value":"건별 55% 이내, 전체 50% 이내","evidence":{"source_ids":["src-kofia-m212-279"]}},
+    {"id":"guideline-koreapost-2026-reit-period","track_id":"track-koreapost-2026-domestic-reit","term_type":"INVESTMENT_PERIOD","requirement_level":"REQUIRED","raw_text":"투자기간 3+2년 (추후 협의로 조정가능)","value_kind":"TEXT","text_value":"3+2년","evidence":{"source_ids":["src-kofia-m212-279"]}},
+    {"id":"guideline-koreapost-2026-reit-term","track_id":"track-koreapost-2026-domestic-reit","term_type":"FUND_TERM","requirement_level":"MINIMUM","raw_text":"운용기간 13년 이상 (추후 협의)","value_kind":"TEXT","text_value":"13년 이상","evidence":{"source_ids":["src-kofia-m212-279"]}}
+  ],
+  "selections": [],
+  "selection_members": [],
+  "selection_vehicles": [],
+  "amounts": [
+    {
+      "id": "amount-koreapost-2026-domestic-reit-total",
+      "scope_type": "TRACK",
+      "scope_id": "track-koreapost-2026-domestic-reit",
+      "amount_basis": "TRACK_LP_COMMITMENT",
+      "amount": {"kind":"APPROX","decimal":"500000000000","currency":"KRW","raw_value":"출자규모 5,000억원 내외(1개 운용사)"},
+      "amount_status": "ANNOUNCED",
+      "evidence": {"source_ids": ["src-kofia-m212-279"]}
+    }
+  ],
+  "deployments": []
+}

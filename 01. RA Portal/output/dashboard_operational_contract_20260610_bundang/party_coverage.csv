@@ -1,0 +1,3 @@
+﻿query,party_type,display_terms,index_party_rows,exposure_count_by_display_name,hydrate_cap,status,error
+분당,lender,,22,0,500,ok,
+분당,beneficiary,,5,0,500,ok,

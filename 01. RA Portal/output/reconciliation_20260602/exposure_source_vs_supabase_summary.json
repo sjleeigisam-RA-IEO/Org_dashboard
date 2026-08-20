@@ -1,0 +1,16 @@
+{
+  "lender_source_file": "펀드별 대주 정보 조회_20260515.xlsx",
+  "beneficiary_source_file": "펀드별 수익자 정보 조회_20260515.xlsx",
+  "source_lender_funds": 118,
+  "db_lender_funds": 118,
+  "source_lender_rows": 798,
+  "db_lender_rows": 670,
+  "source_beneficiary_funds": 388,
+  "db_beneficiary_funds": 388,
+  "source_beneficiary_rows": 1159,
+  "db_beneficiary_rows": 1118,
+  "issues": 8,
+  "issue_counts": {
+    "beneficiary|fund_exposure_sum_mismatch": 8
+  }
+}

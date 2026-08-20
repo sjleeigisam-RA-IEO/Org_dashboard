@@ -1,0 +1,531 @@
+{
+  "retrievedAt": "2026-08-15T12:07:49.516037+00:00",
+  "source": "Bank of Korea ECOS Open API",
+  "series": {
+    "baseRate": [
+      {
+        "period": "202501",
+        "value": "3",
+        "unit": "연%",
+        "statCode": "722Y001",
+        "statName": "1.3.1. 한국은행 기준금리 및 여수신금리",
+        "itemCode": "0101000",
+        "itemName": "한국은행 기준금리"
+      },
+      {
+        "period": "202502",
+        "value": "2.75",
+        "unit": "연%",
+        "statCode": "722Y001",
+        "statName": "1.3.1. 한국은행 기준금리 및 여수신금리",
+        "itemCode": "0101000",
+        "itemName": "한국은행 기준금리"
+      },
+      {
+        "period": "202503",
+        "value": "2.75",
+        "unit": "연%",
+        "statCode": "722Y001",
+        "statName": "1.3.1. 한국은행 기준금리 및 여수신금리",
+        "itemCode": "0101000",
+        "itemName": "한국은행 기준금리"
+      },
+      {
+        "period": "202504",
+        "value": "2.75",
+        "unit": "연%",
+        "statCode": "722Y001",
+        "statName": "1.3.1. 한국은행 기준금리 및 여수신금리",
+        "itemCode": "0101000",
+        "itemName": "한국은행 기준금리"
+      },
+      {
+        "period": "202505",
+        "value": "2.5",
+        "unit": "연%",
+        "statCode": "722Y001",
+        "statName": "1.3.1. 한국은행 기준금리 및 여수신금리",
+        "itemCode": "0101000",
+        "itemName": "한국은행 기준금리"
+      },
+      {
+        "period": "202506",
+        "value": "2.5",
+        "unit": "연%",
+        "statCode": "722Y001",
+        "statName": "1.3.1. 한국은행 기준금리 및 여수신금리",
+        "itemCode": "0101000",
+        "itemName": "한국은행 기준금리"
+      },
+      {
+        "period": "202507",
+        "value": "2.5",
+        "unit": "연%",
+        "statCode": "722Y001",
+        "statName": "1.3.1. 한국은행 기준금리 및 여수신금리",
+        "itemCode": "0101000",
+        "itemName": "한국은행 기준금리"
+      },
+      {
+        "period": "202508",
+        "value": "2.5",
+        "unit": "연%",
+        "statCode": "722Y001",
+        "statName": "1.3.1. 한국은행 기준금리 및 여수신금리",
+        "itemCode": "0101000",
+        "itemName": "한국은행 기준금리"
+      },
+      {
+        "period": "202509",
+        "value": "2.5",
+        "unit": "연%",
+        "statCode": "722Y001",
+        "statName": "1.3.1. 한국은행 기준금리 및 여수신금리",
+        "itemCode": "0101000",
+        "itemName": "한국은행 기준금리"
+      },
+      {
+        "period": "202510",
+        "value": "2.5",
+        "unit": "연%",
+        "statCode": "722Y001",
+        "statName": "1.3.1. 한국은행 기준금리 및 여수신금리",
+        "itemCode": "0101000",
+        "itemName": "한국은행 기준금리"
+      },
+      {
+        "period": "202511",
+        "value": "2.5",
+        "unit": "연%",
+        "statCode": "722Y001",
+        "statName": "1.3.1. 한국은행 기준금리 및 여수신금리",
+        "itemCode": "0101000",
+        "itemName": "한국은행 기준금리"
+      },
+      {
+        "period": "202512",
+        "value": "2.5",
+        "unit": "연%",
+        "statCode": "722Y001",
+        "statName": "1.3.1. 한국은행 기준금리 및 여수신금리",
+        "itemCode": "0101000",
+        "itemName": "한국은행 기준금리"
+      }
+    ],
+    "newCorporateLoanRate": [
+      {
+        "period": "202501",
+        "value": "4.5",
+        "unit": "연리%",
+        "statCode": "121Y006",
+        "statName": "1.3.3.2.1. 예금은행 대출금리(신규취급액 기준)",
+        "itemCode": "BECBLA02",
+        "itemName": "기업대출"
+      },
+      {
+        "period": "202502",
+        "value": "4.43",
+        "unit": "연리%",
+        "statCode": "121Y006",
+        "statName": "1.3.3.2.1. 예금은행 대출금리(신규취급액 기준)",
+        "itemCode": "BECBLA02",
+        "itemName": "기업대출"
+      },
+      {
+        "period": "202503",
+        "value": "4.32",
+        "unit": "연리%",
+        "statCode": "121Y006",
+        "statName": "1.3.3.2.1. 예금은행 대출금리(신규취급액 기준)",
+        "itemCode": "BECBLA02",
+        "itemName": "기업대출"
+      },
+      {
+        "period": "202504",
+        "value": "4.14",
+        "unit": "연리%",
+        "statCode": "121Y006",
+        "statName": "1.3.3.2.1. 예금은행 대출금리(신규취급액 기준)",
+        "itemCode": "BECBLA02",
+        "itemName": "기업대출"
+      },
+      {
+        "period": "202505",
+        "value": "4.16",
+        "unit": "연리%",
+        "statCode": "121Y006",
+        "statName": "1.3.3.2.1. 예금은행 대출금리(신규취급액 기준)",
+        "itemCode": "BECBLA02",
+        "itemName": "기업대출"
+      },
+      {
+        "period": "202506",
+        "value": "4.06",
+        "unit": "연리%",
+        "statCode": "121Y006",
+        "statName": "1.3.3.2.1. 예금은행 대출금리(신규취급액 기준)",
+        "itemCode": "BECBLA02",
+        "itemName": "기업대출"
+      },
+      {
+        "period": "202507",
+        "value": "4.04",
+        "unit": "연리%",
+        "statCode": "121Y006",
+        "statName": "1.3.3.2.1. 예금은행 대출금리(신규취급액 기준)",
+        "itemCode": "BECBLA02",
+        "itemName": "기업대출"
+      },
+      {
+        "period": "202508",
+        "value": "4.03",
+        "unit": "연리%",
+        "statCode": "121Y006",
+        "statName": "1.3.3.2.1. 예금은행 대출금리(신규취급액 기준)",
+        "itemCode": "BECBLA02",
+        "itemName": "기업대출"
+      },
+      {
+        "period": "202509",
+        "value": "3.99",
+        "unit": "연리%",
+        "statCode": "121Y006",
+        "statName": "1.3.3.2.1. 예금은행 대출금리(신규취급액 기준)",
+        "itemCode": "BECBLA02",
+        "itemName": "기업대출"
+      },
+      {
+        "period": "202510",
+        "value": "3.96",
+        "unit": "연리%",
+        "statCode": "121Y006",
+        "statName": "1.3.3.2.1. 예금은행 대출금리(신규취급액 기준)",
+        "itemCode": "BECBLA02",
+        "itemName": "기업대출"
+      },
+      {
+        "period": "202511",
+        "value": "4.1",
+        "unit": "연리%",
+        "statCode": "121Y006",
+        "statName": "1.3.3.2.1. 예금은행 대출금리(신규취급액 기준)",
+        "itemCode": "BECBLA02",
+        "itemName": "기업대출"
+      },
+      {
+        "period": "202512",
+        "value": "4.16",
+        "unit": "연리%",
+        "statCode": "121Y006",
+        "statName": "1.3.3.2.1. 예금은행 대출금리(신규취급액 기준)",
+        "itemCode": "BECBLA02",
+        "itemName": "기업대출"
+      }
+    ],
+    "cpi": [
+      {
+        "period": "202401",
+        "value": "113.17",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202402",
+        "value": "113.78",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202403",
+        "value": "113.95",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202404",
+        "value": "114.01",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202405",
+        "value": "114.1",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202406",
+        "value": "113.84",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202407",
+        "value": "114.13",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202408",
+        "value": "114.54",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202409",
+        "value": "114.65",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202410",
+        "value": "114.69",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202411",
+        "value": "114.4",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202412",
+        "value": "114.91",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202501",
+        "value": "115.71",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202502",
+        "value": "116.08",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202503",
+        "value": "116.29",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202504",
+        "value": "116.38",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202505",
+        "value": "116.27",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202506",
+        "value": "116.31",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202507",
+        "value": "116.52",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202508",
+        "value": "116.45",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202509",
+        "value": "117.06",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202510",
+        "value": "117.42",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202511",
+        "value": "117.2",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      },
+      {
+        "period": "202512",
+        "value": "117.57",
+        "unit": "2020=100",
+        "statCode": "901Y009",
+        "statName": "4.2.1. 소비자물가지수",
+        "itemCode": "0",
+        "itemName": "총지수"
+      }
+    ],
+    "cpiYoy": [
+      {
+        "period": "202501",
+        "index": "115.71",
+        "priorYearIndex": "113.17",
+        "yoyPercent": "2.24"
+      },
+      {
+        "period": "202502",
+        "index": "116.08",
+        "priorYearIndex": "113.78",
+        "yoyPercent": "2.02"
+      },
+      {
+        "period": "202503",
+        "index": "116.29",
+        "priorYearIndex": "113.95",
+        "yoyPercent": "2.05"
+      },
+      {
+        "period": "202504",
+        "index": "116.38",
+        "priorYearIndex": "114.01",
+        "yoyPercent": "2.08"
+      },
+      {
+        "period": "202505",
+        "index": "116.27",
+        "priorYearIndex": "114.1",
+        "yoyPercent": "1.90"
+      },
+      {
+        "period": "202506",
+        "index": "116.31",
+        "priorYearIndex": "113.84",
+        "yoyPercent": "2.17"
+      },
+      {
+        "period": "202507",
+        "index": "116.52",
+        "priorYearIndex": "114.13",
+        "yoyPercent": "2.09"
+      },
+      {
+        "period": "202508",
+        "index": "116.45",
+        "priorYearIndex": "114.54",
+        "yoyPercent": "1.67"
+      },
+      {
+        "period": "202509",
+        "index": "117.06",
+        "priorYearIndex": "114.65",
+        "yoyPercent": "2.10"
+      },
+      {
+        "period": "202510",
+        "index": "117.42",
+        "priorYearIndex": "114.69",
+        "yoyPercent": "2.38"
+      },
+      {
+        "period": "202511",
+        "index": "117.2",
+        "priorYearIndex": "114.4",
+        "yoyPercent": "2.45"
+      },
+      {
+        "period": "202512",
+        "index": "117.57",
+        "priorYearIndex": "114.91",
+        "yoyPercent": "2.31"
+      }
+    ]
+  },
+  "requestUrls": [
+    "https://ecos.bok.or.kr/api/StatisticSearch/sample/json/kr/1/10/722Y001/M/202501/202510/0101000",
+    "https://ecos.bok.or.kr/api/StatisticSearch/sample/json/kr/1/2/722Y001/M/202511/202512/0101000",
+    "https://ecos.bok.or.kr/api/StatisticSearch/sample/json/kr/1/10/121Y006/M/202501/202510/BECBLA02",
+    "https://ecos.bok.or.kr/api/StatisticSearch/sample/json/kr/1/2/121Y006/M/202511/202512/BECBLA02",
+    "https://ecos.bok.or.kr/api/StatisticSearch/sample/json/kr/1/10/901Y009/M/202401/202410/0",
+    "https://ecos.bok.or.kr/api/StatisticSearch/sample/json/kr/1/10/901Y009/M/202411/202508/0",
+    "https://ecos.bok.or.kr/api/StatisticSearch/sample/json/kr/1/4/901Y009/M/202509/202512/0"
+  ],
+  "notes": [
+    "ECOS sample API public query",
+    "CPI YoY=(2025 monthly index / 2024 same-month index - 1)*100"
+  ]
+}

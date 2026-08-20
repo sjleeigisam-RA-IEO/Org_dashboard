@@ -1,0 +1,938 @@
+{
+  "counts": {
+    "funds": "1112",
+    "v_funds_enriched": "1112",
+    "asset_master": "1302",
+    "asset_fund_links": "1217",
+    "asset_project_links": "879",
+    "projects": "425",
+    "lender_exposures": "670",
+    "beneficiary_exposures": "1118",
+    "asset_relationship_summary": "1302",
+    "fund_asset_relationships": "1217",
+    "project_asset_relationships": "879",
+    "portfolio_search_results_canonical": "missing: HTTP Error 404: Not Found",
+    "portfolio_search_index": "missing: HTTP Error 404: Not Found",
+    "asset_project_link_resolution": "missing: HTTP Error 404: Not Found",
+    "asset_name_contract": "missing: HTTP Error 404: Not Found",
+    "asset_name_cleanup_audit": "missing: HTTP Error 404: Not Found"
+  },
+  "relationship_stats": {
+    "asset_fund_links": {
+      "rows": 1217,
+      "distinct_assets": 659,
+      "distinct_funds": 830,
+      "orphan_asset_rows": 0,
+      "orphan_fund_rows": 0
+    },
+    "asset_project_links": {
+      "rows": 879,
+      "distinct_assets": 364,
+      "distinct_targets": 879,
+      "orphan_asset_rows": 0,
+      "target_is_project_rows": 240,
+      "target_is_fund_rows": 639,
+      "target_is_neither_rows": 0,
+      "iota_like_targets": 2
+    },
+    "projects": {
+      "rows": 425,
+      "parent_project_rows": 3,
+      "primary_asset_rows": 240,
+      "primary_asset_missing_in_asset_master": 0
+    },
+    "funds": {
+      "rows": 1112,
+      "primary_asset_rows": 772,
+      "primary_asset_missing_in_asset_master": 0,
+      "primary_asset_without_asset_fund_link": 0
+    },
+    "lender_exposures": {
+      "rows": 670,
+      "with_fund_id": 670,
+      "fund_id_resolves": 670,
+      "with_asset_id": 617,
+      "asset_id_resolves": 617,
+      "missing_asset_id": 53,
+      "missing_fund_id": 0
+    },
+    "beneficiary_exposures": {
+      "rows": 1118,
+      "with_fund_id": 1118,
+      "fund_id_resolves": 1118,
+      "with_asset_id": 1091,
+      "asset_id_resolves": 1091,
+      "missing_asset_id": 27,
+      "missing_fund_id": 0
+    }
+  },
+  "search_probe": {
+    "?????": {
+      "canonical_search_available": false,
+      "legacy_funds": [],
+      "legacy_projects": [],
+      "legacy_assets": [],
+      "legacy_lenders": [],
+      "legacy_beneficiaries": [],
+      "counts": {
+        "legacy_funds": 0,
+        "legacy_projects": 0,
+        "legacy_assets": 0,
+        "legacy_lenders": 0,
+        "legacy_beneficiaries": 0
+      }
+    },
+    "??ON": {
+      "canonical_search_available": false,
+      "legacy_funds": [],
+      "legacy_projects": [],
+      "legacy_assets": [],
+      "legacy_lenders": [],
+      "legacy_beneficiaries": [],
+      "counts": {
+        "legacy_funds": 0,
+        "legacy_projects": 0,
+        "legacy_assets": 0,
+        "legacy_lenders": 0,
+        "legacy_beneficiaries": 0
+      }
+    },
+    "NPL": {
+      "canonical_search_available": false,
+      "legacy_funds": [
+        {
+          "fund_id": "120126",
+          "fund_name": "이지스 NPL 리스트럭처링일반사모부동산투자신탁",
+          "short_name": "NPL리스트럭처링",
+          "project_mission_name": null,
+          "asset_name": null,
+          "status": "운용",
+          "sector": "NPL",
+          "primary_asset_id": null
+        },
+        {
+          "fund_id": "112603",
+          "fund_name": "이지스NPL일반사모부동산투자신탁제3-1호",
+          "short_name": "NPL3-1호",
+          "project_mission_name": "부실채권을 기초자산으로 하는 SPC의 사채",
+          "asset_name": "부실채권을 기초자산으로 하는 SPC의 사채",
+          "status": "청산",
+          "sector": "NPL",
+          "primary_asset_id": "ast_0bed91ccb4ec"
+        },
+        {
+          "fund_id": "112082",
+          "fund_name": "이지스NPL일반사모부동산투자신탁1호",
+          "short_name": "NPL1호",
+          "project_mission_name": "부실채권을 기초자산으로 하는 SPC의 출자지분 및 사채",
+          "asset_name": "부실채권을 기초자산으로 하는 SPC의 출자지분 및 사채",
+          "status": "청산",
+          "sector": "NPL",
+          "primary_asset_id": "ast_17db161a53b5"
+        },
+        {
+          "fund_id": "112124",
+          "fund_name": "이지스NPL전문투자형사모부동산투자신탁1-1호",
+          "short_name": "NPL1-1호",
+          "project_mission_name": "부실채권을 기초자산으로 하는 SPC 사채",
+          "asset_name": "부실채권을 기초자산으로 하는 SPC 사채",
+          "status": "청산",
+          "sector": "NPL",
+          "primary_asset_id": "ast_30937d64ae67"
+        },
+        {
+          "fund_id": "112412",
+          "fund_name": "이지스NPL전문투자형사모부동산투자신탁제2-2호",
+          "short_name": "NPL2-2호",
+          "project_mission_name": "부실채권을 기초자산으로 하는 SPC의 사채",
+          "asset_name": "부실채권을 기초자산으로 하는 SPC의 사채",
+          "status": "청산",
+          "sector": "NPL",
+          "primary_asset_id": "ast_0bed91ccb4ec"
+        },
+        {
+          "fund_id": "112307",
+          "fund_name": "이지스NPL일반사모부동산투자신탁제2호",
+          "short_name": "NPL2호",
+          "project_mission_name": "부실채권을 기초자산으로 하는 SPC의 출자지분 및 사채",
+          "asset_name": "부실채권을 기초자산으로 하는 SPC의 출자지분 및 사채",
+          "status": "청산",
+          "sector": "NPL",
+          "primary_asset_id": "ast_17db161a53b5"
+        },
+        {
+          "fund_id": "112318",
+          "fund_name": "이지스NPL전문투자형사모부동산투자신탁제2-1호",
+          "short_name": "NPL2-1호",
+          "project_mission_name": "부실채권을 기초자산으로 하는 SPC의 사채",
+          "asset_name": "부실채권을 기초자산으로 하는 SPC의 사채",
+          "status": "청산",
+          "sector": "NPL",
+          "primary_asset_id": "ast_0bed91ccb4ec"
+        },
+        {
+          "fund_id": "112602",
+          "fund_name": "이지스NPL일반사모부동산투자신탁제3호",
+          "short_name": "NPL3호",
+          "project_mission_name": "아이에이제십삼차유동화전문 유한회사, 아이에이제십사차유동화전문 유한회사, 주식회사 아이에이에이치에프합정, 아이에이와이디유동화전문 유한회사, 부실채권을 기초자산으로 하는 SPC의 사채",
+          "asset_name": "아이에이제십삼차유동화전문 유한회사, 아이에이제십사차유동화전문 유한회사, 주식회사 아이에이에이치에프합정, 아이에이와이디유동화전문 유한회사, 부실채권을 기초자산으로 하는 SPC의 사채",
+          "status": "운용",
+          "sector": "NPL",
+          "primary_asset_id": "ast_0bed91ccb4ec"
+        },
+        {
+          "fund_id": "120056",
+          "fund_name": "이지스NPL일반사모부동산투자신탁제4호",
+          "short_name": "NPL4호",
+          "project_mission_name": "금융기관 등이 보유하는 담보부 부실 대출재권, 기타 부실징후자산 및 기업관련 대출 채권 등(블라인드), 아이에이제십오차유동화전문 유한회사, 아이에이제십육차유동화전문 유한회사",
+          "asset_name": "금융기관 등이 보유하는 담보부 부실 대출재권, 기타 부실징후자산 및 기업관련 대출 채권 등(블라인드), 아이에이제십오차유동화전문 유한회사, 아이에이제십육차유동화전문 유한회사",
+          "status": "운용",
+          "sector": "NPL",
+          "primary_asset_id": "ast_720898f0f98d"
+        },
+        {
+          "fund_id": "112720",
+          "fund_name": "이지스카스퀘어NPL일반사모부동산투자신탁",
+          "short_name": "카스퀘어NPL",
+          "project_mission_name": "부천카스퀘어담보대출",
+          "asset_name": "부천카스퀘어담보대출",
+          "status": "청산",
+          "sector": "NPL",
+          "primary_asset_id": "ast_6526b194cc13"
+        }
+      ],
+      "legacy_projects": [
+        {
+          "project_id": "project_notion_3258ced4-3c47-8120-bf18-edd508d827a6",
+          "project_name": "NPL 4호",
+          "project_code": "PRJ-78",
+          "parent_project_id": null,
+          "primary_asset_id": "ast_fa4bc636d98d",
+          "project_type": "Project",
+          "status": "설정 후"
+        },
+        {
+          "project_id": "project_notion_3258ced4-3c47-815d-a7f7-dbdc6a9cb545",
+          "project_name": "카스퀘어 NPL",
+          "project_code": "PRJ-36",
+          "parent_project_id": null,
+          "primary_asset_id": "ast_6526b194cc13",
+          "project_type": "Project",
+          "status": "설정 후"
+        },
+        {
+          "project_id": "project_notion_3258ced4-3c47-8182-8ab9-dd2b43a692ec",
+          "project_name": "NPL 5호",
+          "project_code": "PRJ-79",
+          "parent_project_id": null,
+          "primary_asset_id": "ast_58e37903d5ef",
+          "project_type": "Project",
+          "status": "신규 검토 (입찰/심의 전)"
+        },
+        {
+          "project_id": "project_notion_3258ced4-3c47-8178-917e-c3f68c562c3e",
+          "project_name": "NPL 3호",
+          "project_code": "PRJ-77",
+          "parent_project_id": null,
+          "primary_asset_id": "ast_0bed91ccb4ec",
+          "project_type": "Project",
+          "status": "설정 후"
+        }
+      ],
+      "legacy_assets": [],
+      "legacy_lenders": [
+        {
+          "id": 56767,
+          "asset_id": "ast_0bed91ccb4ec",
+          "fund_id": "112602",
+          "lender_clean": "멀티에셋캠코NPL메자닌활성화전문투자형사모투자신탁",
+          "lender_raw": "멀티에셋캠코NPL메자닌활성화전문투자형사모투자신탁",
+          "committed_amt": 25000000000,
+          "drawn_amt": 25000000000
+        }
+      ],
+      "legacy_beneficiaries": [
+        {
+          "id": 105921,
+          "asset_id": "ast_30efc1e2c218",
+          "fund_id": "120076",
+          "beneficiary_clean": "이지스NPL4호",
+          "beneficiary_raw": "이지스NPL4호",
+          "committed_amt": 31100000000,
+          "invested_amt": 31100000000
+        }
+      ],
+      "counts": {
+        "legacy_funds": 10,
+        "legacy_projects": 4,
+        "legacy_assets": 0,
+        "legacy_lenders": 1,
+        "legacy_beneficiaries": 1
+      }
+    },
+    "????": {
+      "canonical_search_available": false,
+      "legacy_funds": [],
+      "legacy_projects": [],
+      "legacy_assets": [],
+      "legacy_lenders": [],
+      "legacy_beneficiaries": [],
+      "counts": {
+        "legacy_funds": 0,
+        "legacy_projects": 0,
+        "legacy_assets": 0,
+        "legacy_lenders": 0,
+        "legacy_beneficiaries": 0
+      }
+    },
+    "1120": {
+      "canonical_search_available": false,
+      "legacy_funds": [
+        {
+          "fund_id": "112004",
+          "fund_name": "피에스KORIF사모부동산투자신탁5호",
+          "short_name": "5호",
+          "project_mission_name": "원주AK",
+          "asset_name": "원주AK",
+          "status": "청산",
+          "sector": "리테일",
+          "primary_asset_id": "ast_58e37903d5ef"
+        },
+        {
+          "fund_id": "112015",
+          "fund_name": "이지스일반사모부동산자투자신탁18A호(운용)",
+          "short_name": "18A호",
+          "project_mission_name": "남산그린빌딩",
+          "asset_name": "남산그린빌딩",
+          "status": "운용",
+          "sector": "지분증권",
+          "primary_asset_id": null
+        },
+        {
+          "fund_id": "112053",
+          "fund_name": "이지스사모부동산투자신탁54호",
+          "short_name": "54호",
+          "project_mission_name": "영등포역 오피스텔 개발사업",
+          "asset_name": "영등포역 오피스텔 개발사업",
+          "status": "청산",
+          "sector": "주거",
+          "primary_asset_id": null
+        },
+        {
+          "fund_id": "112036",
+          "fund_name": "이지스글로벌사모부동산투자신탁37-2호",
+          "short_name": "37-2호",
+          "project_mission_name": "Sanofi 본사(파리) 대출, Bell 본사(몬트리올) 대출, OJP사옥(워싱턴) 대출",
+          "asset_name": "Sanofi 본사(파리) 대출, Bell 본사(몬트리올) 대출, OJP사옥(워싱턴) 대출",
+          "status": "운용",
+          "sector": "오피스",
+          "primary_asset_id": "ast_39ccf4397829"
+        },
+        {
+          "fund_id": "112047",
+          "fund_name": "이지스사모부동산투자신탁48호",
+          "short_name": "48호",
+          "project_mission_name": "남악신도시 복합쇼핑몰",
+          "asset_name": "남악신도시 복합쇼핑몰",
+          "status": "청산",
+          "sector": "리테일",
+          "primary_asset_id": "ast_e2fd03212beb"
+        },
+        {
+          "fund_id": "112050",
+          "fund_name": "이지스해외간접PTELF사모부동산투자신탁제46호",
+          "short_name": "46호",
+          "project_mission_name": "Prologis Targeted European Logistics Fund",
+          "asset_name": "Prologis Targeted European Logistics Fund",
+          "status": "청산",
+          "sector": "물류",
+          "primary_asset_id": "ast_6b75948563b6"
+        },
+        {
+          "fund_id": "112077",
+          "fund_name": "이지스미국일반사모부동산투자신탁83호",
+          "short_name": "83호",
+          "project_mission_name": "Washington D.C. Atlantic Building Senior Loan",
+          "asset_name": "Washington D.C. Atlantic Building Senior Loan",
+          "status": "운용",
+          "sector": "오피스",
+          "primary_asset_id": "ast_c738d1b8cbc2"
+        },
+        {
+          "fund_id": "112065",
+          "fund_name": "이지스글로벌일반사모부동산투자신탁75호",
+          "short_name": "75호",
+          "project_mission_name": "Miami Courvoisier Center Senior Loan",
+          "asset_name": "Miami Courvoisier Center Senior Loan",
+          "status": "청산",
+          "sector": "대출채권",
+          "primary_asset_id": "ast_b1f5f079a694"
+        },
+        {
+          "fund_id": "112074",
+          "fund_name": "이지스유럽일반사모부동산투자신탁57호 (재간접형)",
+          "short_name": "57호",
+          "project_mission_name": "AXA Real Estate Development Venture IV",
+          "asset_name": "AXA Real Estate Development Venture IV",
+          "status": "운용",
+          "sector": "복합(오피스)",
+          "primary_asset_id": "ast_db4e0440e038"
+        },
+        {
+          "fund_id": "112081",
+          "fund_name": "이지스E코크렙6호전문투자형사모투자신탁102호",
+          "short_name": "102호",
+          "project_mission_name": "NC백화점(야탑), 뉴코아아울렛(평촌), 뉴코아아울렛(일산)",
+          "asset_name": "NC백화점(야탑), 뉴코아아울렛(평촌), 뉴코아아울렛(일산)",
+          "status": "청산",
+          "sector": "리테일",
+          "primary_asset_id": "ast_223bae23bf93"
+        }
+      ],
+      "legacy_projects": [
+        {
+          "project_id": "project_notion_3258ced4-3c47-81f1-8acf-fa0dcf911205",
+          "project_name": "공주시 공동주택 개발사업",
+          "project_code": "PRJ-128",
+          "parent_project_id": null,
+          "primary_asset_id": "ast_acf1169ec73d",
+          "project_type": "Project",
+          "status": "설정 후"
+        }
+      ],
+      "legacy_assets": [
+        {
+          "asset_id": "ast_7f66d2a674c4",
+          "canonical_name": "동일타워",
+          "asset_type": "오피스",
+          "asset_kind": "physical_asset",
+          "address_text": "서울특별시 강남구 대치동 1004",
+          "pnu": "1168010600110040000",
+          "asset_code": "A112012001",
+          "review_status": "verified",
+          "representative_fund_id": null,
+          "metadata": {
+            "stage": "운영/실물",
+            "source": "투자 자산 관리_20260515.xlsx"
+          }
+        },
+        {
+          "asset_id": "ast_d052165ba593",
+          "canonical_name": "NC백화점(강서)",
+          "asset_type": "리테일",
+          "asset_kind": "physical_asset",
+          "address_text": "서울특별시 강서구 등촌동 689번지 외 2필지",
+          "pnu": "1150010200106890000",
+          "asset_code": "A112001001",
+          "review_status": "verified",
+          "representative_fund_id": null,
+          "metadata": {
+            "stage": "운영/실물",
+            "source": "투자 자산 관리_20260515.xlsx"
+          }
+        },
+        {
+          "asset_id": "ast_790533b0da44",
+          "canonical_name": "NH농협생명빌딩 서관(구, 임광빌딩 본관)",
+          "asset_type": "오피스",
+          "asset_kind": "physical_asset",
+          "address_text": "서울특별시 서대문구 미근동 267",
+          "pnu": "1141010400102670000",
+          "asset_code": "A112003001",
+          "review_status": "verified",
+          "representative_fund_id": null,
+          "metadata": {
+            "stage": "운영/실물",
+            "source": "투자 자산 관리_20260515.xlsx"
+          }
+        },
+        {
+          "asset_id": "ast_2c3a67886c92",
+          "canonical_name": "롯데팩토리아울렛(인천)",
+          "asset_type": "리테일",
+          "asset_kind": "physical_asset",
+          "address_text": "인천시 중구 항동7가 76-2",
+          "pnu": "2811011800100760002",
+          "asset_code": "A112054003",
+          "review_status": "verified",
+          "representative_fund_id": null,
+          "metadata": {
+            "stage": "운영/실물",
+            "source": "투자 자산 관리_20260515.xlsx"
+          }
+        },
+        {
+          "asset_id": "ast_6bfb26e9f2e6",
+          "canonical_name": "홈플러스동수원점",
+          "asset_type": "리테일",
+          "asset_kind": "physical_asset",
+          "address_text": "경기도 수원시 팔달구 인계동 1045",
+          "pnu": "4111514100110450000",
+          "asset_code": "A112008002",
+          "review_status": "verified",
+          "representative_fund_id": null,
+          "metadata": {
+            "stage": "운영/실물",
+            "source": "투자 자산 관리_20260515.xlsx"
+          }
+        },
+        {
+          "asset_id": "ast_bb2cc0b2b2e3",
+          "canonical_name": "대구시티센터",
+          "asset_type": "오피스복합",
+          "asset_kind": "physical_asset",
+          "address_text": "대구광역시 중구 문화동 11-1",
+          "pnu": "2711012100100110001",
+          "asset_code": "A112033001",
+          "review_status": "verified",
+          "representative_fund_id": null,
+          "metadata": {
+            "stage": "운영/실물",
+            "source": "투자 자산 관리_20260515.xlsx"
+          }
+        },
+        {
+          "asset_id": "ast_612cef5b7905",
+          "canonical_name": "홈플러스진주점",
+          "asset_type": "리테일",
+          "asset_kind": "physical_asset",
+          "address_text": "경상남도 진주시 상대동 181-1",
+          "pnu": "4817011900101810001",
+          "asset_code": "A112018002",
+          "review_status": "verified",
+          "representative_fund_id": null,
+          "metadata": {
+            "stage": "운영/실물",
+            "source": "투자 자산 관리_20260515.xlsx"
+          }
+        },
+        {
+          "asset_id": "ast_b79d97794e21",
+          "canonical_name": "트윈트리타워",
+          "asset_type": "오피스",
+          "asset_kind": "physical_asset",
+          "address_text": "서울특별시 종로구 중학동 14",
+          "pnu": "1111012500100140000",
+          "asset_code": "A112024001",
+          "review_status": "verified",
+          "representative_fund_id": null,
+          "metadata": {
+            "stage": "운영/실물",
+            "source": "투자 자산 관리_20260515.xlsx"
+          }
+        },
+        {
+          "asset_id": "ast_99bb7e6dd0fa",
+          "canonical_name": "노스게이트빌딩",
+          "asset_type": "오피스",
+          "asset_kind": "physical_asset",
+          "address_text": "서울특별시 종로구 적선동 66",
+          "pnu": "1111010700100660000",
+          "asset_code": "A112029001",
+          "review_status": "verified",
+          "representative_fund_id": null,
+          "metadata": {
+            "stage": "운영/실물",
+            "source": "투자 자산 관리_20260515.xlsx"
+          }
+        },
+        {
+          "asset_id": "ast_fe11209bb01f",
+          "canonical_name": "ISF모1-2호(타임워크명동)",
+          "asset_type": "오피스복합",
+          "asset_kind": "physical_asset",
+          "address_text": "서울시 중구 명동1가 59-5외 8필지",
+          "pnu": "1114012600100590005",
+          "asset_code": "A112351001",
+          "review_status": "verified",
+          "representative_fund_id": null,
+          "metadata": {
+            "stage": "운영/실물",
+            "source": "투자 자산 관리_20260515.xlsx"
+          }
+        }
+      ],
+      "legacy_lenders": [
+        {
+          "id": 56455,
+          "asset_id": "ast_863c34bc88b1",
+          "fund_id": "112005",
+          "lender_clean": "DBS Bank",
+          "lender_raw": "DBS Bank",
+          "committed_amt": 100700000000,
+          "drawn_amt": 100000000000
+        },
+        {
+          "id": 56456,
+          "asset_id": "ast_863c34bc88b1",
+          "fund_id": "112005",
+          "lender_clean": "MUFG Bank",
+          "lender_raw": "MUFG Bank",
+          "committed_amt": 50400000000,
+          "drawn_amt": 50000000000
+        },
+        {
+          "id": 56457,
+          "asset_id": "ast_863c34bc88b1",
+          "fund_id": "112005",
+          "lender_clean": "홍콩상하이은행",
+          "lender_raw": "홍콩상하이은행",
+          "committed_amt": 117900000000,
+          "drawn_amt": 117000000000
+        },
+        {
+          "id": 56458,
+          "asset_id": "ast_fe9e7fc006fb",
+          "fund_id": "112006",
+          "lender_clean": "DB손해보험",
+          "lender_raw": "DB손해보험",
+          "committed_amt": 102600000000,
+          "drawn_amt": 92900000000
+        },
+        {
+          "id": 56459,
+          "asset_id": "ast_fe9e7fc006fb",
+          "fund_id": "112006",
+          "lender_clean": "하나은행",
+          "lender_raw": "하나은행",
+          "committed_amt": 45000000000,
+          "drawn_amt": 45000000000
+        },
+        {
+          "id": 56460,
+          "asset_id": null,
+          "fund_id": "112008",
+          "lender_clean": "GIB홈플러스",
+          "lender_raw": "GIB홈플러스",
+          "committed_amt": 44000000000,
+          "drawn_amt": 44000000000
+        },
+        {
+          "id": 56461,
+          "asset_id": null,
+          "fund_id": "112008",
+          "lender_clean": "KDB산은캐피탈",
+          "lender_raw": "KDB산은캐피탈",
+          "committed_amt": 14000000000,
+          "drawn_amt": 14000000000
+        },
+        {
+          "id": 56462,
+          "asset_id": null,
+          "fund_id": "112008",
+          "lender_clean": "블루맨제일차",
+          "lender_raw": "블루맨제일차",
+          "committed_amt": 50000000000,
+          "drawn_amt": 50000000000
+        },
+        {
+          "id": 56463,
+          "asset_id": null,
+          "fund_id": "112008",
+          "lender_clean": "수협은행",
+          "lender_raw": "수협은행",
+          "committed_amt": 15000000000,
+          "drawn_amt": 15000000000
+        },
+        {
+          "id": 56464,
+          "asset_id": null,
+          "fund_id": "112008",
+          "lender_clean": "신협대주단",
+          "lender_raw": "신협대주단",
+          "committed_amt": 100000000000,
+          "drawn_amt": 100000000000
+        }
+      ],
+      "legacy_beneficiaries": [
+        {
+          "id": 105164,
+          "asset_id": "ast_863c34bc88b1",
+          "fund_id": "112005",
+          "beneficiary_clean": "Gangnam Asset PTE.LTD",
+          "beneficiary_raw": "Gangnam Asset PTE.LTD",
+          "committed_amt": 92650000000,
+          "invested_amt": 65000000000
+        },
+        {
+          "id": 105165,
+          "asset_id": "ast_863c34bc88b1",
+          "fund_id": "112005",
+          "beneficiary_clean": "Pinnacle KR Asset PTE.LTD",
+          "beneficiary_raw": "Pinnacle KR Asset PTE.LTD",
+          "committed_amt": 92557350000,
+          "invested_amt": 64935000000
+        },
+        {
+          "id": 105166,
+          "asset_id": "ast_863c34bc88b1",
+          "fund_id": "112005",
+          "beneficiary_clean": "개인(Tow Heng Tan)",
+          "beneficiary_raw": "개인(Tow Heng Tan)",
+          "committed_amt": 92650000,
+          "invested_amt": 65000000
+        },
+        {
+          "id": 105167,
+          "asset_id": "ast_fe9e7fc006fb",
+          "fund_id": "112006",
+          "beneficiary_clean": "경찰공제회",
+          "beneficiary_raw": "경찰공제회",
+          "committed_amt": 15000000000,
+          "invested_amt": 15000000000
+        },
+        {
+          "id": 105168,
+          "asset_id": "ast_fe9e7fc006fb",
+          "fund_id": "112006",
+          "beneficiary_clean": "국민연금공단",
+          "beneficiary_raw": "국민연금공단",
+          "committed_amt": 111100000000,
+          "invested_amt": 111100000000
+        },
+        {
+          "id": 105169,
+          "asset_id": "ast_fe9e7fc006fb",
+          "fund_id": "112006",
+          "beneficiary_clean": "이지스자산운용",
+          "beneficiary_raw": "이지스자산운용",
+          "committed_amt": 300000000,
+          "invested_amt": 300000000
+        },
+        {
+          "id": 105170,
+          "asset_id": null,
+          "fund_id": "112008",
+          "beneficiary_clean": "세콘도",
+          "beneficiary_raw": "세콘도",
+          "committed_amt": 335000000000,
+          "invested_amt": 343300000000
+        },
+        {
+          "id": 105171,
+          "asset_id": null,
+          "fund_id": "112008",
+          "beneficiary_clean": "우리은행",
+          "beneficiary_raw": "우리은행",
+          "committed_amt": 15000000000,
+          "invested_amt": 15000000000
+        },
+        {
+          "id": 105172,
+          "asset_id": "ast_03c3c2e1b0b2",
+          "fund_id": "112011",
+          "beneficiary_clean": "DB손해보험",
+          "beneficiary_raw": "DB손해보험",
+          "committed_amt": 10000000000,
+          "invested_amt": 10000000000
+        },
+        {
+          "id": 105173,
+          "asset_id": "ast_03c3c2e1b0b2",
+          "fund_id": "112011",
+          "beneficiary_clean": "미래에셋증권",
+          "beneficiary_raw": "미래에셋증권",
+          "committed_amt": 10000000000,
+          "invested_amt": 10000000000
+        }
+      ],
+      "counts": {
+        "legacy_funds": 10,
+        "legacy_projects": 1,
+        "legacy_assets": 10,
+        "legacy_lenders": 10,
+        "legacy_beneficiaries": 10
+      }
+    }
+  },
+  "examples": {
+    "asset_project_target_neither": [],
+    "fund_primary_without_link": [],
+    "exposures_without_asset_id": {
+      "lender": [
+        {
+          "id": 56460,
+          "asset_id": null,
+          "fund_id": "112008",
+          "lender_clean": "GIB홈플러스",
+          "lender_raw": "GIB홈플러스",
+          "committed_amt": 44000000000,
+          "drawn_amt": 44000000000
+        },
+        {
+          "id": 56461,
+          "asset_id": null,
+          "fund_id": "112008",
+          "lender_clean": "KDB산은캐피탈",
+          "lender_raw": "KDB산은캐피탈",
+          "committed_amt": 14000000000,
+          "drawn_amt": 14000000000
+        },
+        {
+          "id": 56462,
+          "asset_id": null,
+          "fund_id": "112008",
+          "lender_clean": "블루맨제일차",
+          "lender_raw": "블루맨제일차",
+          "committed_amt": 50000000000,
+          "drawn_amt": 50000000000
+        },
+        {
+          "id": 56463,
+          "asset_id": null,
+          "fund_id": "112008",
+          "lender_clean": "수협은행",
+          "lender_raw": "수협은행",
+          "committed_amt": 15000000000,
+          "drawn_amt": 15000000000
+        },
+        {
+          "id": 56464,
+          "asset_id": null,
+          "fund_id": "112008",
+          "lender_clean": "신협대주단",
+          "lender_raw": "신협대주단",
+          "committed_amt": 100000000000,
+          "drawn_amt": 100000000000
+        },
+        {
+          "id": 56465,
+          "asset_id": null,
+          "fund_id": "112008",
+          "lender_clean": "아이비케이연금보험",
+          "lender_raw": "아이비케이연금보험",
+          "committed_amt": 21000000000,
+          "drawn_amt": 21000000000
+        },
+        {
+          "id": 56466,
+          "asset_id": null,
+          "fund_id": "112008",
+          "lender_clean": "아이비케이캐피탈",
+          "lender_raw": "아이비케이캐피탈",
+          "committed_amt": 25000000000,
+          "drawn_amt": 25000000000
+        },
+        {
+          "id": 56467,
+          "asset_id": null,
+          "fund_id": "112008",
+          "lender_clean": "아이엠뱅크",
+          "lender_raw": "아이엠뱅크",
+          "committed_amt": 45000000000,
+          "drawn_amt": 45000000000
+        },
+        {
+          "id": 56468,
+          "asset_id": null,
+          "fund_id": "112008",
+          "lender_clean": "우리은행",
+          "lender_raw": "우리은행",
+          "committed_amt": 80000000000,
+          "drawn_amt": 80000000000
+        },
+        {
+          "id": 56469,
+          "asset_id": null,
+          "fund_id": "112008",
+          "lender_clean": "전북은행",
+          "lender_raw": "전북은행",
+          "committed_amt": 6000000000,
+          "drawn_amt": 6000000000
+        }
+      ],
+      "beneficiary": [
+        {
+          "id": 105170,
+          "asset_id": null,
+          "fund_id": "112008",
+          "beneficiary_clean": "세콘도",
+          "beneficiary_raw": "세콘도",
+          "committed_amt": 335000000000,
+          "invested_amt": 343300000000
+        },
+        {
+          "id": 105171,
+          "asset_id": null,
+          "fund_id": "112008",
+          "beneficiary_clean": "우리은행",
+          "beneficiary_raw": "우리은행",
+          "committed_amt": 15000000000,
+          "invested_amt": 15000000000
+        },
+        {
+          "id": 105304,
+          "asset_id": null,
+          "fund_id": "112128",
+          "beneficiary_clean": "SK디앤디",
+          "beneficiary_raw": "SK디앤디",
+          "committed_amt": 5000000000,
+          "invested_amt": 4982913460
+        },
+        {
+          "id": 105305,
+          "asset_id": null,
+          "fund_id": "112128",
+          "beneficiary_clean": "개인(조갑주)",
+          "beneficiary_raw": "개인(조갑주)",
+          "committed_amt": 200000000,
+          "invested_amt": 199311070
+        },
+        {
+          "id": 105306,
+          "asset_id": null,
+          "fund_id": "112128",
+          "beneficiary_clean": "경찰공제회",
+          "beneficiary_raw": "경찰공제회",
+          "committed_amt": 20000000000,
+          "invested_amt": 19931653860
+        },
+        {
+          "id": 105307,
+          "asset_id": null,
+          "fund_id": "112128",
+          "beneficiary_clean": "고용노동부 산재보험기금",
+          "beneficiary_raw": "고용노동부 산재보험기금",
+          "committed_amt": 50000000000,
+          "invested_amt": 49829134640
+        },
+        {
+          "id": 105308,
+          "asset_id": null,
+          "fund_id": "112128",
+          "beneficiary_clean": "국민연금공단",
+          "beneficiary_raw": "국민연금공단",
+          "committed_amt": 140000000000,
+          "invested_amt": 139521576980
+        },
+        {
+          "id": 105309,
+          "asset_id": null,
+          "fund_id": "112128",
+          "beneficiary_clean": "이지스자산운용 고유자금",
+          "beneficiary_raw": "이지스자산운용 고유자금",
+          "committed_amt": 4800000000,
+          "invested_amt": 4783596920
+        },
+        {
+          "id": 105749,
+          "asset_id": null,
+          "fund_id": "112666",
+          "beneficiary_clean": "고용노동부 임금채권보장기금",
+          "beneficiary_raw": "고용노동부 임금채권보장기금",
+          "committed_amt": 10000000000,
+          "invested_amt": 4504469560
+        },
+        {
+          "id": 105750,
+          "asset_id": null,
+          "fund_id": "112666",
+          "beneficiary_clean": "교정공제회",
+          "beneficiary_raw": "교정공제회",
+          "committed_amt": 10000000000,
+          "invested_amt": 4504469560
+        }
+      ]
+    }
+  }
+}

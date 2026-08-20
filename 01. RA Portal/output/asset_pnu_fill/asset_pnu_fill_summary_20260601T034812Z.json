@@ -1,0 +1,9 @@
+{
+  "candidate_assets": 20,
+  "safe": 14,
+  "low_confidence": 2,
+  "ambiguous": 0,
+  "not_found": 3,
+  "api_error": 1,
+  "plan_path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\output\\asset_pnu_fill\\asset_pnu_fill_plan_20260601T034812Z.csv"
+}

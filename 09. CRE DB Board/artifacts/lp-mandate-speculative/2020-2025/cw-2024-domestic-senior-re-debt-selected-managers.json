@@ -1,0 +1,77 @@
+{
+  "candidate_version": "1.0",
+  "candidate_id": "speculative-cw-2024-domestic-senior-re-debt",
+  "verification_layer": "VERIFICATION_CANDIDATE",
+  "resolution_status": "LIKELY_REPORTED_PENDING_PRIMARY",
+  "claim_type": "SELECTED_MANAGER",
+  "claim_subject": "CW-2024-DOMESTIC-SENIOR-RE-DEBT",
+  "claim_payload": {
+    "lp": "건설근로자공제회",
+    "mandate_name": "2024 국내 부동산 선순위 대출펀드 위탁운용사 선정",
+    "reported_selected_managers": [
+      "삼성SRA자산운용",
+      "캡스톤자산운용",
+      "메테우스자산운용",
+      "하나대체투자자산운용"
+    ],
+    "reported_selection_amounts": [
+      {
+        "manager": "삼성SRA자산운용",
+        "decimal": "50000000000",
+        "currency": "KRW"
+      },
+      {
+        "manager": "캡스톤자산운용",
+        "decimal": "50000000000",
+        "currency": "KRW"
+      },
+      {
+        "manager": "메테우스자산운용",
+        "decimal": "50000000000",
+        "currency": "KRW"
+      },
+      {
+        "manager": "하나대체투자자산운용",
+        "decimal": "50000000000",
+        "currency": "KRW"
+      }
+    ],
+    "reported_selected_at": "2024-04-29",
+    "official_notice_url": "https://www.cw.or.kr/board.do?boardConfigNo=29&menuNo=46&action=view&boardNo=27768",
+    "assessment": {
+      "value_status": "LIKELY_REPORTED_PENDING_PRIMARY",
+      "confidence": "0.72",
+      "matched_factors": [
+        "MATCHING_OFFICIAL_NOTICE_OR_PLAN",
+        "FULL_TEXT_NOT_SNIPPET",
+        "CONCRETE_IDENTIFIERS_OR_NUMBERS",
+        "DATE_AND_STRATEGY_CONSISTENCY",
+        "NO_KNOWN_CONTRADICTION"
+      ],
+      "independent_family_count": 1,
+      "occurrence_count": 1,
+      "canonical_eligible": false
+    }
+  },
+  "sources": [
+    {
+      "url": "https://www.fnnews.com/news/202404290711016886",
+      "publisher": "파이낸셜뉴스",
+      "document_type": "ARTICLE",
+      "published_at": "2024-04-29",
+      "exact_text": "건설근로자공제회가 국내 선순위 부동산 대출펀드 운용사에 삼성SRA자산운용, 캡스톤자산운용, 메테우스자산운용, 하나대체투자자산운용을 낙점했다.\n29일 투자은행(IB) 업계에 따르면 건설근로자공제회는 국내 선순위 부동산 대출펀드 위탁운용사에 운용사에 삼성SRA자산운용, 캡스톤자산운용, 메테우스자산운용, 하나대체투자자산운용을 선정했다. 각각 500억원을 출자, 총 2000억원 규모 투자다.\n실물 담보 대출 및 PF(프로젝트 파이낸싱) 대출 등 선순위를 중심으로 순수 대출형에 투자한다. LTV(담보대출비율) 65% 이하의 선순위로만 구성된 대출 투자 비중이 70% 이상인 조건이다.\n이를 통해 목표 수익률은 보수 차감 후 6.0% 이상이다. 펀드 투자 기간은 3년 내외로 만기는 8년 내외다.",
+      "source_family": "fnnews-2024-04-29-cw-senior-re-debt",
+      "independent_from_other_sources": true
+    }
+  ],
+  "verification_needed": [
+    "OFFICIAL_SELECTION_RESULT",
+    "OFFICIAL_DISCLOSURE",
+    "PARTY_PRIMARY_CONFIRMATION"
+  ],
+  "first_seen_at": "2024-04-29",
+  "last_checked_at": "2026-08-16T00:35:00Z",
+  "promoted_manifest_id": null,
+  "resolution_note": "공식 모집공고와 전략·시점이 일치하고 기사 원문에 선정사·귀속금액이 구체적으로 제시되어 유력정보로 표시. 공식 선정결과·공시·당사자 확인 전 canonical 선정사 및 약정액으로 승격하지 않음.",
+  "contradicting_source_urls": []
+}

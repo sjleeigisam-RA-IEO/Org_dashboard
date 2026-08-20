@@ -1,0 +1,18 @@
+﻿schema_name,table_comment,table_name
+public,,asset_aliases
+public,,asset_building_ledger
+public,,asset_fund_links
+public,,asset_master
+public,,asset_project_links
+public,Browser-readable flat/aggregated dashboard view for the 34 development-project snapshot.,dev_project_34_dashboard_flat
+public,Presentation-only read view for the development-project dashboard. Excludes ids and relationship audit metadata.,dev_project_34_dashboard_info
+public,,dev_project_34_review_flags
+public,,dev_project_34_summary
+public,Derived or manually noted links from dev_project_list rows to existing public.asset_master rows.,dev_project_asset_links
+public,,dev_project_extract_snapshots
+public,Thin links from dev_project_list rows to existing public.funds rows.,dev_project_fund_links
+public,"2026-06-30 draft list of 34 development projects. One row is one list item, not one fund or asset.",dev_project_list
+public,Thin links from dev_project_list rows to existing public.projects rows.,dev_project_project_links
+public,,funds
+public,,projects
+public,,v_funds_enriched

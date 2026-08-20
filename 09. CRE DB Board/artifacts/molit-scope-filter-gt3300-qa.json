@@ -1,0 +1,45 @@
+{
+  "policyCode": "MOLIT_SCOPE_GT_3300_V1",
+  "sourceCode": "MOLIT_REAL_TRANSACTION",
+  "areaField": "buildingAr",
+  "areaUnit": "M2",
+  "keepRule": "NON_RESIDENTIAL_AND_BUILDING_AR_GT_3300",
+  "thresholdM2": 3300,
+  "thresholdInclusiveExclusion": true,
+  "rawDocumentsPreserved": true,
+  "counts": {
+    "evaluated": 30681,
+    "inScope": 158,
+    "excludedResidential": 0,
+    "excludedAreaAtOrBelowThreshold": 30523,
+    "excludedMissingArea": 0,
+    "byRegion": {
+      "seoul": {"total": 12219, "inScope": 97, "excluded": 12122},
+      "incheon": {"total": 3385, "inScope": 14, "excluded": 3371},
+      "gyeonggi": {"total": 15077, "inScope": 47, "excluded": 15030}
+    }
+  },
+  "qa": {
+    "activeAreaMinimumM2": 3300.91,
+    "activeAreaAtOrBelowThreshold": 0,
+    "activeResidential": 0,
+    "secondRunUpdatedMentions": 0,
+    "testsPassed": 19,
+    "sqliteIntegrity": "ok",
+    "foreignKeyViolations": 0,
+    "canonicalEvents": 0
+  },
+  "macro": {
+    "derivation": "MOLIT_RTMS_NRG_SEOUL_SUM_V2",
+    "revisedReleases": 12,
+    "revisedObservations": 36,
+    "seoul2025UncancelledTransactionCount": 85
+  },
+  "backup": {
+    "path": "backups/market-capital-2025-scope3300-v2.2.0-20260815.db",
+    "bytes": 165634048,
+    "sha256": "310ecefd3ecadf999c242fd7697b23442df0ea60e774938a5478aefcfe7dffba",
+    "quickCheck": "ok",
+    "foreignKeyViolations": 0
+  }
+}

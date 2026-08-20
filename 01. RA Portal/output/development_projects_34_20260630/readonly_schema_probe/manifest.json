@@ -1,0 +1,46 @@
+{
+  "columns": {
+    "rows": 406,
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\output\\development_projects_34_20260630\\readonly_schema_probe\\columns.json"
+  },
+  "constraints": {
+    "rows": 155,
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\output\\development_projects_34_20260630\\readonly_schema_probe\\constraints.json"
+  },
+  "indexes": {
+    "rows": 46,
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\output\\development_projects_34_20260630\\readonly_schema_probe\\indexes.json"
+  },
+  "rls_policies": {
+    "rows": 12,
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\output\\development_projects_34_20260630\\readonly_schema_probe\\rls_policies.json"
+  },
+  "comments": {
+    "rows": 17,
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\output\\development_projects_34_20260630\\readonly_schema_probe\\comments.json"
+  },
+  "view_defs": {
+    "rows": 5,
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\output\\development_projects_34_20260630\\readonly_schema_probe\\view_defs.json"
+  },
+  "counts": {
+    "rows": 12,
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\output\\development_projects_34_20260630\\readonly_schema_probe\\counts.json"
+  },
+  "dev_project_coverage": {
+    "rows": 34,
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\output\\development_projects_34_20260630\\readonly_schema_probe\\dev_project_coverage.json"
+  },
+  "field_coverage": {
+    "rows": 14,
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\output\\development_projects_34_20260630\\readonly_schema_probe\\field_coverage.json"
+  },
+  "link_source_breakdown": {
+    "rows": 6,
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\output\\development_projects_34_20260630\\readonly_schema_probe\\link_source_breakdown.json"
+  },
+  "linked_sample": {
+    "rows": 80,
+    "path": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\CRM_base\\output\\development_projects_34_20260630\\readonly_schema_probe\\linked_sample.json"
+  }
+}
