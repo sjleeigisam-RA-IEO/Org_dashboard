@@ -11,7 +11,7 @@
   <title>IGIS RA Insight v2 | Local UX Preview</title>
   <link rel="stylesheet" href="../../shared/ifpdp-system-theme.css?v=ifpdp_system_3">
   <link rel="stylesheet" href="style.css?v=fund_lookthrough_shell_20260818a">
-  <link rel="stylesheet" href="ux-v2.css?v=ux_v2_core_20260822b">
+  <link rel="stylesheet" href="ux-v2.css?v=ux_v2_core_20260822d">
   <link rel="stylesheet" href="ux-v2-components.css?v=ux_v2_components_20260822b">
   <link rel="icon" href="data:,">
   <!-- Supabase & VWorld JS Client -->
@@ -104,7 +104,7 @@
       .meta-val { color: var(--text); font-weight: 700; }
     </style>
 </head>
-<body class="has-mobile-tabs analysis-view ux-v2">
+<body class="analysis-view ux-v2">
     <div id="sideDrawerOverlay" class="side-drawer-overlay" onclick="closeDrawer()"></div>
     <div id="sideDrawer" class="side-drawer">
         <div class="drawer-nav" id="drawerNav">
@@ -121,6 +121,15 @@
     <span>RA 통합 분석</span>
     <em>LOCAL V2</em>
   </div>
+
+  <nav class="v2-tool-links" aria-label="연결 도구">
+    <a class="v2-tool-link" href="../../02. T5T Board/index.html" target="_blank" rel="noopener noreferrer" aria-label="T5T 새 탭에서 열기">
+      <span>T5T</span><span class="v2-tool-link-external" aria-hidden="true">↗</span>
+    </a>
+    <a class="v2-tool-link" href="../../03. Construction Board/index.html" target="_blank" rel="noopener noreferrer" aria-label="시공사정보 새 탭에서 열기">
+      <span>시공사정보</span><span class="v2-tool-link-external" aria-hidden="true">↗</span>
+    </a>
+  </nav>
 
   <nav class="v2-primary-modes" aria-label="분석 화면 선택">
     <button type="button" class="active" data-v2-mode="portfolio" aria-pressed="true">포트폴리오</button>
@@ -390,11 +399,5 @@
       document.body.appendChild(authScript);
     }
   </script>
-  <nav class="mobile-dashboard-tabs" aria-label="Mobile dashboard navigation">
-    <a class="mobile-dashboard-tab is-active" href="./index-v2.html">펀드검색</a>
-    <a class="mobile-dashboard-tab" href="../../02. T5T Board/index.html">T5T</a>
-    <a class="mobile-dashboard-tab" href="../../02. T5T Board/input-form/index.html">T5T작성</a>
-    <a class="mobile-dashboard-tab" href="../../05. Org Board/index.html">조직</a>
-  </nav>
 </body>
 </html>
