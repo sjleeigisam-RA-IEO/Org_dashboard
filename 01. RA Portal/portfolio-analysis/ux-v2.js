@@ -16,6 +16,7 @@
   var panelHint = document.getElementById('v2PanelHint');
   var syncTimer = null;
   var mobileFilterTrigger = null;
+  var mobileFilterPortal = null;
   var basisDisclosureOpen = false;
   var factsDisclosureOpen = false;
 
@@ -47,9 +48,36 @@
     return 'portfolio';
   }
 
+  function activeMobileFilterNode() {
+    return currentMode() === 'capital'
+      ? document.getElementById('capitalRelationshipControls')
+      : document.getElementById('analysisViewControls');
+  }
+
+  function mountMobileFilter() {
+    var node = activeMobileFilterNode();
+    if (!node || node.parentNode === document.body) return;
+    var placeholder = document.createComment('v2-mobile-filter-portal');
+    node.parentNode.insertBefore(placeholder, node);
+    document.body.appendChild(node);
+    mobileFilterPortal = { node: node, placeholder: placeholder };
+  }
+
+  function restoreMobileFilter() {
+    if (!mobileFilterPortal) return;
+    var node = mobileFilterPortal.node;
+    var placeholder = mobileFilterPortal.placeholder;
+    if (placeholder.parentNode) {
+      placeholder.parentNode.insertBefore(node, placeholder);
+      placeholder.remove();
+    }
+    mobileFilterPortal = null;
+  }
+
   function closeMobileFilter() {
     var wasOpen = document.body.classList.contains('v2-filter-open');
     document.body.classList.remove('v2-filter-open');
+    restoreMobileFilter();
     if (filterToggle) filterToggle.setAttribute('aria-expanded', 'false');
     if (wasOpen && mobileFilterTrigger && typeof mobileFilterTrigger.focus === 'function') mobileFilterTrigger.focus();
     mobileFilterTrigger = null;
@@ -348,7 +376,10 @@
     filterToggle.addEventListener('click', function () {
       if (isMobile()) {
         if (!document.body.classList.contains('v2-filter-open')) mobileFilterTrigger = filterToggle;
-        document.body.classList.toggle('v2-filter-open');
+        var opening = !document.body.classList.contains('v2-filter-open');
+        document.body.classList.toggle('v2-filter-open', opening);
+        if (opening) mountMobileFilter();
+        else restoreMobileFilter();
         syncFilterToggle(currentMode());
         return;
       }

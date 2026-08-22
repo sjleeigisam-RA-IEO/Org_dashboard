@@ -359,12 +359,12 @@
       '<tbody>', facts.map(function (fact) {
         return [
           '<tr>',
-          '<td>', esc(yearLabel(fact)), '</td>',
-          '<td><div class="v2-related-detail-links">', relatedButtonsHtml('fund', fact.fundIds, fact.fundNames), '</div><small>', esc((fact.fundIds || []).join(' · ')), '</small></td>',
-          '<td><div class="v2-related-detail-links">', relatedButtonsHtml('asset', fact.assetIds, fact.assetNames), '</div></td>',
-          '<td><span class="v2-type-dot" style="--type-color:', colorFor(assetClass(fact)), '"></span>', esc(assetClass(fact)), '</td>',
-          '<td>', formatMillion(fact.committedAmount), '<small>백만원</small></td>',
-          '<td>', formatMillion(fact.currentAmount), '<small>백만원</small></td>',
+          '<td data-label="약정연도">', esc(yearLabel(fact)), '</td>',
+          '<td data-label="펀드/비히클"><div class="v2-related-detail-links">', relatedButtonsHtml('fund', fact.fundIds, fact.fundNames), '</div><small>', esc((fact.fundIds || []).join(' · ')), '</small></td>',
+          '<td data-label="투자 자산"><div class="v2-related-detail-links">', relatedButtonsHtml('asset', fact.assetIds, fact.assetNames), '</div></td>',
+          '<td data-label="자산구성"><span class="v2-type-dot" style="--type-color:', colorFor(assetClass(fact)), '"></span>', esc(assetClass(fact)), '</td>',
+          '<td data-label="약정액">', formatMillion(fact.committedAmount), '<small>백만원</small></td>',
+          '<td data-label="', dialogState.party.role === 'lender' ? '실행액' : '투입액', '">', formatMillion(fact.currentAmount), '<small>백만원</small></td>',
           '</tr>'
         ].join('');
       }).join(''), '</tbody></table></div>'
