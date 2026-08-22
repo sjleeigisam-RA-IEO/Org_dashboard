@@ -1,0 +1,838 @@
+/* V2 feature components: filters, search relationships and institution analysis.
+   Loaded after ux-v2.css so feature rules do not create core override chains. */
+
+/* V2 filter controls: expose short choices, keep long taxonomies as menus. */
+.ux-v2 .semantic-filter-menu.v2-filter-inline {
+  padding: 8px;
+  border-color: var(--v2-border-strong);
+  background: transparent !important;
+}
+
+.ux-v2 .semantic-filter-menu.v2-filter-inline > summary {
+  min-height: 0;
+  padding: 0 2px 7px;
+  cursor: default;
+}
+
+.ux-v2 .semantic-filter-menu.v2-filter-inline > summary::after {
+  display: none;
+}
+
+.ux-v2 .semantic-filter-menu.v2-filter-inline > summary strong {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.ux-v2 .semantic-filter-menu.v2-filter-inline .semantic-filter-options {
+  position: static;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: auto;
+  max-height: none;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  box-shadow: none;
+  gap: 5px;
+}
+
+.ux-v2 .semantic-filter-menu.v2-filter-inline .semantic-filter-options label {
+  justify-content: center;
+  min-height: 34px;
+  padding: 7px 8px;
+  border: 1px solid var(--v2-border);
+  border-radius: 5px;
+  background: var(--v2-surface);
+  color: var(--soft) !important;
+  font-size: 10px;
+  font-weight: 750;
+  text-align: center;
+}
+
+.ux-v2 .semantic-filter-menu.v2-filter-inline .semantic-filter-options label:has(input:checked) {
+  border-color: rgba(74, 171, 255, 0.68);
+  background: rgba(74, 171, 255, 0.16);
+  color: #f7fbff !important;
+  box-shadow: inset 0 0 0 1px rgba(74, 171, 255, 0.1);
+}
+
+.ux-v2 .semantic-filter-menu.v2-filter-inline .semantic-filter-options input,
+.ux-v2 .capital-filter-field.v2-capital-segment-field .v2-native-select {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ux-v2 .v2-filter-group-advanced {
+  margin-top: 6px;
+  padding-top: 10px;
+  border-top: 1px solid var(--v2-border);
+}
+
+.ux-v2 .v2-advanced-filter-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 2px 8px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ux-v2 .v2-advanced-filter-toggle b::before {
+  content: '+';
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.ux-v2 .v2-advanced-filter-toggle[aria-expanded="true"] b::before {
+  content: '−';
+}
+
+.ux-v2 .v2-filter-group-advanced.is-collapsed > .semantic-filter-grid {
+  display: none;
+}
+
+.ux-v2 .v2-capital-segment {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--v2-border);
+  border-radius: 6px;
+  background: var(--v2-surface);
+}
+
+.ux-v2 .v2-capital-segment button {
+  min-width: 0;
+  min-height: 32px;
+  padding: 6px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ux-v2 .v2-capital-segment button.is-active {
+  background: var(--accent);
+  color: #071018;
+}
+
+/* Search cards and party detail use one compact relationship grammar. */
+.ux-v2 .unified-result-card .unified-match-reason {
+  display: none;
+}
+
+.ux-v2 .unified-result-card .unified-preview-list {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--v2-border);
+}
+
+.ux-v2 .unified-result-card .unified-preview-item:nth-child(n+2) {
+  display: none;
+}
+
+.ux-v2 .unified-result-card .unified-preview-item {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.ux-v2 .unified-result-card .unified-preview-item strong {
+  overflow: hidden;
+  color: var(--soft);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ux-v2 .v2-search-party-header {
+  padding-bottom: 20px !important;
+}
+
+.ux-v2 .v2-search-party-title-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.ux-v2 .v2-open-capital-analysis {
+  flex: 0 0 auto;
+  min-height: 38px;
+  padding: 8px 13px;
+  border: 1px solid rgba(74, 171, 255, 0.5);
+  border-radius: 5px;
+  background: rgba(74, 171, 255, 0.12);
+  color: #dff1ff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ux-v2 .v2-search-detail-loading,
+.ux-v2 .v2-relationship-empty {
+  margin: 20px 28px;
+  padding: 18px;
+  border: 1px dashed var(--v2-border-strong);
+  color: var(--muted);
+}
+
+.ux-v2 .v2-search-relation-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-bottom: 1px solid var(--v2-border-strong);
+}
+
+.ux-v2 .v2-search-relation-kpis > div {
+  min-width: 0;
+  padding: 17px 20px;
+  border-right: 1px solid var(--v2-border);
+}
+
+.ux-v2 .v2-search-relation-kpis > div:last-child {
+  border-right: 0;
+}
+
+.ux-v2 .v2-search-relation-kpis span,
+.ux-v2 .v2-search-relation-kpis small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.ux-v2 .v2-search-relation-kpis strong {
+  display: inline-block;
+  margin-top: 5px;
+  color: var(--text);
+  font-size: 22px;
+}
+
+.ux-v2 .v2-search-relation-section {
+  padding: 22px 28px;
+  border-bottom: 1px solid var(--v2-border);
+}
+
+.ux-v2 .v2-search-relation-section > header,
+.ux-v2 .v2-institution-panel > header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.ux-v2 .v2-search-relation-section h3,
+.ux-v2 .v2-institution-panel h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.ux-v2 .v2-search-relation-section header span,
+.ux-v2 .v2-institution-panel header p,
+.ux-v2 .v2-institution-panel header span {
+  margin: 0;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.ux-v2 .v2-relationship-table-wrap,
+.v2-institution-table-wrap {
+  overflow: auto;
+  border: 1px solid var(--v2-border-strong);
+  border-radius: 6px;
+}
+
+.ux-v2 .v2-relationship-table,
+.v2-institution-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--soft);
+  font-size: 11px;
+}
+
+.ux-v2 .v2-relationship-table th,
+.ux-v2 .v2-relationship-table td,
+.v2-institution-table th,
+.v2-institution-table td {
+  padding: 11px 12px;
+  border-bottom: 1px solid var(--v2-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.ux-v2 .v2-relationship-table th,
+.v2-institution-table th {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.ux-v2 .v2-relationship-table td strong,
+.ux-v2 .v2-relationship-table td small,
+.v2-institution-table td strong,
+.v2-institution-table td small {
+  display: block;
+}
+
+.ux-v2 .v2-relationship-table td small,
+.v2-institution-table td small {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.ux-v2 .v2-relationship-asset-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid var(--v2-border-strong);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.ux-v2 .v2-relationship-asset {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  padding: 12px;
+  border: 0;
+  border-right: 1px solid var(--v2-border);
+  border-bottom: 1px solid var(--v2-border);
+  background: transparent;
+  color: var(--soft);
+  text-align: left;
+  cursor: pointer;
+}
+
+.ux-v2 .v2-relationship-asset:hover {
+  background: rgba(74, 171, 255, 0.08);
+}
+
+.ux-v2 .v2-relationship-asset span,
+.ux-v2 .v2-relationship-asset b,
+.ux-v2 .v2-relationship-asset small {
+  display: block;
+  min-width: 0;
+}
+
+.ux-v2 .v2-relationship-asset b,
+.ux-v2 .v2-relationship-asset small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ux-v2 .v2-relationship-asset small,
+.ux-v2 .v2-relationship-asset em {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 9px;
+  font-style: normal;
+}
+
+/* Institution analysis dialog: chart, map and exposure-grain list. */
+.v2-institution-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 4500;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background: rgba(6, 9, 12, 0.82);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.v2-institution-overlay[hidden] {
+  display: none;
+}
+
+.v2-institution-overlay.active {
+  opacity: 1;
+}
+
+.v2-institution-dialog {
+  display: flex;
+  flex-direction: column;
+  width: min(1540px, 96vw);
+  height: min(920px, 94vh);
+  overflow: hidden;
+  border: 1px solid #4a4d51;
+  border-radius: 8px;
+  background: #202222;
+  color: #f4f6f8;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.52);
+}
+
+.v2-institution-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 28px;
+  border-bottom: 1px solid #44474a;
+}
+
+.v2-institution-header p,
+.v2-institution-header h2,
+.v2-institution-header span {
+  margin: 0;
+}
+
+.v2-institution-header p {
+  color: #4aabff;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.v2-institution-header h2 {
+  margin-top: 5px;
+  font-size: 25px;
+}
+
+.v2-institution-header span {
+  display: block;
+  margin-top: 5px;
+  color: #afb3ba;
+  font-size: 11px;
+}
+
+.v2-institution-header button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #4d5054;
+  border-radius: 5px;
+  background: #292b2c;
+  color: #eef1f4;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.v2-institution-content {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.v2-institution-loading,
+.v2-institution-empty {
+  display: grid;
+  min-height: 160px;
+  place-items: center;
+  margin: 0;
+  color: #9ca1a9;
+  font-size: 12px;
+}
+
+.v2-institution-kpis {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  border-bottom: 1px solid #44474a;
+}
+
+.v2-institution-kpis > div {
+  min-width: 0;
+  padding: 15px 18px;
+  border-right: 1px solid #414447;
+}
+
+.v2-institution-kpis > div:last-child {
+  border-right: 0;
+}
+
+.v2-institution-kpis span,
+.v2-institution-kpis small,
+.v2-institution-kpis strong {
+  display: block;
+}
+
+.v2-institution-kpis span,
+.v2-institution-kpis small {
+  color: #aeb2b8;
+  font-size: 9px;
+}
+
+.v2-institution-kpis strong {
+  margin: 4px 0 2px;
+  color: #f6f8fa;
+  font-size: 20px;
+}
+
+.v2-institution-quality.is-valid strong {
+  color: #54dda9;
+}
+
+.v2-institution-quality.is-warning strong {
+  color: #f7bf50;
+}
+
+.v2-institution-analysis-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(540px, 0.96fr);
+  border-bottom: 1px solid #44474a;
+}
+
+.v2-institution-panel {
+  min-width: 0;
+  padding: 20px 24px;
+}
+
+.v2-institution-chart-panel {
+  border-right: 1px solid #44474a;
+}
+
+.v2-institution-metric {
+  display: flex;
+  padding: 3px;
+  border: 1px solid #484b4f;
+  border-radius: 5px;
+}
+
+.v2-institution-metric button,
+.v2-institution-list-panel > header > button {
+  min-height: 31px;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: #b8bdc5;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.v2-institution-metric button.is-active,
+.v2-institution-list-panel > header > button {
+  background: #2997ff;
+  color: #071018;
+}
+
+.v2-institution-chart {
+  min-height: 420px;
+}
+
+.v2-institution-map {
+  width: 100%;
+  height: 365px;
+  overflow: hidden;
+  border: 1px solid #45484b;
+  border-radius: 5px;
+  background: #181a1a;
+}
+
+.v2-institution-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  padding: 9px 0 5px;
+  color: #bbc0c7;
+  font-size: 9px;
+}
+
+.v2-institution-map-legend span,
+.v2-institution-map-list button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.v2-institution-map-legend i,
+.v2-institution-map-list i {
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: var(--marker-color);
+}
+
+.v2-institution-map-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  max-height: 106px;
+  overflow: auto;
+  background: #3d4043;
+}
+
+.v2-institution-map-list button {
+  min-width: 0;
+  padding: 7px 9px;
+  border: 0;
+  background: #252727;
+  color: #e8ebee;
+  text-align: left;
+  cursor: pointer;
+}
+
+.v2-institution-map-list button:hover {
+  background: #2b3033;
+}
+
+.v2-institution-map-list span,
+.v2-institution-map-list b,
+.v2-institution-map-list small {
+  display: block;
+  min-width: 0;
+}
+
+.v2-institution-map-list b,
+.v2-institution-map-list small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.v2-institution-map-list b {
+  font-size: 10px;
+}
+
+.v2-institution-map-list small,
+.v2-institution-map-list p {
+  color: #969ba3;
+  font-size: 8px;
+}
+
+.v2-institution-list-panel {
+  padding-bottom: 28px;
+}
+
+.v2-institution-table-wrap {
+  max-height: 360px;
+  border-color: #474a4e;
+}
+
+.v2-institution-table {
+  min-width: 980px;
+}
+
+.v2-institution-table th,
+.v2-institution-table td {
+  border-bottom-color: #404346;
+}
+
+.v2-institution-table th {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  background: #292b2c;
+}
+
+.v2-type-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: var(--type-color);
+}
+
+.v2-related-detail-links {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.v2-related-detail-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  max-width: 100%;
+  padding: 2px 0;
+  border: 0;
+  background: transparent;
+  color: #e8edf2;
+  font: inherit;
+  font-weight: 750;
+  text-align: left;
+  cursor: pointer;
+}
+
+.v2-related-detail-link span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.v2-related-detail-link b {
+  color: #4aabff;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.v2-related-detail-link:hover,
+.v2-related-detail-link:focus-visible {
+  color: #4aabff;
+}
+
+.ux-v2 .back-to-results-btn.v2-return-to-analysis {
+  border-color: rgba(74, 171, 255, 0.58);
+  background: rgba(74, 171, 255, 0.12);
+  color: #f4f9ff;
+}
+
+.ux-v2 .capital-source-line .capital-source-audit {
+  padding: 2px 7px;
+  border: 1px solid rgba(242, 196, 100, 0.42);
+  border-radius: 999px;
+  background: rgba(242, 196, 100, 0.1);
+  color: #f8d98f;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.ux-v2 .capital-source-line .capital-source-audit:hover,
+.ux-v2 .capital-source-line .capital-source-audit:focus-visible {
+  border-color: rgba(242, 196, 100, 0.75);
+  background: rgba(242, 196, 100, 0.18);
+  outline: none;
+}
+
+.ux-v2 .v2-duplicate-exclusion-row {
+  grid-template-columns: 44px minmax(220px, 1fr) minmax(260px, auto);
+}
+
+.ux-v2 :is(button, input, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--v2-blue);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ux-v2 *,
+  .ux-v2 *::before,
+  .ux-v2 *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 980px) {
+  .ux-v2 .v2-search-relation-kpis,
+  .v2-institution-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ux-v2 .v2-search-party-title-row,
+  .ux-v2 .v2-search-relation-section > header,
+  .v2-institution-panel > header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ux-v2 .v2-relationship-asset-list,
+  .v2-institution-analysis-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .v2-institution-chart-panel {
+    border-right: 0;
+    border-bottom: 1px solid #44474a;
+  }
+}
+
+@media (max-width: 760px) {
+  .ux-v2 .v2-duplicate-exclusion-row {
+    grid-template-columns: 36px minmax(0, 1fr);
+  }
+
+  .ux-v2 .v2-duplicate-exclusion-row .capital-breakdown-amount-grid {
+    grid-column: 1 / -1;
+  }
+
+  .v2-institution-overlay {
+    padding: 0;
+  }
+
+  .v2-institution-dialog {
+    width: 100vw;
+    height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .v2-institution-header,
+  .v2-institution-panel,
+  .ux-v2 .v2-search-relation-section {
+    padding: 16px;
+  }
+
+  .v2-institution-analysis-grid {
+    display: block;
+  }
+
+  .v2-institution-map {
+    height: 260px;
+  }
+
+  .v2-institution-map-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 430px) {
+  .v2-workspace-brand em {
+    display: none;
+  }
+
+  .v2-primary-modes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .v2-primary-modes button::after {
+    right: 8px;
+    left: 8px;
+  }
+
+  .ux-v2 .semantic-analysis-summary,
+  .ux-v2 .semantic-basis-panel,
+  .ux-v2 .semantic-kpi-grid,
+  .ux-v2 .semantic-breakdown-grid {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .ux-v2 .semantic-kpi-grid,
+  .ux-v2 .semantic-breakdown-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ux-v2 .semantic-basis-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ux-v2 .semantic-basis-btn {
+    min-width: 0;
+    padding-right: 4px;
+    padding-left: 4px;
+    font-size: 10px;
+    overflow-wrap: anywhere;
+  }
+}

@@ -2,9 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 
-const root = path.resolve(__dirname, '..', '..');
-const searchPath = path.join(root, '01. RA Portal', 'portfolio-analysis', 'js', 'search-results.js');
-const assetCanonicalPath = path.join(root, '01. RA Portal', 'portfolio-analysis', 'js', 'asset-canonical.js');
+const portalRoot = path.resolve(__dirname, '..', '..');
+const searchPath = path.join(portalRoot, 'portfolio-analysis', 'js', 'search-results.js');
+const assetCanonicalPath = path.join(portalRoot, 'portfolio-analysis', 'js', 'asset-canonical.js');
 const source = fs.readFileSync(searchPath, 'utf8');
 const assetCanonicalSource = fs.readFileSync(assetCanonicalPath, 'utf8');
 

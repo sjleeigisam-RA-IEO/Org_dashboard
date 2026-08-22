@@ -1,10 +1,11 @@
 var debounceTimer;
 var currentView = 'ranking';
 var currentTab = 'all';
-var LEFT_PANEL_WIDTH_KEY = 'ra_insight_left_panel_width_v1';
-var LEFT_PANEL_COLLAPSED_KEY = 'ra_insight_left_panel_collapsed_v2';
+var IS_UX_V2 = document.body.classList.contains('ux-v2');
+var LEFT_PANEL_WIDTH_KEY = IS_UX_V2 ? 'ra_insight_v2_left_panel_width' : 'ra_insight_left_panel_width_v1';
+var LEFT_PANEL_COLLAPSED_KEY = IS_UX_V2 ? 'ra_insight_v2_left_panel_collapsed' : 'ra_insight_left_panel_collapsed_v2';
 var LEFT_PANEL_MIN_WIDTH = 300;
-var LEFT_PANEL_MAX_WIDTH = 460;
+var LEFT_PANEL_MAX_WIDTH = IS_UX_V2 ? 400 : 460;
 
 function setDisplay(element, value) {
   if (element) element.style.display = value;
@@ -170,13 +171,14 @@ function initLeftPanelResize() {
   if (!leftPanel || !resizer || !layout) return;
 
   var storedWidth = null;
-  var storedCollapsed = true;
+  var storedCollapsed = !IS_UX_V2;
   try {
     storedWidth = localStorage.getItem(LEFT_PANEL_WIDTH_KEY);
-    storedCollapsed = localStorage.getItem(LEFT_PANEL_COLLAPSED_KEY) !== '0';
+    var storedCollapsedValue = localStorage.getItem(LEFT_PANEL_COLLAPSED_KEY);
+    storedCollapsed = storedCollapsedValue === null ? !IS_UX_V2 : storedCollapsedValue !== '0';
   } catch (e) {
     storedWidth = null;
-    storedCollapsed = true;
+    storedCollapsed = !IS_UX_V2;
   }
   var currentWidth = applyLeftPanelWidth(storedWidth || LEFT_PANEL_MAX_WIDTH, false);
   setLeftPanelCollapsed(storedCollapsed, currentWidth);

@@ -24,6 +24,7 @@ var ALIASES = window.ALIASES || {
 
 var portfolioBasket = [];
 var latestSearchRequestId = 0;
+var unifiedSearchSurfaceAvailable = null;
 var currentInstitutionFilter = 'all';
 var currentSearchRefinement = {
   resultType: 'all',
@@ -295,6 +296,21 @@ function indexRowsForType(rows, entityType) {
   return (rows || []).filter(function (row) { return row.entity_type === entityType; });
 }
 
+function unifiedPreviewIds(rows, entityType) {
+  var ids = [];
+  (rows || []).forEach(function (row) {
+    var previews = row && row.preview_entities;
+    if (typeof previews === 'string') {
+      try { previews = JSON.parse(previews); } catch (_error) { previews = []; }
+    }
+    if (!Array.isArray(previews)) return;
+    previews.forEach(function (preview) {
+      if (preview && preview.type === entityType && preview.id) ids.push(preview.id);
+    });
+  });
+  return uniqueValues(ids);
+}
+
 function searchTermsMatchText(terms, text) {
   var haystack = String(text || '').toLowerCase();
   return (terms || []).some(function (term) {
@@ -326,14 +342,18 @@ function hydratePortfolioSearchRows(indexRows, options) {
     return shouldExpandRelatedIdsFromIndexRow(row, options.terms);
   });
   var fundIds = uniqueValues(indexRowsForType(indexRows, 'fund').map(function (row) { return row.entity_id; })
-    .concat(relatedIdRows.map(function (row) { return row.related_fund_id; })));
+    .concat(relatedIdRows.map(function (row) { return row.related_fund_id; }))
+    .concat(unifiedPreviewIds(indexRows, 'fund')));
   var assetIdSources = indexRowsForType(indexRows, 'asset').map(function (row) { return row.entity_id; });
   if (options.includeRelatedAssets !== false) {
-    assetIdSources = assetIdSources.concat(relatedIdRows.map(function (row) { return row.related_asset_id; }));
+    assetIdSources = assetIdSources
+      .concat(relatedIdRows.map(function (row) { return row.related_asset_id; }))
+      .concat(unifiedPreviewIds(indexRows, 'asset'));
   }
   var assetIds = uniqueValues(assetIdSources);
   var projectIds = uniqueValues(indexRowsForType(indexRows, 'project').map(function (row) { return row.entity_id; })
-    .concat(relatedIdRows.map(function (row) { return row.related_project_id; })));
+    .concat(relatedIdRows.map(function (row) { return row.related_project_id; }))
+    .concat(unifiedPreviewIds(indexRows, 'project')));
   var lenderIds = numericIds(indexRowsForType(indexRows, 'lender').map(function (row) { return row.entity_id; }));
   var beneficiaryIds = numericIds(indexRowsForType(indexRows, 'beneficiary').map(function (row) { return row.entity_id; }));
   var lenderDisplayTerms = indexDisplayTermsForType(indexRows, 'lender', options.terms, { requireDisplayMatch: true });
@@ -455,10 +475,21 @@ function performIndexedSearch(query, terms) {
     ? { entityTypes: ['fund', 'project'], includeRelatedAssets: false, limit: 200 }
     : {};
 
+  if (unifiedSearchSurfaceAvailable === false) {
+    window.searchContractMode = 'canonical_fallback';
+    return performIndexedSearchOn('portfolio_search_results_canonical', terms, options).catch(function (canonicalError) {
+      window.searchContractMode = 'raw_token_fallback';
+      console.warn('portfolio_search_results_canonical unavailable; using raw portfolio_search_index.', canonicalError);
+      return performIndexedSearchOn('portfolio_search_index', terms, options);
+    });
+  }
+
   return performIndexedSearchOn('portfolio_search_results_unified_v1', terms, options).then(function (hydrated) {
+    unifiedSearchSurfaceAvailable = true;
     window.searchContractMode = 'unified';
     return hydrated;
   }).catch(function (unifiedError) {
+    unifiedSearchSurfaceAvailable = false;
     window.searchContractMode = 'canonical_fallback';
     console.warn('portfolio_search_results_unified_v1 unavailable; using canonical surface.', unifiedError);
     return performIndexedSearchOn('portfolio_search_results_canonical', terms, options);

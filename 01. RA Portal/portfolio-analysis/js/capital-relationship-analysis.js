@@ -128,6 +128,8 @@
     loadPromise: null,
     loadErrors: [],
     duplicateFactsSuppressed: 0,
+    economicDuplicatesSuppressed: 0,
+    suppressedEconomicDuplicates: [],
     invalidContractRows: 0,
     internalFundRowsExcluded: 0,
     internalFundPartiesExcluded: 0,
@@ -352,6 +354,8 @@
       commitmentDate: normalizeText(pick(row, ['commitment_cohort_date', 'commitment_date'], '')),
       commitmentDateBasis: normalizeText(pick(row, ['commitment_date_basis'], '')),
       commitmentDateQuality: normalizeText(pick(row, ['commitment_date_quality'], '')) || 'unresolved',
+      sourceStandardId: normalizeText(pick(row, ['source_standard_id', 'standard_party_id'], '')),
+      remarks: normalizeText(pick(row, ['remarks', 'remark', 'note'], '')),
       exposureId: sourceKind === 'fact'
         ? normalizeText(pick(row, ['exposure_id', 'source_exposure_id', 'beneficiary_exposure_id', 'lender_exposure_id', 'id'], ''))
         : '',
@@ -619,17 +623,23 @@
       state.facts = state.directFacts.filter(function (row) {
         return row.role !== 'beneficiary' || row.includeInExternalInvestorRollup;
       });
-      state.historicalFacts = dedupeFactRows(state.facts.filter(function (row) {
+      var explicitDedupedFacts = dedupeFactRows(state.facts.filter(function (row) {
         return Boolean(row.partyId);
-      }), false);
+      }), true);
+      var economicResult = window.ExposureDedupe && typeof window.ExposureDedupe.dedupe === 'function'
+        ? window.ExposureDedupe.dedupe(explicitDedupedFacts)
+        : { rows: explicitDedupedFacts, suppressed: [] };
+      state.facts = economicResult.rows;
+      state.suppressedEconomicDuplicates = economicResult.suppressed;
+      state.economicDuplicatesSuppressed = economicResult.suppressed.length;
+      state.historicalFacts = state.facts.slice();
       state.rankings = [];
 
-      var dedupedFacts = dedupeFactRows(state.facts, true);
-      state.results = aggregatePartyRows(dedupedFacts);
+      state.results = aggregatePartyRows(state.facts);
       state.source = currentResponse.view;
       state.sourceLabel = '외부 투자자 기준 · 재간접 중간기구 '
         + (state.internalFundPartiesExcluded + state.internalShellPartiesExcluded) + '개 제외';
-      state.snapshotDate = maxSnapshotDate(dedupedFacts);
+      state.snapshotDate = maxSnapshotDate(state.facts);
       state.loaded = true;
       state.loading = false;
       state.loadPromise = null;
@@ -1733,6 +1743,45 @@
     });
   }
 
+  function openDuplicateCoverageDialog(trigger) {
+    var rows = state.suppressedEconomicDuplicates || [];
+    var overlay = ensureBreakdownDialog();
+    state.breakdownTrigger = trigger || document.activeElement;
+    document.getElementById('capitalBreakdownTitle').textContent = '중복 익스포저 합산 제외';
+    document.getElementById('capitalBreakdownDescription').textContent = '원본 행은 DB에 보존하고, 동일 역할·기관·기준일·펀드·자산·금액이면서 비고에 중복 제외가 명시된 행만 화면 합계에서 제외합니다.';
+    document.getElementById('capitalBreakdownSummary').innerHTML = [
+      '<div><span>합산 제외</span><strong>' + formatInteger(rows.length) + '행</strong></div>',
+      '<div><span>원본 보존</span><strong>DB 행 유지</strong></div>',
+      '<div><span>판정 방식</span><strong>명시적 비고 + 경제적 key</strong></div>',
+      '</div>'
+    ].join('');
+    document.getElementById('capitalBreakdownList').innerHTML = [
+      '<section class="capital-breakdown-group">',
+      '<header><h3>제외 근거</h3><span>' + formatInteger(rows.length) + '건</span></header>',
+      rows.length ? rows.map(function (row, index) {
+        return [
+          '<article class="capital-breakdown-row v2-duplicate-exclusion-row">',
+          '<div class="capital-breakdown-rank">' + formatInteger(index + 1) + '</div>',
+          '<div class="capital-breakdown-party"><strong>' + escapeHtml(row.partyName || row.partyId || '기관 미상') + '</strong>',
+          '<span>제외 ID ' + escapeHtml(row.exposureId || '-') + ' · 유지 ID ' + escapeHtml(row.keptExposureId || '-') + '</span></div>',
+          '<div class="capital-breakdown-amount-grid">',
+          '<div><span>약정액</span><strong>' + escapeHtml(formatMillion(row.committedAmount)) + '</strong><small>백만원</small></div>',
+          '<div><span>' + (row.role === 'lender' ? '실행액' : '투입액') + '</span><strong>' + escapeHtml(formatMillion(row.currentAmount)) + '</strong><small>백만원</small></div>',
+          '</div>',
+          '</article>'
+        ].join('');
+      }).join('') : '<div class="capital-table-empty">현재 합산 제외된 중복 exposure가 없습니다.</div>',
+      '</section>'
+    ].join('');
+    overlay.hidden = false;
+    document.body.classList.add('capital-dialog-open');
+    window.requestAnimationFrame(function () {
+      overlay.classList.add('active');
+      var closeButton = overlay.querySelector('[data-capital-breakdown-close]');
+      if (closeButton) closeButton.focus();
+    });
+  }
+
   function factsForParty(row) {
     var seen = new Set();
     return state.facts.filter(function (fact) {
@@ -2035,6 +2084,11 @@
     var duplicateNote = state.duplicateFactsSuppressed > 0
       ? '<span>중복 fact ' + formatInteger(state.duplicateFactsSuppressed) + '행 합산 제외</span>'
       : '';
+    var economicDuplicateNote = state.economicDuplicatesSuppressed > 0
+      ? (document.body.classList.contains('ux-v2')
+        ? '<button type="button" class="capital-source-audit" data-capital-action="show-duplicate-exclusions">명칭 중복 ' + formatInteger(state.economicDuplicatesSuppressed) + '행 제외 · 근거</button>'
+        : '<span>명칭 중복 ' + formatInteger(state.economicDuplicatesSuppressed) + '행 합산 제외</span>')
+      : '';
     var contractNote = state.invalidContractRows > 0
       ? '<span class="capital-source-warning">party_id 누락 ' + formatInteger(state.invalidContractRows) + '행 제외</span>'
       : '';
@@ -2048,6 +2102,7 @@
       '<div class="capital-source-line"><span>' + escapeHtml(activeSourceLabel) + '</span>',
       state.snapshotDate ? '<span>기준일 ' + escapeHtml(state.snapshotDate) + '</span>' : '',
       duplicateNote,
+      economicDuplicateNote,
       contractNote,
       '</div></div>',
       '<div class="capital-header-actions">',
@@ -2357,6 +2412,7 @@
     else if (action === 'export') exportCsv();
     else if (action === 'refresh' || action === 'retry') refreshData();
     else if (action === 'show-internal-funds') openInternalFundCoverageDialog(actionButton);
+    else if (action === 'show-duplicate-exclusions') openDuplicateCoverageDialog(actionButton);
     else if (action === 'clear-comparison') {
       state.selectedIds.clear();
       renderCapitalResults();

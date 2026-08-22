@@ -145,7 +145,7 @@
               </div>
             </div>
 
-            <div id="mainGrowthChart" style="min-height:450px; margin-bottom:60px;"></div>
+            <div id="mainGrowthChart" style="width:100%; min-width:0; min-height:450px; margin-bottom:60px;"></div>
 
              <div style="margin-top:80px; border-top:1px solid var(--line); padding-top:60px;">
                <h4 style="font-size:15px; font-weight:700; margin-bottom:20px; color:var(--muted); display:flex; align-items:center; justify-content:space-between;">
@@ -884,7 +884,7 @@ function renderHistory(chartId) {
 
     const options = {
         series: chartSeries,
-        chart: { type: 'bar', height: 450, stacked: true, toolbar: { show: false }, fontFamily: 'Pretendard Variable', foreColor: '#d7d2dc' },
+        chart: { type: 'bar', width: '100%', height: 450, stacked: true, redrawOnParentResize: true, redrawOnWindowResize: true, toolbar: { show: false }, fontFamily: 'Pretendard Variable', foreColor: '#d7d2dc' },
         colors: stackLabels.map(getHistoryStackColor),
         plotOptions: {
             bar: {
@@ -952,8 +952,39 @@ function renderHistory(chartId) {
 
     const el = document.querySelector(`#${chartId}`);
     if (el) {
+        if (window.mainGrowthChartResizeObserver) {
+            window.mainGrowthChartResizeObserver.disconnect();
+            window.mainGrowthChartResizeObserver = null;
+        }
+        if (window.mainGrowthChartInstance && typeof window.mainGrowthChartInstance.destroy === 'function') {
+            window.mainGrowthChartInstance.destroy();
+        }
         el.innerHTML = '';
-        new ApexCharts(el, options).render();
+        const chart = new ApexCharts(el, options);
+        window.mainGrowthChartInstance = chart;
+        chart.render().then(() => {
+            if (window.mainGrowthChartInstance !== chart) return;
+            let appliedWidth = Math.round(
+                el.querySelector('.apexcharts-canvas')?.getBoundingClientRect().width || 0
+            );
+            const syncChartWidth = width => {
+                if (!width || Math.abs(width - appliedWidth) < 2 || window.mainGrowthChartInstance !== chart) return;
+                appliedWidth = width;
+                window.requestAnimationFrame(() => {
+                    if (window.mainGrowthChartInstance === chart) {
+                        chart.updateOptions({ chart: { width } }, false, false);
+                    }
+                });
+            };
+
+            syncChartWidth(Math.round(el.getBoundingClientRect().width));
+            if (typeof ResizeObserver === 'undefined') return;
+            window.mainGrowthChartResizeObserver = new ResizeObserver(entries => {
+                const width = Math.round(entries[0]?.contentRect?.width || el.getBoundingClientRect().width);
+                syncChartWidth(width);
+            });
+            window.mainGrowthChartResizeObserver.observe(el);
+        });
     }
 }
 

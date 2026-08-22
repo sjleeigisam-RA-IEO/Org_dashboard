@@ -8,9 +8,11 @@
       document.documentElement.classList.add("embedded-frame");
     }
   </script>
-  <title>IGIS RA Insight | RA부문 통합데이터 시스템</title>
+  <title>IGIS RA Insight v2 | Local UX Preview</title>
   <link rel="stylesheet" href="../../shared/ifpdp-system-theme.css?v=ifpdp_system_3">
-    <link rel="stylesheet" href="style.css?v=fund_lookthrough_shell_20260818a">
+  <link rel="stylesheet" href="style.css?v=fund_lookthrough_shell_20260818a">
+  <link rel="stylesheet" href="ux-v2.css?v=ux_v2_core_20260822a">
+  <link rel="stylesheet" href="ux-v2-components.css?v=ux_v2_components_20260822a">
   <link rel="icon" href="data:,">
   <!-- Supabase & VWorld JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -102,18 +104,42 @@
       .meta-val { color: var(--text); font-weight: 700; }
     </style>
 </head>
-<body class="has-mobile-tabs analysis-view left-panel-collapsed">
+<body class="has-mobile-tabs analysis-view ux-v2">
     <div id="sideDrawerOverlay" class="side-drawer-overlay" onclick="closeDrawer()"></div>
     <div id="sideDrawer" class="side-drawer">
         <div class="drawer-nav" id="drawerNav">
             <button class="back-btn" onclick="backToDrawerList()">← 뒤로가기</button>
         </div>
-        <div class="drawer-close" onclick="closeDrawer()">×</div>
+        <button type="button" class="drawer-close" onclick="closeDrawer()" aria-label="상세 서랍 닫기">×</button>
         <div id="drawerHeader" class="drawer-header"></div>
         <div id="drawerContent" class="drawer-content"></div>
     </div>
 
-<div class="view-navigation-stack">
+<header class="v2-workspace-bar">
+  <div class="v2-workspace-brand">
+    <strong>IGIS RA Insight</strong>
+    <span>RA 통합 분석</span>
+    <em>LOCAL V2</em>
+  </div>
+
+  <nav class="v2-primary-modes" aria-label="분석 화면 선택">
+    <button type="button" class="active" data-v2-mode="portfolio" aria-pressed="true">포트폴리오</button>
+    <button type="button" data-v2-mode="capital" aria-pressed="false">자금관계</button>
+    <button type="button" data-v2-mode="search" aria-pressed="false">데이터 조회</button>
+  </nav>
+
+  <div class="v2-context-actions">
+    <button type="button" id="v2FilterToggle" class="v2-filter-toggle" aria-controls="leftPanel" aria-expanded="true">
+      <span class="v2-filter-toggle-icon" aria-hidden="true"></span>
+      <span id="v2FilterToggleLabel">조건 숨기기</span>
+      <b id="v2ActiveFilterCount" hidden>0</b>
+    </button>
+    <button type="button" class="v2-capital-action" data-capital-action="refresh">새로고침</button>
+    <button type="button" class="v2-capital-action is-primary" data-capital-action="export">CSV</button>
+  </div>
+</header>
+
+<div class="view-navigation-stack v2-legacy-navigation" aria-hidden="true" inert>
   <nav class="view-toggle floating-view-toggle" aria-label="화면 모드 선택">
     <button type="button" id="chartViewBtn" class="active">종합 분석</button>
     <button type="button" id="listViewBtn">데이터 조회</button>
@@ -127,22 +153,30 @@
 
 <div class="main-layout container">
   <!-- Left Panel: Search & List -->
-  <div class="left-panel collapsed" id="leftPanel">
+  <div class="left-panel" id="leftPanel">
     <div class="header">
       <h1>IGIS RA Insight</h1>
       <p>RA부문 통합데이터 시스템</p>
       <p class="data-source">Sources: Supabase 통합 DB<br>(AUM 기준일은 최신 적재일을 자동 표시합니다)</p>
     </div>
 
+    <div class="v2-panel-heading">
+      <div>
+        <span id="v2PanelEyebrow">PORTFOLIO</span>
+        <h2 id="v2PanelTitle">포트폴리오 조건</h2>
+        <p id="v2PanelHint">분석 범위를 선택하면 본문이 즉시 갱신됩니다.</p>
+      </div>
+    </div>
+
     <!-- 데이터 조회용 컨트롤 그룹 -->
     <div id="searchViewControls" style="display:none;">
-      <div style="margin-bottom: 12px; display: flex; align-items: center;">
-        <span style="font-size: 14px; font-weight: 800;">검색 및 조회</span>
-        <button class="help-btn" onclick="showHelp('search')">?</button>
+      <div class="v2-control-section-title">
+        <span>통합검색</span>
+        <button type="button" class="help-btn" onclick="showHelp('search', this)" aria-label="데이터 조회 도움말">?</button>
       </div>
       <div class="search-container">
         <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" placeholder="이름·코드 검색 또는 '국내 개발 오피스 펀드는 몇 개?'" autocomplete="off">
+        <input type="text" id="searchInput" aria-label="통합 데이터 검색" placeholder="이름·코드 검색 또는 '국내 개발 오피스 펀드는 몇 개?'" autocomplete="off">
       </div>
 
       <div class="tabs">
@@ -155,9 +189,9 @@
 
     <!-- 종합 분석용 컨트롤 그룹 -->
     <div id="analysisViewControls">
-      <div style="margin-bottom: 12px; display: flex; align-items: center;">
-        <span style="font-size: 14px; font-weight: 800;">분석 필터</span>
-        <button class="help-btn" onclick="showHelp('analysis')">?</button>
+      <div class="v2-control-section-title">
+        <span>분석 범위</span>
+        <button type="button" class="help-btn" onclick="showHelp('analysis', this)" aria-label="포트폴리오 분석 도움말">?</button>
       </div>
       <section class="mobile-analysis-notice" aria-live="polite">
         <p class="card-tag tag-project">Portfolio Analysis</p>
@@ -167,7 +201,7 @@
       <div id="analysisControls" class="analysis-controls">
           <!-- 상세 필터 섹션 -->
           <div class="analysis-filters" id="analysisFilters">
-              <div class="filter-header">상세 필터 (중복 선택 가능)</div>
+              <div class="filter-header">복수 조건을 함께 선택할 수 있습니다</div>
               <div class="filter-grid" id="filterGrid">
                   <!-- JS에서 동적으로 생성 -->
               </div>
@@ -179,7 +213,7 @@
 
     <div id="capitalRelationshipControls" class="capital-relationship-controls" hidden>
       <div class="capital-controls-heading">
-        <span>자금관계 분석</span>
+        <span>분석 범위</span>
         <button class="help-btn" type="button" data-capital-action="help" aria-label="자금관계 분석 기준 보기">?</button>
       </div>
 
@@ -247,8 +281,8 @@
     </div>
   </div>
 
-  <div id="leftPanelResizer" class="left-panel-resizer" role="separator" aria-orientation="vertical" aria-label="Resize search panel" tabindex="0">
-    <button id="leftPanelCollapseBtn" class="left-panel-collapse-btn" type="button" aria-label="Expand search panel" aria-controls="leftPanel" aria-expanded="false" title="검색 패널 펼치기">&gt;</button>
+  <div id="leftPanelResizer" class="left-panel-resizer" role="separator" aria-orientation="vertical" aria-label="조건 패널 너비 조절" tabindex="0">
+    <button id="leftPanelCollapseBtn" class="left-panel-collapse-btn" type="button" aria-label="조건 패널 펼치기" aria-controls="leftPanel" aria-expanded="false" title="조건 패널 펼치기">&gt;</button>
   </div>
 
   <!-- Right Panel: Dynamic Details -->
@@ -260,18 +294,21 @@
   </div>
 </div>
 
+<button type="button" id="v2FilterScrim" class="v2-filter-scrim" aria-label="조건 패널 닫기" tabindex="-1"></button>
+<button type="button" id="v2MobileFilterClose" aria-label="조건 패널 닫기">×</button>
+
 <!-- Help Modals -->
 <div id="modalOverlay" class="modal-overlay" onclick="closeHelp()">
-  <div class="help-modal" onclick="event.stopPropagation()">
+  <div class="help-modal" role="dialog" aria-modal="true" aria-labelledby="helpTitle" onclick="event.stopPropagation()">
     <div id="helpContent"></div>
-    <button class="close-modal-btn" onclick="closeHelp()">확인</button>
+    <button type="button" class="close-modal-btn" onclick="closeHelp()">확인</button>
   </div>
 </div>
 
 <script>
   const helpData = {
     search: `
-      <h2>🔍 데이터 조회 가이드</h2>
+      <h2 id="helpTitle">데이터 조회 가이드</h2>
       <ul>
         <li><strong>통합 검색</strong>펀드명, 자산명, 투자자(수익자/대주) 등 모든 키워드로 연관 데이터를 즉시 찾을 수 있습니다.</li>
         <li><strong>카테고리 탭</strong>검색된 결과를 유형별로 필터링하여 보고 싶은 정보만 선별할 수 있습니다.</li>
@@ -280,9 +317,9 @@
       </ul>
     `,
     analysis: `
-      <h2>📊 종합 분석 가이드</h2>
+      <h2 id="helpTitle">종합 분석 가이드</h2>
       <ul>
-        <li><strong>상세 필터</strong>상단의 필터 그리드에서 본부, 팀, 자산분류 등 여러 조건을 조합하여Division 전체 현황을 분석할 수 있습니다.</li>
+        <li><strong>상세 필터</strong>필터 그리드에서 본부, 팀, 자산분류 등 여러 조건을 조합해 RA부문 전체 현황을 분석할 수 있습니다.</li>
         <li><strong>대화형 차트</strong>상단 차트의 막대나 영역을 클릭해 보세요. 하단 리스트가 해당 조건에 맞는 데이터로 즉시 갱신(Drill-down)됩니다.</li>
         <li><strong>하단 상세 리스트</strong>차트 클릭으로 필터링된 리스트에서 항목을 클릭하면 우측 패널에서 심층적인 자산 프로필을 확인할 수 있습니다.</li>
         <li><strong>필터 초기화</strong>분석 조건을 모두 해제하고 처음으로 돌아가려면 '전체 필터 초기화' 버튼을 사용하세요.</li>
@@ -290,14 +327,24 @@
     `
   };
 
-  function showHelp(type) {
+  let helpTrigger = null;
+
+  function showHelp(type, trigger) {
+    helpTrigger = trigger || document.activeElement;
     document.getElementById('helpContent').innerHTML = helpData[type];
     document.getElementById('modalOverlay').classList.add('active');
+    document.querySelector('.close-modal-btn').focus();
   }
 
   function closeHelp() {
     document.getElementById('modalOverlay').classList.remove('active');
+    if (helpTrigger && typeof helpTrigger.focus === 'function') helpTrigger.focus();
+    helpTrigger = null;
   }
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && document.getElementById('modalOverlay').classList.contains('active')) closeHelp();
+  });
 </script>
 
 <script>
@@ -308,14 +355,18 @@
         "js/core.js?v=portfolio_layout_20260715d",
             "js/portfolio-analysis-engine.js?v=metric_basis_clarity_20260814c",
             "js/asset-canonical.js?v=admin_access_guard_20260814a",
-        "js/search-results.js?v=viewport_stable_20260715h",
+        "js/search-results.js?v=relationship_preview_20260821a",
             "js/detail-drawer.js?v=detail_clean_party_contract_20260814a",
-        "js/analytics-dashboard.js?v=viewport_stable_20260715h",
+        "js/analytics-dashboard.js?v=chart_width_sync_20260821b",
         "js/portfolio-analysis.js?v=viewport_stable_20260715h",
             "js/portfolio-analysis-integration.js?v=metric_basis_clarity_20260814c",
         "js/exposure-dedupe.js?v=economic_duplicate_contract_20260822a",
         "js/capital-relationship-analysis.js?v=fund_lookthrough_shell_20260818a",
-        "app.js?v=portfolio_layout_20260715f"
+        "filter-controls-v2.js?v=ux_v2_local_20260821b",
+        "search-explorer-v2.js?v=ux_v2_local_20260821b",
+        "institution-analysis-v2.js?v=ux_v2_local_20260821g",
+        "app.js?v=ux_v2_local_20260821a",
+        "ux-v2.js?v=ux_v2_local_20260821e"
       ];
 
       for (const src of scripts) {
@@ -332,9 +383,15 @@
     }
   })();
 </script>
-  <script src="../../security-lite.js?v=ra_folder_paths_20260818a"></script>
+  <script>
+    if (!['127.0.0.1', 'localhost'].includes(window.location.hostname)) {
+      const authScript = document.createElement('script');
+      authScript.src = '../../security-lite.js?v=ra_folder_paths_20260818a';
+      document.body.appendChild(authScript);
+    }
+  </script>
   <nav class="mobile-dashboard-tabs" aria-label="Mobile dashboard navigation">
-    <a class="mobile-dashboard-tab is-active" href="./index.html">펀드검색</a>
+    <a class="mobile-dashboard-tab is-active" href="./index-v2.html">펀드검색</a>
     <a class="mobile-dashboard-tab" href="../../02. T5T Board/index.html">T5T</a>
     <a class="mobile-dashboard-tab" href="../../02. T5T Board/input-form/index.html">T5T작성</a>
     <a class="mobile-dashboard-tab" href="../../05. Org Board/index.html">조직</a>
