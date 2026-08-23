@@ -311,7 +311,58 @@
       ],
       "commit_short": "23eb21f",
       "pages_verified_at": "2026-08-18 06:03:25 KST"
+    },
+    {
+      "scheduled_for": "2026-08-24",
+      "run_type": "monday-main",
+      "started_at": "2026-08-24 07:50:36 +09:00ST",
+      "completed_at": "2026-08-24 07:52:43 +09:00ST",
+      "status": "partial",
+      "sources": {
+        "opendart_awards": {
+          "status": "blocked",
+          "note": "OpenDART awards refresh failed; retained previous cache."
+        },
+        "nara_g2b_contracts": {
+          "status": "success",
+          "note": "14-day window, max 5 per company"
+        },
+        "google_news": {
+          "status": "success",
+          "note": "365-day window, max 5 per company"
+        },
+        "opendart_strategy": {
+          "status": "blocked",
+          "note": "OpenDART strategy refresh failed; retained previous cache."
+        },
+        "credit_ratings": {
+          "status": "not_run",
+          "note": "Monthly cache retained from previous refresh"
+        }
+      },
+      "backup_dir": "outputs\\construction_refresh_before_20260824_075036",
+      "changed_files": [
+        "03. Construction Board/README.md",
+        "03. Construction Board/data/construction_company_news_cache.json",
+        "03. Construction Board/data/construction_nara_contracts_cache.json",
+        "03. Construction Board/data/construction_dart_awards_cache.json",
+        "03. Construction Board/data/construction_dart_strategy_cache.json",
+        "03. Construction Board/data/construction_online_update_marks.json",
+        "03. Construction Board/data/construction_source_status_data.json",
+        "03. Construction Board/index.html"
+      ],
+      "pushed": false,
+      "pages_verified": false,
+      "update_marks": {
+        "companies_with_updates": 29,
+        "new_item_marks": 52
+      },
+      "notes": [
+        "Monday scheduled refresh was executed in this thread.",
+        "OpenDART awards refresh failed; retained previous cache.",
+        "OpenDART strategy refresh failed; retained previous cache."
+      ]
     }
   ],
-  "generated_at": "2026-08-18 06:03:25 KST"
+  "generated_at": "2026-08-24 07:52:43 +09:00ST"
 }
