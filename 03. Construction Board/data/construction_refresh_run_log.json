@@ -405,8 +405,8 @@
         "03. Construction Board/data/construction_source_status_data.json",
         "03. Construction Board/index.html"
       ],
-      "pushed": false,
-      "pages_verified": false,
+      "pushed": true,
+      "pages_verified": true,
       "update_marks": {
         "companies_with_updates": 33,
         "new_item_marks": 119
@@ -414,7 +414,12 @@
       "notes": [
         "Added DART_API_KEY to accepted OpenDART env key names.",
         "OpenDART awards and strategy disclosures refreshed successfully without exposing API key values."
-      ]
+      ],
+      "commit": "57af1fe",
+      "commit_short": "57af1fe",
+      "pushed_at": "2026-08-24 09:35:04 +09:00ST",
+      "pages_verified_at": "2026-08-24 09:35:04 +09:00ST",
+      "pages_url": "https://sjleeigisam-ra-ieo.github.io/Org_dashboard/03.%20Construction%20Board/"
     }
   ],
   "generated_at": "2026-08-24 07:52:43 +09:00ST"
