@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-24 07:51:57 KST",
+  "generated_at": "2026-08-24 09:22:23 KST",
   "before_dir": "outputs\\construction_refresh_before_20260824_075036",
-  "after_dir": "03. Construction Board\\data",
+  "after_dir": "C:\\10137_WorkSpace\\00. 2025 RA 기획추진\\RA dashboard\\03. Construction Board\\data",
   "sources": [
     {
       "id": "news",
@@ -28,7 +28,7 @@
     {
       "company_key": "대우건설",
       "company": "(주)대우건설",
-      "added_count": 4,
+      "added_count": 12,
       "sources": [
         {
           "id": "news",
@@ -46,13 +46,102 @@
             "2026.07.28 · 전재수 시장-대우건설 회장 회동 추진",
             "2026.07.14 · 정원주 대우건설 회장, 인도네시아서 정·관계 만남...AI데이터센터 구축 논의"
           ]
+        },
+        {
+          "id": "dart_awards",
+          "label": "OpenDART 수주",
+          "item_type": "award",
+          "added_count": 5,
+          "item_keys": [
+            "20260821800060",
+            "20260819800180",
+            "20260807800247",
+            "20260806800295",
+            "20260731801220"
+          ],
+          "samples": [
+            "2026.08.21 · 부산광역시 남천동 공동주택 신축사업 · 7,363억원",
+            "2026.08.19 · 청주 송절 2 지구 도시개발구역 A1BL 공동주택 신축사업 · 3,127억원",
+            "2026.08.07 · 가야1구역 주택재개발정비사업 · 3,738억원"
+          ]
+        },
+        {
+          "id": "dart_strategy",
+          "label": "OpenDART 전략공시",
+          "item_type": "article",
+          "added_count": 3,
+          "item_keys": [
+            "20260807800212",
+            "20260728800849",
+            "20260720800005"
+          ],
+          "samples": [
+            "2026.08.07 · 고양창릉 S-16BL 민간참여 공공주택사업 우선협상대상자 선정",
+            "2026.07.28 · 강남원효성빌라 재건축정비사업 시공사 선정 취소",
+            "2026.07.20 · 상도15구역 주택정비형 재개발사업 시공자 선정"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "금호건설",
+      "company": "금호건설(주)",
+      "added_count": 10,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "item_type": "article",
+          "added_count": 2,
+          "item_keys": [
+            "경북개발공사경북도청신도시b1bl공공임대주택추진",
+            "문왕현전무금호건설주식보유현황공시"
+          ],
+          "samples": [
+            "2026.07.12 · 경북개발공사 경북도청신도시 B-1BL 공공임대주택 추진",
+            "2026.04.17 · 문왕현 전무, 금호건설 주식 보유 현황 공시"
+          ]
+        },
+        {
+          "id": "dart_awards",
+          "label": "OpenDART 수주",
+          "item_type": "award",
+          "added_count": 5,
+          "item_keys": [
+            "20260821800649",
+            "20260814800919",
+            "20260804800387",
+            "20260804800385",
+            "20260730800681"
+          ],
+          "samples": [
+            "2026.08.21 · 공주 천연가스발전소 건설공사 · 1,845억원",
+            "2026.08.14 · 구미천연가스발전소 건설공사 · 3,699억원",
+            "2026.08.04 · 인천 영종하늘도시 A6BL 공동주택 신축공사 · 1,134억원"
+          ]
+        },
+        {
+          "id": "dart_strategy",
+          "label": "OpenDART 전략공시",
+          "item_type": "article",
+          "added_count": 3,
+          "item_keys": [
+            "20260723800881",
+            "20260722800921",
+            "20260709800327"
+          ],
+          "samples": [
+            "2026.07.23 · 고양창릉 B-1BL 및 양주고읍 A-12BL 민간참여 공공주택건설사업 우선협상대상자 선정",
+            "2026.07.22 · 장지차고지 입체화사업 건설공사",
+            "2026.07.09 · 평택고덕 A-72BL 및 A-73BL 민간참여 공공주택건설사업 우선협상대상자 선정"
+          ]
         }
       ]
     },
     {
       "company_key": "코오롱글로벌",
       "company": "코오롱글로벌(주)",
-      "added_count": 4,
+      "added_count": 10,
       "sources": [
         {
           "id": "news",
@@ -69,6 +158,461 @@
             "2026.05.08 · 코오롱글로벌(주) 단일판매ㆍ공급계약 해지",
             "2025.11.17 · 코오롱 자회사 코오롱글로벌, 한국도로공사와 975억원 규모 공사수주 계약 체결",
             "2026.01.14 · 금정산 코오롱 하늘채 루미엘 2월 분양 / 주택건설사업계획(변경) 승인 고시 - 금정구 장전동 618-1번지, 휴먼파크장전 지역주택조합 주상복합 신축공사"
+          ]
+        },
+        {
+          "id": "dart_awards",
+          "label": "OpenDART 수주",
+          "item_type": "award",
+          "added_count": 5,
+          "item_keys": [
+            "20260819800691",
+            "20260819800457",
+            "20260818800172",
+            "20260814802370",
+            "20260811800831"
+          ],
+          "samples": [
+            "2026.08.19 · 삼천주공3 재건축 정비사업 · 1,808억원",
+            "2026.08.19 · 안동 용상 코오롱 하늘채 공동주택 신축공사 · 1,379억원",
+            "2026.08.18 · 평택 P5정수장 3기 신축 설계 및 공사 · 1,048억원"
+          ]
+        },
+        {
+          "id": "dart_strategy",
+          "label": "OpenDART 전략공시",
+          "item_type": "article",
+          "added_count": 1,
+          "item_keys": [
+            "20260713800659"
+          ],
+          "samples": [
+            "2026.07.13 · 태평3구역 공공참여 재개발 정비사업 시공사 선정"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "디엘이앤씨",
+      "company": "디엘이앤씨(주)",
+      "added_count": 9,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "item_type": "article",
+          "added_count": 2,
+          "item_keys": [
+            "건설업계브리핑gs건설대방건설dl이앤씨lh대우건설",
+            "dl이앤씨2분기영업이익신규수주대폭증가"
+          ],
+          "samples": [
+            "2026.08.10 · [건설업계 브리핑] GS건설·대방건설·DL이앤씨·LH·대우건설",
+            "2026.08.03 · DL이앤씨, 2분기 영업이익·신규수주 대폭 증가"
+          ]
+        },
+        {
+          "id": "dart_awards",
+          "label": "OpenDART 수주",
+          "item_type": "award",
+          "added_count": 5,
+          "item_keys": [
+            "20260811800914",
+            "20260714800782",
+            "20260713800787",
+            "20260710800853",
+            "20260706800236"
+          ],
+          "samples": [
+            "2026.08.11 · 부산항 신항 북컨2단계 항만배후단지 조성공사 · 3,475억원",
+            "2026.07.14 · ICN11 Data Center · 4,449억원",
+            "2026.07.13 · Gas Chemical Complex for Polymerization of ethylene into polyethylene and linear alpha-olefin production · 3,265억원"
+          ]
+        },
+        {
+          "id": "dart_strategy",
+          "label": "OpenDART 전략공시",
+          "item_type": "article",
+          "added_count": 2,
+          "item_keys": [
+            "20260813800713",
+            "20260716800007"
+          ],
+          "samples": [
+            "2026.08.13 · \"아산 열병합발전소 건설공사\" 낙찰자 선정",
+            "2026.07.16 · 평택고덕 A-69BL 및 A-71BL 통합형 민간참여 공공주택건설사업"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "계룡건설산업",
+      "company": "계룡건설산업(주)",
+      "added_count": 8,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "item_type": "article",
+          "added_count": 1,
+          "item_keys": [
+            "2026기계설비의날국토교통부장관표창임재균계룡건설산업부장"
+          ],
+          "samples": [
+            "2026.07.23 · [2026 기계설비의 날] 국토교통부장관 표창- 임재균 계룡건설산업(주) 부장"
+          ]
+        },
+        {
+          "id": "dart_awards",
+          "label": "OpenDART 수주",
+          "item_type": "award",
+          "added_count": 5,
+          "item_keys": [
+            "20260812800235",
+            "20260810800394",
+            "20260805800685",
+            "20260804800557",
+            "20260728800453"
+          ],
+          "samples": [
+            "2026.08.12 · 제2경춘국도(남양주-춘천) 도로건설공사(1공구) · 1,848억원",
+            "2026.08.10 · 송산그린시티 남측지구 조성공사(1공구) · 1,518억원",
+            "2026.08.05 · BGF리테일 부산센터 구축공사 · 1,676억원"
+          ]
+        },
+        {
+          "id": "dart_strategy",
+          "label": "OpenDART 전략공시",
+          "item_type": "article",
+          "added_count": 2,
+          "item_keys": [
+            "20260730800936",
+            "20260722800548"
+          ],
+          "samples": [
+            "2026.07.30 · 수원당수2 B-5BL, B-7B 및 수원당수 B-4BL 민간참여 공공주택건설사업 우선협상대상자 선...",
+            "2026.07.22 · 제2경춘국도(남양주-춘천) 도로건설공사(1공구) 낙찰예정자 선정"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "한신공영",
+      "company": "한신공영(주)",
+      "added_count": 8,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "item_type": "article",
+          "added_count": 3,
+          "item_keys": [
+            "한신공영최우수협력사세양건설산업시상",
+            "한신공영폭염장마대응강화전재식대표현장안전점검",
+            "전재식한신공영대표이사현장안전경영강화"
+          ],
+          "samples": [
+            "2026.03.11 · 한신공영, 최우수 협력사 ‘세양건설산업’ 시상",
+            "2026.07.16 · 한신공영, 폭염·장마 대응 강화…전재식 대표 현장 안전점검",
+            "2026.07.16 · 전재식 한신공영 대표이사, 현장 안전경영 강화"
+          ]
+        },
+        {
+          "id": "dart_awards",
+          "label": "OpenDART 수주",
+          "item_type": "award",
+          "added_count": 3,
+          "item_keys": [
+            "20260811800641",
+            "20260731800364",
+            "20260729800922"
+          ],
+          "samples": [
+            "2026.08.11 · 구리갈매역세권 A-1BL 아파트 건설공사 · 473억원",
+            "2026.07.31 · 라오스 참파삭·사라반주 상수도 공급사업 (Southern Provincial Water Supply Development Project in Champasack and Saravane Provinces) · 455억원",
+            "2026.07.29 · 동부간선 지하화(영동대로)건설공사 · 852억원"
+          ]
+        },
+        {
+          "id": "dart_strategy",
+          "label": "OpenDART 전략공시",
+          "item_type": "article",
+          "added_count": 2,
+          "item_keys": [
+            "20260730800001",
+            "20260716800005"
+          ],
+          "samples": [
+            "2026.07.30 · 안산장상 A-10BL 및 성남복정1 B-2BL 민간참여 공공주택건설사업 우선협상대상자 선정",
+            "2026.07.16 · 평택고덕 A-69BL 및 A-71BL 통합형 민간참여 공공주택건설사업 우선협상대상자 선정"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "대방건설",
+      "company": "대방건설(주)",
+      "added_count": 6,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "item_type": "article",
+          "added_count": 1,
+          "item_keys": [
+            "대방건설계열사대방이노베이션에175억원자금대여"
+          ],
+          "samples": [
+            "2026.08.20 · 대방건설, 계열사 대방이노베이션에 175억원 자금 대여"
+          ]
+        },
+        {
+          "id": "dart_strategy",
+          "label": "OpenDART 전략공시",
+          "item_type": "article",
+          "added_count": 5,
+          "item_keys": [
+            "20260820000374",
+            "20260810000300",
+            "20260810000299",
+            "20260810000298",
+            "20260730000528"
+          ],
+          "samples": [
+            "2026.08.20 · 대방이노베이션(주)",
+            "2026.08.10 · 디비이엔씨(주)",
+            "2026.08.10 · 디비개발기업(주)"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "동부건설",
+      "company": "동부건설(주)",
+      "added_count": 6,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "item_type": "article",
+          "added_count": 2,
+          "item_keys": [
+            "동부건설여주시오학동행정복지센터에100만원기탁",
+            "삼일기업공사수주잔고3배급증불황속곳간채우며실적반등기반마련"
+          ],
+          "samples": [
+            "2026.01.28 · 동부건설(주), 여주시 오학동행정복지센터에 100만 원 기탁",
+            "2026.03.24 · 삼일기업공사, 수주잔고 3배 급증…불황 속 곳간 채우며 실적 반등 기반 마련"
+          ]
+        },
+        {
+          "id": "dart_strategy",
+          "label": "OpenDART 전략공시",
+          "item_type": "article",
+          "added_count": 4,
+          "item_keys": [
+            "20260807800185",
+            "20260723800648",
+            "20260722800931",
+            "20260721801124"
+          ],
+          "samples": [
+            "2026.08.07 · 고양창릉 S16블록 민간참여 공공주택사업 우선협상대상자 선정",
+            "2026.07.23 · 고양창릉 B-1BL 및 양주고읍 A-12BL 민간참여 공공주택건설사업 우선협상대상자 선정",
+            "2026.07.22 · 장지차고지 입체화사업 건설공사"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "현대건설",
+      "company": "현대건설(주)",
+      "added_count": 5,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "item_type": "article",
+          "added_count": 1,
+          "item_keys": [
+            "현대건설정정단일판매공급계약체결"
+          ],
+          "samples": [
+            "2026.05.11 · 현대건설(주) (정정)단일판매ㆍ공급계약체결"
+          ]
+        },
+        {
+          "id": "dart_awards",
+          "label": "OpenDART 수주",
+          "item_type": "award",
+          "added_count": 3,
+          "item_keys": [
+            "20260804800394",
+            "20260804800369",
+            "20260720800163"
+          ],
+          "samples": [
+            "2026.08.04 · 인천 용현·학익 1블록 도시개발사업 공사도급 및 PM용역 기본계약 · 10,648억원",
+            "2026.08.04 · 사우디 아미랄 (Amiral) 프로젝트 PKG #1,4 · 30,981억원",
+            "2026.07.20 · [기재정정]단일판매ㆍ공급계약체결(자율공시) · 3,938억원"
+          ]
+        },
+        {
+          "id": "dart_strategy",
+          "label": "OpenDART 전략공시",
+          "item_type": "article",
+          "added_count": 1,
+          "item_keys": [
+            "20260821800388"
+          ],
+          "samples": [
+            "2026.08.21 · 회사명"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "한화",
+      "company": "(주)한화",
+      "added_count": 4,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "item_type": "article",
+          "added_count": 1,
+          "item_keys": [
+            "한화인적분할한화그룹방산3형제에득일까실일까"
+          ],
+          "samples": [
+            "2026.01.14 · (주)한화 인적분할, 한화그룹 '방산 3형제'에 득일까 실일까"
+          ]
+        },
+        {
+          "id": "dart_strategy",
+          "label": "OpenDART 전략공시",
+          "item_type": "article",
+          "added_count": 3,
+          "item_keys": [
+            "20260804000474",
+            "20260721000660",
+            "20260720800225"
+          ],
+          "samples": [
+            "2026.08.04 · 아산배방개발(주)",
+            "2026.07.21 · 한화솔루션(주)",
+            "2026.07.20 · 571,000,000,000"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "효성중공업",
+      "company": "효성중공업(주)",
+      "added_count": 4,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "item_type": "article",
+          "added_count": 3,
+          "item_keys": [
+            "효성중공업1분기영업이익1523억2200만원전년대비4877증가",
+            "효성중공업호주tangkambess공급계약체결",
+            "효성하이드로젠계열사효성중공업유상증자참여"
+          ],
+          "samples": [
+            "2026.04.24 · 효성중공업, 1분기 영업이익1523억2200만원… 전년 대비48.77% 증가",
+            "2026.03.11 · 효성중공업, 호주 Tangkam BESS 공급 계약 체결",
+            "2026.07.06 · 효성하이드로젠, 계열사 효성중공업 유상증자 참여"
+          ]
+        },
+        {
+          "id": "dart_awards",
+          "label": "OpenDART 수주",
+          "item_type": "award",
+          "added_count": 1,
+          "item_keys": [
+            "20260715800752"
+          ],
+          "samples": [
+            "2026.07.15 · 수원당수 A-5BL 아파트 건설공사 5공구 · 878억원"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "도화엔지니어링",
+      "company": "(주)도화엔지니어링",
+      "added_count": 3,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "item_type": "article",
+          "added_count": 2,
+          "item_keys": [
+            "도화엔지니어링단일판매공급계약해지",
+            "도화엔지니어링정정단일판매공급계약체결"
+          ],
+          "samples": [
+            "2026.05.11 · (주)도화엔지니어링 단일판매ㆍ공급계약 해지",
+            "2026.05.11 · (주)도화엔지니어링 (정정)단일판매ㆍ공급계약체결"
+          ]
+        },
+        {
+          "id": "dart_strategy",
+          "label": "OpenDART 전략공시",
+          "item_type": "article",
+          "added_count": 1,
+          "item_keys": [
+            "20260811801005"
+          ],
+          "samples": [
+            "2026.08.11 · 재무구조 개선"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "두산에너빌리티",
+      "company": "두산에너빌리티(주)",
+      "added_count": 3,
+      "sources": [
+        {
+          "id": "news",
+          "label": "Google News",
+          "item_type": "article",
+          "added_count": 1,
+          "item_keys": [
+            "아직닫히지않은천장sk하이닉스목표가210만원두산에너빌리티가스터빈원전수주에목표가토피아"
+          ],
+          "samples": [
+            "2026.04.24 · \"아직 닫히지 않은 천장\" SK하이닉스, 목표가 210만원…두산에너빌리티, 가스터빈·원전 수주에 목표가↑ [株토피아]"
+          ]
+        },
+        {
+          "id": "dart_awards",
+          "label": "OpenDART 수주",
+          "item_type": "award",
+          "added_count": 1,
+          "item_keys": [
+            "20260821800022"
+          ],
+          "samples": [
+            "2026.08.21 · Misfah Independent Power Project · 9,281억원"
+          ]
+        },
+        {
+          "id": "dart_strategy",
+          "label": "OpenDART 전략공시",
+          "item_type": "article",
+          "added_count": 1,
+          "item_keys": [
+            "20260724000632"
+          ],
+          "samples": [
+            "2026.07.24 · 두산지오솔루션(주)"
           ]
         }
       ]
@@ -143,68 +687,43 @@
       ]
     },
     {
-      "company_key": "한신공영",
-      "company": "한신공영(주)",
-      "added_count": 3,
-      "sources": [
-        {
-          "id": "news",
-          "label": "Google News",
-          "item_type": "article",
-          "added_count": 3,
-          "item_keys": [
-            "한신공영최우수협력사세양건설산업시상",
-            "한신공영폭염장마대응강화전재식대표현장안전점검",
-            "전재식한신공영대표이사현장안전경영강화"
-          ],
-          "samples": [
-            "2026.03.11 · 한신공영, 최우수 협력사 ‘세양건설산업’ 시상",
-            "2026.07.16 · 한신공영, 폭염·장마 대응 강화…전재식 대표 현장 안전점검",
-            "2026.07.16 · 전재식 한신공영 대표이사, 현장 안전경영 강화"
-          ]
-        }
-      ]
-    },
-    {
-      "company_key": "효성중공업",
-      "company": "효성중공업(주)",
-      "added_count": 3,
-      "sources": [
-        {
-          "id": "news",
-          "label": "Google News",
-          "item_type": "article",
-          "added_count": 3,
-          "item_keys": [
-            "효성중공업1분기영업이익1523억2200만원전년대비4877증가",
-            "효성중공업호주tangkambess공급계약체결",
-            "효성하이드로젠계열사효성중공업유상증자참여"
-          ],
-          "samples": [
-            "2026.04.24 · 효성중공업, 1분기 영업이익1523억2200만원… 전년 대비48.77% 증가",
-            "2026.03.11 · 효성중공업, 호주 Tangkam BESS 공급 계약 체결",
-            "2026.07.06 · 효성하이드로젠, 계열사 효성중공업 유상증자 참여"
-          ]
-        }
-      ]
-    },
-    {
-      "company_key": "도화엔지니어링",
-      "company": "(주)도화엔지니어링",
+      "company_key": "유신",
+      "company": "(주)유신",
       "added_count": 2,
       "sources": [
         {
-          "id": "news",
-          "label": "Google News",
-          "item_type": "article",
+          "id": "dart_awards",
+          "label": "OpenDART 수주",
+          "item_type": "award",
           "added_count": 2,
           "item_keys": [
-            "도화엔지니어링단일판매공급계약해지",
-            "도화엔지니어링정정단일판매공급계약체결"
+            "20260710900770",
+            "20260710900760"
           ],
           "samples": [
-            "2026.05.11 · (주)도화엔지니어링 단일판매ㆍ공급계약 해지",
-            "2026.05.11 · (주)도화엔지니어링 (정정)단일판매ㆍ공급계약체결"
+            "2026.07.10 · [기재정정]단일판매ㆍ공급계약체결 · 400억원",
+            "2026.07.10 · [기재정정]단일판매ㆍ공급계약체결(자율공시) · 196억원"
+          ]
+        }
+      ]
+    },
+    {
+      "company_key": "태영건설",
+      "company": "(주)태영건설",
+      "added_count": 2,
+      "sources": [
+        {
+          "id": "dart_awards",
+          "label": "OpenDART 수주",
+          "item_type": "award",
+          "added_count": 2,
+          "item_keys": [
+            "20260818800535",
+            "20260716800816"
+          ],
+          "samples": [
+            "2026.08.18 · 서울도시철도 9호선 4단계 연장사업 2공구 건설공사 · 1,102억원",
+            "2026.07.16 · 수원시 자원회수시설 개선사업 · 675억원"
           ]
         }
       ]
@@ -226,69 +745,6 @@
           "samples": [
             "2026.06.24 · 대한주택건설협회·주택도시보증공사, 국가유공자 노후주택보수 및 임차자금지원 기념식 개최",
             "2026.04.16 · 안전보건공단 광주광역본부, ‘안전기원제 및 Safety Link 릴레이 캠페인’ 발대식 개최"
-          ]
-        }
-      ]
-    },
-    {
-      "company_key": "금호건설",
-      "company": "금호건설(주)",
-      "added_count": 2,
-      "sources": [
-        {
-          "id": "news",
-          "label": "Google News",
-          "item_type": "article",
-          "added_count": 2,
-          "item_keys": [
-            "경북개발공사경북도청신도시b1bl공공임대주택추진",
-            "문왕현전무금호건설주식보유현황공시"
-          ],
-          "samples": [
-            "2026.07.12 · 경북개발공사 경북도청신도시 B-1BL 공공임대주택 추진",
-            "2026.04.17 · 문왕현 전무, 금호건설 주식 보유 현황 공시"
-          ]
-        }
-      ]
-    },
-    {
-      "company_key": "동부건설",
-      "company": "동부건설(주)",
-      "added_count": 2,
-      "sources": [
-        {
-          "id": "news",
-          "label": "Google News",
-          "item_type": "article",
-          "added_count": 2,
-          "item_keys": [
-            "동부건설여주시오학동행정복지센터에100만원기탁",
-            "삼일기업공사수주잔고3배급증불황속곳간채우며실적반등기반마련"
-          ],
-          "samples": [
-            "2026.01.28 · 동부건설(주), 여주시 오학동행정복지센터에 100만 원 기탁",
-            "2026.03.24 · 삼일기업공사, 수주잔고 3배 급증…불황 속 곳간 채우며 실적 반등 기반 마련"
-          ]
-        }
-      ]
-    },
-    {
-      "company_key": "디엘이앤씨",
-      "company": "디엘이앤씨(주)",
-      "added_count": 2,
-      "sources": [
-        {
-          "id": "news",
-          "label": "Google News",
-          "item_type": "article",
-          "added_count": 2,
-          "item_keys": [
-            "건설업계브리핑gs건설대방건설dl이앤씨lh대우건설",
-            "dl이앤씨2분기영업이익신규수주대폭증가"
-          ],
-          "samples": [
-            "2026.08.10 · [건설업계 브리핑] GS건설·대방건설·DL이앤씨·LH·대우건설",
-            "2026.08.03 · DL이앤씨, 2분기 영업이익·신규수주 대폭 증가"
           ]
         }
       ]
@@ -336,6 +792,25 @@
       ]
     },
     {
+      "company_key": "서희건설",
+      "company": "(주)서희건설",
+      "added_count": 1,
+      "sources": [
+        {
+          "id": "dart_awards",
+          "label": "OpenDART 수주",
+          "item_type": "award",
+          "added_count": 1,
+          "item_keys": [
+            "20260728900372"
+          ],
+          "samples": [
+            "2026.07.28 · [기재정정]단일판매ㆍ공급계약체결 · 2,412억원"
+          ]
+        }
+      ]
+    },
+    {
       "company_key": "수성엔지니어링",
       "company": "(주)수성엔지니어링",
       "added_count": 1,
@@ -374,20 +849,20 @@
       ]
     },
     {
-      "company_key": "한화",
-      "company": "(주)한화",
+      "company_key": "한국종합기술",
+      "company": "(주)한국종합기술",
       "added_count": 1,
       "sources": [
         {
-          "id": "news",
-          "label": "Google News",
-          "item_type": "article",
+          "id": "dart_awards",
+          "label": "OpenDART 수주",
+          "item_type": "award",
           "added_count": 1,
           "item_keys": [
-            "한화인적분할한화그룹방산3형제에득일까실일까"
+            "20260724800764"
           ],
           "samples": [
-            "2026.01.14 · (주)한화 인적분할, 한화그룹 '방산 3형제'에 득일까 실일까"
+            "2026.07.24 · 깨끗한나라 청주공장 에너지 재활용 시설 신설공사 · 715억원"
           ]
         }
       ]
@@ -407,63 +882,6 @@
           ],
           "samples": [
             "2026.05.05 · [건설人터뷰] 노진형 희림 글로벌전략사업본부장 \"해외서 한국 설계력 입증할 것\""
-          ]
-        }
-      ]
-    },
-    {
-      "company_key": "계룡건설산업",
-      "company": "계룡건설산업(주)",
-      "added_count": 1,
-      "sources": [
-        {
-          "id": "news",
-          "label": "Google News",
-          "item_type": "article",
-          "added_count": 1,
-          "item_keys": [
-            "2026기계설비의날국토교통부장관표창임재균계룡건설산업부장"
-          ],
-          "samples": [
-            "2026.07.23 · [2026 기계설비의 날] 국토교통부장관 표창- 임재균 계룡건설산업(주) 부장"
-          ]
-        }
-      ]
-    },
-    {
-      "company_key": "대방건설",
-      "company": "대방건설(주)",
-      "added_count": 1,
-      "sources": [
-        {
-          "id": "news",
-          "label": "Google News",
-          "item_type": "article",
-          "added_count": 1,
-          "item_keys": [
-            "대방건설계열사대방이노베이션에175억원자금대여"
-          ],
-          "samples": [
-            "2026.08.20 · 대방건설, 계열사 대방이노베이션에 175억원 자금 대여"
-          ]
-        }
-      ]
-    },
-    {
-      "company_key": "두산에너빌리티",
-      "company": "두산에너빌리티(주)",
-      "added_count": 1,
-      "sources": [
-        {
-          "id": "news",
-          "label": "Google News",
-          "item_type": "article",
-          "added_count": 1,
-          "item_keys": [
-            "아직닫히지않은천장sk하이닉스목표가210만원두산에너빌리티가스터빈원전수주에목표가토피아"
-          ],
-          "samples": [
-            "2026.04.24 · \"아직 닫히지 않은 천장\" SK하이닉스, 목표가 210만원…두산에너빌리티, 가스터빈·원전 수주에 목표가↑ [株토피아]"
           ]
         }
       ]
@@ -578,25 +996,6 @@
           ],
           "samples": [
             "2026.07.25 · 지난해 전기공사 27조8000억원 수주했다… 올해 예비공시"
-          ]
-        }
-      ]
-    },
-    {
-      "company_key": "현대건설",
-      "company": "현대건설(주)",
-      "added_count": 1,
-      "sources": [
-        {
-          "id": "news",
-          "label": "Google News",
-          "item_type": "article",
-          "added_count": 1,
-          "item_keys": [
-            "현대건설정정단일판매공급계약체결"
-          ],
-          "samples": [
-            "2026.05.11 · 현대건설(주) (정정)단일판매ㆍ공급계약체결"
           ]
         }
       ]

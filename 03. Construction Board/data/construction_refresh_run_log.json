@@ -365,6 +365,56 @@
       "pushed_at": "2026-08-24 09:09:32 +09:00ST",
       "pages_verified_at": "2026-08-24 09:09:32 +09:00ST",
       "pages_url": "https://sjleeigisam-ra-ieo.github.io/Org_dashboard/03.%20Construction%20Board/"
+    },
+    {
+      "scheduled_for": "2026-08-24",
+      "run_type": "manual-dart-env-rerun",
+      "started_at": "2026-08-24 09:27:54 KST",
+      "completed_at": "2026-08-24 09:27:54 KST",
+      "status": "success",
+      "sources": {
+        "opendart_awards": {
+          "status": "success",
+          "note": "Refreshed from .env:DART_API_KEY; 5-year window, max 5 per company."
+        },
+        "opendart_strategy": {
+          "status": "success",
+          "note": "Refreshed from .env:DART_API_KEY; 5-year window, max 5 per company."
+        },
+        "google_news": {
+          "status": "not_run",
+          "note": "Retained from Monday refresh cache."
+        },
+        "nara_g2b_contracts": {
+          "status": "not_run",
+          "note": "Retained from Monday refresh cache."
+        },
+        "credit_ratings": {
+          "status": "not_run",
+          "note": "Monthly cache retained."
+        }
+      },
+      "changed_files": [
+        "03. Construction Board/README.md",
+        "03. Construction Board/HANDOFF.md",
+        "03. Construction Board/scripts/update_construction_dart_awards.py",
+        "03. Construction Board/data/construction_dart_awards_cache.json",
+        "03. Construction Board/data/construction_dart_strategy_cache.json",
+        "03. Construction Board/data/construction_online_update_marks.json",
+        "03. Construction Board/data/construction_refresh_run_log.json",
+        "03. Construction Board/data/construction_source_status_data.json",
+        "03. Construction Board/index.html"
+      ],
+      "pushed": false,
+      "pages_verified": false,
+      "update_marks": {
+        "companies_with_updates": 33,
+        "new_item_marks": 119
+      },
+      "notes": [
+        "Added DART_API_KEY to accepted OpenDART env key names.",
+        "OpenDART awards and strategy disclosures refreshed successfully without exposing API key values."
+      ]
     }
   ],
   "generated_at": "2026-08-24 07:52:43 +09:00ST"

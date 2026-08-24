@@ -26,7 +26,7 @@ DART_CACHE_OUT = OUTPUT_DIR / "construction_dart_awards_cache.json"
 CORP_CODE_CACHE = OUTPUT_DIR / "_dart_cache" / "CORPCODE.xml"
 
 ENV_PATHS = [ROOT / ".env", ROOT / "51. IOTA_platform" / ".env"]
-DART_KEY_NAMES = ("OPENDART_KEY", "OPEN_DART_KEY", "DART_KEY", "CRTFC_KEY", "crtfc_key", "key")
+DART_KEY_NAMES = ("OPENDART_KEY", "OPEN_DART_KEY", "DART_API_KEY", "DART_KEY", "CRTFC_KEY", "crtfc_key", "key")
 
 KST = timezone(timedelta(hours=9))
 USER_AGENT = "RA-dashboard/0.1"

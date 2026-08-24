@@ -13,9 +13,8 @@ The Codex thread automation now wakes this same thread every Monday 06:00 KST fo
 
 Current refresh snapshot:
 
-- OpenDART awards: 2021-07-03 to 2026-07-03, max 5 per company.
-- OpenDART strategy disclosures: investment, equity/capex, M&A/restructuring, financing, and related-party signals, max 5 per company. Category labels are retained only for filtering/dedupe metadata, not as visible article-title prefixes.
-- 2026-08-17 OpenDART refresh attempt was blocked because the API key was not found in project env files, so the previous OpenDART award/strategy caches were retained.
+- OpenDART awards: refreshed 2026-08-24 from `.env:DART_API_KEY`, 2021-08-24 to 2026-08-24, max 5 per company.
+- OpenDART strategy disclosures: refreshed 2026-08-24 from `.env:DART_API_KEY`; investment, equity/capex, M&A/restructuring, financing, and related-party signals, max 5 per company. Category labels are retained only for filtering/dedupe metadata, not as visible article-title prefixes.
 - Google News RSS: refreshed 2026-08-17, 365-day window, max 5 per company.
 - Nara/G2B contracts: refreshed 2026-08-17 with a narrow 14-day query window because longer API windows can time out or exceed input limits.
 - Credit ratings: refreshed 2026-07-15 for CAK top-30 companies, KIS/NICE public company search, OpenDART fallback disabled for this run.

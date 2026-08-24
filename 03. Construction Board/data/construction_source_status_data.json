@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24 07:51:59 KST",
+  "generated_at": "2026-08-24 09:25:03 KST",
   "cak": {
     "ok": true,
     "data": {
@@ -197,6 +197,57 @@
           "rank_change": "0",
           "recent_awards": [
             {
+              "project": "인천 용현·학익 1블록 도시개발사업 공사도급 및 PM용역 기본계약",
+              "client": "(주)디씨알이",
+              "amount": "10,648억원",
+              "category": "공사수주",
+              "date": "2026.08.04",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260804800394",
+              "receipt_no": "20260804800394",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "인천광역시 남구 학익동 587-1일원",
+              "contract_period": "2020-04-13 ~ -",
+              "amount_krw": "1064815038000",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
+              "project": "사우디 아미랄 (Amiral) 프로젝트 PKG #1,4",
+              "client": "SATORP",
+              "amount": "30,981억원",
+              "category": "공사수주",
+              "date": "2026.08.04",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260804800369",
+              "receipt_no": "20260804800369",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "사우디 동부 쥬베일 산업 II 단지",
+              "contract_period": "2023-06-24 ~ 2027-06-23",
+              "amount_krw": "3098062184248",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
+              "project": "[기재정정]단일판매ㆍ공급계약체결(자율공시)",
+              "client": "홍콩 병원관리국(Hospital Authority)",
+              "amount": "3,938억원",
+              "category": "공사수주",
+              "date": "2026.07.20",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260720800163",
+              "receipt_no": "20260720800163",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결(자율공시)",
+              "region": "홍콩 구룡반도 쿤통 지역",
+              "contract_period": "2021-02-03 ~ 2026-10-14",
+              "amount_krw": "393815880000",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
               "project": "범천4구역 주택재개발정비사업",
               "client": "범천4구역 주택재개발정비사업조합",
               "amount": "8,531억원",
@@ -229,66 +280,33 @@
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "이태원동 유엔사부지 복합개발 사업",
-              "client": "용산일레븐 주식회사",
-              "amount": "8,473억원",
-              "category": "공사수주",
-              "date": "2026.05.08",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260508800984",
-              "receipt_no": "20260508800984",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "서울시 용산구 이태원동 22-34 번지 일원",
-              "contract_period": "2023-02-11 ~ 2027-06-04",
-              "amount_krw": "847284000000",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "인천 용현·학익 1블록 도시개발사업 공사도급 및 PM용역 기본계약",
-              "client": "(주)디씨알이",
-              "amount": "10,656억원",
-              "category": "공사수주",
-              "date": "2026.04.29",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260429800365",
-              "receipt_no": "20260429800365",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "인천광역시 남구 학익동 587-1일원",
-              "contract_period": "2020-04-13 ~ -",
-              "amount_krw": "1065601287000",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "대장~홍대 광역철도 민간투자시설사업 건설공사",
-              "client": "서부광역메트로 주식회사",
-              "amount": "11,098억원",
-              "category": "공사수주",
-              "date": "2026.04.15",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260415800829",
-              "receipt_no": "20260415800829",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "경기도 부천시 대장신도시 ~ 서울특별시 마포구 홍대입구",
-              "contract_period": "- ~ -",
-              "amount_krw": "1109785619125",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
             }
           ],
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
+            {
+              "title": "회사명",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260821800388",
+              "source": "OpenDART 전략공시",
+              "published": "2026.08.21",
+              "summary": "합병목적: EVC사업 경쟁력 강화 · 합병상대회사: 회사명 · 회사명: 한국전기차충전서비스(주) · 주요사업: 전기차 충전인프라 구축사업 및 전기차 충전서비스사업",
+              "primary_category": "ma_restructuring",
+              "categories": [
+                "dart_strategy",
+                "ma_restructuring"
+              ],
+              "matched_terms": [
+                "회사합병결정"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260821800388",
+              "report_name": "회사합병결정(종속회사의주요경영사항)"
+            },
             {
               "title": "현대건설 주식회사",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260609000517",
@@ -355,27 +373,12 @@
                 "건설"
               ],
               "direction_signal": false
-            },
-            {
-              "title": "현대건설, 최대주주등 보통주 3888만4901주 보유",
-              "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1yVWNqLW5YUWU4TTdXY2diVHdXWnJ3RHJmOFlpZXd1MGdKTkNkdWRDU3c2WU4wT0IwNkNWX0VmQ1ZidG1zUXJZUXdSVXFJLVUxUElCRk04LU1sbWhscmxFMDBVWHRjQ2tGMjhFbjRDXzVnNkU?oc=5",
-              "source": "디지털투데이",
-              "published": "2026.04.02",
-              "summary": "현대건설, 최대주주등 보통주 3888만4901주 보유 디지털투데이",
-              "primary_category": "award_contract",
-              "categories": [
-                "award_contract"
-              ],
-              "matched_terms": [
-                "건설"
-              ],
-              "direction_signal": false
             }
           ],
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "AA-",
@@ -437,7 +440,7 @@
           "online_update_mark": {
             "company_key": "현대건설",
             "company": "현대건설(주)",
-            "added_count": 1,
+            "added_count": 5,
             "sources": [
               {
                 "id": "news",
@@ -450,11 +453,44 @@
                 "samples": [
                   "2026.05.11 · 현대건설(주) (정정)단일판매ㆍ공급계약체결"
                 ]
+              },
+              {
+                "id": "dart_awards",
+                "label": "OpenDART 수주",
+                "item_type": "award",
+                "added_count": 3,
+                "item_keys": [
+                  "20260804800394",
+                  "20260804800369",
+                  "20260720800163"
+                ],
+                "samples": [
+                  "2026.08.04 · 인천 용현·학익 1블록 도시개발사업 공사도급 및 PM용역 기본계약 · 10,648억원",
+                  "2026.08.04 · 사우디 아미랄 (Amiral) 프로젝트 PKG #1,4 · 30,981억원",
+                  "2026.07.20 · [기재정정]단일판매ㆍ공급계약체결(자율공시) · 3,938억원"
+                ]
+              },
+              {
+                "id": "dart_strategy",
+                "label": "OpenDART 전략공시",
+                "item_type": "article",
+                "added_count": 1,
+                "item_keys": [
+                  "20260821800388"
+                ],
+                "samples": [
+                  "2026.08.21 · 회사명"
+                ]
               }
             ]
           },
-          "online_update_award_keys": [],
+          "online_update_award_keys": [
+            "20260720800163",
+            "20260804800369",
+            "20260804800394"
+          ],
           "online_update_article_keys": [
+            "20260821800388",
             "현대건설정정단일판매공급계약체결"
           ]
         },
@@ -805,79 +841,86 @@
           "rank_change": "▼2",
           "recent_awards": [
             {
-              "project": "서울문창초등학교 외 1교(서울강남초등학교) 운동장개선 및 기타공사",
-              "client": "서울특별시교육청 서울특별시동작관악교육지원청",
-              "amount": "1.74억원",
-              "category": "제한경쟁",
-              "date": "2026-08-10",
-              "source_name": "나라장터 계약정보",
-              "source_url": "http://www.g2b.go.kr",
-              "amount_krw": "173880500"
-            },
-            {
-              "project": "대동아아파트 소규모재건축정비사업",
-              "client": "대동아아파트 소규모재건축정비사업조합",
-              "amount": "560억원",
+              "project": "부산광역시 남천동 공동주택 신축사업",
+              "client": "큐브광안피에프브이 주식회사",
+              "amount": "7,363억원",
               "category": "공사수주",
-              "date": "2026.07.03",
+              "date": "2026.08.21",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260703800416",
-              "receipt_no": "20260703800416",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260821800060",
+              "receipt_no": "20260821800060",
               "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "경기도 안양시 만안구 안양동 190-11번지 일원",
-              "contract_period": "2023-07-31 ~ 2026-06-30",
-              "amount_krw": "56041000000",
+              "region": "부산광역시 수영구 남천동",
+              "contract_period": "2025-07-14 ~ 2029-06-30",
+              "amount_krw": "736334822604",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
             },
             {
-              "project": "오산오산 1BL, 인천검단 AA31BL, 인천영종 A-57BL 및 A-63BL 통합형 민간참여 공공주택 건설사업",
-              "client": "한국토지주택공사(LH)",
-              "amount": "779억원",
-              "category": "공사수주",
-              "date": "2026.07.02",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260702800782",
-              "receipt_no": "20260702800782",
-              "report_name": "단일판매ㆍ공급계약체결",
-              "region": "경기도 오산시 부산동 오산지구, 인천광역시 서구 마전동 검단지구, 인천광역시 중구 운남동 영종하늘도시 일원",
-              "contract_period": "2026-06-30 ~ 2030-03-31",
-              "amount_krw": "77943288983",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "서울 동남권지역 전기공급시설 전력구공사",
-              "client": "한국전력공사",
-              "amount": "945억원",
-              "category": "공사수주",
-              "date": "2026.07.02",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260702800838",
-              "receipt_no": "20260702800838",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "서울특별시",
-              "contract_period": "2019-12-23 ~ 2028-08-22",
-              "amount_krw": "94455693000",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "구미천연가스발전소 건설공사",
+              "project": "공주 천연가스발전소 건설공사",
               "client": "한국서부발전(주)",
-              "amount": "3,641억원",
+              "amount": "1,845억원",
               "category": "공사수주",
-              "date": "2026.07.02",
+              "date": "2026.08.21",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260702800263",
-              "receipt_no": "20260702800263",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260821800649",
+              "receipt_no": "20260821800649",
               "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "경상북도 구미시 하이테크벨리 국가5산업단지 내",
-              "contract_period": "2022-10-04 ~ 2026-08-31",
-              "amount_krw": "364059785524",
+              "region": "충청남도 공주시 이인면 남공주일반산업단지 내",
+              "contract_period": "2024-05-01 ~ 2027-04-30",
+              "amount_krw": "184521559993",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
+              "project": "Misfah Independent Power Project",
+              "client": "Jabel Power SAOC",
+              "amount": "9,281억원",
+              "category": "공사수주",
+              "date": "2026.08.21",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260821800022",
+              "receipt_no": "20260821800022",
+              "report_name": "단일판매ㆍ공급계약체결",
+              "region": "Misfah, Oman",
+              "contract_period": "2026-08-20 ~ 2029-04-01",
+              "amount_krw": "928136466540",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
+              "project": "청주 송절 2 지구 도시개발구역 A1BL 공동주택 신축사업",
+              "client": "주식회사 나산",
+              "amount": "3,127억원",
+              "category": "공사수주",
+              "date": "2026.08.19",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260819800180",
+              "receipt_no": "20260819800180",
+              "report_name": "단일판매ㆍ공급계약체결",
+              "region": "청주시 흥덕구 송절동 65번지 일원",
+              "contract_period": "- ~ -",
+              "amount_krw": "312654673000",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
+              "project": "삼천주공3 재건축 정비사업",
+              "client": "삼천주공3 재건축 정비사업조합",
+              "amount": "1,808억원",
+              "category": "공사수주",
+              "date": "2026.08.19",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260819800691",
+              "receipt_no": "20260819800691",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "전라북도 전주시 완산구 삼천동1가 585-4번지 일원",
+              "contract_period": "2020-07-28 ~ -",
+              "amount_krw": "180795610000",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
@@ -886,10 +929,28 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
+            {
+              "title": "고양창릉 S-16BL 민간참여 공공주택사업 우선협상대상자 선정",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260807800212",
+              "source": "OpenDART 전략공시",
+              "published": "2026.08.07",
+              "summary": "제목: 고양창릉 S-16BL 민간참여 공공주택사업 우선협상대상자 선정 · 주요내용: - 당사는 경기주택도시공사(GH)로부터 고양창릉 S-16BL 민간참여 공공주택사업의 우선협상대상자 선정 공문을 수령함 - 본... · 이사회결의일(결정일)또는사실확인일: 2026-08-07",
+              "primary_category": "investment_decision",
+              "categories": [
+                "dart_strategy",
+                "investment_decision"
+              ],
+              "matched_terms": [
+                "투자판단관련주요경영사항"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260807800212",
+              "report_name": "투자판단관련주요경영사항"
+            },
             {
               "title": "전재수 시장-대우건설 회장 회동 추진",
               "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE92Z216ZUxXRUxmU2gxQ2dYU1FlakpFYmhUUEpKbWVJdFR2ZGJvQkh0amFIQ2lMYjl5VlkwcE9sS2tCQ0VzSkZXbkJjMEpXQ1hGTVRCWQ?oc=5",
@@ -904,6 +965,42 @@
                 "건설"
               ],
               "direction_signal": false
+            },
+            {
+              "title": "강남원효성빌라 재건축정비사업 시공사 선정 취소",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260728800849",
+              "source": "OpenDART 전략공시",
+              "published": "2026.07.28",
+              "summary": "제목: 강남원효성빌라 재건축정비사업 시공사 선정 취소 · 주요내용: - 강남원효성빌라 재건축정비사업조합의 총회에서 당사에 대한 시공사 선정 취소가 결정되었음. - 최초 시공사 선정일: 2025... · 이사회결의일(결정일)또는사실확인일: 2026-07-28",
+              "primary_category": "investment_decision",
+              "categories": [
+                "dart_strategy",
+                "investment_decision"
+              ],
+              "matched_terms": [
+                "투자판단관련주요경영사항"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260728800849",
+              "report_name": "투자판단관련주요경영사항"
+            },
+            {
+              "title": "상도15구역 주택정비형 재개발사업 시공자 선정",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260720800005",
+              "source": "OpenDART 전략공시",
+              "published": "2026.07.20",
+              "summary": "제목: 상도15구역 주택정비형 재개발사업 시공자 선정 · 주요내용: - 당사는 상도15구역 주택정비형 재개발사업 조합 총회에서 시공자로 선정됨 - 본 사업의 공사금액은 약 1조 4,367억원임... · 이사회결의일(결정일)또는사실확인일: 2026-07-16",
+              "primary_category": "investment_decision",
+              "categories": [
+                "dart_strategy",
+                "investment_decision"
+              ],
+              "matched_terms": [
+                "투자판단관련주요경영사항"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260720800005",
+              "report_name": "투자판단관련주요경영사항"
             },
             {
               "title": "정원주 대우건설 회장, 인도네시아서 정·관계 만남...AI데이터센터 구축 논의",
@@ -921,61 +1018,12 @@
                 "데이터센터"
               ],
               "direction_signal": true
-            },
-            {
-              "title": "정원주 대우건설 회장, 인니서 'SMR·LNG·AI 데이터센터' 융복합 모델 제안",
-              "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1xV2Z3ZVRITGxOWjduc0tNeTZjSGZmU0RkYzd3NEEybnRvcjdlcE1ZNG91TGY0Y1V1dnFtQUUxQVpLMWFjNm42OGJPN2VpNWNaNmJ2d1Z5NzFqWUxBQ21naHJLc25ncHFlUWJwaERHamU?oc=5",
-              "source": "연합인포맥스",
-              "published": "2026.07.13",
-              "summary": "정원주 대우건설 회장, 인니서 'SMR·LNG·AI 데이터센터' 융복합 모델 제안 연합인포맥스",
-              "primary_category": "award_contract",
-              "categories": [
-                "award_contract",
-                "new_business_expansion"
-              ],
-              "matched_terms": [
-                "건설",
-                "데이터센터"
-              ],
-              "direction_signal": true
-            },
-            {
-              "title": "정원주 대우건설 회장, 美 부동산 시장 재진출…뉴저지 주거개발 투자",
-              "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9PNEY3M1JKdVY2TDFVcGFZMnlHUTRVRWh1RmRzbjYwdy1MZGtUc1FhUnNSbk0wcEQxVXdweU1PTkxZalJXZkFwcDEtUFRrMTd3d3p2dXFHWWtva3M3OTR5Q2hPNzIyRWM3OFVZ?oc=5",
-              "source": "CEO스코어데일리",
-              "published": "2026.07.08",
-              "summary": "정원주 대우건설 회장, 美 부동산 시장 재진출…뉴저지 주거개발 투자 CEO스코어데일리",
-              "primary_category": "award_contract",
-              "categories": [
-                "award_contract",
-                "group_investment"
-              ],
-              "matched_terms": [
-                "건설",
-                "투자"
-              ],
-              "direction_signal": true
-            },
-            {
-              "title": "정원주 대우건설 회장, 투르크메니스탄 대통령 면담 \"비료공장 건설 순항\"",
-              "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1wY2RzMmx4VFNLekhPX1B0bi02dlBsN0tiWjdMU1gzUGpIZUNMNE45MGhIRWQtX1pMNURfZ0FVSGpWVHdIRFVBdW4wX3VDdHJWbldyQldYRzdqLTR2TWQzb0dyVQ?oc=5",
-              "source": "더구루",
-              "published": "2026.07.01",
-              "summary": "정원주 대우건설 회장, 투르크메니스탄 대통령 면담 \"비료공장 건설 순항\" 더구루",
-              "primary_category": "award_contract",
-              "categories": [
-                "award_contract"
-              ],
-              "matched_terms": [
-                "건설"
-              ],
-              "direction_signal": false
             }
           ],
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "미확인",
@@ -1007,7 +1055,7 @@
           "online_update_mark": {
             "company_key": "대우건설",
             "company": "(주)대우건설",
-            "added_count": 4,
+            "added_count": 12,
             "sources": [
               {
                 "id": "news",
@@ -1025,11 +1073,54 @@
                   "2026.07.28 · 전재수 시장-대우건설 회장 회동 추진",
                   "2026.07.14 · 정원주 대우건설 회장, 인도네시아서 정·관계 만남...AI데이터센터 구축 논의"
                 ]
+              },
+              {
+                "id": "dart_awards",
+                "label": "OpenDART 수주",
+                "item_type": "award",
+                "added_count": 5,
+                "item_keys": [
+                  "20260821800060",
+                  "20260819800180",
+                  "20260807800247",
+                  "20260806800295",
+                  "20260731801220"
+                ],
+                "samples": [
+                  "2026.08.21 · 부산광역시 남천동 공동주택 신축사업 · 7,363억원",
+                  "2026.08.19 · 청주 송절 2 지구 도시개발구역 A1BL 공동주택 신축사업 · 3,127억원",
+                  "2026.08.07 · 가야1구역 주택재개발정비사업 · 3,738억원"
+                ]
+              },
+              {
+                "id": "dart_strategy",
+                "label": "OpenDART 전략공시",
+                "item_type": "article",
+                "added_count": 3,
+                "item_keys": [
+                  "20260807800212",
+                  "20260728800849",
+                  "20260720800005"
+                ],
+                "samples": [
+                  "2026.08.07 · 고양창릉 S-16BL 민간참여 공공주택사업 우선협상대상자 선정",
+                  "2026.07.28 · 강남원효성빌라 재건축정비사업 시공사 선정 취소",
+                  "2026.07.20 · 상도15구역 주택정비형 재개발사업 시공자 선정"
+                ]
               }
             ]
           },
-          "online_update_award_keys": [],
+          "online_update_award_keys": [
+            "20260731801220",
+            "20260806800295",
+            "20260807800247",
+            "20260819800180",
+            "20260821800060"
+          ],
           "online_update_article_keys": [
+            "20260720800005",
+            "20260728800849",
+            "20260807800212",
             "전재수시장대우건설회장회동추진",
             "정원주대우건설회장부동산시장재진출뉴저지주거개발투자",
             "정원주대우건설회장인니서smrlngai데이터센터융복합모델제안",
@@ -1048,86 +1139,86 @@
           "rank_change": "▼2",
           "recent_awards": [
             {
-              "project": "오산오산 1BL, 인천검단 AA31BL, 인천영종 A-57BL 및 A-63BL 통합형 민간참여 공공주택 건설사업",
-              "client": "한국토지주택공사(LH)",
-              "amount": "2,839억원",
+              "project": "부산항 신항 북컨2단계 항만배후단지 조성공사",
+              "client": "부산항만공사",
+              "amount": "3,475억원",
               "category": "공사수주",
-              "date": "2026.07.02",
+              "date": "2026.08.11",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260702800852",
-              "receipt_no": "20260702800852",
-              "report_name": "단일판매ㆍ공급계약체결",
-              "region": "(오산오산) 경기도 오산시 부산동 일원 (인천검단) 인천광역시 서구 원당동, 당하동, 마전동, 불로동 일원 (인천영종) 인천광역시 중구 운서동, 운남동, 운북동, 중산동 일원",
-              "contract_period": "2026-06-30 ~ 2030-03-31",
-              "amount_krw": "283936267008",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "울릉공항 건설공사",
-              "client": "국토교통부 부산지방항공청",
-              "amount": "2,803억원",
-              "category": "공사수주",
-              "date": "2026.06.24",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260624800895",
-              "receipt_no": "20260624800895",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260811800914",
+              "receipt_no": "20260811800914",
               "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "경상북도 울릉군 울릉읍 사동리 사동항 일원",
-              "contract_period": "2020-07-23 ~ 2027-10-31",
-              "amount_krw": "280317716982",
+              "region": "-",
+              "contract_period": "2022-07-18 ~ 2034-07-17",
+              "amount_krw": "347502580000",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
             },
             {
-              "project": "제주청정에너지 복합발전소 파워블럭 및 부대설비 설치조건부 구매",
-              "client": "한국동서발전주식회사",
-              "amount": "4,999억원",
+              "project": "ICN11 Data Center",
+              "client": "Digital Seoul 2 Ltd.",
+              "amount": "4,449억원",
               "category": "공사수주",
-              "date": "2026.06.05",
+              "date": "2026.07.14",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260605800388",
-              "receipt_no": "20260605800388",
-              "report_name": "단일판매ㆍ공급계약체결",
-              "region": "제주특별자치도 제주시 구좌읍 동복리 1757-1 일원(기존 세원산업 채석장 부지)",
-              "contract_period": "2026-06-04 ~ 2030-04-30",
-              "amount_krw": "499875000000",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260714800782",
+              "receipt_no": "20260714800782",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "경기도 김포시 구래동 6877-9",
+              "contract_period": "2025-05-25 ~ 2027-10-24",
+              "amount_krw": "444897331437",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
             },
             {
-              "project": "서울 증산4 도심 공공주택 복합사업",
-              "client": "한국토지주택공사(LH)",
-              "amount": "10,018억원",
+              "project": "Gas Chemical Complex for Polymerization of ethylene into polyethylene and linear alpha-olefin production",
+              "client": "China National Chemical Engineering & Construction Corporation Seven, Ltd.",
+              "amount": "3,265억원",
               "category": "공사수주",
-              "date": "2026.05.28",
+              "date": "2026.07.13",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260528800997",
-              "receipt_no": "20260528800997",
-              "report_name": "단일판매ㆍ공급계약체결",
-              "region": "서울특별시 은평구 증산동 205-33번지 일대",
-              "contract_period": "2026-05-27 ~ 2033-12-31",
-              "amount_krw": "1001793560644",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260713800787",
+              "receipt_no": "20260713800787",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "러시아 우스트-루가 지역",
+              "contract_period": "2021-12-29 ~ -",
+              "amount_krw": "326490369687",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
             },
             {
-              "project": "수서~광주 복선전철 제2공구 건설공사",
-              "client": "국가철도공단",
-              "amount": "2,289억원",
+              "project": "국회대로 지하차도 및 상부공원화(2단계)건설공사 2공구",
+              "client": "서울특별시 도시기반시설본부",
+              "amount": "2,578억원",
               "category": "공사수주",
-              "date": "2026.05.22",
+              "date": "2026.07.10",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260522800452",
-              "receipt_no": "20260522800452",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260710800853",
+              "receipt_no": "20260710800853",
               "report_name": "단일판매ㆍ공급계약체결",
-              "region": "서울시 강남구 수서동 ~ 경기도 성남시 중원구 성남동 일원",
-              "contract_period": "2026-05-21 ~ 2031-05-20",
-              "amount_krw": "228880909090",
+              "region": "서울특별시 양천구 1060 ~ 양천구 목동 919-1(국회대로)",
+              "contract_period": "2021-01-12 ~ 2031-08-31",
+              "amount_krw": "257832727273",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
+              "project": "영동대로 지하공간 복합개발 1공구 건설공사",
+              "client": "서울특별시 도시기반시설본부",
+              "amount": "1,931억원",
+              "category": "공사수주",
+              "date": "2026.07.06",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260706800236",
+              "receipt_no": "20260706800236",
+              "report_name": "단일판매ㆍ공급계약체결",
+              "region": "강남구 삼성동 111-8 봉은사역 일대",
+              "contract_period": "2021-02-10 ~ 2028-10-31",
+              "amount_krw": "193064004899",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
@@ -1136,10 +1227,28 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
+            {
+              "title": "\"아산 열병합발전소 건설공사\" 낙찰자 선정",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260813800713",
+              "source": "OpenDART 전략공시",
+              "published": "2026.08.13",
+              "summary": "제목: \"아산 열병합발전소 건설공사\" 낙찰자 선정 · 주요내용: - 당사는 \"아산 열병합발전소 건설공사\"에 대한 낙찰자로 선정되었습니다. - 발주처 : 한국서부발전(주) 컨소시엄 - 계약금... · 이사회결의일(결정일)또는사실확인일: 2026-08-13",
+              "primary_category": "investment_decision",
+              "categories": [
+                "dart_strategy",
+                "investment_decision"
+              ],
+              "matched_terms": [
+                "투자판단관련주요경영사항"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260813800713",
+              "report_name": "투자판단관련주요경영사항"
+            },
             {
               "title": "[건설업계 브리핑] GS건설·대방건설·DL이앤씨·LH·대우건설",
               "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE16R05qUkd3eUg1eklfb2pta3plLV9GOUdwZzdDdTREQnhjS2dCUFhBLWQyNFU3bUlJRHRrYkZIbHczeFRtcnYwQjdkTmxSa3d1Q3Fvc2o1VmJTSmJEZml4NjNIeDAzRndYaXZqVUYtMNIBc0FVX3lxTE9uSDZ1UVRmT1g3d280RnUzSkJ1TEptR0c1VEJjRVhRWTVVRS1CSHZya1ZtVi1nZkE5ZWlkbWZzc2otNGxmb1JGZ3ZnM1Jla3hZemd0NEQ5Nl9NT2RNdU05cGJjcVNLVzRjWXlhWGJGR1h0b1E?oc=5",
@@ -1191,41 +1300,28 @@
               "direction_signal": true
             },
             {
-              "title": "2년 수주 부진 DL이앤씨 '새 일감 10조' 회복할까?",
-              "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA4emRYUnhsWlVlNFpBMVpvUGpzdU9nNFBlc2VKZHR3a2JnUmdxdnVhT042QzJzNXdMUTJDNUtEV2lIeEY2OGhOTTlFc2s0ZE5OcDhYZzhvSkh6bF9wMW5hQVpwYk9vd3AzMGJQWk1JNG4?oc=5",
-              "source": "비즈워치",
-              "published": "2026.07.08",
-              "summary": "2년 수주 부진 DL이앤씨 '새 일감 10조' 회복할까? 비즈워치",
-              "primary_category": "award_contract",
+              "title": "평택고덕 A-69BL 및 A-71BL 통합형 민간참여 공공주택건설사업",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260716800007",
+              "source": "OpenDART 전략공시",
+              "published": "2026.07.16",
+              "summary": "제목: 평택고덕 A-69BL 및 A-71BL 통합형 민간참여 공공주택건설사업 · 주요내용: 당사는 평택고덕 A-69BL 및 A-71BL 통합형 민간참여 공공주택건설사업의 우선협상대상자로 선정되었습니다. - 발주처 :... · 이사회결의일(결정일)또는사실확인일: 2026-07-15",
+              "primary_category": "investment_decision",
               "categories": [
-                "award_contract"
+                "dart_strategy",
+                "investment_decision"
               ],
               "matched_terms": [
-                "수주"
+                "투자판단관련주요경영사항"
               ],
-              "direction_signal": false
-            },
-            {
-              "title": "[2026 상반기 건설시장 결산]① ‘9032억’ DL이앤씨, 상반기 公共 ‘수주킹’",
-              "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1adUxUYlA0elJrTnVKNUxreTNXbTVDNi1QWExQU2xSMzNIX0E3WHFZUkZmbG5ZQ202dlpmeHYzcTFKVHRaVnMyTDhGa3hlRjZDZkoyaFh3NDh5UXZsVlFkREd5UW5BOEdYN0E2VXRHMHFJaFU?oc=5",
-              "source": "대한경제",
-              "published": "2026.06.30",
-              "summary": "[2026 상반기 건설시장 결산]① ‘9032억’ DL이앤씨, 상반기 公共 ‘수주킹’ 대한경제",
-              "primary_category": "award_contract",
-              "categories": [
-                "award_contract"
-              ],
-              "matched_terms": [
-                "수주",
-                "건설"
-              ],
-              "direction_signal": false
+              "direction_signal": true,
+              "receipt_no": "20260716800007",
+              "report_name": "투자판단관련주요경영사항"
             }
           ],
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "A",
@@ -1276,7 +1372,7 @@
           "online_update_mark": {
             "company_key": "디엘이앤씨",
             "company": "디엘이앤씨(주)",
-            "added_count": 2,
+            "added_count": 9,
             "sources": [
               {
                 "id": "news",
@@ -1291,11 +1387,51 @@
                   "2026.08.10 · [건설업계 브리핑] GS건설·대방건설·DL이앤씨·LH·대우건설",
                   "2026.08.03 · DL이앤씨, 2분기 영업이익·신규수주 대폭 증가"
                 ]
+              },
+              {
+                "id": "dart_awards",
+                "label": "OpenDART 수주",
+                "item_type": "award",
+                "added_count": 5,
+                "item_keys": [
+                  "20260811800914",
+                  "20260714800782",
+                  "20260713800787",
+                  "20260710800853",
+                  "20260706800236"
+                ],
+                "samples": [
+                  "2026.08.11 · 부산항 신항 북컨2단계 항만배후단지 조성공사 · 3,475억원",
+                  "2026.07.14 · ICN11 Data Center · 4,449억원",
+                  "2026.07.13 · Gas Chemical Complex for Polymerization of ethylene into polyethylene and linear alpha-olefin production · 3,265억원"
+                ]
+              },
+              {
+                "id": "dart_strategy",
+                "label": "OpenDART 전략공시",
+                "item_type": "article",
+                "added_count": 2,
+                "item_keys": [
+                  "20260813800713",
+                  "20260716800007"
+                ],
+                "samples": [
+                  "2026.08.13 · \"아산 열병합발전소 건설공사\" 낙찰자 선정",
+                  "2026.07.16 · 평택고덕 A-69BL 및 A-71BL 통합형 민간참여 공공주택건설사업"
+                ]
               }
             ]
           },
-          "online_update_award_keys": [],
+          "online_update_award_keys": [
+            "20260706800236",
+            "20260710800853",
+            "20260713800787",
+            "20260714800782",
+            "20260811800914"
+          ],
           "online_update_article_keys": [
+            "20260716800007",
+            "20260813800713",
             "dl이앤씨2분기영업이익신규수주대폭증가",
             "건설업계브리핑gs건설대방건설dl이앤씨lh대우건설"
           ]
@@ -1398,7 +1534,7 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "A",
@@ -1671,7 +1807,7 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "A-",
@@ -1936,10 +2072,64 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
+            {
+              "title": "아산배방개발(주)",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260804000474",
+              "source": "OpenDART 전략공시",
+              "published": "2026.08.04",
+              "summary": "회사명: (주)한화 · 거래상대방: 아산배방개발(주) · 사.거래상대방총잔액: 366,960",
+              "primary_category": "group_transaction",
+              "categories": [
+                "dart_strategy",
+                "group_transaction"
+              ],
+              "matched_terms": [
+                "특수관계인에대한담보제공"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260804000474",
+              "report_name": "특수관계인에대한담보제공"
+            },
+            {
+              "title": "한화솔루션(주)",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260721000660",
+              "source": "OpenDART 전략공시",
+              "published": "2026.07.21",
+              "summary": "회사명: (주)한화 · 거래상대방: 한화솔루션(주)",
+              "primary_category": "equity_investment",
+              "categories": [
+                "dart_strategy",
+                "equity_investment"
+              ],
+              "matched_terms": [
+                "특수관계인에대한출자"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260721000660",
+              "report_name": "특수관계인에대한출자"
+            },
+            {
+              "title": "571,000,000,000",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260720800225",
+              "source": "OpenDART 전략공시",
+              "published": "2026.07.20",
+              "summary": "자금조달의목적-채무상환자금(원): 571,000,000,000 · 한화솔루션㈜의[기재정정]주요사항보고서(유상증자결정)공시(2026.06.12)'24.기타투자판단에참고할사항-가.신주발행가액산정방법'참조: 한화솔루션㈜의 [기재정정]주요사항보고서(유상증자결정) 공시(2026.07.20)'24.기타 투자판단에 참고할 사항-가.신주... · 한화솔루션㈜의[기재정정]주요사항보고서(유상증자결정)공시(2026.06.12)'24.기타투자판단에참고할사항-나.신주의배정방법'참조: 한화솔루션㈜의 [기재정정]주요사항보고서(유상증자결정) 공시(2026.07.20)'24.기타 투자판단에 참고할 사항-나.신주의... · 기타투자판단과관련한중요사항: - 상기 사항 이외의 자세한 사항은 한화솔루션㈜가 금융감독원 전자공시시스템(DART)에 2026.06.12 공시한 [기재정정...",
+              "primary_category": "financing",
+              "categories": [
+                "dart_strategy",
+                "financing"
+              ],
+              "matched_terms": [
+                "유상증자결정"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260720800225",
+              "report_name": "유상증자결정(종속회사의주요경영사항)"
+            },
             {
               "title": "(주)한화 인적분할 확정…'한화·한화머시너리' 분리 상장",
               "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFB6NzNZMlVaVDYtcWxqSWNxRklHVjFfVmN2b2lJMkk4Ykd2aV90bVh6Z0VnTHd6WGR0enF3aTBsR2pmRW10dUNCLWF1WXgxQ0R4MTg3RWRkdEVjZkFiOHUwZE1zZE1NUQ?oc=5",
@@ -1969,65 +2159,12 @@
                 "그룹"
               ],
               "direction_signal": true
-            },
-            {
-              "title": "801,550,000,000",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260612800541",
-              "source": "OpenDART 전략공시",
-              "published": "2026.06.12",
-              "summary": "자금조달의목적-채무상환자금(원): 801,550,000,000 · 한화솔루션㈜의[기재정정]주요사항보고서(유상증자결정)공시(2026.05.26)'24.기타투자판단에참고할사항-가.신주발행가액산정방법'참조: 한화솔루션㈜의 [기재정정]주요사항보고서(유상증자결정) 공시(2026.06.12)'24.기타 투자판단에 참고할 사항-가.신주... · 한화솔루션㈜의[기재정정]주요사항보고서(유상증자결정)공시(2026.05.26)'24.기타투자판단에참고할사항-나.신주의배정방법'참조: 한화솔루션㈜의 [기재정정]주요사항보고서(유상증자결정) 공시(2026.06.12)'24.기타 투자판단에 참고할 사항-나.신주의... · 기타투자판단과관련한중요사항: - 상기 사항 이외의 자세한 사항은 한화솔루션㈜가 금융감독원 전자공시시스템(DART)에 2026.05.26 공시한 [기재정정...",
-              "primary_category": "financing",
-              "categories": [
-                "dart_strategy",
-                "financing"
-              ],
-              "matched_terms": [
-                "유상증자결정"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20260612800541",
-              "report_name": "유상증자결정(종속회사의주요경영사항)"
-            },
-            {
-              "title": "(주)에이치씨앤디",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260602000352",
-              "source": "OpenDART 전략공시",
-              "published": "2026.06.02",
-              "summary": "회사명: (주)한화 · 거래상대방: (주)에이치씨앤디",
-              "primary_category": "equity_investment",
-              "categories": [
-                "dart_strategy",
-                "equity_investment"
-              ],
-              "matched_terms": [
-                "특수관계인에대한출자"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20260602000352",
-              "report_name": "특수관계인에대한출자"
-            },
-            {
-              "title": "한화그룹, 74년 만에 재계 ‘빅5’ 입성…’방산·조선·에너지’로 판 흔들었다",
-              "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFA5MWhHV3g4WTlmWFBCQVJXd2hvTEVOYldxOW03UEdVVFJ3Y3BrTGJGWkZiZHJaVGRfQUR5VjZ3dURNemdQeG84SE5VVFlINWpqVE40MQ?oc=5",
-              "source": "더밸류뉴스",
-              "published": "2026.05.20",
-              "summary": "한화그룹, 74년 만에 재계 ‘빅5’ 입성…’방산·조선·에너지’로 판 흔들었다 더밸류뉴스",
-              "primary_category": "group_investment",
-              "categories": [
-                "group_investment",
-                "capex_energy"
-              ],
-              "matched_terms": [
-                "그룹",
-                "에너지"
-              ],
-              "direction_signal": true
             }
           ],
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "A+",
@@ -2109,7 +2246,7 @@
           "online_update_mark": {
             "company_key": "한화",
             "company": "(주)한화",
-            "added_count": 1,
+            "added_count": 4,
             "sources": [
               {
                 "id": "news",
@@ -2122,11 +2259,30 @@
                 "samples": [
                   "2026.01.14 · (주)한화 인적분할, 한화그룹 '방산 3형제'에 득일까 실일까"
                 ]
+              },
+              {
+                "id": "dart_strategy",
+                "label": "OpenDART 전략공시",
+                "item_type": "article",
+                "added_count": 3,
+                "item_keys": [
+                  "20260804000474",
+                  "20260721000660",
+                  "20260720800225"
+                ],
+                "samples": [
+                  "2026.08.04 · 아산배방개발(주)",
+                  "2026.07.21 · 한화솔루션(주)",
+                  "2026.07.20 · 571,000,000,000"
+                ]
               }
             ]
           },
           "online_update_award_keys": [],
           "online_update_article_keys": [
+            "20260720800225",
+            "20260721000660",
+            "20260804000474",
             "한화인적분할한화그룹방산3형제에득일까실일까"
           ]
         },
@@ -2232,7 +2388,7 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "A",
@@ -2428,7 +2584,7 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
@@ -2505,7 +2661,7 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "미확인",
@@ -2550,86 +2706,86 @@
           "rank_change": "▲1",
           "recent_awards": [
             {
-              "project": "서울 동남권지역 전기공급시설 전력구공사",
-              "client": "한국전력공사",
-              "amount": "945억원",
+              "project": "제2경춘국도(남양주-춘천) 도로건설공사(1공구)",
+              "client": "조달청(수요기관 : 국토교통부 서울지방국토관리청)",
+              "amount": "1,848억원",
               "category": "공사수주",
-              "date": "2026.07.02",
+              "date": "2026.08.12",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260702800838",
-              "receipt_no": "20260702800838",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "서울특별시",
-              "contract_period": "2019-12-23 ~ 2028-08-22",
-              "amount_krw": "94455693000",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "이천~문경 철도건설사업 제6공구 건설공사",
-              "client": "국가철도공단",
-              "amount": "605억원",
-              "category": "공사수주",
-              "date": "2026.06.30",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260630800549",
-              "receipt_no": "20260630800549",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "충북 충주시",
-              "contract_period": "2017-06-01 ~ -",
-              "amount_krw": "60467231440",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "논산 내동3지구 공동주택 신축공사",
-              "client": "(주)부린개발",
-              "amount": "1,442억원",
-              "category": "공사수주",
-              "date": "2026.06.26",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260626801050",
-              "receipt_no": "20260626801050",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260812800235",
+              "receipt_no": "20260812800235",
               "report_name": "단일판매ㆍ공급계약체결",
-              "region": "논산 내동3지구 도시개발사업구역 7블록 1로트 외 0필지",
-              "contract_period": "2026-10-01 ~ 2029-10-31",
-              "amount_krw": "144230191000",
+              "region": "경기도 남양주시",
+              "contract_period": "2026-09-01 ~ 2033-08-29",
+              "amount_krw": "184750998235",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
             },
             {
-              "project": "쿠팡 덕평 FC 건설프로젝트 중 주공사",
-              "client": "쿠팡 주식회사",
-              "amount": "1,818억원",
+              "project": "송산그린시티 남측지구 조성공사(1공구)",
+              "client": "한국수자원공사",
+              "amount": "1,518억원",
               "category": "공사수주",
-              "date": "2026.06.24",
+              "date": "2026.08.10",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260624800395",
-              "receipt_no": "20260624800395",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260810800394",
+              "receipt_no": "20260810800394",
               "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "경기도 이천시 마장면 덕평리 615",
-              "contract_period": "2022-08-01 ~ 2026-10-15",
-              "amount_krw": "181792520000",
+              "region": "경기도 화성시 송산면 남양동 일원",
+              "contract_period": "2017-03-13 ~ 2027-10-29",
+              "amount_krw": "151812765000",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
             },
             {
-              "project": "창원교도소 이전 신축공사",
-              "client": "조달청",
-              "amount": "950억원",
+              "project": "BGF리테일 부산센터 구축공사",
+              "client": "주식회사 비지에프리테일",
+              "amount": "1,676억원",
               "category": "공사수주",
-              "date": "2026.06.10",
+              "date": "2026.08.05",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260610800482",
-              "receipt_no": "20260610800482",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260805800685",
+              "receipt_no": "20260805800685",
               "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "경상남도",
-              "contract_period": "2025-05-12 ~ 2029-11-06",
-              "amount_krw": "95019573750",
+              "region": "부산광역시 강서구 구랑동 1280-5",
+              "contract_period": "2024-08-16 ~ 2026-09-15",
+              "amount_krw": "167618000000",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
+              "project": "인천공항 AATS 항공기 정비격납고 신축공사",
+              "client": "아틀라스 에어 테크니칼 서비스(유)",
+              "amount": "1,581억원",
+              "category": "공사수주",
+              "date": "2026.08.04",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260804800557",
+              "receipt_no": "20260804800557",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "인천광역시 중구 운서동 3231-3 일원",
+              "contract_period": "2024-12-20 ~ 2027-02-21",
+              "amount_krw": "158110370000",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
+              "project": "당진기지 행정동 건축공사",
+              "client": "한국가스공사",
+              "amount": "694억원",
+              "category": "공사수주",
+              "date": "2026.07.28",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260728800453",
+              "receipt_no": "20260728800453",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "충남 당진 석문면 통정리",
+              "contract_period": "2022-12-22 ~ 2026-07-31",
+              "amount_krw": "69370822400",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
@@ -2638,10 +2794,28 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
+            {
+              "title": "수원당수2 B-5BL, B-7B 및 수원당수 B-4BL 민간참여 공공주택건설사업 우선협상대상자 선...",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260730800936",
+              "source": "OpenDART 전략공시",
+              "published": "2026.07.30",
+              "summary": "제목: 수원당수2 B-5BL, B-7B 및 수원당수 B-4BL 민간참여 공공주택건설사업 우선협상대상자 선정 · 주요내용: 수원당수2 B-5BL, B-7B 및 수원당수 B-4BL 민간참여 공공주택건설사업 우선협상대상자로 선정되었습니다. - 아 래... · 이사회결의일(결정일)또는사실확인일: 2026-07-30",
+              "primary_category": "investment_decision",
+              "categories": [
+                "dart_strategy",
+                "investment_decision"
+              ],
+              "matched_terms": [
+                "투자판단관련주요경영사항"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260730800936",
+              "report_name": "투자판단관련주요경영사항"
+            },
             {
               "title": "[2026 기계설비의 날] 국토교통부장관 표창- 임재균 계룡건설산업(주) 부장",
               "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9WVzE5RUExLUUzeDQ4Z2JuOEQwZ0ZLZ1FDZTNpRGNVWFBNWnFSLXFhYlpRX2dnalZMck5XQWhIRmh1dXE3MVc2VXhiNE1yQ3JCZ2R4UGRES2tpMEU1amF6LWFlaS1feGxJUzJONg?oc=5",
@@ -2658,11 +2832,11 @@
               "direction_signal": false
             },
             {
-              "title": "벡스코 제3전시장 건립사업 실시설계적격자 선정",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260703800479",
+              "title": "제2경춘국도(남양주-춘천) 도로건설공사(1공구) 낙찰예정자 선정",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260722800548",
               "source": "OpenDART 전략공시",
-              "published": "2026.07.03",
-              "summary": "제목: 벡스코 제3전시장 건립사업 실시설계적격자 선정 · 주요내용: 당사는 아래와 같이 벡스코 제3전시장 건립사업 실시설계적격자로 선정되었습니다. - 아 래 - 1. 선정일자 : 2026.07... · 이사회결의일(결정일)또는사실확인일: 2026-07-03",
+              "published": "2026.07.22",
+              "summary": "제목: 제2경춘국도(남양주-춘천) 도로건설공사(1공구) 낙찰예정자 선정 · 주요내용: 당사는 아래와 같이 제2경춘국도(남양주-춘천) 도로건설공사(1공구) 낙찰예정자로 선정되었습니다. - 아 래 - 1. 선정일자... · 이사회결의일(결정일)또는사실확인일: 2026-07-22",
               "primary_category": "investment_decision",
               "categories": [
                 "dart_strategy",
@@ -2672,7 +2846,7 @@
                 "투자판단관련주요경영사항"
               ],
               "direction_signal": true,
-              "receipt_no": "20260703800479",
+              "receipt_no": "20260722800548",
               "report_name": "투자판단관련주요경영사항"
             },
             {
@@ -2694,29 +2868,11 @@
               "report_name": "투자판단관련주요경영사항"
             },
             {
-              "title": "공공지원민간임대주택 개발사업 참여",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260522800345",
+              "title": "강동하남남양주선 광역철도 6공구 건설공사 실시설계적격자 선정",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260616800689",
               "source": "OpenDART 전략공시",
-              "published": "2026.05.22",
-              "summary": "회사명: (주)계룡케이비고양제7호위탁관리부동산투자회사 · 주요사업: 부동산업 · 취득금액(원): 49,400,000,000 · 취득방법: 현금 취득",
-              "primary_category": "equity_investment",
-              "categories": [
-                "dart_strategy",
-                "equity_investment"
-              ],
-              "matched_terms": [
-                "타법인주식및출자증권취득결정"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20260522800345",
-              "report_name": "타법인주식및출자증권취득결정"
-            },
-            {
-              "title": "고척1구역(홍진은성우정연립) 가로주택정비사업 시공사 선정",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260518800413",
-              "source": "OpenDART 전략공시",
-              "published": "2026.05.18",
-              "summary": "제목: 고척1구역(홍진은성우정연립) 가로주택정비사업 시공사 선정 · 주요내용: 당사는 아래와 같이 고척1구역(홍진은성우정연립) 가로주택정비사업 시공사로 선정되었습니다. - 아 래 - 1. 선정일자 : 2... · 이사회결의일(결정일)또는사실확인일: 2026-05-16",
+              "published": "2026.06.16",
+              "summary": "제목: 강동하남남양주선 광역철도 6공구 건설공사 실시설계적격자 선정 · 주요내용: 당사는 아래와 같이 강동하남남양주선 광역철도 6공구 건설공사 실시설계적격자로 선정되었습니다. - 아 래 - 1. 선정일자 :... · 이사회결의일(결정일)또는사실확인일: 2026-06-16",
               "primary_category": "investment_decision",
               "categories": [
                 "dart_strategy",
@@ -2726,14 +2882,14 @@
                 "투자판단관련주요경영사항"
               ],
               "direction_signal": true,
-              "receipt_no": "20260518800413",
+              "receipt_no": "20260616800689",
               "report_name": "투자판단관련주요경영사항"
             }
           ],
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "미확인",
@@ -2765,7 +2921,7 @@
           "online_update_mark": {
             "company_key": "계룡건설산업",
             "company": "계룡건설산업(주)",
-            "added_count": 1,
+            "added_count": 8,
             "sources": [
               {
                 "id": "news",
@@ -2778,11 +2934,51 @@
                 "samples": [
                   "2026.07.23 · [2026 기계설비의 날] 국토교통부장관 표창- 임재균 계룡건설산업(주) 부장"
                 ]
+              },
+              {
+                "id": "dart_awards",
+                "label": "OpenDART 수주",
+                "item_type": "award",
+                "added_count": 5,
+                "item_keys": [
+                  "20260812800235",
+                  "20260810800394",
+                  "20260805800685",
+                  "20260804800557",
+                  "20260728800453"
+                ],
+                "samples": [
+                  "2026.08.12 · 제2경춘국도(남양주-춘천) 도로건설공사(1공구) · 1,848억원",
+                  "2026.08.10 · 송산그린시티 남측지구 조성공사(1공구) · 1,518억원",
+                  "2026.08.05 · BGF리테일 부산센터 구축공사 · 1,676억원"
+                ]
+              },
+              {
+                "id": "dart_strategy",
+                "label": "OpenDART 전략공시",
+                "item_type": "article",
+                "added_count": 2,
+                "item_keys": [
+                  "20260730800936",
+                  "20260722800548"
+                ],
+                "samples": [
+                  "2026.07.30 · 수원당수2 B-5BL, B-7B 및 수원당수 B-4BL 민간참여 공공주택건설사업 우선협상대상자 선...",
+                  "2026.07.22 · 제2경춘국도(남양주-춘천) 도로건설공사(1공구) 낙찰예정자 선정"
+                ]
               }
             ]
           },
-          "online_update_award_keys": [],
+          "online_update_award_keys": [
+            "20260728800453",
+            "20260804800557",
+            "20260805800685",
+            "20260810800394",
+            "20260812800235"
+          ],
           "online_update_article_keys": [
+            "20260722800548",
+            "20260730800936",
             "2026기계설비의날국토교통부장관표창임재균계룡건설산업부장"
           ]
         },
@@ -2797,6 +2993,23 @@
           "previous_rank": 14,
           "rank_change": "▼1",
           "recent_awards": [
+            {
+              "project": "Misfah Independent Power Project",
+              "client": "Jabel Power SAOC",
+              "amount": "9,281억원",
+              "category": "공사수주",
+              "date": "2026.08.21",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260821800022",
+              "receipt_no": "20260821800022",
+              "report_name": "단일판매ㆍ공급계약체결",
+              "region": "Misfah, Oman",
+              "contract_period": "2026-08-20 ~ 2029-04-01",
+              "amount_krw": "928136466540",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
             {
               "project": "[기재정정]단일판매ㆍ공급계약체결(자율공시)",
               "client": "한국중부발전(주)",
@@ -2864,32 +3077,33 @@
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "두산 대형 가스터빈 패키지 공급계약",
-              "client": "-",
-              "amount": "-",
-              "category": "기타 판매ㆍ공급계약",
-              "date": "2026.03.06",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260306801165",
-              "receipt_no": "20260306801165",
-              "report_name": "단일판매ㆍ공급계약체결",
-              "region": "미국",
-              "contract_period": "2026-03-06 ~ 2029-11-30",
-              "amount_krw": "",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
             }
           ],
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
+            {
+              "title": "두산지오솔루션(주)",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260724000632",
+              "source": "OpenDART 전략공시",
+              "published": "2026.07.24",
+              "summary": "회사명: 두산에너빌리티(주) · 거래상대방: 두산지오솔루션(주)",
+              "primary_category": "equity_investment",
+              "categories": [
+                "dart_strategy",
+                "equity_investment"
+              ],
+              "matched_terms": [
+                "특수관계인에대한출자"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260724000632",
+              "report_name": "특수관계인에대한출자"
+            },
             {
               "title": "\"아직 닫히지 않은 천장\" SK하이닉스, 목표가 210만원…두산에너빌리티, 가스터빈·원전 수주에 목표가↑ [株토피아]",
               "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1HOHVUMTdIaW5TSFNLcFVIX3paRFBTZzlYTU1qd3hxRXZxdkJDS2pJTTEtTFlMNWVWTFVJZUF4RTE1ZHlQUGs0a1FpZExEVE1jZG0ya09FRTdGdw?oc=5",
@@ -2953,30 +3167,12 @@
               "direction_signal": true,
               "receipt_no": "20251219800511",
               "report_name": "타법인주식및출자증권처분결정"
-            },
-            {
-              "title": "SMR 전용공장 신축 및 기존 공장 최적화, 혁신제조 시설 구축",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251217800832",
-              "source": "OpenDART 전략공시",
-              "published": "2025.12.17",
-              "summary": "투자구분: 신규시설투자 · -투자대상: SMR 전용공장 신축 및 기존 공장 최적화, 혁신제조 시설 구축 · 투자금액(원): 806,800,000,000 · 투자목적: SMR 사업확대에 따른 제작 Capacity 확보",
-              "primary_category": "asset_capex",
-              "categories": [
-                "dart_strategy",
-                "asset_capex"
-              ],
-              "matched_terms": [
-                "신규시설투자등"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20251217800832",
-              "report_name": "신규시설투자등"
             }
           ],
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "미확인",
@@ -3008,7 +3204,7 @@
           "online_update_mark": {
             "company_key": "두산에너빌리티",
             "company": "두산에너빌리티(주)",
-            "added_count": 1,
+            "added_count": 3,
             "sources": [
               {
                 "id": "news",
@@ -3021,11 +3217,38 @@
                 "samples": [
                   "2026.04.24 · \"아직 닫히지 않은 천장\" SK하이닉스, 목표가 210만원…두산에너빌리티, 가스터빈·원전 수주에 목표가↑ [株토피아]"
                 ]
+              },
+              {
+                "id": "dart_awards",
+                "label": "OpenDART 수주",
+                "item_type": "award",
+                "added_count": 1,
+                "item_keys": [
+                  "20260821800022"
+                ],
+                "samples": [
+                  "2026.08.21 · Misfah Independent Power Project · 9,281억원"
+                ]
+              },
+              {
+                "id": "dart_strategy",
+                "label": "OpenDART 전략공시",
+                "item_type": "article",
+                "added_count": 1,
+                "item_keys": [
+                  "20260724000632"
+                ],
+                "samples": [
+                  "2026.07.24 · 두산지오솔루션(주)"
+                ]
               }
             ]
           },
-          "online_update_award_keys": [],
+          "online_update_award_keys": [
+            "20260821800022"
+          ],
           "online_update_article_keys": [
+            "20260724000632",
             "아직닫히지않은천장sk하이닉스목표가210만원두산에너빌리티가스터빈원전수주에목표가토피아"
           ]
         },
@@ -3040,6 +3263,23 @@
           "previous_rank": 16,
           "rank_change": "0",
           "recent_awards": [
+            {
+              "project": "[기재정정]단일판매ㆍ공급계약체결",
+              "client": "역북지역주택조합",
+              "amount": "2,412억원",
+              "category": "DART 공급계약",
+              "date": "2026.07.28",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260728900372",
+              "receipt_no": "20260728900372",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "경기도 용인시 처인구 역북동",
+              "contract_period": "2023-05-22 ~ 2026-11-21",
+              "amount_krw": "241232768000",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
             {
               "project": "[기재정정]단일판매ㆍ공급계약체결",
               "client": "진주아파트 주택재건축정비사업조합",
@@ -3092,23 +3332,6 @@
               "unit_cost_krw_per_py": ""
             },
             {
-              "project": "[기재정정]단일판매ㆍ공급계약체결",
-              "client": "역북지역주택조합",
-              "amount": "2,412억원",
-              "category": "DART 공급계약",
-              "date": "2025.12.31",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251231900225",
-              "receipt_no": "20251231900225",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "경기도 용인시 처인구 역북동",
-              "contract_period": "2023-01-31 ~ 2026-07-31",
-              "amount_krw": "241232768000",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
               "project": "단일판매ㆍ공급계약체결",
               "client": "야목지역주택조합",
               "amount": "2,666억원",
@@ -3129,7 +3352,7 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [],
@@ -3184,8 +3407,28 @@
             "NICE: no matching public company-search row"
           ],
           "credit_rating_updated_at": "2026-07-15 13:13:37 KST",
-          "online_update_mark": {},
-          "online_update_award_keys": [],
+          "online_update_mark": {
+            "company_key": "서희건설",
+            "company": "(주)서희건설",
+            "added_count": 1,
+            "sources": [
+              {
+                "id": "dart_awards",
+                "label": "OpenDART 수주",
+                "item_type": "award",
+                "added_count": 1,
+                "item_keys": [
+                  "20260728900372"
+                ],
+                "samples": [
+                  "2026.07.28 · [기재정정]단일판매ㆍ공급계약체결 · 2,412억원"
+                ]
+              }
+            ]
+          },
+          "online_update_award_keys": [
+            "20260728900372"
+          ],
           "online_update_article_keys": []
         },
         {
@@ -3488,7 +3731,7 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "미확인",
@@ -3532,6 +3775,23 @@
           "previous_rank": 27,
           "rank_change": "▲7",
           "recent_awards": [
+            {
+              "project": "수원당수 A-5BL 아파트 건설공사 5공구",
+              "client": "한국토지주택공사",
+              "amount": "878억원",
+              "category": "공사수주",
+              "date": "2026.07.15",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260715800752",
+              "receipt_no": "20260715800752",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "경기도 수원시 권선구 당수동",
+              "contract_period": "2023-12-21 ~ 2027-05-07",
+              "amount_krw": "87758763610",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
             {
               "project": "답십리 자동차 부품상가 도시정비형 재개발 정비사업",
               "client": "답십리 자동차 부품상가 도시정비형 재개발 정비사업 조합",
@@ -3599,29 +3859,12 @@
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "오정 군부대일원 도시개발사업 건설공사",
-              "client": "네오시티(주)",
-              "amount": "1,727억원",
-              "category": "공사수주",
-              "date": "2026.02.12",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260212801029",
-              "receipt_no": "20260212801029",
-              "report_name": "단일판매ㆍ공급계약체결",
-              "region": "경기도 부천시 오정동 148번지 일원",
-              "contract_period": "2026-02-11 ~ 2030-12-31",
-              "amount_krw": "172738680482",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
             }
           ],
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
@@ -3713,7 +3956,7 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "A",
@@ -3764,7 +4007,7 @@
           "online_update_mark": {
             "company_key": "효성중공업",
             "company": "효성중공업(주)",
-            "added_count": 3,
+            "added_count": 4,
             "sources": [
               {
                 "id": "news",
@@ -3781,10 +4024,24 @@
                   "2026.03.11 · 효성중공업, 호주 Tangkam BESS 공급 계약 체결",
                   "2026.07.06 · 효성하이드로젠, 계열사 효성중공업 유상증자 참여"
                 ]
+              },
+              {
+                "id": "dart_awards",
+                "label": "OpenDART 수주",
+                "item_type": "award",
+                "added_count": 1,
+                "item_keys": [
+                  "20260715800752"
+                ],
+                "samples": [
+                  "2026.07.15 · 수원당수 A-5BL 아파트 건설공사 5공구 · 878억원"
+                ]
               }
             ]
           },
-          "online_update_award_keys": [],
+          "online_update_award_keys": [
+            "20260715800752"
+          ],
           "online_update_article_keys": [
             "효성중공업1분기영업이익1523억2200만원전년대비4877증가",
             "효성중공업호주tangkambess공급계약체결",
@@ -3910,65 +4167,11 @@
               "direction_signal": true
             },
             {
-              "title": "대방산업개발(주)",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260625000232",
-              "source": "OpenDART 전략공시",
-              "published": "2026.06.25",
-              "summary": "회사명: 대방건설(주) · 거래상대방: 대방산업개발(주) · 다.거래상대방총잔액: 174,225",
-              "primary_category": "group_transaction",
-              "categories": [
-                "dart_strategy",
-                "group_transaction"
-              ],
-              "matched_terms": [
-                "특수관계인에대한자금대여"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20260625000232",
-              "report_name": "특수관계인에대한자금대여"
-            },
-            {
-              "title": "[단독] 대방건설 양주 옥정5·6차 주상복합 공사현장, 각종 법률 위반 의혹 논란…환경오염·안전불감증 도마 위",
-              "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9LVVZkU3d0Rk04ZmxDbGV3NzQtUWw4bmJFTDFGNVN5aVZGSFJaV0NOaklzMWlDRjBqM2x6NnYybVB3Nnhyc3c4YzNLWjRmMlBqWUV5SzloN1pwZjhHalFTdXNXWVAySEpzZnc?oc=5",
-              "source": "뉴스티앤티",
-              "published": "2026.05.17",
-              "summary": "[단독] 대방건설 양주 옥정5·6차 주상복합 공사현장, 각종 법률 위반 의혹 논란…환경오염·안전불감증 도마 위 뉴스티앤티",
-              "primary_category": "award_contract",
-              "categories": [
-                "award_contract",
-                "risk_safety"
-              ],
-              "matched_terms": [
-                "공사",
-                "건설",
-                "안전"
-              ],
-              "direction_signal": false
-            },
-            {
-              "title": "대방이엔씨(주)",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260429000961",
-              "source": "OpenDART 전략공시",
-              "published": "2026.04.29",
-              "summary": "회사명: 대방건설(주) · 거래상대방: 대방이엔씨(주) · 다.거래상대방총잔액: 41,800",
-              "primary_category": "group_transaction",
-              "categories": [
-                "dart_strategy",
-                "group_transaction"
-              ],
-              "matched_terms": [
-                "특수관계인에대한자금대여"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20260429000961",
-              "report_name": "특수관계인에대한자금대여"
-            },
-            {
               "title": "대방이노베이션(주)",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260429000959",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260820000374",
               "source": "OpenDART 전략공시",
-              "published": "2026.04.29",
-              "summary": "회사명: 대방건설(주) · 거래상대방: 대방이노베이션(주) · 다.거래상대방총잔액: 20,374",
+              "published": "2026.08.20",
+              "summary": "회사명: 대방건설(주) · 거래상대방: 대방이노베이션(주) · 다.거래상대방총잔액: 46,174",
               "primary_category": "group_transaction",
               "categories": [
                 "dart_strategy",
@@ -3978,14 +4181,68 @@
                 "특수관계인에대한자금대여"
               ],
               "direction_signal": true,
-              "receipt_no": "20260429000959",
+              "receipt_no": "20260820000374",
+              "report_name": "특수관계인에대한자금대여"
+            },
+            {
+              "title": "디비이엔씨(주)",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260810000300",
+              "source": "OpenDART 전략공시",
+              "published": "2026.08.10",
+              "summary": "회사명: 대방건설(주) · 거래상대방: 디비이엔씨(주) · 다.거래상대방총잔액: 78,533",
+              "primary_category": "group_transaction",
+              "categories": [
+                "dart_strategy",
+                "group_transaction"
+              ],
+              "matched_terms": [
+                "특수관계인에대한자금대여"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260810000300",
+              "report_name": "특수관계인에대한자금대여"
+            },
+            {
+              "title": "노블랜드(주)",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260810000298",
+              "source": "OpenDART 전략공시",
+              "published": "2026.08.10",
+              "summary": "회사명: 대방건설(주) · 거래상대방: 노블랜드(주) · 다.거래상대방총잔액: 40,600",
+              "primary_category": "group_transaction",
+              "categories": [
+                "dart_strategy",
+                "group_transaction"
+              ],
+              "matched_terms": [
+                "특수관계인에대한자금대여"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260810000298",
+              "report_name": "특수관계인에대한자금대여"
+            },
+            {
+              "title": "대방산업개발(주)",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260730000528",
+              "source": "OpenDART 전략공시",
+              "published": "2026.07.30",
+              "summary": "회사명: 대방건설(주) · 거래상대방: 대방산업개발(주) · 다.거래상대방총잔액: 270,875",
+              "primary_category": "group_transaction",
+              "categories": [
+                "dart_strategy",
+                "group_transaction"
+              ],
+              "matched_terms": [
+                "특수관계인에대한자금대여"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260730000528",
               "report_name": "특수관계인에대한자금대여"
             }
           ],
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "미확인",
@@ -4015,7 +4272,7 @@
           "online_update_mark": {
             "company_key": "대방건설",
             "company": "대방건설(주)",
-            "added_count": 1,
+            "added_count": 6,
             "sources": [
               {
                 "id": "news",
@@ -4028,11 +4285,34 @@
                 "samples": [
                   "2026.08.20 · 대방건설, 계열사 대방이노베이션에 175억원 자금 대여"
                 ]
+              },
+              {
+                "id": "dart_strategy",
+                "label": "OpenDART 전략공시",
+                "item_type": "article",
+                "added_count": 5,
+                "item_keys": [
+                  "20260820000374",
+                  "20260810000300",
+                  "20260810000299",
+                  "20260810000298",
+                  "20260730000528"
+                ],
+                "samples": [
+                  "2026.08.20 · 대방이노베이션(주)",
+                  "2026.08.10 · 디비이엔씨(주)",
+                  "2026.08.10 · 디비개발기업(주)"
+                ]
               }
             ]
           },
           "online_update_award_keys": [],
           "online_update_article_keys": [
+            "20260730000528",
+            "20260810000298",
+            "20260810000299",
+            "20260810000300",
+            "20260820000374",
             "대방건설계열사대방이노베이션에175억원자금대여"
           ]
         },
@@ -4048,86 +4328,86 @@
           "rank_change": "▼5",
           "recent_awards": [
             {
-              "project": "대전 선화동 95-3번지 일원 주상복합 신축공사",
-              "client": "인텐션개발 주식회사",
-              "amount": "3,315억원",
+              "project": "삼천주공3 재건축 정비사업",
+              "client": "삼천주공3 재건축 정비사업조합",
+              "amount": "1,808억원",
               "category": "공사수주",
-              "date": "2026.07.01",
+              "date": "2026.08.19",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260701800770",
-              "receipt_no": "20260701800770",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260819800691",
+              "receipt_no": "20260819800691",
               "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "대전광역시 중구 선화동 95-3번지 일원",
-              "contract_period": "2025-02-13 ~ 2029-05-12",
-              "amount_krw": "331542000000",
+              "region": "전라북도 전주시 완산구 삼천동1가 585-4번지 일원",
+              "contract_period": "2020-07-28 ~ -",
+              "amount_krw": "180795610000",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
             },
             {
-              "project": "양평 덕평지구 지역주택조합 공동주택 신축공사",
-              "client": "양평덕평지구 지역주택조합",
-              "amount": "1,292억원",
+              "project": "안동 용상 코오롱 하늘채 공동주택 신축공사",
+              "client": "주식회사 한국토지신탁",
+              "amount": "1,379억원",
               "category": "공사수주",
-              "date": "2026.06.29",
+              "date": "2026.08.19",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260629800850",
-              "receipt_no": "20260629800850",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260819800457",
+              "receipt_no": "20260819800457",
               "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "경기도 양평군 양평읍 덕평리 산 29-1번지 일원",
-              "contract_period": "2021-07-29 ~ 2027-03-29",
-              "amount_krw": "129204000000",
+              "region": "경상북도 안동시 용상동 488번지 일원",
+              "contract_period": "2024-11-12 ~ 2027-09-11",
+              "amount_krw": "137880193990",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
             },
             {
-              "project": "서울 청담동 고급 공동주택 신축공사",
-              "client": "주식회사 디에이치알청담",
-              "amount": "807억원",
+              "project": "평택 P5정수장 3기 신축 설계 및 공사",
+              "client": "삼성전자 주식회사",
+              "amount": "1,048억원",
               "category": "공사수주",
-              "date": "2026.06.23",
+              "date": "2026.08.18",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260623800559",
-              "receipt_no": "20260623800559",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "서울시 강남구 청담동 106-16, 106-5번지",
-              "contract_period": "2022-11-17 ~ 2025-11-17",
-              "amount_krw": "80655600000",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "마장동 3구역(마장동 457번지 일대) 가로주택정비사업",
-              "client": "마장동 457번지 일대 가로주택정비사업조합",
-              "amount": "1,034억원",
-              "category": "공사수주",
-              "date": "2026.06.17",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260617800109",
-              "receipt_no": "20260617800109",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260818800172",
+              "receipt_no": "20260818800172",
               "report_name": "단일판매ㆍ공급계약체결",
-              "region": "서울특별시 성동구 마장동 457번지 일대",
-              "contract_period": "- ~ -",
-              "amount_krw": "103448000000",
+              "region": "평택시 고덕동 1696 일원 (고덕 국제화계획지구 일반산업단지 內)",
+              "contract_period": "2023-10-01 ~ 2028-06-30",
+              "amount_krw": "104756000000",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
             },
             {
-              "project": "상봉7재정비촉진구역 도시환경정비사업",
-              "client": "상봉7재정비촉진구역 도시환경정비사업조합",
-              "amount": "4,258억원",
+              "project": "평택 사무6동 신축 공사",
+              "client": "삼성전자 주식회사",
+              "amount": "5,183억원",
               "category": "공사수주",
-              "date": "2026.05.22",
+              "date": "2026.08.14",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260522800384",
-              "receipt_no": "20260522800384",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814802370",
+              "receipt_no": "20260814802370",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "경기도 평택시 고덕동 1696 일원(평택 고덕 산업단지 A1 블록)",
+              "contract_period": "2023-02-28 ~ 2029-04-30",
+              "amount_krw": "518346400000",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
+              "project": "안산 현대1차아파트 재건축사업",
+              "client": "현대1차아파트 재건축정비사업조합",
+              "amount": "2,183억원",
+              "category": "공사수주",
+              "date": "2026.08.11",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260811800831",
+              "receipt_no": "20260811800831",
               "report_name": "단일판매ㆍ공급계약체결",
-              "region": "서울시 중랑구 상봉동 88-52번지 일대",
+              "region": "경기도 안산시 상록구 성포동 592-2번지 일원",
               "contract_period": "- ~ -",
-              "amount_krw": "425836000000",
+              "amount_krw": "218276300000",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
@@ -4136,10 +4416,28 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
+            {
+              "title": "태평3구역 공공참여 재개발 정비사업 시공사 선정",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260713800659",
+              "source": "OpenDART 전략공시",
+              "published": "2026.07.13",
+              "summary": "제목: 태평3구역 공공참여 재개발 정비사업 시공사 선정 · 주요내용: 당사는 '태평3구역 공공참여 재개발 정비사업'의 시공사로 선정되었습니다. 1. 공사개요: 성남시 수정구 태평동 4580번지... · 이사회결의일(결정일)또는사실확인일: 2026-07-13",
+              "primary_category": "investment_decision",
+              "categories": [
+                "dart_strategy",
+                "investment_decision"
+              ],
+              "matched_terms": [
+                "투자판단관련주요경영사항"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260713800659",
+              "report_name": "투자판단관련주요경영사항"
+            },
             {
               "title": "코오롱글로벌(주) 단일판매ㆍ공급계약 해지",
               "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1ncGx3T2x2WS1VVWQ0Vm96djZ1anY4MExoY21GMFlqQmRZT2ZTVTZ5U2VsajZLM1dxd242eXh2cnA1MHZHNEZybU1LSW10VFdOdHV3OUxsWWRGVk0?oc=5",
@@ -4205,30 +4503,12 @@
                 "건설"
               ],
               "direction_signal": false
-            },
-            {
-              "title": "재무구조 개선 및 유동성 확보",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251224800608",
-              "source": "OpenDART 전략공시",
-              "published": "2025.12.24",
-              "summary": "처분금액(원): 135,982,302,655 · 처분목적: 재무구조 개선 및 유동성 확보 · 이사회결의일(결정일): 2025-12-24",
-              "primary_category": "asset_capex",
-              "categories": [
-                "dart_strategy",
-                "asset_capex"
-              ],
-              "matched_terms": [
-                "유형자산처분결정"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20251224800608",
-              "report_name": "유형자산처분결정"
             }
           ],
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "미확인",
@@ -4258,7 +4538,7 @@
           "online_update_mark": {
             "company_key": "코오롱글로벌",
             "company": "코오롱글로벌(주)",
-            "added_count": 4,
+            "added_count": 10,
             "sources": [
               {
                 "id": "news",
@@ -4276,11 +4556,48 @@
                   "2025.11.17 · 코오롱 자회사 코오롱글로벌, 한국도로공사와 975억원 규모 공사수주 계약 체결",
                   "2026.01.14 · 금정산 코오롱 하늘채 루미엘 2월 분양 / 주택건설사업계획(변경) 승인 고시 - 금정구 장전동 618-1번지, 휴먼파크장전 지역주택조합 주상복합 신축공사"
                 ]
+              },
+              {
+                "id": "dart_awards",
+                "label": "OpenDART 수주",
+                "item_type": "award",
+                "added_count": 5,
+                "item_keys": [
+                  "20260819800691",
+                  "20260819800457",
+                  "20260818800172",
+                  "20260814802370",
+                  "20260811800831"
+                ],
+                "samples": [
+                  "2026.08.19 · 삼천주공3 재건축 정비사업 · 1,808억원",
+                  "2026.08.19 · 안동 용상 코오롱 하늘채 공동주택 신축공사 · 1,379억원",
+                  "2026.08.18 · 평택 P5정수장 3기 신축 설계 및 공사 · 1,048억원"
+                ]
+              },
+              {
+                "id": "dart_strategy",
+                "label": "OpenDART 전략공시",
+                "item_type": "article",
+                "added_count": 1,
+                "item_keys": [
+                  "20260713800659"
+                ],
+                "samples": [
+                  "2026.07.13 · 태평3구역 공공참여 재개발 정비사업 시공사 선정"
+                ]
               }
             ]
           },
-          "online_update_award_keys": [],
+          "online_update_award_keys": [
+            "20260811800831",
+            "20260814802370",
+            "20260818800172",
+            "20260819800457",
+            "20260819800691"
+          ],
           "online_update_article_keys": [
+            "20260713800659",
             "금정구공동주택화재안전지원사업불안없는시범추진",
             "금정산코오롱하늘채루미엘2월분양주택건설사업계획변경승인고시금정구장전동6181번지휴먼파크장전지역주택조합주상복합신축공사",
             "코오롱글로벌단일판매공급계약해지",
@@ -4298,6 +4615,40 @@
           "previous_rank": 19,
           "rank_change": "▼5",
           "recent_awards": [
+            {
+              "project": "서울도시철도 9호선 4단계 연장사업 2공구 건설공사",
+              "client": "서울특별시 도시기반시설본부",
+              "amount": "1,102억원",
+              "category": "공사수주",
+              "date": "2026.08.18",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260818800535",
+              "receipt_no": "20260818800535",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "서울특별시 대명초교입구 교차로 부근 ~ 고덕아이파크 아파트 부근",
+              "contract_period": "2021-08-31 ~ 2028-03-26",
+              "amount_krw": "110242539250",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
+              "project": "수원시 자원회수시설 개선사업",
+              "client": "한국환경공단",
+              "amount": "675억원",
+              "category": "공사수주",
+              "date": "2026.07.16",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260716800816",
+              "receipt_no": "20260716800816",
+              "report_name": "단일판매ㆍ공급계약체결",
+              "region": "경기도 수원시 영통구 영통로 383",
+              "contract_period": "2026-07-31 ~ 2029-01-30",
+              "amount_krw": "67495909091",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
             {
               "project": "오산오산 1BL, 인천검단 AA31BL, 인천영종 A-57BL 및 A-63BL 통합형 민간참여 공공주택 건설사업",
               "client": "한국토지주택공사(LH)",
@@ -4348,46 +4699,12 @@
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "서부산 행정복합타운 건립공사",
-              "client": "부산도시공사",
-              "amount": "1,208억원",
-              "category": "공사수주",
-              "date": "2026.06.05",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260605800695",
-              "receipt_no": "20260605800695",
-              "report_name": "단일판매ㆍ공급계약체결",
-              "region": "부산광역시 사상구 학장동 (사상재생사업지구 내)",
-              "contract_period": "2026-06-19 ~ 2030-03-02",
-              "amount_krw": "120822940000",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "단일판매ㆍ공급계약 체결((가칭)동탄11고 외 3교 신축공사)",
-              "client": "경기도교육청",
-              "amount": "814억원",
-              "category": "공사수주",
-              "date": "2026.04.16",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260416800534",
-              "receipt_no": "20260416800534",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "경기도 화성시 및 오산시 일대",
-              "contract_period": "2025-07-09 2027-02-28 ~ 2025-07-09 2027-02-28",
-              "amount_krw": "81381683075",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
             }
           ],
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
@@ -4479,7 +4796,7 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "미확인",
@@ -4508,8 +4825,31 @@
             "NICE: no matching public company-search row"
           ],
           "credit_rating_updated_at": "2026-07-15 13:13:37 KST",
-          "online_update_mark": {},
-          "online_update_award_keys": [],
+          "online_update_mark": {
+            "company_key": "태영건설",
+            "company": "(주)태영건설",
+            "added_count": 2,
+            "sources": [
+              {
+                "id": "dart_awards",
+                "label": "OpenDART 수주",
+                "item_type": "award",
+                "added_count": 2,
+                "item_keys": [
+                  "20260818800535",
+                  "20260716800816"
+                ],
+                "samples": [
+                  "2026.08.18 · 서울도시철도 9호선 4단계 연장사업 2공구 건설공사 · 1,102억원",
+                  "2026.07.16 · 수원시 자원회수시설 개선사업 · 675억원"
+                ]
+              }
+            ]
+          },
+          "online_update_award_keys": [
+            "20260716800816",
+            "20260818800535"
+          ],
           "online_update_article_keys": []
         },
         {
@@ -4612,10 +4952,46 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
+            {
+              "title": "고양창릉 S16블록 민간참여 공공주택사업 우선협상대상자 선정",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260807800185",
+              "source": "OpenDART 전략공시",
+              "published": "2026.08.07",
+              "summary": "제목: 고양창릉 S16블록 민간참여 공공주택사업 우선협상대상자 선정 · 주요내용: 당사는 아래와 같이 경기주택도시공사(GH)에서 발주한 고양창릉 S16블록 민간참여 공공주택건설사업의 우선협상대상자로 선정되었... · 이사회결의일(결정일)또는사실확인일: 2026-08-07",
+              "primary_category": "investment_decision",
+              "categories": [
+                "dart_strategy",
+                "investment_decision"
+              ],
+              "matched_terms": [
+                "투자판단관련주요경영사항"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260807800185",
+              "report_name": "투자판단관련주요경영사항"
+            },
+            {
+              "title": "장지차고지 입체화사업 건설공사",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260722800931",
+              "source": "OpenDART 전략공시",
+              "published": "2026.07.22",
+              "summary": "제목: 장지차고지 입체화사업 건설공사 · 주요내용: 당사는 아래와 같이 2026년 7월 22일, 서울주택도시개발공사(SH)에서 발주한 장지차고지 입체화사업 건설공사(기본설계 기... · 이사회결의일(결정일)또는사실확인일: 2026-07-22",
+              "primary_category": "investment_decision",
+              "categories": [
+                "dart_strategy",
+                "investment_decision"
+              ],
+              "matched_terms": [
+                "투자판단관련주요경영사항"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260722800931",
+              "report_name": "투자판단관련주요경영사항"
+            },
             {
               "title": "성남~서초 고속도로 민간투자사업(BTO-a) 우선협상대상자 선정",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260623800650",
@@ -4635,60 +5011,6 @@
               "report_name": "투자판단관련주요경영사항"
             },
             {
-              "title": "제천~영월간 고속국도 건설공사 2공구 낙찰자 선정",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260617800664",
-              "source": "OpenDART 전략공시",
-              "published": "2026.06.17",
-              "summary": "제목: 제천~영월간 고속국도 건설공사 2공구 낙찰자 선정 · 주요내용: 당사는 아래와 같이 2026년 6월 17일, 한국도로공사에서 발주한 제천~영월 고속국도 건설공사 2공구의 낙찰자로 선정되었음... · 이사회결의일(결정일)또는사실확인일: 2026-06-17",
-              "primary_category": "investment_decision",
-              "categories": [
-                "dart_strategy",
-                "investment_decision"
-              ],
-              "matched_terms": [
-                "투자판단관련주요경영사항"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20260617800664",
-              "report_name": "투자판단관련주요경영사항"
-            },
-            {
-              "title": "동부건설 주식회사",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260416000470",
-              "source": "OpenDART 전략공시",
-              "published": "2026.04.16",
-              "summary": "회사명: 동부건설 주식회사 · 자금조달의목적: 시설자금 (원)",
-              "primary_category": "financing",
-              "categories": [
-                "dart_strategy",
-                "financing"
-              ],
-              "matched_terms": [
-                "전환사채권발행결정"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20260416000470",
-              "report_name": "주요사항보고서(전환사채권발행결정)"
-            },
-            {
-              "title": "오산오산 1BL, 인천검단 AA31BL, 인천영종 A-57BL 및 A-63BL 통합형 민간참여 공...",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260401800986",
-              "source": "OpenDART 전략공시",
-              "published": "2026.04.01",
-              "summary": "제목: 오산오산 1BL, 인천검단 AA31BL, 인천영종 A-57BL 및 A-63BL 통합형 민간참여 공공주택건설사업 우선협상대상자 선정 · 주요내용: 당사는 아래와 같이 2026년 4월 1일, 한국토지주택공사 (LH)에서 발주한 오산오산 1BL, 인천검단 AA31BL, 인천... · 이사회결의일(결정일)또는사실확인일: 2026-04-01",
-              "primary_category": "investment_decision",
-              "categories": [
-                "dart_strategy",
-                "investment_decision"
-              ],
-              "matched_terms": [
-                "투자판단관련주요경영사항"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20260401800986",
-              "report_name": "투자판단관련주요경영사항"
-            },
-            {
               "title": "[금융트렌드] 동부건설, 흑자 전환·부채 개선에 ‘턴어라운드’ 종목 부상하나?",
               "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1rZVdKaGdlZWNSbUk1dHVPWUxfeVRSQVRFc2xqWjBBWGdGWnNfa2xJVUI5aWgtMXlTN2lWQ1gyenJxZm91NHlMWVFYWXBnYi1PS0U4bE1sZm1NV2kxcVVBNU1KbnRwMzjSAWtBVV95cUxOWmlDR3FJek4wazh2NkFjUDdmX3RidVpkaWloRWFZZWRrV1Ryd1RiVm1NVGdKcXVBWXpyenhSME1Fa0QxV1kzazFqeW83eDRHRHdJMFVhZzNKYnBVcmFXTldRRHl4aV83N2ROdw?oc=5",
               "source": "핸드메이커",
@@ -4702,12 +5024,30 @@
                 "건설"
               ],
               "direction_signal": false
+            },
+            {
+              "title": "삼일기업공사, 수주잔고 3배 급증…불황 속 곳간 채우며 실적 반등 기반 마련",
+              "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE84WTVPMU1JUmdBOG5TNXoyOFNRUXA2d0RwTUNqMlNiR2pCR2lDSDNXcUN1UU40UU1teU1ZOW44MXdxZTJXVFVQNVR0Q1pSTExza05MTQ?oc=5",
+              "source": "이투데이",
+              "published": "2026.03.24",
+              "summary": "삼일기업공사, 수주잔고 3배 급증…불황 속 곳간 채우며 실적 반등 기반 마련 이투데이",
+              "primary_category": "award_contract",
+              "categories": [
+                "award_contract",
+                "performance_management"
+              ],
+              "matched_terms": [
+                "수주",
+                "공사",
+                "실적"
+              ],
+              "direction_signal": false
             }
           ],
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "미확인",
@@ -4739,7 +5079,7 @@
           "online_update_mark": {
             "company_key": "동부건설",
             "company": "동부건설(주)",
-            "added_count": 2,
+            "added_count": 6,
             "sources": [
               {
                 "id": "news",
@@ -4754,11 +5094,32 @@
                   "2026.01.28 · 동부건설(주), 여주시 오학동행정복지센터에 100만 원 기탁",
                   "2026.03.24 · 삼일기업공사, 수주잔고 3배 급증…불황 속 곳간 채우며 실적 반등 기반 마련"
                 ]
+              },
+              {
+                "id": "dart_strategy",
+                "label": "OpenDART 전략공시",
+                "item_type": "article",
+                "added_count": 4,
+                "item_keys": [
+                  "20260807800185",
+                  "20260723800648",
+                  "20260722800931",
+                  "20260721801124"
+                ],
+                "samples": [
+                  "2026.08.07 · 고양창릉 S16블록 민간참여 공공주택사업 우선협상대상자 선정",
+                  "2026.07.23 · 고양창릉 B-1BL 및 양주고읍 A-12BL 민간참여 공공주택건설사업 우선협상대상자 선정",
+                  "2026.07.22 · 장지차고지 입체화사업 건설공사"
+                ]
               }
             ]
           },
           "online_update_award_keys": [],
           "online_update_article_keys": [
+            "20260721801124",
+            "20260722800931",
+            "20260723800648",
+            "20260807800185",
             "동부건설여주시오학동행정복지센터에100만원기탁",
             "삼일기업공사수주잔고3배급증불황속곳간채우며실적반등기반마련"
           ]
@@ -4824,86 +5185,86 @@
           "rank_change": "▼3",
           "recent_awards": [
             {
-              "project": "구미천연가스발전소 건설공사",
-              "client": "한국서부발전(주)",
-              "amount": "3,641억원",
-              "category": "공사수주",
-              "date": "2026.07.02",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260702800263",
-              "receipt_no": "20260702800263",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "경상북도 구미시 하이테크벨리 국가5산업단지 내",
-              "contract_period": "2022-10-04 ~ 2026-08-31",
-              "amount_krw": "364059785524",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "에코델타시티 8BL 민간참여 공공분양주택 건립사업",
-              "client": "부산도시공사",
-              "amount": "1,648억원",
-              "category": "공사수주",
-              "date": "2026.06.15",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260615800420",
-              "receipt_no": "20260615800420",
-              "report_name": "단일판매ㆍ공급계약체결",
-              "region": "부산광역시 강서구 강동동 일원 (에코델타시티 친수구역 내)",
-              "contract_period": "2026-06-12 ~ 2031-10-31",
-              "amount_krw": "164768880000",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
               "project": "공주 천연가스발전소 건설공사",
               "client": "한국서부발전(주)",
-              "amount": "1,817억원",
+              "amount": "1,845억원",
               "category": "공사수주",
-              "date": "2026.06.09",
+              "date": "2026.08.21",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260609800407",
-              "receipt_no": "20260609800407",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260821800649",
+              "receipt_no": "20260821800649",
               "report_name": "[기재정정]단일판매ㆍ공급계약체결",
               "region": "충청남도 공주시 이인면 남공주일반산업단지 내",
               "contract_period": "2024-05-01 ~ 2027-04-30",
-              "amount_krw": "181731314534",
+              "amount_krw": "184521559993",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
             },
             {
-              "project": "제3판교 테크노밸리 건립사업",
-              "client": "경기주택도시공사",
-              "amount": "1,279억원",
+              "project": "구미천연가스발전소 건설공사",
+              "client": "한국서부발전(주)",
+              "amount": "3,699억원",
               "category": "공사수주",
-              "date": "2026.05.29",
+              "date": "2026.08.14",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260529800636",
-              "receipt_no": "20260529800636",
-              "report_name": "단일판매ㆍ공급계약체결",
-              "region": "경기도 성남시 수정구 금토동 성남금토지구 내",
-              "contract_period": "2026-05-28 ~ 2031-10-31",
-              "amount_krw": "127892536364",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "(주)대웅제약 마곡연구서 건립 건축 공사",
-              "client": "주식회사 대웅제약",
-              "amount": "1,539억원",
-              "category": "공사수주",
-              "date": "2026.05.21",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260521800619",
-              "receipt_no": "20260521800619",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814800919",
+              "receipt_no": "20260814800919",
               "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "서울특별시 강서구 마곡동 762-2 (마곡일반산업단지 내 D7-3 필지)",
-              "contract_period": "2024-04-22 ~ 2026-05-31",
-              "amount_krw": "153874400000",
+              "region": "경상북도 구미시 하이테크벨리 국가5산업단지 내",
+              "contract_period": "2022-10-04 ~ 2026-09-11",
+              "amount_krw": "369943802758",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
+              "project": "인천 영종하늘도시 A6BL 공동주택 신축공사",
+              "client": "주식회사 에스아이리얼티",
+              "amount": "1,134억원",
+              "category": "공사수주",
+              "date": "2026.08.04",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260804800387",
+              "receipt_no": "20260804800387",
+              "report_name": "단일판매ㆍ공급계약체결",
+              "region": "인천광역시 영종구 운서동 3103-7번지",
+              "contract_period": "- ~ -",
+              "amount_krw": "113390000000",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
+              "project": "인천 영종하늘도시 A4BL 공동주택 신축공사",
+              "client": "주식회사 에스아이리얼티",
+              "amount": "1,015억원",
+              "category": "공사수주",
+              "date": "2026.08.04",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260804800385",
+              "receipt_no": "20260804800385",
+              "report_name": "단일판매ㆍ공급계약체결",
+              "region": "인천광역시 영종구 운서동 3103-4번지",
+              "contract_period": "- ~ -",
+              "amount_krw": "101487000000",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
+              "project": "동북선 도시철도 민간투자사업 건설공사",
+              "client": "동북선도시철도(주)",
+              "amount": "2,513억원",
+              "category": "공사수주",
+              "date": "2026.07.30",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260730800681",
+              "receipt_no": "20260730800681",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "서울시 성동구 왕십리역 ~ 노원구 상계역",
+              "contract_period": "2021-07-15 ~ 2027-11-11",
+              "amount_krw": "251293241100",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
@@ -4912,10 +5273,46 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
+            {
+              "title": "고양창릉 B-1BL 및 양주고읍 A-12BL 민간참여 공공주택건설사업 우선협상대상자 선정",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260723800881",
+              "source": "OpenDART 전략공시",
+              "published": "2026.07.23",
+              "summary": "제목: 고양창릉 B-1BL 및 양주고읍 A-12BL 민간참여 공공주택건설사업 우선협상대상자 선정 · 주요내용: 당사는 아래와 같이 '고양창릉 B-1BL 및 양주고읍 A-12BL 민간참여 공공주택건설사업'의 우선협상대상자로 선정되었음.... · 이사회결의일(결정일)또는사실확인일: 2026-07-23",
+              "primary_category": "investment_decision",
+              "categories": [
+                "dart_strategy",
+                "investment_decision"
+              ],
+              "matched_terms": [
+                "투자판단관련주요경영사항"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260723800881",
+              "report_name": "투자판단관련주요경영사항"
+            },
+            {
+              "title": "장지차고지 입체화사업 건설공사",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260722800921",
+              "source": "OpenDART 전략공시",
+              "published": "2026.07.22",
+              "summary": "제목: 장지차고지 입체화사업 건설공사 · 주요내용: 당사는 아래와 같이 '장지차고지 입체화사업 건설공사'의 실시설계적격자로 선정되었음. - 아 래 - 1) 발주처 : 서울주택도... · 이사회결의일(결정일)또는사실확인일: 2026-07-22",
+              "primary_category": "investment_decision",
+              "categories": [
+                "dart_strategy",
+                "investment_decision"
+              ],
+              "matched_terms": [
+                "투자판단관련주요경영사항"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260722800921",
+              "report_name": "투자판단관련주요경영사항"
+            },
             {
               "title": "경북개발공사 경북도청신도시 B-1BL 공공임대주택 추진",
               "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFBXMkg3d2MzdUc1RXVZNjBuZWMwdnlQWnQ4SG43alhLNHFtYlFxd2FTTG5hTGR6Zk84NnhtcTdPNm1Zc3gzVHc?oc=5",
@@ -4930,24 +5327,6 @@
                 "공사"
               ],
               "direction_signal": false
-            },
-            {
-              "title": "에코델타시티 8BL 민간참여 공공분양주택 건립사업 우선협상대상자 선정",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260522800524",
-              "source": "OpenDART 전략공시",
-              "published": "2026.05.22",
-              "summary": "제목: 에코델타시티 8BL 민간참여 공공분양주택 건립사업 우선협상대상자 선정 · 주요내용: 당사는 아래와 같이 '에코델타시티 8BL 민간참여 공공분양주택 건립사업'의 우선협상대상자로 선정되었음. - 아 래 - 1)... · 이사회결의일(결정일)또는사실확인일: 2026-05-22",
-              "primary_category": "investment_decision",
-              "categories": [
-                "dart_strategy",
-                "investment_decision"
-              ],
-              "matched_terms": [
-                "투자판단관련주요경영사항"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20260522800524",
-              "report_name": "투자판단관련주요경영사항"
             },
             {
               "title": "문왕현 전무, 금호건설 주식 보유 현황 공시",
@@ -4981,30 +5360,12 @@
               "direction_signal": true,
               "receipt_no": "20260417000439",
               "report_name": "주요사항보고서(유상증자결정)"
-            },
-            {
-              "title": "가음3구역재건축정비사업 공사도급가계약 체결",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260326802792",
-              "source": "OpenDART 전략공시",
-              "published": "2026.03.26",
-              "summary": "제목: 가음3구역재건축정비사업 공사도급가계약 체결 · 주요내용: 당사는 아래와 같이 '가음3구역재건축정비사업'과 관련하여 공사도급가계약을 체결함 - 아 래 - 1.계약상대: 가음3구역재건축... · 이사회결의일(결정일)또는사실확인일: 2026-03-26",
-              "primary_category": "investment_decision",
-              "categories": [
-                "dart_strategy",
-                "investment_decision"
-              ],
-              "matched_terms": [
-                "투자판단관련주요경영사항"
-              ],
-              "direction_signal": true,
-              "receipt_no": "20260326802792",
-              "report_name": "투자판단관련주요경영사항"
             }
           ],
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "미확인",
@@ -5036,7 +5397,7 @@
           "online_update_mark": {
             "company_key": "금호건설",
             "company": "금호건설(주)",
-            "added_count": 2,
+            "added_count": 10,
             "sources": [
               {
                 "id": "news",
@@ -5051,11 +5412,54 @@
                   "2026.07.12 · 경북개발공사 경북도청신도시 B-1BL 공공임대주택 추진",
                   "2026.04.17 · 문왕현 전무, 금호건설 주식 보유 현황 공시"
                 ]
+              },
+              {
+                "id": "dart_awards",
+                "label": "OpenDART 수주",
+                "item_type": "award",
+                "added_count": 5,
+                "item_keys": [
+                  "20260821800649",
+                  "20260814800919",
+                  "20260804800387",
+                  "20260804800385",
+                  "20260730800681"
+                ],
+                "samples": [
+                  "2026.08.21 · 공주 천연가스발전소 건설공사 · 1,845억원",
+                  "2026.08.14 · 구미천연가스발전소 건설공사 · 3,699억원",
+                  "2026.08.04 · 인천 영종하늘도시 A6BL 공동주택 신축공사 · 1,134억원"
+                ]
+              },
+              {
+                "id": "dart_strategy",
+                "label": "OpenDART 전략공시",
+                "item_type": "article",
+                "added_count": 3,
+                "item_keys": [
+                  "20260723800881",
+                  "20260722800921",
+                  "20260709800327"
+                ],
+                "samples": [
+                  "2026.07.23 · 고양창릉 B-1BL 및 양주고읍 A-12BL 민간참여 공공주택건설사업 우선협상대상자 선정",
+                  "2026.07.22 · 장지차고지 입체화사업 건설공사",
+                  "2026.07.09 · 평택고덕 A-72BL 및 A-73BL 민간참여 공공주택건설사업 우선협상대상자 선정"
+                ]
               }
             ]
           },
-          "online_update_award_keys": [],
+          "online_update_award_keys": [
+            "20260730800681",
+            "20260804800385",
+            "20260804800387",
+            "20260814800919",
+            "20260821800649"
+          ],
           "online_update_article_keys": [
+            "20260709800327",
+            "20260722800921",
+            "20260723800881",
             "경북개발공사경북도청신도시b1bl공공임대주택추진",
             "문왕현전무금호건설주식보유현황공시"
           ]
@@ -5119,6 +5523,57 @@
           "rank_change": "▼3",
           "recent_awards": [
             {
+              "project": "구리갈매역세권 A-1BL 아파트 건설공사",
+              "client": "한국토지주택공사",
+              "amount": "473억원",
+              "category": "공사수주",
+              "date": "2026.08.11",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260811800641",
+              "receipt_no": "20260811800641",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "경기도 구리시",
+              "contract_period": "2024-12-31 ~ 2028-05-20",
+              "amount_krw": "47327894759",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
+              "project": "라오스 참파삭·사라반주 상수도 공급사업 (Southern Provincial Water Supply Development Project in Champasack and Saravane Provinces)",
+              "client": "라오스 참파삭주 공공사업교통국 (Department of Public Works and Transport(DPWT) in Champasack Province)",
+              "amount": "455억원",
+              "category": "공사수주",
+              "date": "2026.07.31",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260731800364",
+              "receipt_no": "20260731800364",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "라오스 참파삭주 및 사라반주 일대",
+              "contract_period": "2024-02-01 ~ -",
+              "amount_krw": "45533101000",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
+              "project": "동부간선 지하화(영동대로)건설공사",
+              "client": "서울특별시 도시기반시설본부",
+              "amount": "852억원",
+              "category": "공사수주",
+              "date": "2026.07.29",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260729800922",
+              "receipt_no": "20260729800922",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "서울특별시",
+              "contract_period": "2023-02-16 ~ 2029-09-26",
+              "amount_krw": "85239761463",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
               "project": "대동아아파트 소규모재건축정비사업",
               "client": "대동아아파트 소규모재건축정비사업조합",
               "amount": "560억원",
@@ -5151,66 +5606,33 @@
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "광주 도시철도 2호선 1단계 2공구 건설공사",
-              "client": "광주광역시 도시철도건설본부",
-              "amount": "846억원",
-              "category": "공사수주",
-              "date": "2026.06.24",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260624800378",
-              "receipt_no": "20260624800378",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "광주광역시 서구 쌍촌동 ~ 풍암동",
-              "contract_period": "2019-10-01 ~ 2026-08-31",
-              "amount_krw": "84617136860",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "시흥하중 A-4BL 공동주택 건설공사 2공구",
-              "client": "한국토지주택공사",
-              "amount": "1,291억원",
-              "category": "공사수주",
-              "date": "2026.06.12",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260612800414",
-              "receipt_no": "20260612800414",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "경기도 시흥시 하중동",
-              "contract_period": "2025-03-11 ~ 2028-04-09",
-              "amount_krw": "129059851810",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "부산진해경제자유구역 북측 진입도로(장낙대교) 건설공사",
-              "client": "부산광역시 건설본부",
-              "amount": "663억원",
-              "category": "공사수주",
-              "date": "2026.05.08",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260508800244",
-              "receipt_no": "20260508800244",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "부산광역시",
-              "contract_period": "2025-12-10 ~ 2031-04-23",
-              "amount_krw": "66263531196",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
             }
           ],
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
+            {
+              "title": "안산장상 A-10BL 및 성남복정1 B-2BL 민간참여 공공주택건설사업 우선협상대상자 선정",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260730800001",
+              "source": "OpenDART 전략공시",
+              "published": "2026.07.30",
+              "summary": "제목: 안산장상 A-10BL 및 성남복정1 B-2BL 민간참여 공공주택건설사업 우선협상대상자 선정 · 주요내용: 당사는 아래와 같이 안산장상 A-10BL 및 성남복정1 B-2BL 민간참여 공공주택건설사업의 우선협상대상자로 선정되었음을 확... · 이사회결의일(결정일)또는사실확인일: 2026-07-29",
+              "primary_category": "investment_decision",
+              "categories": [
+                "dart_strategy",
+                "investment_decision"
+              ],
+              "matched_terms": [
+                "투자판단관련주요경영사항"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260730800001",
+              "report_name": "투자판단관련주요경영사항"
+            },
             {
               "title": "한신공영, 폭염·장마 대응 강화…전재식 대표 현장 안전점검",
               "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBsSTlnVlVxUHQ1WVBzcFlwZ2FvbzdoVkhaeFI3LWFFRGtYVHRGWEZBVVh2cmstSEF6bGdsaHhlaGdUV1NWa2x5cHpkVUwydFZSTGxRendOcHdPQQ?oc=5",
@@ -5275,27 +5697,12 @@
                 "정비사업"
               ],
               "direction_signal": false
-            },
-            {
-              "title": "의왕 우성4차 가로정비주택정비사업 본궤도",
-              "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFB2bEp5aTl0YW9UMGZRbzAwbHlrVXp4d0t4cGJMUjN4X0R2ZFhsZHNNRmZCY0R4QThfUVJNdWZMTTZ0ZkU1RXc?oc=5",
-              "source": "v.daum.net",
-              "published": "2025.11.11",
-              "summary": "의왕 우성4차 가로정비주택정비사업 본궤도 v.daum.net",
-              "primary_category": "award_contract",
-              "categories": [
-                "award_contract"
-              ],
-              "matched_terms": [
-                "정비사업"
-              ],
-              "direction_signal": false
             }
           ],
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "credit_rating_label": "미확인",
@@ -5327,7 +5734,7 @@
           "online_update_mark": {
             "company_key": "한신공영",
             "company": "한신공영(주)",
-            "added_count": 3,
+            "added_count": 8,
             "sources": [
               {
                 "id": "news",
@@ -5344,11 +5751,47 @@
                   "2026.07.16 · 한신공영, 폭염·장마 대응 강화…전재식 대표 현장 안전점검",
                   "2026.07.16 · 전재식 한신공영 대표이사, 현장 안전경영 강화"
                 ]
+              },
+              {
+                "id": "dart_awards",
+                "label": "OpenDART 수주",
+                "item_type": "award",
+                "added_count": 3,
+                "item_keys": [
+                  "20260811800641",
+                  "20260731800364",
+                  "20260729800922"
+                ],
+                "samples": [
+                  "2026.08.11 · 구리갈매역세권 A-1BL 아파트 건설공사 · 473억원",
+                  "2026.07.31 · 라오스 참파삭·사라반주 상수도 공급사업 (Southern Provincial Water Supply Development Project in Champasack and Saravane Provinces) · 455억원",
+                  "2026.07.29 · 동부간선 지하화(영동대로)건설공사 · 852억원"
+                ]
+              },
+              {
+                "id": "dart_strategy",
+                "label": "OpenDART 전략공시",
+                "item_type": "article",
+                "added_count": 2,
+                "item_keys": [
+                  "20260730800001",
+                  "20260716800005"
+                ],
+                "samples": [
+                  "2026.07.30 · 안산장상 A-10BL 및 성남복정1 B-2BL 민간참여 공공주택건설사업 우선협상대상자 선정",
+                  "2026.07.16 · 평택고덕 A-69BL 및 A-71BL 통합형 민간참여 공공주택건설사업 우선협상대상자 선정"
+                ]
               }
             ]
           },
-          "online_update_award_keys": [],
+          "online_update_award_keys": [
+            "20260729800922",
+            "20260731800364",
+            "20260811800641"
+          ],
           "online_update_article_keys": [
+            "20260716800005",
+            "20260730800001",
             "전재식한신공영대표이사현장안전경영강화",
             "한신공영최우수협력사세양건설산업시상",
             "한신공영폭염장마대응강화전재식대표현장안전점검"
@@ -5627,7 +6070,7 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "online_update_mark": {},
@@ -5733,7 +6176,7 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
@@ -6373,7 +6816,7 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
@@ -6465,7 +6908,7 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "online_update_mark": {
@@ -6880,10 +7323,28 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
+            {
+              "title": "재무구조 개선",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260811801005",
+              "source": "OpenDART 전략공시",
+              "published": "2026.08.11",
+              "summary": "회사명: 합동회사 Blue Power Oita Shuki · 주요사업: 태양광 발전 · 처분금액(원): 8,885,600 · 처분목적: 재무구조 개선",
+              "primary_category": "equity_investment",
+              "categories": [
+                "dart_strategy",
+                "equity_investment"
+              ],
+              "matched_terms": [
+                "타법인주식및출자증권처분결정"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260811801005",
+              "report_name": "타법인주식및출자증권처분결정(자율공시)(종속회사의주요경영사항)"
+            },
             {
               "title": "(주)도화엔지니어링 단일판매ㆍ공급계약 해지",
               "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5CYTNOdm00MF81MWV1ZFdjQm9LV3FaalJSYk1MSmNzWkpCQW0tQkVpMWk4ZjZ4RllReG0xR1plbTU1cVM4bzBrNkNLY2c2TGIwWl9VZEw3d0stbnM?oc=5",
@@ -6921,13 +7382,13 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "online_update_mark": {
             "company_key": "도화엔지니어링",
             "company": "(주)도화엔지니어링",
-            "added_count": 2,
+            "added_count": 3,
             "sources": [
               {
                 "id": "news",
@@ -6942,11 +7403,24 @@
                   "2026.05.11 · (주)도화엔지니어링 단일판매ㆍ공급계약 해지",
                   "2026.05.11 · (주)도화엔지니어링 (정정)단일판매ㆍ공급계약체결"
                 ]
+              },
+              {
+                "id": "dart_strategy",
+                "label": "OpenDART 전략공시",
+                "item_type": "article",
+                "added_count": 1,
+                "item_keys": [
+                  "20260811801005"
+                ],
+                "samples": [
+                  "2026.08.11 · 재무구조 개선"
+                ]
               }
             ]
           },
           "online_update_award_keys": [],
           "online_update_article_keys": [
+            "20260811801005",
             "도화엔지니어링단일판매공급계약해지",
             "도화엔지니어링정정단일판매공급계약체결"
           ]
@@ -6961,17 +7435,34 @@
           "rank_change": "▲1",
           "recent_awards": [
             {
+              "project": "[기재정정]단일판매ㆍ공급계약체결",
+              "client": "청경에너지 주식회사",
+              "amount": "400억원",
+              "category": "DART 공급계약",
+              "date": "2026.07.10",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260710900770",
+              "receipt_no": "20260710900770",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "경상북도 경주시 외동읍 제내리 45-6, 7번지",
+              "contract_period": "2025-04-22 ~ 2026-08-31",
+              "amount_krw": "40042300000",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
               "project": "[기재정정]단일판매ㆍ공급계약체결(자율공시)",
               "client": "Department of Public Wokrs and Highways(DPWH)",
               "amount": "196억원",
               "category": "DART 공급계약",
-              "date": "2026.06.26",
+              "date": "2026.07.10",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260626901101",
-              "receipt_no": "20260626901101",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260710900760",
+              "receipt_no": "20260710900760",
               "report_name": "[기재정정]단일판매ㆍ공급계약체결(자율공시)",
               "region": "필리핀 파나이~귀마라스 / 귀마라스~네그로스",
-              "contract_period": "2023-12-29 ~ 2026-06-28",
+              "contract_period": "2023-12-29 ~ 2027-06-20",
               "amount_krw": "19574977296",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
@@ -6990,23 +7481,6 @@
               "region": "필리핀 바탄 및 카비테 지역",
               "contract_period": "2026-02-11 ~ 2033-02-10",
               "amount_krw": "91141170661",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "[기재정정]단일판매ㆍ공급계약체결",
-              "client": "청경에너지 주식회사",
-              "amount": "402억원",
-              "category": "DART 공급계약",
-              "date": "2026.01.15",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260115900377",
-              "receipt_no": "20260115900377",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "경상북도 경주시 외동읍 제내리 45-6, 7번지",
-              "contract_period": "2025-04-22 ~ 2026-07-13",
-              "amount_krw": "40200000000",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
@@ -7049,7 +7523,7 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
@@ -7105,11 +7579,34 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {},
-          "online_update_award_keys": [],
+          "online_update_mark": {
+            "company_key": "유신",
+            "company": "(주)유신",
+            "added_count": 2,
+            "sources": [
+              {
+                "id": "dart_awards",
+                "label": "OpenDART 수주",
+                "item_type": "award",
+                "added_count": 2,
+                "item_keys": [
+                  "20260710900770",
+                  "20260710900760"
+                ],
+                "samples": [
+                  "2026.07.10 · [기재정정]단일판매ㆍ공급계약체결 · 400억원",
+                  "2026.07.10 · [기재정정]단일판매ㆍ공급계약체결(자율공시) · 196억원"
+                ]
+              }
+            ]
+          },
+          "online_update_award_keys": [
+            "20260710900760",
+            "20260710900770"
+          ],
           "online_update_article_keys": []
         },
         {
@@ -7143,6 +7640,23 @@
           "rank_change": "▼3",
           "recent_awards": [
             {
+              "project": "깨끗한나라 청주공장 에너지 재활용 시설 신설공사",
+              "client": "깨끗한나라 주식회사",
+              "amount": "715억원",
+              "category": "공사수주",
+              "date": "2026.07.24",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260724800764",
+              "receipt_no": "20260724800764",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "충청북도 청주시 흥덕구 강내면 (깨끗한나라 청주공장)",
+              "contract_period": "2023-12-29 ~ 2027-04-19",
+              "amount_krw": "71500000000",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
               "project": "부천열병합발전소 주제어동 건설공사",
               "client": "GS파워 주식회사",
               "amount": "214억원",
@@ -7155,23 +7669,6 @@
               "region": "경기도 부천시 삼작로 21",
               "contract_period": "2024-07-22 ~ 2029-02-28",
               "amount_krw": "21411500000",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "깨끗한나라 청주공장 에너지 재활용 시설 신설공사",
-              "client": "깨끗한나라 주식회사",
-              "amount": "715억원",
-              "category": "공사수주",
-              "date": "2026.05.21",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260521800601",
-              "receipt_no": "20260521800601",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "충청북도 청주시 흥덕구 강내면 (깨끗한나라 청주공장)",
-              "contract_period": "2023-12-29 ~ 2026-07-31",
-              "amount_krw": "71500000000",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
@@ -7231,7 +7728,7 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
@@ -7274,8 +7771,28 @@
             "updated_at": "2026-08-24 07:51:55 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {},
-          "online_update_award_keys": [],
+          "online_update_mark": {
+            "company_key": "한국종합기술",
+            "company": "(주)한국종합기술",
+            "added_count": 1,
+            "sources": [
+              {
+                "id": "dart_awards",
+                "label": "OpenDART 수주",
+                "item_type": "award",
+                "added_count": 1,
+                "item_keys": [
+                  "20260724800764"
+                ],
+                "samples": [
+                  "2026.07.24 · 깨끗한나라 청주공장 에너지 재활용 시설 신설공사 · 715억원"
+                ]
+              }
+            ]
+          },
+          "online_update_award_keys": [
+            "20260724800764"
+          ],
           "online_update_article_keys": []
         },
         {
@@ -7464,7 +7981,7 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "online_update_mark": {},
@@ -8560,10 +9077,28 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
+            {
+              "title": "재무구조 개선",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260811801005",
+              "source": "OpenDART 전략공시",
+              "published": "2026.08.11",
+              "summary": "회사명: 합동회사 Blue Power Oita Shuki · 주요사업: 태양광 발전 · 처분금액(원): 8,885,600 · 처분목적: 재무구조 개선",
+              "primary_category": "equity_investment",
+              "categories": [
+                "dart_strategy",
+                "equity_investment"
+              ],
+              "matched_terms": [
+                "타법인주식및출자증권처분결정"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260811801005",
+              "report_name": "타법인주식및출자증권처분결정(자율공시)(종속회사의주요경영사항)"
+            },
             {
               "title": "(주)도화엔지니어링 단일판매ㆍ공급계약 해지",
               "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5CYTNOdm00MF81MWV1ZFdjQm9LV3FaalJSYk1MSmNzWkpCQW0tQkVpMWk4ZjZ4RllReG0xR1plbTU1cVM4bzBrNkNLY2c2TGIwWl9VZEw3d0stbnM?oc=5",
@@ -8601,13 +9136,13 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "online_update_mark": {
             "company_key": "도화엔지니어링",
             "company": "(주)도화엔지니어링",
-            "added_count": 2,
+            "added_count": 3,
             "sources": [
               {
                 "id": "news",
@@ -8622,11 +9157,24 @@
                   "2026.05.11 · (주)도화엔지니어링 단일판매ㆍ공급계약 해지",
                   "2026.05.11 · (주)도화엔지니어링 (정정)단일판매ㆍ공급계약체결"
                 ]
+              },
+              {
+                "id": "dart_strategy",
+                "label": "OpenDART 전략공시",
+                "item_type": "article",
+                "added_count": 1,
+                "item_keys": [
+                  "20260811801005"
+                ],
+                "samples": [
+                  "2026.08.11 · 재무구조 개선"
+                ]
               }
             ]
           },
           "online_update_award_keys": [],
           "online_update_article_keys": [
+            "20260811801005",
             "도화엔지니어링단일판매공급계약해지",
             "도화엔지니어링정정단일판매공급계약체결"
           ]
@@ -8641,17 +9189,34 @@
           "rank_change": "▲1",
           "recent_awards": [
             {
+              "project": "[기재정정]단일판매ㆍ공급계약체결",
+              "client": "청경에너지 주식회사",
+              "amount": "400억원",
+              "category": "DART 공급계약",
+              "date": "2026.07.10",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260710900770",
+              "receipt_no": "20260710900770",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "경상북도 경주시 외동읍 제내리 45-6, 7번지",
+              "contract_period": "2025-04-22 ~ 2026-08-31",
+              "amount_krw": "40042300000",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
               "project": "[기재정정]단일판매ㆍ공급계약체결(자율공시)",
               "client": "Department of Public Wokrs and Highways(DPWH)",
               "amount": "196억원",
               "category": "DART 공급계약",
-              "date": "2026.06.26",
+              "date": "2026.07.10",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260626901101",
-              "receipt_no": "20260626901101",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260710900760",
+              "receipt_no": "20260710900760",
               "report_name": "[기재정정]단일판매ㆍ공급계약체결(자율공시)",
               "region": "필리핀 파나이~귀마라스 / 귀마라스~네그로스",
-              "contract_period": "2023-12-29 ~ 2026-06-28",
+              "contract_period": "2023-12-29 ~ 2027-06-20",
               "amount_krw": "19574977296",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
@@ -8670,23 +9235,6 @@
               "region": "필리핀 바탄 및 카비테 지역",
               "contract_period": "2026-02-11 ~ 2033-02-10",
               "amount_krw": "91141170661",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "[기재정정]단일판매ㆍ공급계약체결",
-              "client": "청경에너지 주식회사",
-              "amount": "402억원",
-              "category": "DART 공급계약",
-              "date": "2026.01.15",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260115900377",
-              "receipt_no": "20260115900377",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "경상북도 경주시 외동읍 제내리 45-6, 7번지",
-              "contract_period": "2025-04-22 ~ 2026-07-13",
-              "amount_krw": "40200000000",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
@@ -8729,7 +9277,7 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
@@ -8785,11 +9333,34 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {},
-          "online_update_award_keys": [],
+          "online_update_mark": {
+            "company_key": "유신",
+            "company": "(주)유신",
+            "added_count": 2,
+            "sources": [
+              {
+                "id": "dart_awards",
+                "label": "OpenDART 수주",
+                "item_type": "award",
+                "added_count": 2,
+                "item_keys": [
+                  "20260710900770",
+                  "20260710900760"
+                ],
+                "samples": [
+                  "2026.07.10 · [기재정정]단일판매ㆍ공급계약체결 · 400억원",
+                  "2026.07.10 · [기재정정]단일판매ㆍ공급계약체결(자율공시) · 196억원"
+                ]
+              }
+            ]
+          },
+          "online_update_award_keys": [
+            "20260710900760",
+            "20260710900770"
+          ],
           "online_update_article_keys": []
         },
         {
@@ -8862,6 +9433,23 @@
           "rank_change": "▼1",
           "recent_awards": [
             {
+              "project": "깨끗한나라 청주공장 에너지 재활용 시설 신설공사",
+              "client": "깨끗한나라 주식회사",
+              "amount": "715억원",
+              "category": "공사수주",
+              "date": "2026.07.24",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260724800764",
+              "receipt_no": "20260724800764",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "충청북도 청주시 흥덕구 강내면 (깨끗한나라 청주공장)",
+              "contract_period": "2023-12-29 ~ 2027-04-19",
+              "amount_krw": "71500000000",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
               "project": "부천열병합발전소 주제어동 건설공사",
               "client": "GS파워 주식회사",
               "amount": "214억원",
@@ -8874,23 +9462,6 @@
               "region": "경기도 부천시 삼작로 21",
               "contract_period": "2024-07-22 ~ 2029-02-28",
               "amount_krw": "21411500000",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "깨끗한나라 청주공장 에너지 재활용 시설 신설공사",
-              "client": "깨끗한나라 주식회사",
-              "amount": "715억원",
-              "category": "공사수주",
-              "date": "2026.05.21",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260521800601",
-              "receipt_no": "20260521800601",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "충청북도 청주시 흥덕구 강내면 (깨끗한나라 청주공장)",
-              "contract_period": "2023-12-29 ~ 2026-07-31",
-              "amount_krw": "71500000000",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
@@ -8950,7 +9521,7 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
@@ -8993,8 +9564,28 @@
             "updated_at": "2026-08-24 07:51:55 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {},
-          "online_update_award_keys": [],
+          "online_update_mark": {
+            "company_key": "한국종합기술",
+            "company": "(주)한국종합기술",
+            "added_count": 1,
+            "sources": [
+              {
+                "id": "dart_awards",
+                "label": "OpenDART 수주",
+                "item_type": "award",
+                "added_count": 1,
+                "item_keys": [
+                  "20260724800764"
+                ],
+                "samples": [
+                  "2026.07.24 · 깨끗한나라 청주공장 에너지 재활용 시설 신설공사 · 715억원"
+                ]
+              }
+            ]
+          },
+          "online_update_award_keys": [
+            "20260724800764"
+          ],
           "online_update_article_keys": []
         },
         {
@@ -9637,7 +10228,7 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "online_update_mark": {},
@@ -10250,10 +10841,28 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
+            {
+              "title": "재무구조 개선",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260811801005",
+              "source": "OpenDART 전략공시",
+              "published": "2026.08.11",
+              "summary": "회사명: 합동회사 Blue Power Oita Shuki · 주요사업: 태양광 발전 · 처분금액(원): 8,885,600 · 처분목적: 재무구조 개선",
+              "primary_category": "equity_investment",
+              "categories": [
+                "dart_strategy",
+                "equity_investment"
+              ],
+              "matched_terms": [
+                "타법인주식및출자증권처분결정"
+              ],
+              "direction_signal": true,
+              "receipt_no": "20260811801005",
+              "report_name": "타법인주식및출자증권처분결정(자율공시)(종속회사의주요경영사항)"
+            },
             {
               "title": "(주)도화엔지니어링 단일판매ㆍ공급계약 해지",
               "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5CYTNOdm00MF81MWV1ZFdjQm9LV3FaalJSYk1MSmNzWkpCQW0tQkVpMWk4ZjZ4RllReG0xR1plbTU1cVM4bzBrNkNLY2c2TGIwWl9VZEw3d0stbnM?oc=5",
@@ -10291,13 +10900,13 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "online_update_mark": {
             "company_key": "도화엔지니어링",
             "company": "(주)도화엔지니어링",
-            "added_count": 2,
+            "added_count": 3,
             "sources": [
               {
                 "id": "news",
@@ -10312,11 +10921,24 @@
                   "2026.05.11 · (주)도화엔지니어링 단일판매ㆍ공급계약 해지",
                   "2026.05.11 · (주)도화엔지니어링 (정정)단일판매ㆍ공급계약체결"
                 ]
+              },
+              {
+                "id": "dart_strategy",
+                "label": "OpenDART 전략공시",
+                "item_type": "article",
+                "added_count": 1,
+                "item_keys": [
+                  "20260811801005"
+                ],
+                "samples": [
+                  "2026.08.11 · 재무구조 개선"
+                ]
               }
             ]
           },
           "online_update_award_keys": [],
           "online_update_article_keys": [
+            "20260811801005",
             "도화엔지니어링단일판매공급계약해지",
             "도화엔지니어링정정단일판매공급계약체결"
           ]
@@ -10340,6 +10962,23 @@
           "rank_change": "▲1",
           "recent_awards": [
             {
+              "project": "깨끗한나라 청주공장 에너지 재활용 시설 신설공사",
+              "client": "깨끗한나라 주식회사",
+              "amount": "715억원",
+              "category": "공사수주",
+              "date": "2026.07.24",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260724800764",
+              "receipt_no": "20260724800764",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "충청북도 청주시 흥덕구 강내면 (깨끗한나라 청주공장)",
+              "contract_period": "2023-12-29 ~ 2027-04-19",
+              "amount_krw": "71500000000",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
               "project": "부천열병합발전소 주제어동 건설공사",
               "client": "GS파워 주식회사",
               "amount": "214억원",
@@ -10352,23 +10991,6 @@
               "region": "경기도 부천시 삼작로 21",
               "contract_period": "2024-07-22 ~ 2029-02-28",
               "amount_krw": "21411500000",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "깨끗한나라 청주공장 에너지 재활용 시설 신설공사",
-              "client": "깨끗한나라 주식회사",
-              "amount": "715억원",
-              "category": "공사수주",
-              "date": "2026.05.21",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260521800601",
-              "receipt_no": "20260521800601",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "충청북도 청주시 흥덕구 강내면 (깨끗한나라 청주공장)",
-              "contract_period": "2023-12-29 ~ 2026-07-31",
-              "amount_krw": "71500000000",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
@@ -10428,7 +11050,7 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
@@ -10471,8 +11093,28 @@
             "updated_at": "2026-08-24 07:51:55 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {},
-          "online_update_award_keys": [],
+          "online_update_mark": {
+            "company_key": "한국종합기술",
+            "company": "(주)한국종합기술",
+            "added_count": 1,
+            "sources": [
+              {
+                "id": "dart_awards",
+                "label": "OpenDART 수주",
+                "item_type": "award",
+                "added_count": 1,
+                "item_keys": [
+                  "20260724800764"
+                ],
+                "samples": [
+                  "2026.07.24 · 깨끗한나라 청주공장 에너지 재활용 시설 신설공사 · 715억원"
+                ]
+              }
+            ]
+          },
+          "online_update_award_keys": [
+            "20260724800764"
+          ],
           "online_update_article_keys": []
         },
         {
@@ -10572,17 +11214,34 @@
           "rank_change": "▼3",
           "recent_awards": [
             {
+              "project": "[기재정정]단일판매ㆍ공급계약체결",
+              "client": "청경에너지 주식회사",
+              "amount": "400억원",
+              "category": "DART 공급계약",
+              "date": "2026.07.10",
+              "source_name": "OpenDART",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260710900770",
+              "receipt_no": "20260710900770",
+              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
+              "region": "경상북도 경주시 외동읍 제내리 45-6, 7번지",
+              "contract_period": "2025-04-22 ~ 2026-08-31",
+              "amount_krw": "40042300000",
+              "floor_area_m2": "",
+              "unit_cost_krw_per_m2": "",
+              "unit_cost_krw_per_py": ""
+            },
+            {
               "project": "[기재정정]단일판매ㆍ공급계약체결(자율공시)",
               "client": "Department of Public Wokrs and Highways(DPWH)",
               "amount": "196억원",
               "category": "DART 공급계약",
-              "date": "2026.06.26",
+              "date": "2026.07.10",
               "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260626901101",
-              "receipt_no": "20260626901101",
+              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260710900760",
+              "receipt_no": "20260710900760",
               "report_name": "[기재정정]단일판매ㆍ공급계약체결(자율공시)",
               "region": "필리핀 파나이~귀마라스 / 귀마라스~네그로스",
-              "contract_period": "2023-12-29 ~ 2026-06-28",
+              "contract_period": "2023-12-29 ~ 2027-06-20",
               "amount_krw": "19574977296",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
@@ -10601,23 +11260,6 @@
               "region": "필리핀 바탄 및 카비테 지역",
               "contract_period": "2026-02-11 ~ 2033-02-10",
               "amount_krw": "91141170661",
-              "floor_area_m2": "",
-              "unit_cost_krw_per_m2": "",
-              "unit_cost_krw_per_py": ""
-            },
-            {
-              "project": "[기재정정]단일판매ㆍ공급계약체결",
-              "client": "청경에너지 주식회사",
-              "amount": "402억원",
-              "category": "DART 공급계약",
-              "date": "2026.01.15",
-              "source_name": "OpenDART",
-              "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260115900377",
-              "receipt_no": "20260115900377",
-              "report_name": "[기재정정]단일판매ㆍ공급계약체결",
-              "region": "경상북도 경주시 외동읍 제내리 45-6, 7번지",
-              "contract_period": "2025-04-22 ~ 2026-07-13",
-              "amount_krw": "40200000000",
               "floor_area_m2": "",
               "unit_cost_krw_per_m2": "",
               "unit_cost_krw_per_py": ""
@@ -10660,7 +11302,7 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
@@ -10716,11 +11358,34 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
-          "online_update_mark": {},
-          "online_update_award_keys": [],
+          "online_update_mark": {
+            "company_key": "유신",
+            "company": "(주)유신",
+            "added_count": 2,
+            "sources": [
+              {
+                "id": "dart_awards",
+                "label": "OpenDART 수주",
+                "item_type": "award",
+                "added_count": 2,
+                "item_keys": [
+                  "20260710900770",
+                  "20260710900760"
+                ],
+                "samples": [
+                  "2026.07.10 · [기재정정]단일판매ㆍ공급계약체결 · 400억원",
+                  "2026.07.10 · [기재정정]단일판매ㆍ공급계약체결(자율공시) · 196억원"
+                ]
+              }
+            ]
+          },
+          "online_update_award_keys": [
+            "20260710900760",
+            "20260710900770"
+          ],
           "online_update_article_keys": []
         },
         {
@@ -11617,7 +12282,7 @@
           "recent_awards_source": {
             "name": "OpenDART",
             "url": "https://opendart.fss.or.kr/",
-            "updated_at": "2026-07-03 21:53:03 KST"
+            "updated_at": "2026-08-24 09:19:27 KST"
           },
           "recent_awards_status": "ready",
           "related_articles": [
@@ -12033,7 +12698,7 @@
           "related_articles_source": {
             "name": "Google News + OpenDART 전략공시",
             "url": "",
-            "updated_at": "2026-08-24 07:51:55 KST"
+            "updated_at": "2026-08-24 09:21:21 KST"
           },
           "related_articles_status": "ready",
           "online_update_mark": {},
@@ -12099,6 +12764,6 @@
   },
   "online_update_marks": {
     "ok": true,
-    "companies_with_updates": 29
+    "companies_with_updates": 33
   }
 }
