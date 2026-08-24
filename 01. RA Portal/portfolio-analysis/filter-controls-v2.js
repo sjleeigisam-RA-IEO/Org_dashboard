@@ -47,9 +47,18 @@
 
       grid.querySelectorAll('.semantic-filter-menu').forEach(function (menu) {
         var inputs = Array.from(menu.querySelectorAll('[data-semantic-filter]'));
-        menu.classList.remove('v2-filter-inline', 'v2-filter-binary', 'v2-filter-small');
+        menu.classList.remove(
+          'v2-filter-inline',
+          'v2-filter-binary',
+          'v2-filter-small',
+          'v2-filter-count-1',
+          'v2-filter-count-2',
+          'v2-filter-count-3',
+          'v2-filter-count-4'
+        );
         if (inputs.length <= 4 && inputs.length > 0) {
           menu.classList.add('v2-filter-inline');
+          menu.classList.add('v2-filter-count-' + inputs.length);
           menu.open = true;
           if (inputs.length === 2) menu.classList.add('v2-filter-binary');
           else menu.classList.add('v2-filter-small');

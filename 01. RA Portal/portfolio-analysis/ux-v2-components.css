@@ -3,14 +3,14 @@
 
 /* V2 filter controls: expose short choices, keep long taxonomies as menus. */
 .ux-v2 .semantic-filter-menu.v2-filter-inline {
-  padding: 8px;
+  padding: 6px;
   border-color: var(--v2-border-strong);
   background: transparent !important;
 }
 
 .ux-v2 .semantic-filter-menu.v2-filter-inline > summary {
   min-height: 0;
-  padding: 0 2px 7px;
+  padding: 0 2px 5px;
   cursor: default;
 }
 
@@ -26,7 +26,7 @@
 .ux-v2 .semantic-filter-menu.v2-filter-inline .semantic-filter-options {
   position: static;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   width: auto;
   max-height: none;
   padding: 0;
@@ -35,18 +35,30 @@
   border-radius: 5px;
   background: transparent;
   box-shadow: none;
-  gap: 5px;
+  gap: 4px;
+}
+
+.ux-v2 .semantic-filter-menu.v2-filter-count-1 .semantic-filter-options {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.ux-v2 .semantic-filter-menu.v2-filter-count-2 .semantic-filter-options {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ux-v2 .semantic-filter-menu.v2-filter-count-3 .semantic-filter-options {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .ux-v2 .semantic-filter-menu.v2-filter-inline .semantic-filter-options label {
   justify-content: center;
-  min-height: 34px;
-  padding: 7px 8px;
+  min-height: 30px;
+  padding: 5px 4px;
   border: 1px solid var(--v2-border);
   border-radius: 5px;
   background: var(--v2-surface);
   color: var(--soft) !important;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 750;
   text-align: center;
 }
