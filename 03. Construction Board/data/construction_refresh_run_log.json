@@ -342,17 +342,15 @@
       },
       "backup_dir": "outputs\\construction_refresh_before_20260824_075036",
       "changed_files": [
-        "03. Construction Board/README.md",
         "03. Construction Board/data/construction_company_news_cache.json",
         "03. Construction Board/data/construction_nara_contracts_cache.json",
-        "03. Construction Board/data/construction_dart_awards_cache.json",
-        "03. Construction Board/data/construction_dart_strategy_cache.json",
         "03. Construction Board/data/construction_online_update_marks.json",
+        "03. Construction Board/data/construction_refresh_run_log.json",
         "03. Construction Board/data/construction_source_status_data.json",
         "03. Construction Board/index.html"
       ],
-      "pushed": false,
-      "pages_verified": false,
+      "pushed": true,
+      "pages_verified": true,
       "update_marks": {
         "companies_with_updates": 29,
         "new_item_marks": 52
@@ -361,7 +359,12 @@
         "Monday scheduled refresh was executed in this thread.",
         "OpenDART awards refresh failed; retained previous cache.",
         "OpenDART strategy refresh failed; retained previous cache."
-      ]
+      ],
+      "commit": "7722e4251214b7c924cf7a7963c2fe4cbaa0848b",
+      "commit_short": "7722e42",
+      "pushed_at": "2026-08-24 09:09:32 +09:00ST",
+      "pages_verified_at": "2026-08-24 09:09:32 +09:00ST",
+      "pages_url": "https://sjleeigisam-ra-ieo.github.io/Org_dashboard/03.%20Construction%20Board/"
     }
   ],
   "generated_at": "2026-08-24 07:52:43 +09:00ST"
