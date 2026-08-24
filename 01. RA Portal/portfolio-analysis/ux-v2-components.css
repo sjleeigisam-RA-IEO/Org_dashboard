@@ -20,7 +20,7 @@
 
 .ux-v2 .semantic-filter-menu.v2-filter-inline > summary strong {
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .ux-v2 .semantic-filter-menu.v2-filter-inline .semantic-filter-options {
@@ -58,7 +58,7 @@
   border-radius: 5px;
   background: var(--v2-surface);
   color: var(--soft) !important;
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 750;
   text-align: center;
 }
