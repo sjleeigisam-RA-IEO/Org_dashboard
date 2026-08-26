@@ -2107,7 +2107,6 @@
       '</div></div>',
       '<div class="capital-header-actions">',
       '<button type="button" data-capital-action="refresh" title="데이터 새로고침">새로고침</button>',
-      '<button type="button" class="is-primary" data-capital-action="export">CSV</button>',
       '</div>',
       '</header>',
       renderNotice(),
