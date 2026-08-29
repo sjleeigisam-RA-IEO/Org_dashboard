@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import type { DailyArticlesResponse } from "@/lib/daily-articles-contract";
-import { todayInSeoul } from "@/lib/daily-articles-contract";
+import { normalizeDailyArticles, todayInSeoul } from "@/lib/daily-articles-contract";
+
+const DAILY_ARTICLE_BATCH_SIZE = 30;
 
 function formatDateTime(value: string | null): string {
   if (!value) return "기록 없음";
@@ -28,12 +30,13 @@ export function DailyArticleWorkspace({
   const [data, setData] = useState<DailyArticlesResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(DAILY_ARTICLE_BATCH_SIZE);
 
   useEffect(() => {
     const controller = new AbortController();
-    queueMicrotask(() => { setLoading(true); setError(false); });
+    queueMicrotask(() => { setLoading(true); setError(false); setVisibleCount(DAILY_ARTICLE_BATCH_SIZE); });
     fetch(`/api/articles/daily?date=${encodeURIComponent(selectedDate)}`, { signal: controller.signal })
-      .then((response) => { if (!response.ok) throw new Error(); return response.json() as Promise<DailyArticlesResponse>; })
+      .then(async (response) => { if (!response.ok) throw new Error(); return normalizeDailyArticles(await response.json()); })
       .then(setData)
       .catch((reason: unknown) => {
         if (!(reason instanceof DOMException && reason.name === "AbortError")) setError(true);
@@ -41,6 +44,8 @@ export function DailyArticleWorkspace({
       .finally(() => { if (!controller.signal.aborted) setLoading(false); });
     return () => controller.abort();
   }, [selectedDate]);
+
+  const visibleArticles = data?.articles.slice(0, visibleCount) ?? [];
 
   return <section className="daily-workspace domain-workspace">
     <header className="workspace-hero daily-hero">
@@ -56,7 +61,7 @@ export function DailyArticleWorkspace({
     {loading && <div className="state-block"><span className="spinner"/><strong>시장기사 조회 중</strong></div>}
     {!loading && error && <div className="state-block error-state"><strong>기사 조회 오류</strong><p>수집 상태를 확인한 후 다시 시도해 주세요.</p></div>}
     {!loading && !error && data?.articles.length === 0 && <div className="state-block"><strong>{selectedDate} 게시 기사가 없습니다.</strong><p>DB 최신 게시일은 {data.latestAvailableDate ?? "기록 없음"}입니다.</p></div>}
-    {!loading && !error && <div className="daily-article-list">{data?.articles.map((article) => <article key={article.id} className="daily-article-card">
+    {!loading && !error && <div className="daily-article-list">{visibleArticles.map((article) => <article key={article.id} className="daily-article-card">
       <button type="button" onClick={() => onOpenArticle(article.id, article.title)}>
         <div className="projection-meta"><span className="category-badge">시장기사</span><span className={`summary-mode ${article.summaryMode.toLowerCase()}`}>{article.summaryMode === "MODEL" ? "생성 요약" : article.summaryMode === "BODY_EXTRACTIVE" ? "본문 요약" : "요약 없음"}</span><time>{formatDateTime(article.publishedAt)}</time><span>{article.publisher ?? "출처 미상"}</span></div>
         <h3>{article.title}</h3>
@@ -65,5 +70,6 @@ export function DailyArticleWorkspace({
       </button>
       {article.href && <a className="source-link" href={article.href} target="_blank" rel="noreferrer">원문</a>}
     </article>)}</div>}
+    {!loading && !error && data && visibleArticles.length < data.articles.length && <div className="state-block"><strong>{visibleArticles.length.toLocaleString("ko-KR")} / {data.articles.length.toLocaleString("ko-KR")}건 표시</strong><button type="button" onClick={() => setVisibleCount((count) => count + DAILY_ARTICLE_BATCH_SIZE)}>기사 {Math.min(DAILY_ARTICLE_BATCH_SIZE, data.articles.length - visibleArticles.length).toLocaleString("ko-KR")}건 더 보기</button></div>}
   </section>;
 }

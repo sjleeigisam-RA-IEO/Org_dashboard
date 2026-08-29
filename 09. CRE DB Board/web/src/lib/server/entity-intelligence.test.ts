@@ -4,7 +4,7 @@ import { getEntityDetail } from "@/lib/server/entity-intelligence";
 const payload = {
   kind: "EVENT", id: "event-1", title: "이벤트", subtitle: null, status: "ACTIVE",
   overview: [], assets: [], events: [], organizations: [], projects: [], capital: [],
-  processes: [], documents: [],
+  processes: [], documents: [], classifications: [],
 };
 
 describe("getEntityDetail relation graph", () => {
@@ -13,6 +13,9 @@ describe("getEntityDetail relation graph", () => {
     await getEntityDetail(async (text) => { sql = text; return { rows: [{ payload: { ...payload, kind } }] }; }, kind, "entity-1");
     expect(sql).toContain("v_document_entity_relations");
     expect(sql).toContain("relation_basis");
+    expect(sql).toContain("'classifications',coalesce(cls.items");
+    expect(sql).toContain(`rc.target_kind='${kind}'`);
+    expect(sql).toContain("rc.valid_from IS NULL");
   });
 
   it("returns event projects, capital mandates, and sale processes", async () => {

@@ -1,4 +1,5 @@
 import type { SqlExecutor } from "@/lib/server/market-search";
+import type { RecordClassification } from "@/lib/search-contract";
 
 export type DocumentDetail = {
   id: string;
@@ -15,6 +16,7 @@ export type DocumentDetail = {
   summaryGeneratedAt: string | null;
   summaryPipeline: string | null;
   summary: string | null;
+  eventExtraction: Record<string, unknown> | null;
   safeExcerpt: string | null;
   snippet: string | null;
   storedText: string | null;
@@ -29,6 +31,7 @@ export type DocumentDetail = {
     evidenceStatus: string;
     confidence: number | null;
   }>;
+  classifications: RecordClassification[];
   transaction: null | {
     dealDate: string | null; dealAmount: string | null; buildingAr: string | null; plottageAr: string | null;
     buildingUse: string | null; buildingType: string | null; buildYear: string | null; floor: string | null;
@@ -39,7 +42,9 @@ export type DocumentDetail = {
 };
 
 const documentDetailSql = `
-WITH latest AS (
+WITH runtime AS (
+  SELECT to_char(clock_timestamp() AT TIME ZONE 'UTC','YYYY-MM-DD"T"HH24:MI:SS.MS"Z"') AS now_utc
+), latest AS (
   SELECT * FROM market_intelligence.document_versions
   WHERE document_id=$1
   ORDER BY version_no DESC, document_version_id DESC
@@ -73,6 +78,7 @@ SELECT jsonb_build_object(
   'eventSignals',coalesce(ev.items,'[]'::jsonb),
   'keywords',coalesce(kw.items,'[]'::jsonb),
   'relatedEntities',coalesce(rel.items,'[]'::jsonb),
+  'classifications',coalesce(cls.items,'[]'::jsonb),
   'transaction',CASE WHEN sd.document_type='API_RECORD' THEN jsonb_build_object(
     'dealDate',dv.metadata_json::jsonb->>'deal_date',
     'dealAmount',dv.metadata_json::jsonb->'api_record'->>'dealAmount',
@@ -166,6 +172,35 @@ LEFT JOIN LATERAL (
 ) kw ON true
 LEFT JOIN LATERAL (
   SELECT jsonb_agg(jsonb_build_object(
+    'schemeCode',s.scheme_code,'schemeLabel',s.scheme_name_ko,
+    'termCode',t.term_code,'termLabel',t.term_name_ko,
+    'parentCode',parent.term_code,'parentLabel',parent.term_name_ko,
+    'isPrimary',(rc.is_primary=1),'assignmentRole',rc.assignment_role,
+    'evidenceStatus',rc.evidence_status,'reviewStatus',rc.review_status,
+    'confidence',rc.confidence
+  ) ORDER BY s.scheme_code,rc.is_primary DESC,t.sort_order,t.term_code) AS items
+  FROM market_intelligence.record_classifications rc
+  JOIN market_intelligence.classification_schemes s
+    ON s.classification_scheme_id=rc.classification_scheme_id
+  JOIN market_intelligence.classification_terms t
+    ON t.classification_scheme_id=rc.classification_scheme_id
+   AND t.classification_term_id=rc.classification_term_id
+  LEFT JOIN market_intelligence.classification_terms parent
+    ON parent.classification_scheme_id=t.classification_scheme_id
+   AND parent.classification_term_id=t.parent_term_id
+  CROSS JOIN runtime rt
+  WHERE rc.target_kind='DOCUMENT' AND rc.target_id=sd.document_id
+    AND rc.review_status NOT IN ('REJECTED','SUPERSEDED')
+    AND (rc.valid_from IS NULL OR rc.valid_from<=rt.now_utc)
+    AND (rc.valid_to IS NULL OR rc.valid_to>rt.now_utc)
+    AND s.governance_status='ACTIVE' AND t.governance_status='ACTIVE'
+    AND (s.valid_from IS NULL OR s.valid_from<=rt.now_utc)
+    AND (s.valid_to IS NULL OR s.valid_to>rt.now_utc)
+    AND (t.valid_from IS NULL OR t.valid_from<=rt.now_utc)
+    AND (t.valid_to IS NULL OR t.valid_to>rt.now_utc)
+) cls ON true
+LEFT JOIN LATERAL (
+  SELECT jsonb_agg(jsonb_build_object(
     'kind',x.entity_kind,'id',x.entity_id,'title',x.entity_title,
     'relationBasis',x.relation_basis,'relationRole',x.relation_role,
     'evidenceStatus',x.evidence_status,'confidence',x.confidence
@@ -202,5 +237,37 @@ WHERE sd.document_id=$1
 
 export async function getDocumentDetail(execute: SqlExecutor, id: string): Promise<DocumentDetail | null> {
   const result = await execute(documentDetailSql, [id]);
-  return (result.rows[0]?.payload as DocumentDetail | undefined) ?? null;
+  const detail = result.rows[0]?.payload as Omit<DocumentDetail, "eventExtraction"> | undefined;
+  if (!detail) return null;
+
+  const normalizedSummary = normalizeObjectLikeSummary(detail.summary);
+  return {
+    ...detail,
+    summary: normalizedSummary.summary,
+    eventExtraction: detail.summaryMode === "EVENT_EXTRACTION"
+      ? normalizedSummary.object
+      : null,
+    eventSignals: detail.eventSignals.map((signal) => ({
+      ...signal,
+      summary: normalizeObjectLikeSummary(signal.summary).summary,
+    })),
+  };
+}
+
+function normalizeObjectLikeSummary(value: string | null): {
+  summary: string | null;
+  object: Record<string, unknown> | null;
+} {
+  const trimmed = value?.trim();
+  if (!trimmed?.startsWith("{")) return { summary: value, object: null };
+
+  try {
+    const parsed: unknown = JSON.parse(trimmed);
+    if (parsed !== null && typeof parsed === "object" && !Array.isArray(parsed)) {
+      return { summary: null, object: parsed as Record<string, unknown> };
+    }
+  } catch {
+    // Object-looking extraction text must never leak into the human-readable summary.
+  }
+  return { summary: null, object: null };
 }

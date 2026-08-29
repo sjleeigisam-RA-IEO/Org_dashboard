@@ -1,4 +1,5 @@
 import type { SqlExecutor } from "@/lib/server/market-search";
+import type { RecordClassification } from "@/lib/search-contract";
 
 export type EntityDetail = {
   kind: "EVENT" | "ASSET";
@@ -14,9 +15,13 @@ export type EntityDetail = {
   capital: Array<{ id: string; title: string; meta: string | null }>;
   processes: Array<{ id: string; title: string; meta: string | null }>;
   documents: Array<{ id: string; title: string; meta: string | null; href: string | null }>;
+  classifications: RecordClassification[];
 };
 
 const eventSql = `
+WITH runtime AS (
+  SELECT to_char(clock_timestamp() AT TIME ZONE 'UTC','YYYY-MM-DD"T"HH24:MI:SS.MS"Z"') AS now_utc
+)
 SELECT jsonb_build_object(
   'kind','EVENT','id',e.event_id,'title',e.canonical_title,
   'subtitle',concat_ws(' · ',ec.name_ko,e.current_stage_code),'status',e.lifecycle_status,
@@ -30,7 +35,7 @@ SELECT jsonb_build_object(
   'assets',coalesce(a.items,'[]'::jsonb),'events','[]'::jsonb,
   'organizations',coalesce(o.items,'[]'::jsonb),'projects',coalesce(p.items,'[]'::jsonb),
   'capital',coalesce(cap.items,'[]'::jsonb),'processes',coalesce(proc.items,'[]'::jsonb),
-  'documents',coalesce(d.items,'[]'::jsonb)
+  'documents',coalesce(d.items,'[]'::jsonb),'classifications',coalesce(cls.items,'[]'::jsonb)
 ) AS payload
 FROM market_intelligence.events e
 LEFT JOIN market_intelligence.event_categories ec ON ec.event_category_id=e.primary_category_id
@@ -56,6 +61,35 @@ LEFT JOIN LATERAL (
   FROM market_intelligence.sale_processes sp WHERE sp.event_id=e.event_id AND sp.review_status<>'REJECTED'
 ) proc ON true
 LEFT JOIN LATERAL (
+  SELECT jsonb_agg(jsonb_build_object(
+    'schemeCode',s.scheme_code,'schemeLabel',s.scheme_name_ko,
+    'termCode',t.term_code,'termLabel',t.term_name_ko,
+    'parentCode',parent.term_code,'parentLabel',parent.term_name_ko,
+    'isPrimary',(rc.is_primary=1),'assignmentRole',rc.assignment_role,
+    'evidenceStatus',rc.evidence_status,'reviewStatus',rc.review_status,
+    'confidence',rc.confidence
+  ) ORDER BY s.scheme_code,rc.is_primary DESC,t.sort_order,t.term_code) AS items
+  FROM market_intelligence.record_classifications rc
+  JOIN market_intelligence.classification_schemes s
+    ON s.classification_scheme_id=rc.classification_scheme_id
+  JOIN market_intelligence.classification_terms t
+    ON t.classification_scheme_id=rc.classification_scheme_id
+   AND t.classification_term_id=rc.classification_term_id
+  LEFT JOIN market_intelligence.classification_terms parent
+    ON parent.classification_scheme_id=t.classification_scheme_id
+   AND parent.classification_term_id=t.parent_term_id
+  CROSS JOIN runtime rt
+  WHERE rc.target_kind='EVENT' AND rc.target_id=e.event_id
+    AND rc.review_status NOT IN ('REJECTED','SUPERSEDED')
+    AND (rc.valid_from IS NULL OR rc.valid_from<=rt.now_utc)
+    AND (rc.valid_to IS NULL OR rc.valid_to>rt.now_utc)
+    AND s.governance_status='ACTIVE' AND t.governance_status='ACTIVE'
+    AND (s.valid_from IS NULL OR s.valid_from<=rt.now_utc)
+    AND (s.valid_to IS NULL OR s.valid_to>rt.now_utc)
+    AND (t.valid_from IS NULL OR t.valid_from<=rt.now_utc)
+    AND (t.valid_to IS NULL OR t.valid_to>rt.now_utc)
+) cls ON true
+LEFT JOIN LATERAL (
   SELECT jsonb_agg(jsonb_build_object('id',x.document_id,'title',x.title,'meta',concat_ws(' · ',x.publisher_name,x.document_type,x.relation_basis,x.evidence_status),'href',x.canonical_url) ORDER BY x.published_at DESC NULLS LAST) AS items
   FROM (
     SELECT DISTINCT ON (sd.document_id) sd.document_id,dv.title,sd.publisher_name,sd.document_type,sd.canonical_url,dv.published_at,r.relation_basis,r.evidence_status
@@ -70,6 +104,9 @@ WHERE e.event_id=$1
 `;
 
 const assetSql = `
+WITH runtime AS (
+  SELECT to_char(clock_timestamp() AT TIME ZONE 'UTC','YYYY-MM-DD"T"HH24:MI:SS.MS"Z"') AS now_utc
+)
 SELECT jsonb_build_object(
   'kind','ASSET','id',a.asset_id,'title',a.canonical_name,
   'subtitle',concat_ws(' · ',ac.name_ko,r.canonical_name),'status',a.status_code,
@@ -83,7 +120,7 @@ SELECT jsonb_build_object(
   'assets','[]'::jsonb,'events',coalesce(e.items,'[]'::jsonb),
   'organizations',coalesce(o.items,'[]'::jsonb),'projects',coalesce(p.items,'[]'::jsonb),
   'capital',coalesce(cap.items,'[]'::jsonb),'processes',coalesce(proc.items,'[]'::jsonb),
-  'documents',coalesce(d.items,'[]'::jsonb)
+  'documents',coalesce(d.items,'[]'::jsonb),'classifications',coalesce(cls.items,'[]'::jsonb)
 ) AS payload
 FROM market_intelligence.assets a
 LEFT JOIN market_intelligence.asset_classes ac ON ac.asset_class_id=a.asset_class_id
@@ -122,6 +159,35 @@ LEFT JOIN LATERAL (
   FROM market_intelligence.event_assets ea JOIN market_intelligence.sale_processes sp ON sp.event_id=ea.event_id
   WHERE ea.asset_id=a.asset_id AND sp.review_status<>'REJECTED'
 ) proc ON true
+LEFT JOIN LATERAL (
+  SELECT jsonb_agg(jsonb_build_object(
+    'schemeCode',s.scheme_code,'schemeLabel',s.scheme_name_ko,
+    'termCode',t.term_code,'termLabel',t.term_name_ko,
+    'parentCode',parent.term_code,'parentLabel',parent.term_name_ko,
+    'isPrimary',(rc.is_primary=1),'assignmentRole',rc.assignment_role,
+    'evidenceStatus',rc.evidence_status,'reviewStatus',rc.review_status,
+    'confidence',rc.confidence
+  ) ORDER BY s.scheme_code,rc.is_primary DESC,t.sort_order,t.term_code) AS items
+  FROM market_intelligence.record_classifications rc
+  JOIN market_intelligence.classification_schemes s
+    ON s.classification_scheme_id=rc.classification_scheme_id
+  JOIN market_intelligence.classification_terms t
+    ON t.classification_scheme_id=rc.classification_scheme_id
+   AND t.classification_term_id=rc.classification_term_id
+  LEFT JOIN market_intelligence.classification_terms parent
+    ON parent.classification_scheme_id=t.classification_scheme_id
+   AND parent.classification_term_id=t.parent_term_id
+  CROSS JOIN runtime rt
+  WHERE rc.target_kind='ASSET' AND rc.target_id=a.asset_id
+    AND rc.review_status NOT IN ('REJECTED','SUPERSEDED')
+    AND (rc.valid_from IS NULL OR rc.valid_from<=rt.now_utc)
+    AND (rc.valid_to IS NULL OR rc.valid_to>rt.now_utc)
+    AND s.governance_status='ACTIVE' AND t.governance_status='ACTIVE'
+    AND (s.valid_from IS NULL OR s.valid_from<=rt.now_utc)
+    AND (s.valid_to IS NULL OR s.valid_to>rt.now_utc)
+    AND (t.valid_from IS NULL OR t.valid_from<=rt.now_utc)
+    AND (t.valid_to IS NULL OR t.valid_to>rt.now_utc)
+) cls ON true
 LEFT JOIN LATERAL (
   SELECT jsonb_agg(jsonb_build_object('id',x.document_id,'title',x.title,'meta',concat_ws(' · ',x.publisher_name,x.document_type,x.relation_basis,x.evidence_status),'href',x.canonical_url) ORDER BY x.published_at DESC NULLS LAST) AS items
   FROM (

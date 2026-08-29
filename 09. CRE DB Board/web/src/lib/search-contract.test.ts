@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseSearchParams } from "@/lib/search-contract";
+import { hasInvalidSearchDateRange, koreanIsoDate, parseSearchParams } from "@/lib/search-contract";
 
 describe("parseSearchParams", () => {
   it("normalizes a valid market search request", () => {
@@ -17,6 +17,7 @@ describe("parseSearchParams", () => {
       q: "데이터센터 PF",
       kind: "EVENT",
       category: "PF",
+      classificationScheme: "",
       from: "2025-01-01",
       to: "2026-08-18",
       page: 2,
@@ -37,6 +38,7 @@ describe("parseSearchParams", () => {
       q: "",
       kind: "ALL",
       category: "",
+      classificationScheme: "",
       from: null,
       to: null,
       page: 1,
@@ -47,5 +49,23 @@ describe("parseSearchParams", () => {
 
   it("only includes sub-1000억원 transactions when explicitly requested", () => {
     expect(parseSearchParams(new URLSearchParams({ includeTransactionsUnder1000Eok: "true" })).includeTransactionsUnder1000Eok).toBe(true);
+  });
+
+  it("preserves an explicit governed classification scheme", () => {
+    const parsed = parseSearchParams(new URLSearchParams({
+      category: "PF",
+      classificationScheme: "MARKET_CATEGORY",
+    }));
+    expect(parsed.classificationScheme).toBe("MARKET_CATEGORY");
+  });
+
+  it("detects an inverted date range without rejecting open-ended ranges", () => {
+    expect(hasInvalidSearchDateRange("2026-08-25", "2026-01-01")).toBe(true);
+    expect(hasInvalidSearchDateRange("2026-01-01", "2026-08-25")).toBe(false);
+    expect(hasInvalidSearchDateRange("2026-01-01", "")).toBe(false);
+  });
+
+  it("formats the current day in Korea for the YTD shortcut", () => {
+    expect(koreanIsoDate(new Date("2025-12-31T15:30:00Z"))).toBe("2026-01-01");
   });
 });

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { DocumentDetail } from "@/lib/server/document-intelligence";
 import { TransactionDetail } from "@/components/transaction-template";
 import { documentTemplateKey, viewTemplates } from "@/lib/view-template-registry";
@@ -19,6 +19,23 @@ const relationBasisLabels: Record<string, string> = {
 export function DocumentDetailDrawer({ documentId, fallbackTitle, onClose }: Props) {
   const [detail, setDetail] = useState<DocumentDetail | null>(null);
   const [error, setError] = useState(false);
+  const drawerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+      if (event.key !== "Tab") return;
+      const focusable = [...(drawerRef.current?.querySelectorAll<HTMLElement>("button:not([disabled]), a[href], [tabindex]:not([tabindex='-1'])") ?? [])];
+      if (!focusable.length) return;
+      const first = focusable[0]; const last = focusable.at(-1) as HTMLElement;
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+    return () => { document.body.style.overflow = previousOverflow; window.removeEventListener("keydown", onKeyDown); };
+  }, [onClose]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -34,8 +51,8 @@ export function DocumentDetailDrawer({ documentId, fallbackTitle, onClose }: Pro
   const template = detail ? viewTemplates[documentTemplateKey(detail.documentType, Boolean(detail.transaction))] : viewTemplates.ARTICLE;
 
   return <div className="drawer-layer" onMouseDown={(event) => event.currentTarget === event.target && onClose()}>
-    <section className="detail-drawer document-drawer" role="dialog" aria-modal="true" aria-label="문서 상세">
-      <header className="drawer-header"><div><p className="eyebrow">{template.eyebrow}</p><h2>{detail?.title ?? fallbackTitle}</h2><p>{detail ? `${template.title} · ${detail.publisher ?? "출처 미상"} · ${template.purpose}` : "문서 지식정보 조회 중"}</p></div><button type="button" className="icon-button" aria-label="상세 닫기" onClick={onClose}>×</button></header>
+    <section ref={drawerRef} className="detail-drawer document-drawer" role="dialog" aria-modal="true" aria-label="문서 상세">
+      <header className="drawer-header"><div><p className="eyebrow">{template.eyebrow}</p><h2>{detail?.title ?? fallbackTitle}</h2><p>{detail ? `${template.title} · ${detail.publisher ?? "출처 미상"} · ${template.purpose}` : "문서 지식정보 조회 중"}</p></div><button type="button" className="icon-button" aria-label="상세 닫기" onClick={onClose} autoFocus>×</button></header>
       {!detail && !error && <div className="state-block"><span className="spinner"/><strong>요약·키워드·근거 조회 중</strong></div>}
       {error && <div className="state-block error-state"><strong>문서 상세를 불러오지 못했습니다.</strong></div>}
       {detail && <div className="drawer-body document-body">

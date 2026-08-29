@@ -3,6 +3,7 @@ import "server-only";
 import fs from "node:fs";
 import postgres from "postgres";
 import type { SqlExecutor } from "@/lib/server/market-search";
+import type { AuthSqlExecutor } from "@/lib/server/email-allowlist";
 
 const DEFAULT_AUTHORITY = String.raw`C:\10137_WorkSpace\env\.env.supabase.local`;
 
@@ -27,10 +28,11 @@ const globalWithSql = globalThis as GlobalWithSql;
 function client() {
   if (!globalWithSql.__marketSql) {
     globalWithSql.__marketSql = postgres(readConnectionUrl(), {
-      max: 5,
-      idle_timeout: 20,
+      max: 1,
+      idle_timeout: 5,
       connect_timeout: 10,
       ssl: "require",
+      prepare: false,
       transform: { undefined: null },
     });
   }
@@ -43,4 +45,20 @@ export const executeMarketSql: SqlExecutor = async (text, values) => {
     return transaction.unsafe(text, [...values]);
   });
   return { rows: rows as unknown as Array<{ payload: unknown }> };
+};
+
+export const executeAuthSql: AuthSqlExecutor = async (text, values) => {
+  const rows = await client().begin("read only", async (transaction) => {
+    await transaction.unsafe("SET LOCAL statement_timeout = 5000");
+    return transaction.unsafe(text, [...values]);
+  });
+  return { rows: rows as unknown as Array<Record<string, unknown>> };
+};
+
+export const executeAuthWriteSql: AuthSqlExecutor = async (text, values) => {
+  const rows = await client().begin(async (transaction) => {
+    await transaction.unsafe("SET LOCAL statement_timeout = 5000");
+    return transaction.unsafe(text, [...values]);
+  });
+  return { rows: rows as unknown as Array<Record<string, unknown>> };
 };
