@@ -68,7 +68,7 @@ describe("DecisionBriefWorkspace", () => {
 
     render(<DecisionBriefWorkspace onNavigate={navigate} onOpenDocument={openDocument}/>);
 
-    expect(await screen.findByRole("heading", { name: "오늘의 변화와 검토 대상을 먼저 확인" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "숫자 변화의 원인과 근거" })).toBeInTheDocument();
     expect(await screen.findByText("데이터센터 언급 급상승")).toBeInTheDocument();
     expect(screen.getByText("검토 대기 신호").parentElement).toHaveTextContent("1");
     expect(screen.getByText("상승 관찰어").closest("article")).toHaveTextContent("1");

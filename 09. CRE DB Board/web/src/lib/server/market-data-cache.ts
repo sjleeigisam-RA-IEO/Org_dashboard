@@ -8,6 +8,7 @@ import { getModelInterpretations } from "@/lib/server/model-interpretations";
 import { searchMarket } from "@/lib/server/market-search";
 import { getOperationsOverview } from "@/lib/server/operations-insights";
 import { getOperationsTimeline } from "@/lib/server/operations-timeline";
+import { getQuantitativeMarketPulse } from "@/lib/server/quantitative-market-pulse";
 import type { SearchRequest } from "@/lib/search-contract";
 
 // These projections are identical for every approved user and are refreshed on
@@ -53,6 +54,12 @@ export const getCachedModelInterpretations = unstable_cache(
   (limit: number) => getModelInterpretations(executeMarketSql, limit),
   ["cre-db-model-interpretations-v1"],
   { revalidate: 300, tags: ["cre-db-analytics"] },
+);
+
+export const getCachedQuantitativeMarketPulse = unstable_cache(
+  () => getQuantitativeMarketPulse(executeMarketSql),
+  ["cre-db-quantitative-market-pulse-v2"],
+  { revalidate: 300, tags: ["cre-db-market-pulse"] },
 );
 
 // Short-lived exact-query caching absorbs repeated tab navigation and filter

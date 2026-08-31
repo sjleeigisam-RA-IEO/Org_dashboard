@@ -5,6 +5,7 @@ import { normalizeDailyArticles, todayInSeoul, type DailyArticlesResponse } from
 import { normalizeInsightSignals, type InsightSignal, type InsightSignalsResponse } from "@/lib/insight-signals-contract";
 import { normalizeKeywordAnalytics, type KeywordAnalyticsItem, type KeywordAnalyticsResponse } from "@/lib/keyword-analytics-contract";
 import { normalizeOperationsOverview, type OperationsOverviewResponse } from "@/lib/operations-insights-contract";
+import { QuantitativeMarketPulse } from "@/components/quantitative-market-pulse";
 
 export type BriefWorkspaceTarget = "MARKET" | "DAILY" | "COMPANIES" | "CAPITAL" | "SALES" | "OPERATIONS";
 
@@ -131,8 +132,9 @@ export function DecisionBriefWorkspace({ onNavigate, onOpenDocument }: Props) {
     .reduce((sum, item) => sum + item.count, 0) ?? 0;
 
   return <section className="decision-brief domain-workspace">
+    <QuantitativeMarketPulse/>
     <header className="workspace-hero brief-hero">
-      <div><p className="eyebrow">CRE DECISION BRIEF</p><h1>오늘의 변화와 검토 대상을 먼저 확인</h1><p>시장 변화, 급상승 주제, 근거 품질과 적재 이상을 분리해 보고 필요한 원문과 전문 화면으로 바로 이동합니다.</p></div>
+      <div><p className="eyebrow">EVIDENCE & OPERATIONS BRIEF</p><h1>숫자 변화의 원인과 근거</h1><p>상단 시장 수치의 변화 원인을 기사, 검토 신호, 급상승 주제와 데이터 품질로 검증하고 필요한 원문과 전문 화면으로 이동합니다.</p></div>
       <div className="brief-asof"><span>SLICE AS-OF · 서로 다른 기준</span><dl><div><dt>기사 최신일</dt><dd>{daily.data?.latestAvailableDate ?? "—"}</dd></div><div><dt>운영 기준</dt><dd>{formatDateTime(overview.data?.asOfAt)}</dd></div><div><dt>키워드 계산</dt><dd>{formatDateTime(keywords.data?.computedAt)}</dd></div><div><dt>신호 계산</dt><dd>{formatDateTime(insights.data?.generatedAt)}</dd></div></dl><small>한 시각으로 합성하지 않음 · Supabase serving</small></div>
     </header>
 
