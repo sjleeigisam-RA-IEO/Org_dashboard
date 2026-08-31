@@ -482,8 +482,8 @@
         "03. Construction Board/data/construction_source_status_data.json",
         "03. Construction Board/index.html"
       ],
-      "pushed": false,
-      "pages_verified": false,
+      "pushed": true,
+      "pages_verified": true,
       "update_marks": {
         "companies_with_updates": 37,
         "new_item_marks": 83
@@ -492,7 +492,12 @@
         "Monday scheduled refresh was executed in this thread.",
         "API key values were not printed or written to dashboard outputs.",
         "README current refresh snapshot was updated for the 2026-08-31 run."
-      ]
+      ],
+      "commit": "99dd25703c027b16f26f6bddcff9066b59d53974",
+      "commit_short": "99dd257",
+      "pushed_at": "2026-08-31 09:28:19 KST",
+      "pages_verified_at": "2026-08-31 09:28:19 KST",
+      "pages_url": "https://sjleeigisam-ra-ieo.github.io/Org_dashboard/03.%20Construction%20Board/"
     }
   ],
   "generated_at": "2026-08-24 07:52:43 +09:00ST"
