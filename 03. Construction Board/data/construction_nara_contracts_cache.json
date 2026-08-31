@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-24 07:50:37 KST",
+  "generated_at": "2026-08-31 09:22:48 KST",
   "source_note": "조달청_나라장터 계약정보서비스의 공사 계약현황 조회 결과를 회사명 기준으로 필터링해 생성하는 자동 캐시입니다.",
   "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
   "query": {
-    "start_date": "20260810",
-    "end_date": "20260824",
+    "start_date": "20260817",
+    "end_date": "20260831",
     "per_company": 5,
     "max_pages": 5,
     "rows_per_page": 50
@@ -12,24 +12,220 @@
   "status": "ok",
   "companies": [
     {
-      "company": "(주)이산",
+      "company": "(주)다산컨설턴트",
       "aliases": [
-        "(주)이산",
-        "이산",
+        "(주)다산컨설턴트",
+        "다산컨설턴트",
         "주"
       ],
       "source_name": "나라장터 계약정보",
       "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
       "awards": [
         {
-          "project": "서울문창초등학교 외 1교(서울강남초등학교) 운동장개선 및 기타공사",
-          "client": "서울특별시교육청 서울특별시동작관악교육지원청",
-          "amount": "1.74억원",
+          "project": "국도77호선 여수 화태-백야 도로건설공사(2공구)",
+          "client": "조달청",
+          "amount": "2,078억원",
           "category": "제한경쟁",
-          "date": "2026-08-10",
+          "date": "2026-08-24",
           "source_name": "나라장터 계약정보",
           "source_url": "http://www.g2b.go.kr",
-          "amount_krw": "173880500"
+          "amount_krw": "207831811000"
+        }
+      ]
+    },
+    {
+      "company": "(주)수성엔지니어링",
+      "aliases": [
+        "(주)수성엔지니어링",
+        "수성엔지니어링",
+        "주"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "국도77호선 여수 화태-백야 도로건설공사(1공구)(6차)",
+          "client": "조달청",
+          "amount": "3,212억원",
+          "category": "제한경쟁",
+          "date": "2026-01-26",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "321228000000"
+        }
+      ]
+    },
+    {
+      "company": "(주)유신",
+      "aliases": [
+        "(주)유신",
+        "유신",
+        "주"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "국도77호선 여수 화태-백야 도로건설공사(1공구)(6차)",
+          "client": "조달청",
+          "amount": "3,212억원",
+          "category": "제한경쟁",
+          "date": "2026-01-26",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "321228000000"
+        }
+      ]
+    },
+    {
+      "company": "금호건설(주)",
+      "aliases": [
+        "금호건설(주)",
+        "금호건설",
+        "주"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "국도77호선 여수 화태-백야 도로건설공사(2공구)",
+          "client": "조달청",
+          "amount": "2,078억원",
+          "category": "제한경쟁",
+          "date": "2026-08-24",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "207831811000"
+        }
+      ]
+    },
+    {
+      "company": "동부엔지니어링(주)",
+      "aliases": [
+        "동부엔지니어링(주)",
+        "동부엔지니어링",
+        "주"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "국도77호선 여수 화태-백야 도로건설공사(1공구)(6차)",
+          "client": "조달청",
+          "amount": "3,212억원",
+          "category": "제한경쟁",
+          "date": "2026-01-26",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "321228000000"
+        }
+      ]
+    },
+    {
+      "company": "두산건설(주)",
+      "aliases": [
+        "두산건설(주)",
+        "두산건설",
+        "주"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "국도77호선 여수 화태-백야 도로건설공사(1공구)(6차)",
+          "client": "조달청",
+          "amount": "3,212억원",
+          "category": "제한경쟁",
+          "date": "2026-01-26",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "321228000000"
+        }
+      ]
+    },
+    {
+      "company": "롯데건설(주)",
+      "aliases": [
+        "롯데건설(주)",
+        "롯데건설",
+        "주"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "국도77호선 여수 화태-백야 도로건설공사(2공구)",
+          "client": "조달청",
+          "amount": "2,078억원",
+          "category": "제한경쟁",
+          "date": "2026-08-24",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "207831811000"
+        }
+      ]
+    },
+    {
+      "company": "쌍용건설(주)",
+      "aliases": [
+        "쌍용건설(주)",
+        "쌍용건설",
+        "주"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "국도77호선 여수 화태-백야 도로건설공사(1공구)(6차)",
+          "client": "조달청",
+          "amount": "3,212억원",
+          "category": "제한경쟁",
+          "date": "2026-01-26",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "321228000000"
+        }
+      ]
+    },
+    {
+      "company": "주식회사 포스코이앤씨",
+      "aliases": [
+        "주식회사 포스코이앤씨"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "국도77호선 여수 화태-백야 도로건설공사(1공구)(6차)",
+          "client": "조달청",
+          "amount": "3,212억원",
+          "category": "제한경쟁",
+          "date": "2026-01-26",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "321228000000"
+        }
+      ]
+    },
+    {
+      "company": "코오롱글로벌(주)",
+      "aliases": [
+        "코오롱글로벌(주)",
+        "코오롱글로벌",
+        "주"
+      ],
+      "source_name": "나라장터 계약정보",
+      "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
+      "awards": [
+        {
+          "project": "국도77호선 여수 화태-백야 도로건설공사(2공구)",
+          "client": "조달청",
+          "amount": "2,078억원",
+          "category": "제한경쟁",
+          "date": "2026-08-24",
+          "source_name": "나라장터 계약정보",
+          "source_url": "http://www.g2b.go.kr",
+          "amount_krw": "207831811000"
         }
       ]
     }
@@ -37,5 +233,5 @@
   "errors": [],
   "rows_fetched": 250,
   "companies_collected": 99,
-  "companies_with_awards": 1
+  "companies_with_awards": 10
 }

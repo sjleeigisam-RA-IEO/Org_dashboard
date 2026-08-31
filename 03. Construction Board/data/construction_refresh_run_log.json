@@ -441,6 +441,58 @@
       "commit_short": "794b9c4",
       "pushed_at": "2026-08-25 06:03:00 KST",
       "pages_verified_at": "2026-08-25 06:03:00 KST"
+    },
+    {
+      "scheduled_for": "2026-08-31",
+      "run_type": "monday-main",
+      "started_at": "2026-08-31 09:24:42 +09:00ST",
+      "completed_at": "2026-08-31 09:24:42 +09:00ST",
+      "status": "success",
+      "sources": {
+        "google_news": {
+          "status": "success",
+          "note": "refreshed"
+        },
+        "nara_g2b_contracts": {
+          "status": "success",
+          "note": "refreshed"
+        },
+        "opendart_awards": {
+          "status": "success",
+          "note": "refreshed"
+        },
+        "opendart_strategy": {
+          "status": "success",
+          "note": "refreshed"
+        },
+        "credit_ratings": {
+          "status": "not_run",
+          "note": "Monthly cache retained from previous refresh"
+        }
+      },
+      "backup_dir": "outputs\\construction_refresh_before_20260831_092149",
+      "changed_files": [
+        "03. Construction Board/README.md",
+        "03. Construction Board/data/construction_company_news_cache.json",
+        "03. Construction Board/data/construction_nara_contracts_cache.json",
+        "03. Construction Board/data/construction_dart_awards_cache.json",
+        "03. Construction Board/data/construction_dart_strategy_cache.json",
+        "03. Construction Board/data/construction_online_update_marks.json",
+        "03. Construction Board/data/construction_refresh_run_log.json",
+        "03. Construction Board/data/construction_source_status_data.json",
+        "03. Construction Board/index.html"
+      ],
+      "pushed": false,
+      "pages_verified": false,
+      "update_marks": {
+        "companies_with_updates": 37,
+        "new_item_marks": 83
+      },
+      "notes": [
+        "Monday scheduled refresh was executed in this thread.",
+        "API key values were not printed or written to dashboard outputs.",
+        "README current refresh snapshot was updated for the 2026-08-31 run."
+      ]
     }
   ],
   "generated_at": "2026-08-24 07:52:43 +09:00ST"
