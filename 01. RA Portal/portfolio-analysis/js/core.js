@@ -21,6 +21,10 @@ var allFunds = [];
 var allFundAssets = [];
 var allAssetMaster = [];
 var allAssetFundLinks = [];
+var allFundLifecycleRows = [];
+var fundLifecycleLoaded = false;
+var allAumRelationshipRows = [];
+var aumRelationshipsLoaded = false;
 var analysisFilters = {};
 var analysisView = 'year';
 var analysisMode = 'aum';
@@ -59,6 +63,8 @@ window.allFunds = allFunds;
 window.allFundAssets = allFundAssets;
 window.allAssetMaster = allAssetMaster;
 window.allAssetFundLinks = allAssetFundLinks;
+window.allAumRelationshipRows = allAumRelationshipRows;
+window.aumRelationshipsLoaded = aumRelationshipsLoaded;
 window.analysisFilters = analysisFilters;
 window.analysisView = analysisView;
 window.analysisMode = analysisMode;
@@ -151,7 +157,7 @@ function formatNumber(num) {
   var absNum = Math.abs(num);
   var eok = Math.floor(absNum / 100000000);
   if (eok >= 10000) {
-    var jo = Math.floor((absNum / 1000000000000) * 100) / 100;
+    var jo = Math.round((absNum / 1000000000000) * 100) / 100;
     return (num < 0 ? '-' : '') + jo.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '조';
   }
   return (num < 0 ? '-' : '') + eok.toLocaleString() + '억';
@@ -255,6 +261,20 @@ function isAumCountedFund(fund) {
   return true;
 }
 
+function getAumLookthroughResult(funds) {
+  if (!window.AumLookthrough || typeof window.AumLookthrough.applyToFunds !== 'function') {
+    return { funds: funds || [], adjustments: [], benchmarkOverlap: 0, investedOverlap: 0, eligibleRelationshipRows: 0 };
+  }
+  return window.AumLookthrough.applyToFunds(funds || [], window.allAumRelationshipRows || []);
+}
+
+function applyAumLookthroughToFunds(funds) {
+  return getAumLookthroughResult(funds).funds;
+}
+
+window.getAumLookthroughResult = getAumLookthroughResult;
+window.applyAumLookthroughToFunds = applyAumLookthroughToFunds;
+
 function getFundSector(fund) {
   return getFieldValue(fund, 'investment_sector') || getFieldValue(fund, 'sector') || '미분류';
 }
@@ -275,11 +295,20 @@ function isOverseasFund(fund) {
 }
 
 function getFundSetupDate(fund) {
-  return fund?.setup_date || fund?.metadata?.setup_date || fund?.metadata?.first_setup_date;
+  return fund?.lifecycle_setup_date || fund?.setup_date || fund?.metadata?.setup_date || fund?.metadata?.first_setup_date;
+}
+
+function getFundLiquidationDate(fund) {
+  return fund?.lifecycle_liquidation_date
+    || fund?.liquidation_date
+    || fund?.termination_date
+    || fund?.metadata?.liquidation_date
+    || fund?.metadata?.termination_date
+    || null;
 }
 
 function getFundEndDate(fund) {
-  return fund?.termination_date || fund?.metadata?.termination_date || fund?.maturity_date || fund?.metadata?.maturity_date;
+  return getFundLiquidationDate(fund) || fund?.maturity_date || fund?.metadata?.maturity_date;
 }
 
 function getSearchTerms(query) {
@@ -356,11 +385,64 @@ async function ensureAllDataLoaded() {
     }
   }
 
+  if (!fundLifecycleLoaded) {
+    try {
+      allFundLifecycleRows = await fetchAllRows(
+        'fund_lifecycle',
+        'fund_id,op_status,setup_date,maturity_date,liquidation_date,is_aum_target,aum_base,aum_base_date'
+      );
+    } catch (error) {
+      console.warn('Fund lifecycle data unavailable; using dates on funds.', error);
+      allFundLifecycleRows = [];
+    }
+    fundLifecycleLoaded = true;
+    window.allFundLifecycleRows = allFundLifecycleRows;
+    window.fundLifecycleLoaded = true;
+  }
+
+  if (allFundLifecycleRows.length) {
+    var lifecycleByFundId = new Map(allFundLifecycleRows.map(function (row) {
+      return [String(row.fund_id || ''), row];
+    }));
+    var enrichLifecycle = function (fund) {
+      var lifecycle = lifecycleByFundId.get(String(fund?.fund_id || ''));
+      if (!lifecycle) return;
+      fund.lifecycle_setup_date = lifecycle.setup_date || null;
+      fund.lifecycle_liquidation_date = lifecycle.liquidation_date || null;
+      fund.lifecycle_maturity_date = lifecycle.maturity_date || null;
+      fund.lifecycle_op_status = lifecycle.op_status || null;
+      fund.lifecycle_is_aum_target = lifecycle.is_aum_target;
+      fund.lifecycle_aum_base = lifecycle.aum_base;
+      fund.lifecycle_aum_base_date = lifecycle.aum_base_date || null;
+    };
+    (window.allFunds || []).forEach(enrichLifecycle);
+    if (typeof allResults !== 'undefined' && Array.isArray(allResults.funds)) {
+      allResults.funds.forEach(enrichLifecycle);
+    }
+  }
+
+  if (!aumRelationshipsLoaded) {
+    try {
+      allAumRelationshipRows = await fetchAllRows(
+        'party_exposure_external_current_v1',
+        'exposure_uid,role_type,fund_id,party_id,committed_amt,invested_amt,capital_scope,include_in_external_investor_rollup,investor_managed_fund_ids'
+      );
+    } catch (error) {
+      console.warn('AUM look-through relationships unavailable; using gross AUM.', error);
+      allAumRelationshipRows = [];
+    }
+    aumRelationshipsLoaded = true;
+    window.allAumRelationshipRows = allAumRelationshipRows;
+    window.aumRelationshipsLoaded = true;
+  }
+
   return {
     funds: window.allFunds,
     assets: window.allFundAssets,
     assetMaster: window.allAssetMaster,
-    assetFundLinks: window.allAssetFundLinks
+    assetFundLinks: window.allAssetFundLinks,
+    fundLifecycle: window.allFundLifecycleRows,
+    aumRelationships: window.allAumRelationshipRows
   };
 }
 
@@ -410,4 +492,5 @@ window.getMetricColumn = getMetricColumn;
 window.getMetricLabel = getMetricLabel;
 window.isOverseasFund = isOverseasFund;
 window.getFundSetupDate = getFundSetupDate;
+window.getFundLiquidationDate = getFundLiquidationDate;
 window.getFundEndDate = getFundEndDate;

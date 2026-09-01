@@ -10,13 +10,13 @@
   </script>
   <title>IGIS RA Insight v2 | Local UX Preview</title>
   <link rel="stylesheet" href="../../shared/ifpdp-system-theme.css?v=ifpdp_system_3">
-  <link rel="stylesheet" href="style.css?v=fund_lookthrough_shell_20260818a">
+  <link rel="stylesheet" href="style.css?v=previous_year_aum_20260901b">
   <link rel="stylesheet" href="ux-v2.css?v=ux_v2_core_20260824a">
   <link rel="stylesheet" href="ux-v2-components.css?v=ux_v2_components_20260824b">
   <link rel="icon" href="data:,">
   <!-- Supabase & VWorld JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../../shared/ra-auth.js?v=ra_auth_admin_2"></script>
+  <script src="../../shared/ra-auth.js?v=ra_presence_1"></script>
   <script type="text/javascript" src="https://map.vworld.kr/js/vworldMapInit.js.do?version=2.0&apiKey=02B5F8FA-CC59-3109-86FD-0C9C1B98B5BF"></script>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <style>
@@ -128,6 +128,9 @@
     </a>
     <a class="v2-tool-link" href="../../03. Construction Board/index.html" target="_blank" rel="noopener noreferrer" aria-label="시공사정보 새 탭에서 열기">
       <span>시공사정보</span><span class="v2-tool-link-external" aria-hidden="true">↗</span>
+    </a>
+    <a id="v2AccessMonitorLink" class="v2-tool-link" href="../../05. Org Board/admin.html" target="_blank" rel="noopener noreferrer" aria-label="접속 현황 새 탭에서 열기" hidden>
+      <span>접속 현황</span><span class="v2-tool-link-external" aria-hidden="true">↗</span>
     </a>
   </nav>
 
@@ -360,21 +363,23 @@
     try {
       const scripts = [
         "config.js",
-        "js/core.js?v=portfolio_layout_20260715d",
+        "js/aum-lookthrough.js?v=aum_lookthrough_20260901a",
+        "js/quarterly-lifecycle.js?v=quarter_lifecycle_20260901a",
+        "js/core.js?v=quarter_lifecycle_20260901a",
             "js/portfolio-analysis-engine.js?v=metric_basis_clarity_20260814c",
-            "js/asset-canonical.js?v=admin_access_guard_20260814a",
-        "js/search-results.js?v=relationship_preview_20260821a",
+            "js/asset-canonical.js?v=asset_master_direct_search_20260826a",
+        "js/search-results.js?v=asset_master_direct_search_20260826a",
             "js/detail-drawer.js?v=detail_clean_party_contract_20260814a",
-        "js/analytics-dashboard.js?v=chart_width_sync_20260821b",
+      "js/analytics-dashboard.js?v=previous_year_aum_20260901b",
         "js/portfolio-analysis.js?v=viewport_stable_20260715h",
-            "js/portfolio-analysis-integration.js?v=metric_basis_clarity_20260814c",
+            "js/portfolio-analysis-integration.js?v=quarter_lifecycle_20260901a",
         "js/exposure-dedupe.js?v=economic_duplicate_contract_20260822a",
         "js/capital-relationship-analysis.js?v=fund_lookthrough_shell_20260818a",
         "filter-controls-v2.js?v=ux_v2_local_20260824a",
         "search-explorer-v2.js?v=ux_v2_local_20260821b",
         "institution-analysis-v2.js?v=ux_v2_local_20260822h",
         "app.js?v=ux_v2_local_20260821a",
-        "ux-v2.js?v=ux_v2_local_20260822f"
+        "ux-v2.js?v=aum_lookthrough_20260901a"
       ];
 
       for (const src of scripts) {
@@ -392,9 +397,18 @@
   })();
 </script>
   <script>
+    const accessMonitorLink = document.getElementById('v2AccessMonitorLink');
+    const syncAccessMonitorLink = () => {
+      const isLocal = ['127.0.0.1', 'localhost', '::1'].includes(window.location.hostname);
+      const isAdmin = window.RAAuth?.isAdminUser?.(window.RAAuth?.getSessionUser?.()) === true;
+      if (accessMonitorLink) accessMonitorLink.hidden = !(isLocal || isAdmin);
+    };
+    syncAccessMonitorLink();
+    window.setTimeout(syncAccessMonitorLink, 900);
+
     if (!['127.0.0.1', 'localhost'].includes(window.location.hostname)) {
       const authScript = document.createElement('script');
-      authScript.src = '../../security-lite.js?v=ra_folder_paths_20260818a';
+      authScript.src = '../../security-lite.js?v=ra_presence_1';
       document.body.appendChild(authScript);
     }
   </script>

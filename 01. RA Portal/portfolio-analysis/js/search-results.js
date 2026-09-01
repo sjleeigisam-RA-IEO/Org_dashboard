@@ -470,6 +470,24 @@ function performIndexedSearchOn(surface, terms, options) {
   });
 }
 
+function appendDirectCanonicalAssets(hydrated, terms, options) {
+  if (!window.AssetCanonical || typeof window.AssetCanonical.searchCanonicalAssets !== 'function') {
+    return Promise.resolve(hydrated);
+  }
+  return window.AssetCanonical.searchCanonicalAssets(terms, {
+    shortNumeric: Boolean(options && options.entityTypes)
+  }).then(function (assetRes) {
+    hydrated.assetGroups = mergeAssetDisplayRows(dedupeEntities(
+      (hydrated.assetGroups || []).concat(assetRes.data || []),
+      'asset'
+    ));
+    return hydrated;
+  }).catch(function (error) {
+    console.warn('Direct asset_master search unavailable; using indexed assets only.', error);
+    return hydrated;
+  });
+}
+
 function performIndexedSearch(query, terms) {
   var options = isShortNumericSearch(query)
     ? { entityTypes: ['fund', 'project'], includeRelatedAssets: false, limit: 200 }
@@ -481,6 +499,8 @@ function performIndexedSearch(query, terms) {
       window.searchContractMode = 'raw_token_fallback';
       console.warn('portfolio_search_results_canonical unavailable; using raw portfolio_search_index.', canonicalError);
       return performIndexedSearchOn('portfolio_search_index', terms, options);
+    }).then(function (hydrated) {
+      return appendDirectCanonicalAssets(hydrated, terms, options);
     });
   }
 
@@ -497,6 +517,8 @@ function performIndexedSearch(query, terms) {
     window.searchContractMode = 'raw_token_fallback';
     console.warn('portfolio_search_results_canonical unavailable; using raw portfolio_search_index.', canonicalError);
     return performIndexedSearchOn('portfolio_search_index', terms, options);
+  }).then(function (hydrated) {
+    return appendDirectCanonicalAssets(hydrated, terms, options);
   });
 }
 

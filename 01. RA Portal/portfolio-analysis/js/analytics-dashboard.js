@@ -16,6 +16,9 @@
             console.error(e);
         }
     }
+    if ((!window.aumRelationshipsLoaded || !window.fundLifecycleLoaded) && typeof ensureAllDataLoaded === 'function') {
+        await ensureAllDataLoaded();
+    }
     // Use filtered data if available
     const filteredFunds = (typeof getFilteredData === 'function') ? getFilteredData() : targetFunds;
     const historyFunds = (typeof getFilteredData === 'function')
@@ -24,21 +27,41 @@
     window.lastTargetFunds = historyFunds;
     
     const snapshotDate = getAnalysisSnapshotDate();
-    const activeFunds = filteredFunds.filter(isActiveAumSnapshotFund);
+    const grossActiveFunds = filteredFunds.filter(isActiveAumSnapshotFund);
+    const aumLookthrough = typeof getAumLookthroughResult === 'function'
+        ? getAumLookthroughResult(grossActiveFunds)
+        : { funds: grossActiveFunds, adjustments: [], benchmarkOverlap: 0, investedOverlap: 0 };
+    const activeFunds = aumLookthrough.funds;
+    window.lastAumLookthroughResult = aumLookthrough;
+    window.lastCurrentAumGrossFunds = grossActiveFunds;
+    window.lastCurrentAumNetFunds = activeFunds;
 
     const aumMetric = getAumBasisMetric();
     const aumConfig = getAumMetricConfig(aumMetric);
+    const aumOverlap = aumMetric === 'invested_aum'
+        ? aumLookthrough.investedOverlap
+        : aumLookthrough.benchmarkOverlap;
     const totalAum = activeFunds.reduce((sum, f) => sum + getFundAmountWon(f, getMetricColumn('aum', aumMetric)), 0);
+    const previousYear = snapshotDate.getFullYear() - 1;
+    const previousYearEndFunds = getSnapshotFunds(
+        historyFunds,
+        String(previousYear),
+        new Date(`${previousYear}-12-31T00:00:00`)
+    );
+    const previousYearEndAum = previousYearEndFunds.reduce(
+        (sum, fund) => sum + getFundAmountWon(fund, getMetricColumn('aum', aumMetric)),
+        0
+    );
     const totalEquity = activeFunds.reduce((sum, f) => sum + getFundAmountWon(f, getMetricColumn('equity', aumMetric)), 0);
     const totalLoan = activeFunds.reduce((sum, f) => sum + getFundAmountWon(f, getMetricColumn('loan', aumMetric)), 0);
-    const totalOther = totalAum - totalEquity - totalLoan;
+    const totalOther = Math.max(0, totalAum - totalEquity - totalLoan);
 
     const mainValue = formatNumber(totalAum);
     const eqVal = formatNumber(totalEquity);
     const lnVal = formatNumber(totalLoan);
     const otVal = formatNumber(totalOther);
 
-    const activeAssetFunds = filteredFunds.filter(isActiveAumSnapshotFund);
+    const activeAssetFunds = activeFunds;
     const activeAssetRecords = getActiveAssetRecords(activeAssetFunds);
     const domesticAssetsCount = activeAssetRecords.filter(isDomesticAssetRecord).length;
     const overseasAssetsCount = activeAssetRecords.filter(isOverseasAssetRecord).length;
@@ -47,6 +70,7 @@
     if (isMobileAnalyticsView()) {
         renderMobileAnalytics({
             filteredFunds,
+            historyFunds,
             activeFunds,
             activeAssetRecords,
             domesticAssetsCount,
@@ -56,7 +80,11 @@
             totalEquity,
             totalLoan,
             totalOther,
-            aumConfig
+            aumConfig,
+            aumOverlap,
+            previousYear,
+            previousYearEndAum,
+            lookthroughTargetCount: aumLookthrough.adjustments.length
         });
         return;
     }
@@ -71,17 +99,21 @@
           <div class="current-aum-overview" style="display:grid; grid-template-columns: 2fr 1fr; gap:24px; margin-bottom:32px;">
             <div class="kpi-card" style="padding:40px;">
               <div class="kpi-label" style="font-size:14px; letter-spacing:1px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;">
-                <span>현재 운용 AUM (${aumConfig.label}, ${getAnalysisSnapshotDateLabel()} 기준)</span>
+                <span>현재 운용 순 AUM (${aumConfig.label}, ${getAnalysisSnapshotDateLabel()} 기준)</span>
                 <div id="aumBasisToggle" class="segmented-control" data-active="${aumMetric}" onclick="toggleAumBasis()">
                     <div class="segment-slider"></div>
                     <div class="segment ${aumMetric === 'benchmark_aum' ? 'active' : ''}" data-val="benchmark_aum">약정</div>
                     <div class="segment ${aumMetric === 'invested_aum' ? 'active' : ''}" data-val="invested_aum">투입</div>
                 </div>
               </div>
-              <div class="kpi-value" style="font-size:52px; color:var(--accent); font-weight:900; line-height:1;">${mainValue}</div>
+              <div class="kpi-value" style="font-size:52px; color:var(--accent); font-weight:900; line-height:1;">
+        <span class="previous-year-aum-caption">${previousYear}년말 기준 ${formatNumber(previousYearEndAum)}</span>
+                <span class="current-aum-value">${mainValue}</span>
+              </div>
+              <div style="margin-top:10px; color:var(--muted); font-size:12px; line-height:1.5;">내부 기구간 중복 ${formatNumber(aumOverlap)} 차감 · ${aumLookthrough.adjustments.length.toLocaleString()}개 대상</div>
               <div style="margin-top:32px; padding-top:24px; border-top:1px solid var(--line); display:grid; grid-template-columns: 1fr 1fr 1fr; gap:20px;">
                 <div class="kpi-sub">
-                  <div class="kpi-sub-label">자본금</div>
+                  <div class="kpi-sub-label">자본금(순액)</div>
                   <div class="kpi-sub-value" style="color:var(--accent); font-size:18px;">${eqVal}</div>
                 </div>
                 <div class="kpi-sub">
@@ -99,7 +131,7 @@
               <div>
                 <div class="kpi-label" style="margin-bottom:16px;">AUM 대상 실물자산</div>
                 <div class="kpi-value" style="font-size:48px; font-weight:900; color:var(--text);">${activeAssetRecords.length}<span style="font-size:18px; font-weight:500; margin-left:4px; color:var(--muted);">개</span></div>
-                <div style="margin-top:10px; color:var(--muted); font-size:11px; line-height:1.5;">AUM 운용·자펀드 제외, fund_assets 주소/PNU 기준<br>재간접, 증권, 포트폴리오 묶음 제외</div>
+                <div style="margin-top:10px; color:var(--muted); font-size:11px; line-height:1.5;">순 AUM 운용기구 기준, fund_assets 주소/PNU 기준<br>재간접, 증권, 포트폴리오 묶음 제외</div>
               </div>
               <div style="margin-top:24px; padding-top:20px; border-top:1px dashed var(--line); display:grid; grid-template-columns: repeat(${otherAssetsCount > 0 ? 3 : 2}, 1fr); gap:12px;">
                 <div class="kpi-sub">
@@ -118,6 +150,8 @@
               </div>
             </div>
           </div>
+
+          ${buildQuarterLifecycleSection(historyFunds, aumConfig)}
 
           <div class="detail-section" style="padding:40px;">
             <div class="history-chart-heading">
@@ -155,7 +189,7 @@
                  </div>
                  <span style="font-size:12px; color:var(--accent); background:rgba(251, 241, 103, 0.12); padding:2px 8px; border-radius:6px;">${currentOrgScope === 'ra' ? 'RA 부문 적용' : '전체 포트폴리오'}</span>
                </h4>
-            <div id="netGrowthChart" style="min-height:350px;"></div>
+            <div id="netGrowthChart" style="width:100%; min-width:0; min-height:350px;"></div>
             <div id="drillDownResult" style="margin-top:48px; display:none; animation: fadeIn 0.4s ease;"></div>
           </div>
         </div>
@@ -178,8 +212,178 @@
         </style>
     `;
 
+    renderQuarterLifecycleDetail(selectedLifecycleQuarter);
     renderHistory('mainGrowthChart');
     renderNetGrowth('netGrowthChart');
+}
+
+var selectedLifecycleQuarter = null;
+
+function isLifecycleAumTarget(fund) {
+    const flag = fund?.lifecycle_is_aum_target ?? fund?.is_aum_target;
+    return !(flag === false || flag === 0 || String(flag).toLowerCase() === 'false');
+}
+
+function buildQuarterLifecycleModel(targetFunds, aumConfig) {
+    if (!window.QuarterlyLifecycle || typeof window.QuarterlyLifecycle.buildModel !== 'function') return null;
+    const amountColumn = getMetricColumn('aum', getAumBasisMetric());
+    const model = window.QuarterlyLifecycle.buildModel(
+        targetFunds || [],
+        getAnalysisSnapshotDateText(),
+        {
+            include: fund => isFundIncludedForCurrentMetric(fund)
+                && isLifecycleAumTarget(fund)
+                && (currentOrgScope === 'all' || isRAFund(fund)),
+            setupDateOf: fund => getFundSetupDate(fund),
+            liquidationDateOf: fund => getFundLiquidationDate(fund),
+            amountOf: fund => getFundAmountWon(fund, amountColumn),
+            nameOf: fund => fund.short_name || fund.fund_name || fund.metadata?.fund_name
+        }
+    );
+    model.metricLabel = aumConfig?.shortLabel || '기준금액';
+    return model;
+}
+
+function formatQuarterDate(value) {
+    const text = String(value || '');
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(text)) return '-';
+    return `${text.slice(5, 7)}.${text.slice(8, 10)}`;
+}
+
+function buildQuarterLifecycleSection(targetFunds, aumConfig) {
+    const model = buildQuarterLifecycleModel(targetFunds, aumConfig);
+    if (!model) return '';
+    window.currentQuarterLifecycleModel = model;
+
+    const selected = model.quarters.find(item => item.quarter === selectedLifecycleQuarter && item.state !== 'future');
+    selectedLifecycleQuarter = selected ? selected.quarter : null;
+
+    return `
+      <section id="quarterLifecycleSection" class="quarter-lifecycle-section" aria-labelledby="quarterLifecycleTitle">
+        <div class="quarter-lifecycle-head">
+          <div>
+            <span class="quarter-lifecycle-kicker">${model.year} LIFECYCLE</span>
+            <h3 id="quarterLifecycleTitle">분기별 신규 설정·청산</h3>
+          </div>
+          <p>펀드 설정일·실제 해지일 기준 · ${model.snapshotDate.replace(/-/g, '.')}</p>
+        </div>
+        <div class="quarter-lifecycle-tabs" role="tablist" aria-label="${model.year}년 분기">
+          ${model.quarters.map(item => {
+              const isSelected = item.quarter === selectedLifecycleQuarter;
+              const isFuture = item.state === 'future';
+              return `
+                <button type="button"
+                  class="quarter-lifecycle-tab ${isSelected ? 'is-active' : ''} is-${item.state}"
+                  role="tab"
+                  aria-selected="${isSelected ? 'true' : 'false'}"
+                  aria-expanded="${isSelected ? 'true' : 'false'}"
+                  aria-controls="quarterLifecycleDetail"
+                  data-quarter="${item.quarter}"
+                  ${isFuture ? 'disabled aria-disabled="true"' : `onclick="selectQuarterLifecycle(${item.quarter})"`}>
+                  <span class="quarter-lifecycle-tab-top">
+                    <strong>${item.title}</strong>
+                    <em>${item.statusLabel}</em>
+                  </span>
+                  <span class="quarter-lifecycle-period">${formatQuarterDate(item.start)}–${formatQuarterDate(item.end)}</span>
+                  <span class="quarter-lifecycle-counts">
+                    <b class="is-setup">신규 ${item.setup.length.toLocaleString()}</b>
+                    <b class="is-liquidation">청산 ${item.liquidation.length.toLocaleString()}</b>
+                  </span>
+                </button>
+              `;
+          }).join('')}
+        </div>
+        <div id="quarterLifecycleDetail" class="quarter-lifecycle-detail" role="tabpanel" hidden></div>
+      </section>
+    `;
+}
+
+function renderQuarterLifecycleEventList(title, tone, items, amount, metricLabel) {
+    return `
+      <section class="quarter-lifecycle-event is-${tone}">
+        <div class="quarter-lifecycle-event-head">
+          <div>
+            <span>${title}</span>
+            <strong>${items.length.toLocaleString()}건</strong>
+          </div>
+          <div>
+            <span>기준금액 합계</span>
+            <strong>${formatNumber(amount)}</strong>
+          </div>
+        </div>
+        ${items.length ? `
+          <div class="quarter-lifecycle-list">
+            ${items.map(item => `
+              <div class="quarter-lifecycle-row">
+                <div class="quarter-lifecycle-row-main">
+                  <strong>${escapeAnalysisHtml(item.name)}</strong>
+                  <span>${escapeAnalysisHtml(item.id)} · ${item.date.replace(/-/g, '.')}</span>
+                </div>
+                <div class="quarter-lifecycle-row-amount">
+                  <strong>${item.amount > 0 ? formatNumber(item.amount) : '-'}</strong>
+                  <span>${escapeAnalysisHtml(metricLabel)} 기준</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        ` : '<div class="quarter-lifecycle-empty">해당 분기 내역 없음</div>'}
+      </section>
+    `;
+}
+
+function renderQuarterLifecycleDetail(requestedQuarter) {
+    const model = window.currentQuarterLifecycleModel;
+    const panel = document.getElementById('quarterLifecycleDetail');
+    if (!model || !panel) return;
+
+    if (requestedQuarter == null && selectedLifecycleQuarter == null) {
+        panel.hidden = true;
+        return;
+    }
+
+    const requested = Number(requestedQuarter || selectedLifecycleQuarter);
+    const quarter = model.quarters.find(item => item.quarter === requested && item.state !== 'future')
+        || model.quarters.find(item => item.quarter === model.defaultQuarter);
+    if (!quarter) return;
+    selectedLifecycleQuarter = quarter.quarter;
+
+    document.querySelectorAll('#quarterLifecycleSection .quarter-lifecycle-tab').forEach(button => {
+        const isSelected = Number(button.dataset.quarter) === quarter.quarter;
+        button.classList.toggle('is-active', isSelected);
+        button.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+        button.setAttribute('aria-expanded', isSelected ? 'true' : 'false');
+    });
+
+    panel.hidden = false;
+    panel.innerHTML = `
+      <div class="quarter-lifecycle-detail-head">
+        <div>
+          <strong>${model.year}년 ${quarter.title}</strong>
+          <span>${formatQuarterDate(quarter.start)}–${formatQuarterDate(quarter.end)} · ${quarter.statusLabel}</span>
+        </div>
+        <p>건수는 AUM 합산대상·자펀드 제외 기준</p>
+      </div>
+      <div class="quarter-lifecycle-events">
+        ${renderQuarterLifecycleEventList('신규 설정', 'setup', quarter.setup, quarter.setupAmount, model.metricLabel)}
+        ${renderQuarterLifecycleEventList('청산 완료', 'liquidation', quarter.liquidation, quarter.liquidationAmount, model.metricLabel)}
+      </div>
+      <p class="quarter-lifecycle-note"><strong>변동 해석</strong> 설정·청산 이벤트의 기준금액입니다. 순 AUM 증감에는 기존 펀드의 증액·감액과 내부 기구 중복 차감도 함께 반영되므로 두 값이 단순 일치하지 않을 수 있습니다.</p>
+    `;
+}
+
+function selectQuarterLifecycle(quarter) {
+    const panel = document.getElementById('quarterLifecycleDetail');
+    if (selectedLifecycleQuarter === Number(quarter) && panel && !panel.hidden) {
+        selectedLifecycleQuarter = null;
+        panel.hidden = true;
+        document.querySelectorAll('#quarterLifecycleSection .quarter-lifecycle-tab').forEach(button => {
+            button.classList.remove('is-active');
+            button.setAttribute('aria-selected', 'false');
+            button.setAttribute('aria-expanded', 'false');
+        });
+        return;
+    }
+    renderQuarterLifecycleDetail(quarter);
 }
 
 function isMobileAnalyticsView() {
@@ -245,8 +449,10 @@ function renderMobileAnalytics(context) {
             </div>
             <span class="mobile-analysis-date">${getAnalysisSnapshotDateLabel()} 기준</span>
           </div>
+      <div class="previous-year-aum-caption">${context.previousYear}년말 기준 ${formatNumber(context.previousYearEndAum)}</div>
           <div class="mobile-analysis-main-value">${formatNumber(context.totalAum)}</div>
-          <div class="mobile-analysis-main-label">현재 운용 AUM (${context.aumConfig.label})</div>
+          <div class="mobile-analysis-main-label">현재 운용 순 AUM (${context.aumConfig.label})</div>
+          <div style="margin-top:6px; color:var(--muted); font-size:12px;">내부 기구간 중복 ${formatNumber(context.aumOverlap)} 차감 · ${context.lookthroughTargetCount.toLocaleString()}개 대상</div>
           <div class="mobile-analysis-metrics">
             ${renderMobileMetric('Equity', formatNumber(context.totalEquity))}
             ${renderMobileMetric('Loan', formatNumber(context.totalLoan))}
@@ -259,6 +465,8 @@ function renderMobileAnalytics(context) {
             ${context.otherAssetsCount > 0 ? `<span>기타 ${context.otherAssetsCount.toLocaleString()}개</span>` : ''}
           </div>
         </section>
+
+        ${buildQuarterLifecycleSection(context.historyFunds, context.aumConfig)}
 
         <section class="mobile-analysis-card">
           <div class="mobile-analysis-card-head">
@@ -332,6 +540,7 @@ function renderMobileAnalytics(context) {
         </section>
       </div>
     `;
+    renderQuarterLifecycleDetail(selectedLifecycleQuarter);
 }
 
 function renderMobileMetric(label, value) {
@@ -402,7 +611,7 @@ function getMobileChangeItems(label) {
     });
     const terminated = targetFunds.filter(fund => {
         if (!isFundIncludedForCurrentMetric(fund)) return false;
-        const endStr = getFundEndDate(fund);
+        const endStr = getFundLiquidationDate(fund);
         const end = endStr ? new Date(endStr) : null;
         return end && end >= range.start && end <= range.end;
     });
@@ -573,7 +782,7 @@ function renderNetChangeDetails(label) {
 
     const terminated = targetFunds.filter(f => {
         if (!isFundIncludedForCurrentMetric(f)) return false;
-        const end = getFundEndDate(f);
+        const end = getFundLiquidationDate(f);
         const d = end ? new Date(end) : null;
         return d && d >= startDate && d <= endDate;
     });
@@ -652,7 +861,11 @@ function renderNetGrowth(chartId) {
         series: [{ name: 'Net Change', data: deltas }],
         chart: {
             type: 'bar',
+            width: '100%',
             height: 350,
+            parentHeightOffset: 0,
+            redrawOnParentResize: true,
+            redrawOnWindowResize: true,
             toolbar: { show: false },
             fontFamily: 'Pretendard Variable',
             foreColor: '#d7d2dc',
@@ -712,8 +925,39 @@ function renderNetGrowth(chartId) {
 
     const el = document.querySelector(`#${chartId}`);
     if (el) {
+        if (window.netGrowthChartResizeObserver) {
+            window.netGrowthChartResizeObserver.disconnect();
+            window.netGrowthChartResizeObserver = null;
+        }
+        if (window.netGrowthChartInstance && typeof window.netGrowthChartInstance.destroy === 'function') {
+            window.netGrowthChartInstance.destroy();
+        }
         el.innerHTML = '';
-        return new ApexCharts(el, options).render();
+        const chart = new ApexCharts(el, options);
+        window.netGrowthChartInstance = chart;
+        return chart.render().then(() => {
+            if (window.netGrowthChartInstance !== chart) return;
+            let appliedWidth = Math.round(
+                el.querySelector('.apexcharts-canvas')?.getBoundingClientRect().width || 0
+            );
+            const syncChartWidth = width => {
+                if (!width || Math.abs(width - appliedWidth) < 2 || window.netGrowthChartInstance !== chart) return;
+                appliedWidth = width;
+                window.requestAnimationFrame(() => {
+                    if (window.netGrowthChartInstance === chart) {
+                        chart.updateOptions({ chart: { width } }, false, false);
+                    }
+                });
+            };
+
+            syncChartWidth(Math.round(el.getBoundingClientRect().width));
+            if (typeof ResizeObserver === 'undefined') return;
+            window.netGrowthChartResizeObserver = new ResizeObserver(entries => {
+                const width = Math.round(entries[0]?.contentRect?.width || el.getBoundingClientRect().width);
+                syncChartWidth(width);
+            });
+            window.netGrowthChartResizeObserver.observe(el);
+        });
     }
 
     return null;
@@ -750,9 +994,14 @@ function getHistorySemanticSource() {
 
 function getSnapshotSemanticResult(activeFunds, semanticSource) {
     if (!semanticSource) return null;
-    const activeIds = new Set((activeFunds || []).map(fund => fund.fund_id).filter(Boolean));
+    const activeById = new Map((activeFunds || [])
+        .filter(fund => fund?.fund_id)
+        .map(fund => [fund.fund_id, fund]));
+    const activeIds = new Set(activeById.keys());
     return {
-        facts: (semanticSource.facts || []).filter(fact => activeIds.has(fact.fundId)),
+        facts: (semanticSource.facts || [])
+            .filter(fact => activeIds.has(fact.fundId))
+            .map(fact => ({ ...fact, raw: activeById.get(fact.fundId) || fact.raw })),
         exposures: (semanticSource.exposures || []).filter(exposure => activeIds.has(exposure.fundId))
     };
 }
@@ -1024,10 +1273,11 @@ function isActiveAumSnapshotFund(fund) {
 
 function getSnapshotFunds(targetFunds, category, snapshotDate) {
     if (category === '2026 (Actual)') {
-        return targetFunds.filter(isActiveAumSnapshotFund);
+        const active = targetFunds.filter(isActiveAumSnapshotFund);
+        return typeof applyAumLookthroughToFunds === 'function' ? applyAumLookthroughToFunds(active) : active;
     }
 
-    return targetFunds.filter(f => {
+    const active = targetFunds.filter(f => {
         if (!isFundIncludedForCurrentMetric(f)) return false;
         if (currentOrgScope === 'ra' && !isRAFund(f)) return false;
         const setupStr = getFundSetupDate(f);
@@ -1037,6 +1287,9 @@ function getSnapshotFunds(targetFunds, category, snapshotDate) {
         if (category.startsWith('2026') && getFundAumSourceStatus(f) !== '운용') return false;
         return setup && setup <= snapshotDate && end > snapshotDate;
     });
+    return category.startsWith('2026') && typeof applyAumLookthroughToFunds === 'function'
+        ? applyAumLookthroughToFunds(active)
+        : active;
 }
 
 function getActiveAssetRecords(activeFunds) {

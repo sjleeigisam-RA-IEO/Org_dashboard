@@ -61,6 +61,16 @@
     return result;
   }
 
+  function mergeAssetRows(rows) {
+    const byId = {};
+    (rows || []).forEach(function (row) {
+      const key = row && (row.asset_id || row.canonical_id);
+      if (!key) return;
+      byId[key] = Object.assign({}, byId[key] || {}, row);
+    });
+    return Object.values(byId);
+  }
+
   function normalizeDisplayKey(value) {
     return String(value || '')
       .toLowerCase()
@@ -129,8 +139,8 @@
     options = options || {};
     const shortNumeric = options.shortNumeric || terms.every(isShortNumericTerm);
     const summaryColumns = shortNumeric
-      ? ['canonical_name', 'address_text', 'asset_code']
-      : ['canonical_name', 'address_text', 'pnu', 'asset_code', 'main_usage'];
+      ? ['asset_id', 'canonical_name', 'address_text', 'asset_code']
+      : ['asset_id', 'canonical_name', 'address_text', 'pnu', 'asset_code', 'main_usage'];
 
     const summaryFilter = buildOrFilter(
       summaryColumns,
@@ -138,14 +148,16 @@
     );
     const aliasFilter = shortNumeric ? '' : buildOrFilter(['alias_name'], terms);
 
-    const [summaryRes, aliasRes] = await Promise.all([
+    const [summaryRes, masterRes, aliasRes] = await Promise.all([
       _supabase.from('asset_relationship_summary').select('*').or(summaryFilter).limit(100),
+      _supabase.from('asset_master').select('*').or(summaryFilter).limit(100),
       aliasFilter
         ? _supabase.from('asset_aliases').select('asset_id, alias_name, alias_type, confidence').or(aliasFilter).limit(200)
         : Promise.resolve({ data: [] })
     ]);
 
     if (summaryRes.error) throw summaryRes.error;
+    if (masterRes.error) throw masterRes.error;
     if (aliasRes.error) throw aliasRes.error;
 
     const aliasRows = aliasRes.data || [];
@@ -159,7 +171,9 @@
       }
     });
 
-    const mergedRows = uniqueBy((summaryRes.data || []).concat(aliasSummaries), function (row) { return row.asset_id; });
+    const mergedRows = mergeAssetRows(
+      (summaryRes.data || []).concat(aliasSummaries, masterRes.data || [])
+    );
     const fundRowsByAssetId = await fetchFundRelationshipsByAssetIds(mergedRows.map(function (row) { return row.asset_id; }));
 
     const merged = dedupeAssetGroups(mergedRows

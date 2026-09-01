@@ -38,6 +38,358 @@ body,
   overflow-anchor: none;
 }
 
+.previous-year-aum-caption {
+  display: block;
+  margin: 0 0 7px;
+  color: #96999f;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.35;
+  white-space: normal;
+}
+
+.current-aum-value {
+  display: block;
+}
+
+/* Current-year fund lifecycle bridge */
+.quarter-lifecycle-section {
+  margin: 0 0 32px;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.quarter-lifecycle-head,
+.quarter-lifecycle-detail-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.quarter-lifecycle-head {
+  margin-bottom: 16px;
+}
+
+.quarter-lifecycle-kicker {
+  display: block;
+  margin-bottom: 5px;
+  color: #66baff;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.quarter-lifecycle-head h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.quarter-lifecycle-head p,
+.quarter-lifecycle-detail-head p,
+.quarter-lifecycle-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.quarter-lifecycle-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+}
+
+.quarter-lifecycle-tab {
+  min-width: 0;
+  min-height: 104px;
+  padding: 16px 18px;
+  border: 0;
+  border-right: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.quarter-lifecycle-tab:last-child {
+  border-right: 0;
+}
+
+.quarter-lifecycle-tab:hover:not(:disabled) {
+  background: rgba(52, 152, 245, 0.07);
+}
+
+.quarter-lifecycle-tab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -3px;
+}
+
+.quarter-lifecycle-tab.is-active {
+  background: rgba(52, 152, 245, 0.11);
+  box-shadow: inset 0 3px 0 var(--accent);
+}
+
+.quarter-lifecycle-tab.is-current:not(.is-active) {
+  box-shadow: inset 0 2px 0 #f3c84b;
+}
+
+.quarter-lifecycle-tab:disabled {
+  cursor: default;
+  opacity: 0.42;
+}
+
+.quarter-lifecycle-tab-top,
+.quarter-lifecycle-counts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.quarter-lifecycle-tab-top strong {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.quarter-lifecycle-tab-top em {
+  color: var(--soft);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.quarter-lifecycle-tab.is-current .quarter-lifecycle-tab-top em {
+  color: #f3c84b;
+}
+
+.quarter-lifecycle-period {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.quarter-lifecycle-counts {
+  justify-content: flex-start;
+  margin-top: 13px;
+}
+
+.quarter-lifecycle-counts b {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.quarter-lifecycle-counts .is-setup {
+  color: #54d6a6;
+}
+
+.quarter-lifecycle-counts .is-liquidation {
+  color: #ff8490;
+}
+
+.quarter-lifecycle-detail {
+  padding: 20px 0 24px;
+}
+
+.quarter-lifecycle-detail[hidden] {
+  display: none;
+}
+
+.quarter-lifecycle-detail-head {
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.quarter-lifecycle-detail-head > div {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.quarter-lifecycle-detail-head strong {
+  color: var(--text);
+  font-size: 15px;
+}
+
+.quarter-lifecycle-detail-head span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.quarter-lifecycle-events {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.quarter-lifecycle-event {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-left-width: 3px;
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.quarter-lifecycle-event.is-setup {
+  border-left-color: #54d6a6;
+}
+
+.quarter-lifecycle-event.is-liquidation {
+  border-left-color: #ff8490;
+}
+
+.quarter-lifecycle-event-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 58px;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.quarter-lifecycle-event-head > div:last-child {
+  text-align: right;
+}
+
+.quarter-lifecycle-event-head span,
+.quarter-lifecycle-row span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.quarter-lifecycle-event-head strong {
+  display: block;
+  margin-top: 2px;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.quarter-lifecycle-list {
+  max-height: 310px;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+.quarter-lifecycle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 52px;
+  padding: 9px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.quarter-lifecycle-row:last-child {
+  border-bottom: 0;
+}
+
+.quarter-lifecycle-row-main {
+  min-width: 0;
+}
+
+.quarter-lifecycle-row-main strong {
+  display: block;
+  overflow: hidden;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.quarter-lifecycle-row-main span,
+.quarter-lifecycle-row-amount span {
+  margin-top: 3px;
+}
+
+.quarter-lifecycle-row-amount {
+  flex: 0 0 auto;
+  text-align: right;
+}
+
+.quarter-lifecycle-row-amount strong {
+  color: var(--text);
+  font-size: 12px;
+}
+
+.quarter-lifecycle-empty {
+  min-height: 96px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.quarter-lifecycle-note {
+  margin-top: 13px;
+}
+
+.quarter-lifecycle-note strong {
+  margin-right: 6px;
+  color: #66baff;
+}
+
+@media (max-width: 900px) {
+  .quarter-lifecycle-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .quarter-lifecycle-tab:nth-child(2) {
+    border-right: 0;
+  }
+
+  .quarter-lifecycle-tab:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .quarter-lifecycle-events {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .quarter-lifecycle-section {
+    padding-top: 18px;
+  }
+
+  .quarter-lifecycle-head,
+  .quarter-lifecycle-detail-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .quarter-lifecycle-head h3 {
+    font-size: 18px;
+  }
+
+  .quarter-lifecycle-tab {
+    min-height: 96px;
+    padding: 13px 12px;
+  }
+
+  .quarter-lifecycle-detail-head > div {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .quarter-lifecycle-row {
+    gap: 10px;
+    padding-inline: 11px;
+  }
+}
+
 body {
   margin: 0;
   font-family: var(--font);

@@ -146,11 +146,11 @@
     },
     {
       value: 'aum_target',
-      label: 'AUM 대상',
-      title: 'AUM 대상 기준',
-      note: '현재 AUM 합산에 들어가는 운용 투자기구만 계산합니다.',
+      label: '순 AUM 대상',
+      title: '순 AUM 대상 기준',
+      note: '현재 운용 투자기구에서 확인된 내부 기구간 자본 중복을 차감합니다.',
       includes: 'AUM 상태가 운용이면서 자펀드가 아닌 투자기구',
-      excludes: '자펀드 및 AUM 상태가 청산·설정예정·미설정인 투자기구'
+      excludes: '자펀드, 비운용 투자기구 및 양쪽 운용기구가 확인된 내부 자본 중복'
     }
   ];
 
@@ -462,7 +462,7 @@
 
   function formatWonCompact(value) {
     var amount = Number(value || 0);
-    var trillion = Math.floor((amount / 1e12) * 100) / 100;
+    var trillion = Math.round((amount / 1e12) * 100) / 100;
     return trillion.toLocaleString('ko-KR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '조';
   }
 
@@ -494,22 +494,33 @@
   }
 
   function getAumComposition() {
-    var result = getCurrentAnalysisResult({ countBasis: 'aum_target' });
+    var result = getCurrentAnalysisResult();
     var metric = typeof window.getAumBasisMetric === 'function' ? window.getAumBasisMetric() : 'benchmark_aum';
     var column = typeof window.getMetricColumn === 'function' ? window.getMetricColumn('aum', metric) : metric;
+    var grossFunds = window.lastCurrentAumGrossFunds || [];
+    var lookthrough = window.lastAumLookthroughResult;
+    if (!lookthrough || !Array.isArray(lookthrough.funds)) {
+      lookthrough = typeof window.getAumLookthroughResult === 'function'
+        ? window.getAumLookthroughResult(grossFunds)
+        : { funds: grossFunds, adjustments: [], benchmarkOverlap: 0, investedOverlap: 0 };
+    }
+    var adjustedById = new Map(lookthrough.funds.map(function (fund) { return [fund.fund_id, fund]; }));
     var composition = Engine.buildAumComposition(result, {
       amountField: column,
       amountGetter: function (fund) {
-        if (window.currentOrgScope === 'ra' && typeof window.isRAFund === 'function' && !window.isRAFund(fund)) return 0;
-        if (typeof window.getFundAumStatus === 'function' && Engine.clean(window.getFundAumStatus(fund)) !== '운용') return 0;
-        if (typeof window.isAumCountedFund === 'function' && !window.isAumCountedFund(fund)) return 0;
-        return typeof window.getFundAmountWon === 'function' ? window.getFundAmountWon(fund, column) : 0;
+        var adjusted = adjustedById.get(fund && fund.fund_id);
+        if (!adjusted) return 0;
+        return typeof window.getFundAmountWon === 'function' ? window.getFundAmountWon(adjusted, column) : 0;
       }
     });
     composition.metric = metric;
     composition.metricLabel = typeof window.getAumMetricConfig === 'function'
       ? window.getAumMetricConfig(metric).shortLabel
       : (metric === 'invested_aum' ? '투입액' : '약정액');
+    composition.lookthroughOverlap = metric === 'invested_aum'
+      ? lookthrough.investedOverlap
+      : lookthrough.benchmarkOverlap;
+    composition.lookthroughTargetCount = lookthrough.adjustments.length;
     composition.distributions.base_asset_class = mergeBaseAssetCompositionRows(composition.distributions.base_asset_class);
     return composition;
   }
@@ -557,7 +568,7 @@
             <span>PORTFOLIO COMPOSITION</span>
             <h3>AUM 포트폴리오 구성</h3>
           </div>
-          <p>${escapeHtml(composition.metricLabel)} AUM · AUM 대상(운용·자펀드 제외)</p>
+          <p>${escapeHtml(composition.metricLabel)} 순 AUM · 운용·자펀드·확인된 내부 기구간 중복 제외</p>
         </div>
         ${hasData ? `
           <div class="semantic-composition-kpis">
@@ -576,7 +587,7 @@
             </article>
           </div>
         ` : '<div class="semantic-composition-empty">현재 필터와 AUM 기준에 해당하는 금액 데이터가 없습니다.</div>'}
-        <p class="semantic-composition-note"><strong>산정 기준</strong> 각 펀드 AUM을 필터에 포함된 고유 투자대상 수로 균등 배분합니다. 한 대상에 기초자산 분류가 여러 개면 분류 간에도 균등 배분하고, 실물 연결이 없는 재간접·비실물은 펀드 기준으로 구성에 포함합니다. 개별 자산 감정가가 아닌 포트폴리오 구성 추정치입니다.</p>
+        <p class="semantic-composition-note"><strong>산정 기준</strong> 내부 운용기구 양쪽이 현재 집계에 포함된 관계 ${formatWonCompact(composition.lookthroughOverlap)}를 ${formatInteger(composition.lookthroughTargetCount)}개 대상에서 한 번만 차감했습니다. 각 펀드 순 AUM을 필터에 포함된 고유 투자대상 수로 균등 배분하며, 한 대상에 기초자산 분류가 여러 개면 분류 간에도 균등 배분합니다. 개별 자산 감정가가 아닌 포트폴리오 구성 추정치입니다.</p>
       </section>
     `;
   }
@@ -657,7 +668,9 @@
     if (mobileShell) {
       mobileShell.insertAdjacentHTML('afterbegin', summaryHtml);
       var mobileSnapshot = mobileShell.querySelector('.mobile-analysis-snapshot');
-      if (mobileSnapshot) mobileSnapshot.insertAdjacentHTML('afterend', compositionHtml);
+      var mobileLifecycle = mobileShell.querySelector('.quarter-lifecycle-section');
+      if (mobileLifecycle) mobileLifecycle.insertAdjacentHTML('afterend', compositionHtml);
+      else if (mobileSnapshot) mobileSnapshot.insertAdjacentHTML('afterend', compositionHtml);
       else document.getElementById('semanticAnalysisSummary').insertAdjacentHTML('afterend', compositionHtml);
       bindSummaryActions(document.getElementById('semanticAnalysisSummary'));
       bindSummaryActions(document.getElementById('semanticPortfolioComposition'));
@@ -667,7 +680,9 @@
     if (header) {
       header.insertAdjacentHTML('afterend', summaryHtml);
       var overview = document.querySelector('.analytics-container > .current-aum-overview');
-      if (overview) overview.insertAdjacentHTML('afterend', compositionHtml);
+      var lifecycle = document.querySelector('.analytics-container > .quarter-lifecycle-section');
+      if (lifecycle) lifecycle.insertAdjacentHTML('afterend', compositionHtml);
+      else if (overview) overview.insertAdjacentHTML('afterend', compositionHtml);
       else document.getElementById('semanticAnalysisSummary').insertAdjacentHTML('afterend', compositionHtml);
       bindSummaryActions(document.getElementById('semanticAnalysisSummary'));
       bindSummaryActions(document.getElementById('semanticPortfolioComposition'));

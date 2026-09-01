@@ -286,7 +286,7 @@
     assetCard.classList.add('v2-asset-count-card');
 
     var note = assetCard.querySelector(':scope > div:first-child > div:last-child');
-    replaceText(note, '운용·자펀드 제외 실물 기준 · 재간접·증권·포트폴리오 묶음 제외');
+    replaceText(note, '순 AUM 운용기구 실물 기준 · 재간접·증권·포트폴리오 묶음 제외');
   }
 
   function enhanceCompositionSemantics() {
