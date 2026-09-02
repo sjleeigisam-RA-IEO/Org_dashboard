@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.ra-auth]
 verify_jwt = false
+
+[functions.ra-capital-exposure]
+verify_jwt = false

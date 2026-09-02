@@ -296,11 +296,11 @@
       ? ['drawn_amt', 'drawn_amount', 'executed_amt', 'executed_amount', 'funded_amt', 'loan_amount', 'current_amt', 'exposure_amt']
       : ['invested_amt', 'invested_amount', 'paid_in_amt', 'paid_in_amount', 'contributed_amt', 'investment_amt', 'current_amt', 'exposure_amt'];
     var paidInAvailable = row.paid_in_available !== false;
-    var current = paidInAvailable ? numberValue(pick(row, currentKeys, 0)) : 0;
+    var current = paidInAvailable ? numberValue(pick(row, currentKeys, 0)) : null;
     var remainingRaw = pick(row, ['remaining_amt', 'remaining_amount', 'undrawn_amt', 'unfunded_amt', 'uninvested_amt'], null);
     var remaining = paidInAvailable
       ? (hasValue(remainingRaw) ? numberValue(remainingRaw) : Math.max(0, committed - current))
-      : 0;
+      : null;
     var reviewStatuses = combinedArray(row, ['review_statuses'], [
        'review_status', 'classification_review_status', 'party_review_status'
     ]).map(normalizedReviewStatus);
@@ -338,6 +338,8 @@
       currentAmount: current,
       remainingAmount: remaining,
       paidInAvailable: paidInAvailable,
+      paidInAvailableRows: paidInAvailable ? 1 : 0,
+      paidInUnavailableRows: paidInAvailable ? 0 : 1,
       relationshipLayer: normalizeText(row.relationship_layer) || 'DIRECT_SOURCE_RELATIONSHIP',
       assetTypes: combinedArray(row, ['asset_types'], ['asset_type']),
       baseAssetClasses: combinedArray(row, ['base_asset_classes'], ['base_asset_class', 'underlying_asset_type']),
@@ -414,7 +416,9 @@
     target.assetCount = Math.max(target.assetCount, source.assetCount, target.assetIds.length);
     target.snapshotDate = target.snapshotDate > source.snapshotDate ? target.snapshotDate : source.snapshotDate;
     target.searchText = unique([target.searchText, source.searchText]).join(' ');
-    if (Math.abs(target.currentAmount - source.currentAmount) > 1 || Math.abs(target.committedAmount - source.committedAmount) > 1) {
+    if (target.paidInAvailable !== source.paidInAvailable
+      || Math.abs(numberValue(target.currentAmount) - numberValue(source.currentAmount)) > 1
+      || Math.abs(target.committedAmount - source.committedAmount) > 1) {
       target.qualityFlags = unique(target.qualityFlags.concat(['duplicate_amount_mismatch']));
     }
     return target;
@@ -462,6 +466,8 @@
           committedAmount: 0,
           currentAmount: 0,
           remainingAmount: 0,
+          paidInAvailableRows: 0,
+          paidInUnavailableRows: 0,
           assetTypes: [],
           baseAssetClasses: [],
           regions: [],
@@ -490,8 +496,13 @@
       }
       var group = groups.get(key);
       group.committedAmount += row.committedAmount;
-      group.currentAmount += row.currentAmount;
-      group.remainingAmount += row.remainingAmount;
+      if (row.paidInAvailable) {
+        group.currentAmount += numberValue(row.currentAmount);
+        group.remainingAmount += numberValue(row.remainingAmount);
+        group.paidInAvailableRows += row.paidInAvailableRows || 1;
+      } else {
+        group.paidInUnavailableRows += row.paidInUnavailableRows || 1;
+      }
       group.factCount += row.factCount || 0;
       group.snapshotDate = group.snapshotDate > row.snapshotDate ? group.snapshotDate : row.snapshotDate;
       group.roleClassValues.add(row.roleClass);
@@ -519,6 +530,10 @@
       group.roleSubtype = roleSubtypeValues.join(' · ');
       group.partyOrigin = originValues.length === 1 ? originValues[0] : '확인 필요';
       group.domicileCountryCode = countryCodeValues.length === 1 ? countryCodeValues[0] : '';
+      group.paidInAvailable = group.paidInUnavailableRows === 0;
+      group.paidInAvailabilityStatus = group.paidInUnavailableRows === 0
+        ? 'available'
+        : (group.paidInAvailableRows === 0 ? 'unavailable' : 'partial');
       group.qualityFlags = unique(group.qualityFlags);
       group.searchText = unique([
         group.partyName,
@@ -934,22 +949,26 @@
   function sumRows(rows) {
     return rows.reduce(function (totals, row) {
       totals.committed += row.committedAmount;
-      totals.current += row.currentAmount;
-      totals.remaining += row.remainingAmount;
+      totals.current += numberValue(row.currentAmount);
+      totals.remaining += numberValue(row.remainingAmount);
+      totals.paidInAvailableRows += numberValue(row.paidInAvailableRows || (row.paidInAvailable ? 1 : 0));
+      totals.paidInUnavailableRows += numberValue(row.paidInUnavailableRows || (row.paidInAvailable === false ? 1 : 0));
       return totals;
-    }, { committed: 0, current: 0, remaining: 0 });
+    }, { committed: 0, current: 0, remaining: 0, paidInAvailableRows: 0, paidInUnavailableRows: 0 });
   }
 
   function classificationSubtotals(rows) {
     var groups = new Map();
     rows.forEach(function (row) {
       var key = row.roleClass || (row.role === 'lender' ? '미확인' : '기타');
-      if (!groups.has(key)) groups.set(key, { label: key, parties: 0, committed: 0, current: 0, remaining: 0 });
+      if (!groups.has(key)) groups.set(key, { label: key, parties: 0, committed: 0, current: 0, remaining: 0, paidInAvailableRows: 0, paidInUnavailableRows: 0 });
       var group = groups.get(key);
       group.parties += 1;
       group.committed += row.committedAmount;
-      group.current += row.currentAmount;
-      group.remaining += row.remainingAmount;
+      group.current += numberValue(row.currentAmount);
+      group.remaining += numberValue(row.remainingAmount);
+      group.paidInAvailableRows += numberValue(row.paidInAvailableRows);
+      group.paidInUnavailableRows += numberValue(row.paidInUnavailableRows);
     });
     return Array.from(groups.values()).sort(function (a, b) { return b.committed - a.committed; });
   }
@@ -986,6 +1005,32 @@
     if (Math.abs(amount) >= 1000000000000) return (amount / 1000000000000).toLocaleString('ko-KR', { maximumFractionDigits: 2 }) + '조';
     if (Math.abs(amount) >= 100000000) return (amount / 100000000).toLocaleString('ko-KR', { maximumFractionDigits: 1 }) + '억';
     return formatMillion(amount) + '백만';
+  }
+
+  function paidInAvailabilityStatus(row) {
+    var unavailable = numberValue(row && row.paidInUnavailableRows);
+    var available = numberValue(row && row.paidInAvailableRows);
+    if (!unavailable && row && row.paidInAvailable === false) unavailable = 1;
+    if (!available && row && row.paidInAvailable === true) available = 1;
+    if (!unavailable) return 'available';
+    return available ? 'partial' : 'unavailable';
+  }
+
+  function formatAvailabilityAmount(row, property, compact) {
+    var status = paidInAvailabilityStatus(row);
+    if (status === 'unavailable') return '미제공';
+    var formatted = compact ? formatCompactWon(row[property]) : formatMillion(row[property]);
+    return status === 'partial' ? formatted + ' (확인분)' : formatted;
+  }
+
+  function paidInAvailabilityNote(row) {
+    var unavailable = numberValue(row && row.paidInUnavailableRows);
+    if (!unavailable && row && row.paidInAvailable === false) unavailable = 1;
+    return unavailable ? formatInteger(unavailable) + '건 미제공' : '전체 확인';
+  }
+
+  function csvAvailabilityAmount(row, property) {
+    return paidInAvailabilityStatus(row) === 'unavailable' ? '' : numberValue(row[property]) / MILLION;
   }
 
   function historyMetricProperty(metric) {
@@ -1057,8 +1102,8 @@
       }
       var bucket = groups.get(key);
       bucket.committedAmount += row.committedAmount;
-      bucket.currentAmount += row.currentAmount;
-      bucket.remainingAmount += row.remainingAmount;
+      bucket.currentAmount += numberValue(row.currentAmount);
+      bucket.remainingAmount += numberValue(row.remainingAmount);
       bucket.roleClassValues.add(breakdown.value(row));
     });
 
@@ -1441,6 +1486,15 @@
     }, { source: 0, proxy: 0, unresolved: 0 });
     var coverageText = '직접일자 ' + formatInteger(coverage.source) + '건 · 설정일 보정 ' + formatInteger(coverage.proxy) + '건';
     if (coverage.unresolved) coverageText += ' · 미상 ' + formatInteger(coverage.unresolved) + '건';
+    if (state.historyMetric !== 'committed') {
+      var unavailableHistoryRows = state.historicalFacts.filter(function (row) {
+        return row.role === state.role
+          && eligiblePartyIds.has(row.partyId)
+          && matchesFilters(row, { ignoreMinimum: true })
+          && !row.paidInAvailable;
+      }).length;
+      if (unavailableHistoryRows) coverageText += ' · 금액 미제공 ' + formatInteger(unavailableHistoryRows) + '건 제외';
+    }
     var metricButtons = ['committed', 'current', 'remaining'].map(function (metric) {
       var active = state.historyMetric === metric;
       return '<button type="button" data-capital-history-metric="' + metric + '" aria-pressed="' + (active ? 'true' : 'false') + '" class="' + (active ? 'active' : '') + '">' + escapeHtml(historyMetricLabel(metric)) + '</button>';
@@ -1523,8 +1577,8 @@
       '<section class="capital-kpi-strip" aria-label="자금관계 핵심 지표" data-capital-committed="' + totals.committed + '" data-capital-current="' + totals.current + '" data-capital-remaining="' + totals.remaining + '">',
       '<div><span>' + escapeHtml(role.countLabel) + '</span><strong>' + formatInteger(state.filtered.length) + '</strong><small>개</small></div>',
       '<div class="is-primary"><span>' + escapeHtml(role.committedLabel) + '</span><strong>' + escapeHtml(formatCompactWon(totals.committed)) + '</strong><small>' + escapeHtml(formatMillion(totals.committed)) + '백만원</small></div>',
-      '<div><span>' + escapeHtml(role.currentLabel) + '</span><strong>' + escapeHtml(formatCompactWon(totals.current)) + '</strong><small>' + escapeHtml(formatMillion(totals.current)) + '백만원</small></div>',
-      '<div><span>' + escapeHtml(role.remainingLabel) + '</span><strong>' + escapeHtml(formatCompactWon(totals.remaining)) + '</strong><small>' + escapeHtml(formatMillion(totals.remaining)) + '백만원</small></div>',
+      '<div><span>' + escapeHtml(role.currentLabel) + '</span><strong>' + escapeHtml(formatAvailabilityAmount(totals, 'current', true)) + '</strong><small>' + escapeHtml(paidInAvailabilityStatus(totals) === 'unavailable' ? paidInAvailabilityNote(totals) : formatMillion(totals.current) + '백만원 · ' + paidInAvailabilityNote(totals)) + '</small></div>',
+      '<div><span>' + escapeHtml(role.remainingLabel) + '</span><strong>' + escapeHtml(formatAvailabilityAmount(totals, 'remaining', true)) + '</strong><small>' + escapeHtml(paidInAvailabilityStatus(totals) === 'unavailable' ? paidInAvailabilityNote(totals) : formatMillion(totals.remaining) + '백만원 · ' + paidInAvailabilityNote(totals)) + '</small></div>',
       '</section>'
     ].join('');
   }
@@ -1655,8 +1709,8 @@
         '<td class="capital-name-cell"><button type="button" class="capital-party-drill" data-capital-party-id="' + escapeHtml(row.resultId) + '" aria-label="' + escapeHtml(row.partyName) + ' 연결 자산 목록 보기"><strong>' + escapeHtml(row.partyName) + '</strong><span>' + escapeHtml(row.roleSubtype || row.partyGroupNames.join(', ') || '세부유형 없음') + ' · ' + escapeHtml(partyOriginDisplay(row.partyOrigin, row.role)) + '</span><b aria-hidden="true">›</b></button></td>',
         '<td><span class="capital-class-label">' + escapeHtml(row.roleClass) + '</span></td>',
         '<td class="capital-amount-cell capital-current-amount">' + escapeHtml(formatMillion(row.committedAmount)) + '</td>',
-        '<td class="capital-amount-cell">' + escapeHtml(formatMillion(row.currentAmount)) + '</td>',
-        '<td class="capital-amount-cell">' + escapeHtml(formatMillion(row.remainingAmount)) + '</td>',
+        '<td class="capital-amount-cell">' + escapeHtml(formatAvailabilityAmount(row, 'currentAmount', false)) + '</td>',
+        '<td class="capital-amount-cell">' + escapeHtml(formatAvailabilityAmount(row, 'remainingAmount', false)) + '</td>',
         '<td class="capital-relation-cell">' + escapeHtml(relationText) + '</td>',
         '<td><span class="capital-review-status ' + statusClass(statuses) + '">' + escapeHtml(unique(statuses).join(', ')) + '</span></td>',
         '</tr>'
@@ -1853,7 +1907,7 @@
           '<span>제외 ID ' + escapeHtml(row.exposureId || '-') + ' · 유지 ID ' + escapeHtml(row.keptExposureId || '-') + '</span></div>',
           '<div class="capital-breakdown-amount-grid">',
           '<div><span>약정액</span><strong>' + escapeHtml(formatMillion(row.committedAmount)) + '</strong><small>백만원</small></div>',
-          '<div><span>' + (row.role === 'lender' ? '실행액' : '투입액') + '</span><strong>' + escapeHtml(formatMillion(row.currentAmount)) + '</strong><small>백만원</small></div>',
+          '<div><span>' + (row.role === 'lender' ? '실행액' : '투입액') + '</span><strong>' + escapeHtml(formatAvailabilityAmount(row, 'currentAmount', false)) + '</strong><small>' + (paidInAvailabilityStatus(row) === 'unavailable' ? '' : '백만원') + '</small></div>',
           '</div>',
           '</article>'
         ].join('');
@@ -1924,6 +1978,8 @@
             committedAmount: 0,
             currentAmount: 0,
             remainingAmount: 0,
+            paidInAvailableRows: 0,
+            paidInUnavailableRows: 0,
             unallocatedCommittedAmount: 0,
             unallocatedCurrentAmount: 0,
             unallocatedRemainingAmount: 0,
@@ -1936,15 +1992,21 @@
         group.assetIds = unique(group.assetIds.concat(fact.assetIds || []));
         group.projectNames = unique(group.projectNames.concat(fact.projectNames || []));
         group.exposureCount += 1;
+        if (fact.paidInAvailable) group.paidInAvailableRows += fact.paidInAvailableRows || 1;
+        else group.paidInUnavailableRows += fact.paidInUnavailableRows || 1;
         if (funds.length === 1) {
           group.committedAmount += numberValue(fact.committedAmount);
-          group.currentAmount += numberValue(fact.currentAmount);
-          group.remainingAmount += numberValue(fact.remainingAmount);
+          if (fact.paidInAvailable) {
+            group.currentAmount += numberValue(fact.currentAmount);
+            group.remainingAmount += numberValue(fact.remainingAmount);
+          }
         } else {
           group.hasUnallocatedAmount = true;
           group.unallocatedCommittedAmount += numberValue(fact.committedAmount);
-          group.unallocatedCurrentAmount += numberValue(fact.currentAmount);
-          group.unallocatedRemainingAmount += numberValue(fact.remainingAmount);
+          if (fact.paidInAvailable) {
+            group.unallocatedCurrentAmount += numberValue(fact.currentAmount);
+            group.unallocatedRemainingAmount += numberValue(fact.remainingAmount);
+          }
         }
       });
     });
@@ -1972,6 +2034,8 @@
             committedAmount: 0,
             currentAmount: 0,
             remainingAmount: 0,
+            paidInAvailableRows: 0,
+            paidInUnavailableRows: 0,
             unallocatedCommittedAmount: 0,
             unallocatedCurrentAmount: 0,
             unallocatedRemainingAmount: 0,
@@ -1985,15 +2049,21 @@
         group.fundIds = unique(group.fundIds.concat(fact.fundIds || []));
         group.projectNames = unique(group.projectNames.concat(fact.projectNames || []));
         group.exposureCount += 1;
+        if (fact.paidInAvailable) group.paidInAvailableRows += fact.paidInAvailableRows || 1;
+        else group.paidInUnavailableRows += fact.paidInUnavailableRows || 1;
         if (assets.length === 1) {
           group.committedAmount += numberValue(fact.committedAmount);
-          group.currentAmount += numberValue(fact.currentAmount);
-          group.remainingAmount += numberValue(fact.remainingAmount);
+          if (fact.paidInAvailable) {
+            group.currentAmount += numberValue(fact.currentAmount);
+            group.remainingAmount += numberValue(fact.remainingAmount);
+          }
         } else {
           group.hasUnallocatedAmount = true;
           group.unallocatedCommittedAmount += numberValue(fact.committedAmount);
-          group.unallocatedCurrentAmount += numberValue(fact.currentAmount);
-          group.unallocatedRemainingAmount += numberValue(fact.remainingAmount);
+          if (fact.paidInAvailable) {
+            group.unallocatedCurrentAmount += numberValue(fact.currentAmount);
+            group.unallocatedRemainingAmount += numberValue(fact.remainingAmount);
+          }
         }
       });
     });
@@ -2009,9 +2079,11 @@
           committedAmount: 0,
           currentAmount: 0,
           remainingAmount: 0,
+          paidInAvailableRows: numberValue(row.paidInAvailableRows),
+          paidInUnavailableRows: numberValue(row.paidInUnavailableRows),
           unallocatedCommittedAmount: numberValue(row.committedAmount),
-          unallocatedCurrentAmount: numberValue(row.currentAmount),
-          unallocatedRemainingAmount: numberValue(row.remainingAmount),
+          unallocatedCurrentAmount: paidInAvailabilityStatus(row) === 'unavailable' ? 0 : numberValue(row.currentAmount),
+          unallocatedRemainingAmount: paidInAvailabilityStatus(row) === 'unavailable' ? 0 : numberValue(row.remainingAmount),
           exposureCount: row.factCount || 0,
           hasUnallocatedAmount: true
         });
@@ -2038,13 +2110,13 @@
     var hasDirectAmount = item.committedAmount !== 0 || item.currentAmount !== 0 || item.remainingAmount !== 0 || !item.hasUnallocatedAmount;
     var direct = hasDirectAmount ? [
       '<div><span>' + escapeHtml(role.committedLabel) + '</span><strong>' + escapeHtml(formatMillion(item.committedAmount)) + '</strong><small>백만원</small></div>',
-      '<div><span>' + escapeHtml(role.currentLabel) + '</span><strong>' + escapeHtml(formatMillion(item.currentAmount)) + '</strong><small>백만원</small></div>',
-      '<div><span>' + escapeHtml(role.remainingLabel) + '</span><strong>' + escapeHtml(formatMillion(item.remainingAmount)) + '</strong><small>백만원</small></div>'
+      '<div><span>' + escapeHtml(role.currentLabel) + '</span><strong>' + escapeHtml(formatAvailabilityAmount(item, 'currentAmount', false)) + '</strong><small>' + (paidInAvailabilityStatus(item) === 'unavailable' ? '' : '백만원') + '</small></div>',
+      '<div><span>' + escapeHtml(role.remainingLabel) + '</span><strong>' + escapeHtml(formatAvailabilityAmount(item, 'remainingAmount', false)) + '</strong><small>' + (paidInAvailabilityStatus(item) === 'unavailable' ? '' : '백만원') + '</small></div>'
     ].join('') : '';
     var unallocated = item.hasUnallocatedAmount ? [
       '<div class="capital-breakdown-unallocated">',
       '<span>자산별 미배분 펀드 금액</span>',
-      '<strong>' + escapeHtml(role.committedLabel) + ' ' + escapeHtml(formatMillion(item.unallocatedCommittedAmount)) + ' · ' + escapeHtml(role.currentLabel) + ' ' + escapeHtml(formatMillion(item.unallocatedCurrentAmount)) + ' · ' + escapeHtml(role.remainingLabel) + ' ' + escapeHtml(formatMillion(item.unallocatedRemainingAmount)) + '백만원</strong>',
+      '<strong>' + escapeHtml(role.committedLabel) + ' ' + escapeHtml(formatMillion(item.unallocatedCommittedAmount)) + ' · ' + escapeHtml(role.currentLabel) + ' ' + escapeHtml(formatAvailabilityAmount(item, 'unallocatedCurrentAmount', false)) + ' · ' + escapeHtml(role.remainingLabel) + ' ' + escapeHtml(formatAvailabilityAmount(item, 'unallocatedRemainingAmount', false)) + (paidInAvailabilityStatus(item) === 'unavailable' ? '' : '백만원') + '</strong>',
       '</div>'
     ].join('') : '';
     return '<div class="capital-breakdown-amount-grid">' + direct + unallocated + '</div>';
@@ -2094,8 +2166,8 @@
       '<div><span>자산</span><strong>' + formatInteger(assets.length) + '개</strong></div>',
       '<div><span>연결 펀드</span><strong>' + formatInteger(funds.length || row.fundCount) + '개</strong></div>',
       '<div><span>' + escapeHtml(role.committedLabel) + '</span><strong>' + escapeHtml(formatMillion(row.committedAmount)) + '백만원</strong></div>',
-      '<div><span>' + escapeHtml(role.currentLabel) + '</span><strong>' + escapeHtml(formatMillion(row.currentAmount)) + '백만원</strong></div>',
-      '<div><span>' + escapeHtml(role.remainingLabel) + '</span><strong>' + escapeHtml(formatMillion(row.remainingAmount)) + '백만원</strong></div>',
+      '<div><span>' + escapeHtml(role.currentLabel) + '</span><strong>' + escapeHtml(formatAvailabilityAmount(row, 'currentAmount', false)) + (paidInAvailabilityStatus(row) === 'unavailable' ? '' : '백만원') + '</strong></div>',
+      '<div><span>' + escapeHtml(role.remainingLabel) + '</span><strong>' + escapeHtml(formatAvailabilityAmount(row, 'remainingAmount', false)) + (paidInAvailabilityStatus(row) === 'unavailable' ? '' : '백만원') + '</strong></div>',
       '<div><span>분류</span><strong>' + escapeHtml(row.roleClass) + (row.roleSubtype ? ' · ' + escapeHtml(row.roleSubtype) : '') + '</strong></div>',
       '<div><span>' + (row.role === 'lender' ? '대주 권역' : '투자자 권역') + '</span><strong>' + escapeHtml(partyOriginDisplay(row.partyOrigin, row.role)) + (row.domicileCountryCode ? ' · ' + escapeHtml(row.domicileCountryCode) : '') + '</strong></div>'
     ].join('');
@@ -2147,10 +2219,10 @@
       '</div>',
       '<div class="capital-comparison-grid">',
       rows.map(function (row) {
-        return '<div><button type="button" data-capital-remove-comparison="' + escapeHtml(row.resultId) + '" aria-label="' + escapeHtml(row.partyName) + ' 비교에서 제거">×</button><strong>' + escapeHtml(row.partyName) + '</strong><span>' + escapeHtml(role.currentLabel) + ' ' + escapeHtml(formatMillion(row.currentAmount)) + '백만원</span></div>';
+        return '<div><button type="button" data-capital-remove-comparison="' + escapeHtml(row.resultId) + '" aria-label="' + escapeHtml(row.partyName) + ' 비교에서 제거">×</button><strong>' + escapeHtml(row.partyName) + '</strong><span>' + escapeHtml(role.currentLabel) + ' ' + escapeHtml(formatAvailabilityAmount(row, 'currentAmount', false)) + (paidInAvailabilityStatus(row) === 'unavailable' ? '' : '백만원') + '</span></div>';
       }).join(''),
       '</div>',
-      '<div class="capital-comparison-total"><span>선택 합계</span><strong>' + escapeHtml(formatMillion(totals.current)) + '백만원</strong></div>',
+      '<div class="capital-comparison-total"><span>선택 합계</span><strong>' + escapeHtml(formatAvailabilityAmount(totals, 'current', false)) + (paidInAvailabilityStatus(totals) === 'unavailable' ? '' : '백만원') + '</strong></div>',
       '</section>'
     ].join('');
   }
@@ -2348,7 +2420,7 @@
     }
     var headers = [
       '순위', '역할', state.role === 'lender' ? '대주명' : '투자자명', 'Canonical Party ID', state.role === 'lender' ? '대주 유형' : '투자자 분류', '역할 세부유형', '그룹', state.role === 'lender' ? '대주 권역' : '투자자 권역', '국가코드',
-      role.committedLabel + '(백만원)', role.currentLabel + '(백만원)', role.remainingLabel + '(백만원)',
+      role.committedLabel + '(백만원)', role.currentLabel + '(백만원)', role.remainingLabel + '(백만원)', '투입/실행액 가용상태',
       '연결 펀드 수', '연결 자산 수', '기초자산', '지역', '전략', '개발/운영', '투자기구', '운용상태', '검토상태'
     ];
     var lines = [headers.map(csvCell).join(',')];
@@ -2364,8 +2436,9 @@
         partyOriginDisplay(row.partyOrigin, row.role),
         row.domicileCountryCode,
         numberValue(row.committedAmount) / MILLION,
-        numberValue(row.currentAmount) / MILLION,
-        numberValue(row.remainingAmount) / MILLION,
+        csvAvailabilityAmount(row, 'currentAmount'),
+        csvAvailabilityAmount(row, 'remainingAmount'),
+        paidInAvailabilityStatus(row) === 'available' ? '전체 확인' : (paidInAvailabilityStatus(row) === 'partial' ? '일부 미제공' : '미제공'),
         row.fundCount,
         row.assetCount,
         row.baseAssetClasses.join(' | '),

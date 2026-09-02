@@ -629,10 +629,7 @@ begin
   select count(*) into invalid_exclusions
   from public.party_exposure_external_current_v1
   where not include_in_external_investor_rollup
-    and (
-      role_type <> 'beneficiary'
-      or capital_scope not in ('internal_managed_fund', 'internal_fund_lookthrough_shell')
-    );
+    and capital_scope not in ('internal_managed_fund', 'internal_fund_lookthrough_shell');
 
   if invalid_exclusions <> 0 then
     raise exception 'Invalid external-investor exclusions: %', invalid_exclusions;
