@@ -141,6 +141,9 @@
     internalShellRowsExcluded: 0,
     internalShellPartiesExcluded: 0,
     internalShellCommittedExcluded: 0,
+    delegatedLookthroughRows: 0,
+    delegatedLookthroughCommitted: 0,
+    paidInUnavailableRows: 0,
     historyMetric: 'committed',
     historyAggregation: 'annual',
     selectedHistoryDate: '',
@@ -276,13 +279,13 @@
   function normalizePartyRow(row, index, sourceKind) {
     var role = normalizeRole(row);
     var partyName = normalizeText(pick(row, [
-      'party_name', 'party_display_name', 'display_name', 'canonical_party_name', 'normalized_party_name',
+      'canonical_account_name', 'party_name', 'party_display_name', 'display_name', 'canonical_party_name', 'normalized_party_name',
       role === 'lender' ? 'lender_clean' : 'beneficiary_clean',
       role === 'lender' ? 'lender_name' : 'beneficiary_name',
       role === 'lender' ? 'lender_raw' : 'beneficiary_raw'
     ], '명칭 미상'));
     var partyId = normalizeText(pick(row, [
-      'party_id', 'canonical_party_id', 'counterparty_id',
+      'canonical_account_id', 'party_id', 'canonical_party_id', 'counterparty_id',
       role === 'lender' ? 'lender_party_id' : 'beneficiary_party_id'
     ], ''));
     var committed = numberValue(pick(row, [
@@ -292,9 +295,12 @@
     var currentKeys = role === 'lender'
       ? ['drawn_amt', 'drawn_amount', 'executed_amt', 'executed_amount', 'funded_amt', 'loan_amount', 'current_amt', 'exposure_amt']
       : ['invested_amt', 'invested_amount', 'paid_in_amt', 'paid_in_amount', 'contributed_amt', 'investment_amt', 'current_amt', 'exposure_amt'];
-    var current = numberValue(pick(row, currentKeys, 0));
+    var paidInAvailable = row.paid_in_available !== false;
+    var current = paidInAvailable ? numberValue(pick(row, currentKeys, 0)) : 0;
     var remainingRaw = pick(row, ['remaining_amt', 'remaining_amount', 'undrawn_amt', 'unfunded_amt', 'uninvested_amt'], null);
-    var remaining = hasValue(remainingRaw) ? numberValue(remainingRaw) : Math.max(0, committed - current);
+    var remaining = paidInAvailable
+      ? (hasValue(remainingRaw) ? numberValue(remainingRaw) : Math.max(0, committed - current))
+      : 0;
     var reviewStatuses = combinedArray(row, ['review_statuses'], [
        'review_status', 'classification_review_status', 'party_review_status'
     ]).map(normalizedReviewStatus);
@@ -306,6 +312,7 @@
     if (!partyId) qualityFlags.push('missing_party_id');
     if (!normalizeText(row.role_class)) qualityFlags.push('missing_role_class');
     if (!ROLE_CLASS_VALUES[role].includes(roleClass)) qualityFlags.push('unexpected_role_class');
+    if (!paidInAvailable) qualityFlags.push('paid_in_unavailable');
     var normalized = {
       role: role,
       partyId: partyId,
@@ -330,6 +337,8 @@
       committedAmount: committed,
       currentAmount: current,
       remainingAmount: remaining,
+      paidInAvailable: paidInAvailable,
+      relationshipLayer: normalizeText(row.relationship_layer) || 'DIRECT_SOURCE_RELATIONSHIP',
       assetTypes: combinedArray(row, ['asset_types'], ['asset_type']),
       baseAssetClasses: combinedArray(row, ['base_asset_classes'], ['base_asset_class', 'underlying_asset_type']),
       regions: combinedArray(row, ['regions'], ['region', 'domestic_overseas', 'country_name']),
@@ -565,6 +574,44 @@
     }
   }
 
+  function secureCapitalExposureEndpoint() {
+    if (window.RA_CAPITAL_EXPOSURE_ENDPOINT) return window.RA_CAPITAL_EXPOSURE_ENDPOINT;
+    var supabaseUrl = window.SUPABASE_URL || '';
+    if (!supabaseUrl) throw new Error('Secure capital exposure endpoint is not configured.');
+    return supabaseUrl.replace('.supabase.co', '.functions.supabase.co') + '/ra-capital-exposure';
+  }
+
+  async function safeSecureCapitalExposure() {
+    var delegatedView = 'one_account_delegated_exposure_current_v1';
+    var bridgeView = 'one_account_party_bridge_current_v1';
+    try {
+      var tokenGetter = window.RAAuth && (
+        (typeof window.RAAuth.getSessionToken === 'function' && window.RAAuth.getSessionToken) ||
+        (typeof window.RAAuth.getRememberToken === 'function' && window.RAAuth.getRememberToken)
+      );
+      var token = tokenGetter ? tokenGetter.call(window.RAAuth) : '';
+      if (!token) throw new Error('RA Portal login session is required for One Account exposure.');
+      var response = await fetch(secureCapitalExposureEndpoint(), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_token: token })
+      });
+      var payload = await response.json().catch(function () { return {}; });
+      if (!response.ok || payload.ok === false) {
+        throw new Error(payload.error || 'Secure One Account exposure fetch failed.');
+      }
+      return {
+        delegated: { view: delegatedView, rows: payload.delegated_exposures || [], error: null },
+        bridge: { view: bridgeView, rows: payload.party_bridge || [], error: null }
+      };
+    } catch (error) {
+      return {
+        delegated: { view: delegatedView, rows: [], error: error },
+        bridge: { view: bridgeView, rows: [], error: error }
+      };
+    }
+  }
+
   function maxSnapshotDate(rows) {
     return rows.reduce(function (latest, row) {
       return row.snapshotDate && row.snapshotDate > latest ? row.snapshotDate : latest;
@@ -576,22 +623,54 @@
     if (state.loadPromise && !force) return state.loadPromise;
     state.loading = true;
     state.loadErrors = [];
-    state.loadPromise = safeFetch('party_exposure_external_current_v1').then(function (currentResponse) {
+    state.loadPromise = Promise.all([
+      safeFetch('party_exposure_external_current_v1'),
+      safeSecureCapitalExposure()
+    ]).then(function (responses) {
+      var currentResponse = responses[0];
+      var delegatedResponse = responses[1].delegated;
+      var bridgeResponse = responses[1].bridge;
       state.loadErrors = currentResponse.error ? [currentResponse.error.message] : [];
       if (state.loadErrors.length) throw new Error(state.loadErrors.join(' / '));
       state.facets = [];
-      var normalizedCurrent = (currentResponse.rows || []).map(function (row, index) {
+      var accountByParty = new Map();
+      (bridgeResponse.rows || []).forEach(function (row) {
+        if (!row.party_id || !row.account_id) return;
+        accountByParty.set(String(row.party_id), {
+          accountId: String(row.account_id),
+          accountName: normalizeText(row.canonical_account_name)
+        });
+      });
+      var decoratedDirect = (currentResponse.rows || []).map(function (row) {
+        var account = accountByParty.get(String(row.party_id || ''));
+        return account ? Object.assign({}, row, {
+          canonical_account_id: account.accountId,
+          canonical_account_name: account.accountName
+        }) : row;
+      });
+      var combinedRows = decoratedDirect.concat(delegatedResponse.rows || []);
+      var normalizedCurrent = combinedRows.map(function (row, index) {
         return normalizePartyRow(row, index, 'fact');
       });
+      state.delegatedLookthroughRows = normalizedCurrent.filter(function (row) {
+        return row.relationshipLayer === 'DELEGATED_BENEFICIARY_LOOKTHROUGH';
+      }).length;
+      state.delegatedLookthroughCommitted = normalizedCurrent.reduce(function (sum, row) {
+        return sum + (row.relationshipLayer === 'DELEGATED_BENEFICIARY_LOOKTHROUGH' ? row.committedAmount : 0);
+      }, 0);
+      state.paidInUnavailableRows = normalizedCurrent.filter(function (row) { return !row.paidInAvailable; }).length;
       state.invalidContractRows = normalizedCurrent.filter(function (row) {
         return !row.partyId;
       }).length;
       state.directFacts = normalizedCurrent.filter(function (row) { return Boolean(row.partyId); });
       var excludedInternal = state.directFacts.filter(function (row) {
-        return row.role === 'beneficiary' && !row.includeInExternalInvestorRollup;
+        return !row.includeInExternalInvestorRollup
+          || row.isManagedFundParty
+          || row.isInternalFundLookthroughShell
+          || row.capitalScope === 'internal_managed_fund';
       });
       var excludedManagedFunds = excludedInternal.filter(function (row) {
-        return row.isManagedFundParty;
+        return row.isManagedFundParty || row.capitalScope === 'internal_managed_fund';
       });
       var excludedShells = excludedInternal.filter(function (row) {
         return row.isInternalFundLookthroughShell;
@@ -621,7 +700,10 @@
         return sum + row.committedAmount;
       }, 0);
       state.facts = state.directFacts.filter(function (row) {
-        return row.role !== 'beneficiary' || row.includeInExternalInvestorRollup;
+        return row.includeInExternalInvestorRollup
+          && !row.isManagedFundParty
+          && !row.isInternalFundLookthroughShell
+          && row.capitalScope !== 'internal_managed_fund';
       });
       var explicitDedupedFacts = dedupeFactRows(state.facts.filter(function (row) {
         return Boolean(row.partyId);
@@ -636,9 +718,14 @@
       state.rankings = [];
 
       state.results = aggregatePartyRows(state.facts);
-      state.source = currentResponse.view;
+      state.source = delegatedResponse.error
+        ? currentResponse.view
+        : currentResponse.view + ' + ' + delegatedResponse.view;
       state.sourceLabel = '외부 투자자 기준 · 재간접 중간기구 '
-        + (state.internalFundPartiesExcluded + state.internalShellPartiesExcluded) + '개 제외';
+        + (state.internalFundPartiesExcluded + state.internalShellPartiesExcluded) + '개 제외'
+        + (state.delegatedLookthroughRows
+          ? ' · 위탁 look-through ' + state.delegatedLookthroughRows + '건(약정만, 투입액 미제공)'
+          : '');
       state.snapshotDate = maxSnapshotDate(state.facts);
       state.loaded = true;
       state.loading = false;
@@ -2311,6 +2398,7 @@
       '<ul>',
       '<li><strong>에쿼티 투자자</strong> 약정액·투입액·미투입액을 사용합니다.</li>',
       '<li><strong>외부 투자자 합계</strong> IGIS가 운용하는 펀드·리츠·SPC의 내부 자금이동 행은 제외하며, 직접 법률관계는 DB에 보존합니다.</li>',
+      '<li><strong>위탁운용 look-through</strong> One Account v1.1의 2026-09-01 수익자별 약정을 경제적 귀속 기준으로 별도 합산합니다. 직접 법률관계와 구분되며, 수익자별 투입액은 원천 미제공이므로 0 또는 약정비율로 추정하지 않습니다.</li>',
       '<li><strong>대주</strong> 약정액·실행액·미실행액을 사용합니다.</li>',
       '<li><strong>역할분류</strong> 실제 주체의 역할을 먼저 봅니다. LP와 펀드·리츠·SPC를 구분하고, 국내·해외는 별도 권역 속성으로 사용합니다.</li>',
       '<li><strong>분류별 시계열</strong> 투자자는 최초약정일, 대주는 대출인출일의 연도를 사용합니다. 원천일자가 없거나 이상하면 펀드설정일을 보정 근거로 명시해 사용합니다.</li>',
@@ -2338,6 +2426,9 @@
     state.internalFundCoveredCommitted = 0;
     state.internalFundMissingParties = 0;
     state.internalFundMissingCommitted = 0;
+    state.delegatedLookthroughRows = 0;
+    state.delegatedLookthroughCommitted = 0;
+    state.paidInUnavailableRows = 0;
     state.selectedIds.clear();
     renderLoading();
     try {
