@@ -26,6 +26,11 @@
       title: '포트폴리오 조건',
       hint: '선택한 범위가 자산 구성과 성장 추이에 바로 반영됩니다.'
     },
+    map: {
+      eyebrow: 'GLOBAL ASSET LOCATION',
+      title: '글로벌 자산지도',
+      hint: '위치 확정·후보·지역 수준을 구분해 단계적으로 탐색합니다.'
+    },
     capital: {
       eyebrow: 'CAPITAL RELATIONSHIPS',
       title: '자금관계 조건',
@@ -43,12 +48,14 @@
   }
 
   function currentMode() {
+    if (document.body.classList.contains('global-asset-map-mode')) return 'map';
     if (document.body.classList.contains('list-view')) return 'search';
     if (document.body.classList.contains('capital-relationship-mode')) return 'capital';
     return 'portfolio';
   }
 
   function activeMobileFilterNode() {
+    if (currentMode() === 'map') return null;
     return currentMode() === 'capital'
       ? document.getElementById('capitalRelationshipControls')
       : document.getElementById('analysisViewControls');
@@ -88,9 +95,15 @@
     var chartButton = document.getElementById('chartViewBtn');
     var listButton = document.getElementById('listViewBtn');
 
-    if (mode === 'search') {
+    if (mode === 'map') {
+      if (window.GlobalAssetMap && typeof window.GlobalAssetMap.activate === 'function') {
+        window.GlobalAssetMap.activate();
+      }
+    } else if (mode === 'search') {
+      if (window.GlobalAssetMap && typeof window.GlobalAssetMap.deactivate === 'function') window.GlobalAssetMap.deactivate();
       if (listButton) listButton.click();
     } else {
+      if (window.GlobalAssetMap && typeof window.GlobalAssetMap.deactivate === 'function') window.GlobalAssetMap.deactivate();
       if (chartButton) chartButton.click();
       var analysisButton = document.querySelector('[data-analysis-mode="' + mode + '"]');
       if (analysisButton) analysisButton.click();
@@ -100,6 +113,7 @@
       var url = new URL(window.location.href);
       if (mode === 'portfolio') url.searchParams.delete('mode');
       else url.searchParams.set('mode', mode);
+      if (mode !== 'search') url.searchParams.delete('query');
       window.history.replaceState({}, '', url.toString());
     } catch (error) {
       console.warn('Could not persist v2 mode in the URL:', error);
@@ -327,16 +341,18 @@
     var collapsed = panel ? panel.classList.contains('collapsed') : false;
     var mobileOpen = document.body.classList.contains('v2-filter-open');
     var isSearch = mode === 'search';
+    var isMap = mode === 'map';
 
     if (isMobile()) {
-      filterToggle.hidden = isSearch;
+      filterToggle.hidden = isSearch || isMap;
       filterToggleLabel.textContent = mobileOpen ? '조건 닫기' : '조건 열기';
       filterToggle.setAttribute('aria-expanded', mobileOpen ? 'true' : 'false');
       filterToggle.setAttribute('aria-label', mobileOpen ? '조건 패널 닫기' : '조건 패널 열기');
       return;
     }
 
-    filterToggle.hidden = false;
+    filterToggle.hidden = isMap;
+    if (isMap) return;
     filterToggleLabel.textContent = collapsed
       ? (isSearch ? '검색 열기' : '조건 열기')
       : (isSearch ? '검색 숨기기' : '조건 숨기기');
@@ -419,8 +435,24 @@
   });
 
   var detailPanel = document.getElementById('detailPanel');
+  var mapRestoreScheduled = false;
   if (detailPanel) {
     var detailObserver = new MutationObserver(function () {
+      if (
+        currentMode() === 'map' &&
+        window.GlobalAssetMap &&
+        window.GlobalAssetMap.audit().active &&
+        !detailPanel.querySelector('.global-asset-map, .global-map-loading, .global-map-error')
+      ) {
+        if (!mapRestoreScheduled) {
+          mapRestoreScheduled = true;
+          window.setTimeout(function () {
+            mapRestoreScheduled = false;
+            if (currentMode() === 'map') window.GlobalAssetMap.restore();
+          }, 0);
+        }
+        return;
+      }
       enhanceBasisDisclosure();
       enhanceFactsDisclosure();
       enhanceScaleSemantics();
@@ -439,7 +471,7 @@
   var requestedMode = requestedParams.get('mode');
   var requestedQuery = String(requestedParams.get('query') || '').trim();
   var initialMode = requestedQuery ? 'search' : requestedMode;
-  if (['portfolio', 'capital', 'search'].indexOf(initialMode) >= 0 && initialMode !== 'portfolio') {
+  if (['portfolio', 'map', 'capital', 'search'].indexOf(initialMode) >= 0 && initialMode !== 'portfolio') {
     window.setTimeout(function () {
       activateMode(initialMode);
       if (requestedQuery) {

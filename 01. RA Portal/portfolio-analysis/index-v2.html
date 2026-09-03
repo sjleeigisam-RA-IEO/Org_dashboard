@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="style.css?v=previous_year_aum_20260901b">
   <link rel="stylesheet" href="ux-v2.css?v=ux_v2_core_20260824a">
   <link rel="stylesheet" href="ux-v2-components.css?v=ux_v2_components_20260824b">
+  <link rel="stylesheet" href="global-asset-map.css?v=global_asset_map_20260903a">
   <link rel="icon" href="data:,">
   <!-- Supabase & VWorld JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -136,6 +137,7 @@
 
   <nav class="v2-primary-modes" aria-label="분석 화면 선택">
     <button type="button" class="active" data-v2-mode="portfolio" aria-pressed="true">포트폴리오</button>
+    <button type="button" data-v2-mode="map" aria-pressed="false">자산지도</button>
     <button type="button" data-v2-mode="capital" aria-pressed="false">자금관계</button>
     <button type="button" data-v2-mode="search" aria-pressed="false">데이터 조회</button>
   </nav>
@@ -378,8 +380,10 @@
         "filter-controls-v2.js?v=ux_v2_local_20260824a",
         "search-explorer-v2.js?v=ux_v2_local_20260821b",
         "institution-analysis-v2.js?v=ux_v2_local_20260822h",
+        "js/global-asset-map-core.js?v=global_asset_map_20260903a",
+        "global-asset-map.js?v=global_asset_map_20260903a",
         "app.js?v=ux_v2_local_20260821a",
-        "ux-v2.js?v=aum_lookthrough_20260901a"
+        "ux-v2.js?v=global_asset_map_20260903b"
       ];
 
       for (const src of scripts) {
