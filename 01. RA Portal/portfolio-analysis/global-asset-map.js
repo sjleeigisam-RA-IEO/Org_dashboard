@@ -339,7 +339,9 @@
       if (canvas) canvas.innerHTML = '<p class="global-map-empty">선택한 조건의 좌표가 없습니다.</p>';
       return;
     }
-    canvas.innerHTML = '<div id="globalMapLibre" class="global-maplibre" aria-label="선택 지역 상세 지도"></div><div id="globalMapTileStatus" class="global-map-tile-status" hidden>배경지도를 불러오지 못해 좌표만 표시합니다.</div>';
+    canvas.innerHTML = '<div id="globalMapLibre" class="global-maplibre" aria-label="선택 지역 상세 지도"></div>' +
+      '<div id="globalMapTileStatus" class="global-map-tile-status" hidden>배경지도를 불러오지 못해 좌표만 표시합니다.</div>' +
+      '<div class="global-map-attribution">© OpenStreetMap contributors · © CARTO · MapLibre</div>';
     ensureMapLibre().then(function (maplibregl) {
       if (generation !== state.generation || !state.active || !document.getElementById('globalMapLibre')) return;
       disposeMap();

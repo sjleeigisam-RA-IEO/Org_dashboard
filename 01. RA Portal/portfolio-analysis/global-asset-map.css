@@ -105,6 +105,7 @@ body.global-asset-map-mode .right-panel {
 .global-map-marker { width: 20px; height: 20px; border: 3px solid #fff; border-radius: 50%; box-shadow: 0 3px 9px rgba(23,32,51,.28); cursor: pointer; }
 .global-map-marker:focus-visible { outline: 3px solid var(--map-ink); outline-offset: 2px; }
 .global-map-tile-status, .global-map-fallback-note { position: absolute; z-index: 5; left: 12px; top: 12px; border: 1px solid #e4c37b; border-radius: 7px; padding: 7px 9px; background: #fff8e8; color: #704900; font-size: 10px; }
+.global-map-attribution { position: absolute; z-index: 4; right: 6px; bottom: 6px; border-radius: 3px; padding: 3px 5px; background: rgba(255,255,255,.9); color: #4d5968; font-size: 9px; }
 .global-map-fallback-svg { width: 100%; height: 100%; min-height: 500px; background: #f7f8fa; }
 .fallback-dot circle { fill: currentColor; stroke: #fff; stroke-width: 3; }
 
