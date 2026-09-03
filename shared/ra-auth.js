@@ -1,5 +1,6 @@
 (function () {
   const AUTH_TOKEN_KEY = "ra_auth_token";
+  const SESSION_TOKEN_KEY = "ra_session_token";
   const USER_KEY = "ra_user";
   const LAST_ACTIVE_KEY = "last_active";
   const ADMIN_EMAIL = "sjlee@igisam.com";
@@ -40,17 +41,29 @@
     sessionStorage.setItem(LAST_ACTIVE_KEY, String(Date.now()));
   }
 
+  function saveSessionToken(token, remember = false) {
+    if (!token) return;
+    sessionStorage.setItem(SESSION_TOKEN_KEY, token);
+    if (remember) localStorage.setItem(AUTH_TOKEN_KEY, token);
+    else localStorage.removeItem(AUTH_TOKEN_KEY);
+  }
+
   function saveRememberToken(token) {
-    if (token) localStorage.setItem(AUTH_TOKEN_KEY, token);
+    saveSessionToken(token, true);
   }
 
   function getRememberToken() {
     return localStorage.getItem(AUTH_TOKEN_KEY) || "";
   }
 
+  function getSessionToken() {
+    return sessionStorage.getItem(SESSION_TOKEN_KEY) || getRememberToken();
+  }
+
   function clearLocal() {
     sessionStorage.removeItem(USER_KEY);
     sessionStorage.removeItem(LAST_ACTIVE_KEY);
+    sessionStorage.removeItem(SESSION_TOKEN_KEY);
     localStorage.removeItem(USER_KEY);
     localStorage.removeItem(LAST_ACTIVE_KEY);
     localStorage.removeItem(AUTH_TOKEN_KEY);
@@ -61,10 +74,11 @@
   }
 
   async function resumeRememberedSession() {
-    const token = getRememberToken();
+    const token = getSessionToken();
     if (!token) return null;
     try {
       const data = await request("resume-session", { session_token: token });
+      sessionStorage.setItem(SESSION_TOKEN_KEY, token);
       setSessionUser(data.user);
       return data.user;
     } catch (error) {
@@ -74,7 +88,7 @@
   }
 
   async function logout() {
-    const token = getRememberToken();
+    const token = getSessionToken();
     clearLocal();
     if (token) {
       try {
@@ -87,6 +101,7 @@
 
   window.RAAuth = {
     AUTH_TOKEN_KEY,
+    SESSION_TOKEN_KEY,
     USER_KEY,
     LAST_ACTIVE_KEY,
     ADMIN_EMAIL,
@@ -94,8 +109,10 @@
     getSessionUser,
     isAdminUser,
     setSessionUser,
+    saveSessionToken,
     saveRememberToken,
     getRememberToken,
+    getSessionToken,
     clearLocal,
     touch,
     resumeRememberedSession,

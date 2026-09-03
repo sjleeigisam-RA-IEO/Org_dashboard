@@ -1,5 +1,6 @@
 (function () {
   const AUTH_TOKEN_KEY = "ra_auth_token";
+  const SESSION_TOKEN_KEY = "ra_session_token";
   const USER_KEY = "ra_user";
   const LAST_ACTIVE_KEY = "last_active";
   const AUTH_ENDPOINT = "https://qvegpozwrcmspdvjokiz.functions.supabase.co/ra-auth";
@@ -16,10 +17,11 @@
   async function ensureSession() {
     if (hasActiveSession()) return true;
 
-    const token = localStorage.getItem(AUTH_TOKEN_KEY);
+    const token = sessionStorage.getItem(SESSION_TOKEN_KEY) || localStorage.getItem(AUTH_TOKEN_KEY);
     if (token) {
       try {
         const data = await authRequest("resume-session", { session_token: token });
+        sessionStorage.setItem(SESSION_TOKEN_KEY, token);
         sessionStorage.setItem(USER_KEY, JSON.stringify(data.user));
         sessionStorage.setItem(LAST_ACTIVE_KEY, String(Date.now()));
         return true;
@@ -89,6 +91,7 @@
   function clearAuth() {
     sessionStorage.removeItem(USER_KEY);
     sessionStorage.removeItem(LAST_ACTIVE_KEY);
+    sessionStorage.removeItem(SESSION_TOKEN_KEY);
     localStorage.removeItem(USER_KEY);
     localStorage.removeItem(LAST_ACTIVE_KEY);
     localStorage.removeItem(AUTH_TOKEN_KEY);

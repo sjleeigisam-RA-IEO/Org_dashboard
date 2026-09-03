@@ -80,8 +80,9 @@
   }
 
   async function fetchRows(generation) {
-    var token = window.RAAuth && typeof window.RAAuth.getSessionToken === 'function'
-      ? window.RAAuth.getSessionToken() : '';
+    var token = '';
+    if (window.RAAuth && typeof window.RAAuth.getSessionToken === 'function') token = window.RAAuth.getSessionToken();
+    else if (window.RAAuth && typeof window.RAAuth.getRememberToken === 'function') token = window.RAAuth.getRememberToken();
     if (!token) throw new Error('로그인 세션을 확인할 수 없습니다. Portal에 다시 로그인해 주세요.');
     if (state.controller) state.controller.abort();
     state.controller = new AbortController();

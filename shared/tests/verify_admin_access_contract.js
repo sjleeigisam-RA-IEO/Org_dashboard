@@ -45,6 +45,15 @@ function loadAuthContext(email = '') {
 const adminContext = loadAuthContext(' SJLEE@IGISAM.COM ');
 assert.equal(adminContext.RAAuth.isAdminUser(), true);
 
+const sessionContext = loadAuthContext('user@igisam.com');
+sessionContext.RAAuth.saveSessionToken('session-only-token', false);
+assert.equal(sessionContext.RAAuth.getSessionToken(), 'session-only-token');
+assert.equal(sessionContext.localStorage.getItem('ra_auth_token'), null, 'non-remembered token must not persist');
+sessionContext.RAAuth.saveSessionToken('remembered-token', true);
+assert.equal(sessionContext.localStorage.getItem('ra_auth_token'), 'remembered-token');
+sessionContext.RAAuth.clearLocal();
+assert.equal(sessionContext.RAAuth.getSessionToken(), '', 'logout must clear both token stores');
+
 [
   'kabjoo.cho@igisam.com',
   'ethan.lee@igisam.com',
@@ -79,6 +88,8 @@ nonAdminContext.AssetCanonical.renameGroup('asset-test');
 assert.equal(promptCount, 0, 'non-admin must not reach an admin prompt');
 
 const sourceChecks = [
+  ['index.html', /RAAuth\.saveSessionToken\(data\.session_token, remember\)/],
+  ['security-lite.js', /sessionStorage\.getItem\(SESSION_TOKEN_KEY\) \|\| localStorage\.getItem\(AUTH_TOKEN_KEY\)/],
   ['portal.html', /RAAuth\?\.isAdminUser\?\.\(raUser\)/],
   ['05. Org Board/admin.html', /!window\.RAAuth\?\.isAdminUser\?\.\(user\)/],
   ['01. RA Portal/portfolio-analysis/js/asset-canonical.js', /function renderAdminBar\(container\) \{\s+if \(!isAuthorizedAdmin\(\)\) return;/s],

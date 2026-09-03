@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./shared/ifpdp-system-theme.css?v=ifpdp_system_3">
     <link rel="stylesheet" href="./05. Org Board/admin.css">
     <script src="./01. RA Portal/portfolio-analysis/config.js"></script>
-    <script src="./shared/ra-auth.js?v=ra_auth_1"></script>
+    <script src="./shared/ra-auth.js?v=ra_auth_session_2"></script>
     <style>
         * { box-sizing: border-box; }
         body {
@@ -242,7 +242,7 @@
             };
             await runAuth(button, "로그인 중...", async () => {
                 const data = await RAAuth.request("login", payload);
-                completeLogin(data);
+                completeLogin(data, payload.remember);
             });
         });
 
@@ -267,7 +267,7 @@
                     setup_code: payload.setup_code,
                 });
                 const data = await RAAuth.request("set-password", payload);
-                completeLogin(data);
+                completeLogin(data, payload.remember);
             });
         });
 
@@ -285,9 +285,9 @@
             }
         }
 
-        function completeLogin(data) {
+        function completeLogin(data, remember = false) {
             RAAuth.setSessionUser(data.user);
-            if (data.session_token) RAAuth.saveRememberToken(data.session_token);
+            if (data.session_token) RAAuth.saveSessionToken(data.session_token, remember);
             setMessage(`${data.user.name}님 환영합니다. 이동합니다...`, "success");
             window.setTimeout(goNext, 500);
         }
