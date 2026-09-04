@@ -34,6 +34,7 @@
 - `data/construction_company_news_cache.json`: Google News RSS 기사 캐시.
 - `data/construction_dart_strategy_cache.json`: OpenDART 투자/출자/시설투자/M&A/자금조달/계열거래성 공시 캐시.
 - `data/construction_credit_ratings_cache.json`: KIS/NICE 공개 검색 + OpenDART 채무증권 보조 신용등급 캐시.
+- `data/construction_market_indicators_cache.json`: KOSIS 건설공사비지수, 국토교통부 기본형건축비, 나라장터 월별 계약액, 조달청 공사비정보광장 상태 캐시.
 - `data/construction_online_update_marks.json`: 직전 캐시 대비 새 기사/계약/공시 항목이 추가된 회사 표시용 스냅샷.
 - `data/construction_pdf_comments.json`: `시공사_동향_20260703.pdf`에서 추린 초기 코멘트.
 - `scripts/`: 위 데이터를 다시 수집하고 HTML을 재생성하는 Python 스크립트 복사본.
@@ -50,6 +51,7 @@
 | ETIS 전체 | ETIS 통계 PDF | 최신 연도 전체 엔지니어링 실적 PDF를 표 추출한다. 원자력/정보통신 등 비건설 분야도 포함될 수 있다. |
 | ETIS 건설 | ETIS 통계 PDF | 건설부문 PDF만 표 추출한다. 공사 관련 설계/엔지니어링사를 볼 때 더 적합하다. |
 | KACEM 분기 | 한국건설엔지니어링협회 통계 PDF | 분기 통계 PDF를 표 추출해 건설엔지니어링 실적 순위를 보여준다. |
+| 공사비 지표 | 회사별 확인 단가 + 시장 기준지표 | 회사별 세부의 공사비 단가와 분리해, 전체 확인 단가 표본의 요약/추이와 KOSIS 건설공사비지수, 국토교통부 기본형건축비, 나라장터 월별 계약액, 조달청 상태 소스를 한 탭에 모은다. |
 
 모든 탭은 검토 편의상 상위 30위까지만 표시한다. 소스 설명은 화면 하단의 안내/디스클레이머 영역으로 모았고, 탭 상단에는 표 자체에 필요한 최소 정보만 남겼다.
 
@@ -117,10 +119,23 @@ UI에는 출처 구분 라벨을 두지 않고 `Comment`로만 담백하게 표�
 
 대시보드 조회와 코멘트 작성은 로그인 사용자에게만 열리도록 했다. 로그인은 루트 포탈 로그인 화면으로 보내지 않고 `03. Construction Board/login.html`에서 처리한다. 이 화면은 `shared/ra-auth.js`와 Supabase `ra-auth` Edge Function을 공유하지만, 로그인 성공 후 `portal.html`이 아니라 시공사 정보 대시보드로 돌아간다. 설정 코드는 별도 채널로 안내하며 화면과 운영 문서에 직접 노출하지 않는다. 로그인 화면에는 비로그인 사용자가 대시보드로 돌아가는 링크를 두지 않는다. 로그인 후 헤더 우상단에는 `이름 (이메일)`과 로그아웃 버튼을 표시하고, 새 코멘트 작성자 칸에도 같은 값이 미리 들어가며, 기존에 저장된 코멘트의 `author_name`은 그대로 유지한다. 현재 단계의 접근 제한은 브라우저 UI 기준이며, DB 레벨에서 RA 세션을 강제하려면 댓글 저장을 별도 Edge Function으로 프록시하고 `construction_company_comments`의 anon insert 정책을 닫아야 한다.
 
+### 3.7 공사비 지표
+
+회사별 세부 정보의 `공사비 단가` 버튼은 해당 회사의 실제 수주건만 다룬다. 별도 `공사비 지표` 탭은 회사별 표본을 전체 관점에서 모아 보고, 시장 기준선과 보정 지표를 붙이는 영역이다.
+
+현재 빌더는 각 순위 탭 행에 붙은 `unit_cost_records` 중 High/Medium 신뢰도만 모아 프로젝트/발주처/일자/금액/연면적/원문 기준으로 중복 제거한다. 그 결과를 `market_unit_cost` 블록으로 저장하고, 화면에는 확인 단가 수, 대상 회사 수, 중앙 평단가/㎡단가, 최근 확인 단가, 연도별 중앙값 추이, 최근 근거 5건을 표시한다.
+
+시장 기준 소스는 `update_construction_market_indicators.py`가 `data/construction_market_indicators_cache.json`에 모은다.
+
+- KOSIS 건설공사비지수: 한국건설기술연구원 `DT_39701_A003`의 건설, 건물건설 및 건축보수, 주거용건물, 비주거용건물, 토목건설 월별 지수를 최근 84개월 기준으로 저장한다. 화면에는 `2020년 연평균=100` 기준 설명과 최신 지수가 2020년 평균 대비 몇 퍼센트 수준인지 함께 표시한다.
+- 국토교통부 기본형건축비: 공식 고시/보도자료의 기준일, ㎡당 금액, 직전 대비 증감률을 시계열 포인트로 저장한다. KOSIS 지수의 체감 보조값으로 2020-09-15 기준 16~25층 이하, 전용면적 60~85㎡, 지상층 기본형건축비 167.8만원/㎡를 기준연도 단가 앵커로 함께 저장한다.
+- 나라장터 월별 계약액: 기존 나라장터 공사 계약 캐시에서 계약일 기준 월별 총액과 건수를 집계해 공공 발주 흐름의 보조 지표로 표시한다.
+- 조달청 공사비정보광장: 현재는 SSO/화면 기반 확인이 필요한 상태 메타만 표시한다. 자동 수집 가능한 단가 API가 확보되면 같은 캐시에 시계열을 추가한다.
+
 ## 4. 화면 표현 방식
 
 - 첫 화면 제목은 `Construction Information`이다.
-- 탭은 `시공능력`, `CM`, `ETIS 전체`, `ETIS 건설`, `KACEM 분기`로 구성한다.
+- 탭은 `시공능력`, `CM`, `ETIS 전체`, `ETIS 건설`, `KACEM 분기`, `공사비 지표`로 구성한다.
 - 표는 현재 순위를 가장 강조하고, 전년순위/변동은 보조 정보로 둔다.
 - 회사명 행을 클릭하면 세부 정보가 펼쳐진다.
 - 한 회사를 열고 다른 회사를 열면 기존 열린 행은 닫힌다.
@@ -134,6 +149,9 @@ UI에는 출처 구분 라벨을 두지 않고 `Comment`로만 담백하게 표�
 - 모바일에서는 세부 정보가 1열로 내려온다.
 - 하단에는 코멘트 입력/목록이 있다.
 - 코멘트 영역은 수주/기사 카드보다 더 잘 보이도록 앰버 계열 테두리, 헤더, 본문 강조색을 사용한다.
+- 회사 상세의 `공사비 단가` 버튼은 금액과 연면적이 함께 확인된 최근 5년 수주건을 기준으로 대표 단가와 연도별 추이를 모달로 보여준다. 현재는 면적이 검증되지 않은 수주건은 단가 후보에서 제외한다.
+- `공사비 지표` 탭은 회사별 모달과 중복되는 상단 공통 버튼 없이, 전체 확인 단가와 시장 기준지표를 보여준다.
+- `공사비 지표` 탭의 시장 지표 카드, 그래프 막대, KOSIS 세부 지수 항목에는 마우스 호버/키보드 포커스 시 기준, 최신값, 해석, 출처 세부정보가 뜬다.
 - Org Board 계열의 어두운 테마를 강하게 승계했다.
 
 현재는 수주와 기사를 별도 토글로 접고 펴는 기능은 구현하지 않았다. 사용자가 이 방향을 검토하다가 대시보드 제목의 `Information` 정비로 의도를 수정했기 때문에, 엉뚱한 기능 변경을 피하고 현재 구조를 유지했다.
@@ -141,6 +159,8 @@ UI에는 출처 구분 라벨을 두지 않고 `Comment`로만 담백하게 표�
 ## 5. 주요 스크립트
 
 루트에서 실행하는 것을 기준으로 한다.
+
+Python 의존성은 `03. Construction Board/requirements.txt`에 둔다. CM 수집은 `pandas.read_html()`을 사용하므로 `lxml`이 빠지면 `ImportError: lxml` 수집 오류가 발생한다.
 
 ```powershell
 # 갱신 전 캐시를 시스템 임시 폴더에 백업한다.
@@ -169,6 +189,9 @@ python ".\03. Construction Board\scripts\update_construction_dart_strategy.py" -
 # KIS/NICE + OpenDART 보조 신용등급 캐시
 python ".\03. Construction Board\scripts\update_construction_credit_ratings.py" --scope cak --dart-mode off
 
+# KOSIS/국토부/나라장터/조달청 시장 기준지표 캐시
+python ".\03. Construction Board\scripts\update_construction_market_indicators.py"
+
 # 이번 갱신에서 새 온라인 항목이 추가된 회사 표시 파일 생성
 python ".\03. Construction Board\scripts\mark_construction_online_updates.py" --before-dir $backup --after-dir ".\03. Construction Board\data"
 
@@ -185,6 +208,7 @@ Remove-Item $backup -Recurse -Force
 
 - OpenDART: `.env` 또는 `51. IOTA_platform/.env`의 `OPENDART_KEY`, `OPEN_DART_KEY`, `DART_API_KEY`, `DART_KEY`, `CRTFC_KEY`, `crtfc_key`, `key` 중 하나.
 - 나라장터: `.env`의 `DATA_GO_KR_KEY`.
+- KOSIS: `.env`의 `KOSIS_API_KEY`.
 - Supabase 댓글: `01. RA Portal/portfolio-analysis/config.js`의 publishable URL/key.
 
 2026-08-24 보정: 실제 운영 `.env`의 OpenDART 키 이름은 `DART_API_KEY`였으므로 수집 스크립트의 후보 키 목록에 추가했다. 이 보정 뒤 OpenDART 수주/전략공시 캐시는 최근 5년 범위로 재수집했고, API 키 값은 콘솔 출력, 정적 HTML, JSON 로그 어디에도 기록하지 않는다.
@@ -197,7 +221,7 @@ Remove-Item $backup -Recurse -Force
 
 ### 매주 월요일 06:00 KST
 
-현재 운영 기준은 Codex 이 스레드의 heartbeat 자동화가 월요일 오전 6시에 실행되는 것이다. OpenDART 공시, Google News 기사, 나라장터 공사 계약정보를 함께 갱신하고, 변경 여부와 무관하게 `data/construction_refresh_run_log.json`에 실행 로그를 남긴다. 실행 로그가 주간 보완 루틴의 기준이므로 화면 변경이 없어도 log-only commit/push를 허용한다.
+현재 운영 기준은 Codex 이 스레드의 heartbeat 자동화가 월요일 오전 6시에 실행되는 것이다. OpenDART 공시, Google News 기사, 나라장터 공사 계약정보, KOSIS/국토교통부 등 시장 기준지표를 함께 갱신하고, 변경 여부와 무관하게 `data/construction_refresh_run_log.json`에 실행 로그를 남긴다. 실행 로그가 주간 보완 루틴의 기준이므로 화면 변경이 없어도 log-only commit/push를 허용한다.
 
 실행 대상:
 
@@ -262,6 +286,7 @@ python -m py_compile ".\03. Construction Board\scripts\update_construction_credi
 python -m py_compile ".\03. Construction Board\scripts\update_construction_dart_awards.py"
 python -m py_compile ".\03. Construction Board\scripts\update_construction_dart_strategy.py"
 python -m py_compile ".\03. Construction Board\scripts\update_construction_nara_contracts.py"
+python -m py_compile ".\03. Construction Board\scripts\update_construction_market_indicators.py"
 python -m py_compile ".\03. Construction Board\scripts\mark_construction_online_updates.py"
 ```
 
@@ -275,6 +300,7 @@ HTML 확인 포인트:
 - 회사 행을 하나 연 뒤 다른 회사를 열면 기존 행이 닫히는지 확인.
 - 데스크톱에서 수주/기사 영역이 좌우 2열로 정렬되는지 확인.
 - 모바일에서 1열로 무리 없이 내려오는지 확인.
+- `공사비 지표` 탭에서 KOSIS 지수, 기본형건축비, 나라장터 계약액 카드와 시계열 그래프가 보이는지 확인.
 
 배포 확인 포인트:
 

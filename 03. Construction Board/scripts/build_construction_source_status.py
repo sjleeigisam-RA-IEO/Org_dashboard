@@ -34,7 +34,83 @@ NEWS_CACHE_OUT = OUTPUT_DIR / "construction_company_news_cache.json"
 DART_STRATEGY_CACHE_OUT = OUTPUT_DIR / "construction_dart_strategy_cache.json"
 CREDIT_RATINGS_CACHE_OUT = OUTPUT_DIR / "construction_credit_ratings_cache.json"
 ONLINE_UPDATE_MARKS_OUT = OUTPUT_DIR / "construction_online_update_marks.json"
+MARKET_INDICATORS_CACHE_OUT = OUTPUT_DIR / "construction_market_indicators_cache.json"
 DEFAULT_COMMENT_AUTHOR = "개발솔루션센터 센터장"
+
+AREA_UNIT_UNSUITABLE_KEYWORDS = {
+    "도로",
+    "철도",
+    "전철",
+    "지하철",
+    "gtx",
+    "터널",
+    "교량",
+    "하천",
+    "발전",
+    "태양광",
+    "보일러",
+    "플랜트",
+    "송전",
+    "상수도",
+    "하수",
+    "폐기물",
+}
+
+GENERIC_COMPANY_LOOKUP_KEYS = {
+    "주",
+    "주식회사",
+    "회사",
+    "건설",
+    "엔지니어링",
+    "건축사사무소",
+    "종합건축사사무소",
+    "씨엠",
+    "cm",
+    "토건",
+}
+
+MARKET_UNIT_COST_REFERENCES = [
+    {
+        "name": "KOSIS 건설공사비지수",
+        "role": "과거 단가 보정",
+        "status": "지수",
+        "update_cycle": "월간 확인",
+        "url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
+        "description": "확인된 과거 프로젝트 단가를 현재 기준으로 보정할 때 쓰는 공사비 상승률 기준입니다.",
+    },
+    {
+        "name": "국토교통부 기본형건축비",
+        "role": "공동주택 기준선",
+        "status": "고시",
+        "update_cycle": "고시 확인",
+        "url": "https://www.molit.go.kr/USR/I0204/m_45/dtl.jsp?idx=18905",
+        "description": "공동주택 공사비를 볼 때 시장 기준선으로 함께 비교할 수 있는 공공 고시입니다.",
+    },
+    {
+        "name": "조달청 공사비정보광장",
+        "role": "공공공사 유형별 단가",
+        "status": "참조",
+        "update_cycle": "분기/수시 확인",
+        "url": "https://pcae.g2b.go.kr",
+        "description": "공공 건축물의 유형별 공사비 수준을 회사별 실측 단가와 비교하는 참조값으로 씁니다.",
+    },
+    {
+        "name": "서울시 공사비 책정 가이드라인",
+        "role": "공공건축 예산 기준",
+        "status": "참조",
+        "update_cycle": "연간 확인",
+        "url": "https://news.seoul.go.kr/citybuild/technical/construction_cost_estimation_guidelines",
+        "description": "서울시 공공건축 예산 검토용 기준으로, 용도별 기준 단가 비교에 적합합니다.",
+    },
+    {
+        "name": "건축HUB 건축인허가정보",
+        "role": "연면적 보강",
+        "status": "API 후보",
+        "update_cycle": "수주건별 조회",
+        "url": "https://www.data.go.kr/catalog/15136267/openapi.json",
+        "description": "DART나 기사에는 없는 연면적을 프로젝트명/위치와 조합해 보강하는 후보 API입니다.",
+    },
+]
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 KST = timezone(timedelta(hours=9))
@@ -297,7 +373,9 @@ def company_lookup_keys(entry: dict[str, Any]) -> list[str]:
     keys = []
     for name in names:
         key = normalize_award_company(name)
-        if key and key not in keys:
+        if not key or key in GENERIC_COMPANY_LOOKUP_KEYS or len(key) < 2:
+            continue
+        if key not in keys:
             keys.append(key)
     return keys
 
@@ -385,6 +463,7 @@ def attach_recent_awards_to_rows(rows: list[dict[str, Any]], award_lookup: dict[
         if not entry:
             row["recent_awards"] = []
             row["recent_awards_status"] = "unmapped"
+            attach_unit_cost_data_to_row(row, [])
             continue
         recent_awards = [
             award
@@ -392,6 +471,7 @@ def attach_recent_awards_to_rows(rows: list[dict[str, Any]], award_lookup: dict[
             if award_date_key(award) >= cutoff_key
         ]
         row["recent_awards"] = recent_awards[:5]
+        attach_unit_cost_data_to_row(row, recent_awards)
         row["recent_awards_source"] = {
             "name": entry.get("source_name") or "외부 소스",
             "url": entry.get("source_url") or "",
@@ -650,15 +730,7 @@ def attach_credit_ratings(results: dict[str, Any]) -> None:
         attach_credit_ratings_to_rows(cak.data.get("rows", []), rating_lookup)
 
 
-GENERIC_COMPANY_MARK_KEYS = {
-    "주",
-    "건설",
-    "엔지니어링",
-    "건축사사무소",
-    "종합건축사사무소",
-    "씨엠",
-    "cm",
-}
+GENERIC_COMPANY_MARK_KEYS = GENERIC_COMPANY_LOOKUP_KEYS
 
 
 def row_online_update_keys(row: dict[str, Any]) -> list[str]:
@@ -1245,6 +1317,661 @@ def format_unit_cost(value: Any) -> str:
     return f"{manwon:,.1f}만원/㎡"
 
 
+def format_unit_cost_py(value: Any) -> str:
+    return format_unit_cost(value).replace("/㎡", "/평")
+
+
+def award_year(award: dict[str, Any]) -> int:
+    return award_date_key(award) // 10000
+
+
+def is_area_unit_unsuitable(award: dict[str, Any]) -> bool:
+    text = " ".join(
+        compact_text(award.get(key)).lower()
+        for key in ("project", "category", "report_name", "region")
+    )
+    return any(keyword in text for keyword in AREA_UNIT_UNSUITABLE_KEYWORDS)
+
+
+def calculated_unit_cost_m2(award: dict[str, Any]) -> int:
+    unit_cost = parse_float(award.get("unit_cost_krw_per_m2"))
+    if unit_cost > 0:
+        return int(round(unit_cost))
+
+    amount_krw = parse_float(award.get("amount_krw"))
+    floor_area_m2 = parse_float(award.get("floor_area_m2"))
+    if amount_krw > 0 and floor_area_m2 > 0:
+        return int(round(amount_krw / floor_area_m2))
+    return 0
+
+
+def calculated_unit_cost_py(award: dict[str, Any], unit_cost_m2: int = 0) -> int:
+    unit_cost = parse_float(award.get("unit_cost_krw_per_py"))
+    if unit_cost > 0:
+        return int(round(unit_cost))
+    unit_cost_m2 = unit_cost_m2 or calculated_unit_cost_m2(award)
+    return int(round(unit_cost_m2 * 3.305785)) if unit_cost_m2 else 0
+
+
+def unit_cost_area_source(award: dict[str, Any]) -> str:
+    explicit = compact_text(
+        award.get("floor_area_source")
+        or award.get("area_source")
+        or award.get("floor_area_source_name")
+    )
+    if explicit:
+        return explicit
+
+    source_name = compact_text(award.get("source_name"))
+    source_url = compact_text(award.get("source_url")).lower()
+    if "dart" in source_name.lower() or "dart.fss" in source_url:
+        return "DART 원문"
+    if "나라장터" in source_name:
+        return "나라장터 계약정보"
+    if "정비사업" in source_name:
+        return "정비사업 공고"
+    if "건축" in source_name or "인허가" in source_name:
+        return source_name
+    return source_name or "외부 소스"
+
+
+def unit_cost_confidence(award: dict[str, Any]) -> tuple[str, str]:
+    explicit = compact_text(
+        award.get("floor_area_confidence")
+        or award.get("area_confidence")
+        or award.get("unit_cost_confidence")
+    ).lower()
+    if explicit in {"high", "medium", "low"}:
+        return explicit, {"high": "High", "medium": "Medium", "low": "Low"}[explicit]
+
+    source = unit_cost_area_source(award)
+    source_url = compact_text(award.get("source_url")).lower()
+    source_lower = source.lower()
+    if "dart" in source_lower or "dart.fss" in source_url or "건축물대장" in source:
+        return "high", "High"
+    if "건축hub" in source_lower or "인허가" in source or "정비사업" in source or "나라장터" in source:
+        return "medium", "Medium"
+    return "low", "Low"
+
+
+def unit_cost_status_summary(awards: list[dict[str, Any]]) -> dict[str, int]:
+    summary = {
+        "total": len(awards),
+        "calculated": 0,
+        "trusted": 0,
+        "area_missing": 0,
+        "unsuitable": 0,
+    }
+    for award in awards:
+        unit_cost_m2 = calculated_unit_cost_m2(award)
+        if unit_cost_m2:
+            summary["calculated"] += 1
+            if unit_cost_confidence(award)[0] in {"high", "medium"}:
+                summary["trusted"] += 1
+        elif is_area_unit_unsuitable(award):
+            summary["unsuitable"] += 1
+        else:
+            summary["area_missing"] += 1
+    return summary
+
+
+def build_unit_cost_records(awards: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    for award in sorted(awards, key=award_date_key, reverse=True):
+        unit_cost_m2 = calculated_unit_cost_m2(award)
+        floor_area_m2 = parse_float(award.get("floor_area_m2"))
+        amount_krw = parse_float(award.get("amount_krw"))
+        if not unit_cost_m2 or not floor_area_m2 or not amount_krw:
+            continue
+        if is_area_unit_unsuitable(award):
+            continue
+
+        confidence, confidence_label = unit_cost_confidence(award)
+        records.append(
+            {
+                "project": compact_text(award.get("project")),
+                "client": compact_text(award.get("client")),
+                "date": compact_text(award.get("date")),
+                "year": award_year(award),
+                "amount": compact_text(award.get("amount")),
+                "amount_krw": int(round(amount_krw)),
+                "floor_area_m2": floor_area_m2,
+                "unit_cost_krw_per_m2": unit_cost_m2,
+                "unit_cost_krw_per_py": calculated_unit_cost_py(award, unit_cost_m2),
+                "source_name": compact_text(award.get("source_name")),
+                "source_url": compact_text(award.get("source_url")),
+                "area_source": unit_cost_area_source(award),
+                "area_basis": compact_text(award.get("floor_area_basis") or "연면적"),
+                "confidence": confidence,
+                "confidence_label": confidence_label,
+            }
+        )
+    return records
+
+
+def trusted_unit_cost_records(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return [record for record in records if record.get("confidence") in {"high", "medium"}]
+
+
+def select_representative_unit_cost(records: list[dict[str, Any]]) -> dict[str, Any] | None:
+    trusted = trusted_unit_cost_records(records)
+    return trusted[0] if trusted else None
+
+
+def median_number(values: list[float]) -> float:
+    if not values:
+        return 0.0
+    ordered = sorted(values)
+    center = len(ordered) // 2
+    if len(ordered) % 2:
+        return ordered[center]
+    return (ordered[center - 1] + ordered[center]) / 2
+
+
+def build_unit_cost_trend(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    grouped: dict[int, list[float]] = {}
+    for record in trusted_unit_cost_records(records):
+        year = parse_int(record.get("year"))
+        unit_cost_py = parse_float(record.get("unit_cost_krw_per_py"))
+        if year and unit_cost_py:
+            grouped.setdefault(year, []).append(unit_cost_py)
+
+    trend = []
+    for year, values in sorted(grouped.items()):
+        trend.append(
+            {
+                "year": year,
+                "count": len(values),
+                "median_unit_cost_krw_per_py": int(round(median_number(values))),
+            }
+        )
+    return trend
+
+
+def attach_unit_cost_data_to_row(row: dict[str, Any], awards: list[dict[str, Any]]) -> None:
+    records = build_unit_cost_records(awards)
+    row["unit_cost_records"] = records
+    row["unit_cost_trend"] = build_unit_cost_trend(records)
+    row["representative_unit_cost"] = select_representative_unit_cost(records)
+    row["unit_cost_summary"] = unit_cost_status_summary(awards)
+
+
+def market_unit_cost_identity(record: dict[str, Any]) -> str:
+    parts = [
+        normalize_award_company(record.get("project")),
+        normalize_award_company(record.get("client")),
+        compact_text(record.get("date")),
+        str(int(round(parse_float(record.get("amount_krw"))))),
+        str(round(parse_float(record.get("floor_area_m2")), 2)),
+        compact_text(record.get("source_url")),
+    ]
+    return "|".join(parts)
+
+
+def collect_market_unit_cost_records(results: dict[str, Any]) -> list[dict[str, Any]]:
+    rows_by_source: list[tuple[str, list[dict[str, Any]]]] = []
+
+    for source_key, row_key, label in [
+        ("cak", "rows", "시공능력"),
+        ("cm", "rows", "CM"),
+        ("kacem", "rows", "KACEM 분기"),
+    ]:
+        result = results.get(source_key)
+        if isinstance(result, FetchResult) and result.ok and result.data:
+            rows_by_source.append((label, result.data.get(row_key, [])))
+
+    etis = results.get("etis")
+    if isinstance(etis, FetchResult) and etis.ok and etis.data:
+        rows_by_source.append(("ETIS 전체", etis.data.get("overall_rows", [])))
+        rows_by_source.append(("ETIS 건설", etis.data.get("construction_rows", [])))
+
+    unique: dict[str, dict[str, Any]] = {}
+    for source_label, rows in rows_by_source:
+        for row in rows:
+            company = compact_text(row.get("company"))
+            for record in trusted_unit_cost_records(row.get("unit_cost_records") or []):
+                if not parse_float(record.get("unit_cost_krw_per_py")):
+                    continue
+                item = dict(record)
+                item["company"] = company
+                item["source_tab"] = source_label
+                key = market_unit_cost_identity(item)
+                if key not in unique:
+                    unique[key] = item
+
+    return sorted(
+        unique.values(),
+        key=lambda item: (award_date_key(item), parse_float(item.get("unit_cost_krw_per_py"))),
+        reverse=True,
+    )
+
+
+def build_market_unit_cost_trend(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    grouped: dict[int, list[float]] = {}
+    for record in records:
+        year = parse_int(record.get("year"))
+        value = parse_float(record.get("unit_cost_krw_per_py"))
+        if year and value:
+            grouped.setdefault(year, []).append(value)
+
+    trend = []
+    for year, values in sorted(grouped.items()):
+        trend.append(
+            {
+                "year": year,
+                "count": len(values),
+                "median_unit_cost_krw_per_py": int(round(median_number(values))),
+                "min_unit_cost_krw_per_py": int(round(min(values))),
+                "max_unit_cost_krw_per_py": int(round(max(values))),
+            }
+        )
+    return trend
+
+
+def build_market_unit_cost_data(results: dict[str, Any]) -> dict[str, Any]:
+    records = collect_market_unit_cost_records(results)
+    values_py = [parse_float(record.get("unit_cost_krw_per_py")) for record in records]
+    values_m2 = [parse_float(record.get("unit_cost_krw_per_m2")) for record in records]
+    values_py = [value for value in values_py if value > 0]
+    values_m2 = [value for value in values_m2 if value > 0]
+    companies = sorted({compact_text(record.get("company")) for record in records if compact_text(record.get("company"))})
+
+    return {
+        "title": "공사비 지표",
+        "subtitle": "회사별 확인 단가와 시장 기준지표를 분리해 비교하는 탭입니다.",
+        "record_count": len(records),
+        "company_count": len(companies),
+        "median_unit_cost_krw_per_py": int(round(median_number(values_py))) if values_py else 0,
+        "median_unit_cost_krw_per_m2": int(round(median_number(values_m2))) if values_m2 else 0,
+        "latest_record": records[0] if records else None,
+        "records": records[:20],
+        "trend": build_market_unit_cost_trend(records),
+        "references": MARKET_UNIT_COST_REFERENCES,
+        "indicators": load_market_indicators(),
+    }
+
+
+def load_market_indicators() -> dict[str, Any]:
+    payload = read_json_file(MARKET_INDICATORS_CACHE_OUT)
+    if payload.get("series"):
+        return payload
+    return {
+        "generated_at": "",
+        "status": "not_collected",
+        "source_note": "KOSIS/국토부/조달청 시장 지표 캐시가 아직 생성되지 않았습니다.",
+        "series": [
+            {
+                "id": "kosis_construction_cost_index_total",
+                "group": "KOSIS",
+                "label": "건설공사비지수",
+                "unit": "2020=100",
+                "frequency": "월",
+                "source_name": "KOSIS/한국건설기술연구원",
+                "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
+                "description": "KOSIS API 캐시 생성 후 월별 지수가 표시됩니다.",
+                "points": [],
+            },
+            {
+                "id": "molit_basic_construction_cost",
+                "group": "MOLIT",
+                "label": "기본형건축비",
+                "unit": "만원/㎡",
+                "frequency": "고시",
+                "source_name": "국토교통부",
+                "source_url": "https://www.molit.go.kr/USR/NEWS/m_71/dtl.jsp?id=95092223",
+                "description": "국토교통부 고시 기준선입니다.",
+                "points": [],
+            },
+            {
+                "id": "pps_cost_square_status",
+                "group": "PPS",
+                "label": "조달청 공사비정보광장",
+                "unit": "상태",
+                "frequency": "원문 확인",
+                "source_name": "조달청",
+                "source_url": "https://pcae.g2b.go.kr",
+                "description": "유형별 공사비 기준은 접근권한 확인 후 시계열화합니다.",
+                "points": [],
+                "status_note": "캐시 없음",
+            },
+        ],
+        "errors": [],
+    }
+
+
+def market_indicator_series(indicators: dict[str, Any], series_id: str) -> dict[str, Any]:
+    for series in indicators.get("series") or []:
+        if compact_text(series.get("id")) == series_id:
+            return series
+    return {}
+
+
+def market_indicator_points(series: dict[str, Any]) -> list[dict[str, Any]]:
+    points = [point for point in series.get("points") or [] if parse_float(point.get("value")) > 0]
+    return sorted(points, key=lambda item: compact_text(item.get("period")))
+
+
+def latest_market_indicator_point(series: dict[str, Any]) -> dict[str, Any] | None:
+    points = market_indicator_points(series)
+    return points[-1] if points else None
+
+
+def format_indicator_period(period: Any) -> str:
+    text = compact_text(period)
+    if re.fullmatch(r"\d{4}-\d{2}", text):
+        return text.replace("-", ".")
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", text):
+        return text.replace("-", ".")
+    return text
+
+
+def format_market_indicator_value(series: dict[str, Any], value: Any) -> str:
+    number = parse_float(value)
+    unit = compact_text(series.get("unit"))
+    if number <= 0:
+        return "-"
+    if unit == "2020=100":
+        return f"{number:,.2f}"
+    if unit == "만원/㎡":
+        return f"{number:,.1f}만원/㎡"
+    if unit == "억원":
+        return f"{number:,.1f}억원"
+    return f"{number:,.2f}"
+
+
+def format_market_indicator_delta(point: dict[str, Any]) -> str:
+    for key, label in [("yoy_pct", "YoY"), ("change_pct", "직전")]:
+        value = parse_float(point.get(key))
+        if value:
+            sign = "+" if value > 0 else ""
+            return f"{label} {sign}{value:.2f}%"
+    count = parse_int(point.get("count"))
+    if count:
+        return f"{count:,}건"
+    return ""
+
+
+def format_market_indicator_base_change(series: dict[str, Any], point: dict[str, Any] | None) -> str:
+    if compact_text(series.get("unit")) != "2020=100" or not point:
+        return ""
+    value = parse_float(point.get("value"))
+    if value <= 0:
+        return ""
+    diff = value - 100
+    sign = "+" if diff >= 0 else ""
+    return f"2020년 평균 대비 {sign}{diff:.2f}%"
+
+
+def market_indicator_anchor(series: dict[str, Any]) -> dict[str, Any]:
+    base = series.get("base") if isinstance(series.get("base"), dict) else {}
+    anchor = base.get("unit_cost_anchor") if isinstance(base.get("unit_cost_anchor"), dict) else {}
+    return anchor
+
+
+def format_market_anchor(anchor: dict[str, Any]) -> str:
+    if not anchor:
+        return ""
+    period = format_indicator_period(anchor.get("period"))
+    value = parse_float(anchor.get("value"))
+    value_py = parse_float(anchor.get("value_py"))
+    parts = []
+    if period:
+        parts.append(period)
+    if value:
+        parts.append(f"{value:,.1f}만원/㎡")
+    if value_py:
+        parts.append(f"{value_py:,.1f}만원/평")
+    return " · ".join(parts)
+
+
+def market_indicator_tooltip(series: dict[str, Any], point: dict[str, Any] | None = None) -> str:
+    label = compact_text(series.get("label")) or "지표"
+    unit = compact_text(series.get("unit"))
+    source = compact_text(series.get("source_name"))
+    frequency = compact_text(series.get("frequency"))
+    description = compact_text(series.get("description"))
+    point = point or latest_market_indicator_point(series)
+    lines = [label]
+    if point:
+        latest = " ".join(
+            part
+            for part in [
+                format_indicator_period(point.get("period")),
+                format_market_indicator_value(series, point.get("value")),
+                format_market_indicator_delta(point),
+            ]
+            if part
+        )
+        if latest:
+            lines.append(f"최근값: {latest}")
+    if unit == "2020=100":
+        base = series.get("base") if isinstance(series.get("base"), dict) else {}
+        lines.append(f"기준: {compact_text(base.get('label')) or '2020년 연평균=100'}")
+        base_change = format_market_indicator_base_change(series, point)
+        if base_change:
+            lines.append(f"해석: {base_change}")
+        meaning = compact_text(base.get("meaning")) or "지수는 단가 자체가 아니라 기준연도 대비 공사비 투입 가격 수준입니다."
+        lines.append(meaning)
+        anchor = market_indicator_anchor(series)
+        anchor_text = format_market_anchor(anchor)
+        if anchor_text:
+            lines.append(f"단가 앵커: 국토부 기본형건축비 {anchor_text}")
+            public_py = parse_float(anchor.get("public_py_amount"))
+            if public_py:
+                lines.append(f"공급면적 참고: {public_py:,.1f}만원/3.3㎡")
+    elif unit == "만원/㎡":
+        lines.append("기준: 분양가상한제 공동주택 기본형건축비")
+        if point and compact_text(point.get("note")):
+            lines.append(compact_text(point.get("note")))
+        if point and parse_float(point.get("value_py")):
+            lines.append(f"평 환산: {parse_float(point.get('value_py')):,.1f}만원/평")
+    elif compact_text(series.get("id")) == "nara_public_contract_amount":
+        lines.append("기준: 현재 대시보드 회사명 매칭 캐시의 월별 공사 계약금액 합계")
+        lines.append("전체 나라장터 시장 통계가 아니라, 수집 대상 회사에 매칭된 공사 계약만 포함합니다.")
+    elif compact_text(series.get("id")) == "pps_cost_square_status":
+        lines.append(compact_text(series.get("status_note")) or "원문/접근권한 확인 후 자동 수집 연결이 필요합니다.")
+    elif description:
+        lines.append(description)
+    source_line = " · ".join(part for part in [source, frequency] if part)
+    if source_line:
+        lines.append(f"출처: {source_line}")
+    return "\n".join(line for line in lines if line)
+
+
+def hover_detail_attrs(text: str) -> str:
+    detail = "\n".join(compact_text(line) for line in str(text or "").splitlines() if compact_text(line))
+    if not detail:
+        return ""
+    escaped = html.escape(detail, quote=True)
+    return f' tabindex="0" title="{escaped}" data-tooltip="{escaped}"'
+
+
+def render_kosis_basis_note(indicators: dict[str, Any]) -> str:
+    kosis_total = market_indicator_series(indicators, "kosis_construction_cost_index_total")
+    molit_basic = market_indicator_series(indicators, "molit_basic_construction_cost")
+    latest_kosis = latest_market_indicator_point(kosis_total)
+    latest_molit = latest_market_indicator_point(molit_basic)
+    anchor = market_indicator_anchor(kosis_total)
+    anchor_text = format_market_anchor(anchor)
+    latest_kosis_value = format_market_indicator_value(kosis_total, latest_kosis.get("value")) if latest_kosis else "-"
+    latest_kosis_period = format_indicator_period(latest_kosis.get("period")) if latest_kosis else "-"
+    base_change = format_market_indicator_base_change(kosis_total, latest_kosis) or "2020년 평균 대비 변동률"
+    latest_molit_text = ""
+    if latest_molit:
+        latest_molit_text = f"{format_indicator_period(latest_molit.get('period'))} {format_market_indicator_value(molit_basic, latest_molit.get('value'))}"
+        if parse_float(latest_molit.get("value_py")):
+            latest_molit_text += f" · {parse_float(latest_molit.get('value_py')):,.1f}만원/평"
+    tooltip = market_indicator_tooltip(kosis_total, latest_kosis)
+    return f"""
+      <div class="market-basis-note has-hover-detail"{hover_detail_attrs(tooltip)}>
+        <div>
+          <span>KOSIS 기준</span>
+          <strong>2020년 연평균 = 100</strong>
+          <p>{html.escape(latest_kosis_period)} 건설공사비지수 {html.escape(latest_kosis_value)}는 {html.escape(base_change)}라는 뜻입니다. 지수는 단가 자체가 아니라 공사비 투입 가격의 상대 수준입니다.</p>
+        </div>
+        <dl>
+          <div><dt>기준연도 단가 앵커</dt><dd>{html.escape(anchor_text or "-")}</dd></div>
+          <div><dt>최근 기본형건축비</dt><dd>{html.escape(latest_molit_text or "-")}</dd></div>
+        </dl>
+      </div>
+    """
+
+
+def render_market_indicator_card(series: dict[str, Any], *, emphasis: bool = False) -> str:
+    point = latest_market_indicator_point(series)
+    label = compact_text(series.get("label")) or "-"
+    group = compact_text(series.get("group")) or compact_text(series.get("source_name")) or "지표"
+    source_url = compact_text(series.get("source_url"))
+    source_name = compact_text(series.get("source_name")) or "원문"
+    source_html = html.escape(source_name)
+    if source_url:
+        source_html = f'<a href="{html.escape(source_url)}" target="_blank" rel="noreferrer">{html.escape(source_name)}</a>'
+    class_name = "market-indicator-card is-emphasis" if emphasis else "market-indicator-card"
+    if not point:
+        status = compact_text(series.get("status_note")) or "수집 대기"
+        return f"""
+        <article class="{class_name} is-empty has-hover-detail"{hover_detail_attrs(market_indicator_tooltip(series))}>
+          <span>{html.escape(group)}</span>
+          <strong>{html.escape(label)}</strong>
+          <p>{html.escape(status)}</p>
+          <footer>{source_html}</footer>
+        </article>
+        """
+
+    value = format_market_indicator_value(series, point.get("value"))
+    period = format_indicator_period(point.get("period"))
+    delta = format_market_indicator_delta(point)
+    caption = " · ".join(part for part in [period, delta] if part)
+    if compact_text(series.get("unit")) == "만원/㎡" and parse_float(point.get("value_py")):
+        caption = " · ".join(part for part in [caption, f"{parse_float(point.get('value_py')):,.1f}만원/평"] if part)
+    return f"""
+    <article class="{class_name} has-hover-detail"{hover_detail_attrs(market_indicator_tooltip(series, point))}>
+      <span>{html.escape(group)}</span>
+      <strong>{html.escape(value)}</strong>
+      <p>{html.escape(label)} · {html.escape(caption)}</p>
+      <footer>{source_html}</footer>
+    </article>
+    """
+
+
+def render_market_indicator_chart(series: dict[str, Any], *, limit: int = 18) -> str:
+    points = market_indicator_points(series)[-limit:]
+    label = compact_text(series.get("label")) or "지표"
+    frequency = compact_text(series.get("frequency")) or ""
+    if not points:
+        return f"""
+        <section class="market-indicator-chart empty">
+          <div class="market-cost-section-head">
+            <h3>{html.escape(label)}</h3>
+            <span>{html.escape(frequency or "수집 대기")}</span>
+          </div>
+          <p>{html.escape(compact_text(series.get("status_note")) or "표시할 시계열 데이터가 아직 없습니다.")}</p>
+        </section>
+        """
+
+    values = [parse_float(point.get("value")) for point in points]
+    min_value = min(values)
+    max_value = max(values)
+    span = max(max_value - min_value, 1)
+    bars = []
+    for point in points:
+        value = parse_float(point.get("value"))
+        height = 22 + int(round(((value - min_value) / span) * 78))
+        bars.append(
+            f"""
+            <div class="market-indicator-bar has-hover-detail" style="--h:{height}%"{hover_detail_attrs(market_indicator_tooltip(series, point))}>
+              <span></span>
+              <strong>{html.escape(format_indicator_period(point.get("period")))}</strong>
+              <em>{html.escape(format_market_indicator_value(series, value))}</em>
+              <small>{html.escape(format_market_indicator_delta(point))}</small>
+            </div>
+            """
+        )
+    return f"""
+    <section class="market-indicator-chart">
+      <div class="market-cost-section-head">
+        <h3>{html.escape(label)}</h3>
+        <span>{html.escape(frequency)}</span>
+      </div>
+      <div class="market-indicator-bars">{"".join(bars)}</div>
+    </section>
+    """
+
+
+def render_kosis_category_strip(indicators: dict[str, Any]) -> str:
+    series_items = [
+        series
+        for series in indicators.get("series") or []
+        if compact_text(series.get("group")) == "KOSIS"
+        and compact_text(series.get("id")) != "kosis_construction_cost_index_total"
+    ]
+    if not series_items:
+        return ""
+    cards = []
+    for series in series_items[:4]:
+        point = latest_market_indicator_point(series)
+        if not point:
+            continue
+        cards.append(
+            f"""
+            <li class="has-hover-detail"{hover_detail_attrs(market_indicator_tooltip(series, point))}>
+              <span>{html.escape(compact_text(series.get("label")))}</span>
+              <strong>{html.escape(format_market_indicator_value(series, point.get("value")))}</strong>
+              <em>{html.escape(format_market_indicator_delta(point))}</em>
+            </li>
+            """
+        )
+    if not cards:
+        return ""
+    return f"""
+    <section class="market-indicator-strip">
+      <div class="market-cost-section-head">
+        <h3>KOSIS 세부 지수</h3>
+        <span>최근월</span>
+      </div>
+      <ul>{"".join(cards)}</ul>
+    </section>
+    """
+
+
+def render_market_indicator_panel(indicators: dict[str, Any]) -> str:
+    kosis_total = market_indicator_series(indicators, "kosis_construction_cost_index_total")
+    molit_basic = market_indicator_series(indicators, "molit_basic_construction_cost")
+    nara_amount = market_indicator_series(indicators, "nara_public_contract_amount")
+    pps_status = market_indicator_series(indicators, "pps_cost_square_status")
+    generated_at = compact_text(indicators.get("generated_at")) or "캐시 없음"
+    status = compact_text(indicators.get("status")) or "unknown"
+    errors = indicators.get("errors") or []
+    error_html = ""
+    if errors:
+        error_html = f'<p class="market-indicator-error">{html.escape(" / ".join(compact_text(error) for error in errors if compact_text(error)))}</p>'
+
+    return f"""
+    <section class="market-indicators">
+      <div class="market-cost-section-head">
+        <h3>시장 기준지표</h3>
+        <span>{html.escape(status)} · {html.escape(generated_at)}</span>
+      </div>
+      {error_html}
+      {render_kosis_basis_note(indicators)}
+      <div class="market-indicator-cards">
+        {render_market_indicator_card(kosis_total, emphasis=True)}
+        {render_market_indicator_card(molit_basic)}
+        {render_market_indicator_card(nara_amount)}
+        {render_market_indicator_card(pps_status)}
+      </div>
+      <div class="market-indicator-grid">
+        {render_market_indicator_chart(kosis_total)}
+        {render_market_indicator_chart(molit_basic, limit=8)}
+      </div>
+      <div class="market-indicator-grid">
+        {render_market_indicator_chart(nara_amount, limit=12)}
+        {render_kosis_category_strip(indicators)}
+      </div>
+    </section>
+    """
+
+
 def render_award_metrics(award: dict[str, Any]) -> str:
     metrics = []
     amount = compact_text(award.get("amount"))
@@ -1376,6 +2103,446 @@ def render_related_articles(row: dict[str, Any]) -> str:
       </div>
       <ul>{"".join(items)}</ul>
     </section>
+    """
+
+
+def format_amount_krw(value: Any) -> str:
+    amount = parse_float(value)
+    if amount <= 0:
+        return ""
+    if amount >= 100_000_000:
+        return f"{amount / 100_000_000:,.0f}억원"
+    return f"{amount:,.0f}원"
+
+
+def render_confidence_pill(record: dict[str, Any]) -> str:
+    confidence = css_token(compact_text(record.get("confidence")) or "low")
+    label = compact_text(record.get("confidence_label")) or "Low"
+    return f'<span class="unit-cost-confidence confidence-{html.escape(confidence)}">{html.escape(label)}</span>'
+
+
+def render_unit_cost_entry(row: dict[str, Any], detail_id: str) -> str:
+    records = row.get("unit_cost_records") or []
+    representative = row.get("representative_unit_cost") or {}
+    summary = row.get("unit_cost_summary") or {}
+    trusted_count = len(trusted_unit_cost_records(records))
+    template_id = f"{detail_id}-unit-cost"
+
+    if representative:
+        button_class = "unit-cost-button"
+        primary = format_unit_cost_py(representative.get("unit_cost_krw_per_py")) or "단가 확인"
+        secondary = " · ".join(
+            part
+            for part in [
+                compact_text(representative.get("date")),
+                compact_text(representative.get("confidence_label")),
+                f"확인 {trusted_count}건",
+            ]
+            if part
+        )
+    else:
+        button_class = "unit-cost-button is-empty"
+        primary = "단가 후보 없음"
+        secondary = (
+            f"계산 {summary.get('calculated', 0)}건 · "
+            f"면적 미확인 {summary.get('area_missing', 0)}건"
+        )
+
+    return f"""
+    <div class="unit-cost-entry">
+      <button class="{button_class}" type="button" data-unit-cost-template="{html.escape(template_id)}">
+        <span>공사비 단가</span>
+        <strong>{html.escape(primary)}</strong>
+        <em>{html.escape(secondary)}</em>
+      </button>
+      <template id="{html.escape(template_id)}">{render_unit_cost_modal_content(row)}</template>
+    </div>
+    """
+
+
+def render_unit_cost_hero(row: dict[str, Any]) -> str:
+    record = row.get("representative_unit_cost") or {}
+    summary = row.get("unit_cost_summary") or {}
+    if not record:
+        total = summary.get("total", 0)
+        area_missing = summary.get("area_missing", 0)
+        unsuitable = summary.get("unsuitable", 0)
+        return f"""
+        <section class="unit-cost-hero empty">
+          <div>
+            <p>최근 신뢰 단가</p>
+            <h3>아직 계산 가능한 단가가 없습니다.</h3>
+          </div>
+          <dl>
+            <div><dt>검토 수주</dt><dd>{html.escape(str(total))}건</dd></div>
+            <div><dt>면적 미확인</dt><dd>{html.escape(str(area_missing))}건</dd></div>
+            <div><dt>면적단가 부적합</dt><dd>{html.escape(str(unsuitable))}건</dd></div>
+          </dl>
+        </section>
+        """
+
+    source_url = compact_text(record.get("source_url"))
+    source_name = compact_text(record.get("source_name")) or "원문"
+    source_html = html.escape(source_name)
+    if source_url:
+        source_html = f'<a href="{html.escape(source_url)}" target="_blank" rel="noreferrer">{source_html}</a>'
+    return f"""
+    <section class="unit-cost-hero">
+      <div>
+        <p>최근 신뢰 단가</p>
+        <h3>{html.escape(format_unit_cost_py(record.get("unit_cost_krw_per_py")) or "-")}</h3>
+        <span>{html.escape(compact_text(record.get("project")) or "-")}</span>
+      </div>
+      <dl>
+        <div><dt>공시/계약일</dt><dd>{html.escape(compact_text(record.get("date")) or "-")}</dd></div>
+        <div><dt>공사총액</dt><dd>{html.escape(compact_text(record.get("amount")) or format_amount_krw(record.get("amount_krw")) or "-")}</dd></div>
+        <div><dt>확인 연면적</dt><dd>{html.escape(format_area(record.get("floor_area_m2")) or "-")}</dd></div>
+        <div><dt>㎡당 단가</dt><dd>{html.escape(format_unit_cost(record.get("unit_cost_krw_per_m2")) or "-")}</dd></div>
+        <div><dt>면적 출처</dt><dd>{source_html}</dd></div>
+        <div><dt>신뢰도</dt><dd>{render_confidence_pill(record)}</dd></div>
+      </dl>
+    </section>
+    """
+
+
+def render_unit_cost_chart(row: dict[str, Any]) -> str:
+    trend = row.get("unit_cost_trend") or []
+    if not trend:
+        return """
+        <section class="unit-cost-chart-wrap empty">
+          <div class="unit-cost-section-head">
+            <h3>연도별 단가 추이</h3>
+            <span>High/Medium 기준</span>
+          </div>
+          <p>연도별로 비교할 수 있는 신뢰 단가 표본이 아직 없습니다.</p>
+        </section>
+        """
+
+    max_value = max(parse_float(point.get("median_unit_cost_krw_per_py")) for point in trend) or 1
+    bars = []
+    for point in trend:
+        value = parse_float(point.get("median_unit_cost_krw_per_py"))
+        height = max(8, min(100, int(round((value / max_value) * 100))))
+        bars.append(
+            f"""
+            <div class="unit-cost-chart-bar" style="--h:{height}%">
+              <span></span>
+              <strong>{html.escape(str(point.get("year") or ""))}</strong>
+              <em>{html.escape(format_unit_cost_py(value))}</em>
+              <small>{html.escape(str(point.get("count") or 0))}건</small>
+            </div>
+            """
+        )
+    return f"""
+    <section class="unit-cost-chart-wrap">
+      <div class="unit-cost-section-head">
+        <h3>연도별 단가 추이</h3>
+        <span>신뢰 단가 중앙값</span>
+      </div>
+      <div class="unit-cost-chart">{"".join(bars)}</div>
+    </section>
+    """
+
+
+def render_unit_cost_record_list(row: dict[str, Any]) -> str:
+    records = trusted_unit_cost_records(row.get("unit_cost_records") or [])
+    if not records:
+        return """
+        <section class="unit-cost-records empty">
+          <div class="unit-cost-section-head">
+            <h3>확인 근거</h3>
+            <span>최근 5년</span>
+          </div>
+          <p>금액과 연면적을 함께 확인한 수주가 아직 없습니다. 다음 면적 보강 단계에서 건축HUB, 인허가, 정비사업 공고를 조합해 후보를 늘릴 수 있습니다.</p>
+        </section>
+        """
+
+    items = []
+    for record in records[:10]:
+        source_url = compact_text(record.get("source_url"))
+        source_name = html.escape(compact_text(record.get("source_name")) or "원문")
+        source = source_name
+        if source_url:
+            source = f'<a href="{html.escape(source_url)}" target="_blank" rel="noreferrer">{source_name}</a>'
+        meta = " · ".join(
+            part
+            for part in [
+                compact_text(record.get("date")),
+                compact_text(record.get("area_source")),
+                compact_text(record.get("area_basis")),
+            ]
+            if part
+        )
+        items.append(
+            f"""
+            <li>
+              <div class="unit-cost-record-main">
+                <span>{html.escape(meta)}</span>
+                <strong>{html.escape(compact_text(record.get("project")) or "-")}</strong>
+                <p>{html.escape(compact_text(record.get("client")) or "-")}</p>
+                <div>{render_confidence_pill(record)}{source}</div>
+              </div>
+              <dl>
+                <div><dt>총액</dt><dd>{html.escape(compact_text(record.get("amount")) or format_amount_krw(record.get("amount_krw")) or "-")}</dd></div>
+                <div><dt>연면적</dt><dd>{html.escape(format_area(record.get("floor_area_m2")) or "-")}</dd></div>
+                <div><dt>평단가</dt><dd>{html.escape(format_unit_cost_py(record.get("unit_cost_krw_per_py")) or "-")}</dd></div>
+              </dl>
+            </li>
+            """
+        )
+    return f"""
+    <section class="unit-cost-records">
+      <div class="unit-cost-section-head">
+        <h3>확인 근거</h3>
+        <span>최근 5년 · {html.escape(str(len(records)))}건</span>
+      </div>
+      <ul>{"".join(items)}</ul>
+    </section>
+    """
+
+
+def render_unit_cost_modal_content(row: dict[str, Any]) -> str:
+    company = compact_text(row.get("company")) or "회사"
+    summary = row.get("unit_cost_summary") or {}
+    records = row.get("unit_cost_records") or []
+    trusted_count = len(trusted_unit_cost_records(records))
+    return f"""
+    <div class="unit-cost-modal-content">
+      <div class="unit-cost-modal-head">
+        <div>
+          <p>공사비 단가</p>
+          <h2>{html.escape(company)}</h2>
+        </div>
+        <span>신뢰 {html.escape(str(trusted_count))}건 / 계산 {html.escape(str(summary.get("calculated", 0)))}건</span>
+      </div>
+      {render_unit_cost_hero(row)}
+      {render_unit_cost_chart(row)}
+      {render_unit_cost_record_list(row)}
+    </div>
+    """
+
+
+def render_market_metric_card(label: str, value: str, caption: str, *, emphasis: bool = False) -> str:
+    class_name = "market-cost-card is-emphasis" if emphasis else "market-cost-card"
+    return f"""
+    <article class="{class_name}">
+      <span>{html.escape(label)}</span>
+      <strong>{html.escape(value or "-")}</strong>
+      <p>{html.escape(caption)}</p>
+    </article>
+    """
+
+
+def render_market_latest_record(record: dict[str, Any] | None) -> str:
+    if not record:
+        return """
+        <section class="market-cost-latest empty">
+          <div class="market-cost-section-head">
+            <h3>최근 확인 단가</h3>
+            <span>High/Medium 기준</span>
+          </div>
+          <p>아직 공사총액과 연면적이 함께 확인된 표본이 없습니다.</p>
+        </section>
+        """
+
+    source_url = compact_text(record.get("source_url"))
+    source_name = html.escape(compact_text(record.get("source_name")) or "원문")
+    source = source_name
+    if source_url:
+        source = f'<a href="{html.escape(source_url)}" target="_blank" rel="noreferrer">{source_name}</a>'
+    meta = " · ".join(
+        part
+        for part in [
+            compact_text(record.get("date")),
+            compact_text(record.get("company")),
+            compact_text(record.get("source_tab")),
+        ]
+        if part
+    )
+    return f"""
+    <section class="market-cost-latest">
+      <div class="market-cost-section-head">
+        <h3>최근 확인 단가</h3>
+        <span>{render_confidence_pill(record)}</span>
+      </div>
+      <div>
+        <span>{html.escape(meta)}</span>
+        <strong>{html.escape(format_unit_cost_py(record.get("unit_cost_krw_per_py")) or "-")}</strong>
+        <p>{html.escape(compact_text(record.get("project")) or "-")}</p>
+        <dl>
+          <div><dt>공사총액</dt><dd>{html.escape(compact_text(record.get("amount")) or format_amount_krw(record.get("amount_krw")) or "-")}</dd></div>
+          <div><dt>연면적</dt><dd>{html.escape(format_area(record.get("floor_area_m2")) or "-")}</dd></div>
+          <div><dt>근거</dt><dd>{source}</dd></div>
+        </dl>
+      </div>
+    </section>
+    """
+
+
+def render_market_unit_cost_trend(data: dict[str, Any]) -> str:
+    trend = data.get("trend") or []
+    if not trend:
+        return """
+        <section class="market-cost-trend empty">
+          <div class="market-cost-section-head">
+            <h3>확인 단가 추이</h3>
+            <span>연도별 중앙값</span>
+          </div>
+          <p>연도별 비교에 필요한 신뢰 단가 표본이 아직 없습니다.</p>
+        </section>
+        """
+
+    max_value = max(parse_float(point.get("median_unit_cost_krw_per_py")) for point in trend) or 1
+    bars = []
+    for point in trend:
+        value = parse_float(point.get("median_unit_cost_krw_per_py"))
+        height = max(8, min(100, int(round((value / max_value) * 100))))
+        bars.append(
+            f"""
+            <div class="market-cost-bar" style="--h:{height}%">
+              <span></span>
+              <strong>{html.escape(str(point.get("year") or ""))}</strong>
+              <em>{html.escape(format_unit_cost_py(value))}</em>
+              <small>{html.escape(str(point.get("count") or 0))}건</small>
+            </div>
+            """
+        )
+    return f"""
+    <section class="market-cost-trend">
+      <div class="market-cost-section-head">
+        <h3>확인 단가 추이</h3>
+        <span>연도별 중앙값</span>
+      </div>
+      <div class="market-cost-chart">{"".join(bars)}</div>
+    </section>
+    """
+
+
+def render_market_unit_cost_records(data: dict[str, Any]) -> str:
+    records = data.get("records") or []
+    if not records:
+        return """
+        <section class="market-cost-records empty">
+          <div class="market-cost-section-head">
+            <h3>최근 근거</h3>
+            <span>최신순</span>
+          </div>
+          <p>표시할 확인 단가 근거가 없습니다.</p>
+        </section>
+        """
+
+    items = []
+    for record in records[:5]:
+        source_url = compact_text(record.get("source_url"))
+        source_name = html.escape(compact_text(record.get("source_name")) or "원문")
+        source = source_name
+        if source_url:
+            source = f'<a href="{html.escape(source_url)}" target="_blank" rel="noreferrer">{source_name}</a>'
+        meta = " · ".join(
+            part
+            for part in [
+                compact_text(record.get("date")),
+                compact_text(record.get("company")),
+                compact_text(record.get("source_tab")),
+            ]
+            if part
+        )
+        items.append(
+            f"""
+            <li>
+              <div>
+                <span>{html.escape(meta)}</span>
+                <strong>{html.escape(compact_text(record.get("project")) or "-")}</strong>
+                <p>{html.escape(compact_text(record.get("client")) or "-")}</p>
+              </div>
+              <dl>
+                <div><dt>평단가</dt><dd>{html.escape(format_unit_cost_py(record.get("unit_cost_krw_per_py")) or "-")}</dd></div>
+                <div><dt>㎡단가</dt><dd>{html.escape(format_unit_cost(record.get("unit_cost_krw_per_m2")) or "-")}</dd></div>
+                <div><dt>근거</dt><dd>{source}</dd></div>
+              </dl>
+            </li>
+            """
+        )
+    return f"""
+    <section class="market-cost-records">
+      <div class="market-cost-section-head">
+        <h3>최근 근거</h3>
+        <span>최신 5건</span>
+      </div>
+      <ul>{"".join(items)}</ul>
+    </section>
+    """
+
+
+def render_market_reference_sources(data: dict[str, Any]) -> str:
+    items = []
+    for source in data.get("references") or []:
+        url = compact_text(source.get("url"))
+        name = html.escape(compact_text(source.get("name")) or "-")
+        name_html = name
+        if url:
+            name_html = f'<a href="{html.escape(url)}" target="_blank" rel="noreferrer">{name}</a>'
+        items.append(
+            f"""
+            <li>
+              <div>
+                <span>{html.escape(compact_text(source.get("status")) or "참조")}</span>
+                <strong>{name_html}</strong>
+              </div>
+              <p>{html.escape(compact_text(source.get("description")) or "")}</p>
+              <footer>
+                <span>{html.escape(compact_text(source.get("role")) or "-")}</span>
+                <span>{html.escape(compact_text(source.get("update_cycle")) or "-")}</span>
+              </footer>
+            </li>
+            """
+        )
+    return f"""
+    <section class="market-cost-sources">
+      <div class="market-cost-section-head">
+        <h3>기준 지표 소스</h3>
+        <span>연결 후보</span>
+      </div>
+      <ul>{"".join(items)}</ul>
+    </section>
+    """
+
+
+def render_market_unit_cost_panel(data: dict[str, Any]) -> str:
+    latest = data.get("latest_record")
+    record_count = parse_int(data.get("record_count"))
+    company_count = parse_int(data.get("company_count"))
+    median_py = format_unit_cost_py(data.get("median_unit_cost_krw_per_py"))
+    median_m2 = format_unit_cost(data.get("median_unit_cost_krw_per_m2"))
+    return f"""
+    <div class="market-cost-tab">
+      {render_market_indicator_panel(data.get("indicators") or load_market_indicators())}
+      <section class="market-cost-group-title">
+        <div>
+          <span>Company Unit Cost</span>
+          <h3>회사별 확인 단가</h3>
+        </div>
+        <p>공사총액과 연면적이 함께 확인된 수주건만 계산합니다.</p>
+      </section>
+      <section class="market-cost-summary" aria-label="공사비 단가 요약">
+        {render_market_metric_card("확인 단가", f"{record_count:,}건", "공사총액과 연면적을 함께 확인한 표본", emphasis=True)}
+        {render_market_metric_card("대상 회사", f"{company_count:,}개", "상위표 안에서 신뢰 단가가 있는 회사")}
+        {render_market_metric_card("중앙 평단가", median_py, "현재 확인 표본의 중앙값")}
+        {render_market_metric_card("중앙 ㎡단가", median_m2, "평단가와 함께 보는 면적 단가")}
+      </section>
+      <div class="market-cost-main">
+        {render_market_latest_record(latest)}
+        {render_market_unit_cost_trend(data)}
+      </div>
+      <div class="market-cost-main">
+        {render_market_unit_cost_records(data)}
+        {render_market_reference_sources(data)}
+      </div>
+      <section class="market-cost-method">
+        <strong>단가 산정 기준</strong>
+        <p>회사별 수주건은 공사총액과 연면적이 함께 확인된 경우에만 실측 단가로 집계합니다. KOSIS 건설공사비지수, 국토교통부 기본형건축비, 나라장터 월별 계약액은 시장 기준지표로 분리하고, 조달청/서울시/건축HUB는 단가와 면적 보강 후보로 관리합니다.</p>
+      </section>
+    </div>
     """
 
 
@@ -1540,7 +2707,7 @@ def render_comment_box(row: dict[str, Any]) -> str:
     """
 
 
-def render_detail_panel(row: dict[str, Any], fields: list[tuple[str, str, str]]) -> str:
+def render_detail_panel(row: dict[str, Any], fields: list[tuple[str, str, str]], detail_id: str) -> str:
     items = []
     for key, label, kind in fields:
         items.append(
@@ -1554,6 +2721,7 @@ def render_detail_panel(row: dict[str, Any], fields: list[tuple[str, str, str]])
     return f"""
     <div class="detail-summary">
       <dl class="detail-grid">{"".join(items)}</dl>
+      {render_unit_cost_entry(row, detail_id)}
     </div>
     <div class="detail-split">
       {render_recent_awards(row)}
@@ -1606,7 +2774,7 @@ def render_rank_table(
         if detail_fields:
             body_rows.append(
                 f'<tr id="{html.escape(detail_id)}" class="detail-row" hidden>'
-                f'<td colspan="{len(columns)}"><div class="detail-panel">{render_detail_panel(row, detail_fields)}</div></td>'
+                f'<td colspan="{len(columns)}"><div class="detail-panel">{render_detail_panel(row, detail_fields, detail_id)}</div></td>'
                 f"</tr>"
             )
     return (
@@ -1632,11 +2800,28 @@ def tab_panel(tab_id: str, title: str, subtitle: str, table: str, source_url: st
     """
 
 
+def content_tab_panel(tab_id: str, title: str, subtitle: str, content: str, active: bool) -> str:
+    active_attr = " active" if active else ""
+    hidden_attr = "" if active else " hidden"
+    return f"""
+    <section id="{html.escape(tab_id)}" class="tab-panel{active_attr}" role="tabpanel"{hidden_attr}>
+      <div class="section-head">
+        <div>
+          <h2>{html.escape(title)}</h2>
+          <p>{html.escape(subtitle)}</p>
+        </div>
+      </div>
+      <div class="panel-body">{content}</div>
+    </section>
+    """
+
+
 def render_html(data: dict[str, Any]) -> str:
     cak = data["cak"].data if data["cak"].ok else None
     cm = data["cm"].data if data["cm"].ok else None
     etis = data["etis"].data if data["etis"].ok else None
     kacem = data["kacem"].data if data["kacem"].ok else None
+    market_unit_cost = data.get("market_unit_cost") or build_market_unit_cost_data(data)
 
     error_blocks = []
     for key, result in data.items():
@@ -1840,6 +3025,15 @@ def render_html(data: dict[str, Any]) -> str:
         source_notes.append(
             f'<li><strong>KACEM</strong>: <a href="{html.escape(kacem["record_url"])}" target="_blank" rel="noreferrer">건설엔지니어링 통계</a>의 최신 분기 PDF를 표 추출했습니다. 전년순위는 <a href="{html.escape(kacem.get("previous_pdf_url", ""))}" target="_blank" rel="noreferrer">{html.escape(kacem.get("previous_label", ""))}</a> PDF 기준입니다. PDF 주석상 민간 기술형 입찰, 턴키, 해외 수주실적은 제외됩니다.</li>'
         )
+    tabs.append(
+        {
+            "id": "tab-cost-index",
+            "label": "공사비 지표",
+            "title": "공사비 지표",
+            "subtitle": market_unit_cost.get("subtitle", ""),
+            "content": render_market_unit_cost_panel(market_unit_cost),
+        }
+    )
 
     tab_buttons = []
     tab_panels = []
@@ -1849,12 +3043,20 @@ def render_html(data: dict[str, Any]) -> str:
         tab_buttons.append(
             f'<button class="tab-button{active_class}" type="button" role="tab" aria-selected="{selected}" aria-controls="{html.escape(item["id"])}" data-tab="{html.escape(item["id"])}">{html.escape(item["label"])}</button>'
         )
-        tab_panels.append(
-            tab_panel(item["id"], item["title"], item["subtitle"], item["table"], item["source_url"], index == 0)
-        )
+        if "content" in item:
+            tab_panels.append(
+                content_tab_panel(item["id"], item["title"], item["subtitle"], item["content"], index == 0)
+            )
+        else:
+            tab_panels.append(
+                tab_panel(item["id"], item["title"], item["subtitle"], item["table"], item["source_url"], index == 0)
+            )
 
     source_notes.append(
         '<li><strong>최근 수주/계약</strong>: 산군/보도 수동 캐시, OpenDART 단일판매ㆍ공급계약체결 공시, 나라장터 계약정보서비스 공사 계약현황 캐시를 회사명으로 합쳐 최근 5년 이내 자료 중 최신 5건만 표시합니다. 공사비 단가는 DART 원문에서 연면적이 추출되는 경우에만 계약금액 ÷ 연면적으로 산정합니다.</li>'
+    )
+    source_notes.append(
+        '<li><strong>공사비 지표</strong>: 회사별 확인 단가는 공사총액과 연면적이 함께 있는 수주건만 집계합니다. KOSIS 건설공사비지수, 국토교통부 기본형건축비, 나라장터 월별 계약액은 시장 기준지표로 표시하고, 조달청 공사비정보광장, 서울시 기준단가, 건축HUB 인허가정보는 향후 단가/면적 보강 후보로 분리했습니다.</li>'
     )
     source_notes.append(
         '<li><strong>기사/전략 정보</strong>: Google News RSS에서 회사명과 수주/계약/실적/경영/투자/계열사/신사업 키워드로 검색한 기사와 OpenDART 투자판단ㆍ출자ㆍ시설투자ㆍM&Aㆍ특수관계인 거래성 공시를 합쳐 표시합니다. 같은 프로젝트ㆍ이벤트로 보이는 유사 기사군은 대표 1건만 남기고 최대 5건까지 노출합니다.</li>'
@@ -1911,6 +3113,9 @@ def render_html(data: dict[str, Any]) -> str:
       color: var(--ink);
       background: var(--band);
       line-height: 1.45;
+    }
+    body.modal-open {
+      overflow: hidden;
     }
     body.auth-pending header,
     body.auth-pending main {
@@ -2018,6 +3223,550 @@ def render_html(data: dict[str, Any]) -> str:
       box-shadow: var(--construction-shadow);
     }
     .tab-panel[hidden] { display: none; }
+    .panel-body {
+      padding: 18px;
+    }
+    .market-cost-tab {
+      display: grid;
+      gap: 16px;
+      min-width: 0;
+    }
+    .market-cost-summary,
+    .market-cost-main,
+    .market-indicator-cards,
+    .market-indicator-grid {
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+    }
+    .market-cost-summary {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .market-indicator-cards {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .market-indicator-grid {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    }
+    .market-cost-main {
+      grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+      align-items: stretch;
+    }
+    .market-cost-group-title,
+    .market-indicators,
+    .market-basis-note,
+    .market-cost-card,
+    .market-indicator-card,
+    .market-indicator-chart,
+    .market-indicator-strip,
+    .market-cost-latest,
+    .market-cost-trend,
+    .market-cost-records,
+    .market-cost-sources,
+    .market-cost-method {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--construction-radius);
+      background: var(--construction-panel-strong);
+    }
+    .market-cost-group-title {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border-color: rgba(130, 175, 185, 0.2);
+      background: linear-gradient(90deg, rgba(41, 151, 255, 0.08), transparent 66%);
+    }
+    .market-cost-group-title span {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--construction-soft);
+      font-size: 11px;
+      font-weight: 850;
+    }
+    .market-cost-group-title h3 {
+      margin: 0;
+      color: #fff;
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+    .market-cost-group-title p {
+      max-width: 420px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.45;
+      text-align: right;
+    }
+    .market-indicators {
+      display: grid;
+      gap: 12px;
+      padding: 16px;
+      border-color: rgba(41, 151, 255, 0.28);
+      background:
+        linear-gradient(135deg, rgba(41, 151, 255, 0.10), transparent 52%),
+        var(--construction-panel-strong);
+    }
+    .market-basis-note {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+      gap: 12px;
+      padding: 14px;
+      border-color: rgba(255, 216, 77, 0.34);
+      background:
+        linear-gradient(135deg, rgba(255, 216, 77, 0.10), transparent 52%),
+        var(--construction-item);
+    }
+    .market-basis-note > div,
+    .market-basis-note dl {
+      min-width: 0;
+    }
+    .market-basis-note span {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--comment-accent);
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+    .market-basis-note strong {
+      display: block;
+      color: #fff;
+      font-size: 18px;
+      line-height: 1.15;
+    }
+    .market-basis-note p {
+      margin: 7px 0 0;
+      color: var(--construction-soft);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.48;
+    }
+    .market-basis-note dl {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+      margin: 0;
+    }
+    .market-basis-note dl div {
+      min-width: 0;
+      padding: 9px 10px;
+      border: 1px solid rgba(130, 175, 185, 0.16);
+      border-radius: var(--construction-radius);
+      background: rgba(255, 255, 255, 0.025);
+    }
+    .market-basis-note dt {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 850;
+    }
+    .market-basis-note dd {
+      margin: 0;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1.35;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .market-cost-card {
+      display: grid;
+      align-content: start;
+      gap: 6px;
+      min-height: 104px;
+      padding: 14px;
+    }
+    .market-indicator-card {
+      display: grid;
+      align-content: start;
+      gap: 7px;
+      min-height: 118px;
+      padding: 14px;
+      border-color: rgba(130, 175, 185, 0.22);
+      background: var(--construction-item);
+    }
+    .market-cost-card.is-emphasis {
+      border-color: rgba(41, 151, 255, 0.48);
+      background:
+        linear-gradient(135deg, rgba(41, 151, 255, 0.18), transparent 58%),
+        var(--construction-panel-strong);
+    }
+    .market-indicator-card.is-emphasis {
+      border-color: rgba(255, 216, 77, 0.44);
+      background:
+        linear-gradient(135deg, rgba(255, 216, 77, 0.12), rgba(41, 151, 255, 0.10) 64%),
+        var(--construction-item);
+    }
+    .market-indicator-card.is-empty {
+      border-style: dashed;
+      opacity: 0.9;
+    }
+    .market-cost-card span,
+    .market-indicator-card span,
+    .market-cost-latest > div > span,
+    .market-cost-records li > div > span {
+      color: var(--teal);
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+    .market-cost-card strong,
+    .market-indicator-card strong {
+      color: var(--ink);
+      font-size: 24px;
+      line-height: 1.08;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .market-indicator-card strong {
+      color: #fff;
+      font-size: 22px;
+    }
+    .market-cost-card p,
+    .market-indicator-card p,
+    .market-cost-latest p,
+    .market-cost-records p,
+    .market-cost-sources p,
+    .market-cost-method p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .market-indicator-card footer {
+      align-self: end;
+      color: var(--construction-soft);
+      font-size: 11px;
+      font-weight: 850;
+      line-height: 1.35;
+    }
+    .market-indicator-card footer a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .market-indicator-error {
+      margin: -3px 0 0;
+      padding: 9px 11px;
+      border: 1px solid rgba(255, 216, 77, 0.28);
+      border-radius: var(--construction-radius);
+      background: rgba(255, 216, 77, 0.075);
+      color: var(--comment-accent);
+      font-size: 12px;
+      font-weight: 750;
+      line-height: 1.45;
+    }
+    .has-hover-detail {
+      position: relative;
+      cursor: help;
+      outline: none;
+    }
+    .has-hover-detail::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: calc(100% + 9px);
+      left: 0;
+      z-index: 80;
+      width: min(360px, calc(100vw - 48px));
+      padding: 11px 12px;
+      border: 1px solid rgba(255, 216, 77, 0.30);
+      border-radius: 8px;
+      background: rgba(14, 19, 27, 0.98);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.36);
+      color: #edf7ff;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.45;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-4px);
+      transition: opacity 120ms ease, transform 120ms ease;
+      visibility: hidden;
+      white-space: pre-line;
+    }
+    .has-hover-detail:hover::after,
+    .has-hover-detail:focus-visible::after {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+    .market-indicator-bar.has-hover-detail::after,
+    .market-indicator-strip .has-hover-detail::after {
+      left: 50%;
+      text-align: left;
+      transform: translate(-50%, -4px);
+    }
+    .market-indicator-bar.has-hover-detail:hover::after,
+    .market-indicator-bar.has-hover-detail:focus-visible::after,
+    .market-indicator-strip .has-hover-detail:hover::after,
+    .market-indicator-strip .has-hover-detail:focus-visible::after {
+      transform: translate(-50%, 0);
+    }
+    .market-cost-latest,
+    .market-cost-trend,
+    .market-cost-records,
+    .market-cost-sources,
+    .market-cost-method,
+    .market-indicator-chart,
+    .market-indicator-strip {
+      padding: 14px;
+    }
+    .market-cost-section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .market-cost-section-head h3 {
+      margin: 0;
+      color: var(--teal);
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+    .market-cost-section-head > span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-align: right;
+    }
+    .market-cost-latest > div:last-child {
+      display: grid;
+      gap: 8px;
+    }
+    .market-cost-latest strong {
+      color: #fff;
+      font-size: 24px;
+      line-height: 1.1;
+    }
+    .market-cost-latest dl,
+    .market-cost-records dl {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0;
+    }
+    .market-cost-latest dl div,
+    .market-cost-records dl div {
+      min-width: 0;
+      padding: 8px;
+      border: 1px solid rgba(130, 175, 185, 0.16);
+      border-radius: var(--construction-radius);
+      background: rgba(255, 255, 255, 0.025);
+    }
+    .market-cost-latest dt,
+    .market-cost-records dt {
+      margin: 0 0 3px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+    }
+    .market-cost-latest dd,
+    .market-cost-records dd {
+      margin: 0;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.3;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .market-cost-chart {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(82px, 1fr));
+      gap: 10px;
+      align-items: end;
+      min-height: 172px;
+      padding-top: 6px;
+    }
+    .market-indicator-bars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(62px, 1fr));
+      gap: 8px;
+      align-items: end;
+      min-height: 190px;
+      padding-top: 6px;
+    }
+    .market-cost-bar {
+      display: grid;
+      grid-template-rows: 108px auto auto auto;
+      gap: 4px;
+      align-items: end;
+      min-width: 0;
+      text-align: center;
+    }
+    .market-cost-bar span {
+      display: block;
+      width: min(40px, 70%);
+      height: var(--h);
+      min-height: 10px;
+      justify-self: center;
+      border-radius: 7px 7px 3px 3px;
+      background: linear-gradient(180deg, #ffd84d, #2997ff);
+      box-shadow: 0 8px 22px rgba(41, 151, 255, 0.18);
+    }
+    .market-indicator-bar {
+      display: grid;
+      grid-template-rows: 112px auto auto auto;
+      gap: 4px;
+      align-items: end;
+      min-width: 0;
+      text-align: center;
+    }
+    .market-indicator-bar span {
+      display: block;
+      width: min(34px, 68%);
+      height: var(--h);
+      min-height: 12px;
+      justify-self: center;
+      border-radius: 7px 7px 3px 3px;
+      background: linear-gradient(180deg, #ffd84d 0%, #2997ff 82%);
+      box-shadow: 0 8px 20px rgba(41, 151, 255, 0.16);
+    }
+    .market-cost-bar strong,
+    .market-cost-bar em,
+    .market-cost-bar small,
+    .market-indicator-bar strong,
+    .market-indicator-bar em,
+    .market-indicator-bar small {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .market-cost-bar strong,
+    .market-indicator-bar strong {
+      color: var(--ink);
+      font-size: 12px;
+    }
+    .market-cost-bar em,
+    .market-indicator-bar em {
+      color: var(--construction-soft);
+      font-size: 11px;
+      font-style: normal;
+      font-weight: 750;
+    }
+    .market-cost-bar small,
+    .market-indicator-bar small {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 750;
+    }
+    .market-indicator-strip ul {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .market-indicator-strip li {
+      min-width: 0;
+      padding: 10px;
+      border: 1px solid rgba(130, 175, 185, 0.16);
+      border-radius: var(--construction-radius);
+      background: var(--construction-item);
+    }
+    .market-indicator-strip li span,
+    .market-indicator-strip li strong,
+    .market-indicator-strip li em {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .market-indicator-strip li span {
+      color: var(--construction-soft);
+      font-size: 11px;
+      font-weight: 850;
+    }
+    .market-indicator-strip li strong {
+      margin-top: 5px;
+      color: #fff;
+      font-size: 18px;
+    }
+    .market-indicator-strip li em {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 750;
+    }
+    .market-cost-records ul,
+    .market-cost-sources ul {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .market-cost-records li {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.62fr);
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid rgba(130, 175, 185, 0.18);
+      border-radius: var(--construction-radius);
+      background: var(--construction-item);
+    }
+    .market-cost-records li strong,
+    .market-cost-sources li strong {
+      display: block;
+      margin-top: 4px;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.35;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .market-cost-sources li {
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+      border: 1px solid rgba(130, 175, 185, 0.18);
+      border-radius: var(--construction-radius);
+      background: var(--construction-item);
+    }
+    .market-cost-sources li > div {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .market-cost-sources li > div span {
+      flex: 0 0 auto;
+      min-height: 22px;
+      padding: 4px 8px;
+      border: 1px solid rgba(255, 216, 77, 0.38);
+      border-radius: 999px;
+      background: rgba(255, 216, 77, 0.12);
+      color: var(--comment-accent);
+      font-size: 10px;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+    .market-cost-sources footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      color: var(--construction-soft);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .market-cost-method {
+      display: grid;
+      gap: 6px;
+      border-color: rgba(255, 216, 77, 0.28);
+      background: rgba(255, 216, 77, 0.055);
+    }
+    .market-cost-method strong {
+      color: var(--comment-accent);
+      font-size: 13px;
+    }
     .section-head {
       display: flex;
       align-items: flex-start;
@@ -2375,6 +4124,10 @@ def render_html(data: dict[str, Any]) -> str:
       background: rgba(255, 255, 255, 0.018);
     }
     .detail-summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(210px, 260px);
+      gap: 14px;
+      align-items: start;
       padding-bottom: 12px;
       border-bottom: 1px solid var(--line);
     }
@@ -2398,6 +4151,65 @@ def render_html(data: dict[str, Any]) -> str:
       color: var(--ink);
       font-weight: 760;
       overflow-wrap: anywhere;
+    }
+    .unit-cost-entry {
+      min-width: 0;
+      justify-self: end;
+      width: 100%;
+      max-width: 260px;
+    }
+    .unit-cost-button {
+      display: grid;
+      gap: 4px;
+      width: 100%;
+      min-height: 88px;
+      padding: 13px 14px;
+      border: 1px solid rgba(41, 151, 255, 0.42);
+      border-radius: var(--construction-radius);
+      background:
+        linear-gradient(135deg, rgba(41, 151, 255, 0.18), rgba(50, 215, 75, 0.06)),
+        var(--construction-panel-strong);
+      color: var(--ink);
+      cursor: pointer;
+      font: inherit;
+      text-align: left;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        0 12px 24px rgba(0, 0, 0, 0.16);
+    }
+    .unit-cost-button:hover {
+      border-color: rgba(41, 151, 255, 0.72);
+      transform: translateY(-1px);
+    }
+    .unit-cost-button span {
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 850;
+    }
+    .unit-cost-button strong {
+      color: #fff;
+      font-size: 18px;
+      line-height: 1.2;
+      letter-spacing: 0;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .unit-cost-button em {
+      color: var(--muted);
+      font-size: 11px;
+      font-style: normal;
+      font-weight: 750;
+      line-height: 1.35;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .unit-cost-button.is-empty {
+      border-color: rgba(130, 175, 185, 0.22);
+      background: var(--construction-panel-strong);
+    }
+    .unit-cost-button.is-empty strong {
+      color: var(--muted);
+      font-size: 15px;
     }
     .credit-ratings {
       min-width: 0;
@@ -2667,6 +4479,306 @@ def render_html(data: dict[str, Any]) -> str:
       margin: 0;
       color: var(--muted);
       font-size: 12px;
+    }
+    .unit-cost-modal[hidden] {
+      display: none;
+    }
+    .unit-cost-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+    }
+    .unit-cost-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(8px);
+    }
+    .unit-cost-dialog {
+      position: relative;
+      width: min(960px, 100%);
+      max-height: min(820px, calc(100vh - 56px));
+      overflow: auto;
+      border: 1px solid rgba(130, 175, 185, 0.28);
+      border-radius: var(--radius-lg, 16px);
+      background:
+        linear-gradient(135deg, rgba(41, 151, 255, 0.10), transparent 38%),
+        var(--paper);
+      box-shadow: 0 32px 90px rgba(0, 0, 0, 0.48);
+    }
+    .unit-cost-close {
+      position: sticky;
+      top: 14px;
+      float: right;
+      z-index: 1;
+      width: 34px;
+      height: 34px;
+      margin: 14px 14px 0 0;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 1;
+    }
+    .unit-cost-modal-content {
+      display: grid;
+      gap: 16px;
+      padding: 24px;
+    }
+    .unit-cost-modal-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding-right: 42px;
+    }
+    .unit-cost-modal-head p,
+    .unit-cost-hero p {
+      margin: 0 0 4px;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+    .unit-cost-modal-head h2 {
+      margin: 0;
+      color: #fff;
+      font-size: 24px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+    .unit-cost-modal-head > span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .unit-cost-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+      gap: 16px;
+      padding: 16px;
+      border: 1px solid rgba(41, 151, 255, 0.34);
+      border-radius: var(--construction-radius);
+      background:
+        linear-gradient(135deg, rgba(41, 151, 255, 0.18), rgba(50, 215, 75, 0.05)),
+        var(--construction-panel-strong);
+    }
+    .unit-cost-hero.empty {
+      border-color: rgba(130, 175, 185, 0.24);
+      background: var(--construction-panel-strong);
+    }
+    .unit-cost-hero h3 {
+      margin: 0;
+      color: #fff;
+      font-size: 28px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+    .unit-cost-hero.empty h3 {
+      color: var(--muted);
+      font-size: 18px;
+    }
+    .unit-cost-hero > div > span {
+      display: block;
+      margin-top: 8px;
+      color: var(--construction-soft);
+      font-size: 13px;
+      font-weight: 750;
+      line-height: 1.4;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .unit-cost-hero dl,
+    .unit-cost-records dl {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0;
+    }
+    .unit-cost-hero dl div,
+    .unit-cost-records dl div {
+      min-width: 0;
+      padding: 9px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+    .unit-cost-hero dt,
+    .unit-cost-records dt {
+      margin: 0 0 3px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+    }
+    .unit-cost-hero dd,
+    .unit-cost-records dd {
+      margin: 0;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 850;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .unit-cost-confidence {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(130, 175, 185, 0.36);
+      color: var(--teal);
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .unit-cost-confidence.confidence-high {
+      border-color: rgba(50, 215, 75, 0.48);
+      background: rgba(50, 215, 75, 0.12);
+      color: #32d74b;
+    }
+    .unit-cost-confidence.confidence-medium {
+      border-color: rgba(41, 151, 255, 0.52);
+      background: rgba(41, 151, 255, 0.12);
+      color: #60a5fa;
+    }
+    .unit-cost-section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .unit-cost-section-head h3 {
+      margin: 0;
+      color: var(--teal);
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+    .unit-cost-section-head span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 750;
+    }
+    .unit-cost-chart-wrap,
+    .unit-cost-records {
+      min-width: 0;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--construction-radius);
+      background: var(--construction-panel-strong);
+    }
+    .unit-cost-chart-wrap.empty p,
+    .unit-cost-records.empty p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .unit-cost-chart {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(86px, 1fr));
+      gap: 10px;
+      align-items: end;
+      min-height: 176px;
+      padding-top: 8px;
+    }
+    .unit-cost-chart-bar {
+      display: grid;
+      grid-template-rows: 112px auto auto auto;
+      gap: 4px;
+      align-items: end;
+      min-width: 0;
+      text-align: center;
+    }
+    .unit-cost-chart-bar span {
+      display: block;
+      width: min(42px, 70%);
+      height: var(--h);
+      min-height: 10px;
+      justify-self: center;
+      border-radius: 7px 7px 3px 3px;
+      background: linear-gradient(180deg, #60a5fa, #2997ff);
+      box-shadow: 0 8px 22px rgba(41, 151, 255, 0.18);
+    }
+    .unit-cost-chart-bar strong,
+    .unit-cost-chart-bar em,
+    .unit-cost-chart-bar small {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .unit-cost-chart-bar strong {
+      color: var(--ink);
+      font-size: 12px;
+    }
+    .unit-cost-chart-bar em {
+      color: var(--construction-soft);
+      font-size: 11px;
+      font-style: normal;
+      font-weight: 750;
+    }
+    .unit-cost-chart-bar small {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 750;
+    }
+    .unit-cost-records ul {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .unit-cost-records li {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(210px, 0.42fr);
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--construction-radius);
+      background: var(--construction-item);
+    }
+    .unit-cost-record-main {
+      min-width: 0;
+    }
+    .unit-cost-record-main > span {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 850;
+      line-height: 1.3;
+    }
+    .unit-cost-record-main strong {
+      display: block;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.35;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .unit-cost-record-main p {
+      margin: 4px 0 8px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .unit-cost-record-main div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      color: var(--construction-soft);
+      font-size: 12px;
+      font-weight: 750;
     }
     .company-comment {
       display: grid;
@@ -2969,6 +5081,45 @@ def render_html(data: dict[str, Any]) -> str:
         white-space: normal;
       }
       .section-head { flex-direction: column; }
+      .panel-body {
+        padding: 14px;
+      }
+      .market-cost-summary,
+      .market-cost-main,
+      .market-indicator-cards,
+      .market-indicator-grid,
+      .market-indicator-strip ul {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .market-cost-group-title {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .market-cost-group-title p {
+        max-width: none;
+        text-align: left;
+      }
+      .market-cost-latest dl,
+      .market-cost-records li,
+      .market-cost-records dl {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .market-cost-sources li > div {
+        display: grid;
+      }
+      .market-cost-section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .market-cost-section-head > span {
+        text-align: left;
+      }
+      .market-basis-note {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .has-hover-detail::after {
+        display: none;
+      }
       table { font-size: 12px; }
       .detail-panel {
         width: min(100%, calc(100vw - 28px));
@@ -2976,6 +5127,30 @@ def render_html(data: dict[str, Any]) -> str:
       }
       .detail-split { grid-template-columns: minmax(0, 1fr); gap: 14px; }
       .detail-grid { grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); }
+      .detail-summary {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .unit-cost-entry {
+        justify-self: stretch;
+        max-width: none;
+      }
+      .unit-cost-modal {
+        padding: 14px;
+      }
+      .unit-cost-dialog {
+        max-height: calc(100vh - 28px);
+      }
+      .unit-cost-modal-content {
+        padding: 18px;
+      }
+      .unit-cost-modal-head,
+      .unit-cost-hero,
+      .unit-cost-records li {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .unit-cost-modal-head {
+        padding-right: 38px;
+      }
       .credit-rating-head {
         align-items: flex-start;
         flex-direction: column;
@@ -3024,7 +5199,11 @@ def render_html(data: dict[str, Any]) -> str:
     }
     @media (max-width: 380px) {
       .detail-grid,
-      .award-metrics {
+      .award-metrics,
+      .market-cost-latest dl,
+      .market-cost-records dl,
+      .unit-cost-hero dl,
+      .unit-cost-records dl {
         grid-template-columns: minmax(0, 1fr);
       }
     }
@@ -3057,6 +5236,13 @@ def render_html(data: dict[str, Any]) -> str:
     {''.join(tab_panels)}
     {disclaimer_html}
   </main>
+  <div class="unit-cost-modal" id="unitCostModal" hidden>
+    <div class="unit-cost-backdrop" data-unit-cost-close></div>
+    <section class="unit-cost-dialog" role="dialog" aria-modal="true" aria-labelledby="unitCostModalTitle">
+      <button class="unit-cost-close" type="button" data-unit-cost-close aria-label="닫기">×</button>
+      <div id="unitCostModalBody"></div>
+    </section>
+  </div>
   <script>
     function setRankRowExpanded(row, expanded) {{
       if (!row) return;
@@ -3098,6 +5284,47 @@ def render_html(data: dict[str, Any]) -> str:
       button.addEventListener("click", () => {{
         toggleRankRow(button.closest(".rank-row"));
       }});
+    }});
+
+    const unitCostModal = document.getElementById("unitCostModal");
+    const unitCostModalBody = document.getElementById("unitCostModalBody");
+
+    function closeUnitCostModal() {{
+      if (!unitCostModal || !unitCostModalBody) return;
+      unitCostModal.hidden = true;
+      unitCostModalBody.innerHTML = "";
+      document.body.classList.remove("modal-open");
+    }}
+
+    function openUnitCostModal(button) {{
+      if (!unitCostModal || !unitCostModalBody || !button) return;
+      const template = document.getElementById(button.dataset.unitCostTemplate || "");
+      if (!template) return;
+      unitCostModalBody.innerHTML = template.innerHTML;
+      const title = unitCostModalBody.querySelector("h2");
+      if (title) title.id = "unitCostModalTitle";
+      unitCostModal.hidden = false;
+      document.body.classList.add("modal-open");
+      const closeButton = unitCostModal.querySelector(".unit-cost-close");
+      if (closeButton) closeButton.focus();
+    }}
+
+    document.querySelectorAll(".unit-cost-button").forEach((button) => {{
+      button.addEventListener("click", (event) => {{
+        event.preventDefault();
+        event.stopPropagation();
+        openUnitCostModal(button);
+      }});
+    }});
+
+    document.querySelectorAll("[data-unit-cost-close]").forEach((button) => {{
+      button.addEventListener("click", closeUnitCostModal);
+    }});
+
+    document.addEventListener("keydown", (event) => {{
+      if (event.key === "Escape" && unitCostModal && !unitCostModal.hidden) {{
+        closeUnitCostModal();
+      }}
     }});
 
     const seedCommentCounts = {seed_comment_counts_json};
@@ -3533,6 +5760,7 @@ def main() -> None:
     attach_recent_awards(results)
     attach_credit_ratings(results)
     attach_online_update_marks(results)
+    results["market_unit_cost"] = build_market_unit_cost_data(results)
     HTML_OUT.write_text(strip_trailing_whitespace(render_html(results)), encoding="utf-8")
     JSON_OUT.write_text(json.dumps(serializable_results(results), ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Wrote {HTML_OUT}")

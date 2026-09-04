@@ -3,7 +3,10 @@
   const SESSION_TOKEN_KEY = "ra_session_token";
   const USER_KEY = "ra_user";
   const LAST_ACTIVE_KEY = "last_active";
+  const LAST_PRESENCE_PING_KEY = "ra_last_presence_ping";
   const ADMIN_EMAIL = "sjlee@igisam.com";
+  const PRESENCE_INTERVAL_MS = 60 * 1000;
+  let presenceTimer = null;
 
   function endpoint() {
     if (window.RA_AUTH_ENDPOINT) return window.RA_AUTH_ENDPOINT;
@@ -64,6 +67,7 @@
     sessionStorage.removeItem(USER_KEY);
     sessionStorage.removeItem(LAST_ACTIVE_KEY);
     sessionStorage.removeItem(SESSION_TOKEN_KEY);
+    sessionStorage.removeItem(LAST_PRESENCE_PING_KEY);
     localStorage.removeItem(USER_KEY);
     localStorage.removeItem(LAST_ACTIVE_KEY);
     localStorage.removeItem(AUTH_TOKEN_KEY);
@@ -71,10 +75,38 @@
 
   function touch() {
     sessionStorage.setItem(LAST_ACTIVE_KEY, String(Date.now()));
+    heartbeat();
+  }
+
+  async function heartbeat(force = false) {
+    const token = getSessionToken();
+    if (!token) return false;
+
+    const now = Date.now();
+    const lastPing = Number(sessionStorage.getItem(LAST_PRESENCE_PING_KEY) || 0);
+    if (!force && now - lastPing < PRESENCE_INTERVAL_MS) return false;
+    sessionStorage.setItem(LAST_PRESENCE_PING_KEY, String(now));
+
+    try {
+      await request("heartbeat", { session_token: token });
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  function startPresence() {
+    if (presenceTimer) return;
+    heartbeat(true);
+    presenceTimer = window.setInterval(() => heartbeat(), PRESENCE_INTERVAL_MS);
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") heartbeat(true);
+    });
+    window.addEventListener("focus", () => heartbeat(true));
   }
 
   async function resumeRememberedSession() {
-    const token = getSessionToken();
+    const token = getRememberToken();
     if (!token) return null;
     try {
       const data = await request("resume-session", { session_token: token });
@@ -104,6 +136,7 @@
     SESSION_TOKEN_KEY,
     USER_KEY,
     LAST_ACTIVE_KEY,
+    LAST_PRESENCE_PING_KEY,
     ADMIN_EMAIL,
     request,
     getSessionUser,
@@ -115,6 +148,8 @@
     getSessionToken,
     clearLocal,
     touch,
+    heartbeat,
+    startPresence,
     resumeRememberedSession,
     logout,
   };

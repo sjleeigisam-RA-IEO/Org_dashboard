@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-31 09:24:07 KST",
+  "generated_at": "2026-08-24 09:21:21 KST",
   "source_note": "OpenDART API에서 회사별 투자판단, 출자, 시설투자, M&A/구조개편, 자금조달, 특수관계인 거래성 공시를 조회해 생성한 기업 방향성 캐시입니다.",
   "query": {
-    "start_date": "20210831",
-    "end_date": "20260831",
+    "start_date": "20210824",
+    "end_date": "20260824",
     "lookback_years": 5,
     "per_company": 5,
     "report_keywords": [
@@ -336,24 +336,6 @@
       },
       "articles": [
         {
-          "title": "(주)태영건설",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260827000833",
-          "source": "OpenDART 전략공시",
-          "published": "2026.08.27",
-          "summary": "회사명: (주)태영건설 · 자금조달의목적: 시설자금 (원)",
-          "primary_category": "financing",
-          "categories": [
-            "dart_strategy",
-            "financing"
-          ],
-          "matched_terms": [
-            "유상증자결정"
-          ],
-          "direction_signal": true,
-          "receipt_no": "20260827000833",
-          "report_name": "주요사항보고서(유상증자결정)"
-        },
-        {
           "title": "과천공공하수처리시설 현대화사업 실시설계적격자 선정",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260701800746",
           "source": "OpenDART 전략공시",
@@ -423,6 +405,24 @@
           ],
           "direction_signal": true,
           "receipt_no": "20260213002419",
+          "report_name": "특수관계인에대한자금대여"
+        },
+        {
+          "title": "네오시티(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260212001276",
+          "source": "OpenDART 전략공시",
+          "published": "2026.02.12",
+          "summary": "회사명: (주)태영건설 · 거래상대방: 네오시티(주) · 다.거래상대방총잔액: 102,000",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260212001276",
           "report_name": "특수관계인에대한자금대여"
         }
       ]
@@ -930,24 +930,6 @@
       },
       "articles": [
         {
-          "title": "대방산업개발(주)",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828001449",
-          "source": "OpenDART 전략공시",
-          "published": "2026.08.28",
-          "summary": "회사명: 대방건설(주) · 거래상대방: 대방산업개발(주) · 다.거래상대방총잔액: 301,775",
-          "primary_category": "group_transaction",
-          "categories": [
-            "dart_strategy",
-            "group_transaction"
-          ],
-          "matched_terms": [
-            "특수관계인에대한자금대여"
-          ],
-          "direction_signal": true,
-          "receipt_no": "20260828001449",
-          "report_name": "특수관계인에대한자금대여"
-        },
-        {
           "title": "대방이노베이션(주)",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260820000374",
           "source": "OpenDART 전략공시",
@@ -1017,6 +999,24 @@
           ],
           "direction_signal": true,
           "receipt_no": "20260810000298",
+          "report_name": "특수관계인에대한자금대여"
+        },
+        {
+          "title": "대방산업개발(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260730000528",
+          "source": "OpenDART 전략공시",
+          "published": "2026.07.30",
+          "summary": "회사명: 대방건설(주) · 거래상대방: 대방산업개발(주) · 다.거래상대방총잔액: 270,875",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260730000528",
           "report_name": "특수관계인에대한자금대여"
         }
       ]
@@ -1875,42 +1875,6 @@
       },
       "articles": [
         {
-          "title": "주요사항보고서(회사합병결정)",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828001004",
-          "source": "OpenDART 전략공시",
-          "published": "2026.08.28",
-          "summary": "014 파일이 존재하지 않습니다.",
-          "primary_category": "ma_restructuring",
-          "categories": [
-            "dart_strategy",
-            "ma_restructuring"
-          ],
-          "matched_terms": [
-            "회사합병결정"
-          ],
-          "direction_signal": true,
-          "receipt_no": "20260828001004",
-          "report_name": "주요사항보고서(회사합병결정)"
-        },
-        {
-          "title": "회사명",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260827000971",
-          "source": "OpenDART 전략공시",
-          "published": "2026.08.27",
-          "summary": "회사명: 에스케이에코플랜트(주) · 합병상대회사: 회사명 · 합병이사회결의일: 2026.08.27 · 회사명: 직책",
-          "primary_category": "ma_restructuring",
-          "categories": [
-            "dart_strategy",
-            "ma_restructuring"
-          ],
-          "matched_terms": [
-            "회사합병결정"
-          ],
-          "direction_signal": true,
-          "receipt_no": "20260827000971",
-          "report_name": "주요사항보고서(회사합병결정)"
-        },
-        {
           "title": "에스케이에코엔지니어링(주)",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260306000287",
           "source": "OpenDART 전략공시",
@@ -1963,6 +1927,42 @@
           "direction_signal": true,
           "receipt_no": "20251030000496",
           "report_name": "주요사항보고서(유상증자결정)"
+        },
+        {
+          "title": "공시일자",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250716000306",
+          "source": "OpenDART 전략공시",
+          "published": "2025.07.16",
+          "summary": "회사명: 공시일자 · 회사명(국적): 대표이사",
+          "primary_category": "equity_investment",
+          "categories": [
+            "dart_strategy",
+            "equity_investment"
+          ],
+          "matched_terms": [
+            "타법인주식및출자증권처분결정"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20250716000306",
+          "report_name": "타법인주식및출자증권처분결정"
+        },
+        {
+          "title": "리뉴어스(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20240909000179",
+          "source": "OpenDART 전략공시",
+          "published": "2024.09.09",
+          "summary": "회사명: 에스케이에코플랜트(주) · 거래상대방: 리뉴어스(주) · 다.거래상대방총잔액: 86,845",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한자금대여"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20240909000179",
+          "report_name": "특수관계인에대한자금대여"
         }
       ]
     },
