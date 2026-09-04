@@ -51,11 +51,6 @@ const date = (value: unknown, label: string) => {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(result) || new Date(`${result}T00:00:00Z`).toISOString().slice(0, 10) !== result) throw new Error(`Invalid ${label}`);
   return result;
 };
-const nextPeriod = (value: string) => {
-  const [year, month] = value.split("-").map(Number);
-  const next = new Date(Date.UTC(year, month, 1));
-  return `${next.getUTCFullYear()}-${String(next.getUTCMonth() + 1).padStart(2, "0")}`;
-};
 const close = (actual: number, expected: number, tolerance = Math.max(0.1, Math.abs(expected) * 1e-9)) => Math.abs(actual - expected) <= tolerance;
 const matchesSqlRoundedShare = (actual: number, amount: number, total: number) => total > 0 && Math.abs(actual - amount / total * 100) <= 0.005000001;
 const expectedPct = (value: number, comparison: number | null) => comparison === null || comparison === 0 ? null : (value / comparison - 1) * 100;
@@ -104,7 +99,7 @@ export function normalizeQuantitativeMarketPulse(value: unknown): QuantitativeMa
   if (!record(value) || !record(value.call) || !record(value.metrics) || !record(value.concentration) || !record(value.quality) || !record(value.scope)) throw new Error("Invalid market pulse");
   const call = value.call; const metrics = value.metrics; const concentration = value.concentration; const quality = value.quality; const scope = value.scope;
   const trendInput = value.trend; const topGroupsInput = concentration.topGroups; const districtsInput = concentration.districts; const exclusions = scope.exclusions;
-  if (!Array.isArray(trendInput) || trendInput.length !== 19 || !Array.isArray(topGroupsInput) || !Array.isArray(districtsInput) || !Array.isArray(exclusions)) throw new Error("Invalid market pulse arrays");
+  if (!Array.isArray(trendInput) || trendInput.length === 0 || trendInput.length > 19 || !Array.isArray(topGroupsInput) || !Array.isArray(districtsInput) || !Array.isArray(exclusions)) throw new Error("Invalid market pulse arrays");
 
   const trend = trendInput.map((item, index) => {
     if (!record(item)) throw new Error(`Invalid trend ${index}`);
@@ -120,7 +115,7 @@ export function normalizeQuantitativeMarketPulse(value: unknown): QuantitativeMa
     const amountValue = Number(result.amountKrw);
     const areaValue = Number(result.areaM2);
     if (result.transactionCount === 0 ? amountValue !== 0 || areaValue !== 0 : amountValue <= 0 || areaValue <= 0) throw new Error(`Invalid trend.${index} fact invariant`);
-    if (index > 0 && result.period !== nextPeriod(period((trendInput[index - 1] as Record<string, unknown>).period, `trend.${index - 1}.period`))) throw new Error("Invalid trend period sequence");
+    if (index > 0 && result.period <= period((trendInput[index - 1] as Record<string, unknown>).period, `trend.${index - 1}.period`)) throw new Error("Invalid trend period sequence");
     return result;
   });
 

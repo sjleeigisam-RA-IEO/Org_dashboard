@@ -5,6 +5,7 @@ import { ArchivedDetailDrawer } from "@/components/archived-detail-drawer";
 import { CompanyWorkspace } from "@/components/company-workspace";
 import { DailyArticleWorkspace } from "@/components/daily-article-workspace";
 import { DecisionBriefWorkspace } from "@/components/decision-brief-workspace";
+import { MacroTimeseriesWorkspace } from "@/components/macro-timeseries-workspace";
 import { DocumentDetailDrawer } from "@/components/document-detail-drawer";
 import { EntityDetailDrawer } from "@/components/entity-detail-drawer";
 import { InstitutionalCapitalWorkspace } from "@/components/institutional-capital-workspace";
@@ -13,12 +14,13 @@ import { SaleProcessWorkspace } from "@/components/sale-process-workspace";
 import { TransactionCard } from "@/components/transaction-template";
 import { hasInvalidSearchDateRange, koreanIsoDate, type CategoryIndexGroup, type CategoryIndexItem, type CategoryIndexResponse, type SearchKind, type SearchResponse, type SearchResult } from "@/lib/search-contract";
 
-type Workspace = "BRIEF" | "MARKET" | "DAILY" | "COMPANIES" | "CAPITAL" | "SALES" | "OPERATIONS";
+type Workspace = "MACRO" | "BRIEF" | "MARKET" | "DAILY" | "COMPANIES" | "CAPITAL" | "SALES" | "OPERATIONS";
 type MarketKind = Extract<SearchKind, "EVENT" | "DOCUMENT" | "ASSET">;
 type EventViewMode = "CONFIRMED" | "EVIDENCE";
 
 
 const workspaceTabs: Array<{ key: Workspace; label: string; description: string }> = [
+  { key: "MACRO", label: "시장 시계열", description: "금리 방향·공통 월" },
   { key: "BRIEF", label: "오늘의 브리핑", description: "변화·우선순위·근거" },
   { key: "MARKET", label: "시장 탐색", description: "변화·자산·근거 확인" },
   { key: "DAILY", label: "뉴스 모니터", description: "오늘의 시장 신호" },
@@ -86,7 +88,7 @@ function formatDate(value: string | null) { return value ? value.slice(0, 10) : 
 function metadataText(value: unknown) { return typeof value === "string" ? value : ""; }
 
 export function MarketExplorer() {
-  const [workspace, setWorkspace] = useState<Workspace>("BRIEF");
+  const [workspace, setWorkspace] = useState<Workspace>("MACRO");
   const [companyTarget, setCompanyTarget] = useState<string | null>(null);
   const [kind, setKind] = useState<MarketKind>("EVENT");
   const [eventViewMode, setEventViewMode] = useState<EventViewMode>("CONFIRMED");
@@ -209,6 +211,7 @@ export function MarketExplorer() {
       {workspaceTabs.map((tab) => <button type="button" key={tab.key} aria-pressed={workspace === tab.key} onClick={() => { setWorkspace(tab.key); if (tab.key !== "COMPANIES") setCompanyTarget(null); }}><strong>{tab.label}</strong><span>{tab.description}</span></button>)}
     </nav>
 
+    {workspace === "MACRO" && <MacroTimeseriesWorkspace/>}
     {workspace === "BRIEF" && <DecisionBriefWorkspace onNavigate={setWorkspace} onOpenDocument={openDocument}/>}
     {workspace === "MARKET" && <section className="market-workspace">
       <header className="market-hero"><div><p className="eyebrow">MARKET EXPLORE</p><h1>시장 변화부터 근거까지 한 흐름으로 탐색</h1><p>먼저 찾을 대상을 고르고, 변화 유형·자산 유형·근거 목적과 기간으로 범위를 좁혀 확인합니다.</p></div><form className="hero-search" onSubmit={submitSearch}><input aria-label="통합 검색" value={draftQ} onChange={(event) => setDraftQ(event.target.value)} placeholder="회사·자산·이벤트·근거자료 검색"/><button type="submit">검색</button></form></header>

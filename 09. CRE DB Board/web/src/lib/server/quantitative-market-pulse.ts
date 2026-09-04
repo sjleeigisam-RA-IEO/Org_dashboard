@@ -37,6 +37,15 @@ const QUERY = `WITH latest_versions AS (
   JOIN market_intelligence.source_documents sd ON sd.document_id=dv.document_id
   JOIN market_intelligence.collection_sources cs ON cs.source_id=sd.source_id
   WHERE cs.source_code='MOLIT_REAL_TRANSACTION'
+), source_coverage AS MATERIALIZED (
+  SELECT make_date((metadata->'api_record'->>'dealYear')::int,(metadata->'api_record'->>'dealMonth')::int,1) AS month_start,
+         count(*)::int AS source_record_count
+  FROM latest_versions
+  WHERE version_rank=1
+    AND coalesce(metadata->'api_record'->>'sggCd','') LIKE '11%'
+    AND coalesce(metadata->'api_record'->>'dealYear','') ~ '^20[0-9]{2}$'
+    AND coalesce(metadata->'api_record'->>'dealMonth','') ~ '^(0?[1-9]|1[0-2])$'
+  GROUP BY 1
 ), raw_eligible AS MATERIALIZED (
   SELECT metadata->'api_record' AS api
   FROM latest_versions
@@ -76,7 +85,7 @@ const QUERY = `WITH latest_versions AS (
   FROM canonical_transactions
   GROUP BY month_start
 ), data_bounds AS (
-  SELECT max(month_start) AS latest_data_month FROM canonical_transactions
+  SELECT max(month_start) AS latest_data_month FROM source_coverage
 ), clock AS (
   SELECT date_trunc('month',current_date)::date AS current_month
 ), reference_month AS (
@@ -103,6 +112,7 @@ const QUERY = `WITH latest_versions AS (
          coalesce(q.source_row_count,0)::int AS source_row_count,
          coalesce(q.unique_payload_count,0)::int AS unique_payload_count
   FROM calendar c
+  JOIN source_coverage coverage USING(month_start)
   LEFT JOIN monthly_facts f USING(month_start)
   LEFT JOIN monthly_quality q USING(month_start)
 ), ranked_transactions AS (
@@ -194,17 +204,11 @@ function parsePoint(value: unknown, label: string): MarketPulseTrendPoint {
   return point;
 }
 
-const nextPeriod = (value: string) => {
-  const [year, month] = value.split("-").map(Number);
-  const date = new Date(Date.UTC(year, month, 1));
-  return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, "0")}`;
-};
-
 function parsePoints(value: unknown, label: string) {
   if (!Array.isArray(value) || value.length === 0) throw new Error(`Invalid ${label}`);
   const points = value.map((item, index) => parsePoint(item, `${label}.${index}`));
   for (let index = 1; index < points.length; index += 1) {
-    if (points[index].period !== nextPeriod(points[index - 1].period)) throw new Error(`Invalid ${label} period sequence`);
+    if (points[index].period <= points[index - 1].period) throw new Error(`Invalid ${label} period sequence`);
   }
   return points;
 }
@@ -254,9 +258,14 @@ const pct = (current: number, comparison: number | null) => comparison === null 
 const asNumber = (value: string | number) => typeof value === "number" ? value : Number(value);
 const safeRatio = (numerator: number, denominator: number) => denominator === 0 ? null : numerator / denominator;
 
+const previousMonthPeriod = (period: string) => {
+  const [year, month] = period.split("-").map(Number);
+  return month === 1 ? `${year - 1}-12` : `${year}-${String(month - 1).padStart(2, "0")}`;
+};
+
 function metric(points: MarketPulseTrendPoint[], field: "amountKrw" | "transactionCount" | "areaM2"): Metric {
   const latest = points.at(-1)!;
-  const previous = points.at(-2) ?? null;
+  const previous = points.find((point) => point.period === previousMonthPeriod(latest.period)) ?? null;
   const [year, month] = latest.period.split("-").map(Number);
   const yearAgo = points.find((point) => point.period === `${year - 1}-${String(month).padStart(2, "0")}`) ?? null;
   const value = asNumber(latest[field]);
@@ -269,18 +278,18 @@ function metric(points: MarketPulseTrendPoint[], field: "amountKrw" | "transacti
   return { value, previousValue, yearAgoValue, momPct: pct(value, previousValue), yoyPct: pct(value, yearAgoValue), ytdValue, priorYtdValue, ytdYoyPct: pct(ytdValue, priorYtdValue) };
 }
 
-const direction = (value: number) => value > 0 ? "증가" : value < 0 ? "감소" : "보합";
+const direction = (value: number) => value >= 0.05 ? "증가" : value <= -0.05 ? "감소" : "보합";
 export function buildMarketHeadline(amountMomPct: number | null, countMomPct: number | null) {
-  if (amountMomPct === null || countMomPct === null) return "전월 비교 불가 — 기준월 또는 전월 거래 부재";
+  if (amountMomPct === null || countMomPct === null) return "전월 비교 불가 — 기준월 또는 전월 신고행 부재";
   const amountDirection = direction(amountMomPct);
   const countDirection = direction(countMomPct);
   if (amountDirection === countDirection) {
-    if (amountDirection === "증가") return "거래금액과 거래건수 동반 증가 — 시장 참여 폭 확대";
-    if (amountDirection === "감소") return "거래금액과 거래건수 동반 감소 — 시장 활동 위축";
-    return "거래금액과 거래건수 동반 보합 — 전월 수준 유지";
+    if (amountDirection === "증가") return "신고 거래금액과 고유 신고행 동반 증가 — 시장 참여 폭 확대";
+    if (amountDirection === "감소") return "신고 거래금액과 고유 신고행 동반 감소 — 시장 활동 위축";
+    return "신고 거래금액과 고유 신고행 동반 보합 — 전월 수준 유지";
   }
-  if (amountDirection === "증가" && countDirection === "감소") return "거래금액 증가 · 거래건수 감소 — 대형 거래 중심 반등";
-  return `거래금액 ${amountDirection} · 거래건수 ${countDirection} — 혼조 흐름`;
+  if (amountDirection === "증가" && countDirection === "감소") return "신고 거래금액 증가 · 고유 신고행 감소 — 대형 신고행 중심 반등";
+  return `신고 거래금액 ${amountDirection} · 고유 신고행 ${countDirection} — 혼조 흐름`;
 }
 
 export async function getQuantitativeMarketPulse(execute: SqlExecutor) {
@@ -290,7 +299,7 @@ export async function getQuantitativeMarketPulse(execute: SqlExecutor) {
   const count = metric(payload.analysisTrend, "transactionCount");
   const area = metric(payload.analysisTrend, "areaM2");
   const latest = payload.trend.at(-1)!;
-  const previous = payload.analysisTrend.at(-2) ?? null;
+  const previous = payload.analysisTrend.find((point) => point.period === previousMonthPeriod(latest.period)) ?? null;
   const [year, month] = latest.period.split("-").map(Number);
   const yearAgo = payload.analysisTrend.find((point) => point.period === `${year - 1}-${String(month).padStart(2, "0")}`) ?? null;
   const averageTicket = safeRatio(amount.value, count.value);
@@ -311,7 +320,7 @@ export async function getQuantitativeMarketPulse(execute: SqlExecutor) {
     asOfPeriod: payload.asOfPeriod,
     call: {
       headline,
-      detail: `거래금액 ${amount.momPct === null ? "비교 불가" : `${amount.momPct >= 0 ? "+" : ""}${amount.momPct.toFixed(1)}%`} · 거래건수 ${count.momPct === null ? "비교 불가" : `${count.momPct >= 0 ? "+" : ""}${count.momPct.toFixed(1)}%`} · 거래당 평균 ${averageTicketDetail}`,
+      detail: `신고 거래금액 ${amount.momPct === null ? "비교 불가" : `${amount.momPct >= 0 ? "+" : ""}${amount.momPct.toFixed(1)}%`} · 고유 신고행 ${count.momPct === null ? "비교 불가" : `${count.momPct >= 0 ? "+" : ""}${count.momPct.toFixed(1)}%`} · 신고행당 평균 ${averageTicketDetail}`,
       caution: "면적당 금액은 자산구성 변화의 영향을 받으므로 동일자산 가격지수로 해석하지 않습니다.",
     },
     metrics: {

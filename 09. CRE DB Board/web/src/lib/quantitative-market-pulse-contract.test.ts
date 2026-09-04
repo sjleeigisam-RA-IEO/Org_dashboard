@@ -72,9 +72,11 @@ describe("normalizeQuantitativeMarketPulse", () => {
     expect(() => normalizeQuantitativeMarketPulse(replace(path, value))).toThrow(/Invalid/);
   });
 
-  it("requires exactly 19 ordered displayed trend points", () => {
-    expect(() => normalizeQuantitativeMarketPulse({ ...valid, trend: valid.trend.slice(1) })).toThrow(/arrays/i);
+  it("allows 1 to 19 strictly ordered observed months, including coverage gaps", () => {
+    expect(() => normalizeQuantitativeMarketPulse({ ...valid, trend: valid.trend.slice(1) })).not.toThrow();
+    expect(() => normalizeQuantitativeMarketPulse({ ...valid, trend: [] })).toThrow(/arrays/i);
     expect(() => normalizeQuantitativeMarketPulse({ ...valid, trend: [valid.trend[1], valid.trend[0], ...valid.trend.slice(2)] })).toThrow(/period/i);
+    expect(() => normalizeQuantitativeMarketPulse({ ...valid, trend: [valid.trend[0], valid.trend[0], ...valid.trend.slice(2)] })).toThrow(/period/i);
     const twentyValidMonths = Array.from({ length: 20 }, (_, index) => {
       const month = new Date(Date.UTC(2025, index, 1));
       return { ...valid.trend[0], period: `${month.getUTCFullYear()}-${String(month.getUTCMonth() + 1).padStart(2, "0")}` };

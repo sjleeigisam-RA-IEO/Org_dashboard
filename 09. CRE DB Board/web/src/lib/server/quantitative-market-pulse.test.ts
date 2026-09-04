@@ -66,12 +66,14 @@ describe("getQuantitativeMarketPulse SQL contract", () => {
     expect(sql).toContain("CASE WHEN coalesce(metadata->'api_record'->>'dealYear','') ~");
   });
 
-  it("excludes unknown building use and builds a 19-month complete calendar with an explicit completeness cutoff", async () => {
+  it("excludes unknown building use and keeps only source-covered months behind the completeness cutoff", async () => {
     const execute = vi.fn().mockResolvedValue({ rows: [{ payload }] });
     await getQuantitativeMarketPulse(execute);
     const sql = execute.mock.calls[0][0] as string;
     expect(sql).toContain("nullif(btrim(metadata->'api_record'->>'buildingUse'),'') IS NOT NULL");
     expect(sql).toContain("generate_series");
+    expect(sql).toContain("source_coverage AS MATERIALIZED");
+    expect(sql).toContain("JOIN source_coverage coverage USING(month_start)");
     expect(sql).toContain("current_month");
     expect(sql).toContain("latest_data_month < current_month");
     expect(sql).toContain("interval '1 month'");
@@ -95,6 +97,14 @@ describe("getQuantitativeMarketPulse calculations", () => {
     expect(result.quality).toEqual({ sourceRowCount: 3, transactionCount: 2, uniquePayloadCount: 2, exactDuplicateRows: 1 });
   });
 
+  it("does not compare a coverage gap as the prior month", async () => {
+    const gapped = payload.analysisTrend.filter((point) => point.period !== "2026-06");
+    const withoutJune = { ...payload, analysisTrend: gapped, trend: gapped };
+    const result = await getQuantitativeMarketPulse(vi.fn().mockResolvedValue({ rows: [{ payload: withoutJune }] }));
+    expect(result.metrics.amount.previousValue).toBeNull();
+    expect(result.metrics.amount.momPct).toBeNull();
+  });
+
   it("fails closed before deriving metrics from malformed database payloads", async () => {
     const malformed = { ...payload, trend: payload.trend.map((point, index) => index === 0 ? { ...point, amountKrw: "not-a-number" } : point) };
     await expect(getQuantitativeMarketPulse(vi.fn().mockResolvedValue({ rows: [{ payload: malformed }] }))).rejects.toThrow(/Invalid/);
@@ -103,11 +113,15 @@ describe("getQuantitativeMarketPulse calculations", () => {
 
 describe("buildMarketHeadline", () => {
   it.each([
-    [1, 1, "동반 증가"], [1, 0, "거래금액 증가 · 거래건수 보합"], [1, -1, "대형 거래 중심"],
-    [0, 1, "거래금액 보합 · 거래건수 증가"], [0, 0, "동반 보합"], [0, -1, "거래금액 보합 · 거래건수 감소"],
-    [-1, 1, "거래금액 감소 · 거래건수 증가"], [-1, 0, "거래금액 감소 · 거래건수 보합"], [-1, -1, "동반 감소"],
+    [1, 1, "동반 증가"], [1, 0, "신고 거래금액 증가 · 고유 신고행 보합"], [1, -1, "대형 신고행 중심"],
+    [0, 1, "신고 거래금액 보합 · 고유 신고행 증가"], [0, 0, "동반 보합"], [0, -1, "신고 거래금액 보합 · 고유 신고행 감소"],
+    [-1, 1, "신고 거래금액 감소 · 고유 신고행 증가"], [-1, 0, "신고 거래금액 감소 · 고유 신고행 보합"], [-1, -1, "동반 감소"],
   ])("describes amount %s and count %s without collapsing mixed directions", (amount, count, phrase) => {
     expect(buildMarketHeadline(amount, count)).toContain(phrase);
+  });
+
+  it("treats changes that round to 0.0% as flat", () => {
+    expect(buildMarketHeadline(0.04, -0.04)).toContain("동반 보합");
   });
 
   it("states when either comparison is unavailable", () => {

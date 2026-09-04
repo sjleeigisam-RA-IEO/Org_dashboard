@@ -9,6 +9,7 @@ import { searchMarket } from "@/lib/server/market-search";
 import { getOperationsOverview } from "@/lib/server/operations-insights";
 import { getOperationsTimeline } from "@/lib/server/operations-timeline";
 import { getQuantitativeMarketPulse } from "@/lib/server/quantitative-market-pulse";
+import { getMacroTimeseries } from "@/lib/server/macro-timeseries";
 import type { SearchRequest } from "@/lib/search-contract";
 
 // These projections are identical for every approved user and are refreshed on
@@ -60,6 +61,12 @@ export const getCachedQuantitativeMarketPulse = unstable_cache(
   () => getQuantitativeMarketPulse(executeMarketSql),
   ["cre-db-quantitative-market-pulse-v2"],
   { revalidate: 300, tags: ["cre-db-market-pulse"] },
+);
+
+export const getCachedMacroTimeseries = unstable_cache(
+  () => getMacroTimeseries(executeMarketSql),
+  ["cre-db-macro-timeseries-v1"],
+  { revalidate: 300, tags: ["cre-db-macro-timeseries"] },
 );
 
 // Short-lived exact-query caching absorbs repeated tab navigation and filter

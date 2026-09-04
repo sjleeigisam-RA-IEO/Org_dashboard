@@ -12,7 +12,7 @@ const trend = Array.from({ length: 19 }, (_, index) => {
 });
 const payload = {
   generatedAt: "2026-08-31T02:00:00.000Z", asOfPeriod: "2026-07",
-  call: { headline: "거래금액 증가 · 거래건수 감소 — 대형 거래 중심 반등", detail: "거래금액 +20.0% · 거래건수 -14.3% · 거래당 평균 40.0%", caution: "면적당 금액은 동일자산 가격지수가 아닙니다." },
+  call: { headline: "신고 거래금액 증가 · 고유 신고행 감소 — 대형 신고행 중심 반등", detail: "신고 거래금액 +20.0% · 고유 신고행 -14.3% · 신고행당 평균 40.0%", caution: "면적당 금액은 동일자산 가격지수가 아닙니다." },
   metrics: {
     amount: metric(2203495600000, 1835841880000, 1793915590000, 20.03, 22.83, 7537424030000, 6779917280000, 11.17),
     count: metric(12, 14, 13, -14.29, -7.69, 64, 44, 45.45),
@@ -43,12 +43,22 @@ describe("QuantitativeMarketPulse", () => {
     mockFetch(payload);
     render(<QuantitativeMarketPulse />);
 
-    expect(await screen.findByRole("heading", { name: /대형 거래 중심 반등/ })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: /대형 신고행 중심 반등/ })).toBeInTheDocument();
     const amountCard = screen.getAllByText("거래금액")[0].closest("article") as HTMLElement;
-    expect(within(amountCard).getByText("2.20조원")).toBeInTheDocument();
-    expect(screen.getByText("19-MONTH TREND")).toBeInTheDocument();
-    expect(screen.getByRole("table", { name: "최근 월별 거래금액·건수·면적" })).toBeInTheDocument();
-    expect(screen.getByText("원천 13행 · 보수적 거래 12건 · 동일 payload 1행 제외")).toBeInTheDocument();
+    expect(within(amountCard).getByText("2.2조 원")).toBeInTheDocument();
+    expect(screen.getByText("최근 19개 관측월")).toBeInTheDocument();
+    expect(screen.getAllByText(/12개 관측월 평균/).length).toBeGreaterThan(0);
+    expect(document.querySelectorAll(".market-pulse-bar")).toHaveLength(19);
+    expect(screen.getByText("전월 대비 ↑ +20.0%")).toBeInTheDocument();
+    expect(screen.getByText("전년 동월 대비 ↑ +22.8%")).toBeInTheDocument();
+    expect(screen.getByRole("table", { name: "최근 6개월 신고 거래금액·고유 신고행·면적" })).toBeInTheDocument();
+    expect(screen.getByText("전체 19개 관측월 표")).toBeInTheDocument();
+    expect(screen.getByText("원천 13행 · 고유 payload 12행 · 동일 payload 1행 제외")).toBeInTheDocument();
+    const amountTrigger = within(amountCard).getByText("2.2조 원").closest("[data-context-info]") as HTMLElement;
+    expect(document.getElementById(amountTrigger.getAttribute("aria-describedby")!)).toHaveTextContent("거래금액 합계");
+    const sourceTrigger = screen.getByText("국토교통부 실거래 공개시스템").closest("[data-context-info]") as HTMLElement;
+    const sourceTooltip = document.getElementById(sourceTrigger.getAttribute("aria-describedby")!);
+    expect(within(sourceTooltip as HTMLElement).getByRole("link", { name: /공식 출처 열기/ })).toHaveAttribute("href", "https://rt.molit.go.kr/");
   });
 
   it("shows the independent error state for malformed payloads and inconsistent empty concentration", async () => {
@@ -59,7 +69,7 @@ describe("QuantitativeMarketPulse", () => {
 
   it("renders a truthful no-transaction reference month without NaN or false concentration", async () => {
     const zero = structuredClone(payload);
-    zero.call = { ...zero.call, headline: "전월 비교 불가 — 기준월 거래 없음" };
+    zero.call = { ...zero.call, headline: "전월 비교 불가 — 기준월 고유 신고행 없음" };
     zero.trend[18] = { period: "2026-07", transactionCount: 0, amountKrw: "0", areaM2: "0", sourceRowCount: 0, uniquePayloadCount: 0 };
     zero.metrics.amount = metric(0, 10, 5, -100, -100, 0, 5, -100);
     zero.metrics.count = metric(0, 1, 1, -100, -100, 0, 1, -100);
@@ -70,8 +80,8 @@ describe("QuantitativeMarketPulse", () => {
     zero.quality = { sourceRowCount: 0, transactionCount: 0, uniquePayloadCount: 0, exactDuplicateRows: 0 };
     mockFetch(zero);
     render(<QuantitativeMarketPulse />);
-    expect(await screen.findByRole("heading", { name: /기준월 거래 없음/ })).toBeInTheDocument();
-    expect(screen.getAllByText("기준월 거래 없음").length).toBeGreaterThan(0);
+    expect(await screen.findByRole("heading", { name: /기준월 고유 신고행 없음/ })).toBeInTheDocument();
+    expect(screen.getAllByText("기준월 고유 신고행 없음").length).toBeGreaterThan(0);
     expect(document.body).not.toHaveTextContent("NaN");
   });
 });
