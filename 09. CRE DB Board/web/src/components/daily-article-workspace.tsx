@@ -6,6 +6,14 @@ import { normalizeDailyArticles, todayInSeoul } from "@/lib/daily-articles-contr
 
 const DAILY_ARTICLE_BATCH_SIZE = 30;
 
+function shiftIsoDate(value: string, days: number, maximum: string): string {
+  const date = new Date(`${value}T00:00:00Z`);
+  if (Number.isNaN(date.valueOf())) return value;
+  date.setUTCDate(date.getUTCDate() + days);
+  const shifted = date.toISOString().slice(0, 10);
+  return shifted > maximum ? maximum : shifted;
+}
+
 function formatDateTime(value: string | null): string {
   if (!value) return "기록 없음";
   const date = new Date(value);
@@ -46,11 +54,22 @@ export function DailyArticleWorkspace({
   }, [selectedDate]);
 
   const visibleArticles = data?.articles.slice(0, visibleCount) ?? [];
+  const moveDate = (days: number) => setSelectedDate((current) => shiftIsoDate(current, days, today));
+  const isToday = selectedDate >= today;
 
   return <section className="daily-workspace domain-workspace">
     <header className="workspace-hero daily-hero">
       <div><p className="eyebrow">DAILY MARKET ARTICLES</p><h2>매일 확인하는 부동산 시장기사</h2><p>공개 원문이 확보된 기사는 본문 기반 요약으로 제공합니다. 원문·수집시각·요약 근거를 함께 표시합니다.</p></div>
-      <label className="daily-date-control">기사 게시일<input aria-label="기사 게시일" type="date" max={today} value={selectedDate} onChange={(event) => setSelectedDate(event.target.value)}/></label>
+      <div className="daily-date-control" role="group" aria-labelledby="daily-date-label">
+        <span id="daily-date-label">기사 게시일</span>
+        <div className="daily-date-stepper">
+          <button type="button" aria-label="1주 전으로 이동" title="1주 전" onClick={() => moveDate(-7)}>−1주</button>
+          <button type="button" aria-label="1일 전으로 이동" title="1일 전" onClick={() => moveDate(-1)}>−1일</button>
+          <input aria-label="기사 게시일" type="date" max={today} value={selectedDate} onChange={(event) => setSelectedDate(event.target.value)}/>
+          <button type="button" aria-label="1일 후로 이동" title="1일 후" disabled={isToday} onClick={() => moveDate(1)}>+1일</button>
+          <button type="button" aria-label="1주 후로 이동" title="1주 후" disabled={isToday} onClick={() => moveDate(7)}>+1주</button>
+        </div>
+      </div>
     </header>
     <section className="daily-freshness" aria-label="기사 수집 최신성">
       <div><span>선택일</span><strong>{selectedDate}</strong></div>

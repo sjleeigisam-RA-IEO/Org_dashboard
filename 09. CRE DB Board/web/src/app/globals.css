@@ -248,8 +248,22 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .projection-details { display: flex; flex-wrap: wrap; gap: 7px 16px; color: var(--muted); font-size: 11px; }
 .source-link { position: absolute; right: 4px; top: 24px; text-decoration: none; font-size: 11px; font-weight: 700; }
 
-.daily-date-control { min-width: 210px; display: grid; gap: 7px; color: var(--muted); font-size: 11px; font-weight: 800; }
-.daily-date-control input { height: 44px; padding: 0 12px; border: 1px solid var(--ink); background: #fff; color: var(--ink); }
+.daily-date-control { width: min(500px,100%); min-width: 460px; display: grid; gap: 7px; color: var(--muted); font-size: 11px; font-weight: 800; }
+.daily-date-stepper { display: grid; grid-template-columns: 62px 58px minmax(150px,1fr) 58px 62px; align-items: stretch; }
+.daily-date-stepper input, .daily-date-stepper button { min-height: 44px; border: 1px solid var(--ink); background: #fff; color: var(--ink); }
+.daily-date-stepper input { min-width: 0; padding: 0 12px; border-inline: 0; font: inherit; }
+.daily-date-stepper button { padding: 0 8px; cursor: pointer; font: inherit; white-space: nowrap; }
+.daily-date-stepper button + button { border-left: 0; }
+.daily-date-stepper input + button { border-left: 1px solid var(--ink); }
+.daily-date-stepper button:hover:not(:disabled) { background: var(--ink); color: #fff; }
+.daily-date-stepper button:focus-visible, .daily-date-stepper input:focus-visible { position: relative; z-index: 1; outline: 3px solid var(--accent); outline-offset: 2px; }
+.daily-date-stepper button:disabled { background: #edf0ee; color: #8b9691; cursor: not-allowed; }
+@media (max-width: 620px) {
+  .daily-date-stepper { grid-template-columns: repeat(4,minmax(0,1fr)); gap: 6px; }
+  .daily-date-stepper input { grid-column: 1 / -1; grid-row: 1; border: 1px solid var(--ink); }
+  .daily-date-stepper button { grid-row: 2; border: 1px solid var(--ink); }
+  .daily-date-stepper button + button, .daily-date-stepper input + button { border-left: 1px solid var(--ink); }
+}
 .daily-freshness { margin: 24px 34px 0; display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--line); }
 .daily-freshness > div { min-width: 0; min-height: 82px; padding: 15px; border-right: 1px solid var(--line); display: grid; align-content: center; gap: 6px; }
 .daily-freshness > div:last-child { border-right: 0; }
@@ -992,6 +1006,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .workspace-nav { overflow-x: auto; grid-template-columns: 150px repeat(8, minmax(145px,1fr)); }
   .workspace-nav-context { position: sticky; left: 0; z-index: 1; }
   .market-hero, .workspace-hero { padding: 28px 20px; display: grid; }
+  .daily-hero { grid-template-columns: 1fr; gap: 20px; }
+  .daily-date-control { width: 100%; min-width: 0; }
   .brief-asof { min-width: 0; }
   .brief-actions { padding-inline: 16px; grid-template-columns: repeat(2,minmax(0,1fr)); }
   .brief-kpis { margin-inline: 16px; grid-template-columns: repeat(2,minmax(0,1fr)); }
