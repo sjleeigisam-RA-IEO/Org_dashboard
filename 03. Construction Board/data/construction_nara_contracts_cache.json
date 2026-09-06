@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-04 11:04:12 KST",
+  "generated_at": "2026-09-07 06:04:32 KST",
   "source_note": "조달청_나라장터 계약정보서비스의 공사 계약현황 조회 결과를 회사명 기준으로 필터링해 생성하는 자동 캐시입니다.",
   "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
   "query": {
-    "start_date": "20260821",
-    "end_date": "20260904",
+    "start_date": "20260825",
+    "end_date": "20260907",
     "per_company": 5,
     "max_pages": 5,
     "rows_per_page": 50
@@ -22,14 +22,14 @@
       "source_url": "https://www.data.go.kr/data/15129427/openapi.do",
       "awards": [
         {
-          "project": "규암면 규암리 아스콘 덧씌우기공사(정주환경)",
+          "project": "가곡지구 수리시설 개보수사업(3차)",
           "client": "충청남도 부여군",
-          "amount": "0.19억원",
+          "amount": "0.25억원",
           "category": "수의계약",
-          "date": "2026-08-21",
+          "date": "2026-08-25",
           "source_name": "나라장터 계약정보",
           "source_url": "http://www.g2b.go.kr",
-          "amount_krw": "18845000"
+          "amount_krw": "24641000"
         }
       ]
     }

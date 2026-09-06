@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04 11:04:42 KST",
+  "generated_at": "2026-09-07 06:04:39 KST",
   "status": "ok",
   "source_note": "시장 공사비 기준지표 캐시입니다. KOSIS 키 값은 저장하지 않습니다.",
   "series": [
@@ -3535,7 +3535,7 @@
       "points": [
         {
           "period": "2026-08",
-          "value": 0.19,
+          "value": 0.25,
           "count": 1,
           "source_name": "나라장터 계약정보",
           "source_url": "https://www.data.go.kr/data/15129427/openapi.do"
