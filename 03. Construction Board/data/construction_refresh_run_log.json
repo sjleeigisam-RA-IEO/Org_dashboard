@@ -588,13 +588,17 @@
       "monday_status": "success",
       "monday_commit_short": "235ed2d",
       "rerun_performed": false,
-      "pushed": false,
-      "pages_verified": false,
+      "pushed": true,
+      "pages_verified": true,
       "pages_url": "https://sjleeigisam-ra-ieo.github.io/Org_dashboard/03.%20Construction%20Board/",
       "notes": [
         "Tuesday fallback check found a verified 2026-09-07 monday-main log, so no data refresh was executed."
-      ]
+      ],
+      "commit": "8abc072439e96ea1fb16f0a18a432b2d0093d369",
+      "commit_short": "8abc072",
+      "pushed_at": "2026-09-08 06:03:37 KST",
+      "pages_verified_at": "2026-09-08 06:03:37 KST"
     }
   ],
-  "generated_at": "2026-09-08 06:02:24 KST"
+  "generated_at": "2026-09-08 06:03:37 KST"
 }
