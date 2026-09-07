@@ -577,7 +577,24 @@
         "The first non-network build showed sandbox fetch errors; the network-authorized rebuild succeeded and the deployed HTML contains no collection-error banner.",
         "README current refresh snapshot was updated for the 2026-09-07 run."
       ]
+    },
+    {
+      "scheduled_for": "2026-09-08",
+      "run_type": "tuesday-fallback-check",
+      "started_at": "2026-09-08 06:00:12 KST",
+      "completed_at": "2026-09-08 06:02:24 KST",
+      "status": "success",
+      "checked_monday_for": "2026-09-07",
+      "monday_status": "success",
+      "monday_commit_short": "235ed2d",
+      "rerun_performed": false,
+      "pushed": false,
+      "pages_verified": false,
+      "pages_url": "https://sjleeigisam-ra-ieo.github.io/Org_dashboard/03.%20Construction%20Board/",
+      "notes": [
+        "Tuesday fallback check found a verified 2026-09-07 monday-main log, so no data refresh was executed."
+      ]
     }
   ],
-  "generated_at": "2026-09-07 06:13:39 KST"
+  "generated_at": "2026-09-08 06:02:24 KST"
 }
