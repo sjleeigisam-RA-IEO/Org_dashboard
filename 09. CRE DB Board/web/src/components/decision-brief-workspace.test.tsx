@@ -3,6 +3,10 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { DecisionBriefWorkspace } from "@/components/decision-brief-workspace";
 
+vi.mock("@/components/quantitative-market-pulse", () => ({
+  QuantitativeMarketPulse: ({ variant }: { variant?: string }) => <section data-testid="market-pulse" data-variant={variant}/>,
+}));
+
 const daily = {
   selectedDate: "2026-08-29",
   latestAvailableDate: "2026-08-29",
@@ -68,22 +72,23 @@ describe("DecisionBriefWorkspace", () => {
 
     render(<DecisionBriefWorkspace onNavigate={navigate} onOpenDocument={openDocument}/>);
 
-    expect(await screen.findByRole("heading", { name: "숫자 변화의 원인과 근거" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "오늘 확인할 변화와 근거" })).toBeInTheDocument();
+    expect(screen.getByTestId("market-pulse")).toHaveAttribute("data-variant", "summary");
     expect(await screen.findByText("데이터센터 언급 급상승")).toBeInTheDocument();
     expect(screen.getByText("검토 대기 신호").parentElement).toHaveTextContent("1");
-    expect(screen.getByText("상승 관찰어").closest("article")).toHaveTextContent("1");
-    expect(screen.getByText("주의 source").parentElement).toHaveTextContent("1");
+    expect(screen.getByText("급상승 주제", { selector: "span" }).closest("article")).toHaveTextContent("1");
+    expect(screen.getByText("우선 확인").parentElement).toHaveTextContent("1");
     expect(screen.getByText("데이터센터")).toBeInTheDocument();
     expect(screen.queryByText("수집검색어")).not.toBeInTheDocument();
     expect(screen.getByText("부분 중복제거")).toBeInTheDocument();
     expect(screen.getByText("직접 보도")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "판단 가능한 레코드의 최소 정보" })).toBeInTheDocument();
-    expect(screen.getByText("금액 · 단위 · 금액 basis")).toBeInTheDocument();
+    expect(screen.getByText("판단")).toBeInTheDocument();
+    expect(screen.getByText("이유")).toBeInTheDocument();
     expect(screen.getByText("기사 최신일")).toBeInTheDocument();
-    expect(screen.getByText("운영 기준")).toBeInTheDocument();
     expect(screen.getByText("키워드 계산")).toBeInTheDocument();
     expect(screen.getByText("신호 계산")).toBeInTheDocument();
-    expect(screen.getByText(/한 시각으로 합성하지 않음/)).toBeInTheDocument();
+    expect(screen.getByText(/자료별 최신 기준/)).toBeInTheDocument();
+    expect(screen.queryByText("활용 전 확인사항")).not.toBeInTheDocument();
 
     const evidenceTrigger = screen.getByRole("button", { name: /근거 1건/ });
     await user.click(evidenceTrigger);
@@ -130,7 +135,7 @@ describe("DecisionBriefWorkspace", () => {
     render(<DecisionBriefWorkspace onNavigate={vi.fn()} onOpenDocument={vi.fn()}/>);
 
     expect(await screen.findByRole("heading", { name: "저표본 관찰어" })).toBeInTheDocument();
-    expect(screen.getByText("상승 관찰어").closest("article")).toHaveTextContent("0");
+    expect(screen.getByText("급상승 주제", { selector: "span" }).closest("article")).toHaveTextContent("0");
     expect(screen.getByText(/모든 후보가 문서빈도 1건으로 상승 확정에서 제외/)).toBeInTheDocument();
   });
 
@@ -149,7 +154,7 @@ describe("DecisionBriefWorkspace", () => {
     render(<DecisionBriefWorkspace onNavigate={vi.fn()} onOpenDocument={vi.fn()}/>);
 
     expect(await screen.findByRole("heading", { name: "급상승 주제" })).toBeInTheDocument();
-    expect(screen.getByText("상승 관찰어").closest("article")).toHaveTextContent("1");
+    expect(screen.getByText("급상승 주제", { selector: "span" }).closest("article")).toHaveTextContent("1");
     expect(screen.getByText("유효 상승어")).toBeInTheDocument();
     expect(screen.queryByText("저표본-0")).not.toBeInTheDocument();
   });

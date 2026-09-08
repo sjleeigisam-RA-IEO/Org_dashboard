@@ -7,12 +7,12 @@ export type AuthSqlExecutor = (
 ) => Promise<{ rows: Array<Record<string, unknown>> }>;
 
 const APPROVED_EMAIL_QUERY = `
-SELECT access_subject_id::text AS subject_id
-FROM app_security.dashboard_access_allowlist
-WHERE email_normalized = $1
-  AND is_enabled = TRUE
+SELECT access_subject_id AS subject_id
+FROM dashboard_access_allowlist
+WHERE email_normalized = ?
+  AND is_enabled = 1
   AND revoked_at IS NULL
-  AND (access_expires_at IS NULL OR access_expires_at > clock_timestamp())
+  AND (access_expires_at IS NULL OR datetime(access_expires_at) > CURRENT_TIMESTAMP)
 LIMIT 1
 `;
 
@@ -25,12 +25,12 @@ export async function findAllowedSubjectId(execute: AuthSqlExecutor, candidate: 
 }
 
 const APPROVED_SUBJECT_QUERY = `
-SELECT access_subject_id::text AS subject_id
-FROM app_security.dashboard_access_allowlist
-WHERE access_subject_id = $1::uuid
-  AND is_enabled = TRUE
+SELECT access_subject_id AS subject_id
+FROM dashboard_access_allowlist
+WHERE access_subject_id = ?
+  AND is_enabled = 1
   AND revoked_at IS NULL
-  AND (access_expires_at IS NULL OR access_expires_at > clock_timestamp())
+  AND (access_expires_at IS NULL OR datetime(access_expires_at) > CURRENT_TIMESTAMP)
 LIMIT 1
 `;
 

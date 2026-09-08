@@ -224,7 +224,7 @@ export function CompanyWorkspace({ initialCompanyId = null }: { initialCompanyId
     </div>}
 
     {loading && <div className="state-block"><span className="spinner"/><strong>기업 universe 조회 중</strong></div>}
-    {!loading && error && <div className="state-block error-state"><strong>기업정보 조회 오류</strong><p>Supabase 연결을 확인해 주세요.</p></div>}
+    {!loading && error && <div className="state-block error-state"><strong>기업정보 조회 오류</strong><p>Turso 연결을 확인해 주세요.</p></div>}
     {!loading && !error && view === "TENANT_SIGNALS" && <div className="company-table-wrap location-evidence-table-wrap">
       <table className="company-table location-evidence-table">
         <thead><tr><th>회사</th><th>자동 문서 판정</th><th>문서에서 잡힌 내용</th><th>왜 포함됐나</th><th>출처·시점</th><th>관련 보도</th></tr></thead>

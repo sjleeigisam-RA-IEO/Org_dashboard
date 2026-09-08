@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { BadgeCheck, ChevronDown, ExternalLink, FileSearch2, Search, ShieldCheck } from "lucide-react";
 import type { SaleProcessResearchCandidate, SaleProcessResponse } from "@/lib/intelligence-contract";
 
@@ -138,12 +138,13 @@ function ResearchCandidateCard({ item }: { item: SaleProcessResearchCandidate })
   </details>;
 }
 
-export function SaleProcessWorkspace() {
+export function SaleProcessWorkspace({ initialSaleProcessId = null }: { initialSaleProcessId?: string | null }) {
   const [data, setData] = useState<SaleProcessResponse | null>(null);
   const [error, setError] = useState(false);
   const [candidateMode, setCandidateMode] = useState<CandidateMode>("ALL");
   const [assetType, setAssetType] = useState("ALL");
   const [query, setQuery] = useState("");
+  const initialTargetRef = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -152,6 +153,11 @@ export function SaleProcessWorkspace() {
       .then(setData).catch((reason: unknown) => { if (!(reason instanceof DOMException && reason.name === "AbortError")) setError(true); });
     return () => controller.abort();
   }, []);
+  useEffect(() => {
+    if (!data || !initialSaleProcessId || !initialTargetRef.current) return;
+    initialTargetRef.current.scrollIntoView?.({ block: "start", behavior: "smooth" });
+    initialTargetRef.current.focus({ preventScroll: true });
+  }, [data, initialSaleProcessId]);
 
   const assetTypes = useMemo(() => Array.from(new Set(data?.candidateProcesses.map((item) => item.assetType) ?? [])).sort(), [data]);
   const candidates = useMemo(() => {
@@ -197,7 +203,7 @@ export function SaleProcessWorkspace() {
       </section>
       <section className="canonical-sale-section" aria-labelledby="canonical-sale-heading">
         <header><div><p className="eyebrow">VERIFIED CANONICAL</p><h3 id="canonical-sale-heading">검증 완료된 매각절차 <b>{data.coverage.processes}건</b></h3><p>승인·자산 연결을 마친 정식 데이터입니다. {data.coverage.signalYear}년 정식 절차는 현재 {data.coverage.currentYearProcesses}건입니다.</p></div></header>
-        <div className="domain-card-list">{data.items.map((item) => <details className="domain-card" key={item.saleProcessId}><summary><div><span className="status-pill">{item.status}</span><h3>{item.title}</h3><p>{item.processCode} · {item.saleMethod} · {item.launchedAt?.slice(0,10) ?? "착수일 미상"}</p></div><div className="card-counts"><span>자산 <b>{item.assets.length}</b></span><span>round <b>{item.rounds.length}</b></span><span>milestone <b>{item.milestones.length}</b></span><span>문서 <b>{item.documents.length}</b></span></div></summary><div className="domain-card-body">
+        <div className="domain-card-list">{data.items.map((item) => { const isInitialTarget = item.saleProcessId === initialSaleProcessId; return <details className={`domain-card${isInitialTarget ? " search-target-record" : ""}`} key={item.saleProcessId} open={isInitialTarget} ref={isInitialTarget ? initialTargetRef : undefined} tabIndex={isInitialTarget ? -1 : undefined}><summary><div><span className="status-pill">{item.status}</span><h3>{item.title}</h3><p>{item.processCode} · {item.saleMethod} · {item.launchedAt?.slice(0,10) ?? "착수일 미상"}</p></div><div className="card-counts"><span>자산 <b>{item.assets.length}</b></span><span>round <b>{item.rounds.length}</b></span><span>milestone <b>{item.milestones.length}</b></span><span>문서 <b>{item.documents.length}</b></span></div></summary><div className="domain-card-body">
           <section className="domain-narrative"><p className="eyebrow">STRUCTURED SUMMARY</p><h4>매각절차 핵심 설명</h4><p>{saleNarrative(item)}</p></section>
           <section><h4>대상 자산</h4>{item.assets.length ? item.assets.map((asset,index) => <article key={String(asset.assetId ?? index)}><strong>{String(asset.name ?? "자산")}</strong><p>{String(asset.address ?? "주소 미상")}</p></article>) : <p className="empty-copy">연결된 canonical asset이 없습니다.</p>}</section>
           <section><h4>입찰 Round</h4>{item.rounds.length ? item.rounds.map((round,index) => <article className="round-card" key={String(round.roundId ?? index)}><header><strong>{String(round.roundCode ?? `Round ${index+1}`)}</strong><span>{String(round.status ?? "-")}</span></header><p>{[round.roundType,round.deadlineAt,round.evidenceStatus].filter(Boolean).map(String).join(" · ")}</p>{Array.isArray(round.bidders) && round.bidders.length > 0 && <div className="chip-row">{round.bidders.map((bidder,bidderIndex) => <span key={bidderIndex}>{String((bidder as Record<string,unknown>).name ?? "비공개")} · {String((bidder as Record<string,unknown>).status ?? "")}</span>)}</div>}{Array.isArray(round.submissions) && round.submissions.map((submission,submissionIndex) => { const row=submission as Record<string,unknown>; return <div className="price-row" key={submissionIndex}><span>{String(row.priceBasis ?? "입찰가")}</span><strong>{amountText(row.amount,row.currency)}</strong><small>rank {String(row.rank ?? "비공개")}</small></div>; })}</article>) : <p className="empty-copy">구조화된 입찰 round가 없습니다.</p>}</section>
@@ -205,7 +211,7 @@ export function SaleProcessWorkspace() {
           <section><h4>자금조달</h4>{item.funding.length ? <div className="fact-table">{item.funding.map((fund,index) => <div key={index}><span>{String(fund.type ?? "FUNDING")}</span><strong>{amountText(fund.amount,fund.currency)}</strong><small>{[fund.provider,fund.status,fund.evidenceStatus].filter(Boolean).map(String).join(" · ")}</small></div>)}</div> : <p className="empty-copy">공개된 funding component가 없습니다.</p>}</section>
           <section><h4>근거 문서</h4>{item.documents.length ? item.documents.map((document) => <article key={document.documentId}><strong>{document.title}</strong><p>{[document.documentType,document.publisher,document.publishedAt?.slice(0,10)].filter(Boolean).join(" · ")}</p>{document.href && <a href={document.href} target="_blank" rel="noreferrer">원문 열기</a>}</article>) : <p className="empty-copy">process event에 연결된 문서가 없습니다.</p>}</section>
           <footer className="evidence-footer">Evidence {item.evidenceStatus} · 종료일 {item.closedAt?.slice(0,10) ?? "미확정"}</footer>
-        </div></details>)}</div>
+        </div></details>})}</div>
       </section>
     </>}
   </section>;

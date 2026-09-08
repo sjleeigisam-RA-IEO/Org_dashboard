@@ -4,7 +4,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { normalizeDailyArticles, todayInSeoul, type DailyArticlesResponse } from "@/lib/daily-articles-contract";
 import { normalizeInsightSignals, type InsightSignal, type InsightSignalsResponse } from "@/lib/insight-signals-contract";
 import { normalizeKeywordAnalytics, type KeywordAnalyticsItem, type KeywordAnalyticsResponse } from "@/lib/keyword-analytics-contract";
-import { normalizeOperationsOverview, type OperationsOverviewResponse } from "@/lib/operations-insights-contract";
 import { QuantitativeMarketPulse } from "@/components/quantitative-market-pulse";
 
 export type BriefWorkspaceTarget = "MARKET" | "DAILY" | "COMPANIES" | "CAPITAL" | "SALES" | "OPERATIONS";
@@ -24,7 +23,7 @@ function formatDateTime(value?: string | null) {
   const parsed = new Date(value);
   if (Number.isNaN(parsed.valueOf())) return value;
   return new Intl.DateTimeFormat("ko-KR", {
-    timeZone: "Asia/Seoul", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit",
+    timeZone: "Asia/Seoul", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false,
   }).format(parsed);
 }
 
@@ -73,7 +72,6 @@ function SliceState({ label, error }: { label: string; error: boolean }) {
 
 export function DecisionBriefWorkspace({ onNavigate, onOpenDocument }: Props) {
   const [daily, setDaily] = useState<Slice<DailyArticlesResponse>>(emptySlice);
-  const [overview, setOverview] = useState<Slice<OperationsOverviewResponse>>(emptySlice);
   const [keywords, setKeywords] = useState<Slice<KeywordAnalyticsResponse>>(emptySlice);
   const [insights, setInsights] = useState<Slice<InsightSignalsResponse>>(emptySlice);
   const [selectedSignal, setSelectedSignal] = useState<InsightSignal | null>(null);
@@ -108,7 +106,6 @@ export function DecisionBriefWorkspace({ onNavigate, onOpenDocument }: Props) {
     };
 
     void request(`/api/articles/daily?date=${encodeURIComponent(todayInSeoul())}`, normalizeDailyArticles, setDaily);
-    void request("/api/operations/overview", normalizeOperationsOverview, setOverview);
     void request("/api/operations/keywords?limit=50&briefing=1", normalizeKeywordAnalytics, setKeywords);
     void request("/api/operations/insights?limit=4&reviewable=1", normalizeInsightSignals, setInsights);
     return () => controller.abort();
@@ -124,32 +121,31 @@ export function DecisionBriefWorkspace({ onNavigate, onOpenDocument }: Props) {
   const momentumKeywords = useMemo(() => organicKeywords.filter((item) => item.documentFrequency >= 2 && item.burstScore > 0), [organicKeywords]);
   const displayedKeywords = (momentumKeywords.length ? momentumKeywords : organicKeywords).slice(0, 5);
   const hasOnlyLowSampleKeywords = Boolean(keywords.data && !momentumKeywords.length && organicKeywords.length);
-  const sourceWarnings = useMemo(() => (overview.data?.sources ?? []).filter((item) =>
-    item.freshness === "OVERDUE" || item.freshness === "NEVER_SUCCEEDED" || item.latestExecution === "FAILED" || item.latestExecution === "PARTIAL",
-  ), [overview.data]);
   const reviewCount = insights.data?.statusCounts
     .filter((item) => item.status === "UNREVIEWED" || item.status === "PENDING")
     .reduce((sum, item) => sum + item.count, 0) ?? 0;
+  const highPriorityCount = reviewSignals.filter((item) => item.severity === "HIGH").length;
 
   return <section className="decision-brief domain-workspace">
-    <QuantitativeMarketPulse/>
     <header className="workspace-hero brief-hero">
-      <div><p className="eyebrow">EVIDENCE & OPERATIONS BRIEF</p><h1>숫자 변화의 원인과 근거</h1><p>상단 시장 수치의 변화 원인을 기사, 검토 신호, 급상승 주제와 데이터 품질로 검증하고 필요한 원문과 전문 화면으로 이동합니다.</p></div>
-      <div className="brief-asof"><span>SLICE AS-OF · 서로 다른 기준</span><dl><div><dt>기사 최신일</dt><dd>{daily.data?.latestAvailableDate ?? "—"}</dd></div><div><dt>운영 기준</dt><dd>{formatDateTime(overview.data?.asOfAt)}</dd></div><div><dt>키워드 계산</dt><dd>{formatDateTime(keywords.data?.computedAt)}</dd></div><div><dt>신호 계산</dt><dd>{formatDateTime(insights.data?.generatedAt)}</dd></div></dl><small>한 시각으로 합성하지 않음 · Supabase serving</small></div>
+      <div><p className="eyebrow">TODAY CRE BRIEF</p><h1>오늘 확인할 변화와 근거</h1><p>중요 신호를 우선순위로 정리하고, 왜 지금 봐야 하는지와 판단에 쓴 원문을 바로 연결합니다.</p></div>
+      <div className="brief-asof"><span>DATA AS-OF · 항목별 기준</span><dl><div><dt>기사 최신일</dt><dd>{daily.data?.latestAvailableDate ?? "—"}</dd></div><div><dt>키워드 계산</dt><dd>{formatDateTime(keywords.data?.computedAt)}</dd></div><div><dt>신호 계산</dt><dd>{formatDateTime(insights.data?.generatedAt)}</dd></div></dl><small>자료별 최신 기준을 분리해 표시합니다.</small></div>
     </header>
 
+    <QuantitativeMarketPulse variant="summary"/>
+
     <nav className="brief-actions" aria-label="빠른 업무 이동">
-      <button type="button" onClick={() => onNavigate("MARKET")}><strong>시장 변화 찾기</strong><span>이벤트·자산·근거 탐색</span></button>
-      <button type="button" onClick={() => onNavigate("DAILY")}><strong>기사 전체 보기</strong><span>게시일·수집일 분리</span></button>
-      <button type="button" onClick={() => onNavigate("COMPANIES")}><strong>기업·임차 확인</strong><span>관계와 발견 신호 구분</span></button>
-      <button type="button" onClick={() => onNavigate("OPERATIONS")}><strong>신호 전체 검토</strong><span>원문·품질·운영 상태</span></button>
+      <button type="button" onClick={() => onNavigate("MARKET")}><strong>통합 탐색</strong><span>이벤트·자산·근거를 한 번에</span></button>
+      <button type="button" onClick={() => onNavigate("DAILY")}><strong>최신 기사</strong><span>게시일 기준 주제별 보기</span></button>
+      <button type="button" onClick={() => onNavigate("COMPANIES")}><strong>자산·기업</strong><span>임차·점유·관계 확인</span></button>
+      <button type="button" onClick={() => onNavigate("SALES")}><strong>딜·자금</strong><span>매각 단계와 기관자금 추적</span></button>
     </nav>
 
     <section className="brief-kpis" aria-label="오늘의 CRE 핵심 상태">
       <article><span>최신일 기사</span><strong>{daily.data ? number.format(daily.data.total) : "—"}</strong><small>{daily.data?.latestAvailableDate ?? (daily.error ? "조회 실패" : "확인 중")}</small></article>
       <article><span>검토 대기 신호</span><strong>{insights.data ? number.format(reviewCount) : "—"}</strong><small>UNREVIEWED + PENDING</small></article>
-      <article><span>상승 관찰어</span><strong>{keywords.data ? number.format(keywords.data.summary.qualifiedKeywordCount) : "—"}</strong><small>수집 query 제외 · DF 2건 이상</small></article>
-      <article className={sourceWarnings.length ? "attention" : ""}><span>주의 source</span><strong>{overview.data ? number.format(sourceWarnings.length) : "—"}</strong><small>기한 초과·실패·성공 이력 없음</small></article>
+      <article className={highPriorityCount ? "attention" : ""}><span>우선 확인</span><strong>{insights.data ? number.format(highPriorityCount) : "—"}</strong><small>HIGH 중요도 검토 신호</small></article>
+      <article><span>급상승 주제</span><strong>{keywords.data ? number.format(keywords.data.summary.qualifiedKeywordCount) : "—"}</strong><small>중복·수집 편향 제외</small></article>
     </section>
 
     <div className="brief-grid">
@@ -161,20 +157,12 @@ export function DecisionBriefWorkspace({ onNavigate, onOpenDocument }: Props) {
         {!insights.loading && !insights.error && reviewSignals.length === 0 && <p className="brief-empty">검토 대기 신호가 없습니다. 승인 신호는 운영·인사이트에서 확인할 수 있습니다.</p>}
         <div className="brief-signal-list">{reviewSignals.map((signal) => <article key={signal.signalId} className={`brief-signal severity-${signal.severity.toLowerCase()}`}>
             <div className="brief-signal-meta"><span>{signal.severity}</span><time>{signal.signalDate}</time><b>{signal.reviewStatus}</b></div>
-            <h3>{signal.title}</h3><p>{signal.summary}</p>
+            <small className="brief-signal-label">판단</small><h3>{signal.title}</h3><p><strong>이유</strong>{signal.summary}</p>
             <dl><div><dt>강도</dt><dd>{percent(signal.scores.strength)}</dd></div><div><dt>근거</dt><dd>{percent(signal.scores.evidence)}</dd></div><div><dt>출처 다양성</dt><dd>{percent(signal.scores.sourceDiversity)}</dd></div><div><dt>복합신뢰도</dt><dd>{percent(signal.scores.confidence)}</dd></div></dl>
             <footer><span>{signal.syndicationDedupeStatus === "PARTIAL" ? "부분 중복제거" : `중복제거 ${signal.syndicationDedupeStatus}`}</span><button type="button" disabled={!signal.evidence.length} onClick={() => { signalTriggerRef.current = document.activeElement as HTMLElement; setSelectedSignal(signal); }}>근거 {signal.evidence.length}건</button></footer>
           </article>)}</div>
       </section>
 
-      <section className="brief-panel updates-panel">
-        <header><div><p className="eyebrow">LATEST EVIDENCE</p><h2>최신 시장 업데이트</h2></div><button type="button" onClick={() => onNavigate("DAILY")}>기사 전체 보기</button></header>
-        {daily.loading && <SliceState label="기사" error={false}/>}
-        {daily.error && <SliceState label="기사" error/>}
-        <div className="brief-article-list">{daily.data?.articles.slice(0, 5).map((article) => <article key={article.id}>
-          <button type="button" onClick={() => onOpenDocument(article.id, article.title)}><div><span>{article.topics?.[0]?.label ?? "미분류"}</span><time>{article.publishedAt.slice(0, 10)}</time><b>{article.evidenceGrade?.label ?? "근거등급 미지정"}</b></div><h3>{article.title}</h3><p>{article.summary ?? "공개 본문 요약이 없습니다."}</p><small>{article.publisher ?? "출처 미상"} · {article.summaryMode === "BODY_EXTRACTIVE" ? "본문 요약" : article.summaryMode === "MODEL" ? "생성 요약" : "요약 없음"}</small></button>
-        </article>)}</div>
-      </section>
       </div>
 
       <div className="brief-column brief-secondary">
@@ -188,21 +176,18 @@ export function DecisionBriefWorkspace({ onNavigate, onOpenDocument }: Props) {
         {keywords.data && <p className={`brief-lineage${hasOnlyLowSampleKeywords ? " low-sample" : ""}`}>{hasOnlyLowSampleKeywords ? "모든 후보가 문서빈도 1건으로 상승 확정에서 제외 · " : "발행일 기준 distinct document frequency · "}{keywords.data.algorithmVersion} · 발행일 미상 {number.format(keywords.data.summary.excludedMissingPublicationCount)}건 제외</p>}
       </section>
 
-      <aside className="brief-panel trust-panel">
-        <header><div><p className="eyebrow">DATA TRUST</p><h2>활용 전 확인사항</h2></div><button type="button" onClick={() => onNavigate("OPERATIONS")}>적재상태</button></header>
-        {overview.loading && <SliceState label="운영" error={false}/>}
-        {overview.error && <SliceState label="운영" error/>}
-        {overview.data && <>
-          <dl className="brief-trust-summary"><div><dt>활성 source</dt><dd>{number.format(overview.data.summary.onboardedSourceCount)} / {number.format(overview.data.summary.sourceCount)}</dd></div><div><dt>고유 문서</dt><dd>{number.format(overview.data.summary.distinctDocumentCount)}</dd></div><div><dt>분류 assignment</dt><dd>{number.format(overview.data.classificationQuality.currentAssignmentCount)}</dd></div><div><dt>Primary 공백·충돌</dt><dd>{number.format(overview.data.classificationQuality.schemes.reduce((sum, item) => sum + item.primaryMissingCount + item.primaryConflictCount, 0))}</dd></div></dl>
-          <section className="brief-use-contract" aria-labelledby="brief-use-contract-title"><h3 id="brief-use-contract-title">판단 가능한 레코드의 최소 정보</h3><ul><li><b>대상</b><span>자산 · 지역 · 기업</span></li><li><b>사건</b><span>유형 · 단계 · 기준일</span></li><li><b>경제성</b><span>금액 · 단위 · 금액 basis</span></li><li><b>근거</b><span>출처 · 게시일 · 등급 · 원문</span></li></ul></section>
-          <div className="brief-warning-list">{sourceWarnings.length ? sourceWarnings.slice(0, 4).map((item) => <article key={item.sourceCode}><strong>{item.sourceName}</strong><span>{item.freshness} · {item.latestExecution}</span><small>최근 성공 {formatDateTime(item.latestSuccessfulAt)}</small></article>) : <p className="brief-empty">기한 초과·실패 source가 없습니다.</p>}</div>
-          <p className="brief-caveat">신호는 규칙형 분석 결과이며 투자판단이 아닙니다. 심각도, 검토상태, 근거충분성, source 다양성을 함께 확인하고 원문으로 검증합니다.</p>
-        </>}
-      </aside>
+      <section className="brief-panel updates-panel">
+        <header><div><p className="eyebrow">LATEST EVIDENCE</p><h2>최신 시장 업데이트</h2></div><button type="button" onClick={() => onNavigate("DAILY")}>기사 전체 보기</button></header>
+        {daily.loading && <SliceState label="기사" error={false}/>}
+        {daily.error && <SliceState label="기사" error/>}
+        <div className="brief-article-list">{daily.data?.articles.slice(0, 5).map((article) => <article key={article.id}>
+          <button type="button" onClick={() => onOpenDocument(article.id, article.title)}><div><span>{article.topics?.[0]?.label ?? "미분류"}</span><time>{article.publishedAt.slice(0, 10)}</time><b>{article.evidenceGrade?.label ?? "근거등급 미지정"}</b></div><h3>{article.title}</h3><p>{article.summary ?? "공개 본문 요약이 없습니다."}</p><small>{article.publisher ?? "출처 미상"} · {article.summaryMode === "BODY_EXTRACTIVE" ? "본문 요약" : article.summaryMode === "MODEL" ? "생성 요약" : "요약 없음"}</small></button>
+        </article>)}</div>
+      </section>
       </div>
     </div>
 
-    {(daily.error || overview.error || keywords.error || insights.error) && <button className="brief-retry" type="button" onClick={() => setRetryKey((value) => value + 1)}>실패한 브리핑 데이터 다시 조회</button>}
+    {(daily.error || keywords.error || insights.error) && <button className="brief-retry" type="button" onClick={() => setRetryKey((value) => value + 1)}>실패한 브리핑 데이터 다시 조회</button>}
     {selectedSignal && <SignalEvidenceDrawer signal={selectedSignal} onClose={closeSignalEvidence} onOpenDocument={openSignalDocument} restoreFocus={restoreSignalFocus}/>}
   </section>;
 }

@@ -4,8 +4,8 @@ export type ComparisonMetric = {
   yearAgoValue: number | null;
   momPct: number | null;
   yoyPct: number | null;
-  ytdValue: number;
-  priorYtdValue: number;
+  ytdValue: number | null;
+  priorYtdValue: number | null;
   ytdYoyPct: number | null;
 };
 
@@ -52,7 +52,8 @@ const date = (value: unknown, label: string) => {
   return result;
 };
 const close = (actual: number, expected: number, tolerance = Math.max(0.1, Math.abs(expected) * 1e-9)) => Math.abs(actual - expected) <= tolerance;
-const matchesSqlRoundedShare = (actual: number, amount: number, total: number) => total > 0 && Math.abs(actual - amount / total * 100) <= 0.005000001;
+const sqlRoundedShareTolerance = 0.005000001;
+const matchesSqlRoundedShare = (actual: number, amount: number, total: number) => total > 0 && Math.abs(actual - amount / total * 100) <= sqlRoundedShareTolerance;
 const expectedPct = (value: number, comparison: number | null) => comparison === null || comparison === 0 ? null : (value / comparison - 1) * 100;
 const assertPct = (actual: number | null, value: number, comparison: number | null, label: string) => {
   const expected = expectedPct(value, comparison);
@@ -67,13 +68,17 @@ function comparison(value: unknown, label: string, countMetric = false): Compari
     yearAgoValue: value.yearAgoValue === null ? null : countMetric ? integer(value.yearAgoValue, `${label}.yearAgoValue`) : nonnegative(value.yearAgoValue, `${label}.yearAgoValue`),
     momPct: nullableFinite(value.momPct, `${label}.momPct`),
     yoyPct: nullableFinite(value.yoyPct, `${label}.yoyPct`),
-    ytdValue: countMetric ? integer(value.ytdValue, `${label}.ytdValue`) : nonnegative(value.ytdValue, `${label}.ytdValue`),
-    priorYtdValue: countMetric ? integer(value.priorYtdValue, `${label}.priorYtdValue`) : nonnegative(value.priorYtdValue, `${label}.priorYtdValue`),
+    ytdValue: value.ytdValue === null ? null : countMetric ? integer(value.ytdValue, `${label}.ytdValue`) : nonnegative(value.ytdValue, `${label}.ytdValue`),
+    priorYtdValue: value.priorYtdValue === null ? null : countMetric ? integer(value.priorYtdValue, `${label}.priorYtdValue`) : nonnegative(value.priorYtdValue, `${label}.priorYtdValue`),
     ytdYoyPct: nullableFinite(value.ytdYoyPct, `${label}.ytdYoyPct`),
   };
   assertPct(result.momPct, result.value, result.previousValue, `${label}.momPct`);
   assertPct(result.yoyPct, result.value, result.yearAgoValue, `${label}.yoyPct`);
-  assertPct(result.ytdYoyPct, result.ytdValue, result.priorYtdValue, `${label}.ytdYoyPct`);
+  if (result.ytdValue === null) {
+    if (result.ytdYoyPct !== null) throw new Error(`Invalid ${label}.ytdYoyPct comparison`);
+  } else {
+    assertPct(result.ytdYoyPct, result.ytdValue, result.priorYtdValue, `${label}.ytdYoyPct`);
+  }
   return result;
 }
 
@@ -160,7 +165,8 @@ export function normalizeQuantitativeMarketPulse(value: unknown): QuantitativeMa
     if (topGroups.some((item, index) =>
       (index > 0 && Number(item.amountKrw) > Number(topGroups[index - 1].amountKrw))
       || !matchesSqlRoundedShare(item.sharePct, Number(item.amountKrw), latestAmount))) throw new Error("Invalid topGroups concentration");
-    if (topAmountTotal > latestAmount || topShareTotal > 100) throw new Error("Invalid topGroups concentration totals");
+    const maxIndependentlyRoundedShareTotal = 100 + sqlRoundedShareTolerance * topGroups.length;
+    if (topAmountTotal > latestAmount || topShareTotal > maxIndependentlyRoundedShareTotal) throw new Error("Invalid topGroups concentration totals");
     if (!close(districts.reduce((sum, item) => sum + item.sharePct, 0), 100, 0.2)) throw new Error("Invalid concentration shares");
     if (districts.some((item) => !matchesSqlRoundedShare(item.sharePct, Number(item.amountKrw), latestAmount))) throw new Error("Invalid districts concentration shares");
     if (topGroups.some((item) => !item.dealDate.startsWith(normalized.asOfPeriod))) throw new Error("Invalid concentration date period");

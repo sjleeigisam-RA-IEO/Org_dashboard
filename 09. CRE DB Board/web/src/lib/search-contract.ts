@@ -68,7 +68,7 @@ export type SearchResponse = {
   total: number;
   elapsedMs: number;
   generatedAt: string;
-  database: "supabase-postgresql";
+  database: "turso-libsql";
 };
 
 export type CategoryIndexItem = {
@@ -98,7 +98,7 @@ export type CategoryIndexResponse = {
   groups: CategoryIndexGroup[];
   generatedAt: string;
   elapsedMs: number;
-  database: "supabase-postgresql";
+  database: "turso-libsql";
 };
 
 const kindSet = new Set<string>(searchKinds);

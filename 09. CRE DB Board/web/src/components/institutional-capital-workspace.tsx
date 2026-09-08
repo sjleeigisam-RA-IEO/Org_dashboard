@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   AlertTriangle,
   CheckCircle2,
@@ -127,9 +127,10 @@ function SelectionAssessmentCard({ assessment }: { assessment: InstitutionalSele
   </details>;
 }
 
-export function InstitutionalCapitalWorkspace() {
+export function InstitutionalCapitalWorkspace({ initialMandateId = null }: { initialMandateId?: string | null }) {
   const [data, setData] = useState<InstitutionalCapitalResponse | null>(null);
   const [error, setError] = useState(false);
+  const initialTargetRef = useRef<HTMLDetailsElement>(null);
   useEffect(() => {
     const controller = new AbortController();
     fetch("/api/institutional-capital", { signal: controller.signal })
@@ -137,6 +138,11 @@ export function InstitutionalCapitalWorkspace() {
       .then(setData).catch((reason: unknown) => { if (!(reason instanceof DOMException && reason.name === "AbortError")) setError(true); });
     return () => controller.abort();
   }, []);
+  useEffect(() => {
+    if (!data || !initialMandateId || !initialTargetRef.current) return;
+    initialTargetRef.current.scrollIntoView?.({ block: "start", behavior: "smooth" });
+    initialTargetRef.current.focus({ preventScroll: true });
+  }, [data, initialMandateId]);
 
   return <section className="domain-workspace capital-workspace">
     <header className="workspace-hero"><div><p className="eyebrow">INSTITUTIONAL CAPITAL</p><h2>기관자금 Mandate 추적</h2><p>공고부터 선정·입찰·실제 집행까지, 운용사 판단의 근거와 빈칸을 한 흐름으로 확인합니다.</p></div></header>
@@ -156,7 +162,8 @@ export function InstitutionalCapitalWorkspace() {
     {error && <div className="state-block error-state"><strong>기관자금 조회 오류</strong></div>}
     <div className="domain-card-list mandate-list">{data?.items.map((item) => {
       const leadingAssessment = item.assessments[0];
-      return <details className="domain-card mandate-card" key={item.mandateId}>
+      const isInitialTarget = item.mandateId === initialMandateId;
+      return <details className={`domain-card mandate-card${isInitialTarget ? " search-target-record" : ""}`} key={item.mandateId} open={isInitialTarget} ref={isInitialTarget ? initialTargetRef : undefined} tabIndex={isInitialTarget ? -1 : undefined}>
       <summary>
         <div className="mandate-summary-copy">
           <span className="status-pill">{statusLabels[item.status] ?? item.status}</span><h3>{item.mandateName}</h3><p>{item.lpName} · {item.scope} · {item.announcedAt?.slice(0,10) ?? "발표일 미상"}</p>

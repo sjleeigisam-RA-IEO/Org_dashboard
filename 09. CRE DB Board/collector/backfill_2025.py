@@ -242,12 +242,20 @@ def ingest_partition(
     query_rendered: str,
     documents: list[DiscoveredDocument],
     runner_version: str,
+    cursor_metadata: dict | None = None,
+    job_version: int = 1,
+    cadence_code: str = "MANUAL",
 ) -> IngestResult:
+    if job_version < 1:
+        raise ValueError("job_version must be positive")
     con = sqlite3.connect(str(db_path))
     con.execute("PRAGMA foreign_keys = ON")
     con.execute("PRAGMA busy_timeout = 5000")
     now = _utc_now()
-    cursor_json = json.dumps({"window_start": window_start, "window_end": window_end}, sort_keys=True)
+    cursor = {"window_start": window_start, "window_end": window_end}
+    if cursor_metadata:
+        cursor.update(cursor_metadata)
+    cursor_json = json.dumps(cursor, sort_keys=True)
     try:
         con.execute("BEGIN IMMEDIATE")
         source = con.execute(
@@ -264,21 +272,23 @@ def ingest_partition(
             raise ValueError(f"unknown active category_code: {category_code}")
 
         job = con.execute(
-            "SELECT job_id FROM collection_jobs WHERE job_code = ? AND job_version = 1",
-            (job_code,),
+            "SELECT job_id FROM collection_jobs WHERE job_code = ? AND job_version = ?",
+            (job_code, job_version),
         ).fetchone()
         if job is None:
-            job_id = _stable_id("job", f"{job_code}:1")
+            job_id = _stable_id("job", f"{job_code}:{job_version}")
             con.execute(
                 """INSERT INTO collection_jobs(
                        job_id, job_code, job_version, job_kind, source_id,
                        query_template, cadence_code, config_json, valid_from, is_active
-                   ) VALUES (?, ?, 1, 'CATEGORY_SEARCH', ?, ?, 'MANUAL', ?, ?, 1)""",
+                   ) VALUES (?, ?, ?, 'CATEGORY_SEARCH', ?, ?, ?, ?, ?, 1)""",
                 (
                     job_id,
                     job_code,
+                    job_version,
                     source[0],
                     query_rendered,
+                    cadence_code,
                     json.dumps({
                         "campaign": (
                             re.match(r"^(BACKFILL_\d{4}(?:_H[12])?)", job_code).group(1)

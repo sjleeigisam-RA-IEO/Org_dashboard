@@ -20,7 +20,7 @@ def create_v28(path: Path) -> None:
         sql,
         flags=re.S,
     )
-    sql = sql.replace("'schema_version', '3.1.0'", "'schema_version', '2.8.0'")
+    sql = sql.replace("'schema_version', '3.5.0'", "'schema_version', '2.8.0'")
     conn = sqlite3.connect(path)
     try:
         conn.executescript(sql)

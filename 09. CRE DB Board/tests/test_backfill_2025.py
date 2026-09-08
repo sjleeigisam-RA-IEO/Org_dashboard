@@ -246,6 +246,37 @@ class IngestPartitionTest(unittest.TestCase):
             con.close()
             self.assertEqual(counts, {"runs": 1, "documents": 1, "versions": 1, "links": 1, "relationship_runs": 2})
 
+    def test_sqlite_ingest_preserves_collection_slot_in_cursor_provenance(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            db_path = Path(tmp) / "market.db"
+            con = sqlite3.connect(db_path)
+            con.executescript((ROOT / "db" / "v2" / "schema.sql").read_text(encoding="utf-8"))
+            con.executescript((ROOT / "db" / "v2" / "seed.sql").read_text(encoding="utf-8"))
+            con.close()
+
+            docs = parse_google_news_rss(
+                RSS_FIXTURE,
+                start=datetime(2025, 1, 1, tzinfo=timezone.utc),
+                end=datetime(2025, 2, 1, tzinfo=timezone.utc),
+            )
+            ingest_partition(
+                db_path=db_path,
+                source_code="GOOGLE_NEWS_RSS",
+                job_code="DAILY_GOOGLE_NEWS_RSS_SALE",
+                category_code="SALE",
+                window_start="2025-01-01T00:00:00Z",
+                window_end="2025-02-01T00:00:00Z",
+                query_rendered="sale query collection_slot=2025-01-15T15:15+09:00",
+                documents=docs,
+                runner_version="test",
+                cursor_metadata={"collection_slot": "2025-01-15T15:15+09:00"},
+            )
+
+            con = sqlite3.connect(db_path)
+            cursor = json.loads(con.execute("SELECT cursor_in FROM collection_runs").fetchone()[0])
+            con.close()
+            self.assertEqual(cursor["collection_slot"], "2025-01-15T15:15+09:00")
+
     def test_campaign_metadata_is_derived_from_2026_half_year_job_code(self):
         with tempfile.TemporaryDirectory() as tmp:
             db_path = Path(tmp) / "market.db"

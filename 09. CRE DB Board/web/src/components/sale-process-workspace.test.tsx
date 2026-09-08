@@ -53,7 +53,7 @@ const response: SaleProcessResponse = {
     currentYearResolvedStageArticleSignals: 40,
   },
   generatedAt: "2026-08-25T00:00:00Z",
-  database: "supabase-postgresql",
+  database: "turso-libsql",
 };
 
 afterEach(() => vi.restoreAllMocks());

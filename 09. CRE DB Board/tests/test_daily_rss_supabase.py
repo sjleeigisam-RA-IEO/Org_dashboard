@@ -1,5 +1,6 @@
 import argparse
 from datetime import date, datetime
+import json
 
 import pytest
 
@@ -27,17 +28,30 @@ def test_incremental_slot_behavior_has_a_new_runner_version() -> None:
     assert collector.JOB_VERSION == 2
 
 
+def test_daily_config_covers_2026_managed_market_families() -> None:
+    config = json.loads(collector.DEFAULT_CONFIG.read_text(encoding="utf-8"))
+
+    assert config["year"] == 2026
+    assert set(config["categories"]) == {
+        "SALE", "LEASE", "NEW_SUPPLY", "PERMIT", "PF", "LOAN", "INVESTMENT",
+    }
+    assert all(term in config["categories"]["SALE"] for term in ("매각", "매입", "공매", "경매"))
+    assert all(term in config["categories"]["LEASE"] for term in ("임대차계약", "본사이전", "공실"))
+    assert all(term in config["categories"]["NEW_SUPPLY"] for term in ("착공", "준공", "사용승인"))
+    assert all(term in config["categories"]["PF"] for term in ("본PF", "리파이낸싱", "EOD"))
+
+
 @pytest.mark.parametrize(
     ("moment", "expected_slot"),
     [
-        ("2026-08-19T00:00:00+09:00", "2026-08-18T21:15+09:00"),
-        ("2026-08-19T09:14:59+09:00", "2026-08-18T21:15+09:00"),
-        ("2026-08-19T09:15:00+09:00", "2026-08-19T09:15+09:00"),
-        ("2026-08-19T15:14:59+09:00", "2026-08-19T09:15+09:00"),
-        ("2026-08-19T15:15:00+09:00", "2026-08-19T15:15+09:00"),
-        ("2026-08-19T21:14:59+09:00", "2026-08-19T15:15+09:00"),
-        ("2026-08-19T21:15:00+09:00", "2026-08-19T21:15+09:00"),
-        ("2026-08-19T23:59:59+09:00", "2026-08-19T21:15+09:00"),
+        ("2026-08-19T00:00:00+09:00", "2026-08-18T21:00+09:00"),
+        ("2026-08-19T05:59:59+09:00", "2026-08-18T21:00+09:00"),
+        ("2026-08-19T06:00:00+09:00", "2026-08-19T06:00+09:00"),
+        ("2026-08-19T11:59:59+09:00", "2026-08-19T09:00+09:00"),
+        ("2026-08-19T12:00:00+09:00", "2026-08-19T12:00+09:00"),
+        ("2026-08-19T18:00:00+09:00", "2026-08-19T18:00+09:00"),
+        ("2026-08-19T21:00:00+09:00", "2026-08-19T21:00+09:00"),
+        ("2026-08-19T23:59:59+09:00", "2026-08-19T21:00+09:00"),
     ],
 )
 def test_collection_slot_key_uses_most_recent_scheduler_fire(
@@ -48,7 +62,7 @@ def test_collection_slot_key_uses_most_recent_scheduler_fire(
 
 
 def test_explicit_collection_slot_requires_a_real_scheduler_fire() -> None:
-    assert collector.parse_collection_slot("2026-08-19T15:15:00+09:00") == "2026-08-19T15:15+09:00"
+    assert collector.parse_collection_slot("2026-08-19T15:00:00+09:00") == "2026-08-19T15:00+09:00"
     with pytest.raises(argparse.ArgumentTypeError):
         collector.parse_collection_slot("2026-08-19T14:52:00+09:00")
 

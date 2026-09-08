@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { normalizeQuantitativeMarketPulse } from "@/lib/quantitative-market-pulse-contract";
 
-const metric = (value: number, previousValue: number | null, yearAgoValue: number | null, momPct: number | null, yoyPct: number | null, ytdValue: number, priorYtdValue: number, ytdYoyPct: number | null) => ({ value, previousValue, yearAgoValue, momPct, yoyPct, ytdValue, priorYtdValue, ytdYoyPct });
+const metric = (value: number, previousValue: number | null, yearAgoValue: number | null, momPct: number | null, yoyPct: number | null, ytdValue: number | null, priorYtdValue: number | null, ytdYoyPct: number | null) => ({ value, previousValue, yearAgoValue, momPct, yoyPct, ytdValue, priorYtdValue, ytdYoyPct });
 
 const trend = Array.from({ length: 19 }, (_, index) => {
   const month = new Date(Date.UTC(2025, index, 1));
@@ -54,6 +54,25 @@ const replace = (path: string, value: unknown) => {
 describe("normalizeQuantitativeMarketPulse", () => {
   it("accepts a complete decision-grade payload including a zero-transaction month", () => {
     expect(normalizeQuantitativeMarketPulse(valid)).toEqual(valid);
+  });
+
+  it("allows the bounded overshoot from independently rounding top shares to two decimals", () => {
+    const independentlyRounded = structuredClone(valid);
+    independentlyRounded.concentration.topGroups = independentlyRounded.concentration.topGroups.map((item, index) => ({
+      ...item,
+      amountKrw: ["400", "100", "100"][index],
+      sharePct: [66.67, 16.67, 16.67][index],
+    }));
+    expect(independentlyRounded.concentration.topGroups.reduce((sum, item) => sum + item.sharePct, 0)).toBeCloseTo(100.01, 8);
+    expect(() => normalizeQuantitativeMarketPulse(independentlyRounded)).not.toThrow();
+  });
+
+  it("accepts unavailable YTD values only without a derived comparison", () => {
+    const incomplete = structuredClone(valid);
+    incomplete.metrics.amount = metric(600, 0, 400, null, 50, null, null, null);
+    expect(normalizeQuantitativeMarketPulse(incomplete).metrics.amount.ytdValue).toBeNull();
+    incomplete.metrics.amount.ytdYoyPct = 80;
+    expect(() => normalizeQuantitativeMarketPulse(incomplete)).toThrow(/ytdYoyPct/i);
   });
 
   it.each([

@@ -79,6 +79,27 @@ def test_pf_article_with_bongeim_phrase_is_not_game_industry() -> None:
     assert result.status_code != "OUT_OF_SCOPE_NON_CRE"
 
 
+def test_confirms_project_specific_pf_action_without_named_asset() -> None:
+    result = classify_news_cre_scope(
+        title="성수 프로젝트 사업장 본PF 3천억원 금융주선 완료",
+        snippet="시행사와 대주단이 자금보충 조건을 포함한 본PF 약정을 체결했다.",
+        category_codes=("PF",),
+    )
+
+    assert result.status_code == "CRE_CONFIRMED"
+    assert "PROJECT_SPECIFIC_PF_ACTION" in result.reason_codes
+
+
+def test_keeps_aggregate_pf_policy_article_in_review() -> None:
+    result = classify_news_cre_scope(
+        title="금융당국, 부동산 PF 정상화 정책 점검",
+        snippet="전국 PF 잔액과 연체율을 종합 점검했다.",
+        category_codes=("PF",),
+    )
+
+    assert result.status_code == "CRE_REVIEW"
+
+
 def test_non_cre_industry_word_does_not_exclude_permit_project() -> None:
     result = classify_news_cre_scope(
         title="성남 바이오헬스 첨단클러스터 실시계획 인가 신청",
@@ -97,3 +118,34 @@ def test_mixed_residential_and_office_article_is_retained() -> None:
     )
 
     assert result.status_code != "OUT_OF_SCOPE_RESIDENTIAL"
+
+
+def test_excludes_crypto_sale_that_only_mentions_future_data_center_strategy() -> None:
+    result = classify_news_cre_scope(
+        title="클린코어, 4억6300만 DOGE 전량 매각…AI 데이터센터로 대전환",
+        snippet="도지코인 보유분을 처분하고 신규 사업을 검토한다.",
+        category_codes=("SALE",),
+    )
+
+    assert result.status_code == "OUT_OF_SCOPE_NON_CRE"
+    assert "NON_CRE_TRANSACTION_OBJECT" in result.reason_codes
+
+
+def test_excludes_share_sale_that_mentions_data_center_as_use_of_proceeds() -> None:
+    result = classify_news_cre_scope(
+        title="삼성SDI, AI 데이터센터에 승부…삼성D 지분 매각 4.45조 실탄확보",
+        snippet="계열사 지분을 매각해 투자 재원을 마련한다.",
+        category_codes=("SALE",),
+    )
+
+    assert result.status_code == "OUT_OF_SCOPE_NON_CRE"
+
+
+def test_keeps_corporate_brand_sale_without_property_object_out_of_confirmed_scope() -> None:
+    result = classify_news_cre_scope(
+        title="LG생활건강, 미국 에이본 매각…리테일·디지털 중심 재편",
+        snippet="화장품 사업 브랜드를 정리한다.",
+        category_codes=("SALE",),
+    )
+
+    assert result.status_code != "CRE_CONFIRMED"

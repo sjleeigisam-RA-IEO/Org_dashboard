@@ -2,15 +2,21 @@
 
 > 대한민국 상업용 부동산 시장 인텔리전스의 탐색·수집·정규화·검증·서비스 운영 원칙
 
-- **문서 기준일:** 2026-08-19 KST
+- **현재 운영 갱신:** 2026-09-08 KST (이하 상세 실행 수치는 각 절의 원래 기준일을 따름)
 - **관리 위치:** `09. CRE DB Board`
 - **원 개발 lineage:** `C:\10137_WorkSpace\real-estate-market-intelligence`
 - **원격 source lineage:** `https://github.com/Crus7230/CRE-DB`
 - **온라인 서비스:** `https://cre-db.vercel.app`
-- **권위 DB:** Supabase PostgreSQL 17 `market_intelligence`
-- **로컬 DB:** `data/market.db` — Supabase에서 생성한 read-only SQLite snapshot
-- **현재 schema:** V2.9.0
+- **권위 DB:** `data/market.db` — 전체 이력·원문·비활성 자료를 보존하는 read-only local full archive
+- **Online serving:** Turso/libSQL — local archive에서 가공한 compact serving. Supabase는 이전 운영 이력이며 신규 수집·게시 대상이 아님.
+- **현재 schema:** global V3.5.0 + 기능별 schema version
 - **문서의 지위:** 이 폴더에서 수행한 시장탐색, 데이터 적재, 관계정규화, dashboard, 기사 요약, 검증과 운영의 통합 원칙
+
+### 2026-09-08 개편과 현재 제한
+
+현재 수정 방향은 [대시보드 개편 계획](docs/12-dashboard-redesign-plan-20260908.md)을 따른다. 원본은 `data/market.db`, 기존 온라인용 가공본은 `data/market-serving-v2.candidate.db`다. 원천·버전·후보·정규 사건 lineage를 보존하면서 화면용 projection을 별도로 생성한다.
+
+Turso 무료 읽기 한도 소진으로 현재 원격 조회가 BLOCKED다. 사용자는 무료 유지와 추후 다른 DB 검토를 선택했다. 로컬 수집/가공 완료와 원격 게시 완료는 별도 상태로 기록하고, 제한이 해제되기 전 원격 성공을 주장하거나 반복 조회하지 않는다. 화면 자동분류는 탐색 보조이며 사람의 검토나 사건 확정으로 표현하지 않는다.
 
 ### 증거상태 표기
 
@@ -104,7 +110,7 @@ CRE DB Board는 이미 알고 있는 자산목록을 갱신하는 자산별 조�
 - 근거자료는 DB 원천 코드 나열이 아니라 거래·가격, 기업·사업, 시장동향, 절차·공고의 네 가지 활용 목적을 우선 노출하고 원천 type은 server-side mapping으로 보존한다.
 - 통합검색, 카테고리, DB 색인, 오늘의 시장기사, 회사, 기관자금, 매각절차 workspace 구현
 - 문서, 실거래, 이벤트, 자산, 회사 등 유형별 detail projection 구현
-- desktop/mobile QA와 access-code 인증 적용
+- desktop/mobile QA와 사전 등록 이메일 인증 적용
 
 ### Phase 7 — Daily article와 content enrichment
 
@@ -118,7 +124,7 @@ CRE DB Board는 이미 알고 있는 자산목록을 갱신하는 자산별 조�
 ### Phase 8 — 배포와 운영
 
 - GitHub source lineage와 CI 구성
-- Vercel production 배포와 공용 접근코드/HMAC session 보호
+- Vercel production 배포와 이메일 allowlist/HMAC session 보호
 - Hermes local scheduler로 daily RSS 수집 후 enrichment 연결
 - local production과 live API를 desktop/mobile에서 검증
 
@@ -488,8 +494,11 @@ Canonical approval gate:
 - **Institutional capital:** LP, mandate, track, manager selection, vehicle, commitment/deployment
 - **Company intelligence:** point-in-time universe, rank, industry assignment, business profile, tenant/relocation relation
 - **Enrichment:** version-bound summary, safe excerpt, parser/pipeline provenance
+- **Classification:** governed scheme, hierarchical term, evidence-aware record assignment, drift-free serving projection
 
 Raw discovery, candidate, approved canonical을 같은 table 상태처럼 노출하지 않는다.
+
+공통 분류는 `classification_schemes` → `classification_terms` → `record_classifications`를 권위 구조로 사용한다. 기존 `primary_category_id`, `asset_class_id`, `document_type`, `organization_type`, `strategy_code`, `category_code`는 원본 의미와 하위 호환을 위해 유지한다. 상태·근거등급·record kind를 market category에 섞지 않으며, 상세 vocabulary 운영은 `docs/classification-taxonomy-v1.md`를 따른다.
 
 ---
 
@@ -522,13 +531,17 @@ Structured narrative는 보유한 field를 읽기 쉬운 문장으로 조합할 
 ```text
 RSS / OpenDART / MOLIT / Approved manifests
   → PostgreSQL writer / reconciliation worker
-  → Supabase PostgreSQL market_intelligence (main)
+  → Supabase PostgreSQL market_intelligence (active serving)
   → server-only Next.js API
   → authenticated dashboard
 
-Supabase main
-  → validated full snapshot
-  → data/market.db (read-only SQLite sub)
+Supabase active rows
+  → deletion-free PK upsert merge
+  → data/market.db (read-only local full archive)
+
+inactive detail
+  → immutable validated SQLite snapshot
+  → Supabase compact historical index + archive locator
 ```
 
 - browser는 DB에 직접 연결하지 않는다.
@@ -564,24 +577,24 @@ Supabase main
 
 ---
 
-## 17. SQLite main/sub 운영
+## 17. Local full archive / Supabase active serving 운영
 
-- `data/market.db`는 Supabase main의 전체 read-only snapshot이다.
-- SQLite는 수동 snapshot이며 daily article scheduler가 자동 갱신하지 않는다. 따라서 snapshot 생성 이후의 Supabase 뉴스·요약 증분과 행 수가 다를 수 있다.
-- refresh는 candidate DB 생성→table별 row count→integrity→FK→trigger/view/FTS 재구성→원자교체 순서다.
-- 활성화 전 backup은 SQLite backup API로 만들되 전달본에는 중복 backup을 보존하지 않았다.
-- main 장애 시 local sub는 조회용 fallback일 뿐 자동 write main이 아니다.
-- 긴급승격은 사용자 승인, watermark, working copy, 복구 후 diff와 main 재검증이 필요하다.
+- `data/market.db`는 전체 이력·비활성 상세·evidence lineage를 보존하는 read-only local full archive다.
+- Supabase는 웹앱용 active 상세와 `archived_serving_index` compact history를 제공한다.
+- full archive 갱신은 active row를 PK upsert하며 archive-only row를 삭제하지 않는다.
+- legacy overwrite refresh는 current archive snapshot이 등록된 뒤 hard guard로 중단한다.
+- retire 전 immutable SQLite snapshot의 SHA-256·row count·integrity·FK를 검증한다.
+- 장애 시 local archive는 조회·복원 근거이며 자동 write main으로 승격하지 않는다.
 
-### 전달 시점 snapshot
+### 현재 local full archive
 
-- 생성시각: 2026-08-19 14:05 KST 부근
-- application table: 98개
-- 전체 적재행: 317,162행
-- schema: 2.8.0
+- 갱신시각: 2026-08-21 11:09 KST 부근
+- application table: 105개
+- 전체 적재행: 138,273행
+- schema: 3.3.0
 - `PRAGMA integrity_check`: `ok`
 - FK violation: 0
-- SHA-256: `3dd796c2fc792dcf4cf00150a6b3f53bb55c82cef289ee578577cae5ef5f20ca`
+- SHA-256: `047b5766a5cdb98656613c12ddd11c24c31eaa2edb01e9f1c04fb775a5e6e3bf`
 
 대표 데이터량:
 
@@ -594,10 +607,13 @@ Supabase main
 | BID_NOTICE | 9 |
 | NOTICE | 7 |
 | PRESS_RELEASE | 1 |
-| organizations | 2,821 |
-| canonical events | 28 |
+| organizations | 2,826 |
+| canonical events | 35 |
 | assets | 16 |
-| LP mandates | 12 |
+| LP mandates | 19 |
+| classification schemes | 8 |
+| classification terms | 227 |
+| record classifications | 28,814 (현재 유효 28,079 / superseded archive V1 735) |
 | sale processes | 16 |
 | document enrichments | 200 |
 | enrichment completed | 167 |
@@ -711,10 +727,10 @@ npm run build
 uv run --with pytest python -m pytest -q
 ```
 
-### Supabase→SQLite refresh
+### Supabase active→local full archive merge
 
 ```bash
-uv run --with 'psycopg[binary]' python scripts/refresh_sqlite_sub_from_supabase.py --activate
+uv run --with 'psycopg[binary]' python scripts/merge_supabase_active_into_full_archive.py --activate
 ```
 
 실행 전 외부 `.env.supabase.local`이 필요하며 secret을 log나 Git에 출력하지 않는다.
@@ -727,7 +743,7 @@ uv run --with 'psycopg[binary]' python scripts/refresh_sqlite_sub_from_supabase.
 2. schema 변경은 SQLite integrated schema, PostgreSQL migration, SQLite migration, tests를 함께 수정한다.
 3. collector 변경은 idempotency·date boundary·source policy test를 선행한다.
 4. dashboard 계약 변경은 server projection·TypeScript contract·UI test를 함께 수정한다.
-5. main DB 변경 후 local snapshot을 재생성하고 hash·row count·integrity를 갱신한다.
+5. Supabase 변경 후 active row를 local full archive에 deletion-free merge하고 hash·row count·integrity를 갱신한다.
 6. 공식 source 정정은 기존 document/assertion을 삭제하지 않는다.
 7. credential, raw article body, local DB를 일반 public Git/Vercel source에 올리지 않는다.
 8. 본 `principle.md`의 현재상태·한계·snapshot 수치를 함께 갱신한다.
@@ -754,7 +770,9 @@ uv run --with 'psycopg[binary]' python scripts/refresh_sqlite_sub_from_supabase.
 - `db/v2/schema.sql`
 - `scripts/collect_daily_rss_supabase.py`
 - `scripts/enrich_document_content.py`
-- `scripts/refresh_sqlite_sub_from_supabase.py`
+- `scripts/merge_supabase_active_into_full_archive.py`
+- `scripts/stage_active_serving_archive_index.py`
+- `scripts/retire_supabase_collection_history.py`
 - `web/src/lib/server/document-intelligence.ts`
 - `web/src/lib/server/daily-articles.ts`
 - `migration-manifest.json`

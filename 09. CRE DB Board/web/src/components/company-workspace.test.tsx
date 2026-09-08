@@ -58,7 +58,7 @@ const hmmDetailResponse = {
   counts: { events: 0, assets: 0, documents: 15, occupancies: 0, locationEvidence: 1 },
   events: [], assets: [], documents: [], occupancies: [], locationEvidence: [hmmEvidence],
   generatedAt: "2026-08-25T00:00:00Z",
-  database: "supabase-postgresql",
+  database: "turso-libsql",
 };
 
 afterEach(() => vi.restoreAllMocks());

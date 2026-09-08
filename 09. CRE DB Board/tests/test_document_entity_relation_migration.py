@@ -24,4 +24,4 @@ def test_fresh_schema_contains_scope_and_relation_projection() -> None:
     sql = SCHEMA.read_text(encoding="utf-8")
     assert "CREATE TABLE organization_scope_assessments" in sql
     assert "CREATE VIEW v_document_entity_relations" in sql
-    assert "('schema_version', '3.1.0')" in sql
+    assert "('schema_version', '3.5.0')" in sql

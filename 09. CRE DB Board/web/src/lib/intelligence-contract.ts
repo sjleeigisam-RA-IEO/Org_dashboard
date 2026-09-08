@@ -58,7 +58,7 @@ export type CompanyListResponse = {
     signalNote: string;
   };
   generatedAt: string;
-  database: "supabase-postgresql";
+  database: "turso-libsql";
 };
 
 export type RelatedDocument = {
@@ -153,7 +153,7 @@ export type CompanyDetailResponse = {
   occupancies: Array<Record<string, string | number | null>>;
   locationEvidence: LocationEvidence[];
   generatedAt: string;
-  database: "supabase-postgresql";
+  database: "turso-libsql";
 };
 
 export type InstitutionalCapitalItem = {
@@ -195,7 +195,7 @@ export type InstitutionalCapitalResponse = {
     reviewRequired: number;
   };
   generatedAt: string;
-  database: "supabase-postgresql";
+  database: "turso-libsql";
 };
 
 export type SaleProcessItem = {
@@ -252,7 +252,7 @@ export type SaleProcessResponse = {
     currentYearResolvedStageArticleSignals: number;
   };
   generatedAt: string;
-  database: "supabase-postgresql";
+  database: "turso-libsql";
 };
 
 const companyViewSet = new Set<string>(companyViews);

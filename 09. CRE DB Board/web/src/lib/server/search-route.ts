@@ -16,6 +16,6 @@ export async function runSearchRequest(
     ...result,
     elapsedMs: Math.max(0, Math.round(elapsed())),
     generatedAt: clock().toISOString(),
-    database: "supabase-postgresql",
+    database: "turso-libsql",
   }, { headers: { "Cache-Control": "private, max-age=30" } });
 }

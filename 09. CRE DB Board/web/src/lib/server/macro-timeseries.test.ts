@@ -22,8 +22,14 @@ describe("getMacroTimeseries", () => {
     expect(result.series).toHaveLength(13);
     expect(execute).toHaveBeenCalledOnce();
     expect(execute.mock.calls[0][0]).toContain("financial_macro_monthly_serving");
-    expect(execute.mock.calls[0][0]).toContain("AT TIME ZONE 'Asia/Seoul'");
-    expect(execute.mock.calls[0][0]).not.toContain("date_trunc('month',current_date)");
+    expect(execute.mock.calls[0][0]).toContain("date('now','+9 hours','start of month','-1 month')");
+    expect(execute.mock.calls[0][0]).toContain("json(CASE WHEN point.observation_month>point.complete_through THEN 'true'");
+    expect(execute.mock.calls[0][0]).toContain("FROM series_rows point");
+    expect(execute.mock.calls[0][0]).toContain("ORDER BY point.observation_month");
+    expect(execute.mock.calls[0][0]).toContain("FROM series_payload ordered_series");
+    expect(execute.mock.calls[0][0]).not.toContain(") ORDER BY f.observation_month");
+    expect(execute.mock.calls[0][0]).not.toContain("json(sp.series) ORDER BY");
+    expect(execute.mock.calls[0][0]).not.toMatch(/market_intelligence\.|::|jsonb_|date_trunc|clock_timestamp|\binterval\b|AT TIME ZONE/i);
   });
 
   it("fails closed when any canonical series is missing", async () => {

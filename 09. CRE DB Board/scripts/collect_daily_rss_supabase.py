@@ -33,7 +33,7 @@ from collector.backfill_2025 import (
 )
 
 DEFAULT_ENV = Path(r"C:\10137_WorkSpace\env\.env.supabase.local")
-DEFAULT_CONFIG = ROOT / "campaigns" / "backfill-2026-h1.json"
+DEFAULT_CONFIG = ROOT / "campaigns" / "rolling-2026-current.json"
 RUNNER_VERSION = "daily-google-news-rss-postgres-v2"
 JOB_VERSION = 2
 SEOUL = ZoneInfo("Asia/Seoul")
@@ -69,15 +69,15 @@ def collection_slot_key(moment: datetime) -> str:
     """
     local = moment.astimezone(SEOUL)
     slots = [
-        datetime.combine(local.date(), time(hour, 15), SEOUL)
-        for hour in (9, 15, 21)
+        datetime.combine(local.date(), time(hour, 0), SEOUL)
+        for hour in (6, 9, 12, 15, 18, 21)
     ]
     eligible = [slot for slot in slots if slot <= local]
     if eligible:
         return eligible[-1].isoformat(timespec="minutes")
     previous_evening = datetime.combine(
         local.date() - timedelta(days=1),
-        time(21, 15),
+        time(21, 0),
         SEOUL,
     )
     return previous_evening.isoformat(timespec="minutes")
@@ -91,8 +91,8 @@ def parse_collection_slot(value: str) -> str:
     if parsed.tzinfo is None or parsed.utcoffset() is None:
         raise argparse.ArgumentTypeError("collection slot must include a UTC offset")
     local = parsed.astimezone(SEOUL)
-    if local.minute != 15 or local.second != 0 or local.microsecond != 0 or local.hour not in (9, 15, 21):
-        raise argparse.ArgumentTypeError("collection slot must be a KST scheduler fire at 09:15, 15:15, or 21:15")
+    if local.minute != 0 or local.second != 0 or local.microsecond != 0 or local.hour not in (6, 9, 12, 15, 18, 21):
+        raise argparse.ArgumentTypeError("collection slot must be a KST scheduler fire at 06:00, 09:00, 12:00, 15:00, 18:00, or 21:00")
     return local.isoformat(timespec="minutes")
 
 

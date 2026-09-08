@@ -2,7 +2,13 @@ export type DailyArticleTopic = {
   key: string;
   label: string;
   status: "CONFIRMED" | "CANDIDATE";
-  provenance: "APPROVED_EVENT_MENTION" | "COLLECTION_QUERY";
+  provenance:
+    | "APPROVED_CLASSIFICATION"
+    | "PENDING_CLASSIFICATION"
+    /** @deprecated Accepted only while older cached payloads expire. */
+    | "APPROVED_EVENT_MENTION"
+    /** @deprecated Accepted only while older cached payloads expire. */
+    | "COLLECTION_QUERY";
 };
 
 export type DailyArticleClassification = {
@@ -32,6 +38,8 @@ export type DailyArticlesResponse = {
   lastCollectedAt: string | null;
   generatedAt: string;
   total: number;
+  /** Number of rows returned after the server-side response limit. */
+  returned: number;
   articles: DailyArticle[];
 };
 
@@ -61,12 +69,17 @@ export function normalizeDailyArticles(value: unknown): DailyArticlesResponse {
   if (!isRecord(value) || !Array.isArray(value.articles) || typeof value.total !== "number" || !Number.isFinite(value.total)) {
     throw new Error("Invalid daily articles payload");
   }
+  const returned = value.returned === undefined ? value.articles.length : value.returned;
+  if (typeof returned !== "number" || !Number.isFinite(returned)) {
+    throw new Error("Invalid returned article count");
+  }
   return {
     selectedDate: text(value, "selectedDate"),
     latestAvailableDate: nullableText(value.latestAvailableDate),
     lastCollectedAt: nullableText(value.lastCollectedAt),
     generatedAt: text(value, "generatedAt"),
     total: value.total,
+    returned,
     articles: value.articles.map((raw) => {
       if (!isRecord(raw)) throw new Error("Invalid daily article");
       const summaryMode = text(raw, "summaryMode");
@@ -81,7 +94,15 @@ export function normalizeDailyArticles(value: unknown): DailyArticlesResponse {
         topics: topics.map((topic) => {
           if (!isRecord(topic)) throw new Error("Invalid topic");
           const status = text(topic, "status"); const provenance = text(topic, "provenance");
-          if (!["CONFIRMED", "CANDIDATE"].includes(status) || !["APPROVED_EVENT_MENTION", "COLLECTION_QUERY"].includes(provenance)) throw new Error("Invalid topic enum");
+          if (
+            !["CONFIRMED", "CANDIDATE"].includes(status)
+            || ![
+              "APPROVED_CLASSIFICATION",
+              "PENDING_CLASSIFICATION",
+              "APPROVED_EVENT_MENTION",
+              "COLLECTION_QUERY",
+            ].includes(provenance)
+          ) throw new Error("Invalid topic enum");
           return { key: text(topic, "key"), label: text(topic, "label"), status: status as DailyArticleTopic["status"], provenance: provenance as DailyArticleTopic["provenance"] };
         }),
         documentPurpose: classification(raw.documentPurpose), evidenceGrade: classification(raw.evidenceGrade),
@@ -107,4 +128,8 @@ export function parseDailyArticleDate(value: string | null, now = new Date()): s
   return Number.isNaN(parsed.valueOf()) || parsed.toISOString().slice(0, 10) !== value
     ? todayInSeoul(now)
     : value;
+}
+
+export function resolveDailyArticleDate(value: string | null, now = new Date()): string {
+  return value === null ? "LATEST" : parseDailyArticleDate(value, now);
 }

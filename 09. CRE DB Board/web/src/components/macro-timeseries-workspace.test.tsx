@@ -21,7 +21,12 @@ afterEach(() => vi.unstubAllGlobals());
 
 describe("MacroTimeseriesWorkspace", () => {
   it("links every relative-height chart to one shared month control", async () => {
-    vi.stubGlobal("fetch", vi.fn(async () => new Response(JSON.stringify(response), { status: 200 })));
+    const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+      void input;
+      void init;
+      return new Response(JSON.stringify(response), { status: 200 });
+    });
+    vi.stubGlobal("fetch", fetchMock);
     render(<MacroTimeseriesWorkspace/>);
     expect(await screen.findByRole("heading", { name: "금리의 방향을 한 화면에서" })).toBeInTheDocument();
     expect(screen.getAllByTestId("macro-strip")).toHaveLength(3);
@@ -30,13 +35,15 @@ describe("MacroTimeseriesWorkspace", () => {
     await waitFor(() => expect(screen.getAllByText("2026-06").length).toBeGreaterThan(0));
     expect(screen.getAllByTestId("macro-strip").every((item) => item.getAttribute("data-selected-month") === "2026-06")).toBe(true);
     expect(screen.getAllByText("전월 관측 없음")).toHaveLength(3);
-    expect(screen.getAllByText(/12개월 평균/).length).toBeGreaterThanOrEqual(3);
+    expect(screen.getAllByText(/최근 1개 관측 평균/).length).toBeGreaterThanOrEqual(3);
+    expect(screen.queryByText(/12개월 평균/)).not.toBeInTheDocument();
     expect(screen.queryByText("해당 월 관측 없음")).not.toBeInTheDocument();
     const rateTrigger = screen.getByText("3.00%").closest("[data-context-info]") as HTMLElement;
     expect(document.getElementById(rateTrigger.getAttribute("aria-describedby")!)).toHaveTextContent("완료월 관측 · 원천 관측 20개");
     const sourceTrigger = screen.getByText("한국은행 ECOS").closest("[data-context-info]") as HTMLElement;
     const sourceTooltip = document.getElementById(sourceTrigger.getAttribute("aria-describedby")!);
     expect(within(sourceTooltip as HTMLElement).getByRole("link", { name: /공식 출처 열기/ })).toHaveAttribute("href", "https://ecos.bok.or.kr/");
+    expect(fetchMock.mock.calls[0]?.[1]?.cache).toBeUndefined();
   });
 
   it("renders isolated observations without interpolating across a gap", async () => {
@@ -47,6 +54,8 @@ describe("MacroTimeseriesWorkspace", () => {
     expect(container.querySelectorAll(".macro-isolated-point")).toHaveLength(2);
     expect(container.querySelectorAll(".macro-line")).toHaveLength(0);
     expect(screen.getByText("전월 관측 없음")).toBeInTheDocument();
+    expect(screen.getAllByText(/최근 2개 관측 평균/).length).toBeGreaterThanOrEqual(2);
+    expect(screen.queryByText(/2개월 평균/)).not.toBeInTheDocument();
     const stripControl = screen.getByRole("slider", { name: "한국은행 기준금리 공통 조회 월" });
     expect(stripControl).toHaveAttribute("aria-valuetext", "2026-08 · 3.10%");
   });

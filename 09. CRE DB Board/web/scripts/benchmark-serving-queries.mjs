@@ -1,18 +1,6 @@
-import fs from "node:fs";
-import postgres from "postgres";
 import { getDailyArticles } from "../src/lib/server/daily-articles.ts";
 import { searchMarket } from "../src/lib/server/market-search.ts";
-
-const DEFAULT_AUTHORITY = String.raw`C:\10137_WorkSpace\env\.env.supabase.local`;
-
-function connectionUrl() {
-  if (process.env.SUPABASE_DB_URL) return process.env.SUPABASE_DB_URL;
-  const authority = process.env.SUPABASE_ENV_FILE || DEFAULT_AUTHORITY;
-  const text = fs.readFileSync(authority, "utf8").replace(/^\uFEFF/, "");
-  const line = text.split(/\r?\n/).find((candidate) => /^(?:export\s+)?SUPABASE_DB_URL\s*=/.test(candidate.trim()));
-  if (!line) throw new Error("SUPABASE_DB_URL is not configured");
-  return line.slice(line.indexOf("=") + 1).trim().replace(/^(['"])(.*)\1$/, "$2");
-}
+import { createSqlExecutor, createTursoClient } from "./libsql-client.mjs";
 
 function todayInSeoul() {
   return new Intl.DateTimeFormat("en-CA", {
@@ -23,22 +11,8 @@ function todayInSeoul() {
   }).format(new Date());
 }
 
-const sql = postgres(connectionUrl(), {
-  max: 1,
-  idle_timeout: 5,
-  connect_timeout: 10,
-  ssl: "require",
-  prepare: false,
-  transform: { undefined: null },
-});
-
-const execute = async (text, values) => {
-  const rows = await sql.begin("read only", async (transaction) => {
-    await transaction.unsafe("SET LOCAL statement_timeout = 20000");
-    return transaction.unsafe(text, [...values]);
-  });
-  return { rows };
-};
+const client = createTursoClient();
+const execute = createSqlExecutor(client);
 
 async function measure(label, operation, summarize) {
   const started = performance.now();
@@ -77,5 +51,5 @@ try {
     (result) => ({ selectedDate, resultCount: result.articles.length }),
   );
 } finally {
-  await sql.end({ timeout: 5 });
+  client.close();
 }

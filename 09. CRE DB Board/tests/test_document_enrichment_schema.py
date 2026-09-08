@@ -15,7 +15,7 @@ def test_v28_document_enrichment_schema_is_version_bound_and_valid():
     columns = {
         row[1] for row in connection.execute("PRAGMA table_info(document_enrichments)")
     }
-    assert version == "3.1.0"
+    assert version == "3.5.0"
     assert {
         "document_version_id", "pipeline_version", "summary_text", "safe_excerpt",
         "source_content_sha256", "review_status", "status_code",
