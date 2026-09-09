@@ -33,6 +33,10 @@ assert.equal(Core.maxZoomForPrecision('city'), 8);
 assert.equal(Core.maxZoomForPrecision('region'), 5);
 assert.equal(Core.maxZoomForPrecision('country'), 4);
 assert.equal(Core.maxZoomForPrecision('unknown'), 8);
+assert.equal(Core.shouldReturnToWorld(1.5), true);
+assert.equal(Core.shouldReturnToWorld(1.49), true);
+assert.equal(Core.shouldReturnToWorld(1.51), false);
+assert.equal(Core.shouldReturnToWorld(null), false);
 
 const projected = Core.projectWorldPoint(0, 0, 1000, 500);
 assert.deepEqual(projected, { x: 500, y: 250 });

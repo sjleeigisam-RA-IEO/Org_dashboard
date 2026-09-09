@@ -26,6 +26,8 @@
     unknown: 8
   };
 
+  var WORLD_RETURN_ZOOM = 1.5;
+
   function numberOrNull(value) {
     if (value === null || value === undefined || value === '') return null;
     var number = Number(value);
@@ -68,6 +70,11 @@
 
   function maxZoomForPrecision(precision) {
     return MAX_ZOOM[String(precision || 'unknown')] || MAX_ZOOM.unknown;
+  }
+
+  function shouldReturnToWorld(zoom) {
+    zoom = numberOrNull(zoom);
+    return zoom !== null && zoom <= WORLD_RETURN_ZOOM;
   }
 
   function projectWorldPoint(longitude, latitude, width, height) {
@@ -141,9 +148,11 @@
 
   return {
     TIER_META: TIER_META,
+    WORLD_RETURN_ZOOM: WORLD_RETURN_ZOOM,
     hasCoordinatePair: hasCoordinatePair,
     classifyLocation: classifyLocation,
     maxZoomForPrecision: maxZoomForPrecision,
+    shouldReturnToWorld: shouldReturnToWorld,
     projectWorldPoint: projectWorldPoint,
     filterScope: filterScope,
     buildCountryClusters: buildCountryClusters,

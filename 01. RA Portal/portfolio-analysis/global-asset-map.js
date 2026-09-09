@@ -9,7 +9,7 @@
     generation: 0,
     rows: [],
     filteredRows: [],
-    selectedTiers: new Set(['verified', 'candidate_asset', 'local_area', 'uncertain_point']),
+    selectedTiers: new Set(Object.keys(Core.TIER_META)),
     scope: { countryCode: '', city: '' },
     query: '',
     map: null,
@@ -19,7 +19,8 @@
     inspectorOpener: null,
     mapBase: 'concept-svg',
     tileFailed: false,
-    renderedMarkerCount: 0
+    renderedMarkerCount: 0,
+    source: ''
   };
 
   var COUNTRY_NAMES = {
@@ -79,29 +80,59 @@
     ].join('');
   }
 
+  function isLoopbackHost() {
+    return ['127.0.0.1', 'localhost', '::1', '[::1]'].indexOf(window.location.hostname) >= 0;
+  }
+
+  async function fetchPayload(url, options) {
+    var response = await fetch(url, options);
+    var data = await response.json().catch(function () { return {}; });
+    if (!response.ok || data.ok === false) throw new Error(data.error || '위치 API 응답을 확인할 수 없습니다.');
+    return data;
+  }
+
+  function validatePayload(data, generation) {
+    if (generation !== state.generation || !state.active) return null;
+    if (!Array.isArray(data.assets) || data.assets.length > 10000 || Number(data.count) !== data.assets.length) {
+      throw new Error('위치 데이터 형식이 올바르지 않습니다.');
+    }
+    data.assets.forEach(function (row) {
+      var computed = Core.classifyLocation(row).tier;
+      if (computed !== row.location_tier) throw new Error('위치 단계 계약이 일치하지 않습니다: ' + String(row.asset_id || 'unknown'));
+    });
+    state.source = data.source || 'session-edge-function';
+    return data.assets;
+  }
+
   async function fetchRows(generation) {
     var token = '';
     if (window.RAAuth && typeof window.RAAuth.getSessionToken === 'function') token = window.RAAuth.getSessionToken();
     else if (window.RAAuth && typeof window.RAAuth.getRememberToken === 'function') token = window.RAAuth.getRememberToken();
-    if (!token) throw new Error('로그인 세션을 확인할 수 없습니다. Portal에 다시 로그인해 주세요.');
     if (state.controller) state.controller.abort();
     state.controller = new AbortController();
-    var response = await fetch(endpoint(), {
+    var requestOptions = { cache: 'no-store', signal: state.controller.signal };
+
+    if (isLoopbackHost()) {
+      try {
+        var localData = await fetchPayload('/__ra_asset_map_snapshot', requestOptions);
+        return validatePayload(localData, generation);
+      } catch (localError) {
+        if (!token || (localError && localError.name === 'AbortError')) {
+          throw new Error('로컬 자산지도 데이터 연결에 실패했습니다. RA 전용 로컬 서버를 다시 실행해 주세요.');
+        }
+        console.warn('Local asset map proxy unavailable; using the session API.', localError);
+      }
+    }
+
+    if (!token) throw new Error('로그인 세션을 확인할 수 없습니다. Portal에 다시 로그인해 주세요.');
+    var edgeData = await fetchPayload(endpoint(), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ session_token: token }),
       cache: 'no-store',
       signal: state.controller.signal
     });
-    var data = await response.json().catch(function () { return {}; });
-    if (!response.ok || data.ok === false) throw new Error(data.error || '위치 API 응답을 확인할 수 없습니다.');
-    if (generation !== state.generation || !state.active) return null;
-    if (!Array.isArray(data.assets) || data.assets.length > 10000 || data.count !== data.assets.length) throw new Error('위치 데이터 형식이 올바르지 않습니다.');
-    data.assets.forEach(function (row) {
-      var computed = Core.classifyLocation(row).tier;
-      if (computed !== row.location_tier) throw new Error('위치 단계 계약이 일치하지 않습니다: ' + String(row.asset_id || 'unknown'));
-    });
-    return data.assets;
+    return validatePayload(edgeData, generation);
   }
 
   function activate() {
@@ -188,43 +219,95 @@
   function shellHtml(rows) {
     var counts = Core.summarize(state.rows);
     var stage = state.scope.countryCode ? (state.scope.city ? '도시·자산 상세' : '국가·도시 상세') : '글로벌 개요';
+    var coordinateCount = rows.filter(Core.hasCoordinatePair).length;
     return [
       '<main class="global-asset-map" data-map-stage="', state.scope.countryCode ? 'detail' : 'world', '">',
       '<header class="global-map-header">',
-      '<div>', breadcrumbsHtml(), '<p>GLOBAL ASSET LOCATION</p><h1>글로벌 자산 위치</h1><span>', stage, ' · 위치 정밀도보다 과도하게 확대하지 않습니다.</span></div>',
+      '<div>', breadcrumbsHtml(), '<p>GLOBAL ASSET LOCATION</p><h1>글로벌 자산 위치</h1><span>', stage, ' · 검증 상태와 좌표 정밀도를 구분해 표시합니다.</span></div>',
       '<div class="global-map-header-actions"><label><span>자산 검색</span><input type="search" data-global-map-search value="', esc(state.query), '" placeholder="자산·도시·국가"></label><button type="button" data-global-map-action="refresh">새로고침</button></div>',
       '</header>',
       summaryHtml(counts),
       '<section class="global-map-workspace">',
       '<aside class="global-map-sidebar"><div class="global-map-tier-filters" role="group" aria-label="위치 정밀도 필터">', tierFiltersHtml(counts), '</div><div id="globalMapList" class="global-map-list"></div></aside>',
-      '<section class="global-map-canvas-panel"><div class="global-map-canvas-head"><div><strong id="globalMapStageTitle">', stage, '</strong><span id="globalMapStageNote">', rows.length, '개 표시 대상</span></div><div id="globalMapBaseBadge" class="global-map-base-badge">', state.scope.countryCode ? '상세 지도' : '개념 세계지도', '</div></div><div id="globalMapCanvas" class="global-map-canvas"></div><div id="globalMapInspector" class="global-map-inspector" role="dialog" aria-modal="false" aria-labelledby="globalMapInspectorTitle" hidden></div></section>',
+      '<section class="global-map-canvas-panel"><div class="global-map-canvas-head"><div><strong id="globalMapStageTitle">', stage, '</strong><span id="globalMapStageNote">좌표 ', coordinateCount, '개 · 관리 대상 ', rows.length, '개</span></div><div id="globalMapBaseBadge" class="global-map-base-badge">', state.scope.countryCode ? '상세 지도' : '도트 세계지도', '</div></div><div id="globalMapCanvas" class="global-map-canvas"></div><div id="globalMapInspector" class="global-map-inspector" role="dialog" aria-modal="false" aria-labelledby="globalMapInspectorTitle" hidden></div></section>',
       '</section>',
       '</main>'
     ].join('');
   }
 
-  function continentPaths() {
-    return [
-      'M72 128 C106 84 180 66 248 87 C282 98 299 130 282 153 C253 174 236 195 222 228 C196 237 176 221 160 206 C137 194 105 190 83 166 Z',
-      'M246 232 C278 231 307 257 314 292 C308 330 287 373 265 421 C244 427 232 394 239 363 C227 334 211 303 221 271 Z',
-      'M415 111 C460 76 528 72 576 96 C604 77 680 77 738 103 C787 97 857 118 907 154 C926 175 899 194 867 190 C839 211 809 221 779 213 C744 245 699 235 668 209 C628 219 595 204 572 180 C538 188 501 175 480 156 C449 159 417 145 415 111 Z',
-      'M489 190 C535 176 584 196 606 233 C624 278 596 339 559 390 C536 403 511 367 512 330 C489 306 469 270 472 228 Z',
-      'M753 285 C785 263 834 267 863 291 C882 322 852 352 818 357 C786 355 757 329 753 285 Z',
-      'M917 226 C932 215 946 221 947 238 C938 249 923 247 917 226 Z',
-      'M313 105 C326 92 348 95 351 111 C341 124 321 123 313 105 Z'
-    ];
+  var WORLD_LAND_POLYGONS = [
+    [[-168,72],[-142,71],[-124,61],[-114,53],[-126,49],[-124,38],[-113,29],[-98,18],[-84,21],[-80,31],[-67,45],[-52,49],[-56,61],[-78,72],[-110,78],[-145,76]],
+    [[-101,20],[-91,18],[-84,12],[-77,8],[-81,5],[-90,13]],
+    [[-82,13],[-70,12],[-53,5],[-36,-7],[-42,-22],[-52,-35],[-66,-55],[-74,-51],[-78,-32],[-81,-12]],
+    [[-12,36],[-10,57],[-2,70],[23,72],[43,65],[67,73],[101,77],[139,71],[169,61],[179,51],[164,40],[145,37],[128,25],[111,20],[102,8],[84,7],[72,20],[55,25],[43,31],[28,34],[18,40],[7,43]],
+    [[-18,35],[3,37],[26,33],[42,20],[51,10],[44,-7],[34,-20],[20,-35],[7,-35],[-4,-25],[-12,-5],[-17,16]],
+    [[42,30],[57,25],[59,15],[51,12],[44,17]],
+    [[68,24],[78,30],[89,24],[84,8],[76,7],[70,17]],
+    [[111,-11],[128,-10],[143,-16],[154,-28],[149,-41],[135,-45],[119,-38],[112,-25]],
+    [[-52,59],[-27,64],[-20,75],[-38,83],[-60,82],[-70,72]],
+    [[129,31],[142,43],[146,39],[140,32]],
+    [[47,-13],[51,-16],[50,-25],[45,-21]],
+    [[166,-35],[179,-38],[175,-47],[167,-45]]
+  ];
+
+  function pointInPolygon(longitude, latitude, polygon) {
+    var inside = false;
+    for (var i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+      var xi = polygon[i][0];
+      var yi = polygon[i][1];
+      var xj = polygon[j][0];
+      var yj = polygon[j][1];
+      var intersects = ((yi > latitude) !== (yj > latitude))
+        && (longitude < ((xj - xi) * (latitude - yi)) / ((yj - yi) || 0.00001) + xi);
+      if (intersects) inside = !inside;
+    }
+    return inside;
+  }
+
+  function pixelLandHtml() {
+    var cells = [];
+    for (var latitude = 77.5; latitude >= -57.5; latitude -= 5) {
+      for (var longitude = -177.5; longitude <= 177.5; longitude += 5) {
+        if (!WORLD_LAND_POLYGONS.some(function (polygon) { return pointInPolygon(longitude, latitude, polygon); })) continue;
+        var point = Core.projectWorldPoint(longitude, latitude, 1000, 500);
+        cells.push('<rect x="' + (point.x - 4.8).toFixed(1) + '" y="' + (point.y - 4.8).toFixed(1) + '" width="9.6" height="9.6"></rect>');
+      }
+    }
+    return cells.join('');
+  }
+
+  function buildWorldPointGroups(rows) {
+    var groups = new Map();
+    rows.forEach(function (row) {
+      var longitude = Number(row.longitude);
+      var latitude = Number(row.latitude);
+      var key = Math.round(longitude / 3) + ':' + Math.round(latitude / 3);
+      var group = groups.get(key) || { rows: [], longitude: 0, latitude: 0 };
+      group.rows.push(row);
+      group.longitude += longitude;
+      group.latitude += latitude;
+      groups.set(key, group);
+    });
+    return Array.from(groups.values()).map(function (group) {
+      group.longitude /= group.rows.length;
+      group.latitude /= group.rows.length;
+      group.rows.sort(function (left, right) { return Core.classifyLocation(left).rank - Core.classifyLocation(right).rank; });
+      group.tier = Core.classifyLocation(group.rows[0]);
+      group.countryCode = group.rows[0].country_code_alpha3 || '__unknown_country__';
+      return group;
+    });
   }
 
   function worldHtml(rows) {
-    var clusters = Core.buildCountryClusters(rows);
-    var paths = continentPaths().map(function (path) { return '<path d="' + path + '"></path>'; }).join('');
+    var clusters = buildWorldPointGroups(rows);
     var dots = clusters.map(function (cluster) {
       var point = Core.projectWorldPoint(cluster.longitude, cluster.latitude, 1000, 500);
       if (!point) return '';
-      var radius = Math.min(22, 8 + Math.sqrt(cluster.count) * 3);
-      return '<g class="world-cluster" role="button" tabindex="0" aria-label="' + esc(countryName(cluster.countryCode)) + ' ' + cluster.count + '개" data-global-map-country="' + esc(cluster.countryCode) + '" transform="translate(' + point.x + ' ' + point.y + ')"><circle r="' + radius + '"></circle><text y="4">' + cluster.count + '</text></g>';
+      var count = cluster.rows.length;
+      var radius = Math.min(16, 7 + Math.sqrt(count) * 2);
+      return '<g class="world-cluster tier-' + cluster.tier.tone + '" role="button" tabindex="0" aria-label="' + esc(countryName(cluster.countryCode)) + ' 좌표 그룹 ' + count + '개" data-global-map-country="' + esc(cluster.countryCode) + '" transform="translate(' + point.x + ' ' + point.y + ')"><circle r="' + radius.toFixed(1) + '"></circle>' + (count > 1 ? '<text y="4">' + count + '</text>' : '') + '</g>';
     }).join('');
-    return '<svg class="global-world-svg" viewBox="0 0 1000 500" role="img" aria-label="국경과 지형을 생략한 글로벌 자산 분포 개념도"><g class="world-land">' + paths + '</g><g class="world-dots">' + dots + '</g></svg><p class="global-world-caption">국경·도로·지형을 생략한 개념도입니다. 국가 표시를 선택하면 실제 지도베이스로 전환됩니다.</p>';
+    return '<svg class="global-world-svg" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMin meet" role="img" aria-label="사각 도트 세계지도 위에 표시한 글로벌 자산 좌표"><g class="world-grid">' + pixelLandHtml() + '</g><g class="world-dots">' + dots + '</g></svg><div class="global-world-caption"><span><b>' + rows.length + '</b>개 좌표를 실제 위도·경도로 배치</span><span>원형 버블을 선택하면 국가 상세 지도로 이동합니다.</span></div>';
   }
 
   function locationLabel(row) {
@@ -302,8 +385,20 @@
   function mapStyle() {
     return {
       version: 8,
-      sources: { carto: { type: 'raster', tiles: ['https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png', 'https://b.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png'], tileSize: 256, attribution: '&copy; OpenStreetMap contributors &copy; CARTO' } },
-      layers: [{ id: 'carto', type: 'raster', source: 'carto', minzoom: 0, maxzoom: 19 }]
+      sources: { osm: { type: 'raster', tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'], tileSize: 256, attribution: '&copy; OpenStreetMap contributors' } },
+      layers: [{
+        id: 'osm',
+        type: 'raster',
+        source: 'osm',
+        minzoom: 0,
+        maxzoom: 19,
+        paint: {
+          'raster-saturation': -0.72,
+          'raster-contrast': 0.16,
+          'raster-brightness-min': 0.12,
+          'raster-brightness-max': 0.72
+        }
+      }]
     };
   }
 
@@ -320,7 +415,7 @@
       var x = 60 + ((Number(row.longitude) - minLon) / (maxLon - minLon)) * 880;
       var y = 440 - ((Number(row.latitude) - minLat) / (maxLat - minLat)) * 380;
       var tier = Core.classifyLocation(row);
-      return '<g role="button" tabindex="0" data-global-map-asset="' + esc(row.asset_id) + '" class="fallback-dot tier-' + tier.tone + '" transform="translate(' + x.toFixed(2) + ' ' + y.toFixed(2) + ')"><circle r="8"></circle></g>';
+      return '<g role="button" tabindex="0" data-global-map-asset="' + esc(row.asset_id) + '" class="fallback-dot tier-' + tier.tone + '" transform="translate(' + x.toFixed(2) + ' ' + y.toFixed(2) + ')"><circle r="7"></circle></g>';
     }).join('');
     canvas.innerHTML = '<div class="global-map-fallback-note">' + esc(message || '배경지도 없이 상대적 위치만 표시합니다.') + '</div><svg class="global-map-fallback-svg" viewBox="0 0 1000 500" aria-label="선택 국가의 상대적 자산 위치">' + dots + '</svg>';
     state.mapBase = 'coordinate-fallback';
@@ -333,6 +428,16 @@
     if (badge) badge.textContent = label;
   }
 
+  function returnToWorldFromDetail(generation) {
+    if (generation !== state.generation || !state.active || !state.scope.countryCode) return;
+    state.scope = { countryCode: '', city: '' };
+    state.selectedAssetId = '';
+    state.inspectorOpener = null;
+    state.generation += 1;
+    disposeMap();
+    render();
+  }
+
   function renderMapLibre(rows, generation) {
     var canvas = document.getElementById('globalMapCanvas');
     if (!canvas || !rows.length) {
@@ -340,19 +445,22 @@
       return;
     }
     canvas.innerHTML = '<div id="globalMapLibre" class="global-maplibre" aria-label="선택 지역 상세 지도"></div>' +
-      '<div id="globalMapTileStatus" class="global-map-tile-status" hidden>배경지도를 불러오지 못해 좌표만 표시합니다.</div>' +
-      '<div class="global-map-attribution">© OpenStreetMap contributors · © CARTO · MapLibre</div>';
+      '<div id="globalMapTileStatus" class="global-map-tile-status" hidden>배경지도를 불러오지 못해 좌표만 표시합니다.</div>';
     ensureMapLibre().then(function (maplibregl) {
       if (generation !== state.generation || !state.active || !document.getElementById('globalMapLibre')) return;
       disposeMap();
       var maxPrecisionZoom = Math.min.apply(null, rows.map(function (row) { return Core.maxZoomForPrecision(row.coordinate_precision); }));
       var map = new maplibregl.Map({ container: 'globalMapLibre', style: mapStyle(), center: [Number(rows[0].longitude), Number(rows[0].latitude)], zoom: rows.length === 1 ? Math.min(10, maxPrecisionZoom) : 3, maxZoom: maxPrecisionZoom, attributionControl: true });
       state.map = map;
-      state.mapBase = 'maplibre-carto';
+      state.mapBase = 'maplibre-osm';
       state.renderedMarkerCount = rows.length;
       state.tileFailed = false;
-      updateBaseBadge('CARTO · OpenStreetMap');
+      updateBaseBadge('OpenStreetMap · 상세');
       map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+      map.on('zoomend', function () {
+        if (generation !== state.generation || state.map !== map) return;
+        if (Core.shouldReturnToWorld(map.getZoom())) returnToWorldFromDetail(generation);
+      });
       map.on('error', function (event) {
         if (event && event.error && /tile|source|network|fetch/i.test(String(event.error.message || event.error))) {
           if (generation !== state.generation || state.map !== map || state.tileFailed) return;
@@ -448,6 +556,12 @@
           var extent = window.ol.extent.boundingExtent(features.map(function (feature) { return feature.getGeometry().getCoordinates(); }));
           view.fit(extent, { padding: [64, 64, 64, 64], maxZoom: Math.min(12, maxZoom), duration: 0 });
         }
+        if (typeof view.on === 'function') {
+          view.on('change:resolution', function () {
+            if (generation !== state.generation || state.map !== map) return;
+            if (Core.shouldReturnToWorld(view.getZoom())) returnToWorldFromDetail(generation);
+          });
+        }
       } catch (error) {
         if (generation !== state.generation || !state.active) return;
         renderFallbackPlot(rows, 'VWorld 초기화에 실패해 좌표만 표시합니다.');
@@ -479,7 +593,7 @@
       var close = inspector.querySelector('.global-map-inspector-close');
       if (close) close.focus();
     }
-    if (state.map && state.mapBase === 'maplibre-carto' && Core.hasCoordinatePair(row)) {
+    if (state.map && state.mapBase === 'maplibre-osm' && Core.hasCoordinatePair(row)) {
       var visibleCoordinates = state.filteredRows.filter(Core.hasCoordinatePair);
       var mixedCap = visibleCoordinates.length ? Math.min.apply(null, visibleCoordinates.map(function (candidate) { return Core.maxZoomForPrecision(candidate.coordinate_precision); })) : Core.maxZoomForPrecision(row.coordinate_precision);
       var zoom = Math.min(Core.maxZoomForPrecision(row.coordinate_precision), mixedCap, row.coordinate_precision === 'unknown' ? 7 : 14);
@@ -508,9 +622,9 @@
     if (!state.scope.countryCode) {
       state.mapBase = 'concept-svg';
       document.getElementById('globalMapCanvas').innerHTML = worldHtml(rows.filter(Core.hasCoordinatePair));
-      state.renderedMarkerCount = Core.buildCountryClusters(rows.filter(Core.hasCoordinatePair)).length;
+      state.renderedMarkerCount = buildWorldPointGroups(rows.filter(Core.hasCoordinatePair)).length;
       renderWorldList(rows);
-      updateBaseBadge('개념 세계지도');
+      updateBaseBadge('도트 세계지도');
     } else {
       var coordinateRows = rows.filter(Core.hasCoordinatePair);
       renderDetailList(rows);
@@ -592,11 +706,12 @@
       sourceCount: state.rows.length,
       filteredCount: state.filteredRows.length,
       summary: Core.summarize(state.rows),
+      source: state.source,
       scope: Object.assign({}, state.scope),
       mapBase: state.mapBase,
       markerCount: state.renderedMarkerCount,
       selectedAssetId: state.selectedAssetId,
-      zoomCap: state.mapBase === 'maplibre-carto' && state.map && typeof state.map.getMaxZoom === 'function'
+      zoomCap: state.mapBase === 'maplibre-osm' && state.map && typeof state.map.getMaxZoom === 'function'
         ? state.map.getMaxZoom()
         : (state.mapBase === 'vworld-graphic' && state.map && state.map.getView && state.map.getView().getMaxZoom ? state.map.getView().getMaxZoom() : null),
       tileFailed: state.tileFailed
