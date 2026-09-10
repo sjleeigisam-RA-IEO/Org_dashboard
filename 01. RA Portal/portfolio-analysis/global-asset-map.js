@@ -98,6 +98,9 @@
     if (!Array.isArray(data.assets) || data.assets.length > 10000 || Number(data.count) !== data.assets.length) {
       throw new Error('위치 데이터 형식이 올바르지 않습니다.');
     }
+    if (data.assets.length === 0) {
+      throw new Error('위치 DB 응답이 0건입니다. 데이터 연결 상태를 관리자에게 확인해 주세요.');
+    }
     data.assets.forEach(function (row) {
       var computed = Core.classifyLocation(row).tier;
       if (computed !== row.location_tier) throw new Error('위치 단계 계약이 일치하지 않습니다: ' + String(row.asset_id || 'unknown'));
