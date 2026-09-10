@@ -12,11 +12,6 @@
     <script>
         document.documentElement.style.visibility = 'hidden';
         window.__RA_ADMIN_READY__ = (async () => {
-            const localOnly = ['127.0.0.1', 'localhost', '::1'].includes(window.location.hostname);
-            if (localOnly) {
-                document.documentElement.style.visibility = '';
-                return true;
-            }
             let user = window.RAAuth?.getSessionUser?.();
             if (!user) user = await window.RAAuth?.resumeRememberedSession?.();
             if (!window.RAAuth?.isAdminUser?.(user)) {

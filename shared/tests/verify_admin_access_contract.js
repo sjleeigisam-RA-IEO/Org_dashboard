@@ -96,6 +96,7 @@ const sourceChecks = [
   ['05. Org Board/admin.html', /location\.replace\('\.\.\/01\. RA Portal\/portfolio-analysis\/index-v2\.html'\)/],
   ['01. RA Portal/portfolio-analysis/index-v2.html', /RAAuth\.request\('admin-check'/],
   ['01. RA Portal/portfolio-analysis/index-v2.html', /id="v2AccessMonitorLink"[^>]+aria-label="접속 현황 열기"[^>]+hidden/],
+  ['01. RA Portal/portfolio-analysis/ux-v2.css', /\.v2-tool-link\[hidden\]\s*\{[^}]*display:\s*none\s*!important;/s],
   ['supabase/functions/ra-auth/index.ts', /const ADMIN_EMAIL = "sjlee@igisam\.com"/],
   ['supabase/functions/ra-auth/index.ts', /async function requireAdminSession\(token: string\)/],
   ['01. RA Portal/portfolio-analysis/js/asset-canonical.js', /function renderAdminBar\(container\) \{\s+if \(!isAuthorizedAdmin\(\)\) return;/s],
@@ -111,5 +112,10 @@ sourceChecks.forEach(([relativePath, pattern]) => {
 const portalSource = fs.readFileSync(path.join(ROOT, '01. RA Portal', 'portfolio-analysis', 'index-v2.html'), 'utf8');
 const accessLink = portalSource.match(/<a id="v2AccessMonitorLink"[^>]*>/)?.[0] || '';
 assert.doesNotMatch(accessLink, /target="_blank"/, 'session-only admin access must remain in the current tab');
+assert.match(accessLink, /style="display:none;"/, 'access monitor link must be hidden before authorization');
+assert.doesNotMatch(portalSource, /const isLocal = \['127\.0\.0\.1'/, 'localhost must not bypass the access monitor gate');
+
+const adminPageSource = fs.readFileSync(path.join(ROOT, '05. Org Board', 'admin.html'), 'utf8');
+assert.doesNotMatch(adminPageSource, /const localOnly = \['127\.0\.0\.1'/, 'localhost must not bypass the admin page gate');
 
 console.log('Admin access contract verified: sjlee only; 7 non-admin identities rejected.');

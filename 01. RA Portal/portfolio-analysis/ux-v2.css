@@ -116,6 +116,10 @@ body.ux-v2 {
   transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
 }
 
+.v2-tool-link[hidden] {
+  display: none !important;
+}
+
 .v2-tool-link:hover,
 .v2-tool-link:focus-visible {
   border-color: rgba(242, 196, 100, 0.9);

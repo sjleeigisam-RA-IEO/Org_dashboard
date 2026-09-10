@@ -11,7 +11,7 @@
   <title>IGIS RA Insight v2 | Local UX Preview</title>
   <link rel="stylesheet" href="../../shared/ifpdp-system-theme.css?v=ifpdp_system_3">
   <link rel="stylesheet" href="style.css?v=previous_year_aum_20260901b">
-  <link rel="stylesheet" href="ux-v2.css?v=ux_v2_core_20260824a">
+  <link rel="stylesheet" href="ux-v2.css?v=access_owner_only_20260910a">
   <link rel="stylesheet" href="ux-v2-components.css?v=ux_v2_components_20260824b">
 <link rel="stylesheet" href="global-asset-map.css?v=global_asset_map_20260910m">
   <link rel="icon" href="data:,">
@@ -130,7 +130,7 @@
     <a class="v2-tool-link" href="../../03. Construction Board/index.html" target="_blank" rel="noopener noreferrer" aria-label="시공사정보 새 탭에서 열기">
       <span>시공사정보</span><span class="v2-tool-link-external" aria-hidden="true">↗</span>
     </a>
-    <a id="v2AccessMonitorLink" class="v2-tool-link" href="../../05. Org Board/admin.html" aria-label="접속 현황 열기" hidden>
+    <a id="v2AccessMonitorLink" class="v2-tool-link" href="../../05. Org Board/admin.html" aria-label="접속 현황 열기" hidden style="display:none;">
       <span>접속 현황</span><span class="v2-tool-link-external" aria-hidden="true">↗</span>
     </a>
   </nav>
@@ -427,30 +427,24 @@
 
     const accessMonitorLink = document.getElementById('v2AccessMonitorLink');
     let accessMonitorCheckPending = false;
-    let accessMonitorVerified = false;
-    const syncAccessMonitorLink = async () => {
+    const setAccessMonitorVisibility = (visible) => {
       if (!accessMonitorLink) return;
-      accessMonitorLink.hidden = true;
-      if (accessMonitorVerified) {
-        accessMonitorLink.hidden = false;
-        return;
-      }
-      const isLocal = ['127.0.0.1', 'localhost', '::1'].includes(window.location.hostname);
-      if (isLocal) {
-        accessMonitorVerified = true;
-        accessMonitorLink.hidden = false;
-        return;
-      }
-      const isAdmin = window.RAAuth?.isAdminUser?.(window.RAAuth?.getSessionUser?.()) === true;
+      accessMonitorLink.hidden = !visible;
+      accessMonitorLink.style.display = visible ? '' : 'none';
+    };
+    const syncAccessMonitorLink = async () => {
+      setAccessMonitorVisibility(false);
       const token = window.RAAuth?.getSessionToken?.();
-      if (!isAdmin || !token || accessMonitorCheckPending) return;
+      if (!token || accessMonitorCheckPending) return;
       accessMonitorCheckPending = true;
       try {
         const result = await window.RAAuth.request('admin-check', { session_token: token });
-        accessMonitorVerified = result?.authorized === true;
-        accessMonitorLink.hidden = !accessMonitorVerified;
+        const verifiedEmail = String(result?.user?.email || '').trim().toLowerCase();
+        setAccessMonitorVisibility(
+          result?.authorized === true && verifiedEmail === window.RAAuth.ADMIN_EMAIL,
+        );
       } catch {
-        accessMonitorLink.hidden = true;
+        setAccessMonitorVisibility(false);
       } finally {
         accessMonitorCheckPending = false;
       }
