@@ -20,7 +20,8 @@
     mapBase: 'concept-svg',
     tileFailed: false,
     renderedMarkerCount: 0,
-    source: ''
+    source: '',
+    loadStatus: 'idle'
   };
 
   var COUNTRY_NAMES = {
@@ -63,6 +64,7 @@
     state.rows = [];
     state.filteredRows = [];
     state.inspectorOpener = null;
+    state.loadStatus = 'idle';
     document.body.classList.remove('global-asset-map-mode');
   }
 
@@ -148,23 +150,43 @@
     disposeMap();
     panel.innerHTML = loadingHtml();
     var generation = state.generation;
-    if (state.rows.length) {
+    if (state.loadStatus === 'loaded') {
       render();
       return;
     }
+    state.loadStatus = 'loading';
     fetchRows(generation).then(function (rows) {
       if (!rows || generation !== state.generation || !state.active) return;
       state.rows = rows;
+      state.loadStatus = 'loaded';
+      state.controller = null;
       render();
     }).catch(function (error) {
       if (error && error.name === 'AbortError') return;
       if (generation !== state.generation || !state.active) return;
+      state.loadStatus = 'error';
+      state.controller = null;
       panel.innerHTML = errorHtml(error.message || error);
     });
   }
 
   function retry() {
     state.rows = [];
+    state.loadStatus = 'idle';
+    activate();
+  }
+
+  function restore() {
+    if (!state.active) return;
+    if (state.loadStatus === 'loaded') {
+      render();
+      return;
+    }
+    var panel = document.getElementById('detailPanel');
+    if (state.loadStatus === 'loading') {
+      if (panel) panel.innerHTML = loadingHtml();
+      return;
+    }
     activate();
   }
 
@@ -714,9 +736,10 @@
       zoomCap: state.mapBase === 'maplibre-osm' && state.map && typeof state.map.getMaxZoom === 'function'
         ? state.map.getMaxZoom()
         : (state.mapBase === 'vworld-graphic' && state.map && state.map.getView && state.map.getView().getMaxZoom ? state.map.getView().getMaxZoom() : null),
-      tileFailed: state.tileFailed
+      tileFailed: state.tileFailed,
+      loadStatus: state.loadStatus
     };
   }
 
-  window.GlobalAssetMap = { activate: activate, deactivate: deactivate, retry: retry, restore: render, audit: audit };
+  window.GlobalAssetMap = { activate: activate, deactivate: deactivate, retry: retry, restore: restore, audit: audit };
 })();
