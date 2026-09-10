@@ -7,17 +7,20 @@
   <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
   <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
   <meta name="referrer" content="no-referrer">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' http://localhost:8050 https://qvegpozwrcmspdvjokiz.supabase.co https://cdn.jsdelivr.net; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' http://localhost:8050 https://qvegpozwrcmspdvjokiz.supabase.co https://qvegpozwrcmspdvjokiz.functions.supabase.co https://cdn.jsdelivr.net; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content">
   <meta http-equiv="Permissions-Policy" content="accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), microphone=(), payment=(), usb=()">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <script>
+    document.documentElement.setAttribute("data-t5t-auth", "pending");
     if (new URLSearchParams(window.location.search).has("embedded")) {
       document.documentElement.classList.add("embedded-frame");
     }
   </script>
+  <style>html[data-t5t-auth="pending"] body { visibility: hidden; }</style>
+  <script src="../security-lite.js?v=t5t_exec_gate_1"></script>
   <title>T5T Dashboard — RA 부문 업무 현황</title>
   <style>
   .pulse-viz-container::-webkit-scrollbar { height: 2px; }
@@ -283,7 +286,6 @@
 <script src="t5t-service-v2.js?v=v_infinite_v41"></script>
 <script src="t5t-charts.js?v=v_infinite_v33"></script>
 <script src="app-v2.js?v=v_infinite_v55"></script>
-    <script src="../security-lite.js?v=ra_presence_2"></script>
 <nav class="mobile-dashboard-tabs" aria-label="Mobile dashboard navigation">
   <a class="mobile-dashboard-tab" href="../01. RA Portal/portfolio-analysis/index.html">펀드검색</a>
   <a class="mobile-dashboard-tab is-active" href="./index.html">T5T</a>

@@ -39,6 +39,10 @@
     return String(user?.email || "").trim().toLowerCase() === ADMIN_EMAIL;
   }
 
+  function isExecutiveUser(user = getSessionUser()) {
+    return user?.is_executive === true;
+  }
+
   function setSessionUser(user) {
     sessionStorage.setItem(USER_KEY, JSON.stringify(user));
     sessionStorage.setItem(LAST_ACTIVE_KEY, String(Date.now()));
@@ -119,6 +123,20 @@
     }
   }
 
+  async function refreshSessionUser() {
+    const token = getSessionToken();
+    if (!token) return null;
+    try {
+      const data = await request("session-profile", { session_token: token });
+      sessionStorage.setItem(SESSION_TOKEN_KEY, token);
+      setSessionUser(data.user);
+      return data.user;
+    } catch {
+      clearLocal();
+      return null;
+    }
+  }
+
   async function logout() {
     const token = getSessionToken();
     clearLocal();
@@ -141,6 +159,7 @@
     request,
     getSessionUser,
     isAdminUser,
+    isExecutiveUser,
     setSessionUser,
     saveSessionToken,
     saveRememberToken,
@@ -151,6 +170,7 @@
     heartbeat,
     startPresence,
     resumeRememberedSession,
+    refreshSessionUser,
     logout,
   };
 })();

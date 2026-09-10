@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./shared/ifpdp-system-theme.css?v=ifpdp_system_3">
     <link rel="stylesheet" href="./05. Org Board/admin.css">
     <script src="./01. RA Portal/portfolio-analysis/config.js"></script>
-    <script src="./shared/ra-auth.js?v=ra_presence_2"></script>
+    <script src="./shared/ra-auth.js?v=ra_role_gate_1"></script>
     <style>
         body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #1f1f1e; font-family: var(--font); }
         
@@ -103,7 +103,7 @@
             <a href="#" class="nav-brand">🛰️ IGIS RA Portal</a>
             <div class="nav-links">
                 <div id="tab-insight" class="nav-link-btn active" onclick="switchTab('insight')">RA Insight</div>
-                <div id="tab-t5t" class="nav-link-btn" onclick="switchTab('t5t')">T5T 업무</div>
+                <div id="tab-t5t" class="nav-link-btn" style="display:none;" onclick="switchTab('t5t')">T5T 업무</div>
                 <div id="tab-org" class="nav-link-btn" onclick="switchTab('org')">조직구성</div>
                 <a id="tab-construction" class="nav-link-btn external-dashboard-link" href="./03. Construction Board/index.html" target="_blank" rel="noopener noreferrer">시공사 정보</a>
                 <div id="tab-admin" class="nav-link-btn" style="display:none;" onclick="switchTab('admin')">어드민 (Local)</div>
@@ -127,7 +127,7 @@
 
     <nav class="mobile-dashboard-tabs portal-mobile-tabs" aria-label="Mobile dashboard navigation">
         <button id="mobile-tab-insight" class="mobile-dashboard-tab is-active" type="button" onclick="switchTab('insight')">펀드검색</button>
-        <button id="mobile-tab-t5t" class="mobile-dashboard-tab" type="button" onclick="switchTab('t5t')">T5T</button>
+        <button id="mobile-tab-t5t" class="mobile-dashboard-tab" type="button" style="display:none;" onclick="switchTab('t5t')">T5T</button>
         <button id="mobile-tab-input" class="mobile-dashboard-tab" type="button" onclick="switchTab('input')">T5T작성</button>
         <button id="mobile-tab-org" class="mobile-dashboard-tab" type="button" onclick="switchTab('org')">조직</button>
         <a id="mobile-tab-construction" class="mobile-dashboard-tab external-dashboard-link" href="./03. Construction Board/index.html" target="_blank" rel="noopener noreferrer">시공사</a>
@@ -141,8 +141,9 @@
             org: './05. Org Board/index.html',
             admin: './05. Org Board/admin.html'
         };
-        const FRAME_VERSION = 'admin_access_log_1';
+        const FRAME_VERSION = 't5t_exec_gate_1';
         const loaded = new Set();
+        let executiveAccess = false;
 
         function markEmbeddedFrame(frame) {
             try {
@@ -165,6 +166,7 @@
         }
 
         function switchTab(id) {
+            if (id === 't5t' && !executiveAccess) return;
             // Update UI
             document.querySelectorAll('.nav-link-btn').forEach(b => b.classList.remove('active'));
             const desktopTab = document.getElementById(`tab-${id}`);
@@ -204,7 +206,17 @@
                 return;
             }
 
+            const refreshedUser = await RAAuth.refreshSessionUser();
+            if (!refreshedUser) {
+                location.href = './index.html';
+                return;
+            }
+            raUser = refreshedUser;
+
             document.getElementById('userNameDisplay').innerText = raUser.name;
+            executiveAccess = window.RAAuth?.isExecutiveUser?.(raUser) === true;
+            document.getElementById('tab-t5t').style.display = executiveAccess ? '' : 'none';
+            document.getElementById('mobile-tab-t5t').style.display = executiveAccess ? '' : 'none';
             if (window.RAAuth?.isAdminUser?.(raUser)) {
                 document.getElementById('tab-admin').style.display = 'block';
             }

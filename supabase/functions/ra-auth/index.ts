@@ -17,12 +17,37 @@ const DIRECT_LOGIN_EMAILS = new Set([
   "ethan.lee@igisam.com",
   "hshin@igisam.com",
 ]);
+const EXECUTIVE_TITLES = new Set([
+  "이사",
+  "이사대우",
+  "상무보",
+  "상무",
+  "전무",
+  "부사장",
+  "사장",
+  "대표이사",
+  "부회장",
+  "회장",
+]);
+const EXECUTIVE_POSITIONS = new Set([
+  "임원",
+  "담당임원",
+  "대표",
+  "대표이사",
+  "경영대표",
+  "부문대표",
+  "사장",
+  "부사장",
+  "부회장",
+  "회장",
+]);
 
 type Mode =
   | "setup-check"
   | "set-password"
   | "login"
   | "resume-session"
+  | "session-profile"
   | "heartbeat"
   | "admin-check"
   | "admin-access-list"
@@ -43,6 +68,8 @@ type StaffRow = {
   employee_no?: string | null;
   name: string;
   email: string;
+  position?: string | null;
+  title?: string | null;
   status?: string | null;
 };
 
@@ -58,6 +85,7 @@ Deno.serve(async (request) => {
     if (mode === "set-password") return await handleSetPassword(payload);
     if (mode === "login") return await handleLogin(payload);
     if (mode === "resume-session") return await handleResumeSession(payload);
+    if (mode === "session-profile") return await handleSessionProfile(payload);
     if (mode === "heartbeat") return await handleHeartbeat(payload);
     if (mode === "admin-check") return await handleAdminCheck(payload);
     if (mode === "admin-access-list") return await handleAdminAccessList(payload);
@@ -137,6 +165,14 @@ async function handleResumeSession(payload: AuthPayload) {
   const staff = await findActiveStaffById(session.staff_id);
   await patchRows("ra_auth_sessions", `token_hash=eq.${tokenHash}`, { last_seen_at: now.toISOString() });
   await recordStaffAccess(staff.staff_id);
+  return jsonResponse({ ok: true, user: publicUser(staff) });
+}
+
+async function handleSessionProfile(payload: AuthPayload) {
+  const token = requireText(payload.session_token, "세션 토큰이 필요합니다.");
+  const { session, tokenHash, now } = await requireValidSession(token);
+  const staff = await findActiveStaffById(session.staff_id);
+  await patchRows("ra_auth_sessions", `token_hash=eq.${tokenHash}`, { last_seen_at: now.toISOString() });
   return jsonResponse({ ok: true, user: publicUser(staff) });
 }
 
@@ -283,13 +319,13 @@ async function assertSetupCode(setupCode: string, consume: boolean) {
 }
 
 async function findActiveStaff(email: string): Promise<StaffRow> {
-  const staff = await selectOne("staff", `email=ilike.${encodeURIComponent(email)}&select=staff_id,employee_no,name,email,status`);
+  const staff = await selectOne("staff", `email=ilike.${encodeURIComponent(email)}&select=staff_id,employee_no,name,email,position,title,status`);
   if (!staff || staff.status !== "active") throw new Error("VALIDATION: 등록된 재직자 이메일만 사용할 수 있습니다.");
   return staff as StaffRow;
 }
 
 async function findActiveStaffById(staffId: string): Promise<StaffRow> {
-  const staff = await selectOne("staff", `staff_id=eq.${encodeURIComponent(staffId)}&select=staff_id,employee_no,name,email,status`);
+  const staff = await selectOne("staff", `staff_id=eq.${encodeURIComponent(staffId)}&select=staff_id,employee_no,name,email,position,title,status`);
   if (!staff || staff.status !== "active") throw new Error("VALIDATION: 등록된 재직자 이메일만 사용할 수 있습니다.");
   return staff as StaffRow;
 }
@@ -378,7 +414,23 @@ function publicUser(staff: StaffRow) {
     employee_no: staff.employee_no || null,
     name: staff.name,
     email: normalizeEmail(staff.email),
+    is_executive: isExecutiveStaff(staff),
   };
+}
+
+function isExecutiveStaff(staff: StaffRow) {
+  const titleTokens = roleTokens(staff.title);
+  const positionTokens = roleTokens(staff.position);
+  return titleTokens.some((token) => EXECUTIVE_TITLES.has(token)) ||
+    positionTokens.some((token) => EXECUTIVE_POSITIONS.has(token));
+}
+
+function roleTokens(value?: string | null) {
+  return String(value || "")
+    .normalize("NFKC")
+    .split(/[\s/,·|]+/)
+    .map((token) => token.trim())
+    .filter(Boolean);
 }
 
 function normalizeEmail(email?: string) {

@@ -17,15 +17,22 @@
   }
 
   async function ensureSession() {
-    if (hasActiveSession()) return true;
+    const executiveRequired = isT5TDashboardPath();
+    if (!executiveRequired && hasActiveSession()) return true;
 
     const token = getSessionToken();
     if (token) {
       try {
-        const data = await authRequest("resume-session", { session_token: token });
+        const mode = executiveRequired ? "session-profile" : "resume-session";
+        const data = await authRequest(mode, { session_token: token });
+        if (executiveRequired && data.user?.is_executive !== true) {
+          redirectToPortal();
+          return false;
+        }
         sessionStorage.setItem(SESSION_TOKEN_KEY, token);
         sessionStorage.setItem(USER_KEY, JSON.stringify(data.user));
         sessionStorage.setItem(LAST_ACTIVE_KEY, String(Date.now()));
+        revealT5TDashboard();
         return true;
       } catch {
         clearAuth();
@@ -34,6 +41,19 @@
 
     redirectToLogin();
     return false;
+  }
+
+  function isT5TDashboardPath() {
+    const pathname = decodeURIComponent(window.location.pathname);
+    return pathname.includes("/02. T5T Board/") && !pathname.includes("/02. T5T Board/input-form/");
+  }
+
+  function revealT5TDashboard() {
+    document.documentElement.removeAttribute("data-t5t-auth");
+  }
+
+  function redirectToPortal() {
+    window.top.location.replace("../01. RA Portal/portfolio-analysis/index-v2.html?access=t5t-restricted");
   }
 
   function hasActiveSession() {
