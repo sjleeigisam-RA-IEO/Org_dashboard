@@ -17,7 +17,7 @@
   <link rel="icon" href="data:,">
   <!-- Supabase & VWorld JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../../shared/ra-auth.js?v=ra_presence_1"></script>
+  <script src="../../shared/ra-auth.js?v=ra_presence_2"></script>
   <script type="text/javascript" src="https://map.vworld.kr/js/vworldMapInit.js.do?version=2.0&apiKey=02B5F8FA-CC59-3109-86FD-0C9C1B98B5BF"></script>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <style>
@@ -130,7 +130,7 @@
     <a class="v2-tool-link" href="../../03. Construction Board/index.html" target="_blank" rel="noopener noreferrer" aria-label="시공사정보 새 탭에서 열기">
       <span>시공사정보</span><span class="v2-tool-link-external" aria-hidden="true">↗</span>
     </a>
-    <a id="v2AccessMonitorLink" class="v2-tool-link" href="../../05. Org Board/admin.html" target="_blank" rel="noopener noreferrer" aria-label="접속 현황 새 탭에서 열기" hidden>
+    <a id="v2AccessMonitorLink" class="v2-tool-link" href="../../05. Org Board/admin.html" aria-label="접속 현황 열기" hidden>
       <span>접속 현황</span><span class="v2-tool-link-external" aria-hidden="true">↗</span>
     </a>
   </nav>
@@ -402,17 +402,41 @@
 </script>
   <script>
     const accessMonitorLink = document.getElementById('v2AccessMonitorLink');
-    const syncAccessMonitorLink = () => {
+    let accessMonitorCheckPending = false;
+    let accessMonitorVerified = false;
+    const syncAccessMonitorLink = async () => {
+      if (!accessMonitorLink) return;
+      accessMonitorLink.hidden = true;
+      if (accessMonitorVerified) {
+        accessMonitorLink.hidden = false;
+        return;
+      }
       const isLocal = ['127.0.0.1', 'localhost', '::1'].includes(window.location.hostname);
+      if (isLocal) {
+        accessMonitorVerified = true;
+        accessMonitorLink.hidden = false;
+        return;
+      }
       const isAdmin = window.RAAuth?.isAdminUser?.(window.RAAuth?.getSessionUser?.()) === true;
-      if (accessMonitorLink) accessMonitorLink.hidden = !(isLocal || isAdmin);
+      const token = window.RAAuth?.getSessionToken?.();
+      if (!isAdmin || !token || accessMonitorCheckPending) return;
+      accessMonitorCheckPending = true;
+      try {
+        const result = await window.RAAuth.request('admin-check', { session_token: token });
+        accessMonitorVerified = result?.authorized === true;
+        accessMonitorLink.hidden = !accessMonitorVerified;
+      } catch {
+        accessMonitorLink.hidden = true;
+      } finally {
+        accessMonitorCheckPending = false;
+      }
     };
     syncAccessMonitorLink();
     window.setTimeout(syncAccessMonitorLink, 900);
 
     if (!['127.0.0.1', 'localhost'].includes(window.location.hostname)) {
       const authScript = document.createElement('script');
-      authScript.src = '../../security-lite.js?v=ra_presence_1';
+      authScript.src = '../../security-lite.js?v=ra_presence_2';
       document.body.appendChild(authScript);
     }
   </script>

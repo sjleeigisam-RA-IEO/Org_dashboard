@@ -4,14 +4,18 @@ const _supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 let allStaff = [];
 let allOrgs = [];
 let filteredStaff = [];
-let sortConfig = { key: 'custom', direction: 'asc' }; // 'custom' is the default hierarchical sort
+let accessSnapshot = { connected: false, generatedAt: null, onlineWindowMinutes: 5 };
+let accessRefreshTimer = null;
+let sortConfig = { key: 'last_login', direction: 'desc' };
 
 // DOM Elements
 const staffTableBody = document.getElementById('staffTableBody');
 const staffSearch = document.getElementById('staffSearch');
 const totalCount = document.getElementById('totalCount');
-const activeCount = document.getElementById('activeCount');
-const inactiveCount = document.getElementById('inactiveCount');
+const onlineCount = document.getElementById('onlineCount');
+const sessionCount = document.getElementById('sessionCount');
+const historyCount = document.getElementById('historyCount');
+const presenceUpdatedAt = document.getElementById('presenceUpdatedAt');
 const loadingOverlay = document.getElementById('loadingOverlay');
 
 const staffModal = document.getElementById('staffModal');
@@ -23,6 +27,8 @@ const statusToggle = document.getElementById('status_toggle');
 const statusText = document.getElementById('status_text');
 const sectionFilter = document.getElementById('sectionFilter');
 const statusFilter = document.getElementById('statusFilter');
+const accessFilter = document.getElementById('accessFilter');
+const refreshAccessBtn = document.getElementById('refreshAccessBtn');
 const sortableHeaders = document.querySelectorAll('.sortable');
 
 // Init
@@ -31,8 +37,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         const allowed = await window.__RA_ADMIN_READY__;
         if (!allowed) return;
     }
-    await loadInitialData();
     setupEventListeners();
+    updateSortIndicators();
+    window.RAAuth?.startPresence?.();
+    await loadInitialData();
+    startAccessAutoRefresh();
 });
 
 async function loadInitialData() {
@@ -49,12 +58,15 @@ async function loadInitialData() {
         allStaff = staffRes.data || [];
         allOrgs = orgsRes.data || [];
 
-        applyCustomSort();
-        filteredStaff = [...allStaff];
+        if (window.__RA_ADMIN_ACCESS_SNAPSHOT__) {
+            applyAccessSnapshot(window.__RA_ADMIN_ACCESS_SNAPSHOT__);
+            delete window.__RA_ADMIN_ACCESS_SNAPSHOT__;
+        } else {
+            await refreshAccessSnapshot({ silent: true, rerender: false });
+        }
 
         populateOrgDropdown();
-        renderStaffTable();
-        updateStats();
+        filterAndRender();
     } catch (error) {
         console.error('Error loading data:', error);
         alert('데이터를 불러오는 중 오류가 발생했습니다.');
@@ -63,56 +75,85 @@ async function loadInitialData() {
     }
 }
 
-function applyCustomSort() {
-    const sectionPriority = {
-        '투자+펀딩': 1,
-        '사업+개발': 2,
-        '관리+운영': 3,
-        '부문외': 4
+async function refreshAccessSnapshot({ silent = false, rerender = true } = {}) {
+    const token = window.RAAuth?.getSessionToken?.();
+    refreshAccessBtn?.classList.add('is-loading');
+    if (refreshAccessBtn) refreshAccessBtn.disabled = true;
+
+    try {
+        const data = await requestAccessSnapshot(token);
+        applyAccessSnapshot(data);
+        if (rerender) filterAndRender();
+        return true;
+    } catch (error) {
+        accessSnapshot.connected = false;
+        if (presenceUpdatedAt) presenceUpdatedAt.textContent = '실시간 연결 전';
+        if (!silent) console.warn(error.message || '접속 현황을 갱신하지 못했습니다.');
+        if (rerender) updateStats();
+        return false;
+    } finally {
+        refreshAccessBtn?.classList.remove('is-loading');
+        if (refreshAccessBtn) refreshAccessBtn.disabled = false;
+    }
+}
+
+async function requestAccessSnapshot(token) {
+    if (['127.0.0.1', 'localhost', '::1'].includes(window.location.hostname)) {
+        const response = await fetch('/__ra_access_snapshot', { cache: 'no-store' });
+        if (response.ok) return await response.json();
+    }
+    if (!token) throw new Error('접속 현황을 보려면 다시 로그인해야 합니다.');
+    return await window.RAAuth.request('admin-access-list', { session_token: token });
+}
+
+function applyAccessSnapshot(data) {
+    const byId = new Map();
+    const byEmail = new Map();
+
+    (data?.visitors || []).forEach(visitor => {
+        const email = String(visitor.email || '').trim().toLowerCase();
+        const existing = (email && byEmail.get(email)) || byId.get(visitor.staff_id);
+        const merged = existing ? {
+            ...existing,
+            online: Boolean(existing.online || visitor.online),
+            session_active: Boolean(existing.session_active || visitor.session_active),
+            login_count: Math.max(Number(existing.login_count || 0), Number(visitor.login_count || 0)),
+            last_login_at: latestTimestamp(existing.last_login_at, visitor.last_login_at),
+            last_seen_at: latestTimestamp(existing.last_seen_at, visitor.last_seen_at),
+        } : visitor;
+
+        if (visitor.staff_id) byId.set(visitor.staff_id, merged);
+        if (email) byEmail.set(email, merged);
+    });
+
+    allStaff.forEach(staff => {
+        const email = String(staff.email || '').trim().toLowerCase();
+        const access = (email ? byEmail.get(email) : null) || byId.get(staff.staff_id) || null;
+        staff._access = access;
+        if (access?.last_login_at) staff.last_login = access.last_login_at;
+        if (access) staff.login_count = Math.max(Number(staff.login_count || 0), Number(access.login_count || 0));
+    });
+
+    accessSnapshot = {
+        connected: true,
+        generatedAt: data?.generated_at || new Date().toISOString(),
+        onlineWindowMinutes: Number(data?.online_window_minutes || 5),
     };
+}
 
-    const titlePriority = {
-        '본부장': 1,
-        '이사': 2,
-        '디렉터': 3,
-        '시니어매니저': 4,
-        '매니저': 5,
-        '전문위원': 6,
-        '어드바이저': 7
-    };
+function latestTimestamp(left, right) {
+    if (!left) return right || null;
+    if (!right) return left;
+    return new Date(left) >= new Date(right) ? left : right;
+}
 
-    allStaff.sort((a, b) => {
-        // 0. Is Main (Excel based) Priority - Main first
-        const isMainA = a.metadata?.is_main !== false;
-        const isMainB = b.metadata?.is_main !== false;
-        if (isMainA !== isMainB) return isMainA ? -1 : 1;
-
-        // 1. Section Priority
-        const getSecPrio = (s) => {
-            const path = s.orgs?.metadata?.full_path || '';
-            if (path.includes('투자+펀딩')) return 1;
-            if (path.includes('사업+개발')) return 2;
-            if (path.includes('관리+운영')) return 3;
-            if (path.includes('부문')) return 4;
-            return 99;
-        };
-
-        const prioA = getSecPrio(a);
-        const prioB = getSecPrio(b);
-        if (prioA !== prioB) return prioA - prioB;
-
-        // 2. Org Name
-        const orgA = a.orgs?.org_name || 'ZZZ';
-        const orgB = b.orgs?.org_name || 'ZZZ';
-        if (orgA !== orgB) return orgA.localeCompare(orgB, 'ko');
-
-        // 3. Title Priority
-        const tA = titlePriority[a.title] || 99;
-        const tB = titlePriority[b.title] || 99;
-        if (tA !== tB) return tA - tB;
-
-        // 4. Name
-        return a.name.localeCompare(b.name, 'ko');
+function startAccessAutoRefresh() {
+    if (accessRefreshTimer) window.clearInterval(accessRefreshTimer);
+    accessRefreshTimer = window.setInterval(() => {
+        if (document.visibilityState === 'visible') refreshAccessSnapshot({ silent: true });
+    }, 30 * 1000);
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') refreshAccessSnapshot({ silent: true });
     });
 }
 
@@ -122,23 +163,14 @@ function setupEventListeners() {
     staffSearch.addEventListener('input', filterAndRender);
     sectionFilter.addEventListener('change', filterAndRender);
     statusFilter.addEventListener('change', filterAndRender);
+    accessFilter.addEventListener('change', filterAndRender);
+    refreshAccessBtn.addEventListener('click', () => refreshAccessSnapshot());
 
     // Sorting
     sortableHeaders.forEach(header => {
         header.addEventListener('click', () => {
             const key = header.getAttribute('data-sort');
             handleSort(key);
-
-            // Update icons
-            sortableHeaders.forEach(h => {
-                const icon = h.querySelector('i');
-                if (!icon) return;
-                if (h === header) {
-                    icon.className = sortConfig.direction === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down';
-                } else {
-                    icon.className = 'fas fa-sort';
-                }
-            });
         });
     });
 
@@ -160,6 +192,7 @@ function filterAndRender() {
     const term = staffSearch.value.toLowerCase();
     const section = sectionFilter.value;
     const status = statusFilter.value;
+    const access = accessFilter.value;
 
     filteredStaff = allStaff.filter(s => {
         const matchesSearch = s.name.toLowerCase().includes(term) ||
@@ -168,10 +201,15 @@ function filterAndRender() {
 
         const matchesSection = !section || (s.orgs?.metadata?.full_path || '').includes(section);
         const matchesStatus = !status || s.status === status;
+        const matchesAccess = !access ||
+                            (access === 'online' && isStaffOnline(s)) ||
+                            (access === 'accessed' && hasStaffAccess(s)) ||
+                            (access === 'never' && !hasStaffAccess(s));
 
-        return matchesSearch && matchesSection && matchesStatus;
+        return matchesSearch && matchesSection && matchesStatus && matchesAccess;
     });
 
+    sortStaffRows(filteredStaff);
     renderStaffTable();
     updateStats();
 }
@@ -181,15 +219,25 @@ function handleSort(key) {
         sortConfig.direction = sortConfig.direction === 'asc' ? 'desc' : 'asc';
     } else {
         sortConfig.key = key;
-        sortConfig.direction = 'asc';
+        sortConfig.direction = ['presence', 'last_login', 'login_count'].includes(key) ? 'desc' : 'asc';
     }
 
+    sortStaffRows(filteredStaff);
+    updateSortIndicators();
+    renderStaffTable();
+}
+
+function sortStaffRows(rows) {
     const dir = sortConfig.direction === 'asc' ? 1 : -1;
 
-    filteredStaff.sort((a, b) => {
+    rows.sort((a, b) => {
         let valA, valB;
 
-        switch (key) {
+        switch (sortConfig.key) {
+            case 'presence':
+                valA = presenceSortValue(a);
+                valB = presenceSortValue(b);
+                break;
             case 'status':
                 valA = a.status;
                 valB = b.status;
@@ -211,8 +259,8 @@ function handleSort(key) {
                 valB = b.title || '';
                 break;
             case 'last_login':
-                valA = a.last_login || '';
-                valB = b.last_login || '';
+                valA = getStaffLastLogin(a);
+                valB = getStaffLastLogin(b);
                 break;
             case 'login_count':
                 valA = parseInt(a.login_count) || 0;
@@ -222,12 +270,32 @@ function handleSort(key) {
                 return 0;
         }
 
+        const missingA = valA === '' || valA === null || valA === undefined;
+        const missingB = valB === '' || valB === null || valB === undefined;
+        if (missingA !== missingB) return missingA ? 1 : -1;
         if (valA < valB) return -1 * dir;
         if (valA > valB) return 1 * dir;
-        return 0;
+        return String(a.name || '').localeCompare(String(b.name || ''), 'ko');
     });
+}
 
-    renderStaffTable();
+function updateSortIndicators() {
+    sortableHeaders.forEach(header => {
+        const active = header.getAttribute('data-sort') === sortConfig.key;
+        const icon = header.querySelector('i');
+        header.setAttribute('aria-sort', active
+            ? (sortConfig.direction === 'asc' ? 'ascending' : 'descending')
+            : 'none');
+        if (icon) {
+            icon.className = active
+                ? (sortConfig.direction === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down')
+                : 'fas fa-sort';
+        }
+    });
+}
+
+function getStaffLastLogin(staff) {
+    return staff?._access?.last_login_at || staff?.last_login || '';
 }
 
 function renderStaffTable() {
@@ -246,8 +314,16 @@ function renderStaffTable() {
 
     staffTableBody.innerHTML = uniqueStaff.map(s => {
         const isInactive = s.status !== 'active';
+        const presence = staffPresence(s);
+        const lastLogin = getStaffLastLogin(s);
+        const lastActivity = latestTimestamp(s._access?.last_seen_at, lastLogin);
         return `
         <tr data-id="${s.staff_id}" class="${isInactive ? 'row-inactive' : ''} ${s.metadata?.is_main === false ? 'row-external' : ''}">
+            <td>
+                <span class="presence-badge ${presence.className}" title="${presence.title}">
+                    ${presence.label}
+                </span>
+            </td>
             <td>
                 <span class="status-badge ${s.status === 'active' ? 'active' : 'inactive'}">
                     ${s.status === 'active' ? '재직' : '퇴사'}
@@ -260,8 +336,13 @@ function renderStaffTable() {
                 <div style="font-size: 0.75em; color: var(--text-muted);">${s.orgs?.metadata?.full_path?.split(' > ')[0] || ''}</div>
             </td>
             <td>${s.title || ''} ${s.level ? '/ ' + s.level : ''}</td>
-            <td style="font-size: 0.85em; color: var(--text-muted);">${formatKstDateTime(s.last_login)}</td>
-            <td style="text-align: center; font-weight: 600;">${s.login_count || 0}</td>
+            <td>
+                <div class="last-login-cell">
+                    <span>${formatKstDateTime(lastLogin)}</span>
+                    <span class="last-login-relative">${formatRelativeTime(lastActivity)}</span>
+                </div>
+            </td>
+            <td style="text-align: center; font-weight: 700;"><span class="access-count">${Number(s.login_count || 0).toLocaleString('ko-KR')}</span>회</td>
             <td>
                 <button class="btn-secondary" onclick="openModal('${s.staff_id}')">수정</button>
             </td>
@@ -288,14 +369,85 @@ function formatKstDateTime(value) {
     return `${byType.year}-${byType.month}-${byType.day} ${byType.hour}:${byType.minute}:${byType.second}`;
 }
 
-function updateStats() {
-    const total = filteredStaff.length;
-    const active = filteredStaff.filter(s => s.status === 'active').length;
-    const inactive = total - active;
+function formatRelativeTime(value) {
+    if (!value) return '접속 이력 없음';
+    const elapsedMs = Date.now() - new Date(value).getTime();
+    if (!Number.isFinite(elapsedMs)) return '';
+    const minutes = Math.max(0, Math.floor(elapsedMs / 60000));
+    if (minutes < 1) return '방금 전';
+    if (minutes < 60) return `${minutes}분 전`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours}시간 전`;
+    return `${Math.floor(hours / 24)}일 전`;
+}
 
-    totalCount.innerText = `전체: ${total}명`;
-    activeCount.innerText = `재직: ${active}명`;
-    inactiveCount.innerText = `퇴사: ${inactive}명`;
+function isStaffOnline(staff) {
+    return staff?._access?.online === true;
+}
+
+function staffPresence(staff) {
+    if (isStaffOnline(staff)) {
+        return {
+            className: 'online',
+            label: '접속 중',
+            title: `최근 ${accessSnapshot.onlineWindowMinutes}분 내 인증 활동`,
+        };
+    }
+    if (staff?._access?.session_active === true) {
+        return {
+            className: 'session',
+            label: '로그인 유지',
+            title: '유효한 자동로그인 세션이 남아 있음',
+        };
+    }
+    return { className: 'offline', label: '오프라인', title: '활성 세션 없음' };
+}
+
+function presenceSortValue(staff) {
+    if (isStaffOnline(staff)) return 3;
+    if (staff?._access?.session_active === true) return 2;
+    return hasStaffAccess(staff) ? 1 : 0;
+}
+
+function hasStaffAccess(staff) {
+    return Boolean(staff?.last_login || Number(staff?.login_count || 0) > 0);
+}
+
+function uniqueStaffRows(rows) {
+    const unique = new Map();
+    rows.forEach(staff => {
+        const key = String(staff.email || staff.staff_id || staff.name).trim().toLowerCase();
+        const current = unique.get(key);
+        if (!current || staff.metadata?.is_main === true) unique.set(key, staff);
+    });
+    return Array.from(unique.values());
+}
+
+function updateStats() {
+    const visibleStaff = uniqueStaffRows(filteredStaff);
+    const allUniqueStaff = uniqueStaffRows(allStaff);
+    const online = allUniqueStaff.filter(isStaffOnline).length;
+    const maintained = allUniqueStaff.filter(staff => staff?._access?.session_active === true && !isStaffOnline(staff)).length;
+    const accessed = allUniqueStaff.filter(hasStaffAccess).length;
+
+    onlineCount.innerText = `접속 중 ${online}명`;
+    sessionCount.innerText = `로그인 유지 ${maintained}명`;
+    historyCount.innerText = `접속 이력 ${accessed}명`;
+    totalCount.innerText = `표시 ${visibleStaff.length}명`;
+    presenceUpdatedAt.innerText = accessSnapshot.connected
+        ? `${formatKstTime(accessSnapshot.generatedAt)} 기준 · ${accessSnapshot.onlineWindowMinutes}분 내 활동`
+        : '실시간 연결 전';
+}
+
+function formatKstTime(value) {
+    if (!value) return '-';
+    return new Intl.DateTimeFormat('ko-KR', {
+        timeZone: 'Asia/Seoul',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+    }).format(new Date(value));
 }
 
 function populateOrgDropdown() {

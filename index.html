@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./shared/ifpdp-system-theme.css?v=ifpdp_system_3">
     <link rel="stylesheet" href="./05. Org Board/admin.css">
     <script src="./01. RA Portal/portfolio-analysis/config.js"></script>
-    <script src="./shared/ra-auth.js?v=ra_auth_session_2"></script>
+    <script src="./shared/ra-auth.js?v=ra_presence_2"></script>
     <style>
         * { box-sizing: border-box; }
         body {
@@ -224,10 +224,11 @@
 
         async function boot() {
             const current = RAAuth.getSessionUser();
-            if (current) {
+            if (current && RAAuth.getSessionToken()) {
                 goNext();
                 return;
             }
+            if (current) RAAuth.clearLocal();
             const resumed = await RAAuth.resumeRememberedSession();
             if (resumed) goNext();
         }
@@ -239,6 +240,7 @@
                 email: document.getElementById("loginEmail").value,
                 password: document.getElementById("loginPassword").value,
                 remember: document.getElementById("rememberLogin").checked,
+                presence: true,
             };
             await runAuth(button, "로그인 중...", async () => {
                 const data = await RAAuth.request("login", payload);
@@ -260,6 +262,7 @@
                 setup_code: document.getElementById("setupCode").value,
                 password,
                 remember: document.getElementById("rememberAfterSetup").checked,
+                presence: true,
             };
             await runAuth(button, "설정 중...", async () => {
                 await RAAuth.request("setup-check", {

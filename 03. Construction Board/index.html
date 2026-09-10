@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../shared/ifpdp-system-theme.css?v=ifpdp_system_3">
   <link rel="stylesheet" href="../05. Org Board/styles.css?v=ifpdp_system_org_7">
   <script src="../01. RA Portal/portfolio-analysis/config.js"></script>
-  <script src="../shared/ra-auth.js?v=construction_auth_1"></script>
+    <script src="../shared/ra-auth.js?v=ra_presence_2"></script>
   <style>
     :root {
       color-scheme: dark;
@@ -29129,6 +29129,7 @@ KOSIS 기준연도 2020에 가까운 기본형건축비 앵커. 16~25층 이하,
         return;
       }
       let user = RAAuth.getSessionUser();
+      if (user && !RAAuth.getSessionToken()) user = null;
       if (!user) setConstructionAuthUser(null);
       if (!user) {
         try {
@@ -29142,6 +29143,7 @@ KOSIS 기준연도 2020에 가까운 기본형건축비 앵커. 16~25층 이하,
         return;
       }
       setConstructionAuthUser(user);
+      RAAuth.startPresence();
       document.body.classList.remove("auth-pending");
     }
 

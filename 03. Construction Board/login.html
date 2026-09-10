@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../shared/ifpdp-system-theme.css?v=ifpdp_system_3">
   <link rel="stylesheet" href="../05. Org Board/admin.css">
   <script src="../01. RA Portal/portfolio-analysis/config.js"></script>
-    <script src="../shared/ra-auth.js?v=ra_presence_1"></script>
+    <script src="../shared/ra-auth.js?v=ra_presence_2"></script>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -233,10 +233,11 @@
 
     async function boot() {
       const current = RAAuth.getSessionUser();
-      if (current) {
+      if (current && RAAuth.getSessionToken()) {
         goNext();
         return;
       }
+      if (current) RAAuth.clearLocal();
       const resumed = await RAAuth.resumeRememberedSession();
       if (resumed) goNext();
     }

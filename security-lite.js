@@ -3,7 +3,9 @@
   const SESSION_TOKEN_KEY = "ra_session_token";
   const USER_KEY = "ra_user";
   const LAST_ACTIVE_KEY = "last_active";
+  const LAST_PRESENCE_PING_KEY = "ra_last_presence_ping";
   const AUTH_ENDPOINT = "https://qvegpozwrcmspdvjokiz.functions.supabase.co/ra-auth";
+  const PRESENCE_INTERVAL_MS = 60 * 1000;
 
   boot();
 
@@ -17,7 +19,7 @@
   async function ensureSession() {
     if (hasActiveSession()) return true;
 
-    const token = sessionStorage.getItem(SESSION_TOKEN_KEY) || localStorage.getItem(AUTH_TOKEN_KEY);
+    const token = getSessionToken();
     if (token) {
       try {
         const data = await authRequest("resume-session", { session_token: token });
@@ -36,16 +38,41 @@
 
   function hasActiveSession() {
     const user = sessionStorage.getItem(USER_KEY);
-    return Boolean(user);
+    return Boolean(user && getSessionToken());
   }
 
   function bindActivityTracking() {
     const updateSession = () => {
       sessionStorage.setItem(LAST_ACTIVE_KEY, String(Date.now()));
+      sendHeartbeat();
     };
     ["mousedown", "keydown", "scroll", "touchstart"].forEach(name => {
       document.addEventListener(name, updateSession, true);
     });
+    sendHeartbeat(true);
+    window.setInterval(() => sendHeartbeat(), PRESENCE_INTERVAL_MS);
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") sendHeartbeat(true);
+    });
+    window.addEventListener("focus", () => sendHeartbeat(true));
+  }
+
+  function getSessionToken() {
+    return sessionStorage.getItem(SESSION_TOKEN_KEY) || localStorage.getItem(AUTH_TOKEN_KEY) || "";
+  }
+
+  async function sendHeartbeat(force = false) {
+    const token = getSessionToken();
+    if (!token) return;
+    const now = Date.now();
+    const lastPing = Number(sessionStorage.getItem(LAST_PRESENCE_PING_KEY) || 0);
+    if (!force && now - lastPing < PRESENCE_INTERVAL_MS) return;
+    sessionStorage.setItem(LAST_PRESENCE_PING_KEY, String(now));
+    try {
+      await authRequest("heartbeat", { session_token: token });
+    } catch {
+      // Presence is best-effort and must never interrupt dashboard use.
+    }
   }
 
   function bindShortcutNotice() {
@@ -92,6 +119,7 @@
     sessionStorage.removeItem(USER_KEY);
     sessionStorage.removeItem(LAST_ACTIVE_KEY);
     sessionStorage.removeItem(SESSION_TOKEN_KEY);
+    sessionStorage.removeItem(LAST_PRESENCE_PING_KEY);
     localStorage.removeItem(USER_KEY);
     localStorage.removeItem(LAST_ACTIVE_KEY);
     localStorage.removeItem(AUTH_TOKEN_KEY);

@@ -4,23 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Staff Admin | IGIS Real Asset</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="admin.css?v=admin_access_online_20260910a">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔐</text></svg>">
     <!-- Supabase JS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../shared/ra-auth.js?v=ra_auth_admin_2"></script>
+    <script src="../shared/ra-auth.js?v=ra_presence_2"></script>
     <script>
         document.documentElement.style.visibility = 'hidden';
         window.__RA_ADMIN_READY__ = (async () => {
+            const localOnly = ['127.0.0.1', 'localhost', '::1'].includes(window.location.hostname);
+            if (localOnly) {
+                document.documentElement.style.visibility = '';
+                return true;
+            }
             let user = window.RAAuth?.getSessionUser?.();
             if (!user) user = await window.RAAuth?.resumeRememberedSession?.();
             if (!window.RAAuth?.isAdminUser?.(user)) {
-                window.RAAuth?.clearLocal?.();
-                window.top.location.href = '../index.html';
+                window.top.location.replace('../01. RA Portal/portfolio-analysis/index-v2.html');
                 return false;
             }
-            document.documentElement.style.visibility = '';
-            return true;
+            const token = window.RAAuth?.getSessionToken?.();
+            if (!token) {
+                window.RAAuth?.clearLocal?.();
+                window.top.location.replace('../index.html');
+                return false;
+            }
+            try {
+                window.__RA_ADMIN_ACCESS_SNAPSHOT__ = await window.RAAuth.request('admin-access-list', {
+                    session_token: token,
+                });
+                document.documentElement.style.visibility = '';
+                return true;
+            } catch (error) {
+                console.warn('관리자 권한을 서버에서 확인하지 못했습니다.', error);
+                window.top.location.replace('../01. RA Portal/portfolio-analysis/index-v2.html');
+                return false;
+            }
         })();
     </script>
 </head>
@@ -32,6 +51,10 @@
                 <h1>인사 및 권한 관리 센터</h1>
             </div>
             <div class="header-right">
+                <button id="refreshAccessBtn" class="btn-secondary refresh-access-btn" type="button" title="접속 현황 새로고침">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 11a8.1 8.1 0 0 0-15.5-2M4 4v5h5"></path><path d="M4 13a8.1 8.1 0 0 0 15.5 2M20 20v-5h-5"></path></svg>
+                    새로고침
+                </button>
                 <button id="addStaffBtn" class="btn-primary">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     신규 사원 등록
@@ -58,12 +81,20 @@
                         <option value="active">재직</option>
                         <option value="inactive">퇴사</option>
                     </select>
+                    <select id="accessFilter" class="admin-select">
+                        <option value="accessed" selected>접속 이력 있음</option>
+                        <option value="online">현재 접속 중</option>
+                        <option value="never">미접속</option>
+                        <option value="">전체 직원</option>
+                    </select>
                 </div>
             </div>
             <div class="filter-stats">
-                <span id="totalCount">전체: 0명</span> |
-                <span id="activeCount">재직: 0명</span> |
-                <span id="inactiveCount">퇴사: 0명</span>
+                <span id="onlineCount">접속 중 0명</span>
+                <span id="sessionCount">로그인 유지 0명</span>
+                <span id="historyCount">접속 이력 0명</span>
+                <span id="totalCount">표시 0명</span>
+                <span id="presenceUpdatedAt">확인 중</span>
             </div>
         </section>
 
@@ -71,13 +102,14 @@
             <table class="staff-table">
                 <thead>
                     <tr>
+                        <th class="sortable" data-sort="presence" style="width: 112px;">접속 상태 <i class="fas fa-sort"></i></th>
                         <th class="sortable" data-sort="status" style="width: 80px;">상태 <i class="fas fa-sort"></i></th>
                         <th class="sortable" data-sort="name" style="width: 100px;">이름 <i class="fas fa-sort"></i></th>
                         <th class="sortable" data-sort="email" style="width: 220px;">이메일 <i class="fas fa-sort"></i></th>
                         <th class="sortable" data-sort="org" style="width: 200px;">부서 (조직) <i class="fas fa-sort"></i></th>
                         <th class="sortable" data-sort="title" style="width: 180px;">직위/직급 <i class="fas fa-sort"></i></th>
-                        <th class="sortable" data-sort="last_login" style="width: 140px;">마지막 접속 <i class="fas fa-sort"></i></th>
-                        <th class="sortable" data-sort="login_count" style="width: 100px;">로그인 횟수 <i class="fas fa-sort"></i></th>
+                        <th class="sortable" data-sort="last_login" style="width: 164px;">마지막 접속 <i class="fas fa-sort"></i></th>
+                        <th class="sortable" data-sort="login_count" style="width: 100px;">누적 접속 <i class="fas fa-sort"></i></th>
                         <th style="width: 80px;">작업 <i class="fas fa-cog"></i></th>
                     </tr>
                 </thead>
@@ -143,6 +175,6 @@
 
     <!-- Configuration -->
     <script src="../01. RA Portal/portfolio-analysis/config.js"></script>
-    <script src="admin.js?v=admin_guard_1"></script>
+    <script src="admin.js?v=admin_access_online_20260910a"></script>
 </body>
 </html>

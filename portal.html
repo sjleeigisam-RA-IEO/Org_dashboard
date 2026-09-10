@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./shared/ifpdp-system-theme.css?v=ifpdp_system_3">
     <link rel="stylesheet" href="./05. Org Board/admin.css">
     <script src="./01. RA Portal/portfolio-analysis/config.js"></script>
-    <script src="./shared/ra-auth.js?v=ra_auth_admin_2"></script>
+    <script src="./shared/ra-auth.js?v=ra_presence_2"></script>
     <style>
         body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #1f1f1e; font-family: var(--font); }
         
@@ -208,6 +208,7 @@
             if (window.RAAuth?.isAdminUser?.(raUser)) {
                 document.getElementById('tab-admin').style.display = 'block';
             }
+            RAAuth.startPresence();
             resetTimer();
             switchTab('insight');
         }

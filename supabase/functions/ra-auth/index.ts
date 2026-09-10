@@ -8,14 +8,25 @@ const PASSWORD_ALGO = "PBKDF2-SHA256";
 const PASSWORD_ITERATIONS = 210000;
 const SESSION_TTL_DAYS = 30;
 const SESSION_IDLE_DAYS = 3;
+const SESSION_BROWSER_HOURS = 12;
+const ONLINE_WINDOW_MINUTES = 5;
 const COMPANY_DOMAIN = "igisam.com";
+const ADMIN_EMAIL = "sjlee@igisam.com";
 const DIRECT_LOGIN_EMAILS = new Set([
   "kabjoo.cho@igisam.com",
   "ethan.lee@igisam.com",
   "hshin@igisam.com",
 ]);
 
-type Mode = "setup-check" | "set-password" | "login" | "resume-session" | "logout";
+type Mode =
+  | "setup-check"
+  | "set-password"
+  | "login"
+  | "resume-session"
+  | "heartbeat"
+  | "admin-check"
+  | "admin-access-list"
+  | "logout";
 
 type AuthPayload = {
   mode?: Mode;
@@ -23,6 +34,7 @@ type AuthPayload = {
   setup_code?: string;
   password?: string;
   remember?: boolean;
+  presence?: boolean;
   session_token?: string;
 };
 
@@ -46,13 +58,18 @@ Deno.serve(async (request) => {
     if (mode === "set-password") return await handleSetPassword(payload);
     if (mode === "login") return await handleLogin(payload);
     if (mode === "resume-session") return await handleResumeSession(payload);
+    if (mode === "heartbeat") return await handleHeartbeat(payload);
+    if (mode === "admin-check") return await handleAdminCheck(payload);
+    if (mode === "admin-access-list") return await handleAdminAccessList(payload);
     if (mode === "logout") return await handleLogout(payload);
 
     return jsonResponse({ ok: false, error: "Unknown auth mode" }, 400);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    const status = message.startsWith("VALIDATION:") ? 400 : 500;
-    return jsonResponse({ ok: false, error: message.replace(/^VALIDATION:\s*/, "") }, status);
+    const status = message.startsWith("FORBIDDEN:")
+      ? 403
+      : message.startsWith("VALIDATION:") ? 400 : 500;
+    return jsonResponse({ ok: false, error: message.replace(/^(?:VALIDATION|FORBIDDEN):\s*/, "") }, status);
   }
 });
 
@@ -77,7 +94,8 @@ async function handleSetPassword(payload: AuthPayload) {
   const passwordHash = await hashPassword(password, salt);
   await upsertCredential(staff, passwordHash, salt);
 
-  const session = await maybeCreateSession(staff, Boolean(payload.remember));
+  await recordStaffAccess(staff.staff_id);
+  const session = await maybeCreateSession(staff, Boolean(payload.remember), Boolean(payload.presence));
   return jsonResponse({
     ok: true,
     user: publicUser(staff),
@@ -104,7 +122,7 @@ async function handleLogin(payload: AuthPayload) {
   });
   await recordStaffAccess(staff.staff_id);
 
-  const session = await maybeCreateSession(staff, Boolean(payload.remember));
+  const session = await maybeCreateSession(staff, Boolean(payload.remember), Boolean(payload.presence));
   return jsonResponse({
     ok: true,
     user: publicUser(staff),
@@ -115,23 +133,83 @@ async function handleLogin(payload: AuthPayload) {
 
 async function handleResumeSession(payload: AuthPayload) {
   const token = requireText(payload.session_token, "자동로그인 토큰이 필요합니다.");
-  const tokenHash = await sha256Hex(token);
-  const session = await selectOne("ra_auth_sessions", `token_hash=eq.${tokenHash}&select=*`);
-  if (!session || session.revoked_at) throw new Error("VALIDATION: 자동로그인이 만료되었습니다.");
-
-  const now = new Date();
-  const createdAt = new Date(session.created_at);
-  const lastSeenAt = new Date(session.last_seen_at || session.created_at);
-  const expiresAt = new Date(session.expires_at);
-  if (now > expiresAt || daysBetween(createdAt, now) >= SESSION_TTL_DAYS || daysBetween(lastSeenAt, now) >= SESSION_IDLE_DAYS) {
-    await revokeSession(tokenHash);
-    throw new Error("VALIDATION: 자동로그인이 만료되었습니다.");
-  }
-
+  const { session, tokenHash, now } = await requireValidSession(token);
   const staff = await findActiveStaffById(session.staff_id);
   await patchRows("ra_auth_sessions", `token_hash=eq.${tokenHash}`, { last_seen_at: now.toISOString() });
   await recordStaffAccess(staff.staff_id);
   return jsonResponse({ ok: true, user: publicUser(staff) });
+}
+
+async function handleHeartbeat(payload: AuthPayload) {
+  const token = requireText(payload.session_token, "세션 토큰이 필요합니다.");
+  const { tokenHash, now } = await requireValidSession(token);
+  await patchRows("ra_auth_sessions", `token_hash=eq.${tokenHash}`, { last_seen_at: now.toISOString() });
+  return jsonResponse({ ok: true, last_seen_at: now.toISOString() });
+}
+
+async function handleAdminCheck(payload: AuthPayload) {
+  const token = requireText(payload.session_token, "관리자 세션이 필요합니다.");
+  const { tokenHash, now, admin } = await requireAdminSession(token);
+  await patchRows("ra_auth_sessions", `token_hash=eq.${tokenHash}`, { last_seen_at: now.toISOString() });
+  return jsonResponse({ ok: true, authorized: true, user: publicUser(admin) });
+}
+
+async function handleAdminAccessList(payload: AuthPayload) {
+  const token = requireText(payload.session_token, "관리자 세션이 필요합니다.");
+  const { tokenHash, now } = await requireAdminSession(token);
+
+  await patchRows("ra_auth_sessions", `token_hash=eq.${tokenHash}`, { last_seen_at: now.toISOString() });
+
+  const onlineSince = new Date(now.getTime() - ONLINE_WINDOW_MINUTES * 60 * 1000).toISOString();
+  const [staffRows, activeSessions] = await Promise.all([
+    postgrest("staff", {
+      method: "GET",
+      query: "select=staff_id,employee_no,name,email,status,last_login,login_count&order=last_login.desc.nullslast",
+    }),
+    postgrest("ra_auth_sessions", {
+      method: "GET",
+      query: `select=staff_id,last_seen_at&revoked_at=is.null&expires_at=gt.${encodeURIComponent(now.toISOString())}&order=last_seen_at.desc`,
+    }),
+  ]);
+
+  const latestSeenByStaff = new Map<string, string>();
+  const activeSessionCountByStaff = new Map<string, number>();
+  for (const row of Array.isArray(activeSessions) ? activeSessions : []) {
+    activeSessionCountByStaff.set(row.staff_id, (activeSessionCountByStaff.get(row.staff_id) || 0) + 1);
+    if (!latestSeenByStaff.has(row.staff_id)) latestSeenByStaff.set(row.staff_id, row.last_seen_at);
+  }
+
+  const visitors = (Array.isArray(staffRows) ? staffRows : [])
+    .filter((staff) => Boolean(
+      staff.last_login || Number(staff.login_count || 0) > 0 || latestSeenByStaff.has(staff.staff_id)
+    ))
+    .map((staff) => ({
+    staff_id: staff.staff_id,
+    employee_no: staff.employee_no || null,
+    name: staff.name,
+    email: normalizeEmail(staff.email),
+    status: staff.status || null,
+    last_login_at: staff.last_login || latestSeenByStaff.get(staff.staff_id) || null,
+    login_count: Math.max(Number(staff.login_count || 0), activeSessionCountByStaff.get(staff.staff_id) || 0),
+    online: Boolean(
+      latestSeenByStaff.get(staff.staff_id) &&
+      new Date(latestSeenByStaff.get(staff.staff_id) as string) >= new Date(onlineSince)
+    ),
+    session_active: latestSeenByStaff.has(staff.staff_id),
+    last_seen_at: latestSeenByStaff.get(staff.staff_id) || null,
+  }));
+
+  visitors.sort((left, right) => {
+    if (left.online !== right.online) return left.online ? -1 : 1;
+    return String(right.last_login_at || "").localeCompare(String(left.last_login_at || ""));
+  });
+
+  return jsonResponse({
+    ok: true,
+    generated_at: now.toISOString(),
+    online_window_minutes: ONLINE_WINDOW_MINUTES,
+    visitors,
+  });
 }
 
 async function handleLogout(payload: AuthPayload) {
@@ -142,12 +220,14 @@ async function handleLogout(payload: AuthPayload) {
   return jsonResponse({ ok: true });
 }
 
-async function maybeCreateSession(staff: StaffRow, remember: boolean) {
-  if (!remember) return null;
+async function maybeCreateSession(staff: StaffRow, remember: boolean, presence: boolean) {
+  if (!remember && !presence) return null;
   const token = randomToken(32);
   const tokenHash = await sha256Hex(token);
   const now = new Date();
-  const expires = new Date(now.getTime() + SESSION_TTL_DAYS * 24 * 60 * 60 * 1000);
+  const expires = new Date(now.getTime() + (remember
+    ? SESSION_TTL_DAYS * 24 * 60 * 60 * 1000
+    : SESSION_BROWSER_HOURS * 60 * 60 * 1000));
   await insertRows("ra_auth_sessions", [{
     staff_id: staff.staff_id,
     email: staff.email,
@@ -156,7 +236,32 @@ async function maybeCreateSession(staff: StaffRow, remember: boolean) {
     last_seen_at: now.toISOString(),
     expires_at: expires.toISOString(),
   }]);
-  return { token, rememberUntil: expires.toISOString() };
+  return { token, rememberUntil: remember ? expires.toISOString() : null };
+}
+
+async function requireValidSession(token: string) {
+  const tokenHash = await sha256Hex(token);
+  const session = await selectOne("ra_auth_sessions", `token_hash=eq.${tokenHash}&select=*`);
+  if (!session || session.revoked_at) throw new Error("VALIDATION: 로그인 세션이 만료되었습니다.");
+
+  const now = new Date();
+  const createdAt = new Date(session.created_at);
+  const lastSeenAt = new Date(session.last_seen_at || session.created_at);
+  const expiresAt = new Date(session.expires_at);
+  if (now > expiresAt || daysBetween(createdAt, now) >= SESSION_TTL_DAYS || daysBetween(lastSeenAt, now) >= SESSION_IDLE_DAYS) {
+    await revokeSession(tokenHash);
+    throw new Error("VALIDATION: 로그인 세션이 만료되었습니다.");
+  }
+  return { session, tokenHash, now };
+}
+
+async function requireAdminSession(token: string) {
+  const sessionState = await requireValidSession(token);
+  const admin = await findActiveStaffById(sessionState.session.staff_id);
+  if (normalizeEmail(admin.email) !== ADMIN_EMAIL) {
+    throw new Error("FORBIDDEN: 관리자만 접속 현황을 확인할 수 있습니다.");
+  }
+  return { ...sessionState, admin };
 }
 
 async function assertSetupCode(setupCode: string, consume: boolean) {
@@ -259,7 +364,11 @@ async function postgrest(table: string, init: { method: string; query?: string; 
 function jsonResponse(data: unknown, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
-    headers: { ...corsHeaders, "Content-Type": "application/json; charset=utf-8" },
+    headers: {
+      ...corsHeaders,
+      "Cache-Control": "no-store",
+      "Content-Type": "application/json; charset=utf-8",
+    },
   });
 }
 

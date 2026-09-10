@@ -89,9 +89,15 @@ assert.equal(promptCount, 0, 'non-admin must not reach an admin prompt');
 
 const sourceChecks = [
   ['index.html', /RAAuth\.saveSessionToken\(data\.session_token, remember\)/],
-  ['security-lite.js', /sessionStorage\.getItem\(SESSION_TOKEN_KEY\) \|\| localStorage\.getItem\(AUTH_TOKEN_KEY\)/],
+  ['security-lite.js', /const token = getSessionToken\(\)/],
   ['portal.html', /RAAuth\?\.isAdminUser\?\.\(raUser\)/],
   ['05. Org Board/admin.html', /!window\.RAAuth\?\.isAdminUser\?\.\(user\)/],
+  ['05. Org Board/admin.html', /RAAuth\.request\('admin-access-list'/],
+  ['05. Org Board/admin.html', /location\.replace\('\.\.\/01\. RA Portal\/portfolio-analysis\/index-v2\.html'\)/],
+  ['01. RA Portal/portfolio-analysis/index-v2.html', /RAAuth\.request\('admin-check'/],
+  ['01. RA Portal/portfolio-analysis/index-v2.html', /id="v2AccessMonitorLink"[^>]+aria-label="접속 현황 열기"[^>]+hidden/],
+  ['supabase/functions/ra-auth/index.ts', /const ADMIN_EMAIL = "sjlee@igisam\.com"/],
+  ['supabase/functions/ra-auth/index.ts', /async function requireAdminSession\(token: string\)/],
   ['01. RA Portal/portfolio-analysis/js/asset-canonical.js', /function renderAdminBar\(container\) \{\s+if \(!isAuthorizedAdmin\(\)\) return;/s],
   ['05. Org Board/seat-layout.js', /\$\{authorizedAdmin \? `<button class="seat-admin-btn/s],
   ['05. Org Board/seat-layout.js', /async function saveAdminChanges\(\) \{\s+if \(!isAuthorizedAdmin\(\)\)/s],
@@ -101,5 +107,9 @@ sourceChecks.forEach(([relativePath, pattern]) => {
   const source = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
   assert.match(source, pattern, `${relativePath} must use the shared admin gate`);
 });
+
+const portalSource = fs.readFileSync(path.join(ROOT, '01. RA Portal', 'portfolio-analysis', 'index-v2.html'), 'utf8');
+const accessLink = portalSource.match(/<a id="v2AccessMonitorLink"[^>]*>/)?.[0] || '';
+assert.doesNotMatch(accessLink, /target="_blank"/, 'session-only admin access must remain in the current tab');
 
 console.log('Admin access contract verified: sjlee only; 7 non-admin identities rejected.');
