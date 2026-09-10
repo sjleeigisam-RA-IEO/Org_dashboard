@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./shared/ifpdp-system-theme.css?v=ifpdp_system_3">
     <link rel="stylesheet" href="./05. Org Board/admin.css">
     <script src="./01. RA Portal/portfolio-analysis/config.js"></script>
-    <script src="./shared/ra-auth.js?v=ra_role_gate_1"></script>
+    <script src="./shared/ra-auth.js?v=ra_t5t_owner_gate_1"></script>
     <style>
         body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #1f1f1e; font-family: var(--font); }
         
@@ -141,9 +141,9 @@
             org: './05. Org Board/index.html',
             admin: './05. Org Board/admin.html'
         };
-        const FRAME_VERSION = 't5t_exec_gate_1';
+        const FRAME_VERSION = 't5t_owner_gate_1';
         const loaded = new Set();
-        let executiveAccess = false;
+        let t5tAccess = false;
 
         function markEmbeddedFrame(frame) {
             try {
@@ -166,7 +166,7 @@
         }
 
         function switchTab(id) {
-            if (id === 't5t' && !executiveAccess) return;
+            if (id === 't5t' && !t5tAccess) return;
             // Update UI
             document.querySelectorAll('.nav-link-btn').forEach(b => b.classList.remove('active'));
             const desktopTab = document.getElementById(`tab-${id}`);
@@ -214,9 +214,9 @@
             raUser = refreshedUser;
 
             document.getElementById('userNameDisplay').innerText = raUser.name;
-            executiveAccess = window.RAAuth?.isExecutiveUser?.(raUser) === true;
-            document.getElementById('tab-t5t').style.display = executiveAccess ? '' : 'none';
-            document.getElementById('mobile-tab-t5t').style.display = executiveAccess ? '' : 'none';
+            t5tAccess = window.RAAuth?.canAccessT5T?.(raUser) === true;
+            document.getElementById('tab-t5t').style.display = t5tAccess ? '' : 'none';
+            document.getElementById('mobile-tab-t5t').style.display = t5tAccess ? '' : 'none';
             if (window.RAAuth?.isAdminUser?.(raUser)) {
                 document.getElementById('tab-admin').style.display = 'block';
             }

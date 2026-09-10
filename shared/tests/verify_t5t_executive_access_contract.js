@@ -43,33 +43,37 @@ assert.equal(loadAuthContext({ email: 'executive@igisam.com', is_executive: true
 assert.equal(loadAuthContext({ email: 'staff@igisam.com', is_executive: false }).RAAuth.isExecutiveUser(), false);
 assert.equal(loadAuthContext({ email: 'legacy-session@igisam.com' }).RAAuth.isExecutiveUser(), false);
 assert.equal(loadAuthContext({ email: 'tampered@igisam.com', is_executive: 'true' }).RAAuth.isExecutiveUser(), false);
+assert.equal(loadAuthContext({ email: 'sjlee@igisam.com', is_executive: false }).RAAuth.canAccessT5T(), true);
+assert.equal(loadAuthContext({ email: 'executive@igisam.com', is_executive: true, can_access_t5t: true }).RAAuth.canAccessT5T(), true);
+assert.equal(loadAuthContext({ email: 'staff@igisam.com', is_executive: false, can_access_t5t: false }).RAAuth.canAccessT5T(), false);
+assert.equal(loadAuthContext({ email: 'staff@igisam.com', is_executive: false, can_access_t5t: 'true' }).RAAuth.canAccessT5T(), false);
 
 const sourceChecks = [
   ['supabase/functions/ra-auth/index.ts', /\| "session-profile"/],
   ['supabase/functions/ra-auth/index.ts', /select=staff_id,employee_no,name,email,position,title,status/],
-  ['supabase/functions/ra-auth/index.ts', /is_executive: isExecutiveStaff\(staff\)/],
+  ['supabase/functions/ra-auth/index.ts', /can_access_t5t: email === ADMIN_EMAIL \|\| isExecutive/],
   ['supabase/functions/ra-auth/index.ts', /const EXECUTIVE_TITLES = new Set/],
   ['supabase/functions/ra-auth/index.ts', /const EXECUTIVE_POSITIONS = new Set/],
   ['shared/ra-auth.js', /request\("session-profile", \{ session_token: token \}\)/],
   ['01. RA Portal/portfolio-analysis/index-v2.html', /id="v2T5TLink"[^>]+hidden[^>]+style="display:none;"/],
   ['01. RA Portal/portfolio-analysis/index-v2.html', /RAAuth\.refreshSessionUser\(\)/],
-  ['01. RA Portal/portfolio-analysis/index-v2.html', /RAAuth\.isExecutiveUser\(user\)/],
+  ['01. RA Portal/portfolio-analysis/index-v2.html', /RAAuth\.canAccessT5T\(user\)/],
   ['security-lite.js', /function isT5TDashboardPath\(\)/],
-  ['security-lite.js', /executiveRequired && data\.user\?\.is_executive !== true/],
+  ['security-lite.js', /executiveRequired && data\.user\?\.can_access_t5t !== true/],
   ['security-lite.js', /redirectToPortal\(\)/],
-  ['portal.html', /if \(id === 't5t' && !executiveAccess\) return;/],
-  ['portal.html', /executiveAccess = window\.RAAuth\?\.isExecutiveUser\?\.\(raUser\) === true/],
+  ['portal.html', /if \(id === 't5t' && !t5tAccess\) return;/],
+  ['portal.html', /t5tAccess = window\.RAAuth\?\.canAccessT5T\?\.\(raUser\) === true/],
 ];
 
 sourceChecks.forEach(([relativePath, pattern]) => {
   const source = fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
-  assert.match(source, pattern, `${relativePath} must preserve the executive-only T5T gate`);
+  assert.match(source, pattern, `${relativePath} must preserve the owner-or-executive T5T gate`);
 });
 
 const t5tHtml = fs.readFileSync(path.join(ROOT, '02. T5T Board', 'index.html'), 'utf8');
-const authScriptIndex = t5tHtml.indexOf('../security-lite.js?v=t5t_exec_gate_1');
+const authScriptIndex = t5tHtml.indexOf('../security-lite.js?v=t5t_owner_gate_1');
 assert.ok(authScriptIndex > 0 && authScriptIndex < t5tHtml.indexOf('</head>'), 'T5T role gate must load before page content');
 assert.match(t5tHtml, /data-t5t-auth="pending"/);
 assert.match(t5tHtml, /functions\.supabase\.co/);
 
-console.log('T5T executive access contract verified.');
+console.log('T5T access contract verified: sjlee owner override plus executive access.');

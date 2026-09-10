@@ -43,6 +43,10 @@
     return user?.is_executive === true;
   }
 
+  function canAccessT5T(user = getSessionUser()) {
+    return user?.can_access_t5t === true || isAdminUser(user) || isExecutiveUser(user);
+  }
+
   function setSessionUser(user) {
     sessionStorage.setItem(USER_KEY, JSON.stringify(user));
     sessionStorage.setItem(LAST_ACTIVE_KEY, String(Date.now()));
@@ -160,6 +164,7 @@
     getSessionUser,
     isAdminUser,
     isExecutiveUser,
+    canAccessT5T,
     setSessionUser,
     saveSessionToken,
     saveRememberToken,

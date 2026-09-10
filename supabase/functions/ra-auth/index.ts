@@ -409,12 +409,15 @@ function jsonResponse(data: unknown, status = 200) {
 }
 
 function publicUser(staff: StaffRow) {
+  const email = normalizeEmail(staff.email);
+  const isExecutive = isExecutiveStaff(staff);
   return {
     staff_id: staff.staff_id,
     employee_no: staff.employee_no || null,
     name: staff.name,
-    email: normalizeEmail(staff.email),
-    is_executive: isExecutiveStaff(staff),
+    email,
+    is_executive: isExecutive,
+    can_access_t5t: email === ADMIN_EMAIL || isExecutive,
   };
 }
 

@@ -25,7 +25,7 @@
       try {
         const mode = executiveRequired ? "session-profile" : "resume-session";
         const data = await authRequest(mode, { session_token: token });
-        if (executiveRequired && data.user?.is_executive !== true) {
+        if (executiveRequired && data.user?.can_access_t5t !== true) {
           redirectToPortal();
           return false;
         }
