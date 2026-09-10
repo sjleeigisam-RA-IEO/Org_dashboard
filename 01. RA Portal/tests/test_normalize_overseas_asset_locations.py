@@ -42,6 +42,12 @@ class NormalizeOverseasAssetLocationsTests(unittest.TestCase):
         )
         self.assertEqual(kind, "single_site")
 
+    def test_financing_name_with_project_address_is_single_site(self):
+        kind, _ = MODULE.location_subject_type(
+            {"canonical_name": "당산 지식산업센터 개발사업 PF대출", "address_text": "서울특별시 영등포구 당산동5가 9-9"}
+        )
+        self.assertEqual(kind, "single_site")
+
     def test_query_joins_city_and_repairs_joined_street(self):
         query = MODULE.build_query(
             {"address_text": "754 PeachtreeStreet, GA 30308", "city": "Atlanta"}

@@ -51,8 +51,20 @@ const rows = [
 const clusters = Core.buildCountryClusters(rows);
 assert.equal(clusters.length, 2);
 assert.equal(clusters.find((row) => row.countryCode === 'USA').count, 2);
+assert.equal(Core.continentForRow(rows[0]), 'NAM');
+assert.equal(Core.continentForRow(rows[2]), 'EUR');
+assert.equal(Core.continentForRow({ country_code_alpha3: 'KOR', portfolio_region: '대한민국' }), 'ASI');
+assert.equal(Core.continentForRow({ portfolio_region: '글로벌' }), 'GLB');
+const continentClusters = Core.buildContinentClusters(rows);
+assert.equal(continentClusters.length, 2);
+assert.equal(continentClusters.find((row) => row.continentCode === 'NAM').count, 2);
 assert.deepEqual(Core.filterScope(rows, { countryCode: 'FRA' }).map((row) => row.asset_id), ['A3']);
+assert.deepEqual(Core.filterScope(rows, { continentCode: 'EUR' }).map((row) => row.asset_id), ['A3']);
 assert.deepEqual(Core.filterScope(rows, { countryCode: 'USA', city: 'new york' }).map((row) => row.asset_id), ['A1', 'A2']);
+assert.equal(Core.maxAvailableZoom([
+  { ...base, coordinate_precision: 'country' },
+  { ...base, coordinate_precision: 'address_point' }
+]), 17);
 
 assert.equal(Core.detailBaseFor({ country_code_alpha3: 'KOR', coordinate_precision: 'address_point' }), 'vworld');
 assert.equal(Core.detailBaseFor({ country_code_alpha3: 'USA', coordinate_precision: 'address_point' }), 'maplibre-detail');

@@ -51,7 +51,7 @@ body.global-asset-map-mode .right-panel {
 .global-map-kpis strong { font-size: 24px; line-height: 1; }
 .global-map-kpis small { margin-left: 3px; color: var(--map-muted); font-size: 10px; }
 
-.global-map-workspace { display: grid; grid-template-columns: 292px minmax(0, 1fr); height: min(680px, calc(100vh - 140px)); min-height: 580px; border: 1px solid var(--map-line); border-radius: 8px; overflow: hidden; background: var(--map-panel); }
+.global-map-workspace { display: grid; grid-template-columns: 292px minmax(0, 1fr); height: min(760px, calc(100vh - 128px)); min-height: 640px; border: 1px solid var(--map-line); border-radius: 8px; overflow: hidden; background: var(--map-panel); }
 .global-map-sidebar { min-height: 0; border-right: 1px solid var(--map-line); background: #181d1b; overflow: auto; }
 .global-map-tier-filters { display: grid; gap: 6px; padding: 14px; border-bottom: 1px solid var(--map-line); }
 .tier-filter { min-height: 40px; display: grid; grid-template-columns: 16px 1fr auto; align-items: center; gap: 8px; border: 1px solid transparent; border-radius: 6px; padding: 0 9px; background: transparent; color: var(--map-muted); text-align: left; cursor: pointer; }
@@ -79,6 +79,7 @@ body.global-asset-map-mode .right-panel {
 .global-map-country-row b, .global-map-asset-row b { font-size: 12px; }
 .global-map-country-row small, .global-map-asset-row small { color: var(--map-muted); font-size: 10px; }
 .global-map-country-row strong { min-width: 28px; color: var(--map-blue); text-align: right; }
+.global-map-continent-row { min-height: 54px; }
 .global-map-country-row:hover, .global-map-city-row:hover, .global-map-city-row.active, .global-map-asset-row:hover { background: #28302d; }
 .global-map-city-list { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; }
 .global-map-city-row { width: auto; min-height: 34px; display: flex; gap: 8px; align-items: center; border: 1px solid var(--map-line); border-radius: 6px; padding: 0 10px; font-size: 11px; }
@@ -97,15 +98,52 @@ body.global-asset-map-mode .right-panel {
 .global-map-canvas-head span { color: var(--map-muted); font-size: 10px; }
 .global-map-base-badge { border: 1px solid var(--map-line); border-radius: 6px; padding: 5px 9px; color: #d7dee5; font-size: 10px; font-weight: 700; }
 .global-map-canvas { position: relative; min-height: 0; overflow: hidden; background: var(--map-sea); }
-.global-world-svg { width: 100%; height: calc(100% - 42px); min-height: 0; display: block; }
+.global-world-svg { width: 100%; height: calc(100% - 36px); min-height: 0; display: block; touch-action: none; }
 .world-grid rect { fill: var(--map-land); }
 .world-cluster { color: var(--map-blue); cursor: pointer; outline: none; }
-.world-cluster circle { fill: currentColor; stroke: #f4f7fa; stroke-width: 2; filter: drop-shadow(0 3px 7px rgba(0,0,0,.5)); }
-.world-cluster text { fill: #fff; font-size: 11px; font-weight: 800; text-anchor: middle; pointer-events: none; }
-.world-cluster:hover circle, .world-cluster:focus-visible circle { stroke: #fff; stroke-width: 4; }
+.world-cluster .world-cluster-body { fill: currentColor; fill-opacity: .56; stroke: rgba(255,255,255,.94); stroke-width: 2.5; filter: drop-shadow(0 5px 11px rgba(0,0,0,.48)); }
+.world-cluster .world-cluster-halo { fill: currentColor; fill-opacity: .13; stroke: currentColor; stroke-opacity: .34; stroke-width: 2; }
+.world-cluster-count { fill: #fff; font-size: 15px; font-weight: 800; text-anchor: middle; pointer-events: none; paint-order: stroke; stroke: rgba(10,16,18,.6); stroke-width: 2px; }
+.world-cluster-label { fill: #f4f7fa; font-size: 12px; font-weight: 800; text-anchor: middle; pointer-events: none; paint-order: stroke; stroke: #131715; stroke-width: 3px; }
+.world-cluster.is-country .world-cluster-count { font-size: 10px; stroke-width: 1.5px; }
+.world-cluster.is-country .world-cluster-label { font-size: 8px; stroke-width: 2px; }
+.world-cluster-leader { fill: none; stroke: currentColor; stroke-width: 1.2; stroke-opacity: .64; stroke-dasharray: 3 2; pointer-events: none; }
+.world-cluster-leader.continent-north-america { color: #43a8f5; }
+.world-cluster-leader.continent-south-america { color: #38c99b; }
+.world-cluster-leader.continent-europe { color: #ff7f8a; }
+.world-cluster-leader.continent-africa { color: #f6b84a; }
+.world-cluster-leader.continent-asia { color: #9a7cf4; }
+.world-cluster-leader.continent-oceania { color: #37c3d5; }
+.world-cluster:hover .world-cluster-body, .world-cluster:focus-visible .world-cluster-body { fill-opacity: .74; stroke: #fff; stroke-width: 4; }
+.world-cluster.continent-north-america { color: #43a8f5; }
+.world-cluster.continent-south-america { color: #38c99b; }
+.world-cluster.continent-europe { color: #ff7f8a; }
+.world-cluster.continent-africa { color: #f6b84a; }
+.world-cluster.continent-asia { color: #9a7cf4; }
+.world-cluster.continent-oceania { color: #37c3d5; }
+.world-cluster.continent-unknown { color: #a8b3bd; }
+.world-cluster.is-korea .world-cluster-halo { fill-opacity: .24; stroke: #fff; stroke-opacity: .88; stroke-width: 3; }
+.global-dot-controls { position: absolute; z-index: 4; right: 14px; top: 14px; display: grid; grid-template-columns: 34px auto 34px; align-items: center; overflow: hidden; border: 1px solid #536067; border-radius: 7px; background: rgba(24,29,27,.9); box-shadow: 0 5px 15px rgba(0,0,0,.26); }
+.global-dot-controls button { width: 34px; height: 34px; border: 0; background: transparent; color: #f4f7fa; font-size: 20px; font-weight: 700; cursor: pointer; }
+.global-dot-controls button:hover, .global-dot-controls button:focus-visible { background: #34413d; }
+.global-dot-controls button:disabled { color: #67727a; cursor: default; }
+.global-dot-controls span { min-width: 45px; padding: 0 8px; color: #d7dee5; font-size: 10px; font-weight: 800; text-align: center; }
 .global-world-caption { position: absolute; left: 16px; right: 16px; bottom: 12px; display: flex; justify-content: center; gap: 18px; margin: 0; color: var(--map-muted); font-size: 10px; text-align: center; }
 .global-world-caption b { color: var(--map-ink); }
 .global-map-canvas > .global-maplibre { position: absolute !important; inset: 0; width: 100%; height: 100%; }
+.global-maplibre-overview-marker { --overview-marker-size: 72px; width: var(--overview-marker-size); height: var(--overview-marker-size); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; border: 2px solid rgba(255,255,255,.94); border-radius: 50%; padding: 0; background: rgba(82,183,255,.66); color: #fff; box-shadow: 0 0 0 9px rgba(82,183,255,.13), 0 7px 20px rgba(0,0,0,.42); cursor: pointer; backdrop-filter: blur(1px); transition: transform .16s ease, background-color .16s ease; }
+.global-maplibre-overview-marker strong { font-size: clamp(14px, calc(var(--overview-marker-size) * .26), 25px); line-height: 1; letter-spacing: 0; text-shadow: 0 2px 4px rgba(0,0,0,.65); }
+.global-maplibre-overview-marker span { max-width: calc(var(--overview-marker-size) - 10px); overflow: hidden; color: #fff; font-size: clamp(9px, calc(var(--overview-marker-size) * .13), 12px); font-weight: 800; line-height: 1.15; text-overflow: ellipsis; white-space: nowrap; text-shadow: 0 1px 3px rgba(0,0,0,.7); }
+.global-maplibre-overview-marker:hover, .global-maplibre-overview-marker:focus-visible { z-index: 2; transform: scale(1.1); background-color: rgba(82,183,255,.82); outline: 3px solid rgba(255,255,255,.4); outline-offset: 3px; }
+.global-maplibre-overview-marker.is-country { background: rgba(63,161,232,.62); box-shadow: 0 0 0 7px rgba(63,161,232,.12), 0 5px 15px rgba(0,0,0,.4); }
+.global-maplibre-overview-marker.continent-north-america { background-color: rgba(67,168,245,.68); box-shadow: 0 0 0 9px rgba(67,168,245,.14), 0 7px 20px rgba(0,0,0,.42); }
+.global-maplibre-overview-marker.continent-south-america { background-color: rgba(56,201,155,.68); box-shadow: 0 0 0 9px rgba(56,201,155,.14), 0 7px 20px rgba(0,0,0,.42); }
+.global-maplibre-overview-marker.continent-europe { background-color: rgba(255,127,138,.68); box-shadow: 0 0 0 9px rgba(255,127,138,.14), 0 7px 20px rgba(0,0,0,.42); }
+.global-maplibre-overview-marker.continent-africa { background-color: rgba(246,184,74,.7); box-shadow: 0 0 0 9px rgba(246,184,74,.14), 0 7px 20px rgba(0,0,0,.42); }
+.global-maplibre-overview-marker.continent-asia { background-color: rgba(154,124,244,.68); box-shadow: 0 0 0 9px rgba(154,124,244,.14), 0 7px 20px rgba(0,0,0,.42); }
+.global-maplibre-overview-marker.continent-oceania { background-color: rgba(55,195,213,.68); box-shadow: 0 0 0 9px rgba(55,195,213,.14), 0 7px 20px rgba(0,0,0,.42); }
+.global-maplibre-overview-marker.continent-unknown { background-color: rgba(168,183,199,.68); box-shadow: 0 0 0 9px rgba(168,183,199,.14), 0 7px 20px rgba(0,0,0,.42); }
+.global-maplibre-overview-marker.is-korea { border-width: 3px; box-shadow: 0 0 0 11px rgba(255,255,255,.18), 0 8px 22px rgba(0,0,0,.48); }
 .global-map-marker { width: 18px; height: 18px; border: 3px solid #fff; border-radius: 50%; box-shadow: 0 3px 9px rgba(0,0,0,.45); cursor: pointer; }
 .global-map-marker:focus-visible { outline: 3px solid var(--map-ink); outline-offset: 2px; }
 .global-map-tile-status, .global-map-fallback-note { position: absolute; z-index: 5; left: 12px; top: 12px; border: 1px solid #e4c37b; border-radius: 7px; padding: 7px 9px; background: #fff8e8; color: #704900; font-size: 10px; }
@@ -158,6 +196,7 @@ body.global-asset-map-mode .right-panel {
   .tier-filter, .global-map-city-row { min-height: 44px; }
   .global-map-canvas { min-height: 420px; }
   .global-world-svg { min-height: 390px; height: 390px; }
+  .global-dot-controls { right: 8px; top: 8px; }
   .global-world-caption { flex-direction: column; gap: 2px; }
   .global-map-inspector { position: fixed; left: 8px; right: 8px; top: auto; bottom: 8px; width: auto; max-height: 58vh; border-radius: 14px; }
   .global-map-marker { width: 24px; height: 24px; }

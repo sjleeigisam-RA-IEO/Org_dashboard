@@ -23,7 +23,7 @@ USER_AGENT = "IGIS-RA-Portal-asset-location-normalization/1.0 (internal data QA)
 CLASSIFIER_VERSION = "overseas-location-v2"
 GEOCODER_VERSION = "nominatim-photon-osm-2026-09"
 TRUSTED_EXISTING_COORDINATE_SOURCES = {"manual_verified", "authoritative_source", "source_document_verified"}
-REGIONS = ("북미", "유럽", "아시아", "글로벌")
+REGIONS = ("대한민국", "북미", "남미", "유럽", "아프리카", "아시아", "오세아니아", "글로벌")
 PLACEHOLDER_RE = re.compile(r"아래\s*자산별|상세\s*내역|복수\s*도시|[0-9]+개\s*도시|미정|해당\s*없음", re.I)
 NON_PHYSICAL_RE = re.compile(
     r"(대출|담보대출|선순위|메자닌|수익증권|지분증권|브릿지론|대여금|채권)"
@@ -112,12 +112,12 @@ def location_subject_type(row):
     name = clean(row.get("canonical_name"))
     address = clean(row.get("address_text"))
     city = clean(row.get("city"))
-    if NON_PHYSICAL_RE.search(name):
-        return "non_physical_vehicle", "instrument_or_vehicle_name"
     if MULTI_SITE_RE.search(name) or PLACEHOLDER_RE.search(address) or PLACEHOLDER_RE.search(city):
         return "multi_site_portfolio", "multi_site_or_placeholder"
     if address or valid_coordinate(row.get("latitude"), row.get("longitude")):
         return "single_site", "single_site_candidate"
+    if NON_PHYSICAL_RE.search(name):
+        return "non_physical_vehicle", "instrument_or_vehicle_name"
     return "unresolved_subject", "missing_specific_location"
 
 

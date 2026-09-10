@@ -10,7 +10,9 @@
     rows: [],
     filteredRows: [],
     selectedTiers: new Set(Object.keys(Core.TIER_META)),
-    scope: { countryCode: '', city: '' },
+    scope: { continentCode: '', countryCode: '', city: '' },
+    detailMode: false,
+    dotZoom: 1,
     query: '',
     map: null,
     markers: [],
@@ -143,7 +145,9 @@
   function activate() {
     state.active = true;
     state.generation += 1;
-    state.scope = { countryCode: '', city: '' };
+    state.scope = { continentCode: '', countryCode: '', city: '' };
+    state.detailMode = false;
+    state.dotZoom = 1;
     state.query = '';
     state.selectedAssetId = '';
     state.mapBase = 'concept-svg';
@@ -199,10 +203,23 @@
     return COUNTRY_NAMES[code] || (fromRow && fromRow.normalized_country_name) || code || '국가 미확인';
   }
 
+  function continentName(code) {
+    return Core.CONTINENT_META[code] ? Core.CONTINENT_META[code].label : '권역 미확인';
+  }
+
+  function emptyScope() {
+    return { continentCode: '', countryCode: '', city: '' };
+  }
+
+  function isDetailStage() {
+    return Boolean(state.detailMode || state.scope.countryCode);
+  }
+
   function filteredRows() {
     var query = state.query.trim().toLocaleLowerCase('ko');
     return state.rows.filter(function (row) {
       if (!state.selectedTiers.has(Core.classifyLocation(row).tier)) return false;
+      if (state.scope.continentCode && Core.continentForRow(row) !== state.scope.continentCode) return false;
       if (state.scope.countryCode) {
         if (state.scope.countryCode === '__unknown_country__' ? Boolean(row.country_code_alpha3) : row.country_code_alpha3 !== state.scope.countryCode) return false;
       }
@@ -236,6 +253,7 @@
 
   function breadcrumbsHtml() {
     var parts = ['<button type="button" data-global-map-scope="world">GLOBAL</button>'];
+    if (state.scope.continentCode) parts.push('<span>/</span><button type="button" data-global-map-scope="continent">' + esc(continentName(state.scope.continentCode)) + '</button>');
     if (state.scope.countryCode) parts.push('<span>/</span><button type="button" data-global-map-scope="country">' + esc(countryName(state.scope.countryCode)) + '</button>');
     if (state.scope.city) parts.push('<span>/</span><strong>' + esc(state.scope.city === '__unknown__' ? '도시 미확인' : state.scope.city) + '</strong>');
     return '<nav class="global-map-breadcrumbs" aria-label="지도 위치 경로">' + parts.join('') + '</nav>';
@@ -243,10 +261,13 @@
 
   function shellHtml(rows) {
     var counts = Core.summarize(state.rows);
-    var stage = state.scope.countryCode ? (state.scope.city ? '도시·자산 상세' : '국가·도시 상세') : '글로벌 개요';
+    var detail = isDetailStage();
+    var stage = state.scope.countryCode
+      ? (state.scope.city ? '도시·자산 상세' : '국가·도시 상세')
+      : (state.scope.continentCode ? (detail ? continentName(state.scope.continentCode) + ' 상세 지도' : continentName(state.scope.continentCode) + ' 국가별 개요') : (detail ? '글로벌 상세 지도' : '대륙별 자산 개요'));
     var coordinateCount = rows.filter(Core.hasCoordinatePair).length;
     return [
-      '<main class="global-asset-map" data-map-stage="', state.scope.countryCode ? 'detail' : 'world', '">',
+      '<main class="global-asset-map" data-map-stage="', detail ? 'detail' : 'world', '">',
       '<header class="global-map-header">',
       '<div>', breadcrumbsHtml(), '<p>GLOBAL ASSET LOCATION</p><h1>글로벌 자산 위치</h1><span>', stage, ' · 검증 상태와 좌표 정밀도를 구분해 표시합니다.</span></div>',
       '<div class="global-map-header-actions"><label><span>자산 검색</span><input type="search" data-global-map-search value="', esc(state.query), '" placeholder="자산·도시·국가"></label><button type="button" data-global-map-action="refresh">새로고침</button></div>',
@@ -254,7 +275,7 @@
       summaryHtml(counts),
       '<section class="global-map-workspace">',
       '<aside class="global-map-sidebar"><div class="global-map-tier-filters" role="group" aria-label="위치 정밀도 필터">', tierFiltersHtml(counts), '</div><div id="globalMapList" class="global-map-list"></div></aside>',
-      '<section class="global-map-canvas-panel"><div class="global-map-canvas-head"><div><strong id="globalMapStageTitle">', stage, '</strong><span id="globalMapStageNote">좌표 ', coordinateCount, '개 · 관리 대상 ', rows.length, '개</span></div><div id="globalMapBaseBadge" class="global-map-base-badge">', state.scope.countryCode ? '상세 지도' : '도트 세계지도', '</div></div><div id="globalMapCanvas" class="global-map-canvas"></div><div id="globalMapInspector" class="global-map-inspector" role="dialog" aria-modal="false" aria-labelledby="globalMapInspectorTitle" hidden></div></section>',
+      '<section class="global-map-canvas-panel"><div class="global-map-canvas-head"><div><strong id="globalMapStageTitle">', stage, '</strong><span id="globalMapStageNote">좌표 ', coordinateCount, '개 · 관리 대상 ', rows.length, '개</span></div><div id="globalMapBaseBadge" class="global-map-base-badge">', detail ? '오픈소스 상세지도' : '도트 드릴다운', '</div></div><div id="globalMapCanvas" class="global-map-canvas"></div><div id="globalMapInspector" class="global-map-inspector" role="dialog" aria-modal="false" aria-labelledby="globalMapInspectorTitle" hidden></div></section>',
       '</section>',
       '</main>'
     ].join('');
@@ -301,38 +322,120 @@
     return cells.join('');
   }
 
-  function buildWorldPointGroups(rows) {
-    var groups = new Map();
-    rows.forEach(function (row) {
-      var longitude = Number(row.longitude);
-      var latitude = Number(row.latitude);
-      var key = Math.round(longitude / 3) + ':' + Math.round(latitude / 3);
-      var group = groups.get(key) || { rows: [], longitude: 0, latitude: 0 };
-      group.rows.push(row);
-      group.longitude += longitude;
-      group.latitude += latitude;
-      groups.set(key, group);
-    });
-    return Array.from(groups.values()).map(function (group) {
-      group.longitude /= group.rows.length;
-      group.latitude /= group.rows.length;
-      group.rows.sort(function (left, right) { return Core.classifyLocation(left).rank - Core.classifyLocation(right).rank; });
-      group.tier = Core.classifyLocation(group.rows[0]);
-      group.countryCode = group.rows[0].country_code_alpha3 || '__unknown_country__';
-      return group;
-    });
+  function clamp(value, minimum, maximum) {
+    return Math.max(minimum, Math.min(maximum, value));
+  }
+
+  function continentTone(code) {
+    return Core.CONTINENT_META[code] ? Core.CONTINENT_META[code].tone : 'unknown';
+  }
+
+  function dotViewBox(layout) {
+    if (!state.scope.continentCode) return '0 0 1000 500';
+    if (!layout.length) return '0 0 1000 500';
+    var minX = Math.min.apply(null, layout.map(function (item) { return item.x - item.radius; }));
+    var maxX = Math.max.apply(null, layout.map(function (item) { return item.x + item.radius; }));
+    var minY = Math.min.apply(null, layout.map(function (item) { return item.y - item.radius; }));
+    var maxY = Math.max.apply(null, layout.map(function (item) { return item.y + item.radius + 18; }));
+    var width = Math.max(360, maxX - minX + 90);
+    var height = Math.max(180, maxY - minY + 62);
+    if (width / height < 2) width = height * 2;
+    else height = width / 2;
+    var extraZoom = 1 + Math.max(0, state.dotZoom - 1.7) * 0.18;
+    width = Math.max(340, width / extraZoom);
+    height = Math.max(170, height / extraZoom);
+    var centerX = (minX + maxX) / 2;
+    var centerY = (minY + maxY) / 2;
+    var x = clamp(centerX - width / 2, 0, 1000 - width);
+    var y = clamp(centerY - height / 2, 0, 500 - height);
+    return [x, y, width, height].map(function (value) { return value.toFixed(1); }).join(' ');
+  }
+
+  function clusterRadius(count, level, featured) {
+    var radius = level === 'continent' ? 24 + Math.sqrt(count) * 1.45 : 11 + Math.sqrt(count) * 1.35;
+    if (featured) radius = Math.max(radius, 38);
+    return Math.min(level === 'continent' ? 64 : 40, radius);
+  }
+
+  function layoutWorldClusters(clusters, continentLevel) {
+    var layout = clusters.map(function (cluster, index) {
+      var point = Core.projectWorldPoint(cluster.longitude, cluster.latitude, 1000, 500);
+      if (!point) return null;
+      var featured = cluster.countryCode === 'KOR';
+      return {
+        cluster: cluster,
+        index: index,
+        anchorX: point.x,
+        anchorY: point.y,
+        x: point.x,
+        y: point.y,
+        radius: clusterRadius(cluster.count, continentLevel ? 'continent' : 'country', featured)
+      };
+    }).filter(Boolean);
+    if (continentLevel) return layout;
+
+    for (var iteration = 0; iteration < 70; iteration += 1) {
+      for (var left = 0; left < layout.length; left += 1) {
+        for (var right = left + 1; right < layout.length; right += 1) {
+          var a = layout[left];
+          var b = layout[right];
+          var dx = b.x - a.x;
+          var dy = b.y - a.y;
+          if (Math.abs(dx) < 0.01 && Math.abs(dy) < 0.01) {
+            var angle = ((a.index + 1) * 137.5) * Math.PI / 180;
+            dx = Math.cos(angle);
+            dy = Math.sin(angle);
+          }
+          var distance = Math.sqrt(dx * dx + dy * dy) || 1;
+          var minimum = a.radius + b.radius + 8;
+          if (distance >= minimum) continue;
+          var push = (minimum - distance) * 0.52;
+          var unitX = dx / distance;
+          var unitY = dy / distance;
+          a.x -= unitX * push;
+          a.y -= unitY * push;
+          b.x += unitX * push;
+          b.y += unitY * push;
+        }
+      }
+      layout.forEach(function (item) {
+        item.x += (item.anchorX - item.x) * 0.018;
+        item.y += (item.anchorY - item.y) * 0.018;
+        item.x = clamp(item.x, item.radius + 8, 992 - item.radius);
+        item.y = clamp(item.y, item.radius + 8, 472 - item.radius);
+      });
+    }
+    return layout;
   }
 
   function worldHtml(rows) {
-    var clusters = buildWorldPointGroups(rows);
-    var dots = clusters.map(function (cluster) {
-      var point = Core.projectWorldPoint(cluster.longitude, cluster.latitude, 1000, 500);
-      if (!point) return '';
-      var count = cluster.rows.length;
-      var radius = Math.min(16, 7 + Math.sqrt(count) * 2);
-      return '<g class="world-cluster tier-' + cluster.tier.tone + '" role="button" tabindex="0" aria-label="' + esc(countryName(cluster.countryCode)) + ' 좌표 그룹 ' + count + '개" data-global-map-country="' + esc(cluster.countryCode) + '" transform="translate(' + point.x + ' ' + point.y + ')"><circle r="' + radius.toFixed(1) + '"></circle>' + (count > 1 ? '<text y="4">' + count + '</text>' : '') + '</g>';
+    var continentLevel = !state.scope.continentCode && state.dotZoom < 1.5;
+    var clusters = continentLevel ? Core.buildContinentClusters(rows) : Core.buildCountryClusters(rows);
+    var layout = layoutWorldClusters(clusters, continentLevel);
+    var dots = layout.map(function (item) {
+      var cluster = item.cluster;
+      var isContinent = Boolean(cluster.continentCode && !cluster.countryCode);
+      var code = isContinent ? cluster.continentCode : cluster.countryCode;
+      var label = isContinent ? cluster.label : countryName(cluster.countryCode);
+      var featured = cluster.countryCode === 'KOR';
+      var radius = item.radius;
+      var dataAttribute = isContinent ? 'data-global-map-continent="' + esc(code) + '"' : 'data-global-map-country="' + esc(code) + '"';
+      var tone = continentTone(cluster.continentCode || Core.continentForRow({ country_code_alpha3: cluster.countryCode }));
+      var detail = isContinent ? cluster.countryCount + '개국' : code;
+      var koreaNote = isContinent && code === 'ASI'
+        ? rows.filter(function (row) { return row.country_code_alpha3 === 'KOR'; }).length
+        : 0;
+      if (koreaNote) detail += ' · 한국 ' + koreaNote;
+      var offset = Math.sqrt(Math.pow(item.x - item.anchorX, 2) + Math.pow(item.y - item.anchorY, 2));
+      var leader = !isContinent && offset > 4
+        ? '<line class="world-cluster-leader continent-' + tone + '" x1="' + item.anchorX.toFixed(1) + '" y1="' + item.anchorY.toFixed(1) + '" x2="' + item.x.toFixed(1) + '" y2="' + item.y.toFixed(1) + '"></line>'
+        : '';
+      var visibleLabel = isContinent ? label + ' · ' + detail : (featured ? '대한민국 · KOR' : code);
+      return leader + '<g class="world-cluster ' + (isContinent ? 'is-continent' : 'is-country') + ' continent-' + tone + (featured ? ' is-korea' : '') + '" role="button" tabindex="0" aria-label="' + esc(label) + ' ' + cluster.count + '개" ' + dataAttribute + ' transform="translate(' + item.x.toFixed(1) + ' ' + item.y.toFixed(1) + ')"><title>' + esc(label) + ' · ' + cluster.count + '개</title><circle class="world-cluster-halo" r="' + (radius + 6).toFixed(1) + '"></circle><circle class="world-cluster-body" r="' + radius.toFixed(1) + '"></circle><text class="world-cluster-count" y="4">' + cluster.count + '</text><text class="world-cluster-label" y="' + (radius + 13).toFixed(1) + '">' + esc(visibleLabel) + '</text></g>';
     }).join('');
-    return '<svg class="global-world-svg" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMin meet" role="img" aria-label="사각 도트 세계지도 위에 표시한 글로벌 자산 좌표"><g class="world-grid">' + pixelLandHtml() + '</g><g class="world-dots">' + dots + '</g></svg><div class="global-world-caption"><span><b>' + rows.length + '</b>개 좌표를 실제 위도·경도로 배치</span><span>원형 버블을 선택하면 국가 상세 지도로 이동합니다.</span></div>';
+    var levelLabel = continentLevel ? '대륙' : '국가';
+    var canZoomOut = state.dotZoom > 1 || Boolean(state.scope.continentCode);
+    return '<svg class="global-world-svg" data-global-dot-map viewBox="' + dotViewBox(layout) + '" preserveAspectRatio="xMidYMid meet" role="img" aria-label="사각 도트 세계지도의 ' + levelLabel + '별 자산 군집"><g class="world-grid">' + pixelLandHtml() + '</g><g class="world-dots">' + dots + '</g></svg><div class="global-dot-controls" aria-label="도트 지도 확대 축소"><button type="button" data-global-map-action="dot-zoom-out" title="축소" aria-label="도트 지도 축소"' + (canZoomOut ? '' : ' disabled') + '>-</button><span>' + levelLabel + '</span><button type="button" data-global-map-action="dot-zoom-in" title="확대" aria-label="도트 지도 확대">+</button></div><div class="global-world-caption"><span><b>' + rows.length + '</b>개 좌표</span><span>' + (continentLevel ? '대륙을 선택하면 국가별로 나뉩니다.' : '국가를 선택하면 오픈소스 상세지도로 이동합니다.') + '</span></div>';
   }
 
   function locationLabel(row) {
@@ -342,6 +445,25 @@
   function renderWorldList(rows) {
     var list = document.getElementById('globalMapList');
     if (!list) return;
+    var showContinents = !state.scope.continentCode && state.dotZoom < 1.5;
+    if (showContinents) {
+      var continentGroups = new Map();
+      rows.forEach(function (row) {
+        var continentCode = Core.continentForRow(row);
+        var group = continentGroups.get(continentCode) || { code: continentCode, count: 0, pointCount: 0, countries: new Set(), koreaCount: 0 };
+        group.count += 1;
+        if (Core.hasCoordinatePair(row)) group.pointCount += 1;
+        if (row.country_code_alpha3) group.countries.add(row.country_code_alpha3);
+        if (row.country_code_alpha3 === 'KOR') group.koreaCount += 1;
+        continentGroups.set(continentCode, group);
+      });
+      var continents = Array.from(continentGroups.values()).sort(function (a, b) { return b.count - a.count || continentName(a.code).localeCompare(continentName(b.code), 'ko'); });
+      list.innerHTML = '<div class="global-map-list-heading"><strong>대륙별 관리 대상</strong><span>' + continents.length + '개 권역</span></div>' + continents.map(function (group) {
+        var korea = group.koreaCount ? ' · 한국 ' + group.koreaCount : '';
+        return '<button type="button" class="global-map-country-row global-map-continent-row" data-global-map-continent="' + esc(group.code) + '"><span><b>' + esc(continentName(group.code)) + '</b><small>' + group.countries.size + '개국 · 좌표 ' + group.pointCount + korea + '</small></span><strong>' + group.count + '</strong></button>';
+      }).join('') + '<div class="global-map-nonpoint"><strong>지도 밖 관리 대상</strong><span>좌표가 없는 자산과 비단일 위치 대상은 필터별 합계로 관리합니다.</span></div>';
+      return;
+    }
     var groups = new Map();
     rows.forEach(function (row) {
       var code = row.country_code_alpha3 || '__unknown_country__';
@@ -353,7 +475,7 @@
     var countries = Array.from(groups.values()).sort(function (a, b) { return b.count - a.count || countryName(a.code).localeCompare(countryName(b.code), 'ko'); });
     var nonPointCounts = Core.summarize(rows.filter(function (row) { return !Core.hasCoordinatePair(row); }));
     list.innerHTML = [
-      '<div class="global-map-list-heading"><strong>국가별 관리 대상</strong><span>', countries.length, '개 그룹</span></div>',
+      '<div class="global-map-list-heading"><strong>', state.scope.continentCode ? esc(continentName(state.scope.continentCode)) + ' 국가별' : '국가별 관리 대상', '</strong><span>', countries.length, '개 그룹</span></div>',
       countries.map(function (group) {
         return '<button type="button" class="global-map-country-row" data-global-map-country="' + esc(group.code) + '"><span><b>' + esc(countryName(group.code)) + '</b><small>' + (group.code === '__unknown_country__' ? 'ISO 미확인' : esc(group.code)) + ' · 좌표 ' + group.pointCount + '</small></span><strong>' + group.count + '</strong></button>';
       }).join('') || '<p class="global-map-empty">선택한 조건의 관리 대상이 없습니다.</p>',
@@ -410,6 +532,7 @@
   function mapStyle() {
     return {
       version: 8,
+      glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
       sources: { osm: { type: 'raster', tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'], tileSize: 256, attribution: '&copy; OpenStreetMap contributors' } },
       layers: [{
         id: 'osm',
@@ -453,9 +576,71 @@
     if (badge) badge.textContent = label;
   }
 
+  function clearMapLibreOverviewMarkers() {
+    state.markers.forEach(function (marker) {
+      if (marker && typeof marker.remove === 'function') marker.remove();
+    });
+    state.markers = [];
+  }
+
+  function overviewMarkerDiameter(cluster, level) {
+    var featured = cluster.countryCode === 'KOR';
+    var radius = clusterRadius(cluster.count, level, featured);
+    return Math.round(Math.max(level === 'continent' ? 78 : 44, radius * 2.05));
+  }
+
+  function renderMapLibreOverviewMarkers(map, maplibregl, rows, generation, mapRoot) {
+    var renderedLevel = '';
+
+    function draw() {
+      if (generation !== state.generation || state.map !== map) return;
+      var level = state.scope.continentCode || map.getZoom() >= 2.65 ? 'country' : 'continent';
+      if (level === renderedLevel) return;
+      renderedLevel = level;
+      clearMapLibreOverviewMarkers();
+      var clusters = level === 'continent' ? Core.buildContinentClusters(rows) : Core.buildCountryClusters(rows);
+      state.markers = clusters.map(function (cluster) {
+        var isContinent = level === 'continent';
+        var code = isContinent ? cluster.continentCode : cluster.countryCode;
+        var label = isContinent ? cluster.label : countryName(code, rows);
+        var tone = continentTone(cluster.continentCode || Core.continentForRow({ country_code_alpha3: code }));
+        var markerElement = document.createElement('button');
+        markerElement.type = 'button';
+        markerElement.className = 'global-maplibre-overview-marker is-' + level + ' continent-' + tone + (code === 'KOR' ? ' is-korea' : '');
+        markerElement.style.setProperty('--overview-marker-size', overviewMarkerDiameter(cluster, level) + 'px');
+        markerElement.setAttribute('aria-label', label + ' ' + cluster.count + '개, 상세 보기');
+        markerElement.title = label + ' · ' + cluster.count + '개';
+        markerElement.innerHTML = '<strong>' + cluster.count + '</strong><span>' + esc(isContinent ? label : code) + '</span>';
+        markerElement.addEventListener('click', function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          if (isContinent) openContinentDetail(code);
+          else openCountry(code);
+        });
+        return new maplibregl.Marker({ element: markerElement, anchor: 'center' })
+          .setLngLat([Number(cluster.longitude), Number(cluster.latitude)])
+          .addTo(map);
+      });
+      state.renderedMarkerCount = clusters.length;
+      mapRoot.dataset.raOverviewLevel = level;
+      mapRoot.dataset.raRenderedMarkers = String(clusters.length);
+      updateBaseBadge(level === 'continent' ? 'OpenStreetMap · 대륙' : 'OpenStreetMap · 국가');
+    }
+
+    draw();
+    map.on('zoomend', draw);
+  }
+
   function returnToWorldFromDetail(generation) {
-    if (generation !== state.generation || !state.active || !state.scope.countryCode) return;
-    state.scope = { countryCode: '', city: '' };
+    if (generation !== state.generation || !state.active || !isDetailStage()) return;
+    if (state.scope.countryCode) {
+      state.scope = { continentCode: state.scope.continentCode || '', countryCode: '', city: '' };
+      state.dotZoom = 1.8;
+    } else {
+      state.scope.city = '';
+      state.dotZoom = state.scope.continentCode ? 1.8 : 1;
+    }
+    state.detailMode = false;
     state.selectedAssetId = '';
     state.inspectorOpener = null;
     state.generation += 1;
@@ -474,17 +659,31 @@
     ensureMapLibre().then(function (maplibregl) {
       if (generation !== state.generation || !state.active || !document.getElementById('globalMapLibre')) return;
       disposeMap();
-      var maxPrecisionZoom = Math.min.apply(null, rows.map(function (row) { return Core.maxZoomForPrecision(row.coordinate_precision); }));
-      var map = new maplibregl.Map({ container: 'globalMapLibre', style: mapStyle(), center: [Number(rows[0].longitude), Number(rows[0].latitude)], zoom: rows.length === 1 ? Math.min(10, maxPrecisionZoom) : 3, maxZoom: maxPrecisionZoom, attributionControl: true });
+      var mapRoot = document.getElementById('globalMapLibre');
+      mapRoot.dataset.raMapStage = 'creating';
+      var map = new maplibregl.Map({
+        container: 'globalMapLibre',
+        style: mapStyle(),
+        center: [Number(rows[0].longitude), Number(rows[0].latitude)],
+        zoom: rows.length === 1 ? Math.min(14, Core.maxZoomForPrecision(rows[0].coordinate_precision)) : 3,
+        minZoom: 0,
+        maxZoom: 19,
+        attributionControl: true
+      });
       state.map = map;
       state.mapBase = 'maplibre-osm';
       state.renderedMarkerCount = rows.length;
       state.tileFailed = false;
       updateBaseBadge('OpenStreetMap · 상세');
       map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+      var allowZoomOutReturn = false;
       map.on('zoomend', function () {
         if (generation !== state.generation || state.map !== map) return;
-        if (Core.shouldReturnToWorld(map.getZoom())) returnToWorldFromDetail(generation);
+        if (!allowZoomOutReturn) return;
+        var shouldReturn = state.scope.continentCode || state.scope.countryCode
+          ? Core.shouldReturnToWorld(map.getZoom())
+          : map.getZoom() <= 1.05;
+        if (shouldReturn) returnToWorldFromDetail(generation);
       });
       map.on('error', function (event) {
         if (event && event.error && /tile|source|network|fetch/i.test(String(event.error.message || event.error))) {
@@ -494,26 +693,91 @@
           renderFallbackPlot(rows, '배경지도 연결에 실패해 좌표만 표시합니다.');
         }
       });
-      var bounds = new maplibregl.LngLatBounds();
-      rows.forEach(function (row) {
-        var tier = Core.classifyLocation(row);
-        var button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'global-map-marker tier-' + tier.tone;
-        button.dataset.globalMapAsset = row.asset_id;
-        button.setAttribute('aria-label', row.canonical_name + ' · ' + tier.label);
-        button.title = row.canonical_name + ' · ' + tier.label;
-        var marker = new maplibregl.Marker({ element: button, anchor: 'center' }).setLngLat([Number(row.longitude), Number(row.latitude)]).addTo(map);
-        state.markers.push(marker);
-        bounds.extend([Number(row.longitude), Number(row.latitude)]);
-      });
       map.once('load', function () {
         if (generation !== state.generation || state.map !== map) return;
+        mapRoot.dataset.raMapStage = 'style-loaded';
+        var bounds = new maplibregl.LngLatBounds();
+        var features = rows.map(function (row) {
+          var tier = Core.classifyLocation(row);
+          var coordinates = [Number(row.longitude), Number(row.latitude)];
+          bounds.extend(coordinates);
+          return {
+            type: 'Feature',
+            geometry: { type: 'Point', coordinates: coordinates },
+            properties: { assetId: String(row.asset_id), name: String(row.canonical_name || ''), tone: tier.tone }
+          };
+        });
+        map.addSource('ra-assets', {
+          type: 'geojson',
+          data: { type: 'FeatureCollection', features: features },
+          cluster: true,
+          clusterMaxZoom: 14,
+          clusterRadius: 58
+        });
+        mapRoot.dataset.raMapFeatures = String(features.length);
+        map.addLayer({
+          id: 'ra-asset-clusters',
+          type: 'circle',
+          source: 'ra-assets',
+          filter: ['has', 'point_count'],
+          paint: {
+            'circle-color': '#2196df',
+            'circle-opacity': 0.58,
+            'circle-radius': ['step', ['get', 'point_count'], 20, 10, 27, 50, 35, 200, 45],
+            'circle-stroke-color': 'rgba(255,255,255,.92)',
+            'circle-stroke-width': 2
+          }
+        });
+        mapRoot.dataset.raMapStage = 'layers-ready';
+        map.addLayer({
+          id: 'ra-asset-cluster-count',
+          type: 'symbol',
+          source: 'ra-assets',
+          filter: ['has', 'point_count'],
+          layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-size': 13, 'text-font': ['Open Sans Bold'] },
+          paint: { 'text-color': '#ffffff', 'text-halo-color': 'rgba(13,20,23,.55)', 'text-halo-width': 1 }
+        });
+        map.addLayer({
+          id: 'ra-asset-points',
+          type: 'circle',
+          source: 'ra-assets',
+          filter: ['!', ['has', 'point_count']],
+          paint: {
+            'circle-color': ['match', ['get', 'tone'], 'verified', '#36aef6', 'candidate', '#ffbd4a', 'area', '#ff8d3a', 'uncertain', '#a8b7c7', '#8f9aa7'],
+            'circle-opacity': 0.68,
+            'circle-radius': 10,
+            'circle-stroke-color': '#ffffff',
+            'circle-stroke-width': 2
+          }
+        });
+        map.on('click', 'ra-asset-clusters', function (event) {
+          var feature = event.features && event.features[0];
+          if (!feature) return;
+          map.easeTo({ center: feature.geometry.coordinates, zoom: Math.min(19, map.getZoom() + 2), duration: 420 });
+        });
+        map.on('click', 'ra-asset-points', function (event) {
+          var feature = event.features && event.features[0];
+          if (feature && feature.properties) selectAsset(feature.properties.assetId);
+        });
+        ['ra-asset-clusters', 'ra-asset-points'].forEach(function (layerId) {
+          map.on('mouseenter', layerId, function () { map.getCanvas().style.cursor = 'pointer'; });
+          map.on('mouseleave', layerId, function () { map.getCanvas().style.cursor = ''; });
+        });
+        map.on('idle', function () {
+          if (generation !== state.generation || state.map !== map) return;
+          var sourceFeatures = map.querySourceFeatures('ra-assets');
+          var renderedFeatures = map.queryRenderedFeatures(undefined, { layers: ['ra-asset-clusters', 'ra-asset-points'] });
+          mapRoot.dataset.raSourceFeatures = String(sourceFeatures.length);
+          mapRoot.dataset.raRenderedFeatures = String(renderedFeatures.length);
+        });
         if (rows.length === 1) {
-          map.jumpTo({ center: bounds.getCenter(), zoom: Math.min(10, Core.maxZoomForPrecision(rows[0].coordinate_precision)) });
+          map.jumpTo({ center: bounds.getCenter(), zoom: Math.min(14, Core.maxZoomForPrecision(rows[0].coordinate_precision)) });
         } else {
-          map.fitBounds(bounds, { padding: 64, maxZoom: Math.min(10, maxPrecisionZoom), duration: 0 });
+          var fitZoom = state.scope.city ? 13 : (state.scope.countryCode ? 11 : (state.scope.continentCode ? 6 : 3));
+          map.fitBounds(bounds, { padding: 56, maxZoom: fitZoom, duration: 0 });
         }
+        if (!state.scope.countryCode) renderMapLibreOverviewMarkers(map, maplibregl, rows, generation, mapRoot);
+        window.setTimeout(function () { allowZoomOutReturn = true; }, 700);
       });
     }).catch(function (error) {
       if (generation !== state.generation || !state.active) return;
@@ -545,22 +809,45 @@
         });
         var features = rows.map(function (row) {
           var tier = Core.classifyLocation(row);
-          var fill = tier.tone === 'verified' ? '#1769aa' : (tier.tone === 'candidate' || tier.tone === 'area' ? '#bd6900' : '#657184');
           var feature = new window.ol.Feature({
             geometry: new window.ol.geom.Point(window.ol.proj.fromLonLat([Number(row.longitude), Number(row.latitude)])),
-            assetId: row.asset_id
+            assetId: row.asset_id,
+            tone: tier.tone
           });
-          feature.setStyle(new window.ol.style.Style({
-            image: new window.ol.style.Circle({
-              radius: 9,
-              fill: new window.ol.style.Fill({ color: fill }),
-              stroke: new window.ol.style.Stroke({ color: '#ffffff', width: 3 })
-            })
-          }));
           return feature;
         });
         var source = new window.ol.source.Vector({ features: features });
-        map.addLayer(new window.ol.layer.Vector({ source: source }));
+        var clusterSource = new window.ol.source.Cluster({ distance: 54, minDistance: 16, source: source });
+        var styleCache = {};
+        map.addLayer(new window.ol.layer.Vector({
+          source: clusterSource,
+          style: function (clusterFeature) {
+            var members = clusterFeature.get('features') || [];
+            var count = members.length || 1;
+            var tone = count === 1 ? members[0].get('tone') : 'cluster';
+            var key = tone + ':' + count;
+            if (styleCache[key]) return styleCache[key];
+            var fill = tone === 'verified' ? 'rgba(54,174,246,.68)'
+              : (tone === 'candidate' ? 'rgba(255,189,74,.62)'
+                : (tone === 'area' ? 'rgba(255,141,58,.62)'
+                  : (tone === 'uncertain' ? 'rgba(168,183,199,.58)' : 'rgba(33,150,223,.58)')));
+            var radius = count > 1 ? Math.min(38, 14 + Math.sqrt(count) * 2.1) : 10;
+            styleCache[key] = new window.ol.style.Style({
+              image: new window.ol.style.Circle({
+                radius: radius,
+                fill: new window.ol.style.Fill({ color: fill }),
+                stroke: new window.ol.style.Stroke({ color: 'rgba(255,255,255,.94)', width: 2 })
+              }),
+              text: count > 1 ? new window.ol.style.Text({
+                text: String(count),
+                fill: new window.ol.style.Fill({ color: '#ffffff' }),
+                stroke: new window.ol.style.Stroke({ color: 'rgba(13,20,23,.6)', width: 3 }),
+                font: '700 13px sans-serif'
+              }) : undefined
+            });
+            return styleCache[key];
+          }
+        }));
         state.map = map;
         state.markers = features;
         state.mapBase = 'vworld-graphic';
@@ -569,18 +856,49 @@
         map.on('singleclick', function (event) {
           var selected = null;
           map.forEachFeatureAtPixel(event.pixel, function (feature) { selected = feature; return true; });
-          if (selected) selectAsset(selected.get('assetId'));
+          if (!selected) return;
+          var members = selected.get('features') || [];
+          if (members.length === 1) {
+            selectAsset(members[0].get('assetId'));
+            return;
+          }
+          if (members.length > 1) {
+            var currentZoom = map.getView().getZoom() || 6;
+            if (typeof map.updateSize === 'function') map.updateSize();
+            var targetView = map.getView();
+            var targetCenter = selected.getGeometry().getCoordinates();
+            var targetZoom = Math.min(19, currentZoom + 1.25);
+            if (typeof targetView.animate === 'function') {
+              targetView.animate({ center: targetCenter, zoom: targetZoom, duration: 360 });
+            } else {
+              targetView.setCenter(targetCenter);
+              targetView.setZoom(targetZoom);
+            }
+          }
         });
         var view = map.getView();
-        var maxZoom = Math.min.apply(null, rows.map(function (row) { return Core.maxZoomForPrecision(row.coordinate_precision); }));
-        if (typeof view.setMaxZoom === 'function') view.setMaxZoom(maxZoom);
-        if (features.length === 1) {
-          view.setCenter(features[0].getGeometry().getCoordinates());
-          view.setZoom(Math.min(13, Core.maxZoomForPrecision(rows[0].coordinate_precision)));
-        } else {
-          var extent = window.ol.extent.boundingExtent(features.map(function (feature) { return feature.getGeometry().getCoordinates(); }));
-          view.fit(extent, { padding: [64, 64, 64, 64], maxZoom: Math.min(12, maxZoom), duration: 0 });
+        if (typeof view.setMaxZoom === 'function') view.setMaxZoom(19);
+        var extent = window.ol.extent.boundingExtent(features.map(function (feature) { return feature.getGeometry().getCoordinates(); }));
+        function applyInitialView() {
+          if (generation !== state.generation || state.map !== map) return;
+          if (typeof map.updateSize === 'function') map.updateSize();
+          if (features.length === 1) {
+            view.setCenter(features[0].getGeometry().getCoordinates());
+            view.setZoom(Math.min(16, Core.maxZoomForPrecision(rows[0].coordinate_precision)));
+          } else if (state.scope.countryCode === 'KOR' && !state.scope.city) {
+            view.setCenter(window.ol.proj.fromLonLat([127.75, 36.25]));
+            view.setZoom(6.65);
+          } else {
+            view.fit(extent, {
+              size: typeof map.getSize === 'function' ? map.getSize() : undefined,
+              padding: [64, 64, 64, 64],
+              maxZoom: state.scope.city ? 15 : 12,
+              duration: 0
+            });
+          }
         }
+        applyInitialView();
+        window.setTimeout(applyInitialView, 160);
         if (typeof view.on === 'function') {
           view.on('change:resolution', function () {
             if (generation !== state.generation || state.map !== map) return;
@@ -602,7 +920,7 @@
       '<button type="button" class="global-map-inspector-close" data-global-map-action="close-inspector" aria-label="자산 위치 상세 닫기">×</button>',
       '<p>LOCATION DETAIL</p><h2 id="globalMapInspectorTitle">', esc(row.canonical_name), '</h2><span class="global-map-inspector-tier tier-', tier.tone, '">', esc(tier.label), '</span>',
       '<dl><div><dt>표시 위치</dt><dd>', esc(locationLabel(row)), '</dd></div><div><dt>좌표 정밀도</dt><dd>', esc(row.coordinate_precision || 'unknown'), '</dd></div><div><dt>신뢰도</dt><dd>', confidenceText, '</dd></div><div><dt>좌표 출처</dt><dd>', esc(row.coordinate_source || '-'), '</dd></div><div><dt>상태</dt><dd>', esc(row.location_status_label || tier.label), '</dd></div></dl>',
-      '<p class="global-map-precision-note">이 위치는 ', Core.maxZoomForPrecision(row.coordinate_precision), '레벨 이상으로 자동 확대하지 않습니다.</p>'
+      '<p class="global-map-precision-note">자동 이동은 좌표 정밀도에 맞춰 ', Core.maxZoomForPrecision(row.coordinate_precision), '레벨까지 적용하며, 지도는 수동으로 더 확대할 수 있습니다.</p>'
     ].join('');
   }
 
@@ -619,10 +937,17 @@
       if (close) close.focus();
     }
     if (state.map && state.mapBase === 'maplibre-osm' && Core.hasCoordinatePair(row)) {
-      var visibleCoordinates = state.filteredRows.filter(Core.hasCoordinatePair);
-      var mixedCap = visibleCoordinates.length ? Math.min.apply(null, visibleCoordinates.map(function (candidate) { return Core.maxZoomForPrecision(candidate.coordinate_precision); })) : Core.maxZoomForPrecision(row.coordinate_precision);
-      var zoom = Math.min(Core.maxZoomForPrecision(row.coordinate_precision), mixedCap, row.coordinate_precision === 'unknown' ? 7 : 14);
+      var zoom = Math.min(Core.maxZoomForPrecision(row.coordinate_precision), row.coordinate_precision === 'unknown' ? 8 : 15);
       state.map.easeTo({ center: [Number(row.longitude), Number(row.latitude)], zoom: zoom, duration: 450 });
+    } else if (state.map && state.mapBase === 'vworld-graphic' && Core.hasCoordinatePair(row) && state.map.getView) {
+      var targetView = state.map.getView();
+      var targetCenter = window.ol.proj.fromLonLat([Number(row.longitude), Number(row.latitude)]);
+      var targetZoom = Math.min(15, Core.maxZoomForPrecision(row.coordinate_precision));
+      if (typeof targetView.animate === 'function') targetView.animate({ center: targetCenter, zoom: targetZoom, duration: 450 });
+      else {
+        targetView.setCenter(targetCenter);
+        targetView.setZoom(targetZoom);
+      }
     }
   }
 
@@ -644,22 +969,52 @@
     var rows = filteredRows();
     state.filteredRows = rows;
     panel.innerHTML = shellHtml(rows);
-    if (!state.scope.countryCode) {
+    if (!isDetailStage()) {
       state.mapBase = 'concept-svg';
       document.getElementById('globalMapCanvas').innerHTML = worldHtml(rows.filter(Core.hasCoordinatePair));
-      state.renderedMarkerCount = buildWorldPointGroups(rows.filter(Core.hasCoordinatePair)).length;
+      state.renderedMarkerCount = state.scope.continentCode || state.dotZoom >= 1.5
+        ? Core.buildCountryClusters(rows.filter(Core.hasCoordinatePair)).length
+        : Core.buildContinentClusters(rows.filter(Core.hasCoordinatePair)).length;
       renderWorldList(rows);
-      updateBaseBadge('도트 세계지도');
+      updateBaseBadge(state.scope.continentCode ? '도트 국가 지도' : '도트 세계지도');
     } else {
       var coordinateRows = rows.filter(Core.hasCoordinatePair);
-      renderDetailList(rows);
+      if (state.scope.countryCode) renderDetailList(rows);
+      else renderWorldList(rows);
       if (state.scope.countryCode === 'KOR') renderVWorld(coordinateRows, state.generation);
       else renderMapLibre(coordinateRows, state.generation);
     }
   }
 
+  function openContinent(code) {
+    state.scope = { continentCode: code, countryCode: '', city: '' };
+    state.detailMode = false;
+    state.dotZoom = 1.8;
+    state.selectedAssetId = '';
+    state.generation += 1;
+    render();
+  }
+
+  function openContinentDetail(code) {
+    state.scope = { continentCode: code, countryCode: '', city: '' };
+    state.detailMode = true;
+    state.dotZoom = 3;
+    state.selectedAssetId = '';
+    state.generation += 1;
+    render();
+  }
+
   function openCountry(code) {
-    state.scope = { countryCode: code, city: '' };
+    var matchingRow = state.rows.find(function (row) {
+      return code === '__unknown_country__' ? !row.country_code_alpha3 : row.country_code_alpha3 === code;
+    });
+    state.scope = {
+      continentCode: state.scope.continentCode || (matchingRow ? Core.continentForRow(matchingRow) : ''),
+      countryCode: code,
+      city: ''
+    };
+    state.detailMode = true;
+    state.dotZoom = 3;
     state.selectedAssetId = '';
     state.generation += 1;
     render();
@@ -667,6 +1022,27 @@
 
   function openCity(city) {
     state.scope.city = city;
+    state.detailMode = true;
+    state.selectedAssetId = '';
+    state.generation += 1;
+    render();
+  }
+
+  function adjustDotZoom(direction) {
+    if (direction > 0) {
+      state.dotZoom = Math.min(3, state.dotZoom + 0.65);
+      if (state.dotZoom >= 2.75) state.detailMode = true;
+    } else {
+      if (state.detailMode) {
+        state.detailMode = false;
+        state.dotZoom = state.scope.continentCode ? 2.1 : 1.7;
+      } else if (state.dotZoom > 1.1) {
+        state.dotZoom = Math.max(1, state.dotZoom - 0.65);
+      } else if (state.scope.continentCode) {
+        state.scope = emptyScope();
+        state.dotZoom = 1;
+      }
+    }
     state.selectedAssetId = '';
     state.generation += 1;
     render();
@@ -680,15 +1056,30 @@
       if (name === 'retry') retry();
       if (name === 'refresh') { state.rows = []; retry(); }
       if (name === 'close-inspector') closeInspector();
+      if (name === 'dot-zoom-in') adjustDotZoom(1);
+      if (name === 'dot-zoom-out') adjustDotZoom(-1);
       return;
     }
+    var continent = event.target.closest('[data-global-map-continent]');
+    if (continent) { openContinent(continent.dataset.globalMapContinent); return; }
     var country = event.target.closest('[data-global-map-country]');
     if (country) { openCountry(country.dataset.globalMapCountry); return; }
     var city = event.target.closest('[data-global-map-city]');
     if (city) { openCity(city.dataset.globalMapCity); return; }
     var scope = event.target.closest('[data-global-map-scope]');
     if (scope) {
-      state.scope = scope.dataset.globalMapScope === 'world' ? { countryCode: '', city: '' } : { countryCode: state.scope.countryCode, city: '' };
+      if (scope.dataset.globalMapScope === 'world') {
+        state.scope = emptyScope();
+        state.dotZoom = 1;
+        state.detailMode = false;
+      } else if (scope.dataset.globalMapScope === 'continent') {
+        state.scope = { continentCode: state.scope.continentCode, countryCode: '', city: '' };
+        state.dotZoom = 1.8;
+        state.detailMode = false;
+      } else {
+        state.scope.city = '';
+        state.detailMode = true;
+      }
       state.generation += 1; render(); return;
     }
     var tier = event.target.closest('[data-global-map-tier]');
@@ -703,12 +1094,21 @@
 
   document.addEventListener('keydown', function (event) {
     if (!state.active) return;
-    var target = event.target.closest && event.target.closest('[role="button"][data-global-map-country], [role="button"][data-global-map-asset]');
+    var target = event.target.closest && event.target.closest('[role="button"][data-global-map-continent], [role="button"][data-global-map-country], [role="button"][data-global-map-asset]');
     if (target && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); target.click(); }
     if (event.key === 'Escape') {
       closeInspector();
     }
   });
+
+  document.addEventListener('wheel', function (event) {
+    if (!state.active || isDetailStage() || !event.target.closest || !event.target.closest('[data-global-dot-map]')) return;
+    event.preventDefault();
+    var now = Date.now();
+    if (state.lastDotWheelAt && now - state.lastDotWheelAt < 180) return;
+    state.lastDotWheelAt = now;
+    adjustDotZoom(event.deltaY < 0 ? 1 : -1);
+  }, { passive: false });
 
   document.addEventListener('input', function (event) {
     if (!state.active || !event.target.matches('[data-global-map-search]')) return;
