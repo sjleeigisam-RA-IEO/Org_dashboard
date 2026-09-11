@@ -33,8 +33,12 @@
         <form id="login-form" novalidate>
           <div class="field">
             <label for="email">회사메일</label>
-            <input id="email" name="email" type="email" placeholder="name@igisam.com" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" maxlength="254" required aria-describedby="email-hint">
+            <div class="email-actions">
+              <input id="email" name="email" type="email" placeholder="name@igisam.com" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" maxlength="254" required aria-describedby="email-hint">
+              <button id="send-code-button" class="send-code-button" type="button" hidden>배포코드 받기</button>
+            </div>
             <p class="field-hint" id="email-hint">@igisam.com 회사메일로 접속할 수 있습니다.</p>
+            <p class="send-code-status" id="send-code-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
           </div>
           <div class="field code-field">
             <label for="code">배포코드</label>

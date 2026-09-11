@@ -2,9 +2,10 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "buildCommand": "",
-  "installCommand": "",
+  "installCommand": "npm ci --ignore-scripts --no-audit --no-fund",
   "outputDirectory": "public",
   "functions": {
+    "api/send-code.js": { "maxDuration": 30 },
     "api/dashboard.js": {
       "includeFiles": "private/dashboard.enc",
       "maxDuration": 30
