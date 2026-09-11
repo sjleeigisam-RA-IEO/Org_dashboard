@@ -4,7 +4,6 @@
   "buildCommand": "",
   "installCommand": "",
   "outputDirectory": "public",
-  "public": false,
   "functions": {
     "api/dashboard.js": {
       "includeFiles": "private/dashboard.enc",
