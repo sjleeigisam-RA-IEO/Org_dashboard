@@ -26,15 +26,15 @@ Deno.serve(async (request) => {
         method: "GET",
         query: "select=*&order=canonical_account_name.asc,fund_id.asc,exposure_id.asc",
       }),
-      postgrest("one_account_party_bridge_current_v1", {
+      postgrest("one_account_portal_party_bridge_current_v1", {
         method: "GET",
-        query: "select=account_id,canonical_account_name,party_id,is_primary,resolution_status&order=canonical_account_name.asc,party_id.asc",
+        query: "select=account_id,canonical_account_name,party_id,is_primary,resolution_status,account_category,piscfh_code,piscfh_label,investor_class,portal_role_class,classification_status,classification_review_status&order=canonical_account_name.asc,party_id.asc",
       }),
     ]);
 
     return jsonResponse({
       ok: true,
-      snapshot_version: "v1.1",
+      snapshot_version: "v1.6-rm75-260909",
       delegated_exposures: Array.isArray(delegatedExposures) ? delegatedExposures : [],
       party_bridge: Array.isArray(partyBridge) ? partyBridge : [],
     });

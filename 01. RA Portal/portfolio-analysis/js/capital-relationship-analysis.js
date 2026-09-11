@@ -598,7 +598,7 @@
 
   async function safeSecureCapitalExposure() {
     var delegatedView = 'one_account_delegated_exposure_current_v1';
-    var bridgeView = 'one_account_party_bridge_current_v1';
+    var bridgeView = 'one_account_portal_party_bridge_current_v1';
     try {
       var tokenGetter = window.RAAuth && (
         (typeof window.RAAuth.getSessionToken === 'function' && window.RAAuth.getSessionToken) ||
@@ -653,15 +653,34 @@
         if (!row.party_id || !row.account_id) return;
         accountByParty.set(String(row.party_id), {
           accountId: String(row.account_id),
-          accountName: normalizeText(row.canonical_account_name)
+          accountName: normalizeText(row.canonical_account_name),
+          accountCategory: normalizeText(row.account_category),
+          piscfhCode: normalizeText(row.piscfh_code),
+          piscfhLabel: normalizeText(row.piscfh_label),
+          investorClass: normalizeText(row.investor_class),
+          portalRoleClass: normalizeText(row.portal_role_class),
+          classificationStatus: normalizeText(row.classification_status),
+          classificationReviewStatus: normalizeText(row.classification_review_status)
         });
       });
       var decoratedDirect = (currentResponse.rows || []).map(function (row) {
         var account = accountByParty.get(String(row.party_id || ''));
-        return account ? Object.assign({}, row, {
+        if (!account) return row;
+        var patch = {
           canonical_account_id: account.accountId,
-          canonical_account_name: account.accountName
-        }) : row;
+          canonical_account_name: account.accountName,
+          account_category: account.accountCategory,
+          piscfh_code: account.piscfhCode || row.piscfh_code,
+          account_classification_status: account.classificationStatus
+        };
+        if (normalizeRole(row) === 'beneficiary' && account.portalRoleClass) {
+          patch.role_class = account.portalRoleClass;
+          patch.role_subtype = (account.investorClass && account.investorClass !== '미분류')
+            ? account.investorClass
+            : (account.piscfhLabel || row.role_subtype);
+          patch.classification_review_status = account.classificationReviewStatus || row.classification_review_status;
+        }
+        return Object.assign({}, row, patch);
       });
       var combinedRows = decoratedDirect.concat(delegatedResponse.rows || []);
       var normalizedCurrent = combinedRows.map(function (row, index) {
