@@ -141,8 +141,12 @@
     internalShellRowsExcluded: 0,
     internalShellPartiesExcluded: 0,
     internalShellCommittedExcluded: 0,
+    delegatedSourceRows: 0,
+    delegatedSourceCommitted: 0,
     delegatedLookthroughRows: 0,
     delegatedLookthroughCommitted: 0,
+    delegatedDirectOverlapRows: 0,
+    delegatedDirectOverlapCommitted: 0,
     paidInUnavailableRows: 0,
     historyMetric: 'committed',
     historyAggregation: 'annual',
@@ -598,6 +602,7 @@
 
   async function safeSecureCapitalExposure() {
     var delegatedView = 'one_account_delegated_exposure_current_v1';
+    var overlapView = 'one_account_delegated_overlap_audit_v1';
     var bridgeView = 'one_account_portal_party_bridge_current_v1';
     try {
       var tokenGetter = window.RAAuth && (
@@ -617,11 +622,13 @@
       }
       return {
         delegated: { view: delegatedView, rows: payload.delegated_exposures || [], error: null },
+        overlap: { view: overlapView, rows: payload.delegated_overlap_exclusions || [], error: null },
         bridge: { view: bridgeView, rows: payload.party_bridge || [], error: null }
       };
     } catch (error) {
       return {
         delegated: { view: delegatedView, rows: [], error: error },
+        overlap: { view: overlapView, rows: [], error: error },
         bridge: { view: bridgeView, rows: [], error: error }
       };
     }
@@ -644,6 +651,7 @@
     ]).then(function (responses) {
       var currentResponse = responses[0];
       var delegatedResponse = responses[1].delegated;
+      var overlapResponse = responses[1].overlap;
       var bridgeResponse = responses[1].bridge;
       state.loadErrors = currentResponse.error ? [currentResponse.error.message] : [];
       if (state.loadErrors.length) throw new Error(state.loadErrors.join(' / '));
@@ -682,10 +690,55 @@
         }
         return Object.assign({}, row, patch);
       });
-      var combinedRows = decoratedDirect.concat(delegatedResponse.rows || []);
-      var normalizedCurrent = combinedRows.map(function (row, index) {
+      var normalizedDirect = decoratedDirect.map(function (row, index) {
         return normalizePartyRow(row, index, 'fact');
       });
+      var normalizedDelegated = (delegatedResponse.rows || []).map(function (row, index) {
+        return normalizePartyRow(row, decoratedDirect.length + index, 'fact');
+      });
+      var delegatedOverlapResult = window.ExposureDedupe
+        && typeof window.ExposureDedupe.suppressDelegatedDirectOverlaps === 'function'
+        ? window.ExposureDedupe.suppressDelegatedDirectOverlaps(normalizedDirect, normalizedDelegated)
+        : { rows: normalizedDelegated, suppressed: [] };
+      var serverOverlapSuppressed = (overlapResponse.rows || []).map(function (row) {
+        return {
+          reason: 'direct_authority_same_party_fund',
+          exposureId: normalizeText(row.delegated_exposure_id),
+          keptExposureId: normalizeText(row.kept_exposure_id),
+          role: 'beneficiary',
+          partyId: normalizeText(row.party_id),
+          partyName: normalizeText(row.canonical_account_name),
+          fundId: normalizeText(row.fund_id),
+          committedAmount: numberValue(row.delegated_committed_amt),
+          currentAmount: null,
+          paidInAvailable: false,
+          paidInUnavailableRows: 1,
+          directCommittedAmount: numberValue(row.kept_committed_amt),
+          amountBasis: normalizeText(row.delegated_amount_basis),
+          exclusionRule: normalizeText(row.exclusion_rule)
+        };
+      });
+      var overlapSuppressedById = new Map();
+      serverOverlapSuppressed.concat(delegatedOverlapResult.suppressed || []).forEach(function (row) {
+        var key = row.exposureId || [row.partyId, row.fundId, row.committedAmount].join('|');
+        if (!overlapSuppressedById.has(key)) overlapSuppressedById.set(key, row);
+      });
+      var overlapSuppressed = Array.from(overlapSuppressedById.values());
+      var delegatedViewIds = new Set(normalizedDelegated.map(function (row) { return row.exposureId; }));
+      var auditOnlySuppressed = overlapSuppressed.filter(function (row) {
+        return !delegatedViewIds.has(row.exposureId);
+      });
+      state.delegatedSourceRows = normalizedDelegated.length + auditOnlySuppressed.length;
+      state.delegatedSourceCommitted = normalizedDelegated.reduce(function (sum, row) {
+        return sum + row.committedAmount;
+      }, 0) + auditOnlySuppressed.reduce(function (sum, row) {
+        return sum + row.committedAmount;
+      }, 0);
+      state.delegatedDirectOverlapRows = overlapSuppressed.length;
+      state.delegatedDirectOverlapCommitted = overlapSuppressed.reduce(function (sum, row) {
+        return sum + row.committedAmount;
+      }, 0);
+      var normalizedCurrent = normalizedDirect.concat(delegatedOverlapResult.rows);
       state.delegatedLookthroughRows = normalizedCurrent.filter(function (row) {
         return row.relationshipLayer === 'DELEGATED_BENEFICIARY_LOOKTHROUGH';
       }).length;
@@ -746,8 +799,8 @@
         ? window.ExposureDedupe.dedupe(explicitDedupedFacts)
         : { rows: explicitDedupedFacts, suppressed: [] };
       state.facts = economicResult.rows;
-      state.suppressedEconomicDuplicates = economicResult.suppressed;
-      state.economicDuplicatesSuppressed = economicResult.suppressed.length;
+      state.suppressedEconomicDuplicates = overlapSuppressed.concat(economicResult.suppressed);
+      state.economicDuplicatesSuppressed = state.suppressedEconomicDuplicates.length;
       state.historicalFacts = state.facts.slice();
       state.rankings = [];
 
@@ -755,10 +808,13 @@
       state.source = delegatedResponse.error
         ? currentResponse.view
         : currentResponse.view + ' + ' + delegatedResponse.view;
-      state.sourceLabel = '외부 투자자 기준 · 재간접 중간기구 '
-        + (state.internalFundPartiesExcluded + state.internalShellPartiesExcluded) + '개 제외'
+      state.sourceLabel = '외부 투자자 직접관계 + 재간접 귀속 보완 · 중간기구 '
+        + (state.internalFundPartiesExcluded + state.internalShellPartiesExcluded) + '개 집계 제외'
         + (state.delegatedLookthroughRows
-          ? ' · 위탁 look-through ' + state.delegatedLookthroughRows + '건(약정만, 투입액 미제공)'
+          ? ' · 재간접 약정 추정 ' + state.delegatedLookthroughRows + '건 반영'
+          : '')
+        + (state.delegatedDirectOverlapRows
+          ? ' · 직접 원천 중복 ' + state.delegatedDirectOverlapRows + '건 제외'
           : '');
       state.snapshotDate = maxSnapshotDate(state.facts);
       state.loaded = true;
@@ -976,6 +1032,31 @@
     }, { committed: 0, current: 0, remaining: 0, paidInAvailableRows: 0, paidInUnavailableRows: 0 });
   }
 
+  function currentFilteredFactRows() {
+    var eligibleResults = new Set(state.filtered.map(function (row) { return row.resultId; }));
+    return state.facts.filter(function (row) {
+      return row.role === state.role
+        && eligibleResults.has(row.role + '|' + row.partyId)
+        && matchesFilters(row, { ignoreMinimum: true });
+    });
+  }
+
+  function currentRelationshipLayerTotals() {
+    var facts = currentFilteredFactRows();
+    var delegatedRows = facts.filter(function (row) {
+      return row.relationshipLayer === 'DELEGATED_BENEFICIARY_LOOKTHROUGH';
+    });
+    var directRows = facts.filter(function (row) {
+      return row.relationshipLayer !== 'DELEGATED_BENEFICIARY_LOOKTHROUGH';
+    });
+    return {
+      directRows: directRows,
+      delegatedRows: delegatedRows,
+      direct: sumRows(directRows),
+      delegated: sumRows(delegatedRows)
+    };
+  }
+
   function classificationSubtotals(rows) {
     var groups = new Map();
     rows.forEach(function (row) {
@@ -1037,15 +1118,18 @@
 
   function formatAvailabilityAmount(row, property, compact) {
     var status = paidInAvailabilityStatus(row);
-    if (status === 'unavailable') return '미제공';
+    if (status === 'unavailable') return '미수집';
     var formatted = compact ? formatCompactWon(row[property]) : formatMillion(row[property]);
-    return status === 'partial' ? formatted + ' (확인분)' : formatted;
+    return status === 'partial' ? formatted + ' (직접관계)' : formatted;
   }
 
   function paidInAvailabilityNote(row) {
     var unavailable = numberValue(row && row.paidInUnavailableRows);
     if (!unavailable && row && row.paidInAvailable === false) unavailable = 1;
-    return unavailable ? formatInteger(unavailable) + '건 미제공' : '전체 확인';
+    if (!unavailable) return '전체 수집';
+    return state.role === 'lender'
+      ? formatInteger(unavailable) + '건 실행·미실행 미수집'
+      : '재간접 ' + formatInteger(unavailable) + '건 투입·미투입 미수집';
   }
 
   function csvAvailabilityAmount(row, property) {
@@ -1504,7 +1588,7 @@
       return counts;
     }, { source: 0, proxy: 0, unresolved: 0 });
     var coverageText = '직접일자 ' + formatInteger(coverage.source) + '건 · 설정일 보정 ' + formatInteger(coverage.proxy) + '건';
-    if (coverage.unresolved) coverageText += ' · 미상 ' + formatInteger(coverage.unresolved) + '건';
+    if (coverage.unresolved) coverageText += ' · 약정일 미수집 ' + formatInteger(coverage.unresolved) + '건';
     if (state.historyMetric !== 'committed') {
       var unavailableHistoryRows = state.historicalFacts.filter(function (row) {
         return row.role === state.role
@@ -1512,7 +1596,7 @@
           && matchesFilters(row, { ignoreMinimum: true })
           && !row.paidInAvailable;
       }).length;
-      if (unavailableHistoryRows) coverageText += ' · 금액 미제공 ' + formatInteger(unavailableHistoryRows) + '건 제외';
+      if (unavailableHistoryRows) coverageText += ' · 투입·잔여 미수집 ' + formatInteger(unavailableHistoryRows) + '건 제외';
     }
     var metricButtons = ['committed', 'current', 'remaining'].map(function (metric) {
       var active = state.historyMetric === metric;
@@ -1592,10 +1676,15 @@
 
   function renderKpis(totals) {
     var role = currentRoleConfig();
+    var layers = currentRelationshipLayerTotals();
+    var hasDelegatedEstimate = state.role === 'beneficiary' && layers.delegatedRows.length > 0;
+    var committedNote = hasDelegatedEstimate
+      ? '직접 ' + formatCompactWon(layers.direct.committed) + ' + 재간접 추정 ' + formatCompactWon(layers.delegated.committed)
+      : formatMillion(totals.committed) + '백만원';
     return [
       '<section class="capital-kpi-strip" aria-label="자금관계 핵심 지표" data-capital-committed="' + totals.committed + '" data-capital-current="' + totals.current + '" data-capital-remaining="' + totals.remaining + '">',
       '<div><span>' + escapeHtml(role.countLabel) + '</span><strong>' + formatInteger(state.filtered.length) + '</strong><small>개</small></div>',
-      '<div class="is-primary"><span>' + escapeHtml(role.committedLabel) + '</span><strong>' + escapeHtml(formatCompactWon(totals.committed)) + '</strong><small>' + escapeHtml(formatMillion(totals.committed)) + '백만원</small></div>',
+      '<div class="is-primary"><span>' + escapeHtml(role.committedLabel) + '</span><strong>' + escapeHtml(formatCompactWon(totals.committed)) + '</strong><small>' + escapeHtml(committedNote) + '</small></div>',
       '<div><span>' + escapeHtml(role.currentLabel) + '</span><strong>' + escapeHtml(formatAvailabilityAmount(totals, 'current', true)) + '</strong><small>' + escapeHtml(paidInAvailabilityStatus(totals) === 'unavailable' ? paidInAvailabilityNote(totals) : formatMillion(totals.current) + '백만원 · ' + paidInAvailabilityNote(totals)) + '</small></div>',
       '<div><span>' + escapeHtml(role.remainingLabel) + '</span><strong>' + escapeHtml(formatAvailabilityAmount(totals, 'remaining', true)) + '</strong><small>' + escapeHtml(paidInAvailabilityStatus(totals) === 'unavailable' ? paidInAvailabilityNote(totals) : formatMillion(totals.remaining) + '백만원 · ' + paidInAvailabilityNote(totals)) + '</small></div>',
       '</section>'
@@ -1690,15 +1779,17 @@
     if (state.role !== 'beneficiary') return '';
     var coverage = currentInternalFundCoverage();
     if (coverage.parties === 0) return '';
-    var directCommitted = externalTotals.committed + coverage.committed;
+    var layers = currentRelationshipLayerTotals();
+    var directSourceCommitted = layers.direct.committed + coverage.committed;
     return [
       '<section class="capital-rollup-coverage" aria-label="외부 투자자 집계 대사">',
-      '<div class="capital-rollup-equation"><span>중복 제거 대사</span><strong>원천 출자행 합계(중복 포함) ' + escapeHtml(formatCompactWon(directCommitted)) + ' = 실제 투자자 ' + escapeHtml(formatCompactWon(externalTotals.committed)) + ' + 재간접 중간기구 명의행 ' + escapeHtml(formatCompactWon(coverage.committed)) + '</strong></div>',
+      '<div class="capital-rollup-equation"><span>직접 원천 대사</span><strong>직접 원천 ' + escapeHtml(formatCompactWon(directSourceCommitted)) + ' = 외부 투자자 직접관계 ' + escapeHtml(formatCompactWon(layers.direct.committed)) + ' + 중간기구 명의행 ' + escapeHtml(formatCompactWon(coverage.committed)) + ' (집계 제외)</strong></div>',
+      layers.delegatedRows.length ? '<div class="capital-rollup-equation"><span>경제적 귀속 보완</span><strong>대시보드 약정액 ' + escapeHtml(formatCompactWon(externalTotals.committed)) + ' = 직접관계 ' + escapeHtml(formatCompactWon(layers.direct.committed)) + ' + 재간접 추정 ' + escapeHtml(formatCompactWon(layers.delegated.committed)) + '</strong></div>' : '',
       '<div class="capital-rollup-coverage-meta">',
-      coverage.managedFundParties ? '<span>펀드·리츠·SPC 명의행 ' + formatInteger(coverage.managedFundParties) + '개 주체 · ' + escapeHtml(formatCompactWon(coverage.managedFundCommitted)) + '</span>' : '',
-      coverage.shellParties ? '<span>운용사 명의 대체행 ' + formatInteger(coverage.shellParties) + '개 주체 · ' + escapeHtml(formatCompactWon(coverage.shellCommitted)) + '</span>' : '',
+      layers.delegatedRows.length ? '<span>재간접 약정 비례배분 추정 ' + formatInteger(layers.delegatedRows.length) + '건 반영</span>' : '',
+      state.delegatedDirectOverlapRows ? '<span>직접 원천 우선 ' + formatInteger(state.delegatedDirectOverlapRows) + '건 합산 제외</span>' : '',
       coverage.missing || coverage.shellUnresolvedRows ? '<span class="needs-review">실제 LP 연결 검토 필요 ' + formatInteger(coverage.missing + coverage.shellUnresolvedRows) + '건</span>' : '',
-      coverage.parties ? '<button type="button" data-capital-action="show-internal-funds">중복 제외 근거 ' + formatInteger(coverage.parties) + '개 보기</button>' : '',
+      coverage.parties ? '<button type="button" data-capital-action="show-internal-funds">중간기구 제외 근거 ' + formatInteger(coverage.parties) + '개 보기</button>' : '',
       '</div>',
       '</section>'
     ].join('');
@@ -1784,6 +1875,9 @@
 
   function renderSubtotals(subtotals, reconciliation) {
     var role = currentRoleConfig();
+    var layers = currentRelationshipLayerTotals();
+    var basisText = role.committedLabel + ' 기준'
+      + (state.role === 'beneficiary' && layers.delegatedRows.length ? ' · 재간접 추정 포함' : '');
     var validationText = reconciliation.valid ? '부분합 = 전체' : '합계 불일치';
     var validationClass = reconciliation.valid ? 'is-valid' : 'is-invalid';
     var rows = subtotals.length ? subtotals.map(function (row) {
@@ -1800,7 +1894,7 @@
     return [
       '<aside class="capital-subtotal-section">',
       '<div class="capital-section-heading">',
-      '<div><h3>분류별 부분합</h3><p>' + escapeHtml(role.committedLabel) + ' 기준</p></div>',
+      '<div><h3>분류별 부분합</h3><p>' + escapeHtml(basisText) + '</p></div>',
       '<span class="capital-reconciliation ' + validationClass + '" title="약정·현재·잔여 금액을 각각 검증">' + escapeHtml(validationText) + '</span>',
       '</div>',
       '<div class="capital-subtotal-table-wrap">',
@@ -1880,7 +1974,7 @@
     var overlay = ensureBreakdownDialog();
     state.breakdownTrigger = trigger || document.activeElement;
     document.getElementById('capitalBreakdownTitle').textContent = '재간접 중간기구 제외 내역';
-    document.getElementById('capitalBreakdownDescription').textContent = '실제 투자자와 중간기구 명의행을 동시에 더하지 않도록 중간기구는 금액 집계에서 제외합니다. LP 경로는 명시적 귀속이 없는 경우 후보 관계로만 표시합니다.';
+    document.getElementById('capitalBreakdownDescription').textContent = '외부 투자자 직접관계와 중간기구 명의행을 동시에 더하지 않도록 중간기구는 금액 집계에서 제외합니다. LP 경로는 명시적 귀속이 없는 경우 후보 관계로만 표시합니다.';
     document.getElementById('capitalBreakdownSummary').innerHTML = [
       '<div><span>제외 주체</span><strong>' + formatInteger(coverage.parties) + '개</strong></div>',
       '<div><span>원천 명의행 약정액</span><strong>' + escapeHtml(formatMillion(coverage.committed)) + '백만원</strong></div>',
@@ -1908,11 +2002,11 @@
     var overlay = ensureBreakdownDialog();
     state.breakdownTrigger = trigger || document.activeElement;
     document.getElementById('capitalBreakdownTitle').textContent = '중복 익스포저 합산 제외';
-    document.getElementById('capitalBreakdownDescription').textContent = '원본 행은 DB에 보존하고, 동일 역할·기관·기준일·펀드·자산·금액이면서 비고에 중복 제외가 명시된 행만 화면 합계에서 제외합니다.';
+    document.getElementById('capitalBreakdownDescription').textContent = '원본 행은 DB에 보존합니다. 동일 기관·동일 펀드의 직접 원천과 재간접 추정이 겹치면 직접 원천을 우선하고, 그 밖에는 명시적 중복 근거가 있는 동일 경제적 관계만 제외합니다.';
     document.getElementById('capitalBreakdownSummary').innerHTML = [
       '<div><span>합산 제외</span><strong>' + formatInteger(rows.length) + '행</strong></div>',
       '<div><span>원본 보존</span><strong>DB 행 유지</strong></div>',
-      '<div><span>판정 방식</span><strong>명시적 비고 + 경제적 key</strong></div>',
+      '<div><span>판정 방식</span><strong>직접 원천 우선 + 명시적 경제 관계</strong></div>',
       '</div>'
     ].join('');
     document.getElementById('capitalBreakdownList').innerHTML = [
@@ -1923,7 +2017,7 @@
           '<article class="capital-breakdown-row v2-duplicate-exclusion-row">',
           '<div class="capital-breakdown-rank">' + formatInteger(index + 1) + '</div>',
           '<div class="capital-breakdown-party"><strong>' + escapeHtml(row.partyName || row.partyId || '기관 미상') + '</strong>',
-          '<span>제외 ID ' + escapeHtml(row.exposureId || '-') + ' · 유지 ID ' + escapeHtml(row.keptExposureId || '-') + '</span></div>',
+          '<span>' + (row.reason === 'direct_authority_same_party_fund' ? '직접 원천 우선' : '명시적 중복') + ' · 제외 ID ' + escapeHtml(row.exposureId || '-') + ' · 유지 ID ' + escapeHtml(row.keptExposureId || '-') + '</span></div>',
           '<div class="capital-breakdown-amount-grid">',
           '<div><span>약정액</span><strong>' + escapeHtml(formatMillion(row.committedAmount)) + '</strong><small>백만원</small></div>',
           '<div><span>' + (row.role === 'lender' ? '실행액' : '투입액') + '</span><strong>' + escapeHtml(formatAvailabilityAmount(row, 'currentAmount', false)) + '</strong><small>' + (paidInAvailabilityStatus(row) === 'unavailable' ? '' : '백만원') + '</small></div>',
@@ -2264,8 +2358,8 @@
       : '';
     var economicDuplicateNote = state.economicDuplicatesSuppressed > 0
       ? (document.body.classList.contains('ux-v2')
-        ? '<button type="button" class="capital-source-audit" data-capital-action="show-duplicate-exclusions">명칭 중복 ' + formatInteger(state.economicDuplicatesSuppressed) + '행 제외 · 근거</button>'
-        : '<span>명칭 중복 ' + formatInteger(state.economicDuplicatesSuppressed) + '행 합산 제외</span>')
+        ? '<button type="button" class="capital-source-audit" data-capital-action="show-duplicate-exclusions">중복 관계 ' + formatInteger(state.economicDuplicatesSuppressed) + '행 제외 · 근거</button>'
+        : '<span>중복 관계 ' + formatInteger(state.economicDuplicatesSuppressed) + '행 합산 제외</span>')
       : '';
     var contractNote = state.invalidContractRows > 0
       ? '<span class="capital-source-warning">party_id 누락 ' + formatInteger(state.invalidContractRows) + '행 제외</span>'
@@ -2457,7 +2551,7 @@
         numberValue(row.committedAmount) / MILLION,
         csvAvailabilityAmount(row, 'currentAmount'),
         csvAvailabilityAmount(row, 'remainingAmount'),
-        paidInAvailabilityStatus(row) === 'available' ? '전체 확인' : (paidInAvailabilityStatus(row) === 'partial' ? '일부 미제공' : '미제공'),
+        paidInAvailabilityStatus(row) === 'available' ? '전체 수집' : (paidInAvailabilityStatus(row) === 'partial' ? '일부 미수집' : '미수집'),
         row.fundCount,
         row.assetCount,
         row.baseAssetClasses.join(' | '),
@@ -2490,7 +2584,7 @@
       '<ul>',
       '<li><strong>에쿼티 투자자</strong> 약정액·투입액·미투입액을 사용합니다.</li>',
       '<li><strong>외부 투자자 합계</strong> IGIS가 운용하는 펀드·리츠·SPC의 내부 자금이동 행은 제외하며, 직접 법률관계는 DB에 보존합니다.</li>',
-      '<li><strong>위탁운용 look-through</strong> One Account v1.1의 2026-09-01 수익자별 약정을 경제적 귀속 기준으로 별도 합산합니다. 직접 법률관계와 구분되며, 수익자별 투입액은 원천 미제공이므로 0 또는 약정비율로 추정하지 않습니다.</li>',
+      '<li><strong>위탁운용 look-through</strong> 중간기구 명의행과 동시에 합산하지 않으며, 동일 기관·동일 펀드의 직접 원천이 있으면 직접 원천을 우선합니다. 재간접 약정액은 스냅샷 간 약정 비례배분 추정치이고, 수익자별 투입·미투입은 미수집이므로 추정하지 않습니다.</li>',
       '<li><strong>대주</strong> 약정액·실행액·미실행액을 사용합니다.</li>',
       '<li><strong>역할분류</strong> 실제 주체의 역할을 먼저 봅니다. LP와 펀드·리츠·SPC를 구분하고, 국내·해외는 별도 권역 속성으로 사용합니다.</li>',
       '<li><strong>분류별 시계열</strong> 투자자는 최초약정일, 대주는 대출인출일의 연도를 사용합니다. 원천일자가 없거나 이상하면 펀드설정일을 보정 근거로 명시해 사용합니다.</li>',
@@ -2518,8 +2612,12 @@
     state.internalFundCoveredCommitted = 0;
     state.internalFundMissingParties = 0;
     state.internalFundMissingCommitted = 0;
+    state.delegatedSourceRows = 0;
+    state.delegatedSourceCommitted = 0;
     state.delegatedLookthroughRows = 0;
     state.delegatedLookthroughCommitted = 0;
+    state.delegatedDirectOverlapRows = 0;
+    state.delegatedDirectOverlapCommitted = 0;
     state.paidInUnavailableRows = 0;
     state.selectedIds.clear();
     renderLoading();

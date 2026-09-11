@@ -55,6 +55,62 @@
     ].join('|');
   }
 
+  function fundIds(row) {
+    if (!row) return [];
+    return normalizedList(row.fundIds || row.fund_ids || [row.fundId || row.fund_id]);
+  }
+
+  function isIncludedDirectBeneficiary(row) {
+    if (!row || text(row.role || row.role_type) !== 'beneficiary') return false;
+    if (!text(row.partyId || row.party_id)) return false;
+    if (row.includeInExternalInvestorRollup === false || row.include_in_external_investor_rollup === false) return false;
+    if (row.isManagedFundParty === true || row.is_managed_fund_party === true) return false;
+    if (row.isInternalFundLookthroughShell === true || row.is_internal_fund_lookthrough_shell === true) return false;
+    var scope = text(row.capitalScope || row.capital_scope || 'external_party');
+    return scope !== 'internal_managed_fund' && scope !== 'internal_fund_lookthrough_shell';
+  }
+
+  function suppressDelegatedDirectOverlaps(directRows, delegatedRows) {
+    var directByPair = new Map();
+    (Array.isArray(directRows) ? directRows : []).forEach(function (row) {
+      if (!isIncludedDirectBeneficiary(row)) return;
+      var partyId = text(row.partyId || row.party_id);
+      fundIds(row).forEach(function (fundId) {
+        var key = partyId + '|' + fundId;
+        if (!directByPair.has(key)) directByPair.set(key, row);
+      });
+    });
+
+    var rows = [];
+    var suppressed = [];
+    (Array.isArray(delegatedRows) ? delegatedRows : []).forEach(function (row) {
+      var partyId = text(row.partyId || row.party_id);
+      var matchedFundId = fundIds(row).find(function (fundId) {
+        return directByPair.has(partyId + '|' + fundId);
+      });
+      if (!matchedFundId) {
+        rows.push(row);
+        return;
+      }
+      var direct = directByPair.get(partyId + '|' + matchedFundId);
+      suppressed.push({
+        reason: 'direct_authority_same_party_fund',
+        exposureId: exposureId(row),
+        keptExposureId: exposureId(direct),
+        role: 'beneficiary',
+        partyId: partyId,
+        partyName: text(row.partyName || row.party_name || direct.partyName || direct.party_name),
+        fundId: matchedFundId,
+        committedAmount: amount(row.committedAmount != null ? row.committedAmount : row.committed_amt),
+        currentAmount: row.currentAmount != null ? row.currentAmount : row.invested_amt,
+        paidInAvailable: row.paidInAvailable !== false && row.paid_in_available !== false,
+        directCommittedAmount: amount(direct.committedAmount != null ? direct.committedAmount : direct.committed_amt),
+        economicKey: partyId + '|' + matchedFundId
+      });
+    });
+    return { rows: rows, suppressed: suppressed };
+  }
+
   function canonicalScore(row) {
     var score = isMarkedDuplicate(row) ? 0 : 100;
     if (text(row && (row.sourceStandardId || row.source_standard_id))) score += 20;
@@ -166,6 +222,7 @@
   return {
     dedupe: dedupe,
     economicKey: economicKey,
-    isMarkedDuplicate: isMarkedDuplicate
+    isMarkedDuplicate: isMarkedDuplicate,
+    suppressDelegatedDirectOverlaps: suppressDelegatedDirectOverlaps
   };
 });

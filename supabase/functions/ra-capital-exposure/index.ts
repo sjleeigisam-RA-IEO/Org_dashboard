@@ -21,10 +21,14 @@ Deno.serve(async (request) => {
       last_seen_at: now.toISOString(),
     });
 
-    const [delegatedExposures, partyBridge] = await Promise.all([
+    const [delegatedExposures, delegatedOverlapExclusions, partyBridge] = await Promise.all([
       postgrest("one_account_delegated_exposure_current_v1", {
         method: "GET",
         query: "select=*&order=canonical_account_name.asc,fund_id.asc,exposure_id.asc",
+      }),
+      postgrest("one_account_delegated_overlap_audit_v1", {
+        method: "GET",
+        query: "select=delegated_exposure_id,canonical_account_name,party_id,fund_id,fund_name,delegated_committed_amt,delegated_amount_basis,kept_exposure_id,kept_base_date,kept_committed_amt,exclusion_rule&order=canonical_account_name.asc,fund_id.asc,delegated_exposure_id.asc",
       }),
       postgrest("one_account_portal_party_bridge_current_v1", {
         method: "GET",
@@ -34,8 +38,9 @@ Deno.serve(async (request) => {
 
     return jsonResponse({
       ok: true,
-      snapshot_version: "v1.6-rm75-260909",
+      snapshot_version: "v1.6-rm75-dedup-260911",
       delegated_exposures: Array.isArray(delegatedExposures) ? delegatedExposures : [],
+      delegated_overlap_exclusions: Array.isArray(delegatedOverlapExclusions) ? delegatedOverlapExclusions : [],
       party_bridge: Array.isArray(partyBridge) ? partyBridge : [],
     });
   } catch (error) {
