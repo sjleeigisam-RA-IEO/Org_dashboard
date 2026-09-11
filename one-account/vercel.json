@@ -3,5 +3,24 @@
   "framework": null,
   "buildCommand": "",
   "installCommand": "",
-  "outputDirectory": "."
+  "outputDirectory": "public",
+  "public": false,
+  "functions": {
+    "api/dashboard.js": {
+      "includeFiles": "private/dashboard.enc",
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    { "source": "/app", "destination": "/api/app" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "no-referrer" }
+      ]
+    }
+  ]
 }

@@ -1,0 +1,18 @@
+'use strict';
+const fs = require('node:fs');
+const path = require('node:path');
+const crypto = require('node:crypto');
+const zlib = require('node:zlib');
+const input = process.argv[2];
+const key = Buffer.from(process.env.ONE_ACCOUNT_DATA_KEY || '', 'base64url');
+if (!input || key.length !== 32) throw new Error('Pass a source HTML file and set ONE_ACCOUNT_DATA_KEY.');
+const html = fs.readFileSync(input);
+const gzip = zlib.gzipSync(html, { level: 9 });
+const iv = crypto.randomBytes(12);
+const cipher = crypto.createCipheriv('aes-256-gcm', key, iv);
+cipher.setAAD(Buffer.from('one-account-dashboard:v1'));
+const encrypted = Buffer.concat([cipher.update(gzip), cipher.final()]);
+const output = path.join(__dirname, '..', 'private', 'dashboard.enc');
+fs.mkdirSync(path.dirname(output), { recursive: true });
+fs.writeFileSync(output, Buffer.concat([Buffer.from('OAG1'), iv, cipher.getAuthTag(), encrypted]));
+console.log(JSON.stringify({ sourceBytes: html.length, gzipBytes: gzip.length, sha256: crypto.createHash('sha256').update(html).digest('hex'), output }));
