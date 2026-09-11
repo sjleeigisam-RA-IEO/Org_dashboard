@@ -32,9 +32,42 @@ from the current deployment. Login uses a salted scrypt verifier. Email delivery
 - Do not put a plaintext copy inside `public` or elsewhere in this deployment folder.
 - Run `npm test`. For local preview, load the secrets into the environment and run `npm run dev`.
 
-Encryption preserves the original HTML bytes after decryption. RM changes still use
-browser localStorage and are not shared between users. This login does not remove
+The encrypted original remains unchanged. With shared storage enabled, the server
+injects the shared assignment adapter after decryption. This login does not remove
 copies from the earlier public Git commit, old deployments, or previous downloads.
+
+## Shared assignments and versions
+
+Supabase private schema `one_account` stores dataset `rm-v1.7`: 575 Account IDs,
+38 RM candidates, and the source HTML's 75 assigned Accounts as revision 1.
+Other business/reference data still comes from the encrypted source snapshot.
+The database accepts only known Account/RM identities and eligible role cohorts.
+
+- `공용 저장` reviews and commits a complete assignment snapshot with the expected revision.
+- `변경 이력` shows server timestamps, login email, and each role's before/after change.
+- Restoring a historical snapshot creates a new revision; old versions remain immutable.
+- A stale revision returns a conflict instead of overwriting another editor's work.
+- Loading/reloading reads the common version. Other open tabs refresh with `최신 공용본 불러오기`.
+- Edits remain per-email browser drafts until explicitly saved. Existing localStorage is
+  preserved and can be compared/imported with `브라우저 수정본`; it is never auto-uploaded.
+- Exported HTML includes the displayed assignments and removes the online adapter;
+  it is an independent offline snapshot.
+
+Recorded authors are login emails, not verified mailbox owners, under the current
+shared-code login. Source code versions remain in Git; assignment versions live in DB.
+
+Production Secret variables: `ONE_ACCOUNT_SHARED_ENABLED=true`,
+`ONE_ACCOUNT_SUPABASE_URL`, `ONE_ACCOUNT_SUPABASE_SECRET_KEY`.
+Only authenticated Vercel functions call `oa_get_state`, `oa_commit_state`, and
+`oa_get_history`. Browser requests cannot choose a dataset or actor email.
+No anonymous table/RPC access is granted. Do not expose the server key in static assets.
+
+Schema, seed contract, and rollback-only SQL regression tests are in `db/`.
+`scripts/extract-shared-baseline.cjs` extracts a locally held source HTML into a
+private temporary seed file. `scripts/db-admin.cjs` applies operator-provided SQL
+using the existing workspace Supabase Management configuration; never commit that
+configuration or a real seed file. New source catalogs require an explicit dataset
+migration; deploying new HTML alone does not overwrite existing assignments/history.
 
 ## Email delivery
 

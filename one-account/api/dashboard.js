@@ -9,16 +9,23 @@ const auth = require('../lib/auth.cjs');
 let cached;
 function dashboardGzip() {
   const keyValue = process.env.ONE_ACCOUNT_DATA_KEY || '';
+  const shared = process.env.ONE_ACCOUNT_SHARED_ENABLED === 'true';
   const key = Buffer.from(keyValue, 'base64url');
   if (key.length !== 32) throw new Error('DATA_NOT_CONFIGURED');
-  if (cached?.keyValue === keyValue) return cached.data;
+  if (cached?.keyValue === keyValue && cached.shared === shared) return cached.data;
   const file = fs.readFileSync(path.join(__dirname, '..', 'private', 'dashboard.enc'));
   if (file.subarray(0, 4).toString('ascii') !== 'OAG1' || file.length < 33) throw new Error('BAD_PAYLOAD');
   const decipher = crypto.createDecipheriv('aes-256-gcm', key, file.subarray(4, 16));
   decipher.setAAD(Buffer.from('one-account-dashboard:v1'));
   decipher.setAuthTag(file.subarray(16, 32));
-  const data = Buffer.concat([decipher.update(file.subarray(32)), decipher.final()]);
-  cached = { keyValue, data };
+  let data = Buffer.concat([decipher.update(file.subarray(32)), decipher.final()]);
+  if (shared) {
+    const html = zlib.gunzipSync(data).toString('utf8');
+    if (!html.includes('</body>')) throw new Error('BAD_DOCUMENT');
+    const adapter = '<link rel="stylesheet" data-one-account-shared href="/shared-teams.css"><script id="oa-shared-adapter" data-one-account-shared src="/shared-teams.js"></script>';
+    data = zlib.gzipSync(html.replace('</body>', adapter + '</body>'));
+  }
+  cached = { keyValue, shared, data };
   return data;
 }
 function supportsGzip(value) {

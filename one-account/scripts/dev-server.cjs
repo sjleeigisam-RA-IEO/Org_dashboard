@@ -4,8 +4,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const base = path.join(__dirname, '..');
 process.chdir(base);
-const routes = { '/api/send-code': require('../api/send-code.js'), '/api/auth': require('../api/auth.js'), '/api/logout': require('../api/logout.js'), '/api/app': require('../api/app.js'), '/app': require('../api/app.js'), '/api/dashboard': require('../api/dashboard.js') };
-const publicFiles = { '/': ['index.html','text/html; charset=utf-8'], '/index.html': ['index.html','text/html; charset=utf-8'], '/login.css': ['login.css','text/css; charset=utf-8'], '/login.js': ['login.js','text/javascript; charset=utf-8'], '/session.js': ['session.js','text/javascript; charset=utf-8'] };
+const routes = { '/api/teams': require('../api/teams.js'), '/api/history': require('../api/history.js'), '/api/send-code': require('../api/send-code.js'), '/api/auth': require('../api/auth.js'), '/api/logout': require('../api/logout.js'), '/api/app': require('../api/app.js'), '/app': require('../api/app.js'), '/api/dashboard': require('../api/dashboard.js') };
+const publicFiles = { '/shared-teams.js': ['shared-teams.js','text/javascript; charset=utf-8'], '/shared-teams.css': ['shared-teams.css','text/css; charset=utf-8'], '/': ['index.html','text/html; charset=utf-8'], '/index.html': ['index.html','text/html; charset=utf-8'], '/login.css': ['login.css','text/css; charset=utf-8'], '/login.js': ['login.js','text/javascript; charset=utf-8'], '/session.js': ['session.js','text/javascript; charset=utf-8'] };
 const server = http.createServer(async (req, res) => {
   try {
     const pathname = new URL(req.url, 'http://localhost').pathname;

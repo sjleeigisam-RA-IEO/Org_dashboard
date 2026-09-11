@@ -6,6 +6,8 @@
   "outputDirectory": "public",
   "functions": {
     "api/send-code.js": { "maxDuration": 30 },
+    "api/teams.js": { "maxDuration": 30 },
+    "api/history.js": { "maxDuration": 30 },
     "api/dashboard.js": {
       "includeFiles": "private/dashboard.enc",
       "maxDuration": 30
