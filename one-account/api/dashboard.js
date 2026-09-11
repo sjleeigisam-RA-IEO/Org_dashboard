@@ -12,7 +12,7 @@ function dashboardGzip() {
   const key = Buffer.from(keyValue, 'base64url');
   if (key.length !== 32) throw new Error('DATA_NOT_CONFIGURED');
   if (cached?.keyValue === keyValue) return cached.data;
-  const file = fs.readFileSync(path.join(process.cwd(), 'private', 'dashboard.enc'));
+  const file = fs.readFileSync(path.join(__dirname, '..', 'private', 'dashboard.enc'));
   if (file.subarray(0, 4).toString('ascii') !== 'OAG1' || file.length < 33) throw new Error('BAD_PAYLOAD');
   const decipher = crypto.createDecipheriv('aes-256-gcm', key, file.subarray(4, 16));
   decipher.setAAD(Buffer.from('one-account-dashboard:v1'));
@@ -42,7 +42,8 @@ module.exports = async function handler(req, res) {
     // Stream the uncompressed 9.5 MB document instead of buffering a platform response.
     res.flushHeaders();
     await pipeline(Readable.from([data]), zlib.createGunzip(), res);
-  } catch {
+  } catch (error) {
+    console.error('Dashboard unavailable:', error.code || error.message);
     if (!res.headersSent) return auth.json(res, 503, { message: '대시보드를 준비하고 있습니다. 잠시 후 다시 시도해 주세요.' });
     res.destroy();
   }
