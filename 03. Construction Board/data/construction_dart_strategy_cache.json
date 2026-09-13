@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-07 06:06:06 KST",
+  "generated_at": "2026-09-14 08:20:13 KST",
   "source_note": "OpenDART API에서 회사별 투자판단, 출자, 시설투자, M&A/구조개편, 자금조달, 특수관계인 거래성 공시를 조회해 생성한 기업 방향성 캐시입니다.",
   "query": {
-    "start_date": "20210907",
-    "end_date": "20260907",
+    "start_date": "20210914",
+    "end_date": "20260914",
     "lookback_years": 5,
     "per_company": 5,
     "report_keywords": [
@@ -931,10 +931,10 @@
       "articles": [
         {
           "title": "대방산업개발(주)",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828001449",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260910000152",
           "source": "OpenDART 전략공시",
-          "published": "2026.08.28",
-          "summary": "회사명: 대방건설(주) · 거래상대방: 대방산업개발(주) · 다.거래상대방총잔액: 301,775",
+          "published": "2026.09.10",
+          "summary": "회사명: 대방건설(주) · 거래상대방: 대방산업개발(주) · 다.거래상대방총잔액: 338,535",
           "primary_category": "group_transaction",
           "categories": [
             "dart_strategy",
@@ -944,7 +944,7 @@
             "특수관계인에대한자금대여"
           ],
           "direction_signal": true,
-          "receipt_no": "20260828001449",
+          "receipt_no": "20260910000152",
           "report_name": "특수관계인에대한자금대여"
         },
         {
@@ -2208,6 +2208,24 @@
       },
       "articles": [
         {
+          "title": "지티엑스씨(주)",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260911000189",
+          "source": "OpenDART 전략공시",
+          "published": "2026.09.11",
+          "summary": "회사명: 현대건설(주) · 거래상대방: 지티엑스씨(주) · 사.거래상대방총잔액: 72,021",
+          "primary_category": "group_transaction",
+          "categories": [
+            "dart_strategy",
+            "group_transaction"
+          ],
+          "matched_terms": [
+            "특수관계인에대한담보제공"
+          ],
+          "direction_signal": true,
+          "receipt_no": "20260911000189",
+          "report_name": "특수관계인에대한담보제공"
+        },
+        {
           "title": "회사명",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260821800388",
           "source": "OpenDART 전략공시",
@@ -2277,24 +2295,6 @@
           ],
           "direction_signal": true,
           "receipt_no": "20260526800002",
-          "report_name": "투자판단관련주요경영사항"
-        },
-        {
-          "title": "EPC 프로젝트 우선협상대상자 선정",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251215800893",
-          "source": "OpenDART 전략공시",
-          "published": "2025.12.15",
-          "summary": "제목: EPC 프로젝트 우선협상대상자 선정 · 주요내용: 현대건설은 계약금액이 최근 매출액의 2.5% 이상에 해당하는 EPC프로젝트에 대해 우선협상대상자로 선정되었습니다. · 이사회결의일(결정일)또는사실확인일: 2025-12-15",
-          "primary_category": "investment_decision",
-          "categories": [
-            "dart_strategy",
-            "investment_decision"
-          ],
-          "matched_terms": [
-            "투자판단관련주요경영사항"
-          ],
-          "direction_signal": true,
-          "receipt_no": "20251215800893",
           "report_name": "투자판단관련주요경영사항"
         }
       ]

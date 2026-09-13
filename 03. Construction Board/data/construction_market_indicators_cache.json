@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-07 06:04:39 KST",
+  "generated_at": "2026-09-14 08:20:14 KST",
   "status": "ok",
   "source_note": "시장 공사비 기준지표 캐시입니다. KOSIS 키 값은 저장하지 않습니다.",
   "series": [
@@ -28,13 +28,6 @@
         }
       },
       "points": [
-        {
-          "period": "2019-07",
-          "value": 97.71,
-          "source_name": "KOSIS/한국건설기술연구원",
-          "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
-          "updated_at": "2024-07-11"
-        },
         {
           "period": "2019-08",
           "value": 97.72,
@@ -117,8 +110,7 @@
           "value": 99.31,
           "source_name": "KOSIS/한국건설기술연구원",
           "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
-          "updated_at": "2024-07-11",
-          "yoy_pct": 1.64
+          "updated_at": "2024-07-11"
         },
         {
           "period": "2020-08",
@@ -682,11 +674,19 @@
         },
         {
           "period": "2026-06",
-          "value": 138.22,
+          "value": 138.34,
           "source_name": "KOSIS/한국건설기술연구원",
           "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
-          "updated_at": "2026-08-04",
-          "yoy_pct": 5.48
+          "updated_at": "2026-09-02",
+          "yoy_pct": 5.57
+        },
+        {
+          "period": "2026-07",
+          "value": 138.59,
+          "source_name": "KOSIS/한국건설기술연구원",
+          "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
+          "updated_at": "2026-09-02",
+          "yoy_pct": 5.78
         }
       ],
       "api": {
@@ -722,13 +722,6 @@
         }
       },
       "points": [
-        {
-          "period": "2019-07",
-          "value": 97.63,
-          "source_name": "KOSIS/한국건설기술연구원",
-          "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
-          "updated_at": "2024-07-11"
-        },
         {
           "period": "2019-08",
           "value": 97.61,
@@ -811,8 +804,7 @@
           "value": 99.34,
           "source_name": "KOSIS/한국건설기술연구원",
           "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
-          "updated_at": "2024-07-11",
-          "yoy_pct": 1.75
+          "updated_at": "2024-07-11"
         },
         {
           "period": "2020-08",
@@ -1376,11 +1368,19 @@
         },
         {
           "period": "2026-06",
-          "value": 135.91,
+          "value": 136.04,
           "source_name": "KOSIS/한국건설기술연구원",
           "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
-          "updated_at": "2026-08-04",
-          "yoy_pct": 4.41
+          "updated_at": "2026-09-02",
+          "yoy_pct": 4.51
+        },
+        {
+          "period": "2026-07",
+          "value": 136.46,
+          "source_name": "KOSIS/한국건설기술연구원",
+          "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
+          "updated_at": "2026-09-02",
+          "yoy_pct": 4.82
         }
       ],
       "api": {
@@ -1416,13 +1416,6 @@
         }
       },
       "points": [
-        {
-          "period": "2019-07",
-          "value": 97.6,
-          "source_name": "KOSIS/한국건설기술연구원",
-          "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
-          "updated_at": "2024-07-11"
-        },
         {
           "period": "2019-08",
           "value": 97.56,
@@ -1505,8 +1498,7 @@
           "value": 99.34,
           "source_name": "KOSIS/한국건설기술연구원",
           "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
-          "updated_at": "2024-07-11",
-          "yoy_pct": 1.78
+          "updated_at": "2024-07-11"
         },
         {
           "period": "2020-08",
@@ -2070,11 +2062,19 @@
         },
         {
           "period": "2026-06",
-          "value": 135.08,
+          "value": 135.23,
           "source_name": "KOSIS/한국건설기술연구원",
           "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
-          "updated_at": "2026-08-04",
-          "yoy_pct": 4.05
+          "updated_at": "2026-09-02",
+          "yoy_pct": 4.17
+        },
+        {
+          "period": "2026-07",
+          "value": 135.57,
+          "source_name": "KOSIS/한국건설기술연구원",
+          "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
+          "updated_at": "2026-09-02",
+          "yoy_pct": 4.41
         }
       ],
       "api": {
@@ -2110,13 +2110,6 @@
         }
       },
       "points": [
-        {
-          "period": "2019-07",
-          "value": 97.66,
-          "source_name": "KOSIS/한국건설기술연구원",
-          "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
-          "updated_at": "2024-07-11"
-        },
         {
           "period": "2019-08",
           "value": 97.66,
@@ -2199,8 +2192,7 @@
           "value": 99.32,
           "source_name": "KOSIS/한국건설기술연구원",
           "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
-          "updated_at": "2024-07-11",
-          "yoy_pct": 1.7
+          "updated_at": "2024-07-11"
         },
         {
           "period": "2020-08",
@@ -2764,11 +2756,19 @@
         },
         {
           "period": "2026-06",
-          "value": 136.64,
+          "value": 136.78,
           "source_name": "KOSIS/한국건설기술연구원",
           "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
-          "updated_at": "2026-08-04",
-          "yoy_pct": 4.63
+          "updated_at": "2026-09-02",
+          "yoy_pct": 4.74
+        },
+        {
+          "period": "2026-07",
+          "value": 137.24,
+          "source_name": "KOSIS/한국건설기술연구원",
+          "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
+          "updated_at": "2026-09-02",
+          "yoy_pct": 5.09
         }
       ],
       "api": {
@@ -2804,13 +2804,6 @@
         }
       },
       "points": [
-        {
-          "period": "2019-07",
-          "value": 97.91,
-          "source_name": "KOSIS/한국건설기술연구원",
-          "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
-          "updated_at": "2024-07-11"
-        },
         {
           "period": "2019-08",
           "value": 97.99,
@@ -2893,8 +2886,7 @@
           "value": 99.26,
           "source_name": "KOSIS/한국건설기술연구원",
           "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
-          "updated_at": "2024-07-11",
-          "yoy_pct": 1.38
+          "updated_at": "2024-07-11"
         },
         {
           "period": "2020-08",
@@ -3458,11 +3450,19 @@
         },
         {
           "period": "2026-06",
-          "value": 144.09,
+          "value": 144.16,
           "source_name": "KOSIS/한국건설기술연구원",
           "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
-          "updated_at": "2026-08-04",
-          "yoy_pct": 8.17
+          "updated_at": "2026-09-02",
+          "yoy_pct": 8.22
+        },
+        {
+          "period": "2026-07",
+          "value": 144.0,
+          "source_name": "KOSIS/한국건설기술연구원",
+          "source_url": "https://kosis.kr/serviceInfo/newContrainDataDetail.do?boardIdx=2004001&boardOrgId=397",
+          "updated_at": "2026-09-02",
+          "yoy_pct": 8.16
         }
       ],
       "api": {
@@ -3534,8 +3534,8 @@
       "description": "현재 대시보드 회사명 매칭 캐시 안의 공사 계약금액 합계입니다.",
       "points": [
         {
-          "period": "2026-08",
-          "value": 0.25,
+          "period": "2026-07",
+          "value": 0.58,
           "count": 1,
           "source_name": "나라장터 계약정보",
           "source_url": "https://www.data.go.kr/data/15129427/openapi.do"
