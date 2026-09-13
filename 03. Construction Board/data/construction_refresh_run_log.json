@@ -598,7 +598,86 @@
       "commit_short": "8abc072",
       "pushed_at": "2026-09-08 06:03:37 KST",
       "pages_verified_at": "2026-09-08 06:03:37 KST"
+    },
+    {
+      "scheduled_for": "2026-09-14",
+      "run_type": "monday-main",
+      "started_at": "2026-09-14 08:16:10 KST",
+      "completed_at": "2026-09-14 08:24:34 KST",
+      "status": "success",
+      "sources": {
+        "google_news": {
+          "status": "success",
+          "note": "refreshed; 365-day window; max 5 per company"
+        },
+        "nara_g2b_contracts": {
+          "status": "success",
+          "note": "refreshed; 2026-09-01 to 2026-09-14; max 5 per company"
+        },
+        "opendart_awards": {
+          "status": "success",
+          "note": "refreshed; 2021-09-14 to 2026-09-14; max 5 per company"
+        },
+        "opendart_strategy": {
+          "status": "success",
+          "note": "refreshed; 2021-09-14 to 2026-09-14; max 5 per company"
+        },
+        "market_indicators": {
+          "status": "ok",
+          "note": "refreshed; 8 indicator series"
+        },
+        "credit_ratings": {
+          "status": "not_run",
+          "note": "Monthly cache retained from previous refresh"
+        }
+      },
+      "backup_dir": "outputs\\construction_refresh_before_20260914_0816",
+      "board_backup_dir": ".codex_tmp\\construction_data_before_20260914_0816",
+      "changed_files": [
+        "03. Construction Board/README.md",
+        "03. Construction Board/data/construction_company_news_cache.json",
+        "03. Construction Board/data/construction_nara_contracts_cache.json",
+        "03. Construction Board/data/construction_dart_awards_cache.json",
+        "03. Construction Board/data/construction_dart_strategy_cache.json",
+        "03. Construction Board/data/construction_market_indicators_cache.json",
+        "03. Construction Board/data/construction_online_update_marks.json",
+        "03. Construction Board/data/construction_source_status_data.json",
+        "03. Construction Board/index.html",
+        "03. Construction Board/data/construction_refresh_run_log.json"
+      ],
+      "pushed": true,
+      "pages_verified": true,
+      "update_marks": {
+        "companies_with_updates": 31,
+        "new_item_marks": 61
+      },
+      "row_counts": {
+        "cak": 30,
+        "cm": 30,
+        "etis_overall": 30,
+        "etis_construction": 30,
+        "kacem": 30
+      },
+      "verification": {
+        "python_syntax_compile": true,
+        "json_parse": true,
+        "html_markers": true,
+        "private_secret_value_leaks": 0,
+        "pages_url_markers": true,
+        "live_json_markers": true
+      },
+      "commit": "078fd312edcaccd1cc5bfad3585884b06e6327c8",
+      "commit_short": "078fd31",
+      "pushed_at": "2026-09-14 08:24:34 KST",
+      "pages_verified_at": "2026-09-14 08:24:34 KST",
+      "pages_url": "https://sjleeigisam-ra-ieo.github.io/Org_dashboard/03.%20Construction%20Board/",
+      "notes": [
+        "Monday scheduled refresh was executed in this thread.",
+        "API key values were not printed or written to dashboard outputs.",
+        "Build and live Pages checks found no collection-error banner.",
+        "README current refresh snapshot was updated for the 2026-09-14 run."
+      ]
     }
   ],
-  "generated_at": "2026-09-08 06:03:37 KST"
+  "generated_at": "2026-09-14 08:24:34 KST"
 }
