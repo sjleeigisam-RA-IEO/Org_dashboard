@@ -278,6 +278,39 @@ def build_update(item, best, asset_to_projects, asset_to_funds):
     return update
 
 
+def build_asset_target_maps(resolved_links, fund_links, projects, funds):
+    project_ids = {row["project_id"] for row in projects if row.get("project_id")}
+    fund_ids = {row["fund_id"] for row in funds if row.get("fund_id")}
+    asset_to_projects = defaultdict(list)
+    asset_to_funds = defaultdict(list)
+    audit = Counter()
+
+    def add_link(mapping, asset_id, target_id, valid_ids, kind):
+        if not asset_id or target_id not in valid_ids:
+            audit[f"invalid_{kind}_links"] += 1
+            return
+        if target_id not in mapping[asset_id]:
+            mapping[asset_id].append(target_id)
+
+    # The legacy project_id field also contains fund codes. Use the typed
+    # relationship contract and check the destination master before linking.
+    for row in resolved_links:
+        target_type = row.get("target_type")
+        asset_id = row.get("asset_id")
+        if target_type in {"project", "pilot_code"}:
+            add_link(asset_to_projects, asset_id, row.get("resolved_project_id"), project_ids, "project")
+        elif target_type == "fund_as_project":
+            add_link(asset_to_funds, asset_id, row.get("resolved_fund_id"), fund_ids, "fund")
+            audit["fund_as_project_links"] += 1
+        else:
+            audit["unresolved_links"] += 1
+
+    for row in fund_links:
+        add_link(asset_to_funds, row.get("asset_id"), row.get("fund_id"), fund_ids, "fund")
+
+    return asset_to_projects, asset_to_funds, dict(audit)
+
+
 def main():
     parser = ArgumentParser(description="Match unmatched T5T rows to projects, funds, and assets.")
     parser.add_argument("--date-from")
@@ -313,17 +346,16 @@ def main():
     projects = fetch_all(client, "projects", "project_id,project_name,project_code,project_type,status,source_system,metadata,primary_asset_id")
     funds = fetch_all(client, "funds", "fund_id,short_name,fund_name,asset_name,project_mission_name,status,metadata,primary_asset_id")
     assets = fetch_all(client, "asset_master", "asset_id,canonical_name,asset_code,city,address_text,metadata,representative_fund_id")
-    asset_project_links = fetch_all(client, "asset_project_links", "asset_id,project_id,confidence")
+    resolved_links = fetch_all(
+        client,
+        "asset_project_link_resolution",
+        "asset_id,target_type,resolved_project_id,resolved_fund_id",
+    )
     asset_fund_links = fetch_all(client, "asset_fund_links", "asset_id,fund_id,confidence")
 
-    asset_to_projects = defaultdict(list)
-    for row in asset_project_links:
-        if row.get("asset_id") and row.get("project_id") and row["project_id"] not in asset_to_projects[row["asset_id"]]:
-            asset_to_projects[row["asset_id"]].append(row["project_id"])
-    asset_to_funds = defaultdict(list)
-    for row in asset_fund_links:
-        if row.get("asset_id") and row.get("fund_id") and row["fund_id"] not in asset_to_funds[row["asset_id"]]:
-            asset_to_funds[row["asset_id"]].append(row["fund_id"])
+    asset_to_projects, asset_to_funds, relationship_audit = build_asset_target_maps(
+        resolved_links, asset_fund_links, projects, funds,
+    )
 
     candidates = []
     for row in projects:
@@ -375,6 +407,7 @@ def main():
         "match_updates": len(updates),
         "candidate_only": len(candidate_only),
         "candidate_kind_counts": dict(candidate_kind_counts),
+        "relationship_audit": relationship_audit,
         "result_status_counts": dict(Counter(row.get("match_status") for row in updates)),
         "sample": samples,
     }
