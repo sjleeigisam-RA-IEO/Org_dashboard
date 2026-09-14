@@ -69,6 +69,24 @@ using the existing workspace Supabase Management configuration; never commit tha
 configuration or a real seed file. New source catalogs require an explicit dataset
 migration; deploying new HTML alone does not overwrite existing assignments/history.
 
+## Account classification reviews
+
+Migration `db/005_account_classification.sql` adds an operator-only, atomic review
+function and immutable batch history. Decisions require expected Account revisions,
+before/after codes, reasons, evidence URLs/dates and a review-needed flag. A batch ID
+can replay only its original payload. P/S/F/H are outside this review function's scope.
+Keep actual decision files and source lists outside Git. The regular CRM API cannot
+call this function. All Account identity, people, source claims and RM state remain intact.
+
+Only records with explicit review metadata override existing dashboard classifications.
+Exposure views use the same current category while retaining their source category in
+`source_piscfh_code`; amounts and lineage stay unchanged. Offline exports retain the
+reviewed institution categories, with no contact data. `미분류` is displayed as `미Account`.
+
+Validation: `node --test tests/*.test.cjs`, rollback-only
+`db/classification-regression.sql`, and `tests/crm-ui-integration.cjs` with optional
+`CRM_QA_CLASSIFICATION` pointing to the private reviewed-decision JSON.
+
 ## Email delivery
 
 The optional code-request button sends the existing shared code, not a one-time code.

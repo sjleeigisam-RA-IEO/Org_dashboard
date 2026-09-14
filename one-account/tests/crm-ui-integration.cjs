@@ -7,9 +7,17 @@ const path = require('node:path');
 const os = require('node:os');
 const http = require('node:http');
 const assert = require('node:assert/strict');
+const classificationLabels = require('../lib/classification-labels.cjs');
 const workspace = path.resolve(__dirname, '../../..');
 const source = fs.readFileSync(path.join(workspace, '10. One Account/ONE_ACCOUNT_MAP_v1_7_RM_XLSX_260910.html'), 'utf8');
 const payload = JSON.parse(fs.readFileSync(path.join(workspace, '10. One Account/data/private_untracked/crm_import_20260914/payload.json'), 'utf8'));
+if (process.env.CRM_QA_CLASSIFICATION) {
+  const decisions = new Map(JSON.parse(fs.readFileSync(process.env.CRM_QA_CLASSIFICATION,'utf8')).map(row=>[row.account_id,row]));
+  for (const account of payload.accounts) {
+    const decision=decisions.get(account.account_id);
+    if (decision) { account.piscfh=decision.to_code; account.classification_review={...decision,rule_version:'qa-classification'}; }
+  }
+}
 const original = JSON.parse(source.match(/<script id="embedded-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
 const assignments = JSON.parse(source.match(/<script id="sharedTeamState" type="application\/json">([\s\S]*?)<\/script>/)[1]);
 const map = (rows, key) => new Map(rows.map(row => [row[key], row]));
@@ -36,7 +44,7 @@ function personDetail(personId) {
   const source_records = payload.source_records.filter(r => srcIds.has(r.source_record_id)).map(({ raw_values, ...r }) => ({ ...r, file_name: sourceMap.get(r.source_id)?.file_name }));
   return { status: 'ok', person: rev(personMap.get(personId)), affiliations, contact_points, receiving_preferences, gift_recipients, field_claims, source_records, life_events: [], audit: [] };
 }
-const injected = source.replace('</body>', '<link data-one-account-shared rel="stylesheet" href="/shared-teams.css"><link data-one-account-crm rel="stylesheet" href="/crm.css"><script data-one-account-crm src="/crm-bootstrap.js"></script></body>');
+const injected = classificationLabels(source).replace('</body>', '<link data-one-account-shared rel="stylesheet" href="/shared-teams.css"><link data-one-account-crm rel="stylesheet" href="/crm.css"><script data-one-account-crm src="/crm-bootstrap.js"></script></body>');
 let offlineHtml = '';
 let apiRequests = 0;
 const server = http.createServer(async (req, res) => {
@@ -70,6 +78,17 @@ const server = http.createServer(async (req, res) => {
     const counts = await page.evaluate(() => ({ accounts: D.accounts.length, mapped: accountsById.size, rmAssignedAccounts: Object.keys(teamAssignments).length, crmOnly: D.accounts.filter(a => a.crm_only).length, rmCount: D.accounts.filter(accountHasRm).length, bar: !!document.querySelector('.oa-crm-bar') }));
     assert.equal(counts.accounts, payload.accounts.length); assert.equal(counts.mapped, counts.accounts); assert.equal(counts.rmAssignedAccounts, Object.keys(assignments).length); assert.equal(counts.bar, true);
     await page.locator('[data-account-scope="all"]').click();
+    if (process.env.CRM_QA_CLASSIFICATION) {
+      const classification = await page.evaluate(() => ({
+        counts: Object.fromEntries(['P','I','S','C','F','H','미Account'].map(code=>[code,D.accounts.filter(a=>code==='미Account'?!a.piscfh.default_candidate_codes.length:a.piscfh.default_candidate_codes.includes(code)).length])),
+        option: document.querySelector('#piscfhFilter option[value="unclassified"]').textContent
+      }));
+      const expected=Object.fromEntries(['P','I','S','C','F','H','미Account'].map(code=>[code,payload.accounts.filter(a=>a.piscfh===code).length]));
+      assert.deepEqual(classification.counts,expected);
+      assert.match(classification.option,/미Account/);
+      const graph = await page.evaluate(() => D.account_asset_exposures.map(({piscfh_code,source_piscfh_code,...row})=>row));
+      assert.deepEqual(graph,original.account_asset_exposures.map(({piscfh_code,...row})=>row));
+    }
     const newAccount = catalog.accounts.find(a => !a.is_existing && a.people_count > 0 && !a.is_placeholder);
     const results = await page.evaluate(accountId => {
       state.accountScope = 'all'; state.query = ''; state.piscfh = ''; state.role = ''; state.status = ''; state.viewMode = 'account';

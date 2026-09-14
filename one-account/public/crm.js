@@ -250,7 +250,7 @@
       const cards = el('div', undefined, 'oa-crm-account-grid');
       accounts.forEach(account => {
         const card = button('', () => openAccount(account.account_id), 'oa-crm-account');
-        card.append(el('strong', account.name), el('span', `${account.piscfh || '미분류'} · 소속인물 ${Number(account.people_count || 0)}명`));
+        card.append(el('strong', account.name), el('span', `${account.piscfh || '미Account'} · 소속인물 ${Number(account.people_count || 0)}명`));
         cards.append(card);
       });
       group.append(cards); results.replaceChildren(group);
@@ -286,7 +286,23 @@
       currentAccount = result;
       heading.textContent = result.account?.name || heading.textContent;
       const summary = el('div', undefined, 'oa-crm-account-summary');
-      summary.append(badge(result.account?.piscfh || '미분류'), badge(`소속인물 ${list(result.people).length}명`));
+      summary.append(badge(result.account?.piscfh || '미Account'), badge(`소속인물 ${list(result.people).length}명`));
+      const review = result.account?.classification_review;
+      if (review?.reason) {
+        const details = el('details', undefined, 'oa-crm-classification');
+        details.append(el('summary', review.review_required ? '분류 근거 · 추가 확인 필요' : '분류 근거'));
+        details.append(el('p', review.reason));
+        for (const value of list(review.source_urls)) {
+          try {
+            const url = new URL(value);
+            if (!['https:', 'http:'].includes(url.protocol)) continue;
+            const link = el('a', url.hostname);
+            link.href = url.href; link.target = '_blank'; link.rel = 'noopener noreferrer';
+            details.append(link, document.createTextNode(' '));
+          } catch {}
+        }
+        summary.append(details);
+      }
       const note = el('p', '부서별로 묶고 직책·이름순으로 표시합니다. 원본 명단에 있다는 사실만으로 재직·실제 발송을 확정하지 않습니다.', 'oa-crm-note');
       const results = el('div');
       const search = searchInput('소속인물 검색', '이름, 부서, 직책', value => peopleGroups(results, result.people, value));
