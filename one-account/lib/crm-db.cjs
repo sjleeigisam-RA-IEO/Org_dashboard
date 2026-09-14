@@ -59,8 +59,18 @@ function readQuery(url) {
 function readView(raw, action) {
   if (!record(raw) || raw.status !== 'ok') throw new Error('DB_RESPONSE_INVALID');
   const array = key => { if (!Array.isArray(raw[key])) throw new Error('DB_RESPONSE_INVALID'); };
-  if (action === 'catalog') { array('accounts'); if (!record(raw.totals)) throw new Error('DB_RESPONSE_INVALID'); }
-  if (action === 'account') { array('people'); if (!record(raw.account)) throw new Error('DB_RESPONSE_INVALID'); }
+  if (action === 'catalog') {
+    array('accounts'); if (!record(raw.totals)) throw new Error('DB_RESPONSE_INVALID');
+    for (const name of ['top_level_accounts', 'grouped_accounts', 'groups']) {
+      if (raw.totals[name] !== undefined && (!Number.isSafeInteger(raw.totals[name]) || raw.totals[name] < 0)) throw new Error('DB_RESPONSE_INVALID');
+    }
+  }
+  if (action === 'account') {
+    array('people'); if (!record(raw.account)) throw new Error('DB_RESPONSE_INVALID');
+    // Optional until migration 006 is deployed, keeping rolling deployments safe.
+    if (raw.children !== undefined) array('children');
+    if (raw.parent_account !== undefined && raw.parent_account !== null && !record(raw.parent_account)) throw new Error('DB_RESPONSE_INVALID');
+  }
   if (action === 'person') { if (!record(raw.person)) throw new Error('DB_RESPONSE_INVALID'); for (const key of ['affiliations', 'contact_points', 'receiving_preferences', 'life_events', 'gift_recipients', 'field_claims', 'source_records', 'audit']) array(key); }
   if (action === 'search') { array('people'); if (typeof raw.truncated !== 'boolean') throw new Error('DB_RESPONSE_INVALID'); }
   return raw;

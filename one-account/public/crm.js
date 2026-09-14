@@ -15,6 +15,38 @@
   const list = value => Array.isArray(value) ? value : [];
   const escape = value => str(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const compare = (a, b) => str(a).localeCompare(str(b), 'ko');
+  const namesMatch = (account, query) => [account.name, ...list(account.aliases).map(alias => typeof alias === 'string' ? alias : alias.name)].some(value => str(value).toLocaleLowerCase('ko').includes(query));
+  function accountSearch(accounts, query = '') {
+    const rows = list(accounts);
+    const byId = new Map(rows.map(account => [account.account_id, account]));
+    const q = query.trim().toLocaleLowerCase('ko');
+    return rows.filter(account => !account.parent_account_id || !byId.has(account.parent_account_id)).map(account => {
+      const children = rows.filter(child => child.parent_account_id === account.account_id);
+      return { account, children, matchingChildren: q ? children.filter(child => namesMatch(child, q)) : [] };
+    }).filter(item => !q || namesMatch(item.account, q) || item.matchingChildren.length).sort((a, b) => compare(a.account.name, b.account.name));
+  }
+  function hierarchyGroups(accounts, query = '') {
+    const q = query.trim().toLocaleLowerCase('ko');
+    const groups = new Map();
+    const order = ['중앙회', '지역 조합', '확인 필요'];
+    for (const account of list(accounts).filter(account => namesMatch(account, q)).sort((a, b) => compare(a.name, b.name))) {
+      const label = account.hierarchy_label || '하위 조직';
+      if (!groups.has(label)) groups.set(label, []);
+      groups.get(label).push(account);
+    }
+    return [...groups].map(([label, accounts]) => ({ label, accounts })).sort((a, b) => (order.includes(a.label) ? order.indexOf(a.label) : order.length) - (order.includes(b.label) ? order.indexOf(b.label) : order.length) || compare(a.label, b.label));
+  }
+  function accountPath(accountId, accounts) {
+    const byId = new Map(list(accounts).map(account => [account.account_id, account]));
+    const path = [], seen = new Set();
+    let account = byId.get(accountId);
+    while (account && !seen.has(account.account_id)) {
+      path.unshift(account); seen.add(account.account_id);
+      account = byId.get(account.parent_account_id);
+    }
+    return path;
+  }
+  const personCount = people => new Set(list(people).map(person => person.person_id).filter(Boolean)).size;
   function groupPeople(people, query = '') {
     const q = query.trim().toLocaleLowerCase('ko');
     const filtered = list(people).filter(p => [p.name, p.department, p.title, p.account_name].some(v => str(v).toLocaleLowerCase('ko').includes(q)));
@@ -40,7 +72,7 @@
     return [file, sheet, row == null ? '' : `${row}행`].filter(Boolean).join(' · ') || record.source_record_id || record.id || '출처 미입력';
   }
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { groupPeople, preferenceText, sourceText, escape, labels };
+    module.exports = { groupPeople, accountSearch, hierarchyGroups, accountPath, personCount, preferenceText, sourceText, escape, labels };
     return;
   }
   if (!/^https?:$/.test(location.protocol)) return;
@@ -154,9 +186,9 @@
     if (account && inspector) {
       const block = el('section', undefined, 'section oa-crm-account-section');
       block.dataset.oneAccountCrm = '';
-      block.append(el('h3', '소속인물'));
+      block.append(el('h3', account.account_kind === 'group' ? '하위 조직·소속인물' : '소속인물'));
       const count = Number(account.people_count || 0);
-      block.append(el('p', `${count.toLocaleString()}명 · 부서·직책·연락처·관계 이력`, 'source'), button('소속인물 보기', () => openAccount(id), 'oa-crm-inline-open'));
+      block.append(el('p', `${account.account_kind === 'group' ? `하위 조직 ${Number(account.children_count || 0)}개 · ` : ''}${count.toLocaleString()}명 · 부서·직책·연락처·관계 이력`, 'source'), button(account.account_kind === 'group' ? '하위 조직·소속인물 보기' : '소속인물 보기', () => openAccount(id), 'oa-crm-inline-open'));
       inspector.prepend(block);
     }
   }
@@ -165,7 +197,7 @@
     accountRow = function (account, ...rest) {
       let html = originalRow(account, ...rest);
       const record = catalogById.get(account.account_id);
-      if (account.crm_only) html = html.replace(/<span class="faces">[^<]*<\/span>/, '<span class="faces">고객정보</span>').replace(/<div class="row-meta">[\s\S]*?<\/div>/, '<div class="row-meta"><span>고객정보 등록기관</span><span>사업 관계 미연결</span></div>');
+      if (account.crm_only && record?.account_kind !== 'group') html = html.replace(/<span class="faces">[^<]*<\/span>/, '<span class="faces">고객정보</span>').replace(/<div class="row-meta">[\s\S]*?<\/div>/, '<div class="row-meta"><span>고객정보 등록기관</span><span>사업 관계 미연결</span></div>');
       return record ? html.replace(/<\/button>\s*$/, `<span data-one-account-crm class="oa-crm-account-count">소속인물 ${Number(record.people_count || 0).toLocaleString()}명</span></button>`) : html;
     };
   }
@@ -184,7 +216,9 @@
       catalogById = new Map(list(result.accounts).map(a => [a.account_id, a]));
       window.OneAccountCRM.catalog = catalog;
       const totals = result.totals || {};
-      barStatus.textContent = `${Number(totals.accounts ?? catalogById.size).toLocaleString()}개 기관 · ${Number(totals.persons || 0).toLocaleString()}명 · 선물 발송 여부는 별도 확인`;
+      const grouped = Number(totals.grouped_accounts ?? list(result.accounts).filter(account => account.parent_account_id).length);
+      const topLevel = Number(totals.top_level_accounts ?? accountSearch(result.accounts).length);
+      barStatus.textContent = `${topLevel.toLocaleString()}개 Account${grouped ? ` · 하위 조직 ${grouped.toLocaleString()}개` : ''} · ${Number(totals.persons || 0).toLocaleString()}명 · 선물 발송 여부는 별도 확인`;
       window.dispatchEvent(new CustomEvent('oa:crm-catalog', { detail: catalog }));
       decorateAccounts();
       if (refreshView && drawer.open) await reloadView();
@@ -196,11 +230,16 @@
     view = next;
     heading.textContent = title;
     body.replaceChildren(empty('불러오는 중…'));
-    breadcrumb.replaceChildren(button('전체 기관·인물', () => openAll()));
-    if (next.accountId) breadcrumb.append(el('span', '›'), button(catalogById.get(next.accountId)?.name || '기관', () => openAccount(next.accountId)));
-    if (next.kind === 'person') breadcrumb.append(el('span', '› 인물 상세'));
+    drawBreadcrumb(next);
     body.scrollTop = 0;
     return ++viewGeneration;
+  }
+  function drawBreadcrumb(next) {
+    breadcrumb.replaceChildren(button('전체 기관·인물', () => openAll()));
+    const path = accountPath(next.accountId, [...catalogById.values()]);
+    path.forEach(account => breadcrumb.append(el('span', '›'), button(account.name || '기관', () => openAccount(account.account_id))));
+    if (next.accountId && !path.length) breadcrumb.append(el('span', '›'), button('기관', () => openAccount(next.accountId)));
+    if (next.kind === 'person') breadcrumb.append(el('span', '› 인물 상세'));
   }
   function searchInput(label, placeholder, onInput) {
     const wrapper = el('label', undefined, 'oa-crm-search');
@@ -225,14 +264,14 @@
     if (flags.childElementCount) card.append(flags);
     return card;
   }
-  function peopleGroups(container, people, query = '') {
+  function peopleGroups(container, people, query = '', showAccount = false) {
     container.replaceChildren();
     const groups = groupPeople(people, query);
     if (!groups.length) { container.append(empty(query ? '검색 조건에 맞는 인물이 없습니다.' : '등록된 소속인물이 없습니다.')); return; }
     groups.forEach(group => {
       const block = section(`${group.department} · ${group.people.length}명`);
       const cards = el('div', undefined, 'oa-crm-person-grid');
-      group.people.forEach(person => cards.append(personCard(person)));
+      group.people.forEach(person => cards.append(personCard(person, showAccount)));
       block.append(cards); container.append(block);
     });
   }
@@ -245,12 +284,13 @@
     const results = el('div');
     const drawAccounts = query => {
       const q = query.toLocaleLowerCase('ko').trim();
-      const accounts = [...catalogById.values()].filter(a => [a.name, ...list(a.aliases).map(x => typeof x === 'string' ? x : x.name)].some(v => str(v).toLocaleLowerCase('ko').includes(q))).sort((a, b) => compare(a.name, b.name));
-      const group = section(`기관 ${accounts.length.toLocaleString()}개`);
+      const accounts = accountSearch([...catalogById.values()], q);
+      const group = section(`Account ${accounts.length.toLocaleString()}개`);
       const cards = el('div', undefined, 'oa-crm-account-grid');
-      accounts.forEach(account => {
+      accounts.forEach(({ account, children, matchingChildren }) => {
         const card = button('', () => openAccount(account.account_id), 'oa-crm-account');
-        card.append(el('strong', account.name), el('span', `${account.piscfh || '미Account'} · 소속인물 ${Number(account.people_count || 0)}명`));
+        card.append(el('strong', account.name), el('span', `${account.piscfh || '미Account'}${children.length ? ` · 하위 조직 ${children.length}개` : ''} · 소속인물 ${Number(account.people_count || 0)}명`));
+        if (matchingChildren.length) card.append(el('span', `일치하는 하위 조직: ${matchingChildren.slice(0, 4).map(child => child.name).join(', ')}${matchingChildren.length > 4 ? ` 외 ${matchingChildren.length - 4}개` : ''}`, 'oa-crm-child-match'));
         cards.append(card);
       });
       group.append(cards); results.replaceChildren(group);
@@ -284,9 +324,18 @@
       const result = await api({ action: 'account', accountId });
       if (generation !== viewGeneration || !drawer.open) return;
       currentAccount = result;
+      if (result.account) catalogById.set(result.account.account_id, { ...catalogById.get(result.account.account_id), ...result.account });
+      if (result.parent_account) catalogById.set(result.parent_account.account_id, { ...catalogById.get(result.parent_account.account_id), ...result.parent_account });
+      list(result.children).forEach(child => catalogById.set(child.account_id, { ...catalogById.get(child.account_id), ...child }));
+      drawBreadcrumb(view);
       heading.textContent = result.account?.name || heading.textContent;
       const summary = el('div', undefined, 'oa-crm-account-summary');
-      summary.append(badge(result.account?.piscfh || '미Account'), badge(`소속인물 ${list(result.people).length}명`));
+      const grouped = result.account?.account_kind === 'group';
+      summary.append(badge(result.account?.piscfh || '미Account'));
+      if (grouped) summary.append(badge(`하위 조직 ${list(result.children).length}개`));
+      else if (result.account?.hierarchy_label) summary.append(badge(result.account.hierarchy_label, result.account.hierarchy_label === '확인 필요' ? 'is-amber' : ''));
+      summary.append(badge(`소속인물 ${personCount(result.people)}명`));
+      if (result.account?.hierarchy_note) summary.append(el('p', result.account.hierarchy_note, 'oa-crm-hierarchy-note'));
       const review = result.account?.classification_review;
       if (review?.reason) {
         const details = el('details', undefined, 'oa-crm-classification');
@@ -302,6 +351,39 @@
           } catch {}
         }
         summary.append(details);
+      }
+      if (grouped) {
+        const note = el('p', '중앙회와 개별 조합을 선택하면 각 조직의 부서·직책별 소속인물과 연락 정보를 볼 수 있습니다.', 'oa-crm-note');
+        const results = el('div');
+        const drawChildren = query => {
+          results.replaceChildren();
+          const groups = hierarchyGroups(result.children, query);
+          groups.forEach(group => {
+            const block = section(`${group.label} · ${group.accounts.length}개`);
+            const cards = el('div', undefined, 'oa-crm-account-grid');
+            group.accounts.forEach(account => {
+              const card = button('', () => openAccount(account.account_id), 'oa-crm-account oa-crm-child-account');
+              card.append(el('strong', account.name), el('span', `${account.piscfh || '미Account'} · 소속인물 ${Number(account.people_count || 0)}명`));
+              if (account.hierarchy_note) card.append(el('span', account.hierarchy_note, 'oa-crm-child-note'));
+              cards.append(card);
+            });
+            block.append(cards); results.append(block);
+          });
+          if (!groups.length) results.append(empty(query ? '일치하는 하위 조직이 없습니다.' : '등록된 하위 조직이 없습니다.'));
+        };
+        const search = searchInput('중앙회·조합 검색', '조합명 또는 기관명', drawChildren);
+        const people = el('details', undefined, 'oa-crm-group-people');
+        people.append(el('summary', `전체 소속인물 ${personCount(result.people)}명 보기`));
+        const peopleResults = el('div');
+        let loaded = false;
+        people.addEventListener('toggle', () => {
+          if (loaded || !people.open) return;
+          loaded = true;
+          people.append(searchInput('전체 소속인물 검색', '조합명, 이름, 부서, 직책', value => peopleGroups(peopleResults, result.people, value, true)), peopleResults);
+          peopleGroups(peopleResults, result.people, '', true);
+        });
+        body.replaceChildren(summary, note, search, results, people); drawChildren('');
+        return;
       }
       const note = el('p', '부서별로 묶고 직책·이름순으로 표시합니다. 원본 명단에 있다는 사실만으로 재직·실제 발송을 확정하지 않습니다.', 'oa-crm-note');
       const results = el('div');
@@ -438,7 +520,7 @@
     };
     if (entity === 'affiliation') {
       if (creating) {
-        add('account_id', '소속 기관', 'text', [{ value: '', label: '기관을 선택하세요' }, ...[...catalogById.values()].sort((a, b) => compare(a.name, b.name)).map(a => ({ value: a.account_id, label: a.name }))]);
+        add('account_id', '소속 기관', 'text', [{ value: '', label: '기관을 선택하세요' }, ...[...catalogById.values()].filter(a => a.account_kind !== 'group').sort((a, b) => compare(a.name, b.name)).map(a => ({ value: a.account_id, label: a.parent_account_id ? `${catalogById.get(a.parent_account_id)?.name || '상위 조직'} / ${a.name}` : a.name }))]);
         form.append(el('p', '기존 소속 이력을 유지하면서 새 소속을 추가합니다. 퇴사 여부는 기존 소속에서 별도로 확인해 주세요.', 'oa-crm-note'));
       }
       add('department', '부서·세부소속'); add('title', '직책');

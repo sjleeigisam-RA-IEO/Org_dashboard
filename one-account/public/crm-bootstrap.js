@@ -21,6 +21,10 @@
       crm_only: true, crm_account_id: row.contact_account_id || row.account_id,
       crm_classification_review: review,
       crm_people_count: Number.isSafeInteger(row.people_count) && row.people_count >= 0 ? row.people_count : 0,
+      parent_account_id: row.parent_account_id || null,
+      account_kind: row.account_kind === 'group' ? 'group' : 'organization',
+      hierarchy_label: row.hierarchy_label || '', hierarchy_note: row.hierarchy_note || '',
+      children_count: Number.isSafeInteger(row.children_count) ? row.children_count : 0,
     };
   }
   function mergeCatalog(catalog, accounts, accountMap) {
@@ -34,6 +38,7 @@
         // The financial relationship graph and original RM identity stay intact.
         existing.crm_account_id = row.crm_account_id;
         existing.crm_people_count = row.crm_people_count;
+        for (const key of ['parent_account_id','account_kind','hierarchy_label','hierarchy_note','children_count']) existing[key] = row[key];
         if (row.crm_classification_review) {
           const reviewed = row.crm_classification_review;
           existing.piscfh = { ...existing.piscfh,
@@ -88,10 +93,18 @@
       // Only institution metadata joins the offline copy. People remain in the API.
       const embedded = parsed.querySelector('#embedded-data');
       if (embedded) embedded.textContent = JSON.stringify(D).replace(/</g, '\\u003c');
+      if (window.ONE_ACCOUNT_HIERARCHY_SOURCE) {
+        parsed.querySelectorAll('script[data-one-account-hierarchy]').forEach(node => node.remove());
+        const script = parsed.createElement('script');
+        script.setAttribute('data-one-account-hierarchy','');
+        script.textContent = window.ONE_ACCOUNT_HIERARCHY_SOURCE;
+        parsed.body.append(script);
+      }
       return '<!doctype html>\n' + parsed.documentElement.outerHTML;
     };
   }
   window.ONE_ACCOUNT_CRM_BOOTSTRAP_PROMISE = (async () => {
+    await loadScript('/account-hierarchy.js', 'oa-account-hierarchy', false);
     let catalog = null;
     try {
       const response = await fetch('/api/crm?action=catalog', { credentials: 'same-origin', cache: 'no-store', signal: AbortSignal.timeout(20000) });

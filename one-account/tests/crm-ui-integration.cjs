@@ -8,6 +8,7 @@ const os = require('node:os');
 const http = require('node:http');
 const assert = require('node:assert/strict');
 const classificationLabels = require('../lib/classification-labels.cjs');
+const {visibleAccounts}=require('../public/account-hierarchy.js');
 const workspace = path.resolve(__dirname, '../../..');
 const source = fs.readFileSync(path.join(workspace, '10. One Account/ONE_ACCOUNT_MAP_v1_7_RM_XLSX_260910.html'), 'utf8');
 const payload = JSON.parse(fs.readFileSync(path.join(workspace, '10. One Account/data/private_untracked/crm_import_20260914/payload.json'), 'utf8'));
@@ -18,6 +19,11 @@ if (process.env.CRM_QA_CLASSIFICATION) {
     if (decision) { account.piscfh=decision.to_code; account.classification_review={...decision,rule_version:'qa-classification'}; }
   }
 }
+if (process.env.CRM_QA_HIERARCHY) {
+  const metadata=JSON.parse(fs.readFileSync(process.env.CRM_QA_HIERARCHY,'utf8'));
+  const originals=new Map(payload.accounts.map(a=>[a.account_id,a]));
+  payload.accounts=metadata.accounts.map(a=>({...originals.get(a.account_id),...a}));
+}
 const original = JSON.parse(source.match(/<script id="embedded-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
 const assignments = JSON.parse(source.match(/<script id="sharedTeamState" type="application\/json">([\s\S]*?)<\/script>/)[1]);
 const map = (rows, key) => new Map(rows.map(row => [row[key], row]));
@@ -27,11 +33,14 @@ const sourceMap = map(payload.sources, 'source_id');
 const campaignMap = map(payload.gift_campaigns, 'campaign_id');
 const itemMap = map(payload.gift_items, 'item_id');
 const rev = row => ({ ...row, revision: 1 });
-const catalog = { status: 'ok', accounts: payload.accounts.map(row => ({ ...row, revision: 1, people_count: payload.affiliations.filter(a => a.account_id === (row.contact_account_id || row.account_id)).length })), campaigns: payload.gift_campaigns, items: payload.gift_items, totals: { accounts: payload.accounts.length, persons: payload.persons.length, affiliations: payload.affiliations.length, needs_review: payload.persons.filter(p => p.identity_status === 'needs_review').length } };
+const anchorsFor=id=>new Set(payload.accounts.filter(a=>a.account_id===id||a.parent_account_id===id).map(a=>a.contact_account_id||a.account_id));
+const affiliationsFor=id=>payload.affiliations.filter(f=>anchorsFor(id).has(accountMap.get(f.account_id)?.contact_account_id||f.account_id));
+const topAccounts=payload.accounts.filter(a=>!a.parent_account_id);
+const catalog = { status: 'ok', accounts: payload.accounts.map(row => ({ ...row, revision: 1, people_count: new Set(affiliationsFor(row.account_id).map(a=>a.person_id)).size, children_count:payload.accounts.filter(a=>a.parent_account_id===row.account_id).length })), campaigns: payload.gift_campaigns, items: payload.gift_items, totals: { accounts: payload.accounts.length,top_level_accounts:topAccounts.length, grouped_accounts:payload.accounts.length-topAccounts.length,groups:payload.accounts.filter(a=>a.account_kind==='group').length, persons: payload.persons.length, affiliations: payload.affiliations.length, needs_review: payload.persons.filter(p => p.identity_status === 'needs_review').length } };
 const gift = row => ({ ...rev(row), campaign_name: campaignMap.get(row.campaign_id)?.name, item_name: itemMap.get(row.item_id)?.name });
 function peopleFor(accountId) {
   const account = accountMap.get(accountId);
-  return payload.affiliations.filter(a => a.account_id === (account.contact_account_id || accountId)).map(a => ({ ...rev(a), ...personMap.get(a.person_id), account_name: account.name, contact_points: payload.contact_points.filter(c => c.person_id === a.person_id && (!c.affiliation_id || c.affiliation_id === a.affiliation_id)), receiving_preferences: payload.receiving_preferences.filter(p => p.person_id === a.person_id && (!p.affiliation_id || p.affiliation_id === a.affiliation_id)), gift_recipients: payload.gift_recipients.filter(g => g.affiliation_id === a.affiliation_id).map(gift) }));
+  return affiliationsFor(accountId).map(a => ({ ...rev(a), ...personMap.get(a.person_id), account_name: accountMap.get(a.account_id)?.name||account.name, contact_points: payload.contact_points.filter(c => c.person_id === a.person_id && (!c.affiliation_id || c.affiliation_id === a.affiliation_id)), receiving_preferences: payload.receiving_preferences.filter(p => p.person_id === a.person_id && (!p.affiliation_id || p.affiliation_id === a.affiliation_id)), gift_recipients: payload.gift_recipients.filter(g => g.affiliation_id === a.affiliation_id).map(gift) }));
 }
 function personDetail(personId) {
   const affiliations = payload.affiliations.filter(a => a.person_id === personId).map(a => ({ ...rev(a), account_name: accountMap.get(a.account_id)?.name }));
@@ -56,12 +65,12 @@ const server = http.createServer(async (req, res) => {
     assert.equal(req.method, 'GET');
     const action = url.searchParams.get('action');
     let body = catalog;
-    if (action === 'account') { const id = url.searchParams.get('accountId'); body = { status: 'ok', account: accountMap.get(id), people: peopleFor(id) }; }
+    if (action === 'account') { const id = url.searchParams.get('accountId'); body = { status: 'ok', account: catalog.accounts.find(a=>a.account_id===id), people: peopleFor(id),children:catalog.accounts.filter(a=>a.parent_account_id===id),parent_account:catalog.accounts.find(a=>a.account_id===accountMap.get(id)?.parent_account_id)||null }; }
     if (action === 'person') body = personDetail(url.searchParams.get('personId'));
     if (action === 'search') { const q = url.searchParams.get('q'); body = { status: 'ok', people: catalog.accounts.flatMap(a => peopleFor(a.account_id)).filter(p => [p.name, p.department, p.title, p.account_name].join(' ').includes(q)).slice(0, 100), truncated: false }; }
     res.setHeader('Content-Type', 'application/json'); return res.end(JSON.stringify(body));
   }
-  if (/^\/(?:crm(?:-bootstrap)?|shared-teams)\.(?:js|css)$/.test(url.pathname)) { res.setHeader('Content-Type', url.pathname.endsWith('.css') ? 'text/css' : 'text/javascript'); return res.end(fs.readFileSync(path.join(__dirname, '../public', url.pathname.slice(1)))); }
+  if (/^\/(?:crm(?:-bootstrap)?|shared-teams|account-hierarchy)\.(?:js|css)$/.test(url.pathname)) { res.setHeader('Content-Type', url.pathname.endsWith('.css') ? 'text/css' : 'text/javascript'); return res.end(fs.readFileSync(path.join(__dirname, '../public', url.pathname.slice(1)))); }
   res.setHeader('Content-Type', 'text/html; charset=utf-8'); res.end(injected);
 });
 (async () => {
@@ -89,7 +98,7 @@ const server = http.createServer(async (req, res) => {
       const graph = await page.evaluate(() => D.account_asset_exposures.map(({piscfh_code,source_piscfh_code,...row})=>row));
       assert.deepEqual(graph,original.account_asset_exposures.map(({piscfh_code,...row})=>row));
     }
-    const newAccount = catalog.accounts.find(a => !a.is_existing && a.people_count > 0 && !a.is_placeholder);
+    const newAccount = catalog.accounts.find(a => !a.is_existing && a.people_count > 0 && !a.is_placeholder && !a.parent_account_id && a.account_kind!=='group');
     const results = await page.evaluate(accountId => {
       state.accountScope = 'all'; state.query = ''; state.piscfh = ''; state.role = ''; state.status = ''; state.viewMode = 'account';
       state.selected = accountId; renderKpis(); renderList(); renderSelection(); renderLookthrough(); renderReviews(); renderQuality();
@@ -100,7 +109,32 @@ const server = http.createServer(async (req, res) => {
       state.accountScope = 'all'; state.selected = accountId; renderList(); renderSelection();
       return { modes, unclassified, rmScope, newInspectorReady: !!document.querySelector('.oa-crm-account-section'), newAccountSelected: state.selected === accountId };
     }, newAccount.account_id);
-    assert.equal(results.modes.account, payload.accounts.length); assert.equal(results.newInspectorReady, true); assert.equal(results.newAccountSelected, true); assert.equal(results.rmScope, counts.rmCount);
+    assert.equal(results.modes.account, topAccounts.length); assert.equal(results.newInspectorReady, true); assert.equal(results.newAccountSelected, true); assert.equal(results.rmScope, visibleAccounts(payload.accounts,a=>Boolean(assignments[a.account_id]),'rm').length);
+    if(process.env.CRM_QA_HIERARCHY){
+      const group=catalog.accounts.find(a=>a.account_kind==='group');
+      await page.evaluate(id=>{state.query='';state.piscfh='';selectAccount(id);},group.account_id);
+      await page.locator('.oa-hierarchy-panel').waitFor();
+      const child=catalog.accounts.find(a=>a.parent_account_id===group.account_id&&a.people_count>0);
+      await page.getByRole('searchbox',{name:'하위 조합·조직 검색',exact:true}).fill(child.name);
+      await page.locator(`[data-child-account-id="${child.account_id}"]`).click();
+      assert.equal(await page.evaluate(()=>state.selected),child.account_id);
+      await page.locator('.oa-hierarchy-parent').click();
+      assert.equal(await page.evaluate(()=>state.selected),group.account_id);
+      await page.screenshot({path:path.join(output,'hierarchy-group-desktop.png')});
+      assert.equal(await page.evaluate(()=>scopedQualityValues().find(r=>r[0]==='Scope 검증')[1]),'PASS');
+      await page.getByRole('combobox',{name:'보기 방식',exact:true}).selectOption('rm');
+      assert.equal(await page.evaluate(()=>document.querySelector('#selectedLabel').textContent),await page.evaluate(()=>accountsById.get(state.selected).display_name));
+      await page.getByRole('combobox',{name:'보기 방식',exact:true}).selectOption('account');
+      await page.evaluate(id=>selectAccount(id),group.account_id);
+      await page.getByRole('button',{name:'조직·인물 전체보기',exact:true}).click();
+      await page.locator('.oa-crm-drawer .oa-crm-child-account').first().waitFor();
+      await page.screenshot({path:path.join(output,'hierarchy-crm-desktop.png')});
+      await page.setViewportSize({width:390,height:844});
+      await page.screenshot({path:path.join(output,'hierarchy-crm-mobile.png')});
+      assert.equal(await page.locator('.oa-crm-drawer').evaluate(n=>n.scrollWidth>n.clientWidth),false);
+      await page.locator('.oa-crm-close').click();await page.setViewportSize({width:1440,height:1050});
+      await page.evaluate(id=>selectAccount(id),newAccount.account_id);
+    }
     await page.screenshot({ path: path.join(output, 'expanded-main-desktop.png') });
     await page.getByRole('button', { name: '소속인물 보기', exact: true }).click();
     await page.locator('.oa-crm-person').first().waitFor();
@@ -127,8 +161,9 @@ const server = http.createServer(async (req, res) => {
     const offlinePage = await browser.newPage({ viewport: { width: 1440, height: 1050 } });
     offlinePage.on('pageerror', error => errors.push(error.message));
     await offlinePage.goto(`http://127.0.0.1:${server.address().port}/offline`, { waitUntil: 'networkidle' });
-    const offline = await offlinePage.evaluate(() => ({ accounts: D.accounts.length, map: accountsById.size, rm: Object.keys(teamAssignments).length, crm: !!document.querySelector('.oa-crm-bar') }));
+    const offline = await offlinePage.evaluate(() => {state.accountScope='all';state.viewMode='account';renderKpis();renderList();return { accounts: D.accounts.length, map: accountsById.size, rm: Object.keys(teamAssignments).length, crm: !!document.querySelector('.oa-crm-bar'),hierarchy:!!window.ONE_ACCOUNT_HIERARCHY_INSTALLED,topLevel:scopedAccounts().length };});
     assert.equal(offline.accounts, payload.accounts.length); assert.equal(offline.map, payload.accounts.length); assert.equal(offline.rm, Object.keys(assignments).length); assert.equal(offline.crm, false); assert.equal(apiRequests, beforeOfflineRequests); assert.deepEqual(errors, []);
+    assert.equal(offline.hierarchy,true);assert.equal(offline.topLevel,topAccounts.length);
     console.log(JSON.stringify({ ok: true, sourceAccounts: original.accounts.length, sourceRmAssignments: Object.keys(assignments).length, counts, views: results, export: exported, offlineReload: offline, offlineApiCalls: apiRequests - beforeOfflineRequests, browserErrors: errors.length, mobileHorizontalOverflow: overflow, screenshotDirectory: output }));
   } finally { await browser.close(); await new Promise(resolve => server.close(resolve)); }
 })().catch(error => { console.error(error.stack); process.exitCode = 1; server.close(); });

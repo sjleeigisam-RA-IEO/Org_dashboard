@@ -87,6 +87,25 @@ Validation: `node --test tests/*.test.cjs`, rollback-only
 `db/classification-regression.sql`, and `tests/crm-ui-integration.cjs` with optional
 `CRM_QA_CLASSIFICATION` pointing to the private reviewed-decision JSON.
 
+## Account hierarchy
+
+Migration `db/006_account_hierarchy.sql` adds one level of management groups.
+An Account with `account_kind=group` is a display parent; organizations retain their
+IDs, classifications, contact anchors, affiliations and RM assignments. Group membership
+uses `parent_account_id`, `hierarchy_label` and `hierarchy_note`. The operator-only
+`apply_account_hierarchy` creates the parent and attaches explicitly versioned members
+atomically, with immutable batch/audit history. A group cannot be a person's employer.
+
+The catalog includes physical rows and separate `top_level_accounts`, `grouped_accounts`
+and `groups` counts. Group details include child organizations and affiliations;
+person counts deduplicate person IDs, while detail rows retain distinct affiliations.
+The Account index collapses organizations under their parent. RM views keep original
+organization assignments; financial and quality checks keep the underlying source rows.
+Downloaded HTML retains the hierarchy adapter inline and contains no contact details.
+
+Validation: rollback-only `db/hierarchy-regression.sql`, the Node test suite, and
+`CRM_QA_HIERARCHY=<private-catalog.json> node tests/crm-ui-integration.cjs`.
+
 ## Email delivery
 
 The optional code-request button sends the existing shared code, not a one-time code.

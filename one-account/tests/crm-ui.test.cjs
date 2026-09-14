@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 const crypto = require('node:crypto');
-const { groupPeople, preferenceText, sourceText, escape } = require('../public/crm.js');
+const { groupPeople, accountSearch, hierarchyGroups, accountPath, personCount, preferenceText, sourceText, escape } = require('../public/crm.js');
 
 test('people stay distinct across equal names and departments; search includes titles', () => {
   const people = [
@@ -36,6 +36,26 @@ const fixturePerson = () => ({
   life_events: [{ event_id: 'EVENT', person_id: 'PERSON', affiliation_id: 'AFF', event_type: 'birthday', event_date: null, calendar: 'unknown', recurring: false, revision: 1 }],
   gift_recipients: [{ recipient_id: 'GIFT', campaign_name: '2026 추석', item_name: '테스트 선물', delivery_status: 'unknown', received_status: 'unknown', planned_amount: null, actual_amount: null }],
   field_claims: [{ field_name: '직책', value: '', source_record_id: 'SOURCE' }], source_records: [{ source_record_id: 'SOURCE', file_name: '테스트.xlsx', sheet_name: 'P', row_number: 2 }], audit: []
+});
+const hierarchyCatalog = {
+  accounts: [
+    { account_id: 'GROUP-CREDIT-UNIONS', name: '신협', piscfh: 'I', account_kind: 'group', children_count: 3, people_count: 2 },
+    { account_id: 'CENTRAL', name: '신용협동조합중앙회', piscfh: 'P', parent_account_id: 'GROUP-CREDIT-UNIONS', hierarchy_label: '중앙회', people_count: 0 },
+    { account_id: 'LOCAL', name: '중앙신협', aliases: ['중앙신용협동조합'], piscfh: 'I', parent_account_id: 'GROUP-CREDIT-UNIONS', hierarchy_label: '지역 조합', people_count: 2 },
+    { account_id: 'REVIEW', name: '신협 <확인필요>', piscfh: '미Account', parent_account_id: 'GROUP-CREDIT-UNIONS', hierarchy_label: '확인 필요', people_count: 0 },
+    { account_id: 'OTHER', name: '다른 기관', piscfh: 'C', people_count: 0 }
+  ], totals: { accounts: 5, top_level_accounts: 2, grouped_accounts: 3, persons: 2 }
+};
+test('account search returns one group for child names and retains individual child identities', () => {
+  assert.deepEqual(accountSearch(hierarchyCatalog.accounts).map(item => item.account.account_id).sort(), ['GROUP-CREDIT-UNIONS', 'OTHER']);
+  const matches = accountSearch(hierarchyCatalog.accounts, '중앙신용협동조합');
+  assert.equal(matches.length, 1);
+  assert.equal(matches[0].account.account_id, 'GROUP-CREDIT-UNIONS');
+  assert.deepEqual(matches[0].matchingChildren.map(child => child.account_id), ['LOCAL']);
+  assert.equal(matches[0].children.length, 3);
+  assert.deepEqual(hierarchyGroups(hierarchyCatalog.accounts.filter(account => account.parent_account_id)).map(group => group.label), ['중앙회', '지역 조합', '확인 필요']);
+  assert.deepEqual(accountPath('LOCAL', hierarchyCatalog.accounts).map(account => account.account_id), ['GROUP-CREDIT-UNIONS', 'LOCAL']);
+  assert.equal(personCount([{ person_id: 'P', affiliation_id: '1' }, { person_id: 'P', affiliation_id: '2' }]), 1);
 });
 function harness(responder, initial = fixtureCatalog) {
   const nodes = [];
@@ -149,4 +169,48 @@ test('late account responses cannot overwrite the account currently open', async
   await first;
   assert.match(h.dialog().textContent, /다른 기관/);
   assert.doesNotMatch(h.dialog().textContent, /오래된 응답/);
+});
+
+test('group drawer prioritizes child organizations, preserves classifications, and navigates the complete person path', async () => {
+  const group = hierarchyCatalog.accounts[0];
+  const children = hierarchyCatalog.accounts.filter(account => account.parent_account_id);
+  const local = hierarchyCatalog.accounts.find(account => account.account_id === 'LOCAL');
+  const people = [{ person_id: 'PERSON', affiliation_id: 'AFF', account_id: 'LOCAL', account_name: local.name, name: '<img src=x>', department: '업무팀', title: '팀장' }];
+  const h = harness(async url => {
+    if (url.includes('action=person')) return { body: fixturePerson() };
+    if (url.includes('accountId=LOCAL')) return { body: { account: local, parent_account: group, children: [], people } };
+    if (url.includes('action=account')) return { body: { account: group, children, people, parent_account: null } };
+    return { body: { people: [] } };
+  }, hierarchyCatalog);
+  await tick();
+  assert.ok(h.nodes.some(node => node.textContent.includes('2개 Account · 하위 조직 3개 · 2명')));
+  await h.crm.openAll();
+  let cards = h.nodes.filter(node => node.className === 'oa-crm-account');
+  assert.equal(cards.length, 2);
+  const globalSearch = h.nodes.findLast(node => node.tag === 'input' && node.placeholder === '기관명, 이름, 부서, 직책');
+  globalSearch.value = '중앙신용협동조합'; globalSearch.listeners.input();
+  assert.match(h.dialog().textContent, /일치하는 하위 조직: 중앙신협/);
+  await h.crm.openAccount(group.account_id);
+  assert.match(h.dialog().textContent, /중앙회 · 1개/);
+  assert.match(h.dialog().textContent, /지역 조합 · 1개/);
+  assert.match(h.dialog().textContent, /확인 필요 · 1개/);
+  assert.match(h.dialog().textContent, /신용협동조합중앙회P · 소속인물 0명/);
+  assert.doesNotMatch(h.dialog().textContent, /<img src=x>/);
+  assert.equal(h.nodes.some(node => node.tag === 'img'), false);
+  const peopleDetails = h.nodes.findLast(node => node.className === 'oa-crm-group-people');
+  peopleDetails.open = true; peopleDetails.listeners.toggle();
+  assert.match(h.dialog().textContent, /<img src=x>/);
+  const childSearch = h.nodes.findLast(node => node.tag === 'input' && node.placeholder === '조합명 또는 기관명');
+  childSearch.value = '중앙신협'; childSearch.listeners.input();
+  assert.doesNotMatch(h.dialog().textContent, /신용협동조합중앙회P/);
+  const localCard = h.nodes.findLast(node => node.className === 'oa-crm-account oa-crm-child-account' && node.textContent.startsWith('중앙신협'));
+  localCard.click(); await tick();
+  assert.match(h.dialog().textContent, /전체 기관·인물›신협›중앙신협/);
+  const personCard = h.nodes.findLast(node => node.className === 'oa-crm-person');
+  personCard.click(); await tick();
+  assert.match(h.dialog().textContent, /전체 기관·인물›신협›중앙신협› 인물 상세/);
+  h.button('다른 소속 추가').click();
+  const affiliationChoices = h.field('account_id').options;
+  assert.equal(affiliationChoices.some(option => option.value === group.account_id), false);
+  assert.equal(affiliationChoices.find(option => option.value === 'LOCAL').textContent, '신협 / 중앙신협');
 });
