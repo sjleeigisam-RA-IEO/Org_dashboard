@@ -5,6 +5,7 @@
   "installCommand": "npm ci --ignore-scripts --no-audit --no-fund",
   "outputDirectory": "public",
   "functions": {
+    "api/crm.js": { "maxDuration": 30 },
     "api/send-code.js": { "maxDuration": 30 },
     "api/teams.js": { "maxDuration": 30 },
     "api/history.js": { "maxDuration": 30 },

@@ -120,7 +120,7 @@ function commitBody(body) {
   const restore = body.restoreRevision !== undefined;
   if (restore ? (!positiveInt(body.restoreRevision) || body.assignments !== undefined) : (!body.assignments || Array.isArray(body.assignments) || typeof body.assignments !== 'object')) throw new Error('BAD_BODY');
   if (!restore) {
-    if (Object.keys(body.assignments).length > 1000) throw new Error('BAD_BODY');
+    if (Object.keys(body.assignments).length > 5000) throw new Error('BAD_BODY');
     for (const [id, record] of Object.entries(body.assignments)) {
       if (id.length > 120 || !record || typeof record !== 'object' || Array.isArray(record) || Object.keys(record).some(k => !['primaryRmId','backupRmId','sponsorRmId','updatedAtByRole'].includes(k))) throw new Error('BAD_BODY');
       for (const field of ['primaryRmId','backupRmId','sponsorRmId']) if (record[field] !== undefined && (typeof record[field] !== 'string' || record[field].length > 120)) throw new Error('BAD_BODY');

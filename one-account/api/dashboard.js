@@ -22,7 +22,7 @@ function dashboardGzip() {
   if (shared) {
     const html = zlib.gunzipSync(data).toString('utf8');
     if (!html.includes('</body>')) throw new Error('BAD_DOCUMENT');
-    const adapter = '<link rel="stylesheet" data-one-account-shared href="/shared-teams.css"><script id="oa-shared-adapter" data-one-account-shared src="/shared-teams.js"></script>';
+    const adapter = '<link rel="stylesheet" data-one-account-shared href="/shared-teams.css"><link rel="stylesheet" data-one-account-crm href="/crm.css"><script id="oa-crm-bootstrap" data-one-account-crm src="/crm-bootstrap.js"></script>';
     data = zlib.gzipSync(html.replace('</body>', adapter + '</body>'));
   }
   cached = { keyValue, shared, data };

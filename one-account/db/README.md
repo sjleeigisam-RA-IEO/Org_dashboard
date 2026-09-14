@@ -1,5 +1,9 @@
 # One Account shared assignment database
 
+Customer contact storage and its authenticated API are documented separately in
+[CRM_SCHEMA.md](CRM_SCHEMA.md). The additive CRM migration preserves this RM
+baseline and version history.
+
 `001_shared_state.sql` creates only the private `one_account` schema and three
 `public.oa_*` RPC functions. Apply once using a database administrator. It does
 not modify another dashboard's tables or publish company data.

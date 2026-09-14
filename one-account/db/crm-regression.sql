@@ -1,0 +1,60 @@
+-- Synthetic fixtures only. Always rollback. Safe to concatenate the contents
+-- between BEGIN/ROLLBACK after migration contents inside a single test transaction.
+begin;
+do $$
+declare
+ payload jsonb := '{"schema_version":1,"batch_id":"crm-regression-fixture","manifest_sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","sources":[{"source_id":"crm-test-src","file_name":"synthetic.xlsx","sha256":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}],"source_records":[{"source_record_id":"crm-test-row","source_id":"crm-test-src","sheet_name":"Synthetic","row_number":1,"raw_values":{"name":"Synthetic Person"}}],"accounts":[{"account_id":"crm-test-account","name":"Synthetic CRM Account","piscfh":"C"},{"account_id":"crm-test-linked","name":"Synthetic linked role","contact_account_id":"crm-test-account"}],"persons":[{"person_id":"crm-test-person","name":"Synthetic Person"},{"person_id":"crm-test-other","name":"Synthetic Other"}],"affiliations":[{"affiliation_id":"crm-test-aff","person_id":"crm-test-person","account_id":"crm-test-account"},{"affiliation_id":"crm-test-other-aff","person_id":"crm-test-other","account_id":"crm-test-account"}],"contact_points":[{"contact_point_id":"crm-test-contact","person_id":"crm-test-person","affiliation_id":"crm-test-aff","kind":"email","value":"synthetic@example.invalid","source_record_id":"crm-test-row"}],"gift_campaigns":[{"campaign_id":"crm-test-campaign","name":"Synthetic Campaign","year":2026,"occasion":"test"}],"gift_recipients":[{"recipient_id":"crm-test-gift","campaign_id":"crm-test-campaign","person_id":"crm-test-person","affiliation_id":"crm-test-aff","plan_status":"listed","source_record_id":"crm-test-row"}],"receiving_preferences":[{"preference_id":"crm-test-pref","person_id":"crm-test-person","affiliation_id":"crm-test-aff","campaign_id":"crm-test-campaign","scope":"campaign","availability":"no","source_record_id":"crm-test-row"}],"field_claims":[{"claim_id":"crm-test-claim","entity_type":"person","entity_id":"crm-test-person","field_name":"name","value":"Synthetic Person","source_record_id":"crm-test-row"}]}'::jsonb;
+ r jsonb; r2 jsonb; failed boolean; baseline jsonb; old_versions bigint;
+begin
+ select to_jsonb(d) into baseline from one_account.datasets d where dataset_id='rm-v1.7';
+ select count(*) into old_versions from one_account.versions where dataset_id='rm-v1.7';
+ r:=public.oa_crm_import(payload,'reviewer@igisam.com');
+ if r->>'status'<>'imported' or (r->'counts'->>'persons_inserted')::int<>2 then raise exception 'CRM import failed'; end if;
+ r2:=public.oa_crm_import(payload,'reviewer@igisam.com');
+ if r2->>'status'<>'replayed' then raise exception 'Import replay failed'; end if;
+ failed:=false;
+ begin perform public.oa_crm_import(jsonb_set(payload,'{persons,0,name}','"Changed"'),'reviewer@igisam.com'); exception when sqlstate '22023' then failed:=true; end;
+ if not failed then raise exception 'Changed batch accepted'; end if;
+ failed:=false;
+ begin perform public.oa_crm_import(jsonb_set(jsonb_set(payload,'{batch_id}','"crm-test-invalid-field"'),'{persons,0,unsupported_field}','"invalid"'),'reviewer@igisam.com'); exception when sqlstate '22023' then failed:=true; end;
+ if not failed then raise exception 'Unknown import field accepted'; end if;
+ r:=public.oa_crm_read('person','crm-test-person');
+ if r->'gift_recipients'->0->>'delivery_status'<>'unknown' or r->'gift_recipients'->0->>'actual_amount' is not null then raise exception 'Actual delivery inferred'; end if;
+ if r->'receiving_preferences'->0->>'scope'<>'campaign' or r->'receiving_preferences'->0->>'effective_to' is not null then raise exception 'Permanent refusal inferred'; end if;
+ if r->'affiliations'->0->>'employment_status'<>'unknown' then raise exception 'Employment inferred'; end if;
+ if jsonb_array_length(r->'source_records')<>1 or jsonb_array_length(r->'field_claims')<>1 then raise exception 'Provenance lost'; end if;
+ r:=public.oa_crm_read('account','crm-test-linked');
+ if jsonb_array_length(r->'people')<>2 then raise exception 'Account contact link failed'; end if;
+ r:=public.oa_crm_commit('update','affiliation','crm-test-aff',1,'{"title":"Synthetic Manager","employment_status":"former","ended_on":"2026-09-14"}','reviewer@igisam.com','4ddf1ef0-d71c-4b1b-a539-279347835949');
+ if r->>'status'<>'committed' or r->>'revision'<>'2' then raise exception 'Update failed'; end if;
+ r2:=public.oa_crm_commit('update','affiliation','crm-test-aff',1,'{"title":"Synthetic Manager","employment_status":"former","ended_on":"2026-09-14"}','reviewer@igisam.com','4ddf1ef0-d71c-4b1b-a539-279347835949');
+ if r2->>'status'<>'replayed' or r2->'record'<>r->'record' then raise exception 'Mutation replay failed'; end if;
+ r2:=public.oa_crm_commit('update','affiliation','crm-test-aff',1,'{"title":"Stale"}','reviewer@igisam.com','8536ae6a-eeba-4aa4-a059-ce12b2c58cbb');
+ if r2->>'status'<>'conflict' or r2->>'revision'<>'2' then raise exception 'Lost update protection failed'; end if;
+ r2:=public.oa_crm_commit('update','affiliation','crm-test-aff',2,'{"title":"Synthetic Manager"}','reviewer@igisam.com','efbe1137-d01b-43bb-8ae2-91792159c23d');
+ if r2->>'status'<>'noop' or r2->>'revision'<>'2' then raise exception 'Noop failed'; end if;
+ failed:=false;
+ begin perform public.oa_crm_commit('create','life_event','crm-test-bad-event',0,'{"person_id":"crm-test-person","affiliation_id":"crm-test-other-aff","event_type":"other"}','reviewer@igisam.com','09b7bac8-9076-478e-8b44-81430d88ebd7'); exception when sqlstate '22023' then failed:=true; end;
+ if not failed then raise exception 'Unrelated affiliation accepted'; end if;
+ r:=public.oa_crm_commit('create','life_event','crm-test-event',0,'{"person_id":"crm-test-person","affiliation_id":"crm-test-aff","event_type":"anniversary","event_date":"2026-09-14","recurring":true}','reviewer@igisam.com','06fb2e1d-dce1-43ba-aae8-5c1e9e214c90');
+ if r->>'status'<>'committed' or r->'record'->>'revision'<>'1' then raise exception 'Event create failed'; end if;
+ r:=public.oa_crm_read('person','crm-test-person');
+ if not exists(select 1 from jsonb_array_elements(r->'audit') a where a->>'entity_id'='crm-test-event') then raise exception 'Life event audit missing'; end if;
+ insert into one_account.crm_accounts(account_id,name) values('crm-test-second-account','Synthetic second affiliation');
+ r:=public.oa_crm_commit('create','affiliation','crm-test-second-aff',0,'{"person_id":"crm-test-person","account_id":"crm-test-second-account"}','reviewer@igisam.com','903cf6b6-a740-4da3-95ce-af1228f9e719');
+ r:=public.oa_crm_read('account','crm-test-second-account');
+ if jsonb_array_length(r->'people'->0->'gift_recipients')<>1 then raise exception 'Cross affiliation gift history missing'; end if;
+ if r->'people'->0->'gift_recipients'->0->>'gift_account_id'<>'crm-test-account' or r->'people'->0->'gift_recipients'->0->>'gift_account_name'<>'Synthetic CRM Account' then raise exception 'Gift original affiliation missing'; end if;
+ failed:=false;
+ begin perform public.oa_crm_commit('update','person','crm-test-person',1,'{"person_id":"fake"}','reviewer@igisam.com','972009f6-0702-4487-8b63-a15b3f11eb92'); exception when sqlstate '22023' then failed:=true; end;
+ if not failed then raise exception 'Protected identity mutated'; end if;
+ failed:=false;
+ begin update one_account.crm_audit set action='update' where entity_id='crm-test-event'; exception when sqlstate '55000' then failed:=true; end;
+ if not failed then raise exception 'Audit mutable'; end if;
+ if exists(select 1 from pg_tables where schemaname='one_account' and tablename like 'crm\_%' escape '\' and not rowsecurity) then raise exception 'RLS disabled'; end if;
+ if has_function_privilege('anon','public.oa_crm_read(text,text,text,integer)','EXECUTE') or has_function_privilege('authenticated','public.oa_crm_commit(text,text,text,bigint,jsonb,text,uuid)','EXECUTE') then raise exception 'Client RPC privilege'; end if;
+ if has_table_privilege('anon','one_account.crm_persons','SELECT') or has_table_privilege('service_role','one_account.crm_contact_points','SELECT') then raise exception 'Direct table privilege'; end if;
+ if (select to_jsonb(d) from one_account.datasets d where dataset_id='rm-v1.7') is distinct from baseline or (select count(*) from one_account.versions where dataset_id='rm-v1.7')<>old_versions then raise exception 'RM baseline changed'; end if;
+ if baseline is not null and not ((one_account._effective_catalogs('rm-v1.7',baseline->'catalogs')->'accounts') ? 'crm-test-account') then raise exception 'RM account overlay missing'; end if;
+end $$;
+rollback;

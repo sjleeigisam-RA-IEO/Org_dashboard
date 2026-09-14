@@ -288,7 +288,7 @@ test('commit validates request UUID, base revision, assignment shape, role field
     ...[0, -1, 1.1, '7', Number.MAX_SAFE_INTEGER + 1].map(expectedRevision => commit({ expectedRevision })),
     ...['', 'idempotent-key', '00000000-0000-0000-0000-000000000000', 4].map(requestId => commit({ requestId })),
     ...[null, [], 4, 'text'].map(assignments => commit({ assignments })),
-    commit({ assignments: Object.fromEntries(Array.from({ length: 1001 }, (_, i) => [`a${i}`, {}])) }),
+    commit({ assignments: Object.fromEntries(Array.from({ length: 5001 }, (_, i) => [`a${i}`, {}])) }),
     commit({ assignments: { ['a'.repeat(121)]: {} } }),
     ...[null, [], 'text', { actorEmail: EMAIL }, { primaryRmId: 2 }, { backupRmId: null }, { sponsorRmId: 'a'.repeat(121) }]
       .map(record => commit({ assignments: { account1: record } })),
