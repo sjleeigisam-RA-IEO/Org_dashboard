@@ -73,6 +73,14 @@ const server = http.createServer(async (req, res) => {
     const publicBody = projectRead(readView(body, action), action);
     assert.equal(publicBody.privacy.detailAccess, 'locked');
     assert.equal(publicBody.privacy.canEdit, false);
+    if (publicBody.masked_details) {
+      for (const [kind, rows] of Object.entries(publicBody.masked_details)) {
+        for (const row of rows) for (const [key, value] of Object.entries(row)) {
+          if (kind === 'contacts' && key === 'kind') assert.ok(['mobile', 'phone', 'email', 'address', 'postcode'].includes(value));
+          else assert.ok(value === '*' || value === '', `Unexpected raw value in masked ${kind}.${key}`);
+        }
+      }
+    }
     for (const row of [publicBody, ...(publicBody.people || [])]) {
       for (const key of ['contact_points', 'receiving_preferences', 'gift_recipients', 'life_events', 'field_claims', 'source_records', 'audit']) {
         if (Object.hasOwn(row, key)) assert.deepEqual(row[key], []);
@@ -152,14 +160,19 @@ const server = http.createServer(async (req, res) => {
     await page.locator('.oa-crm-person').first().waitFor();
     await page.locator('.oa-crm-person').first().click();
     await page.getByRole('heading', { name: '기본 소속 정보', exact: true }).waitFor();
-    await page.getByText('상세정보 조회 인증 연결 예정', { exact: true }).waitFor();
+    for (const name of ['연락처', '수령가능 여부', '선물 이력', '경조사']) {
+      await page.getByRole('table', { name, exact: true }).waitFor();
+    }
+    assert.equal(await page.locator('.oa-crm-detail-lock').count(), 0);
+    assert.equal(await page.locator('.oa-crm-section-lock').count(), 4);
+    assert.ok((await page.locator('.oa-crm-masked-value').allTextContents()).every(value => value === '*'));
     assert.equal(await page.locator('.oa-crm-editor').count(), 0);
     assert.equal(await page.getByRole('button', { name: '전체 명단 엑셀', exact: true }).isDisabled(), true);
     const personId = peopleFor(newAccount.account_id)[0].person_id;
     const contacts = personDetail(personId).contact_points.map(c => c.value).filter(Boolean);
     const detailText = await page.locator('.oa-crm-drawer').textContent();
     assert.equal(contacts.some(value => detailText.includes(value)), false);
-    // The basic profile is mounted; protected fixture values remain server-side.
+    // Basic profile and presence-only detail tables are mounted; protected values remain server-side.
     // Inspect the returned offline copy in Node without sending private contacts to the browser.
     const { html: savedHtml, ...exported } = await page.evaluate(() => {
       const html = buildSharedHtml('QA-OFFLINE-EXPANDED');

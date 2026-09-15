@@ -56,7 +56,10 @@ test('all read actions use fresh field allowlists and erase sensitive nested dat
       assert.equal(output.person.name, 'Synthetic Person');
       assert.equal(output.affiliations[0].account_id, 'ACCOUNT-A');
       assert.ok(!Object.hasOwn(output.affiliations[0], 'started_on'));
+      assert.deepEqual(output.masked_details.contacts, [{ kind: 'email', value: '*' }]);
+      for (const key of ['contact_points', 'receiving_preferences', 'gift_recipients', 'life_events', 'field_claims', 'source_records', 'audit']) assert.deepEqual(output[key], []);
     } else {
+      assert.ok(!Object.hasOwn(output, 'masked_details'));
       assert.equal(output.people[0].contact_count, 1);
       assert.equal(output.people[0].rank, 'Senior');
       assert.deepEqual(output.people[0].contact_points, []);
@@ -75,6 +78,73 @@ test('nested payloads under permitted scalar fields and unexpected actions fail 
   assert.ok(!JSON.stringify(output).includes(SECRET));
   assert.ok(!Object.hasOwn(output.person, 'name'));
   assert.throws(() => privacy.projectRead(input, 'raw'), /CRM_PRIVACY_ACTION_INVALID/);
+});
+
+test('person detail preserves populated rows as masks while unknown, null and blank cells stay blank', () => {
+  const input = raw('person');
+  input.contact_points = [
+    { kind: 'mobile', value: SECRET, notes: SECRET }, { kind: 'phone', value: ' ' },
+    { kind: 'email', value: null }, { kind: 'address', value: SECRET }, { kind: 'postcode', value: SECRET },
+  ];
+  input.receiving_preferences = [
+    { campaign_id: SECRET, availability: 'no', scope: 'campaign', effective_from: '2026-01-01', effective_to: null },
+    { campaign_name: ' ', availability: 'unknown', scope: 'unknown', effective_from: '', effective_to: undefined },
+  ];
+  input.gift_recipients = [
+    { campaign_name: SECRET, send_target: 'no', item_id: SECRET, planned_amount: 0, actual_amount: 0,
+      delivery_status: 'not_sent', received_status: 'not_received', sent_on: null, received_on: '' },
+    { campaign_id: null, send_target: null, item_name: '', planned_amount: null, actual_amount: undefined,
+      delivery_status: 'unknown', received_status: 'unknown', sent_on: null, received_on: null },
+  ];
+  input.life_events = [
+    { event_type: 'birthday', event_date: '2026-01-01', description: SECRET, notes: SECRET },
+    { event_type: 'unknown', event_date: null, description: ' ' },
+  ];
+  const original = structuredClone(input), result = privacy.projectRead(input, 'person');
+  assert.deepEqual(result.masked_details, {
+    contacts: [{ kind: 'mobile', value: '*' }, { kind: 'phone', value: '' }, { kind: 'email', value: '' }, { kind: 'address', value: '*' }, { kind: 'postcode', value: '*' }],
+    preferences: [
+      { campaign: '*', availability: '*', scope: '*', effective_from: '*', effective_to: '' },
+      { campaign: '', availability: '', scope: '', effective_from: '', effective_to: '' },
+    ],
+    gifts: [
+      { campaign: '*', send_target: '*', item: '*', planned_amount: '*', actual_amount: '*', delivery_status: '*', received_status: '*', sent_on: '', received_on: '' },
+      { campaign: '', send_target: '', item: '', planned_amount: '', actual_amount: '', delivery_status: '', received_status: '', sent_on: '', received_on: '' },
+    ],
+    life_events: [{ event_type: '*', event_date: '*', description: '*' }, { event_type: '', event_date: '', description: '' }],
+  });
+  assert.deepEqual(result.privacy, LOCKED);
+  assert.equal(result.contact_count, 5);
+  assert.ok(!JSON.stringify(result).includes(SECRET));
+  assert.deepEqual(input, original);
+});
+
+test('masked detail rejects unrecognized contact types and nested values without invoking coercion or trusting supplied masks', () => {
+  const evil = { secret: SECRET, toString() { assert.fail('private objects must never be coerced'); } };
+  const input = raw('person');
+  input.masked_details = { contacts: [{ kind: 'email', value: SECRET }], unexpected: SECRET };
+  input.contact_points = [
+    { kind: SECRET, value: SECRET }, { kind: evil, value: SECRET },
+    { kind: 'email', value: evil, notes: SECRET }, { kind: 'phone', value: [SECRET] },
+    null, [SECRET], SECRET,
+  ];
+  input.receiving_preferences = [{ campaign_id: evil, availability: evil, scope: [SECRET], effective_from: null, effective_to: ' UnKnOwN ' }];
+  input.gift_recipients = [{ campaign_id: evil, send_target: false, item_id: evil, actual_amount: NaN, planned_amount: Infinity, delivery_status: evil, received_status: [SECRET] }];
+  input.life_events = [{ event_type: evil, event_date: [SECRET], description: evil }];
+  const result = privacy.projectRead(input, 'person');
+  assert.deepEqual(result.masked_details.contacts, [{ kind: 'email', value: '' }, { kind: 'phone', value: '' }]);
+  assert.deepEqual(result.masked_details.preferences[0], { campaign: '', availability: '', scope: '', effective_from: '', effective_to: '' });
+  assert.equal(result.masked_details.gifts[0].send_target, '*', 'an explicit false is present');
+  assert.equal(result.masked_details.gifts[0].actual_amount, '');
+  assert.equal(result.masked_details.gifts[0].planned_amount, '');
+  assert.deepEqual(result.masked_details.life_events[0], { event_type: '', event_date: '', description: '' });
+  assert.ok(!JSON.stringify(result).includes(SECRET));
+  assert.ok(!Object.hasOwn(result.masked_details, 'unexpected'));
+});
+
+test('absent detail collections remain empty rather than inventing masked records', () => {
+  const input = { person: {}, affiliations: [], contact_points: [], receiving_preferences: null, gift_recipients: {}, life_events: undefined };
+  assert.deepEqual(privacy.projectRead(input, 'person').masked_details, { contacts: [], preferences: [], gifts: [], life_events: [] });
 });
 
 let saved, key;

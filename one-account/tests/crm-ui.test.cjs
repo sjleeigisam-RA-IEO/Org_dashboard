@@ -146,13 +146,13 @@ test('basic person view stays locked even if a legacy response includes sensitiv
   assert.equal(h.requests[0].method, 'GET');
   assert.match(h.dialog().textContent, /<script>테스트<\/script>/);
   assert.match(h.dialog().textContent, /기본 소속 정보/);
-  assert.match(h.dialog().textContent, /상세정보 조회 인증 연결 예정/);
+  assert.equal(h.nodes.filter(node => node.tag === 'table' && node.className.includes('oa-crm-masked-detail-table')).length, 4);
   const everyNode = h.nodes.map(node => node.textContent + JSON.stringify(node.attributes) + (node.title || '')).join(' ');
   assert.doesNotMatch(everyNode, /02-0000-0000|테스트 선물|테스트.xlsx|SENSITIVE_AFFILIATION_NOTE|1999-01-01/);
   assert.equal(h.nodes.some(node => node.tag === 'script' || node.tag === 'form' || node.className === 'oa-crm-editor'), false);
   assert.equal(h.button('소속·재직 수정'), undefined);
   assert.equal(h.button('다른 소속 추가'), undefined);
-  const locked = h.nodes.find(node => node.className?.includes('oa-crm-detail-lock'));
+  const locked = h.nodes.find(node => node.className === 'oa-crm-section-lock');
   assert.equal(locked.title, '추후 인증 기능 업데이트 후 잠금 해제가 가능합니다.');
   assert.equal(locked.tabIndex, 0);
   assert.match(locked.attributes['aria-label'], /추후 인증 기능 업데이트 후/);
@@ -165,7 +165,7 @@ test('person details do not read protected arrays, create an editor or request a
   const h = harness(async () => ({ body: response }));
   await tick(); await h.crm.openPerson('PERSON', 'A');
   assert.match(h.dialog().textContent, /기본 이름/);
-  assert.match(h.dialog().textContent, /상세정보 조회 인증 연결 예정/);
+  assert.equal(h.nodes.filter(node => node.tag === 'table' && node.className.includes('oa-crm-masked-detail-table')).length, 4);
   assert.equal(h.requests.length, 1);
   assert.equal(h.nodes.some(node => node.tag === 'form'), false);
   const exportButton = h.button('전체 명단 엑셀');
@@ -175,6 +175,51 @@ test('person details do not read protected arrays, create an editor or request a
   const exportLock = h.nodes.find(node => node.className === 'oa-crm-locked-control');
   assert.equal(exportLock.tabIndex, 0);
   assert.equal(exportLock.title, '추후 인증 기능 업데이트 후 잠금 해제가 가능합니다.');
+});
+
+test('person detail tables show actual field headers with masked presence and blank absence', async () => {
+  const response = fixturePerson();
+  response.masked_details = {
+    contacts: [{ kind: 'mobile', value: '*' }, { kind: 'mobile', value: '*' }, { kind: 'phone', value: '' }, { kind: 'phone', value: '*' }, { kind: 'email', value: '' }],
+    preferences: [{ campaign: '*', availability: '*', scope: '*', effective_from: '', effective_to: '' }],
+    gifts: [{ campaign: '*', send_target: '*', item: '*', planned_amount: '*', actual_amount: '', delivery_status: '', received_status: '', sent_on: '', received_on: '' }],
+    life_events: [{ event_type: '*', event_date: '', description: '*' }]
+  };
+  const h = harness(async () => ({ body: response }));
+  await tick(); await h.crm.openPerson('PERSON', 'A');
+  const table = name => h.nodes.find(node => node.tag === 'table' && node.children[0].textContent === name);
+  const headers = name => table(name).children.find(node => node.tag === 'thead').children[0].children.map(node => node.textContent);
+  const values = name => table(name).children.find(node => node.tag === 'tbody').children.map(row => row.children.map(cell => cell.textContent));
+  assert.deepEqual(headers('연락처'), ['종류', '내용']);
+  assert.deepEqual(values('연락처'), [['휴대전화', '*'], ['전화', '*'], ['이메일', ''], ['주소', ''], ['우편번호', '']]);
+  assert.deepEqual(headers('수령가능 여부'), ['명절', '수령가능 여부', '적용 범위', '시작일', '종료일']);
+  assert.deepEqual(values('수령가능 여부'), [['*', '*', '*', '', '']]);
+  assert.deepEqual(headers('선물 이력'), ['명절', '발송대상', '품목', '예정 금액', '실제 금액', '실제 발송', '실제 수령', '발송일', '수령일']);
+  assert.deepEqual(values('선물 이력'), [['*', '*', '*', '*', '', '', '', '', '']]);
+  assert.deepEqual(headers('경조사'), ['종류', '일자', '내용']);
+  assert.deepEqual(values('경조사'), [['*', '', '*']]);
+  const masks = h.nodes.filter(node => node.className === 'oa-crm-masked-value');
+  assert.ok(masks.length > 0);
+  assert.equal(masks.every(node => node.title === '추후 인증 기능 업데이트 후 잠금 해제가 가능합니다.' && node.tabIndex === 0), true);
+  assert.equal(h.nodes.some(node => node.className?.includes('oa-crm-detail-lock')), false);
+  assert.doesNotMatch(h.nodes.map(node => node.textContent).join(' '), /02-0000-0000|테스트 선물|테스트.xlsx/);
+});
+
+test('unexpected real values in masked details never render even when a response claims authentication', async () => {
+  const response = fixturePerson();
+  response.privacy = { identityVerified: true, detailAccess: 'unlocked' };
+  response.masked_details = {
+    contacts: [{ kind: 'unsafe-contact-kind', value: '010-8888-7777' }, { kind: '__proto__', value: '*' }],
+    preferences: [{ campaign: '비공개 명절', availability: 'yes', scope: 'ongoing', effective_from: '2026-01-01' }],
+    gifts: [{ campaign: '비공개 명절', item: '비공개 품목', actual_amount: 90000, send_target: 'yes' }],
+    life_events: [{ event_type: '비공개 경조사', event_date: '2026-09-15', description: '<img src=x>' }]
+  };
+  const h = harness(async () => ({ body: response }));
+  await tick(); await h.crm.openPerson('PERSON', 'A');
+  const allDom = h.nodes.map(node => node.textContent + JSON.stringify(node.attributes) + (node.title || '')).join(' ');
+  assert.doesNotMatch(allDom, /unsafe-contact-kind|010-8888-7777|비공개|90000|2026-09-15|2026-01-01|__proto__|<img src=x>/);
+  assert.equal(h.nodes.some(node => node.tag === 'img' || node.tag === 'form'), false);
+  assert.equal(h.requests.every(request => request.method === 'GET'), true);
 });
 
 test('late account responses cannot overwrite the account currently open', async () => {
@@ -278,7 +323,7 @@ test('group drawer prioritizes child organizations, preserves classifications, a
   const personCard = h.nodes.findLast(node => node.className === 'oa-crm-person');
   personCard.click(); await tick();
   assert.match(h.dialog().textContent, /전체 기관·인물›신협›중앙신협› 인물 상세/);
-  assert.match(h.dialog().textContent, /상세정보 조회 인증 연결 예정/);
+  assert.equal(h.nodes.filter(node => node.tag === 'table' && node.className.includes('oa-crm-masked-detail-table')).length, 4);
   assert.equal(h.button('다른 소속 추가'), undefined);
   assert.equal(h.requests.some(request => request.method !== 'GET'), false);
 });

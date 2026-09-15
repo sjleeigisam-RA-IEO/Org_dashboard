@@ -20,14 +20,14 @@ const people = [
 const detail = {
   status: 'ok', person: { person_id: 'QA-1', name: '김검증', identity_status: 'unverified' },
   affiliations: [{ ...people[0], account_name: account.name, revision: 1 }],
-  contact_points: [{ contact_point_id: 'QA-CONTACT', person_id: 'QA-1', affiliation_id: 'QA-AFF-1', kind: 'email', value: 'sample@example.invalid', verification_status: 'source_reported', revision: 1 }],
-  receiving_preferences: [{ preference_id: 'QA-PREF', person_id: 'QA-1', affiliation_id: 'QA-AFF-1', campaign_id: 'QA-CAMPAIGN', availability: 'no', scope: 'campaign', notes: '해당 명절에만 수령하지 않음', revision: 1 }],
-  gift_recipients: [{ recipient_id: 'QA-GIFT', campaign_id: 'QA-CAMPAIGN', campaign_name: '2026 추석', item_name: '검증용 선물', delivery_status: 'unknown', received_status: 'unknown', planned_amount: null, actual_amount: null }],
-  life_events: [], field_claims: [{ field_name: '직급', value: '팀장', source_record_id: 'QA-SRC' }],
+  contact_points: [{ contact_point_id: 'QA-CONTACT', person_id: 'QA-1', affiliation_id: 'QA-AFF-1', kind: 'email', value: 'sample@example.invalid', verification_status: 'source_reported', revision: 1 }, { kind: 'phone', value: ' ' }],
+  receiving_preferences: [{ preference_id: 'QA-PREF', person_id: 'QA-1', affiliation_id: 'QA-AFF-1', campaign_id: 'QA-CAMPAIGN', availability: 'no', scope: 'campaign', notes: '해당 명절에만 수령하지 않음', revision: 1 }, { availability: 'unknown', scope: 'unknown', effective_from: null, effective_to: null }],
+  gift_recipients: [{ recipient_id: 'QA-GIFT', campaign_id: 'QA-CAMPAIGN', campaign_name: '2026 추석', send_target: 'yes', item_name: '검증용 선물', delivery_status: 'unknown', received_status: 'unknown', planned_amount: 0, actual_amount: null }, { campaign_id: 'QA-CAMPAIGN', send_target: 'no', item_id: null, planned_amount: null, actual_amount: 0, delivery_status: 'not_sent', received_status: 'unknown', sent_on: null, received_on: null }],
+  life_events: [{ event_type: 'birthday', event_date: '2026-01-02', description: '검증용 경조사 메모' }, { event_type: 'other', event_date: null, description: '' }], field_claims: [{ field_name: '직급', value: '팀장', source_record_id: 'QA-SRC' }],
   source_records: [{ source_record_id: 'QA-SRC', file_name: '검증용.xlsx', sheet_name: 'P', row_number: 2 }], audit: []
 };
 let mutationAttempts = 0;
-const protectedValues = ['sample@example.invalid', '검증용 선물', '검증용 수령 메모', '해당 명절에만 수령하지 않음', '검증용.xlsx'];
+const protectedValues = ['sample@example.invalid', '검증용 선물', '검증용 수령 메모', '해당 명절에만 수령하지 않음', '검증용.xlsx', '검증용 경조사 메모', '2026-01-02'];
 const responseBodies = [];
 const errors = [];
 const html = `<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/crm.css"><style>body{margin:0;background:#eef3f7;font:14px Arial}.topbar{padding:24px;background:#17324e;color:white}.mock{padding:25px;display:grid;grid-template-columns:300px 1fr;gap:20px}.account-row{border:1px solid #bdcedd;padding:15px;background:#fff;border-radius:8px;width:100%}#inspector{padding:24px;background:#fff}.row-title{display:flex;justify-content:space-between}.row-meta{font-size:11px;color:#6e7c8a}</style><body><header class="topbar">ONE ACCOUNT · UI 검증</header><main class="mock"><div id="accountList"></div><aside id="inspector"><div class="inspector-body"></div></aside></main><script>window.ONE_ACCOUNT_CRM_INITIAL_CATALOG=${JSON.stringify(publicView(catalog, 'catalog'))};let state={selected:'QA-A'};function accountRow(a){return '<button class="account-row" data-id="'+a.account_id+'"><div class="row-title">'+a.name+'<span class="faces">0개 얼굴</span></div><div class="row-meta">사업관계</div></button>'}function renderInspector(){}document.querySelector('#accountList').innerHTML=accountRow(window.ONE_ACCOUNT_CRM_INITIAL_CATALOG.accounts[0]);</script><script src="/crm.js"></script></body></html>`;
@@ -75,8 +75,28 @@ const server = http.createServer(async (req, res) => {
     await page.screenshot({ path: path.join(output, 'account-desktop.png') });
     await page.getByRole('button', { name: /김검증/ }).click();
     await page.getByRole('heading', { name: '기본 소속 정보', exact: true }).waitFor();
-    await page.getByText('상세정보 조회 인증 연결 예정', { exact: true }).waitFor();
-    assert.equal(await page.locator('.oa-crm-detail-lock').getAttribute('title'), lockHelp);
+    for (const name of ['연락처', '수령가능 여부', '선물 이력', '경조사']) {
+      await page.getByRole('table', { name, exact: true }).waitFor();
+    }
+    assert.equal(await page.locator('.oa-crm-detail-lock').count(), 0);
+    assert.equal(await page.locator('.oa-crm-section-lock').count(), 4);
+    assert.deepEqual(await page.locator('.oa-crm-section-lock').evaluateAll(nodes => nodes.map(node => node.title)), Array(4).fill(lockHelp));
+    assert.ok(await page.locator('.oa-crm-masked-value').count() > 0);
+    assert.ok((await page.locator('.oa-crm-masked-value').allTextContents()).every(value => value === '*'));
+    assert.deepEqual(await page.getByRole('table', { name: '연락처', exact: true }).locator('tbody tr').evaluateAll(rows => rows.map(row => [...row.cells].map(cell => cell.textContent))), [['휴대전화', ''], ['전화', ''], ['이메일', '*'], ['주소', ''], ['우편번호', '']]);
+    // Explicit zero amounts and no are present values; unknown/null cells remain empty.
+    const expectedDetail = publicView(detail, 'person').masked_details;
+    assert.equal(expectedDetail.gifts[0].planned_amount, '*');
+    assert.equal(expectedDetail.gifts[0].actual_amount, '');
+    assert.equal(expectedDetail.gifts[0].delivery_status, '');
+    assert.equal(expectedDetail.gifts[1].actual_amount, '*');
+    assert.equal(expectedDetail.gifts[1].send_target, '*');
+    assert.equal(expectedDetail.preferences[1].availability, '');
+    assert.equal(expectedDetail.life_events[1].description, '');
+    const tableRows = name => page.getByRole('table', { name, exact: true }).locator('tbody tr').evaluateAll(rows => rows.map(row => [...row.cells].map(cell => cell.textContent)));
+    assert.deepEqual(await tableRows('선물 이력'), [['*', '*', '*', '*', '', '', '', '', ''], ['*', '*', '', '', '*', '*', '', '', '']]);
+    assert.deepEqual(await tableRows('수령가능 여부'), [['*', '*', '*', '', ''], ['', '', '', '', '']]);
+    assert.deepEqual(await tableRows('경조사'), [['*', '*', '*'], ['*', '', '']]);
     assert.equal(await page.locator('.oa-crm-editor').count(), 0);
     assert.equal(await page.locator('.oa-crm-drawer').getByRole('button', { name: /수정|추가|저장/ }).count(), 0);
     const detailText = await page.locator('.oa-crm-drawer').textContent();
