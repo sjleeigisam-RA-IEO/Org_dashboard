@@ -1,5 +1,6 @@
 'use strict';
 const auth = require('../lib/auth.cjs');
+const identity = require('../lib/crm-identity.cjs');
 module.exports = async function handler(req, res) {
   try {
     const settings = auth.config();
@@ -33,6 +34,7 @@ module.exports = async function handler(req, res) {
     const rememberMe = body.rememberMe === true;
     const session = auth.makeSession(email, rememberMe, settings.key);
     auth.setSession(res, session, rememberMe);
+    identity.clearCookies(res);
     return auth.json(res, 200, { authenticated: true, expiresAt: session.expiresAt });
   } catch {
     return auth.json(res, 503, { message: '로그인 서비스 준비 중입니다. 잠시 후 다시 시도해 주세요.' });
