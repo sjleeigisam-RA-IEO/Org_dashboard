@@ -173,3 +173,27 @@ Best-effort limits apply per function instance: one request/minute per email,
 five/hour per email, 25/hour per IP, and 100/day total. These are not distributed
 limits and reset when a function instance restarts; Gmail also applies its account
 sending limits. SMTP debug logging is disabled. No automatic send retries are made.
+
+
+## Account workspace (2026-09-15)
+
+The default dashboard opens the Account workspace. Account selection immediately
+shows the RM team and a compact people table. Search includes aliases and people;
+All / Assigned / Unassigned scopes consider each account's own Primary, Backup,
+or Sponsor. Group rows retain separately assigned child institutions without
+inheriting an RM. Missing CRM fields remain blank and list contacts stay masked.
+
+RM changes save only the selected account and preserve the existing signed-session
+RM permission. Legacy batch RM management and global restore remain accessible in
+RM Management; an account save does not consume an uncommitted batch draft.
+Institution edits and new person/first-affiliation registration require mailbox
+verification and record immutable audit evidence. Private person detail uses the
+existing audited identity flow. Administrator export remains locked.
+
+Apply `db/010_account_workspace.sql` once after 009. API contracts and rollback
+verification are documented in `db/ACCOUNT_WORKSPACE.md`. The public workspace
+modules contain no customer fixtures or credentials. Protected source relationships
+and IDs are retained, and workspace UI/private notes are omitted from offline copies.
+
+Validation: Node test suite; SQL synthetic rollback regression; browser checks for
+RM scopes/save/clear, account/person navigation, verified edits and re-locking.
