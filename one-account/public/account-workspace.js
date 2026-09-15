@@ -9,6 +9,14 @@
   const validId = value => typeof value === 'string' && /^[A-Za-z0-9][A-Za-z0-9._:-]{0,199}$/.test(value);
   const nameOf = account => text(account?.display_name || account?.name);
   const codesOf = account => typeof account?.piscfh === 'string' ? [account.piscfh] : list(account?.piscfh?.default_candidate_codes);
+  const CATEGORY_ORDER = ['P', 'I', 'S', 'C', 'F', 'H'];
+  function categoryRank(account) {
+    const ranks = codesOf(account).map(code => CATEGORY_ORDER.indexOf(code)).filter(rank => rank >= 0);
+    return ranks.length ? Math.min(...ranks) : CATEGORY_ORDER.length;
+  }
+  function compareAccounts(a, b) {
+    return categoryRank(a) - categoryRank(b) || nameOf(a).localeCompare(nameOf(b), 'ko') || text(a?.account_id).localeCompare(text(b?.account_id));
+  }
   const aliasesOf = account => list(account?.aliases).map(alias => typeof alias === 'string' ? alias : alias?.name).filter(Boolean);
   const ownTeam = (account, assignments) => assignments?.[account.account_id] || {};
   const hasRm = team => ROLES.some(role => Boolean(team?.[FIELDS[role]]));
@@ -31,7 +39,7 @@
         children.get(parent.account_id).push(account);
       }
     }
-    const sorted = rows => rows.slice().sort((a, b) => nameOf(a).localeCompare(nameOf(b), 'ko'));
+    const sorted = rows => rows.slice().sort(compareAccounts);
     return sorted(accounts.filter(account => !children.has(account.parent_account_id))).map(account => {
       const members = sorted(children.get(account.account_id) || []);
       return { account, ownMatch: matchesAccount(account, filters, assignments), children: members, matches: members.filter(child => matchesAccount(child, filters, assignments)) };
@@ -71,7 +79,7 @@
     // Display edits do not replace source aliases, IDs, source records, or relationships.
   }
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { ROLES, FIELDS, validId, ownTeam, hasRm, matchesAccount, accountTree, scopeCounts, readRoute, routeUrl, changedTeam, mergeMetadata };
+    module.exports = { compareAccounts, ROLES, FIELDS, validId, ownTeam, hasRm, matchesAccount, accountTree, scopeCounts, readRoute, routeUrl, changedTeam, mergeMetadata };
     return;
   }
   if (window.OneAccountWorkspace || typeof D === 'undefined' || !Array.isArray(D.accounts)) return;
@@ -124,13 +132,13 @@
     identity.append(identityText, identityButton, lock); header.append(brand, identity);
     const nav = el('nav', undefined, 'oa-workspace-nav'); nav.setAttribute('aria-label', '작업 공간');
     const navButtons = new Map();
-    for (const [mode, label] of [['accounts', '어카운트'], ['rm', 'RM 관리'], ['analysis', '분석']]) {
+    for (const [mode, label] of [['accounts', '어카운트'], ['rm', 'RM 관리'], ['analysis', '거래 분석']]) {
       const node = button(label, () => navigate(() => show(mode)), 'oa-workspace-nav-button'); node.dataset.workspaceView = mode; navButtons.set(mode, node); nav.append(node);
     }
     const status = el('div', '', 'oa-workspace-status'); status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
     const area = el('div', undefined, 'oa-workspace-area');
-    const sidebar = el('aside', undefined, 'oa-workspace-sidebar'); sidebar.setAttribute('aria-label', '어카운트 탐색');
-    const controls = el('div', undefined, 'oa-workspace-controls'); controls.append(el('h2', '어카운트 탐색'));
+    const sidebar = el('aside', undefined, 'oa-workspace-sidebar'); sidebar.setAttribute('aria-label', '기관·기업 목록');
+    const controls = el('div', undefined, 'oa-workspace-controls'); controls.append(el('h2', '기관·기업 목록'));
     const search = el('input'); search.type = 'search'; search.placeholder = '기관·별칭·인물 검색'; search.setAttribute('aria-label', '기관·별칭·인물 통합검색'); search.autocomplete = 'off'; search.maxLength = 200;
     search.addEventListener('input', () => { state.query = search.value; renderList(); findPeople(); });
     const segments = el('div', undefined, 'oa-workspace-segments'); segments.setAttribute('aria-label', 'RM 배정 범위');
@@ -166,7 +174,7 @@
     const scroll = ui.listWrap.scrollTop;
     const data = assignments(); const groups = accountTree(D.accounts, state, data); const counts = scopeCounts(D.accounts, state, data);
     for (const [key, node] of ui.scopeButtons) { node.textContent = `${node.dataset.label} ${counts[key].toLocaleString('ko-KR')}`; node.setAttribute('aria-pressed', String(state.scope === key)); }
-    ui.listStatus.textContent = `조건에 맞는 기관 ${counts[state.scope].toLocaleString('ko-KR')}개`;
+    ui.listStatus.textContent = `조건에 맞는 기관 ${counts[state.scope].toLocaleString('ko-KR')}개 · PISCFH·기관명순`;
     ui.listWrap.replaceChildren();
     const table = el('table', undefined, 'oa-workspace-account-table');
     const head = el('thead'); const tr = el('tr'); for (const title of ['기관명', '담당 RM', '인물']) tr.append(el('th', title)); head.append(tr); table.append(head);
@@ -299,7 +307,7 @@
     if (state.editor) return;
     const scroll = ui.detail.scrollTop; ui.detail.replaceChildren();
     if (!state.account) {
-      const intro = el('div', undefined, 'oa-workspace-welcome'); intro.append(el('span', 'ACCOUNT WORKSPACE', 'oa-workspace-eyebrow'), el('h2', '기관을 선택해 주세요'), el('p', '담당 RM, 소속 인물과 거래 관계를 한곳에서 확인하고 관리합니다.'), el('p', '왼쪽에서 기관명·별칭·인물명으로 검색할 수 있습니다.', 'oa-workspace-muted')); ui.detail.append(intro); return;
+      const intro = el('div', undefined, 'oa-workspace-welcome'); intro.append(el('span', '고객 관계 관리', 'oa-workspace-eyebrow'), el('h2', '기관을 선택해 주세요'), el('p', '담당 RM, 소속 인물과 거래 관계를 한곳에서 확인하고 관리합니다.'), el('p', '왼쪽에서 기관명·별칭·인물명으로 검색할 수 있습니다.', 'oa-workspace-muted')); ui.detail.append(intro); return;
     }
     const account = byId(state.account) || state.data?.account || { account_id: state.account, name: state.account };
     const header = el('header', undefined, 'oa-workspace-account-header');
@@ -337,7 +345,7 @@
       const title = el('div', undefined, 'oa-workspace-section-heading'); title.append(el('h3', `하위 조직 ${children.length}`), el('span', 'RM은 각 조직에 따로 배정됩니다.', 'oa-workspace-muted'));
       const search = el('input'); search.type = 'search'; search.placeholder = '하위 조직 검색'; search.setAttribute('aria-label', '하위 조직 검색');
       const rows = el('div'); const paint = () => {
-        const matches = children.filter(child => matchesAccount(byId(child.account_id) || child, { query: search.value }, assignments())).sort((a, b) => nameOf(a).localeCompare(nameOf(b), 'ko'));
+        const matches = children.filter(child => matchesAccount(byId(child.account_id) || child, { query: search.value }, assignments())).sort((a, b) => compareAccounts(byId(a.account_id) || a, byId(b.account_id) || b));
         rows.replaceChildren(table(['조직명', '구분', '담당 RM', '인물'], matches.map(child => {
           const entity = byId(child.account_id) || child; const team = ownTeam(entity, assignments());
           return [button(nameOf(entity), () => selectAccount(entity.account_id), 'oa-workspace-inline-link'), entity.hierarchy_label || '', ROLES.map(role => rmName(team[FIELDS[role]])).filter(Boolean).join(' · ') || '미배정', entryCount(entity)];
@@ -537,8 +545,9 @@
   async function refresh() {
     for (const id of Object.keys(teamOverrides)) delete teamOverrides[id]; renderList(); if (state.account) await loadAccount();
   }
-  createShell(); renderIdentity(); show(state.view, { noRoute: true });
-  window.OneAccountWorkspace = { selectAccount, refresh, show: mode => navigate(() => show(mode)), readState: () => ({ account: state.account, person: state.person, tab: state.tab, view: state.view, query: state.query, scope: state.scope, code: state.code, rm: state.rm }) };
+  createShell(); renderIdentity();
+  window.OneAccountWorkspace = { compareAccounts, selectAccount, refresh, show: mode => navigate(() => show(mode)), readState: () => ({ account: state.account, person: state.person, tab: state.tab, view: state.view, query: state.query, scope: state.scope, code: state.code, rm: state.rm }) };
+  show(state.view, { noRoute: true });
   routeWindow.addEventListener('popstate', () => {
     const route = readRoute(routeWindow.location.href);
     const moved = navigate(() => {
