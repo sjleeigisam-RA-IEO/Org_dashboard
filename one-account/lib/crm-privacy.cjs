@@ -13,6 +13,37 @@ const array = value => Array.isArray(value) ? value : [];
 const emptyPrivateArrays = () => Object.fromEntries(PRIVATE_ARRAYS.map(key => [key, []]));
 const contactCount = row => Array.isArray(row?.contact_points) ? row.contact_points.length
   : Number.isSafeInteger(row?.contact_count) && row.contact_count >= 0 ? row.contact_count : 0;
+const CONTACT_KINDS = new Set(['mobile', 'phone', 'email', 'address', 'postcode']);
+const rows = value => array(value).filter(row => row && typeof row === 'object' && !Array.isArray(row));
+
+// Preserve whether a supported scalar was recorded, never its value or length.
+// Database enum 'unknown' is absence; explicit no/false and an amount of 0 exist.
+function mask(value) {
+  if (typeof value === 'string') return value.trim() && value.trim().toLowerCase() !== 'unknown' ? '*' : '';
+  return typeof value === 'boolean' || (typeof value === 'number' && Number.isFinite(value)) ? '*' : '';
+}
+function maskedField(row, ...keys) {
+  return keys.some(key => own(row, key) && mask(row[key]) === '*') ? '*' : '';
+}
+function maskedFields(row, keys) {
+  return Object.fromEntries(keys.map(key => [key, maskedField(row, key)]));
+}
+function maskedDetails(raw) {
+  return {
+    contacts: rows(raw.contact_points).filter(row => CONTACT_KINDS.has(row.kind))
+      .map(row => ({ kind: row.kind, value: maskedField(row, 'value') })),
+    preferences: rows(raw.receiving_preferences).map(row => ({
+      campaign: maskedField(row, 'campaign_name', 'campaign_label', 'campaign_id'),
+      ...maskedFields(row, ['availability', 'scope', 'effective_from', 'effective_to']),
+    })),
+    gifts: rows(raw.gift_recipients).map(row => ({
+      campaign: maskedField(row, 'campaign_name', 'campaign_label', 'campaign_id'),
+      send_target: maskedField(row, 'send_target'), item: maskedField(row, 'item_name', 'gift_name', 'item_id'),
+      ...maskedFields(row, ['planned_amount', 'actual_amount', 'delivery_status', 'received_status', 'sent_on', 'received_on']),
+    })),
+    life_events: rows(raw.life_events).map(row => maskedFields(row, ['event_type', 'event_date', 'description'])),
+  };
+}
 
 function account(row) {
   if (!row || typeof row !== 'object' || Array.isArray(row)) return null;
@@ -66,6 +97,7 @@ function projectRead(raw, action) {
     ...base,
     person: { ...strings(raw.person, ['person_id', 'name', 'identity_status']), ...integers(raw.person, ['revision']) },
     affiliations: array(raw.affiliations).map(affiliation), contact_count: contactCount(raw),
+    masked_details: maskedDetails(raw),
     ...emptyPrivateArrays(),
   };
   throw new Error('CRM_PRIVACY_ACTION_INVALID');
