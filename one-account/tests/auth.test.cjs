@@ -6,6 +6,7 @@ const assert = require('node:assert/strict');
 const crypto = require('node:crypto');
 const { Readable } = require('node:stream');
 const auth = require('../lib/auth.cjs');
+const identity = require('../lib/crm-identity.cjs');
 const authenticate = require('../api/auth.js');
 const app = require('../api/app.js');
 const dashboard = require('../api/dashboard.js');
@@ -84,10 +85,15 @@ function claims(overrides = {}) {
   return { v: 1, email: EMAIL, remember: true, iat: NOW, exp: NOW + 30 * 86400, ...overrides };
 }
 
-function cookieToken(res) {
-  const cookie = res.headers['set-cookie'];
+function sessionCookie(res) {
+  const values = res.headers['set-cookie'];
+  const cookie = (Array.isArray(values) ? values : [values]).find(value => typeof value === 'string' && value.startsWith(`${auth.COOKIE}=`));
   assert.equal(typeof cookie, 'string');
   assert.ok(cookie.startsWith(`${auth.COOKIE}=`));
+  return cookie;
+}
+function cookieToken(res) {
+  const cookie = sessionCookie(res);
   return cookie.slice(auth.COOKIE.length + 1).split(';')[0];
 }
 
@@ -112,6 +118,13 @@ test('ordinary session expires at eight hours even if the cookie is retained', (
   assert.equal(session.duration, 28_800);
   assert.ok(auth.verifySession(session.token, key, NOW + 28_799));
   assert.equal(auth.verifySession(session.token, key, NOW + 28_800), null);
+});
+
+test('same-second logins have independent nonces while legacy v1 sessions still verify', () => {
+  const sessions = Array.from({ length: 32 }, () => auth.makeSession(EMAIL, true, key, NOW));
+  assert.equal(new Set(sessions.map(s => s.token)).size, sessions.length);
+  for (const session of sessions) assert.match(auth.verifySession(session.token, key, NOW).nonce, /^[A-Za-z0-9_-]{22}$/);
+  assert.ok(auth.verifySession(signed(claims()), key, NOW));
 });
 
 test('tampered payloads, signatures, different keys and oversized tokens are rejected', () => {
@@ -139,6 +152,7 @@ test('signed but invalid claims cannot extend duration or move issuance into the
     { iat: NOW + 60, exp: NOW + 59 },
     { exp: NOW },
     { email: 'reviewer@igisam.com.attacker.example' },
+    { nonce: null }, { nonce: [] }, { nonce: 'short' }, { nonce: 'x'.repeat(23) },
   ];
   for (const overrides of invalidClaims) {
     assert.equal(auth.verifySession(signed(claims(overrides)), key, NOW), null, JSON.stringify(overrides));
@@ -160,7 +174,7 @@ test('company email validation allows normalized exact domain and rejects lookal
 test('valid remembered login sets a secure persistent cookie for exactly 30 days', async () => {
   const res = await login({ email: ' REVIEWER@IGISAM.COM ', rememberMe: true });
   assert.equal(res.statusCode, 200);
-  const cookie = res.headers['set-cookie'];
+  const cookie = sessionCookie(res);
   for (const flag of ['Path=/', 'HttpOnly', 'Secure', 'SameSite=Lax', 'Max-Age=2592000', 'Expires=']) assert.ok(cookie.includes(flag));
   assert.ok(!cookie.includes('Domain='));
   const session = auth.verifySession(cookieToken(res), key);
@@ -169,6 +183,9 @@ test('valid remembered login sets a secure persistent cookie for exactly 30 days
   assert.equal(session.exp - session.iat, 2_592_000);
   assert.equal(new Date(cookie.match(/Expires=([^;]+)/)[1]).getTime(), session.exp * 1000);
   assert.equal(JSON.parse(res.body).expiresAt, session.exp);
+  for (const name of [identity.COOKIE, identity.CHALLENGE_COOKIE]) {
+    assert.ok(res.headers['set-cookie'].some(value => value.startsWith(`${name}=`) && value.includes('Max-Age=0')));
+  }
   assertNoStore(res);
 });
 
@@ -176,7 +193,7 @@ test('ordinary login and string rememberMe values never produce persistent cooki
   for (const rememberMe of [undefined, false, 'true', 'false', 1, null]) {
     const res = await login({ rememberMe });
     assert.equal(res.statusCode, 200);
-    assert.doesNotMatch(res.headers['set-cookie'], /Max-Age|Expires|Domain=/);
+    assert.doesNotMatch(sessionCookie(res), /Max-Age|Expires|Domain=/);
     const session = auth.verifySession(cookieToken(res), key);
     assert.equal(session.remember, false);
     assert.equal(session.exp - session.iat, 28_800);
@@ -286,7 +303,7 @@ test('changing deployment-code config invalidates previously signed sessions', (
   } finally { process.env.ONE_ACCOUNT_CODE_SCRYPT = original; }
 });
 
-test('logout rejects GET, foreign and opaque origins without clearing a cookie', () => {
+test('logout rejects GET, foreign and opaque origins without clearing a cookie', async () => {
   for (const req of [
     request({ method: 'GET' }),
     request({ headers: { origin: 'https://attacker.example' } }),
@@ -295,19 +312,20 @@ test('logout rejects GET, foreign and opaque origins without clearing a cookie',
     request({ headers: { origin: 'null' } }),
   ]) {
     const res = response();
-    logout(req, res);
+    await logout(req, res);
     assert.equal(res.statusCode, req.method === 'GET' ? 405 : 403);
     assert.equal(res.headers['set-cookie'], undefined);
     assertNoStore(res);
   }
 });
 
-test('same-origin logout clears the host cookie using matching security attributes', () => {
+test('same-origin logout clears base, proof and challenge cookies using matching security attributes', async () => {
   const res = response();
-  logout(request({ headers: { 'content-type': 'application/x-www-form-urlencoded' } }), res);
+  await logout(request({ headers: { 'content-type': 'application/x-www-form-urlencoded' } }), res);
   assert.equal(res.statusCode, 303);
   assert.equal(res.headers.location, '/');
-  assert.equal(res.headers['set-cookie'], `${auth.COOKIE}=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT`);
+  assert.equal(sessionCookie(res), `${auth.COOKIE}=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT`);
+  for (const name of [identity.COOKIE, identity.CHALLENGE_COOKIE]) assert.ok(res.headers['set-cookie'].some(value => value.startsWith(`${name}=`) && value.includes('Max-Age=0')));
   assertNoStore(res);
 });
 

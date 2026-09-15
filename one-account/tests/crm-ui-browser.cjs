@@ -10,7 +10,7 @@ const assert = require('node:assert/strict');
 const { readView } = require('../lib/crm-db.cjs');
 const { projectRead } = require('../lib/crm-privacy.cjs');
 const publicView = (raw, action) => projectRead(readView(raw, action), action);
-const lockHelp = '추후 인증 기능 업데이트 후 잠금 해제가 가능합니다.';
+const lockHelp = '본인 인증 후 개인정보를 조회·수정할 수 있습니다.';
 const account = { account_id: 'QA-A', name: '검증용 공제회', piscfh: 'P', aliases: ['검증공제회'], people_count: 2 };
 const catalog = { status: 'ok', accounts: [account], campaigns: [{ campaign_id: 'QA-CAMPAIGN', name: '2026 추석' }], totals: { accounts: 1, persons: 2, affiliations: 2, needs_review: 0 } };
 const people = [
@@ -63,7 +63,7 @@ const server = http.createServer(async (req, res) => {
     await page.goto(`http://127.0.0.1:${server.address().port}/`);
     const exportButton = page.getByRole('button', { name: '전체 명단 엑셀', exact: true });
     assert.equal(await exportButton.isDisabled(), true);
-    assert.equal(await page.locator('.oa-crm-locked-control').getAttribute('title'), lockHelp);
+    assert.equal(await page.locator('.oa-crm-locked-control').getAttribute('title'), '전체 명단 엑셀 다운로드는 아직 열려 있지 않습니다.');
     await page.getByRole('button', { name: '소속인물 보기', exact: true }).click();
     await page.getByRole('button', { name: /김검증/ }).waitFor();
     assert.deepEqual(await page.locator('.oa-crm-people-table th').allTextContents(), ['성명', '부서', '직책', '직급', '연락처', '사내 컨택포인트']);

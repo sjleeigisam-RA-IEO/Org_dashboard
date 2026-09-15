@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 const crypto = require('node:crypto');
-const { groupPeople, sortedPeople, titleParts, displayValue, departmentText, peopleSummary, accountSearch, hierarchyGroups, accountPath, personCount, preferenceText, sourceText, escape } = require('../public/crm.js');
+const { groupPeople, sortedPeople, titleParts, displayValue, departmentText, peopleSummary, accountSearch, hierarchyGroups, accountPath, personCount, preferenceText, sourceText, escape, identityActive, mayReveal } = require('../public/crm.js');
 
 test('department display removes repeated exact source labels without changing source or inventing organization aliases', () => {
   const person = { account_name: '검증공제회', department: '기업투자팀 / 검증공제회;기업투자팀 / 기업투자팀 / 리스크팀' };
@@ -90,7 +90,9 @@ test('account search returns one group for child names and retains individual ch
   assert.equal(personCount([{ person_id: 'P', affiliation_id: '1' }, { person_id: 'P', affiliation_id: '2' }]), 1);
 });
 function harness(responder, initial = fixtureCatalog) {
-  const nodes = [];
+  const nodes = [], longTimers = [];
+  const schedule = (fn, ms) => { if (ms > 10000) { const timer = { fn, ms, active: true, qaTimer: true, unref() {} }; longTimers.push(timer); return timer; } return setTimeout(fn, ms); };
+  const cancelTimer = timer => { if (timer?.qaTimer) timer.active = false; else clearTimeout(timer); };
   class Node {
     constructor(tag) { this.tag = tag; this.children = []; this.listeners = {}; this.dataset = {}; this.attributes = {}; this._text = ''; this._value = ''; this.open = false; this.disabled = false; this.classList = { contains() { return false; }, toggle() {} }; nodes.push(this); }
     get textContent() { return this._text + this.children.map(child => child.textContent || '').join(''); }
@@ -114,7 +116,7 @@ function harness(responder, initial = fixtureCatalog) {
   const docBody = new Node('body');
   const requests = [];
   const sandbox = {
-    location: { protocol: 'https:' }, crypto, URLSearchParams, setTimeout, clearTimeout,
+    location: { protocol: 'https:' }, crypto, URLSearchParams, setTimeout: schedule, clearTimeout: cancelTimer,
     document: { body: docBody, activeElement: new Node('button'), createElement: tag => new Node(tag), querySelector: selector => selector === '.topbar' ? topbar : null, querySelectorAll: () => [] },
     CustomEvent: class { constructor(name, options) { this.type = name; this.detail = options.detail; } },
     dispatchEvent() {}, ONE_ACCOUNT_CRM_INITIAL_CATALOG: initial,
@@ -127,7 +129,7 @@ function harness(responder, initial = fixtureCatalog) {
   sandbox.window = sandbox;
   const context = vm.createContext(sandbox);
   vm.runInContext(fs.readFileSync(require.resolve('../public/crm.js'), 'utf8'), context);
-  return { context, nodes, requests, crm: sandbox.OneAccountCRM, button: text => nodes.findLast(node => node.tag === 'button' && node.textContent === text), form: () => nodes.findLast(node => node.tag === 'form'), field: name => nodes.findLast(node => node.name === name), dialog: () => nodes.find(node => node.attributes['aria-labelledby'] === 'oa-crm-title') };
+  return { context, nodes, longTimers, requests, crm: sandbox.OneAccountCRM, button: text => nodes.findLast(node => node.tag === 'button' && node.textContent === text), form: () => nodes.findLast(node => node.tag === 'form'), field: name => nodes.findLast(node => node.name === name), dialog: () => nodes.find(node => node.attributes['aria-labelledby'] === 'oa-crm-title') };
 }
 const tick = () => new Promise(resolve => setImmediate(resolve));
 
@@ -140,7 +142,7 @@ test('basic person view stays locked even if a legacy response includes sensitiv
   await tick();
   assert.equal(h.requests.length, 0);
   await h.crm.openPerson('PERSON', 'A');
-  assert.equal(h.requests.length, 1);
+  assert.equal(h.requests.filter(request => request.url.startsWith('/api/crm?')).length, 1);
   assert.equal(h.requests[0].credentials, 'same-origin');
   assert.equal(h.requests[0].cache, 'no-store');
   assert.equal(h.requests[0].method, 'GET');
@@ -153,9 +155,9 @@ test('basic person view stays locked even if a legacy response includes sensitiv
   assert.equal(h.button('소속·재직 수정'), undefined);
   assert.equal(h.button('다른 소속 추가'), undefined);
   const locked = h.nodes.find(node => node.className === 'oa-crm-section-lock');
-  assert.equal(locked.title, '추후 인증 기능 업데이트 후 잠금 해제가 가능합니다.');
+  assert.equal(locked.title, '본인 인증 후 개인정보를 조회·수정할 수 있습니다.');
   assert.equal(locked.tabIndex, 0);
-  assert.match(locked.attributes['aria-label'], /추후 인증 기능 업데이트 후/);
+  assert.match(locked.attributes['aria-label'], /본인 인증 후 개인정보/);
   assert.equal(h.nodes.filter(node => node.tag === 'th').every(node => node.attributes.scope === 'col'), true);
 });
 
@@ -166,15 +168,15 @@ test('person details do not read protected arrays, create an editor or request a
   await tick(); await h.crm.openPerson('PERSON', 'A');
   assert.match(h.dialog().textContent, /기본 이름/);
   assert.equal(h.nodes.filter(node => node.tag === 'table' && node.className.includes('oa-crm-masked-detail-table')).length, 4);
-  assert.equal(h.requests.length, 1);
+  assert.equal(h.requests.filter(request => request.url.startsWith('/api/crm?')).length, 1);
   assert.equal(h.nodes.some(node => node.tag === 'form'), false);
   const exportButton = h.button('전체 명단 엑셀');
   assert.equal(exportButton.disabled, true);
   exportButton.click();
-  assert.equal(h.requests.length, 1);
+  assert.equal(h.requests.filter(request => request.url.startsWith('/api/crm?')).length, 1);
   const exportLock = h.nodes.find(node => node.className === 'oa-crm-locked-control');
   assert.equal(exportLock.tabIndex, 0);
-  assert.equal(exportLock.title, '추후 인증 기능 업데이트 후 잠금 해제가 가능합니다.');
+  assert.equal(exportLock.title, '전체 명단 엑셀 다운로드는 아직 열려 있지 않습니다.');
 });
 
 test('person detail tables show actual field headers with masked presence and blank absence', async () => {
@@ -200,7 +202,7 @@ test('person detail tables show actual field headers with masked presence and bl
   assert.deepEqual(values('경조사'), [['*', '', '*']]);
   const masks = h.nodes.filter(node => node.className === 'oa-crm-masked-value');
   assert.ok(masks.length > 0);
-  assert.equal(masks.every(node => node.title === '추후 인증 기능 업데이트 후 잠금 해제가 가능합니다.' && node.tabIndex === 0), true);
+  assert.equal(masks.every(node => node.title === '본인 인증 후 개인정보를 조회·수정할 수 있습니다.' && node.tabIndex === 0), true);
   assert.equal(h.nodes.some(node => node.className?.includes('oa-crm-detail-lock')), false);
   assert.doesNotMatch(h.nodes.map(node => node.textContent).join(' '), /02-0000-0000|테스트 선물|테스트.xlsx/);
 });
@@ -259,7 +261,7 @@ test('account table masks contacts, removes gift columns and leaves internal con
   assert.equal(rows[1].children[4].textContent, '');
   assert.equal(rows[1].children[5].textContent, '');
   const mask = rows[0].children[4].children[0];
-  assert.equal(mask.title, '추후 인증 기능 업데이트 후 잠금 해제가 가능합니다.');
+  assert.equal(mask.title, '본인 인증 후 개인정보를 조회·수정할 수 있습니다.');
   assert.equal(mask.tabIndex, 0);
   assert.doesNotMatch(h.dialog().textContent, /010-1234-5678|SENSITIVE_ITEM|ASSIGNED_RM_NAME|수령가능|발송대상|품목|미입력/);
   h.button('가본부장').click(); await tick();
@@ -326,4 +328,166 @@ test('group drawer prioritizes child organizations, preserves classifications, a
   assert.equal(h.nodes.filter(node => node.tag === 'table' && node.className.includes('oa-crm-masked-detail-table')).length, 4);
   assert.equal(h.button('다른 소속 추가'), undefined);
   assert.equal(h.requests.some(request => request.method !== 'GET'), false);
+});
+
+const verifiedIdentity = () => ({ email: 'operator@igisam.com', identityVerified: true, canEdit: true, verifiedUntil: new Date(Date.now() + 3600000).toISOString() });
+const verifiedPerson = () => {
+  const result = fixturePerson(); result.person.revision = 1;
+  result.gift_recipients.forEach(row => { row.revision = 1; });
+  result.privacy = { ...verifiedIdentity(), detailAccess: 'verified' };
+  result.campaigns = [{ campaign_id: 'CAMPAIGN', name: '2026 추석' }];
+  result.items = [{ item_id: 'ITEM', name: '등록 품목', unit_price: 100000 }];
+  return result;
+};
+test('raw detail access needs both fresh server identity and verified person permission', () => {
+  const identity = verifiedIdentity(), privacy = { ...identity, detailAccess: 'verified' };
+  assert.equal(identityActive(identity), true); assert.equal(mayReveal(identity, privacy), true);
+  assert.equal(mayReveal(null, privacy), false);
+  assert.equal(mayReveal({ ...identity, identityVerified: false }, privacy), false);
+  assert.equal(mayReveal(identity, { ...privacy, canEdit: false }), false);
+  assert.equal(mayReveal(identity, { ...privacy, detailAccess: 'locked' }), false);
+  assert.equal(mayReveal({ ...identity, verifiedUntil: '2000-01-01' }, privacy), false);
+});
+
+test('email OTP uses only the fixed session email and explicit send/verify actions then opens verified details', async () => {
+  let verified = false;
+  const h = harness(async (url, options) => {
+    if (url === '/api/crm-identity') {
+      if (options.method === 'POST') {
+        const body = JSON.parse(options.body);
+        if (body.action === 'request-code') return { body: { email: 'operator@igisam.com', retryAfterSeconds: 60, codeExpiresAt: new Date(Date.now() + 600000).toISOString() } };
+        if (body.action === 'verify') { assert.equal(body.code, '123456'); verified = true; }
+        if (body.action === 'lock') verified = false;
+      }
+      return { body: verified ? verifiedIdentity() : { email: 'operator@igisam.com', identityVerified: false, canEdit: false, verifiedUntil: null } };
+    }
+    return { body: url.includes('action=person') ? verified ? verifiedPerson() : fixturePerson() : fixtureCatalog };
+  });
+  await tick(); await h.crm.openPerson('PERSON', 'A');
+  assert.doesNotMatch(h.dialog().textContent, /02-0000-0000/);
+  h.button('본인 인증').click(); await tick();
+  assert.equal(h.field('email'), undefined);
+  assert.equal(h.requests.filter(request => request.method === 'POST').length, 0);
+  h.button('인증코드 받기').click(); await tick();
+  assert.deepEqual(JSON.parse(h.requests.find(request => request.method === 'POST').body), { action: 'request-code' });
+  h.field('code').value = '123456'; const codeInput = h.field('code');
+  await h.form().listeners.submit({ preventDefault() {} });
+  assert.equal(codeInput.value, '');
+  assert.match(h.dialog().textContent, /operator@igisam.com · 본인 인증됨/);
+  assert.match(h.dialog().textContent, /02-0000-0000/);
+  assert.ok(h.button('연락처 추가')); assert.ok(h.button('선물 이력 수정'));
+  assert.equal(h.button('전체 명단 엑셀').disabled, true);
+  h.button('다시 잠그기').click(); await tick();
+  assert.doesNotMatch(h.dialog().textContent, /02-0000-0000|테스트 선물|테스트.xlsx/);
+});
+
+test('verified edits preserve immutable membership, revision and idempotency while uncertain retries and conflicts require fresh reads', async () => {
+  let attempts = 0;
+  const h = harness(async (url, options) => {
+    if (url === '/api/crm-identity') return { body: verifiedIdentity() };
+    if (options.method === 'POST') return ++attempts === 1 ? { status: 503, body: {} } : { status: 409, body: {} };
+    return { body: url.includes('action=person') ? verifiedPerson() : fixtureCatalog };
+  });
+  await tick(); await h.crm.openPerson('PERSON', 'A');
+  const contactEdit = h.nodes.findLast(node => node.attributes['aria-label'] === '일반전화 수정'); contactEdit.click();
+  h.field('value').value = '02-1111-2222'; const form = h.form();
+  await form.listeners.submit({ preventDefault() {} });
+  assert.equal(h.field('value').disabled, true);
+  await form.listeners.submit({ preventDefault() {} });
+  const requests = h.requests.filter(request => request.method === 'POST');
+  assert.equal(requests.length, 2); assert.equal(requests[0].body, requests[1].body);
+  const payload = JSON.parse(requests[0].body);
+  assert.equal(payload.entity, 'contact_point'); assert.equal(payload.id, 'CONTACT'); assert.equal(payload.expectedRevision, 1);
+  assert.equal('affiliation_id' in payload.patch, false); assert.equal('person_id' in payload.patch, false);
+  assert.ok(h.button('최신 정보 불러오기')); assert.equal(h.button('저장 결과 재확인').disabled, true);
+  assert.doesNotThrow(() => require('../lib/crm-db.cjs').commitBody(payload));
+});
+
+test('verified additions and gift edits send null/zero/boolean values accurately and validate dates without inferring delivery', async () => {
+  const h = harness(async (url, options) => ({ body: url === '/api/crm-identity' ? verifiedIdentity() : options.method === 'POST' ? { status: 'committed', revision: 2, record: { revision: 2 } } : url.includes('action=person') ? verifiedPerson() : fixtureCatalog }));
+  await tick(); await h.crm.openPerson('PERSON', 'A');
+  h.button('연락처 추가').click();
+  await h.form().listeners.submit({ preventDefault() {} });
+  assert.equal(h.requests.filter(r => r.method === 'POST').length, 0);
+  h.field('value').value = 'new@example.invalid'; h.field('kind').value = 'email';
+  await h.form().listeners.submit({ preventDefault() {} });
+  let payload = JSON.parse(h.requests.findLast(r => r.method === 'POST').body);
+  assert.equal(payload.action, 'create'); assert.equal(payload.expectedRevision, 0); assert.equal(payload.patch.person_id, 'PERSON'); assert.equal(payload.patch.affiliation_id, 'AFF');
+  assert.doesNotThrow(() => require('../lib/crm-db.cjs').commitBody(payload));
+  h.button('선물 이력 수정').click();
+  h.field('item_id').value = 'ITEM'; h.field('send_target').value = 'no'; h.field('actual_amount').value = '0';
+  h.field('sent_on').value = '2026-09-15';
+  const before = h.requests.filter(r => r.method === 'POST').length;
+  await h.form().listeners.submit({ preventDefault() {} });
+  assert.equal(h.requests.filter(r => r.method === 'POST').length, before);
+  h.field('sent_on').value = '';
+  await h.form().listeners.submit({ preventDefault() {} });
+  payload = JSON.parse(h.requests.findLast(r => r.method === 'POST').body);
+  assert.equal(payload.entity, 'gift_recipient'); assert.equal(payload.patch.actual_amount, 0); assert.equal(payload.patch.planned_amount, null); assert.equal(payload.patch.send_target, 'no'); assert.equal(payload.patch.delivery_status, 'unknown');
+  assert.equal('campaign_id' in payload.patch, false); assert.equal('affiliation_id' in payload.patch, false);
+  assert.equal(payload.expectedRevision, 1);
+  assert.doesNotThrow(() => require('../lib/crm-db.cjs').commitBody(payload));
+});
+
+test('verified history shows only changed user fields and actual before/after values with actor and time', async () => {
+  const result = verifiedPerson();
+  result.audit = [
+    { entity_type: 'contact_point', action: 'update', actor_email: 'operator@igisam.com', created_at: '2026-09-15T01:00:00Z', before_record: { value: 'BEFORE_PHONE', revision: 1 }, after_record: { value: 'AFTER_PHONE', revision: 2 }, request_id: 'INTERNAL_REQUEST_ID', verification: { actor_email: 'operator@igisam.com', auth_method: 'email_otp', verified_at: '2026-09-15T00:00:00Z' } },
+    { entity_type: 'person', action: 'create', actor_email: 'import-source', created_at: '2026-09-15T01:00:00Z', before_record: {}, after_record: { name: '원본 등록', notes: '' }, verification: null },
+    { entity_type: 'contact_point', action: 'create', actor_email: 'import-source', before_record: {}, after_record: { notes: '', verification_status: 'unverified' }, verification: null }
+  ];
+  const h = harness(async url => ({ body: url === '/api/crm-identity' ? verifiedIdentity() : result }));
+  await tick(); await h.crm.openPerson('PERSON', 'A');
+  assert.match(h.dialog().textContent, /변경 전변경 후/); assert.match(h.dialog().textContent, /BEFORE_PHONEAFTER_PHONE/);
+  assert.doesNotMatch(h.dialog().textContent, /INTERNAL_REQUEST_ID|revision/);
+  const history = h.nodes.find(node => node.tag === 'table' && node.children[0].textContent === '변경 이력');
+  const rows = history.children.find(node => node.tag === 'tbody').children;
+  assert.equal(rows.length, 2);
+  assert.equal(rows[0].children[2].textContent, '수정'); assert.equal(rows[1].children[2].textContent, '입력');
+  assert.notEqual(rows[0].children[6].textContent, '');
+  assert.equal(rows[1].children[6].textContent, '');
+});
+
+test('identity expiry and a rejected write clear private data and editors immediately', async () => {
+  let verified = true;
+  const h = harness(async (url, options) => {
+    if (url === '/api/crm-identity') return { body: verified ? verifiedIdentity() : { email: 'operator@igisam.com', identityVerified: false, canEdit: false, verifiedUntil: null } };
+    if (options.method === 'POST') { verified = false; return { status: 403, body: {} }; }
+    return { body: url.includes('action=person') ? verified ? verifiedPerson() : fixturePerson() : fixtureCatalog };
+  });
+  await tick(); await h.crm.openPerson('PERSON', 'A');
+  h.button('성명·메모 수정').click();
+  await h.form().listeners.submit({ preventDefault() {} });
+  assert.doesNotMatch(h.dialog().textContent, /02-0000-0000|테스트 선물|테스트.xlsx/);
+  const editor = h.nodes.find(node => node.className === 'oa-crm-editor'); assert.equal(editor.open, false); assert.equal(editor.children.length, 0);
+  verified = true; await h.crm.openPerson('PERSON', 'A');
+  verified = false; const timer = h.longTimers.findLast(timer => timer.active); assert.ok(timer.ms <= 8 * 3600000); timer.fn(); await tick();
+  assert.doesNotMatch(h.dialog().textContent, /02-0000-0000|테스트 선물|테스트.xlsx/);
+});
+
+
+test('remaining verified forms keep person identity separate and obey affiliation/preference/event contracts', async () => {
+  const h = harness(async (url, options) => ({ body: url === '/api/crm-identity' ? verifiedIdentity() : options.method === 'POST' ? { status: 'committed', revision: 2, record: { revision: 2 } } : url.includes('action=person') ? verifiedPerson() : fixtureCatalog }));
+  const mutations = () => h.requests.filter(r => r.method === 'POST' && r.url.startsWith('/api/crm'));
+  const lastPayload = () => JSON.parse(mutations().at(-1).body);
+  const save = async () => h.form().listeners.submit({ preventDefault() {} });
+  await tick(); await h.crm.openPerson('PERSON', 'A');
+  h.button('성명·메모 수정').click(); h.field('name').value = '수정한 성명'; await save();
+  assert.equal(lastPayload().entity, 'person'); assert.equal(lastPayload().id, 'PERSON');
+  assert.equal(lastPayload().patch.name, '수정한 성명'); assert.equal('identity_status' in lastPayload().patch, false);
+  h.button('다른 소속 추가').click();
+  h.field('employment_status').value = 'current'; h.field('ended_on').value = '2026-09-15';
+  const before = mutations().length; await save(); assert.equal(mutations().length, before);
+  h.field('ended_on').value = ''; await save();
+  assert.equal(lastPayload().entity, 'affiliation'); assert.equal(lastPayload().patch.person_id, 'PERSON'); assert.equal(lastPayload().patch.account_id, 'A');
+  h.button('수령가능 여부 추가').click();
+  h.field('scope').value = 'ongoing'; h.field('campaign_id').value = 'CAMPAIGN'; await save();
+  assert.equal(lastPayload().entity, 'preference'); assert.equal(lastPayload().patch.campaign_id, null); assert.equal(lastPayload().patch.scope, 'ongoing');
+  h.button('경조사 추가').click(); await save();
+  assert.equal(lastPayload().entity, 'life_event'); assert.equal(lastPayload().patch.recurring, false); assert.equal(lastPayload().patch.event_date, null);
+  h.button('선물 이력 추가').click(); const beforeGift = mutations().length; await save(); assert.equal(mutations().length, beforeGift);
+  h.field('campaign_id').value = 'CAMPAIGN'; h.field('item_id').value = 'ITEM'; await save();
+  assert.equal(lastPayload().entity, 'gift_recipient'); assert.equal(lastPayload().patch.campaign_id, 'CAMPAIGN');
+  assert.equal(lastPayload().patch.delivery_status, 'unknown'); assert.equal(lastPayload().patch.send_target, null);
+  for (const request of mutations()) assert.doesNotThrow(() => require('../lib/crm-db.cjs').commitBody(JSON.parse(request.body)));
 });
