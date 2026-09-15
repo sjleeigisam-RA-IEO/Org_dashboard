@@ -29,6 +29,12 @@ remain the RM assignment system.
 | `crm_import_batches` | Immutable batch ID, manifest hash, database-computed payload hash, actor, collection counts, and time. |
 | `crm_audit` | Immutable before/after records for every accepted CRM create/update, with actor, revision, and request ID. |
 | `crm_commit_requests` | Immutable idempotency results for accepted creates, updates, and no-ops. |
+| `crm_identity_policy` | Operator-controlled `disabled`, `all_verified`, or `allowlist` access policy; migration 009 starts disabled. |
+| `crm_identity_allowlist` | Company mailboxes explicitly enabled when policy mode is `allowlist`. |
+| `crm_identity_challenges` | Distributed send reservations and one-use email verification challenges, bound to the parent session; stores digests, never plaintext codes. |
+| `crm_identity_proofs` | Opaque-token digests linked to a verified mailbox, parent-session binding, absolute expiry, and revocation. |
+| `crm_commit_verifications` | Immutable authentication provenance for an original committed/no-op request, linked to its change audit when a value changed. |
+| `crm_identity_access_audit` | Immutable verified detail reads and commit/conflict/replay access events, including authenticated actor and time. |
 
 `contact_account_id` is an explicit link for existing dashboard IDs that represent
 the same contact institution. The anchor's ID is used to collect affiliations
@@ -78,22 +84,35 @@ this independently of the browser and API.
 
 ## Application API
 
-`GET /api/crm` defaults to `action=catalog` and returns account metadata, contact
-counts, campaigns, and items. It does not include contact values in the catalog.
+`GET /api/crm` defaults to `action=catalog`. Catalog, account, and search responses
+always use the server's safe projection: basic institutions, people, affiliations,
+and contact counts. Their contact values, preferences, gift details, source data,
+and audit arrays remain empty even after mailbox verification. The raw database
+read shape is an internal server contract, not permission to return it to a client.
 
 | Action | Query | Response |
 | --- | --- | --- |
-| `catalog` | none | `accounts`, `campaigns`, `items`, `totals` |
-| `account` | `accountId` | `account`, affiliation/person summaries with contact points, preferences, and gift records |
-| `person` | `personId` | person, affiliations, contacts, preferences, events, gifts, field claims, source references, and recent audit metadata |
-| `search` | `q`, optional `limit` 1–200 | bounded name/account/department/title matches, affiliation-scoped contacts/preferences, person-wide gift history, and `truncated` flag |
+| `catalog` | none | Safe `accounts`, `totals`; `campaigns` and `items` are empty. |
+| `account` | `accountId` | Safe account/child hierarchy, affiliation/person summaries, and `contact_count`. |
+| `person` | `personId` | Basic identity/affiliations and masked detail presence until verification; verified, policy-authorized access can return the full person detail described below. |
+| `search` | `q`, optional `limit` 1–200 | Bounded safe name/account/department/title matches, contact counts, and `truncated`. |
 
-Account and search `people` rows expose `contact_points`,
-`receiving_preferences`, and `gift_recipients`. Person detail uses those same
-array names. Gift rows include nullable `send_target`; each gift retains its
-original `gift_account_id` and `gift_account_name`. Search enriches only the
-bounded matches and uses the same contact/preference affiliation rules as
-account detail. Search still excludes raw source cells and field claims.
+Unverified person detail preserves the table structure through `masked_details`:
+contacts, preferences, gifts, and life events. Supported populated values become
+`*`; null, blank, and unknown values stay empty. Zero and an explicit refusal are
+populated values. Contact kinds are fixed allowed labels; private values, record
+IDs, campaign names, notes, and source/audit content are never copied into masks.
+The original private arrays stay empty, and client flags cannot unlock them.
+
+Verified person detail uses `contact_points`, `receiving_preferences`,
+`gift_recipients`, `life_events`, `field_claims`, `source_records`, and `audit`.
+It also supplies `campaigns` and global `items` for edit selectors. Gift rows retain
+nullable `send_target` and original `gift_account_id`/`gift_account_name`.
+Only the requested person's typed entity identities are used for its latest
+100 change-audit records, including life events. Each change includes full
+`before_record` and `after_record`, actor, revision, and timestamp. Its
+`verification` is `{actor_email, verified_at, auth_method}` for an originally
+verified mutation and null for older unverified/import/administrative records.
 
 Writes use `POST /api/crm` with:
 
@@ -118,7 +137,8 @@ workflow, which also records their source and matching decisions.
 Creation requires a `person_id`; affiliation creation also requires `account_id`,
 and gift creation requires `campaign_id`. Subsequent updates cannot change primary
 keys, person ownership, affiliation ownership, source references, timestamps, or
-the actor. The session supplies the actor on the server.
+the actor. The database derives the actor from a valid mailbox-verification proof;
+the browser and the parent shared-code session cannot supply or override it.
 
 Gift create/update patches may contain `"send_target": "yes"`,
 `"send_target": "no"`, or `"send_target": null`. Literal O/X, booleans, and empty
@@ -133,18 +153,79 @@ a new revision. There is no delete or arbitrary-table API.
 
 ## Authentication and database privileges
 
-The existing signed One Account company-email session gates every read and write.
-Writes also require an explicit same-origin request. Responses set browser and
-Vercel/CDN no-store headers. This preserves the current authenticated audience;
-finer per-account or per-field authorization can be added later.
+The existing signed shared-code session gates every request, but it does not prove
+mailbox ownership. Full person detail and all CRM writes additionally require a
+valid database-backed mailbox-verification proof and a current policy grant.
+Writes also require an explicit same-origin request. Browser and Vercel/CDN
+responses are non-cacheable. This identity flow is separate from a customer's
+`crm_persons.identity_status`, which is identity-matching confidence and grants
+no application access. Shared RM assignment editing remains a separate system.
 
 Every CRM table has RLS enabled with no client policies. `anon`, `authenticated`,
 and `service_role` have no direct table access. Only `service_role` can execute
-the three public security-definer wrappers:
+these public security-definer wrappers:
 
 - `oa_crm_read(text,text,text,integer)`
-- `oa_crm_commit(text,text,text,bigint,jsonb,text,uuid)`
 - `oa_crm_import(jsonb,text)`
+- `oa_crm_identity(text,jsonb)`
+- `oa_crm_verified_read(text,text,text,integer,text,text)`
+- `oa_crm_verified_commit(text,text,text,bigint,jsonb,uuid,text,text)`
+
+Migration 009 removes `service_role` execute permission from the old
+`oa_crm_commit(text,text,text,bigint,jsonb,text,uuid)`. It remains the internal
+atomic revision/replay/audit primitive called by the verified wrapper and by
+explicit administrator workflows. There is no HTTP import, policy-edit, or
+allowlist-edit endpoint. An operator configures the private policy independently
+of deployment; `disabled` permits no verified access, `all_verified` permits
+verified `@igisam.com` mailboxes, and `allowlist` also requires an enabled entry.
+
+### Mailbox verification contract
+
+`oa_crm_identity(p_action text, p_args jsonb)` accepts only the following keys:
+
+| Action | Arguments | Result states |
+| --- | --- | --- |
+| `start` | `challenge_id`, `email`, `session_binding`, `ip_digest`, `code_digest`, `parent_expires_at` | `pending` with challenge ID/expiry, `duplicate`, `denied`, or `rate_limited` with `retry_after` seconds. |
+| `mark_sent`, `cancel` | `challenge_id`, `session_binding` | `sent` / `cancelled`, or an inactive/invalid/expired state. |
+| `verify` | `challenge_id`, `session_binding`, `code_digest`, `proof_digest` | `verified`, `invalid_code`, `locked`, `inactive`, `invalid`, `expired`, or `denied`. |
+| `status`, `revoke` | `proof_digest`, `session_binding` | `verified` or `unverified`; revoke always returns `unverified`. |
+
+All arguments are server-derived strings: challenge UUID; normalized company
+email; 64-character lowercase hex digests; and the parent session's absolute
+timestamp. The server computes the code digest with a secret HMAC and independently
+generates a random opaque proof token, sending only its SHA-256 digest to the DB.
+Verified responses expose only `status`, `email`, `expires_at`, and
+`auth_method: email_otp`. Digests and codes are never response fields.
+
+The DB reserves before SMTP under a distributed transaction lock. Reservations
+enforce a 60-second email cooldown, 5/email/hour, 5/session-binding/hour, and
+25/IP-digest/hour. Failed, cancelled, superseded, and consumed sends still count.
+A duplicate challenge ID does not authorize another send. A new reservation
+cancels previous active challenges for the same binding. The server marks sent
+only after SMTP acceptance, which is not a claim of inbox delivery. Cancellation
+does not undo the rate-limit reservation.
+
+Challenges expire at the earlier of 10 minutes and the parent session expiry.
+Only sent challenges can verify. Wrong codes increment a row-locked counter and
+return a state without raising, so failed attempts persist; the fifth failure
+locks the challenge. A successful code is consumed once. Proofs expire at the
+earlier of 8 hours after verification and the original parent expiry. Status
+checks do not renew this duration. A new proof revokes prior proofs for that
+binding. Expiry, revocation, binding, and current policy are checked inside each
+verified read/mutation transaction; revocation and policy changes are serialized
+against active operations.
+
+`oa_crm_verified_read(p_action, p_id, p_query, p_limit, p_proof_digest,
+p_session_binding)` accepts only `person` with a null query and a bounded limit.
+It logs the successful read in the same transaction before returning detail.
+`oa_crm_verified_commit(p_action, p_entity, p_id, p_expected_revision, p_patch,
+p_request_id, p_proof_digest, p_session_binding)` derives the actor from the proof,
+then reuses the existing atomic mutation checks. It stamps verification provenance
+on original commits/no-ops and logs each returned commit/no-op/replay/conflict as
+an access event. A verified replay of an old request does not retroactively label
+the original unverified change as verified. Both verification and access history
+reject updates and deletes. Missing proof/policy grants raise SQLSTATE `42501`;
+malformed requests raise `22023`. No new-person creation or merging is introduced.
 
 All functions fix their search path. Dynamic table/column identifiers are derived
 from server allowlists or checked table columns and are identifier-quoted. Raw
@@ -228,3 +309,14 @@ unexpected schema. Existing wrapper grants, RLS, import actual-delivery guards,
 and source history remain unchanged. Source workbook reconciliation is performed
 separately, with source claims and revision-checked working-record edits; this
 migration performs no sending decisions or actual shipment updates.
+
+Migration `009_crm_identity.sql` creates the private identity policy, challenges,
+proofs, and immutable access/verification audit relations. Validate it together
+with `identity-regression.sql` inside one outer `BEGIN`/`ROLLBACK`, stripping both
+files' transaction wrappers. Its synthetic regression covers one-use codes,
+attempt persistence, distributed send thresholds, parent/proof expiry, policy
+withdrawal, revocation, mutation replay/conflicts, typed before/after audit scope,
+ACL/RLS, and unchanged source/RM state. Apply the migration once, leave its policy
+disabled while validating the application, and activate the intended operator
+policy separately. Application releases must use the verified commit wrapper
+after the old service-role commit grant is removed.
