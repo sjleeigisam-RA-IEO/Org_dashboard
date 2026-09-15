@@ -49,7 +49,7 @@ function account(row) {
   if (!row || typeof row !== 'object' || Array.isArray(row)) return null;
   const result = {
     ...strings(row, ['account_id', 'name', 'piscfh', 'contact_account_id', 'parent_account_id', 'account_kind', 'hierarchy_label']),
-    ...integers(row, ['revision', 'people_count', 'children_count']),
+    ...integers(row, ['revision', 'profile_revision', 'people_count', 'children_count']),
     ...booleans(row, ['is_existing', 'is_placeholder']),
   };
   for (const key of ['contact_account_id', 'parent_account_id']) if (row[key] === null) result[key] = null;
