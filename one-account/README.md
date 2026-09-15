@@ -106,6 +106,26 @@ Downloaded HTML retains the hierarchy adapter inline and contains no contact det
 Validation: rollback-only `db/hierarchy-regression.sql`, the Node test suite, and
 `CRM_QA_HIERARCHY=<private-catalog.json> node tests/crm-ui-integration.cjs`.
 
+## Customer detail privacy
+
+CRM institution/search tables show names, affiliations, departments and seniority.
+Contact entries are shown as `*`; missing entries stay blank. The future internal
+contact-point column stays empty and does not infer a person's contact point from RM.
+Account-level RM assignments continue to use the existing shared-state workflow.
+
+Until a separate identity-verification flow is implemented, personal contact details,
+receiving preferences, gift targets/items/history, life events, raw source claims and
+audit payloads are locked. The CRM API uses explicit response allowlists so these values
+are not sent to the browser, including in account/search responses and person details.
+CRM writes and full personal-list downloads are unavailable while this lock is active.
+Shared-code login or an entered email address does not unlock the records or confer an
+administrator role. Query parameters and client-side flags cannot enable detail access.
+
+The underlying CRM records, provenance and gift history are retained unchanged. Future
+detail/export access must verify the viewer and enforce authorization on the server;
+it must not rely on hiding table columns. Locked controls show the notice
+`추후 인증 기능 업데이트 후 잠금 해제가 가능합니다.` on hover.
+
 ## Email delivery
 
 The optional code-request button sends the existing shared code, not a one-time code.
