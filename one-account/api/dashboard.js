@@ -7,6 +7,7 @@ const { Readable } = require('node:stream');
 const { pipeline } = require('node:stream/promises');
 const auth = require('../lib/auth.cjs');
 const classificationLabels = require('../lib/classification-labels.cjs');
+const { prepareDashboard } = require('../lib/dashboard-shell.cjs');
 let cached;
 function dashboardGzip() {
   const keyValue = process.env.ONE_ACCOUNT_DATA_KEY || '';
@@ -22,9 +23,7 @@ function dashboardGzip() {
   let data = Buffer.concat([decipher.update(file.subarray(32)), decipher.final()]);
   if (shared) {
     const html = classificationLabels(zlib.gunzipSync(data).toString('utf8'));
-    if (!html.includes('</body>')) throw new Error('BAD_DOCUMENT');
-    const adapter = '<link rel="stylesheet" data-one-account-shared href="/shared-teams.css"><link rel="stylesheet" data-one-account-crm href="/crm.css"><link rel="stylesheet" data-one-account-crm href="/account-workspace.css"><script id="oa-crm-bootstrap" data-one-account-crm src="/crm-bootstrap.js"></script>';
-    data = zlib.gzipSync(html.replace('</body>', adapter + '</body>'));
+    data = zlib.gzipSync(prepareDashboard(html));
   }
   cached = { keyValue, shared, data };
   return data;
