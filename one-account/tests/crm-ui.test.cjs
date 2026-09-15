@@ -4,7 +4,17 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 const crypto = require('node:crypto');
-const { groupPeople, sortedPeople, titleParts, displayValue, peopleSummary, accountSearch, hierarchyGroups, accountPath, personCount, preferenceText, sourceText, escape } = require('../public/crm.js');
+const { groupPeople, sortedPeople, titleParts, displayValue, departmentText, peopleSummary, accountSearch, hierarchyGroups, accountPath, personCount, preferenceText, sourceText, escape } = require('../public/crm.js');
+
+test('department display removes repeated exact source labels without changing source or inventing organization aliases', () => {
+  const person = { account_name: '검증공제회', department: '기업투자팀 / 검증공제회;기업투자팀 / 기업투자팀 / 리스크팀' };
+  const before = { ...person };
+  assert.equal(departmentText(person), '기업투자팀 / 리스크팀');
+  assert.deepEqual(person, before);
+  assert.equal(departmentText({ account_name: '검증공제회', department: '다른공제회;기업투자팀' }), '다른공제회;기업투자팀');
+  assert.equal(departmentText({ account_name: '검증공제회', department: '검증공제회' }), '');
+  assert.equal(departmentText({ department: '승인별칭;투자팀' }, { aliases: ['승인별칭'] }), '투자팀');
+});
 
 test('people stay distinct across equal names and departments; search includes titles', () => {
   const people = [

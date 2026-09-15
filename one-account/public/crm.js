@@ -16,6 +16,18 @@
   const escape = value => str(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const compare = (a, b) => str(a).localeCompare(str(b), 'ko');
   const displayValue = value => /^(?:-|—|미확인|없음|미입력|unknown|null|부서 미확인|직책 미확인)$/i.test(str(value).trim()) ? '' : str(value).trim();
+  function departmentText(person, account = {}) {
+    const normalize = value => str(value).replace(/\s+/g, '').toLocaleLowerCase('ko');
+    const names = new Set([person.account_name, account.name, ...list(account.aliases).map(a => typeof a === 'string' ? a : a.name)].filter(Boolean).map(normalize));
+    const seen = new Set(), parts = [];
+    for (const part of displayValue(person.department).split(/\s*\/\s*/)) {
+      const tokens = part.split(';').map(v => v.trim());
+      if (names.has(normalize(tokens[0]))) tokens.shift();
+      const value = tokens.join(';').trim(), key = normalize(value);
+      if (value && !seen.has(key)) { seen.add(key); parts.push(value); }
+    }
+    return parts.join(' / ');
+  }
   const positionWeights = { 회장: 1000, 부회장: 980, 총재: 970, 이사장: 960, 대표이사: 950, 총괄대표: 950, 대표: 950, CEO: 950, 사장: 940, 행장: 940, 부총재: 910, 부이사장: 910, 부대표: 900, 부행장: 890, 부문대표: 880, CFO: 850, CIO: 850, COO: 850, 부문장: 740, 본부장: 720, 단장: 700, 국장: 690, 부국장: 680, 실장: 670, 센터장: 660, 소장: 650, 지점장: 650, 부서장: 640, 사업부장: 640, 그룹장: 620, 팀장: 600, 파트장: 580, 점장: 570, 원장: 740, 위원장: 740 };
   const gradeWeights = { 부사장: 880, 전무: 860, 전무이사: 860, 상무: 840, 상무이사: 840, 이사: 820, 사외이사: 820, 부장: 500, 부부장: 480, 차장: 460, 과장: 440, 대리: 420, 계장: 410, 주임: 400, 사원: 380, 수석: 490, 수석매니저: 490, 책임: 450, 책임매니저: 450, 선임: 430, 선임매니저: 430, 매니저: 410 };
   function positionWeight(value) {
@@ -128,7 +140,7 @@
     };
   }
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { groupPeople, sortedPeople, titleParts, displayValue, peopleSummary, accountSearch, hierarchyGroups, accountPath, personCount, preferenceText, sourceText, escape, labels };
+    module.exports = { groupPeople, sortedPeople, titleParts, displayValue, departmentText, peopleSummary, accountSearch, hierarchyGroups, accountPath, personCount, preferenceText, sourceText, escape, labels };
     return;
   }
   if (!/^https?:$/.test(location.protocol)) return;
@@ -337,7 +349,7 @@
       const target = el('span', summary.sendTarget); target.title = summary.campaign;
       const item = el('span', summary.item); item.title = summary.campaign;
       const account = showAccount ? button(person.account_name || catalogById.get(person.account_id)?.name || '', () => openAccount(person.account_id), 'oa-crm-table-link') : null;
-      return [...(showAccount ? [account] : []), name, person.department, role, rank, summary.contact, receiving, target, item];
+      return [...(showAccount ? [account] : []), name, departmentText(person, catalogById.get(person.account_id)), role, rank, summary.contact, receiving, target, item];
     });
     return dataTable(title, headers, rows, 'oa-crm-people-table');
   }
