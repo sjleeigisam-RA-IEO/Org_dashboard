@@ -113,18 +113,46 @@ Contact entries are shown as `*`; missing entries stay blank. The future interna
 contact-point column stays empty and does not infer a person's contact point from RM.
 Account-level RM assignments continue to use the existing shared-state workflow.
 
-Until a separate identity-verification flow is implemented, personal contact details,
-receiving preferences, gift targets/items/history, life events, raw source claims and
-audit payloads are locked. The CRM API uses explicit response allowlists so these values
-are not sent to the browser, including in account/search responses and person details.
-CRM writes and full personal-list downloads are unavailable while this lock is active.
-Shared-code login or an entered email address does not unlock the records or confer an
-administrator role. Query parameters and client-side flags cannot enable detail access.
+Personal details remain masked until the viewer completes mailbox verification at
+`/api/crm-identity`. The server sends a separate six-digit, single-use email code to
+the currently signed-in `@igisam.com` address. The code expires in ten minutes and
+locks after five incorrect attempts. Email/session/IP send limits are enforced in
+the database before SMTP, including failed or cancelled sends.
 
-The underlying CRM records, provenance and gift history are retained unchanged. Future
-detail/export access must verify the viewer and enforce authorization on the server;
-it must not rely on hiding table columns. Locked controls show the notice
-`추후 인증 기능 업데이트 후 잠금 해제가 가능합니다.` on hover.
+A successful verification sets a separate Secure/HttpOnly/SameSite cookie with an
+opaque random proof, bound to the exact base session. Proofs expire after at most
+eight hours or at the base session expiry, whichever is earlier. The 30-day base
+login is unchanged. A fresh login clears the verification cookies; logout or
+"다시 잠그기" revokes verification. Database policy is rechecked on every sensitive
+read/write. Client flags and caller-provided emails cannot authorize an operation.
+
+Only a verified person detail response contains contact/preference/gift/life-event
+values and audit before/after records. Account/search responses always use the
+masked projection. Contact/affiliation/preference/gift/life-event entries can be
+added for an existing person; existing records can be edited. Field validation,
+expected revisions, immutable before/after audit, and exact request-ID retries
+protect saves from accidental duplicate submissions and lost concurrent edits.
+Actual delivery/receipt is independent of target and receiving preference.
+
+Migration `db/009_crm_identity.sql` adds the private challenge/proof/policy tables,
+verified read/commit RPCs, immutable mutation verification and access logs. The
+legacy commit function is an internal primitive without service-role EXECUTE.
+Its default policy is disabled; an operator may enable `all_verified` or a reviewed
+`allowlist` in `one_account.crm_identity_policy`. Browser users cannot edit policy.
+No new runtime secrets are needed: purpose-separated HMACs use the existing session
+key and the email transport reuses the configured Gmail sender.
+
+Verified detail UI shows actor, change time and field-level before/after values;
+legacy import rows retain their original provenance and are never marked as email
+verified retroactively. Expiry, failed authorization and manual lock clear private
+DOM and pending editors. No personal data is stored in localStorage. Full personal
+Excel export remains locked; mailbox verification does not grant an administrator
+role. Existing institution-only Excel and RM workflows retain their existing scope.
+
+Validation: `node --test tests/*.test.cjs`, `db/identity-regression.sql` (ROLLBACK),
+and synthetic browser checks for verification, create/update, history and relocking.
+The mail provider accepting a request does not establish inbox delivery; only a
+correct returned code proves mailbox access.
 
 ## Email delivery
 
