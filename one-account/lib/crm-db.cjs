@@ -6,7 +6,7 @@ const ENTITY_FIELDS = {
   contact_point: ['kind', 'value', 'verification_status', 'notes'],
   preference: ['availability', 'scope', 'campaign_id', 'effective_from', 'effective_to', 'notes'],
   life_event: ['event_type', 'event_date', 'recurring', 'calendar', 'description', 'notes'],
-  gift_recipient: ['item_id', 'plan_status', 'delivery_status', 'received_status', 'planned_amount', 'actual_amount', 'sent_on', 'received_on', 'notes'],
+  gift_recipient: ['item_id', 'send_target', 'plan_status', 'delivery_status', 'received_status', 'planned_amount', 'actual_amount', 'sent_on', 'received_on', 'notes'],
 };
 const CREATE_FIELDS = Object.fromEntries(Object.entries(ENTITY_FIELDS).filter(([entity]) => entity !== 'person').map(([entity, fields]) => [entity, [...fields, 'person_id', ...(entity === 'affiliation' ? ['account_id'] : ['affiliation_id']), ...(entity === 'gift_recipient' ? ['campaign_id'] : [])]]));
 const ENUMS = {
@@ -14,10 +14,10 @@ const ENUMS = {
   kind: ['mobile', 'phone', 'email', 'address', 'postcode'], verification_status: ['source_reported', 'unverified', 'conflict', 'verified'],
   availability: ['yes', 'no', 'unknown', 'not_applicable'], scope: ['campaign', 'ongoing', 'unknown'],
   event_type: ['birthday', 'wedding', 'bereavement', 'anniversary', 'other'], calendar: ['solar', 'lunar', 'unknown'],
-  plan_status: ['listed', 'proposed', 'cancelled'], delivery_status: ['unknown', 'not_sent', 'sent', 'returned', 'cancelled'],
+  send_target: ['yes', 'no'], plan_status: ['listed', 'proposed', 'cancelled'], delivery_status: ['unknown', 'not_sent', 'sent', 'returned', 'cancelled'],
   received_status: ['unknown', 'received', 'not_received', 'declined'],
 };
-const NULLABLE = ['affiliation_id', 'campaign_id', 'item_id', 'started_on', 'ended_on', 'effective_from', 'effective_to', 'event_date', 'sent_on', 'received_on', 'planned_amount', 'actual_amount'];
+const NULLABLE = ['affiliation_id', 'campaign_id', 'item_id', 'send_target', 'started_on', 'ended_on', 'effective_from', 'effective_to', 'event_date', 'sent_on', 'received_on', 'planned_amount', 'actual_amount'];
 const DATE_FIELDS = ['started_on', 'ended_on', 'effective_from', 'effective_to', 'event_date', 'sent_on', 'received_on'];
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value) && [Object.prototype, null].includes(Object.getPrototypeOf(value));
 const id = value => typeof value === 'string' && value.length >= 1 && value.length <= 200 && !/[\u0000-\u001f]/.test(value);

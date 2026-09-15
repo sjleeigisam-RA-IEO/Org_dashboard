@@ -62,7 +62,7 @@ const server = http.createServer(async (req, res) => {
     await page.screenshot({ path: path.join(output, 'account-desktop.png') });
     await page.getByRole('button', { name: /김검증/ }).click();
     await page.getByText('sample@example.invalid', { exact: true }).waitFor();
-    await page.getByRole('button', { name: '수정', exact: true }).click();
+    await page.getByRole('button', { name: '이메일 수정', exact: true }).click();
     await page.getByLabel('내용', { exact: true }).fill('changed@example.invalid');
     await page.getByRole('button', { name: '저장', exact: true }).click();
     await page.getByText('changed@example.invalid', { exact: true }).waitFor();

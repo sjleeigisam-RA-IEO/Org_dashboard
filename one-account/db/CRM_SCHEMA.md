@@ -22,7 +22,7 @@ remain the RM assignment system.
 | `crm_life_events` | Event type, date, recurring flag, solar/lunar/unknown calendar, and notes. |
 | `crm_gift_campaigns` | Separate occasions and years, such as a particular holiday. |
 | `crm_gift_items` | Described item and optional unit price/currency. |
-| `crm_gift_recipients` | Campaign/person/affiliation association; proposed/listed/cancelled plan; separately recorded actual shipment, receipt, and cost. |
+| `crm_gift_recipients` | Campaign/person/affiliation association; nullable sending decision (`send_target`); proposed/listed/cancelled plan; separately recorded actual shipment, receipt, and cost. |
 | `crm_sources` | Exact source filename and SHA-256, linked to its import batch. |
 | `crm_source_records` | Exact source file, sheet, row number, and original cell values. |
 | `crm_field_claims` | Field-level source assertions, including disagreements; entity type/ID, field, value, source row, and verification status. |
@@ -50,6 +50,13 @@ this independently of the browser and API.
   note does not by itself establish that the person left the institution.
 - Missing amounts stay `NULL`, including item price, planned amount, and actual
   amount. Missing amounts are not zero-cost gifts.
+- `send_target` records **발송대상** for one campaign: `yes` = O, `no` = X,
+  `NULL` = unknown (displayed as an empty cell). The source field `발송대상`
+  represents a sending decision, separately from a recipient's willingness to
+  receive (`availability`), list membership (`plan_status`), and actual shipment
+  (`delivery_status`). No value is derived from those other fields. Existing
+  records and older import/create payloads that omit `send_target` stay `NULL`.
+  Choosing an item also does not establish that the gift was sent.
 - An imported list leaves `delivery_status` and `received_status` as `unknown`;
   actual amount and delivery/receipt dates remain `NULL`. Import rejects attempts
   to infer these actuals from the list.
@@ -79,7 +86,14 @@ counts, campaigns, and items. It does not include contact values in the catalog.
 | `catalog` | none | `accounts`, `campaigns`, `items`, `totals` |
 | `account` | `accountId` | `account`, affiliation/person summaries with contact points, preferences, and gift records |
 | `person` | `personId` | person, affiliations, contacts, preferences, events, gifts, field claims, source references, and recent audit metadata |
-| `search` | `q`, optional `limit` 1–200 | bounded name/account/department/title matches and `truncated` flag |
+| `search` | `q`, optional `limit` 1–200 | bounded name/account/department/title matches, affiliation-scoped contacts/preferences, person-wide gift history, and `truncated` flag |
+
+Account and search `people` rows expose `contact_points`,
+`receiving_preferences`, and `gift_recipients`. Person detail uses those same
+array names. Gift rows include nullable `send_target`; each gift retains its
+original `gift_account_id` and `gift_account_name`. Search enriches only the
+bounded matches and uses the same contact/preference affiliation rules as
+account detail. Search still excludes raw source cells and field claims.
 
 Writes use `POST /api/crm` with:
 
@@ -105,6 +119,10 @@ Creation requires a `person_id`; affiliation creation also requires `account_id`
 and gift creation requires `campaign_id`. Subsequent updates cannot change primary
 keys, person ownership, affiliation ownership, source references, timestamps, or
 the actor. The session supplies the actor on the server.
+
+Gift create/update patches may contain `"send_target": "yes"`,
+`"send_target": "no"`, or `"send_target": null`. Literal O/X, booleans, and empty
+strings are rejected. An omitted field is not changed by an update.
 
 Every record has a revision. A stale expected revision returns HTTP 409 plus the
 current record. The caller must reread and reconcile; it must not silently retry
@@ -200,3 +218,13 @@ marker recorded and the CRM-enabled UI released. A partially completed transfer
 must be resumed and verified; HTTP success for one chunk is not completion of the
 overall source import. Preserve private manifest/progress files for deterministic
 retries and never discard unresolved matching evidence to fit a request.
+
+Migration `008_gift_send_target.sql` follows the hierarchy read wrapper introduced
+by migration 006. It adds the nullable checked column, patches only the gift
+mutable-field allowlist, and enriches the bounded search output through a private
+helper. Account/person gift reads already serialize the whole gift row and
+therefore expose the field automatically. Function-definition guards fail on an
+unexpected schema. Existing wrapper grants, RLS, import actual-delivery guards,
+and source history remain unchanged. Source workbook reconciliation is performed
+separately, with source claims and revision-checked working-record edits; this
+migration performs no sending decisions or actual shipment updates.

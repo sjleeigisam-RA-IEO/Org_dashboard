@@ -1,20 +1,50 @@
 'use strict';
 (function () {
   const labels = {
-    employment: { unknown: '재직 미확인', current: '재직', former: '퇴사·이직' },
-    availability: { yes: '수령 가능', no: '수령 불가', unknown: '미확인', not_applicable: '해당없음' },
-    scope: { campaign: '해당 명절에 한함', ongoing: '지속 적용', unknown: '적용 범위 미확인' },
+    employment: { unknown: '', current: '재직', former: '퇴사·이직' },
+    availability: { yes: '수령 가능', no: '수령 불가', unknown: '', not_applicable: '해당없음' },
+    scope: { campaign: '해당 명절에 한함', ongoing: '지속 적용', unknown: '' },
     contact: { mobile: '휴대전화', phone: '일반전화', email: '이메일', address: '배송주소', postcode: '우편번호' },
     event: { birthday: '생일', wedding: '결혼', bereavement: '부고', anniversary: '기념일', other: '기타 경조사' },
-    calendar: { solar: '양력', lunar: '음력', unknown: '역법 미확인' },
-    delivery: { unknown: '발송 미확인', sent: '발송 완료', returned: '반송', cancelled: '취소', not_sent: '미발송' },
-    received: { unknown: '수령 미확인', received: '수령 완료', not_received: '미수령', declined: '수령 거절' },
+    calendar: { solar: '양력', lunar: '음력', unknown: '' },
+    delivery: { unknown: '', sent: '발송 O', returned: '반송', cancelled: '취소', not_sent: '발송 X' },
+    received: { unknown: '', received: '수령 O', not_received: '수령 X', declined: '수령 거절' },
     sourceField: { name: '성명', title: '직책', department: '부서·세부소속', phone: '전화번호', email: '이메일', value: '원본 값', notes: '메모', source_notes: '원본 메모', source_organization_name: '원본 기관명', source_piscfh: '원본 PISCFH', source_receiving_mark: '원본 수령여부', source_position_status: '원본 직책 확인 상태', planned_item_name: '발송 예정품', requester: '요청자', request_team: '요청팀', historical_department: '과거 부서', historical_title: '과거 직책', historical_phone: '과거 전화', historical_email: '과거 이메일', identity_review: '동일인 확인 사항', accepted_reconciliation_match: '기존 명단 일치 근거', list_membership: '명단 포함 근거', possible_duplicate_source_rows: '중복 검토 원본', source_affiliation_id: '원본 소속 연결', is_placeholder: '실명·소속 확인 대상', legacy_account_snapshot: '기존 어카운트 원본' }
   };
   const str = value => value == null ? '' : String(value);
   const list = value => Array.isArray(value) ? value : [];
   const escape = value => str(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const compare = (a, b) => str(a).localeCompare(str(b), 'ko');
+  const displayValue = value => /^(?:-|—|미확인|없음|미입력|unknown|null|부서 미확인|직책 미확인)$/i.test(str(value).trim()) ? '' : str(value).trim();
+  const positionWeights = { 회장: 1000, 부회장: 980, 총재: 970, 이사장: 960, 대표이사: 950, 총괄대표: 950, 대표: 950, CEO: 950, 사장: 940, 행장: 940, 부총재: 910, 부이사장: 910, 부대표: 900, 부행장: 890, 부문대표: 880, CFO: 850, CIO: 850, COO: 850, 부문장: 740, 본부장: 720, 단장: 700, 국장: 690, 부국장: 680, 실장: 670, 센터장: 660, 소장: 650, 지점장: 650, 부서장: 640, 사업부장: 640, 그룹장: 620, 팀장: 600, 파트장: 580, 점장: 570, 원장: 740, 위원장: 740 };
+  const gradeWeights = { 부사장: 880, 전무: 860, 전무이사: 860, 상무: 840, 상무이사: 840, 이사: 820, 사외이사: 820, 부장: 500, 부부장: 480, 차장: 460, 과장: 440, 대리: 420, 계장: 410, 주임: 400, 사원: 380, 수석: 490, 수석매니저: 490, 책임: 450, 책임매니저: 450, 선임: 430, 선임매니저: 430, 매니저: 410 };
+  function positionWeight(value) {
+    if (gradeWeights[value]) return 0;
+    if (positionWeights[value]) return positionWeights[value];
+    // A named business unit remains in the displayed role; only its explicit suffix is ranked.
+    return Object.keys(positionWeights).filter(key => /장$/.test(key) && str(value).endsWith(key)).reduce((weight, key) => Math.max(weight, positionWeights[key]), 0);
+  }
+  function titleParts(person) {
+    const raw = displayValue(person.title), explicitRank = displayValue(person.rank || person.job_grade);
+    const tokens = [...new Set(raw.split(/\s*[/／·]\s*/).filter(Boolean))];
+    const roles = tokens.filter(token => positionWeight(token));
+    const grades = tokens.filter(token => gradeWeights[token]);
+    const other = tokens.filter(token => !positionWeight(token) && !gradeWeights[token]);
+    // Split only exact known role/grade vocabulary; unmatched source text remains visible.
+    const position = [...roles, ...other].join(' / ');
+    const rank = explicitRank || grades.join(' / ');
+    const roleWeight = Math.max(0, ...roles.map(positionWeight));
+    const rankWeight = Math.max(0, ...rank.split(/\s*[/／·]\s*/).map(token => gradeWeights[token] || 0));
+    const seniority = rankWeight >= 800 ? Math.max(roleWeight, rankWeight) : roleWeight || rankWeight;
+    return { position, rank, raw, roleWeight, rankWeight, seniority };
+  }
+  function sortedPeople(people, query = '') {
+    const q = query.trim().toLocaleLowerCase('ko');
+    return list(people).filter(p => [p.name, p.department, p.title, p.rank, p.job_grade, p.account_name].some(v => str(v).toLocaleLowerCase('ko').includes(q))).slice().sort((a, b) => {
+      const aa = titleParts(a), bb = titleParts(b);
+      return bb.seniority - aa.seniority || bb.roleWeight - aa.roleWeight || bb.rankWeight - aa.rankWeight || Number(Boolean(bb.raw || bb.rank)) - Number(Boolean(aa.raw || aa.rank)) || compare(displayValue(a.department) || '\uffff', displayValue(b.department) || '\uffff') || compare(a.name, b.name) || compare(a.person_id, b.person_id) || compare(a.affiliation_id, b.affiliation_id);
+    });
+  }
   const namesMatch = (account, query) => [account.name, ...list(account.aliases).map(alias => typeof alias === 'string' ? alias : alias.name)].some(value => str(value).toLocaleLowerCase('ko').includes(query));
   function accountSearch(accounts, query = '') {
     const rows = list(accounts);
@@ -48,19 +78,18 @@
   }
   const personCount = people => new Set(list(people).map(person => person.person_id).filter(Boolean)).size;
   function groupPeople(people, query = '') {
-    const q = query.trim().toLocaleLowerCase('ko');
-    const filtered = list(people).filter(p => [p.name, p.department, p.title, p.account_name].some(v => str(v).toLocaleLowerCase('ko').includes(q)));
     const groups = new Map();
-    for (const person of filtered.sort((a, b) => compare(a.department || '\uffff', b.department || '\uffff') || compare(a.title || '\uffff', b.title || '\uffff') || compare(a.name, b.name) || compare(a.person_id, b.person_id))) {
-      const key = person.department || '부서 미확인';
+    for (const person of sortedPeople(people, query)) {
+      const key = displayValue(person.department);
       if (!groups.has(key)) groups.set(key, []);
       groups.get(key).push(person);
     }
     return [...groups].map(([department, people]) => ({ department, people }));
   }
   function preferenceText(pref) {
-    const value = labels.availability[pref.availability] || '미확인';
-    const scope = labels.scope[pref.scope] || labels.scope.unknown;
+    const value = labels.availability[pref.availability] || '';
+    if (!value) return '';
+    const scope = labels.scope[pref.scope] || '';
     const campaign = pref.campaign_name || pref.campaign_label || '';
     const period = [pref.effective_from, pref.effective_to].filter(Boolean).join(' ~ ');
     return [value, scope, campaign, period].filter(Boolean).join(' · ');
@@ -69,10 +98,37 @@
     const file = record.file_name || record.source_file || record.workbook || record.filename || record.source_name || '';
     const sheet = record.sheet_name || record.source_sheet || record.sheet || '';
     const row = record.row_number ?? record.source_row ?? record.row;
-    return [file, sheet, row == null ? '' : `${row}행`].filter(Boolean).join(' · ') || record.source_record_id || record.id || '출처 미입력';
+    return [file, sheet, row == null ? '' : `${row}행`].filter(Boolean).join(' · ') || record.source_record_id || record.id || '';
+  }
+  const mark = value => value === 'yes' ? 'O' : value === 'no' ? 'X' : '';
+  function campaignInfo(record, campaigns) {
+    return list(campaigns).find(c => (c.campaign_id || c.id) === record.campaign_id) || record.campaign || {};
+  }
+  function campaignOrder(record, campaigns) {
+    const campaign = campaignInfo(record, campaigns);
+    const name = str(record.campaign_name || record.campaign_label || campaign.name);
+    const year = Number(campaign.year || record.campaign_year || name.match(/(?:19|20)\d{2}/)?.[0] || 0);
+    return year * 10 + (/추석/.test(name) ? 2 : /설/.test(name) ? 1 : 0);
+  }
+  function peopleSummary(person, campaigns = []) {
+    const belongs = record => (!record.affiliation_id || !person.affiliation_id || record.affiliation_id === person.affiliation_id) && (!record.gift_account_id || !person.account_id || record.gift_account_id === person.account_id);
+    const gifts = list(person.gift_recipients).filter(belongs).slice().sort((a, b) => campaignOrder(b, campaigns) - campaignOrder(a, campaigns) || compare(b.updated_at, a.updated_at) || compare(a.recipient_id, b.recipient_id));
+    const latest = gifts[0];
+    const sameCampaign = latest ? gifts.filter(g => latest.campaign_id ? g.campaign_id === latest.campaign_id : (g.campaign_name || g.campaign_label || '') === (latest.campaign_name || latest.campaign_label || '')) : [];
+    const currentCampaign = latest?.campaign_id || list(campaigns).slice().sort((a, b) => campaignOrder({ campaign: b }, []) - campaignOrder({ campaign: a }, []))[0]?.campaign_id;
+    const prefs = list(person.receiving_preferences).filter(p => belongs(p) && (p.scope !== 'campaign' || !currentCampaign || p.campaign_id === currentCampaign));
+    const values = rows => [...new Set(rows.filter(Boolean))].join(' / ');
+    return {
+      contact: values(list(person.contact_points).filter(c => ['mobile', 'phone', 'email'].includes(c.kind)).map(c => displayValue(c.value))),
+      receiving: values(prefs.map(p => mark(p.availability))),
+      receivingDetail: values(prefs.map(p => preferenceText({ ...p, campaign_name: p.campaign_name || campaignInfo(p, campaigns).name }))),
+      sendTarget: values(sameCampaign.map(g => mark(g.send_target))),
+      item: values(sameCampaign.map(g => displayValue(g.gift_name || g.item_name || g.gift_item))),
+      campaign: latest?.campaign_name || latest?.campaign_label || campaignInfo(latest || {}, campaigns).name || ''
+    };
   }
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { groupPeople, accountSearch, hierarchyGroups, accountPath, personCount, preferenceText, sourceText, escape, labels };
+    module.exports = { groupPeople, sortedPeople, titleParts, displayValue, peopleSummary, accountSearch, hierarchyGroups, accountPath, personCount, preferenceText, sourceText, escape, labels };
     return;
   }
   if (!/^https?:$/.test(location.protocol)) return;
@@ -104,11 +160,6 @@
     const node = el('section', undefined, 'oa-crm-section');
     node.append(el('h3', title));
     return node;
-  };
-  const addLabeled = (container, label, value) => {
-    const item = el('div', undefined, 'oa-crm-field');
-    item.append(el('dt', label), el('dd', value || '미입력'));
-    container.append(item);
   };
   const bar = el('section', undefined, 'oa-crm-bar');
   bar.dataset.oneAccountCrm = '';
@@ -218,7 +269,7 @@
       const totals = result.totals || {};
       const grouped = Number(totals.grouped_accounts ?? list(result.accounts).filter(account => account.parent_account_id).length);
       const topLevel = Number(totals.top_level_accounts ?? accountSearch(result.accounts).length);
-      barStatus.textContent = `${topLevel.toLocaleString()}개 Account${grouped ? ` · 하위 조직 ${grouped.toLocaleString()}개` : ''} · ${Number(totals.persons || 0).toLocaleString()}명 · 선물 발송 여부는 별도 확인`;
+      barStatus.textContent = `${topLevel.toLocaleString()}개 Account${grouped ? ` · 하위 조직 ${grouped.toLocaleString()}개` : ''} · ${Number(totals.persons || 0).toLocaleString()}명`;
       window.dispatchEvent(new CustomEvent('oa:crm-catalog', { detail: catalog }));
       decorateAccounts();
       if (refreshView && drawer.open) await reloadView();
@@ -250,30 +301,67 @@
     wrapper.append(input);
     return wrapper;
   }
-  function personCard(person, showAccount = false) {
-    const card = button('', () => openPerson(person.person_id, person.account_id || view.accountId), 'oa-crm-person');
-    const line = el('div', undefined, 'oa-crm-person-title');
-    line.append(el('strong', person.name || '실명 미확인'), badge(labels.employment[person.employment_status] || labels.employment.unknown, person.employment_status === 'former' ? 'is-muted' : ''));
-    card.append(line, el('p', [showAccount ? person.account_name : '', person.department || '부서 미확인', person.title || '직책 미확인'].filter(Boolean).join(' · ')));
-    const flags = el('div', undefined, 'oa-crm-flags');
-    if (person.identity_status === 'needs_review') flags.append(badge('동일인·실명 확인 필요', 'is-amber'));
-    const contacts = list(person.contact_points);
-    if (contacts.length) flags.append(badge(`연락 정보 ${contacts.length}건`));
-    const pref = list(person.receiving_preferences)[0];
-    if (pref) flags.append(badge(describePreference(pref), pref.availability === 'no' ? 'is-amber' : ''));
-    if (flags.childElementCount) card.append(flags);
-    return card;
+  function dataTable(title, headers, rows, className = '') {
+    const wrapper = el('div', undefined, 'oa-crm-table-wrap');
+    wrapper.tabIndex = 0; wrapper.setAttribute('aria-label', title);
+    const table = el('table', undefined, `oa-crm-table ${className}`);
+    table.append(el('caption', title, 'oa-crm-sr-only'));
+    const head = el('thead'), header = el('tr'), body = el('tbody');
+    headers.forEach(label => { const th = el('th', label); th.setAttribute('scope', 'col'); header.append(th); });
+    head.append(header);
+    rows.forEach(values => {
+      const row = el('tr');
+      values.forEach(value => {
+        const cell = el('td');
+        if (value && typeof value === 'object') cell.append(value);
+        else cell.textContent = displayValue(value);
+        row.append(cell);
+      });
+      body.append(row);
+    });
+    table.append(head, body); wrapper.append(table); return wrapper;
+  }
+  function personTable(people, showAccount = false, title = '소속인물') {
+    const headers = [...(showAccount ? ['기관'] : []), '성명', '부서', '직책', '직급', '연락처', '수령가능', '발송대상', '품목'];
+    const rows = people.map(person => {
+      const name = el('div', undefined, 'oa-crm-name-cell');
+      const open = button(displayValue(person.name), () => openPerson(person.person_id, person.account_id || view.accountId), 'oa-crm-person');
+      if (!displayValue(person.name)) open.setAttribute('aria-label', '인물 상세 열기');
+      name.append(open);
+      if (person.employment_status === 'former') name.append(badge(labels.employment.former, 'is-muted'));
+      if (person.identity_status === 'needs_review') name.append(badge('확인 필요', 'is-amber'));
+      const parts = titleParts(person), summary = peopleSummary(person, catalog?.campaigns);
+      const role = el('span', parts.position); role.title = parts.raw;
+      const rank = el('span', parts.rank); rank.title = parts.raw;
+      const receiving = el('span', summary.receiving); receiving.title = summary.receivingDetail;
+      const target = el('span', summary.sendTarget); target.title = summary.campaign;
+      const item = el('span', summary.item); item.title = summary.campaign;
+      const account = showAccount ? button(person.account_name || catalogById.get(person.account_id)?.name || '', () => openAccount(person.account_id), 'oa-crm-table-link') : null;
+      return [...(showAccount ? [account] : []), name, person.department, role, rank, summary.contact, receiving, target, item];
+    });
+    return dataTable(title, headers, rows, 'oa-crm-people-table');
   }
   function peopleGroups(container, people, query = '', showAccount = false) {
     container.replaceChildren();
-    const groups = groupPeople(people, query);
-    if (!groups.length) { container.append(empty(query ? '검색 조건에 맞는 인물이 없습니다.' : '등록된 소속인물이 없습니다.')); return; }
-    groups.forEach(group => {
-      const block = section(`${group.department} · ${group.people.length}명`);
-      const cards = el('div', undefined, 'oa-crm-person-grid');
-      group.people.forEach(person => cards.append(personCard(person, showAccount)));
-      block.append(cards); container.append(block);
+    const rows = sortedPeople(people, query);
+    if (!rows.length) { container.append(empty(query ? '검색 조건에 맞는 인물이 없습니다.' : '등록된 소속인물이 없습니다.')); return; }
+    container.append(personTable(rows, showAccount));
+  }
+  function groupedPeopleTables(container, people, query = '') {
+    container.replaceChildren();
+    const groups = new Map();
+    sortedPeople(people, query).forEach(person => {
+      const id = person.account_id || '';
+      if (!groups.has(id)) groups.set(id, []);
+      groups.get(id).push(person);
     });
+    [...groups].sort((a, b) => compare(catalogById.get(a[0])?.name || a[1][0].account_name, catalogById.get(b[0])?.name || b[1][0].account_name)).forEach(([id, rows]) => {
+      const name = catalogById.get(id)?.name || rows[0].account_name || '';
+      const block = section(`${name} · ${personCount(rows)}명`);
+      if (id) block.append(button('소속 조직 열기', () => openAccount(id), 'oa-crm-table-link'));
+      block.append(personTable(rows, false, `${name} 소속인물`)); container.append(block);
+    });
+    if (!groups.size) container.append(empty('검색 조건에 맞는 인물이 없습니다.'));
   }
   async function openAll() {
     const generation = show('기관과 소속인물', { kind: 'all', accountId: null, personId: null });
@@ -286,15 +374,12 @@
       const q = query.toLocaleLowerCase('ko').trim();
       const accounts = accountSearch([...catalogById.values()], q);
       const group = section(`Account ${accounts.length.toLocaleString()}개`);
-      const cards = el('div', undefined, 'oa-crm-account-grid');
-      accounts.forEach(({ account, children, matchingChildren }) => {
-        const card = button('', () => openAccount(account.account_id), 'oa-crm-account');
-        card.append(el('strong', account.name), el('span', `${account.piscfh || '미Account'}${children.length ? ` · 하위 조직 ${children.length}개` : ''} · 소속인물 ${Number(account.people_count || 0)}명`));
-        if (matchingChildren.length) card.append(el('span', `일치하는 하위 조직: ${matchingChildren.slice(0, 4).map(child => child.name).join(', ')}${matchingChildren.length > 4 ? ` 외 ${matchingChildren.length - 4}개` : ''}`, 'oa-crm-child-match'));
-        cards.append(card);
-      });
-      group.append(cards); results.replaceChildren(group);
-      if (!accounts.length) cards.append(empty('일치하는 기관이 없습니다.'));
+      const rows = accounts.map(({ account, children, matchingChildren }) => [
+        button(account.name, () => openAccount(account.account_id), 'oa-crm-account'), account.piscfh || '미Account', children.length || '', Number(account.people_count || 0),
+        matchingChildren.length ? `일치하는 하위 조직: ${matchingChildren.slice(0, 4).map(child => child.name).join(', ')}${matchingChildren.length > 4 ? ` 외 ${matchingChildren.length - 4}개` : ''}` : ''
+      ]);
+      group.append(dataTable('기관 목록', ['기관', '구분', '하위 조직', '인원', '검색 일치'], rows, 'oa-crm-accounts-table')); results.replaceChildren(group);
+      if (!accounts.length) group.append(empty('일치하는 기관이 없습니다.'));
       return q;
     };
     let searchGeneration = 0;
@@ -309,10 +394,8 @@
           const result = await api({ action: 'search', q, limit: '100' });
           if (generation !== viewGeneration || token !== searchGeneration) return;
           matches.replaceChildren(el('h3', `인물 ${list(result.people).length}명${result.truncated ? ' 이상 · 검색어를 더 입력하세요' : ''}`));
-          const cards = el('div', undefined, 'oa-crm-person-grid');
-          list(result.people).forEach(person => cards.append(personCard(person, true)));
-          matches.append(cards);
-          if (!cards.childElementCount) matches.append(empty('일치하는 인물이 없습니다.'));
+          matches.append(personTable(sortedPeople(result.people), true, '인물 검색 결과'));
+          if (!list(result.people).length) matches.append(empty('일치하는 인물이 없습니다.'));
         } catch (error) { if (generation === viewGeneration && token === searchGeneration) matches.replaceChildren(empty(error.message)); }
       }, 220);
     });
@@ -360,14 +443,8 @@
           const groups = hierarchyGroups(result.children, query);
           groups.forEach(group => {
             const block = section(`${group.label} · ${group.accounts.length}개`);
-            const cards = el('div', undefined, 'oa-crm-account-grid');
-            group.accounts.forEach(account => {
-              const card = button('', () => openAccount(account.account_id), 'oa-crm-account oa-crm-child-account');
-              card.append(el('strong', account.name), el('span', `${account.piscfh || '미Account'} · 소속인물 ${Number(account.people_count || 0)}명`));
-              if (account.hierarchy_note) card.append(el('span', account.hierarchy_note, 'oa-crm-child-note'));
-              cards.append(card);
-            });
-            block.append(cards); results.append(block);
+            const rows = group.accounts.map(account => [button(account.name, () => openAccount(account.account_id), 'oa-crm-account oa-crm-child-account'), account.piscfh || '미Account', Number(account.people_count || 0), account.hierarchy_note || '']);
+            block.append(dataTable(group.label, ['조직', '구분', '인원', '참고'], rows, 'oa-crm-accounts-table')); results.append(block);
           });
           if (!groups.length) results.append(empty(query ? '일치하는 하위 조직이 없습니다.' : '등록된 하위 조직이 없습니다.'));
         };
@@ -379,28 +456,22 @@
         people.addEventListener('toggle', () => {
           if (loaded || !people.open) return;
           loaded = true;
-          people.append(searchInput('전체 소속인물 검색', '조합명, 이름, 부서, 직책', value => peopleGroups(peopleResults, result.people, value, true)), peopleResults);
-          peopleGroups(peopleResults, result.people, '', true);
+          people.append(searchInput('전체 소속인물 검색', '조합명, 이름, 부서, 직책', value => groupedPeopleTables(peopleResults, result.people, value)), peopleResults);
+          groupedPeopleTables(peopleResults, result.people);
         });
         body.replaceChildren(summary, note, search, results, people); drawChildren('');
         return;
       }
-      const note = el('p', '부서별로 묶고 직책·이름순으로 표시합니다. 원본 명단에 있다는 사실만으로 재직·실제 발송을 확정하지 않습니다.', 'oa-crm-note');
+      const note = el('p', '직책·직급순', 'oa-crm-note');
       const results = el('div');
       const search = searchInput('소속인물 검색', '이름, 부서, 직책', value => peopleGroups(results, result.people, value));
       body.replaceChildren(summary, note, search, results); peopleGroups(results, result.people);
     } catch (error) { if (generation === viewGeneration) failure(error, () => openAccount(accountId)); }
   }
-  function recordList(title, records, render, emptyText) {
+  function recordTable(title, headers, records, render) {
     const block = section(title);
-    if (!list(records).length) block.append(empty(emptyText));
-    else list(records).forEach(record => block.append(render(record)));
+    block.append(dataTable(title, headers, list(records).map(render), 'oa-crm-record-table'));
     return block;
-  }
-  function detailCard() { return el('article', undefined, 'oa-crm-record'); }
-  function describePreference(pref) {
-    const campaign = list(catalog?.campaigns).find(c => (c.campaign_id || c.id) === pref.campaign_id);
-    return preferenceText({ ...pref, campaign_name: pref.campaign_name || campaign?.name || '' });
   }
   async function openPerson(personId, accountId = view.accountId) {
     const generation = show('인물 상세', { kind: 'person', accountId, personId });
@@ -409,90 +480,55 @@
       if (generation !== viewGeneration || !drawer.open) return;
       currentPerson = result;
       const person = result.person || {};
-      heading.textContent = person.name || '실명 미확인';
+      heading.textContent = displayValue(person.name) || '인물 상세';
       const identity = el('div', undefined, 'oa-crm-account-summary');
       if (person.identity_status === 'needs_review') identity.append(badge('동일인·실명 확인 필요', 'is-amber'));
-      else if (person.identity_status === 'unverified') identity.append(badge('원본 등록 · 현재 정보 미확인'));
       identity.append(el('span', '동명이인과 소속 이력은 별도 레코드로 관리합니다.', 'oa-crm-note'));
-      const affiliations = recordList('소속·재직 이력', result.affiliations, affiliation => {
-        const card = detailCard();
-        card.append(el('strong', affiliation.account_name || catalogById.get(affiliation.account_id)?.name || affiliation.account_id), badge(labels.employment[affiliation.employment_status] || labels.employment.unknown));
-        const details = el('dl', undefined, 'oa-crm-fields');
-        addLabeled(details, '부서·세부소속', affiliation.department); addLabeled(details, '직책', affiliation.title);
-        addLabeled(details, '입사·소속 시작일', affiliation.started_on); addLabeled(details, '퇴사·소속 종료일', affiliation.ended_on);
-        card.append(details);
-        if (affiliation.notes) card.append(el('p', affiliation.notes, 'oa-crm-note'));
-        card.append(button('소속·재직 수정', () => editRecord('affiliation', affiliation)));
-        return card;
-      }, '소속 이력 없음');
+      const affiliations = recordTable('소속·재직 이력', ['기관', '부서', '직책', '직급', '재직', '시작일', '종료일', '메모', '관리'], result.affiliations, affiliation => {
+        const parts = titleParts(affiliation);
+        const role = el('span', parts.position); role.title = parts.raw;
+        const rank = el('span', parts.rank); rank.title = parts.raw;
+        return [button(affiliation.account_name || catalogById.get(affiliation.account_id)?.name || affiliation.account_id, () => openAccount(affiliation.account_id), 'oa-crm-table-link'), affiliation.department, role, rank, labels.employment[affiliation.employment_status] || '', affiliation.started_on, affiliation.ended_on, affiliation.notes, button('소속·재직 수정', () => editRecord('affiliation', affiliation))];
+      });
       affiliations.append(button('다른 소속 추가', () => editRecord('affiliation')));
-      const contacts = recordList('연락·배송 정보', result.contact_points, contact => {
-        const card = detailCard();
+      const affiliationName = record => list(result.affiliations).find(a => a.affiliation_id === record.affiliation_id)?.account_name || (record.affiliation_id ? '' : '개인 공통');
+      const contacts = recordTable('연락·배송 정보', ['종류', '내용', '소속', '확인 상태', '메모', '관리'], result.contact_points, contact => {
         const status = contact.verification_status || contact.status;
-        card.append(el('strong', labels.contact[contact.kind] || contact.kind || '연락처'), el('p', contact.value || '미입력', 'oa-crm-contact-value'));
-        if (status) card.append(el('p', status === 'verified' ? '확인됨' : status === 'source_reported' ? '원본 기재 · 현재 유효성 확인 필요' : status === 'conflict' ? '원본 간 값 상충 · 확인 필요' : '유효성 미확인', 'oa-crm-note'));
-        if (contact.notes) card.append(el('p', contact.notes, 'oa-crm-note'));
-        card.append(button('수정', () => editRecord('contact_point', contact)));
-        return card;
-      }, '등록된 연락 정보 없음');
+        const edit = button('수정', () => editRecord('contact_point', contact)); edit.setAttribute('aria-label', `${labels.contact[contact.kind] || '연락처'} 수정`);
+        return [labels.contact[contact.kind] || contact.kind, contact.value, affiliationName(contact), status === 'verified' ? '확인됨' : status === 'source_reported' ? '원본 기재' : status === 'conflict' ? '원본 간 값 상충' : '', contact.notes, edit];
+      });
       contacts.append(button('연락·배송 정보 추가', () => editRecord('contact_point')));
-      const preferences = recordList('선물 수령 의사', result.receiving_preferences, pref => {
-        const card = detailCard(); card.append(el('strong', describePreference(pref)));
-        if (pref.notes) card.append(el('p', pref.notes, 'oa-crm-note'));
-        card.append(button('수령 의사 수정', () => editRecord('preference', pref))); return card;
-      }, '수령 의사 확인 기록 없음');
+      const preferences = recordTable('선물 수령 의사', ['수령가능', '적용 범위', '명절', '소속', '시작일', '종료일', '메모', '관리'], result.receiving_preferences, pref => [
+        pref.availability === 'not_applicable' ? '해당없음' : mark(pref.availability), labels.scope[pref.scope] || '', pref.campaign_name || campaignInfo(pref, catalog?.campaigns).name, affiliationName(pref), pref.effective_from, pref.effective_to, pref.notes, button('수령 의사 수정', () => editRecord('preference', pref))
+      ]);
       preferences.append(el('p', '해당 명절의 수령 불가 표시가 앞으로의 지속적인 거절을 뜻하지는 않습니다. 적용 범위·기간을 함께 확인합니다.', 'oa-crm-note'), button('수령 의사 기록', () => editRecord('preference')));
-      const gifts = recordList('명절별 선물 이력', result.gift_recipients, gift => {
-        const card = detailCard();
-        card.append(el('strong', gift.campaign_name || gift.campaign_label || gift.campaign?.name || '행사 미입력'), badge(labels.delivery[gift.delivery_status] || labels.delivery.unknown, gift.delivery_status === 'sent' ? 'is-green' : ''), badge(labels.received[gift.received_status] || labels.received.unknown));
-        const details = el('dl', undefined, 'oa-crm-fields');
+      const gifts = recordTable('명절별 선물 이력', ['명절', '당시 소속', '품목', '발송대상', '실제 발송', '실제 수령', '예정 금액', '실제 금액', '발송일', '요청자', '요청팀', '메모'], result.gift_recipients, gift => {
         const affiliation = list(result.affiliations).find(a => a.affiliation_id === gift.affiliation_id);
-        addLabeled(details, '당시 소속', gift.gift_account_name || affiliation?.account_name);
-        addLabeled(details, '선물', gift.gift_name || gift.item_name || gift.gift_item);
-        const amountText = amount => amount == null || amount === '' ? '미입력' : `${Number(amount).toLocaleString('ko-KR')}원`;
-        addLabeled(details, '예정 금액', amountText(gift.planned_amount ?? gift.unit_price));
-        addLabeled(details, '실제 금액', amountText(gift.actual_amount));
+        const amountText = amount => amount == null || amount === '' || !Number.isFinite(Number(amount)) ? '' : `${Number(amount).toLocaleString('ko-KR')}원`;
         const claimValue = field => [...new Set(list(result.field_claims).filter(c => c.entity_id === (gift.recipient_id || gift.id) && c.field_name === field).map(c => c.value).filter(Boolean))].join(' · ');
-        addLabeled(details, '발송일', gift.sent_on || gift.sent_at);
-        addLabeled(details, '요청자', gift.requester_name || gift.requester || claimValue('requester'));
-        addLabeled(details, '요청팀', gift.request_team || claimValue('request_team'));
-        card.append(details);
-        if (gift.notes) card.append(el('p', gift.notes, 'oa-crm-note'));
-        return card;
-      }, '선물 이력 없음 · 지난 설 선물은 아직 입력되지 않았습니다.');
-      gifts.append(el('p', '기존 발송 명단과 추가 후보를 등록한 상태입니다. 실제 발송·수령 여부와 금액은 확인 후 업데이트합니다. 표시되지 않은 명절은 아직 이력이 입력되지 않았습니다.', 'oa-crm-note'));
-      const events = recordList('경조사', result.life_events, event => {
-        const card = detailCard();
-        card.append(el('strong', `${labels.event[event.event_type] || '경조사'} · ${event.event_date || '날짜 미확인'}`), el('p', [labels.calendar[event.calendar] || labels.calendar.unknown, event.recurring ? '매년 반복' : '해당 일자'].join(' · ')));
-        if (event.description) card.append(el('p', event.description));
-        if (event.notes) card.append(el('p', event.notes, 'oa-crm-note'));
-        card.append(button('수정', () => editRecord('life_event', event))); return card;
-      }, '등록된 경조사 없음');
+        return [gift.campaign_name || gift.campaign_label || gift.campaign?.name, gift.gift_account_name || affiliation?.account_name, gift.gift_name || gift.item_name || gift.gift_item, mark(gift.send_target), labels.delivery[gift.delivery_status] || '', labels.received[gift.received_status] || '', amountText(gift.planned_amount ?? gift.unit_price), amountText(gift.actual_amount), gift.sent_on || gift.sent_at, gift.requester_name || gift.requester || claimValue('requester'), gift.request_team || claimValue('request_team'), gift.notes];
+      });
+      gifts.append(el('p', '발송대상 O/X는 명단의 발송 계획입니다. 실제 발송·수령은 별도 확인 기록입니다.', 'oa-crm-note'));
+      const events = recordTable('경조사', ['종류', '일자', '양력·음력', '반복', '내용', '메모', '관리'], result.life_events, event => {
+        const edit = button('수정', () => editRecord('life_event', event)); edit.setAttribute('aria-label', `${labels.event[event.event_type] || '경조사'} 수정`);
+        return [labels.event[event.event_type] || event.event_type, event.event_date, labels.calendar[event.calendar] || '', event.recurring === true ? '매년 반복' : event.recurring === false ? '해당 일자' : '', event.description, event.notes, edit];
+      });
       events.append(button('경조사 기록', () => editRecord('life_event')));
       const provenance = section('출처·변경 이력');
       const sources = el('details', undefined, 'oa-crm-provenance');
       sources.append(el('summary', `원본 출처 ${list(result.source_records).length}건`));
-      list(result.source_records).forEach(record => {
-        const entry = detailCard(); entry.append(el('strong', sourceText(record)));
-        const sourceNotes = record.notes || record.match_reason || record.role;
-        if (sourceNotes) entry.append(el('p', sourceNotes, 'oa-crm-note'));
-        sources.append(entry);
-      });
+      sources.append(dataTable('원본 출처', ['출처', '근거·메모'], list(result.source_records).map(record => [sourceText(record), record.notes || record.match_reason || record.role])));
       const claims = el('details', undefined, 'oa-crm-provenance');
       claims.append(el('summary', `필드별 원본 근거 ${list(result.field_claims).length}건`));
-      list(result.field_claims).forEach(claim => {
-        const entry = detailCard();
+      claims.append(dataTable('필드별 원본 근거', ['항목', '원본 값', '출처', '메모'], list(result.field_claims).map(claim => {
         const claimValue = claim.value ?? claim.raw_value;
         const field = claim.field_name || claim.field;
-        entry.append(el('strong', labels.sourceField[field] || field || '원본 항목'), el('p', typeof claimValue === 'object' ? JSON.stringify(claimValue) : claimValue == null || claimValue === '' ? '값 없음' : String(claimValue)));
         const record = list(result.source_records).find(r => (r.source_record_id || r.id) === claim.source_record_id);
-        if (record) entry.append(el('small', sourceText(record)));
-        if (claim.notes) entry.append(el('p', claim.notes, 'oa-crm-note'));
-        claims.append(entry);
-      });
+        return [labels.sourceField[field] || field, claimValue != null && typeof claimValue === 'object' ? JSON.stringify(claimValue) : claimValue, record ? sourceText(record) : '', claim.notes];
+      })));
       const audit = el('details', undefined, 'oa-crm-provenance');
       audit.append(el('summary', `변경 기록 ${list(result.audit).length}건`));
-      list(result.audit).forEach(record => audit.append(el('p', [record.created_at ? new Date(record.created_at).toLocaleString('ko-KR') : '', record.actor_email || record.changed_by || '', record.action || '', record.entity_type || record.entity || ''].filter(Boolean).join(' · '))));
+      audit.append(dataTable('변경 기록', ['일시', '수정자', '작업', '항목'], list(result.audit).map(record => [record.created_at ? new Date(record.created_at).toLocaleString('ko-KR') : '', record.actor_email || record.changed_by, record.action, record.entity_type || record.entity])));
       provenance.append(sources, claims, audit);
       body.replaceChildren(identity, affiliations, contacts, preferences, gifts, events, provenance);
     } catch (error) { if (generation === viewGeneration) failure(error, () => openPerson(personId, accountId)); }
