@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 const crypto = require('node:crypto');
-const { matchesAccount, accountTree, scopeCounts, readRoute, routeUrl, changedTeam, mergeMetadata } = require('../public/account-workspace.js');
+const { compareAccounts, matchesAccount, accountTree, scopeCounts, readRoute, routeUrl, changedTeam, mergeMetadata } = require('../public/account-workspace.js');
 const sampleAccounts = () => [
   { account_id: 'A', display_name: '가 기관', aliases: [{ name: '가 별칭' }], piscfh: { default_candidate_codes: ['P'] }, crm_people_count: 1, account_kind: 'organization' },
   { account_id: 'B', display_name: '나 기관', aliases: [], piscfh: { default_candidate_codes: [] }, crm_people_count: 0, account_kind: 'organization' },
@@ -27,6 +27,68 @@ test('a matching child stays reachable under a clearly nonmatching group without
   assert.equal(tree.length, 1); assert.equal(tree[0].account.account_id, 'G'); assert.equal(tree[0].ownMatch, false);
   assert.deepEqual(tree[0].matches.map(account => account.account_id), ['C']);
   assert.equal(JSON.stringify({ accounts, teams }), original);
+});
+test('institutions sort by P I S C F H then unclassified, with Korean names ordered within each category', () => {
+  const rows = [
+    { account_id: 'U', name: '가 미분류', piscfh: '미Account' },
+    { account_id: 'C', name: '다 기관', piscfh: 'C' },
+    { account_id: 'P-Z', name: '하 기관', piscfh: 'P' },
+    { account_id: 'H', name: '가 기관', piscfh: 'H' },
+    { account_id: 'P-A', display_name: '가 기관', name: '타 원본명', piscfh: 'P' },
+    { account_id: 'F', name: '나 기관', piscfh: 'F' },
+    { account_id: 'I-Z', display_name: '하 기관', piscfh: { default_candidate_codes: ['I'] } },
+    { account_id: 'S', name: '라 기관', piscfh: 'S' },
+    { account_id: 'I-A', name: '가 기관', piscfh: 'I' }
+  ];
+  assert.deepEqual(rows.slice().sort(compareAccounts).map(row => row.account_id), ['P-A', 'P-Z', 'I-A', 'I-Z', 'S', 'C', 'F', 'H', 'U']);
+  assert.deepEqual(accountTree(rows).map(item => item.account.account_id), ['P-A', 'P-Z', 'I-A', 'I-Z', 'S', 'C', 'F', 'H', 'U']);
+});
+test('multiple valid classification codes use the earliest category priority regardless of code-array order', () => {
+  const rows = [
+    { account_id: 'H', name: '가', piscfh: 'H' },
+    { account_id: 'S-F', name: '다', piscfh: { default_candidate_codes: ['F', 'S'] } },
+    { account_id: 'I-H', name: '나', piscfh: { default_candidate_codes: ['INVALID', 'H', 'I'] } },
+    { account_id: 'P-I-H', name: '하', piscfh: { default_candidate_codes: ['H', 'I', 'P'] } },
+    { account_id: 'F-H', name: '나', piscfh: { default_candidate_codes: ['H', 'F'] } }
+  ];
+  const before = structuredClone(rows);
+  assert.deepEqual(rows.slice().sort(compareAccounts).map(row => row.account_id), ['P-I-H', 'I-H', 'S-F', 'F-H', 'H']);
+  assert.deepEqual(rows, before);
+});
+test('missing, empty and unknown classifications sort after every valid category and then by institution name', () => {
+  const rows = [
+    { account_id: 'U-EMPTY', name: '다 기관', piscfh: { default_candidate_codes: [] } },
+    { account_id: 'U-UNKNOWN', name: '가 기관', piscfh: 'UNKNOWN' },
+    { account_id: 'U-MISSING', name: '마 기관' },
+    { account_id: 'H', name: '하 기관', piscfh: 'H' },
+    { account_id: 'U-NULL', name: '나 기관', piscfh: null },
+    { account_id: 'U-LABEL', name: '라 기관', piscfh: '미Account' }
+  ];
+  assert.deepEqual(accountTree(rows).map(item => item.account.account_id), ['H', 'U-UNKNOWN', 'U-NULL', 'U-EMPTY', 'U-LABEL', 'U-MISSING']);
+});
+test('group roots and their branches each follow category/name order without inheriting category or mutating the source', () => {
+  const rows = [
+    { account_id: 'G-F', name: '가 그룹', account_kind: 'group', piscfh: 'F' },
+    { account_id: 'I-P-Z', name: '하 조합', parent_account_id: 'G-I', piscfh: 'P' },
+    { account_id: 'U-ROOT', name: '가 미분류', piscfh: '미Account' },
+    { account_id: 'I-U', name: '가 미분류조합', parent_account_id: 'G-I', piscfh: '미Account' },
+    { account_id: 'G-I', name: '하 그룹', account_kind: 'group', piscfh: 'I' },
+    { account_id: 'I-H', name: '가 조합', parent_account_id: 'G-I', piscfh: 'H' },
+    { account_id: 'F-P', name: '가 조합', parent_account_id: 'G-F', piscfh: 'P' },
+    { account_id: 'P-ROOT', name: '하 기관', piscfh: 'P' },
+    { account_id: 'I-P-A', name: '가 조합', parent_account_id: 'G-I', piscfh: { default_candidate_codes: ['P'] } },
+    { account_id: 'I-I', name: '나 조합', parent_account_id: 'G-I', piscfh: 'I' }
+  ];
+  const before = structuredClone(rows);
+  const freeze = value => { if (value && typeof value === 'object') { Object.values(value).forEach(freeze); Object.freeze(value); } return value; };
+  freeze(rows);
+  const tree = accountTree(rows);
+  assert.deepEqual(tree.map(item => item.account.account_id), ['P-ROOT', 'G-I', 'G-F', 'U-ROOT']);
+  assert.deepEqual(tree[1].children.map(row => row.account_id), ['I-P-A', 'I-P-Z', 'I-I', 'I-H', 'I-U']);
+  assert.deepEqual(tree[1].matches.map(row => row.account_id), ['I-P-A', 'I-P-Z', 'I-I', 'I-H', 'I-U']);
+  assert.deepEqual(tree[2].children.map(row => row.account_id), ['F-P']);
+  assert.equal(tree[1].account, rows[4]); assert.equal(tree[1].children[0], rows[8]);
+  assert.deepEqual(rows, before);
 });
 test('clearing one RM emits the API empty-string value and preserves every unchanged role', () => {
   assert.deepEqual(changedTeam({ primaryRmId: 'R1', backupRmId: 'R2' }, { primaryRmId: '', backupRmId: 'R2', sponsorRmId: '' }), { primaryRmId: '' });
