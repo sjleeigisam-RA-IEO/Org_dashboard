@@ -112,32 +112,9 @@
     const row = record.row_number ?? record.source_row ?? record.row;
     return [file, sheet, row == null ? '' : `${row}행`].filter(Boolean).join(' · ') || record.source_record_id || record.id || '';
   }
-  const mark = value => value === 'yes' ? 'O' : value === 'no' ? 'X' : '';
-  function campaignInfo(record, campaigns) {
-    return list(campaigns).find(c => (c.campaign_id || c.id) === record.campaign_id) || record.campaign || {};
-  }
-  function campaignOrder(record, campaigns) {
-    const campaign = campaignInfo(record, campaigns);
-    const name = str(record.campaign_name || record.campaign_label || campaign.name);
-    const year = Number(campaign.year || record.campaign_year || name.match(/(?:19|20)\d{2}/)?.[0] || 0);
-    return year * 10 + (/추석/.test(name) ? 2 : /설/.test(name) ? 1 : 0);
-  }
-  function peopleSummary(person, campaigns = []) {
-    const belongs = record => (!record.affiliation_id || !person.affiliation_id || record.affiliation_id === person.affiliation_id) && (!record.gift_account_id || !person.account_id || record.gift_account_id === person.account_id);
-    const gifts = list(person.gift_recipients).filter(belongs).slice().sort((a, b) => campaignOrder(b, campaigns) - campaignOrder(a, campaigns) || compare(b.updated_at, a.updated_at) || compare(a.recipient_id, b.recipient_id));
-    const latest = gifts[0];
-    const sameCampaign = latest ? gifts.filter(g => latest.campaign_id ? g.campaign_id === latest.campaign_id : (g.campaign_name || g.campaign_label || '') === (latest.campaign_name || latest.campaign_label || '')) : [];
-    const currentCampaign = latest?.campaign_id || list(campaigns).slice().sort((a, b) => campaignOrder({ campaign: b }, []) - campaignOrder({ campaign: a }, []))[0]?.campaign_id;
-    const prefs = list(person.receiving_preferences).filter(p => belongs(p) && (p.scope !== 'campaign' || !currentCampaign || p.campaign_id === currentCampaign));
-    const values = rows => [...new Set(rows.filter(Boolean))].join(' / ');
-    return {
-      contact: values(list(person.contact_points).filter(c => ['mobile', 'phone', 'email'].includes(c.kind)).map(c => displayValue(c.value))),
-      receiving: values(prefs.map(p => mark(p.availability))),
-      receivingDetail: values(prefs.map(p => preferenceText({ ...p, campaign_name: p.campaign_name || campaignInfo(p, campaigns).name }))),
-      sendTarget: values(sameCampaign.map(g => mark(g.send_target))),
-      item: values(sameCampaign.map(g => displayValue(g.gift_name || g.item_name || g.gift_item))),
-      campaign: latest?.campaign_name || latest?.campaign_label || campaignInfo(latest || {}, campaigns).name || ''
-    };
+  function peopleSummary(person) {
+    // Read only the safe count; raw contact and gift fields never enter list rendering.
+    return { contact: Number.isInteger(person.contact_count) && person.contact_count > 0 ? '*' : '', internalContact: '' };
   }
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = { groupPeople, sortedPeople, titleParts, displayValue, departmentText, peopleSummary, accountSearch, hierarchyGroups, accountPath, personCount, preferenceText, sourceText, escape, labels };
@@ -150,8 +127,6 @@
   let view = { kind: 'all', accountId: null, personId: null };
   let viewGeneration = 0;
   let loadGeneration = 0;
-  let currentAccount = null;
-  let currentPerson = null;
   let focusReturn = null;
   let searchTimer;
   const el = (tag, text, className) => {
@@ -167,6 +142,12 @@
     return node;
   };
   const badge = (text, tone = '') => el('span', text, `oa-crm-badge ${tone}`);
+  const lockHelp = '추후 인증 기능 업데이트 후 잠금 해제가 가능합니다.';
+  function lockHint(node, label) {
+    node.title = lockHelp; node.tabIndex = 0;
+    node.setAttribute('aria-label', `${label}. ${lockHelp}`);
+    return node;
+  }
   const empty = text => el('p', text, 'oa-crm-empty');
   const section = title => {
     const node = el('section', undefined, 'oa-crm-section');
@@ -185,7 +166,10 @@
   const barActions = el('div', undefined, 'oa-crm-actions');
   const allButton = button('인물·기관 전체보기', () => openAll(), 'oa-crm-primary');
   const refreshButton = button('새로고침', () => refreshIndex(true));
-  barActions.append(allButton, refreshButton);
+  const exportLock = lockHint(el('span', undefined, 'oa-crm-locked-control'), '전체 명단 엑셀 잠김');
+  const exportButton = el('button', '전체 명단 엑셀'); exportButton.type = 'button'; exportButton.disabled = true;
+  exportLock.append(exportButton);
+  barActions.append(allButton, refreshButton, exportLock);
   bar.append(barText, barActions);
   (document.querySelector('.oa-shared-bar') || document.querySelector('.topbar'))?.insertAdjacentElement('afterend', bar);
 
@@ -202,23 +186,16 @@
   const closeButton = button('닫기', () => drawer.close(), 'oa-crm-close');
   head.append(headingBlock, closeButton);
   const body = el('div', undefined, 'oa-crm-body');
-  const footer = el('footer', '연락처·재직·수령 의사와 선물 이력을 기관별로 관리합니다.', 'oa-crm-footer');
+  const footer = el('footer', '기관과 소속인물의 기본 정보를 조회합니다.', 'oa-crm-footer');
   drawer.append(head, body, footer);
   document.body.append(drawer);
   drawer.addEventListener('close', () => { viewGeneration += 1; clearTimeout(searchTimer); focusReturn?.focus?.(); });
   drawer.addEventListener('click', e => { if (e.target === drawer) drawer.close(); });
 
-  const editor = el('dialog', undefined, 'oa-crm-editor');
-  editor.dataset.oneAccountCrm = '';
-  editor.setAttribute('aria-labelledby', 'oa-crm-editor-title');
-  document.body.append(editor);
-
-  async function api(params, payload) {
+  async function api(params) {
     const query = new URLSearchParams(params || {});
     const response = await fetch(`/api/crm${query.size ? `?${query}` : ''}`, {
-      method: payload ? 'POST' : 'GET', credentials: 'same-origin', cache: 'no-store',
-      headers: payload ? { 'Content-Type': 'application/json' } : {},
-      ...(payload ? { body: JSON.stringify(payload) } : {})
+      method: 'GET', credentials: 'same-origin', cache: 'no-store'
     });
     let result;
     try { result = await response.json(); } catch { result = {}; }
@@ -334,7 +311,7 @@
     table.append(head, body); wrapper.append(table); return wrapper;
   }
   function personTable(people, showAccount = false, title = '소속인물') {
-    const headers = [...(showAccount ? ['기관'] : []), '성명', '부서', '직책', '직급', '연락처', '수령가능', '발송대상', '품목'];
+    const headers = [...(showAccount ? ['기관'] : []), '성명', '부서', '직책', '직급', '연락처', '사내 컨택포인트'];
     const rows = people.map(person => {
       const name = el('div', undefined, 'oa-crm-name-cell');
       const open = button(displayValue(person.name), () => openPerson(person.person_id, person.account_id || view.accountId), 'oa-crm-person');
@@ -342,16 +319,14 @@
       name.append(open);
       if (person.employment_status === 'former') name.append(badge(labels.employment.former, 'is-muted'));
       if (person.identity_status === 'needs_review') name.append(badge('확인 필요', 'is-amber'));
-      const parts = titleParts(person), summary = peopleSummary(person, catalog?.campaigns);
+      const parts = titleParts(person), summary = peopleSummary(person);
       const role = el('span', parts.position); role.title = parts.raw;
       const rank = el('span', parts.rank); rank.title = parts.raw;
-      const receiving = el('span', summary.receiving); receiving.title = summary.receivingDetail;
-      const target = el('span', summary.sendTarget); target.title = summary.campaign;
-      const item = el('span', summary.item); item.title = summary.campaign;
+      const contact = summary.contact ? lockHint(el('span', summary.contact, 'oa-crm-contact-lock'), '연락처 잠김') : '';
       const account = showAccount ? button(person.account_name || catalogById.get(person.account_id)?.name || '', () => openAccount(person.account_id), 'oa-crm-table-link') : null;
-      return [...(showAccount ? [account] : []), name, departmentText(person, catalogById.get(person.account_id)), role, rank, summary.contact, receiving, target, item];
+      return [...(showAccount ? [account] : []), name, departmentText(person, catalogById.get(person.account_id)), role, rank, contact, summary.internalContact];
     });
-    return dataTable(title, headers, rows, 'oa-crm-people-table');
+    return dataTable(title, headers, rows, `oa-crm-people-table${showAccount ? ' oa-crm-search-people-table' : ''}`);
   }
   function peopleGroups(container, people, query = '', showAccount = false) {
     container.replaceChildren();
@@ -418,7 +393,6 @@
     try {
       const result = await api({ action: 'account', accountId });
       if (generation !== viewGeneration || !drawer.open) return;
-      currentAccount = result;
       if (result.account) catalogById.set(result.account.account_id, { ...catalogById.get(result.account.account_id), ...result.account });
       if (result.parent_account) catalogById.set(result.parent_account.account_id, { ...catalogById.get(result.parent_account.account_id), ...result.parent_account });
       list(result.children).forEach(child => catalogById.set(child.account_id, { ...catalogById.get(child.account_id), ...child }));
@@ -480,155 +454,35 @@
       body.replaceChildren(summary, note, search, results); peopleGroups(results, result.people);
     } catch (error) { if (generation === viewGeneration) failure(error, () => openAccount(accountId)); }
   }
-  function recordTable(title, headers, records, render) {
-    const block = section(title);
-    block.append(dataTable(title, headers, list(records).map(render), 'oa-crm-record-table'));
-    return block;
-  }
   async function openPerson(personId, accountId = view.accountId) {
     const generation = show('인물 상세', { kind: 'person', accountId, personId });
     try {
+      // The server returns a basic profile while identity authentication is unavailable.
       const result = await api({ action: 'person', personId });
       if (generation !== viewGeneration || !drawer.open) return;
-      currentPerson = result;
       const person = result.person || {};
       heading.textContent = displayValue(person.name) || '인물 상세';
-      const identity = el('div', undefined, 'oa-crm-account-summary');
-      if (person.identity_status === 'needs_review') identity.append(badge('동일인·실명 확인 필요', 'is-amber'));
-      identity.append(el('span', '동명이인과 소속 이력은 별도 레코드로 관리합니다.', 'oa-crm-note'));
-      const affiliations = recordTable('소속·재직 이력', ['기관', '부서', '직책', '직급', '재직', '시작일', '종료일', '메모', '관리'], result.affiliations, affiliation => {
+      const affiliations = section('기본 소속 정보');
+      const rows = sortedPeople(list(result.affiliations).map(a => ({
+        account_id: a.account_id, account_name: a.account_name, affiliation_id: a.affiliation_id,
+        person_id: a.person_id, department: a.department, title: a.title, rank: a.rank, job_grade: a.job_grade
+      }))).map(affiliation => {
         const parts = titleParts(affiliation);
         const role = el('span', parts.position); role.title = parts.raw;
         const rank = el('span', parts.rank); rank.title = parts.raw;
-        return [button(affiliation.account_name || catalogById.get(affiliation.account_id)?.name || affiliation.account_id, () => openAccount(affiliation.account_id), 'oa-crm-table-link'), affiliation.department, role, rank, labels.employment[affiliation.employment_status] || '', affiliation.started_on, affiliation.ended_on, affiliation.notes, button('소속·재직 수정', () => editRecord('affiliation', affiliation))];
+        return [button(affiliation.account_name || catalogById.get(affiliation.account_id)?.name || '', () => openAccount(affiliation.account_id), 'oa-crm-table-link'), departmentText(affiliation, catalogById.get(affiliation.account_id)), role, rank];
       });
-      affiliations.append(button('다른 소속 추가', () => editRecord('affiliation')));
-      const affiliationName = record => list(result.affiliations).find(a => a.affiliation_id === record.affiliation_id)?.account_name || (record.affiliation_id ? '' : '개인 공통');
-      const contacts = recordTable('연락·배송 정보', ['종류', '내용', '소속', '확인 상태', '메모', '관리'], result.contact_points, contact => {
-        const status = contact.verification_status || contact.status;
-        const edit = button('수정', () => editRecord('contact_point', contact)); edit.setAttribute('aria-label', `${labels.contact[contact.kind] || '연락처'} 수정`);
-        return [labels.contact[contact.kind] || contact.kind, contact.value, affiliationName(contact), status === 'verified' ? '확인됨' : status === 'source_reported' ? '원본 기재' : status === 'conflict' ? '원본 간 값 상충' : '', contact.notes, edit];
-      });
-      contacts.append(button('연락·배송 정보 추가', () => editRecord('contact_point')));
-      const preferences = recordTable('선물 수령 의사', ['수령가능', '적용 범위', '명절', '소속', '시작일', '종료일', '메모', '관리'], result.receiving_preferences, pref => [
-        pref.availability === 'not_applicable' ? '해당없음' : mark(pref.availability), labels.scope[pref.scope] || '', pref.campaign_name || campaignInfo(pref, catalog?.campaigns).name, affiliationName(pref), pref.effective_from, pref.effective_to, pref.notes, button('수령 의사 수정', () => editRecord('preference', pref))
-      ]);
-      preferences.append(el('p', '해당 명절의 수령 불가 표시가 앞으로의 지속적인 거절을 뜻하지는 않습니다. 적용 범위·기간을 함께 확인합니다.', 'oa-crm-note'), button('수령 의사 기록', () => editRecord('preference')));
-      const gifts = recordTable('명절별 선물 이력', ['명절', '당시 소속', '품목', '발송대상', '실제 발송', '실제 수령', '예정 금액', '실제 금액', '발송일', '요청자', '요청팀', '메모'], result.gift_recipients, gift => {
-        const affiliation = list(result.affiliations).find(a => a.affiliation_id === gift.affiliation_id);
-        const amountText = amount => amount == null || amount === '' || !Number.isFinite(Number(amount)) ? '' : `${Number(amount).toLocaleString('ko-KR')}원`;
-        const claimValue = field => [...new Set(list(result.field_claims).filter(c => c.entity_id === (gift.recipient_id || gift.id) && c.field_name === field).map(c => c.value).filter(Boolean))].join(' · ');
-        return [gift.campaign_name || gift.campaign_label || gift.campaign?.name, gift.gift_account_name || affiliation?.account_name, gift.gift_name || gift.item_name || gift.gift_item, mark(gift.send_target), labels.delivery[gift.delivery_status] || '', labels.received[gift.received_status] || '', amountText(gift.planned_amount ?? gift.unit_price), amountText(gift.actual_amount), gift.sent_on || gift.sent_at, gift.requester_name || gift.requester || claimValue('requester'), gift.request_team || claimValue('request_team'), gift.notes];
-      });
-      gifts.append(el('p', '발송대상 O/X는 명단의 발송 계획입니다. 실제 발송·수령은 별도 확인 기록입니다.', 'oa-crm-note'));
-      const events = recordTable('경조사', ['종류', '일자', '양력·음력', '반복', '내용', '메모', '관리'], result.life_events, event => {
-        const edit = button('수정', () => editRecord('life_event', event)); edit.setAttribute('aria-label', `${labels.event[event.event_type] || '경조사'} 수정`);
-        return [labels.event[event.event_type] || event.event_type, event.event_date, labels.calendar[event.calendar] || '', event.recurring === true ? '매년 반복' : event.recurring === false ? '해당 일자' : '', event.description, event.notes, edit];
-      });
-      events.append(button('경조사 기록', () => editRecord('life_event')));
-      const provenance = section('출처·변경 이력');
-      const sources = el('details', undefined, 'oa-crm-provenance');
-      sources.append(el('summary', `원본 출처 ${list(result.source_records).length}건`));
-      sources.append(dataTable('원본 출처', ['출처', '근거·메모'], list(result.source_records).map(record => [sourceText(record), record.notes || record.match_reason || record.role])));
-      const claims = el('details', undefined, 'oa-crm-provenance');
-      claims.append(el('summary', `필드별 원본 근거 ${list(result.field_claims).length}건`));
-      claims.append(dataTable('필드별 원본 근거', ['항목', '원본 값', '출처', '메모'], list(result.field_claims).map(claim => {
-        const claimValue = claim.value ?? claim.raw_value;
-        const field = claim.field_name || claim.field;
-        const record = list(result.source_records).find(r => (r.source_record_id || r.id) === claim.source_record_id);
-        return [labels.sourceField[field] || field, claimValue != null && typeof claimValue === 'object' ? JSON.stringify(claimValue) : claimValue, record ? sourceText(record) : '', claim.notes];
-      })));
-      const audit = el('details', undefined, 'oa-crm-provenance');
-      audit.append(el('summary', `변경 기록 ${list(result.audit).length}건`));
-      audit.append(dataTable('변경 기록', ['일시', '수정자', '작업', '항목'], list(result.audit).map(record => [record.created_at ? new Date(record.created_at).toLocaleString('ko-KR') : '', record.actor_email || record.changed_by, record.action, record.entity_type || record.entity])));
-      provenance.append(sources, claims, audit);
-      body.replaceChildren(identity, affiliations, contacts, preferences, gifts, events, provenance);
+      affiliations.append(dataTable('기본 소속 정보', ['기관', '부서', '직책', '직급'], rows, 'oa-crm-basic-profile'));
+      const locked = lockHint(section('개인정보 · 선물 이력'), '개인정보 및 선물 이력 잠김');
+      locked.className += ' oa-crm-detail-lock';
+      const status = el('p', undefined, 'oa-crm-lock-status');
+      const icon = el('span', '🔒', 'oa-crm-lock-icon'); icon.setAttribute('aria-hidden', 'true');
+      status.append(icon, el('span', '상세정보 조회 인증 연결 예정'));
+      locked.append(status, el('p', '연락처 · 배송주소 · 수령가능 여부 · 발송대상 · 품목·발송 이력 · 경조사 · 출처 및 변경 기록', 'oa-crm-note'));
+      // Locked in this release regardless of a client flag or a legacy richer response.
+      // No protected record, source note, editor, or reveal action is mounted.
+      body.replaceChildren(affiliations, locked);
     } catch (error) { if (generation === viewGeneration) failure(error, () => openPerson(personId, accountId)); }
-  }
-  const options = object => Object.entries(object).map(([value, label]) => ({ value, label }));
-  function editRecord(entity, record = null) {
-    const creating = !record;
-    const chosenAffiliation = list(currentPerson?.affiliations).find(a => a.account_id === view.accountId) || list(currentPerson?.affiliations)[0];
-    const recordId = record?.id || record?.[`${entity}_id`] || (entity === 'life_event' ? record?.event_id : '') || crypto.randomUUID();
-    const title = { affiliation: '소속·재직 정보', contact_point: '연락·배송 정보', preference: '선물 수령 의사', life_event: '경조사' }[entity];
-    const form = el('form', undefined, 'oa-crm-form');
-    const formTitle = el('h2', `${title} ${creating ? '추가' : '수정'}`); formTitle.id = 'oa-crm-editor-title';
-    form.append(formTitle);
-    const fields = [];
-    const add = (key, label, type = 'text', choices = null, fallback = '') => {
-      const wrapper = el('label', undefined, 'oa-crm-input'); wrapper.append(el('span', label));
-      const input = el(choices ? 'select' : type === 'textarea' ? 'textarea' : 'input');
-      if (choices) choices.forEach(choice => { const option = el('option', choice.label); option.value = choice.value; input.append(option); });
-      else if (type !== 'textarea') input.type = type;
-      if (type === 'textarea') input.rows = 3;
-      input.name = key; input.value = record?.[key] ?? fallback;
-      if (type === 'text') input.maxLength = 1000;
-      wrapper.append(input); form.append(wrapper); fields.push({ key, input, type });
-      return input;
-    };
-    if (entity === 'affiliation') {
-      if (creating) {
-        add('account_id', '소속 기관', 'text', [{ value: '', label: '기관을 선택하세요' }, ...[...catalogById.values()].filter(a => a.account_kind !== 'group').sort((a, b) => compare(a.name, b.name)).map(a => ({ value: a.account_id, label: a.parent_account_id ? `${catalogById.get(a.parent_account_id)?.name || '상위 조직'} / ${a.name}` : a.name }))]);
-        form.append(el('p', '기존 소속 이력을 유지하면서 새 소속을 추가합니다. 퇴사 여부는 기존 소속에서 별도로 확인해 주세요.', 'oa-crm-note'));
-      }
-      add('department', '부서·세부소속'); add('title', '직책');
-      add('employment_status', '재직 상태', 'text', options(labels.employment), 'unknown');
-      add('started_on', '소속 시작일', 'date'); add('ended_on', '소속 종료일', 'date');
-    } else {
-      const affOptions = [{ value: '', label: '개인 공통' }, ...list(currentPerson?.affiliations).map(a => ({ value: a.affiliation_id || a.id, label: a.account_name || catalogById.get(a.account_id)?.name || a.account_id }))];
-      if (creating) add('affiliation_id', '해당 소속', 'text', affOptions, chosenAffiliation?.affiliation_id || chosenAffiliation?.id || '');
-      else form.append(el('p', `소속: ${affOptions.find(option => option.value === record.affiliation_id)?.label || '개인 공통'}`, 'oa-crm-note'));
-      if (entity === 'contact_point') {
-        add('kind', '정보 종류', 'text', options(labels.contact), 'mobile'); add('value', '내용');
-        add('verification_status', '확인 상태', 'text', [{ value: 'unverified', label: '미확인' }, { value: 'source_reported', label: '원본 기재' }, { value: 'verified', label: '본인·담당자에게 확인' }, { value: 'conflict', label: '원본 간 값 상충' }], 'unverified');
-      } else if (entity === 'preference') {
-        add('availability', '수령가능 여부', 'text', options(labels.availability), 'unknown');
-        add('scope', '적용 범위', 'text', options(labels.scope), 'unknown');
-        add('effective_from', '적용 시작일', 'date'); add('effective_to', '적용 종료일', 'date');
-        const campaign = add('campaign_id', '해당 명절', 'text', [{ value: '', label: '명절 미지정' }, ...list(catalog?.campaigns).map(c => ({ value: c.campaign_id || c.id, label: c.name || c.label }))], record?.campaign_id || '');
-        if (record?.campaign_id && ![...campaign.options].some(o => o.value === record.campaign_id)) { const o = el('option', record.campaign_name || '기존 명절'); o.value = record.campaign_id; campaign.append(o); campaign.value = record.campaign_id; }
-        form.append(el('p', '지속 적용은 본인이 앞으로도 같은 의사를 유지한다고 확인한 경우에 선택합니다.', 'oa-crm-note'));
-      } else if (entity === 'life_event') {
-        add('event_type', '경조사 종류', 'text', options(labels.event), 'other'); add('event_date', '일자', 'date');
-        add('calendar', '양력·음력', 'text', options(labels.calendar), 'unknown');
-        add('recurring', '반복 여부', 'text', [{ value: 'false', label: '해당 일자' }, { value: 'true', label: '매년 반복' }], 'false'); add('description', '내용', 'textarea');
-      }
-    }
-    add('notes', '확인 근거·메모', 'textarea');
-    const status = el('p', '', 'oa-crm-form-status'); status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
-    const actions = el('div', undefined, 'oa-crm-actions');
-    const cancel = button('취소', () => editor.close());
-    const save = el('button', '저장', 'oa-crm-primary'); save.type = 'submit';
-    actions.append(cancel, save); form.append(status, actions);
-    const requestId = crypto.randomUUID();
-    let retryPayload = null;
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
-      const patch = {};
-      fields.forEach(({ key, input, type }) => { patch[key] = key === 'recurring' ? input.value === 'true' : (type === 'date' || key.endsWith('_id')) ? input.value || null : input.value.trim(); });
-      if (creating) patch.person_id = view.personId;
-      if (creating && entity === 'affiliation' && !patch.account_id) { status.textContent = '소속 기관을 선택해 주세요.'; return; }
-      if (entity === 'preference' && patch.scope === 'campaign' && !patch.campaign_id) { status.textContent = '해당 명절에 한함을 선택한 경우 명절을 지정해 주세요.'; return; }
-      if (patch.effective_from && patch.effective_to && patch.effective_from > patch.effective_to) { status.textContent = '종료일은 시작일보다 빠를 수 없습니다.'; return; }
-      if (patch.started_on && patch.ended_on && patch.started_on > patch.ended_on) { status.textContent = '소속 종료일은 시작일보다 빠를 수 없습니다.'; return; }
-      const payload = retryPayload || { action: creating ? 'create' : 'update', entity, id: recordId, expectedRevision: record?.revision || 0, patch, requestId };
-      save.disabled = true; cancel.disabled = true; status.textContent = '저장 중…';
-      try {
-        await api(null, payload);
-        editor.close();
-        await openPerson(view.personId, view.accountId);
-        await refreshIndex();
-      } catch (error) {
-        status.textContent = error.message;
-        if (!error.status || error.status >= 500) {
-          retryPayload = payload; save.textContent = '저장 결과 재확인'; fields.forEach(({ input }) => { input.disabled = true; });
-        } else if (error.status === 409) {
-          save.disabled = true;
-          actions.prepend(button('최신 정보 불러오기', async () => { editor.close(); await openPerson(view.personId, view.accountId); }));
-        }
-      } finally { if (!status.textContent.includes('다른 사용자가')) save.disabled = false; cancel.disabled = false; }
-    });
-    editor.replaceChildren(form); editor.showModal();
   }
   async function reloadView() {
     if (view.kind === 'person') return openPerson(view.personId, view.accountId);
