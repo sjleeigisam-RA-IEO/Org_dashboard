@@ -546,7 +546,7 @@
     for (const id of Object.keys(teamOverrides)) delete teamOverrides[id]; renderList(); if (state.account) await loadAccount();
   }
   createShell(); renderIdentity();
-  window.OneAccountWorkspace = { compareAccounts, selectAccount, refresh, show: mode => navigate(() => show(mode)), readState: () => ({ account: state.account, person: state.person, tab: state.tab, view: state.view, query: state.query, scope: state.scope, code: state.code, rm: state.rm }) };
+  window.OneAccountWorkspace = { ready: false, compareAccounts, selectAccount, refresh, show: mode => navigate(() => show(mode)), readState: () => ({ account: state.account, person: state.person, tab: state.tab, view: state.view, query: state.query, scope: state.scope, code: state.code, rm: state.rm }) };
   show(state.view, { noRoute: true });
   routeWindow.addEventListener('popstate', () => {
     const route = readRoute(routeWindow.location.href);
@@ -592,4 +592,5 @@
   window.addEventListener('beforeunload', event => { if (state.editor?.dirty || state.editor?.request || crm()?.hasUnsavedChanges?.()) { event.preventDefault(); event.returnValue = ''; } });
   if (state.account) loadAccount();
   Promise.resolve(crm()?.readIdentity?.()).then(value => { if (value && !identityEpoch) receiveIdentity(value); }).catch(() => {});
+  window.OneAccountWorkspace.ready = true;
 })();

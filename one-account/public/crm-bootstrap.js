@@ -71,16 +71,38 @@
     }
   }
   if (typeof module !== 'undefined' && module.exports) { module.exports = { normalizedAccount, mergeCatalog, mergeExposureClassifications }; return; }
-  if (!/^https?:$/.test(location.protocol) || typeof D === 'undefined' || typeof accountsById === 'undefined') return;
+  if (!/^https?:$/.test(location.protocol)) return;
+  if (typeof D === 'undefined' || typeof accountsById === 'undefined') { window.OneAccountStartup?.fail(); return; }
 
   function loadScript(src, id, shared) {
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
+      const timer = setTimeout(() => finish(new Error('ADAPTER_LOAD_TIMEOUT')), 15000);
+      function finish(error) {
+        clearTimeout(timer); script.onload = null; script.onerror = null;
+        if (error) reject(error); else resolve();
+      }
       script.src = src; script.id = id;
       script.setAttribute(shared ? 'data-one-account-shared' : 'data-one-account-crm', '');
-      script.onload = resolve; script.onerror = () => reject(new Error('ADAPTER_LOAD_FAILED'));
+      script.onload = () => finish(); script.onerror = () => finish(new Error('ADAPTER_LOAD_FAILED'));
       document.body.append(script);
     });
+  }
+  function waitForStyles() {
+    const links = [...document.querySelectorAll('link[rel="stylesheet"][data-one-account-shared], link[rel="stylesheet"][data-one-account-crm]')];
+    return Promise.all(links.map(link => new Promise((resolve, reject) => {
+      if (link.sheet) { resolve(); return; }
+      const timer = setTimeout(() => finish(new Error('STYLE_LOAD_TIMEOUT')), 15000);
+      const loaded = () => finish();
+      const failed = () => finish(new Error('STYLE_LOAD_FAILED'));
+      function finish(error) {
+        clearTimeout(timer); link.removeEventListener('load', loaded); link.removeEventListener('error', failed);
+        if (error) reject(error); else resolve();
+      }
+      link.addEventListener('load', loaded, { once: true });
+      link.addEventListener('error', failed, { once: true });
+      if (link.sheet) finish();
+    })));
   }
   function showUnavailable() {
     const banner = document.createElement('section');
@@ -96,6 +118,7 @@
     buildSharedHtml = function (snapshotId) {
       const parsed = new DOMParser().parseFromString(previous(snapshotId), 'text/html');
       parsed.querySelectorAll('[data-one-account-crm]').forEach(node => node.remove());
+      parsed.documentElement.removeAttribute('data-oa-startup');
       parsed.body.classList.remove('oa-workspace-mode', 'oa-workspace-legacy-mode', 'oa-workspace-active');
       parsed.body.removeAttribute('data-oa-workspace-view');
       const legacyApp = parsed.querySelector('body > .app');
@@ -113,7 +136,7 @@
       return '<!doctype html>\n' + parsed.documentElement.outerHTML;
     };
   }
-  window.ONE_ACCOUNT_CRM_BOOTSTRAP_PROMISE = (async () => {
+  window.ONE_ACCOUNT_CRM_BOOTSTRAP_PROMISE = Promise.all([waitForStyles(), (async () => {
     await loadScript('/account-hierarchy.js', 'oa-account-hierarchy', false);
     let catalog = null;
     try {
@@ -130,16 +153,25 @@
       if (typeof renderSelection === 'function') renderSelection();
       if (typeof renderLookthrough === 'function') renderLookthrough();
       window.dispatchEvent(new CustomEvent('oa:crm-ready', { detail: catalog }));
-    } catch { showUnavailable(); }
+    } catch { throw new Error('CRM_UNAVAILABLE'); }
     // Catalog expansion must precede RM validation, including recovery drafts.
     await loadScript('/shared-teams.js', 'oa-shared-adapter', true);
     await loadScript('/crm.js', 'oa-crm-adapter', false);
     await window.ONE_ACCOUNT_SHARED_READY;
+    if (!Number.isSafeInteger(window.OneAccountShared?.getState()?.version)) throw new Error('SHARED_UNAVAILABLE');
     await loadScript('/account-legacy-bridge.js', 'oa-account-legacy-bridge', false);
     await loadScript('/account-workspace.js', 'oa-account-workspace', false);
     protectOfflineCopy();
     return catalog;
-  })().catch(() => { showUnavailable(); return null; });
+  })()]).then(([, catalog]) => {
+    if (window.OneAccountWorkspace?.ready !== true || !document.querySelector('#oa-workspace')) throw new Error('WORKSPACE_UNAVAILABLE');
+    window.OneAccountStartup?.ready();
+    return catalog;
+  }).catch(() => {
+    if (window.OneAccountStartup) window.OneAccountStartup.fail();
+    else showUnavailable();
+    return null;
+  });
   window.addEventListener('oa:crm-catalog', event => {
     try {
       mergeCatalog(event.detail, D.accounts, accountsById);
