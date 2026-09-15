@@ -16,6 +16,7 @@
   const escape = value => str(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const compare = (a, b) => str(a).localeCompare(str(b), 'ko');
   const displayValue = value => /^(?:-|—|미확인|없음|미입력|unknown|null|부서 미확인|직책 미확인)$/i.test(str(value).trim()) ? '' : str(value).trim();
+  const maskedContactLabels = { mobile: '휴대전화', phone: '전화', email: '이메일', address: '주소', postcode: '우편번호' };
   function departmentText(person, account = {}) {
     const normalize = value => str(value).replace(/\s+/g, '').toLocaleLowerCase('ko');
     const names = new Set([person.account_name, account.name, ...list(account.aliases).map(a => typeof a === 'string' ? a : a.name)].filter(Boolean).map(normalize));
@@ -334,6 +335,18 @@
     if (!rows.length) { container.append(empty(query ? '검색 조건에 맞는 인물이 없습니다.' : '등록된 소속인물이 없습니다.')); return; }
     container.append(personTable(rows, showAccount));
   }
+  function maskedDetailTable(title, columns, records, className = '') {
+    const block = section(title);
+    const indicator = lockHint(el('span', '🔒', 'oa-crm-section-lock'), `${title} 잠김`);
+    block.children[0].append(indicator);
+    const rows = list(records).map(record => columns.map(([key, label]) => {
+      if (key === 'kind') return Object.prototype.hasOwnProperty.call(maskedContactLabels, record?.kind) ? maskedContactLabels[record.kind] : '';
+      // A malformed or richer response can never reveal a value through this view.
+      return record?.[key] === '*' ? lockHint(el('span', '*', 'oa-crm-masked-value'), `${label} 잠김`) : '';
+    }));
+    block.append(dataTable(title, columns.map(([, label]) => label), rows, `oa-crm-masked-detail-table ${className}`));
+    return block;
+  }
   function groupedPeopleTables(container, people, query = '') {
     container.replaceChildren();
     const groups = new Map();
@@ -473,15 +486,15 @@
         return [button(affiliation.account_name || catalogById.get(affiliation.account_id)?.name || '', () => openAccount(affiliation.account_id), 'oa-crm-table-link'), departmentText(affiliation, catalogById.get(affiliation.account_id)), role, rank];
       });
       affiliations.append(dataTable('기본 소속 정보', ['기관', '부서', '직책', '직급'], rows, 'oa-crm-basic-profile'));
-      const locked = lockHint(section('개인정보 · 선물 이력'), '개인정보 및 선물 이력 잠김');
-      locked.className += ' oa-crm-detail-lock';
-      const status = el('p', undefined, 'oa-crm-lock-status');
-      const icon = el('span', '🔒', 'oa-crm-lock-icon'); icon.setAttribute('aria-hidden', 'true');
-      status.append(icon, el('span', '상세정보 조회 인증 연결 예정'));
-      locked.append(status, el('p', '연락처 · 배송주소 · 수령가능 여부 · 발송대상 · 품목·발송 이력 · 경조사 · 출처 및 변경 기록', 'oa-crm-note'));
-      // Locked in this release regardless of a client flag or a legacy richer response.
-      // No protected record, source note, editor, or reveal action is mounted.
-      body.replaceChildren(affiliations, locked);
+      const masked = result.masked_details || {};
+      const contactRows = Object.keys(maskedContactLabels).map(kind => ({ kind, value: list(masked.contacts).some(record => record?.kind === kind && record?.value === '*') ? '*' : '' }));
+      const contacts = maskedDetailTable('연락처', [['kind', '종류'], ['value', '내용']], contactRows);
+      const preferences = maskedDetailTable('수령가능 여부', [['campaign', '명절'], ['availability', '수령가능 여부'], ['scope', '적용 범위'], ['effective_from', '시작일'], ['effective_to', '종료일']], masked.preferences);
+      const gifts = maskedDetailTable('선물 이력', [['campaign', '명절'], ['send_target', '발송대상'], ['item', '품목'], ['planned_amount', '예정 금액'], ['actual_amount', '실제 금액'], ['delivery_status', '실제 발송'], ['received_status', '실제 수령'], ['sent_on', '발송일'], ['received_on', '수령일']], masked.gifts, 'oa-crm-gifts-table');
+      const events = maskedDetailTable('경조사', [['event_type', '종류'], ['event_date', '일자'], ['description', '내용']], masked.life_events);
+      // Presence-only fields remain masked regardless of client identity flags.
+      // Never fall back to raw private arrays, source notes, or editing actions.
+      body.replaceChildren(affiliations, contacts, preferences, gifts, events);
     } catch (error) { if (generation === viewGeneration) failure(error, () => openPerson(personId, accountId)); }
   }
   async function reloadView() {
