@@ -48,20 +48,11 @@ test('seniority places executives above team leaders and separates explicit mixe
   assert.equal(displayValue(0), '0');
   for (const value of [null, undefined, '', '-', '미확인', '미입력', '없음']) assert.equal(displayValue(value), '');
 });
-test('people rows use explicit send targets only and keep old affiliations and campaigns out of current summaries', () => {
-  const campaigns = [{ campaign_id: 'OLD', year: 2026, name: '2026 설' }, { campaign_id: 'NEW', year: 2026, name: '2026 추석' }];
-  const person = { account_id: 'A', affiliation_id: 'AFF', contact_points: [{ kind: 'phone', value: '02-1000-0000' }], receiving_preferences: [
-    { availability: 'yes', scope: 'campaign', campaign_id: 'OLD' }, { availability: 'no', scope: 'campaign', campaign_id: 'NEW' }
-  ], gift_recipients: [
-    { campaign_id: 'OLD', affiliation_id: 'AFF', send_target: 'yes', item_name: '지난 설' },
-    { campaign_id: 'NEW', affiliation_id: 'OTHER', gift_account_id: 'B', send_target: 'yes', item_name: '다른 소속' },
-    { campaign_id: 'NEW', affiliation_id: 'AFF', send_target: null, plan_status: 'planned', delivery_status: 'sent', item_name: '한우' }
-  ] };
-  const summary = peopleSummary(person, campaigns);
-  assert.equal(summary.sendTarget, ''); assert.equal(summary.item, '한우'); assert.equal(summary.receiving, 'X'); assert.equal(summary.contact, '02-1000-0000');
-  person.gift_recipients[2].send_target = 'no'; assert.equal(peopleSummary(person, campaigns).sendTarget, 'X');
-  person.gift_recipients[2].send_target = 'yes'; assert.equal(peopleSummary(person, campaigns).sendTarget, 'O');
-  assert.equal(peopleSummary({}).receiving, ''); assert.equal(peopleSummary({}).item, '');
+test('people summaries use safe contact counts only and never infer an internal contact from RM', () => {
+  const person = { contact_count: 3, rm: 'RM 담당자', internal_contact: '기존 임의값', teamAssignments: ['RM 담당자'] };
+  for (const key of ['contact_points', 'receiving_preferences', 'gift_recipients']) Object.defineProperty(person, key, { get() { throw new Error('Protected field must not be read'); } });
+  assert.deepEqual(peopleSummary(person), { contact: '*', internalContact: '' });
+  for (const count of [undefined, null, 0, -1, 0.5, '2', NaN]) assert.deepEqual(peopleSummary({ contact_count: count }), { contact: '', internalContact: '' });
 });
 test('source references retain exact workbook sheet and row; unsafe labels are escaped', () => {
   assert.equal(sourceText({ file_name: '원본.xlsx', sheet_name: '유선확인필요', row_number: 8 }), '원본.xlsx · 유선확인필요 · 8행');
@@ -140,67 +131,50 @@ function harness(responder, initial = fixtureCatalog) {
 }
 const tick = () => new Promise(resolve => setImmediate(resolve));
 
-test('initial catalog is reused; source PII is fetched only for opened authenticated details and not put in HTML', async () => {
-  const h = harness(async url => ({ body: url.includes('action=person') ? fixturePerson() : fixtureCatalog }));
+test('basic person view stays locked even if a legacy response includes sensitive data or claims identity verification', async () => {
+  const response = fixturePerson();
+  response.privacy = { detailAccess: 'unlocked', identityVerified: true, canEdit: true };
+  response.affiliations[0].notes = 'SENSITIVE_AFFILIATION_NOTE';
+  response.affiliations[0].started_on = '1999-01-01';
+  const h = harness(async url => ({ body: url.includes('action=person') ? response : fixtureCatalog }));
   await tick();
   assert.equal(h.requests.length, 0);
   await h.crm.openPerson('PERSON', 'A');
   assert.equal(h.requests.length, 1);
   assert.equal(h.requests[0].credentials, 'same-origin');
   assert.equal(h.requests[0].cache, 'no-store');
+  assert.equal(h.requests[0].method, 'GET');
   assert.match(h.dialog().textContent, /<script>테스트<\/script>/);
-  assert.doesNotMatch(h.dialog().textContent, /미확인|미입력|값 없음/);
-  const giftRow = h.nodes.find(node => node.tag === 'tr' && node.children.some(cell => cell.textContent === '테스트 선물'));
-  assert.equal(giftRow.children[4].textContent, '');
-  assert.equal(giftRow.children[5].textContent, '');
-  assert.equal(giftRow.children[6].textContent, '');
-  assert.equal(giftRow.children[7].textContent, '');
-  assert.ok(h.nodes.filter(node => node.tag === 'table').length >= 8);
+  assert.match(h.dialog().textContent, /기본 소속 정보/);
+  assert.match(h.dialog().textContent, /상세정보 조회 인증 연결 예정/);
+  const everyNode = h.nodes.map(node => node.textContent + JSON.stringify(node.attributes) + (node.title || '')).join(' ');
+  assert.doesNotMatch(everyNode, /02-0000-0000|테스트 선물|테스트.xlsx|SENSITIVE_AFFILIATION_NOTE|1999-01-01/);
+  assert.equal(h.nodes.some(node => node.tag === 'script' || node.tag === 'form' || node.className === 'oa-crm-editor'), false);
+  assert.equal(h.button('소속·재직 수정'), undefined);
+  assert.equal(h.button('다른 소속 추가'), undefined);
+  const locked = h.nodes.find(node => node.className?.includes('oa-crm-detail-lock'));
+  assert.equal(locked.title, '추후 인증 기능 업데이트 후 잠금 해제가 가능합니다.');
+  assert.equal(locked.tabIndex, 0);
+  assert.match(locked.attributes['aria-label'], /추후 인증 기능 업데이트 후/);
   assert.equal(h.nodes.filter(node => node.tag === 'th').every(node => node.attributes.scope === 'col'), true);
-  assert.equal(h.nodes.some(node => node.tag === 'article'), false);
-  assert.equal(h.nodes.some(node => node.tag === 'script'), false);
-  assert.doesNotMatch(h.dialog().textContent, /동일인·실명 확인 필요/);
 });
 
-test('editing contact and event preserves membership and sends accepted entity IDs with revision', async () => {
-  const h = harness(async (url, options) => ({ body: options.method === 'POST' ? { status: 'committed', record: { revision: 2 }, revision: 2 } : url.includes('action=person') ? fixturePerson() : fixtureCatalog }));
-  await tick();
-  await h.crm.openPerson('PERSON', 'A');
-  const contactEdit = h.nodes.findLast(node => node.tag === 'button' && node.attributes['aria-label'] === '일반전화 수정');
-  contactEdit.click();
-  h.field('value').value = '02-1111-1111';
-  await h.form().listeners.submit({ preventDefault() {} });
-  const contactPayload = JSON.parse(h.requests.find(request => request.method === 'POST').body);
-  assert.equal(contactPayload.id, 'CONTACT');
-  assert.equal(contactPayload.expectedRevision, 1);
-  assert.equal(contactPayload.patch.value, '02-1111-1111');
-  assert.equal('affiliation_id' in contactPayload.patch, false);
-  const eventEdit = h.nodes.findLast(node => node.tag === 'button' && node.attributes['aria-label'] === '생일 수정');
-  eventEdit.click();
-  await h.form().listeners.submit({ preventDefault() {} });
-  const eventPayload = JSON.parse(h.requests.findLast(request => request.method === 'POST').body);
-  assert.equal(eventPayload.id, 'EVENT');
-  assert.equal(eventPayload.entity, 'life_event');
-  assert.equal('affiliation_id' in eventPayload.patch, false);
-  assert.equal(eventPayload.patch.recurring, false);
-});
-
-test('uncertain save retries exactly the same request and conflict requires a fresh read', async () => {
-  let attempt = 0;
-  const h = harness(async (url, options) => {
-    if (options.method === 'POST') return ++attempt === 1 ? { status: 503, body: {} } : { status: 409, body: {} };
-    return { body: url.includes('action=person') ? fixturePerson() : fixtureCatalog };
-  });
+test('person details do not read protected arrays, create an editor or request an unlock', async () => {
+  const response = { person: { person_id: 'PERSON', name: '기본 이름' }, affiliations: [{ account_id: 'A', account_name: '테스트 공제회', department: '투자팀', title: '팀장' }], privacy: { detailAccess: 'locked', identityVerified: false } };
+  for (const key of ['contact_points', 'receiving_preferences', 'gift_recipients', 'life_events', 'field_claims', 'source_records', 'audit']) Object.defineProperty(response, key, { get() { throw new Error('Protected field must not be read'); } });
+  const h = harness(async () => ({ body: response }));
   await tick(); await h.crm.openPerson('PERSON', 'A');
-  h.button('소속·재직 수정').click();
-  h.field('title').value = '팀장';
-  const form = h.form();
-  await form.listeners.submit({ preventDefault() {} });
-  assert.equal(h.field('title').disabled, true);
-  await form.listeners.submit({ preventDefault() {} });
-  const mutations = h.requests.filter(request => request.method === 'POST');
-  assert.equal(mutations[0].body, mutations[1].body);
-  assert.ok(h.button('최신 정보 불러오기'));
+  assert.match(h.dialog().textContent, /기본 이름/);
+  assert.match(h.dialog().textContent, /상세정보 조회 인증 연결 예정/);
+  assert.equal(h.requests.length, 1);
+  assert.equal(h.nodes.some(node => node.tag === 'form'), false);
+  const exportButton = h.button('전체 명단 엑셀');
+  assert.equal(exportButton.disabled, true);
+  exportButton.click();
+  assert.equal(h.requests.length, 1);
+  const exportLock = h.nodes.find(node => node.className === 'oa-crm-locked-control');
+  assert.equal(exportLock.tabIndex, 0);
+  assert.equal(exportLock.title, '추후 인증 기능 업데이트 후 잠금 해제가 가능합니다.');
 });
 
 test('late account responses cannot overwrite the account currently open', async () => {
@@ -218,41 +192,51 @@ test('late account responses cannot overwrite the account currently open', async
   assert.doesNotMatch(h.dialog().textContent, /오래된 응답/);
 });
 
-test('account table preserves absent cells, explicit former status, refusal and target marks; names still drill down', async () => {
-  const account = fixtureCatalog.accounts[0];
+test('account table masks contacts, removes gift columns and leaves internal contacts blank while keeping rank order', async () => {
+  const account = { ...fixtureCatalog.accounts[0], rm: 'ASSIGNED_RM_NAME' };
   const people = [
-    { person_id: 'JUNIOR', affiliation_id: 'JUNIOR-AFF', account_id: 'A', name: '나부장', title: '부장', department: '', employment_status: 'unknown' },
-    { person_id: 'SENIOR', affiliation_id: 'SENIOR-AFF', account_id: 'A', name: '가본부장', title: '부장/본부장', department: '투자부', employment_status: 'former', receiving_preferences: [{ availability: 'no', scope: 'campaign', campaign_id: 'CAMPAIGN' }], gift_recipients: [{ campaign_id: 'CAMPAIGN', campaign_name: '2026 추석', send_target: 'yes', item_name: '한우', delivery_status: 'unknown' }] }
+    { person_id: 'JUNIOR', affiliation_id: 'JUNIOR-AFF', account_id: 'A', name: '나부장', title: '부장', department: '', contact_count: 0 },
+    { person_id: 'SENIOR', affiliation_id: 'SENIOR-AFF', account_id: 'A', name: '가본부장', title: '부장/본부장', department: '투자부', employment_status: 'former', contact_count: 2, rm: 'ASSIGNED_RM_NAME', contact_points: [{ value: '010-1234-5678' }], receiving_preferences: [{ availability: 'no' }], gift_recipients: [{ item_name: 'SENSITIVE_ITEM', send_target: 'yes' }] }
   ];
-  const h = harness(async url => ({ body: url.includes('action=person') ? fixturePerson() : { account, people } }));
+  const h = harness(async url => ({ body: url.includes('action=person') ? fixturePerson() : { account, people, privacy: { detailAccess: 'locked', identityVerified: false } } }));
   await tick(); await h.crm.openAccount('A');
   const table = h.nodes.findLast(node => node.tag === 'table' && node.className.includes('oa-crm-people-table'));
+  const headers = table.children.find(node => node.tag === 'thead').children[0].children.map(node => node.textContent);
+  assert.deepEqual(headers, ['성명', '부서', '직책', '직급', '연락처', '사내 컨택포인트']);
   const rows = table.children.find(node => node.tag === 'tbody').children;
   assert.equal(rows.length, 2);
-  assert.match(rows[0].children[0].textContent, /가본부장.*퇴사·이직/);
+  assert.equal(rows[0].children[0].textContent, '가본부장퇴사·이직');
   assert.equal(rows[0].children[2].textContent, '본부장');
   assert.equal(rows[0].children[3].textContent, '부장');
-  assert.equal(rows[0].children[5].textContent, 'X');
-  assert.equal(rows[0].children[6].textContent, 'O');
-  assert.equal(rows[0].children[7].textContent, '한우');
+  assert.equal(rows[0].children[4].textContent, '*');
+  assert.equal(rows[0].children[5].textContent, '');
   assert.equal(rows[1].children[1].textContent, '');
+  assert.equal(rows[1].children[4].textContent, '');
   assert.equal(rows[1].children[5].textContent, '');
-  assert.equal(rows[1].children[6].textContent, '');
-  assert.doesNotMatch(h.dialog().textContent, /재직 미확인|부서 미확인|직책 미확인|미입력/);
+  const mask = rows[0].children[4].children[0];
+  assert.equal(mask.title, '추후 인증 기능 업데이트 후 잠금 해제가 가능합니다.');
+  assert.equal(mask.tabIndex, 0);
+  assert.doesNotMatch(h.dialog().textContent, /010-1234-5678|SENSITIVE_ITEM|ASSIGNED_RM_NAME|수령가능|발송대상|품목|미입력/);
   h.button('가본부장').click(); await tick();
   assert.ok(h.requests.some(request => request.url.includes('personId=SENIOR')));
+  assert.equal(h.requests.some(request => request.method !== 'GET'), false);
 });
 
-test('person history retains confirmed delivery and actual zero amount independently of target status', async () => {
-  const detail = fixturePerson();
-  Object.assign(detail.gift_recipients[0], { send_target: 'no', delivery_status: 'sent', received_status: 'not_received', actual_amount: 0 });
-  const h = harness(async () => ({ body: detail }));
-  await tick(); await h.crm.openPerson('PERSON', 'A');
-  const giftRow = h.nodes.find(node => node.tag === 'tr' && node.children.some(cell => cell.textContent === '테스트 선물'));
-  assert.equal(giftRow.children[3].textContent, 'X');
-  assert.equal(giftRow.children[4].textContent, '발송 O');
-  assert.equal(giftRow.children[5].textContent, '수령 X');
-  assert.equal(giftRow.children[7].textContent, '0원');
+test('global search uses the same masked table without exposing protected values in hidden nodes', async () => {
+  const h = harness(async () => ({ body: { people: [{ person_id: 'SEARCH', account_id: 'A', name: '검색인물', account_name: '테스트 공제회', title: '상무', contact_count: 1, contact_points: [{ value: 'search-secret@example.invalid' }], gift_recipients: [{ item_name: '검색 비공개 품목' }] }] } }));
+  await tick(); await h.crm.openAll();
+  const search = h.nodes.findLast(node => node.tag === 'input' && node.placeholder === '기관명, 이름, 부서, 직책');
+  search.value = '검색인물'; search.listeners.input();
+  await new Promise(resolve => setTimeout(resolve, 250));
+  const table = h.nodes.findLast(node => node.tag === 'table' && node.className.includes('oa-crm-search-people-table'));
+  const headers = table.children.find(node => node.tag === 'thead').children[0].children.map(node => node.textContent);
+  assert.deepEqual(headers, ['기관', '성명', '부서', '직책', '직급', '연락처', '사내 컨택포인트']);
+  const row = table.children.find(node => node.tag === 'tbody').children[0];
+  assert.equal(row.children[5].textContent, '*');
+  assert.equal(row.children[6].textContent, '');
+  assert.doesNotMatch(h.nodes.map(node => node.textContent).join(' '), /search-secret@example.invalid|검색 비공개 품목/);
+  assert.equal(h.requests.filter(request => request.url.includes('action=search')).length, 1);
+  assert.equal(h.requests.some(request => request.url.includes('action=person')), false);
 });
 
 test('group drawer prioritizes child organizations, preserves classifications, and navigates the complete person path', async () => {
@@ -294,8 +278,7 @@ test('group drawer prioritizes child organizations, preserves classifications, a
   const personCard = h.nodes.findLast(node => node.className === 'oa-crm-person');
   personCard.click(); await tick();
   assert.match(h.dialog().textContent, /전체 기관·인물›신협›중앙신협› 인물 상세/);
-  h.button('다른 소속 추가').click();
-  const affiliationChoices = h.field('account_id').options;
-  assert.equal(affiliationChoices.some(option => option.value === group.account_id), false);
-  assert.equal(affiliationChoices.find(option => option.value === 'LOCAL').textContent, '신협 / 중앙신협');
+  assert.match(h.dialog().textContent, /상세정보 조회 인증 연결 예정/);
+  assert.equal(h.button('다른 소속 추가'), undefined);
+  assert.equal(h.requests.some(request => request.method !== 'GET'), false);
 });

@@ -33,11 +33,11 @@ test('only same origin may edit and client cannot set actor or provenance', asyn
   const r = await invoke({ method: 'POST', body: valid(), headers: { origin: 'https://other.example' } }, () => { throw new Error('must not call'); }); assert.equal(r.statusCode, 403);
   for (const patch of [{ ...valid(), actorEmail: 'other@igisam.com' }, { ...valid(), patch: { source_record_id: 'fake' } }, { ...valid(), patch: { person_id: 'fake' } }]) assert.throws(() => crm.commitBody(patch), /BAD_BODY/);
 });
-test('validated commit supplies the session actor and exposes safe conflicts', async () => {
-  const body = valid(); const r = await invoke({ method: 'POST', body }, async (name, args) => {
-    assert.equal(name, 'oa_crm_commit'); assert.equal(args.p_actor_email, 'reviewer@igisam.com'); assert.equal(args.p_expected_revision, 1);
-    return { status: 'conflict', revision: 2, record: { affiliation_id: body.id, revision: 2 } };
-  }); assert.equal(r.statusCode, 409); assert.equal(JSON.parse(r.body).revision, 2);
+test('shared-code sessions cannot mutate CRM or receive private conflict/replay records', async () => {
+  const r = await invoke({ method: 'POST', body: valid() }, () => { throw new Error('locked requests must not call RPC'); });
+  assert.equal(r.statusCode, 403);
+  assert.equal(JSON.parse(r.body).code, 'CRM_IDENTITY_VERIFICATION_REQUIRED');
+  assert.deepEqual(JSON.parse(r.body).privacy, { detailAccess: 'locked', identityVerified: false, canEdit: false });
 });
 test('bad dates, zero revisions, unsupported states and oversized strings rejected', () => {
   for (const v of [{ ...valid(), expectedRevision: 0 }, { ...valid(), patch: { ended_on: '2026-02-30' } }, { ...valid(), patch: { employment_status: 'employed' } }, { ...valid(), patch: { notes: 'x'.repeat(10001) } }, { ...valid(), entity: 'gift_recipient', patch: { actual_amount: -1 } }]) assert.throws(() => crm.commitBody(v), /BAD_BODY/);

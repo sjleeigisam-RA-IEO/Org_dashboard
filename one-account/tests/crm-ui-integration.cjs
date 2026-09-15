@@ -8,6 +8,8 @@ const os = require('node:os');
 const http = require('node:http');
 const assert = require('node:assert/strict');
 const classificationLabels = require('../lib/classification-labels.cjs');
+const { readView } = require('../lib/crm-db.cjs');
+const { projectRead } = require('../lib/crm-privacy.cjs');
 const {visibleAccounts}=require('../public/account-hierarchy.js');
 const workspace = path.resolve(__dirname, '../../..');
 const source = fs.readFileSync(path.join(workspace, '10. One Account/ONE_ACCOUNT_MAP_v1_7_RM_XLSX_260910.html'), 'utf8');
@@ -68,7 +70,17 @@ const server = http.createServer(async (req, res) => {
     if (action === 'account') { const id = url.searchParams.get('accountId'); body = { status: 'ok', account: catalog.accounts.find(a=>a.account_id===id), people: peopleFor(id),children:catalog.accounts.filter(a=>a.parent_account_id===id),parent_account:catalog.accounts.find(a=>a.account_id===accountMap.get(id)?.parent_account_id)||null }; }
     if (action === 'person') body = personDetail(url.searchParams.get('personId'));
     if (action === 'search') { const q = url.searchParams.get('q'); body = { status: 'ok', people: catalog.accounts.flatMap(a => peopleFor(a.account_id)).filter(p => [p.name, p.department, p.title, p.account_name].join(' ').includes(q)).slice(0, 100), truncated: false }; }
-    res.setHeader('Content-Type', 'application/json'); return res.end(JSON.stringify(body));
+    const publicBody = projectRead(readView(body, action), action);
+    assert.equal(publicBody.privacy.detailAccess, 'locked');
+    assert.equal(publicBody.privacy.canEdit, false);
+    for (const row of [publicBody, ...(publicBody.people || [])]) {
+      for (const key of ['contact_points', 'receiving_preferences', 'gift_recipients', 'life_events', 'field_claims', 'source_records', 'audit']) {
+        if (Object.hasOwn(row, key)) assert.deepEqual(row[key], []);
+      }
+    }
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Cache-Control', 'private, no-store, max-age=0');
+    return res.end(JSON.stringify(publicBody));
   }
   if (/^\/(?:crm(?:-bootstrap)?|shared-teams|account-hierarchy)\.(?:js|css)$/.test(url.pathname)) { res.setHeader('Content-Type', url.pathname.endsWith('.css') ? 'text/css' : 'text/javascript'); return res.end(fs.readFileSync(path.join(__dirname, '../public', url.pathname.slice(1)))); }
   res.setHeader('Content-Type', 'text/html; charset=utf-8'); res.end(injected);
@@ -139,17 +151,24 @@ const server = http.createServer(async (req, res) => {
     await page.getByRole('button', { name: '소속인물 보기', exact: true }).click();
     await page.locator('.oa-crm-person').first().waitFor();
     await page.locator('.oa-crm-person').first().click();
-    await page.getByRole('heading', { name: '연락·배송 정보', exact: true }).waitFor();
+    await page.getByRole('heading', { name: '기본 소속 정보', exact: true }).waitFor();
+    await page.getByText('상세정보 조회 인증 연결 예정', { exact: true }).waitFor();
+    assert.equal(await page.locator('.oa-crm-editor').count(), 0);
+    assert.equal(await page.getByRole('button', { name: '전체 명단 엑셀', exact: true }).isDisabled(), true);
     const personId = peopleFor(newAccount.account_id)[0].person_id;
     const contacts = personDetail(personId).contact_points.map(c => c.value).filter(Boolean);
-    // Capture export while PII is visibly mounted, then inspect only inside browser memory.
-    const exported = await page.evaluate(contactValues => {
+    const detailText = await page.locator('.oa-crm-drawer').textContent();
+    assert.equal(contacts.some(value => detailText.includes(value)), false);
+    // The basic profile is mounted; protected fixture values remain server-side.
+    // Inspect the returned offline copy in Node without sending private contacts to the browser.
+    const { html: savedHtml, ...exported } = await page.evaluate(() => {
       const html = buildSharedHtml('QA-OFFLINE-EXPANDED');
       const document = new DOMParser().parseFromString(html, 'text/html');
       const data = JSON.parse(document.querySelector('#embedded-data').textContent);
       const dynamic = document.querySelectorAll('[data-one-account-crm],.oa-crm-drawer,.oa-crm-editor,.oa-crm-account-section').length;
-      return { accounts: data.accounts.length, dynamicNodes: dynamic, privateContactLeaks: contactValues.filter(value => html.includes(value)).length, crmScripts: [...document.scripts].filter(script => /\/crm(?:-bootstrap)?\.js/.test(script.src)).length, rmAssignments: Object.keys(JSON.parse(document.querySelector('#sharedTeamState').textContent)).length };
-    }, contacts);
+      return { html, accounts: data.accounts.length, dynamicNodes: dynamic, crmScripts: [...document.scripts].filter(script => /\/crm(?:-bootstrap)?\.js/.test(script.src)).length, rmAssignments: Object.keys(JSON.parse(document.querySelector('#sharedTeamState').textContent)).length };
+    });
+    exported.privateContactLeaks = contacts.filter(value => savedHtml.includes(value)).length;
     assert.equal(exported.accounts, payload.accounts.length); assert.equal(exported.dynamicNodes, 0); assert.equal(exported.privateContactLeaks, 0); assert.equal(exported.crmScripts, 0); assert.equal(exported.rmAssignments, Object.keys(assignments).length);
     await page.screenshot({ path: path.join(output, 'person-real-desktop.png') });
     await page.setViewportSize({ width: 390, height: 844 });
