@@ -2,7 +2,7 @@
 
 // Shared-code login does not verify mailbox ownership. No session claim,
 // caller-supplied email, query flag, or environment switch unlocks CRM details.
-// A future verified-identity flow must replace this explicit locked policy.
+// Verified detail reads use a separate DB-validated and audited RPC. Lists always use this projection.
 const PRIVATE_ARRAYS = ['contact_points', 'receiving_preferences', 'gift_recipients', 'life_events', 'field_claims', 'source_records', 'audit'];
 const locked = () => ({ detailAccess: 'locked', identityVerified: false, canEdit: false });
 const own = (value, key) => value !== null && typeof value === 'object' && Object.hasOwn(value, key);
@@ -104,7 +104,7 @@ function projectRead(raw, action) {
 }
 
 function mutationDenied() {
-  return { code: 'CRM_IDENTITY_VERIFICATION_REQUIRED', message: '본인 인증이 연결될 때까지 고객 상세정보 조회와 수정을 잠금 처리했습니다.', privacy: locked() };
+  return { code: 'CRM_IDENTITY_VERIFICATION_REQUIRED', message: '회사메일 본인 인증 후 상세정보를 조회하고 저장할 수 있습니다.', privacy: locked() };
 }
 
 module.exports = { projectRead, locked, mutationDenied };

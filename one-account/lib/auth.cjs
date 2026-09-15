@@ -44,7 +44,7 @@ function json(res, status, body) {
 function sign(payload, key) { return crypto.createHmac('sha256', key).update(payload).digest('base64url'); }
 function makeSession(email, rememberMe, key, now = Math.floor(Date.now() / 1000)) {
   const duration = rememberMe ? REMEMBER_SECONDS : NORMAL_SECONDS;
-  const payload = Buffer.from(JSON.stringify({ v: 1, email, remember: rememberMe, iat: now, exp: now + duration })).toString('base64url');
+  const payload = Buffer.from(JSON.stringify({ v: 1, email, remember: rememberMe, iat: now, exp: now + duration, nonce: crypto.randomBytes(16).toString('base64url') })).toString('base64url');
   return { token: payload + '.' + sign(payload, key), expiresAt: now + duration, duration };
 }
 function verifySession(token, key, now = Math.floor(Date.now() / 1000)) {
@@ -57,6 +57,8 @@ function verifySession(token, key, now = Math.floor(Date.now() / 1000)) {
   try {
     const data = JSON.parse(Buffer.from(parts[0], 'base64url').toString('utf8'));
     if (data.v !== 1 || !emailAddress(data.email) || typeof data.remember !== 'boolean') return null;
+    // Existing v1 sessions without a nonce remain valid until their original expiry.
+    if (Object.hasOwn(data, 'nonce') && (typeof data.nonce !== 'string' || !/^[A-Za-z0-9_-]{22}$/.test(data.nonce))) return null;
     if (!Number.isSafeInteger(data.iat) || !Number.isSafeInteger(data.exp) || data.iat > now + 60 || data.exp <= now) return null;
     const maxDuration = data.remember ? REMEMBER_SECONDS : NORMAL_SECONDS;
     if (data.exp <= data.iat || data.exp - data.iat > maxDuration) return null;
@@ -84,18 +86,18 @@ function sameOrigin(req) {
     return origin.host === req.headers.host && (origin.protocol === 'https:' || (origin.protocol === 'http:' && /^(127\.0\.0\.1|localhost)(:\d+)?$/.test(origin.host)));
   } catch { return false; }
 }
-async function readBody(req) {
+async function readBody(req, maxBytes = 4096) {
   if (!String(req.headers['content-type'] || '').toLowerCase().startsWith('application/json')) throw new Error('BAD_BODY');
-  if (Number(req.headers['content-length'] || 0) > 4096) throw new Error('BAD_BODY');
+  if (Number(req.headers['content-length'] || 0) > maxBytes) throw new Error('BAD_BODY');
   if (req.body !== undefined) {
     const raw = typeof req.body === 'string' || Buffer.isBuffer(req.body) ? req.body.toString() : JSON.stringify(req.body);
-    if (Buffer.byteLength(raw) > 4096) throw new Error('BAD_BODY');
+    if (Buffer.byteLength(raw) > maxBytes) throw new Error('BAD_BODY');
     return JSON.parse(raw);
   }
   let raw = '';
   for await (const chunk of req) {
     raw += chunk.toString();
-    if (Buffer.byteLength(raw) > 4096) throw new Error('BAD_BODY');
+    if (Buffer.byteLength(raw) > maxBytes) throw new Error('BAD_BODY');
   }
   return JSON.parse(raw);
 }

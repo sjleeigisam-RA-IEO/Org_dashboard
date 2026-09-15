@@ -4,9 +4,14 @@ const SENDER = 'sjlee.igisam@gmail.com';
 const SENDER_NAME = '기획추진센터';
 const SITE = 'https://one-account-nine.vercel.app/';
 
-function settings() {
+function smtpSettings() {
   if (process.env.ONE_ACCOUNT_MAIL_ENABLED !== 'true') throw new Error('MAIL_DISABLED');
   const password = String(process.env.ONE_ACCOUNT_GMAIL_APP_PASSWORD || '').replace(/\s/g, '');
+  if (!/^[a-z]{16}$/.test(password)) throw new Error('MAIL_NOT_CONFIGURED');
+  return { password };
+}
+function settings() {
+  const { password } = smtpSettings();
   const code = process.env.ONE_ACCOUNT_DELIVERY_CODE || '';
   if (!/^[a-z]{16}$/.test(password) || !code || !auth.validCode(code, auth.config().code)) {
     throw new Error('MAIL_NOT_CONFIGURED');
@@ -14,6 +19,7 @@ function settings() {
   return { password, code };
 }
 function enabled() { try { settings(); return true; } catch { return false; } }
+function verificationEnabled() { try { smtpSettings(); return true; } catch { return false; } }
 function escape(value) { return value.replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c])); }
 function message(email, code) {
   const recipient = auth.emailAddress(email);
@@ -28,8 +34,19 @@ function message(email, code) {
     disableUrlAccess: true,
   };
 }
-async function send(email) {
-  const { password, code } = settings();
+function verificationMessage(email, code) {
+  const recipient = auth.emailAddress(email);
+  if (!recipient) throw new Error('INVALID_RECIPIENT');
+  if (typeof code !== 'string' || !/^\d{6}$/.test(code)) throw new Error('INVALID_VERIFICATION_CODE');
+  return {
+    from: { name: SENDER_NAME, address: SENDER }, to: [{ address: recipient }],
+    subject: '[One Account] 본인 확인 인증번호',
+    text: `기획추진센터 One Account\n\n본인 확인 인증번호: ${code}\n\n요청한 화면에서 10분 안에 입력해 주세요. 인증번호는 한 번만 사용할 수 있습니다.\n인증 후 개인정보 조회와 입력·수정 권한은 최대 8시간 유지됩니다. 입력·변경 내역에는 인증한 회사메일과 변경 전후 값이 기록됩니다.\n이 번호를 다른 사람에게 전달하지 마세요. 직접 요청하지 않으셨다면 무시하셔도 됩니다.`,
+    html: `<div style="font-family:Arial,sans-serif;color:#18334e;max-width:520px;padding:28px"><p>기획추진센터 · One Account</p><h1 style="font-size:24px">본인 확인 인증번호</h1><p style="padding:20px;background:#eef3f8;font-size:28px;font-weight:bold;letter-spacing:6px">${code}</p><p>요청한 화면에서 10분 안에 입력해 주세요. 한 번만 사용할 수 있습니다.</p><p>인증 후 개인정보 조회와 입력·수정 권한은 최대 8시간 유지됩니다. 변경 내역에는 인증한 회사메일과 변경 전후 값이 기록됩니다.</p><p>이 번호를 다른 사람에게 전달하지 마세요.<br>직접 요청하지 않으셨다면 무시하셔도 됩니다.</p></div>`,
+    disableFileAccess: true, disableUrlAccess: true,
+  };
+}
+async function deliver(password, makeMessage) {
   const nodemailer = require('nodemailer');
   const transport = nodemailer.createTransport({
     host: 'smtp.gmail.com', port: 465, secure: true,
@@ -40,8 +57,10 @@ async function send(email) {
     tls: { minVersion: 'TLSv1.2' },
   });
   try {
-    const result = await transport.sendMail(message(email, code));
+    const result = await transport.sendMail(makeMessage());
     if (!result.accepted?.length || result.rejected?.length) throw new Error('MAIL_NOT_ACCEPTED');
   } finally { transport.close(); }
 }
-module.exports = { settings, enabled, message, send, SENDER, SENDER_NAME };
+async function send(email) { const { password, code } = settings(); return deliver(password, () => message(email, code)); }
+async function sendVerification(email, code) { const { password } = smtpSettings(); return deliver(password, () => verificationMessage(email, code)); }
+module.exports = { settings, enabled, message, send, verificationEnabled, verificationMessage, sendVerification, SENDER, SENDER_NAME };
