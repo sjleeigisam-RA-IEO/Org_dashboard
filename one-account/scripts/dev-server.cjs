@@ -4,9 +4,9 @@ const fs = require('node:fs');
 const path = require('node:path');
 const base = path.join(__dirname, '..');
 process.chdir(base);
-const routes = { '/api/crm-identity': require('../api/crm-identity.js'), '/api/crm': require('../api/crm.js'), '/api/teams': require('../api/teams.js'), '/api/history': require('../api/history.js'), '/api/send-code': require('../api/send-code.js'), '/api/auth': require('../api/auth.js'), '/api/logout': require('../api/logout.js'), '/api/app': require('../api/app.js'), '/app': require('../api/app.js'), '/api/dashboard': require('../api/dashboard.js') };
+const routes = { '/api/account': require('../api/account.js'), '/api/crm-identity': require('../api/crm-identity.js'), '/api/crm': require('../api/crm.js'), '/api/teams': require('../api/teams.js'), '/api/history': require('../api/history.js'), '/api/send-code': require('../api/send-code.js'), '/api/auth': require('../api/auth.js'), '/api/logout': require('../api/logout.js'), '/api/app': require('../api/app.js'), '/app': require('../api/app.js'), '/api/dashboard': require('../api/dashboard.js') };
 const publicFiles = { '/shared-teams.js': ['shared-teams.js','text/javascript; charset=utf-8'], '/shared-teams.css': ['shared-teams.css','text/css; charset=utf-8'], '/': ['index.html','text/html; charset=utf-8'], '/index.html': ['index.html','text/html; charset=utf-8'], '/login.css': ['login.css','text/css; charset=utf-8'], '/login.js': ['login.js','text/javascript; charset=utf-8'], '/session.js': ['session.js','text/javascript; charset=utf-8'] };
-for (const name of ['crm.js','crm-bootstrap.js','crm.css']) publicFiles['/'+name] = [name,name.endsWith('.css')?'text/css; charset=utf-8':'text/javascript; charset=utf-8'];
+for (const name of ['crm.js','crm-bootstrap.js','crm.css','account-hierarchy.js','account-legacy-bridge.js','account-workspace.js','account-workspace.css']) publicFiles['/'+name] = [name,name.endsWith('.css')?'text/css; charset=utf-8':'text/javascript; charset=utf-8'];
 const server = http.createServer(async (req, res) => {
   try {
     const pathname = new URL(req.url, 'http://localhost').pathname;
