@@ -73,3 +73,13 @@ test('exposure filters use current classification and preserve source code, fina
   assert.equal(row.piscfh_code,null); assert.equal(row.source_piscfh_code,'C');
   assert.deepEqual(untouched,{account_id:'B',piscfh_code:'P'});
 });
+
+
+test('manual account metadata updates the display name without changing source relations or IDs', () => {
+ const existing={account_id:'A',display_name:'Source',aliases:[],piscfh:{},exposures:[{id:'E'}],team:{primary:'RM'}};
+ const accounts=[existing],map=new Map([['A',existing]]);
+ mergeCatalog({accounts:[{account_id:'A',name:'Edited',aliases:['Source'],profile_revision:1,piscfh:'P',classification_review:{rule_version:'account-workspace-v1',review_required:true}}]},accounts,map);
+ assert.equal(existing.display_name,'Edited');assert.equal(existing.account_id,'A');
+ assert.deepEqual(existing.exposures,[{id:'E'}]);assert.deepEqual(existing.team,{primary:'RM'});
+ assert.equal(existing.crm_profile_revision,1);
+});

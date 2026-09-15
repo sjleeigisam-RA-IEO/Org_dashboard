@@ -114,12 +114,12 @@ function harness(responder, initial = fixtureCatalog) {
   }
   const topbar = new Node('header');
   const docBody = new Node('body');
-  const requests = [];
+  const requests = [], events = [];
   const sandbox = {
     location: { protocol: 'https:' }, crypto, URLSearchParams, setTimeout: schedule, clearTimeout: cancelTimer,
     document: { body: docBody, activeElement: new Node('button'), createElement: tag => new Node(tag), querySelector: selector => selector === '.topbar' ? topbar : null, querySelectorAll: () => [] },
     CustomEvent: class { constructor(name, options) { this.type = name; this.detail = options.detail; } },
-    dispatchEvent() {}, ONE_ACCOUNT_CRM_INITIAL_CATALOG: initial,
+    dispatchEvent(event) { events.push(event); }, ONE_ACCOUNT_CRM_INITIAL_CATALOG: initial,
     fetch: async (url, options) => {
       requests.push({ url, ...options });
       const response = await responder(url, options, requests);
@@ -129,7 +129,7 @@ function harness(responder, initial = fixtureCatalog) {
   sandbox.window = sandbox;
   const context = vm.createContext(sandbox);
   vm.runInContext(fs.readFileSync(require.resolve('../public/crm.js'), 'utf8'), context);
-  return { context, nodes, longTimers, requests, crm: sandbox.OneAccountCRM, button: text => nodes.findLast(node => node.tag === 'button' && node.textContent === text), form: () => nodes.findLast(node => node.tag === 'form'), field: name => nodes.findLast(node => node.name === name), dialog: () => nodes.find(node => node.attributes['aria-labelledby'] === 'oa-crm-title') };
+  return { context, nodes, longTimers, requests, events, crm: sandbox.OneAccountCRM, button: text => nodes.findLast(node => node.tag === 'button' && node.textContent === text), form: () => nodes.findLast(node => node.tag === 'form'), field: name => nodes.findLast(node => node.name === name), dialog: () => nodes.find(node => node.attributes['aria-labelledby'] === 'oa-crm-title') };
 }
 const tick = () => new Promise(resolve => setImmediate(resolve));
 
@@ -490,4 +490,76 @@ test('remaining verified forms keep person identity separate and obey affiliatio
   assert.equal(lastPayload().entity, 'gift_recipient'); assert.equal(lastPayload().patch.campaign_id, 'CAMPAIGN');
   assert.equal(lastPayload().patch.delivery_status, 'unknown'); assert.equal(lastPayload().patch.send_target, null);
   for (const request of mutations()) assert.doesNotThrow(() => require('../lib/crm-db.cjs').commitBody(JSON.parse(request.body)));
+});
+
+test('workspace mounts the same safe people table directly with department/employment filters and routed callbacks', async () => {
+  const h = harness(async () => ({ body: fixtureCatalog })); await tick();
+  const people = [
+    { person_id: 'P1', account_id: 'A', account_name: '테스트 공제회', name: '팀장 인물', department: '테스트 공제회;투자팀', title: '팀장/부장', employment_status: 'current', contact_count: 1 },
+    { person_id: 'P2', account_id: 'A', account_name: '테스트 공제회', name: '대표 인물', department: '', title: '대표이사', employment_status: 'former', contact_count: 1 },
+    { person_id: 'P3', account_id: 'A', account_name: '테스트 공제회', name: '과장 인물', department: '투자팀', title: '과장', employment_status: 'unknown', contact_count: 0 }
+  ];
+  people.forEach(person => { for (const field of ['contact_points', 'receiving_preferences', 'gift_recipients']) Object.defineProperty(person, field, { get() { throw new Error('Protected field read'); } }); });
+  const container = h.context.document.createElement('section'), selected = [];
+  h.crm.mountPeople(container, { account: fixtureCatalog.accounts[0], people }, { onPerson: (id, accountId) => selected.push({ id, accountId }) });
+  const renderedRows = () => {
+    const table = container.children[2].children[0].children[0];
+    return table.children.find(child => child.tag === 'tbody').children.map(row => row.children.map(cell => cell.textContent));
+  };
+  assert.deepEqual(renderedRows().map(row => row[0]), ['대표 인물퇴사·이직', '팀장 인물', '과장 인물']);
+  assert.equal(renderedRows()[1][1], '투자팀'); assert.equal(renderedRows()[1][2], '팀장'); assert.equal(renderedRows()[1][3], '부장');
+  assert.deepEqual(renderedRows().map(row => row[5]), ['', '', '']);
+  assert.deepEqual(renderedRows().map(row => row[4]), ['*', '*', '']);
+  h.button('팀장 인물').click(); assert.deepEqual(selected, [{ id: 'P1', accountId: 'A' }]); assert.equal(h.dialog().open, false);
+  const department = h.field('people_department'), employment = h.field('people_employment');
+  department.value = '투자팀'; department.listeners.change(); assert.equal(renderedRows().length, 2);
+  employment.value = 'current'; employment.listeners.change(); assert.deepEqual(renderedRows().map(row => row[0]), ['팀장 인물']);
+  department.value = '__blank__'; department.listeners.change(); assert.match(container.textContent, /검색 조건에 맞는 인물이 없습니다/);
+  assert.equal(h.requests.length, 0);
+});
+
+test('workspace group rows keep child account routing and person drawer lifecycle events contain only identifiers', async () => {
+  const h = harness(async url => ({ body: url === '/api/crm-identity' ? { email: 'operator@igisam.com' } : fixturePerson() })); await tick();
+  const selections = [], container = h.context.document.createElement('section');
+  h.crm.mountPeople(container, { account: { account_id: 'G', name: '그룹', account_kind: 'group' }, children: fixtureCatalog.accounts, people: [{ person_id: 'PERSON', account_id: 'A', account_name: '테스트 공제회', name: '인물', title: '부장' }] }, { onAccount: id => selections.push(id) });
+  h.button('테스트 공제회').click(); assert.deepEqual(selections, ['A']);
+  await h.crm.openPerson('PERSON', { account_id: 'A' });
+  assert.equal(h.dialog().open, true); assert.doesNotMatch(h.dialog().textContent, /전체 기관·인물/);
+  const opened = h.events.filter(event => event.type === 'oa:crm-person-open');
+  assert.deepEqual(JSON.parse(JSON.stringify(opened[0].detail)), { personId: 'PERSON', accountId: 'A' });
+  assert.equal(h.crm.closePerson(), true);
+  assert.deepEqual(JSON.parse(JSON.stringify(h.events.findLast(event => event.type === 'oa:crm-person-close').detail)), { personId: 'PERSON', accountId: 'A' });
+});
+
+test('header identity authentication emits safe state without reopening the legacy CRM drawer', async () => {
+  let verified = false;
+  const h = harness(async (url, options) => {
+    assert.equal(url, '/api/crm-identity');
+    if (options.method === 'POST' && JSON.parse(options.body).action === 'verify') verified = true;
+    return { body: verified ? { ...verifiedIdentity(), secret: 'MUST_NOT_ESCAPE' } : { email: 'operator@igisam.com', identityVerified: false, secret: 'MUST_NOT_ESCAPE' } };
+  }); await tick();
+  await h.crm.openIdentity(); h.field('code').value = '123456'; await h.form().listeners.submit({ preventDefault() {} });
+  assert.equal(h.dialog().open, false); assert.equal(h.requests.filter(request => request.url.includes('action=')).length, 0);
+  const state = h.events.findLast(event => event.type === 'oa:crm-identity').detail;
+  assert.deepEqual(Object.keys(state).sort(), ['canEdit', 'email', 'identityVerified', 'verifiedUntil']);
+  assert.equal(state.identityVerified, true); assert.doesNotMatch(JSON.stringify(h.events), /MUST_NOT_ESCAPE/);
+  await h.crm.openIdentity(); assert.equal(h.dialog().open, false);
+});
+
+test('verified editing stays inline, protects unsaved work, clears cancelled fields and emits safe save notifications', async () => {
+  const h = harness(async (url, options) => ({ body: url === '/api/crm-identity' ? verifiedIdentity() : options.method === 'POST' ? { status: 'committed', revision: 2 } : url.includes('action=person') ? verifiedPerson() : fixtureCatalog }));
+  await tick(); await h.crm.openPerson('PERSON', 'A'); h.button('성명·메모 수정').click();
+  const editor = h.nodes.findLast(node => node.className === 'oa-crm-editor');
+  assert.equal(editor.tag, 'section'); assert.equal(editor.open, false); assert.ok(h.dialog().children[1].children.includes(editor));
+  assert.equal(h.crm.hasUnsavedChanges(), false);
+  const originalInput = h.field('name'); originalInput.value = '변경한 성명';
+  assert.equal(h.crm.hasUnsavedChanges(), true); assert.equal(h.crm.closePerson(), false); assert.equal(h.dialog().open, true);
+  assert.equal(await h.crm.openPerson('OTHER', 'A'), false);
+  assert.match(h.dialog().textContent, /저장하거나 취소한 뒤 이동/);
+  h.button('취소').click(); assert.equal(originalInput.value, ''); assert.equal(h.crm.hasUnsavedChanges(), false);
+  h.button('성명·메모 수정').click(); h.field('name').value = '저장 성명'; await h.form().listeners.submit({ preventDefault() {} });
+  const saved = h.events.findLast(event => event.type === 'oa:crm-saved');
+  assert.deepEqual(JSON.parse(JSON.stringify(saved.detail)), { personId: 'PERSON', accountId: 'A', entity: 'person', recordId: 'PERSON' });
+  assert.doesNotMatch(JSON.stringify(saved.detail), /저장 성명|02-0000/); assert.equal(h.crm.hasUnsavedChanges(), false);
+  assert.equal(h.crm.closePerson(), true);
 });

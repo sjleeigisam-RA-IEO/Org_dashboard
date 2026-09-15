@@ -71,6 +71,7 @@ function adapterHarness(responder, options = {}) {
       return { status: result.status || 200, ok: (result.status || 200) < 400, json: async () => result.body };
     },
   });
+  context.window = context; context.dispatchEvent = () => {}; context.CustomEvent = class { constructor(type, options) { this.type = type; this.detail = options?.detail; } };
   vm.runInContext(`
     const TEAM_STORAGE_KEY='legacy', SNAPSHOT_ID='snapshot', TEAM_ROLE_LABEL={primary:'Primary RM',backup:'Backup RM',sponsor:'Sponsor RM'};
     let teamAssignments=JSON.parse(localStorage.getItem(TEAM_STORAGE_KEY));
@@ -151,4 +152,31 @@ test('failed initial authentication blocks editing while retaining the legacy dr
   assert.throws(() => harness.edit({ A: team('draft') }), /공용 저장 상태/);
   assert.equal(harness.storage.get('legacy'), harness.initialLegacy);
   assert.equal(harness.assignments().A.primaryRmId, 'legacy');
+});
+
+
+test('account workspace refresh reads committed state without consuming or rebasing batch drafts', async () => {
+  let latest = serverState();
+  const harness = adapterHarness(async () => ({ body: latest }));
+  await harness.settle();
+  harness.edit({ A: team('draft') });
+  const before = JSON.stringify(harness.recovery());
+  latest = serverState(2, { A: team('backup'), B: team('server') });
+  const read = await harness.context.OneAccountShared.refresh();
+  assert.equal(read.version, 2);
+  assert.equal(read.teams.B.primaryRmId, 'server');
+  assert.equal(harness.assignments().A.primaryRmId, 'draft');
+  assert.equal(JSON.stringify(harness.recovery()), before);
+  assert.equal(harness.context.OneAccountShared.getState().version, 1);
+});
+
+test('clean legacy editor adopts account workspace refresh and shared cleared roles', async () => {
+  let latest = serverState();
+  const harness = adapterHarness(async () => ({ body: latest }));
+  await harness.settle();
+  latest = serverState(2, {});
+  await harness.context.OneAccountShared.refresh();
+  assert.deepEqual(harness.assignments(), {});
+  assert.equal(harness.context.OneAccountShared.getState().version, 2);
+  assert.equal(harness.context.OneAccountShared.hasUnsaved(), false);
 });
