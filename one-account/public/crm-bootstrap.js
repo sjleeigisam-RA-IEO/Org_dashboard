@@ -20,6 +20,7 @@
       delegated_relationship_summary: { relationship_count: 0, fund_group_count: 0, beneficiary_commitment: null, paid_in_availability: 'NOT_PROVIDED_BY_SOURCE' },
       crm_only: true, crm_account_id: row.contact_account_id || row.account_id,
       crm_classification_review: review,
+      crm_profile_revision: Number.isSafeInteger(row.profile_revision) ? row.profile_revision : 0,
       crm_people_count: Number.isSafeInteger(row.people_count) && row.people_count >= 0 ? row.people_count : 0,
       parent_account_id: row.parent_account_id || null,
       account_kind: row.account_kind === 'group' ? 'group' : 'organization',
@@ -38,6 +39,11 @@
         // The financial relationship graph and original RM identity stay intact.
         existing.crm_account_id = row.crm_account_id;
         existing.crm_people_count = row.crm_people_count;
+        if (row.crm_profile_revision > 0) {
+          existing.display_name = row.display_name;
+          existing.aliases = row.aliases;
+          existing.crm_profile_revision = row.crm_profile_revision;
+        }
         for (const key of ['parent_account_id','account_kind','hierarchy_label','hierarchy_note','children_count']) existing[key] = row[key];
         if (row.crm_classification_review) {
           const reviewed = row.crm_classification_review;
@@ -90,6 +96,10 @@
     buildSharedHtml = function (snapshotId) {
       const parsed = new DOMParser().parseFromString(previous(snapshotId), 'text/html');
       parsed.querySelectorAll('[data-one-account-crm]').forEach(node => node.remove());
+      parsed.body.classList.remove('oa-workspace-mode', 'oa-workspace-legacy-mode', 'oa-workspace-active');
+      parsed.body.removeAttribute('data-oa-workspace-view');
+      const legacyApp = parsed.querySelector('body > .app');
+      if (legacyApp) { legacyApp.hidden = false; legacyApp.removeAttribute('aria-hidden'); }
       // Only institution metadata joins the offline copy. People remain in the API.
       const embedded = parsed.querySelector('#embedded-data');
       if (embedded) embedded.textContent = JSON.stringify(D).replace(/</g, '\\u003c');
@@ -124,6 +134,9 @@
     // Catalog expansion must precede RM validation, including recovery drafts.
     await loadScript('/shared-teams.js', 'oa-shared-adapter', true);
     await loadScript('/crm.js', 'oa-crm-adapter', false);
+    await window.ONE_ACCOUNT_SHARED_READY;
+    await loadScript('/account-legacy-bridge.js', 'oa-account-legacy-bridge', false);
+    await loadScript('/account-workspace.js', 'oa-account-workspace', false);
     protectOfflineCopy();
     return catalog;
   })().catch(() => { showUnavailable(); return null; });

@@ -115,6 +115,28 @@
     renderKpis(); renderList(); renderSelection(); renderLookthrough(); renderReviews(); renderQuality();
     if (document.querySelector('#rmDrawer.open')) { renderRmCandidates(); updateRmDrawerFooter(); }
   }
+  function committedState(value = common) {
+    return { teams: copy(value?.assignments || {}), version: value?.revision ?? null };
+  }
+  function announceCommitted() {
+    window.dispatchEvent(new CustomEvent('oa:teams-changed', { detail: committedState() }));
+  }
+  // Account saves never consume an uncommitted batch draft. Read a fresh snapshot
+  // independently, and adopt it in the legacy editor only while it is clean.
+  async function refreshCommitted() {
+    const value = await request('/api/teams');
+    if (ready && !busy && !pending && !dirtyChanges().length) {
+      common = value;
+      teamAssignments = cleanTeamAssignments(value.assignments);
+      renderDashboard(); updateControls(); announceCommitted();
+    }
+    return committedState(value);
+  }
+  window.OneAccountShared = {
+    getState: () => committedState(),
+    hasUnsaved: () => !!(pending || dirtyChanges().length),
+    refresh: refreshCommitted,
+  };
   function writeRecovery(next) {
     localStorage.setItem(recoveryKey, JSON.stringify(next));
     recovered = next;
@@ -279,6 +301,7 @@
       pending = null;
       try { writeRecovery({ ...recovered, active: null, pendingRequest: null }); } catch { /* Server save is already confirmed; retain local recovery. */ }
       renderDashboard();
+      announceCommitted();
       status(laterRevision ? `저장 결과를 확인하고 최신 v${saved.revision}을 불러왔습니다.` : `공용 저장 완료 · ${describeVersion(saved)}`);
     } catch (error) {
       if (error.status === 409) {
@@ -324,6 +347,7 @@
       teamAssignments = cleanTeamAssignments(pending?.assignments || value.assignments);
       ready = true;
       renderDashboard(); dialog.close();
+      announceCommitted();
       const count = listRecoveries().length;
       status(pending ? '결과가 확인되지 않은 저장 요청이 있습니다. ‘저장 결과 재확인’을 눌러주세요.' : `${describeVersion(value)}${count ? ` · 브라우저 수정본 ${count}개는 비교 후 불러올 수 있습니다.` : ' · 모든 변경이 저장되어 있습니다.'}`);
     } catch (error) { status(`${error.message} 기존 브라우저 수정본은 보존되어 있습니다.`, true); }
@@ -406,5 +430,5 @@
     } catch (error) { if (view.generation === dialogGeneration) loading.textContent = error.message; }
   }
   updateControls();
-  loadLatest();
+  window.ONE_ACCOUNT_SHARED_READY = loadLatest();
 })();

@@ -138,6 +138,9 @@
   let searchTimer;
   let identity = null, identityGeneration = 0, identityTimer, currentPerson = null;
   let editor = null, editorGeneration = 0, identityDialog = null;
+  let editorFields = [], editorStatus = null, editorBusy = false, editorUncertain = false;
+  let workspaceCallbacks = null;
+  const emit = (name, detail) => window.dispatchEvent(new CustomEvent(name, { detail }));
   const el = (tag, text, className) => {
     const node = document.createElement(tag);
     if (text !== undefined) node.textContent = text;
@@ -194,14 +197,38 @@
   heading.id = 'oa-crm-title';
   const headingBlock = el('div');
   headingBlock.append(breadcrumb, heading);
-  const closeButton = button('닫기', () => drawer.close(), 'oa-crm-close');
+  const closeButton = button('닫기', () => closePerson(), 'oa-crm-close');
   head.append(headingBlock, closeButton);
   const body = el('div', undefined, 'oa-crm-body');
   const footer = el('footer', '기관과 소속인물의 기본 정보를 조회합니다.', 'oa-crm-footer');
   drawer.append(head, body, footer);
   document.body.append(drawer);
-  drawer.addEventListener('close', () => { viewGeneration += 1; clearTimeout(searchTimer); clearEditor(); currentPerson = null; body.replaceChildren(); focusReturn?.focus?.(); });
-  drawer.addEventListener('click', e => { if (e.target === drawer) drawer.close(); });
+  drawer.addEventListener('close', () => {
+    const previous = { ...view };
+    viewGeneration += 1; clearTimeout(searchTimer); clearEditor(); currentPerson = null; body.replaceChildren(); focusReturn?.focus?.();
+    if (previous.kind === 'person') emit('oa:crm-person-close', { personId: previous.personId, accountId: previous.accountId });
+  });
+  drawer.addEventListener('cancel', e => { e.preventDefault(); closePerson(); });
+  drawer.addEventListener('click', e => { if (e.target === drawer) closePerson(); });
+  function hasUnsavedChanges() {
+    return Boolean(editor && (editorBusy || editorUncertain || editorFields.some(({ input, initial }) => input.value !== initial)));
+  }
+  function canLeave() {
+    if (!hasUnsavedChanges()) return true;
+    if (editorStatus) { editorStatus.textContent = editorBusy ? '저장 중입니다. 잠시 기다려 주세요.' : '수정 내용을 저장하거나 취소한 뒤 이동해 주세요.'; editorStatus.focus(); }
+    editor?.scrollIntoView?.({ block: 'nearest', behavior: 'smooth' });
+    return false;
+  }
+  function closePerson() {
+    if (!canLeave()) return false;
+    if (drawer.open) drawer.close();
+    return true;
+  }
+  function navigateAccount(accountId) {
+    if (workspaceCallbacks?.onAccount) {
+      if (closePerson()) workspaceCallbacks.onAccount(accountId);
+    } else openAccount(accountId);
+  }
 
   async function requestJson(url, payload) {
     const response = await fetch(url, {
@@ -281,6 +308,7 @@
     finally { if (generation === loadGeneration) refreshButton.disabled = false; }
   }
   function show(title, next) {
+    if (!canLeave()) return null;
     clearEditor(); currentPerson = null;
     if (!drawer.open) { focusReturn = document.activeElement; drawer.showModal(); }
     view = next;
@@ -291,10 +319,11 @@
     return ++viewGeneration;
   }
   function drawBreadcrumb(next) {
-    breadcrumb.replaceChildren(button('전체 기관·인물', () => openAll()));
+    breadcrumb.replaceChildren();
+    if (!workspaceCallbacks) breadcrumb.append(button('전체 기관·인물', () => openAll()));
     const path = accountPath(next.accountId, [...catalogById.values()]);
-    path.forEach(account => breadcrumb.append(el('span', '›'), button(account.name || '기관', () => openAccount(account.account_id))));
-    if (next.accountId && !path.length) breadcrumb.append(el('span', '›'), button('기관', () => openAccount(next.accountId)));
+    path.forEach(account => breadcrumb.append(el('span', '›'), button(account.name || '기관', () => navigateAccount(account.account_id))));
+    if (next.accountId && !path.length) breadcrumb.append(el('span', '›'), button('기관', () => navigateAccount(next.accountId)));
     if (next.kind === 'person') breadcrumb.append(el('span', '› 인물 상세'));
   }
   function searchInput(label, placeholder, onInput) {
@@ -326,11 +355,12 @@
     });
     table.append(head, body); wrapper.append(table); return wrapper;
   }
-  function personTable(people, showAccount = false, title = '소속인물') {
+  function personTable(people, showAccount = false, title = '소속인물', callbacks = null, accountContext = {}) {
     const headers = [...(showAccount ? ['기관'] : []), '성명', '부서', '직책', '직급', '연락처', '사내 컨택포인트'];
     const rows = people.map(person => {
       const name = el('div', undefined, 'oa-crm-name-cell');
-      const open = button(displayValue(person.name), () => openPerson(person.person_id, person.account_id || view.accountId), 'oa-crm-person');
+      const accountId = person.account_id || accountContext.account_id || view.accountId;
+      const open = button(displayValue(person.name), () => (callbacks?.onPerson || openPerson)(person.person_id, accountId), 'oa-crm-person');
       if (!displayValue(person.name)) open.setAttribute('aria-label', '인물 상세 열기');
       name.append(open);
       if (person.employment_status === 'former') name.append(badge(labels.employment.former, 'is-muted'));
@@ -339,10 +369,39 @@
       const role = el('span', parts.position); role.title = parts.raw;
       const rank = el('span', parts.rank); rank.title = parts.raw;
       const contact = summary.contact ? lockHint(el('span', summary.contact, 'oa-crm-contact-lock'), '연락처 잠김') : '';
-      const account = showAccount ? button(person.account_name || catalogById.get(person.account_id)?.name || '', () => openAccount(person.account_id), 'oa-crm-table-link') : null;
-      return [...(showAccount ? [account] : []), name, departmentText(person, catalogById.get(person.account_id)), role, rank, contact, summary.internalContact];
+      const account = showAccount ? button(person.account_name || catalogById.get(accountId)?.name || '', () => (callbacks?.onAccount || navigateAccount)(accountId), 'oa-crm-table-link') : null;
+      return [...(showAccount ? [account] : []), name, departmentText(person, catalogById.get(accountId) || accountContext), role, rank, contact, summary.internalContact];
     });
     return dataTable(title, headers, rows, `oa-crm-people-table${showAccount ? ' oa-crm-search-people-table' : ''}`);
+  }
+  function mountPeople(container, result = {}, callbacks = {}) {
+    workspaceCallbacks = callbacks;
+    drawer.dataset.workspace = 'true';
+    container.dataset.crmPeople = '';
+    const account = result.account || {};
+    if (account.account_id) catalogById.set(account.account_id, { ...catalogById.get(account.account_id), ...account });
+    list(result.children).forEach(child => catalogById.set(child.account_id, { ...catalogById.get(child.account_id), ...child }));
+    const people = list(result.people), filters = el('div', undefined, 'oa-crm-people-filters');
+    let query = '', department = '', employment = '';
+    const results = el('div'), status = el('p', '', 'oa-crm-people-count');
+    status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
+    const draw = () => {
+      const rows = sortedPeople(people, query).filter(person => (!department || (department === '__blank__' ? !departmentText(person, catalogById.get(person.account_id) || account) : departmentText(person, catalogById.get(person.account_id) || account) === department)) && (!employment || (person.employment_status || 'unknown') === employment));
+      status.textContent = `${personCount(rows).toLocaleString()}명 · 직책·직급순`;
+      results.replaceChildren(rows.length ? personTable(rows, account.account_kind === 'group', '소속인물', callbacks, account) : empty(people.length ? '검색 조건에 맞는 인물이 없습니다.' : '등록된 소속인물이 없습니다.'));
+    };
+    const select = (label, name, choices, change) => {
+      const wrapper = el('label', undefined, 'oa-crm-people-filter'); wrapper.append(el('span', label));
+      const input = el('select'); input.name = name;
+      choices.forEach(([value, text]) => { const option = el('option', text); option.value = value; input.append(option); });
+      input.addEventListener('change', () => { change(input.value); draw(); }); wrapper.append(input); return wrapper;
+    };
+    const departments = [...new Set(people.map(person => departmentText(person, catalogById.get(person.account_id) || account)).filter(Boolean))].sort(compare);
+    filters.append(searchInput('소속인물 검색', '이름, 부서, 직책', value => { query = value; draw(); }),
+      select('부서', 'people_department', [['', '전체 부서'], ...departments.map(value => [value, value]), ...(people.some(person => !departmentText(person, catalogById.get(person.account_id) || account)) ? [['__blank__', '부서 미입력']] : [])], value => { department = value; }),
+      select('재직', 'people_employment', [['', '전체 재직 상태'], ['current', labels.employment.current], ['former', labels.employment.former], ['unknown', '재직 상태 미입력']], value => { employment = value; }));
+    container.replaceChildren(filters, status, results); draw();
+    return { refresh: draw };
   }
   function peopleGroups(container, people, query = '', showAccount = false) {
     container.replaceChildren();
@@ -380,6 +439,7 @@
   }
   async function openAll() {
     const generation = show('기관과 소속인물', { kind: 'all', accountId: null, personId: null });
+    if (generation == null) return;
     if (!catalog) await refreshIndex();
     if (generation !== viewGeneration || !drawer.open) return;
     if (!catalog) { failure(new Error('공용 고객 정보에 연결되지 않았습니다.'), openAll); return; }
@@ -418,6 +478,7 @@
   }
   async function openAccount(accountId) {
     const generation = show(catalogById.get(accountId)?.name || '기관 소속인물', { kind: 'account', accountId, personId: null });
+    if (generation == null) return;
     try {
       const result = await api({ action: 'account', accountId });
       if (generation !== viewGeneration || !drawer.open) return;
@@ -484,11 +545,18 @@
   }
   function clearEditor() {
     editorGeneration += 1;
-    if (editor) { editor.querySelectorAll('input,textarea').forEach(input => { input.value = ''; }); editor.replaceChildren(); if (editor.open) editor.close(); }
+    editorFields.forEach(({ input }) => { input.value = ''; });
+    if (editor) { editor.querySelectorAll('input,textarea,select').forEach(input => { input.value = ''; }); editor.replaceChildren(); editor.remove(); }
+    editor = null; editorFields = []; editorStatus = null; editorBusy = false; editorUncertain = false;
+  }
+  function publicIdentity() {
+    const active = identityActive(identity);
+    return { email: str(identity?.email), identityVerified: active, canEdit: active, verifiedUntil: active ? identity.verifiedUntil : null };
   }
   function invalidatePrivate() {
     identityGeneration += 1; clearTimeout(identityTimer); identity = null; currentPerson = null;
     clearEditor();
+    emit('oa:crm-identity', publicIdentity());
     if (view.kind === 'person' && drawer.open) {
       viewGeneration += 1;
       body.replaceChildren(empty('개인정보가 잠겼습니다. 본인 인증 후 다시 조회해 주세요.'), button('본인 인증', openIdentity));
@@ -496,7 +564,8 @@
   }
   function applyIdentity(value) {
     clearTimeout(identityTimer);
-    identity = identityActive(value) ? value : { email: value?.email || '', identityVerified: false, canEdit: false, verifiedUntil: null };
+    const active = identityActive(value);
+    identity = { email: str(value?.email), identityVerified: active, canEdit: active, verifiedUntil: active ? value.verifiedUntil : null };
     if (identityActive(identity)) {
       identityTimer = setTimeout(() => {
         const target = { ...view }; invalidatePrivate();
@@ -504,6 +573,7 @@
       }, Math.max(1, Math.min(8 * 60 * 60 * 1000, Date.parse(identity.verifiedUntil) - Date.now())));
       identityTimer?.unref?.();
     }
+    emit('oa:crm-identity', publicIdentity());
     return identity;
   }
   async function readIdentity() {
@@ -524,7 +594,7 @@
     catch (error) { if (identityDialog.open) identityDialog.replaceChildren(empty(error.message), button('닫기', () => identityDialog.close())); return; }
     if (!identityDialog.open || generation !== identityGeneration) return;
     applyIdentity(status);
-    if (identityActive(identity)) { identityDialog.close(); await reloadView(); return; }
+    if (identityActive(identity)) { identityDialog.close(); if (drawer.open) await reloadView(); return; }
     const form = el('form', undefined, 'oa-crm-form');
     const title = el('h2', '본인 인증'); title.id = 'oa-crm-identity-title';
     const email = el('p', status.email || '', 'oa-crm-identity-email');
@@ -562,7 +632,7 @@
         const verified = await requestJson('/api/crm-identity', { action: 'verify', code: code.value.trim() });
         if (!identityDialog.open || generation !== identityGeneration) return;
         if (!identityActive(verified)) throw new Error('인증 상태를 확인하지 못했습니다. 다시 시도해 주세요.');
-        applyIdentity(verified); code.value = ''; identityDialog.close(); await reloadView();
+        applyIdentity(verified); code.value = ''; identityDialog.close(); if (drawer.open) await reloadView();
       } catch (error) {
         if (identityDialog.open) {
           message.textContent = error.message;
@@ -582,6 +652,7 @@
   }
   function identityBar(verified) {
     const bar = el('div', undefined, 'oa-crm-identity-bar');
+    bar.dataset.verified = String(verified);
     if (verified) bar.append(el('span', `${identity.email} · 본인 인증됨`), button('다시 잠그기', lockIdentity));
     else bar.append(button('본인 인증', openIdentity, 'oa-crm-primary'), el('span', '인증 후 개인정보 조회·수정'));
     return bar;
@@ -653,6 +724,8 @@
   const options = object => Object.entries(object).map(([value, label]) => ({ value, label }));
   function editRecord(entity, record = null) {
     if (!currentPerson || !mayReveal(identity, currentPerson.privacy)) { invalidatePrivate(); openIdentity(); return; }
+    if (!canLeave()) return;
+    clearEditor();
     const creating = !record;
     if (creating && entity === 'person') return;
     const personId = currentPerson.person.person_id, accountId = view.accountId;
@@ -660,10 +733,7 @@
     const chosenAffiliation = list(targetPerson.affiliations).find(a => a.account_id === accountId) || list(targetPerson.affiliations)[0];
     const pk = { person: 'person_id', affiliation: 'affiliation_id', contact_point: 'contact_point_id', preference: 'preference_id', gift_recipient: 'recipient_id', life_event: 'event_id' }[entity];
     const recordId = record?.[pk] || record?.id || crypto.randomUUID();
-    if (!editor) {
-      editor = el('dialog', undefined, 'oa-crm-editor'); editor.dataset.oneAccountCrm = ''; editor.setAttribute('aria-labelledby', 'oa-crm-editor-title');
-      editor.addEventListener('close', () => { editorGeneration += 1; editor.querySelectorAll('input,textarea').forEach(input => { input.value = ''; }); editor.replaceChildren(); }); document.body.append(editor);
-    }
+    editor = el('section', undefined, 'oa-crm-editor'); editor.dataset.oneAccountCrm = ''; editor.dataset.inlineEditor = ''; editor.setAttribute('aria-labelledby', 'oa-crm-editor-title');
     const generation = ++editorGeneration;
     const form = el('form', undefined, 'oa-crm-form');
     const title = el('h2', `${entityLabels[entity]} ${creating ? '추가' : '수정'}`); title.id = 'oa-crm-editor-title'; form.append(title);
@@ -720,7 +790,7 @@
     add('notes', '메모', 'textarea');
     const status = el('p', '', 'oa-crm-form-status'); status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
     const actions = el('div', undefined, 'oa-crm-actions');
-    const cancel = button('취소', () => editor.close());
+    const cancel = button('취소', () => clearEditor());
     const save = el('button', '저장', 'oa-crm-primary'); save.type = 'submit'; actions.append(cancel, save); form.append(status, actions);
     const requestId = crypto.randomUUID(); let retryPayload = null, saving = false;
     form.addEventListener('submit', async event => {
@@ -744,28 +814,33 @@
       if (patch.received_on && patch.received_status !== 'received') { status.textContent = '수령일을 입력하려면 실제 수령 상태를 수령 O로 선택해 주세요.'; return; }
       if (['planned_amount', 'actual_amount'].some(key => patch[key] != null && (!Number.isFinite(patch[key]) || patch[key] < 0 || patch[key] > 99999999999999.99))) { status.textContent = '금액은 0 이상의 숫자로 입력해 주세요.'; return; }
       const payload = retryPayload || { action: creating ? 'create' : 'update', entity, id: recordId, expectedRevision: creating ? 0 : record.revision, patch, requestId };
-      saving = true; save.disabled = true; cancel.disabled = true; status.textContent = '저장 중…';
+      saving = true; editorBusy = true; save.disabled = true; cancel.disabled = true; status.textContent = '저장 중…';
       try {
         await api(null, payload);
+        emit('oa:crm-saved', { personId, accountId, entity, recordId });
         if (generation !== editorGeneration) return;
-        editor.close();
+        clearEditor();
         if (view.kind === 'person' && view.personId === personId) await openPerson(personId, accountId);
         await refreshIndex();
       } catch (error) {
         if (generation !== editorGeneration) return;
         status.textContent = error.message;
         if (!error.status || error.status >= 500) {
-          retryPayload = payload; save.textContent = '저장 결과 재확인'; fields.forEach(({ input }) => { input.disabled = true; });
+          retryPayload = payload; editorUncertain = true; save.textContent = '저장 결과 재확인'; fields.forEach(({ input }) => { input.disabled = true; });
         } else if (error.status === 409) {
           save.disabled = true; fields.forEach(({ input }) => { input.disabled = true; });
-          actions.prepend(button('최신 정보 불러오기', async () => { editor.close(); await openPerson(personId, accountId); }));
+          actions.prepend(button('최신 정보 불러오기', async () => { clearEditor(); await openPerson(personId, accountId); }));
         }
-      } finally { saving = false; if (generation === editorGeneration) { if (!status.textContent.includes('다른 사용자가')) save.disabled = false; cancel.disabled = false; } }
+      } finally { saving = false; if (generation === editorGeneration) { editorBusy = false; if (!status.textContent.includes('다른 사용자가')) save.disabled = false; cancel.disabled = false; } }
     });
-    editor.replaceChildren(form); editor.showModal();
+    editorFields = fields.map(field => ({ ...field, initial: field.input.value })); editorStatus = status; status.tabIndex = -1;
+    editor.replaceChildren(form); body.prepend(editor); editor.scrollIntoView?.({ block: 'start', behavior: 'smooth' }); fields[0]?.input.focus();
   }
   async function openPerson(personId, accountId = view.accountId) {
+    if (accountId && typeof accountId === 'object') accountId = accountId.account_id || accountId.accountId || null;
     const generation = show('인물 상세', { kind: 'person', accountId, personId });
+    if (generation == null) return false;
+    emit('oa:crm-person-open', { personId, accountId });
     try {
       const [status, result] = await Promise.all([readIdentity().catch(() => null), api({ action: 'person', personId })]);
       if (generation !== viewGeneration || !drawer.open) return;
@@ -778,7 +853,7 @@
       const affiliations = section('기본 소속 정보');
       const rows = sortedPeople(list(result.affiliations).map(a => ({ account_id: a.account_id, account_name: a.account_name, affiliation_id: a.affiliation_id, person_id: a.person_id, department: a.department, title: a.title, rank: a.rank, job_grade: a.job_grade }))).map(a => {
         const parts = titleParts(a);
-        return [button(a.account_name || catalogById.get(a.account_id)?.name || '', () => openAccount(a.account_id), 'oa-crm-table-link'), departmentText(a, catalogById.get(a.account_id)), parts.position, parts.rank];
+        return [button(a.account_name || catalogById.get(a.account_id)?.name || '', () => navigateAccount(a.account_id), 'oa-crm-table-link'), departmentText(a, catalogById.get(a.account_id)), parts.position, parts.rank];
       });
       affiliations.append(dataTable('기본 소속 정보', ['기관', '부서', '직책', '직급'], rows, 'oa-crm-basic-profile'));
       const masked = result.masked_details || {};
@@ -795,6 +870,6 @@
     if (view.kind === 'account') return openAccount(view.accountId);
     return openAll();
   }
-  window.OneAccountCRM = { catalog, refreshIndex, openAll, openAccount, openPerson, decorateAccounts };
+  window.OneAccountCRM = { catalog, refreshIndex, openAll, openAccount, mountPeople, openPerson, closePerson, readIdentity, openIdentity, lockIdentity, hasUnsavedChanges, canLeave, decorateAccounts };
   refreshIndex(false, window.ONE_ACCOUNT_CRM_INITIAL_CATALOG || null);
 })();
